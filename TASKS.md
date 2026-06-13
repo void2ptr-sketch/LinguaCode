@@ -107,6 +107,14 @@
 - [x] card-select: прохождение пользовательских сценариев
 - [x] удаление/изменение карточки не должно ломать сценарии и LearningResult
 
+#### UI — dialog
+
+- [x] `CardEditorDialogComponent` — MatDialog + `CardForm` + save/cancel
+- [x] `CardEditorPage`: каталог без inline editor, create/edit через dialog
+- [x] Confirm при закрытии с несохранёнными изменениями
+- [x] Responsive: fullscreen dialog на узких экранах (`styles.scss`)
+- [ ] Deep link `?id=` для edit (опционально)
+
 ### Каталог карточек (масштаб)
 
 Документация: [docs/CARD-CATALOG.md](./docs/CARD-CATALOG.md)

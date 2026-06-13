@@ -224,7 +224,7 @@ export class CardApiService {
 
 ### `card-management` (`features/card-editor/`)
 
-Единый экран **«Карточки»** — поиск по index, CRUD, форма редактора.
+Единый экран **«Карточки»** — поиск по index, CRUD в `MatDialog`, каталог на странице.
 
 | | |
 |---|---|
@@ -232,7 +232,7 @@ export class CardApiService {
 | Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar |
 | Путь | `features/card-editor/` |
 | Список | `CardCatalogSearchStore` + `CardSearchService` |
-| Редактор | `CardEditorStore` + `card-form` |
+| Редактор | `CardEditorDialogComponent` + `CardEditorStore` + `card-form` |
 
 ## Безопасность
 
