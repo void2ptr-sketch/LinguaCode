@@ -1,8 +1,11 @@
 import { CardAppearance } from './card.types';
-import type { LanguagePair } from './language-pair.types';
+import type { UserLanguagePairEntry } from './user-language-pair.types';
+
+export type { UserLanguagePairEntry } from './user-language-pair.types';
 
 export type UserPreferences = CardAppearance & {
-  languagePair: LanguagePair;
+  languagePairs: readonly UserLanguagePairEntry[];
+  activeLanguagePairId: string;
 };
 
 export type User = {

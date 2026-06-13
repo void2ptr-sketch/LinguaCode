@@ -1,0 +1,18 @@
+@if (languagePairs().length > 1) {
+  <mat-form-field appearance="outline" class="pair-switcher" [class.pair-switcher--compact]="compact()">
+    <mat-label>Активная пара</mat-label>
+    <mat-select
+      [ngModel]="activeLanguagePairId()"
+      (ngModelChange)="onActiveChange($event)"
+      name="activeLanguagePair"
+    >
+      @for (entry of languagePairs(); track entry.id) {
+        <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+} @else if (languagePairs().length === 1) {
+  <p class="pair-switcher__single" [class.pair-switcher__single--compact]="compact()">
+    Пара языков: {{ entryLabel(languagePairs()[0]) }}
+  </p>
+}

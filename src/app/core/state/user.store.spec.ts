@@ -18,11 +18,13 @@ describe('UserStore', () => {
     localStorage.clear();
   });
 
-  it('should expose default user with language pair', () => {
+  it('should expose default user with active language pair', () => {
     expect(store.displayName()).toBe('Ученик');
     expect(store.preferences().fontSize).toBe('md');
+    expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
+    expect(store.isActiveEntry(store.languagePairs()[0])).toBeTrue();
   });
 
   it('should update display name', () => {
@@ -50,26 +52,65 @@ describe('UserStore', () => {
     expect(store.preferences().fontSize).toBe('md');
   });
 
-  it('should update preferences partially', () => {
+  it('should update appearance preferences partially', () => {
     store.updatePreferences({ fontSize: 'lg' });
-    expect(store.preferences()).toEqual({
-      theme: 'azure-blue',
-      fontSize: 'lg',
-      languagePair: { known: 'ru', learning: 'en' },
-    });
+    expect(store.preferences().fontSize).toBe('lg');
+    expect(store.preferences().theme).toBe('azure-blue');
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
-  it('should update and persist language pair', () => {
+  it('should add language pair and make it active', () => {
+    store.addLanguagePair({ known: 'ru', learning: 'zh' });
+
+    expect(store.languagePairs()).toHaveSize(2);
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
+  });
+
+  it('should not duplicate language pairs when adding existing pair', () => {
+    store.addLanguagePair({ known: 'ru', learning: 'zh' });
+    store.addLanguagePair({ known: 'ru', learning: 'en' });
+
+    expect(store.languagePairs()).toHaveSize(2);
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+  });
+
+  it('should switch active language pair', () => {
+    store.addLanguagePair({ known: 'ru', learning: 'zh' });
+    const firstId = store.languagePairs().find((entry) => entry.pair.learning === 'en')?.id;
+
+    expect(firstId).toBeTruthy();
+    store.setActiveLanguagePair(firstId!);
+
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+  });
+
+  it('should remove language pair and reassign active id', () => {
+    store.addLanguagePair({ known: 'ru', learning: 'zh' });
+    const activeId = store.activeLanguagePairId();
+
+    store.removeLanguagePair(activeId);
+
+    expect(store.languagePairs()).toHaveSize(1);
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+  });
+
+  it('should not remove the last language pair', () => {
+    store.removeLanguagePair(store.activeLanguagePairId());
+    expect(store.languagePairs()).toHaveSize(1);
+  });
+
+  it('should update and persist active language pair via legacy API', () => {
     store.updateLanguagePair({ known: 'ru', learning: 'zh' });
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
 
     const reloaded = TestBed.inject(UserPersistence).load();
-    expect(reloaded?.preferences.languagePair).toEqual({ known: 'ru', learning: 'zh' });
+    expect(reloaded?.preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(localStorage.getItem(USER_STORAGE_KEY)).toContain('"learning":"zh"');
   });
 
-  it('should reject identical known and learning languages', () => {
-    store.updateLanguagePair({ known: 'en', learning: 'en' });
+  it('should reject identical known and learning languages when adding pair', () => {
+    store.addLanguagePair({ known: 'en', learning: 'en' });
+    expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 });

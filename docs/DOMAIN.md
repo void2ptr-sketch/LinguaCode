@@ -143,7 +143,8 @@ type User = {
   id: string;
   displayName: string;
   preferences: CardAppearance & {
-    languagePair: LanguagePair;
+    languagePairs: readonly UserLanguagePairEntry[];
+    activeLanguagePairId: string;
   };
 };
 ```

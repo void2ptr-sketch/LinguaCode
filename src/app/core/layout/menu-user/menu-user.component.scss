@@ -2,6 +2,13 @@
   display: inline-flex;
 }
 
+.menu-user {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.75rem;
+}
+
 .menu-link--active {
   font-weight: 500;
 }

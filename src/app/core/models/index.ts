@@ -45,3 +45,4 @@ export type {
 export { DEFAULT_LANGUAGE_PAIR } from './language-pair.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
 export type { User, UserPreferences } from './user.types';
+export type { UserLanguagePairEntry } from './user-language-pair.types';

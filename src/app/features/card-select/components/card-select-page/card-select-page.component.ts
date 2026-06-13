@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -7,11 +7,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 
+import { ActiveLanguagePairSwitcherComponent } from '../../../../shared/components/active-language-pair-switcher/active-language-pair-switcher.component';
 import { CardHostComponent } from '../../../../shared/components/card-host';
 import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
+
+let lastKnownActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-card-select-page',
@@ -21,6 +24,7 @@ import { CardSelectStore } from '../../services/card-select.store';
     MatButtonModule,
     MatButtonToggleModule,
     MatProgressSpinnerModule,
+    ActiveLanguagePairSwitcherComponent,
     CardHostComponent,
     ScenarioPickerComponent,
   ],
@@ -32,7 +36,6 @@ export class CardSelectPageComponent {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   readonly store = inject(CardSelectStore);
-  readonly languagePairLabel = this.userStore.languagePairLabel;
 
   readonly selectedScenarioId = signal<string>('');
   readonly scenarioTitle = signal<string>('');
@@ -40,6 +43,24 @@ export class CardSelectPageComponent {
   readonly missingCardsWarning = signal<string | null>(null);
 
   readonly fontSize = this.userStore.preferences;
+
+  private readonly resetOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+
+    if (lastKnownActiveLanguagePairId !== null && lastKnownActiveLanguagePairId !== activeId) {
+      this.resetSessionState();
+    }
+
+    lastKnownActiveLanguagePairId = activeId;
+  });
+
+  private resetSessionState(): void {
+    this.store.reset();
+    this.selectedScenarioId.set('');
+    this.scenarioTitle.set('');
+    this.scenarioSourceLabel.set('');
+    this.missingCardsWarning.set(null);
+  }
 
   async loadCards(): Promise<void> {
     const scenarioId = this.selectedScenarioId();

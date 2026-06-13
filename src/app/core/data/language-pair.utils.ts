@@ -29,6 +29,10 @@ export function normalizeLanguagePair(pair?: Partial<LanguagePair> | null): Lang
   return { known, learning };
 }
 
+export function languagePairsEqual(left: LanguagePair, right: LanguagePair): boolean {
+  return left.known === right.known && left.learning === right.learning;
+}
+
 export function formatLanguagePair(pair: LanguagePair): string {
   return `${CONTENT_LANGUAGE_LABELS[pair.known]} → ${CONTENT_LANGUAGE_LABELS[pair.learning]}`;
 }

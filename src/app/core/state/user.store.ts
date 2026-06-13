@@ -1,9 +1,13 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { formatLanguagePair, normalizeLanguagePair } from '../data/language-pair.utils';
+import { formatLanguagePair, isContentLanguage, normalizeLanguagePair } from '../data/language-pair.utils';
+import {
+  createDefaultLanguagePairPreferences,
+  createUserLanguagePairEntry,
+  findLanguagePairEntryId,
+} from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
-import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
-import type { LanguagePair, User, UserPreferences } from '../models';
+import type { LanguagePair, User, UserLanguagePairEntry, UserPreferences } from '../models';
 import { UserPersistence } from './user.persistence';
 
 const DEFAULT_USER: User = {
@@ -12,7 +16,7 @@ const DEFAULT_USER: User = {
   preferences: {
     theme: 'azure-blue',
     fontSize: 'md',
-    languagePair: DEFAULT_LANGUAGE_PAIR,
+    ...createDefaultLanguagePairPreferences(),
   },
 };
 
@@ -24,7 +28,20 @@ export class UserStore {
   readonly user = this.userState.asReadonly();
   readonly displayName = computed(() => this.user().displayName);
   readonly preferences = computed(() => this.user().preferences);
-  readonly languagePair = computed(() => this.user().preferences.languagePair);
+  readonly languagePairs = computed(() => this.user().preferences.languagePairs);
+  readonly activeLanguagePairId = computed(() => this.user().preferences.activeLanguagePairId);
+
+  readonly activeLanguagePairEntry = computed(() => {
+    const pairs = this.languagePairs();
+    const activeId = this.activeLanguagePairId();
+    return pairs.find((entry) => entry.id === activeId) ?? pairs[0] ?? null;
+  });
+
+  readonly languagePair = computed(() => {
+    const entry = this.activeLanguagePairEntry();
+    return entry?.pair ?? createDefaultLanguagePairPreferences().languagePairs[0].pair;
+  });
+
   readonly languagePairLabel = computed(() => formatLanguagePair(this.languagePair()));
 
   updateDisplayName(displayName: string): void {
@@ -48,10 +65,6 @@ export class UserStore {
         nextPreferences.fontSize = preferences.fontSize;
       }
 
-      if (preferences.languagePair !== undefined) {
-        nextPreferences.languagePair = normalizeLanguagePair(preferences.languagePair);
-      }
-
       return {
         ...user,
         preferences: nextPreferences,
@@ -60,8 +73,102 @@ export class UserStore {
     this.persist();
   }
 
+  /** Обновляет пару у активной записи (legacy API для совместимости). */
   updateLanguagePair(languagePair: LanguagePair): void {
-    this.updatePreferences({ languagePair: normalizeLanguagePair(languagePair) });
+    const normalized = normalizeLanguagePair(languagePair);
+    const activeId = this.activeLanguagePairId();
+
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        languagePairs: user.preferences.languagePairs.map((entry) =>
+          entry.id === activeId ? { ...entry, pair: normalized } : entry,
+        ),
+      },
+    }));
+    this.persist();
+  }
+
+  addLanguagePair(pair: LanguagePair): void {
+    if (
+      !isContentLanguage(pair.known) ||
+      !isContentLanguage(pair.learning) ||
+      pair.known === pair.learning
+    ) {
+      return;
+    }
+
+    const normalized: LanguagePair = { known: pair.known, learning: pair.learning };
+    const existingId = findLanguagePairEntryId(this.languagePairs(), normalized);
+
+    if (existingId) {
+      this.setActiveLanguagePair(existingId);
+      return;
+    }
+
+    const entry = createUserLanguagePairEntry(normalized);
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        languagePairs: [...user.preferences.languagePairs, entry],
+        activeLanguagePairId: entry.id,
+      },
+    }));
+    this.persist();
+  }
+
+  removeLanguagePair(id: string): void {
+    const pairs = this.languagePairs();
+    if (pairs.length <= 1) {
+      return;
+    }
+
+    const nextPairs = pairs.filter((entry) => entry.id !== id);
+    if (nextPairs.length === pairs.length) {
+      return;
+    }
+
+    const nextActiveId =
+      this.activeLanguagePairId() === id ? nextPairs[0].id : this.activeLanguagePairId();
+
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        languagePairs: nextPairs,
+        activeLanguagePairId: nextActiveId,
+      },
+    }));
+    this.persist();
+  }
+
+  setActiveLanguagePair(id: string): void {
+    if (id === this.activeLanguagePairId()) {
+      return;
+    }
+
+    if (!this.languagePairs().some((entry) => entry.id === id)) {
+      return;
+    }
+
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        activeLanguagePairId: id,
+      },
+    }));
+    this.persist();
+  }
+
+  formatEntryLabel(entry: UserLanguagePairEntry): string {
+    return formatLanguagePair(entry.pair);
+  }
+
+  isActiveEntry(entry: UserLanguagePairEntry): boolean {
+    return entry.id === this.activeLanguagePairId();
   }
 
   private patchUser(patch: Partial<User>): void {

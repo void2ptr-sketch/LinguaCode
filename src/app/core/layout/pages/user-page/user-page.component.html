@@ -12,7 +12,41 @@
 
     <section class="page-card__section">
       <h2 class="page-card__section-title">Языки обучения</h2>
-      <p class="page-card__hint">Известный язык — тот, на котором вы уже говорите; новый — который изучаете.</p>
+      <p class="page-card__hint">
+        Можно добавить несколько пар; активная пара используется в обучении и редакторах.
+      </p>
+
+      <ul class="page-card__pair-list">
+        @for (entry of languagePairs(); track entry.id) {
+          <li class="page-card__pair-item" [class.page-card__pair-item--active]="isActive(entry)">
+            <span class="page-card__pair-label">
+              {{ entryLabel(entry) }}
+              @if (isActive(entry)) {
+                <span class="page-card__pair-badge">активная</span>
+              }
+            </span>
+            <span class="page-card__pair-actions">
+              @if (!isActive(entry)) {
+                <button mat-stroked-button type="button" (click)="setActive(entry.id)">
+                  Сделать активной
+                </button>
+              }
+              @if (canRemovePair()) {
+                <button
+                  mat-icon-button
+                  type="button"
+                  aria-label="Удалить пару"
+                  (click)="removePair(entry.id)"
+                >
+                  <mat-icon>delete_outline</mat-icon>
+                </button>
+              }
+            </span>
+          </li>
+        }
+      </ul>
+
+      <h3 class="page-card__subsection-title">Добавить пару</h3>
 
       <mat-form-field appearance="outline">
         <mat-label>Известный язык</mat-label>
@@ -35,6 +69,10 @@
       @if (languagePairInvalid()) {
         <p class="page-card__error">Языки должны отличаться.</p>
       }
+
+      <button mat-stroked-button type="button" [disabled]="languagePairInvalid()" (click)="addPair()">
+        Добавить пару
+      </button>
     </section>
 
     <section class="page-card__section">
@@ -57,8 +95,6 @@
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-flat-button type="button" [disabled]="languagePairInvalid()" (click)="saveProfile()">
-      Сохранить
-    </button>
+    <button mat-flat-button type="button" (click)="saveProfile()">Сохранить</button>
   </mat-card-actions>
 </mat-card>
