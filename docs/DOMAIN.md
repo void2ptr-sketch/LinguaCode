@@ -5,14 +5,46 @@
 `LinguaCode` — приложение для исследования и изучения языков.
 
 - Изучение языков от естественных до искусственных
-- Основная единица приложения — **карточка**
-- Карточки объединяются в **сценарии** — упорядоченный набор карточек для прохождения
+- Основная единица приложения — **карточка** (`Card`)
+- Карточки объединяются в **сценарии** (`Scenario`) — упорядоченный набор карточек для одного прохождения
+- **Сценарии** объединяются в **уроки** (`Lesson`) — тематический блок (например «Приветствия», «Числа»)
+- **Уроки** объединяются в **курсы** (`Course`) — учебная программа с описанием и целями
 - Пользователь настраивает внешний вид карточек под себя
-- **Конструктор сценариев** — инструмент создания и редактирования сценариев (бэклог)
+- **Конструктор сценариев** — инструмент создания и редактирования сценариев
 - Результаты обучения сохраняются
 - Данные хранятся в базе данных
 
+> **Статус иерархии:** `Card` → `Scenario` — **реализовано** (MVP). `Lesson` и `Course` — **бэклог** (G11), см. [TASKS.md](../TASKS.md).
+
 Техническая реализация: [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+## Иерархия контента
+
+Учебный материал выстраивается снизу вверх:
+
+```text
+Card  →  Scenario  →  Lesson  →  Course
+```
+
+| Уровень | Сущность | Назначение | Статус |
+|---------|----------|------------|--------|
+| 1 | `Card` | Атомарное упражнение (вопрос, пара, ввод…) | MVP |
+| 2 | `Scenario` | Один прогон: фиксированный или criteria-набор карточек | MVP |
+| 3 | `Lesson` | Тема: несколько сценариев в заданном порядке | бэклог G11 |
+| 4 | `Course` | Программа: несколько уроков; привязана к `LanguagePair` | бэклог G11 |
+
+### Термины: не путать «курс» и `LanguagePair`
+
+В UI и документации G7/G8 слово **«курс»** иногда означает **активную языковую пару** (ru→en, ru→zh) — scope контента в каталогах и обучении. В домене G11 **`Course`** — отдельная сущность: **учебная программа** из уроков.
+
+| В речи / UI | В домене | Пример |
+|-------------|----------|--------|
+| языковая пара, «курс ru→en» (G7/G8) | `LanguagePair` | `{ known: 'ru', learning: 'en' }` |
+| учебная программа | `Course` | «Английский A1: базовый» |
+| тематический блок | `Lesson` | «Урок 3: Приветствия» |
+| прогон упражнений | `Scenario` | «Демо: приветствие» |
+
+Рекомендация для UI (G11e): chip активного scope называть **«Пара: …»**, а **«Курс»** — только для `Course`.
 
 ## Конструктор сценариев
 
@@ -38,14 +70,27 @@
 ```mermaid
 erDiagram
     User ||--o{ Scenario : authors
+    User ||--o{ Course : authors
     User ||--o{ LearningResult : produces
     User ||--|| CardAppearance : prefers
+    Course ||--|{ Lesson : contains
+    Lesson ||--|{ Scenario : references
     Scenario ||--|{ Card : contains
     Card ||--o{ LearningResult : tracks
 
     User {
         string id
         string displayName
+    }
+    Course {
+        string id
+        string title
+        LanguagePair languagePair
+    }
+    Lesson {
+        string id
+        string title
+        int order
     }
     Scenario {
         string id
@@ -63,6 +108,8 @@ erDiagram
     }
 ```
 
+> `Lesson` и `Course` на диаграмме — целевая модель (G11). Сейчас в коде связь идёт напрямую `Scenario` → `Card`.
+
 ### Сущности
 
 | Модель | Описание |
@@ -72,6 +119,8 @@ erDiagram
 | `CardKind` | Тип карточки (см. таблицу ниже) |
 | `CardAppearance` | Внешний вид: тема, размер шрифта и др. |
 | `Scenario` | Сценарий — упорядоченный набор карточек; создаётся вручную или через конструктор |
+| `Lesson` | Урок — упорядоченный набор сценариев внутри курса (бэклог G11) |
+| `Course` | Курс — учебная программа: уроки + `languagePair`; не заменяет `LanguagePair` (бэклог G11) |
 | `LearningResult` | Результат ответа пользователя на карточку в сценарии |
 | `CardIndexEntry` | Лёгкая запись каталога (метаданные без payload карточки) |
 | `CardSearchCriteria` | Критерии поиска карточек в каталоге + `PageRequest` |
@@ -130,6 +179,27 @@ type Scenario = {
   cardSource: ScenarioCardSource;
 };
 
+/** Бэклог G11 — не в коде */
+type Lesson = {
+  id: string;
+  courseId: string;
+  title: string;
+  description: string;
+  scenarioIds: readonly string[];
+  order: number;
+};
+
+/** Бэклог G11 — не в коде. languagePair задаёт scope контента курса */
+type Course = {
+  id: string;
+  title: string;
+  description: string;
+  authorId: string;
+  languagePair: LanguagePair;
+  lessonIds: readonly string[];
+  published: boolean;
+};
+
 type LearningResult = {
   id: string;
   userId: string;
@@ -137,6 +207,10 @@ type LearningResult = {
   scenarioId: string;
   correct: boolean;
   answeredAt: string; // ISO 8601
+  languagePair: LanguagePair;
+  direction?: CardDirection;
+  lessonId?: string;   // G11 — опционально для агрегации прогресса по уроку
+  courseId?: string;   // G11 — опционально для агрегации прогресса по курсу
 };
 
 type User = {
@@ -195,7 +269,7 @@ type ScenarioCardSource =
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
-- [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning
+- [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning (scope контента; не путать с `Course`)
 - [CJK-CONTENT.md](./CJK-CONTENT.md) — иероглифы, романизация (пиньинь, жуинь, Палладия), тоны (G9)
 - [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) — IPA, фонетическая транскрипция (G10)
 - [TASKS.md](../TASKS.md) — чеклист реализации
