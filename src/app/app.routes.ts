@@ -13,6 +13,30 @@ export const routes: Routes = [
           import('./features/home/components/home-page/home-page.component').then(
             (m) => m.HomePageComponent,
           ),
+        children: [
+          {
+            path: '',
+            pathMatch: 'full',
+            loadComponent: () =>
+              import('./features/home/components/home-welcome-tab/home-welcome-tab.component').then(
+                (m) => m.HomeWelcomeTabComponent,
+              ),
+          },
+          {
+            path: 'progress',
+            loadComponent: () =>
+              import(
+                './features/learning-results/components/learning-progress/learning-progress.component'
+              ).then((m) => m.LearningProgressComponent),
+          },
+          {
+            path: 'sections',
+            loadComponent: () =>
+              import(
+                './features/home/components/home-sections-tab/home-sections-tab.component'
+              ).then((m) => m.HomeSectionsTabComponent),
+          },
+        ],
       },
       {
         path: 'cards/select',

@@ -1,13 +1,20 @@
 <section class="home-page">
-  <mat-card class="page-card">
-    <mat-card-header>
-      <mat-card-title>Добро пожаловать, {{ displayName() }}</mat-card-title>
-    </mat-card-header>
-    <mat-card-content>
-      <p>Приложение для исследования и изучения языков.</p>
-      <p>Выберите раздел в меню: карточки, инструменты или справку.</p>
-    </mat-card-content>
-  </mat-card>
+  <nav mat-tab-nav-bar [tabPanel]="tabPanel" class="home-page__tabs" aria-label="Главная">
+    @for (tab of tabs; track tab.path) {
+      <a
+        mat-tab-link
+        [routerLink]="tab.path"
+        routerLinkActive
+        #tabLink="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: tab.exact ?? false }"
+        [active]="tabLink.isActive"
+      >
+        {{ tab.label }}
+      </a>
+    }
+  </nav>
 
-  <app-learning-progress />
+  <mat-tab-nav-panel #tabPanel class="home-page__panel">
+    <router-outlet />
+  </mat-tab-nav-panel>
 </section>
