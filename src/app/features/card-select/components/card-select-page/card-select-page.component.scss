@@ -13,6 +13,17 @@
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
 }
 
+.card-select-page__scenario {
+  margin-top: 1rem;
+  width: min(100%, 24rem);
+}
+
+.card-select-page__warning {
+  margin: 0.5rem 0 0;
+  color: var(--mat-sys-error);
+  font-size: 0.875rem;
+}
+
 .card-select-page__state {
   align-items: center;
   display: grid;

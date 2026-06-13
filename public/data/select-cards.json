@@ -11,6 +11,24 @@
       "correctIndex": 0
     },
     {
+      "id": "select-2",
+      "kind": "select",
+      "title": "Числа",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Как будет «один» по-английски?",
+      "options": ["One", "Two", "Three", "Four"],
+      "correctIndex": 0
+    },
+    {
+      "id": "select-3",
+      "kind": "select",
+      "title": "Прощание",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Как сказать «До свидания» по-английски?",
+      "options": ["Goodbye", "Hello", "Thanks", "Please"],
+      "correctIndex": 0
+    },
+    {
       "id": "memory-1",
       "kind": "memory",
       "title": "Пары слов",

@@ -1,0 +1,63 @@
+import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
+import { firstValueFrom } from 'rxjs';
+import { buildFixtureUrl } from '../api';
+import { Card } from '../models';
+
+export const CARDS_STORAGE_KEY = 'lingua-code.cards';
+
+type CardsSeedFixture = {
+  cards: readonly Card[];
+};
+
+@Injectable({ providedIn: 'root' })
+export class CardRepository {
+  private readonly http = inject(HttpClient);
+
+  loadStored(): readonly Card[] {
+    const raw = localStorage.getItem(CARDS_STORAGE_KEY);
+    if (!raw) {
+      return [];
+    }
+
+    try {
+      const parsed = JSON.parse(raw) as readonly Card[];
+      return Array.isArray(parsed) ? parsed : [];
+    } catch {
+      return [];
+    }
+  }
+
+  save(cards: readonly Card[]): void {
+    localStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(cards));
+  }
+
+  loadSeed(): Promise<readonly Card[]> {
+    return firstValueFrom(
+      this.http.get<CardsSeedFixture>(buildFixtureUrl('/select-cards.json')),
+    ).then((fixture) => fixture.cards);
+  }
+
+  async ensureLoaded(): Promise<readonly Card[]> {
+    const stored = this.loadStored();
+    if (stored.length > 0) {
+      return stored;
+    }
+
+    const seeded = await this.loadSeed();
+    this.save(seeded);
+    return seeded;
+  }
+
+  getById(cards: readonly Card[], cardId: string): Card | null {
+    return cards.find((card) => card.id === cardId) ?? null;
+  }
+
+  toCatalogItems(cards: readonly Card[]): readonly { id: string; kind: Card['kind']; title: string }[] {
+    return cards.map((card) => ({
+      id: card.id,
+      kind: card.kind,
+      title: card.title,
+    }));
+  }
+}

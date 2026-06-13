@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { CardRepository } from '../../../core/data';
 import { UserStore } from '../../../core/state';
 import { ScenarioBuilderStore } from './scenario-builder.store';
 import { ScenarioBuilderService, SCENARIOS_STORAGE_KEY } from './scenario-builder.service';
@@ -12,7 +13,13 @@ describe('ScenarioBuilderStore', () => {
     localStorage.clear();
 
     TestBed.configureTestingModule({
-      providers: [ScenarioBuilderStore, ScenarioBuilderService, UserStore, provideHttpClient()],
+      providers: [
+        ScenarioBuilderStore,
+        ScenarioBuilderService,
+        CardRepository,
+        UserStore,
+        provideHttpClient(),
+      ],
     });
 
     store = TestBed.inject(ScenarioBuilderStore);

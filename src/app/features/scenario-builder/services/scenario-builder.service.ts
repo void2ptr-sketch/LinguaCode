@@ -1,9 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
+import { Injectable } from '@angular/core';
 import { Scenario } from '../../../core/models';
-import { buildFixtureUrl } from '../../../core/api';
-import { CardCatalogFixture } from '../types';
 
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 
@@ -19,12 +15,6 @@ const DEFAULT_SCENARIOS: readonly Scenario[] = [
 
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderService {
-  private readonly http = inject(HttpClient);
-
-  loadCatalog(): Promise<CardCatalogFixture> {
-    return firstValueFrom(this.http.get<CardCatalogFixture>(buildFixtureUrl('/cards-catalog.json')));
-  }
-
   loadScenarios(): readonly Scenario[] {
     const raw = localStorage.getItem(SCENARIOS_STORAGE_KEY);
     if (!raw) {

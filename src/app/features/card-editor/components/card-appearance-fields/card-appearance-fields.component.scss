@@ -1,0 +1,14 @@
+.card-appearance-fields h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.card-appearance-fields__grid {
+  display: grid;
+  gap: 0.5rem;
+
+  @media (min-width: 36rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
