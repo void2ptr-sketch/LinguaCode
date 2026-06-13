@@ -1,8 +1,8 @@
-.page-card {
-  max-width: 40rem;
+.home-page {
+  display: grid;
+  gap: 1.5rem;
 }
 
-.page-card__stats {
-  margin-top: 1rem;
-  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+.page-card {
+  max-width: 40rem;
 }
