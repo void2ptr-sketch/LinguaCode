@@ -1,0 +1,8 @@
+@if (hasReading()) {
+  <ruby class="cjk-ruby" lang="zh-Hans">
+    <span class="cjk-ruby__base">{{ base() }}</span>
+    <rt class="cjk-ruby__reading cjk-ruby__reading--{{ romanization() }}">{{ reading() }}</rt>
+  </ruby>
+} @else {
+  <span class="cjk-ruby__base" lang="zh-Hans">{{ base() }}</span>
+}

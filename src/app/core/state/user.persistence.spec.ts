@@ -55,5 +55,7 @@ describe('UserPersistence', () => {
 
     expect(user?.preferences.languagePairs).toHaveSize(2);
     expect(user?.preferences.activeLanguagePairId).toBe('pair-2');
+    expect(user?.preferences.cjkLearning?.displayRomanization).toBe('pinyin');
+    expect(user?.preferences.phonetic?.showIpa).toBeFalse();
   });
 });

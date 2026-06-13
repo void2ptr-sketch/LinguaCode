@@ -1,0 +1,21 @@
+.cjk-ruby {
+  display: inline ruby;
+  font-family: 'Noto Sans SC', 'Noto Sans', sans-serif;
+}
+
+.cjk-ruby__base {
+  font-family: inherit;
+}
+
+.cjk-ruby__reading {
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+}
+
+.cjk-ruby__reading--palladius {
+  font-family: Roboto, 'Noto Sans', sans-serif;
+}
+
+.cjk-ruby__reading--zhuyin {
+  font-family: 'Noto Sans TC', 'Noto Sans', sans-serif;
+}

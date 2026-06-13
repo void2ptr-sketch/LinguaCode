@@ -7,12 +7,21 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { KeyboardCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { getCorrectAnswerLabel } from '../../../utils/card-answer.utils';
 
 @Component({
   selector: 'app-keyboard-card',
-  imports: [FormsModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
+  imports: [
+    FormsModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatInputModule,
+    LexemeDisplayComponent,
+  ],
   templateUrl: './keyboard-card.component.html',
   styleUrl: './keyboard-card.component.scss',
 })

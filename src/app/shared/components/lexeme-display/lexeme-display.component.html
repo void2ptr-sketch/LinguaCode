@@ -1,0 +1,19 @@
+@if (displayLexeme(); as item) {
+  <div class="lexeme-display" [class.lexeme-display--inline]="inline()">
+    @if (item.script === 'hani') {
+      <app-cjk-ruby
+        [base]="item.primary"
+        [reading]="rubyReading()"
+        [romanization]="effectiveRomanization()"
+      />
+    } @else {
+      <span class="lexeme-display__primary">{{ item.primary }}</span>
+    }
+
+    @if (ipaText(); as ipa) {
+      <app-phonetic-ipa [transcription]="ipa" [inline]="inline()" />
+    }
+  </div>
+} @else if (fallbackText()) {
+  <span class="lexeme-display__primary">{{ fallbackText() }}</span>
+}

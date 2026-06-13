@@ -4,7 +4,7 @@
 
 Связанные документы: [DOMAIN.md](./DOMAIN.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
-> **Статус:** бэклог · см. [TASKS.md](../TASKS.md) (G9a–G9f).
+> **Статус:** MVP реализован · см. [TASKS.md](../TASKS.md) (G9a–G9f).
 
 ## Зачем отдельный трек (G9)
 

@@ -1,8 +1,14 @@
 import {
+  emptyLexemeDraftFields,
+  normalizePhoneticLexemeDraft,
+} from '../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import {
   isAllowedFontSize,
   sanitizePlainText,
   sanitizeTheme,
 } from '../../../core/security';
+import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import {
   Card,
   CardAppearance,
@@ -73,6 +79,29 @@ const normalizeCorrectIndex = (correctIndex: number, length: number): number | n
   return correctIndex;
 };
 
+const normalizeAudioUrl = (value: string): string | undefined => {
+  const sanitized = sanitizePlainText(value, 512);
+  return sanitized || undefined;
+};
+
+const normalizeLexemeDraft = (
+  draft: LexemeDraftFields | undefined,
+  fallbackPrimary?: string,
+): PhoneticLexeme | undefined => {
+  return normalizePhoneticLexemeDraft(draft ?? emptyLexemeDraftFields(), fallbackPrimary);
+};
+
+const normalizeLexemeList = (
+  texts: readonly string[],
+  drafts: readonly LexemeDraftFields[] | undefined,
+): readonly PhoneticLexeme[] | undefined => {
+  const lexemes = texts
+    .map((text, index) => normalizeLexemeDraft(drafts?.[index], text))
+    .filter((lexeme): lexeme is PhoneticLexeme => lexeme !== undefined);
+
+  return lexemes.length > 0 ? lexemes : undefined;
+};
+
 export const normalizeSelectCardDraft = (
   draft: SelectCardDraft,
   cardId: string,
@@ -90,6 +119,9 @@ export const normalizeSelectCardDraft = (
     return null;
   }
 
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
+
   return {
     id: cardId,
     kind: 'select',
@@ -99,6 +131,9 @@ export const normalizeSelectCardDraft = (
     optionsLearning,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
+    ...(optionsLexemes ? { optionsLexemes } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -109,15 +144,24 @@ export const normalizeMemoryCardDraft = (
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
   const pairs = draft.pairs
-    .map((pair) => ({
-      known: sanitizeShort(pair.known),
-      learning: sanitizeShort(pair.learning),
-    }))
+    .map((pair) => {
+      const known = sanitizeShort(pair.known);
+      const learning = sanitizeShort(pair.learning);
+      const learningLexeme = normalizeLexemeDraft(pair.learningLexeme, learning);
+
+      return {
+        known,
+        learning,
+        ...(learningLexeme ? { learningLexeme } : {}),
+      };
+    })
     .filter((pair) => pair.known.length > 0 && pair.learning.length > 0);
 
   if (!title || !promptKnown || pairs.length < MIN_PAIRS || pairs.length > MAX_PAIRS) {
     return null;
   }
+
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
 
   return {
     id: cardId,
@@ -126,6 +170,8 @@ export const normalizeMemoryCardDraft = (
     promptKnown,
     pairs,
     appearance: normalizeAppearance(draft.appearance),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -146,6 +192,9 @@ export const normalizeSymbolCardDraft = (
     return null;
   }
 
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+  const symbolLexemes = normalizeLexemeList(symbols, draft.symbolLexemes);
+
   return {
     id: cardId,
     kind: 'symbol',
@@ -155,6 +204,9 @@ export const normalizeSymbolCardDraft = (
     symbols,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
+    ...(symbolLexemes ? { symbolLexemes } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -173,6 +225,11 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
     return null;
   }
 
+  const promptLexeme =
+    normalizeLexemeDraft(draft.promptLexeme, promptKnown) ??
+    normalizeLexemeDraft(draft.audioLabelLexeme, audioLabelLearning);
+  const optionsLexemes = normalizeLexemeList(optionsKnown, draft.optionsLexemes);
+
   return {
     id: cardId,
     kind: 'sound',
@@ -183,6 +240,9 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
     optionsKnown,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
+    ...(optionsLexemes ? { optionsLexemes } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -201,6 +261,9 @@ export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): 
     return null;
   }
 
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
+
   return {
     id: cardId,
     kind: 'timed',
@@ -211,6 +274,9 @@ export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): 
     correctIndex,
     timeLimitSec,
     appearance: normalizeAppearance(draft.appearance),
+    ...(optionsLexemes ? { optionsLexemes } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -233,6 +299,8 @@ export const normalizeKeyboardCardDraft = (
     return null;
   }
 
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+
   return {
     id: cardId,
     kind: 'keyboard',
@@ -241,6 +309,8 @@ export const normalizeKeyboardCardDraft = (
     promptKnown,
     acceptedAnswersKnown,
     appearance: normalizeAppearance(draft.appearance),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 

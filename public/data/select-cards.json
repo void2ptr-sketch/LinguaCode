@@ -90,6 +90,66 @@
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "promptKnown": "Нарисуйте символ, связанный со словом Hello",
       "referenceHintKnown": "Приветствие"
+    },
+    {
+      "id": "select-zh-1",
+      "kind": "select",
+      "title": "Приветствие (китайский)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сказать «Привет» по-китайски?",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "palladius": "ни хао",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ"
+      },
+      "optionsLearning": ["你好", "谢谢", "再见", "请"],
+      "optionsLexemes": [
+        { "primary": "你好", "script": "hani", "pinyin": "nǐ hǎo", "palladius": "ни хао" },
+        { "primary": "谢谢", "script": "hani", "pinyin": "xièxie", "palladius": "сие сие" },
+        { "primary": "再见", "script": "hani", "pinyin": "zàijiàn", "palladius": "цзай цзянь" },
+        { "primary": "请", "script": "hani", "pinyin": "qǐng", "palladius": "цин" }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "select-en-ipa-1",
+      "kind": "select",
+      "title": "Hello (IPA)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Как звучит слово «Hello»?",
+      "optionsLearning": ["Hello", "Goodbye", "Thanks"],
+      "optionsLexemes": [
+        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ" },
+        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ" },
+        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks" }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "select-en-ipa-2",
+      "kind": "select",
+      "title": "Thought (IPA variants)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Транскрипция слова «thought»",
+      "optionsLearning": ["thought", "through", "taught"],
+      "optionsLexemes": [
+        {
+          "primary": "thought",
+          "script": "latn",
+          "ipa": [
+            { "transcription": "θɔːt", "label": "BrE" },
+            { "transcription": "θɑːt", "label": "AmE" }
+          ]
+        },
+        { "primary": "through", "script": "latn", "ipa": "θruː" },
+        { "primary": "taught", "script": "latn", "ipa": "tɔːt" }
+      ],
+      "correctIndex": 0
     }
   ]
 }

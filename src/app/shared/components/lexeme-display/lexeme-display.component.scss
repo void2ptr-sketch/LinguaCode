@@ -1,0 +1,13 @@
+.lexeme-display {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.lexeme-display--inline {
+  display: inline-grid;
+  gap: 0.15rem;
+}
+
+.lexeme-display__primary {
+  font: inherit;
+}

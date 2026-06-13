@@ -5,6 +5,7 @@ import { CardRepository, CARDS_STORAGE_KEY, CardSearchService, ScenarioSearchSer
 import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardEditorStore } from './card-editor.store';
+import { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from '../types';
 
 describe('CardEditorStore', () => {
   let store: CardEditorStore;
@@ -67,8 +68,10 @@ describe('CardEditorStore', () => {
         direction: 'known-to-learning',
         promptKnown: 'Вопрос?',
         optionsLearning: ['1', '2'],
+        optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 1,
         appearance: { theme: 'azure-blue', fontSize: 'md' },
+        ...emptyLexemeCardDraft(),
       },
       { knownLanguage: 'ru', learningLanguage: 'en' },
     );
@@ -83,8 +86,9 @@ describe('CardEditorStore', () => {
       kind: 'memory',
       title: 'Память',
       promptKnown: 'Пары',
-      pairs: [{ known: 'A', learning: 'B' }],
+      pairs: [{ ...emptyMemoryPairDraft(), known: 'A', learning: 'B' }],
       appearance: { theme: 'azure-blue', fontSize: 'md' },
+      ...emptyLexemeCardDraft(),
     });
 
     expect(created).toBeTrue();
@@ -130,8 +134,10 @@ describe('CardEditorStore', () => {
       direction: 'known-to-learning',
       promptKnown: 'New?',
       optionsLearning: ['X', 'Y'],
+      optionsLexemes: emptyOptionLexemes(2),
       correctIndex: 0,
       appearance: { theme: 'azure-blue', fontSize: 'lg' },
+      ...emptyLexemeCardDraft(),
     });
 
     expect(cardRepository.loadStored().find((card) => card.id === 'select-test')?.title).toBe(

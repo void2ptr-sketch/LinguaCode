@@ -2,12 +2,20 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { formatLanguagePair, isContentLanguage, normalizeLanguagePair } from '../data/language-pair.utils';
 import {
+  normalizeCjkLearningPreferences,
+  normalizePhoneticPreferences,
+} from '../data/phonetic-preferences.utils';
+import {
   createDefaultLanguagePairPreferences,
   createUserLanguagePairEntry,
   findLanguagePairEntryId,
 } from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import type { LanguagePair, User, UserLanguagePairEntry, UserPreferences } from '../models';
+import {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+} from '../models';
 import { UserPersistence } from './user.persistence';
 
 const DEFAULT_USER: User = {
@@ -17,6 +25,8 @@ const DEFAULT_USER: User = {
     theme: 'azure-blue',
     fontSize: 'md',
     ...createDefaultLanguagePairPreferences(),
+    cjkLearning: DEFAULT_CJK_LEARNING_PREFERENCES,
+    phonetic: DEFAULT_PHONETIC_PREFERENCES,
   },
 };
 
@@ -43,6 +53,8 @@ export class UserStore {
   });
 
   readonly languagePairLabel = computed(() => formatLanguagePair(this.languagePair()));
+  readonly cjkLearning = computed(() => this.preferences().cjkLearning);
+  readonly phonetic = computed(() => this.preferences().phonetic);
 
   updateDisplayName(displayName: string): void {
     const sanitized = sanitizePlainText(displayName);
@@ -63,6 +75,14 @@ export class UserStore {
 
       if (preferences.fontSize !== undefined && isAllowedFontSize(preferences.fontSize)) {
         nextPreferences.fontSize = preferences.fontSize;
+      }
+
+      if (preferences.cjkLearning !== undefined) {
+        nextPreferences.cjkLearning = normalizeCjkLearningPreferences(preferences.cjkLearning);
+      }
+
+      if (preferences.phonetic !== undefined) {
+        nextPreferences.phonetic = normalizePhoneticPreferences(preferences.phonetic);
       }
 
       return {

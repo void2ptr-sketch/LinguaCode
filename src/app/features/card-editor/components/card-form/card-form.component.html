@@ -5,6 +5,18 @@
       <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
     </mat-form-field>
 
+    @if (lexemeDraft(); as lexeme) {
+      <app-lexeme-fields
+        label="Подсказка (лексема)"
+        [fields]="lexeme.promptLexeme"
+        (fieldsChange)="updatePromptLexeme($event)"
+      />
+      <mat-form-field appearance="outline">
+        <mat-label>URL аудио</mat-label>
+        <input matInput [ngModel]="lexeme.audioUrl" (ngModelChange)="updateAudioUrl($event)" />
+      </mat-form-field>
+    }
+
     @if (selectDraft(); as d) {
       <mat-form-field appearance="outline">
         <mat-label>Известный</mat-label>
@@ -20,6 +32,13 @@
                 <mat-label>Новый {{ $index + 1 }}</mat-label>
                 <input matInput [ngModel]="item" (ngModelChange)="updateSelectOption($index, $event)" />
               </mat-form-field>
+              <app-lexeme-fields
+                class="card-form__option-lexeme"
+                [compact]="true"
+                [label]="'Лексема ' + ($index + 1)"
+                [fields]="d.optionsLexemes[$index]"
+                (fieldsChange)="updateSelectOptionLexeme($index, $event)"
+              />
               <button mat-icon-button type="button" [disabled]="d.optionsLearning.length <= 2" (click)="removeSelectOption($index)">
                 <mat-icon>remove_circle_outline</mat-icon>
               </button>
@@ -51,6 +70,13 @@
                 <mat-label>Новый {{ $index + 1 }}</mat-label>
                 <input matInput [ngModel]="item" (ngModelChange)="updateTimedOption($index, $event)" />
               </mat-form-field>
+              <app-lexeme-fields
+                class="card-form__option-lexeme"
+                [compact]="true"
+                [label]="'Лексема ' + ($index + 1)"
+                [fields]="d.optionsLexemes[$index]"
+                (fieldsChange)="updateTimedOptionLexeme($index, $event)"
+              />
               <button mat-icon-button type="button" [disabled]="d.optionsLearning.length <= 2" (click)="removeTimedOption($index)">
                 <mat-icon>remove_circle_outline</mat-icon>
               </button>
@@ -80,6 +106,13 @@
               <mat-label>Новый</mat-label>
               <input matInput [ngModel]="pair.learning" (ngModelChange)="updatePair($index, 'learning', $event)" />
             </mat-form-field>
+            <app-lexeme-fields
+              class="card-form__option-lexeme"
+              [compact]="true"
+              [label]="'Лексема пары ' + ($index + 1)"
+              [fields]="pair.learningLexeme"
+              (fieldsChange)="updatePairLexeme($index, $event)"
+            />
             <button mat-icon-button type="button" [disabled]="d.pairs.length <= 1" (click)="removePair($index)">
               <mat-icon>remove_circle_outline</mat-icon>
             </button>
@@ -106,6 +139,13 @@
                 <mat-label>Символ {{ $index + 1 }}</mat-label>
                 <input matInput [ngModel]="item" (ngModelChange)="updateSymbolOption($index, $event)" />
               </mat-form-field>
+              <app-lexeme-fields
+                class="card-form__option-lexeme"
+                [compact]="true"
+                [label]="'Лексема ' + ($index + 1)"
+                [fields]="d.symbolLexemes[$index]"
+                (fieldsChange)="updateSymbolOptionLexeme($index, $event)"
+              />
               <button mat-icon-button type="button" [disabled]="d.symbols.length <= 2" (click)="removeSymbolOption($index)">
                 <mat-icon>remove_circle_outline</mat-icon>
               </button>
@@ -127,6 +167,12 @@
         <mat-label>Метка звука (новый)</mat-label>
         <input matInput [ngModel]="d.audioLabelLearning" (ngModelChange)="updateAudioLabelLearning($event)" />
       </mat-form-field>
+      <app-lexeme-fields
+        label="Лексема звука"
+        [compact]="true"
+        [fields]="d.audioLabelLexeme"
+        (fieldsChange)="updateAudioLabelLexeme($event)"
+      />
       <section class="card-form__options">
         <h3>Варианты (известный)</h3>
         <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
@@ -137,6 +183,13 @@
                 <mat-label>Известный {{ $index + 1 }}</mat-label>
                 <input matInput [ngModel]="item" (ngModelChange)="updateSoundOption($index, $event)" />
               </mat-form-field>
+              <app-lexeme-fields
+                class="card-form__option-lexeme"
+                [compact]="true"
+                [label]="'Лексема ' + ($index + 1)"
+                [fields]="d.optionsLexemes[$index]"
+                (fieldsChange)="updateSoundOptionLexeme($index, $event)"
+              />
               <button mat-icon-button type="button" [disabled]="d.optionsKnown.length <= 2" (click)="removeSoundOption($index)">
                 <mat-icon>remove_circle_outline</mat-icon>
               </button>
