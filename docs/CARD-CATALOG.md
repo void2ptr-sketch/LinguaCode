@@ -103,6 +103,20 @@ type ScenarioCardSource =
 - при dirty draft — confirm «Закрыть без сохранения?»;
 - после save — `catalogStore.reload()`.
 
+## Dialog прогона карточки (try)
+
+| Элемент | Путь |
+|---------|------|
+| Shell dialog | `features/card-editor/components/card-try-dialog/` |
+| Открытие | `CardTryDialogService.open(cardId)` |
+| Store | `SingleCardPlayStore` (provider на dialog) |
+| Рендер | `CardHostComponent` + `card-answer.utils` |
+
+- кнопка **play** на строке каталога `/tools/cards`;
+- direction toggle, feedback, «Ещё раз» / «Закрыть»;
+- **не** пишет `LearningResult` (тестовый режим);
+- `.card-try-dialog` — fullscreen на узких экранах.
+
 ## Этапы реализации
 
 | Этап | Содержание | Статус |
@@ -122,4 +136,5 @@ src/app/core/data/                 # CardSearchService, CardsApiService
 src/app/core/api/                  # cardsApiMockInterceptor, CardsCatalogMockHandler
 src/app/features/card-editor/     # UI «Карточки»: каталог + dialog CRUD
 src/app/features/card-editor/components/card-editor-dialog/
+src/app/features/card-editor/components/card-try-dialog/
 ```

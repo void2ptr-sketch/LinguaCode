@@ -286,6 +286,16 @@
 - [x] `LearningResultsStore` — статистика по активной паре (как сейчас; данные всех пар уже в `LearningResult`)
 - [ ] (опционально) Прогресс на главной — вкладки / фильтр по всем парам пользователя
 
+### Прогон одной карточки (try dialog)
+
+- [x] `SingleCardPlayStore` — state одной карточки (reuse card-answer.utils)
+- [x] `CardTryDialogComponent` + `CardTryDialogService.open(cardId)`
+- [x] Каталог: кнопка «Протестировать» на строке
+- [x] Direction toggle, feedback, «Ещё раз» / «Закрыть»
+- [x] `.card-try-dialog` responsive fullscreen
+- [ ] (опц.) try из editor dialog (draft)
+- [ ] (опц.) try из ScenarioCardPicker
+
 **G6 — UiLocale** (отдельный трек, см. «Локализация» ниже)
 
 - [ ] Не смешивать с `ContentLanguage` / `LanguagePair`

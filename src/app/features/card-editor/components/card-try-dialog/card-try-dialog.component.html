@@ -1,0 +1,48 @@
+<h2 mat-dialog-title>{{ title() }}</h2>
+
+<mat-dialog-content class="card-try-dialog__content">
+  @if (playStore.loading()) {
+    <div class="card-try-dialog__state">
+      <mat-spinner diameter="32" />
+      <p>Загрузка карточки…</p>
+    </div>
+  } @else if (playStore.error()) {
+    <p class="card-try-dialog__error">{{ playStore.error() }}</p>
+  } @else if (playStore.card()) {
+    <mat-button-toggle-group
+      class="card-try-dialog__direction"
+      [ngModel]="playStore.sessionDirection()"
+      (ngModelChange)="onDirectionChange($event)"
+    >
+      <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
+      <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    @for (hostKey of [playStore.hostKey()]; track hostKey) {
+      <app-card-host
+        [card]="playStore.card()!"
+        [direction]="playStore.sessionDirection()"
+        [selectedIndex]="playStore.selectedIndex()"
+        [answerText]="playStore.answerText()"
+        [memoryComplete]="playStore.memoryComplete()"
+        [drawSubmitted]="playStore.drawSubmitted()"
+        [feedback]="playStore.feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="playStore.selectOption($event)"
+        (answerTextChange)="playStore.setAnswerText($event)"
+        (memoryCompleteChange)="playStore.setMemoryComplete($event)"
+        (drawSubmittedChange)="playStore.setDrawSubmitted($event)"
+        (timeExpired)="playStore.handleTimeExpired()"
+        (checkAnswer)="checkAnswer()"
+        (nextCard)="playStore.tryAgain()"
+      />
+    }
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  @if (playStore.feedback() !== null) {
+    <button mat-stroked-button type="button" (click)="playStore.tryAgain()">Ещё раз</button>
+  }
+  <button mat-flat-button type="button" (click)="close()">Закрыть</button>
+</mat-dialog-actions>

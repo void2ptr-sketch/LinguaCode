@@ -36,3 +36,20 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     max-height: calc(100vh - 8rem);
   }
 }
+
+.card-try-dialog {
+  @media (max-width: 47.99rem) {
+    width: 100vw !important;
+    max-width: 100vw !important;
+    height: 100vh;
+    max-height: 100vh !important;
+  }
+}
+
+.card-try-dialog .mat-mdc-dialog-content {
+  max-height: calc(90vh - 8rem);
+
+  @media (max-width: 47.99rem) {
+    max-height: calc(100vh - 8rem);
+  }
+}
