@@ -1,4 +1,5 @@
 import { Injectable, computed, signal } from '@angular/core';
+import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import { CardAppearance, User } from '../models';
 
 const DEFAULT_USER: User = {
@@ -19,18 +20,30 @@ export class UserStore {
   readonly preferences = computed(() => this.user().preferences);
 
   updateDisplayName(displayName: string): void {
-    const trimmed = displayName.trim();
-    if (!trimmed) {
+    const sanitized = sanitizePlainText(displayName);
+    if (!sanitized) {
       return;
     }
 
-    this.userState.update((user) => ({ ...user, displayName: trimmed }));
+    this.userState.update((user) => ({ ...user, displayName: sanitized }));
   }
 
   updatePreferences(preferences: Partial<CardAppearance>): void {
-    this.userState.update((user) => ({
-      ...user,
-      preferences: { ...user.preferences, ...preferences },
-    }));
+    this.userState.update((user) => {
+      const nextPreferences = { ...user.preferences };
+
+      if (preferences.theme !== undefined) {
+        nextPreferences.theme = sanitizeTheme(preferences.theme);
+      }
+
+      if (preferences.fontSize !== undefined && isAllowedFontSize(preferences.fontSize)) {
+        nextPreferences.fontSize = preferences.fontSize;
+      }
+
+      return {
+        ...user,
+        preferences: nextPreferences,
+      };
+    });
   }
 }
