@@ -77,6 +77,14 @@
                     <button
                       mat-icon-button
                       type="button"
+                      aria-label="Протестировать"
+                      (click)="tryCard(entry.id)"
+                    >
+                      <mat-icon>play_circle_outline</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
                       aria-label="Редактировать"
                       (click)="startEdit(entry.id)"
                     >

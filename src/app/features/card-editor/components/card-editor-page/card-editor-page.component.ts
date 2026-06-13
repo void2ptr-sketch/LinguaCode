@@ -18,6 +18,7 @@ import {
 } from '../../../../shared/card-catalog-search';
 import { UiPaginationComponent } from '../../../../shared/pagination';
 import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
+import { CardTryDialogService } from '../card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { CARD_KINDS } from '../../types';
 
@@ -43,6 +44,7 @@ export class CardEditorPageComponent implements OnInit {
   readonly store = inject(CardEditorStore);
   readonly catalogStore = inject(CardCatalogSearchStore);
   private readonly cardEditorDialog = inject(CardEditorDialogService);
+  private readonly cardTryDialog = inject(CardTryDialogService);
 
   readonly cardKinds = CARD_KINDS;
   readonly kindLabels = CARD_KIND_LABELS;
@@ -72,6 +74,10 @@ export class CardEditorPageComponent implements OnInit {
     if (result?.saved) {
       await this.catalogStore.init();
     }
+  }
+
+  tryCard(cardId: string): void {
+    void this.cardTryDialog.open(cardId);
   }
 
   async deleteCard(cardId: string): Promise<void> {
