@@ -1,5 +1,5 @@
 import { Card, CardAppearance, CardKind } from '../../../core/models';
-import { CardDraft } from '../types';
+import { CardDraft, DEFAULT_CARD_DIRECTION } from '../types';
 
 export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): CardDraft => {
   switch (kind) {
@@ -7,8 +7,9 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'select',
         title: '',
-        question: '',
-        options: ['', ''],
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        optionsLearning: ['', ''],
         correctIndex: 0,
         appearance: { ...appearance },
       };
@@ -16,15 +17,16 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'memory',
         title: '',
-        prompt: '',
-        pairs: [{ front: '', back: '' }],
+        promptKnown: '',
+        pairs: [{ known: '', learning: '' }],
         appearance: { ...appearance },
       };
     case 'symbol':
       return {
         kind: 'symbol',
         title: '',
-        prompt: '',
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
         symbols: ['', ''],
         correctIndex: 0,
         appearance: { ...appearance },
@@ -33,9 +35,10 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'sound',
         title: '',
-        prompt: '',
-        audioLabel: '',
-        options: ['', ''],
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        audioLabelLearning: '',
+        optionsKnown: ['', ''],
         correctIndex: 0,
         appearance: { ...appearance },
       };
@@ -43,8 +46,9 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'timed',
         title: '',
-        question: '',
-        options: ['', ''],
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        optionsLearning: ['', ''],
         correctIndex: 0,
         timeLimitSec: 30,
         appearance: { ...appearance },
@@ -53,16 +57,17 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'keyboard',
         title: '',
-        prompt: '',
-        acceptedAnswers: [''],
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        acceptedAnswersKnown: [''],
         appearance: { ...appearance },
       };
     case 'draw':
       return {
         kind: 'draw',
         title: '',
-        prompt: '',
-        referenceHint: '',
+        promptKnown: '',
+        referenceHintKnown: '',
         appearance: { ...appearance },
       };
   }
@@ -76,8 +81,9 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'select',
         title: card.title,
-        question: card.question,
-        options: [...card.options],
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        optionsLearning: [...card.optionsLearning],
         correctIndex: card.correctIndex,
         appearance,
       };
@@ -85,7 +91,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'memory',
         title: card.title,
-        prompt: card.prompt,
+        promptKnown: card.promptKnown,
         pairs: card.pairs.map((pair) => ({ ...pair })),
         appearance,
       };
@@ -93,7 +99,8 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'symbol',
         title: card.title,
-        prompt: card.prompt,
+        direction: card.direction,
+        promptKnown: card.promptKnown,
         symbols: [...card.symbols],
         correctIndex: card.correctIndex,
         appearance,
@@ -102,9 +109,10 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'sound',
         title: card.title,
-        prompt: card.prompt,
-        audioLabel: card.audioLabel,
-        options: [...card.options],
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        audioLabelLearning: card.audioLabelLearning,
+        optionsKnown: [...card.optionsKnown],
         correctIndex: card.correctIndex,
         appearance,
       };
@@ -112,8 +120,9 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'timed',
         title: card.title,
-        question: card.question,
-        options: [...card.options],
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        optionsLearning: [...card.optionsLearning],
         correctIndex: card.correctIndex,
         timeLimitSec: card.timeLimitSec,
         appearance,
@@ -122,33 +131,22 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'keyboard',
         title: card.title,
-        prompt: card.prompt,
-        acceptedAnswers: [...card.acceptedAnswers],
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        acceptedAnswersKnown: [...card.acceptedAnswersKnown],
         appearance,
       };
     case 'draw':
       return {
         kind: 'draw',
         title: card.title,
-        prompt: card.prompt,
-        referenceHint: card.referenceHint,
+        promptKnown: card.promptKnown,
+        referenceHintKnown: card.referenceHintKnown,
         appearance,
       };
   }
 };
 
 export const cardSummary = (card: Card): string => {
-  switch (card.kind) {
-    case 'select':
-      return card.question;
-    case 'memory':
-      return card.prompt;
-    case 'symbol':
-    case 'sound':
-    case 'keyboard':
-    case 'draw':
-      return card.prompt;
-    case 'timed':
-      return card.question;
-  }
+  return card.promptKnown;
 };

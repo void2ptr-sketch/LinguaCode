@@ -7,8 +7,9 @@ const CARDS: readonly Card[] = [
     kind: 'select',
     title: 'Test 1',
     appearance: { theme: 'azure-blue', fontSize: 'md' },
-    question: 'Q1?',
-    options: ['A', 'B'],
+    direction: 'known-to-learning',
+    promptKnown: 'Q1?',
+    optionsLearning: ['A', 'B'],
     correctIndex: 0,
   },
   {
@@ -16,8 +17,9 @@ const CARDS: readonly Card[] = [
     kind: 'keyboard',
     title: 'Test 2',
     appearance: { theme: 'azure-blue', fontSize: 'md' },
-    prompt: 'Type hi',
-    acceptedAnswers: ['hi'],
+    direction: 'known-to-learning',
+    promptKnown: 'Type hi',
+    acceptedAnswersKnown: ['hi'],
   },
 ];
 

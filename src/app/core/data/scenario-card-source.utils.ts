@@ -1,11 +1,13 @@
 import type {
   CardIndexEntry,
   CardSearchCriteria,
+  LanguagePair,
   Scenario,
   ScenarioCardSource,
   ScenarioCardSort,
 } from '../models';
 import type { LegacyScenario } from '../models/scenario.types';
+import { normalizeLanguagePair } from './language-pair.utils';
 
 import { matchesCardIndexEntry } from './card-search.utils';
 import type { CardSearchService } from './card-search.service';
@@ -25,7 +27,8 @@ export function emptyCardSearchCriteria(): Omit<CardSearchCriteria, 'page'> {
 export function hasCardSearchFilters(criteria: Omit<CardSearchCriteria, 'page'>): boolean {
   return Boolean(
     criteria.query?.trim() ||
-      criteria.language ||
+      criteria.knownLanguage ||
+      criteria.learningLanguage ||
       criteria.difficulty ||
       (criteria.kinds?.length ?? 0) > 0 ||
       (criteria.tags?.length ?? 0) > 0,
@@ -71,6 +74,7 @@ export function normalizeScenario(raw: LegacyScenario): Scenario {
     authorId: raw.authorId,
     published: raw.published ?? false,
     updatedAt: raw.updatedAt ?? new Date().toISOString(),
+    languagePair: raw.languagePair ? normalizeLanguagePair(raw.languagePair) : undefined,
   };
 
   if (raw.cardSource) {
@@ -87,6 +91,19 @@ export function normalizeScenario(raw: LegacyScenario): Scenario {
       cardIds: raw.cardIds ?? [],
     },
   };
+}
+
+export function scenarioMatchesLanguagePair(
+  scenario: Pick<Scenario, 'languagePair'>,
+  pair: LanguagePair,
+): boolean {
+  if (!scenario.languagePair) {
+    return true;
+  }
+
+  return (
+    scenario.languagePair.known === pair.known && scenario.languagePair.learning === pair.learning
+  );
 }
 
 export async function resolveScenarioCardIds(

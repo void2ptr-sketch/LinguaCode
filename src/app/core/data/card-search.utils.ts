@@ -8,7 +8,13 @@ import type {
   FacetCount,
 } from '../models';
 
-export type CardSearchFilterField = 'query' | 'language' | 'difficulty' | 'kinds' | 'tags';
+export type CardSearchFilterField =
+  | 'query'
+  | 'knownLanguage'
+  | 'learningLanguage'
+  | 'difficulty'
+  | 'kinds'
+  | 'tags';
 
 const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru'];
 const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
@@ -43,7 +49,19 @@ export function matchesCardIndexEntry(
     }
   }
 
-  if (ignore !== 'language' && filters.language && entry.language !== filters.language) {
+  if (
+    ignore !== 'knownLanguage' &&
+    filters.knownLanguage &&
+    entry.knownLanguage !== filters.knownLanguage
+  ) {
+    return false;
+  }
+
+  if (
+    ignore !== 'learningLanguage' &&
+    filters.learningLanguage &&
+    entry.learningLanguage !== filters.learningLanguage
+  ) {
     return false;
   }
 
@@ -109,12 +127,19 @@ export function buildCardSearchFacets(
   const tagValues = collectTags(entries);
 
   return {
-    languages: countFacetValues(
+    knownLanguages: countFacetValues(
       entries,
       filters,
-      'language',
+      'knownLanguage',
       CONTENT_LANGUAGES,
-      (entry) => entry.language,
+      (entry) => entry.knownLanguage,
+    ),
+    learningLanguages: countFacetValues(
+      entries,
+      filters,
+      'learningLanguage',
+      CONTENT_LANGUAGES,
+      (entry) => entry.learningLanguage,
     ),
     difficulties: countFacetValues(
       entries,

@@ -7,8 +7,9 @@ describe('card-answer.utils', () => {
       kind: 'select' as const,
       title: 'Test',
       appearance: { theme: 'azure-blue', fontSize: 'md' as const },
-      question: 'Q?',
-      options: ['A', 'B'],
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Q?',
+      optionsLearning: ['A', 'B'],
       correctIndex: 0,
     };
 
@@ -23,8 +24,9 @@ describe('card-answer.utils', () => {
       kind: 'keyboard' as const,
       title: 'Test',
       appearance: { theme: 'azure-blue', fontSize: 'md' as const },
-      prompt: 'Type hello',
-      acceptedAnswers: ['Hello', 'hello'],
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Type hello',
+      acceptedAnswersKnown: ['Hello', 'hello'],
     };
 
     expect(checkCardAnswer(card, { selectedIndex: null, answerText: '  HELLO ', memoryComplete: false, drawSubmitted: false })).toBeTrue();

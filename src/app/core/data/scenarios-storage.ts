@@ -1,4 +1,5 @@
 import type { Scenario } from '../models';
+import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 import type { LegacyScenario } from '../models/scenario.types';
 
 import { normalizeScenario } from './scenario-card-source.utils';
@@ -17,6 +18,7 @@ export const DEFAULT_SCENARIOS: readonly Scenario[] = [
       mode: 'fixed',
       cardIds: ['select-1', 'select-2', 'select-3'],
     },
+    languagePair: DEFAULT_LANGUAGE_PAIR,
   },
 ];
 

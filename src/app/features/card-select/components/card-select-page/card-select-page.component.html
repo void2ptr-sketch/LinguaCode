@@ -3,6 +3,15 @@
     <h1>Карточки обучения</h1>
     <p class="card-select-page__language-pair">Пара языков: {{ languagePairLabel() }}</p>
 
+    <mat-button-toggle-group
+      class="card-select-page__direction"
+      [ngModel]="store.sessionDirection()"
+      (ngModelChange)="onDirectionChange($event)"
+    >
+      <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
+      <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
+    </mat-button-toggle-group>
+
     <app-scenario-picker
       [selectedScenarioId]="selectedScenarioId()"
       (selectedScenarioIdChange)="onScenarioChange($event)"
@@ -51,6 +60,7 @@
     @if (store.currentCard(); as card) {
       <app-card-host
         [card]="card"
+        [direction]="store.sessionDirection()"
         [selectedIndex]="store.selectedIndex()"
         [answerText]="store.answerText()"
         [memoryComplete]="store.memoryComplete()"

@@ -3,6 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { buildFixtureUrl } from '../api';
 import { Card } from '../models';
+import { normalizeLegacyCards } from './card-legacy.mapper';
 
 export const CARDS_STORAGE_KEY = 'lingua-code.cards';
 
@@ -22,7 +23,7 @@ export class CardRepository {
 
     try {
       const parsed = JSON.parse(raw) as readonly Card[];
-      return Array.isArray(parsed) ? parsed : [];
+      return Array.isArray(parsed) ? normalizeLegacyCards(parsed) : [];
     } catch {
       return [];
     }
@@ -35,7 +36,7 @@ export class CardRepository {
   loadSeed(): Promise<readonly Card[]> {
     return firstValueFrom(
       this.http.get<CardsSeedFixture>(buildFixtureUrl('/select-cards.json')),
-    ).then((fixture) => fixture.cards);
+    ).then((fixture) => normalizeLegacyCards(fixture.cards));
   }
 
   async ensureLoaded(): Promise<readonly Card[]> {

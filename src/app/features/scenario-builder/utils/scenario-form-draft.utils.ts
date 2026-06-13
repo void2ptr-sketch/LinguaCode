@@ -2,13 +2,15 @@ import {
   DEFAULT_CRITERIA_LIMIT,
   emptyCardSearchCriteria,
 } from '../../../core/data/scenario-card-source.utils';
-import type { Scenario, ScenarioCardSource, ScenarioCardSort } from '../../../core/models';
+import type { LanguagePair, Scenario, ScenarioCardSource, ScenarioCardSort } from '../../../core/models';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models/language-pair.types';
 import type { ScenarioCardSourceMode, ScenarioCriteriaDraft, ScenarioDraft } from '../types';
 
 export type ScenarioFormDraft = {
   title: string;
   description: string;
   published: boolean;
+  languagePair: LanguagePair;
   sourceMode: ScenarioCardSourceMode;
   fixedCardIds: readonly string[];
   criteria: ScenarioCriteriaDraft;
@@ -18,11 +20,12 @@ export type ScenarioFormDraft = {
   snapshotFrozenAt: string | null;
 };
 
-export function emptyScenarioFormDraft(): ScenarioFormDraft {
+export function emptyScenarioFormDraft(languagePair: LanguagePair = DEFAULT_LANGUAGE_PAIR): ScenarioFormDraft {
   return {
     title: '',
     description: '',
     published: false,
+    languagePair,
     sourceMode: 'fixed',
     fixedCardIds: [],
     criteria: emptyCardSearchCriteria(),
@@ -35,10 +38,11 @@ export function emptyScenarioFormDraft(): ScenarioFormDraft {
 
 export function scenarioToFormDraft(scenario: Scenario): ScenarioFormDraft {
   return {
+    ...cardSourceToFormFields(scenario.cardSource),
     title: scenario.title,
     description: scenario.description,
     published: scenario.published,
-    ...cardSourceToFormFields(scenario.cardSource),
+    languagePair: scenario.languagePair ?? DEFAULT_LANGUAGE_PAIR,
   };
 }
 
@@ -47,6 +51,7 @@ export function formDraftToScenarioDraft(form: ScenarioFormDraft): ScenarioDraft
     title: form.title,
     description: form.description,
     published: form.published,
+    languagePair: form.languagePair,
     cardSource: buildCardSource(form),
   };
 }
@@ -57,7 +62,7 @@ export function serializeScenarioFormDraft(form: ScenarioFormDraft): string {
 
 function cardSourceToFormFields(
   source: ScenarioCardSource,
-): Omit<ScenarioFormDraft, 'title' | 'description' | 'published'> {
+): Omit<ScenarioFormDraft, 'title' | 'description' | 'published' | 'languagePair'> {
   if (source.mode === 'fixed') {
     return {
       sourceMode: 'fixed',

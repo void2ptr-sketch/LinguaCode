@@ -8,6 +8,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../../core/models';
+import { formatIndexLanguagePair } from '../../../../core/data/language-pair.utils';
 import {
   CARD_KIND_LABELS,
   CardCatalogFiltersComponent,
@@ -47,6 +48,13 @@ export class CardEditorPageComponent implements OnInit {
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
+
+  formatEntryLanguages(entry: {
+    knownLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
+    learningLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
+  }): string {
+    return formatIndexLanguagePair(entry, this.languageLabels);
+  }
 
   async ngOnInit(): Promise<void> {
     await this.catalogStore.init();

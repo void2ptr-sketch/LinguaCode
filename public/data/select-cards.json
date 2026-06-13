@@ -6,8 +6,9 @@
       "kind": "select",
       "title": "Приветствие",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "question": "Как сказать «Привет» по-английски?",
-      "options": ["Hello", "Goodbye", "Thanks", "Please"],
+      "direction": "known-to-learning",
+      "promptKnown": "Как сказать «Привет» по-английски?",
+      "optionsLearning": ["Hello", "Goodbye", "Thanks", "Please"],
       "correctIndex": 0
     },
     {
@@ -15,8 +16,9 @@
       "kind": "select",
       "title": "Числа",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "question": "Как будет «один» по-английски?",
-      "options": ["One", "Two", "Three", "Four"],
+      "direction": "known-to-learning",
+      "promptKnown": "Как будет «один» по-английски?",
+      "optionsLearning": ["One", "Two", "Three", "Four"],
       "correctIndex": 0
     },
     {
@@ -24,8 +26,9 @@
       "kind": "select",
       "title": "Прощание",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "question": "Как сказать «До свидания» по-английски?",
-      "options": ["Goodbye", "Hello", "Thanks", "Please"],
+      "direction": "known-to-learning",
+      "promptKnown": "Как сказать «До свидания» по-английски?",
+      "optionsLearning": ["Goodbye", "Hello", "Thanks", "Please"],
       "correctIndex": 0
     },
     {
@@ -33,10 +36,10 @@
       "kind": "memory",
       "title": "Пары слов",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "prompt": "Найдите пары перевода",
+      "promptKnown": "Найдите пары перевода",
       "pairs": [
-        { "front": "Hello", "back": "Привет" },
-        { "front": "Bye", "back": "Пока" }
+        { "known": "Привет", "learning": "Hello" },
+        { "known": "Пока", "learning": "Bye" }
       ]
     },
     {
@@ -44,7 +47,8 @@
       "kind": "symbol",
       "title": "Символы",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "prompt": "Выберите символ приветствия",
+      "direction": "known-to-learning",
+      "promptKnown": "Выберите символ приветствия",
       "symbols": ["👋", "🌙", "🔥", "❄️"],
       "correctIndex": 0
     },
@@ -53,9 +57,10 @@
       "kind": "sound",
       "title": "Звук",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "prompt": "Как переводится услышанное слово?",
-      "audioLabel": "Hello",
-      "options": ["Привет", "Пока", "Спасибо", "Пожалуйста"],
+      "direction": "known-to-learning",
+      "promptKnown": "Как переводится услышанное слово?",
+      "audioLabelLearning": "Hello",
+      "optionsKnown": ["Привет", "Пока", "Спасибо", "Пожалуйста"],
       "correctIndex": 0
     },
     {
@@ -63,8 +68,9 @@
       "kind": "timed",
       "title": "На время",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "question": "Быстрый перевод: Thanks",
-      "options": ["Спасибо", "Привет", "До свидания"],
+      "direction": "known-to-learning",
+      "promptKnown": "Быстрый перевод: Thanks",
+      "optionsLearning": ["Спасибо", "Привет", "До свидания"],
       "correctIndex": 0,
       "timeLimitSec": 30
     },
@@ -73,16 +79,17 @@
       "kind": "keyboard",
       "title": "Ввод с клавиатуры",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "prompt": "Введите перевод слова «Hello»",
-      "acceptedAnswers": ["Привет", "привет"]
+      "direction": "known-to-learning",
+      "promptKnown": "Введите перевод слова «Hello»",
+      "acceptedAnswersKnown": ["Привет", "привет"]
     },
     {
       "id": "draw-1",
       "kind": "draw",
       "title": "Рисование",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
-      "prompt": "Нарисуйте символ, связанный со словом Hello",
-      "referenceHint": "Приветствие"
+      "promptKnown": "Нарисуйте символ, связанный со словом Hello",
+      "referenceHintKnown": "Приветствие"
     }
   ]
 }

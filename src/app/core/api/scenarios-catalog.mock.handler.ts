@@ -16,6 +16,7 @@ import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
 } from '../data/scenario-card-source.utils';
+import { cardIndexMatchesPair, normalizeLanguagePair } from '../data/language-pair.utils';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import {
   DEFAULT_SCENARIOS,
@@ -57,7 +58,8 @@ export class ScenariosCatalogMockHandler {
 
   async create(payload: ScenarioWritePayload): Promise<Scenario> {
     await this.ensureData();
-    await this.assertValidCardSource(payload.cardSource);
+    const languagePair = normalizeLanguagePair(payload.languagePair);
+    await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const scenario: Scenario = {
       id: crypto.randomUUID(),
@@ -67,6 +69,7 @@ export class ScenariosCatalogMockHandler {
       cardSource: payload.cardSource,
       published: payload.published,
       updatedAt: new Date().toISOString(),
+      languagePair,
     };
 
     this.scenarios = [...this.scenarios!, scenario];
@@ -83,7 +86,8 @@ export class ScenariosCatalogMockHandler {
     }
 
     this.assertCanEdit(current);
-    await this.assertValidCardSource(payload.cardSource);
+    const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+    await this.assertValidCardSource(payload.cardSource, languagePair);
 
     const updated: Scenario = {
       ...current,
@@ -92,6 +96,7 @@ export class ScenariosCatalogMockHandler {
       cardSource: payload.cardSource,
       published: payload.published,
       updatedAt: new Date().toISOString(),
+      languagePair,
     };
 
     this.scenarios = this.scenarios!.map((item) => (item.id === scenarioId ? updated : item));
@@ -151,7 +156,10 @@ export class ScenariosCatalogMockHandler {
     }
   }
 
-  private async assertValidCardSource(source: Scenario['cardSource']): Promise<void> {
+  private async assertValidCardSource(
+    source: Scenario['cardSource'],
+    languagePair?: import('../models').LanguagePair,
+  ): Promise<void> {
     const error = await validateScenarioCardSource(source, async (cardId) => {
       try {
         await this.cardsHandler.getById(cardId);
@@ -163,6 +171,19 @@ export class ScenariosCatalogMockHandler {
 
     if (error) {
       throw badRequest(error.message);
+    }
+
+    if (!languagePair) {
+      return;
+    }
+
+    if (source.mode === 'fixed' || source.mode === 'snapshot') {
+      for (const cardId of source.cardIds) {
+        const entry = await this.cardsHandler.getIndexEntry(cardId);
+        if (entry && !cardIndexMatchesPair(entry, languagePair)) {
+          throw badRequest(`Карточка ${cardId} не соответствует паре языков сценария`);
+        }
+      }
     }
   }
 }

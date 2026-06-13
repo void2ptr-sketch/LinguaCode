@@ -11,6 +11,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { CardCatalogSearchStore } from '../../../../shared/card-catalog-search';
 import { CardEditorDiscardDialogComponent } from '../../../card-editor/components/card-editor-dialog/card-editor-discard-dialog.component';
+import { UserStore } from '../../../../core/state';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
   emptyScenarioFormDraft,
@@ -40,6 +41,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   readonly data = inject<ScenarioBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(ScenarioBuilderStore);
+  private readonly userStore = inject(UserStore);
 
   readonly draft = signal<ScenarioFormDraft>(emptyScenarioFormDraft());
   private readonly initialSnapshot = signal('');
@@ -63,7 +65,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     if (this.data.mode === 'create') {
       this.store.startCreate();
-      const nextDraft = emptyScenarioFormDraft();
+      const nextDraft = emptyScenarioFormDraft(this.userStore.languagePair());
       this.draft.set(nextDraft);
       this.initialSnapshot.set(serializeScenarioFormDraft(nextDraft));
       return;

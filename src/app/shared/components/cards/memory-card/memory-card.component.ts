@@ -2,7 +2,9 @@ import { Component, input, OnInit, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { resolveMemoryPairs } from '../../../../core/data/card-direction.utils';
 import { MemoryCard } from '../../../../core/models';
+import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { CardFeedback } from '../../../types';
 
 type MemoryTile = {
@@ -19,6 +21,7 @@ type MemoryTile = {
 })
 export class MemoryCardComponent implements OnInit {
   readonly card = input.required<MemoryCard>();
+  readonly direction = input<CardDirection>('known-to-learning');
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
@@ -37,9 +40,10 @@ export class MemoryCardComponent implements OnInit {
   }
 
   resetTiles(): void {
-    const tiles = this.card().pairs.flatMap((pair, index) => [
-      { id: `${index}-front`, label: pair.front, pairId: String(index) },
-      { id: `${index}-back`, label: pair.back, pairId: String(index) },
+    const pairs = resolveMemoryPairs(this.card().pairs, this.direction());
+    const tiles = pairs.flatMap((pair) => [
+      { id: `${pair.pairId}-left`, label: pair.left, pairId: pair.pairId },
+      { id: `${pair.pairId}-right`, label: pair.right, pairId: pair.pairId },
     ]);
 
     this.tiles.set(this.shuffle(tiles));

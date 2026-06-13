@@ -1,7 +1,11 @@
 import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import type { CardDirection } from '../../../../core/models/language-pair.types';
 
 import { CardHostComponent } from '../../../../shared/components/card-host';
 import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
@@ -12,8 +16,10 @@ import { CardSelectStore } from '../../services/card-select.store';
 @Component({
   selector: 'app-card-select-page',
   imports: [
+    FormsModule,
     MatCardModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatProgressSpinnerModule,
     CardHostComponent,
     ScenarioPickerComponent,
@@ -90,6 +96,10 @@ export class CardSelectPageComponent {
     this.store.handleTimeExpired();
   }
 
+  onDirectionChange(direction: CardDirection): void {
+    this.store.sessionDirection.set(direction);
+  }
+
   checkAnswer(): void {
     const card = this.store.currentCard();
     const isCorrect = this.store.checkAnswer();
@@ -105,6 +115,8 @@ export class CardSelectPageComponent {
       scenarioId: this.store.scenarioId(),
       correct: isCorrect,
       answeredAt: new Date().toISOString(),
+      languagePair: this.userStore.languagePair(),
+      direction: this.store.sessionDirection(),
     });
   }
 

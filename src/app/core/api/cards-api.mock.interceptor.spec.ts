@@ -28,13 +28,13 @@ describe('cards API (mock interceptor)', () => {
 
   it('searches cards via GET /api/cards/search', async () => {
     const page = await api.search({
-      language: 'en',
+      learningLanguage: 'en',
       page: { page: 0, pageSize: 10 },
     });
 
     expect(page.items.length).toBeGreaterThan(0);
     expect(page.totalItems).toBeGreaterThan(0);
-    expect(page.facets.languages.some((facet) => facet.value === 'en')).toBeTrue();
+    expect(page.facets.learningLanguages.some((facet) => facet.value === 'en')).toBeTrue();
   });
 
   it('loads card by id via GET /api/cards/:id', async () => {

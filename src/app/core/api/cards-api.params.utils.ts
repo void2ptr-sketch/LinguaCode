@@ -12,8 +12,12 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
     params = params.set('query', criteria.query);
   }
 
-  if (criteria.language) {
-    params = params.set('language', criteria.language);
+  if (criteria.knownLanguage) {
+    params = params.set('knownLanguage', criteria.knownLanguage);
+  }
+
+  if (criteria.learningLanguage) {
+    params = params.set('learningLanguage', criteria.learningLanguage);
   }
 
   if (criteria.difficulty) {
@@ -37,7 +41,8 @@ export function parseCardSearchCriteria(params: HttpParams): CardSearchCriteria 
 
   return {
     query: params.get('query') ?? undefined,
-    language: (params.get('language') as ContentLanguage | null) ?? undefined,
+    knownLanguage: (params.get('knownLanguage') as ContentLanguage | null) ?? undefined,
+    learningLanguage: (params.get('learningLanguage') as ContentLanguage | null) ?? undefined,
     difficulty: (params.get('difficulty') as CardDifficulty | null) ?? undefined,
     kinds: kinds.length > 0 ? kinds : undefined,
     tags: tags.length > 0 ? tags : undefined,

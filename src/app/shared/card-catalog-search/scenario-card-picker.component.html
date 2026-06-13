@@ -18,7 +18,7 @@
             <span class="scenario-card-picker__title">{{ entry.title }}</span>
             <span class="scenario-card-picker__meta">
               {{ kindLabels[entry.kind] }}
-              · {{ languageLabels[entry.language] }}
+              · {{ formatIndexLanguagePair(entry, languageLabels) }}
               · {{ difficultyLabels[entry.difficulty] }}
             </span>
           </mat-checkbox>

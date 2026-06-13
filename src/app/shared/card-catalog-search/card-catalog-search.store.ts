@@ -5,6 +5,7 @@ import { CardSearchService } from '../../core/data';
 import type {
   CardDifficulty,
   CardKind,
+  CardSearchCriteria,
   CardSearchPage,
   ContentLanguage,
 } from '../../core/models';
@@ -15,7 +16,8 @@ export class CardCatalogSearchStore {
   private readonly cardSearchService = inject(CardSearchService);
 
   readonly query = signal('');
-  readonly language = signal<ContentLanguage | null>(null);
+  readonly knownLanguage = signal<ContentLanguage | null>(null);
+  readonly learningLanguage = signal<ContentLanguage | null>(null);
   readonly difficulty = signal<CardDifficulty | null>(null);
   readonly selectedKinds = signal<readonly CardKind[]>([]);
   readonly selectedTags = signal<readonly string[]>([]);
@@ -45,8 +47,13 @@ export class CardCatalogSearchStore {
     this.resetPageAndSearch();
   }
 
-  setLanguage(value: ContentLanguage | null): void {
-    this.language.set(value);
+  setKnownLanguage(value: ContentLanguage | null): void {
+    this.knownLanguage.set(value);
+    this.resetPageAndSearch();
+  }
+
+  setLearningLanguage(value: ContentLanguage | null): void {
+    this.learningLanguage.set(value);
     this.resetPageAndSearch();
   }
 
@@ -73,7 +80,8 @@ export class CardCatalogSearchStore {
 
   clearFilters(): void {
     this.query.set('');
-    this.language.set(null);
+    this.knownLanguage.set(null);
+    this.learningLanguage.set(null);
     this.difficulty.set(null);
     this.selectedKinds.set([]);
     this.selectedTags.set([]);
@@ -84,6 +92,12 @@ export class CardCatalogSearchStore {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
     void this.executeSearch();
+  }
+
+  applyLanguagePair(known: ContentLanguage, learning: ContentLanguage): void {
+    this.knownLanguage.set(known);
+    this.learningLanguage.set(learning);
+    this.resetPageAndSearch();
   }
 
   private resetPageAndSearch(): void {
@@ -100,10 +114,11 @@ export class CardCatalogSearchStore {
     }
   }
 
-  private currentCriteria() {
+  currentCriteria(): CardSearchCriteria {
     return {
       query: this.query().trim() || undefined,
-      language: this.language() ?? undefined,
+      knownLanguage: this.knownLanguage() ?? undefined,
+      learningLanguage: this.learningLanguage() ?? undefined,
       difficulty: this.difficulty() ?? undefined,
       kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
       tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,

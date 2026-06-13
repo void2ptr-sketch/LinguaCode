@@ -15,8 +15,10 @@ import {
   SymbolCard,
   TimedCard,
 } from '../../../core/models';
+import type { CardDirection } from '../../../core/models/language-pair.types';
 import {
   CardDraft,
+  DEFAULT_CARD_DIRECTION,
   DrawCardDraft,
   KeyboardCardDraft,
   MemoryCardDraft,
@@ -39,6 +41,10 @@ const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizePrompt = (value: string): string => sanitizePlainText(value, 512);
 const sanitizeShort = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeHint = (value: string): string => sanitizePlainText(value, 256);
+
+const normalizeDirection = (direction: CardDirection): CardDirection => {
+  return direction === 'learning-to-known' ? 'learning-to-known' : DEFAULT_CARD_DIRECTION;
+};
 
 const normalizeAppearance = (appearance: CardAppearance): CardAppearance => {
   const fontSize = isAllowedFontSize(appearance.fontSize) ? appearance.fontSize : 'md';
@@ -72,14 +78,14 @@ export const normalizeSelectCardDraft = (
   cardId: string,
 ): SelectCard | null => {
   const title = sanitizeTitle(draft.title);
-  const question = sanitizePrompt(draft.question);
-  const options = normalizeOptions(draft.options);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const optionsLearning = normalizeOptions(draft.optionsLearning);
 
-  if (!title || !question || !options) {
+  if (!title || !promptKnown || !optionsLearning) {
     return null;
   }
 
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
   if (correctIndex === null) {
     return null;
   }
@@ -88,8 +94,9 @@ export const normalizeSelectCardDraft = (
     id: cardId,
     kind: 'select',
     title,
-    question,
-    options,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    optionsLearning,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
   };
@@ -100,15 +107,15 @@ export const normalizeMemoryCardDraft = (
   cardId: string,
 ): MemoryCard | null => {
   const title = sanitizeTitle(draft.title);
-  const prompt = sanitizePrompt(draft.prompt);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
   const pairs = draft.pairs
     .map((pair) => ({
-      front: sanitizeShort(pair.front),
-      back: sanitizeShort(pair.back),
+      known: sanitizeShort(pair.known),
+      learning: sanitizeShort(pair.learning),
     }))
-    .filter((pair) => pair.front.length > 0 && pair.back.length > 0);
+    .filter((pair) => pair.known.length > 0 && pair.learning.length > 0);
 
-  if (!title || !prompt || pairs.length < MIN_PAIRS || pairs.length > MAX_PAIRS) {
+  if (!title || !promptKnown || pairs.length < MIN_PAIRS || pairs.length > MAX_PAIRS) {
     return null;
   }
 
@@ -116,7 +123,7 @@ export const normalizeMemoryCardDraft = (
     id: cardId,
     kind: 'memory',
     title,
-    prompt,
+    promptKnown,
     pairs,
     appearance: normalizeAppearance(draft.appearance),
   };
@@ -127,10 +134,10 @@ export const normalizeSymbolCardDraft = (
   cardId: string,
 ): SymbolCard | null => {
   const title = sanitizeTitle(draft.title);
-  const prompt = sanitizePrompt(draft.prompt);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
   const symbols = normalizeOptions(draft.symbols);
 
-  if (!title || !prompt || !symbols) {
+  if (!title || !promptKnown || !symbols) {
     return null;
   }
 
@@ -143,7 +150,8 @@ export const normalizeSymbolCardDraft = (
     id: cardId,
     kind: 'symbol',
     title,
-    prompt,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
     symbols,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
@@ -152,15 +160,15 @@ export const normalizeSymbolCardDraft = (
 
 export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): SoundCard | null => {
   const title = sanitizeTitle(draft.title);
-  const prompt = sanitizePrompt(draft.prompt);
-  const audioLabel = sanitizeShort(draft.audioLabel);
-  const options = normalizeOptions(draft.options);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const audioLabelLearning = sanitizeShort(draft.audioLabelLearning);
+  const optionsKnown = normalizeOptions(draft.optionsKnown);
 
-  if (!title || !prompt || !audioLabel || !options) {
+  if (!title || !promptKnown || !audioLabelLearning || !optionsKnown) {
     return null;
   }
 
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsKnown.length);
   if (correctIndex === null) {
     return null;
   }
@@ -169,9 +177,10 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
     id: cardId,
     kind: 'sound',
     title,
-    prompt,
-    audioLabel,
-    options,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    audioLabelLearning,
+    optionsKnown,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
   };
@@ -179,15 +188,15 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
 
 export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): TimedCard | null => {
   const title = sanitizeTitle(draft.title);
-  const question = sanitizePrompt(draft.question);
-  const options = normalizeOptions(draft.options);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const optionsLearning = normalizeOptions(draft.optionsLearning);
   const timeLimitSec = Math.round(draft.timeLimitSec);
 
-  if (!title || !question || !options) {
+  if (!title || !promptKnown || !optionsLearning) {
     return null;
   }
 
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
   if (correctIndex === null || timeLimitSec < MIN_TIME_SEC || timeLimitSec > MAX_TIME_SEC) {
     return null;
   }
@@ -196,8 +205,9 @@ export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): 
     id: cardId,
     kind: 'timed',
     title,
-    question,
-    options,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    optionsLearning,
     correctIndex,
     timeLimitSec,
     appearance: normalizeAppearance(draft.appearance),
@@ -209,16 +219,16 @@ export const normalizeKeyboardCardDraft = (
   cardId: string,
 ): KeyboardCard | null => {
   const title = sanitizeTitle(draft.title);
-  const prompt = sanitizePrompt(draft.prompt);
-  const acceptedAnswers = draft.acceptedAnswers
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const acceptedAnswersKnown = draft.acceptedAnswersKnown
     .map(sanitizeShort)
     .filter((answer) => answer.length > 0);
 
   if (
     !title ||
-    !prompt ||
-    acceptedAnswers.length < MIN_ANSWERS ||
-    acceptedAnswers.length > MAX_ANSWERS
+    !promptKnown ||
+    acceptedAnswersKnown.length < MIN_ANSWERS ||
+    acceptedAnswersKnown.length > MAX_ANSWERS
   ) {
     return null;
   }
@@ -227,18 +237,19 @@ export const normalizeKeyboardCardDraft = (
     id: cardId,
     kind: 'keyboard',
     title,
-    prompt,
-    acceptedAnswers,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    acceptedAnswersKnown,
     appearance: normalizeAppearance(draft.appearance),
   };
 };
 
 export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): DrawCard | null => {
   const title = sanitizeTitle(draft.title);
-  const prompt = sanitizePrompt(draft.prompt);
-  const referenceHint = sanitizeHint(draft.referenceHint);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const referenceHintKnown = sanitizeHint(draft.referenceHintKnown);
 
-  if (!title || !prompt || !referenceHint) {
+  if (!title || !promptKnown || !referenceHintKnown) {
     return null;
   }
 
@@ -246,8 +257,8 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
     id: cardId,
     kind: 'draw',
     title,
-    prompt,
-    referenceHint,
+    promptKnown,
+    referenceHintKnown,
     appearance: normalizeAppearance(draft.appearance),
   };
 };
@@ -280,12 +291,12 @@ export const cardValidationErrorMessage = (kind: CardKind): string => {
     case 'draw':
       return 'Проверьте название, подсказку и ориентир для рисования';
     case 'timed':
-      return 'Проверьте название, вопрос, варианты, правильный ответ и лимит времени (5–600 сек)';
+      return 'Проверьте название, подсказку (известный), варианты (новый), правильный ответ и лимит времени (5–600 сек)';
     case 'sound':
       return 'Проверьте название, подсказку, метку звука, варианты и правильный ответ';
     case 'symbol':
       return 'Проверьте название, подсказку, символы и правильный ответ';
     case 'select':
-      return 'Проверьте название, вопрос, варианты ответа и правильный ответ';
+      return 'Проверьте название, подсказку (известный), варианты (новый) и правильный ответ';
   }
 };

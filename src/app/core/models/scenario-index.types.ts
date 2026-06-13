@@ -10,6 +10,7 @@ export type ScenarioIndexEntry = {
   cardSourceSummary: string;
   published: boolean;
   updatedAt: string;
+  languagePairSummary?: string;
 };
 
 export type ScenarioListScope = 'mine' | 'all' | 'published';

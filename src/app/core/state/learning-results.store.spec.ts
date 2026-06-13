@@ -34,6 +34,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's1',
       correct: true,
       answeredAt: '2026-06-13T12:00:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
     store.addResult({
       id: '2',
@@ -42,6 +43,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's2',
       correct: false,
       answeredAt: '2026-06-13T12:01:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
 
     expect(store.totalCount()).toBe(1);
@@ -59,6 +61,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's1',
       correct: true,
       answeredAt: '2026-06-13T12:00:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
     store.addResult({
       id: '2',
@@ -67,6 +70,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's1',
       correct: false,
       answeredAt: '2026-06-13T12:02:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
 
     expect(store.recentResults().length).toBe(2);
@@ -81,6 +85,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's1',
       correct: true,
       answeredAt: '2026-06-13T12:00:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
     store.addResult({
       id: '2',
@@ -89,6 +94,7 @@ describe('LearningResultsStore', () => {
       scenarioId: 's2',
       correct: false,
       answeredAt: '2026-06-13T12:01:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
     });
 
     store.clear();

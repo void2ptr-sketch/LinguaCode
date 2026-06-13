@@ -1,3 +1,4 @@
+import type { LanguagePair } from './language-pair.types';
 import type { ScenarioCardSource } from './scenario-card-source.types';
 
 export type Scenario = {
@@ -8,6 +9,7 @@ export type Scenario = {
   cardSource: ScenarioCardSource;
   published: boolean;
   updatedAt: string;
+  languagePair?: LanguagePair;
 };
 
 export type LegacyScenario = {
@@ -19,4 +21,5 @@ export type LegacyScenario = {
   cardIds?: readonly string[];
   published?: boolean;
   updatedAt?: string;
+  languagePair?: LanguagePair;
 };

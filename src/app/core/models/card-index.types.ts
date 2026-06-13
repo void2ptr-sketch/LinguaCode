@@ -13,8 +13,8 @@ export type CardIndexEntry = {
   id: string;
   kind: CardKind;
   title: string;
-  /** Язык изучаемого контента (learning / target). */
-  language: ContentLanguage;
+  knownLanguage: ContentLanguage;
+  learningLanguage: ContentLanguage;
   difficulty: CardDifficulty;
   tags: readonly string[];
   updatedAt: string;

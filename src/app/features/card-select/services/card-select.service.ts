@@ -6,7 +6,10 @@ import {
   resolveScenarioCardIds,
   ScenarioSearchService,
 } from '../../../core/data';
+import { formatLanguagePair } from '../../../core/data/language-pair.utils';
+import { scenarioMatchesLanguagePair } from '../../../core/data/scenario-card-source.utils';
 import { Card } from '../../../core/models';
+import { UserStore } from '../../../core/state';
 
 export type CardSelectSession = {
   scenarioId: string;
@@ -21,17 +24,32 @@ export class CardSelectService {
   private readonly cardsApiService = inject(CardsApiService);
   private readonly cardSearchService = inject(CardSearchService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
+  private readonly userStore = inject(UserStore);
 
   searchScenarios(query: string, pageIndex: number, pageSize: number) {
-    return this.scenarioSearchService.search({
-      query: query.trim() || undefined,
-      scope: 'published',
-      page: { page: pageIndex, pageSize },
-    });
+    const pairLabel = formatLanguagePair(this.userStore.languagePair());
+
+    return this.scenarioSearchService
+      .search({
+        query: query.trim() || undefined,
+        scope: 'published',
+        page: { page: pageIndex, pageSize },
+      })
+      .then((page) => ({
+        ...page,
+        items: page.items.filter(
+          (item) => !item.languagePairSummary || item.languagePairSummary === pairLabel,
+        ),
+      }));
   }
 
   async loadScenario(scenarioId: string): Promise<CardSelectSession> {
     const scenario = await this.scenarioSearchService.getById(scenarioId);
+    const pair = this.userStore.languagePair();
+
+    if (!scenarioMatchesLanguagePair(scenario, pair)) {
+      throw new Error('SCENARIO_LANGUAGE_PAIR_MISMATCH');
+    }
     const cardIds = await resolveScenarioCardIds(scenario.cardSource, this.cardSearchService);
     const cards = await this.cardsApiService.getByIds(cardIds);
     const cardsById = new Map(cards.map((card) => [card.id, card]));

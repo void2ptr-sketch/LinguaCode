@@ -1,4 +1,4 @@
-import type { CardSearchCriteria, ScenarioCardSource } from '../../../core/models';
+import type { CardSearchCriteria, LanguagePair, ScenarioCardSource } from '../../../core/models';
 
 export type ScenarioCardSourceMode = ScenarioCardSource['mode'];
 
@@ -7,6 +7,7 @@ export type ScenarioDraft = {
   description: string;
   cardSource: ScenarioCardSource;
   published: boolean;
+  languagePair?: LanguagePair;
 };
 
 export type ScenarioEditorMode = 'list' | 'create' | 'edit';

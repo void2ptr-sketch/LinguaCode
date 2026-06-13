@@ -8,7 +8,8 @@ describe('card-search.utils', () => {
       id: '1',
       kind: 'select',
       title: 'Приветствие',
-      language: 'en',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
       difficulty: 'beginner',
       tags: ['greetings', 'vocabulary'],
       updatedAt: '2026-01-01T00:00:00.000Z',
@@ -17,7 +18,8 @@ describe('card-search.utils', () => {
       id: '2',
       kind: 'memory',
       title: 'Пары слов',
-      language: 'en',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
       difficulty: 'intermediate',
       tags: ['memory', 'vocabulary'],
       updatedAt: '2026-01-02T00:00:00.000Z',
@@ -26,17 +28,18 @@ describe('card-search.utils', () => {
       id: '3',
       kind: 'select',
       title: 'Числа',
-      language: 'zh',
+      knownLanguage: 'ru',
+      learningLanguage: 'zh',
       difficulty: 'beginner',
       tags: ['numbers'],
       updatedAt: '2026-01-03T00:00:00.000Z',
     },
   ];
 
-  it('filters by query, language and kind', () => {
+  it('filters by query, learning language and kind', () => {
     const filtered = filterCardIndex(entries, {
       query: 'чис',
-      language: 'zh',
+      learningLanguage: 'zh',
       kinds: ['select'],
       page: { page: 0, pageSize: 10 },
     });
@@ -55,11 +58,11 @@ describe('card-search.utils', () => {
 
   it('builds facets with counts for active filters', () => {
     const facets = buildCardSearchFacets(entries, {
-      language: 'en',
+      learningLanguage: 'en',
       page: { page: 0, pageSize: 10 },
     });
 
-    expect(facets.languages).toEqual([
+    expect(facets.learningLanguages).toEqual([
       { value: 'en', count: 2 },
       { value: 'zh', count: 1 },
     ]);
@@ -76,8 +79,8 @@ describe('card-search.utils', () => {
 
   it('ignores facet field when counting that facet', () => {
     expect(
-      matchesCardIndexEntry(entries[0], { language: 'zh' }, 'language'),
+      matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' }, 'learningLanguage'),
     ).toBeTrue();
-    expect(matchesCardIndexEntry(entries[0], { language: 'zh' })).toBeFalse();
+    expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' })).toBeFalse();
   });
 });

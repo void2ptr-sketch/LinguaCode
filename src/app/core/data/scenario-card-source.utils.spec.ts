@@ -6,7 +6,8 @@ describe('scenario-card-source.utils', () => {
     id: 'select-1',
     kind: 'select',
     title: 'Hello',
-    language: 'en',
+    knownLanguage: 'ru',
+    learningLanguage: 'en',
     difficulty: 'beginner',
     tags: ['greetings'],
     updatedAt: '2026-01-01T00:00:00.000Z',
@@ -39,7 +40,7 @@ describe('scenario-card-source.utils', () => {
   it('detects criteria card usage via index entry', () => {
     expect(
       scenarioUsesCardEntry(
-        { mode: 'criteria', criteria: { language: 'en' }, limit: 10 },
+        { mode: 'criteria', criteria: { learningLanguage: 'en' }, limit: 10 },
         entry,
       ),
     ).toBeTrue();
@@ -49,7 +50,7 @@ describe('scenario-card-source.utils', () => {
     expect(
       scenarioCardsLabel({
         mode: 'criteria',
-        criteria: { language: 'en' },
+        criteria: { learningLanguage: 'en' },
         limit: 10,
       }),
     ).toBe('до 10 по критериям');
@@ -58,7 +59,7 @@ describe('scenario-card-source.utils', () => {
       scenarioCardsLabel({
         mode: 'snapshot',
         cardIds: ['select-1'],
-        criteria: { language: 'en' },
+        criteria: { learningLanguage: 'en' },
         frozenAt: '2026-01-01T00:00:00.000Z',
       }),
     ).toBe('1 карточек (snapshot)');

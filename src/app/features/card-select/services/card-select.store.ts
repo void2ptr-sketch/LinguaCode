@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Card } from '../../../core/models';
+import type { CardDirection } from '../../../core/models/language-pair.types';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
 import { CardFeedback } from '../../../shared/types';
 
@@ -7,6 +8,7 @@ import { CardFeedback } from '../../../shared/types';
 export class CardSelectStore {
   readonly cards = signal<readonly Card[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
+  readonly sessionDirection = signal<CardDirection>('known-to-learning');
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentIndex = signal(0);
@@ -115,7 +117,7 @@ export class CardSelectStore {
       return null;
     }
 
-    const isCorrect = checkCardAnswer(card, this.answerState());
+    const isCorrect = checkCardAnswer(card, this.answerState(), this.sessionDirection());
     if (isCorrect === null) {
       return null;
     }
@@ -141,6 +143,7 @@ export class CardSelectStore {
   reset(): void {
     this.cards.set([]);
     this.scenarioId.set('demo-scenario');
+    this.sessionDirection.set('known-to-learning');
     this.loading.set(false);
     this.error.set(null);
     this.currentIndex.set(0);

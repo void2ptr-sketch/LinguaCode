@@ -6,7 +6,8 @@ describe('cards-api.params.utils', () => {
   it('builds and parses search params', () => {
     const criteria = {
       query: 'hello',
-      language: 'en' as const,
+      knownLanguage: 'ru' as const,
+      learningLanguage: 'en' as const,
       difficulty: 'beginner' as const,
       kinds: ['select', 'memory'] as const,
       tags: ['vocabulary'],
@@ -23,7 +24,8 @@ describe('cards-api.params.utils', () => {
 
     expect(criteria.page).toEqual({ page: 0, pageSize: 50 });
     expect(criteria.query).toBeUndefined();
-    expect(criteria.language).toBeUndefined();
+    expect(criteria.knownLanguage).toBeUndefined();
+    expect(criteria.learningLanguage).toBeUndefined();
     expect(criteria.kinds).toBeUndefined();
     expect(criteria.tags).toBeUndefined();
   });

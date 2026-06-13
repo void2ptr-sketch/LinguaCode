@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { KeyboardCard } from '../../../../core/models';
+import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { CardFeedback } from '../../../types';
 import { getCorrectAnswerLabel } from '../../../utils/card-answer.utils';
 
@@ -17,6 +18,7 @@ import { getCorrectAnswerLabel } from '../../../utils/card-answer.utils';
 })
 export class KeyboardCardComponent {
   readonly card = input.required<KeyboardCard>();
+  readonly direction = input<CardDirection>('known-to-learning');
   readonly answerText = input('');
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
@@ -26,6 +28,6 @@ export class KeyboardCardComponent {
   readonly nextCard = output<void>();
 
   correctLabel(): string | null {
-    return getCorrectAnswerLabel(this.card());
+    return getCorrectAnswerLabel(this.card(), this.direction());
   }
 }

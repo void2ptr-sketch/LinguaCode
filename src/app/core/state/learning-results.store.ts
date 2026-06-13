@@ -18,8 +18,16 @@ export class LearningResultsStore {
     return this.results().filter((item) => item.userId === userId);
   });
 
-  readonly totalCount = computed(() => this.userResults().length);
-  readonly correctCount = computed(() => this.userResults().filter((item) => item.correct).length);
+  readonly pairResults = computed(() => {
+    const pair = this.userStore.languagePair();
+    return this.userResults().filter(
+      (item) =>
+        item.languagePair.known === pair.known && item.languagePair.learning === pair.learning,
+    );
+  });
+
+  readonly totalCount = computed(() => this.pairResults().length);
+  readonly correctCount = computed(() => this.pairResults().filter((item) => item.correct).length);
 
   readonly accuracyPercent = computed(() => {
     const total = this.totalCount();
@@ -31,7 +39,7 @@ export class LearningResultsStore {
   });
 
   readonly recentResults = computed(() => {
-    return [...this.userResults()]
+    return [...this.pairResults()]
       .sort((left, right) => right.answeredAt.localeCompare(left.answeredAt))
       .slice(0, RECENT_RESULTS_LIMIT);
   });
@@ -39,7 +47,7 @@ export class LearningResultsStore {
   readonly scenarioProgress = computed(() => {
     const grouped = new Map<string, { total: number; correct: number }>();
 
-    for (const result of this.userResults()) {
+    for (const result of this.pairResults()) {
       const current = grouped.get(result.scenarioId) ?? { total: 0, correct: 0 };
       grouped.set(result.scenarioId, {
         total: current.total + 1,

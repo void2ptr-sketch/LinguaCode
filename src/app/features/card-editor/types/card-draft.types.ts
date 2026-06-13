@@ -1,12 +1,16 @@
 import { CardAppearance, CardKind, MemoryPair } from '../../../core/models';
+import { CardDirection } from '../../../core/models/language-pair.types';
 
 export type CardAppearanceDraft = CardAppearance;
+
+export const DEFAULT_CARD_DIRECTION: CardDirection = 'known-to-learning';
 
 export type SelectCardDraft = {
   kind: 'select';
   title: string;
-  question: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  optionsLearning: readonly string[];
   correctIndex: number;
   appearance: CardAppearanceDraft;
 };
@@ -14,7 +18,7 @@ export type SelectCardDraft = {
 export type MemoryCardDraft = {
   kind: 'memory';
   title: string;
-  prompt: string;
+  promptKnown: string;
   pairs: readonly MemoryPair[];
   appearance: CardAppearanceDraft;
 };
@@ -22,7 +26,8 @@ export type MemoryCardDraft = {
 export type SymbolCardDraft = {
   kind: 'symbol';
   title: string;
-  prompt: string;
+  direction: CardDirection;
+  promptKnown: string;
   symbols: readonly string[];
   correctIndex: number;
   appearance: CardAppearanceDraft;
@@ -31,9 +36,10 @@ export type SymbolCardDraft = {
 export type SoundCardDraft = {
   kind: 'sound';
   title: string;
-  prompt: string;
-  audioLabel: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  audioLabelLearning: string;
+  optionsKnown: readonly string[];
   correctIndex: number;
   appearance: CardAppearanceDraft;
 };
@@ -41,8 +47,9 @@ export type SoundCardDraft = {
 export type TimedCardDraft = {
   kind: 'timed';
   title: string;
-  question: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  optionsLearning: readonly string[];
   correctIndex: number;
   timeLimitSec: number;
   appearance: CardAppearanceDraft;
@@ -51,16 +58,17 @@ export type TimedCardDraft = {
 export type KeyboardCardDraft = {
   kind: 'keyboard';
   title: string;
-  prompt: string;
-  acceptedAnswers: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  acceptedAnswersKnown: readonly string[];
   appearance: CardAppearanceDraft;
 };
 
 export type DrawCardDraft = {
   kind: 'draw';
   title: string;
-  prompt: string;
-  referenceHint: string;
+  promptKnown: string;
+  referenceHintKnown: string;
   appearance: CardAppearanceDraft;
 };
 

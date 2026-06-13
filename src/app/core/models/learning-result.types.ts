@@ -1,3 +1,5 @@
+import type { CardDirection, LanguagePair } from './language-pair.types';
+
 export type LearningResult = {
   id: string;
   userId: string;
@@ -5,4 +7,6 @@ export type LearningResult = {
   scenarioId: string;
   correct: boolean;
   answeredAt: string;
+  languagePair: LanguagePair;
+  direction?: CardDirection;
 };

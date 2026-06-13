@@ -1,4 +1,5 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -6,12 +7,17 @@ import {
   MatDialogModule,
   MatDialogRef,
 } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
-import { CARD_KIND_LABELS } from '../../../../shared/card-catalog-search';
+import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS } from '../../../../shared/card-catalog-search';
+import { contentLanguages } from '../../../../core/data/language-pair.utils';
+import { CardsCatalogMockHandler } from '../../../../core/api/cards-catalog.mock.handler';
+import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
-import type { CardDraft } from '../../types';
+import type { CardDraft, CardIndexMetaDraft } from '../../types';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { CardEditorDiscardDialogComponent } from './card-editor-discard-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
@@ -23,9 +29,12 @@ function serializeDraft(draft: CardDraft): string {
 @Component({
   selector: 'app-card-editor-dialog',
   imports: [
+    FormsModule,
     MatButtonModule,
     MatDialogModule,
     MatProgressSpinnerModule,
+    MatFormFieldModule,
+    MatSelectModule,
     CardFormComponent,
   ],
   templateUrl: './card-editor-dialog.component.html',
@@ -37,13 +46,24 @@ export class CardEditorDialogComponent implements OnInit {
   private readonly dialog = inject(MatDialog);
   readonly data = inject<CardEditorDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CardEditorStore);
+  private readonly userStore = inject(UserStore);
+  private readonly catalogHandler = inject(CardsCatalogMockHandler);
 
   readonly kindLabels = CARD_KIND_LABELS;
+  readonly languages = contentLanguages();
+  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly draft = signal<CardDraft>(this.store.emptyDraft('select'));
+  readonly indexMeta = signal<CardIndexMetaDraft>({
+    knownLanguage: this.userStore.languagePair().known,
+    learningLanguage: this.userStore.languagePair().learning,
+  });
   private readonly initialSnapshot = signal('');
+  private readonly initialMetaSnapshot = signal('');
 
   readonly dirty = computed(
-    () => serializeDraft(this.draft()) !== this.initialSnapshot(),
+    () =>
+      serializeDraft(this.draft()) !== this.initialSnapshot() ||
+      JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot(),
   );
 
   readonly title = computed(() => {
@@ -58,8 +78,14 @@ export class CardEditorDialogComponent implements OnInit {
     if (this.data.mode === 'create') {
       this.store.startCreate(this.data.kind);
       const nextDraft = this.store.emptyDraft(this.data.kind);
+      const nextMeta = {
+        knownLanguage: this.userStore.languagePair().known,
+        learningLanguage: this.userStore.languagePair().learning,
+      };
       this.draft.set(nextDraft);
+      this.indexMeta.set(nextMeta);
       this.initialSnapshot.set(serializeDraft(nextDraft));
+      this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
       return;
     }
 
@@ -72,21 +98,44 @@ export class CardEditorDialogComponent implements OnInit {
     }
 
     const nextDraft = this.store.cardToDraft(editing);
+    const entry = await this.catalogHandler.getIndexEntry(this.data.cardId);
+    const nextMeta = {
+      knownLanguage: entry?.knownLanguage ?? this.userStore.languagePair().known,
+      learningLanguage: entry?.learningLanguage ?? this.userStore.languagePair().learning,
+    };
     this.draft.set(nextDraft);
+    this.indexMeta.set(nextMeta);
     this.initialSnapshot.set(serializeDraft(nextDraft));
+    this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
   }
 
   updateDraft(nextDraft: CardDraft): void {
     this.draft.set(nextDraft);
   }
 
+  updateIndexMeta(nextMeta: CardIndexMetaDraft): void {
+    this.indexMeta.set(nextMeta);
+  }
+
+  onKnownLanguageChange(knownLanguage: CardIndexMetaDraft['knownLanguage']): void {
+    this.updateIndexMeta({ ...this.indexMeta(), knownLanguage });
+  }
+
+  onLearningLanguageChange(learningLanguage: CardIndexMetaDraft['learningLanguage']): void {
+    this.updateIndexMeta({ ...this.indexMeta(), learningLanguage });
+  }
+
   async saveCard(): Promise<void> {
     let saved = false;
+    const meta = {
+      knownLanguage: this.indexMeta().knownLanguage,
+      learningLanguage: this.indexMeta().learningLanguage,
+    };
 
     if (this.data.mode === 'create') {
-      saved = await this.store.createCard(this.draft());
+      saved = await this.store.createCard(this.draft(), meta);
     } else {
-      saved = await this.store.updateCard(this.data.cardId, this.draft());
+      saved = await this.store.updateCard(this.data.cardId, this.draft(), meta);
     }
 
     if (saved) {

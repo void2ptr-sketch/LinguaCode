@@ -1,5 +1,6 @@
 import { Component, input, output } from '@angular/core';
 import { Card } from '../../../core/models';
+import type { CardDirection } from '../../../core/models/language-pair.types';
 import { CardFeedback } from '../../types';
 import { DrawCardComponent } from '../cards/draw-card/draw-card.component';
 import { KeyboardCardComponent } from '../cards/keyboard-card/keyboard-card.component';
@@ -25,6 +26,7 @@ import { TimedCardComponent } from '../cards/timed-card/timed-card.component';
 export class CardHostComponent {
   readonly card = input.required<Card>();
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
+  readonly direction = input<CardDirection>('known-to-learning');
   readonly feedback = input<CardFeedback>(null);
   readonly selectedIndex = input<number | null>(null);
   readonly answerText = input('');

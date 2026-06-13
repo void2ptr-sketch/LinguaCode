@@ -13,8 +13,9 @@ describe('card-validation.utils', () => {
       {
         kind: 'select',
         title: 'Тест',
-        question: 'Вопрос?',
-        options: ['A', 'B'],
+        direction: 'known-to-learning',
+        promptKnown: 'Вопрос?',
+        optionsLearning: ['A', 'B'],
         correctIndex: 0,
         appearance,
       },
@@ -30,8 +31,8 @@ describe('card-validation.utils', () => {
       {
         kind: 'memory',
         title: 'Пары',
-        prompt: 'Найдите пары',
-        pairs: [{ front: 'A', back: 'B' }],
+        promptKnown: 'Найдите пары',
+        pairs: [{ known: 'A', learning: 'B' }],
         appearance,
       },
       'memory-1',
@@ -46,14 +47,15 @@ describe('card-validation.utils', () => {
       {
         kind: 'keyboard',
         title: 'Ввод',
-        prompt: 'Введите ответ',
-        acceptedAnswers: ['hello'],
+        direction: 'known-to-learning',
+        promptKnown: 'Введите ответ',
+        acceptedAnswersKnown: ['hello'],
         appearance,
       },
       'keyboard-1',
     );
 
-    expect(card?.acceptedAnswers).toEqual(['hello']);
+    expect(card?.acceptedAnswersKnown).toEqual(['hello']);
   });
 
   it('should reject timed card with short limit', () => {
@@ -61,8 +63,9 @@ describe('card-validation.utils', () => {
       {
         kind: 'timed',
         title: 'Timer',
-        question: 'Q?',
-        options: ['A', 'B'],
+        direction: 'known-to-learning',
+        promptKnown: 'Q?',
+        optionsLearning: ['A', 'B'],
         correctIndex: 0,
         timeLimitSec: 2,
         appearance,

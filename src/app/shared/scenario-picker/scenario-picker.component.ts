@@ -8,7 +8,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { ScenarioSearchService } from '../../core/data';
+import { formatLanguagePair } from '../../core/data/language-pair.utils';
 import type { ScenarioIndexEntry, ScenarioListScope } from '../../core/models';
+import { UserStore } from '../../core/state';
 import { UiPaginationComponent } from '../pagination';
 
 @Component({
@@ -27,6 +29,7 @@ import { UiPaginationComponent } from '../pagination';
 })
 export class ScenarioPickerComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
+  private readonly userStore = inject(UserStore);
 
   readonly selectedScenarioId = input.required<string>();
 
@@ -54,8 +57,12 @@ export class ScenarioPickerComponent implements OnInit {
         scope: this.scope(),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
-      this.items.set(page.items);
-      this.totalItems.set(page.totalItems);
+      const pairLabel = formatLanguagePair(this.userStore.languagePair());
+      const filtered = page.items.filter(
+        (entry) => !entry.languagePairSummary || entry.languagePairSummary === pairLabel,
+      );
+      this.items.set(filtered);
+      this.totalItems.set(filtered.length);
 
       const current = this.selectedScenarioId();
       const hasCurrent = page.items.some((item) => item.id === current);
@@ -96,6 +103,7 @@ export class ScenarioPickerComponent implements OnInit {
   }
 
   formatLabel(entry: ScenarioIndexEntry): string {
-    return `${entry.title} · ${entry.cardSourceSummary}`;
+    const pairBadge = entry.languagePairSummary ? ` · ${entry.languagePairSummary}` : '';
+    return `${entry.title} · ${entry.cardSourceSummary}${pairBadge}`;
   }
 }

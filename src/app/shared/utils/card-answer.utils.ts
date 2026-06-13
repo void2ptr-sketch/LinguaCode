@@ -1,4 +1,10 @@
 import { Card, isOptionCard } from '../../core/models';
+import type { CardDirection } from '../../core/models/language-pair.types';
+import {
+  effectiveCardDirection,
+  resolveKeyboardAcceptedAnswers,
+  resolveOptionCard,
+} from '../../core/data/card-direction.utils';
 import { CardAnswerState } from '../types';
 
 const normalizeAnswer = (value: string): string => value.trim().toLowerCase();
@@ -19,20 +25,29 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
   }
 };
 
-export const checkCardAnswer = (card: Card, state: CardAnswerState): boolean | null => {
+export const checkCardAnswer = (
+  card: Card,
+  state: CardAnswerState,
+  sessionDirection: CardDirection = 'known-to-learning',
+): boolean | null => {
   if (!canCheckCardAnswer(card, state)) {
     return null;
   }
 
   if (isOptionCard(card)) {
-    return state.selectedIndex === card.correctIndex;
+    const direction = effectiveCardDirection(card.direction, sessionDirection);
+    const resolved = resolveOptionCard(card, direction);
+    return state.selectedIndex === resolved.correctIndex;
   }
 
   switch (card.kind) {
-    case 'keyboard':
-      return card.acceptedAnswers.some(
+    case 'keyboard': {
+      const direction = effectiveCardDirection(card.direction, sessionDirection);
+      const accepted = resolveKeyboardAcceptedAnswers(card, direction);
+      return accepted.some(
         (answer) => normalizeAnswer(answer) === normalizeAnswer(state.answerText),
       );
+    }
     case 'memory':
       return state.memoryComplete;
     case 'draw':
@@ -40,20 +55,20 @@ export const checkCardAnswer = (card: Card, state: CardAnswerState): boolean | n
   }
 };
 
-export const getCorrectAnswerLabel = (card: Card): string | null => {
+export const getCorrectAnswerLabel = (
+  card: Card,
+  sessionDirection: CardDirection = 'known-to-learning',
+): string | null => {
   if (isOptionCard(card)) {
-    const options =
-      card.kind === 'select' || card.kind === 'timed' || card.kind === 'sound'
-        ? card.options
-        : card.kind === 'symbol'
-          ? card.symbols
-          : [];
-
-    return options[card.correctIndex] ?? null;
+    const direction = effectiveCardDirection(card.direction, sessionDirection);
+    const resolved = resolveOptionCard(card, direction);
+    return resolved.options[resolved.correctIndex] ?? null;
   }
 
   if (card.kind === 'keyboard') {
-    return card.acceptedAnswers[0] ?? null;
+    const direction = effectiveCardDirection(card.direction, sessionDirection);
+    const accepted = resolveKeyboardAcceptedAnswers(card, direction);
+    return accepted[0] ?? null;
   }
 
   return null;
