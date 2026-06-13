@@ -4,12 +4,12 @@
 
 ## 1. Инициализация проекта
 
-- Создать Angular-приложение (standalone, без NgModule)
-- Подключить Angular Material
-- Настроить структуру папок: `core`, `shared`, `features`
-- Подключить линтер и форматирование (ESLint, Prettier)
-- Добавить базовые скрипты в `package.json` (`start`, `build`, `test`)
-- Добавить `.gitignore`, `.editorconfig`, `.nvmrc`
+- [x] Создать Angular-приложение (standalone, без NgModule)
+- [x] Подключить Angular Material
+- [x] Настроить структуру папок: `core`, `shared`, `features`
+- [x] Подключить линтер и форматирование (ESLint, Prettier)
+- [x] Добавить базовые скрипты в `package.json` (`start`, `build`, `test`)
+- [x] Добавить `.gitignore`, `.editorconfig`, `.nvmrc`
 
 ## 2. Базовая архитектура
 
@@ -62,9 +62,9 @@
 
 - Написать smoke-тесты для критичных сценариев
 - Проверить сборку production (`ng build`)
-- Обновить `README.md` (описание, запуск, стек, структура)
-- Заполнить / обновить`docs/ARCHITECTURE.md`
-- Синхронизировать `README.md` с layout (`menu-cards`, `menu-tools`)
+- [x] Обновить `README.md` (описание, запуск, стек, структура)
+- [x] Заполнить / обновить `docs/ARCHITECTURE.md`
+- [x] Синхронизировать `README.md` с layout (`menu-cards`, `menu-tools`)
 - Настроить CI (сборка + тесты на push)
 
 ---

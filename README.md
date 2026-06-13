@@ -8,7 +8,7 @@
 
 ## Статус
 
-**MVP в разработке.** Сейчас в репозитории — документация и правила разработки; Angular-приложение ещё не инициализировано.
+**MVP в разработке.** Angular 19 инициализирован; следующий шаг — layout и первая фича.
 
 Актуальный чеклист: [TASKS.md](./TASKS.md).
 
@@ -16,9 +16,9 @@
 
 | Инструмент | Версия |
 |------------|--------|
-| Node.js | 20 LTS или новее |
+| Node.js | 20 LTS или новее (см. `.nvmrc`) |
 | npm | 10+ |
-| Angular CLI | 19+ (после инициализации проекта) |
+| Angular CLI | 19+ |
 | Git | 2.x |
 
 ## Быстрый старт
@@ -26,11 +26,6 @@
 ```bash
 git clone git@github.com:void2ptr-sketch/LinguaCode.git
 cd LinguaCode
-```
-
-После инициализации Angular (см. [TASKS.md](./TASKS.md), п. 1):
-
-```bash
 npm install
 npm start
 ```
@@ -39,43 +34,38 @@ npm start
 
 ## Скрипты
 
-Появятся в `package.json` после создания Angular-проекта:
-
 | Команда | Описание |
 |---------|----------|
 | `npm start` | Dev-сервер с hot reload |
 | `npm run build` | Production-сборка |
 | `npm test` | Unit-тесты |
-| `npm run lint` | ESLint (после настройки) |
+| `npm run lint` | ESLint |
+| `npm run format` | Prettier |
 
 ## Стек
 
-- **Angular** — standalone-компоненты, без NgModule
+- **Angular 19** — standalone-компоненты, без NgModule
 - **TypeScript** — строгая типизация (`type`, не `interface`)
 - **Angular Material** — UI-компоненты
 - **SCSS** — стили; layout на CSS Grid (`grid-template-areas`)
 - **Signal API** — управление состоянием (RxJS только для HTTP/WebSocket)
+- **ESLint + Prettier** — линтинг и форматирование
 - **@angular/localize** — локализация (бэклог)
 
 ## Структура проекта
 
-Планируемая структура после инициализации:
-
 ```
 src/app/
 ├── core/
-│   ├── layout/
-│   │   ├── header/          # шапка (+ menu-card, menu-help, menu-user)
-│   │   ├── footer/
-│   │   ├── main-layout/     # область контента (router-outlet)
-│   │   └── navigation/
-│   └── models/              # User, Card, Scenario, LearningResult
+│   ├── layout/              # shell (header, navigation, main-layout, footer)
+│   ├── models/              # User, Card, Scenario, LearningResult
+│   ├── state/               # глобальные signal-сервисы
+│   └── api/                 # HttpClient, interceptors
 ├── shared/                  # переиспользуемые UI и утилиты
-└── features/
-    └── card-select/         # первая фича MVP
-        ├── components/
-        ├── services/
-        └── types/
+├── features/                # фичи (card-select, scenario-builder, …)
+├── app.component.ts
+├── app.config.ts
+└── app.routes.ts
 
 src/environments/            # конфигурация окружения
 src/locale/                  # переводы (бэклог): messages.LANG.ts
@@ -87,16 +77,16 @@ docs/                        # документация проекта
 - **Фичи** — изолированные модули в `features/` (компонент, сервис, типы в отдельных подпапках).
 - **Layout** — shell-приложение с шапкой, навигацией, контентом и подвалом.
 - **Состояние** — сервисы на signals; загрузка и ошибки API — тоже через signals.
-- **Роутинг** — `app.routes.ts`; фичи подключаются из меню (например, `menu-card` → `card-select`).
+- **Роутинг** — `app.routes.ts`; фичи подключаются из меню (`menu-cards`, `menu-tools`).
 
 ```
-┌──────────────────────────────────────┐
-│ header (menu-card / help / user)     │
-├──────────┬───────────────────────────┤
-│ nav      │ main-layout (router-outlet)│
-├──────────┴───────────────────────────┤
-│ footer                               │
-└──────────────────────────────────────┘
+┌──────────────────────────────────────────────────────┐
+│ header (menu-cards / tools / help / user)            │
+├──────────┬───────────────────────────────────────────┤
+│ nav      │ main-layout (router-outlet)               │
+├──────────┴───────────────────────────────────────────┤
+│ footer                                               │
+└──────────────────────────────────────────────────────┘
 ```
 
 Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/DOMAIN.md](./docs/DOMAIN.md#модели)
@@ -107,19 +97,16 @@ docs/                        # документация проекта
 
 Полные правила: [docs/.gitrules](./docs/.gitrules).
 
-1. От актуальной `main` создать ветку `NUMBER_description` (например, `1_init-docs`).
+1. От актуальной `main` создать ветку `NUMBER_description` (например, `3_init-angular`).
 2. Коммиты: `[NUMBER_description] краткое описание` — префикс совпадает с именем ветки.
 3. После проверки сборки — merge commit в `main`; ветку не удалять.
 
-```bash
-git checkout main && git pull
-git checkout -b 2_init-angular
-git commit -m "[2_init-angular] bootstrap Angular project"
-```
-
 ### Lint и форматирование
 
-ESLint и Prettier — после инициализации проекта ([TASKS.md](./TASKS.md), п. 1).
+```bash
+npm run lint
+npm run format
+```
 
 ### Окружение
 
@@ -129,7 +116,7 @@ ESLint и Prettier — после инициализации проекта ([TA
 
 **MVP**
 
-1. Инициализация Angular и структура `core` / `shared` / `features`
+1. ~~Инициализация Angular и структура `core` / `shared` / `features`~~
 2. Layout (header, navigation, main-layout, footer)
 3. Первая фича — `features/card-select/` (карточка с выбором ответов)
 4. HTTP, interceptors, обработка ошибок
