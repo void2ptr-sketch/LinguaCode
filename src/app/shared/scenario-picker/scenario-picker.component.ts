@@ -34,6 +34,7 @@ export class ScenarioPickerComponent implements OnInit {
   private readonly userStore = inject(UserStore);
 
   readonly selectedScenarioId = input.required<string>();
+  readonly allowedScenarioIds = input<readonly string[] | null>(null);
 
   readonly selectedScenarioIdChange = output<string>();
   readonly scenarioLabelChange = output<string>();
@@ -59,6 +60,11 @@ export class ScenarioPickerComponent implements OnInit {
     lastKnownScenarioPickerActiveLanguagePairId = activeId;
   });
 
+  private readonly reloadOnAllowedIdsChange = effect(() => {
+    this.allowedScenarioIds();
+    void this.load();
+  });
+
   ngOnInit(): void {
     void this.load();
   }
@@ -68,25 +74,37 @@ export class ScenarioPickerComponent implements OnInit {
 
     try {
       const pair = this.userStore.languagePair();
+      const allowed = this.allowedScenarioIds();
       const page = await this.scenarioSearchService.search({
         query: this.query().trim() || undefined,
         scope: this.scope(),
         ...activeLanguagePairCriteria(pair),
-        page: { page: this.pageIndex(), pageSize: this.pageSize() },
+        page: {
+          page: allowed && allowed.length > 0 ? 0 : this.pageIndex(),
+          pageSize: allowed && allowed.length > 0 ? 100 : this.pageSize(),
+        },
       });
 
-      this.items.set(page.items);
-      this.totalItems.set(page.totalItems);
+      const filtered =
+        allowed && allowed.length > 0
+          ? page.items.filter((item) => allowed.includes(item.id))
+          : page.items;
+
+      this.items.set(filtered);
+      this.totalItems.set(filtered.length);
 
       const current = this.selectedScenarioId();
-      const hasCurrent = page.items.some((item) => item.id === current);
-      if (!hasCurrent && page.items.length > 0) {
-        this.pick(page.items[0]);
+      const hasCurrent = filtered.some((item) => item.id === current);
+      if (!hasCurrent && filtered.length > 0) {
+        this.pick(filtered[0]);
       } else if (hasCurrent) {
-        const entry = page.items.find((item) => item.id === current);
+        const entry = filtered.find((item) => item.id === current);
         if (entry) {
           this.scenarioLabelChange.emit(this.formatLabel(entry));
         }
+      } else if (filtered.length === 0) {
+        this.selectedScenarioIdChange.emit('');
+        this.scenarioLabelChange.emit('');
       }
     } finally {
       this.loading.set(false);

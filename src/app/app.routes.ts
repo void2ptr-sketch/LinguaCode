@@ -46,11 +46,25 @@ export const routes: Routes = [
           ).then((m) => m.CardSelectPageComponent),
       },
       {
+        path: 'courses',
+        loadComponent: () =>
+          import(
+            './features/course-catalog/components/course-catalog-page/course-catalog-page.component'
+          ).then((m) => m.CourseCatalogPageComponent),
+      },
+      {
         path: 'tools/scenario-builder',
         loadComponent: () =>
           import(
             './features/scenario-builder/components/scenario-builder-page/scenario-builder-page.component'
           ).then((m) => m.ScenarioBuilderPageComponent),
+      },
+      {
+        path: 'tools/courses',
+        loadComponent: () =>
+          import(
+            './features/course-builder/components/course-builder-page/course-builder-page.component'
+          ).then((m) => m.CourseBuilderPageComponent),
       },
       {
         path: 'tools/cards',

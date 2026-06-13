@@ -1,0 +1,62 @@
+<section class="course-catalog-page">
+  <header class="course-catalog-page__header">
+    <h1>Каталог курсов</h1>
+    <p>Опубликованные учебные программы для активной языковой пары.</p>
+  </header>
+
+  @if (loading() && items().length === 0) {
+    <div class="course-catalog-page__state">
+      <mat-spinner diameter="40" />
+      <p>Загрузка…</p>
+    </div>
+  } @else if (error() && items().length === 0) {
+    <mat-card class="course-catalog-page__message">
+      <mat-card-content>{{ error() }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="load()">Повторить</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else if (items().length === 0) {
+    <mat-card class="course-catalog-page__message">
+      <mat-card-content>
+        Опубликованных курсов для текущей пары пока нет. Смените пару в
+        <a routerLink="/user">профиле</a> или создайте курс в
+        <a routerLink="/tools/courses">конструкторе</a>.
+      </mat-card-content>
+    </mat-card>
+  } @else {
+    <mat-list class="course-catalog-page__list">
+      @for (course of items(); track course.id) {
+        <mat-list-item class="course-catalog-page__item">
+          <div matListItemTitle class="course-catalog-page__title">
+            {{ course.title }}
+            @if (isCourseCompleted(course.id)) {
+              <mat-chip class="course-catalog-page__badge" disabled>
+                <mat-icon>workspace_premium</mat-icon>
+                Завершён
+              </mat-chip>
+            }
+          </div>
+          <div matListItemLine>
+            {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
+            @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
+              · {{ progressPercent(course.id) }}%
+            }
+          </div>
+          <div matListItemMeta>
+            <button mat-flat-button type="button" (click)="startCourse(course.id)">
+              Начать
+            </button>
+          </div>
+        </mat-list-item>
+      }
+    </mat-list>
+
+    <app-pagination
+      [length]="totalItems()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      (pageChange)="onPageChange($event)"
+    />
+  }
+</section>

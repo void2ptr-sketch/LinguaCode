@@ -1,0 +1,31 @@
+.lesson-picker {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.lesson-picker h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.lesson-picker__error {
+  color: var(--mat-sys-error);
+  margin: 0;
+}
+
+.lesson-picker__item--selected {
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}
+
+.lesson-picker__item--locked {
+  opacity: 0.55;
+}
+
+.lesson-picker__item--completed .lesson-picker__badge {
+  color: var(--mat-sys-primary);
+  font-size: 1rem;
+  height: 1rem;
+  margin-left: 0.35rem;
+  vertical-align: middle;
+  width: 1rem;
+}

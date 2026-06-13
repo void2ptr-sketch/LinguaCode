@@ -1,0 +1,41 @@
+@if (selectedCourseId()) {
+  <section class="lesson-picker">
+    <h3>Урок</h3>
+
+    @if (loading()) {
+      <mat-spinner diameter="32" />
+    } @else if (error()) {
+      <p class="lesson-picker__error">{{ error() }}</p>
+    } @else if (lessonItems().length === 0) {
+      <p class="lesson-picker__empty">В курсе пока нет уроков.</p>
+    } @else {
+      <mat-nav-list class="lesson-picker__list">
+        @for (item of lessonItems(); track item.lesson.id) {
+          <button
+            mat-list-item
+            type="button"
+            [disabled]="!item.unlocked"
+            [class.lesson-picker__item--selected]="item.lesson.id === selectedLessonId()"
+            [class.lesson-picker__item--locked]="!item.unlocked"
+            [class.lesson-picker__item--completed]="item.completed"
+            (click)="pick(item.lesson)"
+          >
+            <span matListItemTitle>
+              {{ item.lesson.title }}
+              @if (item.completed) {
+                <mat-icon class="lesson-picker__badge" aria-label="Урок завершён">verified</mat-icon>
+              }
+            </span>
+            <span matListItemLine>
+              @if (item.unlocked) {
+                {{ item.lesson.scenarioIds.length }} сценариев
+              } @else if (item.blockReason) {
+                {{ item.blockReason }}
+              }
+            </span>
+          </button>
+        }
+      </mat-nav-list>
+    }
+  </section>
+}

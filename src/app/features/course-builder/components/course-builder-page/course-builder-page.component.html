@@ -1,0 +1,103 @@
+<section class="course-builder-page">
+  <header class="course-builder-page__header">
+    <h1>Конструктор курсов</h1>
+    <p>Создавайте учебные программы из уроков и сценариев.</p>
+  </header>
+
+  @if (store.loading() && store.indexItems().length === 0) {
+    <div class="course-builder-page__state">
+      <mat-spinner diameter="40" />
+      <p>Загрузка…</p>
+    </div>
+  } @else if (store.error() && store.indexItems().length === 0) {
+    <mat-card class="course-builder-page__message">
+      <mat-card-content>{{ store.error() }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="store.load()">Повторить</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else {
+    <mat-card class="course-builder-page__list">
+      <mat-card-header>
+        <mat-card-title>Курсы</mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+        @if (store.error()) {
+          <p class="course-builder-page__error">{{ store.error() }}</p>
+        }
+
+        <mat-form-field appearance="outline" class="course-builder-page__search">
+          <mat-label>Поиск</mat-label>
+          <input
+            matInput
+            [ngModel]="store.listQuery()"
+            (ngModelChange)="onListQueryChange($event)"
+          />
+        </mat-form-field>
+
+        <mat-button-toggle-group
+          class="course-builder-page__scope"
+          [ngModel]="store.listScope()"
+          (ngModelChange)="onListScopeChange($event)"
+        >
+          <mat-button-toggle value="mine">Мои</mat-button-toggle>
+          <mat-button-toggle value="published">Опубликованные</mat-button-toggle>
+          <mat-button-toggle value="all">Все</mat-button-toggle>
+        </mat-button-toggle-group>
+
+        @if (store.indexItems().length === 0) {
+          <p class="course-builder-page__empty">Курсов пока нет.</p>
+        } @else {
+          <mat-list>
+            @for (course of store.indexItems(); track course.id) {
+              <mat-list-item class="course-builder-page__item">
+                <div matListItemTitle>{{ course.title }}</div>
+                <div matListItemLine>
+                  {{ course.lessonCount }} уроков
+                  @if (course.published) {
+                    · опубликован
+                  }
+                  @if (!isOwnCourse(course.authorId)) {
+                    · {{ course.authorId }}
+                  }
+                </div>
+                <div matListItemMeta class="course-builder-page__item-actions">
+                  <button
+                    mat-icon-button
+                    type="button"
+                    [attr.aria-label]="isOwnCourse(course.authorId) ? 'Редактировать' : 'Просмотр'"
+                    (click)="startEdit(course.id)"
+                  >
+                    <mat-icon>{{ isOwnCourse(course.authorId) ? 'edit' : 'visibility' }}</mat-icon>
+                  </button>
+                  @if (isOwnCourse(course.authorId)) {
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Удалить"
+                      (click)="deleteCourse(course.id)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  }
+                </div>
+              </mat-list-item>
+            }
+          </mat-list>
+
+          <app-pagination
+            [length]="store.totalItems()"
+            [pageIndex]="store.pageIndex()"
+            [pageSize]="store.pageSize()"
+            (pageChange)="onListPageChange($event)"
+          />
+        }
+      </mat-card-content>
+
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="startCreate()">Создать курс</button>
+      </mat-card-actions>
+    </mat-card>
+  }
+</section>

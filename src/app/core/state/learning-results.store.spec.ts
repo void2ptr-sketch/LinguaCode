@@ -77,6 +77,41 @@ describe('LearningResultsStore', () => {
     expect(store.scenarioProgress()).toEqual([{ scenarioId: 's1', total: 2, correct: 1 }]);
   });
 
+  it('should compute scenario set progress for lessons and courses', () => {
+    store.addResult({
+      id: '1',
+      userId: 'local-user',
+      cardId: 'c1',
+      scenarioId: 's1',
+      correct: true,
+      answeredAt: '2026-06-13T12:00:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
+      lessonId: 'l1',
+      courseId: 'crs1',
+    });
+
+    const progress = store.scenarioSetProgress(['s1', 's2']);
+    expect(progress).toEqual({ completed: 1, total: 2, percent: 50 });
+  });
+
+  it('should detect completed course from scenario progress', () => {
+    store.addResult({
+      id: '1',
+      userId: 'local-user',
+      cardId: 'c1',
+      scenarioId: 's1',
+      correct: true,
+      answeredAt: '2026-06-13T12:00:00.000Z',
+      languagePair: { known: 'ru', learning: 'en' },
+      courseId: 'crs1',
+    });
+
+    expect(
+      store.isCourseCompleted([{ scenarioIds: ['s1'] }, { scenarioIds: ['s2'] }]),
+    ).toBe(false);
+    expect(store.isCourseCompleted([{ scenarioIds: ['s1'] }])).toBe(true);
+  });
+
   it('should clear only current user results', () => {
     store.addResult({
       id: '1',

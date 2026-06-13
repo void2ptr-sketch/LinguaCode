@@ -3,12 +3,14 @@ import { environment } from '../../../environments/environment';
 import { authInterceptor } from './auth.interceptor';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
+import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { errorInterceptor } from './error.interceptor';
 
 export const provideApiHttp = () => {
   const interceptors = [
     ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),
     ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
+    ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
     authInterceptor,
     errorInterceptor,
   ];

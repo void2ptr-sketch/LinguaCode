@@ -1,0 +1,45 @@
+.course-builder-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.course-builder-page__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.course-builder-page__header p {
+  margin: 0.5rem 0 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.course-builder-page__item-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.course-builder-page__search,
+.course-builder-page__scope {
+  width: 100%;
+}
+
+.course-builder-page__scope {
+  margin-bottom: 1rem;
+}
+
+.course-builder-page__error {
+  color: var(--mat-sys-error);
+  margin: 0 0 1rem;
+}
+
+.course-builder-page__state {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.course-builder-page__message {
+  max-width: 36rem;
+}

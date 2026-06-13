@@ -5,14 +5,17 @@
       [ngModel]="activeLanguagePairId()"
       (ngModelChange)="onActiveChange($event)"
       name="activeLanguagePair"
+      aria-describedby="pair-switcher-hint"
     >
       @for (entry of languagePairs(); track entry.id) {
         <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
       }
     </mat-select>
+    <mat-hint id="pair-switcher-hint">Scope карточек и сценариев (не учебный курс)</mat-hint>
   </mat-form-field>
 } @else if (languagePairs().length === 1) {
   <p class="pair-switcher__single" [class.pair-switcher__single--compact]="compact()">
     Пара языков: {{ entryLabel(languagePairs()[0]) }}
   </p>
+  <p class="pair-switcher__hint" id="pair-switcher-hint">Scope карточек и сценариев (не учебный курс)</p>
 }

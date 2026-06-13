@@ -34,6 +34,11 @@
       <mat-card class="card-editor-page__filters">
         <mat-card-header>
           <mat-card-title>Фильтры</mat-card-title>
+          @if (catalogStore.pairLocked()) {
+            <mat-card-subtitle>
+              Активная пара: {{ catalogStore.lockedPairLabel() }}
+            </mat-card-subtitle>
+          }
         </mat-card-header>
         <mat-card-content>
           <app-card-catalog-filters />

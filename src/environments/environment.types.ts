@@ -5,4 +5,5 @@ export type Environment = {
   appName: string;
   useCardsApiMock: boolean;
   useScenariosApiMock: boolean;
+  useCoursesApiMock: boolean;
 };

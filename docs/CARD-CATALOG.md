@@ -84,6 +84,7 @@ type ScenarioCardSource =
 Экран **`/tools/cards`** (`features/card-editor/`):
 
 - панель фильтров (language, difficulty, kind, tags);
+- в режиме G8 (`pairLocked`) — chip **«Пара»** с активной `LanguagePair` и подсказкой (сменить пару — Профиль или Обучение; «Курс» — учебная программа G11, не пара);
 - таблица / список по `CardIndexEntry` + paginator;
 - edit / delete на строке;
 - **CRUD в `MatDialog`** — `CardEditorDialogComponent` + `CardForm` (fullscreen на узких экранах).
