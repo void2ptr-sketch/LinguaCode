@@ -8,12 +8,13 @@ import {
 } from '../../../../core/data/card-direction.utils';
 import { SelectCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
 @Component({
   selector: 'app-select-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
   templateUrl: './select-card.component.html',
   styleUrl: './select-card.component.scss',
 })
@@ -33,6 +34,10 @@ export class SelectCardComponent {
     const direction = effectiveCardDirection(card.direction, this.direction());
     return resolveOptionCard(card, direction);
   });
+
+  optionLexeme(index: number) {
+    return this.card().optionsLexemes?.[index];
+  }
 
   optionClass(index: number): string {
     const resolved = this.resolved();

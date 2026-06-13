@@ -1,7 +1,16 @@
 import { Card, CardAppearance, CardKind } from '../../../core/models';
-import { CardDraft, DEFAULT_CARD_DIRECTION } from '../types';
+import { lexemeToDraftFields } from '../../../core/data/lexeme-draft.utils';
+import {
+  CardDraft,
+  DEFAULT_CARD_DIRECTION,
+  emptyLexemeCardDraft,
+  emptyMemoryPairDraft,
+  emptyOptionLexemes,
+} from '../types';
 
 export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): CardDraft => {
+  const lexemeFields = emptyLexemeCardDraft();
+
   switch (kind) {
     case 'select':
       return {
@@ -10,16 +19,19 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
+        optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'memory':
       return {
         kind: 'memory',
         title: '',
         promptKnown: '',
-        pairs: [{ known: '', learning: '' }],
+        pairs: [emptyMemoryPairDraft()],
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'symbol':
       return {
@@ -28,8 +40,10 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         symbols: ['', ''],
+        symbolLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'sound':
       return {
@@ -38,9 +52,12 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         audioLabelLearning: '',
+        audioLabelLexeme: lexemeToDraftFields(),
         optionsKnown: ['', ''],
+        optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'timed':
       return {
@@ -49,9 +66,11 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
+        optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         timeLimitSec: 30,
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'keyboard':
       return {
@@ -61,6 +80,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         promptKnown: '',
         acceptedAnswersKnown: [''],
         appearance: { ...appearance },
+        ...lexemeFields,
       };
     case 'draw':
       return {
@@ -75,6 +95,8 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
 
 export const cardToDraft = (card: Card): CardDraft => {
   const appearance = { ...card.appearance };
+  const promptLexeme = lexemeToDraftFields('promptLexeme' in card ? card.promptLexeme : undefined);
+  const audioUrl = 'audioUrl' in card ? (card.audioUrl ?? '') : '';
 
   switch (card.kind) {
     case 'select':
@@ -84,16 +106,29 @@ export const cardToDraft = (card: Card): CardDraft => {
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],
+        optionsLexemes: card.optionsLearning.map((option, index) =>
+          lexemeToDraftFields(card.optionsLexemes?.[index] ?? { primary: option, script: 'latn' }),
+        ),
         correctIndex: card.correctIndex,
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'memory':
       return {
         kind: 'memory',
         title: card.title,
         promptKnown: card.promptKnown,
-        pairs: card.pairs.map((pair) => ({ ...pair })),
+        pairs: card.pairs.map((pair) => ({
+          known: pair.known,
+          learning: pair.learning,
+          learningLexeme: lexemeToDraftFields(
+            pair.learningLexeme ?? { primary: pair.learning, script: 'latn' },
+          ),
+        })),
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'symbol':
       return {
@@ -102,8 +137,13 @@ export const cardToDraft = (card: Card): CardDraft => {
         direction: card.direction,
         promptKnown: card.promptKnown,
         symbols: [...card.symbols],
+        symbolLexemes: card.symbols.map((symbol, index) =>
+          lexemeToDraftFields(card.symbolLexemes?.[index] ?? { primary: symbol, script: 'latn' }),
+        ),
         correctIndex: card.correctIndex,
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'sound':
       return {
@@ -112,9 +152,17 @@ export const cardToDraft = (card: Card): CardDraft => {
         direction: card.direction,
         promptKnown: card.promptKnown,
         audioLabelLearning: card.audioLabelLearning,
+        audioLabelLexeme: lexemeToDraftFields(
+          card.promptLexeme ?? { primary: card.audioLabelLearning, script: 'latn' },
+        ),
         optionsKnown: [...card.optionsKnown],
+        optionsLexemes: card.optionsKnown.map((option, index) =>
+          lexemeToDraftFields(card.optionsLexemes?.[index] ?? { primary: option, script: 'latn' }),
+        ),
         correctIndex: card.correctIndex,
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'timed':
       return {
@@ -123,9 +171,14 @@ export const cardToDraft = (card: Card): CardDraft => {
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],
+        optionsLexemes: card.optionsLearning.map((option, index) =>
+          lexemeToDraftFields(card.optionsLexemes?.[index] ?? { primary: option, script: 'latn' }),
+        ),
         correctIndex: card.correctIndex,
         timeLimitSec: card.timeLimitSec,
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'keyboard':
       return {
@@ -135,6 +188,8 @@ export const cardToDraft = (card: Card): CardDraft => {
         promptKnown: card.promptKnown,
         acceptedAnswersKnown: [...card.acceptedAnswersKnown],
         appearance,
+        promptLexeme,
+        audioUrl,
       };
     case 'draw':
       return {

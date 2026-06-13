@@ -1,13 +1,19 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>{{ resolved().prompt }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="resolved().prompt" />
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content class="quiz-card__options">
     @for (option of resolved().options; track option; let index = $index) {
       <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-        {{ option }}
+        <app-lexeme-display
+          [lexeme]="optionLexeme(index)"
+          [fallbackText]="option"
+          [inline]="true"
+        />
       </button>
     }
   </mat-card-content>
@@ -22,7 +28,12 @@
   @if (feedback() === 'incorrect') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
-      Неверно. Правильный ответ: {{ resolved().options[resolved().correctIndex] }}
+      Неверно. Правильный ответ:
+      <app-lexeme-display
+        [lexeme]="optionLexeme(resolved().correctIndex)"
+        [fallbackText]="resolved().options[resolved().correctIndex]"
+        [inline]="true"
+      />
     </mat-card-content>
   }
 

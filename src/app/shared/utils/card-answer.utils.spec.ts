@@ -31,4 +31,47 @@ describe('card-answer.utils', () => {
 
     expect(checkCardAnswer(card, { selectedIndex: null, answerText: '  HELLO ', memoryComplete: false, drawSubmitted: false })).toBeTrue();
   });
+
+  it('should match palladius keyboard answer', () => {
+    const card = {
+      id: '3',
+      kind: 'keyboard' as const,
+      title: 'Китайский',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Введите чтение',
+      acceptedAnswersKnown: ['ни хао'],
+      promptLexeme: {
+        primary: '你好',
+        script: 'hani' as const,
+        pinyin: 'nǐ hǎo',
+        palladius: 'ни хао',
+      },
+    };
+
+    expect(
+      checkCardAnswer(card, {
+        selectedIndex: null,
+        answerText: 'Ни хао',
+        memoryComplete: false,
+        drawSubmitted: false,
+      }),
+    ).toBeTrue();
+  });
+
+  it('should prefer lexeme primary in correct answer label', () => {
+    const card = {
+      id: '4',
+      kind: 'select' as const,
+      title: 'IPA',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Hello',
+      optionsLearning: ['Hello'],
+      optionsLexemes: [{ primary: 'Hello', script: 'latn' as const, ipa: 'həˈləʊ' }],
+      correctIndex: 0,
+    };
+
+    expect(getCorrectAnswerLabel(card)).toBe('Hello');
+  });
 });

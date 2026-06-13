@@ -25,6 +25,8 @@ describe('UserStore', () => {
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
     expect(store.isActiveEntry(store.languagePairs()[0])).toBeTrue();
+    expect(store.cjkLearning().displayRomanization).toBe('pinyin');
+    expect(store.phonetic().showIpa).toBeFalse();
   });
 
   it('should update display name', () => {
@@ -112,5 +114,16 @@ describe('UserStore', () => {
     store.addLanguagePair({ known: 'en', learning: 'en' });
     expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+  });
+
+  it('should update cjk and phonetic preferences', () => {
+    store.updatePreferences({
+      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: true },
+      phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['orthography', 'ipa'] },
+    });
+
+    expect(store.cjkLearning().displayRomanization).toBe('palladius');
+    expect(store.phonetic().showIpa).toBeTrue();
+    expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });
 });

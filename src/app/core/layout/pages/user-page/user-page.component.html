@@ -75,6 +75,49 @@
       </button>
     </section>
 
+    @if (showCjkPreferences()) {
+      <section class="page-card__section">
+        <h2 class="page-card__section-title">Китайский (ru → zh)</h2>
+        <p class="page-card__hint">Романизация для иероглифов в карточках и упражнениях.</p>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Отображать романизацию</mat-label>
+          <mat-select
+            [ngModel]="displayRomanizationDraft()"
+            (ngModelChange)="displayRomanizationDraft.set($event)"
+            name="displayRomanization"
+          >
+            @for (option of romanizationOptions(); track option.value) {
+              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </section>
+    }
+
+    @if (showPhoneticPreferences()) {
+      <section class="page-card__section">
+        <h2 class="page-card__section-title">Фонетика (IPA)</h2>
+        <p class="page-card__hint">Транскрипция IPA под словами для пары с английским.</p>
+
+        <mat-slide-toggle [ngModel]="showIpaDraft()" (ngModelChange)="showIpaDraft.set($event)" name="showIpa">
+          Показывать IPA
+        </mat-slide-toggle>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Вариант IPA (label)</mat-label>
+          <input
+            matInput
+            placeholder="BrE / AmE"
+            [ngModel]="ipaVariantLabelDraft()"
+            (ngModelChange)="ipaVariantLabelDraft.set($event)"
+            name="ipaVariantLabel"
+          />
+          <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
+        </mat-form-field>
+      </section>
+    }
+
     <section class="page-card__section">
       <h2 class="page-card__section-title">Внешний вид карточек</h2>
 

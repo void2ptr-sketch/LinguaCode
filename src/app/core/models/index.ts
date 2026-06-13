@@ -44,5 +44,21 @@ export type {
 } from './language-pair.types';
 export { DEFAULT_LANGUAGE_PAIR } from './language-pair.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
-export type { User, UserPreferences } from './user.types';
+export type { User, UserPreferences, CjkLearningPreferences, PhoneticPreferences } from './user.types';
+export {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+} from './user.types';
+export type {
+  CjkDisplayMode,
+  CjkLexeme,
+  IpaVariant,
+  OrthographySystem,
+  PhoneticDisplayMode,
+  PhoneticLexeme,
+  PhoneticNotation,
+  RomanizationSystem,
+  ScriptCode,
+  ToneMark,
+} from './phonetic-content.types';
 export type { UserLanguagePairEntry } from './user-language-pair.types';

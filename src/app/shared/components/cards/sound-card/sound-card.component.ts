@@ -8,12 +8,13 @@ import {
 } from '../../../../core/data/card-direction.utils';
 import { SoundCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
 @Component({
   selector: 'app-sound-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
   templateUrl: './sound-card.component.html',
   styleUrl: './sound-card.component.scss',
 })
@@ -34,9 +35,25 @@ export class SoundCardComponent {
     return resolveOptionCard(card, direction);
   });
 
+  readonly audioLexeme = computed(() => this.card().promptLexeme);
+
+  optionLexeme(index: number) {
+    return this.card().optionsLexemes?.[index];
+  }
+
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
+  }
+
+  playAudio(): void {
+    const url = this.card().audioUrl?.trim();
+    if (!url) {
+      return;
+    }
+
+    const audio = new Audio(url);
+    void audio.play();
   }
 
   selectOption(index: number): void {

@@ -1,4 +1,5 @@
 import type { Card, MemoryPair, OptionCard } from '../models';
+import type { PhoneticLexeme } from '../models/phonetic-content.types';
 import type { CardDirection } from '../models/language-pair.types';
 
 export type ResolvedOptionCard = {
@@ -10,6 +11,8 @@ export type ResolvedOptionCard = {
 export type ResolvedMemoryPair = {
   left: string;
   right: string;
+  leftLexeme?: PhoneticLexeme;
+  rightLexeme?: PhoneticLexeme;
   pairId: string;
 };
 
@@ -69,6 +72,10 @@ export function resolveMemoryPairs(
     pairId: String(index),
     left: direction === 'known-to-learning' ? pair.known : pair.learning,
     right: direction === 'known-to-learning' ? pair.learning : pair.known,
+    leftLexeme:
+      direction === 'known-to-learning' ? undefined : pair.learningLexeme,
+    rightLexeme:
+      direction === 'known-to-learning' ? pair.learningLexeme : undefined,
   }));
 }
 

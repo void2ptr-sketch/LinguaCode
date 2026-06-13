@@ -1,7 +1,9 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>{{ card().promptKnown }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content>
@@ -26,7 +28,12 @@
   @if (feedback() === 'incorrect') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
-      Неверно. Правильный ответ: {{ correctLabel() }}
+      Неверно. Правильный ответ:
+      <app-lexeme-display
+        [lexeme]="card().promptLexeme"
+        [fallbackText]="correctLabel() ?? ''"
+        [inline]="true"
+      />
     </mat-card-content>
   }
 

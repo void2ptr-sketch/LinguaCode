@@ -5,17 +5,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { resolveMemoryPairs } from '../../../../core/data/card-direction.utils';
 import { MemoryCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 
 type MemoryTile = {
   id: string;
   label: string;
+  lexeme?: PhoneticLexeme;
   pairId: string;
 };
 
 @Component({
   selector: 'app-memory-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
   templateUrl: './memory-card.component.html',
   styleUrl: './memory-card.component.scss',
 })
@@ -42,8 +45,18 @@ export class MemoryCardComponent implements OnInit {
   resetTiles(): void {
     const pairs = resolveMemoryPairs(this.card().pairs, this.direction());
     const tiles = pairs.flatMap((pair) => [
-      { id: `${pair.pairId}-left`, label: pair.left, pairId: pair.pairId },
-      { id: `${pair.pairId}-right`, label: pair.right, pairId: pair.pairId },
+      {
+        id: `${pair.pairId}-left`,
+        label: pair.left,
+        lexeme: pair.leftLexeme,
+        pairId: pair.pairId,
+      },
+      {
+        id: `${pair.pairId}-right`,
+        label: pair.right,
+        lexeme: pair.rightLexeme,
+        pairId: pair.pairId,
+      },
     ]);
 
     this.tiles.set(this.shuffle(tiles));

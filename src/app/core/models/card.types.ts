@@ -21,57 +21,75 @@ export type CardBase = {
   appearance: CardAppearance;
 };
 
+import type { PhoneticLexeme } from './phonetic-content.types';
+
 export type MemoryPair = {
   known: string;
   learning: string;
+  learningLexeme?: PhoneticLexeme;
 };
 
-export type SelectCard = CardBase & {
-  kind: 'select';
-  direction: CardDirection;
-  promptKnown: string;
-  optionsLearning: readonly string[];
-  correctIndex: number;
+export type LexemeCardFields = {
+  promptLexeme?: PhoneticLexeme;
+  audioUrl?: string;
 };
 
-export type MemoryCard = CardBase & {
-  kind: 'memory';
-  promptKnown: string;
-  pairs: readonly MemoryPair[];
-};
+export type SelectCard = CardBase &
+  LexemeCardFields & {
+    kind: 'select';
+    direction: CardDirection;
+    promptKnown: string;
+    optionsLearning: readonly string[];
+    optionsLexemes?: readonly PhoneticLexeme[];
+    correctIndex: number;
+  };
 
-export type SymbolCard = CardBase & {
-  kind: 'symbol';
-  direction: CardDirection;
-  promptKnown: string;
-  symbols: readonly string[];
-  correctIndex: number;
-};
+export type MemoryCard = CardBase &
+  LexemeCardFields & {
+    kind: 'memory';
+    promptKnown: string;
+    pairs: readonly MemoryPair[];
+  };
 
-export type SoundCard = CardBase & {
-  kind: 'sound';
-  direction: CardDirection;
-  promptKnown: string;
-  audioLabelLearning: string;
-  optionsKnown: readonly string[];
-  correctIndex: number;
-};
+export type SymbolCard = CardBase &
+  LexemeCardFields & {
+    kind: 'symbol';
+    direction: CardDirection;
+    promptKnown: string;
+    symbols: readonly string[];
+    symbolLexemes?: readonly PhoneticLexeme[];
+    correctIndex: number;
+  };
 
-export type TimedCard = CardBase & {
-  kind: 'timed';
-  direction: CardDirection;
-  promptKnown: string;
-  optionsLearning: readonly string[];
-  correctIndex: number;
-  timeLimitSec: number;
-};
+export type SoundCard = CardBase &
+  LexemeCardFields & {
+    kind: 'sound';
+    direction: CardDirection;
+    promptKnown: string;
+    audioLabelLearning: string;
+    optionsKnown: readonly string[];
+    optionsLexemes?: readonly PhoneticLexeme[];
+    correctIndex: number;
+  };
 
-export type KeyboardCard = CardBase & {
-  kind: 'keyboard';
-  direction: CardDirection;
-  promptKnown: string;
-  acceptedAnswersKnown: readonly string[];
-};
+export type TimedCard = CardBase &
+  LexemeCardFields & {
+    kind: 'timed';
+    direction: CardDirection;
+    promptKnown: string;
+    optionsLearning: readonly string[];
+    optionsLexemes?: readonly PhoneticLexeme[];
+    correctIndex: number;
+    timeLimitSec: number;
+  };
+
+export type KeyboardCard = CardBase &
+  LexemeCardFields & {
+    kind: 'keyboard';
+    direction: CardDirection;
+    promptKnown: string;
+    acceptedAnswersKnown: readonly string[];
+  };
 
 export type DrawCard = CardBase & {
   kind: 'draw';

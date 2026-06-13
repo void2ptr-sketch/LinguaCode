@@ -1,0 +1,69 @@
+<section class="lexeme-fields" [class.lexeme-fields--compact]="compact()">
+  <h4 class="lexeme-fields__title">{{ label() }}</h4>
+
+  <div class="lexeme-fields__grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Основной текст</mat-label>
+      <input
+        matInput
+        [ngModel]="fields().primary"
+        (ngModelChange)="updateField('primary', $event)"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Письменность</mat-label>
+      <mat-select [ngModel]="fields().script" (ngModelChange)="updateField('script', $event)">
+        @for (option of scriptOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Пиньинь</mat-label>
+      <input matInput [ngModel]="fields().pinyin" (ngModelChange)="updateField('pinyin', $event)" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Жуинь (Bopomofo)</mat-label>
+      <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="lexeme-fields__palladius">
+      <mat-label>Палладица</mat-label>
+      <input
+        matInput
+        [ngModel]="fields().palladius"
+        (ngModelChange)="updateField('palladius', $event)"
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="Заполнить из пиньинь"
+        [disabled]="!fields().pinyin.trim()"
+        (click)="fillPalladiusFromPinyin()"
+      >
+        <mat-icon>auto_fix_high</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>IPA</mat-label>
+      <input matInput [ngModel]="fields().ipa" (ngModelChange)="updateField('ipa', $event)" />
+      <mat-hint>Одна транскрипция или BrE|θɔːt; AmE|θɑːt</mat-hint>
+    </mat-form-field>
+
+    @if (!compact()) {
+      <mat-form-field appearance="outline">
+        <mat-label>Доп. ответы (через запятую)</mat-label>
+        <input
+          matInput
+          [ngModel]="fields().acceptedReadings"
+          (ngModelChange)="updateField('acceptedReadings', $event)"
+        />
+      </mat-form-field>
+    }
+  </div>
+</section>

@@ -1,13 +1,19 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>{{ card().promptKnown }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+    </mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content class="memory-grid">
     @for (tile of tiles(); track tile.id) {
       <button type="button" mat-stroked-button class="memory-tile" (click)="flipTile(tile)">
-        {{ isVisible(tile) ? tile.label : '?' }}
+        @if (isVisible(tile)) {
+          <app-lexeme-display [lexeme]="tile.lexeme" [fallbackText]="tile.label" [inline]="true" />
+        } @else {
+          ?
+        }
       </button>
     }
   </mat-card-content>

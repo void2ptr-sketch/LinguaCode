@@ -1,0 +1,27 @@
+.lexeme-fields {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 35%, transparent);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+  padding: 0.75rem;
+}
+
+.lexeme-fields--compact {
+  padding: 0.5rem;
+}
+
+.lexeme-fields__title {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.lexeme-fields__grid {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+}
+
+.lexeme-fields__palladius {
+  grid-column: 1 / -1;
+}

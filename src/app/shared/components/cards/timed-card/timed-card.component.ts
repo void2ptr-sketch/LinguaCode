@@ -8,12 +8,13 @@ import {
 } from '../../../../core/data/card-direction.utils';
 import { TimedCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
 @Component({
   selector: 'app-timed-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
   templateUrl: './timed-card.component.html',
   styleUrl: './timed-card.component.scss',
 })
@@ -37,6 +38,10 @@ export class TimedCardComponent implements OnInit, OnDestroy {
     const direction = effectiveCardDirection(card.direction, this.direction());
     return resolveOptionCard(card, direction);
   });
+
+  optionLexeme(index: number) {
+    return this.card().optionsLexemes?.[index];
+  }
 
   ngOnInit(): void {
     this.startTimer();

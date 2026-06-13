@@ -323,39 +323,40 @@
 
 **G9a — домен и типы**
 
-- [ ] `CjkLexeme`, `TextSegment`, `RomanizationSystem`, `CjkDisplayMode` в `core/models/`
-- [ ] Adapter: legacy `string` → минимальная лексема (обратная совместимость G2)
-- [ ] CJK-CONTENT.md синхронизирован с кодом
+- [x] `CjkLexeme`, `RomanizationSystem`, `CjkDisplayMode` в `core/models/` (`phonetic-content.types.ts`)
+- [ ] `TextSegment` (опц., для сегментированного текста)
+- [x] Adapter: legacy `string` → минимальная лексема (`LexemeDisplay` fallback, `lexemeFromPrimary`)
+- [x] CJK-CONTENT.md синхронизирован с кодом (MVP)
 
 **G9b — отображение**
 
-- [ ] CJK-шрифты (Noto Sans SC/TC, Bopomofo)
-- [ ] `app-cjk-ruby` — иероглиф + reading (pinyin / zhuyin / palladius)
-- [ ] `lang` на блоках контента (`zh-Hans` / `zh-Hant`)
+- [x] CJK-шрифты (Noto Sans SC/TC, Bopomofo) — Google Fonts в `index.html`
+- [x] `app-cjk-ruby` — иероглиф + reading (pinyin / zhuyin / palladius)
+- [x] `lang` на блоках контента (`zh-Hans` в `cjk-ruby`)
 
 **G9c — настройки ru→zh**
 
-- [ ] `CjkLearningPreferences`: `displayRomanization`, `answerRomanization`, `showTones`
-- [ ] UI `/user` или appearance: выбор пиньинь / палладица / жуинь (при `known === 'ru'`, `learning === 'zh'`)
-- [ ] Палладица скрыта по умолчанию для пар без `known === 'ru'`
+- [x] `CjkLearningPreferences`: `displayRomanization`, `answerRomanization`, `showTones`
+- [x] UI `/user`: выбор пиньинь / палладица / жуинь (при `known === 'ru'`, `learning === 'zh'`)
+- [x] Палладица скрыта для пар без `known === 'ru'`
 
 **G9d — payload карточек**
 
-- [ ] Optional `lexeme: CjkLexeme` в `SelectCard`, `MemoryCard`, `SymbolCard`, …
-- [ ] Редактор: поля han, pinyin, zhuyin, palladius, audioUrl
-- [ ] Preview с `CjkDisplayMode`
+- [x] Optional `promptLexeme` / `optionsLexemes` / `learningLexeme` в карточках
+- [x] Редактор: поля han, pinyin, zhuyin, palladius, ipa, audioUrl (`app-lexeme-fields`)
+- [x] Preview через `LexemeDisplay` + `UserStore` preferences
 
 **G9e — палладица и конвертация**
 
-- [ ] Таблица syllable-level: pinyin ↔ palladius (`cjk-romanization.utils.ts`)
-- [ ] Автозаполнение palladius в редакторе + ручная правка (топонимы: Пекин)
-- [ ] Demo-карточки ru→zh с палладицей
+- [x] Таблица syllable-level: pinyin ↔ palladius (`cjk-romanization.utils.ts`)
+- [x] Автозаполнение palladius в редакторе + ручная правка (топонимы: Пекин)
+- [x] Demo-карточки ru→zh с палладицей (`select-zh-1`)
 
 **G9f — ответы, звук, тоны**
 
-- [ ] CJK normalizer для `keyboard` (не `toLowerCase` для кириллицы/тонов)
-- [ ] `acceptedReadings` в нескольких системах
-- [ ] `SoundCard`: `audioUrl`; подпись по `displayRomanization`
+- [x] CJK normalizer для `keyboard` (`cjk-answer-normalize.utils.ts`)
+- [x] `acceptedReadings` в нескольких системах
+- [x] `SoundCard`: `audioUrl`; подпись по `displayRomanization`
 - [ ] Упражнения на тон (опц. kind `tone` / полифония `reading`)
 - [ ] (опц.) `draw`: canvas, stroke order, радикалы
 
@@ -365,36 +366,36 @@
 
 **G10a — домен и типы**
 
-- [ ] `PhoneticLexeme`, `IpaVariant`, `PhoneticNotation` в `core/models/`
-- [ ] Поле `ipa` в расширении G9-лексемы (обратная совместимость)
-- [ ] PHONETIC-CONTENT.md синхронизирован с кодом
+- [x] `PhoneticLexeme`, `IpaVariant`, `PhoneticNotation` в `core/models/`
+- [x] Поле `ipa` в расширении G9-лексемы (обратная совместимость)
+- [x] PHONETIC-CONTENT.md синхронизирован с кодом (MVP)
 
 **G10b — отображение**
 
-- [ ] Self-hosted IPA-шрифт (Charis SIL / Doulos SIL / Gentium Plus)
-- [ ] `app-phonetic-ipa` — рендер транскрипции, ударение `ˈ`/`ˌ`
-- [ ] `PhoneticDisplayMode`: primary-ipa, primary-orthography-ipa
+- [x] IPA-шрифт Charis SIL (Google Fonts в `index.html`)
+- [x] `app-phonetic-ipa` — рендер транскрипции, ударение `ˈ`/`ˌ`
+- [x] `PhoneticDisplayMode` в типах; рендер через `LexemeDisplay`
 
 **G10c — настройки пользователя**
 
-- [ ] `PhoneticPreferences`: `showIpa`, `ipaVariant` (BrE/AmE), `answerModes`
-- [ ] UI: включение IPA в профиле / appearance (для ru→en приоритет)
+- [x] `PhoneticPreferences`: `showIpa`, `ipaVariantLabel`, `answerModes`
+- [x] UI `/user`: включение IPA (для ru→en при активной паре)
 
 **G10d — payload и редактор**
 
-- [ ] Поле IPA (+ опционально `IpaVariant[]`) в `card-form`
-- [ ] Preview с IPA под словом / в ruby
-- [ ] Валидация IPA Unicode ranges (не смешивать с pinyin в одном поле)
+- [x] Поле IPA (+ `IpaVariant[]` через редактор) в `card-form`
+- [x] Preview с IPA под словом (`LexemeDisplay`)
+- [x] Валидация IPA Unicode ranges (`ipa-normalize.utils.ts`)
 
 **G10e — карточки и упражнения**
 
-- [ ] `sound`: подпись IPA + `audioUrl` (связка с G9f)
-- [ ] `select` / `memory`: варианты с IPA (ru→en demo)
-- [ ] `normalizeIpa()` для select-ответов (не `toLowerCase`)
+- [x] `sound`: подпись IPA + `audioUrl`
+- [x] `select` / `memory`: варианты с IPA (ru→en demo)
+- [x] `normalizeIpa()` / `answersMatchIpa()` для keyboard-ответов
 
 **G10f — контент и каталог**
 
-- [ ] Demo-карточки ru→en с IPA (thought, hello, …)
+- [x] Demo-карточки ru→en с IPA (`select-en-ipa-1`, `select-en-ipa-2`)
 - [ ] Тег `ipa` в каталоге; поиск по транскрипции (опц.)
 
 **G10g — опционально**

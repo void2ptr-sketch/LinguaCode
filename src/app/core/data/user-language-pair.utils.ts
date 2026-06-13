@@ -3,6 +3,10 @@ import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 import type { UserLanguagePairEntry, UserPreferences } from '../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../security';
 import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
+import {
+  normalizeCjkLearningPreferences,
+  normalizePhoneticPreferences,
+} from './phonetic-preferences.utils';
 
 type LegacyUserPreferences = Partial<UserPreferences> & {
   languagePair?: Partial<LanguagePair>;
@@ -104,6 +108,8 @@ export function normalizeUserPreferences(
         theme,
         fontSize,
         ...defaults,
+        cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
+        phonetic: normalizePhoneticPreferences(preferences?.phonetic),
       };
     }
 
@@ -118,6 +124,8 @@ export function normalizeUserPreferences(
       fontSize,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
+      cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
+      phonetic: normalizePhoneticPreferences(preferences?.phonetic),
     };
   }
 
@@ -129,6 +137,8 @@ export function normalizeUserPreferences(
       fontSize,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
+      cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
+      phonetic: normalizePhoneticPreferences(preferences?.phonetic),
     };
   }
 
@@ -136,6 +146,8 @@ export function normalizeUserPreferences(
     theme,
     fontSize,
     ...defaults,
+    cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
+    phonetic: normalizePhoneticPreferences(preferences?.phonetic),
   };
 }
 

@@ -4,7 +4,7 @@
 
 Связанные документы: [DOMAIN.md](./DOMAIN.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
-> **Статус:** бэклог · см. [TASKS.md](../TASKS.md) (G10a–G10g).
+> **Статус:** MVP реализован · см. [TASKS.md](../TASKS.md) (G10a–G10g).
 
 ## Зачем отдельный трек (G10)
 

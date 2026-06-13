@@ -5,11 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { Card } from '../../../../core/models';
-import { CardDraft, DEFAULT_CARD_DIRECTION } from '../../types';
+import { CardDraft, DEFAULT_CARD_DIRECTION, emptyMemoryPairDraft } from '../../types';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
+import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 
 @Component({
   selector: 'app-card-form',
@@ -22,6 +25,7 @@ import { CardPreviewComponent } from '../card-preview/card-preview.component';
     MatRadioModule,
     CardAppearanceFieldsComponent,
     CardPreviewComponent,
+    LexemeFieldsComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -75,6 +79,15 @@ export class CardFormComponent {
     return draft.kind === 'draw' ? draft : null;
   });
 
+  readonly lexemeDraft = computed(() => {
+    const draft = this.draft();
+    if (draft.kind === 'draw') {
+      return null;
+    }
+
+    return draft;
+  });
+
   updateDraft(nextDraft: CardDraft): void {
     this.draftChange.emit(nextDraft);
   }
@@ -85,6 +98,24 @@ export class CardFormComponent {
 
   updateAppearance(appearance: CardDraft['appearance']): void {
     this.updateDraft({ ...this.draft(), appearance });
+  }
+
+  updatePromptLexeme(fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind === 'draw') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, promptLexeme: fields });
+  }
+
+  updateAudioUrl(value: string): void {
+    const draft = this.draft();
+    if (draft.kind === 'draw') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, audioUrl: value });
   }
 
   updatePromptKnown(value: string): void {
@@ -98,6 +129,13 @@ export class CardFormComponent {
     const draft = this.draft();
     if (draft.kind === 'sound') {
       this.updateDraft({ ...draft, audioLabelLearning: value });
+    }
+  }
+
+  updateAudioLabelLexeme(fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind === 'sound') {
+      this.updateDraft({ ...draft, audioLabelLexeme: fields });
     }
   }
 
@@ -134,13 +172,25 @@ export class CardFormComponent {
     this.updateDraft({ ...draft, pairs });
   }
 
+  updatePairLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind !== 'memory') {
+      return;
+    }
+
+    const pairs = draft.pairs.map((pair, pairIndex) =>
+      pairIndex === index ? { ...pair, learningLexeme: fields } : pair,
+    );
+    this.updateDraft({ ...draft, pairs });
+  }
+
   addPair(): void {
     const draft = this.draft();
     if (draft.kind !== 'memory' || draft.pairs.length >= 12) {
       return;
     }
 
-    this.updateDraft({ ...draft, pairs: [...draft.pairs, { known: '', learning: '' }] });
+    this.updateDraft({ ...draft, pairs: [...draft.pairs, emptyMemoryPairDraft()] });
   }
 
   removePair(index: number): void {
@@ -163,7 +213,19 @@ export class CardFormComponent {
 
     const optionsLearning = [...draft.optionsLearning];
     optionsLearning[index] = value;
-    this.updateDraft({ ...draft, optionsLearning });
+    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsLearning, index, value);
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
+  }
+
+  updateSelectOptionLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind !== 'select') {
+      return;
+    }
+
+    const optionsLexemes = [...draft.optionsLexemes];
+    optionsLexemes[index] = fields;
+    this.updateDraft({ ...draft, optionsLexemes });
   }
 
   addSelectOption(): void {
@@ -172,7 +234,7 @@ export class CardFormComponent {
       return;
     }
 
-    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''] });
+    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
   }
 
   removeSelectOption(index: number): void {
@@ -182,6 +244,7 @@ export class CardFormComponent {
     }
 
     const optionsLearning = draft.optionsLearning.filter((_, itemIndex) => itemIndex !== index);
+    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
     let correctIndex = draft.correctIndex;
     if (correctIndex === index) {
       correctIndex = 0;
@@ -189,7 +252,7 @@ export class CardFormComponent {
       correctIndex -= 1;
     }
 
-    this.updateDraft({ ...draft, optionsLearning, correctIndex });
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes, correctIndex });
   }
 
   updateTimedOption(index: number, value: string): void {
@@ -200,7 +263,19 @@ export class CardFormComponent {
 
     const optionsLearning = [...draft.optionsLearning];
     optionsLearning[index] = value;
-    this.updateDraft({ ...draft, optionsLearning });
+    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsLearning, index, value);
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
+  }
+
+  updateTimedOptionLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind !== 'timed') {
+      return;
+    }
+
+    const optionsLexemes = [...draft.optionsLexemes];
+    optionsLexemes[index] = fields;
+    this.updateDraft({ ...draft, optionsLexemes });
   }
 
   addTimedOption(): void {
@@ -209,7 +284,7 @@ export class CardFormComponent {
       return;
     }
 
-    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''] });
+    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
   }
 
   removeTimedOption(index: number): void {
@@ -219,6 +294,7 @@ export class CardFormComponent {
     }
 
     const optionsLearning = draft.optionsLearning.filter((_, itemIndex) => itemIndex !== index);
+    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
     let correctIndex = draft.correctIndex;
     if (correctIndex === index) {
       correctIndex = 0;
@@ -226,7 +302,7 @@ export class CardFormComponent {
       correctIndex -= 1;
     }
 
-    this.updateDraft({ ...draft, optionsLearning, correctIndex });
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes, correctIndex });
   }
 
   updateSymbolOption(index: number, value: string): void {
@@ -237,7 +313,19 @@ export class CardFormComponent {
 
     const symbols = [...draft.symbols];
     symbols[index] = value;
-    this.updateDraft({ ...draft, symbols });
+    const symbolLexemes = this.syncOptionLexemes(draft.symbolLexemes, symbols, index, value);
+    this.updateDraft({ ...draft, symbols, symbolLexemes });
+  }
+
+  updateSymbolOptionLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind !== 'symbol') {
+      return;
+    }
+
+    const symbolLexemes = [...draft.symbolLexemes];
+    symbolLexemes[index] = fields;
+    this.updateDraft({ ...draft, symbolLexemes });
   }
 
   addSymbolOption(): void {
@@ -246,7 +334,7 @@ export class CardFormComponent {
       return;
     }
 
-    this.updateDraft({ ...draft, symbols: [...draft.symbols, ''] });
+    this.updateDraft({ ...draft, symbols: [...draft.symbols, ''], symbolLexemes: [...draft.symbolLexemes, emptyLexemeDraftFields()] });
   }
 
   removeSymbolOption(index: number): void {
@@ -256,6 +344,7 @@ export class CardFormComponent {
     }
 
     const symbols = draft.symbols.filter((_, itemIndex) => itemIndex !== index);
+    const symbolLexemes = draft.symbolLexemes.filter((_, itemIndex) => itemIndex !== index);
     let correctIndex = draft.correctIndex;
     if (correctIndex === index) {
       correctIndex = 0;
@@ -263,7 +352,7 @@ export class CardFormComponent {
       correctIndex -= 1;
     }
 
-    this.updateDraft({ ...draft, symbols, correctIndex });
+    this.updateDraft({ ...draft, symbols, symbolLexemes, correctIndex });
   }
 
   updateSoundOption(index: number, value: string): void {
@@ -274,7 +363,19 @@ export class CardFormComponent {
 
     const optionsKnown = [...draft.optionsKnown];
     optionsKnown[index] = value;
-    this.updateDraft({ ...draft, optionsKnown });
+    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsKnown, index, value);
+    this.updateDraft({ ...draft, optionsKnown, optionsLexemes });
+  }
+
+  updateSoundOptionLexeme(index: number, fields: LexemeDraftFields): void {
+    const draft = this.draft();
+    if (draft.kind !== 'sound') {
+      return;
+    }
+
+    const optionsLexemes = [...draft.optionsLexemes];
+    optionsLexemes[index] = fields;
+    this.updateDraft({ ...draft, optionsLexemes });
   }
 
   addSoundOption(): void {
@@ -283,7 +384,7 @@ export class CardFormComponent {
       return;
     }
 
-    this.updateDraft({ ...draft, optionsKnown: [...draft.optionsKnown, ''] });
+    this.updateDraft({ ...draft, optionsKnown: [...draft.optionsKnown, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
   }
 
   removeSoundOption(index: number): void {
@@ -293,6 +394,7 @@ export class CardFormComponent {
     }
 
     const optionsKnown = draft.optionsKnown.filter((_, itemIndex) => itemIndex !== index);
+    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
     let correctIndex = draft.correctIndex;
     if (correctIndex === index) {
       correctIndex = 0;
@@ -300,7 +402,7 @@ export class CardFormComponent {
       correctIndex -= 1;
     }
 
-    this.updateDraft({ ...draft, optionsKnown, correctIndex });
+    this.updateDraft({ ...draft, optionsKnown, optionsLexemes, correctIndex });
   }
 
   updateKeyboardAnswer(index: number, value: string): void {
@@ -333,6 +435,25 @@ export class CardFormComponent {
       (_, answerIndex) => answerIndex !== index,
     );
     this.updateDraft({ ...draft, acceptedAnswersKnown });
+  }
+
+  private syncOptionLexemes(
+    lexemes: readonly LexemeDraftFields[],
+    texts: readonly string[],
+    index: number,
+    value: string,
+  ): readonly LexemeDraftFields[] {
+    const next = [...lexemes];
+    while (next.length < texts.length) {
+      next.push(emptyLexemeDraftFields());
+    }
+
+    const current = next[index] ?? emptyLexemeDraftFields();
+    if (!current.primary.trim() && value.trim()) {
+      next[index] = { ...current, primary: value };
+    }
+
+    return next;
   }
 
   private fallbackPreviewCard(draft: CardDraft): Card {
