@@ -12,13 +12,19 @@
   </mat-form-field>
 
   @if (store.pairLocked()) {
-    <div class="card-catalog-filters__course">
-      <span class="card-catalog-filters__label">Курс</span>
-      <mat-chip-set aria-label="Активный курс">
+    <div class="card-catalog-filters__pair">
+      <span class="card-catalog-filters__label">Пара</span>
+      <mat-chip-set aria-label="Активная пара" aria-describedby="catalog-pair-hint">
         <mat-chip class="card-catalog-filters__chip card-catalog-filters__chip--active" disabled>
           {{ store.lockedPairLabel() }}
         </mat-chip>
       </mat-chip-set>
+      <p class="card-catalog-filters__hint" id="catalog-pair-hint">
+        Показаны карточки активной языковой пары (known → learning). Сменить пару — в
+        <a routerLink="/user">Профиле</a> или на странице
+        <a routerLink="/cards/select">Обучения</a>. Учебная программа «Курс» — отдельная сущность
+        (конструктор курсов), не путать с парой.
+      </p>
     </div>
   } @else {
     <mat-form-field class="card-catalog-filters__known" appearance="outline">

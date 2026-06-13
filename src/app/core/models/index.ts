@@ -44,6 +44,14 @@ export type {
 } from './language-pair.types';
 export { DEFAULT_LANGUAGE_PAIR } from './language-pair.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
+export type { Course, CourseWithLessons } from './course.types';
+export type {
+  CourseIndexEntry,
+  CourseListScope,
+  CourseSearchCriteria,
+  CourseSearchPage,
+} from './course-index.types';
+export type { Lesson } from './lesson.types';
 export type { User, UserPreferences, CjkLearningPreferences, PhoneticPreferences } from './user.types';
 export {
   DEFAULT_CJK_LEARNING_PREFERENCES,

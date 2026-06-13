@@ -1,0 +1,22 @@
+.course-form {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-form__lessons {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-form__lesson {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 35%, transparent);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr auto;
+  padding: 0.75rem;
+}
+
+.course-form__lesson mat-form-field {
+  grid-column: 1 / -1;
+}

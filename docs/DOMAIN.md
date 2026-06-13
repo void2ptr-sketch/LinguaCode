@@ -14,7 +14,7 @@
 - Результаты обучения сохраняются
 - Данные хранятся в базе данных
 
-> **Статус иерархии:** `Card` → `Scenario` — **реализовано** (MVP). `Lesson` и `Course` — **бэклог** (G11), см. [TASKS.md](../TASKS.md).
+> **Статус иерархии:** `Card` → `Scenario` — **реализовано** (MVP). `Lesson` и `Course` — **реализовано** (G11), см. [TASKS.md](../TASKS.md).
 
 Техническая реализация: [ARCHITECTURE.md](./ARCHITECTURE.md).
 
@@ -30,8 +30,8 @@ Card  →  Scenario  →  Lesson  →  Course
 |---------|----------|------------|--------|
 | 1 | `Card` | Атомарное упражнение (вопрос, пара, ввод…) | MVP |
 | 2 | `Scenario` | Один прогон: фиксированный или criteria-набор карточек | MVP |
-| 3 | `Lesson` | Тема: несколько сценариев в заданном порядке | бэклог G11 |
-| 4 | `Course` | Программа: несколько уроков; привязана к `LanguagePair` | бэклог G11 |
+| 3 | `Lesson` | Тема: несколько сценариев в заданном порядке | G11 |
+| 4 | `Course` | Программа: несколько уроков; привязана к `LanguagePair` | G11 |
 
 ### Термины: не путать «курс» и `LanguagePair`
 
@@ -119,8 +119,8 @@ erDiagram
 | `CardKind` | Тип карточки (см. таблицу ниже) |
 | `CardAppearance` | Внешний вид: тема, размер шрифта и др. |
 | `Scenario` | Сценарий — упорядоченный набор карточек; создаётся вручную или через конструктор |
-| `Lesson` | Урок — упорядоченный набор сценариев внутри курса (бэклог G11) |
-| `Course` | Курс — учебная программа: уроки + `languagePair`; не заменяет `LanguagePair` (бэклог G11) |
+| `Lesson` | Урок — упорядоченный набор сценариев внутри курса (G11) |
+| `Course` | Курс — учебная программа: уроки + `languagePair`; не заменяет `LanguagePair` (G11) |
 | `LearningResult` | Результат ответа пользователя на карточку в сценарии |
 | `CardIndexEntry` | Лёгкая запись каталога (метаданные без payload карточки) |
 | `CardSearchCriteria` | Критерии поиска карточек в каталоге + `PageRequest` |
@@ -179,17 +179,18 @@ type Scenario = {
   cardSource: ScenarioCardSource;
 };
 
-/** Бэклог G11 — не в коде */
+/** G11 — см. `core/models/lesson.types.ts` */
 type Lesson = {
   id: string;
   courseId: string;
   title: string;
   description: string;
   scenarioIds: readonly string[];
+  prerequisiteLessonIds: readonly string[];
   order: number;
 };
 
-/** Бэклог G11 — не в коде. languagePair задаёт scope контента курса */
+/** G11 — см. `core/models/course.types.ts`. languagePair задаёт scope контента курса */
 type Course = {
   id: string;
   title: string;

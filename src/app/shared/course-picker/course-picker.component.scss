@@ -1,0 +1,24 @@
+.course-picker {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.course-picker__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.course-picker__header h3 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+.course-picker__query,
+.course-picker__scope {
+  width: 100%;
+}
+
+.course-picker__item--selected {
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}

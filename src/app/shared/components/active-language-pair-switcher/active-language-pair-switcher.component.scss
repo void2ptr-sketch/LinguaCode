@@ -18,3 +18,9 @@
   margin: 0;
   white-space: nowrap;
 }
+
+.pair-switcher__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 60%, transparent);
+  font-size: 0.75rem;
+  margin: 0.25rem 0 0;
+}

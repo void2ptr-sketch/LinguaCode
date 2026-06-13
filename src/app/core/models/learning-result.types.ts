@@ -9,4 +9,6 @@ export type LearningResult = {
   answeredAt: string;
   languagePair: LanguagePair;
   direction?: CardDirection;
+  lessonId?: string;
+  courseId?: string;
 };

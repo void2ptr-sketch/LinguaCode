@@ -295,7 +295,7 @@
 - [x] `/tools/cards`: `CardCatalogSearchStore.applyLanguagePair()` на init из `UserStore.languagePair()`
 - [x] Reload каталога при смене `activeLanguagePairId`
 - [x] `clearFilters()` не сбрасывает locked pair (known/learning остаются активными)
-- [x] UI: chip «Курс: …» или read-only фильтры языка (режим `pairLocked`)
+- [x] UI: chip «Пара: …» или read-only фильтры языка (режим `pairLocked`) + hint в каталоге
 
 **G8b — pickers в конструкторе**
 
@@ -410,45 +410,45 @@
 
 **G11a — домен и типы**
 
-- [ ] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts` или общий файл)
-- [ ] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
-- [ ] `Lesson.scenarioIds` — порядок сценариев; сценарий может входить в несколько уроков (опц.)
-- [ ] `LearningResult.lessonId?`, `courseId?` — для прогресса по уроку/курсу
-- [ ] DOMAIN.md синхронизирован с кодом
+- [x] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts` или общий файл)
+- [x] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
+- [x] `Lesson.scenarioIds` — порядок сценариев; сценарий может входить в несколько уроков (опц.)
+- [x] `LearningResult.lessonId?`, `courseId?` — для прогресса по уроку/курсу
+- [x] DOMAIN.md синхронизирован с кодом
 
 **G11b — хранение и API**
 
-- [ ] Repository / fixtures: `public/data/courses.json`, `lessons.json` (или вложенная структура)
-- [ ] CRUD курса и урока (localStorage MVP, как сценарии)
-- [ ] Индекс / поиск курсов по `languagePair` (аналог `ScenarioIndexEntry`)
-- [ ] Каскад: удаление курса не ломает сценарии и `LearningResult` (как G5 для карточек)
+- [x] Repository / fixtures: `public/data/courses.json`, `lessons.json` (или вложенная структура)
+- [x] CRUD курса и урока (localStorage MVP, как сценарии)
+- [x] Индекс / поиск курсов по `languagePair` (аналог `ScenarioIndexEntry`)
+- [x] Каскад: удаление курса не ломает сценарии и `LearningResult` (как G5 для карточек)
 
 **G11c — конструктор и каталог**
 
-- [ ] Фича `features/course-builder/` или расширение scenario-builder
-- [ ] Маршрут `/tools/courses` (или вкладка в tools)
-- [ ] CRUD курса: title, description, `languagePair`, список уроков
-- [ ] CRUD урока: title, упорядоченный список `scenarioIds` (picker с G8 scope)
-- [ ] Preview: прохождение урока = цепочка сценариев
+- [x] Фича `features/course-builder/` или расширение scenario-builder
+- [x] Маршрут `/tools/courses` (или вкладка в tools)
+- [x] CRUD курса: title, description, `languagePair`, список уроков
+- [x] CRUD урока: title, упорядоченный список `scenarioIds` (picker с G8 scope)
+- [x] Preview: прохождение урока = цепочка сценариев
 
 **G11d — обучение и прогресс**
 
-- [ ] `/cards/select` (или новый маршрут): выбор курса → урока → сценария
-- [ ] Прогресс по уроку (% сценариев / карточек)
-- [ ] Прогресс по курсу (агрегация уроков)
-- [ ] Фильтр списков по активной `LanguagePair` (G8)
+- [x] `/cards/select` (или новый маршрут): выбор курса → урока → сценария
+- [x] Прогресс по уроку (% сценариев / карточек)
+- [x] Прогресс по курсу (агрегация уроков)
+- [x] Фильтр списков по активной `LanguagePair` (G8)
 
 **G11e — терминология UI**
 
-- [ ] Переименовать chip «Курс: …» → «Пара: …» (активная `LanguagePair`)
-- [ ] «Курс» в UI — только для сущности `Course`
-- [ ] Обновить LANGUAGE-PAIR.md / подсказки в каталоге
+- [x] Переименовать chip «Курс: …» → «Пара: …» (активная `LanguagePair`)
+- [x] «Курс» в UI — только для сущности `Course`
+- [x] Обновить LANGUAGE-PAIR.md / подсказки в каталоге
 
 **G11f — опционально**
 
-- [ ] Публикация курсов (`published`); каталог готовых программ
-- [ ] Prerequisites между уроками
-- [ ] Сертификат / badge по завершению курса
+- [x] Публикация курсов (`published`); каталог готовых программ
+- [x] Prerequisites между уроками
+- [x] Сертификат / badge по завершению курса
 
 ### Прогон одной карточки (try dialog)
 

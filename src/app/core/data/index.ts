@@ -22,6 +22,16 @@ export {
   scenarioUsesCardId,
   validateScenarioCardSource,
 } from './scenario-card-source.utils';
+export { courseToIndexEntry } from './course-index.mapper';
+export { filterCourseIndex, matchesCourseIndexEntry } from './course-search.utils';
+export { CoursesApiService } from './courses-api.service';
+export { CourseSearchService } from './course-search.service';
+export {
+  COURSE_CATALOG_STORAGE_KEY,
+  DEFAULT_COURSE_CATALOG,
+  loadCourseCatalogFromStorage,
+  saveCourseCatalogToStorage,
+} from './courses-storage';
 export { scenarioToIndexEntry } from './scenario-index.mapper';
 export { filterScenarioIndex, matchesScenarioIndexEntry } from './scenario-search.utils';
 export { ScenariosApiService } from './scenarios-api.service';

@@ -3,6 +3,25 @@
     <h1>Карточки обучения</h1>
     <app-active-language-pair-switcher />
 
+    <p class="card-select-page__catalog-link">
+      <a routerLink="/courses">Каталог опубликованных курсов</a>
+    </p>
+
+    <app-course-picker
+      [selectedCourseId]="selectedCourseId()"
+      (selectedCourseIdChange)="onCourseChange($event)"
+      (courseLabelChange)="onCourseLabelChange($event)"
+    />
+
+    @if (selectedCourseId()) {
+      <app-lesson-picker
+        [selectedCourseId]="selectedCourseId()"
+        [selectedLessonId]="selectedLessonId()"
+        (selectedLessonIdChange)="onLessonChange($event)"
+        (lessonPickChange)="onLessonPick($event)"
+      />
+    }
+
     <mat-button-toggle-group
       class="card-select-page__direction"
       [ngModel]="store.sessionDirection()"
@@ -14,12 +33,26 @@
 
     <app-scenario-picker
       [selectedScenarioId]="selectedScenarioId()"
+      [allowedScenarioIds]="lessonScenarioIds().length > 0 ? lessonScenarioIds() : null"
       (selectedScenarioIdChange)="onScenarioChange($event)"
       (scenarioLabelChange)="onScenarioLabelChange($event)"
     />
 
     @if (scenarioTitle()) {
       <p class="card-select-page__progress">
+        @if (courseTitle()) {
+          {{ courseTitle() }}
+          @if (lessonTitle()) {
+            · {{ lessonTitle() }}
+          }
+          @if (lessonProgressLabel()) {
+            · {{ lessonProgressLabel() }}
+          }
+          @if (courseProgressLabel()) {
+            · {{ courseProgressLabel() }}
+          }
+          ·
+        }
         {{ scenarioTitle() }}
         @if (scenarioSourceLabel()) {
           · {{ scenarioSourceLabel() }}
@@ -47,13 +80,32 @@
   } @else if (store.completed()) {
     <mat-card class="card-select-page__message">
       <mat-card-header>
-        <mat-card-title>Сценарий завершён</mat-card-title>
+        <mat-card-title>
+          @if (showCourseCertificate()) {
+            Курс завершён
+          } @else {
+            Сценарий завершён
+          }
+        </mat-card-title>
       </mat-card-header>
       <mat-card-content>
-        <p>Вы прошли все карточки. Результаты сохранены.</p>
+        @if (showCourseCertificate()) {
+          <mat-chip class="card-select-page__certificate" disabled>
+            <mat-icon>workspace_premium</mat-icon>
+            Сертификат: {{ courseTitle() }}
+          </mat-chip>
+          <p>Вы прошли все уроки курса. Результаты сохранены.</p>
+        } @else {
+          <p>Вы прошли все карточки. Результаты сохранены.</p>
+        }
       </mat-card-content>
       <mat-card-actions align="end">
-        <button mat-flat-button type="button" (click)="loadCards()">Начать заново</button>
+        @if (hasNextLessonScenario()) {
+          <button mat-flat-button type="button" (click)="goToNextLessonScenario()">
+            Следующий сценарий урока
+          </button>
+        }
+        <button mat-stroked-button type="button" (click)="loadCards()">Начать заново</button>
       </mat-card-actions>
     </mat-card>
   } @else {

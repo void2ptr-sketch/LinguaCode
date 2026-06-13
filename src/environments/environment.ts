@@ -7,4 +7,5 @@ export const environment: Environment = {
   appName: 'LinguaCode',
   useCardsApiMock: true,
   useScenariosApiMock: true,
+  useCoursesApiMock: true,
 };

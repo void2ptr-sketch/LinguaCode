@@ -4,6 +4,22 @@
 
 Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
+## Терминология: «Пара» и «Курс» (G11e)
+
+В UI и документации важно не смешивать две сущности:
+
+| Термин в UI | Домен | Пример | Где |
+|-------------|-------|--------|-----|
+| **Пара** | `LanguagePair` | Русский → English (ru→en) | Chip в каталоге `/tools/cards`, switcher на `/cards/select`, профиль `/user` |
+| **Курс** | `Course` (G11) | «Демо: базовый English» — программа из уроков | `/tools/courses`, выбор на `/cards/select` |
+
+- **Пара** — scope контента: какие карточки, сценарии и результаты видны в текущей сессии (G7/G8).
+- **Курс** — учебная программа: упорядоченные уроки → сценарии в рамках одной пары.
+
+Подпись пары: `formatLanguagePair()` → «Русский → English». В locked-режиме каталога chip подписан **«Пара»**, не «Курс».
+
+**Подсказки в каталоге:** `app-card-catalog-filters` при `pairLocked` показывает chip активной пары и краткий hint: сменить пару — в Профиле или Обучении; «Курс» в меню инструментов — конструктор учебных программ (G11).
+
 ## Три оси «языка»
 
 | Ось | Тип | Назначение | Статус |
@@ -130,7 +146,7 @@ if ('languagePair' in prefs && !('languagePairs' in prefs)) {
 
 | | Language pairs (G7) | UiLocale (G6) |
 |--|---------------------|---------------|
-| Что меняет | Контент карточек / курс | Язык интерфейса |
+| Что меняет | Контент карточек / **пара** | Язык интерфейса |
 | Множественность | Несколько пар, одна активна | Один язык UI |
 | Пример | ru→en + ru→zh, UI на русском | Кнопки и меню на EN/ZH |
 
@@ -138,7 +154,7 @@ if ('languagePair' in prefs && !('languagePairs' in prefs)) {
 
 > **Статус:** готово (MVP strict) · см. [TASKS.md](../TASKS.md) (G8a–G8d).
 
-G7 даёт **выбор активной пары**; G8 — **enforcement**: после выбора курса интерфейс показывает только карточки, сценарии и pickers, соответствующие `UserStore.languagePair()`.
+G7 даёт **выбор активной пары**; G8 — **enforcement**: после выбора **пары** интерфейс показывает только карточки, сценарии и pickers, соответствующие `UserStore.languagePair()`.
 
 ### Уже scoped (G5 + G7)
 
@@ -153,7 +169,7 @@ G7 даёт **выбор активной пары**; G8 — **enforcement**: п
 
 | Область | Было | Стало (G8) |
 |---------|------|------------|
-| `/tools/cards` каталог | Фильтры вручную | `initWithActivePair` + locked chip |
+| `/tools/cards` каталог | Фильтры вручную | `initWithActivePair` + locked chip **«Пара»** + hint |
 | `clearFilters()` | Сбрасывал known/learning | Сохраняет locked pair |
 | `/tools/scenario-builder` список | Все сценарии | API filter по активной паре |
 | `ScenarioCardPicker` | Без auto-scope | `initWithActivePair` + reload |
@@ -198,9 +214,24 @@ applyLanguagePair(activePair.known, activePair.learning);
 
 | | G7 | G8 |
 |--|-----|-----|
-| Фокус | Несколько пар, switcher | Весь UI в контексте одного курса |
+| Фокус | Несколько пар, switcher | Весь UI в контексте **одной пары** |
 | Обучение | Scoped | Уже scoped — без изменений |
 | Tools | Prefill при create | **Фильтрация** каталогов и списков |
+
+## G11 — учебные курсы (Course)
+
+> **Статус:** готово (G11). См. [DOMAIN.md](./DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
+
+`Course` — программа из уроков (`Lesson`), каждый урок ссылается на упорядоченные `scenarioIds`. Курс привязан к `Course.languagePair` и фильтруется так же, как сценарии (G8).
+
+| Область | Поведение |
+|---------|-----------|
+| Конструктор | `/tools/courses` — CRUD курса и вложенных уроков |
+| Обучение | `/cards/select` — опционально: курс → урок → сценарий |
+| Прогресс | `LearningResult.courseId?`, `lessonId?` + агрегация в `LearningResultsStore` |
+| Терминология | Chip scope в каталоге — **«Пара»**; слово **«Курс»** — только для `Course` |
+
+Курс **не заменяет** `LanguagePair`: одна пара может иметь несколько курсов; без выбора курса обучение идёт напрямую по сценариям (как до G11).
 
 ## Обучение (G1)
 
@@ -242,8 +273,9 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G5 | Render по direction; `LearningResult` + pair | готово |
 | G7 | Несколько пар в профиле, одна активная | готово |
 | G8 | Scope UI по активной паре (каталоги, сценарии, pickers) | готово |
-| G9 | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны | бэклог |
-| G10 | IPA (International Phonetic Alphabet) | бэклог |
+| G11 | `Course` / `Lesson`; терминология «Пара» vs «Курс» | готово |
+| G9 | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны | готово |
+| G10 | IPA (International Phonetic Alphabet) | готово |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
 
 ## G2+ — детали бэклога
@@ -296,7 +328,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | Шаг | Содержание |
 |-----|------------|
 | G8.1 | Card catalog: `applyLanguagePair` on init + reload on pair change |
-| G8.2 | Locked pair filters; `clearFilters` preserves pair |
+| G8.2 | Locked pair filters; chip **«Пара»** + hint; `clearFilters` preserves pair |
 | G8.3 | Scenario card picker + criteria editor scoped |
 | G8.4 | Scenario list API filter (`ScenarioSearchCriteria` + mock) |
 | G8.5 | Tools reload on pair change; legacy scenarios; optional author mode |
@@ -332,17 +364,21 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ```
 src/app/core/models/language-pair.types.ts
+src/app/core/models/course.types.ts                 # G11: Course (не путать с LanguagePair)
 src/app/core/models/user.types.ts                # UserPreferences (G7: languagePairs)
 src/app/core/models/card-index.types.ts
 src/app/core/data/language-pair.utils.ts
 src/app/core/state/user.store.ts
 src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
-src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
 src/app/core/layout/pages/user-page/
 src/app/shared/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
+src/app/shared/card-catalog-search/card-catalog-filters.component.*  # chip «Пара» + hint
 src/app/features/card-editor/components/card-editor-page/
+src/app/features/course-builder/                 # G11: конструктор Course
 src/app/features/scenario-builder/services/scenario-builder.store.ts
 src/app/shared/scenario-picker/scenario-picker.component.ts
+src/app/shared/course-picker/                    # G11: выбор Course на обучении
+src/app/shared/lesson-picker/
 src/app/features/card-select/components/card-select-page/
 public/data/select-cards.json
 ```

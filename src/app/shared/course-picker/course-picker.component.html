@@ -1,0 +1,56 @@
+<section class="course-picker">
+  <div class="course-picker__header">
+    <h3>Курс</h3>
+    @if (selectedCourseId()) {
+      <button mat-button type="button" (click)="clearSelection()">Без курса</button>
+    }
+  </div>
+
+  <mat-form-field appearance="outline" class="course-picker__query">
+    <mat-label>Поиск курса</mat-label>
+    <input matInput [ngModel]="query()" (ngModelChange)="onQueryChange($event)" />
+  </mat-form-field>
+
+  <mat-button-toggle-group
+    class="course-picker__scope"
+    [ngModel]="scope()"
+    (ngModelChange)="onScopeChange($event)"
+  >
+    <mat-button-toggle value="published">Доступные</mat-button-toggle>
+    <mat-button-toggle value="mine">Мои</mat-button-toggle>
+    <mat-button-toggle value="all">Все</mat-button-toggle>
+  </mat-button-toggle-group>
+
+  @if (loading()) {
+    <mat-spinner diameter="32" />
+  } @else if (items().length === 0) {
+    <p class="course-picker__empty">Курсы не найдены.</p>
+  } @else {
+    <mat-nav-list class="course-picker__list">
+      @for (entry of items(); track entry.id) {
+        <button
+          mat-list-item
+          type="button"
+          [class.course-picker__item--selected]="entry.id === selectedCourseId()"
+          (click)="pick(entry)"
+        >
+          <span matListItemTitle>{{ entry.title }}</span>
+          <span matListItemLine>
+            {{ entry.lessonCount }} уроков · {{ entry.languagePairSummary }}
+          </span>
+          @if (entry.published) {
+            <span matListItemMeta>опубликован</span>
+          }
+        </button>
+      }
+    </mat-nav-list>
+
+    <app-pagination
+      [length]="totalItems()"
+      [pageIndex]="pageIndex()"
+      [pageSize]="pageSize()"
+      [pageSizeOptions]="[5, 10, 25]"
+      (pageChange)="onPageChange($event)"
+    />
+  }
+</section>

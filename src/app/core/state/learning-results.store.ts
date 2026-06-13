@@ -76,6 +76,72 @@ export class LearningResultsStore {
     return this.userResults().filter((item) => item.scenarioId === scenarioId);
   }
 
+  scenarioSetProgress(scenarioIds: readonly string[]): {
+    completed: number;
+    total: number;
+    percent: number;
+  } {
+    const uniqueIds = [...new Set(scenarioIds)];
+    const total = uniqueIds.length;
+
+    if (total === 0) {
+      return { completed: 0, total: 0, percent: 0 };
+    }
+
+    let completed = 0;
+    for (const scenarioId of uniqueIds) {
+      if (this.resultsForScenario(scenarioId).length > 0) {
+        completed += 1;
+      }
+    }
+
+    return {
+      completed,
+      total,
+      percent: Math.round((completed / total) * 100),
+    };
+  }
+
+  lessonProgress(lessonId: string, scenarioIds: readonly string[]) {
+    const stats = this.scenarioSetProgress(scenarioIds);
+    return { lessonId, ...stats };
+  }
+
+  courseProgress(
+    courseId: string,
+    lessons: readonly { lessonId: string; scenarioIds: readonly string[] }[],
+  ) {
+    const scenarioIds = lessons.flatMap((lesson) => lesson.scenarioIds);
+    const stats = this.scenarioSetProgress(scenarioIds);
+    return { courseId, ...stats };
+  }
+
+  isLessonCompleted(scenarioIds: readonly string[]): boolean {
+    if (scenarioIds.length === 0) {
+      return false;
+    }
+
+    return scenarioIds.every((scenarioId) => this.resultsForScenario(scenarioId).length > 0);
+  }
+
+  isCourseCompleted(
+    lessons: readonly { scenarioIds: readonly string[] }[],
+  ): boolean {
+    const progress = this.scenarioSetProgress(lessons.flatMap((lesson) => lesson.scenarioIds));
+    return progress.total > 0 && progress.percent === 100;
+  }
+
+  completedCourseIds(
+    courses: readonly {
+      courseId: string;
+      lessons: readonly { scenarioIds: readonly string[] }[];
+    }[],
+  ): readonly string[] {
+    return courses
+      .filter((course) => this.isCourseCompleted(course.lessons))
+      .map((course) => course.courseId);
+  }
+
   clear(): void {
     const userId = this.userStore.user().id;
     this.resultsState.update((results) => {
