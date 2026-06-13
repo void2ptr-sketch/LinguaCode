@@ -204,7 +204,7 @@
 
 ### Пара языков (known → learning)
 
-План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md). Обучение — два языка контента; отдельно от UiLocale (`@angular/localize`).
+План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md). Обучение — два языка контента; отдельно от UiLocale (`@angular/localize`). CJK-слой: [docs/CJK-CONTENT.md](./docs/CJK-CONTENT.md) (G9). IPA: [docs/PHONETIC-CONTENT.md](./docs/PHONETIC-CONTENT.md) (G10).
 
 **G0 — домен**
 
@@ -316,6 +316,92 @@
 - [x] Legacy `Scenario` без `languagePair` — правило: скрыть в strict mode или badge «без пары»
 - [x] (опц.) Try dialog — проверка index entry vs active pair
 - [ ] (опц.) `UserPreferences.showAllLanguagePairs` — режим автора (снять lock)
+
+**G9 — CJK-контент в карточках (иероглифы, романизация, тоны)**
+
+План: [docs/CJK-CONTENT.md](./docs/CJK-CONTENT.md). Слой структурированного контента для zh (и перспектива ja/ko): Han, пиньинь, жуинь, **система Палладия** (ru→zh), произношение, тоны. Отдельно от UiLocale (G6).
+
+**G9a — домен и типы**
+
+- [ ] `CjkLexeme`, `TextSegment`, `RomanizationSystem`, `CjkDisplayMode` в `core/models/`
+- [ ] Adapter: legacy `string` → минимальная лексема (обратная совместимость G2)
+- [ ] CJK-CONTENT.md синхронизирован с кодом
+
+**G9b — отображение**
+
+- [ ] CJK-шрифты (Noto Sans SC/TC, Bopomofo)
+- [ ] `app-cjk-ruby` — иероглиф + reading (pinyin / zhuyin / palladius)
+- [ ] `lang` на блоках контента (`zh-Hans` / `zh-Hant`)
+
+**G9c — настройки ru→zh**
+
+- [ ] `CjkLearningPreferences`: `displayRomanization`, `answerRomanization`, `showTones`
+- [ ] UI `/user` или appearance: выбор пиньинь / палладица / жуинь (при `known === 'ru'`, `learning === 'zh'`)
+- [ ] Палладица скрыта по умолчанию для пар без `known === 'ru'`
+
+**G9d — payload карточек**
+
+- [ ] Optional `lexeme: CjkLexeme` в `SelectCard`, `MemoryCard`, `SymbolCard`, …
+- [ ] Редактор: поля han, pinyin, zhuyin, palladius, audioUrl
+- [ ] Preview с `CjkDisplayMode`
+
+**G9e — палладица и конвертация**
+
+- [ ] Таблица syllable-level: pinyin ↔ palladius (`cjk-romanization.utils.ts`)
+- [ ] Автозаполнение palladius в редакторе + ручная правка (топонимы: Пекин)
+- [ ] Demo-карточки ru→zh с палладицей
+
+**G9f — ответы, звук, тоны**
+
+- [ ] CJK normalizer для `keyboard` (не `toLowerCase` для кириллицы/тонов)
+- [ ] `acceptedReadings` в нескольких системах
+- [ ] `SoundCard`: `audioUrl`; подпись по `displayRomanization`
+- [ ] Упражнения на тон (опц. kind `tone` / полифония `reading`)
+- [ ] (опц.) `draw`: canvas, stroke order, радикалы
+
+**G10 — фонетический контент: IPA (International Phonetic Alphabet)**
+
+План: [docs/PHONETIC-CONTENT.md](./docs/PHONETIC-CONTENT.md). Универсальная фонетическая транскрипция для любого `ContentLanguage`; дополняет орфографию G9 (пиньинь, Палладия). Отдельно от UiLocale (G6). MVP: показ + select, не keyboard.
+
+**G10a — домен и типы**
+
+- [ ] `PhoneticLexeme`, `IpaVariant`, `PhoneticNotation` в `core/models/`
+- [ ] Поле `ipa` в расширении G9-лексемы (обратная совместимость)
+- [ ] PHONETIC-CONTENT.md синхронизирован с кодом
+
+**G10b — отображение**
+
+- [ ] Self-hosted IPA-шрифт (Charis SIL / Doulos SIL / Gentium Plus)
+- [ ] `app-phonetic-ipa` — рендер транскрипции, ударение `ˈ`/`ˌ`
+- [ ] `PhoneticDisplayMode`: primary-ipa, primary-orthography-ipa
+
+**G10c — настройки пользователя**
+
+- [ ] `PhoneticPreferences`: `showIpa`, `ipaVariant` (BrE/AmE), `answerModes`
+- [ ] UI: включение IPA в профиле / appearance (для ru→en приоритет)
+
+**G10d — payload и редактор**
+
+- [ ] Поле IPA (+ опционально `IpaVariant[]`) в `card-form`
+- [ ] Preview с IPA под словом / в ruby
+- [ ] Валидация IPA Unicode ranges (не смешивать с pinyin в одном поле)
+
+**G10e — карточки и упражнения**
+
+- [ ] `sound`: подпись IPA + `audioUrl` (связка с G9f)
+- [ ] `select` / `memory`: варианты с IPA (ru→en demo)
+- [ ] `normalizeIpa()` для select-ответов (не `toLowerCase`)
+
+**G10f — контент и каталог**
+
+- [ ] Demo-карточки ru→en с IPA (thought, hello, …)
+- [ ] Тег `ipa` в каталоге; поиск по транскрипции (опц.)
+
+**G10g — опционально**
+
+- [ ] Автозаполнение IPA для en (CMUdict / Wiktionary)
+- [ ] zh: IPA с контурами тонов Chao; цепочка pinyin → IPA
+- [ ] `keyboard`: свободный ввод IPA
 
 ### Прогон одной карточки (try dialog)
 
