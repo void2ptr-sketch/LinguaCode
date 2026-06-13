@@ -1,71 +1,106 @@
-# `LinguaCode` — Приложение для исследования и изучения языков
+# `LinguaCode` — приложение для исследования и изучения языков
+
+Чеклист MVP и бэклога. Домен: [docs/DOMAIN.md](./docs/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## 1. Инициализация проекта
 
-- [ ] Создать Angular-приложение (standalone, без NgModule)
-- [ ] Настроить структуру папок: `core`, `shared`, `features`
-- [ ] Подключить линтер и форматирование (ESLint, Prettier)
-- [ ] Добавить базовые скрипты в `package.json` (`start`, `build`, `test`)
+- Создать Angular-приложение (standalone, без NgModule)
+- Подключить Angular Material
+- Настроить структуру папок: `core`, `shared`, `features`
+- Подключить линтер и форматирование (ESLint, Prettier)
+- Добавить базовые скрипты в `package.json` (`start`, `build`, `test`)
+- Добавить `.gitignore`, `.editorconfig`, `.nvmrc`
 
 ## 2. Базовая архитектура
 
-- [ ] Домен приложения смотри тут docs/DOMAIN.md
-- [ ] Настроить маршрутизацию (`app.routes.ts`)
-- [ ] Добавить layout (шапка, подвал, навигация, контент, menu)
-  - шапка      - /src/app/core/layout/header
-  - menu-card  - /src/app/core/layout/menu-card ( встроено в шапку )
-  - menu-help  - /src/app/core/layout/menu-help ( встроено в шапку )
-  - menu-user  - /src/app/core/layout/menu-user ( встроено в шапку )
-  - подвал     - /src/app/core/layout/footer
-  - контент    - /src/app/core/layout/main-layout
-  - навигация  - /src/app/core/layout/navigation
-- [ ] Вынести конфигурацию окружения (`environment.ts`)
+- Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
+- Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
+- Добавить layout (шапка, подвал, навигация, контент, menu-*)
+  - шапка — `/src/app/core/layout/header`
+    - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
+    - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
+    - menu-help — `/src/app/core/layout/menu-help` (встроено в шапку)
+    - menu-user — `/src/app/core/layout/menu-user` (встроено в шапку)
+  - подвал — `/src/app/core/layout/footer`
+  - контент — `/src/app/core/layout/main-layout`
+  - навигация — `/src/app/core/layout/navigation`
+- Создать `core/models/` — типы из DOMAIN (`User`, `Card`, `Scenario`, `LearningResult`)
+- Вынести конфигурацию окружения (`environment.ts`)
 
 ## 3. Управление состоянием
 
-- [ ] Определить глобальное состояние (сервисы + signals)
-- [ ] Избегать лишнего RxJS — только там, где нужны потоки (HTTP, WebSocket)
-- [ ] Типизировать модели данных (`type`, не `interface`)
+- Определить глобальное состояние (сервисы + signals в `core/state/`)
+- Избегать лишнего RxJS — только там, где нужны потоки (HTTP, WebSocket)
+- Типизировать модели данных (`type`, не `interface`) в `core/models/`
 
 ## 4. Первая фича
 
-- [ ] Создать папку `features/card-select/` (компонент, сервис, типы - в отдельных подпапках)
-- [ ] Карточка с выбором ответов
-- [ ] Подключить фичу в роутинг - в `menu-card`
+- Создать папку `features/card-select/` (компонент, сервис, типы — в отдельных подпапках)
+- Карточка с выбором ответа (`CardKind: select`)
+- Маршрут `/cards/select`
+- Подключить фичу в роутинг через `menu-cards`
 
-## 5 API и данные
+## 5. API и данные
 
-- [ ] Настроить `HttpClient` и interceptors (auth, ошибки)
-- [ ] Описать типы ответов API
-- [ ] Обработать состояния загрузки и ошибок (signals)
+### MVP
 
-## 6 Безопасность
+- Mock-сервис и JSON fixtures в `assets/data/`
+- Обработать состояния загрузки и ошибок (signals)
 
-- [ ] Не хранить секреты в репозитории (`.env` в `.gitignore`)
-- [ ] Санитизация пользовательского ввода
-- [ ] Проверить зависимости на уязвимости (`npm audit`)
+### После MVP
 
-## 7 Качество и релиз
+- Настроить `HttpClient` и interceptors (auth, ошибки) в `core/api/`
+- Описать типы ответов API
 
-- [ ] Написать smoke-тесты для критичных сценариев
-- [ ] Проверить сборку production (`ng build`)
-- [ ] Обновить `Readme.md` (описание, запуск, стек, структура)
-- [ ] Заполнить `docs/ARCHITECTURE.md`
-- [ ] Настроить CI (сборка + тесты на push)
+## 6. Безопасность
+
+- Не хранить секреты в репозитории (`.env` в `.gitignore`)
+- Санитизация пользовательского ввода
+- Проверить зависимости на уязвимости (`npm audit`)
+
+## 7. Качество и релиз
+
+- Написать smoke-тесты для критичных сценариев
+- Проверить сборку production (`ng build`)
+- Обновить `README.md` (описание, запуск, стек, структура)
+- Заполнить / обновить`docs/ARCHITECTURE.md`
+- Синхронизировать `README.md` с layout (`menu-cards`, `menu-tools`)
+- Настроить CI (сборка + тесты на push)
 
 ---
 
 ## Бэклог (после MVP)
 
+### Конструктор сценариев
 
-## Локализация
+- Фича `features/scenario-builder/`
+- Маршрут `/tools/scenario-builder`
+- Точка входа — `menu-tools` в header
+- CRUD сценариев (`Scenario`: title, description, cardIds)
 
-- [ ] Создать инструмент для переключения языка пользователя на основе @angular/localize
-- [ ] Настройка каждого языка в отдельном файле
-- [ ] Добавить поддержку английского языка
-- [ ] Добавить поддержку китайского языка
-- [ ] Добавить фичу локализация `features/locale/`
-- [ ] Файлы с переводами хранить в `/src/locale`, в формате: `messages.LANG.ts`
-- [ ] Подключить фичу локализация в роутинг - в навигации
-- [ ] Язык должен переключаться автоматически
+### Типы карточек
+
+- `memory` — запоминание
+- `symbol` — символы
+- `sound` — звук
+- `timed` — временное ограничение
+- `keyboard` — ввод с клавиатуры
+- `draw` — рисование
+- Общий `CardHostComponent` для рендера по `kind`
+
+### Результаты обучения
+
+- Сохранение `LearningResult` (локально / API)
+- Отображение прогресса пользователя
+
+### Локализация
+
+- Инструмент переключения языка на `@angular/localize`
+- Настройка каждого языка в отдельном файле
+- Поддержка английского языка
+- Поддержка китайского языка
+- Фича `features/locale/`
+- Файлы переводов в `/src/locale`, формат: `messages.LANG.ts`
+- Подключить локализацию в роутинг — в навигации
+- Автоматическое переключение языка
 

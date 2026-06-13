@@ -64,11 +64,12 @@ npm start
 ```
 src/app/
 ├── core/
-│   └── layout/
-│       ├── header/          # шапка (+ menu-card, menu-help, menu-user)
-│       ├── footer/
-│       ├── main-layout/     # область контента (router-outlet)
-│       └── navigation/
+│   ├── layout/
+│   │   ├── header/          # шапка (+ menu-card, menu-help, menu-user)
+│   │   ├── footer/
+│   │   ├── main-layout/     # область контента (router-outlet)
+│   │   └── navigation/
+│   └── models/              # User, Card, Scenario, LearningResult
 ├── shared/                  # переиспользуемые UI и утилиты
 └── features/
     └── card-select/         # первая фича MVP
@@ -98,7 +99,7 @@ docs/                        # документация проекта
 └──────────────────────────────────────┘
 ```
 
-Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/DOMAIN.md](./docs/DOMAIN.md)
+Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/DOMAIN.md](./docs/DOMAIN.md#модели)
 
 ## Разработка
 
@@ -141,7 +142,7 @@ ESLint и Prettier — после инициализации проекта ([TA
 
 ## Документация
 
-- [Домен](./docs/DOMAIN.md) — сущности и бизнес-логика
+- [Домен](./docs/DOMAIN.md) — сущности, модели и бизнес-логика
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога
 - [Архитектура](./docs/ARCHITECTURE.md) — технические решения
 - [Git rules](./docs/.gitrules) — ветки, коммиты, merge

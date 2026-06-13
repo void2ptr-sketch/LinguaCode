@@ -2,20 +2,142 @@
 
 ## Назначение
 
-`LinguaCode` — Приложение для исследования и изучения языков
+`LinguaCode` — приложение для исследования и изучения языков.
 
-- Приложение для изучения языков от естественных до искуственных
-- Основной единица приложения - карточка
-- Карточки бывают разными:
-  - вопросы с выбором ответов
-  - карточки для запоминания
-  - карточки с символами
-  - карточки со звуком
-  - карточки с временными ограничениями
-  - карточки с возможность писать с клавиатуры
-  - карточки с возможность рисовать
-  - и т.д.
-- Карточки можно организовывать в сценарии - один сценарий содержит несколько карточек
-- Пользователь должен иметь возможность настраивать карточки под себя (внешний вид карточек меняется)
+- Изучение языков от естественных до искусственных
+- Основная единица приложения — **карточка**
+- Карточки объединяются в **сценарии** — упорядоченный набор карточек для прохождения
+- Пользователь настраивает внешний вид карточек под себя
+- **Конструктор сценариев** — инструмент создания и редактирования сценариев (бэклог)
 - Результаты обучения сохраняются
-- Данные для карточек будут храниться в базе данных
+- Данные хранятся в базе данных
+
+Техническая реализация: [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+## Конструктор сценариев
+
+Инструмент для авторов и пользователей, которые собирают собственные сценарии обучения.
+
+**Возможности (бэклог):**
+
+- создать сценарий с названием и описанием;
+- добавить, удалить и упорядочить карточки в сценарии;
+- выбрать тип каждой карточки (`CardKind`);
+- сохранить сценарий для прохождения.
+
+**Связь с UI:** точка входа — `menu-tools` в header; фича — `features/scenario-builder/`.
+
+## Модели
+
+Ключевые сущности домена. Типы — `type`, не `interface`.
+
+### Связи
+
+```mermaid
+erDiagram
+    User ||--o{ Scenario : authors
+    User ||--o{ LearningResult : produces
+    User ||--|| CardAppearance : prefers
+    Scenario ||--|{ Card : contains
+    Card ||--o{ LearningResult : tracks
+
+    User {
+        string id
+        string displayName
+    }
+    Scenario {
+        string id
+        string title
+        string authorId
+    }
+    Card {
+        string id
+        CardKind kind
+    }
+    LearningResult {
+        string id
+        boolean correct
+        string answeredAt
+    }
+```
+
+### Сущности
+
+| Модель | Описание |
+|--------|----------|
+| `User` | Пользователь; `displayName` и настройки внешнего вида карточек |
+| `Card` | Карточка обучения; union по полю `kind` |
+| `CardKind` | Тип карточки (см. таблицу ниже) |
+| `CardAppearance` | Внешний вид: тема, размер шрифта и др. |
+| `Scenario` | Сценарий — упорядоченный набор карточек; создаётся вручную или через конструктор |
+| `LearningResult` | Результат ответа пользователя на карточку в сценарии |
+
+### Типы карточек (`CardKind`)
+
+| `kind` | Назначение | Статус |
+|--------|------------|--------|
+| `select` | Вопрос с выбором ответа | MVP |
+| `memory` | Запоминание | бэклог |
+| `symbol` | Символы | бэклог |
+| `sound` | Звук | бэклог |
+| `timed` | Временное ограничение | бэклог |
+| `keyboard` | Ввод с клавиатуры | бэклог |
+| `draw` | Рисование | бэклог |
+
+### Базовые типы
+
+```typescript
+type CardKind = 'select' | 'memory' | 'symbol' | 'sound' | 'timed' | 'keyboard' | 'draw';
+
+type CardAppearance = {
+  theme: string;
+  fontSize: 'sm' | 'md' | 'lg';
+};
+
+type CardBase = {
+  id: string;
+  kind: CardKind;
+  title: string;
+  appearance: CardAppearance;
+};
+
+type SelectCard = CardBase & {
+  kind: 'select';
+  question: string;
+  options: readonly string[];
+  correctIndex: number;
+};
+
+type Card = SelectCard; // union расширяется по мере добавления фич
+
+type Scenario = {
+  id: string;
+  title: string;
+  description: string;
+  authorId: string;
+  cardIds: readonly string[];
+};
+
+type LearningResult = {
+  id: string;
+  userId: string;
+  cardId: string;
+  scenarioId: string;
+  correct: boolean;
+  answeredAt: string; // ISO 8601
+};
+
+type User = {
+  id: string;
+  displayName: string;
+  preferences: CardAppearance;
+};
+```
+
+Расположение в коде: `src/app/core/models/` (общие типы), `src/app/features/*/types/` (типы фичи).
+
+## Связанные документы
+
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
+- [TASKS.md](../TASKS.md) — чеклист реализации
+- [README.md](../README.md) — обзор проекта
