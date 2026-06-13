@@ -3,6 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
+import { getApiErrorMessage } from '../../../../core/api';
 import { CardSelectCardComponent } from '../card-select-card/card-select-card.component';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
@@ -32,8 +33,8 @@ export class CardSelectPageComponent implements OnInit {
     try {
       const fixture = await this.cardSelectService.loadFixture();
       this.store.setScenario(fixture.scenarioId, fixture.cards);
-    } catch {
-      this.store.setError('Не удалось загрузить карточки');
+    } catch (error: unknown) {
+      this.store.setError(getApiErrorMessage(error, 'Не удалось загрузить карточки'));
     }
   }
 

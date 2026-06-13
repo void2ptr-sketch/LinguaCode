@@ -1,11 +1,8 @@
-export type Environment = {
-  production: boolean;
-  apiUrl: string;
-  appName: string;
-};
+import type { Environment } from './environment.types';
 
 export const environment: Environment = {
   production: false,
   apiUrl: '/api',
+  fixturesUrl: '/data',
   appName: 'LinguaCode',
 };
