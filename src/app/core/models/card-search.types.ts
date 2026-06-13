@@ -33,7 +33,8 @@ export type CardSearchPage = PageResponse<CardIndexEntry> & {
   facets: CardSearchFacets;
 };
 
-/** Источник карточек в сценарии: фиксированный список или динамический отбор. */
-export type ScenarioCardSource =
-  | { mode: 'fixed'; cardIds: readonly string[] }
-  | { mode: 'criteria'; criteria: Omit<CardSearchCriteria, 'page'>; limit?: number };
+export type {
+  ScenarioCardSort,
+  ScenarioCardSource,
+  ScenarioCardSourceMode,
+} from './scenario-card-source.types';

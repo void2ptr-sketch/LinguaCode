@@ -4,7 +4,7 @@
     <p>Создавайте и редактируйте сценарии обучения из доступных карточек.</p>
   </header>
 
-  @if (store.loading()) {
+  @if (store.loading() && store.editorMode() === 'list' && store.indexItems().length === 0) {
     <div class="scenario-builder-page__state">
       <mat-spinner diameter="40" />
       <p>Загрузка…</p>
@@ -24,16 +24,42 @@
         </mat-card-header>
 
         <mat-card-content>
-          @if (store.scenarios().length === 0) {
+          <mat-form-field appearance="outline" class="scenario-builder-page__search">
+            <mat-label>Поиск</mat-label>
+            <input
+              matInput
+              [ngModel]="store.listQuery()"
+              (ngModelChange)="onListQueryChange($event)"
+            />
+          </mat-form-field>
+
+          <mat-button-toggle-group
+            class="scenario-builder-page__scope"
+            [ngModel]="store.listScope()"
+            (ngModelChange)="onListScopeChange($event)"
+          >
+            <mat-button-toggle value="mine">Мои</mat-button-toggle>
+            <mat-button-toggle value="published">Опубликованные</mat-button-toggle>
+            <mat-button-toggle value="all">Все</mat-button-toggle>
+          </mat-button-toggle-group>
+
+          @if (store.indexItems().length === 0) {
             <p class="scenario-builder-page__empty">Сценариев пока нет.</p>
           } @else {
             <mat-list>
-              @for (scenario of store.scenarios(); track scenario.id) {
+              @for (scenario of store.indexItems(); track scenario.id) {
                 <mat-list-item class="scenario-builder-page__item">
                   <div matListItemTitle>{{ scenario.title }}</div>
-                  <div matListItemLine>{{ scenario.description || 'Без описания' }}</div>
+                  <div matListItemLine>
+                    {{ scenario.cardSourceSummary }}
+                    @if (scenario.published) {
+                      · опубликован
+                    }
+                    @if (!isOwnScenario(scenario.authorId)) {
+                      · {{ scenario.authorId }}
+                    }
+                  </div>
                   <div matListItemMeta class="scenario-builder-page__item-actions">
-                    <span>{{ scenarioCardsLabel(scenario.cardSource) }}</span>
                     <button
                       mat-icon-button
                       type="button"
@@ -42,18 +68,27 @@
                     >
                       <mat-icon>edit</mat-icon>
                     </button>
-                    <button
-                      mat-icon-button
-                      type="button"
-                      aria-label="Удалить"
-                      (click)="deleteScenario(scenario.id)"
-                    >
-                      <mat-icon>delete</mat-icon>
-                    </button>
+                    @if (isOwnScenario(scenario.authorId)) {
+                      <button
+                        mat-icon-button
+                        type="button"
+                        aria-label="Удалить"
+                        (click)="deleteScenario(scenario.id)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    }
                   </div>
                 </mat-list-item>
               }
             </mat-list>
+
+            <app-pagination
+              [length]="store.totalItems()"
+              [pageIndex]="store.pageIndex()"
+              [pageSize]="store.pageSize()"
+              (pageChange)="onListPageChange($event)"
+            />
           }
         </mat-card-content>
 
@@ -68,6 +103,8 @@
             <mat-card-title>
               @if (store.editorMode() === 'create') {
                 Новый сценарий
+              } @else if (store.isReadOnly()) {
+                Просмотр сценария
               } @else {
                 Редактирование
               }
@@ -79,9 +116,18 @@
               <p class="scenario-builder-page__error">{{ store.error() }}</p>
             }
 
+            @if (store.isReadOnly()) {
+              <p class="scenario-builder-page__readonly">Чужой сценарий — только просмотр.</p>
+            }
+
             <mat-form-field appearance="outline">
               <mat-label>Название</mat-label>
-              <input matInput [ngModel]="titleDraft()" (ngModelChange)="titleDraft.set($event)" />
+              <input
+                matInput
+                [disabled]="store.isReadOnly()"
+                [ngModel]="titleDraft()"
+                (ngModelChange)="titleDraft.set($event)"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -89,27 +135,40 @@
               <textarea
                 matInput
                 rows="3"
+                [disabled]="store.isReadOnly()"
                 [ngModel]="descriptionDraft()"
                 (ngModelChange)="descriptionDraft.set($event)"
               ></textarea>
             </mat-form-field>
 
+            <mat-slide-toggle
+              [disabled]="store.isReadOnly()"
+              [ngModel]="publishedDraft()"
+              (ngModelChange)="publishedDraft.set($event)"
+            >
+              Опубликовать сценарий
+            </mat-slide-toggle>
+
             <section class="scenario-builder-page__cards">
               <h2>Источник карточек</h2>
               <mat-button-toggle-group
                 class="scenario-builder-page__source-mode"
+                [disabled]="store.isReadOnly()"
                 [ngModel]="sourceModeDraft()"
                 (ngModelChange)="onSourceModeChange($event)"
               >
                 <mat-button-toggle value="fixed">Фиксированный список</mat-button-toggle>
                 <mat-button-toggle value="criteria">По критериям</mat-button-toggle>
+                <mat-button-toggle value="snapshot">Snapshot</mat-button-toggle>
               </mat-button-toggle-group>
 
-              @if (sourceModeDraft() === 'fixed') {
-                <app-scenario-card-picker
-                  [selectedIds]="fixedCardIdsDraft()"
-                  (selectedIdsChange)="fixedCardIdsDraft.set($event)"
-                />
+              @if (sourceModeDraft() === 'fixed' || sourceModeDraft() === 'snapshot') {
+                @if (sourceModeDraft() === 'fixed') {
+                  <app-scenario-card-picker
+                    [selectedIds]="fixedCardIdsDraft()"
+                    (selectedIdsChange)="onFixedCardIdsChange($event)"
+                  />
+                }
 
                 @if (fixedCardIdsDraft().length > 0) {
                   <section class="scenario-builder-page__order">
@@ -117,34 +176,50 @@
                     <mat-list>
                       @for (cardId of fixedCardIdsDraft(); track cardId) {
                         <mat-list-item>
-                          <span matListItemTitle>{{ store.cardTitle(cardId) }}</span>
-                          <div matListItemMeta class="scenario-builder-page__order-actions">
-                            <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
-                              <mat-icon>arrow_upward</mat-icon>
-                            </button>
-                            <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
-                              <mat-icon>arrow_downward</mat-icon>
-                            </button>
-                          </div>
+                          <span matListItemTitle>{{ cardTitle(cardId) }}</span>
+                          @if (!store.isReadOnly() && sourceModeDraft() === 'fixed') {
+                            <div matListItemMeta class="scenario-builder-page__order-actions">
+                              <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
+                                <mat-icon>arrow_upward</mat-icon>
+                              </button>
+                              <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
+                                <mat-icon>arrow_downward</mat-icon>
+                              </button>
+                            </div>
+                          }
                         </mat-list-item>
                       }
                     </mat-list>
                   </section>
                 }
-              } @else {
+              }
+
+              @if (sourceModeDraft() === 'criteria' || sourceModeDraft() === 'snapshot') {
                 <app-scenario-card-criteria-editor
                   [criteria]="criteriaDraft()"
                   [limit]="criteriaLimitDraft()"
+                  [sort]="criteriaSortDraft()"
+                  [seed]="criteriaSeedDraft()"
                   (criteriaChange)="criteriaDraft.set($event)"
                   (limitChange)="criteriaLimitDraft.set($event)"
+                  (sortChange)="criteriaSortDraft.set($event)"
+                  (seedChange)="criteriaSeedDraft.set($event)"
                 />
+
+                @if (!store.isReadOnly() && sourceModeDraft() === 'criteria') {
+                  <button mat-stroked-button type="button" (click)="createSnapshotFromCriteria()">
+                    Зафиксировать snapshot
+                  </button>
+                }
               }
             </section>
           </mat-card-content>
 
           <mat-card-actions align="end">
             <button mat-button type="button" (click)="cancelEdit()">Отмена</button>
-            <button mat-flat-button type="button" (click)="saveScenario()">Сохранить</button>
+            @if (!store.isReadOnly()) {
+              <button mat-flat-button type="button" (click)="saveScenario()">Сохранить</button>
+            }
           </mat-card-actions>
         </mat-card>
       }

@@ -6,4 +6,5 @@ export const environment: Environment = {
   fixturesUrl: '/data',
   appName: 'LinguaCode',
   useCardsApiMock: false,
+  useScenariosApiMock: false,
 };

@@ -1,34 +1,13 @@
 import { provideHttpClient } from '@angular/common/http';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { CardSearchService } from '../../../core/data';
 import { UserStore } from '../../../core/state';
 import { ScenarioBuilderStore } from './scenario-builder.store';
-import { ScenarioBuilderService, SCENARIOS_STORAGE_KEY } from './scenario-builder.service';
 
 describe('ScenarioBuilderStore', () => {
   let store: ScenarioBuilderStore;
-  let service: ScenarioBuilderService;
-
-  const indexEntries = [
-    {
-      id: 'select-1',
-      kind: 'select' as const,
-      title: 'Приветствие',
-      language: 'en' as const,
-      difficulty: 'beginner' as const,
-      tags: ['greetings'],
-      updatedAt: '2026-01-01T00:00:00.000Z',
-    },
-    {
-      id: 'select-2',
-      kind: 'select' as const,
-      title: 'Числа',
-      language: 'en' as const,
-      difficulty: 'beginner' as const,
-      tags: ['numbers'],
-      updatedAt: '2026-01-02T00:00:00.000Z',
-    },
-  ];
+  let httpMock: HttpTestingController;
 
   beforeEach(() => {
     localStorage.clear();
@@ -36,91 +15,51 @@ describe('ScenarioBuilderStore', () => {
     TestBed.configureTestingModule({
       providers: [
         ScenarioBuilderStore,
-        ScenarioBuilderService,
         UserStore,
+        CardSearchService,
         provideHttpClient(),
-        {
-          provide: CardSearchService,
-          useValue: {
-            ensureIndexLoaded: async () => undefined,
-            indexEntries: () => indexEntries,
-          },
-        },
+        provideHttpClientTesting(),
       ],
     });
 
     store = TestBed.inject(ScenarioBuilderStore);
-    service = TestBed.inject(ScenarioBuilderService);
-    store.scenarios.set(service.loadScenarios());
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
   afterEach(() => {
     localStorage.clear();
+    httpMock.verify();
   });
 
-  it('should create fixed scenario and persist it', () => {
-    const created = store.createScenario({
-      title: 'Новый сценарий',
-      description: 'Описание',
-      cardSource: { mode: 'fixed', cardIds: ['select-1'] },
-    });
+  it('should load scenario index from API', async () => {
+    const loadPromise = store.loadList();
 
-    expect(created).toBeTrue();
-    expect(store.scenarios().some((scenario) => scenario.title === 'Новый сценарий')).toBeTrue();
-    expect(localStorage.getItem(SCENARIOS_STORAGE_KEY)).toContain('Новый сценарий');
-  });
-
-  it('should create criteria scenario', () => {
-    const created = store.createScenario({
-      title: 'Dynamic',
-      description: '',
-      cardSource: {
-        mode: 'criteria',
-        criteria: { language: 'en' },
-        limit: 5,
+    const request = httpMock.expectOne(
+      (req) => req.url.includes('/scenarios/search') && req.params.get('scope') === 'mine',
+    );
+    request.flush({
+      data: {
+        items: [
+          {
+            id: 's1',
+            title: 'Test',
+            authorId: 'local-user',
+            cardSourceMode: 'fixed',
+            cardSourceSummary: '1 карточек',
+            published: false,
+            updatedAt: '2026-01-01T00:00:00.000Z',
+          },
+        ],
+        page: 0,
+        pageSize: 10,
+        totalItems: 1,
+        totalPages: 1,
       },
     });
 
-    expect(created).toBeTrue();
-    expect(
-      store.scenarios().find((scenario) => scenario.title === 'Dynamic')?.cardSource.mode,
-    ).toBe('criteria');
-  });
+    await loadPromise;
 
-  it('should reject invalid draft', () => {
-    const created = store.createScenario({
-      title: '   ',
-      description: '',
-      cardSource: { mode: 'fixed', cardIds: [] },
-    });
-
-    expect(created).toBeFalse();
-    expect(store.error()).toBe('Укажите название сценария');
-  });
-
-  it('should update and delete scenario', () => {
-    store.createScenario({
-      title: 'Temp',
-      description: 'Desc',
-      cardSource: { mode: 'fixed', cardIds: ['select-1'] },
-    });
-
-    const scenarioId = store.scenarios().find((scenario) => scenario.title === 'Temp')?.id;
-    expect(scenarioId).toBeDefined();
-
-    if (!scenarioId) {
-      return;
-    }
-
-    store.updateScenario(scenarioId, {
-      title: 'Updated',
-      description: 'New desc',
-      cardSource: { mode: 'fixed', cardIds: ['select-2'] },
-    });
-
-    expect(store.scenarios().find((scenario) => scenario.id === scenarioId)?.title).toBe('Updated');
-
-    store.deleteScenario(scenarioId);
-    expect(store.scenarios().some((scenario) => scenario.id === scenarioId)).toBeFalse();
+    expect(store.indexItems().length).toBe(1);
+    expect(store.indexItems()[0].title).toBe('Test');
   });
 });

@@ -25,7 +25,8 @@ const CARD_KINDS: readonly CardKind[] = [
 export function toSearchFilters(
   criteria: CardSearchCriteria,
 ): Omit<CardSearchCriteria, 'page'> {
-  const { page: _page, ...filters } = criteria;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { page, ...filters } = criteria;
   return filters;
 }
 

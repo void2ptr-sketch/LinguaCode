@@ -1,12 +1,10 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { Scenario } from '../../../../core/models';
+
 import { CardHostComponent } from '../../../../shared/components/card-host';
+import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
@@ -14,43 +12,42 @@ import { CardSelectStore } from '../../services/card-select.store';
 @Component({
   selector: 'app-card-select-page',
   imports: [
-    FormsModule,
     MatCardModule,
     MatButtonModule,
-    MatFormFieldModule,
     MatProgressSpinnerModule,
-    MatSelectModule,
     CardHostComponent,
+    ScenarioPickerComponent,
   ],
   templateUrl: './card-select-page.component.html',
   styleUrl: './card-select-page.component.scss',
 })
-export class CardSelectPageComponent implements OnInit {
+export class CardSelectPageComponent {
   private readonly cardSelectService = inject(CardSelectService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   readonly store = inject(CardSelectStore);
 
-  readonly scenarios = signal<readonly Scenario[]>([]);
-  readonly selectedScenarioId = signal<string>('demo-scenario');
+  readonly selectedScenarioId = signal<string>('');
   readonly scenarioTitle = signal<string>('');
+  readonly scenarioSourceLabel = signal<string>('');
   readonly missingCardsWarning = signal<string | null>(null);
 
   readonly fontSize = this.userStore.preferences;
 
-  async ngOnInit(): Promise<void> {
-    this.scenarios.set(this.cardSelectService.listScenarios());
-    await this.loadCards();
-  }
-
   async loadCards(): Promise<void> {
+    const scenarioId = this.selectedScenarioId();
+    if (!scenarioId) {
+      return;
+    }
+
     this.store.reset();
     this.store.setLoading(true);
     this.missingCardsWarning.set(null);
 
     try {
-      const session = await this.cardSelectService.loadScenario(this.selectedScenarioId());
+      const session = await this.cardSelectService.loadScenario(scenarioId);
       this.scenarioTitle.set(session.scenarioTitle);
+      this.scenarioSourceLabel.set(session.scenarioSourceLabel);
       this.store.setScenario(session.scenarioId, session.cards);
 
       if (session.missingCardIds.length > 0) {
@@ -66,6 +63,10 @@ export class CardSelectPageComponent implements OnInit {
   async onScenarioChange(scenarioId: string): Promise<void> {
     this.selectedScenarioId.set(scenarioId);
     await this.loadCards();
+  }
+
+  onScenarioLabelChange(label: string): void {
+    this.scenarioSourceLabel.set(label.split(' · ').slice(1).join(' · ') || label);
   }
 
   selectOption(index: number): void {

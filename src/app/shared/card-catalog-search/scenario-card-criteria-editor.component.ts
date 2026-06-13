@@ -2,17 +2,33 @@ import { Component, effect, inject, input, OnInit, output, signal } from '@angul
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 
 import { CardSearchService } from '../../core/data';
-import { DEFAULT_CRITERIA_LIMIT } from '../../core/data/scenario-card-source.utils';
-import type { CardSearchCriteria } from '../../core/models';
+import {
+  DEFAULT_CRITERIA_LIMIT,
+  resolveScenarioCardIds,
+} from '../../core/data/scenario-card-source.utils';
+import type { CardSearchCriteria, ScenarioCardSort } from '../../core/models';
 
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
+const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
+  { value: 'updatedAt', label: 'По дате обновления' },
+  { value: 'difficulty', label: 'По сложности' },
+  { value: 'random', label: 'Случайно' },
+];
+
 @Component({
   selector: 'app-scenario-card-criteria-editor',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, CardCatalogFiltersComponent],
+  imports: [
+    FormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    CardCatalogFiltersComponent,
+  ],
   templateUrl: './scenario-card-criteria-editor.component.html',
   styleUrl: './scenario-card-criteria-editor.component.scss',
 })
@@ -22,11 +38,17 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
 
   readonly criteria = input.required<Omit<CardSearchCriteria, 'page'>>();
   readonly limit = input<number>(DEFAULT_CRITERIA_LIMIT);
+  readonly sort = input<ScenarioCardSort>('updatedAt');
+  readonly seed = input<string>('');
 
   readonly criteriaChange = output<Omit<CardSearchCriteria, 'page'>>();
   readonly limitChange = output<number>();
+  readonly sortChange = output<ScenarioCardSort>();
+  readonly seedChange = output<string>();
 
+  readonly sortOptions = SORT_OPTIONS;
   readonly matchingTotal = signal<number | null>(null);
+  readonly previewIds = signal<readonly string[]>([]);
   readonly previewLoading = signal(false);
 
   private readonly initialized = signal(false);
@@ -60,6 +82,16 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
     void this.refreshPreview(this.readCriteriaFromStore());
   }
 
+  onSortChange(value: ScenarioCardSort): void {
+    this.sortChange.emit(value);
+    void this.refreshPreview(this.readCriteriaFromStore());
+  }
+
+  onSeedInput(value: string): void {
+    this.seedChange.emit(value);
+    void this.refreshPreview(this.readCriteriaFromStore());
+  }
+
   private applyCriteria(criteria: Omit<CardSearchCriteria, 'page'>): void {
     this.store.query.set(criteria.query ?? '');
     this.store.language.set(criteria.language ?? null);
@@ -87,8 +119,21 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
         page: { page: 0, pageSize: this.limit() },
       });
       this.matchingTotal.set(page.totalItems);
+
+      const ids = await resolveScenarioCardIds(
+        {
+          mode: 'criteria',
+          criteria,
+          limit: this.limit(),
+          sort: this.sort(),
+          seed: this.seed() || undefined,
+        },
+        this.cardSearchService,
+      );
+      this.previewIds.set(ids);
     } catch {
       this.matchingTotal.set(null);
+      this.previewIds.set([]);
     } finally {
       this.previewLoading.set(false);
     }

@@ -55,6 +55,29 @@ export class CardsCatalogMockHandler {
     this.index = null;
   }
 
+  async ensureIndexForCardLookup(): Promise<void> {
+    await this.ensureData();
+  }
+
+  async getIndexEntry(cardId: string): Promise<CardIndexEntry | null> {
+    await this.ensureData();
+    return this.index!.find((item) => item.id === cardId) ?? null;
+  }
+
+  async getByIds(cardIds: readonly string[]): Promise<readonly Card[]> {
+    await this.ensureData();
+
+    const cards: Card[] = [];
+    for (const cardId of cardIds) {
+      const card = this.cards!.find((item) => item.id === cardId);
+      if (card) {
+        cards.push(card);
+      }
+    }
+
+    return cards;
+  }
+
   private async ensureData(): Promise<void> {
     if (this.index && this.cards) {
       return;

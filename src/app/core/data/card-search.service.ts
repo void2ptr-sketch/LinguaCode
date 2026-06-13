@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../models';

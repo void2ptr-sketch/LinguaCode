@@ -1,16 +1,14 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { CardRepository, CARDS_STORAGE_KEY, CardSearchService } from '../../../core/data';
+import { CardRepository, CARDS_STORAGE_KEY, CardSearchService, ScenarioSearchService } from '../../../core/data';
+import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
-import {
-  ScenarioBuilderService,
-  SCENARIOS_STORAGE_KEY,
-} from '../../scenario-builder/services/scenario-builder.service';
 import { CardEditorStore } from './card-editor.store';
 
 describe('CardEditorStore', () => {
   let store: CardEditorStore;
   let cardRepository: CardRepository;
+  let scenariosUsingCard: readonly ScenarioIndexEntry[];
 
   const selectCard = {
     id: 'select-test',
@@ -24,12 +22,12 @@ describe('CardEditorStore', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    scenariosUsingCard = [];
 
     TestBed.configureTestingModule({
       providers: [
         CardEditorStore,
         CardRepository,
-        ScenarioBuilderService,
         LearningResultsStore,
         UserStore,
         provideHttpClient(),
@@ -38,6 +36,12 @@ describe('CardEditorStore', () => {
           useValue: {
             refreshCatalog: () => undefined,
             getCardById: async () => selectCard,
+          },
+        },
+        {
+          provide: ScenarioSearchService,
+          useValue: {
+            findUsingCard: async () => scenariosUsingCard,
           },
         },
       ],
@@ -81,18 +85,17 @@ describe('CardEditorStore', () => {
   });
 
   it('should block delete when card is used in scenario', async () => {
-    localStorage.setItem(
-      SCENARIOS_STORAGE_KEY,
-      JSON.stringify([
-        {
-          id: 'scenario-1',
-          title: 'Demo',
-          description: '',
-          authorId: 'local-user',
-          cardSource: { mode: 'fixed', cardIds: ['select-test'] },
-        },
-      ]),
-    );
+    scenariosUsingCard = [
+      {
+        id: 'scenario-1',
+        title: 'Demo',
+        authorId: 'local-user',
+        cardSourceMode: 'fixed',
+        cardSourceSummary: '1 карточек',
+        published: false,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+    ];
 
     expect(await store.deleteCard('select-test')).toBeFalse();
     expect(store.error()).toContain('сценариях');

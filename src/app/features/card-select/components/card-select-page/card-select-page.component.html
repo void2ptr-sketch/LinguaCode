@@ -1,20 +1,20 @@
 <section class="card-select-page">
   <header class="card-select-page__header">
     <h1>Карточки обучения</h1>
-    <mat-form-field appearance="outline" class="card-select-page__scenario">
-      <mat-label>Сценарий</mat-label>
-      <mat-select
-        [ngModel]="selectedScenarioId()"
-        (ngModelChange)="onScenarioChange($event)"
-      >
-        @for (scenario of scenarios(); track scenario.id) {
-          <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+
+    <app-scenario-picker
+      [selectedScenarioId]="selectedScenarioId()"
+      (selectedScenarioIdChange)="onScenarioChange($event)"
+      (scenarioLabelChange)="onScenarioLabelChange($event)"
+    />
+
     @if (scenarioTitle()) {
       <p class="card-select-page__progress">
-        {{ scenarioTitle() }} · Прогресс: {{ store.progressLabel() }}
+        {{ scenarioTitle() }}
+        @if (scenarioSourceLabel()) {
+          · {{ scenarioSourceLabel() }}
+        }
+        · Прогресс: {{ store.progressLabel() }}
       </p>
     }
     @if (missingCardsWarning(); as warning) {

@@ -59,7 +59,17 @@
   gap: 0.25rem;
 }
 
-.scenario-builder-page__empty {
+.scenario-builder-page__search,
+.scenario-builder-page__scope {
+  width: 100%;
+}
+
+.scenario-builder-page__scope {
+  margin-bottom: 1rem;
+}
+
+.scenario-builder-page__readonly {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   margin: 0;
 }
 

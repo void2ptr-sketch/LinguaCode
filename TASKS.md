@@ -124,6 +124,53 @@
 - [x] Sidebar: дублированы маршруты из header — «Карточки» (`/tools/cards`), «Конструктор сценариев» (шапка без изменений)
 
 
+### Конструктор сценариев (масштаб)
+
+Документация: [docs/SCENARIO-BUILDER.md](./docs/SCENARIO-BUILDER.md)
+
+Уже сделано (MVP + интеграция с каталогом карточек):
+
+- [x] CRUD сценариев в `features/scenario-builder/` (`localStorage`)
+- [x] `ScenarioCardSource` (fixed / criteria) — см. также «Каталог карточек (масштаб)»
+- [x] Выбор карточек через поиск каталога (`ScenarioCardPicker`, `ScenarioCardCriteriaEditor`)
+
+#### Этап A — модель и API
+
+- [x] Черновик `docs/SCENARIO-BUILDER.md`
+- [x] Синхронизация DOMAIN / ARCHITECTURE / README со ссылкой на SCENARIO-BUILDER
+- [x] Типы `ScenarioIndexEntry`, `ScenarioSearchCriteria` в `core/models/`
+- [x] `ScenariosApiService`: `GET /scenarios/search`, `GET /scenarios/:id`, CRUD
+- [x] Mock interceptor сценариев в dev (`useScenariosApiMock`)
+- [x] `ScenarioSearchService` → HTTP (миграция из `localStorage`)
+
+#### Этап B — UI конструктора
+
+- [x] Пагинация списка сценариев (`UiPaginationComponent`)
+- [x] Поиск / фильтр по названию и scope (mine / published / all)
+- [x] Index → detail: полный `Scenario` только при edit/create
+- [x] Валидация `fixed` через API (`getCardById`), не только index cache
+
+#### Этап C — прохождение (card-select)
+
+- [x] Загрузка карточек через `POST /cards/batch` без `CardRepository.ensureLoaded()`
+- [x] Выбор сценария: `ScenarioPickerComponent` (search + paginator)
+- [x] Подпись источника в UI («N карточек» / «до N по критериям» / snapshot)
+
+#### Этап D — семантика ScenarioCardSource
+
+- [x] Режим `snapshot` + кнопка «Зафиксировать snapshot»
+- [x] Сортировка criteria (`sort`, `seed` для random)
+- [x] Preview resolved ids в редакторе критериев
+- [x] `scenarioUsesCardEntry` для criteria (удаление карточки)
+- [x] Серверная валидация `cardSource` в mock handler
+
+#### Этап E — multi-user
+
+- [x] Фильтр «мои / опубликованные / все» по `scope` и `authorId`
+- [x] Публикация сценария (`published`), read-only для чужих
+- [x] Серверная валидация `cardSource` + 403 на изменение чужого сценария
+
+
 ### Локализация
 
 - Инструмент переключения языка на `@angular/localize`
