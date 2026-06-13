@@ -8,6 +8,12 @@
   font-size: 1.5rem;
 }
 
+.card-select-page__language-pair {
+  margin: 0.25rem 0 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.9375rem;
+}
+
 .card-select-page__progress {
   margin: 0.5rem 0 0;
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);

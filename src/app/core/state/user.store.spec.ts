@@ -1,16 +1,28 @@
+import { TestBed } from '@angular/core/testing';
 import { CardAppearance } from '../models';
+import { USER_STORAGE_KEY, UserPersistence } from './user.persistence';
 import { UserStore } from './user.store';
 
 describe('UserStore', () => {
   let store: UserStore;
 
   beforeEach(() => {
-    store = new UserStore();
+    localStorage.clear();
+    TestBed.configureTestingModule({
+      providers: [UserStore, UserPersistence],
+    });
+    store = TestBed.inject(UserStore);
   });
 
-  it('should expose default user', () => {
+  afterEach(() => {
+    localStorage.clear();
+  });
+
+  it('should expose default user with language pair', () => {
     expect(store.displayName()).toBe('Ученик');
     expect(store.preferences().fontSize).toBe('md');
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+    expect(store.languagePairLabel()).toBe('Русский → English');
   });
 
   it('should update display name', () => {
@@ -43,6 +55,21 @@ describe('UserStore', () => {
     expect(store.preferences()).toEqual({
       theme: 'azure-blue',
       fontSize: 'lg',
+      languagePair: { known: 'ru', learning: 'en' },
     });
+  });
+
+  it('should update and persist language pair', () => {
+    store.updateLanguagePair({ known: 'ru', learning: 'zh' });
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
+
+    const reloaded = TestBed.inject(UserPersistence).load();
+    expect(reloaded?.preferences.languagePair).toEqual({ known: 'ru', learning: 'zh' });
+    expect(localStorage.getItem(USER_STORAGE_KEY)).toContain('"learning":"zh"');
+  });
+
+  it('should reject identical known and learning languages', () => {
+    store.updateLanguagePair({ known: 'en', learning: 'en' });
+    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 });

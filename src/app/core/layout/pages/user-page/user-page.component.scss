@@ -6,3 +6,24 @@
   display: grid;
   gap: 0.75rem;
 }
+
+.page-card__section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.page-card__section-title {
+  font-size: 1rem;
+  margin: 0.5rem 0 0;
+}
+
+.page-card__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.page-card__error {
+  color: var(--mat-sys-error);
+  margin: 0;
+}

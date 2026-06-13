@@ -26,6 +26,7 @@ export class CardSelectPageComponent {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   readonly store = inject(CardSelectStore);
+  readonly languagePairLabel = this.userStore.languagePairLabel;
 
   readonly selectedScenarioId = signal<string>('');
   readonly scenarioTitle = signal<string>('');

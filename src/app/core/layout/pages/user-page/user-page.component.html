@@ -7,25 +7,58 @@
   <mat-card-content class="page-card__form">
     <mat-form-field appearance="outline">
       <mat-label>Имя</mat-label>
-      <input matInput [(ngModel)]="nameDraft" name="displayName" />
+      <input matInput [ngModel]="nameDraft()" (ngModelChange)="nameDraft.set($event)" name="displayName" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Тема карточек</mat-label>
-      <input matInput [(ngModel)]="themeDraft" name="theme" />
-    </mat-form-field>
+    <section class="page-card__section">
+      <h2 class="page-card__section-title">Языки обучения</h2>
+      <p class="page-card__hint">Известный язык — тот, на котором вы уже говорите; новый — который изучаете.</p>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Размер шрифта</mat-label>
-      <mat-select [(ngModel)]="fontSizeDraft" name="fontSize">
-        <mat-option value="sm">Маленький</mat-option>
-        <mat-option value="md">Средний</mat-option>
-        <mat-option value="lg">Большой</mat-option>
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Известный язык</mat-label>
+        <mat-select [ngModel]="knownLanguageDraft()" (ngModelChange)="knownLanguageDraft.set($event)" name="knownLanguage">
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Новый язык</mat-label>
+        <mat-select [ngModel]="learningLanguageDraft()" (ngModelChange)="learningLanguageDraft.set($event)" name="learningLanguage">
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      @if (languagePairInvalid()) {
+        <p class="page-card__error">Языки должны отличаться.</p>
+      }
+    </section>
+
+    <section class="page-card__section">
+      <h2 class="page-card__section-title">Внешний вид карточек</h2>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Тема карточек</mat-label>
+        <input matInput [ngModel]="themeDraft()" (ngModelChange)="themeDraft.set($event)" name="theme" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Размер шрифта</mat-label>
+        <mat-select [ngModel]="fontSizeDraft()" (ngModelChange)="fontSizeDraft.set($event)" name="fontSize">
+          <mat-option value="sm">Маленький</mat-option>
+          <mat-option value="md">Средний</mat-option>
+          <mat-option value="lg">Большой</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </section>
   </mat-card-content>
 
   <mat-card-actions align="end">
-    <button mat-flat-button type="button" (click)="saveProfile()">Сохранить</button>
+    <button mat-flat-button type="button" [disabled]="languagePairInvalid()" (click)="saveProfile()">
+      Сохранить
+    </button>
   </mat-card-actions>
 </mat-card>

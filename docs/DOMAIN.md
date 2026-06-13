@@ -93,7 +93,13 @@ erDiagram
 ### Базовые типы
 
 ```typescript
-type CardKind = 'select' | 'memory' | 'symbol' | 'sound' | 'timed' | 'keyboard' | 'draw';
+type ContentLanguage = 'en' | 'zh' | 'ru';
+
+/** Известный пользователю → изучаемый. См. LANGUAGE-PAIR.md */
+type LanguagePair = {
+  known: ContentLanguage;
+  learning: ContentLanguage;
+};
 
 type CardAppearance = {
   theme: string;
@@ -136,9 +142,13 @@ type LearningResult = {
 type User = {
   id: string;
   displayName: string;
-  preferences: CardAppearance;
+  preferences: CardAppearance & {
+    languagePair: LanguagePair;
+  };
 };
 ```
+
+Подробнее о паре языков: [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md).
 
 ### Каталог карточек (масштаб)
 
@@ -153,7 +163,7 @@ type CardIndexEntry = {
   id: string;
   kind: CardKind;
   title: string;
-  language: ContentLanguage;
+  language: ContentLanguage; // learning / target — см. LANGUAGE-PAIR.md
   difficulty: CardDifficulty;
   tags: readonly string[];
   updatedAt: string; // ISO 8601
@@ -182,5 +192,6 @@ type ScenarioCardSource =
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
+- [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор проекта

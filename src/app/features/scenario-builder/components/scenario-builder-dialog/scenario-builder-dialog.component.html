@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>{{ title() }}</h2>
+
+<mat-dialog-content class="scenario-builder-dialog__content">
+  @if (store.editorLoading()) {
+    <div class="scenario-builder-dialog__state">
+      <mat-spinner diameter="32" />
+      <p>Загрузка сценария…</p>
+    </div>
+  } @else {
+    @if (store.error()) {
+      <p class="scenario-builder-dialog__error">{{ store.error() }}</p>
+    }
+
+    <app-scenario-editor-form
+      [draft]="draft()"
+      [readOnly]="store.isReadOnly()"
+      (draftChange)="updateDraft($event)"
+    />
+  }
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button type="button" (click)="cancel()">
+    @if (store.isReadOnly()) {
+      Закрыть
+    } @else {
+      Отмена
+    }
+  </button>
+  @if (!store.isReadOnly()) {
+    <button
+      mat-flat-button
+      type="button"
+      [disabled]="store.editorLoading()"
+      (click)="saveScenario()"
+    >
+      Сохранить
+    </button>
+  }
+</mat-dialog-actions>

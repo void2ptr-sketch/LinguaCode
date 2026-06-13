@@ -187,9 +187,47 @@
 - [x] (опционально) Deep link `?id=` для edit
 - [x] Обновить CARD-CATALOG.md / ARCHITECTURE (layout «каталог + modal CRUD»)
 
-### Локализация
+### Новый сценарий — dialog UI
 
-- Инструмент переключения языка на `@angular/localize`
+План: по образцу [card-editor-dialog](../src/app/features/card-editor/components/card-editor-dialog/) — каталог на странице, create/edit/view в `MatDialog`.
+
+- [x] `ScenarioEditorFormComponent` — title, description, published, `cardSource` (fixed / criteria / snapshot)
+- [x] `ScenarioBuilderDialogComponent` — MatDialog shell + form + save/cancel
+- [x] `ScenarioBuilderDialogService` — `openCreate()` / `openEdit(scenarioId)`
+- [x] `ScenarioBuilderPage`: убрать inline editor, открывать dialog на create/edit
+- [x] Read-only просмотр чужого сценария в dialog (без save)
+- [x] Confirm при закрытии с несохранёнными изменениями (reuse discard dialog)
+- [x] `CardCatalogSearchStore` — provider на dialog, не на page
+- [x] Responsive: `.scenario-builder-dialog` fullscreen на узких экранах (`styles.scss`)
+- [ ] (опционально) Deep link `?scenarioId=` для edit/view
+- [x] Обновить SCENARIO-BUILDER.md / ARCHITECTURE (layout «список + modal CRUD»)
+
+### Пара языков (known → learning)
+
+План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md). Обучение — два языка контента; отдельно от UiLocale (`@angular/localize`).
+
+**G0 — домен**
+
+- [x] `LanguagePair`, `CardDirection` в `core/models/language-pair.types.ts`
+- [x] Семантика `CardIndexEntry.language` = learning (target)
+- [x] DOMAIN.md + LANGUAGE-PAIR.md
+
+**G1 — профиль и сессия**
+
+- [x] `UserPreferences.languagePair` + default `{ known: 'ru', learning: 'en' }`
+- [x] `UserStore`: `languagePair`, `languagePairLabel`, persist `localStorage`
+- [x] UI `/user` — селекты известный / новый язык
+- [x] Подпись пары на `/cards/select`
+
+**G2+ — бэклог**
+
+- [ ] Structured bilingual content в `Card` (known/learning поля)
+- [ ] Index/search по паре; редактор карточек
+- [ ] `Scenario.languagePair` + валидация
+- [ ] Render по `CardDirection`; `LearningResult.languagePair`
+
+### Локализация (UiLocale)
+
 - Настройка каждого языка в отдельном файле
 - Поддержка английского языка
 - Поддержка китайского языка

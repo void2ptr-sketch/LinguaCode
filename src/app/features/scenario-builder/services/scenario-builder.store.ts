@@ -36,6 +36,7 @@ export class ScenarioBuilderStore {
   readonly listScope = signal<ScenarioListScope>('mine');
 
   readonly loading = signal(false);
+  readonly editorLoading = signal(false);
   readonly error = signal<string | null>(null);
   readonly editorMode = signal<ScenarioEditorMode>('list');
   readonly editingScenarioId = signal<string | null>(null);
@@ -97,7 +98,7 @@ export class ScenarioBuilderStore {
   }
 
   async startEdit(scenarioId: string): Promise<void> {
-    this.loading.set(true);
+    this.editorLoading.set(true);
     this.error.set(null);
 
     try {
@@ -108,7 +109,7 @@ export class ScenarioBuilderStore {
     } catch {
       this.error.set('Не удалось загрузить сценарий');
     } finally {
-      this.loading.set(false);
+      this.editorLoading.set(false);
     }
   }
 

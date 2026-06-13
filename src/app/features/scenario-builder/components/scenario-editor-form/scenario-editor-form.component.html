@@ -1,0 +1,99 @@
+<section class="scenario-editor-form">
+  @if (readOnly()) {
+    <p class="scenario-editor-form__readonly">Чужой сценарий — только просмотр.</p>
+  }
+
+  <mat-form-field appearance="outline">
+    <mat-label>Название</mat-label>
+    <input
+      matInput
+      [disabled]="readOnly()"
+      [ngModel]="draft().title"
+      (ngModelChange)="updateDraft({ title: $event })"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Описание</mat-label>
+    <textarea
+      matInput
+      rows="3"
+      [disabled]="readOnly()"
+      [ngModel]="draft().description"
+      (ngModelChange)="updateDraft({ description: $event })"
+    ></textarea>
+  </mat-form-field>
+
+  <mat-slide-toggle
+    [disabled]="readOnly()"
+    [ngModel]="draft().published"
+    (ngModelChange)="updateDraft({ published: $event })"
+  >
+    Опубликовать сценарий
+  </mat-slide-toggle>
+
+  <section class="scenario-editor-form__cards">
+    <h2>Источник карточек</h2>
+    <mat-button-toggle-group
+      class="scenario-editor-form__source-mode"
+      [disabled]="readOnly()"
+      [ngModel]="draft().sourceMode"
+      (ngModelChange)="onSourceModeChange($event)"
+    >
+      <mat-button-toggle value="fixed">Фиксированный список</mat-button-toggle>
+      <mat-button-toggle value="criteria">По критериям</mat-button-toggle>
+      <mat-button-toggle value="snapshot">Snapshot</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    @if (draft().sourceMode === 'fixed' || draft().sourceMode === 'snapshot') {
+      @if (draft().sourceMode === 'fixed') {
+        <app-scenario-card-picker
+          [selectedIds]="draft().fixedCardIds"
+          (selectedIdsChange)="onFixedCardIdsChange($event)"
+        />
+      }
+
+      @if (draft().fixedCardIds.length > 0) {
+        <section class="scenario-editor-form__order">
+          <h2>Порядок карточек</h2>
+          <mat-list>
+            @for (cardId of draft().fixedCardIds; track cardId) {
+              <mat-list-item>
+                <span matListItemTitle>{{ cardTitle(cardId) }}</span>
+                @if (!readOnly() && draft().sourceMode === 'fixed') {
+                  <div matListItemMeta class="scenario-editor-form__order-actions">
+                    <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
+                      <mat-icon>arrow_upward</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
+                      <mat-icon>arrow_downward</mat-icon>
+                    </button>
+                  </div>
+                }
+              </mat-list-item>
+            }
+          </mat-list>
+        </section>
+      }
+    }
+
+    @if (draft().sourceMode === 'criteria' || draft().sourceMode === 'snapshot') {
+      <app-scenario-card-criteria-editor
+        [criteria]="draft().criteria"
+        [limit]="draft().criteriaLimit"
+        [sort]="draft().criteriaSort"
+        [seed]="draft().criteriaSeed"
+        (criteriaChange)="updateDraft({ criteria: $event })"
+        (limitChange)="updateDraft({ criteriaLimit: $event })"
+        (sortChange)="onCriteriaSortChange($event)"
+        (seedChange)="updateDraft({ criteriaSeed: $event })"
+      />
+
+      @if (!readOnly() && draft().sourceMode === 'criteria') {
+        <button mat-stroked-button type="button" (click)="createSnapshotFromCriteria()">
+          Зафиксировать snapshot
+        </button>
+      }
+    }
+  </section>
+</section>
