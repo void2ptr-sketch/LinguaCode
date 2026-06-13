@@ -1,14 +1,54 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
-import { buildFixtureUrl } from '../../../core/api';
-import { CardSelectFixture } from '../types';
+import { CardRepository } from '../../../core/data';
+import { Card, Scenario } from '../../../core/models';
+import { ScenarioBuilderService } from '../../scenario-builder/services/scenario-builder.service';
+
+export type CardSelectSession = {
+  scenarioId: string;
+  scenarioTitle: string;
+  cards: readonly Card[];
+  missingCardIds: readonly string[];
+};
 
 @Injectable({ providedIn: 'root' })
 export class CardSelectService {
-  private readonly http = inject(HttpClient);
+  private readonly cardRepository = inject(CardRepository);
+  private readonly scenarioBuilderService = inject(ScenarioBuilderService);
 
-  loadFixture(): Promise<CardSelectFixture> {
-    return firstValueFrom(this.http.get<CardSelectFixture>(buildFixtureUrl('/select-cards.json')));
+  listScenarios(): readonly Scenario[] {
+    return this.scenarioBuilderService.loadScenarios();
+  }
+
+  async loadScenario(scenarioId: string): Promise<CardSelectSession> {
+    const cards = await this.cardRepository.ensureLoaded();
+    const scenario = this.listScenarios().find((item) => item.id === scenarioId);
+
+    if (!scenario) {
+      throw new Error('SCENARIO_NOT_FOUND');
+    }
+
+    const cardsById = new Map(cards.map((card) => [card.id, card]));
+    const sessionCards: Card[] = [];
+    const missingCardIds: string[] = [];
+
+    for (const cardId of scenario.cardIds) {
+      const card = cardsById.get(cardId);
+      if (card) {
+        sessionCards.push(card);
+      } else {
+        missingCardIds.push(cardId);
+      }
+    }
+
+    if (sessionCards.length === 0) {
+      throw new Error('SCENARIO_EMPTY');
+    }
+
+    return {
+      scenarioId: scenario.id,
+      scenarioTitle: scenario.title,
+      cards: sessionCards,
+      missingCardIds,
+    };
   }
 }

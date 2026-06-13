@@ -94,6 +94,17 @@
 - [x] Отображение прогресса пользователя
 - [x] Подключить фичу в роутинг через `Главная`
 
+### Редактор для карточек
+
+- [x] Фича `features/card-editor/`, маршрут `/tools/card-editor`
+- [x] `CardRepository` (localStorage, seed из `select-cards.json`)
+- [x] CRUD карточки `select` + preview через `CardHost`
+- [x] Редактирование `appearance` (theme, fontSize)
+- [x] Подключить repository в scenario-builder
+- [x] Формы для остальных `CardKind`
+- [x] card-select: прохождение пользовательских сценариев
+- [x] удаление/изменение карточки не должно ломать сценарии и LearningResult
+
 ### Локализация
 
 - Инструмент переключения языка на `@angular/localize`

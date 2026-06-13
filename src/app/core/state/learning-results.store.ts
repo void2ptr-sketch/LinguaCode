@@ -76,4 +76,8 @@ export class LearningResultsStore {
       return nextResults;
     });
   }
+
+  hasResultsForCard(cardId: string): boolean {
+    return this.results().some((result) => result.cardId === cardId);
+  }
 }

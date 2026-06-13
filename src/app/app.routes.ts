@@ -29,6 +29,13 @@ export const routes: Routes = [
           ).then((m) => m.ScenarioBuilderPageComponent),
       },
       {
+        path: 'tools/card-editor',
+        loadComponent: () =>
+          import(
+            './features/card-editor/components/card-editor-page/card-editor-page.component'
+          ).then((m) => m.CardEditorPageComponent),
+      },
+      {
         path: 'help',
         loadComponent: () =>
           import('./core/layout/pages/help-page/help-page.component').then(

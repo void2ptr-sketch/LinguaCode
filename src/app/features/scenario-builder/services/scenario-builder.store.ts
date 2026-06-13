@@ -1,4 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
+import { CardRepository } from '../../../core/data';
 import { Scenario } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
@@ -11,6 +12,7 @@ const sanitizeDescription = (value: string): string => sanitizePlainText(value, 
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderStore {
   private readonly scenarioBuilderService = inject(ScenarioBuilderService);
+  private readonly cardRepository = inject(CardRepository);
   private readonly userStore = inject(UserStore);
 
   readonly scenarios = signal<readonly Scenario[]>([]);
@@ -38,8 +40,8 @@ export class ScenarioBuilderStore {
     this.error.set(null);
 
     try {
-      const fixture = await this.scenarioBuilderService.loadCatalog();
-      this.catalog.set(fixture.cards);
+      const cards = await this.cardRepository.ensureLoaded();
+      this.catalog.set(this.cardRepository.toCatalogItems(cards));
       this.scenarios.set(this.scenarioBuilderService.loadScenarios());
     } catch {
       this.error.set('Не удалось загрузить данные конструктора');

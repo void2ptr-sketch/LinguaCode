@@ -1,0 +1,194 @@
+<div class="card-form">
+  <div class="card-form__fields">
+    <mat-form-field appearance="outline">
+      <mat-label>Название</mat-label>
+      <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+    </mat-form-field>
+
+    @if (selectDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Вопрос</mat-label>
+        <textarea matInput rows="3" [ngModel]="d.question" (ngModelChange)="updateQuestion($event)"></textarea>
+      </mat-form-field>
+      <section class="card-form__options">
+        <h3>Варианты ответа</h3>
+        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
+          @for (item of d.options; track $index) {
+            <div class="card-form__option-row">
+              <mat-radio-button [value]="$index" />
+              <mat-form-field appearance="outline" class="card-form__option-field">
+                <mat-label>Вариант {{ $index + 1 }}</mat-label>
+                <input matInput [ngModel]="item" (ngModelChange)="updateSelectOption($index, $event)" />
+              </mat-form-field>
+              <button mat-icon-button type="button" [disabled]="d.options.length <= 2" (click)="removeSelectOption($index)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          }
+        </mat-radio-group>
+        <button mat-button type="button" [disabled]="d.options.length >= 8" (click)="addSelectOption()">
+          <mat-icon>add</mat-icon> Добавить
+        </button>
+      </section>
+    }
+
+    @if (timedDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Вопрос</mat-label>
+        <textarea matInput rows="3" [ngModel]="d.question" (ngModelChange)="updateQuestion($event)"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Лимит времени (сек)</mat-label>
+        <input matInput type="number" min="5" max="600" [ngModel]="d.timeLimitSec" (ngModelChange)="updateTimeLimitSec(+$event)" />
+      </mat-form-field>
+      <section class="card-form__options">
+        <h3>Варианты ответа</h3>
+        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
+          @for (item of d.options; track $index) {
+            <div class="card-form__option-row">
+              <mat-radio-button [value]="$index" />
+              <mat-form-field appearance="outline" class="card-form__option-field">
+                <mat-label>Вариант {{ $index + 1 }}</mat-label>
+                <input matInput [ngModel]="item" (ngModelChange)="updateTimedOption($index, $event)" />
+              </mat-form-field>
+              <button mat-icon-button type="button" [disabled]="d.options.length <= 2" (click)="removeTimedOption($index)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          }
+        </mat-radio-group>
+        <button mat-button type="button" [disabled]="d.options.length >= 8" (click)="addTimedOption()">
+          <mat-icon>add</mat-icon> Добавить
+        </button>
+      </section>
+    }
+
+    @if (memoryDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка</mat-label>
+        <textarea matInput rows="2" [ngModel]="d.prompt" (ngModelChange)="updatePrompt($event)"></textarea>
+      </mat-form-field>
+      <section class="card-form__pairs">
+        <h3>Пары</h3>
+        @for (pair of d.pairs; track $index) {
+          <div class="card-form__pair-row">
+            <mat-form-field appearance="outline">
+              <mat-label>Лицевая</mat-label>
+              <input matInput [ngModel]="pair.front" (ngModelChange)="updatePair($index, 'front', $event)" />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Оборотная</mat-label>
+              <input matInput [ngModel]="pair.back" (ngModelChange)="updatePair($index, 'back', $event)" />
+            </mat-form-field>
+            <button mat-icon-button type="button" [disabled]="d.pairs.length <= 1" (click)="removePair($index)">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </div>
+        }
+        <button mat-button type="button" [disabled]="d.pairs.length >= 12" (click)="addPair()">
+          <mat-icon>add</mat-icon> Добавить пару
+        </button>
+      </section>
+    }
+
+    @if (symbolDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка</mat-label>
+        <textarea matInput rows="2" [ngModel]="d.prompt" (ngModelChange)="updatePrompt($event)"></textarea>
+      </mat-form-field>
+      <section class="card-form__options">
+        <h3>Символы</h3>
+        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
+          @for (item of d.symbols; track $index) {
+            <div class="card-form__option-row">
+              <mat-radio-button [value]="$index" />
+              <mat-form-field appearance="outline" class="card-form__option-field">
+                <mat-label>Символ {{ $index + 1 }}</mat-label>
+                <input matInput [ngModel]="item" (ngModelChange)="updateSymbolOption($index, $event)" />
+              </mat-form-field>
+              <button mat-icon-button type="button" [disabled]="d.symbols.length <= 2" (click)="removeSymbolOption($index)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          }
+        </mat-radio-group>
+        <button mat-button type="button" [disabled]="d.symbols.length >= 8" (click)="addSymbolOption()">
+          <mat-icon>add</mat-icon> Добавить
+        </button>
+      </section>
+    }
+
+    @if (soundDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка</mat-label>
+        <textarea matInput rows="2" [ngModel]="d.prompt" (ngModelChange)="updatePrompt($event)"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Метка звука</mat-label>
+        <input matInput [ngModel]="d.audioLabel" (ngModelChange)="updateAudioLabel($event)" />
+      </mat-form-field>
+      <section class="card-form__options">
+        <h3>Варианты ответа</h3>
+        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
+          @for (item of d.options; track $index) {
+            <div class="card-form__option-row">
+              <mat-radio-button [value]="$index" />
+              <mat-form-field appearance="outline" class="card-form__option-field">
+                <mat-label>Вариант {{ $index + 1 }}</mat-label>
+                <input matInput [ngModel]="item" (ngModelChange)="updateSoundOption($index, $event)" />
+              </mat-form-field>
+              <button mat-icon-button type="button" [disabled]="d.options.length <= 2" (click)="removeSoundOption($index)">
+                <mat-icon>remove_circle_outline</mat-icon>
+              </button>
+            </div>
+          }
+        </mat-radio-group>
+        <button mat-button type="button" [disabled]="d.options.length >= 8" (click)="addSoundOption()">
+          <mat-icon>add</mat-icon> Добавить
+        </button>
+      </section>
+    }
+
+    @if (keyboardDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка</mat-label>
+        <textarea matInput rows="2" [ngModel]="d.prompt" (ngModelChange)="updatePrompt($event)"></textarea>
+      </mat-form-field>
+      <section class="card-form__options">
+        <h3>Допустимые ответы</h3>
+        @for (item of d.acceptedAnswers; track $index) {
+          <div class="card-form__option-row card-form__option-row--no-radio">
+            <mat-form-field appearance="outline" class="card-form__option-field">
+              <mat-label>Ответ {{ $index + 1 }}</mat-label>
+              <input matInput [ngModel]="item" (ngModelChange)="updateKeyboardAnswer($index, $event)" />
+            </mat-form-field>
+            <button mat-icon-button type="button" [disabled]="d.acceptedAnswers.length <= 1" (click)="removeKeyboardAnswer($index)">
+              <mat-icon>remove_circle_outline</mat-icon>
+            </button>
+          </div>
+        }
+        <button mat-button type="button" [disabled]="d.acceptedAnswers.length >= 8" (click)="addKeyboardAnswer()">
+          <mat-icon>add</mat-icon> Добавить
+        </button>
+      </section>
+    }
+
+    @if (drawDraft(); as d) {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка</mat-label>
+        <textarea matInput rows="2" [ngModel]="d.prompt" (ngModelChange)="updatePrompt($event)"></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Ориентир для рисования</mat-label>
+        <input matInput [ngModel]="d.referenceHint" (ngModelChange)="updateReferenceHint($event)" />
+      </mat-form-field>
+    }
+
+    <app-card-appearance-fields
+      [appearance]="draft().appearance"
+      (appearanceChange)="updateAppearance($event)"
+    />
+  </div>
+
+  <app-card-preview [card]="previewCard()" [fontSize]="previewFontSize()" />
+</div>

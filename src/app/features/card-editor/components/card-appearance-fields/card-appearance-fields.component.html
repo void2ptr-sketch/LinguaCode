@@ -1,0 +1,18 @@
+<section class="card-appearance-fields">
+  <h3>Внешний вид</h3>
+  <div class="card-appearance-fields__grid">
+    <mat-form-field appearance="outline">
+      <mat-label>Тема</mat-label>
+      <input matInput [ngModel]="appearance().theme" (ngModelChange)="updateTheme($event)" />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Размер шрифта</mat-label>
+      <mat-select [ngModel]="appearance().fontSize" (ngModelChange)="updateFontSize($event)">
+        <mat-option value="sm">Маленький</mat-option>
+        <mat-option value="md">Средний</mat-option>
+        <mat-option value="lg">Большой</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+</section>

@@ -1,0 +1,56 @@
+.card-form {
+  display: grid;
+  gap: 1.5rem;
+
+  @media (min-width: 56rem) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'fields preview';
+    align-items: start;
+  }
+}
+
+.card-form__fields {
+  display: grid;
+  gap: 1rem;
+
+  @media (min-width: 56rem) {
+    grid-area: fields;
+  }
+}
+
+.card-form__options h3,
+.card-form__pairs h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.card-form__option-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+.card-form__option-row--no-radio {
+  grid-template-columns: 1fr auto;
+}
+
+.card-form__option-field {
+  width: 100%;
+}
+
+.card-form__pair-row {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 1fr 1fr auto;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
+
+app-card-preview {
+  @media (min-width: 56rem) {
+    grid-area: preview;
+  }
+}

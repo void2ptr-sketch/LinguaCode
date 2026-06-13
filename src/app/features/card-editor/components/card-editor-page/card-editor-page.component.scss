@@ -1,0 +1,60 @@
+.card-editor-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card-editor-page__header h1 {
+  margin: 0 0 0.5rem;
+}
+
+.card-editor-page__header p {
+  margin: 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.card-editor-page__layout {
+  display: grid;
+  gap: 1.5rem;
+  grid-template-areas:
+    'list'
+    'editor';
+
+  @media (min-width: 64rem) {
+    grid-template-columns: minmax(18rem, 22rem) 1fr;
+    grid-template-areas: 'list editor';
+    align-items: start;
+  }
+}
+
+.card-editor-page__list {
+  grid-area: list;
+}
+
+.card-editor-page__editor {
+  grid-area: editor;
+}
+
+.card-editor-page__item-actions {
+  display: inline-flex;
+  gap: 0.25rem;
+}
+
+.card-editor-page__empty {
+  margin: 0;
+}
+
+.card-editor-page__error {
+  margin: 0 0 1rem;
+  color: var(--mat-sys-error);
+}
+
+.card-editor-page__state {
+  display: grid;
+  justify-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.card-editor-page__message {
+  max-width: 40rem;
+}
