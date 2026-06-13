@@ -1,0 +1,18 @@
+<mat-card class="home-sections-tab">
+  <mat-card-header>
+    <mat-card-title>Разделы приложения</mat-card-title>
+    <mat-card-subtitle>Быстрый переход к основным экранам</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <mat-nav-list aria-label="Разделы приложения">
+      @for (section of sections; track section.path) {
+        <a mat-list-item [routerLink]="section.path">
+          <mat-icon matListItemIcon>{{ section.icon }}</mat-icon>
+          <span matListItemTitle>{{ section.label }}</span>
+          <span matListItemLine>{{ section.description }}</span>
+        </a>
+      }
+    </mat-nav-list>
+  </mat-card-content>
+</mat-card>
