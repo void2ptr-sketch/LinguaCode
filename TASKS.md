@@ -73,10 +73,10 @@
 
 ### Конструктор сценариев
 
-- Фича `features/scenario-builder/`
-- Маршрут `/tools/scenario-builder`
-- Точка входа — `menu-tools` в header
-- CRUD сценариев (`Scenario`: title, description, cardIds)
+- [x] Фича `features/scenario-builder/`
+- [x] Маршрут `/tools/scenario-builder`
+- [x] Точка входа — `menu-tools` в header
+- [x] CRUD сценариев (`Scenario`: title, description, cardIds)
 
 ### Типы карточек
 
