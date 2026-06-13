@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { UserStore } from '../../state';
 
 @Component({
   selector: 'app-menu-user',
@@ -9,4 +10,6 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './menu-user.component.html',
   styleUrl: './menu-user.component.scss',
 })
-export class MenuUserComponent {}
+export class MenuUserComponent {
+  readonly displayName = inject(UserStore).displayName;
+}
