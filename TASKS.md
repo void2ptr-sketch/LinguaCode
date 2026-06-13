@@ -404,6 +404,52 @@
 - [ ] zh: IPA с контурами тонов Chao; цепочка pinyin → IPA
 - [ ] `keyboard`: свободный ввод IPA
 
+**G11 — уроки и курсы (Lesson, Course)**
+
+План: [docs/DOMAIN.md](./docs/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
+
+**G11a — домен и типы**
+
+- [ ] `Lesson`, `Course` в `core/models/` (`lesson.types.ts`, `course.types.ts` или общий файл)
+- [ ] `Course.languagePair: LanguagePair` — фильтр и валидация при создании
+- [ ] `Lesson.scenarioIds` — порядок сценариев; сценарий может входить в несколько уроков (опц.)
+- [ ] `LearningResult.lessonId?`, `courseId?` — для прогресса по уроку/курсу
+- [ ] DOMAIN.md синхронизирован с кодом
+
+**G11b — хранение и API**
+
+- [ ] Repository / fixtures: `public/data/courses.json`, `lessons.json` (или вложенная структура)
+- [ ] CRUD курса и урока (localStorage MVP, как сценарии)
+- [ ] Индекс / поиск курсов по `languagePair` (аналог `ScenarioIndexEntry`)
+- [ ] Каскад: удаление курса не ломает сценарии и `LearningResult` (как G5 для карточек)
+
+**G11c — конструктор и каталог**
+
+- [ ] Фича `features/course-builder/` или расширение scenario-builder
+- [ ] Маршрут `/tools/courses` (или вкладка в tools)
+- [ ] CRUD курса: title, description, `languagePair`, список уроков
+- [ ] CRUD урока: title, упорядоченный список `scenarioIds` (picker с G8 scope)
+- [ ] Preview: прохождение урока = цепочка сценариев
+
+**G11d — обучение и прогресс**
+
+- [ ] `/cards/select` (или новый маршрут): выбор курса → урока → сценария
+- [ ] Прогресс по уроку (% сценариев / карточек)
+- [ ] Прогресс по курсу (агрегация уроков)
+- [ ] Фильтр списков по активной `LanguagePair` (G8)
+
+**G11e — терминология UI**
+
+- [ ] Переименовать chip «Курс: …» → «Пара: …» (активная `LanguagePair`)
+- [ ] «Курс» в UI — только для сущности `Course`
+- [ ] Обновить LANGUAGE-PAIR.md / подсказки в каталоге
+
+**G11f — опционально**
+
+- [ ] Публикация курсов (`published`); каталог готовых программ
+- [ ] Prerequisites между уроками
+- [ ] Сертификат / badge по завершению курса
+
 ### Прогон одной карточки (try dialog)
 
 - [x] `SingleCardPlayStore` — state одной карточки (reuse card-answer.utils)
