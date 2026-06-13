@@ -292,29 +292,29 @@
 
 **G8a — каталог карточек**
 
-- [ ] `/tools/cards`: `CardCatalogSearchStore.applyLanguagePair()` на init из `UserStore.languagePair()`
-- [ ] Reload каталога при смене `activeLanguagePairId`
-- [ ] `clearFilters()` не сбрасывает locked pair (known/learning остаются активными)
-- [ ] UI: chip «Курс: …» или read-only фильтры языка (режим `pairLocked`)
+- [x] `/tools/cards`: `CardCatalogSearchStore.applyLanguagePair()` на init из `UserStore.languagePair()`
+- [x] Reload каталога при смене `activeLanguagePairId`
+- [x] `clearFilters()` не сбрасывает locked pair (known/learning остаются активными)
+- [x] UI: chip «Курс: …» или read-only фильтры языка (режим `pairLocked`)
 
 **G8b — pickers в конструкторе**
 
-- [ ] `ScenarioCardPicker` — prefill + scope active pair на init
-- [ ] `ScenarioCardCriteriaEditor` — всегда держать known/learning активной пары
-- [ ] Reload picker при смене активной пары
+- [x] `ScenarioCardPicker` — prefill + scope active pair на init
+- [x] `ScenarioCardCriteriaEditor` — всегда держать known/learning активной пары
+- [x] Reload picker при смене активной пары
 
 **G8c — список сценариев**
 
-- [ ] `ScenarioBuilderStore.loadList()` — фильтр по активной паре
-- [ ] `ScenarioSearchCriteria`: `knownLanguage` + `learningLanguage` (или `languagePair`)
-- [ ] Mock handler + API: server-side filter (корректная пагинация)
-- [ ] Заменить/дополнить client-only filter по `languagePairSummary` в `ScenarioPicker`
+- [x] `ScenarioBuilderStore.loadList()` — фильтр по активной паре
+- [x] `ScenarioSearchCriteria`: `knownLanguage` + `learningLanguage` (или `languagePair`)
+- [x] Mock handler + API: server-side filter (корректная пагинация)
+- [x] Заменить/дополнить client-only filter по `languagePairSummary` в `ScenarioPicker`
 
 **G8d — согласованность и edge cases**
 
-- [ ] Смена пары на `/tools/*` — reload открытых списков (как G7d для card-select)
-- [ ] Legacy `Scenario` без `languagePair` — правило: скрыть в strict mode или badge «без пары»
-- [ ] (опц.) Try dialog — проверка index entry vs active pair
+- [x] Смена пары на `/tools/*` — reload открытых списков (как G7d для card-select)
+- [x] Legacy `Scenario` без `languagePair` — правило: скрыть в strict mode или badge «без пары»
+- [x] (опц.) Try dialog — проверка index entry vs active pair
 - [ ] (опц.) `UserPreferences.showAllLanguagePairs` — режим автора (снять lock)
 
 ### Прогон одной карточки (try dialog)

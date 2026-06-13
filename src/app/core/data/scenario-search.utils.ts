@@ -1,4 +1,5 @@
 import type { ScenarioIndexEntry, ScenarioSearchCriteria } from '../models';
+import { scenarioIndexMatchesLanguageCriteria } from './language-pair-scope.utils';
 
 export function filterScenarioIndex(
   entries: readonly ScenarioIndexEntry[],
@@ -37,6 +38,16 @@ export function matchesScenarioIndexEntry(
     if (!haystack.includes(query)) {
       return false;
     }
+  }
+
+  if (
+    !scenarioIndexMatchesLanguageCriteria(
+      entry,
+      criteria.knownLanguage,
+      criteria.learningLanguage,
+    )
+  ) {
+    return false;
   }
 
   return true;

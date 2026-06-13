@@ -21,6 +21,8 @@ const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
   { value: 'random', label: 'Случайно' },
 ];
 
+let lastKnownCriteriaEditorActiveLanguagePairId: string | null = null;
+
 @Component({
   selector: 'app-scenario-card-criteria-editor',
   imports: [
@@ -65,22 +67,38 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
       this.criteriaChange.emit(nextCriteria);
       void this.refreshPreview(nextCriteria);
     });
+
+    effect(() => {
+      if (!this.initialized()) {
+        return;
+      }
+
+      const activeId = this.userStore.activeLanguagePairId();
+      const pair = this.userStore.languagePair();
+
+      if (
+        lastKnownCriteriaEditorActiveLanguagePairId !== null &&
+        lastKnownCriteriaEditorActiveLanguagePairId !== activeId
+      ) {
+        this.store.applyLanguagePair(pair.known, pair.learning);
+      }
+
+      lastKnownCriteriaEditorActiveLanguagePairId = activeId;
+    });
   }
 
   async ngOnInit(): Promise<void> {
+    const pair = this.userStore.languagePair();
     const initial = this.criteria();
     const hasLanguageFilters = Boolean(initial.knownLanguage || initial.learningLanguage);
+
     if (!hasLanguageFilters) {
-      const pair = this.userStore.languagePair();
-      this.applyCriteria({
-        ...initial,
-        knownLanguage: pair.known,
-        learningLanguage: pair.learning,
-      });
+      this.applyActivePairCriteria(pair.known, pair.learning, initial);
     } else {
       this.applyCriteria(initial);
     }
 
+    this.store.pairLocked.set(true);
     await this.store.init();
     this.initialized.set(true);
     void this.refreshPreview(this.readCriteriaFromStore());
@@ -104,6 +122,19 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   onSeedInput(value: string): void {
     this.seedChange.emit(value);
     void this.refreshPreview(this.readCriteriaFromStore());
+  }
+
+  private applyActivePairCriteria(
+    known: import('../../core/models').ContentLanguage,
+    learning: import('../../core/models').ContentLanguage,
+    base?: Omit<CardSearchCriteria, 'page'>,
+  ): void {
+    const initial = base ?? this.criteria();
+    this.applyCriteria({
+      ...initial,
+      knownLanguage: known,
+      learningLanguage: learning,
+    });
   }
 
   private applyCriteria(criteria: Omit<CardSearchCriteria, 'page'>): void {

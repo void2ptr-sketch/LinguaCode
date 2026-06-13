@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -15,6 +15,8 @@ import { UiPaginationComponent } from '../../../../shared/pagination';
 import { UserStore } from '../../../../core/state';
 import { ScenarioBuilderDialogService } from '../scenario-builder-dialog/scenario-builder-dialog.service';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
+
+let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-scenario-builder-page',
@@ -37,6 +39,19 @@ export class ScenarioBuilderPageComponent implements OnInit {
   readonly store = inject(ScenarioBuilderStore);
   readonly userStore = inject(UserStore);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
+
+  private readonly reloadOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+
+    if (
+      lastKnownScenarioBuilderActiveLanguagePairId !== null &&
+      lastKnownScenarioBuilderActiveLanguagePairId !== activeId
+    ) {
+      void this.store.loadList();
+    }
+
+    lastKnownScenarioBuilderActiveLanguagePairId = activeId;
+  });
 
   async ngOnInit(): Promise<void> {
     await this.store.load();

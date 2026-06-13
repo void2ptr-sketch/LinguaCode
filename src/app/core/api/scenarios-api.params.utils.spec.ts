@@ -7,6 +7,8 @@ describe('scenarios-api.params.utils', () => {
     const criteria = {
       query: 'demo',
       scope: 'published' as const,
+      knownLanguage: 'ru' as const,
+      learningLanguage: 'en' as const,
       page: { page: 1, pageSize: 25 },
     };
 
@@ -15,6 +17,8 @@ describe('scenarios-api.params.utils', () => {
 
     expect(parsed.query).toBe('demo');
     expect(parsed.scope).toBe('published');
+    expect(parsed.knownLanguage).toBe('ru');
+    expect(parsed.learningLanguage).toBe('en');
     expect(parsed.page.page).toBe(1);
     expect(parsed.page.pageSize).toBe(25);
   });

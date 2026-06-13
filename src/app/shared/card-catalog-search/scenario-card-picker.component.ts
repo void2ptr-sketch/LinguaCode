@@ -1,9 +1,10 @@
-import { Component, inject, input, OnInit, output } from '@angular/core';
+import { Component, effect, inject, input, OnInit, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../pagination';
 import { formatIndexLanguagePair } from '../../core/data/language-pair.utils';
+import { UserStore } from '../../core/state';
 import {
   CARD_KIND_LABELS,
   CONTENT_LANGUAGE_LABELS,
@@ -11,6 +12,8 @@ import {
 } from './catalog-labels';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
+
+let lastKnownPickerActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-scenario-card-picker',
@@ -25,6 +28,7 @@ import { CardCatalogSearchStore } from './card-catalog-search.store';
 })
 export class ScenarioCardPickerComponent implements OnInit {
   readonly store = inject(CardCatalogSearchStore);
+  private readonly userStore = inject(UserStore);
 
   readonly selectedIds = input.required<readonly string[]>();
   readonly selectedIdsChange = output<readonly string[]>();
@@ -34,8 +38,23 @@ export class ScenarioCardPickerComponent implements OnInit {
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly formatIndexLanguagePair = formatIndexLanguagePair;
 
+  private readonly reloadOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+    const pair = this.userStore.languagePair();
+
+    if (
+      lastKnownPickerActiveLanguagePairId !== null &&
+      lastKnownPickerActiveLanguagePairId !== activeId
+    ) {
+      void this.store.initWithActivePair(pair.known, pair.learning);
+    }
+
+    lastKnownPickerActiveLanguagePairId = activeId;
+  });
+
   async ngOnInit(): Promise<void> {
-    await this.store.init();
+    const pair = this.userStore.languagePair();
+    await this.store.initWithActivePair(pair.known, pair.learning);
   }
 
   isSelected(cardId: string): boolean {

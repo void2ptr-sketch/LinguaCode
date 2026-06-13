@@ -1,5 +1,6 @@
 import type { PageResponse } from '../../shared/pagination';
 
+import type { ContentLanguage } from './card-index.types';
 import type { ScenarioCardSourceMode } from './scenario-card-source.types';
 
 export type ScenarioIndexEntry = {
@@ -20,6 +21,8 @@ export type ScenarioSearchCriteria = {
   authorId?: string;
   scope?: ScenarioListScope;
   cardSourceMode?: ScenarioCardSourceMode;
+  knownLanguage?: ContentLanguage;
+  learningLanguage?: ContentLanguage;
   page: import('../../shared/pagination').PageRequest;
 };
 
