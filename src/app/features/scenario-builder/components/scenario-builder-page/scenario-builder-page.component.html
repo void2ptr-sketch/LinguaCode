@@ -1,8 +1,143 @@
-<mat-card class="page-card">
-  <mat-card-header>
-    <mat-card-title>Конструктор сценариев</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Раздел в бэклоге. Здесь можно будет создавать и редактировать сценарии обучения.</p>
-  </mat-card-content>
-</mat-card>
+<section class="scenario-builder-page">
+  <header class="scenario-builder-page__header">
+    <h1>Конструктор сценариев</h1>
+    <p>Создавайте и редактируйте сценарии обучения из доступных карточек.</p>
+  </header>
+
+  @if (store.loading()) {
+    <div class="scenario-builder-page__state">
+      <mat-spinner diameter="40" />
+      <p>Загрузка…</p>
+    </div>
+  } @else if (store.error() && store.editorMode() === 'list') {
+    <mat-card class="scenario-builder-page__message">
+      <mat-card-content>{{ store.error() }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="store.load()">Повторить</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else {
+    <div class="scenario-builder-page__layout">
+      <mat-card class="scenario-builder-page__list">
+        <mat-card-header>
+          <mat-card-title>Сценарии</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+          @if (store.scenarios().length === 0) {
+            <p class="scenario-builder-page__empty">Сценариев пока нет.</p>
+          } @else {
+            <mat-list>
+              @for (scenario of store.scenarios(); track scenario.id) {
+                <mat-list-item class="scenario-builder-page__item">
+                  <div matListItemTitle>{{ scenario.title }}</div>
+                  <div matListItemLine>{{ scenario.description || 'Без описания' }}</div>
+                  <div matListItemMeta class="scenario-builder-page__item-actions">
+                    <span>{{ scenario.cardIds.length }} карточек</span>
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Редактировать"
+                      (click)="startEdit(scenario.id)"
+                    >
+                      <mat-icon>edit</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Удалить"
+                      (click)="deleteScenario(scenario.id)"
+                    >
+                      <mat-icon>delete</mat-icon>
+                    </button>
+                  </div>
+                </mat-list-item>
+              }
+            </mat-list>
+          }
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <button mat-flat-button type="button" (click)="startCreate()">Создать сценарий</button>
+        </mat-card-actions>
+      </mat-card>
+
+      @if (store.editorMode() !== 'list') {
+        <mat-card class="scenario-builder-page__editor">
+          <mat-card-header>
+            <mat-card-title>
+              @if (store.editorMode() === 'create') {
+                Новый сценарий
+              } @else {
+                Редактирование
+              }
+            </mat-card-title>
+          </mat-card-header>
+
+          <mat-card-content class="scenario-builder-page__form">
+            @if (store.error()) {
+              <p class="scenario-builder-page__error">{{ store.error() }}</p>
+            }
+
+            <mat-form-field appearance="outline">
+              <mat-label>Название</mat-label>
+              <input matInput [ngModel]="titleDraft()" (ngModelChange)="titleDraft.set($event)" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Описание</mat-label>
+              <textarea
+                matInput
+                rows="3"
+                [ngModel]="descriptionDraft()"
+                (ngModelChange)="descriptionDraft.set($event)"
+              ></textarea>
+            </mat-form-field>
+
+            <section class="scenario-builder-page__cards">
+              <h2>Карточки</h2>
+              <mat-list>
+                @for (card of store.catalog(); track card.id) {
+                  <mat-list-item>
+                    <mat-checkbox
+                      [checked]="isCardSelected(card.id)"
+                      (change)="toggleCard(card.id, $event.checked)"
+                    >
+                      {{ card.title }} ({{ card.kind }})
+                    </mat-checkbox>
+                  </mat-list-item>
+                }
+              </mat-list>
+            </section>
+
+            @if (cardIdsDraft().length > 0) {
+              <section class="scenario-builder-page__order">
+                <h2>Порядок карточек</h2>
+                <mat-list>
+                  @for (cardId of cardIdsDraft(); track cardId) {
+                    <mat-list-item>
+                      <span matListItemTitle>{{ store.cardTitle(cardId) }}</span>
+                      <div matListItemMeta class="scenario-builder-page__order-actions">
+                        <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
+                          <mat-icon>arrow_upward</mat-icon>
+                        </button>
+                        <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
+                          <mat-icon>arrow_downward</mat-icon>
+                        </button>
+                      </div>
+                    </mat-list-item>
+                  }
+                </mat-list>
+              </section>
+            }
+          </mat-card-content>
+
+          <mat-card-actions align="end">
+            <button mat-button type="button" (click)="cancelEdit()">Отмена</button>
+            <button mat-flat-button type="button" (click)="saveScenario()">Сохранить</button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</section>

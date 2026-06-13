@@ -1,0 +1,7 @@
+{
+  "cards": [
+    { "id": "select-1", "kind": "select", "title": "Приветствие" },
+    { "id": "select-2", "kind": "select", "title": "Числа" },
+    { "id": "select-3", "kind": "select", "title": "Прощание" }
+  ]
+}
