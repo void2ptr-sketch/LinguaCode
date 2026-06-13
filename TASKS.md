@@ -49,8 +49,8 @@
 
 ### После MVP
 
-- Настроить `HttpClient` и interceptors (auth, ошибки) в `core/api/`
-- Описать типы ответов API
+- [x] Настроить `HttpClient` и interceptors (auth, ошибки) в `core/api/`
+- [x] Описать типы ответов API
 
 ## 6. Безопасность
 
