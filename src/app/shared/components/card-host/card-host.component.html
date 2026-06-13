@@ -1,0 +1,81 @@
+@if (card(); as current) {
+  @switch (current.kind) {
+    @case ('select') {
+      <app-select-card
+        [card]="current"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('memory') {
+      <app-memory-card
+        [card]="current"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (memoryComplete)="memoryCompleteChange.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('symbol') {
+      <app-symbol-card
+        [card]="current"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('sound') {
+      <app-sound-card
+        [card]="current"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('timed') {
+      <app-timed-card
+        [card]="current"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (timeExpired)="timeExpired.emit()"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('keyboard') {
+      <app-keyboard-card
+        [card]="current"
+        [answerText]="answerText()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (answerTextChange)="answerTextChange.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('draw') {
+      <app-draw-card
+        [card]="current"
+        [drawSubmitted]="drawSubmitted()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (drawSubmittedChange)="drawSubmittedChange.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+  }
+}

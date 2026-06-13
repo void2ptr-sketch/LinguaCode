@@ -2,15 +2,15 @@ import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { CardHostComponent } from '../../../../shared/components/card-host';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { getApiErrorMessage } from '../../../../core/api';
-import { CardSelectCardComponent } from '../card-select-card/card-select-card.component';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
 
 @Component({
   selector: 'app-card-select-page',
-  imports: [MatCardModule, MatButtonModule, MatProgressSpinnerModule, CardSelectCardComponent],
+  imports: [MatCardModule, MatButtonModule, MatProgressSpinnerModule, CardHostComponent],
   templateUrl: './card-select-page.component.html',
   styleUrl: './card-select-page.component.scss',
 })
@@ -40,6 +40,22 @@ export class CardSelectPageComponent implements OnInit {
 
   selectOption(index: number): void {
     this.store.selectOption(index);
+  }
+
+  setAnswerText(value: string): void {
+    this.store.setAnswerText(value);
+  }
+
+  setMemoryComplete(value: boolean): void {
+    this.store.setMemoryComplete(value);
+  }
+
+  setDrawSubmitted(value: boolean): void {
+    this.store.setDrawSubmitted(value);
+  }
+
+  handleTimeExpired(): void {
+    this.store.handleTimeExpired();
   }
 
   checkAnswer(): void {

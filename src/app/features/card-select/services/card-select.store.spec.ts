@@ -1,7 +1,7 @@
-import { SelectCard } from '../../../core/models';
+import { Card } from '../../../core/models';
 import { CardSelectStore } from './card-select.store';
 
-const CARDS: readonly SelectCard[] = [
+const CARDS: readonly Card[] = [
   {
     id: 'c1',
     kind: 'select',
@@ -13,12 +13,11 @@ const CARDS: readonly SelectCard[] = [
   },
   {
     id: 'c2',
-    kind: 'select',
+    kind: 'keyboard',
     title: 'Test 2',
     appearance: { theme: 'azure-blue', fontSize: 'md' },
-    question: 'Q2?',
-    options: ['X', 'Y'],
-    correctIndex: 1,
+    prompt: 'Type hi',
+    acceptedAnswers: ['hi'],
   },
 ];
 
@@ -35,7 +34,7 @@ describe('CardSelectStore', () => {
     expect(store.progressLabel()).toBe('1 / 2');
   });
 
-  it('should check answer and move to next card', () => {
+  it('should check select answer and move to next card', () => {
     store.selectOption(0);
     expect(store.checkAnswer()).toBeTrue();
     expect(store.feedback()).toBe('correct');
@@ -45,9 +44,17 @@ describe('CardSelectStore', () => {
     expect(store.feedback()).toBeNull();
   });
 
+  it('should check keyboard answer', () => {
+    store.selectOption(0);
+    store.checkAnswer();
+    store.nextCard();
+    store.setAnswerText('hi');
+    expect(store.checkAnswer()).toBeTrue();
+  });
+
   it('should complete scenario on last card', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(1);
+    store.selectOption(0);
     store.checkAnswer();
     store.nextCard();
 

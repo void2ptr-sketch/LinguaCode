@@ -2,6 +2,12 @@
   "cards": [
     { "id": "select-1", "kind": "select", "title": "Приветствие" },
     { "id": "select-2", "kind": "select", "title": "Числа" },
-    { "id": "select-3", "kind": "select", "title": "Прощание" }
+    { "id": "select-3", "kind": "select", "title": "Прощание" },
+    { "id": "memory-1", "kind": "memory", "title": "Пары слов" },
+    { "id": "symbol-1", "kind": "symbol", "title": "Символы" },
+    { "id": "sound-1", "kind": "sound", "title": "Звук" },
+    { "id": "timed-1", "kind": "timed", "title": "На время" },
+    { "id": "keyboard-1", "kind": "keyboard", "title": "Ввод с клавиатуры" },
+    { "id": "draw-1", "kind": "draw", "title": "Рисование" }
   ]
 }

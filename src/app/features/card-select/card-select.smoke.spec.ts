@@ -50,7 +50,7 @@ describe('Card select smoke', () => {
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Карточки с выбором ответа');
+    expect(text).toContain('Карточки обучения');
     expect(text).toContain('Как сказать «Привет» по-английски?');
     expect(text).toContain('Hello');
   });
