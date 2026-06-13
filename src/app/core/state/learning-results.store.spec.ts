@@ -1,21 +1,35 @@
+import { TestBed } from '@angular/core/testing';
+import { LEARNING_RESULTS_STORAGE_KEY, LearningResultsPersistence } from './learning-results.persistence';
 import { LearningResultsStore } from './learning-results.store';
+import { UserStore } from './user.store';
 
 describe('LearningResultsStore', () => {
   let store: LearningResultsStore;
 
   beforeEach(() => {
-    store = new LearningResultsStore();
+    localStorage.clear();
+
+    TestBed.configureTestingModule({
+      providers: [LearningResultsStore, LearningResultsPersistence, UserStore],
+    });
+
+    store = TestBed.inject(LearningResultsStore);
+  });
+
+  afterEach(() => {
+    localStorage.clear();
   });
 
   it('should start with empty results', () => {
     expect(store.totalCount()).toBe(0);
     expect(store.correctCount()).toBe(0);
+    expect(store.accuracyPercent()).toBe(0);
   });
 
-  it('should add and filter results', () => {
+  it('should add, persist, and filter results for current user', () => {
     store.addResult({
       id: '1',
-      userId: 'u1',
+      userId: 'local-user',
       cardId: 'c1',
       scenarioId: 's1',
       correct: true,
@@ -23,29 +37,63 @@ describe('LearningResultsStore', () => {
     });
     store.addResult({
       id: '2',
-      userId: 'u1',
+      userId: 'other-user',
       cardId: 'c2',
       scenarioId: 's2',
       correct: false,
       answeredAt: '2026-06-13T12:01:00.000Z',
     });
 
-    expect(store.totalCount()).toBe(2);
+    expect(store.totalCount()).toBe(1);
     expect(store.correctCount()).toBe(1);
+    expect(store.accuracyPercent()).toBe(100);
+    expect(localStorage.getItem(LEARNING_RESULTS_STORAGE_KEY)).toContain('local-user');
     expect(store.resultsForScenario('s1').length).toBe(1);
   });
 
-  it('should clear results', () => {
+  it('should expose recent and scenario progress summaries', () => {
     store.addResult({
       id: '1',
-      userId: 'u1',
+      userId: 'local-user',
       cardId: 'c1',
       scenarioId: 's1',
       correct: true,
       answeredAt: '2026-06-13T12:00:00.000Z',
     });
+    store.addResult({
+      id: '2',
+      userId: 'local-user',
+      cardId: 'c2',
+      scenarioId: 's1',
+      correct: false,
+      answeredAt: '2026-06-13T12:02:00.000Z',
+    });
+
+    expect(store.recentResults().length).toBe(2);
+    expect(store.scenarioProgress()).toEqual([{ scenarioId: 's1', total: 2, correct: 1 }]);
+  });
+
+  it('should clear only current user results', () => {
+    store.addResult({
+      id: '1',
+      userId: 'local-user',
+      cardId: 'c1',
+      scenarioId: 's1',
+      correct: true,
+      answeredAt: '2026-06-13T12:00:00.000Z',
+    });
+    store.addResult({
+      id: '2',
+      userId: 'other-user',
+      cardId: 'c2',
+      scenarioId: 's2',
+      correct: false,
+      answeredAt: '2026-06-13T12:01:00.000Z',
+    });
 
     store.clear();
+
     expect(store.totalCount()).toBe(0);
+    expect(store.results().length).toBe(1);
   });
 });

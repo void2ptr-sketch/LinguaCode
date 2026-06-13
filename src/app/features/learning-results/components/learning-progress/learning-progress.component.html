@@ -1,0 +1,60 @@
+<section class="learning-progress">
+  <mat-card class="learning-progress__summary">
+    <mat-card-header>
+      <mat-card-title>Прогресс обучения</mat-card-title>
+      <mat-card-subtitle>{{ correctResults() }} верных из {{ totalResults() }}</mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+      @if (totalResults() === 0) {
+        <p class="learning-progress__empty">Пройдите карточки, чтобы увидеть результаты.</p>
+      } @else {
+        <p class="learning-progress__accuracy">Точность: {{ accuracyPercent() }}%</p>
+        <mat-progress-bar mode="determinate" [value]="accuracyPercent()" />
+      }
+    </mat-card-content>
+
+    @if (totalResults() > 0) {
+      <mat-card-actions align="end">
+        <button mat-button type="button" (click)="clearResults()">Очистить мои результаты</button>
+      </mat-card-actions>
+    }
+  </mat-card>
+
+  @if (scenarioProgress().length > 0) {
+    <mat-card class="learning-progress__scenarios">
+      <mat-card-header>
+        <mat-card-title>По сценариям</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          @for (item of scenarioProgress(); track item.scenarioId) {
+            <mat-list-item>
+              <span matListItemTitle>{{ scenarioLabel(item.scenarioId) }}</span>
+              <span matListItemLine>{{ item.correct }} / {{ item.total }} верных</span>
+            </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  }
+
+  @if (recentResults().length > 0) {
+    <mat-card class="learning-progress__recent">
+      <mat-card-header>
+        <mat-card-title>Последние ответы</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-list>
+          @for (result of recentResults(); track result.id) {
+            <mat-list-item>
+              <mat-icon matListItemIcon>{{ result.correct ? 'check_circle' : 'cancel' }}</mat-icon>
+              <span matListItemTitle>{{ scenarioLabel(result.scenarioId) }} · {{ result.cardId }}</span>
+              <span matListItemLine>{{ formatDate(result.answeredAt) }}</span>
+            </mat-list-item>
+          }
+        </mat-list>
+      </mat-card-content>
+    </mat-card>
+  }
+</section>

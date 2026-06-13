@@ -1,0 +1,19 @@
+.learning-progress {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.learning-progress__summary,
+.learning-progress__scenarios,
+.learning-progress__recent {
+  max-width: 40rem;
+}
+
+.learning-progress__empty,
+.learning-progress__accuracy {
+  margin: 0 0 0.75rem;
+}
+
+.learning-progress__accuracy {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
