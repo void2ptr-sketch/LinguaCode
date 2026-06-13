@@ -8,6 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
+    "audit": "npm audit --audit-level=high",
     "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\""
   },
   "private": true,
