@@ -1,8 +1,16 @@
 .home-page {
   display: grid;
+  grid-template-areas:
+    'tabs'
+    'panel';
   gap: 1.5rem;
 }
 
-.page-card {
+.home-page__tabs {
+  grid-area: tabs;
   max-width: 40rem;
+}
+
+.home-page__panel {
+  grid-area: panel;
 }
