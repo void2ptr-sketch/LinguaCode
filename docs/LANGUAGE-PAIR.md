@@ -31,13 +31,109 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 | Элемент | Путь / API |
 |---------|------------|
-| Тип | `UserPreferences.languagePair: LanguagePair` |
-| Default | `{ known: 'ru', learning: 'en' }` |
+| Тип (сейчас) | `UserPreferences.languagePair: LanguagePair` |
+| Тип (G7) | `languagePairs: UserLanguagePairEntry[]` + `activeLanguagePairId` |
+| Default | `{ known: 'ru', learning: 'en' }` — одна запись в списке |
 | Store | `UserStore.languagePair`, `languagePairLabel`, `updateLanguagePair()` |
 | Persist | `localStorage` · `lingua-code.user` |
-| UI | `/user` — селекты «Известный» / «Новый» |
+| UI | `/user` — селекты «Известный» / «Новый» (G7: список пар + add/remove/set active) |
 
 Подпись пары: `formatLanguagePair()` → «Русский → English».
+
+## G7 — несколько пар, одна активная (черновик)
+
+> **Статус:** бэклог · см. [TASKS.md](../TASKS.md) (G7a–G7d).
+
+Пользователь может изучать **несколько** языковых пар (например ru→en и ru→zh), но в любой момент **ровно одна** пара **активна**. Активная пара определяет фильтрацию сценариев, prefill в редакторах, подпись на `/cards/select` и агрегаты прогресса.
+
+### Модель (план)
+
+```typescript
+type UserLanguagePairEntry = {
+  id: string;           // стабильный UUID
+  pair: LanguagePair;
+  createdAt: string;    // ISO
+};
+
+type UserPreferences = CardAppearance & {
+  languagePairs: readonly UserLanguagePairEntry[];
+  activeLanguagePairId: string;
+};
+```
+
+**Правила:**
+
+| Правило | Поведение |
+|---------|-----------|
+| Уникальность | Одна запись на комбинацию `{ known, learning }` |
+| `known === learning` | Запрещено (как в G1) |
+| Минимум пар | Нельзя удалить последнюю |
+| Удаление активной | Активировать первую оставшуюся |
+| Добавление существующей | Не дублировать; сделать существующую активной |
+
+### Store (план)
+
+`UserStore.languagePair()` остаётся **computed активной пары** — потребители G2–G5 (card-select, card-editor, scenario-builder, learning-results) не меняют контракт:
+
+```typescript
+readonly languagePair = computed(() => this.activeEntry().pair);
+
+addLanguagePair(pair: LanguagePair): void;
+removeLanguagePair(id: string): void;
+setActiveLanguagePair(id: string): void;
+```
+
+### Что уже готово (G2–G5)
+
+| Компонент | Готовность |
+|-----------|------------|
+| `LearningResult.languagePair` на каждый ответ | ✅ история не теряется при переключении |
+| `Scenario.languagePair`, каталог `knownLanguage` / `learningLanguage` | ✅ контент pair-aware |
+| Фильтр сценариев / stats по `UserStore.languagePair()` | ✅ работает для активной пары |
+
+### UI (план)
+
+| Экран | G7 |
+|-------|-----|
+| `/user` | Список пар, add/remove, «сделать активной» |
+| `/cards/select` или header | Quick switcher активной пары |
+| Главная / прогресс | MVP: только активная пара; опционально — все пары |
+
+### Сессия
+
+При смене активной пары — сброс `CardSelectStore` (текущая карточка, direction toggle). Опционально: confirm «Сменить пару? Сессия будет прервана».
+
+### Миграция persist
+
+```typescript
+// user.persistence.ts — normalize legacy
+if ('languagePair' in prefs && !('languagePairs' in prefs)) {
+  const id = crypto.randomUUID();
+  return {
+    ...prefs,
+    languagePairs: [{ id, pair: normalizeLanguagePair(prefs.languagePair), createdAt: now }],
+    activeLanguagePairId: id,
+  };
+}
+```
+
+### Этапы G7
+
+| Шаг | Содержание |
+|-----|------------|
+| G7.1 | Типы + persist + миграция |
+| G7.2 | `UserStore` (add/remove/setActive, alias `languagePair`) |
+| G7.3 | UI `/user` |
+| G7.4 | Quick switcher + сброс сессии |
+| G7.5 | (опционально) прогресс по всем парам |
+
+### Отличие от UiLocale (G6)
+
+| | Language pairs (G7) | UiLocale (G6) |
+|--|---------------------|---------------|
+| Что меняет | Контент карточек / курс | Язык интерфейса |
+| Множественность | Несколько пар, одна активна | Один язык UI |
+| Пример | ru→en + ru→zh, UI на русском | Кнопки и меню на EN/ZH |
 
 ## Обучение (G1)
 
@@ -77,6 +173,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G3 | Index/search по паре; редактор — поля языка | готово |
 | G4 | `Scenario.languagePair` + валидация в builder | готово |
 | G5 | Render по direction; `LearningResult` + pair | готово |
+| G7 | Несколько пар в профиле, одна активная | черновик |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
 
 ## G2+ — детали бэклога
@@ -114,16 +211,26 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G5.2 | `LearningResult` + pair context |
 | G5.3 | Filter scenarios by user pair |
 
+### G7 — multi-pair profile
+
+| Шаг | Содержание |
+|-----|------------|
+| G7.1 | `UserLanguagePairEntry`, persist, migration |
+| G7.2 | `UserStore` add/remove/setActive; `languagePair` as active alias |
+| G7.3 | UI `/user` — list, add, remove, set active |
+| G7.4 | Quick switcher; reset session on pair change |
+| G7.5 | (опционально) progress across all pairs |
+
 ## Связанные пути в коде
 
 ```
 src/app/core/models/language-pair.types.ts
-src/app/core/models/card-index.types.ts          # language = learning
-src/app/core/models/user.types.ts                # UserPreferences
+src/app/core/models/user.types.ts                # UserPreferences (G7: languagePairs)
+src/app/core/models/card-index.types.ts
 src/app/core/data/language-pair.utils.ts
 src/app/core/state/user.store.ts
-src/app/core/state/user.persistence.ts
+src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
 src/app/core/layout/pages/user-page/
 src/app/features/card-select/components/card-select-page/
-public/data/select-cards.json                    # миграция на G2
+public/data/select-cards.json
 ```
