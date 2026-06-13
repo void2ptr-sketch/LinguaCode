@@ -18,8 +18,9 @@ type NavItem = {
 export class NavigationComponent {
   readonly items: readonly NavItem[] = [
     { label: 'Главная', path: '/home', icon: 'home' },
-    { label: 'Карточки', path: '/cards/select', icon: 'style' },
-    { label: 'Инструменты', path: '/tools/scenario-builder', icon: 'build' },
+    { label: 'Обучение', path: '/cards/select', icon: 'school' },
+    { label: 'Карточки', path: '/tools/cards', icon: 'style' },
+    { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list' },
     { label: 'Справка', path: '/help', icon: 'help_outline' },
     { label: 'Профиль', path: '/user', icon: 'person_outline' },
   ];

@@ -120,6 +120,9 @@
 - [x] HTTP API: `GET /cards/search`, `GET /cards/:id`
 - [x] `ScenarioCardSource` (fixed / criteria) в модели и UI
 - [x] Каталог: фильтры сверху, результаты снизу (вертикальный layout)
+- [x] Sidebar: пункт «Карточки» переименован в «Обучение» (`/cards/select`, icon `school`)
+- [x] Sidebar: дублированы маршруты из header — «Карточки» (`/tools/cards`), «Конструктор сценариев» (шапка без изменений)
+
 
 ### Локализация
 
