@@ -196,5 +196,7 @@ type ScenarioCardSource =
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
 - [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning
+- [CJK-CONTENT.md](./CJK-CONTENT.md) — иероглифы, романизация (пиньинь, жуинь, Палладия), тоны (G9)
+- [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) — IPA, фонетическая транскрипция (G10)
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор проекта

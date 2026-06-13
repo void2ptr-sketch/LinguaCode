@@ -2,7 +2,7 @@
 
 Обучение в LinguaCode опирается на **два языка контента**: известный пользователю (known) и изучаемый (learning). Это отдельно от **UiLocale** — языка интерфейса приложения (`@angular/localize`, бэклог).
 
-Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
 ## Три оси «языка»
 
@@ -242,6 +242,8 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G5 | Render по direction; `LearningResult` + pair | готово |
 | G7 | Несколько пар в профиле, одна активная | готово |
 | G8 | Scope UI по активной паре (каталоги, сценарии, pickers) | готово |
+| G9 | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны | бэклог |
+| G10 | IPA (International Phonetic Alphabet) | бэклог |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
 
 ## G2+ — детали бэклога
@@ -298,6 +300,33 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G8.3 | Scenario card picker + criteria editor scoped |
 | G8.4 | Scenario list API filter (`ScenarioSearchCriteria` + mock) |
 | G8.5 | Tools reload on pair change; legacy scenarios; optional author mode |
+
+### G9 — CJK content layer
+
+> Детали: [CJK-CONTENT.md](./CJK-CONTENT.md).
+
+Для пары **ru→zh** контент карточки выходит за рамки плоских `string`: иероглифы, пиньинь, жуинь, **транскрипционная система Палладия** (кириллица), произношение, тоны. G9 добавляет `CjkLexeme` и рендер ruby без смены контракта `LanguagePair`.
+
+| Шаг | Содержание |
+|-----|------------|
+| G9.1 | Типы + adapter; CJK fonts + `app-cjk-ruby` |
+| G9.2 | `CjkLearningPreferences` (palladius при `known=ru`) |
+| G9.3 | Lexeme в payload карточек + редактор |
+| G9.4 | pinyin ↔ palladius; demo ru→zh |
+| G9.5 | CJK keyboard normalizer; audio; tones |
+
+### G10 — IPA (phonetic layer)
+
+> Детали: [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md). Дополняет G9; приоритет **ru→en**.
+
+| Шаг | Содержание |
+|-----|------------|
+| G10.1 | `PhoneticLexeme`, `IpaVariant`, поле `ipa` |
+| G10.2 | IPA fonts + `app-phonetic-ipa` |
+| G10.3 | Показ в sound / select / memory |
+| G10.4 | `PhoneticPreferences` |
+| G10.5 | Demo ru→en; тег `ipa` |
+| G10.6 | (опц.) автозаполнение en; zh Chao tones |
 
 ## Связанные пути в коде
 
