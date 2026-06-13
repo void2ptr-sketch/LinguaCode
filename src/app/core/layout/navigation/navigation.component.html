@@ -1,0 +1,12 @@
+<mat-nav-list class="navigation" aria-label="Навигация">
+  @for (item of items; track item.path) {
+    <a
+      mat-list-item
+      [routerLink]="item.path"
+      routerLinkActive="navigation__link--active"
+    >
+      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+      <span matListItemTitle>{{ item.label }}</span>
+    </a>
+  }
+</mat-nav-list>

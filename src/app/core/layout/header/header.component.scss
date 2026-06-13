@@ -1,0 +1,22 @@
+.header {
+  display: grid;
+  grid-template-areas: 'brand menu';
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+}
+
+.header__brand {
+  grid-area: brand;
+  color: inherit;
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.header__menu {
+  grid-area: menu;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}

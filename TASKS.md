@@ -13,9 +13,9 @@
 
 ## 2. Базовая архитектура
 
-- Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
-- Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
-- Добавить layout (шапка, подвал, навигация, контент, menu-*)
+- [x] Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
+- [x] Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
+- [x] Добавить layout (шапка, подвал, навигация, контент, menu-*)
   - шапка — `/src/app/core/layout/header`
     - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
     - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
@@ -24,8 +24,8 @@
   - подвал — `/src/app/core/layout/footer`
   - контент — `/src/app/core/layout/main-layout`
   - навигация — `/src/app/core/layout/navigation`
-- Создать `core/models/` — типы из DOMAIN (`User`, `Card`, `Scenario`, `LearningResult`)
-- Вынести конфигурацию окружения (`environment.ts`)
+- [x] Создать `core/models/` — типы из DOMAIN (`User`, `Card`, `Scenario`, `LearningResult`)
+- [x] Вынести конфигурацию окружения (`environment.ts`)
 
 ## 3. Управление состоянием
 
