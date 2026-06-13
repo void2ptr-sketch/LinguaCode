@@ -1,0 +1,32 @@
+<mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
+  <mat-card-header>
+    <mat-card-title>{{ card().title }}</mat-card-title>
+    <mat-card-subtitle>{{ card().prompt }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <div class="draw-area">
+      <p>Нарисуйте: {{ card().referenceHint }}</p>
+    </div>
+  </mat-card-content>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Ответ принят!
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button mat-flat-button type="button" [disabled]="drawSubmitted()" (click)="submitDrawing()">
+        Готово
+      </button>
+      <button mat-flat-button type="button" [disabled]="!drawSubmitted()" (click)="checkAnswer.emit()">
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

@@ -1,6 +1,6 @@
 <section class="card-select-page">
   <header class="card-select-page__header">
-    <h1>Карточки с выбором ответа</h1>
+    <h1>Карточки обучения</h1>
     <p class="card-select-page__progress">Прогресс: {{ store.progressLabel() }}</p>
   </header>
 
@@ -30,12 +30,19 @@
     </mat-card>
   } @else {
     @if (store.currentCard(); as card) {
-      <app-card-select-card
+      <app-card-host
         [card]="card"
         [selectedIndex]="store.selectedIndex()"
+        [answerText]="store.answerText()"
+        [memoryComplete]="store.memoryComplete()"
+        [drawSubmitted]="store.drawSubmitted()"
         [feedback]="store.feedback()"
         [fontSize]="fontSize().fontSize"
         (optionSelected)="selectOption($event)"
+        (answerTextChange)="setAnswerText($event)"
+        (memoryCompleteChange)="setMemoryComplete($event)"
+        (drawSubmittedChange)="setDrawSubmitted($event)"
+        (timeExpired)="handleTimeExpired()"
         (checkAnswer)="checkAnswer()"
         (nextCard)="nextCard()"
       />

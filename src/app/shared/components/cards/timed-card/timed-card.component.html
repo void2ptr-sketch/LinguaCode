@@ -4,12 +4,20 @@
     <mat-card-subtitle>{{ card().question }}</mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content class="quiz-card__options">
-    @for (option of card().options; track option; let index = $index) {
-      <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-        {{ option }}
-      </button>
-    }
+  <mat-card-content>
+    <p class="quiz-card__timer">Осталось: {{ secondsLeft() }} с</p>
+    <div class="quiz-card__options">
+      @for (option of card().options; track option; let index = $index) {
+        <button
+          type="button"
+          [class]="optionClass(index)"
+          [disabled]="secondsLeft() <= 0"
+          (click)="selectOption(index)"
+        >
+          {{ option }}
+        </button>
+      }
+    </div>
   </mat-card-content>
 
   @if (feedback() === 'correct') {
@@ -28,13 +36,16 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="selectedIndex() === null" (click)="onCheckAnswer()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="selectedIndex() === null || secondsLeft() <= 0"
+        (click)="checkAnswer.emit()"
+      >
         Проверить
       </button>
     } @else {
-      <button mat-flat-button type="button" (click)="onNextCard()">
-        Далее
-      </button>
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
     }
   </mat-card-actions>
 </mat-card>

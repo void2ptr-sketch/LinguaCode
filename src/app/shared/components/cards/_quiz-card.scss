@@ -62,3 +62,33 @@
 .quiz-card__feedback--incorrect {
   color: var(--mat-sys-error);
 }
+
+.quiz-card__prompt {
+  margin: 0 0 1rem;
+}
+
+.quiz-card__timer {
+  color: var(--mat-sys-error);
+  font-weight: 600;
+  margin: 0 0 1rem;
+}
+
+.memory-grid {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.memory-tile {
+  min-height: 4rem;
+}
+
+.draw-area {
+  align-items: center;
+  border: 1px dashed color-mix(in srgb, var(--mat-sys-outline) 60%, transparent);
+  border-radius: 0.5rem;
+  display: grid;
+  justify-items: center;
+  min-height: 10rem;
+  padding: 1rem;
+}

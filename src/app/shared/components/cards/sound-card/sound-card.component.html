@@ -1,0 +1,44 @@
+<mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
+  <mat-card-header>
+    <mat-card-title>{{ card().title }}</mat-card-title>
+    <mat-card-subtitle>{{ card().prompt }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content>
+    <p class="quiz-card__prompt">
+      <mat-icon>volume_up</mat-icon>
+      Звук: {{ card().audioLabel }}
+    </p>
+    <div class="quiz-card__options">
+      @for (option of card().options; track option; let index = $index) {
+        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+          {{ option }}
+        </button>
+      }
+    </div>
+  </mat-card-content>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Верно!
+    </mat-card-content>
+  }
+
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Неверно. Правильный ответ: {{ card().options[card().correctIndex] }}
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button mat-flat-button type="button" [disabled]="selectedIndex() === null" (click)="checkAnswer.emit()">
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

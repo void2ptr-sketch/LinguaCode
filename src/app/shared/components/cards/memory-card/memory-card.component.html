@@ -1,0 +1,31 @@
+<mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
+  <mat-card-header>
+    <mat-card-title>{{ card().title }}</mat-card-title>
+    <mat-card-subtitle>{{ card().prompt }}</mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="memory-grid">
+    @for (tile of tiles(); track tile.id) {
+      <button type="button" mat-stroked-button class="memory-tile" (click)="flipTile(tile)">
+        {{ isVisible(tile) ? tile.label : '?' }}
+      </button>
+    }
+  </mat-card-content>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Все пары найдены!
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button mat-flat-button type="button" [disabled]="matched().length !== card().pairs.length" (click)="checkAnswer.emit()">
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

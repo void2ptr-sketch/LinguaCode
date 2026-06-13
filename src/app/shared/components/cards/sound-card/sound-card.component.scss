@@ -1,0 +1,7 @@
+@use '../quiz-card';
+
+.quiz-card__prompt {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+}

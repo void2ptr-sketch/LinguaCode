@@ -1,16 +1,20 @@
 import { Injectable, computed, signal } from '@angular/core';
-import { SelectCard } from '../../../core/models';
-import { CardSelectFeedback } from '../types';
+import { Card } from '../../../core/models';
+import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
+import { CardFeedback } from '../../../shared/types';
 
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
-  readonly cards = signal<readonly SelectCard[]>([]);
+  readonly cards = signal<readonly Card[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly currentIndex = signal(0);
   readonly selectedIndex = signal<number | null>(null);
-  readonly feedback = signal<CardSelectFeedback>(null);
+  readonly answerText = signal('');
+  readonly memoryComplete = signal(false);
+  readonly drawSubmitted = signal(false);
+  readonly feedback = signal<CardFeedback>(null);
   readonly completed = signal(false);
 
   readonly currentCard = computed(() => {
@@ -33,18 +37,21 @@ export class CardSelectStore {
     return cards.length > 0 && this.currentIndex() >= cards.length - 1;
   });
 
-  readonly canCheckAnswer = computed(
-    () => this.selectedIndex() !== null && this.feedback() === null && !this.completed(),
-  );
+  readonly canCheckAnswer = computed(() => {
+    const card = this.currentCard();
+    if (!card || this.feedback() !== null || this.completed()) {
+      return false;
+    }
+
+    return canCheckCardAnswer(card, this.answerState());
+  });
 
   readonly canGoNext = computed(() => this.feedback() !== null && !this.completed());
 
-  setScenario(scenarioId: string, cards: readonly SelectCard[]): void {
+  setScenario(scenarioId: string, cards: readonly Card[]): void {
     this.scenarioId.set(scenarioId);
     this.cards.set(cards);
-    this.currentIndex.set(0);
-    this.selectedIndex.set(null);
-    this.feedback.set(null);
+    this.resetInteraction();
     this.completed.set(false);
     this.loading.set(false);
     this.error.set(null);
@@ -70,15 +77,49 @@ export class CardSelectStore {
     this.selectedIndex.set(index);
   }
 
+  setAnswerText(value: string): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.answerText.set(value);
+  }
+
+  setMemoryComplete(value: boolean): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.memoryComplete.set(value);
+  }
+
+  setDrawSubmitted(value: boolean): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.drawSubmitted.set(value);
+  }
+
+  handleTimeExpired(): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.feedback.set('incorrect');
+  }
+
   checkAnswer(): boolean | null {
     const card = this.currentCard();
-    const selected = this.selectedIndex();
-
-    if (!card || selected === null) {
+    if (!card) {
       return null;
     }
 
-    const isCorrect = selected === card.correctIndex;
+    const isCorrect = checkCardAnswer(card, this.answerState());
+    if (isCorrect === null) {
+      return null;
+    }
+
     this.feedback.set(isCorrect ? 'correct' : 'incorrect');
     return isCorrect;
   }
@@ -94,8 +135,7 @@ export class CardSelectStore {
     }
 
     this.currentIndex.update((index) => index + 1);
-    this.selectedIndex.set(null);
-    this.feedback.set(null);
+    this.resetInteraction();
   }
 
   reset(): void {
@@ -104,8 +144,24 @@ export class CardSelectStore {
     this.loading.set(false);
     this.error.set(null);
     this.currentIndex.set(0);
-    this.selectedIndex.set(null);
-    this.feedback.set(null);
+    this.resetInteraction();
     this.completed.set(false);
+  }
+
+  private answerState() {
+    return {
+      selectedIndex: this.selectedIndex(),
+      answerText: this.answerText(),
+      memoryComplete: this.memoryComplete(),
+      drawSubmitted: this.drawSubmitted(),
+    };
+  }
+
+  private resetInteraction(): void {
+    this.selectedIndex.set(null);
+    this.answerText.set('');
+    this.memoryComplete.set(false);
+    this.drawSubmitted.set(false);
+    this.feedback.set(null);
   }
 }
