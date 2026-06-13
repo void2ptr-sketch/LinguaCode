@@ -1,4 +1,4 @@
-import type { ScenarioCardSource } from './card-search.types';
+import type { ScenarioCardSource } from './scenario-card-source.types';
 
 export type Scenario = {
   id: string;
@@ -6,6 +6,8 @@ export type Scenario = {
   description: string;
   authorId: string;
   cardSource: ScenarioCardSource;
+  published: boolean;
+  updatedAt: string;
 };
 
 export type LegacyScenario = {
@@ -15,4 +17,6 @@ export type LegacyScenario = {
   authorId: string;
   cardSource?: ScenarioCardSource;
   cardIds?: readonly string[];
+  published?: boolean;
+  updatedAt?: string;
 };

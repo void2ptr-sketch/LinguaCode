@@ -117,7 +117,7 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'cards/select', pathMatch: 'full' },
       { path: 'cards/select', loadComponent: () => import('./features/card-select/...') },
-      // features/scenario-builder/ — бэклог (конструктор сценариев)
+      // features/scenario-builder/ — конструктор сценариев
       // остальные фичи — отдельные lazy routes
     ],
   },
@@ -137,7 +137,7 @@ export const routes: Routes = [
 - `User`, `Card`, `Scenario`, `LearningResult`, `CardAppearance`
 - `Card` — discriminated union по полю `kind`
 - на MVP реализован только `SelectCard` (`kind: 'select'`)
-- **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (бэклог, фича `scenario-builder`)
+- **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md)
 
 ### Рендер карточек (после MVP)
 
@@ -170,7 +170,7 @@ export class CardSelectStore {
 |--------|-------------|
 | UI-состояние фичи | signal-сервис внутри `features/*/` |
 | Глобальные настройки, пользователь | `core/state/` |
-| Сценарии (конструктор) | `features/scenario-builder/` — бэклог |
+| Сценарии (конструктор) | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
 | Ответ API | signal; конвертация из Observable через `toSignal()` или `rxResource` |
 
 RxJS — **только** на границе HTTP/WebSocket, не в шаблонах и не в компонентах напрямую.
@@ -211,15 +211,16 @@ export class CardApiService {
 | Точка входа | `menu-cards` в header, **«Обучение»** в sidebar |
 | Путь | `features/card-select/` |
 
-### Бэклог: `scenario-builder`
+### `scenario-builder`
 
-Конструктор сценариев — создание и редактирование `Scenario` (набор `Card`).
+Конструктор сценариев — создание и редактирование `Scenario` (`cardSource`: fixed / criteria).
 
 | | |
 |---|---|
-| Маршрут | `/tools/scenario-builder` (планируется) |
+| Маршрут | `/tools/scenario-builder` |
 | Точка входа | `menu-tools` в header, **«Конструктор сценариев»** в sidebar |
 | Путь | `features/scenario-builder/` |
+| Масштабирование | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
 
 ### `card-management` (`features/card-editor/`)
 

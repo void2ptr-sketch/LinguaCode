@@ -1,10 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Card, CardKind } from '../../../core/models';
-import { CardRepository, CardSearchService } from '../../../core/data';
-import { scenarioUsesCardId } from '../../../core/data/scenario-card-source.utils';
+import { CardRepository, CardSearchService, ScenarioSearchService } from '../../../core/data';
 import { LearningResultsStore, UserStore } from '../../../core/state';
-import { ScenarioBuilderService } from '../../scenario-builder/services/scenario-builder.service';
-import { Scenario } from '../../../core/models';
 import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/card-draft.utils';
 import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-validation.utils';
@@ -13,7 +10,7 @@ import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-va
 export class CardEditorStore {
   private readonly cardRepository = inject(CardRepository);
   private readonly cardSearchService = inject(CardSearchService);
-  private readonly scenarioBuilderService = inject(ScenarioBuilderService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly learningResultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
 
@@ -91,7 +88,7 @@ export class CardEditorStore {
       return false;
     }
 
-    const scenariosUsingCard = this.scenariosUsingCard(cardId);
+    const scenariosUsingCard = await this.scenarioSearchService.findUsingCard(cardId);
     if (scenariosUsingCard.length > 0) {
       this.error.set(
         `Нельзя удалить: карточка используется в сценариях (${scenariosUsingCard.map((item) => item.title).join(', ')})`,
@@ -125,12 +122,6 @@ export class CardEditorStore {
 
   cardToDraft(card: Card): CardDraft {
     return cardToDraft(card);
-  }
-
-  private scenariosUsingCard(cardId: string): readonly Scenario[] {
-    return this.scenarioBuilderService.loadScenarios().filter((scenario) =>
-      scenarioUsesCardId(scenario.cardSource, cardId),
-    );
   }
 
   private async persist(cards: readonly Card[]): Promise<void> {

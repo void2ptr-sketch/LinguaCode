@@ -25,8 +25,18 @@ export type {
   CardSearchPage,
   CardSearchResult,
   FacetCount,
-  ScenarioCardSource,
 } from './card-search.types';
+export type {
+  ScenarioCardSort,
+  ScenarioCardSource,
+  ScenarioCardSourceMode,
+} from './scenario-card-source.types';
+export type {
+  ScenarioIndexEntry,
+  ScenarioListScope,
+  ScenarioSearchCriteria,
+  ScenarioSearchPage,
+} from './scenario-index.types';
 export type { LearningResult } from './learning-result.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
 export type { User } from './user.types';

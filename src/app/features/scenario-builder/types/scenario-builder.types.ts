@@ -6,6 +6,7 @@ export type ScenarioDraft = {
   title: string;
   description: string;
   cardSource: ScenarioCardSource;
+  published: boolean;
 };
 
 export type ScenarioEditorMode = 'list' | 'create' | 'edit';

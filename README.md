@@ -138,6 +138,7 @@ npm run format
 
 - [Домен](./docs/DOMAIN.md) — сущности, модели и бизнес-логика
 - [Каталог карточек](./docs/CARD-CATALOG.md) — индекс, поиск, пагинация
+- [Конструктор сценариев](./docs/SCENARIO-BUILDER.md) — масштабирование сценариев и card-select
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога
 - [Архитектура](./docs/ARCHITECTURE.md) — технические решения
 - [Git rules](./docs/.gitrules) — ветки, коммиты, merge

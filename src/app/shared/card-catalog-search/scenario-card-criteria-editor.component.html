@@ -12,6 +12,22 @@
     />
   </mat-form-field>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Сортировка</mat-label>
+    <mat-select [ngModel]="sort()" (ngModelChange)="onSortChange($event)">
+      @for (option of sortOptions; track option.value) {
+        <mat-option [value]="option.value">{{ option.label }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  @if (sort() === 'random') {
+    <mat-form-field appearance="outline">
+      <mat-label>Seed (необязательно)</mat-label>
+      <input matInput [ngModel]="seed()" (ngModelChange)="onSeedInput($event)" />
+    </mat-form-field>
+  }
+
   <p class="scenario-card-criteria-editor__preview">
     @if (previewLoading()) {
       Подсчёт карточек…
@@ -19,4 +35,15 @@
       Найдено {{ matchingTotal() }} · в сценарий попадёт до {{ limit() }}
     }
   </p>
+
+  @if (previewIds().length > 0) {
+    <section class="scenario-card-criteria-editor__ids">
+      <h3>Preview id ({{ previewIds().length }})</h3>
+      <ul>
+        @for (cardId of previewIds(); track cardId) {
+          <li>{{ cardId }}</li>
+        }
+      </ul>
+    </section>
+  }
 </section>

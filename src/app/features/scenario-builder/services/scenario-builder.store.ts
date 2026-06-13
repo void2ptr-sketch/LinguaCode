@@ -2,13 +2,21 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 import {
   DEFAULT_CRITERIA_LIMIT,
+  buildSnapshotCardSource,
   hasCardSearchFilters,
+  resolveScenarioCardIds,
+  validateScenarioCardSource,
 } from '../../../core/data/scenario-card-source.utils';
-import { CardSearchService } from '../../../core/data';
-import { Scenario, ScenarioCardSource } from '../../../core/models';
+import { CardSearchService, ScenarioSearchService } from '../../../core/data';
+import type {
+  Scenario,
+  ScenarioCardSource,
+  ScenarioIndexEntry,
+  ScenarioListScope,
+} from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
-import { ScenarioBuilderService } from './scenario-builder.service';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
@@ -16,120 +24,210 @@ const sanitizeDescription = (value: string): string => sanitizePlainText(value, 
 
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderStore {
-  private readonly scenarioBuilderService = inject(ScenarioBuilderService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly cardSearchService = inject(CardSearchService);
   private readonly userStore = inject(UserStore);
 
-  readonly scenarios = signal<readonly Scenario[]>([]);
+  readonly indexItems = signal<readonly ScenarioIndexEntry[]>([]);
+  readonly totalItems = signal(0);
+  readonly pageIndex = signal(0);
+  readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly listQuery = signal('');
+  readonly listScope = signal<ScenarioListScope>('mine');
+
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly editorMode = signal<ScenarioEditorMode>('list');
   readonly editingScenarioId = signal<string | null>(null);
+  readonly editingScenario = signal<Scenario | null>(null);
 
-  readonly editingScenario = computed(() => {
-    const id = this.editingScenarioId();
-    if (!id) {
-      return null;
+  readonly isReadOnly = computed(() => {
+    const scenario = this.editingScenario();
+    if (!scenario) {
+      return false;
     }
 
-    return this.scenarios().find((scenario) => scenario.id === id) ?? null;
+    return scenario.authorId !== this.userStore.user().id;
   });
 
-  readonly catalogById = computed(() => {
-    return new Map(this.cardSearchService.indexEntries().map((entry) => [entry.id, entry]));
-  });
-
-  async load(): Promise<void> {
+  async loadList(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
 
     try {
-      await this.cardSearchService.ensureIndexLoaded();
-      this.scenarios.set(this.scenarioBuilderService.loadScenarios());
+      const page = await this.scenarioSearchService.search({
+        query: this.listQuery().trim() || undefined,
+        scope: this.listScope(),
+        page: { page: this.pageIndex(), pageSize: this.pageSize() },
+      });
+
+      this.indexItems.set(page.items);
+      this.totalItems.set(page.totalItems);
     } catch {
-      this.error.set('Не удалось загрузить данные конструктора');
+      this.error.set('Не удалось загрузить список сценариев');
     } finally {
       this.loading.set(false);
     }
   }
 
+  async load(): Promise<void> {
+    await this.loadList();
+  }
+
+  setListQuery(query: string): void {
+    this.listQuery.set(query);
+    this.pageIndex.set(0);
+  }
+
+  setListScope(scope: ScenarioListScope): void {
+    this.listScope.set(scope);
+    this.pageIndex.set(0);
+  }
+
+  setPage(pageIndex: number, pageSize: number): void {
+    this.pageIndex.set(pageIndex);
+    this.pageSize.set(pageSize);
+  }
+
   startCreate(): void {
     this.editorMode.set('create');
     this.editingScenarioId.set(null);
+    this.editingScenario.set(null);
     this.error.set(null);
   }
 
-  startEdit(scenarioId: string): void {
-    this.editorMode.set('edit');
-    this.editingScenarioId.set(scenarioId);
+  async startEdit(scenarioId: string): Promise<void> {
+    this.loading.set(true);
     this.error.set(null);
+
+    try {
+      const scenario = await this.scenarioSearchService.getById(scenarioId);
+      this.editorMode.set('edit');
+      this.editingScenarioId.set(scenarioId);
+      this.editingScenario.set(scenario);
+    } catch {
+      this.error.set('Не удалось загрузить сценарий');
+    } finally {
+      this.loading.set(false);
+    }
   }
 
   cancelEdit(): void {
     this.editorMode.set('list');
     this.editingScenarioId.set(null);
+    this.editingScenario.set(null);
     this.error.set(null);
   }
 
-  createScenario(draft: ScenarioDraft): boolean {
-    const payload = this.normalizeDraft(draft);
+  async createScenario(draft: ScenarioDraft): Promise<boolean> {
+    const payload = await this.normalizeDraft(draft);
     if (!payload) {
       return false;
     }
 
-    const scenario: Scenario = {
-      id: crypto.randomUUID(),
-      title: payload.title,
-      description: payload.description,
-      authorId: this.userStore.user().id,
-      cardSource: payload.cardSource,
-    };
-
-    const nextScenarios = [...this.scenarios(), scenario];
-    this.persist(nextScenarios);
-    this.cancelEdit();
-    return true;
+    try {
+      await this.scenarioSearchService.create(payload);
+      this.cancelEdit();
+      await this.loadList();
+      return true;
+    } catch {
+      this.error.set('Не удалось создать сценарий');
+      return false;
+    }
   }
 
-  updateScenario(scenarioId: string, draft: ScenarioDraft): boolean {
-    const payload = this.normalizeDraft(draft);
+  async updateScenario(scenarioId: string, draft: ScenarioDraft): Promise<boolean> {
+    if (this.isReadOnly()) {
+      this.error.set('Нельзя изменять чужой сценарий');
+      return false;
+    }
+
+    const payload = await this.normalizeDraft(draft);
     if (!payload) {
       return false;
     }
 
-    const nextScenarios = this.scenarios().map((scenario) =>
-      scenario.id === scenarioId
-        ? {
-            ...scenario,
-            title: payload.title,
-            description: payload.description,
-            cardSource: payload.cardSource,
-          }
-        : scenario,
+    try {
+      await this.scenarioSearchService.update(scenarioId, payload);
+      this.cancelEdit();
+      await this.loadList();
+      return true;
+    } catch {
+      this.error.set('Не удалось сохранить сценарий');
+      return false;
+    }
+  }
+
+  async deleteScenario(scenarioId: string): Promise<void> {
+    const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
+    if (item && item.authorId !== this.userStore.user().id) {
+      this.error.set('Нельзя удалять чужой сценарий');
+      return;
+    }
+
+    try {
+      await this.scenarioSearchService.delete(scenarioId);
+      if (this.editingScenarioId() === scenarioId) {
+        this.cancelEdit();
+      }
+      await this.loadList();
+    } catch {
+      this.error.set('Не удалось удалить сценарий');
+    }
+  }
+
+  async cardTitle(cardId: string): Promise<string> {
+    try {
+      const card = await this.cardSearchService.getCardById(cardId);
+      return card.title;
+    } catch {
+      return cardId;
+    }
+  }
+
+  async validateFixedCardIds(cardIds: readonly string[]): Promise<readonly string[]> {
+    const valid: string[] = [];
+
+    for (const cardId of cardIds) {
+      try {
+        await this.cardSearchService.getCardById(cardId);
+        valid.push(cardId);
+      } catch {
+        // skip missing
+      }
+    }
+
+    return valid;
+  }
+
+  async buildSnapshotFromCriteria(
+    criteria: Omit<import('../../../core/models').CardSearchCriteria, 'page'>,
+    limit: number,
+    sort?: import('../../../core/models').ScenarioCardSort,
+    seed?: string,
+  ): Promise<ScenarioCardSource | null> {
+    if (!hasCardSearchFilters(criteria)) {
+      this.error.set('Укажите критерии перед созданием snapshot');
+      return null;
+    }
+
+    const cardIds = await resolveScenarioCardIds(
+      { mode: 'criteria', criteria, limit, sort, seed },
+      this.cardSearchService,
     );
 
-    this.persist(nextScenarios);
-    this.cancelEdit();
-    return true;
-  }
-
-  deleteScenario(scenarioId: string): void {
-    const nextScenarios = this.scenarios().filter((scenario) => scenario.id !== scenarioId);
-    this.persist(nextScenarios);
-
-    if (this.editingScenarioId() === scenarioId) {
-      this.cancelEdit();
+    if (cardIds.length === 0) {
+      this.error.set('По критериям не найдено карточек');
+      return null;
     }
+
+    return buildSnapshotCardSource(cardIds, criteria, limit);
   }
 
-  cardTitle(cardId: string): string {
-    return this.catalogById().get(cardId)?.title ?? cardId;
-  }
-
-  private normalizeDraft(draft: ScenarioDraft): ScenarioDraft | null {
+  private async normalizeDraft(draft: ScenarioDraft): Promise<import('../../../core/data/scenarios-api.service').ScenarioWritePayload | null> {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
-    const cardSource = this.normalizeCardSource(draft.cardSource);
+    const cardSource = await this.normalizeCardSource(draft.cardSource);
 
     if (!title) {
       this.error.set('Укажите название сценария');
@@ -140,31 +238,52 @@ export class ScenarioBuilderStore {
       return null;
     }
 
-    return { title, description, cardSource };
+    return { title, description, cardSource, published: draft.published };
   }
 
-  private normalizeCardSource(source: ScenarioCardSource): ScenarioCardSource | null {
+  private async normalizeCardSource(source: ScenarioCardSource): Promise<ScenarioCardSource | null> {
+    const cardExists = async (cardId: string): Promise<boolean> => {
+      try {
+        await this.cardSearchService.getCardById(cardId);
+        return true;
+      } catch {
+        return false;
+      }
+    };
+
     if (source.mode === 'fixed') {
       const cardIds = [
-        ...new Set(source.cardIds.filter((cardId) => this.catalogById().has(cardId))),
+        ...new Set(
+          (await this.validateFixedCardIds(source.cardIds)).filter(Boolean),
+        ),
       ];
 
-      if (cardIds.length === 0) {
-        this.error.set('Выберите хотя бы одну карточку');
+      const error = await validateScenarioCardSource(
+        { mode: 'fixed', cardIds },
+        cardExists,
+      );
+
+      if (error) {
+        this.error.set(error.message);
         return null;
       }
 
       return { mode: 'fixed', cardIds };
     }
 
-    if (!hasCardSearchFilters(source.criteria)) {
-      this.error.set('Укажите хотя бы один критерий отбора карточек');
-      return null;
+    if (source.mode === 'snapshot') {
+      const error = await validateScenarioCardSource(source, cardExists);
+      if (error) {
+        this.error.set(error.message);
+        return null;
+      }
+
+      return source;
     }
 
-    const limit = source.limit ?? DEFAULT_CRITERIA_LIMIT;
-    if (limit <= 0) {
-      this.error.set('Лимит карточек должен быть больше 0');
+    const error = await validateScenarioCardSource(source, cardExists);
+    if (error) {
+      this.error.set(error.message);
       return null;
     }
 
@@ -177,12 +296,9 @@ export class ScenarioBuilderStore {
         kinds: source.criteria.kinds?.length ? source.criteria.kinds : undefined,
         tags: source.criteria.tags?.length ? source.criteria.tags : undefined,
       },
-      limit,
+      limit: source.limit ?? DEFAULT_CRITERIA_LIMIT,
+      sort: source.sort,
+      seed: source.seed,
     };
-  }
-
-  private persist(scenarios: readonly Scenario[]): void {
-    this.scenarios.set(scenarios);
-    this.scenarioBuilderService.saveScenarios(scenarios);
   }
 }

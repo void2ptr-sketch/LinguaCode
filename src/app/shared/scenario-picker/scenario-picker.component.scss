@@ -1,0 +1,21 @@
+.scenario-picker {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-picker__query {
+  width: 100%;
+}
+
+.scenario-picker__scope {
+  flex-wrap: wrap;
+}
+
+.scenario-picker__empty {
+  margin: 0;
+}
+
+.scenario-picker__list {
+  max-height: 16rem;
+  overflow: auto;
+}

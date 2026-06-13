@@ -1,35 +1,39 @@
 import { Injectable, inject } from '@angular/core';
 
-import { CardRepository, CardSearchService, resolveScenarioCardIds } from '../../../core/data';
+import {
+  CardSearchService,
+  CardsApiService,
+  resolveScenarioCardIds,
+  ScenarioSearchService,
+} from '../../../core/data';
 import { Card } from '../../../core/models';
-import { ScenarioBuilderService } from '../../scenario-builder/services/scenario-builder.service';
 
 export type CardSelectSession = {
   scenarioId: string;
   scenarioTitle: string;
+  scenarioSourceLabel: string;
   cards: readonly Card[];
   missingCardIds: readonly string[];
 };
 
 @Injectable({ providedIn: 'root' })
 export class CardSelectService {
-  private readonly cardRepository = inject(CardRepository);
+  private readonly cardsApiService = inject(CardsApiService);
   private readonly cardSearchService = inject(CardSearchService);
-  private readonly scenarioBuilderService = inject(ScenarioBuilderService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
 
-  listScenarios() {
-    return this.scenarioBuilderService.loadScenarios();
+  searchScenarios(query: string, pageIndex: number, pageSize: number) {
+    return this.scenarioSearchService.search({
+      query: query.trim() || undefined,
+      scope: 'published',
+      page: { page: pageIndex, pageSize },
+    });
   }
 
   async loadScenario(scenarioId: string): Promise<CardSelectSession> {
-    const cards = await this.cardRepository.ensureLoaded();
-    const scenario = this.listScenarios().find((item) => item.id === scenarioId);
-
-    if (!scenario) {
-      throw new Error('SCENARIO_NOT_FOUND');
-    }
-
+    const scenario = await this.scenarioSearchService.getById(scenarioId);
     const cardIds = await resolveScenarioCardIds(scenario.cardSource, this.cardSearchService);
+    const cards = await this.cardsApiService.getByIds(cardIds);
     const cardsById = new Map(cards.map((card) => [card.id, card]));
     const sessionCards: Card[] = [];
     const missingCardIds: string[] = [];
@@ -50,8 +54,21 @@ export class CardSelectService {
     return {
       scenarioId: scenario.id,
       scenarioTitle: scenario.title,
+      scenarioSourceLabel: this.formatSourceLabel(scenario.cardSource),
       cards: sessionCards,
       missingCardIds,
     };
+  }
+
+  private formatSourceLabel(source: import('../../../core/models').ScenarioCardSource): string {
+    if (source.mode === 'fixed') {
+      return `${source.cardIds.length} карточек`;
+    }
+
+    if (source.mode === 'snapshot') {
+      return `${source.cardIds.length} карточек (snapshot)`;
+    }
+
+    return `до ${source.limit ?? 50} по критериям`;
   }
 }

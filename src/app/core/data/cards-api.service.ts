@@ -23,4 +23,16 @@ export class CardsApiService {
       this.http.get<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`)),
     ).then((response) => response.data);
   }
+
+  getByIds(cardIds: readonly string[]): Promise<readonly Card[]> {
+    if (cardIds.length === 0) {
+      return Promise.resolve([]);
+    }
+
+    return firstValueFrom(
+      this.http.post<ApiResponse<readonly Card[]>>(buildApiUrl('/cards/batch'), {
+        ids: cardIds,
+      }),
+    ).then((response) => response.data);
+  }
 }

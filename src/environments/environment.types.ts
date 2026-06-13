@@ -4,4 +4,5 @@ export type Environment = {
   fixturesUrl: string;
   appName: string;
   useCardsApiMock: boolean;
+  useScenariosApiMock: boolean;
 };

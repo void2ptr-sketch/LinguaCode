@@ -7,3 +7,13 @@
   margin: 0;
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
 }
+
+.scenario-card-criteria-editor__ids h3 {
+  font-size: 0.875rem;
+  margin: 0 0 0.5rem;
+}
+
+.scenario-card-criteria-editor__ids ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}

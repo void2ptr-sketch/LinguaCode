@@ -18,14 +18,16 @@
 
 Инструмент для авторов и пользователей, которые собирают собственные сценарии обучения.
 
-**Возможности (бэклог):**
+**Возможности (MVP):**
 
 - создать сценарий с названием и описанием;
-- добавить, удалить и упорядочить карточки в сценарии;
-- выбрать тип каждой карточки (`CardKind`);
-- сохранить сценарий для прохождения.
+- добавить, удалить и упорядочить карточки (`cardSource.mode: 'fixed'`);
+- задать набор по критериям каталога (`cardSource.mode: 'criteria'`);
+- сохранить сценарий для прохождения в «Обучении».
 
-**Связь с UI:** точка входа — `menu-tools` в header; фича — `features/scenario-builder/`.
+**Масштабирование (бэклог):** HTTP API сценариев, пагинация списка, snapshot criteria, точечная загрузка карточек — см. [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md).
+
+**Связь с UI:** точка входа — `menu-tools` в header и sidebar «Конструктор сценариев»; фича — `features/scenario-builder/`. Масштабирование: [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md).
 
 ## Модели
 
@@ -179,5 +181,6 @@ type ScenarioCardSource =
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
+- [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор проекта
