@@ -1,8 +1,44 @@
-<mat-card class="page-card">
-  <mat-card-header>
-    <mat-card-title>Карточки с выбором ответа</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>Раздел в разработке. Здесь появится фича <code>card-select</code>.</p>
-  </mat-card-content>
-</mat-card>
+<section class="card-select-page">
+  <header class="card-select-page__header">
+    <h1>Карточки с выбором ответа</h1>
+    <p class="card-select-page__progress">Прогресс: {{ store.progressLabel() }}</p>
+  </header>
+
+  @if (store.loading()) {
+    <div class="card-select-page__state">
+      <mat-spinner diameter="40" />
+      <p>Загрузка карточек…</p>
+    </div>
+  } @else if (store.error()) {
+    <mat-card class="card-select-page__message">
+      <mat-card-content>{{ store.error() }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="loadCards()">Повторить</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else if (store.completed()) {
+    <mat-card class="card-select-page__message">
+      <mat-card-header>
+        <mat-card-title>Сценарий завершён</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p>Вы прошли все карточки. Результаты сохранены.</p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="loadCards()">Начать заново</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else {
+    @if (store.currentCard(); as card) {
+      <app-card-select-card
+        [card]="card"
+        [selectedIndex]="store.selectedIndex()"
+        [feedback]="store.feedback()"
+        [fontSize]="fontSize().fontSize"
+        (optionSelected)="selectOption($event)"
+        (checkAnswer)="checkAnswer()"
+        (nextCard)="nextCard()"
+      />
+    }
+  }
+</section>
