@@ -1,0 +1,17 @@
+.card-editor-dialog__content {
+  display: block;
+  min-width: min(100%, 20rem);
+  padding-top: 0.25rem;
+}
+
+.card-editor-dialog__state {
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+  padding: 2rem 0;
+}
+
+.card-editor-dialog__error {
+  color: var(--mat-sys-error);
+  margin: 0 0 1rem;
+}

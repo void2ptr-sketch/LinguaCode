@@ -86,9 +86,22 @@ type ScenarioCardSource =
 - панель фильтров (language, difficulty, kind, tags);
 - таблица / список по `CardIndexEntry` + paginator;
 - edit / delete на строке;
-- форма `card-form` при create/edit (панель снизу).
+- **CRUD в `MatDialog`** — `CardEditorDialogComponent` + `CardForm` (fullscreen на узких экранах).
 
 **Точки входа:** `menu-tools` → «Карточки» в header; пункт **«Карточки»** в боковой navigation. Прохождение сценариев — **«Обучение»** в sidebar (`/cards/select`), header `menu-cards` без изменений.
+
+## Dialog редактора
+
+| Элемент | Путь |
+|---------|------|
+| Shell dialog | `features/card-editor/components/card-editor-dialog/` |
+| Открытие | `CardEditorDialogService.openCreate` / `openEdit` |
+| Форма | `CardFormComponent` (переиспользуется) |
+| Discard confirm | `CardEditorDiscardDialogComponent` |
+
+- `disableClose: true` — закрытие только через кнопки;
+- при dirty draft — confirm «Закрыть без сохранения?»;
+- после save — `catalogStore.reload()`.
 
 ## Этапы реализации
 
@@ -107,5 +120,6 @@ src/app/shared/card-catalog-search/  # поиск, фильтры, ScenarioCardP
 src/app/core/models/                 # card-index.types, card-search.types
 src/app/core/data/                 # CardSearchService, CardsApiService
 src/app/core/api/                  # cardsApiMockInterceptor, CardsCatalogMockHandler
-src/app/features/card-editor/     # UI «Карточки»: каталог + CRUD
+src/app/features/card-editor/     # UI «Карточки»: каталог + dialog CRUD
+src/app/features/card-editor/components/card-editor-dialog/
 ```

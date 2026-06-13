@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -16,9 +16,9 @@ import {
   DIFFICULTY_LABELS,
 } from '../../../../shared/card-catalog-search';
 import { UiPaginationComponent } from '../../../../shared/pagination';
+import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
 import { CardEditorStore } from '../../services/card-editor.store';
-import { CARD_KINDS, CardDraft } from '../../types';
-import { CardFormComponent } from '../card-form/card-form.component';
+import { CARD_KINDS } from '../../types';
 
 @Component({
   selector: 'app-card-editor-page',
@@ -33,7 +33,6 @@ import { CardFormComponent } from '../card-form/card-form.component';
     MatProgressSpinnerModule,
     UiPaginationComponent,
     CardCatalogFiltersComponent,
-    CardFormComponent,
   ],
   providers: [CardCatalogSearchStore],
   templateUrl: './card-editor-page.component.html',
@@ -42,51 +41,27 @@ import { CardFormComponent } from '../card-form/card-form.component';
 export class CardEditorPageComponent implements OnInit {
   readonly store = inject(CardEditorStore);
   readonly catalogStore = inject(CardCatalogSearchStore);
+  private readonly cardEditorDialog = inject(CardEditorDialogService);
 
   readonly cardKinds = CARD_KINDS;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
 
-  readonly draft = signal<CardDraft>(this.store.emptyDraft('select'));
-
   async ngOnInit(): Promise<void> {
     await this.catalogStore.init();
   }
 
-  startCreate(kind: CardKind): void {
-    this.store.startCreate(kind);
-    this.draft.set(this.store.emptyDraft(kind));
+  async startCreate(kind: CardKind): Promise<void> {
+    const result = await this.cardEditorDialog.openCreate(kind);
+    if (result?.saved) {
+      await this.catalogStore.init();
+    }
   }
 
   async startEdit(cardId: string): Promise<void> {
-    await this.store.startEdit(cardId);
-
-    const editing = this.store.editingCard();
-    if (editing) {
-      this.draft.set(this.store.cardToDraft(editing));
-    }
-  }
-
-  cancelEdit(): void {
-    this.store.cancelEdit();
-    this.draft.set(this.store.emptyDraft('select'));
-  }
-
-  async saveCard(): Promise<void> {
-    let saved = false;
-
-    if (this.store.editorMode() === 'create') {
-      saved = await this.store.createCard(this.draft());
-    } else {
-      const cardId = this.store.editingCardId();
-      if (cardId) {
-        saved = await this.store.updateCard(cardId, this.draft());
-      }
-    }
-
-    if (saved) {
-      this.draft.set(this.store.emptyDraft('select'));
+    const result = await this.cardEditorDialog.openEdit(cardId);
+    if (result?.saved) {
       await this.catalogStore.init();
     }
   }
@@ -95,9 +70,5 @@ export class CardEditorPageComponent implements OnInit {
     if (await this.store.deleteCard(cardId)) {
       await this.catalogStore.init();
     }
-  }
-
-  updateDraft(nextDraft: CardDraft): void {
-    this.draft.set(nextDraft);
   }
 }

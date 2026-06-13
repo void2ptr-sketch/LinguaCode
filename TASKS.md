@@ -107,6 +107,14 @@
 - [x] card-select: прохождение пользовательских сценариев
 - [x] удаление/изменение карточки не должно ломать сценарии и LearningResult
 
+#### UI — dialog
+
+- [x] `CardEditorDialogComponent` — MatDialog + `CardForm` + save/cancel
+- [x] `CardEditorPage`: каталог без inline editor, create/edit через dialog
+- [x] Confirm при закрытии с несохранёнными изменениями
+- [x] Responsive: fullscreen dialog на узких экранах (`styles.scss`)
+- [ ] Deep link `?id=` для edit (опционально)
+
 ### Каталог карточек (масштаб)
 
 Документация: [docs/CARD-CATALOG.md](./docs/CARD-CATALOG.md)
@@ -170,6 +178,14 @@
 - [x] Публикация сценария (`published`), read-only для чужих
 - [x] Серверная валидация `cardSource` + 403 на изменение чужого сценария
 
+### Редактор карточек — dialog UI
+
+- [x] `CardEditorDialogComponent` — MatDialog shell + CardForm + save/cancel
+- [x] CardEditorPage: убрать inline editor, открывать dialog на create/edit
+- [x] Confirm при закрытии с несохранёнными изменениями
+- [x] Responsive: fullscreen dialog на узких экранах
+- [x] (опционально) Deep link `?id=` для edit
+- [x] Обновить CARD-CATALOG.md / ARCHITECTURE (layout «каталог + modal CRUD»)
 
 ### Локализация
 

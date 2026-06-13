@@ -36,8 +36,7 @@
   gap: 1.5rem;
   grid-template-areas:
     'filters'
-    'results'
-    'editor';
+    'results';
 }
 
 .card-editor-page__filters {
@@ -46,10 +45,6 @@
 
 .card-editor-page__results {
   grid-area: results;
-}
-
-.card-editor-page__editor {
-  grid-area: editor;
 }
 
 .card-editor-page__list {
