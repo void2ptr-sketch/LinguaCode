@@ -1,15 +1,23 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
+import { DEFAULT_CRITERIA_LIMIT, emptyCardSearchCriteria, scenarioCardsLabel } from '../../../../core/data/scenario-card-source.utils';
+import type { ScenarioCardSource } from '../../../../core/models';
+import {
+  CardCatalogSearchStore,
+  ScenarioCardCriteriaEditorComponent,
+  ScenarioCardPickerComponent,
+} from '../../../../shared/card-catalog-search';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
-import { ScenarioDraft } from '../../types';
+import { ScenarioCardSourceMode, ScenarioDraft } from '../../types';
 
 @Component({
   selector: 'app-scenario-builder-page',
@@ -17,13 +25,16 @@ import { ScenarioDraft } from '../../types';
     FormsModule,
     MatCardModule,
     MatButtonModule,
-    MatCheckboxModule,
+    MatButtonToggleModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
     MatListModule,
     MatProgressSpinnerModule,
+    ScenarioCardPickerComponent,
+    ScenarioCardCriteriaEditorComponent,
   ],
+  providers: [CardCatalogSearchStore],
   templateUrl: './scenario-builder-page.component.html',
   styleUrl: './scenario-builder-page.component.scss',
 })
@@ -32,7 +43,10 @@ export class ScenarioBuilderPageComponent implements OnInit {
 
   readonly titleDraft = signal('');
   readonly descriptionDraft = signal('');
-  readonly cardIdsDraft = signal<readonly string[]>([]);
+  readonly sourceModeDraft = signal<ScenarioCardSourceMode>('fixed');
+  readonly fixedCardIdsDraft = signal<readonly string[]>([]);
+  readonly criteriaDraft = signal(emptyCardSearchCriteria());
+  readonly criteriaLimitDraft = signal(DEFAULT_CRITERIA_LIMIT);
 
   async ngOnInit(): Promise<void> {
     await this.store.load();
@@ -52,7 +66,7 @@ export class ScenarioBuilderPageComponent implements OnInit {
     this.store.startEdit(scenarioId);
     this.titleDraft.set(scenario.title);
     this.descriptionDraft.set(scenario.description);
-    this.cardIdsDraft.set([...scenario.cardIds]);
+    this.applyCardSource(scenario.cardSource);
   }
 
   cancelEdit(): void {
@@ -64,7 +78,7 @@ export class ScenarioBuilderPageComponent implements OnInit {
     const draft: ScenarioDraft = {
       title: this.titleDraft(),
       description: this.descriptionDraft(),
-      cardIds: this.cardIdsDraft(),
+      cardSource: this.buildCardSource(),
     };
 
     if (this.store.editorMode() === 'create') {
@@ -84,24 +98,8 @@ export class ScenarioBuilderPageComponent implements OnInit {
     this.store.deleteScenario(scenarioId);
   }
 
-  toggleCard(cardId: string, checked: boolean): void {
-    const current = this.cardIdsDraft();
-    if (checked) {
-      if (!current.includes(cardId)) {
-        this.cardIdsDraft.set([...current, cardId]);
-      }
-      return;
-    }
-
-    this.cardIdsDraft.set(current.filter((id) => id !== cardId));
-  }
-
-  isCardSelected(cardId: string): boolean {
-    return this.cardIdsDraft().includes(cardId);
-  }
-
   moveCard(cardId: string, direction: -1 | 1): void {
-    const current = [...this.cardIdsDraft()];
+    const current = [...this.fixedCardIdsDraft()];
     const index = current.indexOf(cardId);
     const targetIndex = index + direction;
 
@@ -110,12 +108,45 @@ export class ScenarioBuilderPageComponent implements OnInit {
     }
 
     [current[index], current[targetIndex]] = [current[targetIndex], current[index]];
-    this.cardIdsDraft.set(current);
+    this.fixedCardIdsDraft.set(current);
+  }
+
+  onSourceModeChange(mode: ScenarioCardSourceMode): void {
+    this.sourceModeDraft.set(mode);
+  }
+
+  readonly scenarioCardsLabel = scenarioCardsLabel;
+
+  private buildCardSource(): ScenarioCardSource {
+    if (this.sourceModeDraft() === 'fixed') {
+      return { mode: 'fixed', cardIds: this.fixedCardIdsDraft() };
+    }
+
+    return {
+      mode: 'criteria',
+      criteria: this.criteriaDraft(),
+      limit: this.criteriaLimitDraft(),
+    };
+  }
+
+  private applyCardSource(source: ScenarioCardSource): void {
+    if (source.mode === 'fixed') {
+      this.sourceModeDraft.set('fixed');
+      this.fixedCardIdsDraft.set([...source.cardIds]);
+      return;
+    }
+
+    this.sourceModeDraft.set('criteria');
+    this.criteriaDraft.set({ ...source.criteria });
+    this.criteriaLimitDraft.set(source.limit ?? DEFAULT_CRITERIA_LIMIT);
   }
 
   private resetDraft(): void {
     this.titleDraft.set('');
     this.descriptionDraft.set('');
-    this.cardIdsDraft.set([]);
+    this.sourceModeDraft.set('fixed');
+    this.fixedCardIdsDraft.set([]);
+    this.criteriaDraft.set(emptyCardSearchCriteria());
+    this.criteriaLimitDraft.set(DEFAULT_CRITERIA_LIMIT);
   }
 }

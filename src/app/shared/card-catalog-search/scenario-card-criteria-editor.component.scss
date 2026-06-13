@@ -1,0 +1,9 @@
+.scenario-card-criteria-editor {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-card-criteria-editor__preview {
+  margin: 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}

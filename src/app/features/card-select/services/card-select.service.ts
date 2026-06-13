@@ -1,6 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { CardRepository } from '../../../core/data';
-import { Card, Scenario } from '../../../core/models';
+
+import { CardRepository, CardSearchService, resolveScenarioCardIds } from '../../../core/data';
+import { Card } from '../../../core/models';
 import { ScenarioBuilderService } from '../../scenario-builder/services/scenario-builder.service';
 
 export type CardSelectSession = {
@@ -13,9 +14,10 @@ export type CardSelectSession = {
 @Injectable({ providedIn: 'root' })
 export class CardSelectService {
   private readonly cardRepository = inject(CardRepository);
+  private readonly cardSearchService = inject(CardSearchService);
   private readonly scenarioBuilderService = inject(ScenarioBuilderService);
 
-  listScenarios(): readonly Scenario[] {
+  listScenarios() {
     return this.scenarioBuilderService.loadScenarios();
   }
 
@@ -27,11 +29,12 @@ export class CardSelectService {
       throw new Error('SCENARIO_NOT_FOUND');
     }
 
+    const cardIds = await resolveScenarioCardIds(scenario.cardSource, this.cardSearchService);
     const cardsById = new Map(cards.map((card) => [card.id, card]));
     const sessionCards: Card[] = [];
     const missingCardIds: string[] = [];
 
-    for (const cardId of scenario.cardIds) {
+    for (const cardId of cardIds) {
       const card = cardsById.get(cardId);
       if (card) {
         sessionCards.push(card);

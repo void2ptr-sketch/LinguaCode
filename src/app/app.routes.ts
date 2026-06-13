@@ -53,12 +53,14 @@ export const routes: Routes = [
           ).then((m) => m.ScenarioBuilderPageComponent),
       },
       {
-        path: 'tools/card-editor',
+        path: 'tools/cards',
         loadComponent: () =>
           import(
             './features/card-editor/components/card-editor-page/card-editor-page.component'
           ).then((m) => m.CardEditorPageComponent),
       },
+      { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
+      { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
       {
         path: 'help',
         loadComponent: () =>

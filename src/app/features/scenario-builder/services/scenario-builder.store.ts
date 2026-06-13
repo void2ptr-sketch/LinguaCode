@@ -1,10 +1,15 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { CardRepository } from '../../../core/data';
-import { Scenario } from '../../../core/models';
+
+import {
+  DEFAULT_CRITERIA_LIMIT,
+  hasCardSearchFilters,
+} from '../../../core/data/scenario-card-source.utils';
+import { CardSearchService } from '../../../core/data';
+import { Scenario, ScenarioCardSource } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
 import { ScenarioBuilderService } from './scenario-builder.service';
-import { CardCatalogItem, ScenarioDraft, ScenarioEditorMode } from '../types';
+import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
@@ -12,11 +17,10 @@ const sanitizeDescription = (value: string): string => sanitizePlainText(value, 
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderStore {
   private readonly scenarioBuilderService = inject(ScenarioBuilderService);
-  private readonly cardRepository = inject(CardRepository);
+  private readonly cardSearchService = inject(CardSearchService);
   private readonly userStore = inject(UserStore);
 
   readonly scenarios = signal<readonly Scenario[]>([]);
-  readonly catalog = signal<readonly CardCatalogItem[]>([]);
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
   readonly editorMode = signal<ScenarioEditorMode>('list');
@@ -32,7 +36,7 @@ export class ScenarioBuilderStore {
   });
 
   readonly catalogById = computed(() => {
-    return new Map(this.catalog().map((item) => [item.id, item]));
+    return new Map(this.cardSearchService.indexEntries().map((entry) => [entry.id, entry]));
   });
 
   async load(): Promise<void> {
@@ -40,8 +44,7 @@ export class ScenarioBuilderStore {
     this.error.set(null);
 
     try {
-      const cards = await this.cardRepository.ensureLoaded();
-      this.catalog.set(this.cardRepository.toCatalogItems(cards));
+      await this.cardSearchService.ensureIndexLoaded();
       this.scenarios.set(this.scenarioBuilderService.loadScenarios());
     } catch {
       this.error.set('Не удалось загрузить данные конструктора');
@@ -79,7 +82,7 @@ export class ScenarioBuilderStore {
       title: payload.title,
       description: payload.description,
       authorId: this.userStore.user().id,
-      cardIds: payload.cardIds,
+      cardSource: payload.cardSource,
     };
 
     const nextScenarios = [...this.scenarios(), scenario];
@@ -100,7 +103,7 @@ export class ScenarioBuilderStore {
             ...scenario,
             title: payload.title,
             description: payload.description,
-            cardIds: payload.cardIds,
+            cardSource: payload.cardSource,
           }
         : scenario,
     );
@@ -126,14 +129,56 @@ export class ScenarioBuilderStore {
   private normalizeDraft(draft: ScenarioDraft): ScenarioDraft | null {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
-    const cardIds = [...new Set(draft.cardIds.filter((cardId) => this.catalogById().has(cardId)))];
+    const cardSource = this.normalizeCardSource(draft.cardSource);
 
-    if (!title || cardIds.length === 0) {
-      this.error.set('Укажите название и выберите хотя бы одну карточку');
+    if (!title) {
+      this.error.set('Укажите название сценария');
       return null;
     }
 
-    return { title, description, cardIds };
+    if (!cardSource) {
+      return null;
+    }
+
+    return { title, description, cardSource };
+  }
+
+  private normalizeCardSource(source: ScenarioCardSource): ScenarioCardSource | null {
+    if (source.mode === 'fixed') {
+      const cardIds = [
+        ...new Set(source.cardIds.filter((cardId) => this.catalogById().has(cardId))),
+      ];
+
+      if (cardIds.length === 0) {
+        this.error.set('Выберите хотя бы одну карточку');
+        return null;
+      }
+
+      return { mode: 'fixed', cardIds };
+    }
+
+    if (!hasCardSearchFilters(source.criteria)) {
+      this.error.set('Укажите хотя бы один критерий отбора карточек');
+      return null;
+    }
+
+    const limit = source.limit ?? DEFAULT_CRITERIA_LIMIT;
+    if (limit <= 0) {
+      this.error.set('Лимит карточек должен быть больше 0');
+      return null;
+    }
+
+    return {
+      mode: 'criteria',
+      criteria: {
+        query: source.criteria.query?.trim() || undefined,
+        language: source.criteria.language,
+        difficulty: source.criteria.difficulty,
+        kinds: source.criteria.kinds?.length ? source.criteria.kinds : undefined,
+        tags: source.criteria.tags?.length ? source.criteria.tags : undefined,
+      },
+      limit,
+    };
   }
 
   private persist(scenarios: readonly Scenario[]): void {

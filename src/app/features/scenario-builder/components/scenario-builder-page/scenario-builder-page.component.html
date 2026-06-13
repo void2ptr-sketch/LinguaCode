@@ -33,7 +33,7 @@
                   <div matListItemTitle>{{ scenario.title }}</div>
                   <div matListItemLine>{{ scenario.description || 'Без описания' }}</div>
                   <div matListItemMeta class="scenario-builder-page__item-actions">
-                    <span>{{ scenario.cardIds.length }} карточек</span>
+                    <span>{{ scenarioCardsLabel(scenario.cardSource) }}</span>
                     <button
                       mat-icon-button
                       type="button"
@@ -95,41 +95,51 @@
             </mat-form-field>
 
             <section class="scenario-builder-page__cards">
-              <h2>Карточки</h2>
-              <mat-list>
-                @for (card of store.catalog(); track card.id) {
-                  <mat-list-item>
-                    <mat-checkbox
-                      [checked]="isCardSelected(card.id)"
-                      (change)="toggleCard(card.id, $event.checked)"
-                    >
-                      {{ card.title }} ({{ card.kind }})
-                    </mat-checkbox>
-                  </mat-list-item>
-                }
-              </mat-list>
-            </section>
+              <h2>Источник карточек</h2>
+              <mat-button-toggle-group
+                class="scenario-builder-page__source-mode"
+                [ngModel]="sourceModeDraft()"
+                (ngModelChange)="onSourceModeChange($event)"
+              >
+                <mat-button-toggle value="fixed">Фиксированный список</mat-button-toggle>
+                <mat-button-toggle value="criteria">По критериям</mat-button-toggle>
+              </mat-button-toggle-group>
 
-            @if (cardIdsDraft().length > 0) {
-              <section class="scenario-builder-page__order">
-                <h2>Порядок карточек</h2>
-                <mat-list>
-                  @for (cardId of cardIdsDraft(); track cardId) {
-                    <mat-list-item>
-                      <span matListItemTitle>{{ store.cardTitle(cardId) }}</span>
-                      <div matListItemMeta class="scenario-builder-page__order-actions">
-                        <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
-                          <mat-icon>arrow_upward</mat-icon>
-                        </button>
-                        <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
-                          <mat-icon>arrow_downward</mat-icon>
-                        </button>
-                      </div>
-                    </mat-list-item>
-                  }
-                </mat-list>
-              </section>
-            }
+              @if (sourceModeDraft() === 'fixed') {
+                <app-scenario-card-picker
+                  [selectedIds]="fixedCardIdsDraft()"
+                  (selectedIdsChange)="fixedCardIdsDraft.set($event)"
+                />
+
+                @if (fixedCardIdsDraft().length > 0) {
+                  <section class="scenario-builder-page__order">
+                    <h2>Порядок карточек</h2>
+                    <mat-list>
+                      @for (cardId of fixedCardIdsDraft(); track cardId) {
+                        <mat-list-item>
+                          <span matListItemTitle>{{ store.cardTitle(cardId) }}</span>
+                          <div matListItemMeta class="scenario-builder-page__order-actions">
+                            <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
+                              <mat-icon>arrow_upward</mat-icon>
+                            </button>
+                            <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
+                              <mat-icon>arrow_downward</mat-icon>
+                            </button>
+                          </div>
+                        </mat-list-item>
+                      }
+                    </mat-list>
+                  </section>
+                }
+              } @else {
+                <app-scenario-card-criteria-editor
+                  [criteria]="criteriaDraft()"
+                  [limit]="criteriaLimitDraft()"
+                  (criteriaChange)="criteriaDraft.set($event)"
+                  (limitChange)="criteriaLimitDraft.set($event)"
+                />
+              }
+            </section>
           </mat-card-content>
 
           <mat-card-actions align="end">

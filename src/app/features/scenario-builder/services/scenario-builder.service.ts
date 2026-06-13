@@ -1,5 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Scenario } from '../../../core/models';
+
+import { Scenario, LegacyScenario } from '../../../core/models';
+
+import { normalizeScenario } from '../../../core/data/scenario-card-source.utils';
 
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 
@@ -9,7 +12,10 @@ const DEFAULT_SCENARIOS: readonly Scenario[] = [
     title: 'Демо-сценарий',
     description: 'Базовый набор карточек для начала обучения.',
     authorId: 'local-user',
-    cardIds: ['select-1', 'select-2', 'select-3'],
+    cardSource: {
+      mode: 'fixed',
+      cardIds: ['select-1', 'select-2', 'select-3'],
+    },
   },
 ];
 
@@ -22,8 +28,8 @@ export class ScenarioBuilderService {
     }
 
     try {
-      const parsed = JSON.parse(raw) as readonly Scenario[];
-      return Array.isArray(parsed) ? parsed : DEFAULT_SCENARIOS;
+      const parsed = JSON.parse(raw) as readonly LegacyScenario[];
+      return Array.isArray(parsed) ? parsed.map(normalizeScenario) : DEFAULT_SCENARIOS;
     } catch {
       return DEFAULT_SCENARIOS;
     }

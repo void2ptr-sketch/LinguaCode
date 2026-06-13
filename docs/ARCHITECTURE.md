@@ -25,7 +25,7 @@ src/app/
 ### `core`
 
 - **layout/** — shell-приложение (header, navigation, main-layout, footer).
-- **models/** — доменные типы (`User`, `Card`, `Scenario`, `LearningResult`).
+- **models/** — доменные типы (`User`, `Card`, `Scenario`, `LearningResult`, `CardIndexEntry`).
 - **state/** — глобальные signal-сервисы (пользователь, сессия, настройки).
 - **api/** — HttpClient, interceptors, базовые типы ответов API.
 
@@ -34,6 +34,8 @@ src/app/
 ### `shared`
 
 - UI-обёртки над Material (кнопки, карточки, индикаторы загрузки).
+- **pagination/** — `PageRequest`, `PageResponse`, утилиты, `UiPaginationComponent`, `createPaginationState`.
+- **card-catalog-search/** — `CardCatalogSearchStore`, фильтры, `ScenarioCardPickerComponent`.
 - Pipes, директивы, утилиты без бизнес-логики.
 
 Может использоваться из `core/` и `features/`.
@@ -213,6 +215,18 @@ export class CardApiService {
 | Точка входа | `menu-tools` в header |
 | Путь | `features/scenario-builder/` |
 
+### `card-management` (`features/card-editor/`)
+
+Единый экран **«Карточки»** — поиск по index, CRUD, форма редактора.
+
+| | |
+|---|---|
+| Маршрут | `/tools/cards` (redirect: `/tools/card-editor`, `/tools/card-catalog`) |
+| Точка входа | `menu-tools` → «Карточки» |
+| Путь | `features/card-editor/` |
+| Список | `CardCatalogSearchStore` + `CardSearchService` |
+| Редактор | `CardEditorStore` + `card-form` |
+
 ## Безопасность
 
 - Секреты — только в `.env` / environment, **не в репозитории**.
@@ -228,6 +242,7 @@ export class CardApiService {
 ## Связанные документы
 
 - [DOMAIN.md](./DOMAIN.md) — бизнес-логика, модели, конструктор сценариев
+- [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт
 - [.gitrules](./.gitrules) — Git-процесс

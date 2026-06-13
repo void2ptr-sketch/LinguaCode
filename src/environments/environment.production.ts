@@ -5,4 +5,5 @@ export const environment: Environment = {
   apiUrl: '/api',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
+  useCardsApiMock: false,
 };

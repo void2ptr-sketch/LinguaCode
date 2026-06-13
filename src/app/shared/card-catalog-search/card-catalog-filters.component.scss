@@ -1,0 +1,70 @@
+.card-catalog-filters {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    'query'
+    'language'
+    'difficulty'
+    'actions'
+    'kinds'
+    'tags';
+
+  @media (min-width: 48rem) {
+    grid-template-columns: 1fr repeat(2, minmax(10rem, 12rem)) auto;
+    grid-template-areas:
+      'query language difficulty actions'
+      'kinds kinds kinds kinds'
+      'tags tags tags tags';
+    align-items: start;
+  }
+}
+
+.card-catalog-filters__query {
+  grid-area: query;
+}
+
+.card-catalog-filters__group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.card-catalog-filters__group:first-of-type {
+  grid-area: kinds;
+}
+
+.card-catalog-filters__group:last-of-type {
+  grid-area: tags;
+}
+
+.card-catalog-filters__label {
+  font: var(--mat-sys-label-large);
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+mat-form-field:nth-of-type(2) {
+  grid-area: language;
+}
+
+mat-form-field:nth-of-type(3) {
+  grid-area: difficulty;
+}
+
+button[mat-button] {
+  grid-area: actions;
+  justify-self: start;
+}
+
+mat-chip-set {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.card-catalog-filters__chip {
+  cursor: pointer;
+}
+
+.card-catalog-filters__chip--active {
+  --mdc-chip-elevated-container-color: var(--mat-sys-primary-container);
+  --mdc-chip-label-text-color: var(--mat-sys-on-primary-container);
+}

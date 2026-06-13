@@ -1,0 +1,39 @@
+<section class="scenario-card-picker">
+  <app-card-catalog-filters />
+
+  @if (store.loading()) {
+    <p class="scenario-card-picker__hint">Загрузка каталога…</p>
+  } @else if (store.error()) {
+    <p class="scenario-card-picker__error">{{ store.error() }}</p>
+  } @else if (store.entries().length === 0) {
+    <p class="scenario-card-picker__hint">Ничего не найдено. Измените фильтры.</p>
+  } @else {
+    <mat-list class="scenario-card-picker__list">
+      @for (entry of store.entries(); track entry.id) {
+        <mat-list-item>
+          <mat-checkbox
+            [checked]="isSelected(entry.id)"
+            (change)="toggleCard(entry.id, $event.checked)"
+          >
+            <span class="scenario-card-picker__title">{{ entry.title }}</span>
+            <span class="scenario-card-picker__meta">
+              {{ kindLabels[entry.kind] }}
+              · {{ languageLabels[entry.language] }}
+              · {{ difficultyLabels[entry.difficulty] }}
+            </span>
+          </mat-checkbox>
+        </mat-list-item>
+      }
+    </mat-list>
+
+    @if (store.totalItems() > 0) {
+      <app-pagination
+        [length]="store.totalItems()"
+        [pageIndex]="store.pageIndex()"
+        [pageSize]="store.pageSize()"
+        [pageSizeOptions]="store.pageSizeOptions"
+        (pageChange)="store.onPageChange($event)"
+      />
+    }
+  }
+</section>
