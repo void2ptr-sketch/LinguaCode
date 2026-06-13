@@ -1,3 +1,25 @@
-.page-card {
-  max-width: 40rem;
+.card-select-page {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.card-select-page__header h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.card-select-page__progress {
+  margin: 0.5rem 0 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.card-select-page__state {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.card-select-page__message {
+  max-width: 36rem;
 }

@@ -1,0 +1,32 @@
+{
+  "scenarioId": "demo-scenario",
+  "cards": [
+    {
+      "id": "select-1",
+      "kind": "select",
+      "title": "Приветствие",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Как сказать «Привет» по-английски?",
+      "options": ["Hello", "Goodbye", "Thanks", "Please"],
+      "correctIndex": 0
+    },
+    {
+      "id": "select-2",
+      "kind": "select",
+      "title": "Числа",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Как будет «спасибо» по-английски?",
+      "options": ["Please", "Sorry", "Thanks", "Welcome"],
+      "correctIndex": 2
+    },
+    {
+      "id": "select-3",
+      "kind": "select",
+      "title": "Прощание",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Выберите перевод слова «Goodbye»",
+      "options": ["Привет", "До свидания", "Доброе утро", "Пожалуйста"],
+      "correctIndex": 1
+    }
+  ]
+}
