@@ -258,7 +258,7 @@
 
 **G7 — несколько пар, одна активная**
 
-План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g7--несколько-пар-одна-активная-черновик). Пользователь ведёт несколько курсов (ru→en, ru→zh…), в сессии участвует только **активная** пара.
+План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g7--несколько-пар-одна-активная). Пользователь ведёт несколько курсов (ru→en, ru→zh…), в сессии участвует только **активная** пара.
 
 **G7a — модель и store**
 
@@ -285,6 +285,37 @@
 - [x] Смена активной пары сбрасывает `CardSelectStore` (confirm при незавершённой сессии — опционально)
 - [x] `LearningResultsStore` — статистика по активной паре (как сейчас; данные всех пар уже в `LearningResult`)
 - [ ] (опционально) Прогресс на главной — вкладки / фильтр по всем парам пользователя
+
+**G8 — scope UI по активной паре**
+
+План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g8--scope-ui-по-активной-паре-черновик). После выбора активной пары каталоги, списки и pickers показывают **только** контент этой пары (курс).
+
+**G8a — каталог карточек**
+
+- [ ] `/tools/cards`: `CardCatalogSearchStore.applyLanguagePair()` на init из `UserStore.languagePair()`
+- [ ] Reload каталога при смене `activeLanguagePairId`
+- [ ] `clearFilters()` не сбрасывает locked pair (known/learning остаются активными)
+- [ ] UI: chip «Курс: …» или read-only фильтры языка (режим `pairLocked`)
+
+**G8b — pickers в конструкторе**
+
+- [ ] `ScenarioCardPicker` — prefill + scope active pair на init
+- [ ] `ScenarioCardCriteriaEditor` — всегда держать known/learning активной пары
+- [ ] Reload picker при смене активной пары
+
+**G8c — список сценариев**
+
+- [ ] `ScenarioBuilderStore.loadList()` — фильтр по активной паре
+- [ ] `ScenarioSearchCriteria`: `knownLanguage` + `learningLanguage` (или `languagePair`)
+- [ ] Mock handler + API: server-side filter (корректная пагинация)
+- [ ] Заменить/дополнить client-only filter по `languagePairSummary` в `ScenarioPicker`
+
+**G8d — согласованность и edge cases**
+
+- [ ] Смена пары на `/tools/*` — reload открытых списков (как G7d для card-select)
+- [ ] Legacy `Scenario` без `languagePair` — правило: скрыть в strict mode или badge «без пары»
+- [ ] (опц.) Try dialog — проверка index entry vs active pair
+- [ ] (опц.) `UserPreferences.showAllLanguagePairs` — режим автора (снять lock)
 
 ### Прогон одной карточки (try dialog)
 
