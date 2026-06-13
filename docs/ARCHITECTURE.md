@@ -77,11 +77,17 @@ Shell-приложение. Контент фич — через `<router-outlet
 | MenuTools | `core/layout/menu-tools` | Инструменты (конструктор сценариев и др.) |
 | MenuHelp | `core/layout/menu-help` | Справка |
 | MenuUser | `core/layout/menu-user` | Профиль пользователя |
-| Navigation | `core/layout/navigation` | Боковое/основное меню |
+| Navigation | `core/layout/navigation` | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
 | MainLayout | `core/layout/main-layout` | Область контента |
 | Footer | `core/layout/footer` | Подвал |
 
-Компоненты `menu-*` встроены в `header`, не дублируются в `navigation`.
+Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
+
+| Пункт (sidebar) | Маршрут | Дублирует в header |
+|-----------------|---------|-------------------|
+| Обучение | `/cards/select` | `menu-cards` → «Карточки» |
+| Карточки | `/tools/cards` | `menu-tools` → «Карточки» |
+| Конструктор сценариев | `/tools/scenario-builder` | `menu-tools` → «Конструктор сценариев» |
 
 ### Grid (SCSS)
 
@@ -119,8 +125,8 @@ export const routes: Routes = [
 ```
 
 - Фичи подключаются **lazy** (`loadComponent`).
-- `menu-cards` в header ведёт на маршруты карточек.
-- `menu-tools` в header ведёт на инструменты (в т.ч. конструктор сценариев — бэклог).
+- `menu-cards` в header ведёт на прохождение карточек (`/cards/select`); в sidebar — пункт **«Обучение»**.
+- `menu-tools` в header ведёт на инструменты; в sidebar — **«Карточки»** (`/tools/cards`) и **«Конструктор сценариев»**.
 
 ## Модель данных
 
@@ -202,7 +208,7 @@ export class CardApiService {
 | | |
 |---|---|
 | Маршрут | `/cards/select` |
-| Точка входа | `menu-cards` в header |
+| Точка входа | `menu-cards` в header, **«Обучение»** в sidebar |
 | Путь | `features/card-select/` |
 
 ### Бэклог: `scenario-builder`
@@ -212,7 +218,7 @@ export class CardApiService {
 | | |
 |---|---|
 | Маршрут | `/tools/scenario-builder` (планируется) |
-| Точка входа | `menu-tools` в header |
+| Точка входа | `menu-tools` в header, **«Конструктор сценариев»** в sidebar |
 | Путь | `features/scenario-builder/` |
 
 ### `card-management` (`features/card-editor/`)
@@ -222,7 +228,7 @@ export class CardApiService {
 | | |
 |---|---|
 | Маршрут | `/tools/cards` (redirect: `/tools/card-editor`, `/tools/card-catalog`) |
-| Точка входа | `menu-tools` → «Карточки» |
+| Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar |
 | Путь | `features/card-editor/` |
 | Список | `CardCatalogSearchStore` + `CardSearchService` |
 | Редактор | `CardEditorStore` + `card-form` |

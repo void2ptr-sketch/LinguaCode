@@ -88,6 +88,8 @@ type ScenarioCardSource =
 - edit / delete на строке;
 - форма `card-form` при create/edit (панель снизу).
 
+**Точки входа:** `menu-tools` → «Карточки» в header; пункт **«Карточки»** в боковой navigation. Прохождение сценариев — **«Обучение»** в sidebar (`/cards/select`), header `menu-cards` без изменений.
+
 ## Этапы реализации
 
 | Этап | Содержание | Статус |
