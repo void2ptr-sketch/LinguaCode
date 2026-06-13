@@ -1,5 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
 import { CardRepository, CARDS_STORAGE_KEY, CardSearchService, ScenarioSearchService } from '../../../core/data';
 import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
@@ -14,8 +15,9 @@ describe('CardEditorStore', () => {
     id: 'select-test',
     kind: 'select' as const,
     title: 'Тест',
-    question: 'Q?',
-    options: ['A', 'B'],
+    direction: 'known-to-learning' as const,
+    promptKnown: 'Q?',
+    optionsLearning: ['A', 'B'],
     correctIndex: 0,
     appearance: { theme: 'azure-blue', fontSize: 'md' as const },
   };
@@ -28,6 +30,7 @@ describe('CardEditorStore', () => {
       providers: [
         CardEditorStore,
         CardRepository,
+        CardsCatalogMockHandler,
         LearningResultsStore,
         UserStore,
         provideHttpClient(),
@@ -57,14 +60,18 @@ describe('CardEditorStore', () => {
   });
 
   it('should create select card and persist it', async () => {
-    const created = await store.createCard({
-      kind: 'select',
-      title: 'Новая',
-      question: 'Вопрос?',
-      options: ['1', '2'],
-      correctIndex: 1,
-      appearance: { theme: 'azure-blue', fontSize: 'md' },
-    });
+    const created = await store.createCard(
+      {
+        kind: 'select',
+        title: 'Новая',
+        direction: 'known-to-learning',
+        promptKnown: 'Вопрос?',
+        optionsLearning: ['1', '2'],
+        correctIndex: 1,
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+      },
+      { knownLanguage: 'ru', learningLanguage: 'en' },
+    );
 
     expect(created).toBeTrue();
     expect(cardRepository.loadStored().some((card) => card.title === 'Новая')).toBeTrue();
@@ -75,8 +82,8 @@ describe('CardEditorStore', () => {
     const created = await store.createCard({
       kind: 'memory',
       title: 'Память',
-      prompt: 'Пары',
-      pairs: [{ front: 'A', back: 'B' }],
+      promptKnown: 'Пары',
+      pairs: [{ known: 'A', learning: 'B' }],
       appearance: { theme: 'azure-blue', fontSize: 'md' },
     });
 
@@ -109,6 +116,7 @@ describe('CardEditorStore', () => {
       scenarioId: 'demo',
       correct: true,
       answeredAt: new Date().toISOString(),
+      languagePair: { known: 'ru', learning: 'en' },
     });
 
     expect(await store.deleteCard('select-test')).toBeFalse();
@@ -119,8 +127,9 @@ describe('CardEditorStore', () => {
     await store.updateCard('select-test', {
       kind: 'select',
       title: 'Updated',
-      question: 'New?',
-      options: ['X', 'Y'],
+      direction: 'known-to-learning',
+      promptKnown: 'New?',
+      optionsLearning: ['X', 'Y'],
       correctIndex: 0,
       appearance: { theme: 'azure-blue', fontSize: 'lg' },
     });

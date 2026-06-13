@@ -3,6 +3,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../pagination';
+import { formatIndexLanguagePair } from '../../core/data/language-pair.utils';
 import {
   CARD_KIND_LABELS,
   CONTENT_LANGUAGE_LABELS,
@@ -31,6 +32,7 @@ export class ScenarioCardPickerComponent implements OnInit {
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly formatIndexLanguagePair = formatIndexLanguagePair;
 
   async ngOnInit(): Promise<void> {
     await this.store.init();

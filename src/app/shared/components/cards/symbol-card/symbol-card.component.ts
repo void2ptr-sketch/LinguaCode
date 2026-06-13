@@ -1,8 +1,13 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  effectiveCardDirection,
+  resolveOptionCard,
+} from '../../../../core/data/card-direction.utils';
 import { SymbolCard } from '../../../../core/models';
+import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
@@ -14,6 +19,7 @@ import { buildOptionClass } from '../option-card.utils';
 })
 export class SymbolCardComponent {
   readonly card = input.required<SymbolCard>();
+  readonly direction = input<CardDirection>('known-to-learning');
   readonly selectedIndex = input<number | null>(null);
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
@@ -22,8 +28,15 @@ export class SymbolCardComponent {
   readonly checkAnswer = output<void>();
   readonly nextCard = output<void>();
 
+  readonly resolved = computed(() => {
+    const card = this.card();
+    const direction = effectiveCardDirection(card.direction, this.direction());
+    return resolveOptionCard(card, direction);
+  });
+
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
+    const resolved = this.resolved();
+    return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
   selectOption(index: number): void {

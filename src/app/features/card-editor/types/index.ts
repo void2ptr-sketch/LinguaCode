@@ -1,4 +1,4 @@
-export type { CardEditorMode } from './card-editor.types';
+export type { CardEditorMode, CardIndexMetaDraft } from './card-editor.types';
 export type {
   CardAppearanceDraft,
   CardDraft,
@@ -11,4 +11,4 @@ export type {
   SymbolCardDraft,
   TimedCardDraft,
 } from './card-draft.types';
-export { CARD_KIND_LABELS, CARD_KINDS } from './card-draft.types';
+export { CARD_KIND_LABELS, CARD_KINDS, DEFAULT_CARD_DIRECTION } from './card-draft.types';

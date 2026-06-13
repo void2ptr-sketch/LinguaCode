@@ -1,3 +1,5 @@
+import type { CardDirection } from './language-pair.types';
+
 export type CardKind =
   | 'select'
   | 'memory'
@@ -20,56 +22,61 @@ export type CardBase = {
 };
 
 export type MemoryPair = {
-  front: string;
-  back: string;
+  known: string;
+  learning: string;
 };
 
 export type SelectCard = CardBase & {
   kind: 'select';
-  question: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  optionsLearning: readonly string[];
   correctIndex: number;
 };
 
 export type MemoryCard = CardBase & {
   kind: 'memory';
-  prompt: string;
+  promptKnown: string;
   pairs: readonly MemoryPair[];
 };
 
 export type SymbolCard = CardBase & {
   kind: 'symbol';
-  prompt: string;
+  direction: CardDirection;
+  promptKnown: string;
   symbols: readonly string[];
   correctIndex: number;
 };
 
 export type SoundCard = CardBase & {
   kind: 'sound';
-  prompt: string;
-  audioLabel: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  audioLabelLearning: string;
+  optionsKnown: readonly string[];
   correctIndex: number;
 };
 
 export type TimedCard = CardBase & {
   kind: 'timed';
-  question: string;
-  options: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  optionsLearning: readonly string[];
   correctIndex: number;
   timeLimitSec: number;
 };
 
 export type KeyboardCard = CardBase & {
   kind: 'keyboard';
-  prompt: string;
-  acceptedAnswers: readonly string[];
+  direction: CardDirection;
+  promptKnown: string;
+  acceptedAnswersKnown: readonly string[];
 };
 
 export type DrawCard = CardBase & {
   kind: 'draw';
-  prompt: string;
-  referenceHint: string;
+  promptKnown: string;
+  referenceHintKnown: string;
 };
 
 export type Card =

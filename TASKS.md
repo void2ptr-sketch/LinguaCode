@@ -221,10 +221,44 @@
 
 **G2+ — бэклог**
 
-- [ ] Structured bilingual content в `Card` (known/learning поля)
-- [ ] Index/search по паре; редактор карточек
-- [ ] `Scenario.languagePair` + валидация
-- [ ] Render по `CardDirection`; `LearningResult.languagePair`
+**G2 — structured content в `Card`**
+
+- [x] `MemoryPair`: `known` / `learning` вместо `front` / `back`
+- [x] `SelectCard`: `promptKnown`, `optionsLearning`, `direction: CardDirection`
+- [x] Аналогично для `keyboard`, `timed`, `symbol`, `sound` (prompt/answer по языкам)
+- [x] `CardDraft` + `card-form` — поля с подписями «известный» / «новый»
+- [x] `card-validation.utils` — валидация bilingual-полей
+- [x] Миграция demo: `public/data/select-cards.json`, `card-index-meta.json`
+- [x] Обновить `CardHostComponent` / renderers (минимально — читать новые поля)
+
+**G3 — каталог и редактор**
+
+- [x] `CardIndexEntry`: `knownLanguage` + `learningLanguage` (или `languagePair`)
+- [x] `CardSearchCriteria`: фильтр по паре; фасеты
+- [x] `card-editor`: выбор `languagePair` при create/edit → index meta
+- [x] `CardCatalogFiltersComponent` — фильтр known / learning
+- [x] Scenario criteria editor — prefill learning из профиля пользователя
+- [x] API mock + `cards-api.params.utils` — query params пары
+
+**G4 — сценарии**
+
+- [x] `Scenario.languagePair?: LanguagePair`
+- [x] `ScenarioEditorFormComponent` — выбор пары (default из `UserStore`)
+- [x] Валидация fixed/snapshot: карточки соответствуют паре сценария
+- [x] `ScenarioPickerComponent` — фильтр / badge пары
+- [x] Mock handler + API validation
+
+**G5 — обучение и результаты**
+
+- [x] `CardHostComponent` — render по `CardDirection` и `UserStore.languagePair`
+- [x] Toggle direction в сессии (опционально)
+- [x] `LearningResult.languagePair` + `direction?`
+- [x] `LearningResultsStore` — статистика с учётом пары
+- [x] Фильтр сценариев на `/cards/select` по паре пользователя
+
+**G6 — UiLocale** (отдельный трек, см. «Локализация» ниже)
+
+- [ ] Не смешивать с `ContentLanguage` / `LanguagePair`
 
 ### Локализация (UiLocale)
 

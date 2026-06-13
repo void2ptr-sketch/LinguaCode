@@ -1,8 +1,13 @@
-import { Component, input, OnDestroy, OnInit, output, signal } from '@angular/core';
+import { Component, computed, input, OnDestroy, OnInit, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  effectiveCardDirection,
+  resolveOptionCard,
+} from '../../../../core/data/card-direction.utils';
 import { TimedCard } from '../../../../core/models';
+import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
@@ -14,6 +19,7 @@ import { buildOptionClass } from '../option-card.utils';
 })
 export class TimedCardComponent implements OnInit, OnDestroy {
   readonly card = input.required<TimedCard>();
+  readonly direction = input<CardDirection>('known-to-learning');
   readonly selectedIndex = input<number | null>(null);
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
@@ -26,6 +32,12 @@ export class TimedCardComponent implements OnInit, OnDestroy {
   readonly secondsLeft = signal(0);
   private timerId: number | null = null;
 
+  readonly resolved = computed(() => {
+    const card = this.card();
+    const direction = effectiveCardDirection(card.direction, this.direction());
+    return resolveOptionCard(card, direction);
+  });
+
   ngOnInit(): void {
     this.startTimer();
   }
@@ -35,7 +47,8 @@ export class TimedCardComponent implements OnInit, OnDestroy {
   }
 
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
+    const resolved = this.resolved();
+    return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
   selectOption(index: number): void {

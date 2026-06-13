@@ -3,6 +3,7 @@
     @case ('select') {
       <app-select-card
         [card]="current"
+        [direction]="direction()"
         [selectedIndex]="selectedIndex()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"
@@ -14,6 +15,7 @@
     @case ('memory') {
       <app-memory-card
         [card]="current"
+        [direction]="direction()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"
         (memoryComplete)="memoryCompleteChange.emit($event)"
@@ -24,6 +26,7 @@
     @case ('symbol') {
       <app-symbol-card
         [card]="current"
+        [direction]="direction()"
         [selectedIndex]="selectedIndex()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"
@@ -35,6 +38,7 @@
     @case ('sound') {
       <app-sound-card
         [card]="current"
+        [direction]="direction()"
         [selectedIndex]="selectedIndex()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"
@@ -46,6 +50,7 @@
     @case ('timed') {
       <app-timed-card
         [card]="current"
+        [direction]="direction()"
         [selectedIndex]="selectedIndex()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"
@@ -58,6 +63,7 @@
     @case ('keyboard') {
       <app-keyboard-card
         [card]="current"
+        [direction]="direction()"
         [answerText]="answerText()"
         [feedback]="feedback()"
         [fontSize]="fontSize()"

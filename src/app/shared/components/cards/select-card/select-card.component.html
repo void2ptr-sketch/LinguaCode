@@ -1,11 +1,11 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>{{ card().question }}</mat-card-subtitle>
+    <mat-card-subtitle>{{ resolved().prompt }}</mat-card-subtitle>
   </mat-card-header>
 
   <mat-card-content class="quiz-card__options">
-    @for (option of card().options; track option; let index = $index) {
+    @for (option of resolved().options; track option; let index = $index) {
       <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
         {{ option }}
       </button>
@@ -22,7 +22,7 @@
   @if (feedback() === 'incorrect') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
-      Неверно. Правильный ответ: {{ card().options[card().correctIndex] }}
+      Неверно. Правильный ответ: {{ resolved().options[resolved().correctIndex] }}
     </mat-card-content>
   }
 

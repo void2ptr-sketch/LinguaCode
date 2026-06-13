@@ -163,7 +163,8 @@ type CardIndexEntry = {
   id: string;
   kind: CardKind;
   title: string;
-  language: ContentLanguage; // learning / target — см. LANGUAGE-PAIR.md
+  knownLanguage: ContentLanguage;
+  learningLanguage: ContentLanguage; // target — см. LANGUAGE-PAIR.md
   difficulty: CardDifficulty;
   tags: readonly string[];
   updatedAt: string; // ISO 8601
@@ -173,7 +174,8 @@ type PageRequest = { page: number; pageSize: number };
 
 type CardSearchCriteria = {
   query?: string;
-  language?: ContentLanguage;
+  knownLanguage?: ContentLanguage;
+  learningLanguage?: ContentLanguage;
   difficulty?: CardDifficulty;
   kinds?: readonly CardKind[];
   tags?: readonly string[];

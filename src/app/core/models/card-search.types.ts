@@ -5,7 +5,8 @@ import type { CardKind } from './card.types';
 
 export type CardSearchCriteria = {
   query?: string;
-  language?: ContentLanguage;
+  knownLanguage?: ContentLanguage;
+  learningLanguage?: ContentLanguage;
   difficulty?: CardDifficulty;
   kinds?: readonly CardKind[];
   tags?: readonly string[];
@@ -18,7 +19,8 @@ export type FacetCount<T extends string> = {
 };
 
 export type CardSearchFacets = {
-  languages: readonly FacetCount<ContentLanguage>[];
+  knownLanguages: readonly FacetCount<ContentLanguage>[];
+  learningLanguages: readonly FacetCount<ContentLanguage>[];
   difficulties: readonly FacetCount<CardDifficulty>[];
   kinds: readonly FacetCount<CardKind>[];
   tags: readonly FacetCount<string>[];

@@ -12,10 +12,23 @@
   </mat-form-field>
 
   <mat-form-field appearance="outline">
-    <mat-label>Язык</mat-label>
+    <mat-label>Известный язык</mat-label>
     <mat-select
-      [ngModel]="store.language()"
-      (ngModelChange)="onLanguageChange($event)"
+      [ngModel]="store.knownLanguage()"
+      (ngModelChange)="onKnownLanguageChange($event)"
+    >
+      <mat-option [value]="null">Все</mat-option>
+      @for (language of languages; track language) {
+        <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Новый язык</mat-label>
+    <mat-select
+      [ngModel]="store.learningLanguage()"
+      (ngModelChange)="onLearningLanguageChange($event)"
     >
       <mat-option [value]="null">Все</mat-option>
       @for (language of languages; track language) {

@@ -1,6 +1,9 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Card, CardKind } from '../../../core/models';
+import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
 import { CardRepository, CardSearchService, ScenarioSearchService } from '../../../core/data';
+import type { CardIndexMetaOverride } from '../../../core/data/card-index.mapper';
+import { upsertCardIndexMetaOverride } from '../../../core/data/card-index-meta.storage';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/card-draft.utils';
@@ -13,6 +16,7 @@ export class CardEditorStore {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly learningResultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
+  private readonly catalogMockHandler = inject(CardsCatalogMockHandler);
 
   readonly editingCard = signal<Card | null>(null);
   readonly editorLoading = signal(false);
@@ -54,7 +58,7 @@ export class CardEditorStore {
     this.error.set(null);
   }
 
-  async createCard(draft: CardDraft): Promise<boolean> {
+  async createCard(draft: CardDraft, indexMeta?: CardIndexMetaOverride): Promise<boolean> {
     const card = normalizeCardDraft(draft, crypto.randomUUID());
     if (!card) {
       this.error.set(cardValidationErrorMessage(draft.kind));
@@ -62,12 +66,16 @@ export class CardEditorStore {
     }
 
     const cards = await this.cardRepository.ensureLoaded();
-    await this.persist([...cards, card]);
+    await this.persist([...cards, card], card.id, indexMeta);
     this.cancelEdit();
     return true;
   }
 
-  async updateCard(cardId: string, draft: CardDraft): Promise<boolean> {
+  async updateCard(
+    cardId: string,
+    draft: CardDraft,
+    indexMeta?: CardIndexMetaOverride,
+  ): Promise<boolean> {
     const card = normalizeCardDraft(draft, cardId);
     if (!card) {
       this.error.set(cardValidationErrorMessage(draft.kind));
@@ -76,7 +84,7 @@ export class CardEditorStore {
 
     const cards = await this.cardRepository.ensureLoaded();
     const nextCards = cards.map((item) => (item.id === cardId ? card : item));
-    await this.persist(nextCards);
+    await this.persist(nextCards, cardId, indexMeta);
     this.cancelEdit();
     return true;
   }
@@ -124,8 +132,18 @@ export class CardEditorStore {
     return cardToDraft(card);
   }
 
-  private async persist(cards: readonly Card[]): Promise<void> {
+  private async persist(
+    cards: readonly Card[],
+    cardId?: string,
+    indexMeta?: CardIndexMetaOverride,
+  ): Promise<void> {
     this.cardRepository.save(cards);
+
+    if (cardId && indexMeta) {
+      upsertCardIndexMetaOverride(cardId, indexMeta);
+    }
+
+    this.catalogMockHandler.resetCache();
     this.cardSearchService.refreshCatalog();
   }
 }

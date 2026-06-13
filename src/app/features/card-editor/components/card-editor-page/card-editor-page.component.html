@@ -60,7 +60,7 @@
                   <div matListItemTitle>{{ entry.title }}</div>
                   <div matListItemLine>
                     {{ kindLabels[entry.kind] }}
-                    · {{ languageLabels[entry.language] }}
+                    · {{ formatEntryLanguages(entry) }}
                     · {{ difficultyLabels[entry.difficulty] }}
                   </div>
                   <div matListItemLine class="card-editor-page__meta">

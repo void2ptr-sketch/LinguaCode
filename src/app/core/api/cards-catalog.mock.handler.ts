@@ -9,8 +9,10 @@ import { paginateArray } from '../../shared/pagination';
 import { buildFixtureUrl } from './api-url';
 import {
   buildCardIndex,
+  mergeCardIndexMeta,
   type CardIndexMetaFixture,
 } from '../data/card-index.mapper';
+import { loadCardIndexMetaOverrides } from '../data/card-index-meta.storage';
 import { CardRepository } from '../data/card.repository';
 import { buildCardSearchFacets, filterCardIndex } from '../data/card-search.utils';
 
@@ -90,7 +92,8 @@ export class CardsCatalogMockHandler {
       ),
     ]);
 
+    const metaById = mergeCardIndexMeta(metaFixture.metaById, loadCardIndexMetaOverrides());
     this.cards = cards;
-    this.index = buildCardIndex(cards, metaFixture.metaById);
+    this.index = buildCardIndex(cards, metaById);
   }
 }

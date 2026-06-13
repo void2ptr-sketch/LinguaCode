@@ -7,7 +7,9 @@ import {
   resolveScenarioCardIds,
   validateScenarioCardSource,
 } from '../../../core/data/scenario-card-source.utils';
+import { cardIndexMatchesPair, normalizeLanguagePair } from '../../../core/data/language-pair.utils';
 import { CardSearchService, ScenarioSearchService } from '../../../core/data';
+import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
 import type {
   Scenario,
   ScenarioCardSource,
@@ -26,6 +28,7 @@ const sanitizeDescription = (value: string): string => sanitizePlainText(value, 
 export class ScenarioBuilderStore {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly cardSearchService = inject(CardSearchService);
+  private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
   readonly indexItems = signal<readonly ScenarioIndexEntry[]>([]);
@@ -228,7 +231,8 @@ export class ScenarioBuilderStore {
   private async normalizeDraft(draft: ScenarioDraft): Promise<import('../../../core/data/scenarios-api.service').ScenarioWritePayload | null> {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
-    const cardSource = await this.normalizeCardSource(draft.cardSource);
+    const languagePair = normalizeLanguagePair(draft.languagePair);
+    const cardSource = await this.normalizeCardSource(draft.cardSource, languagePair);
 
     if (!title) {
       this.error.set('Укажите название сценария');
@@ -239,10 +243,13 @@ export class ScenarioBuilderStore {
       return null;
     }
 
-    return { title, description, cardSource, published: draft.published };
+    return { title, description, cardSource, published: draft.published, languagePair };
   }
 
-  private async normalizeCardSource(source: ScenarioCardSource): Promise<ScenarioCardSource | null> {
+  private async normalizeCardSource(
+    source: ScenarioCardSource,
+    languagePair: import('../../../core/models').LanguagePair,
+  ): Promise<ScenarioCardSource | null> {
     const cardExists = async (cardId: string): Promise<boolean> => {
       try {
         await this.cardSearchService.getCardById(cardId);
@@ -269,6 +276,12 @@ export class ScenarioBuilderStore {
         return null;
       }
 
+      const pairError = await this.validateCardIdsMatchPair(cardIds, languagePair);
+      if (pairError) {
+        this.error.set(pairError);
+        return null;
+      }
+
       return { mode: 'fixed', cardIds };
     }
 
@@ -276,6 +289,12 @@ export class ScenarioBuilderStore {
       const error = await validateScenarioCardSource(source, cardExists);
       if (error) {
         this.error.set(error.message);
+        return null;
+      }
+
+      const pairError = await this.validateCardIdsMatchPair(source.cardIds, languagePair);
+      if (pairError) {
+        this.error.set(pairError);
         return null;
       }
 
@@ -292,7 +311,8 @@ export class ScenarioBuilderStore {
       mode: 'criteria',
       criteria: {
         query: source.criteria.query?.trim() || undefined,
-        language: source.criteria.language,
+        knownLanguage: source.criteria.knownLanguage,
+        learningLanguage: source.criteria.learningLanguage,
         difficulty: source.criteria.difficulty,
         kinds: source.criteria.kinds?.length ? source.criteria.kinds : undefined,
         tags: source.criteria.tags?.length ? source.criteria.tags : undefined,
@@ -301,5 +321,19 @@ export class ScenarioBuilderStore {
       sort: source.sort,
       seed: source.seed,
     };
+  }
+
+  private async validateCardIdsMatchPair(
+    cardIds: readonly string[],
+    languagePair: import('../../../core/models').LanguagePair,
+  ): Promise<string | null> {
+    for (const cardId of cardIds) {
+      const entry = await this.cardsCatalogHandler.getIndexEntry(cardId);
+      if (entry && !cardIndexMatchesPair(entry, languagePair)) {
+        return `Карточка ${cardId} не соответствует паре языков сценария`;
+      }
+    }
+
+    return null;
   }
 }

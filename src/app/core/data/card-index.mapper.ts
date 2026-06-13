@@ -1,8 +1,10 @@
 import type { Card } from '../models';
 import type { CardIndexEntry } from '../models/card-index.types';
+import { isContentLanguage } from './language-pair.utils';
+import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
 export type CardIndexMetaOverride = Partial<
-  Pick<CardIndexEntry, 'language' | 'difficulty' | 'tags' | 'updatedAt'>
+  Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
 >;
 
 export type CardIndexMetaFixture = {
@@ -10,11 +12,21 @@ export type CardIndexMetaFixture = {
 };
 
 export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): CardIndexEntry {
+  const knownLanguage =
+    meta?.knownLanguage && isContentLanguage(meta.knownLanguage)
+      ? meta.knownLanguage
+      : DEFAULT_LANGUAGE_PAIR.known;
+  const learningLanguage =
+    meta?.learningLanguage && isContentLanguage(meta.learningLanguage)
+      ? meta.learningLanguage
+      : DEFAULT_LANGUAGE_PAIR.learning;
+
   return {
     id: card.id,
     kind: card.kind,
     title: card.title,
-    language: meta?.language ?? 'ru',
+    knownLanguage,
+    learningLanguage,
     difficulty: meta?.difficulty ?? 'beginner',
     tags: meta?.tags ?? [card.kind],
     updatedAt: meta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
@@ -26,4 +38,11 @@ export function buildCardIndex(
   metaById: Record<string, CardIndexMetaOverride> = {},
 ): readonly CardIndexEntry[] {
   return cards.map((card) => cardToIndexEntry(card, metaById[card.id]));
+}
+
+export function mergeCardIndexMeta(
+  fixtureMeta: Record<string, CardIndexMetaOverride>,
+  storedMeta: Record<string, CardIndexMetaOverride>,
+): Record<string, CardIndexMetaOverride> {
+  return { ...fixtureMeta, ...storedMeta };
 }

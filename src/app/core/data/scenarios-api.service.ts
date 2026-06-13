@@ -2,7 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Scenario, ScenarioIndexEntry, ScenarioSearchCriteria, ScenarioSearchPage } from '../models';
+import type {
+  LanguagePair,
+  Scenario,
+  ScenarioIndexEntry,
+  ScenarioSearchCriteria,
+  ScenarioSearchPage,
+} from '../models';
 import type { ApiResponse } from '../api/api.types';
 import { buildApiUrl } from '../api/api-url';
 import { buildScenarioSearchParams } from '../api/scenarios-api.params.utils';
@@ -12,6 +18,7 @@ export type ScenarioWritePayload = {
   description: string;
   cardSource: Scenario['cardSource'];
   published: boolean;
+  languagePair?: LanguagePair;
 };
 
 @Injectable({ providedIn: 'root' })

@@ -11,8 +11,9 @@ describe('CardSelectService', () => {
     kind: 'select' as const,
     title: 'Приветствие',
     appearance: { theme: 'azure-blue', fontSize: 'md' as const },
-    question: 'Q?',
-    options: ['A', 'B'],
+    direction: 'known-to-learning' as const,
+    promptKnown: 'Q?',
+    optionsLearning: ['A', 'B'],
     correctIndex: 0,
   };
 
@@ -30,6 +31,7 @@ describe('CardSelectService', () => {
               authorId: 'local-user',
               published: true,
               updatedAt: '2026-01-01T00:00:00.000Z',
+              languagePair: { known: 'ru', learning: 'en' },
               cardSource: { mode: 'fixed' as const, cardIds: ['select-1'] },
             }),
           },

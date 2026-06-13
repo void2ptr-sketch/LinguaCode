@@ -23,7 +23,12 @@
       @for (entry of items(); track entry.id) {
         <button mat-list-item type="button" (click)="pick(entry)">
           <span matListItemTitle>{{ entry.title }}</span>
-          <span matListItemLine>{{ entry.cardSourceSummary }}</span>
+          <span matListItemLine>
+            {{ entry.cardSourceSummary }}
+            @if (entry.languagePairSummary) {
+              · {{ entry.languagePairSummary }}
+            }
+          </span>
           @if (entry.published) {
             <span matListItemMeta>опубликован</span>
           }

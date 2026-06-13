@@ -1,4 +1,5 @@
 import type { Scenario, ScenarioIndexEntry } from '../models';
+import { formatLanguagePair } from './language-pair.utils';
 import { scenarioCardsLabel } from './scenario-card-source.utils';
 
 export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
@@ -10,6 +11,7 @@ export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
     cardSourceSummary: scenarioCardsLabel(scenario.cardSource),
     published: scenario.published,
     updatedAt: scenario.updatedAt,
+    languagePairSummary: scenario.languagePair ? formatLanguagePair(scenario.languagePair) : undefined,
   };
 }
 

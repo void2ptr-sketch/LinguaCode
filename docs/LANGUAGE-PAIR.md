@@ -23,11 +23,9 @@ type LanguagePair = {
 type CardDirection = 'known-to-learning' | 'learning-to-known';
 ```
 
-## Семантика каталога
+## Семантика каталога (G3 — готово)
 
-`CardIndexEntry.language` — **язык изучаемого контента** (learning / target), не known language пользователя.
-
-Фильтр `CardSearchCriteria.language` на текущем этапе означает то же: learning language карточки. В G3+ — расширение до `languagePair` или отдельных полей `knownLanguage` / `learningLanguage`.
+`CardIndexEntry` хранит **`knownLanguage`** и **`learningLanguage`**. Фильтры `CardSearchCriteria.knownLanguage` / `learningLanguage` и фасеты каталога работают по обоим полям.
 
 ## Профиль пользователя (G1)
 
@@ -43,17 +41,12 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 ## Обучение (G1)
 
-На `/cards/select` отображается текущая пара из профиля. Рендер карточек по direction — бэклог G5.
+На `/cards/select` отображается текущая пара из профиля; toggle direction в сессии; рендер карточек по `CardDirection` — G5.
 
-## Карточки (бэклог G2)
-
-Сейчас двуязычность **неявная** в строках (`question` на ru, `options` на en). План:
+## Карточки (G2 — готово)
 
 ```typescript
-type MemoryPair = {
-  known: string;
-  learning: string;
-};
+type MemoryPair = { known: string; learning: string };
 
 type SelectCard = CardBase & {
   kind: 'select';
@@ -64,40 +57,62 @@ type SelectCard = CardBase & {
 };
 ```
 
-Demo JSON (`public/data/select-cards.json`) мигрирует на G2.
+Legacy JSON нормализуется через `card-legacy.mapper.ts` при загрузке из `localStorage`.
 
-## Сценарии (бэклог G4)
+## Сценарии (G4 — готово)
 
-```typescript
-type Scenario = {
-  // ...
-  languagePair?: LanguagePair;
-};
-```
+`Scenario.languagePair` — опционально; валидация fixed/snapshot в mock handler.
 
-Валидация: карточки fixed/snapshot соответствуют `languagePair` сценария.
+## Результаты (G5 — готово)
 
-## Результаты (бэклог G5)
-
-```typescript
-type LearningResult = {
-  // ...
-  languagePair: LanguagePair;
-  direction?: CardDirection;
-};
-```
+`LearningResult.languagePair` + optional `direction`.
 
 ## Этапы
 
 | Этап | Содержание | Статус |
 |------|------------|--------|
-| G0 | `LanguagePair` в DOMAIN и `core/models`; семантика `CardIndexEntry.language` | готово |
+| G0 | `LanguagePair` в DOMAIN и `core/models`; `CardIndexEntry.knownLanguage` / `learningLanguage` | готово |
 | G1 | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении | готово |
-| G2 | Structured content в `Card` (known/learning поля); миграция demo | план |
-| G3 | Index/search по паре; редактор — поля языка | план |
-| G4 | `Scenario.languagePair` + валидация в builder | план |
-| G5 | Render по direction; `LearningResult` + pair | план |
+| G2 | Structured content в `Card` (known/learning поля); миграция demo | готово |
+| G3 | Index/search по паре; редактор — поля языка | готово |
+| G4 | `Scenario.languagePair` + валидация в builder | готово |
+| G5 | Render по direction; `LearningResult` + pair | готово |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
+
+## G2+ — детали бэклога
+
+### G2 — structured content
+
+| Шаг | Содержание |
+|-----|------------|
+| G2.1 | Типы `Card` / `MemoryPair` — поля `known` / `learning` |
+| G2.2 | `CardDraft`, `card-form`, validation |
+| G2.3 | Миграция fixtures + backward-compat mapper (legacy `question`/`options`) |
+| G2.4 | Renderers — чтение новых полей |
+
+### G3 — каталог
+
+| Шаг | Содержание |
+|-----|------------|
+| G3.1 | `CardIndexEntry` + search criteria по паре |
+| G3.2 | Card editor — languagePair в форме и index meta |
+| G3.3 | Filters UI + API params |
+
+### G4 — сценарии
+
+| Шаг | Содержание |
+|-----|------------|
+| G4.1 | `Scenario.languagePair` в типах и API |
+| G4.2 | Builder form + validation cardSource |
+| G4.3 | Scenario picker filter |
+
+### G5 — сессия и analytics
+
+| Шаг | Содержание |
+|-----|------------|
+| G5.1 | Render по `CardDirection` |
+| G5.2 | `LearningResult` + pair context |
+| G5.3 | Filter scenarios by user pair |
 
 ## Связанные пути в коде
 

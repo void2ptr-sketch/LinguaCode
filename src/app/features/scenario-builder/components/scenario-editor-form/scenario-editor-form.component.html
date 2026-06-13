@@ -24,6 +24,41 @@
     ></textarea>
   </mat-form-field>
 
+  <section class="scenario-editor-form__languages">
+    <h2>Пара языков</h2>
+    <p class="scenario-editor-form__hint">Карточки сценария должны соответствовать выбранной паре.</p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Известный язык</mat-label>
+      <mat-select
+        [disabled]="readOnly()"
+        [ngModel]="draft().languagePair.known"
+        (ngModelChange)="onKnownLanguageChange($event)"
+      >
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Новый язык</mat-label>
+      <mat-select
+        [disabled]="readOnly()"
+        [ngModel]="draft().languagePair.learning"
+        (ngModelChange)="onLearningLanguageChange($event)"
+      >
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (languagePairInvalid()) {
+      <p class="scenario-editor-form__error">Языки должны отличаться.</p>
+    }
+  </section>
+
   <mat-slide-toggle
     [disabled]="readOnly()"
     [ngModel]="draft().published"

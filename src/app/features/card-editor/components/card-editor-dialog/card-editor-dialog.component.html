@@ -11,6 +11,32 @@
       <p class="card-editor-dialog__error">{{ store.error() }}</p>
     }
 
+    <section class="card-editor-dialog__languages">
+      <mat-form-field appearance="outline">
+        <mat-label>Известный язык</mat-label>
+        <mat-select
+          [ngModel]="indexMeta().knownLanguage"
+          (ngModelChange)="onKnownLanguageChange($event)"
+        >
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Новый язык</mat-label>
+        <mat-select
+          [ngModel]="indexMeta().learningLanguage"
+          (ngModelChange)="onLearningLanguageChange($event)"
+        >
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </section>
+
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"

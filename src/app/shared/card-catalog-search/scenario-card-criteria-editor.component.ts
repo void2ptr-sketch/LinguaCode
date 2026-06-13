@@ -10,6 +10,7 @@ import {
   resolveScenarioCardIds,
 } from '../../core/data/scenario-card-source.utils';
 import type { CardSearchCriteria, ScenarioCardSort } from '../../core/models';
+import { UserStore } from '../../core/state';
 
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
@@ -34,6 +35,7 @@ const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
 })
 export class ScenarioCardCriteriaEditorComponent implements OnInit {
   private readonly cardSearchService = inject(CardSearchService);
+  private readonly userStore = inject(UserStore);
   readonly store = inject(CardCatalogSearchStore);
 
   readonly criteria = input.required<Omit<CardSearchCriteria, 'page'>>();
@@ -66,7 +68,19 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.applyCriteria(this.criteria());
+    const initial = this.criteria();
+    const hasLanguageFilters = Boolean(initial.knownLanguage || initial.learningLanguage);
+    if (!hasLanguageFilters) {
+      const pair = this.userStore.languagePair();
+      this.applyCriteria({
+        ...initial,
+        knownLanguage: pair.known,
+        learningLanguage: pair.learning,
+      });
+    } else {
+      this.applyCriteria(initial);
+    }
+
     await this.store.init();
     this.initialized.set(true);
     void this.refreshPreview(this.readCriteriaFromStore());
@@ -94,7 +108,8 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
 
   private applyCriteria(criteria: Omit<CardSearchCriteria, 'page'>): void {
     this.store.query.set(criteria.query ?? '');
-    this.store.language.set(criteria.language ?? null);
+    this.store.knownLanguage.set(criteria.knownLanguage ?? null);
+    this.store.learningLanguage.set(criteria.learningLanguage ?? null);
     this.store.difficulty.set(criteria.difficulty ?? null);
     this.store.selectedKinds.set(criteria.kinds ?? []);
     this.store.selectedTags.set(criteria.tags ?? []);
@@ -103,7 +118,8 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   private readCriteriaFromStore(): Omit<CardSearchCriteria, 'page'> {
     return {
       query: this.store.query().trim() || undefined,
-      language: this.store.language() ?? undefined,
+      knownLanguage: this.store.knownLanguage() ?? undefined,
+      learningLanguage: this.store.learningLanguage() ?? undefined,
       difficulty: this.store.difficulty() ?? undefined,
       kinds: this.store.selectedKinds().length > 0 ? this.store.selectedKinds() : undefined,
       tags: this.store.selectedTags().length > 0 ? this.store.selectedTags() : undefined,

@@ -44,8 +44,12 @@ export class CardCatalogFiltersComponent {
     this.store.setQuery(value);
   }
 
-  onLanguageChange(value: ContentLanguage | null): void {
-    this.store.setLanguage(value);
+  onKnownLanguageChange(value: ContentLanguage | null): void {
+    this.store.setKnownLanguage(value);
+  }
+
+  onLearningLanguageChange(value: ContentLanguage | null): void {
+    this.store.setLearningLanguage(value);
   }
 
   onDifficultyChange(value: CardDifficulty | null): void {
