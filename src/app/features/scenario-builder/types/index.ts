@@ -1,7 +1,7 @@
 export type {
-  CardCatalogFixture,
-  CardCatalogItem,
-  ScenarioBuilderState,
+  ScenarioCardSourceMode,
+  ScenarioCriteriaDraft,
   ScenarioDraft,
   ScenarioEditorMode,
+  ScenarioBuilderState,
 } from './scenario-builder.types';

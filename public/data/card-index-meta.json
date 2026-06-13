@@ -1,0 +1,58 @@
+{
+  "metaById": {
+    "select-1": {
+      "language": "en",
+      "difficulty": "beginner",
+      "tags": ["greetings", "vocabulary"],
+      "updatedAt": "2026-01-10T09:00:00.000Z"
+    },
+    "select-2": {
+      "language": "en",
+      "difficulty": "beginner",
+      "tags": ["numbers", "vocabulary"],
+      "updatedAt": "2026-01-11T09:00:00.000Z"
+    },
+    "select-3": {
+      "language": "en",
+      "difficulty": "beginner",
+      "tags": ["greetings", "vocabulary"],
+      "updatedAt": "2026-01-12T09:00:00.000Z"
+    },
+    "memory-1": {
+      "language": "en",
+      "difficulty": "intermediate",
+      "tags": ["memory", "vocabulary"],
+      "updatedAt": "2026-01-13T09:00:00.000Z"
+    },
+    "symbol-1": {
+      "language": "en",
+      "difficulty": "beginner",
+      "tags": ["symbols", "visual"],
+      "updatedAt": "2026-01-14T09:00:00.000Z"
+    },
+    "sound-1": {
+      "language": "en",
+      "difficulty": "intermediate",
+      "tags": ["listening", "vocabulary"],
+      "updatedAt": "2026-01-15T09:00:00.000Z"
+    },
+    "timed-1": {
+      "language": "en",
+      "difficulty": "advanced",
+      "tags": ["speed", "vocabulary"],
+      "updatedAt": "2026-01-16T09:00:00.000Z"
+    },
+    "keyboard-1": {
+      "language": "en",
+      "difficulty": "intermediate",
+      "tags": ["writing", "vocabulary"],
+      "updatedAt": "2026-01-17T09:00:00.000Z"
+    },
+    "draw-1": {
+      "language": "en",
+      "difficulty": "advanced",
+      "tags": ["drawing", "visual"],
+      "updatedAt": "2026-01-18T09:00:00.000Z"
+    }
+  }
+}

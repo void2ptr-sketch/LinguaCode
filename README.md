@@ -58,11 +58,13 @@ npm start
 src/app/
 ├── core/
 │   ├── layout/              # shell (header, navigation, main-layout, footer)
-│   ├── models/              # User, Card, Scenario, LearningResult
+│   ├── models/              # User, Card, Scenario, CardIndexEntry, …
 │   ├── state/               # глобальные signal-сервисы
 │   └── api/                 # HttpClient, interceptors
 ├── shared/                  # переиспользуемые UI и утилиты
-├── features/                # фичи (card-select, scenario-builder, …)
+│   ├── pagination/          # PageRequest, PageResponse, UiPaginationComponent
+│   └── card-catalog-search/ # фильтры каталога, ScenarioCardPickerComponent
+├── features/                # фичи (card-select, scenario-builder, card-editor, …)
 ├── app.component.ts
 ├── app.config.ts
 └── app.routes.ts
@@ -130,6 +132,7 @@ npm run format
 ## Документация
 
 - [Домен](./docs/DOMAIN.md) — сущности, модели и бизнес-логика
+- [Каталог карточек](./docs/CARD-CATALOG.md) — индекс, поиск, пагинация
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога
 - [Архитектура](./docs/ARCHITECTURE.md) — технические решения
 - [Git rules](./docs/.gitrules) — ветки, коммиты, merge

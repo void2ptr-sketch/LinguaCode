@@ -1,44 +1,84 @@
 <section class="card-editor-page">
   <header class="card-editor-page__header">
-    <h1>Редактор карточек</h1>
-    <p>Создавайте и редактируйте карточки всех типов для сценариев обучения.</p>
+    <div>
+      <h1>Карточки</h1>
+      <p>Поиск, просмотр и редактирование карточек всех типов.</p>
+    </div>
+    <button mat-flat-button type="button" [matMenuTriggerFor]="createMenu">
+      <mat-icon>add</mat-icon>
+      Создать карточку
+    </button>
+    <mat-menu #createMenu="matMenu">
+      @for (kind of cardKinds; track kind) {
+        <button mat-menu-item type="button" (click)="startCreate(kind)">
+          {{ kindLabels[kind] }}
+        </button>
+      }
+    </mat-menu>
   </header>
 
-  @if (store.loading()) {
+  @if (catalogStore.loading() && !catalogStore.result()) {
     <div class="card-editor-page__state">
       <mat-spinner diameter="40" />
-      <p>Загрузка…</p>
+      <p>Загрузка каталога…</p>
     </div>
-  } @else if (store.error() && store.editorMode() === 'list') {
+  } @else if (catalogStore.error() && !catalogStore.result()) {
     <mat-card class="card-editor-page__message">
-      <mat-card-content>{{ store.error() }}</mat-card-content>
+      <mat-card-content>{{ catalogStore.error() }}</mat-card-content>
       <mat-card-actions align="end">
-        <button mat-flat-button type="button" (click)="store.load()">Повторить</button>
+        <button mat-flat-button type="button" (click)="catalogStore.reload()">Повторить</button>
       </mat-card-actions>
     </mat-card>
   } @else {
     <div class="card-editor-page__layout">
-      <mat-card class="card-editor-page__list">
+      <mat-card class="card-editor-page__filters">
         <mat-card-header>
-          <mat-card-title>Каталог карточек</mat-card-title>
-          <mat-card-subtitle>{{ store.cards().length }} карточек</mat-card-subtitle>
+          <mat-card-title>Фильтры</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          <app-card-catalog-filters />
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card class="card-editor-page__results">
+        <mat-card-header>
+          <mat-card-title>Результаты</mat-card-title>
+          <mat-card-subtitle>{{ catalogStore.totalItems() }} карточек</mat-card-subtitle>
         </mat-card-header>
 
         <mat-card-content>
-          @if (store.cards().length === 0) {
-            <p class="card-editor-page__empty">Карточек пока нет.</p>
+          @if (store.error() && store.editorMode() === 'list') {
+            <p class="card-editor-page__error">{{ store.error() }}</p>
+          }
+
+          @if (catalogStore.entries().length === 0) {
+            <p class="card-editor-page__empty">Ничего не найдено. Измените фильтры или создайте карточку.</p>
           } @else {
-            <mat-list>
-              @for (card of store.cards(); track card.id) {
+            <mat-list class="card-editor-page__list">
+              @for (entry of catalogStore.entries(); track entry.id) {
                 <mat-list-item class="card-editor-page__item">
-                  <div matListItemTitle>{{ card.title }}</div>
-                  <div matListItemLine>{{ cardSummary(card) }} · {{ kindLabels[card.kind] }}</div>
+                  <div matListItemTitle>{{ entry.title }}</div>
+                  <div matListItemLine>
+                    {{ kindLabels[entry.kind] }}
+                    · {{ languageLabels[entry.language] }}
+                    · {{ difficultyLabels[entry.difficulty] }}
+                  </div>
+                  <div matListItemLine class="card-editor-page__meta">
+                    <mat-chip-set>
+                      @for (tag of entry.tags; track tag) {
+                        <mat-chip>{{ tag }}</mat-chip>
+                      }
+                    </mat-chip-set>
+                    <span class="card-editor-page__updated">
+                      {{ entry.updatedAt | date: 'short' }}
+                    </span>
+                  </div>
                   <div matListItemMeta class="card-editor-page__item-actions">
                     <button
                       mat-icon-button
                       type="button"
                       aria-label="Редактировать"
-                      (click)="startEdit(card.id)"
+                      (click)="startEdit(entry.id)"
                     >
                       <mat-icon>edit</mat-icon>
                     </button>
@@ -46,7 +86,7 @@
                       mat-icon-button
                       type="button"
                       aria-label="Удалить"
-                      (click)="deleteCard(card.id)"
+                      (click)="deleteCard(entry.id)"
                     >
                       <mat-icon>delete</mat-icon>
                     </button>
@@ -57,19 +97,17 @@
           }
         </mat-card-content>
 
-        <mat-card-actions align="end">
-          <button mat-flat-button type="button" [matMenuTriggerFor]="createMenu">
-            <mat-icon>add</mat-icon>
-            Создать карточку
-          </button>
-          <mat-menu #createMenu="matMenu">
-            @for (kind of cardKinds; track kind) {
-              <button mat-menu-item type="button" (click)="startCreate(kind)">
-                {{ kindLabels[kind] }}
-              </button>
-            }
-          </mat-menu>
-        </mat-card-actions>
+        @if (catalogStore.totalItems() > 0) {
+          <mat-card-actions>
+            <app-pagination
+              [length]="catalogStore.totalItems()"
+              [pageIndex]="catalogStore.pageIndex()"
+              [pageSize]="catalogStore.pageSize()"
+              [pageSizeOptions]="catalogStore.pageSizeOptions"
+              (pageChange)="catalogStore.onPageChange($event)"
+            />
+          </mat-card-actions>
+        }
       </mat-card>
 
       @if (store.editorMode() !== 'list') {
@@ -85,20 +123,28 @@
           </mat-card-header>
 
           <mat-card-content>
-            @if (store.error()) {
-              <p class="card-editor-page__error">{{ store.error() }}</p>
-            }
+            @if (store.editorLoading()) {
+              <div class="card-editor-page__state">
+                <mat-spinner diameter="32" />
+              </div>
+            } @else {
+              @if (store.error()) {
+                <p class="card-editor-page__error">{{ store.error() }}</p>
+              }
 
-            <app-card-form
-              [draft]="draft()"
-              [previewId]="store.editingCardId() ?? 'preview-card'"
-              (draftChange)="updateDraft($event)"
-            />
+              <app-card-form
+                [draft]="draft()"
+                [previewId]="store.editingCardId() ?? 'preview-card'"
+                (draftChange)="updateDraft($event)"
+              />
+            }
           </mat-card-content>
 
           <mat-card-actions align="end">
             <button mat-button type="button" (click)="cancelEdit()">Отмена</button>
-            <button mat-flat-button type="button" (click)="saveCard()">Сохранить</button>
+            <button mat-flat-button type="button" [disabled]="store.editorLoading()" (click)="saveCard()">
+              Сохранить
+            </button>
           </mat-card-actions>
         </mat-card>
       }

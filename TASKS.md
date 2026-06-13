@@ -97,7 +97,8 @@
 
 ### Редактор для карточек
 
-- [x] Фича `features/card-editor/`, маршрут `/tools/card-editor`
+- [x] Фича `features/card-editor/` — каталог + CRUD, маршрут `/tools/cards`
+- [x] Объединение «Каталог карточек» и «Редактор карточек» в один экран «Карточки»
 - [x] `CardRepository` (localStorage, seed из `select-cards.json`)
 - [x] CRUD карточки `select` + preview через `CardHost`
 - [x] Редактирование `appearance` (theme, fontSize)
@@ -105,6 +106,20 @@
 - [x] Формы для остальных `CardKind`
 - [x] card-select: прохождение пользовательских сценариев
 - [x] удаление/изменение карточки не должно ломать сценарии и LearningResult
+
+### Каталог карточек (масштаб)
+
+Документация: [docs/CARD-CATALOG.md](./docs/CARD-CATALOG.md)
+
+- [x] `shared/pagination/` — `PageRequest`, `PageResponse`, утилиты, UI
+- [x] Типы `CardIndexEntry`, `CardSearchCriteria`, `ScenarioCardSource` в `core/models/`
+- [x] Документация DOMAIN / ARCHITECTURE / CARD-CATALOG
+- [x] Mock `CardSearchService` с facets и `paginateArray`
+- [x] Фича `features/card-catalog/` — фильтры, список, `UiPaginationComponent` (слито в card-editor)
+- [x] scenario-builder: выбор карточек через поиск каталога (не полный in-memory список)
+- [x] HTTP API: `GET /cards/search`, `GET /cards/:id`
+- [x] `ScenarioCardSource` (fixed / criteria) в модели и UI
+- [x] Каталог: фильтры сверху, результаты снизу (вертикальный layout)
 
 ### Локализация
 

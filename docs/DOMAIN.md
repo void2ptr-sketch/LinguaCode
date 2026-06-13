@@ -71,6 +71,10 @@ erDiagram
 | `CardAppearance` | Внешний вид: тема, размер шрифта и др. |
 | `Scenario` | Сценарий — упорядоченный набор карточек; создаётся вручную или через конструктор |
 | `LearningResult` | Результат ответа пользователя на карточку в сценарии |
+| `CardIndexEntry` | Лёгкая запись каталога (метаданные без payload карточки) |
+| `CardSearchCriteria` | Критерии поиска карточек в каталоге + `PageRequest` |
+
+Подробнее о масштабировании каталога: [CARD-CATALOG.md](./CARD-CATALOG.md).
 
 ### Типы карточек (`CardKind`)
 
@@ -115,7 +119,7 @@ type Scenario = {
   title: string;
   description: string;
   authorId: string;
-  cardIds: readonly string[];
+  cardSource: ScenarioCardSource;
 };
 
 type LearningResult = {
@@ -134,10 +138,46 @@ type User = {
 };
 ```
 
-Расположение в коде: `src/app/core/models/` (общие типы), `src/app/features/*/types/` (типы фичи).
+### Каталог карточек (масштаб)
+
+Для больших объёмов карточек полный `Card` не загружается в списки — только индексная запись:
+
+```typescript
+type ContentLanguage = 'en' | 'zh' | 'ru';
+
+type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
+
+type CardIndexEntry = {
+  id: string;
+  kind: CardKind;
+  title: string;
+  language: ContentLanguage;
+  difficulty: CardDifficulty;
+  tags: readonly string[];
+  updatedAt: string; // ISO 8601
+};
+
+type PageRequest = { page: number; pageSize: number };
+
+type CardSearchCriteria = {
+  query?: string;
+  language?: ContentLanguage;
+  difficulty?: CardDifficulty;
+  kinds?: readonly CardKind[];
+  tags?: readonly string[];
+  page: PageRequest;
+};
+
+type ScenarioCardSource =
+  | { mode: 'fixed'; cardIds: readonly string[] }
+  | { mode: 'criteria'; criteria: Omit<CardSearchCriteria, 'page'>; limit?: number };
+```
+
+Расположение в коде: `src/app/core/models/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).
 
 ## Связанные документы
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
+- [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор проекта

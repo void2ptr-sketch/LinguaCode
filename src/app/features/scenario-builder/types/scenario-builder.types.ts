@@ -1,28 +1,21 @@
-import { CardKind, Scenario } from '../../../core/models';
+import type { CardSearchCriteria, ScenarioCardSource } from '../../../core/models';
 
-export type CardCatalogItem = {
-  id: string;
-  kind: CardKind;
-  title: string;
-};
-
-export type CardCatalogFixture = {
-  cards: readonly CardCatalogItem[];
-};
+export type ScenarioCardSourceMode = ScenarioCardSource['mode'];
 
 export type ScenarioDraft = {
   title: string;
   description: string;
-  cardIds: readonly string[];
+  cardSource: ScenarioCardSource;
 };
 
 export type ScenarioEditorMode = 'list' | 'create' | 'edit';
 
 export type ScenarioBuilderState = {
-  scenarios: readonly Scenario[];
-  catalog: readonly CardCatalogItem[];
+  scenarios: readonly import('../../../core/models').Scenario[];
   loading: boolean;
   error: string | null;
   editorMode: ScenarioEditorMode;
   editingScenarioId: string | null;
 };
+
+export type ScenarioCriteriaDraft = Omit<CardSearchCriteria, 'page'>;

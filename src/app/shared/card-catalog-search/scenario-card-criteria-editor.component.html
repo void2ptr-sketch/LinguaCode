@@ -1,0 +1,22 @@
+<section class="scenario-card-criteria-editor">
+  <app-card-catalog-filters />
+
+  <mat-form-field appearance="outline">
+    <mat-label>Лимит карточек</mat-label>
+    <input
+      matInput
+      type="number"
+      min="1"
+      [ngModel]="limit()"
+      (ngModelChange)="onLimitInput($event)"
+    />
+  </mat-form-field>
+
+  <p class="scenario-card-criteria-editor__preview">
+    @if (previewLoading()) {
+      Подсчёт карточек…
+    } @else if (matchingTotal() !== null) {
+      Найдено {{ matchingTotal() }} · в сценарий попадёт до {{ limit() }}
+    }
+  </p>
+</section>

@@ -1,0 +1,8 @@
+<mat-paginator
+  class="ui-pagination"
+  [length]="length()"
+  [pageIndex]="pageIndex()"
+  [pageSize]="pageSize()"
+  [pageSizeOptions]="pageSizeOptions()"
+  (page)="pageChange.emit($event)"
+/>

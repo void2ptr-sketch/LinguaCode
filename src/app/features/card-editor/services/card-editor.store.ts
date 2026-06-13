@@ -1,6 +1,7 @@
-import { Injectable, computed, inject, signal } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { Card, CardKind } from '../../../core/models';
-import { CardRepository } from '../../../core/data';
+import { CardRepository, CardSearchService } from '../../../core/data';
+import { scenarioUsesCardId } from '../../../core/data/scenario-card-source.utils';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { ScenarioBuilderService } from '../../scenario-builder/services/scenario-builder.service';
 import { Scenario } from '../../../core/models';
@@ -11,93 +12,81 @@ import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-va
 @Injectable({ providedIn: 'root' })
 export class CardEditorStore {
   private readonly cardRepository = inject(CardRepository);
+  private readonly cardSearchService = inject(CardSearchService);
   private readonly scenarioBuilderService = inject(ScenarioBuilderService);
   private readonly learningResultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
 
-  readonly cards = signal<readonly Card[]>([]);
-  readonly loading = signal(false);
+  readonly editingCard = signal<Card | null>(null);
+  readonly editorLoading = signal(false);
   readonly error = signal<string | null>(null);
   readonly editorMode = signal<CardEditorMode>('list');
   readonly editingCardId = signal<string | null>(null);
   readonly creatingKind = signal<CardKind>('select');
 
-  readonly editingCard = computed(() => {
-    const id = this.editingCardId();
-    if (!id) {
-      return null;
-    }
-
-    return this.cardRepository.getById(this.cards(), id);
-  });
-
-  async load(): Promise<void> {
-    this.loading.set(true);
-    this.error.set(null);
-
-    try {
-      const cards = await this.cardRepository.ensureLoaded();
-      this.cards.set(cards);
-    } catch {
-      this.error.set('Не удалось загрузить карточки');
-    } finally {
-      this.loading.set(false);
-    }
-  }
-
   startCreate(kind: CardKind): void {
     this.editorMode.set('create');
     this.editingCardId.set(null);
+    this.editingCard.set(null);
     this.creatingKind.set(kind);
     this.error.set(null);
   }
 
-  startEdit(cardId: string): void {
-    const card = this.cardRepository.getById(this.cards(), cardId);
-    if (!card) {
-      return;
-    }
-
+  async startEdit(cardId: string): Promise<void> {
     this.editorMode.set('edit');
     this.editingCardId.set(cardId);
-    this.creatingKind.set(card.kind);
     this.error.set(null);
+    this.editorLoading.set(true);
+
+    try {
+      const card = await this.cardSearchService.getCardById(cardId);
+      this.editingCard.set(card);
+      this.creatingKind.set(card.kind);
+    } catch {
+      this.error.set('Не удалось загрузить карточку');
+      this.cancelEdit();
+    } finally {
+      this.editorLoading.set(false);
+    }
   }
 
   cancelEdit(): void {
     this.editorMode.set('list');
     this.editingCardId.set(null);
+    this.editingCard.set(null);
     this.error.set(null);
   }
 
-  createCard(draft: CardDraft): boolean {
+  async createCard(draft: CardDraft): Promise<boolean> {
     const card = normalizeCardDraft(draft, crypto.randomUUID());
     if (!card) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
 
-    const nextCards = [...this.cards(), card];
-    this.persist(nextCards);
+    const cards = await this.cardRepository.ensureLoaded();
+    await this.persist([...cards, card]);
     this.cancelEdit();
     return true;
   }
 
-  updateCard(cardId: string, draft: CardDraft): boolean {
+  async updateCard(cardId: string, draft: CardDraft): Promise<boolean> {
     const card = normalizeCardDraft(draft, cardId);
     if (!card) {
       this.error.set(cardValidationErrorMessage(draft.kind));
       return false;
     }
 
-    const nextCards = this.cards().map((item) => (item.id === cardId ? card : item));
-    this.persist(nextCards);
+    const cards = await this.cardRepository.ensureLoaded();
+    const nextCards = cards.map((item) => (item.id === cardId ? card : item));
+    await this.persist(nextCards);
     this.cancelEdit();
     return true;
   }
 
-  deleteCard(cardId: string): boolean {
-    const card = this.cardRepository.getById(this.cards(), cardId);
+  async deleteCard(cardId: string): Promise<boolean> {
+    const cards = await this.cardRepository.ensureLoaded();
+    const card = this.cardRepository.getById(cards, cardId);
     if (!card) {
       return false;
     }
@@ -115,8 +104,8 @@ export class CardEditorStore {
       return false;
     }
 
-    const nextCards = this.cards().filter((item) => item.id !== cardId);
-    this.persist(nextCards);
+    const nextCards = cards.filter((item) => item.id !== cardId);
+    await this.persist(nextCards);
     this.error.set(null);
 
     if (this.editingCardId() === cardId) {
@@ -140,12 +129,12 @@ export class CardEditorStore {
 
   private scenariosUsingCard(cardId: string): readonly Scenario[] {
     return this.scenarioBuilderService.loadScenarios().filter((scenario) =>
-      scenario.cardIds.includes(cardId),
+      scenarioUsesCardId(scenario.cardSource, cardId),
     );
   }
 
-  private persist(cards: readonly Card[]): void {
-    this.cards.set(cards);
+  private async persist(cards: readonly Card[]): Promise<void> {
     this.cardRepository.save(cards);
+    this.cardSearchService.refreshCatalog();
   }
 }

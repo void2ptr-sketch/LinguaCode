@@ -1,0 +1,28 @@
+.scenario-card-picker {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-card-picker__list {
+  padding: 0;
+}
+
+.scenario-card-picker__title {
+  display: block;
+}
+
+.scenario-card-picker__meta {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 65%, transparent);
+  display: block;
+  font-size: 0.875rem;
+}
+
+.scenario-card-picker__hint {
+  margin: 0;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.scenario-card-picker__error {
+  color: var(--mat-sys-error);
+  margin: 0;
+}

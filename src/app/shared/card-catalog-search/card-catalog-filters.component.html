@@ -1,0 +1,80 @@
+<section class="card-catalog-filters">
+  <mat-form-field class="card-catalog-filters__query" appearance="outline">
+    <mat-label>Поиск</mat-label>
+    <input
+      matInput
+      type="search"
+      [ngModel]="store.query()"
+      (ngModelChange)="onQueryInput($event)"
+      placeholder="Название или тег"
+    />
+    <mat-icon matPrefix>search</mat-icon>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Язык</mat-label>
+    <mat-select
+      [ngModel]="store.language()"
+      (ngModelChange)="onLanguageChange($event)"
+    >
+      <mat-option [value]="null">Все</mat-option>
+      @for (language of languages; track language) {
+        <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Сложность</mat-label>
+    <mat-select
+      [ngModel]="store.difficulty()"
+      (ngModelChange)="onDifficultyChange($event)"
+    >
+      <mat-option [value]="null">Все</mat-option>
+      @for (level of difficulties; track level) {
+        <mat-option [value]="level">{{ difficultyLabels[level] }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <button mat-button type="button" (click)="clearFilters()">
+    <mat-icon>filter_alt_off</mat-icon>
+    Сбросить
+  </button>
+
+  @if (store.facets(); as facets) {
+    @if (facets.kinds.length > 0) {
+      <div class="card-catalog-filters__group">
+        <span class="card-catalog-filters__label">Тип карточки</span>
+        <mat-chip-set aria-label="Тип карточки">
+          @for (facet of facets.kinds; track facet.value) {
+            <mat-chip
+              class="card-catalog-filters__chip"
+              [class.card-catalog-filters__chip--active]="isKindSelected(facet.value)"
+              (click)="toggleKind(facet.value)"
+            >
+              {{ kindLabels[facet.value] }} ({{ facet.count }})
+            </mat-chip>
+          }
+        </mat-chip-set>
+      </div>
+    }
+
+    @if (facets.tags.length > 0) {
+      <div class="card-catalog-filters__group">
+        <span class="card-catalog-filters__label">Теги</span>
+        <mat-chip-set aria-label="Теги">
+          @for (facet of facets.tags; track facet.value) {
+            <mat-chip
+              class="card-catalog-filters__chip"
+              [class.card-catalog-filters__chip--active]="isTagSelected(facet.value)"
+              (click)="toggleTag(facet.value)"
+            >
+              {{ facet.value }} ({{ facet.count }})
+            </mat-chip>
+          }
+        </mat-chip-set>
+      </div>
+    }
+  }
+</section>
