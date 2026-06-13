@@ -1,0 +1,25 @@
+.scenario-editor-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.scenario-editor-form__cards h2,
+.scenario-editor-form__order h2 {
+  font-size: 1rem;
+  margin: 0 0 0.5rem;
+}
+
+.scenario-editor-form__source-mode {
+  margin-bottom: 1rem;
+}
+
+.scenario-editor-form__order-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.25rem;
+}
+
+.scenario-editor-form__readonly {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  margin: 0;
+}

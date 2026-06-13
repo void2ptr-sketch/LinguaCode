@@ -13,47 +13,7 @@
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
 }
 
-.scenario-builder-page__layout {
-  display: grid;
-  gap: 1.5rem;
-  grid-template-areas:
-    'list'
-    'editor';
-}
-
-@media (min-width: 960px) {
-  .scenario-builder-page__layout {
-    align-items: start;
-    grid-template-areas: 'list editor';
-    grid-template-columns: minmax(18rem, 1fr) minmax(24rem, 1.2fr);
-  }
-}
-
-.scenario-builder-page__list {
-  grid-area: list;
-}
-
-.scenario-builder-page__editor {
-  grid-area: editor;
-}
-
-.scenario-builder-page__form {
-  display: grid;
-  gap: 1rem;
-}
-
-.scenario-builder-page__cards h2,
-.scenario-builder-page__order h2 {
-  font-size: 1rem;
-  margin: 0 0 0.5rem;
-}
-
-.scenario-builder-page__source-mode {
-  margin-bottom: 1rem;
-}
-
-.scenario-builder-page__item-actions,
-.scenario-builder-page__order-actions {
+.scenario-builder-page__item-actions {
   align-items: center;
   display: flex;
   gap: 0.25rem;
@@ -68,14 +28,9 @@
   margin-bottom: 1rem;
 }
 
-.scenario-builder-page__readonly {
-  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
-  margin: 0;
-}
-
 .scenario-builder-page__error {
   color: var(--mat-sys-error);
-  margin: 0;
+  margin: 0 0 1rem;
 }
 
 .scenario-builder-page__state {

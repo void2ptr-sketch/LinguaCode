@@ -213,13 +213,16 @@ export class CardApiService {
 
 ### `scenario-builder`
 
-Конструктор сценариев — создание и редактирование `Scenario` (`cardSource`: fixed / criteria).
+Конструктор сценариев — список на странице, CRUD в `MatDialog` (`cardSource`: fixed / criteria / snapshot).
 
 | | |
 |---|---|
 | Маршрут | `/tools/scenario-builder` |
 | Точка входа | `menu-tools` в header, **«Конструктор сценариев»** в sidebar |
 | Путь | `features/scenario-builder/` |
+| Список | `ScenarioBuilderStore` + `ScenarioSearchService` |
+| Редактор | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent` |
+| Пара языков | [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
 | Масштабирование | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
 
 ### `card-management` (`features/card-editor/`)

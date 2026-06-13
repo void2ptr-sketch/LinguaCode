@@ -1,10 +1,10 @@
-import type { CardDifficulty, CardKind, ContentLanguage } from '../../core/models';
+import type { CardDifficulty, CardKind } from '../../core/models';
+import {
+  CONTENT_LANGUAGE_LABELS,
+  contentLanguages,
+} from '../../core/data/language-pair.utils';
 
-export const CONTENT_LANGUAGE_LABELS: Record<ContentLanguage, string> = {
-  en: 'English',
-  zh: '中文',
-  ru: 'Русский',
-};
+export { CONTENT_LANGUAGE_LABELS };
 
 export const DIFFICULTY_LABELS: Record<CardDifficulty, string> = {
   beginner: 'Начальный',
@@ -32,6 +32,6 @@ export const CARD_KINDS: readonly CardKind[] = [
   'draw',
 ];
 
-export const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru'];
+export const CONTENT_LANGUAGES = contentLanguages();
 
 export const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];

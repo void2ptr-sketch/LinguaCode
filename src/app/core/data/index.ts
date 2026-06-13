@@ -1,4 +1,11 @@
 export { CARDS_STORAGE_KEY, CardRepository } from './card.repository';
+export {
+  CONTENT_LANGUAGE_LABELS,
+  contentLanguages,
+  formatLanguagePair,
+  isContentLanguage,
+  normalizeLanguagePair,
+} from './language-pair.utils';
 export { buildCardIndex, cardToIndexEntry, type CardIndexMetaFixture, type CardIndexMetaOverride } from './card-index.mapper';
 export { CardsApiService } from './cards-api.service';
 export { CardSearchService } from './card-search.service';

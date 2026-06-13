@@ -38,5 +38,10 @@ export type {
   ScenarioSearchPage,
 } from './scenario-index.types';
 export type { LearningResult } from './learning-result.types';
+export type {
+  CardDirection,
+  LanguagePair,
+} from './language-pair.types';
+export { DEFAULT_LANGUAGE_PAIR } from './language-pair.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
-export type { User } from './user.types';
+export type { User, UserPreferences } from './user.types';
