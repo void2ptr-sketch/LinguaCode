@@ -262,28 +262,28 @@
 
 **G7a — модель и store**
 
-- [ ] `UserLanguagePairEntry` (`id`, `pair`, `createdAt`) в `core/models/`
-- [ ] `UserPreferences`: `languagePairs[]` + `activeLanguagePairId` (замена singleton `languagePair`)
-- [ ] Миграция `user.persistence.ts`: legacy `languagePair` → одна запись в списке
-- [ ] `UserStore`: `addLanguagePair`, `removeLanguagePair`, `setActiveLanguagePair`
-- [ ] `UserStore.languagePair()` — computed **активной** пары (alias для G2–G5 без массового рефакторинга)
-- [ ] Дедупликация пар; запрет `known === learning`; минимум одна пара в профиле
+- [x] `UserLanguagePairEntry` (`id`, `pair`, `createdAt`) в `core/models/`
+- [x] `UserPreferences`: `languagePairs[]` + `activeLanguagePairId` (замена singleton `languagePair`)
+- [x] Миграция `user.persistence.ts`: legacy `languagePair` → одна запись в списке
+- [x] `UserStore`: `addLanguagePair`, `removeLanguagePair`, `setActiveLanguagePair`
+- [x] `UserStore.languagePair()` — computed **активной** пары (alias для G2–G5 без массового рефакторинга)
+- [x] Дедупликация пар; запрет `known === learning`; минимум одна пара в профиле
 
 **G7b — UI профиля**
 
-- [ ] `/user` — список пар, «сделать активной», удаление (кроме последней)
-- [ ] Форма «Добавить пару»; новая пара по умолчанию становится активной
-- [ ] При удалении активной — переключение на первую оставшуюся
+- [x] `/user` — список пар, «сделать активной», удаление (кроме последней)
+- [x] Форма «Добавить пару»; новая пара по умолчанию становится активной
+- [x] При удалении активной — переключение на первую оставшуюся
 
 **G7c — быстрое переключение**
 
-- [ ] Quick switcher активной пары: `/cards/select` и/или header (`menu-user`)
-- [ ] Подпись активной пары сохраняется в обучении
+- [x] Quick switcher активной пары: `/cards/select` и/или header (`menu-user`)
+- [x] Подпись активной пары сохраняется в обучении
 
 **G7d — сессия и прогресс**
 
-- [ ] Смена активной пары сбрасывает `CardSelectStore` (confirm при незавершённой сессии — опционально)
-- [ ] `LearningResultsStore` — статистика по активной паре (как сейчас; данные всех пар уже в `LearningResult`)
+- [x] Смена активной пары сбрасывает `CardSelectStore` (confirm при незавершённой сессии — опционально)
+- [x] `LearningResultsStore` — статистика по активной паре (как сейчас; данные всех пар уже в `LearningResult`)
 - [ ] (опционально) Прогресс на главной — вкладки / фильтр по всем парам пользователя
 
 **G6 — UiLocale** (отдельный трек, см. «Локализация» ниже)

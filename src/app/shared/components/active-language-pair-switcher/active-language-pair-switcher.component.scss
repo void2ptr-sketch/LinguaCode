@@ -1,0 +1,20 @@
+.pair-switcher {
+  margin: 0;
+  width: min(100%, 20rem);
+}
+
+.pair-switcher--compact {
+  width: min(100%, 14rem);
+}
+
+.pair-switcher__single {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.9375rem;
+  margin: 0.25rem 0 0;
+}
+
+.pair-switcher__single--compact {
+  font-size: 0.8125rem;
+  margin: 0;
+  white-space: nowrap;
+}

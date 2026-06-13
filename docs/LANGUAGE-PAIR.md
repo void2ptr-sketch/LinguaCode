@@ -31,18 +31,17 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 | Элемент | Путь / API |
 |---------|------------|
-| Тип (сейчас) | `UserPreferences.languagePair: LanguagePair` |
 | Тип (G7) | `languagePairs: UserLanguagePairEntry[]` + `activeLanguagePairId` |
 | Default | `{ known: 'ru', learning: 'en' }` — одна запись в списке |
-| Store | `UserStore.languagePair`, `languagePairLabel`, `updateLanguagePair()` |
-| Persist | `localStorage` · `lingua-code.user` |
-| UI | `/user` — селекты «Известный» / «Новый» (G7: список пар + add/remove/set active) |
+| Store | `UserStore.languagePair` (active alias), `languagePairs`, `addLanguagePair()`, `setActiveLanguagePair()` |
+| Persist | `localStorage` · `lingua-code.user` · миграция legacy `languagePair` |
+| UI | `/user` — список пар + add/remove/set active; switcher на `/cards/select` и в header |
 
 Подпись пары: `formatLanguagePair()` → «Русский → English».
 
-## G7 — несколько пар, одна активная (черновик)
+## G7 — несколько пар, одна активная
 
-> **Статус:** бэклог · см. [TASKS.md](../TASKS.md) (G7a–G7d).
+> **Статус:** готово (G7a–G7d); опционально G7.5 — прогресс по всем парам на главной.
 
 Пользователь может изучать **несколько** языковых пар (например ru→en и ru→zh), но в любой момент **ровно одна** пара **активна**. Активная пара определяет фильтрацию сценариев, prefill в редакторах, подпись на `/cards/select` и агрегаты прогресса.
 
@@ -173,7 +172,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G3 | Index/search по паре; редактор — поля языка | готово |
 | G4 | `Scenario.languagePair` + валидация в builder | готово |
 | G5 | Render по direction; `LearningResult` + pair | готово |
-| G7 | Несколько пар в профиле, одна активная | черновик |
+| G7 | Несколько пар в профиле, одна активная | готово |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
 
 ## G2+ — детали бэклога

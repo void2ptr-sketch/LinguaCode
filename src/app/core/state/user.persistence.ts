@@ -1,26 +1,11 @@
 import { Injectable } from '@angular/core';
 import type { User } from '../models';
-import { normalizeLanguagePair } from '../data/language-pair.utils';
-import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
-import type { UserPreferences } from '../models/user.types';
+import {
+  createDefaultLanguagePairPreferences,
+  normalizeUserPreferences,
+} from '../data/user-language-pair.utils';
 
 export const USER_STORAGE_KEY = 'lingua-code.user';
-
-const DEFAULT_PREFERENCES: UserPreferences = {
-  theme: 'azure-blue',
-  fontSize: 'md',
-  languagePair: DEFAULT_LANGUAGE_PAIR,
-};
-
-export function normalizeUserPreferences(
-  preferences?: Partial<UserPreferences> | null,
-): UserPreferences {
-  return {
-    theme: preferences?.theme ?? DEFAULT_PREFERENCES.theme,
-    fontSize: preferences?.fontSize ?? DEFAULT_PREFERENCES.fontSize,
-    languagePair: normalizeLanguagePair(preferences?.languagePair),
-  };
-}
 
 @Injectable({ providedIn: 'root' })
 export class UserPersistence {
@@ -50,3 +35,5 @@ export class UserPersistence {
     localStorage.setItem(USER_STORAGE_KEY, JSON.stringify(user));
   }
 }
+
+export { normalizeUserPreferences, createDefaultLanguagePairPreferences };

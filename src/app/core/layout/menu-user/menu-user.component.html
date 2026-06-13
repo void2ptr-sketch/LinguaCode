@@ -1,4 +1,7 @@
-<a mat-button routerLink="/user" routerLinkActive="menu-link--active">
-  <mat-icon>person_outline</mat-icon>
-  {{ displayName() }}
-</a>
+<div class="menu-user">
+  <app-active-language-pair-switcher [compact]="true" />
+  <a mat-button routerLink="/user" routerLinkActive="menu-link--active">
+    <mat-icon>person_outline</mat-icon>
+    {{ displayName() }}
+  </a>
+</div>

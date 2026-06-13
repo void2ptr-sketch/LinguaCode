@@ -1,5 +1,5 @@
 .page-card {
-  max-width: 28rem;
+  max-width: 32rem;
 }
 
 .page-card__form {
@@ -17,6 +17,11 @@
   margin: 0.5rem 0 0;
 }
 
+.page-card__subsection-title {
+  font-size: 0.9375rem;
+  margin: 0.25rem 0 0;
+}
+
 .page-card__hint {
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   font-size: 0.875rem;
@@ -26,4 +31,50 @@
 .page-card__error {
   color: var(--mat-sys-error);
   margin: 0;
+}
+
+.page-card__pair-list {
+  display: grid;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.page-card__pair-item {
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 40%, transparent);
+  border-radius: 0.5rem;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-areas:
+    'label actions'
+    'label actions';
+  grid-template-columns: 1fr auto;
+  padding: 0.5rem 0.75rem;
+}
+
+.page-card__pair-item--active {
+  border-color: var(--mat-sys-primary);
+}
+
+.page-card__pair-label {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.page-card__pair-badge {
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+  border-radius: 999px;
+  color: var(--mat-sys-primary);
+  font-size: 0.75rem;
+  padding: 0.125rem 0.5rem;
+}
+
+.page-card__pair-actions {
+  align-items: center;
+  display: inline-flex;
+  gap: 0.25rem;
 }
