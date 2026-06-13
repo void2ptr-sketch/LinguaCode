@@ -60,12 +60,12 @@
 
 ## 7. Качество и релиз
 
-- Написать smoke-тесты для критичных сценариев
-- Проверить сборку production (`ng build`)
+- [x] Написать smoke-тесты для критичных сценариев
+- [x] Проверить сборку production (`ng build`; скрипт `npm run build:prod`)
 - [x] Обновить `README.md` (описание, запуск, стек, структура)
 - [x] Заполнить / обновить `docs/ARCHITECTURE.md`
 - [x] Синхронизировать `README.md` с layout (`menu-cards`, `menu-tools`)
-- Настроить CI (сборка + тесты на push)
+- [x] Настроить CI (сборка + тесты на push; `npm run verify`)
 
 ---
 
