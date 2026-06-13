@@ -1,0 +1,7 @@
+.navigation {
+  padding-block: 0.5rem;
+}
+
+.navigation__link--active {
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}
