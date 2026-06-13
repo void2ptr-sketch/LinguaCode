@@ -43,7 +43,7 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 > **Статус:** готово (G7a–G7d); опционально G7.5 — прогресс по всем парам на главной.
 
-Пользователь может изучать **несколько** языковых пар (например ru→en и ru→zh), но в любой момент **ровно одна** пара **активна**. Активная пара определяет фильтрацию сценариев, prefill в редакторах, подпись на `/cards/select` и агрегаты прогресса.
+Пользователь может изучать **несколько** языковых пар (например ru→en и ru→zh), но в любой момент **ровно одна** пара **активна**. Сейчас активная пара влияет на обучение, прогресс и prefill в редакторах; полный scope всего UI — **G8**.
 
 ### Модель (план)
 
@@ -134,6 +134,74 @@ if ('languagePair' in prefs && !('languagePairs' in prefs)) {
 | Множественность | Несколько пар, одна активна | Один язык UI |
 | Пример | ru→en + ru→zh, UI на русском | Кнопки и меню на EN/ZH |
 
+## G8 — scope UI по активной паре (черновик)
+
+> **Статус:** бэклог · см. [TASKS.md](../TASKS.md) (G8a–G8d).
+
+G7 даёт **выбор активной пары**; G8 — **enforcement**: после выбора курса интерфейс показывает только карточки, сценарии и pickers, соответствующие `UserStore.languagePair()`.
+
+### Уже scoped (G5 + G7)
+
+| Область | Поведение |
+|---------|-----------|
+| `/cards/select` — сценарии | Client filter по `languagePairSummary` + `scenarioMatchesLanguagePair` при load |
+| Прогресс | `LearningResultsStore.pairResults` — только активная пара |
+| Смена пары в обучении | Сброс `CardSelectStore` (G7d) |
+| Create card / scenario | Prefill known/learning из активной пары |
+
+### Пробелы (G8)
+
+| Область | Сейчас |
+|---------|--------|
+| `/tools/cards` каталог | Фильтры вручную; `applyLanguagePair()` не вызывается |
+| `clearFilters()` | Сбрасывает known/learning → «Все языки» |
+| `/tools/scenario-builder` список | Все сценарии без фильтра по паре |
+| `ScenarioCardPicker` | Нет auto-scope на init |
+| `ScenarioSearchCriteria` | Нет полей пары — только client filter |
+| Смена пары на `/tools/*` | Нет auto-reload списков |
+
+### Режимы
+
+| Режим | Описание |
+|-------|----------|
+| **Strict** (MVP G8) | Каталоги и списки locked на active pair; языковые фильтры read-only |
+| **Author** (опц.) | `showAllLanguagePairs` — prefill active, но можно смотреть все пары |
+
+### Архитектура (план)
+
+```typescript
+// Единый scope из UserStore (alias уже есть)
+readonly activePair = userStore.languagePair();
+readonly activePairLabel = userStore.languagePairLabel();
+
+// CardCatalogSearchStore — на init и при смене пары
+applyLanguagePair(activePair.known, activePair.learning);
+
+// clearFilters() в locked mode — не трогает known/learning
+```
+
+**Сценарии:** добавить в `ScenarioSearchCriteria` поля `knownLanguage` / `learningLanguage` (или `languagePair`) и фильтровать в mock handler — иначе client filter ломает `totalItems` и пагинацию.
+
+**Legacy:** `Scenario.languagePair` отсутствует → сейчас `scenarioMatchesLanguagePair` возвращает `true` (виден в любой паре). В strict mode — скрывать или мигрировать demo.
+
+### Этапы G8
+
+| Шаг | Содержание |
+|-----|------------|
+| G8.1 | Каталог `/tools/cards`: applyLanguagePair + reload при смене пары |
+| G8.2 | `clearFilters` + locked UI фильтров языка |
+| G8.3 | ScenarioCardPicker + criteria editor — scope active pair |
+| G8.4 | Scenario builder list + `ScenarioSearchCriteria` + API |
+| G8.5 | Reload `/tools/*` при смене пары; legacy rules; (опц.) try dialog check |
+
+### Отличие G7 vs G8
+
+| | G7 | G8 |
+|--|-----|-----|
+| Фокус | Несколько пар, switcher | Весь UI в контексте одного курса |
+| Обучение | Scoped | Уже scoped — без изменений |
+| Tools | Prefill при create | **Фильтрация** каталогов и списков |
+
 ## Обучение (G1)
 
 На `/cards/select` отображается текущая пара из профиля; toggle direction в сессии; рендер карточек по `CardDirection` — G5.
@@ -173,6 +241,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G4 | `Scenario.languagePair` + валидация в builder | готово |
 | G5 | Render по direction; `LearningResult` + pair | готово |
 | G7 | Несколько пар в профиле, одна активная | готово |
+| G8 | Scope UI по активной паре (каталоги, сценарии, pickers) | черновик |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
 
 ## G2+ — детали бэклога
@@ -220,6 +289,16 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G7.4 | Quick switcher; reset session on pair change |
 | G7.5 | (опционально) progress across all pairs |
 
+### G8 — active pair UI scope
+
+| Шаг | Содержание |
+|-----|------------|
+| G8.1 | Card catalog: `applyLanguagePair` on init + reload on pair change |
+| G8.2 | Locked pair filters; `clearFilters` preserves pair |
+| G8.3 | Scenario card picker + criteria editor scoped |
+| G8.4 | Scenario list API filter (`ScenarioSearchCriteria` + mock) |
+| G8.5 | Tools reload on pair change; legacy scenarios; optional author mode |
+
 ## Связанные пути в коде
 
 ```
@@ -229,7 +308,12 @@ src/app/core/models/card-index.types.ts
 src/app/core/data/language-pair.utils.ts
 src/app/core/state/user.store.ts
 src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
+src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
 src/app/core/layout/pages/user-page/
+src/app/shared/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
+src/app/features/card-editor/components/card-editor-page/
+src/app/features/scenario-builder/services/scenario-builder.store.ts
+src/app/shared/scenario-picker/scenario-picker.component.ts
 src/app/features/card-select/components/card-select-page/
 public/data/select-cards.json
 ```
