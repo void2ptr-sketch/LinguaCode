@@ -256,6 +256,36 @@
 - [x] `LearningResultsStore` — статистика с учётом пары
 - [x] Фильтр сценариев на `/cards/select` по паре пользователя
 
+**G7 — несколько пар, одна активная**
+
+План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g7--несколько-пар-одна-активная-черновик). Пользователь ведёт несколько курсов (ru→en, ru→zh…), в сессии участвует только **активная** пара.
+
+**G7a — модель и store**
+
+- [ ] `UserLanguagePairEntry` (`id`, `pair`, `createdAt`) в `core/models/`
+- [ ] `UserPreferences`: `languagePairs[]` + `activeLanguagePairId` (замена singleton `languagePair`)
+- [ ] Миграция `user.persistence.ts`: legacy `languagePair` → одна запись в списке
+- [ ] `UserStore`: `addLanguagePair`, `removeLanguagePair`, `setActiveLanguagePair`
+- [ ] `UserStore.languagePair()` — computed **активной** пары (alias для G2–G5 без массового рефакторинга)
+- [ ] Дедупликация пар; запрет `known === learning`; минимум одна пара в профиле
+
+**G7b — UI профиля**
+
+- [ ] `/user` — список пар, «сделать активной», удаление (кроме последней)
+- [ ] Форма «Добавить пару»; новая пара по умолчанию становится активной
+- [ ] При удалении активной — переключение на первую оставшуюся
+
+**G7c — быстрое переключение**
+
+- [ ] Quick switcher активной пары: `/cards/select` и/или header (`menu-user`)
+- [ ] Подпись активной пары сохраняется в обучении
+
+**G7d — сессия и прогресс**
+
+- [ ] Смена активной пары сбрасывает `CardSelectStore` (confirm при незавершённой сессии — опционально)
+- [ ] `LearningResultsStore` — статистика по активной паре (как сейчас; данные всех пар уже в `LearningResult`)
+- [ ] (опционально) Прогресс на главной — вкладки / фильтр по всем парам пользователя
+
 **G6 — UiLocale** (отдельный трек, см. «Локализация» ниже)
 
 - [ ] Не смешивать с `ContentLanguage` / `LanguagePair`
