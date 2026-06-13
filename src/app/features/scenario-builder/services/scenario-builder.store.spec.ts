@@ -31,11 +31,15 @@ describe('ScenarioBuilderStore', () => {
     httpMock.verify();
   });
 
-  it('should load scenario index from API', async () => {
+  it('should load scenario index from API scoped to active pair', async () => {
     const loadPromise = store.loadList();
 
     const request = httpMock.expectOne(
-      (req) => req.url.includes('/scenarios/search') && req.params.get('scope') === 'mine',
+      (req) =>
+        req.url.includes('/scenarios/search') &&
+        req.params.get('scope') === 'mine' &&
+        req.params.get('knownLanguage') === 'ru' &&
+        req.params.get('learningLanguage') === 'en',
     );
     request.flush({
       data: {

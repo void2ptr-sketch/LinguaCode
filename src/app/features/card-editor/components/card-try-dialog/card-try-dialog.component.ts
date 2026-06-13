@@ -6,6 +6,8 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CardsApiService } from '../../../../core/data/cards-api.service';
+import { CardsCatalogMockHandler } from '../../../../core/api/cards-catalog.mock.handler';
+import { cardIndexMatchesPair } from '../../../../core/data/language-pair.utils';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { UserStore } from '../../../../core/state';
 import { CARD_KIND_LABELS } from '../../../../shared/card-catalog-search';
@@ -32,6 +34,7 @@ export class CardTryDialogComponent implements OnInit {
   readonly data = inject<CardTryDialogData>(MAT_DIALOG_DATA);
   readonly playStore = inject(SingleCardPlayStore);
   private readonly cardsApi = inject(CardsApiService);
+  private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
   readonly kindLabels = CARD_KIND_LABELS;
@@ -50,6 +53,14 @@ export class CardTryDialogComponent implements OnInit {
     this.playStore.setLoading(true);
 
     try {
+      const entry = await this.cardsCatalogHandler.getIndexEntry(this.data.cardId);
+      const pair = this.userStore.languagePair();
+
+      if (entry && !cardIndexMatchesPair(entry, pair)) {
+        this.playStore.setError('Карточка не относится к активному курсу');
+        return;
+      }
+
       const card = await this.cardsApi.getById(this.data.cardId);
       this.playStore.setCard(card);
     } catch {

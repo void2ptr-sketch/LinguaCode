@@ -1,5 +1,5 @@
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
@@ -17,10 +17,13 @@ import {
   DIFFICULTY_LABELS,
 } from '../../../../shared/card-catalog-search';
 import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UserStore } from '../../../../core/state';
 import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { CARD_KINDS } from '../../types';
+
+let lastKnownActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-card-editor-page',
@@ -45,11 +48,23 @@ export class CardEditorPageComponent implements OnInit {
   readonly catalogStore = inject(CardCatalogSearchStore);
   private readonly cardEditorDialog = inject(CardEditorDialogService);
   private readonly cardTryDialog = inject(CardTryDialogService);
+  private readonly userStore = inject(UserStore);
 
   readonly cardKinds = CARD_KINDS;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
+
+  private readonly reloadOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+    const pair = this.userStore.languagePair();
+
+    if (lastKnownActiveLanguagePairId !== null && lastKnownActiveLanguagePairId !== activeId) {
+      void this.catalogStore.initWithActivePair(pair.known, pair.learning);
+    }
+
+    lastKnownActiveLanguagePairId = activeId;
+  });
 
   formatEntryLanguages(entry: {
     knownLanguage: keyof typeof CONTENT_LANGUAGE_LABELS;
@@ -59,7 +74,8 @@ export class CardEditorPageComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    await this.catalogStore.init();
+    const pair = this.userStore.languagePair();
+    await this.catalogStore.initWithActivePair(pair.known, pair.learning);
   }
 
   async startCreate(kind: CardKind): Promise<void> {

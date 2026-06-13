@@ -2,6 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { CardSearchService } from '../../core/data';
+import { formatLanguagePair } from '../../core/data/language-pair.utils';
 import type {
   CardDifficulty,
   CardKind,
@@ -23,6 +24,7 @@ export class CardCatalogSearchStore {
   readonly selectedTags = signal<readonly string[]>([]);
   readonly pageIndex = signal(0);
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly pairLocked = signal(false);
 
   readonly pageSizeOptions = PAGE_SIZE_OPTIONS;
 
@@ -34,7 +36,25 @@ export class CardCatalogSearchStore {
   readonly facets = computed(() => this.result()?.facets ?? null);
   readonly totalItems = computed(() => this.result()?.totalItems ?? 0);
 
+  readonly lockedPairLabel = computed(() => {
+    const known = this.knownLanguage();
+    const learning = this.learningLanguage();
+
+    if (!known || !learning) {
+      return '';
+    }
+
+    return formatLanguagePair({ known, learning });
+  });
+
   async init(): Promise<void> {
+    await this.executeSearch();
+  }
+
+  async initWithActivePair(known: ContentLanguage, learning: ContentLanguage): Promise<void> {
+    this.pairLocked.set(true);
+    this.knownLanguage.set(known);
+    this.learningLanguage.set(learning);
     await this.executeSearch();
   }
 
@@ -48,11 +68,19 @@ export class CardCatalogSearchStore {
   }
 
   setKnownLanguage(value: ContentLanguage | null): void {
+    if (this.pairLocked()) {
+      return;
+    }
+
     this.knownLanguage.set(value);
     this.resetPageAndSearch();
   }
 
   setLearningLanguage(value: ContentLanguage | null): void {
+    if (this.pairLocked()) {
+      return;
+    }
+
     this.learningLanguage.set(value);
     this.resetPageAndSearch();
   }
@@ -79,9 +107,12 @@ export class CardCatalogSearchStore {
   }
 
   clearFilters(): void {
+    const lockedKnown = this.pairLocked() ? this.knownLanguage() : null;
+    const lockedLearning = this.pairLocked() ? this.learningLanguage() : null;
+
     this.query.set('');
-    this.knownLanguage.set(null);
-    this.learningLanguage.set(null);
+    this.knownLanguage.set(lockedKnown);
+    this.learningLanguage.set(lockedLearning);
     this.difficulty.set(null);
     this.selectedKinds.set([]);
     this.selectedTags.set([]);
@@ -95,6 +126,7 @@ export class CardCatalogSearchStore {
   }
 
   applyLanguagePair(known: ContentLanguage, learning: ContentLanguage): void {
+    this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
     this.resetPageAndSearch();

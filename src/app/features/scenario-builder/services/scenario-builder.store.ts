@@ -8,6 +8,7 @@ import {
   validateScenarioCardSource,
 } from '../../../core/data/scenario-card-source.utils';
 import { cardIndexMatchesPair, normalizeLanguagePair } from '../../../core/data/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
 import { CardSearchService, ScenarioSearchService } from '../../../core/data';
 import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
 import type {
@@ -59,9 +60,11 @@ export class ScenarioBuilderStore {
     this.error.set(null);
 
     try {
+      const pair = this.userStore.languagePair();
       const page = await this.scenarioSearchService.search({
         query: this.listQuery().trim() || undefined,
         scope: this.listScope(),
+        ...activeLanguagePairCriteria(pair),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 

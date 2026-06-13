@@ -5,6 +5,7 @@ import type {
   ScenarioListScope,
   ScenarioSearchCriteria,
 } from '../models';
+import { isContentLanguage } from '../data/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../shared/pagination';
 
 export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): HttpParams {
@@ -28,18 +29,30 @@ export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): Htt
     params = params.set('cardSourceMode', criteria.cardSourceMode);
   }
 
+  if (criteria.knownLanguage) {
+    params = params.set('knownLanguage', criteria.knownLanguage);
+  }
+
+  if (criteria.learningLanguage) {
+    params = params.set('learningLanguage', criteria.learningLanguage);
+  }
+
   return params;
 }
 
 export function parseScenarioSearchCriteria(params: HttpParams): ScenarioSearchCriteria {
   const scope = params.get('scope') as ScenarioListScope | null;
   const cardSourceMode = params.get('cardSourceMode') as ScenarioCardSourceMode | null;
+  const knownLanguage = params.get('knownLanguage');
+  const learningLanguage = params.get('learningLanguage');
 
   return {
     query: params.get('query') ?? undefined,
     authorId: params.get('authorId') ?? undefined,
     scope: scope ?? undefined,
     cardSourceMode: cardSourceMode ?? undefined,
+    knownLanguage: isContentLanguage(knownLanguage) ? knownLanguage : undefined,
+    learningLanguage: isContentLanguage(learningLanguage) ? learningLanguage : undefined,
     page: {
       page: Number(params.get('page') ?? 0),
       pageSize: Number(params.get('pageSize') ?? DEFAULT_PAGE_SIZE),

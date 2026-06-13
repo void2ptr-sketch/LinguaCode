@@ -11,33 +11,44 @@
     <mat-icon matPrefix>search</mat-icon>
   </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Известный язык</mat-label>
-    <mat-select
-      [ngModel]="store.knownLanguage()"
-      (ngModelChange)="onKnownLanguageChange($event)"
-    >
-      <mat-option [value]="null">Все</mat-option>
-      @for (language of languages; track language) {
-        <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+  @if (store.pairLocked()) {
+    <div class="card-catalog-filters__course">
+      <span class="card-catalog-filters__label">Курс</span>
+      <mat-chip-set aria-label="Активный курс">
+        <mat-chip class="card-catalog-filters__chip card-catalog-filters__chip--active" disabled>
+          {{ store.lockedPairLabel() }}
+        </mat-chip>
+      </mat-chip-set>
+    </div>
+  } @else {
+    <mat-form-field class="card-catalog-filters__known" appearance="outline">
+      <mat-label>Известный язык</mat-label>
+      <mat-select
+        [ngModel]="store.knownLanguage()"
+        (ngModelChange)="onKnownLanguageChange($event)"
+      >
+        <mat-option [value]="null">Все</mat-option>
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Новый язык</mat-label>
-    <mat-select
-      [ngModel]="store.learningLanguage()"
-      (ngModelChange)="onLearningLanguageChange($event)"
-    >
-      <mat-option [value]="null">Все</mat-option>
-      @for (language of languages; track language) {
-        <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field class="card-catalog-filters__learning" appearance="outline">
+      <mat-label>Новый язык</mat-label>
+      <mat-select
+        [ngModel]="store.learningLanguage()"
+        (ngModelChange)="onLearningLanguageChange($event)"
+      >
+        <mat-option [value]="null">Все</mat-option>
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
 
-  <mat-form-field appearance="outline">
+  <mat-form-field class="card-catalog-filters__difficulty" appearance="outline">
     <mat-label>Сложность</mat-label>
     <mat-select
       [ngModel]="store.difficulty()"

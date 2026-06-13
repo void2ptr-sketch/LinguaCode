@@ -6,7 +6,7 @@ import {
   resolveScenarioCardIds,
   ScenarioSearchService,
 } from '../../../core/data';
-import { formatLanguagePair } from '../../../core/data/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
 import { scenarioMatchesLanguagePair } from '../../../core/data/scenario-card-source.utils';
 import { Card } from '../../../core/models';
 import { UserStore } from '../../../core/state';
@@ -27,20 +27,14 @@ export class CardSelectService {
   private readonly userStore = inject(UserStore);
 
   searchScenarios(query: string, pageIndex: number, pageSize: number) {
-    const pairLabel = formatLanguagePair(this.userStore.languagePair());
+    const pair = this.userStore.languagePair();
 
-    return this.scenarioSearchService
-      .search({
-        query: query.trim() || undefined,
-        scope: 'published',
-        page: { page: pageIndex, pageSize },
-      })
-      .then((page) => ({
-        ...page,
-        items: page.items.filter(
-          (item) => !item.languagePairSummary || item.languagePairSummary === pairLabel,
-        ),
-      }));
+    return this.scenarioSearchService.search({
+      query: query.trim() || undefined,
+      scope: 'published',
+      ...activeLanguagePairCriteria(pair),
+      page: { page: pageIndex, pageSize },
+    });
   }
 
   async loadScenario(scenarioId: string): Promise<CardSelectSession> {

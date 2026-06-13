@@ -98,7 +98,7 @@ export function scenarioMatchesLanguagePair(
   pair: LanguagePair,
 ): boolean {
   if (!scenario.languagePair) {
-    return true;
+    return false;
   }
 
   return (

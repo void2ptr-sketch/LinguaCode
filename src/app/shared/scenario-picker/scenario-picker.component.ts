@@ -1,4 +1,4 @@
-import { Component, inject, input, OnInit, output, signal } from '@angular/core';
+import { Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,10 +8,12 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { ScenarioSearchService } from '../../core/data';
-import { formatLanguagePair } from '../../core/data/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../core/data/language-pair-scope.utils';
 import type { ScenarioIndexEntry, ScenarioListScope } from '../../core/models';
 import { UserStore } from '../../core/state';
 import { UiPaginationComponent } from '../pagination';
+
+let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-scenario-picker',
@@ -44,6 +46,19 @@ export class ScenarioPickerComponent implements OnInit {
   readonly pageSize = signal(10);
   readonly loading = signal(false);
 
+  private readonly reloadOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+
+    if (
+      lastKnownScenarioPickerActiveLanguagePairId !== null &&
+      lastKnownScenarioPickerActiveLanguagePairId !== activeId
+    ) {
+      void this.load();
+    }
+
+    lastKnownScenarioPickerActiveLanguagePairId = activeId;
+  });
+
   ngOnInit(): void {
     void this.load();
   }
@@ -52,17 +67,16 @@ export class ScenarioPickerComponent implements OnInit {
     this.loading.set(true);
 
     try {
+      const pair = this.userStore.languagePair();
       const page = await this.scenarioSearchService.search({
         query: this.query().trim() || undefined,
         scope: this.scope(),
+        ...activeLanguagePairCriteria(pair),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
-      const pairLabel = formatLanguagePair(this.userStore.languagePair());
-      const filtered = page.items.filter(
-        (entry) => !entry.languagePairSummary || entry.languagePairSummary === pairLabel,
-      );
-      this.items.set(filtered);
-      this.totalItems.set(filtered.length);
+
+      this.items.set(page.items);
+      this.totalItems.set(page.totalItems);
 
       const current = this.selectedScenarioId();
       const hasCurrent = page.items.some((item) => item.id === current);

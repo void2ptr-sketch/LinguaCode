@@ -23,6 +23,22 @@
   grid-area: query;
 }
 
+.card-catalog-filters__known,
+.card-catalog-filters__learning,
+.card-catalog-filters__course {
+  grid-area: language;
+}
+
+.card-catalog-filters__difficulty {
+  grid-area: difficulty;
+}
+
+.card-catalog-filters__course {
+  display: grid;
+  gap: 0.5rem;
+  align-content: start;
+}
+
 .card-catalog-filters__group {
   display: grid;
   gap: 0.5rem;
@@ -39,14 +55,6 @@
 .card-catalog-filters__label {
   font: var(--mat-sys-label-large);
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
-}
-
-mat-form-field:nth-of-type(2) {
-  grid-area: language;
-}
-
-mat-form-field:nth-of-type(3) {
-  grid-area: difficulty;
 }
 
 button[mat-button] {
