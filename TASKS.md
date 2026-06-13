@@ -178,6 +178,14 @@
 - [x] Публикация сценария (`published`), read-only для чужих
 - [x] Серверная валидация `cardSource` + 403 на изменение чужого сценария
 
+### Редактор карточек — dialog UI
+
+- [x] `CardEditorDialogComponent` — MatDialog shell + CardForm + save/cancel
+- [x] CardEditorPage: убрать inline editor, открывать dialog на create/edit
+- [x] Confirm при закрытии с несохранёнными изменениями
+- [x] Responsive: fullscreen dialog на узких экранах
+- [x] (опционально) Deep link `?id=` для edit
+- [x] Обновить CARD-CATALOG.md / ARCHITECTURE (layout «каталог + modal CRUD»)
 
 ### Локализация
 
