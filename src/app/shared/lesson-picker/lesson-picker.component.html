@@ -9,33 +9,35 @@
     } @else if (lessonItems().length === 0) {
       <p class="lesson-picker__empty">В курсе пока нет уроков.</p>
     } @else {
-      <mat-nav-list class="lesson-picker__list">
+      <ul class="lesson-picker__list">
         @for (item of lessonItems(); track item.lesson.id) {
-          <button
-            mat-list-item
-            type="button"
-            [disabled]="!item.unlocked"
-            [class.lesson-picker__item--selected]="item.lesson.id === selectedLessonId()"
-            [class.lesson-picker__item--locked]="!item.unlocked"
-            [class.lesson-picker__item--completed]="item.completed"
-            (click)="pick(item.lesson)"
-          >
-            <span matListItemTitle>
-              {{ item.lesson.title }}
-              @if (item.completed) {
-                <mat-icon class="lesson-picker__badge" aria-label="Урок завершён">verified</mat-icon>
-              }
-            </span>
-            <span matListItemLine>
-              @if (item.unlocked) {
-                {{ item.lesson.scenarioIds.length }} сценариев
-              } @else if (item.blockReason) {
-                {{ item.blockReason }}
-              }
-            </span>
-          </button>
+          <li>
+            <button
+              type="button"
+              class="lesson-picker__item"
+              [disabled]="!item.unlocked"
+              [class.lesson-picker__item--selected]="item.lesson.id === selectedLessonId()"
+              [class.lesson-picker__item--locked]="!item.unlocked"
+              [class.lesson-picker__item--completed]="item.completed"
+              (click)="pick(item.lesson)"
+            >
+              <span class="lesson-picker__title-row">
+                <span class="lesson-picker__title">{{ item.lesson.title }}</span>
+                @if (item.completed) {
+                  <mat-icon class="lesson-picker__badge" aria-label="Урок завершён">verified</mat-icon>
+                }
+              </span>
+              <span class="lesson-picker__meta">
+                @if (item.unlocked) {
+                  {{ item.lesson.scenarioIds.length }} сценариев
+                } @else if (item.blockReason) {
+                  {{ item.blockReason }}
+                }
+              </span>
+            </button>
+          </li>
         }
-      </mat-nav-list>
+      </ul>
     }
   </section>
 }

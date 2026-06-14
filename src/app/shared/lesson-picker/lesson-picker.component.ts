@@ -1,6 +1,5 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import {
@@ -27,7 +26,7 @@ type LessonListItem = {
 
 @Component({
   selector: 'app-lesson-picker',
-  imports: [MatIconModule, MatListModule, MatProgressSpinnerModule],
+  imports: [MatIconModule, MatProgressSpinnerModule],
   templateUrl: './lesson-picker.component.html',
   styleUrl: './lesson-picker.component.scss',
 })
