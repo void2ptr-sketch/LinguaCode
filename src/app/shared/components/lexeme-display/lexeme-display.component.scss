@@ -8,6 +8,36 @@
   gap: 0.15rem;
 }
 
+.lexeme-display__cjk {
+  display: grid;
+  gap: 0.1rem;
+  justify-items: center;
+}
+
+.lexeme-display__reading {
+  font-size: 0.72em;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+}
+
+.lexeme-display__reading--palladius {
+  font-family: Roboto, 'Noto Sans', sans-serif;
+}
+
+.lexeme-display__reading--zhuyin {
+  font-family: 'Noto Sans TC', 'Noto Sans', sans-serif;
+}
+
+.lexeme-display__han {
+  font-family: 'Noto Sans SC', 'Noto Sans', sans-serif;
+  font-size: inherit;
+  line-height: 1.2;
+}
+
 .lexeme-display__primary {
   font: inherit;
+}
+
+.lexeme-display--inline .lexeme-display__cjk {
+  justify-items: start;
 }

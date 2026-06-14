@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -20,14 +21,21 @@ import {
   resolvePhoneticForPair,
 } from '../../../data/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../../models/phonetic-content.types';
 import { UserStore } from '../../../state';
 import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
+
+type RomanizationOption = {
+  value: RomanizationSystem;
+  label: string;
+};
 
 @Component({
   selector: 'app-user-page',
   imports: [
     FormsModule,
     MatCardModule,
+    MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -55,7 +63,7 @@ export class UserPageComponent {
   readonly knownLanguageDraft = signal<ContentLanguage>('ru');
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
   readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
-  readonly displayRomanizationDraft = signal<RomanizationSystem>('pinyin');
+  readonly displayRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin']);
   readonly showIpaDraft = signal(false);
   readonly ipaVariantLabelDraft = signal('');
 
@@ -79,10 +87,13 @@ export class UserPageComponent {
     return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
   });
 
-  readonly showPhoneticPreferences = computed(() => this.settingsEntry()?.pair.learning === 'en');
+  readonly showPhoneticPreferences = computed(() => {
+    const learning = this.settingsEntry()?.pair.learning;
+    return learning === 'en' || learning === 'zh';
+  });
 
-  readonly romanizationOptions = computed((): readonly { value: RomanizationSystem; label: string }[] => {
-    const options: { value: RomanizationSystem; label: string }[] = [
+  readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
+    const options: RomanizationOption[] = [
       { value: 'pinyin', label: 'Пиньинь' },
       { value: 'zhuyin', label: 'Жуинь (Bopomofo)' },
     ];
@@ -91,7 +102,10 @@ export class UserPageComponent {
       options.push({ value: 'palladius', label: 'Палладица' });
     }
 
-    return options;
+    return ROMANIZATION_DISPLAY_ORDER.flatMap((system) => {
+      const option = options.find((item) => item.value === system);
+      return option ? [option] : [];
+    });
   });
 
   entryLabel(entry: UserLanguagePairEntry): string {
@@ -104,6 +118,19 @@ export class UserPageComponent {
 
   isSettingsTarget(entry: UserLanguagePairEntry): boolean {
     return entry.id === this.settingsPairIdDraft();
+  }
+
+  isRomanizationEnabled(system: RomanizationSystem): boolean {
+    return this.displayRomanizationsDraft().includes(system);
+  }
+
+  setRomanizationEnabled(system: RomanizationSystem, enabled: boolean): void {
+    const current = this.displayRomanizationsDraft();
+    const next = enabled
+      ? ROMANIZATION_DISPLAY_ORDER.filter((item) => current.includes(item) || item === system)
+      : current.filter((item) => item !== system);
+
+    this.displayRomanizationsDraft.set(next.length > 0 ? next : ['pinyin']);
   }
 
   selectPairForSettings(id: string): void {
@@ -158,7 +185,7 @@ export class UserPageComponent {
     if (this.showCjkPreferences()) {
       patch.cjkLearning = {
         ...resolveCjkLearningForPair(entry),
-        displayRomanization: this.displayRomanizationDraft(),
+        displayRomanizations: [...this.displayRomanizationsDraft()],
       };
     }
 
@@ -180,7 +207,7 @@ export class UserPageComponent {
     const cjk = resolveCjkLearningForPair(entry);
     const phonetic = resolvePhoneticForPair(entry);
 
-    this.displayRomanizationDraft.set(cjk.displayRomanization);
+    this.displayRomanizationsDraft.set([...cjk.displayRomanizations]);
     this.showIpaDraft.set(phonetic.showIpa);
     this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
   }

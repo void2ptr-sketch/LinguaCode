@@ -25,7 +25,7 @@ describe('UserStore', () => {
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
     expect(store.isActiveEntry(store.languagePairs()[0])).toBeTrue();
-    expect(store.cjkLearning().displayRomanization).toBe('pinyin');
+    expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
     expect(store.phonetic().showIpa).toBeFalse();
     expect(store.languagePairs()[0].settings?.phonetic).toBeDefined();
   });
@@ -69,7 +69,7 @@ describe('UserStore', () => {
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
 
     const zhEntry = store.languagePairs().find((entry) => entry.pair.learning === 'zh');
-    expect(zhEntry?.settings?.cjkLearning?.displayRomanization).toBe('pinyin');
+    expect(zhEntry?.settings?.cjkLearning?.displayRomanizations).toEqual(['pinyin']);
   });
 
   it('should not duplicate language pairs when adding existing pair', () => {
@@ -85,7 +85,11 @@ describe('UserStore', () => {
     const zhId = store.languagePairs().find((entry) => entry.pair.learning === 'zh')!.id;
 
     store.updateLanguagePairSettings(zhId, {
-      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: true },
+      cjkLearning: {
+        displayRomanizations: ['palladius'],
+        answerRomanization: ['palladius'],
+        showTones: true,
+      },
     });
 
     const enId = store.languagePairs().find((entry) => entry.pair.learning === 'en')!.id;
@@ -94,11 +98,11 @@ describe('UserStore', () => {
     });
 
     store.setActiveLanguagePair(zhId);
-    expect(store.cjkLearning().displayRomanization).toBe('palladius');
+    expect(store.cjkLearning().displayRomanizations).toEqual(['palladius']);
     expect(store.phonetic().showIpa).toBeFalse();
 
     store.setActiveLanguagePair(enId);
-    expect(store.cjkLearning().displayRomanization).toBe('pinyin');
+    expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
     expect(store.phonetic().showIpa).toBeTrue();
     expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });

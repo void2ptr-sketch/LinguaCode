@@ -4,6 +4,12 @@ import type {
   RomanizationSystem,
   ScriptCode,
 } from '../models/phonetic-content.types';
+import { ROMANIZATION_DISPLAY_ORDER } from '../models/phonetic-content.types';
+
+export type VisibleRomanizationReading = {
+  system: RomanizationSystem;
+  reading: string;
+};
 
 export function emptyPhoneticLexeme(script: ScriptCode = 'latn'): PhoneticLexeme {
   return { primary: '', script };
@@ -78,6 +84,24 @@ export function resolveLexemeRubyAnnotation(
   }
 
   return null;
+}
+
+export function resolveVisibleRomanizationReadings(
+  lexeme: PhoneticLexeme,
+  enabledSystems: readonly RomanizationSystem[],
+): readonly VisibleRomanizationReading[] {
+  if (lexeme.script !== 'hani') {
+    return [];
+  }
+
+  return ROMANIZATION_DISPLAY_ORDER.flatMap((system) => {
+    if (!enabledSystems.includes(system)) {
+      return [];
+    }
+
+    const reading = resolveRomanizationReading(lexeme, system);
+    return reading ? [{ system, reading }] : [];
+  });
 }
 
 export function mergeLexeme(

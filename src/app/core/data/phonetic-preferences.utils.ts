@@ -6,6 +6,7 @@ import type {
 import {
   DEFAULT_CJK_LEARNING_PREFERENCES,
   DEFAULT_PHONETIC_PREFERENCES,
+  ROMANIZATION_DISPLAY_ORDER,
 } from '../models/phonetic-content.types';
 
 const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
@@ -14,19 +15,38 @@ function isRomanizationSystem(value: unknown): value is RomanizationSystem {
   return typeof value === 'string' && ROMANIZATION_SYSTEMS.includes(value as RomanizationSystem);
 }
 
-export function normalizeCjkLearningPreferences(
-  raw?: Partial<CjkLearningPreferences> | null,
-): CjkLearningPreferences {
-  const displayRomanization = isRomanizationSystem(raw?.displayRomanization)
-    ? raw.displayRomanization
-    : DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanization;
+type LegacyCjkLearningPreferences = Partial<CjkLearningPreferences> & {
+  displayRomanization?: RomanizationSystem;
+};
 
+function normalizeDisplayRomanizations(raw?: LegacyCjkLearningPreferences | null): readonly RomanizationSystem[] {
+  const fromArray = Array.isArray(raw?.displayRomanizations)
+    ? raw.displayRomanizations.filter(isRomanizationSystem)
+    : [];
+
+  const fromLegacy =
+    fromArray.length === 0 && isRomanizationSystem(raw?.displayRomanization)
+      ? [raw.displayRomanization]
+      : fromArray;
+
+  const ordered = ROMANIZATION_DISPLAY_ORDER.filter((system) => fromLegacy.includes(system));
+
+  if (ordered.length > 0) {
+    return ordered;
+  }
+
+  return [...DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations];
+}
+
+export function normalizeCjkLearningPreferences(
+  raw?: LegacyCjkLearningPreferences | null,
+): CjkLearningPreferences {
   const answerRomanization = Array.isArray(raw?.answerRomanization)
     ? raw.answerRomanization.filter(isRomanizationSystem)
     : [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization];
 
   return {
-    displayRomanization,
+    displayRomanizations: normalizeDisplayRomanizations(raw),
     answerRomanization:
       answerRomanization.length > 0
         ? answerRomanization
@@ -59,4 +79,15 @@ export function normalizePhoneticPreferences(
 
 export function shouldShowPalladius(known: string, learning: string): boolean {
   return known === 'ru' && learning === 'zh';
+}
+
+export function pairSupportsPhoneticDisplay(learning: string): boolean {
+  return learning === 'en' || learning === 'zh';
+}
+
+export function isRomanizationDisplayEnabled(
+  prefs: CjkLearningPreferences,
+  system: RomanizationSystem,
+): boolean {
+  return prefs.displayRomanizations.includes(system);
 }

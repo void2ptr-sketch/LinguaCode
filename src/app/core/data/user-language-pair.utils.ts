@@ -12,6 +12,7 @@ import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './
 import {
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,
+  pairSupportsPhoneticDisplay,
   shouldShowPalladius,
 } from './phonetic-preferences.utils';
 import {
@@ -37,7 +38,7 @@ export function defaultSettingsForPair(pair: LanguagePair): UserLanguagePairSett
     hasAny = true;
   }
 
-  if (pair.learning === 'en') {
+  if (pairSupportsPhoneticDisplay(pair.learning)) {
     settings.phonetic = { ...DEFAULT_PHONETIC_PREFERENCES };
     hasAny = true;
   }
@@ -58,11 +59,7 @@ export function resolveCjkLearningForPair(
 export function resolvePhoneticForPair(
   entry: UserLanguagePairEntry | null | undefined,
 ): PhoneticPreferences {
-  if (!entry || entry.pair.learning !== 'en') {
-    return { ...DEFAULT_PHONETIC_PREFERENCES };
-  }
-
-  return normalizePhoneticPreferences(entry.settings?.phonetic);
+  return normalizePhoneticPreferences(entry?.settings?.phonetic);
 }
 
 function normalizeEntrySettings(
@@ -89,6 +86,9 @@ function normalizeEntrySettings(
       ...legacy?.phonetic,
       ...rawSettings?.phonetic,
     });
+    hasAny = true;
+  } else if (pair.learning === 'zh' && rawSettings?.phonetic) {
+    settings.phonetic = normalizePhoneticPreferences(rawSettings.phonetic);
     hasAny = true;
   }
 

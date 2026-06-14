@@ -39,15 +39,38 @@ export class CardRepository {
     ).then((fixture) => normalizeLegacyCards(fixture.cards));
   }
 
-  async ensureLoaded(): Promise<readonly Card[]> {
-    const stored = this.loadStored();
-    if (stored.length > 0) {
-      return stored;
+  mergeWithSeed(stored: readonly Card[], seed: readonly Card[]): readonly Card[] {
+    const byId = new Map<string, Card>();
+
+    for (const card of seed) {
+      byId.set(card.id, card);
     }
 
-    const seeded = await this.loadSeed();
-    this.save(seeded);
-    return seeded;
+    for (const card of stored) {
+      byId.set(card.id, card);
+    }
+
+    return [...byId.values()];
+  }
+
+  async ensureLoaded(): Promise<readonly Card[]> {
+    const seed = await this.loadSeed();
+    const stored = this.loadStored();
+
+    if (stored.length === 0) {
+      this.save(seed);
+      return seed;
+    }
+
+    const merged = this.mergeWithSeed(stored, seed);
+    const storedIds = new Set(stored.map((card) => card.id));
+    const hasMissingSeedCards = seed.some((card) => !storedIds.has(card.id));
+
+    if (hasMissingSeedCards || merged.length !== stored.length) {
+      this.save(merged);
+    }
+
+    return merged;
   }
 
   getById(cards: readonly Card[], cardId: string): Card | null {

@@ -131,7 +131,42 @@
       "learningLanguage": "zh",
       "difficulty": "intermediate",
       "tags": ["reading", "polyphony", "cjk"],
-      "updatedAt": "2026-06-13T10:00:00.000Z"
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "memory-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["memory", "vocabulary", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "symbol-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["symbols", "visual", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "sound-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["listening", "vocabulary", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "timed-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["timed", "vocabulary", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "keyboard-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["keyboard", "vocabulary", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
     }
   }
 }
