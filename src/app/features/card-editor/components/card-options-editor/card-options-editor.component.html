@@ -1,0 +1,70 @@
+<section class="card-options-editor">
+  <h3>{{ config().title }}</h3>
+
+  @if (config().showCorrectRadio) {
+    <mat-radio-group [ngModel]="correctIndex()" (ngModelChange)="onCorrectIndexChange($event)">
+      @for (item of options(); track $index) {
+        <div
+          class="card-options-editor__row"
+          [class.card-options-editor__row--with-lexeme]="showLexemes()"
+        >
+          <mat-radio-button [value]="$index" />
+          <mat-form-field appearance="outline" class="card-options-editor__field">
+            <mat-label>{{ config().optionLabelPrefix }} {{ $index + 1 }}</mat-label>
+            <input
+              matInput
+              [readonly]="isOptionReadonly(lexemes()[$index])"
+              [ngModel]="item"
+              (ngModelChange)="onOptionTextChange($index, $event)"
+            />
+            @if (isOptionReadonly(lexemes()[$index])) {
+              <mat-hint>Текст из лексемы — измените во вкладке «Фонетика»</mat-hint>
+            }
+          </mat-form-field>
+          @if (showLexemes()) {
+            <app-lexeme-fields
+              class="card-options-editor__lexeme"
+              [compact]="true"
+              [label]="'Лексема ' + ($index + 1)"
+              [fields]="lexemes()[$index]"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (fieldsChange)="onOptionLexemeChange($index, $event)"
+            />
+          }
+          <button
+            mat-icon-button
+            type="button"
+            class="card-options-editor__remove"
+            [disabled]="options().length <= minOptions"
+            (click)="onRemoveOption($index)"
+          >
+            <mat-icon>remove_circle_outline</mat-icon>
+          </button>
+        </div>
+      }
+    </mat-radio-group>
+  } @else {
+    @for (item of options(); track $index) {
+      <div class="card-options-editor__row card-options-editor__row--no-radio">
+        <mat-form-field appearance="outline" class="card-options-editor__field">
+          <mat-label>{{ config().optionLabelPrefix }} {{ $index + 1 }}</mat-label>
+          <input matInput [ngModel]="item" (ngModelChange)="onOptionTextChange($index, $event)" />
+        </mat-form-field>
+        <button
+          mat-icon-button
+          type="button"
+          class="card-options-editor__remove"
+          [disabled]="options().length <= minOptions"
+          (click)="onRemoveOption($index)"
+        >
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+    }
+  }
+
+  <button mat-button type="button" [disabled]="options().length >= maxOptions" (click)="onAddOption()">
+    <mat-icon>add</mat-icon> Добавить
+  </button>
+</section>

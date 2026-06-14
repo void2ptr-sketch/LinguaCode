@@ -1,0 +1,47 @@
+@if (drawDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Иероглиф</mat-label>
+    <input
+      matInput
+      [ngModel]="d.promptLexeme.primary || d.targetCharacter"
+      (ngModelChange)="updateDrawPrimary($event)"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Известный</mat-label>
+    <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="outline">
+    <mat-label>Ориентир для рисования</mat-label>
+    <input matInput [ngModel]="d.referenceHintKnown" (ngModelChange)="updateReferenceHintKnown($event)" />
+  </mat-form-field>
+}
+
+@if (keyboardDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Известный</mat-label>
+    <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+  </mat-form-field>
+  <section>
+    <h3>Допустимые ответы (известный)</h3>
+    @for (item of d.acceptedAnswersKnown; track $index) {
+      <div class="input-card-form__answer-row">
+        <mat-form-field appearance="outline">
+          <mat-label>Известный {{ $index + 1 }}</mat-label>
+          <input matInput [ngModel]="item" (ngModelChange)="updateKeyboardAnswer($index, $event)" />
+        </mat-form-field>
+        <button
+          mat-icon-button
+          type="button"
+          [disabled]="d.acceptedAnswersKnown.length <= 1"
+          (click)="removeKeyboardAnswer($index)"
+        >
+          <mat-icon>remove_circle_outline</mat-icon>
+        </button>
+      </div>
+    }
+    <button mat-button type="button" [disabled]="d.acceptedAnswersKnown.length >= 8" (click)="addKeyboardAnswer()">
+      <mat-icon>add</mat-icon> Добавить
+    </button>
+  </section>
+}

@@ -1,0 +1,28 @@
+<mat-form-field appearance="outline">
+  <mat-label>{{ promptLabel() }}</mat-label>
+  <textarea matInput rows="3" [ngModel]="draft().promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+</mat-form-field>
+
+@if (toneDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Слог без тона (пиньинь)</mat-label>
+    <input matInput [ngModel]="d.syllableBase" (ngModelChange)="updateSyllableBase($event)" placeholder="ma" />
+    <mat-hint>База для кнопок тонов: ma → mā má mǎ mà</mat-hint>
+  </mat-form-field>
+  <section>
+    <h3>Правильный тон</h3>
+    <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
+      @for (tone of d.toneOptions; track tone; let index = $index) {
+        <mat-radio-button [value]="index">{{ tone }}-й тон</mat-radio-button>
+      }
+    </mat-radio-group>
+  </section>
+} @else {
+  <app-card-options-editor
+    [config]="optionsConfig()"
+    [options]="optionTexts()"
+    [lexemes]="optionLexemes()"
+    [correctIndex]="draft().correctIndex"
+    (stateChange)="onOptionsStateChange($event)"
+  />
+}

@@ -1,0 +1,54 @@
+@if (showPromptLexeme()) {
+  <app-lexeme-fields
+    [label]="draft().kind === 'draw' ? 'Лексема (иероглиф)' : 'Подсказка (лексема)'"
+    [fields]="draft().promptLexeme"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (fieldsChange)="updatePromptLexeme($event)"
+  />
+}
+
+<mat-form-field appearance="outline">
+  <mat-label>URL аудио</mat-label>
+  <input matInput [ngModel]="draft().audioUrl" (ngModelChange)="updateAudioUrl($event)" />
+</mat-form-field>
+
+@if (soundDraft(); as d) {
+  <app-lexeme-fields
+    label="Лексема звука"
+    [compact]="true"
+    [fields]="d.audioLabelLexeme"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (fieldsChange)="updateAudioLabelLexeme($event)"
+  />
+}
+
+@if (optionsDraft(); as d) {
+  <app-card-options-editor
+    [config]="optionsConfig()"
+    [options]="optionTexts()"
+    [lexemes]="optionLexemes()"
+    [correctIndex]="optionCorrectIndex()"
+    [showLexemes]="true"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (stateChange)="onOptionsStateChange($event)"
+  />
+}
+
+@if (memoryDraft(); as d) {
+  <section class="card-form-phonetics-panel__pairs">
+    <h3>Лексемы пар (новый)</h3>
+    @for (pair of d.pairs; track $index) {
+      <app-lexeme-fields
+        [compact]="true"
+        [label]="'Лексема пары ' + ($index + 1)"
+        [fields]="pair.learningLexeme"
+        [knownLanguage]="knownLanguage()"
+        [learningLanguage]="learningLanguage()"
+        (fieldsChange)="updatePairLexeme($index, $event)"
+      />
+    }
+  </section>
+}

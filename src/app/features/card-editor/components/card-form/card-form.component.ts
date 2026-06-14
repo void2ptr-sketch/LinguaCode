@@ -1,46 +1,40 @@
 import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatSelectModule } from '@angular/material/select';
-import type { ContentLanguage, DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
+import { MatTabsModule } from '@angular/material/tabs';
+import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
-import {
-  lookupHanRadicalHint,
-  lookupHanStrokeGuides,
-  primaryHanCharacter,
-} from '../../../../core/data/draw-stroke-guides.data';
 import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/tone-mark.utils';
-import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { Card } from '../../../../core/models';
-import { CardDraft, DEFAULT_CARD_DIRECTION, emptyMemoryPairDraft } from '../../types';
+import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
+import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
+import { CardDraft, DEFAULT_CARD_DIRECTION, type MemoryCardDraft, type SoundCardDraft } from '../../types';
 import type { CardEditorUxMode } from '../../utils/card-editor-ux.utils';
-import {
-  defaultScriptForLanguages,
-  syncLexemePrimaryFromText,
-} from '../../utils/card-editor-ux.utils';
+import { cardFormKindGroup } from '../../utils/card-form.registry';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
-import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
+import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
+import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
-import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
+import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-card-form.component';
+import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
+import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
+import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 
 @Component({
   selector: 'app-card-form',
   imports: [
     FormsModule,
-    MatButtonModule,
     MatFormFieldModule,
-    MatIconModule,
     MatInputModule,
-    MatRadioModule,
-    MatSelectModule,
-    CardAppearanceFieldsComponent,
+    MatTabsModule,
+    CardFormPhoneticsPanelComponent,
+    CardFormSettingsPanelComponent,
     CardPreviewComponent,
-    LexemeFieldsComponent,
+    ChoiceCardFormComponent,
+    InputCardFormComponent,
+    MediaCardFormComponent,
+    PairsCardFormComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -56,6 +50,7 @@ export class CardFormComponent {
   readonly draftChange = output<CardDraft>();
 
   readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
+  readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
 
   readonly effectiveAppearance = computed(() =>
     this.isAdvanced() ? this.draft().appearance : this.defaultAppearance(),
@@ -75,67 +70,24 @@ export class CardFormComponent {
 
   readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
 
-  readonly selectDraft = computed(() => {
+  readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
-    return draft.kind === 'select' ? draft : null;
+    return cardFormKindGroup(draft.kind) === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
-  readonly memoryDraft = computed(() => {
+  readonly inputDraft = computed((): InputCardDraft | null => {
+    const draft = this.draft();
+    return cardFormKindGroup(draft.kind) === 'input' ? (draft as InputCardDraft) : null;
+  });
+
+  readonly pairsDraft = computed((): MemoryCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'memory' ? draft : null;
   });
 
-  readonly symbolDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'symbol' ? draft : null;
-  });
-
-  readonly soundDraft = computed(() => {
+  readonly mediaDraft = computed((): SoundCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;
-  });
-
-  readonly timedDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'timed' ? draft : null;
-  });
-
-  readonly keyboardDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'keyboard' ? draft : null;
-  });
-
-  readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
-    { value: 'freehand', label: 'Свободное рисование' },
-    { value: 'stroke-order', label: 'Порядок черт' },
-    { value: 'radicals', label: 'Радикалы' },
-  ];
-
-  readonly keyboardAnswerModeOptions: readonly { value: KeyboardAnswerMode; label: string }[] = [
-    { value: 'auto', label: 'Авто (IPA / пиньинь / текст)' },
-    { value: 'text', label: 'Текст' },
-    { value: 'pinyin', label: 'Пиньинь с тонами' },
-    { value: 'ipa', label: 'IPA' },
-  ];
-
-  readonly drawDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'draw' ? draft : null;
-  });
-
-  readonly toneDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'tone' ? draft : null;
-  });
-
-  readonly readingDraft = computed(() => {
-    const draft = this.draft();
-    return draft.kind === 'reading' ? draft : null;
-  });
-
-  readonly lexemeDraft = computed(() => {
-    const draft = this.draft();
-    return draft;
   });
 
   updateDraft(nextDraft: CardDraft): void {
@@ -144,529 +96,6 @@ export class CardFormComponent {
 
   updateTitle(title: string): void {
     this.updateDraft({ ...this.draft(), title });
-  }
-
-  updateAppearance(appearance: CardDraft['appearance']): void {
-    this.updateDraft({ ...this.draft(), appearance });
-  }
-
-  updatePromptLexeme(fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    this.updateDraft({ ...draft, promptLexeme: fields });
-  }
-
-  updateAudioUrl(value: string): void {
-    const draft = this.draft();
-    this.updateDraft({ ...draft, audioUrl: value });
-  }
-
-  updatePromptKnown(value: string): void {
-    const draft = this.draft();
-    if ('promptKnown' in draft) {
-      this.updateDraft({ ...draft, promptKnown: value });
-    }
-  }
-
-  updateAudioLabelLearning(value: string): void {
-    const draft = this.draft();
-    if (draft.kind === 'sound') {
-      const nextDraft = {
-        ...draft,
-        audioLabelLearning: value,
-      };
-
-      if (!this.isAdvanced()) {
-        nextDraft.audioLabelLexeme = syncLexemePrimaryFromText(
-          draft.audioLabelLexeme,
-          value,
-          this.knownLanguage(),
-          this.learningLanguage(),
-        );
-      }
-
-      this.updateDraft(nextDraft);
-    }
-  }
-
-  updateAudioLabelLexeme(fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind === 'sound') {
-      this.updateDraft({ ...draft, audioLabelLexeme: fields });
-    }
-  }
-
-  updateReferenceHintKnown(value: string): void {
-    const draft = this.draft();
-    if (draft.kind === 'draw') {
-      this.updateDraft({ ...draft, referenceHintKnown: value });
-    }
-  }
-
-  updateDrawPracticeMode(value: DrawPracticeMode): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, practiceMode: value });
-  }
-
-  updateDrawTargetCharacter(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, targetCharacter: value });
-  }
-
-  updateDrawRadicalHint(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, radicalHint: value });
-  }
-
-  updateDrawPrimary(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    const character = primaryHanCharacter(value) || value.trim();
-    this.updateDraft({
-      ...draft,
-      promptLexeme: syncLexemePrimaryFromText(
-        draft.promptLexeme,
-        character,
-        this.knownLanguage(),
-        this.learningLanguage(),
-      ),
-      targetCharacter: character,
-    });
-  }
-
-  optionTextReadonly(lexeme: LexemeDraftFields): boolean {
-    return this.isAdvanced() && lexeme.primary.trim().length > 0;
-  }
-
-  autofillDrawHints(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'draw') {
-      return;
-    }
-
-    const source =
-      draft.targetCharacter.trim() ||
-      draft.promptLexeme.primary.trim() ||
-      primaryHanCharacter(draft.referenceHintKnown);
-    const character = primaryHanCharacter(source);
-    if (!character) {
-      return;
-    }
-
-    const strokeGuides = lookupHanStrokeGuides(character).map((guide) => ({ ...guide }));
-    const radicalHint = lookupHanRadicalHint(character) ?? draft.radicalHint;
-
-    this.updateDraft({
-      ...draft,
-      targetCharacter: character,
-      strokeGuides,
-      radicalHint,
-    });
-  }
-
-  updateTimeLimitSec(value: number): void {
-    const draft = this.draft();
-    if (draft.kind === 'timed') {
-      this.updateDraft({ ...draft, timeLimitSec: value });
-    }
-  }
-
-  updateCorrectIndex(index: number): void {
-    const draft = this.draft();
-    if ('correctIndex' in draft) {
-      this.updateDraft({ ...draft, correctIndex: index });
-    }
-  }
-
-  updatePair(index: number, side: 'known' | 'learning', value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'memory') {
-      return;
-    }
-
-    const pairs = draft.pairs.map((pair, pairIndex) => {
-      if (pairIndex !== index) {
-        return pair;
-      }
-
-      if (side === 'learning' && !this.isAdvanced()) {
-        return {
-          ...pair,
-          learning: value,
-          learningLexeme: syncLexemePrimaryFromText(
-            pair.learningLexeme,
-            value,
-            this.knownLanguage(),
-            this.learningLanguage(),
-          ),
-        };
-      }
-
-      return { ...pair, [side]: value };
-    });
-    this.updateDraft({ ...draft, pairs });
-  }
-
-  updatePairLexeme(index: number, fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind !== 'memory') {
-      return;
-    }
-
-    const pairs = draft.pairs.map((pair, pairIndex) => {
-      if (pairIndex !== index) {
-        return pair;
-      }
-
-      const learning = fields.primary.trim() ? fields.primary : pair.learning;
-      return { ...pair, learning, learningLexeme: fields };
-    });
-
-    this.updateDraft({ ...draft, pairs });
-  }
-
-  addPair(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'memory' || draft.pairs.length >= 12) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, pairs: [...draft.pairs, emptyMemoryPairDraft()] });
-  }
-
-  removePair(index: number): void {
-    const draft = this.draft();
-    if (draft.kind !== 'memory' || draft.pairs.length <= 1) {
-      return;
-    }
-
-    this.updateDraft({
-      ...draft,
-      pairs: draft.pairs.filter((_, pairIndex) => pairIndex !== index),
-    });
-  }
-
-  updateSelectOption(index: number, value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'select' && draft.kind !== 'reading') {
-      return;
-    }
-
-    const optionsLearning = [...draft.optionsLearning];
-    optionsLearning[index] = value;
-    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsLearning, index, value);
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
-  }
-
-  updateSelectOptionLexeme(index: number, fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind !== 'select' && draft.kind !== 'reading') {
-      return;
-    }
-
-    const optionsLexemes = [...draft.optionsLexemes];
-    optionsLexemes[index] = fields;
-    const optionsLearning = [...draft.optionsLearning];
-    if (fields.primary.trim()) {
-      optionsLearning[index] = fields.primary;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
-  }
-
-  addSelectOption(): void {
-    const draft = this.draft();
-    if ((draft.kind !== 'select' && draft.kind !== 'reading') || draft.optionsLearning.length >= 8) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
-  }
-
-  removeSelectOption(index: number): void {
-    const draft = this.draft();
-    if ((draft.kind !== 'select' && draft.kind !== 'reading') || draft.optionsLearning.length <= 2) {
-      return;
-    }
-
-    const optionsLearning = draft.optionsLearning.filter((_, itemIndex) => itemIndex !== index);
-    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
-    let correctIndex = draft.correctIndex;
-    if (correctIndex === index) {
-      correctIndex = 0;
-    } else if (correctIndex > index) {
-      correctIndex -= 1;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes, correctIndex });
-  }
-
-  updateTimedOption(index: number, value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'timed') {
-      return;
-    }
-
-    const optionsLearning = [...draft.optionsLearning];
-    optionsLearning[index] = value;
-    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsLearning, index, value);
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
-  }
-
-  updateTimedOptionLexeme(index: number, fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind !== 'timed') {
-      return;
-    }
-
-    const optionsLexemes = [...draft.optionsLexemes];
-    optionsLexemes[index] = fields;
-    const optionsLearning = [...draft.optionsLearning];
-    if (fields.primary.trim()) {
-      optionsLearning[index] = fields.primary;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
-  }
-
-  addTimedOption(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'timed' || draft.optionsLearning.length >= 8) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning: [...draft.optionsLearning, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
-  }
-
-  removeTimedOption(index: number): void {
-    const draft = this.draft();
-    if (draft.kind !== 'timed' || draft.optionsLearning.length <= 2) {
-      return;
-    }
-
-    const optionsLearning = draft.optionsLearning.filter((_, itemIndex) => itemIndex !== index);
-    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
-    let correctIndex = draft.correctIndex;
-    if (correctIndex === index) {
-      correctIndex = 0;
-    } else if (correctIndex > index) {
-      correctIndex -= 1;
-    }
-
-    this.updateDraft({ ...draft, optionsLearning, optionsLexemes, correctIndex });
-  }
-
-  updateSymbolOption(index: number, value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'symbol') {
-      return;
-    }
-
-    const symbols = [...draft.symbols];
-    symbols[index] = value;
-    const symbolLexemes = this.syncOptionLexemes(draft.symbolLexemes, symbols, index, value);
-    this.updateDraft({ ...draft, symbols, symbolLexemes });
-  }
-
-  updateSymbolOptionLexeme(index: number, fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind !== 'symbol') {
-      return;
-    }
-
-    const symbolLexemes = [...draft.symbolLexemes];
-    symbolLexemes[index] = fields;
-    const symbols = [...draft.symbols];
-    if (fields.primary.trim()) {
-      symbols[index] = fields.primary;
-    }
-
-    this.updateDraft({ ...draft, symbols, symbolLexemes });
-  }
-
-  addSymbolOption(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'symbol' || draft.symbols.length >= 8) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, symbols: [...draft.symbols, ''], symbolLexemes: [...draft.symbolLexemes, emptyLexemeDraftFields()] });
-  }
-
-  removeSymbolOption(index: number): void {
-    const draft = this.draft();
-    if (draft.kind !== 'symbol' || draft.symbols.length <= 2) {
-      return;
-    }
-
-    const symbols = draft.symbols.filter((_, itemIndex) => itemIndex !== index);
-    const symbolLexemes = draft.symbolLexemes.filter((_, itemIndex) => itemIndex !== index);
-    let correctIndex = draft.correctIndex;
-    if (correctIndex === index) {
-      correctIndex = 0;
-    } else if (correctIndex > index) {
-      correctIndex -= 1;
-    }
-
-    this.updateDraft({ ...draft, symbols, symbolLexemes, correctIndex });
-  }
-
-  updateSoundOption(index: number, value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'sound') {
-      return;
-    }
-
-    const optionsKnown = [...draft.optionsKnown];
-    optionsKnown[index] = value;
-    const optionsLexemes = this.syncOptionLexemes(draft.optionsLexemes, optionsKnown, index, value);
-    this.updateDraft({ ...draft, optionsKnown, optionsLexemes });
-  }
-
-  updateSoundOptionLexeme(index: number, fields: LexemeDraftFields): void {
-    const draft = this.draft();
-    if (draft.kind !== 'sound') {
-      return;
-    }
-
-    const optionsLexemes = [...draft.optionsLexemes];
-    optionsLexemes[index] = fields;
-    const optionsKnown = [...draft.optionsKnown];
-    if (fields.primary.trim()) {
-      optionsKnown[index] = fields.primary;
-    }
-
-    this.updateDraft({ ...draft, optionsKnown, optionsLexemes });
-  }
-
-  addSoundOption(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'sound' || draft.optionsKnown.length >= 8) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, optionsKnown: [...draft.optionsKnown, ''], optionsLexemes: [...draft.optionsLexemes, emptyLexemeDraftFields()] });
-  }
-
-  removeSoundOption(index: number): void {
-    const draft = this.draft();
-    if (draft.kind !== 'sound' || draft.optionsKnown.length <= 2) {
-      return;
-    }
-
-    const optionsKnown = draft.optionsKnown.filter((_, itemIndex) => itemIndex !== index);
-    const optionsLexemes = draft.optionsLexemes.filter((_, itemIndex) => itemIndex !== index);
-    let correctIndex = draft.correctIndex;
-    if (correctIndex === index) {
-      correctIndex = 0;
-    } else if (correctIndex > index) {
-      correctIndex -= 1;
-    }
-
-    this.updateDraft({ ...draft, optionsKnown, optionsLexemes, correctIndex });
-  }
-
-  updateKeyboardAnswer(index: number, value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'keyboard') {
-      return;
-    }
-
-    const acceptedAnswersKnown = [...draft.acceptedAnswersKnown];
-    acceptedAnswersKnown[index] = value;
-    this.updateDraft({ ...draft, acceptedAnswersKnown });
-  }
-
-  addKeyboardAnswer(): void {
-    const draft = this.draft();
-    if (draft.kind !== 'keyboard' || draft.acceptedAnswersKnown.length >= 8) {
-      return;
-    }
-
-    this.updateDraft({ ...draft, acceptedAnswersKnown: [...draft.acceptedAnswersKnown, ''] });
-  }
-
-  removeKeyboardAnswer(index: number): void {
-    const draft = this.draft();
-    if (draft.kind !== 'keyboard' || draft.acceptedAnswersKnown.length <= 1) {
-      return;
-    }
-
-    const acceptedAnswersKnown = draft.acceptedAnswersKnown.filter(
-      (_, answerIndex) => answerIndex !== index,
-    );
-    this.updateDraft({ ...draft, acceptedAnswersKnown });
-  }
-
-  updateKeyboardAnswerMode(value: KeyboardAnswerMode): void {
-    const draft = this.draft();
-    if (draft.kind !== 'keyboard') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, answerMode: value });
-  }
-
-  updateSyllableBase(value: string): void {
-    const draft = this.draft();
-    if (draft.kind !== 'tone') {
-      return;
-    }
-
-    this.updateDraft({ ...draft, syllableBase: value });
-  }
-
-  private syncOptionLexemes(
-    lexemes: readonly LexemeDraftFields[],
-    texts: readonly string[],
-    index: number,
-    value: string,
-  ): readonly LexemeDraftFields[] {
-    const next = [...lexemes];
-    while (next.length < texts.length) {
-      next.push(emptyLexemeDraftFields(this.defaultOptionScript()));
-    }
-
-    const current = next[index] ?? emptyLexemeDraftFields(this.defaultOptionScript());
-
-    if (!this.isAdvanced()) {
-      next[index] = syncLexemePrimaryFromText(
-        current,
-        value,
-        this.knownLanguage(),
-        this.learningLanguage(),
-      );
-      return next;
-    }
-
-    if (!current.primary.trim() && value.trim()) {
-      next[index] = syncLexemePrimaryFromText(
-        current,
-        value,
-        this.knownLanguage(),
-        this.learningLanguage(),
-      );
-    }
-
-    return next;
-  }
-
-  private defaultOptionScript() {
-    return defaultScriptForLanguages(this.knownLanguage(), this.learningLanguage());
   }
 
   private fallbackPreviewCard(draft: CardDraft): Card {

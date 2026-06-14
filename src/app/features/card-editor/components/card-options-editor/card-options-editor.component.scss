@@ -1,0 +1,44 @@
+.card-options-editor h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.card-options-editor__row {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'radio text remove'
+    '. lexeme .';
+  gap: 0.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+
+  mat-radio-button {
+    grid-area: radio;
+    margin-top: 0.75rem;
+  }
+
+  &--with-lexeme {
+    grid-template-columns: auto 1fr auto;
+  }
+
+  &--no-radio {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: 'text remove';
+  }
+}
+
+.card-options-editor__field {
+  grid-area: text;
+  width: 100%;
+}
+
+.card-options-editor__lexeme {
+  grid-area: lexeme;
+}
+
+.card-options-editor__remove {
+  grid-area: remove;
+  margin-top: 0.25rem;
+}
