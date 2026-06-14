@@ -26,24 +26,28 @@
   } @else if (items().length === 0) {
     <p class="course-picker__empty">Курсы не найдены.</p>
   } @else {
-    <mat-nav-list class="course-picker__list">
+    <ul class="course-picker__list">
       @for (entry of items(); track entry.id) {
-        <button
-          mat-list-item
-          type="button"
-          [class.course-picker__item--selected]="entry.id === selectedCourseId()"
-          (click)="pick(entry)"
-        >
-          <span matListItemTitle>{{ entry.title }}</span>
-          <span matListItemLine>
-            {{ entry.lessonCount }} уроков · {{ entry.languagePairSummary }}
-          </span>
-          @if (entry.published) {
-            <span matListItemMeta>опубликован</span>
-          }
-        </button>
+        <li>
+          <button
+            type="button"
+            class="course-picker__item"
+            [class.course-picker__item--selected]="entry.id === selectedCourseId()"
+            (click)="pick(entry)"
+          >
+            <span class="course-picker__title-row">
+              <span class="course-picker__title">{{ entry.title }}</span>
+              @if (entry.published) {
+                <span class="course-picker__badge">опубликован</span>
+              }
+            </span>
+            <span class="course-picker__meta">
+              {{ entry.lessonCount }} уроков · {{ entry.languagePairSummary }}
+            </span>
+          </button>
+        </li>
       }
-    </mat-nav-list>
+    </ul>
 
     <app-pagination
       [length]="totalItems()"
