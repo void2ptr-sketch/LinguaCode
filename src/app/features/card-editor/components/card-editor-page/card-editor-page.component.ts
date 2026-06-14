@@ -1,10 +1,10 @@
 import { Component, effect, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../../core/models';
@@ -34,11 +34,11 @@ let lastKnownActiveLanguagePairId: string | null = null;
   selector: 'app-card-editor-page',
   imports: [
     DatePipe,
+    RouterLink,
     MatCardModule,
     MatButtonModule,
     MatChipsModule,
     MatIconModule,
-    MatListModule,
     MatMenuModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,

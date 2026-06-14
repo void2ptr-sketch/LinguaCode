@@ -24,34 +24,22 @@
 }
 
 .card-catalog-filters__known,
-.card-catalog-filters__learning,
-.card-catalog-filters__pair {
+.card-catalog-filters__learning {
   grid-area: language;
+}
+
+.card-catalog-filters--pair-locked {
+  @media (min-width: 48rem) {
+    grid-template-columns: 1fr minmax(10rem, 12rem) auto;
+    grid-template-areas:
+      'query difficulty actions'
+      'kinds kinds kinds'
+      'tags tags tags';
+  }
 }
 
 .card-catalog-filters__difficulty {
   grid-area: difficulty;
-}
-
-.card-catalog-filters__pair {
-  display: grid;
-  gap: 0.5rem;
-  align-content: start;
-}
-
-.card-catalog-filters__hint {
-  color: color-mix(in srgb, var(--mat-sys-on-surface) 65%, transparent);
-  font: var(--mat-sys-body-small);
-  margin: 0;
-
-  a {
-    color: var(--mat-sys-primary);
-    text-decoration: none;
-
-    &:hover {
-      text-decoration: underline;
-    }
-  }
 }
 
 .card-catalog-filters__group {
