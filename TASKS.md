@@ -451,6 +451,52 @@
 - [x] Prerequisites между уроками
 - [x] Сертификат / badge по завершению курса
 
+**G12 — Editor UX (упрощение редактора карточек)**
+
+Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-кomponent.
+
+**G12a — фаза 1: быстрые wins (низкий риск)**
+
+- [ ] Toggle **«Базовый / Расширенный»** в `CardEditorDialog` (сохранять предпочтение в `sessionStorage`)
+- [ ] **Базовый:** title, prompt, варианты / пары, correctIndex; без lexeme-блоков, appearance, answerMode, draw meta
+- [ ] **Расширенный:** текущие поля (лексемы, audio, appearance, режимы)
+- [ ] `app-lexeme-fields`: контекст **языковой пары** из диалога (`knownLanguage`, `learningLanguage`)
+  - ru→en: primary + IPA; остальное в collapsible «Доп. фонетика»
+  - ru→zh: primary (han) + pinyin + кнопка palladius; zhuyin/ipa — в «Доп.»
+- [ ] **Appearance по умолчанию** из `UserStore.preferences()`; override только в «Расширенном»
+- [ ] **Автосинхронизация** строки варианта и `lexeme.primary` (если lexeme заполнена — строка readonly или auto-fill)
+- [ ] Подсказки / hints в базовом режиме («лексема — в расширенном»)
+
+**G12b — фаза 2: структурный рефакторинг (средний риск)**
+
+- [ ] Вынести **`app-card-options-editor`** — единый UI для select / timed / reading / sound / symbol
+  - config: `side`, `options`, `lexemes`, `correctIndex`, labels
+  - общие add / remove / reorder / correctIndex в одном TS-модуле
+- [ ] **Вкладки** в dialog: «Контент» | «Фонетика» | «Настройки» + preview справа
+- [ ] Разбить `card-form` на shell + kind-forms:
+  - `choice-card-form` (select, timed, reading, symbol, tone)
+  - `input-card-form` (keyboard, draw)
+  - `pairs-card-form` (memory)
+  - `media-card-form` (sound)
+- [ ] Registry `CARD_FORM_BY_KIND` вместо монолитного `@if (kind)` в одном HTML
+- [ ] Сократить дублирование в `card-validation.utils` (общие validators для option-cards)
+- [ ] Исправить layout option-row (grid под radio + text + lexeme + delete)
+
+**G12c — фаза 3: упрощение домена (опционально, высокий риск)**
+
+- [ ] Объединить kind'ы в UI создания: **Выбор** / **Ввод** / **Пары** / **Медиа** (4 пункта вместо 10)
+- [ ] `reading` → select + тег / meta; `tone` → select с автогенерацией вариантов из `syllableBase`
+- [ ] **Lexeme-first:** вариант = только `PhoneticLexeme`; `optionsLearning[i]` — derived при save (migration legacy JSON)
+- [ ] Wizard create: тип → слово → варианты → (опц.) расширить
+- [ ] Документ **`docs/EDITOR-UX.md`**: целевой UX, метрики (время создания demo-карточки, число полей)
+
+**G12d — метрики и приёмка**
+
+- [ ] Базовый select ru→en: **≤ 8 полей**, создание **< 2 мин**
+- [ ] `card-form` shell + kind-forms: **< 200 строк** на файл (после G12b)
+- [ ] Smoke: create / edit / preview / try для каждого kind в обоих режимах
+- [ ] Регрессия: существующие demo-карточки в `select-cards.json` открываются и сохраняются без потери данных
+
 ### Прогон одной карточки (try dialog)
 
 - [x] `SingleCardPlayStore` — state одной карточки (reuse card-answer.utils)
