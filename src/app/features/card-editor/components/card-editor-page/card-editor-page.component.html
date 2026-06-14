@@ -72,13 +72,25 @@
   } @else {
     <div class="card-editor-page__layout">
       <mat-card class="card-editor-page__filters">
-        <mat-card-header>
-          <mat-card-title>Фильтры</mat-card-title>
-          @if (catalogStore.pairLocked()) {
-            <mat-card-subtitle>
-              Активная пара: {{ catalogStore.lockedPairLabel() }}
-            </mat-card-subtitle>
-          }
+        <mat-card-header class="card-editor-page__filters-header">
+          <div class="card-editor-page__filters-header-row">
+            <mat-card-title>Фильтры</mat-card-title>
+            @if (catalogStore.pairLocked()) {
+              <p class="card-editor-page__filters-intro">
+                <span class="card-editor-page__filters-phrase">
+                  Курс: {{ catalogStore.lockedPairLabel() }}
+                </span>
+                <span class="card-editor-page__filters-sep" aria-hidden="true"></span>
+                <span class="card-editor-page__filters-phrase">
+                  Показаны карточки активного курса.
+                </span>
+                <span class="card-editor-page__filters-sep" aria-hidden="true"></span>
+                <span class="card-editor-page__filters-phrase">
+                  Сменить курс — в <a routerLink="/user">Профиле</a>.
+                </span>
+              </p>
+            }
+          </div>
         </mat-card-header>
         <mat-card-content>
           <app-card-catalog-filters />
@@ -99,26 +111,24 @@
           @if (catalogStore.entries().length === 0) {
             <p class="card-editor-page__empty">Ничего не найдено. Измените фильтры или создайте карточку.</p>
           } @else {
-            <mat-list class="card-editor-page__list">
+            <ul class="card-editor-page__list">
               @for (entry of catalogStore.entries(); track entry.id) {
-                <mat-list-item class="card-editor-page__item">
-                  <div matListItemTitle>{{ entry.title }}</div>
-                  <div matListItemLine>
+                <li class="card-editor-page__item">
+                  <span class="card-editor-page__title">{{ entry.title }}</span>
+                  <span class="card-editor-page__meta-text">
                     {{ kindLabels[entry.kind] }}
                     · {{ formatEntryLanguages(entry) }}
                     · {{ difficultyLabels[entry.difficulty] }}
-                  </div>
-                  <div matListItemLine class="card-editor-page__meta">
-                    <mat-chip-set>
-                      @for (tag of entry.tags; track tag) {
-                        <mat-chip>{{ tag }}</mat-chip>
-                      }
-                    </mat-chip-set>
-                    <span class="card-editor-page__updated">
-                      {{ entry.updatedAt | date: 'short' }}
-                    </span>
-                  </div>
-                  <div matListItemMeta class="card-editor-page__item-actions">
+                  </span>
+                  <mat-chip-set class="card-editor-page__tags" aria-label="Теги">
+                    @for (tag of entry.tags; track tag) {
+                      <mat-chip>{{ tag }}</mat-chip>
+                    }
+                  </mat-chip-set>
+                  <span class="card-editor-page__updated">
+                    {{ entry.updatedAt | date: 'short' }}
+                  </span>
+                  <div class="card-editor-page__item-actions">
                     <button
                       mat-icon-button
                       type="button"
@@ -144,9 +154,9 @@
                       <mat-icon>delete</mat-icon>
                     </button>
                   </div>
-                </mat-list-item>
+                </li>
               }
-            </mat-list>
+            </ul>
           }
         </mat-card-content>
 

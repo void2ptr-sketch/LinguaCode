@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -22,7 +21,6 @@ import { CardCatalogSearchStore } from './card-catalog-search.store';
   selector: 'app-card-catalog-filters',
   imports: [
     FormsModule,
-    RouterLink,
     MatButtonModule,
     MatChipsModule,
     MatFormFieldModule,
