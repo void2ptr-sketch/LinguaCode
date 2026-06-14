@@ -9,12 +9,18 @@
 
       @for (reading of visibleRomanizations(); track reading.system) {
         <div class="lexeme-display__reading lexeme-display__reading--{{ reading.system }}">
-          {{ reading.reading }}
+          <span class="lexeme-display__reading-label">{{ romanizationLabel(reading.system) }}</span>
+          <span class="lexeme-display__reading-text">{{ reading.reading }}</span>
         </div>
       }
 
       @if (ipaText(); as ipa) {
-        <app-phonetic-ipa [transcription]="ipa" [inline]="inline()" />
+        <div class="lexeme-display__reading lexeme-display__reading--ipa">
+          <span class="lexeme-display__reading-label">IPA</span>
+          <span class="lexeme-display__reading-text lexeme-display__reading-text--ipa">
+            <app-phonetic-ipa [transcription]="ipa" />
+          </span>
+        </div>
       }
     </div>
   </div>
