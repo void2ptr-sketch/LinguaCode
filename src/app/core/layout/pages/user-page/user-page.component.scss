@@ -1,5 +1,5 @@
 .page-card {
-  max-width: 36rem;
+  max-width: 40rem;
 }
 
 .page-card__content {
@@ -86,9 +86,4 @@
   align-items: center;
   display: inline-flex;
   gap: 0.25rem;
-}
-
-.page-card__romanization-toggles {
-  display: grid;
-  gap: 0.35rem;
 }

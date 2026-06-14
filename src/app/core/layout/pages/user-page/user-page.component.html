@@ -25,7 +25,7 @@
           <section class="page-card__section">
             <h2 class="page-card__section-title">Языки обучения</h2>
             <p class="page-card__hint">
-              Можно добавить несколько пар; активная пара используется в обучении и редакторах.
+              Можно добавить несколько курсов; активный курс используется в обучении и редакторах.
             </p>
 
             <ul class="page-card__pair-list">
@@ -37,7 +37,7 @@
                   <span class="page-card__pair-label">
                     {{ entryLabel(entry) }}
                     @if (isActive(entry)) {
-                      <span class="page-card__pair-badge">активная</span>
+                      <span class="page-card__pair-badge">активный</span>
                     }
                   </span>
                   <span class="page-card__pair-actions">
@@ -46,14 +46,14 @@
                     </button>
                     @if (!isActive(entry)) {
                       <button mat-stroked-button type="button" (click)="setActive(entry.id)">
-                        Сделать активной
+                        Сделать активным
                       </button>
                     }
                     @if (canRemovePair()) {
                       <button
                         mat-icon-button
                         type="button"
-                        aria-label="Удалить пару"
+                        aria-label="Удалить курс"
                         (click)="removePair(entry.id)"
                       >
                         <mat-icon>delete_outline</mat-icon>
@@ -64,7 +64,7 @@
               }
             </ul>
 
-            <h3 class="page-card__subsection-title">Добавить пару</h3>
+            <h3 class="page-card__subsection-title">Добавить курс</h3>
 
             <mat-form-field appearance="outline">
               <mat-label>Известный язык</mat-label>
@@ -97,7 +97,7 @@
             }
 
             <button mat-stroked-button type="button" [disabled]="languagePairInvalid()" (click)="addPair()">
-              Добавить пару
+              Добавить курс
             </button>
           </section>
         </div>
@@ -108,11 +108,11 @@
           <section class="page-card__section">
             <h2 class="page-card__section-title">Настройка курса</h2>
             <p class="page-card__hint">
-              Романизация и фонетика для выбранной пары. Сохраняются отдельно для каждой пары.
+              Романизация и фонетика для выбранного курса. Сохраняются отдельно для каждого курса.
             </p>
 
             <mat-form-field appearance="outline">
-              <mat-label>Языковая пара</mat-label>
+              <mat-label>Курс</mat-label>
               <mat-select
                 [ngModel]="settingsPairIdDraft()"
                 (ngModelChange)="onSettingsPairChange($event)"
@@ -123,63 +123,30 @@
                 }
               </mat-select>
             </mat-form-field>
+
+            @if (showDisplaySettings()) {
+              <app-course-display-settings-matrix
+                [showCjk]="showCjkPreferences()"
+                [showPhonetic]="showPhoneticPreferences()"
+                [romanizationOptions]="romanizationOptions()"
+                [courseLabel]="settingsCourseLabel()"
+                [displayRomanizations]="displayRomanizationsDraft()"
+                [answerRomanizations]="answerRomanizationsDraft()"
+                [showIpa]="showIpaDraft()"
+                [ipaVariantLabel]="ipaVariantLabelDraft()"
+                [answerModes]="answerModesDraft()"
+                (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
+                (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
+                (showIpaChange)="showIpaDraft.set($event)"
+                (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
+                (answerModesChange)="answerModesDraft.set($event)"
+              />
+            } @else {
+              <p class="page-card__hint">
+                Для этого курса нет дополнительных настроек романизации или IPA.
+              </p>
+            }
           </section>
-
-          @if (showCjkPreferences()) {
-            <section class="page-card__section">
-              <h2 class="page-card__section-title">
-                Китайский — {{ entryLabel(settingsEntry()!) }}
-              </h2>
-              <p class="page-card__hint">
-                Какие системы романизации показывать на карточках (можно включить несколько сразу).
-              </p>
-
-              <div class="page-card__romanization-toggles">
-                @for (option of romanizationOptions(); track option.value) {
-                  <mat-checkbox
-                    [ngModel]="isRomanizationEnabled(option.value)"
-                    (ngModelChange)="setRomanizationEnabled(option.value, $event)"
-                    [name]="'displayRomanization-' + option.value"
-                  >
-                    {{ option.label }}
-                  </mat-checkbox>
-                }
-              </div>
-            </section>
-          }
-
-          @if (showPhoneticPreferences()) {
-            <section class="page-card__section">
-              <h2 class="page-card__section-title">
-                Фонетика (IPA) — {{ entryLabel(settingsEntry()!) }}
-              </h2>
-              <p class="page-card__hint">
-                Транскрипция IPA под словами (можно показывать вместе с романизацией).
-              </p>
-
-              <mat-slide-toggle [ngModel]="showIpaDraft()" (ngModelChange)="showIpaDraft.set($event)" name="showIpa">
-                Показывать IPA
-              </mat-slide-toggle>
-
-              <mat-form-field appearance="outline">
-                <mat-label>Вариант IPA (label)</mat-label>
-                <input
-                  matInput
-                  placeholder="BrE / AmE"
-                  [ngModel]="ipaVariantLabelDraft()"
-                  (ngModelChange)="ipaVariantLabelDraft.set($event)"
-                  name="ipaVariantLabel"
-                />
-                <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
-              </mat-form-field>
-            </section>
-          }
-
-          @if (!showCjkPreferences() && !showPhoneticPreferences()) {
-            <p class="page-card__hint">
-              Для этой пары нет дополнительных настроек романизации или IPA.
-            </p>
-          }
         </div>
       </mat-tab>
 

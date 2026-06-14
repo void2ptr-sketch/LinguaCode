@@ -1,0 +1,92 @@
+@if (showCjk() || showPhonetic()) {
+  <div class="display-matrix" role="grid" aria-describedby="display-matrix-hint">
+    <p id="display-matrix-hint" class="display-matrix__hint">
+      Задание — текст вопроса на карточке; ответы — варианты, плитки memory и блок «Правильный ответ».
+      Можно включить несколько систем сразу.
+    </p>
+
+    <div class="display-matrix__header" role="row">
+      <span class="display-matrix__header-label" role="rowheader">Система</span>
+      <span class="display-matrix__header-col" role="columnheader">Задание</span>
+      <span class="display-matrix__header-col" role="columnheader">Ответы</span>
+    </div>
+
+    @if (showCjk()) {
+      @for (option of romanizationOptions(); track option.value) {
+        <div class="display-matrix__row" role="row">
+          <span class="display-matrix__label" role="rowheader">{{ option.label }}</span>
+
+          <mat-checkbox
+            class="display-matrix__cell"
+            [ngModel]="isPromptRomanizationEnabled(option.value)"
+            (ngModelChange)="onPromptRomanizationChange(option.value, $event)"
+            [disabled]="isPromptRomanizationDisabled(option.value)"
+            [name]="'displayRomanization-' + option.value"
+            [attr.aria-label]="promptRomanizationAriaLabel(option)"
+          />
+
+          <mat-checkbox
+            class="display-matrix__cell"
+            [ngModel]="isAnswerRomanizationEnabled(option.value)"
+            (ngModelChange)="onAnswerRomanizationChange(option.value, $event)"
+            [disabled]="isAnswerRomanizationDisabled(option.value)"
+            [name]="'answerRomanization-' + option.value"
+            [attr.aria-label]="answerRomanizationAriaLabel(option)"
+          />
+        </div>
+      }
+    }
+
+    @if (showPhonetic()) {
+      <div class="display-matrix__row" role="row">
+        <span class="display-matrix__label" role="rowheader">IPA</span>
+
+        <mat-checkbox
+          class="display-matrix__cell"
+          [ngModel]="showIpa()"
+          (ngModelChange)="showIpaChange.emit($event)"
+          name="showIpa"
+          [attr.aria-label]="'IPA в задании' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+        />
+
+        <mat-checkbox
+          class="display-matrix__cell"
+          [ngModel]="isAnswerModeEnabled('ipa')"
+          (ngModelChange)="onAnswerModeChange('ipa', $event)"
+          [disabled]="isAnswerModeDisabled('ipa')"
+          name="answerModeIpa"
+          [attr.aria-label]="'IPA в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+        />
+      </div>
+
+      <div class="display-matrix__row" role="row">
+        <span class="display-matrix__label" role="rowheader">Орфография</span>
+
+        <span class="display-matrix__na display-matrix__cell" aria-hidden="true">—</span>
+
+        <mat-checkbox
+          class="display-matrix__cell"
+          [ngModel]="isAnswerModeEnabled('orthography')"
+          (ngModelChange)="onAnswerModeChange('orthography', $event)"
+          [disabled]="isAnswerModeDisabled('orthography')"
+          name="answerModeOrthography"
+          [attr.aria-label]="'Орфография в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+        />
+      </div>
+    }
+  </div>
+
+  @if (showPhonetic() && showIpaVariantField()) {
+    <mat-form-field appearance="outline" class="display-matrix__ipa-label">
+      <mat-label>Вариант IPA (label)</mat-label>
+      <input
+        matInput
+        placeholder="BrE / AmE"
+        [ngModel]="ipaVariantLabel()"
+        (ngModelChange)="ipaVariantLabelChange.emit($event)"
+        name="ipaVariantLabel"
+      />
+      <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
+    </mat-form-field>
+  }
+}
