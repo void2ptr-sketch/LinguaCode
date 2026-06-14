@@ -8,10 +8,19 @@
   gap: 0.15rem;
 }
 
-.lexeme-display__cjk {
+.lexeme-display__stack {
   display: grid;
   gap: 0.1rem;
   justify-items: center;
+}
+
+.lexeme-display__primary {
+  font: inherit;
+  line-height: 1.2;
+}
+
+.lexeme-display__han {
+  font-family: 'Noto Sans SC', 'Noto Sans', sans-serif;
 }
 
 .lexeme-display__reading {
@@ -28,16 +37,10 @@
   font-family: 'Noto Sans TC', 'Noto Sans', sans-serif;
 }
 
-.lexeme-display__han {
-  font-family: 'Noto Sans SC', 'Noto Sans', sans-serif;
-  font-size: inherit;
-  line-height: 1.2;
-}
-
-.lexeme-display__primary {
-  font: inherit;
-}
-
-.lexeme-display--inline .lexeme-display__cjk {
+.lexeme-display--inline .lexeme-display__stack {
   justify-items: start;
+}
+
+.lexeme-display__stack .phonetic-ipa {
+  margin-top: 0;
 }
