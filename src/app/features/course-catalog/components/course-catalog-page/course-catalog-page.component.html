@@ -25,38 +25,50 @@
       </mat-card-content>
     </mat-card>
   } @else {
-    <mat-list class="course-catalog-page__list">
-      @for (course of items(); track course.id) {
-        <mat-list-item class="course-catalog-page__item">
-          <div matListItemTitle class="course-catalog-page__title">
-            {{ course.title }}
-            @if (isCourseCompleted(course.id)) {
-              <mat-chip class="course-catalog-page__badge" disabled>
-                <mat-icon>workspace_premium</mat-icon>
-                Завершён
-              </mat-chip>
-            }
-          </div>
-          <div matListItemLine>
-            {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
-            @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
-              · {{ progressPercent(course.id) }}%
-            }
-          </div>
-          <div matListItemMeta>
-            <button mat-flat-button type="button" (click)="startCourse(course.id)">
-              Начать
-            </button>
-          </div>
-        </mat-list-item>
-      }
-    </mat-list>
+    <mat-card class="course-catalog-page__panel">
+      <mat-card-header>
+        <mat-card-title>Курсы</mat-card-title>
+        <mat-card-subtitle>{{ totalItems() }} программ</mat-card-subtitle>
+      </mat-card-header>
 
-    <app-pagination
-      [length]="totalItems()"
-      [pageIndex]="pageIndex()"
-      [pageSize]="pageSize()"
-      (pageChange)="onPageChange($event)"
-    />
+      <mat-card-content class="course-catalog-page__content">
+        <ul class="course-catalog-page__list">
+          @for (course of items(); track course.id) {
+            <li class="course-catalog-page__item">
+              <div class="course-catalog-page__item-body">
+                <div class="course-catalog-page__title-row">
+                  <h2 class="course-catalog-page__title">{{ course.title }}</h2>
+                  @if (isCourseCompleted(course.id)) {
+                    <mat-chip class="course-catalog-page__badge" disabled>
+                      <mat-icon>workspace_premium</mat-icon>
+                      Завершён
+                    </mat-chip>
+                  }
+                </div>
+                <p class="course-catalog-page__meta">
+                  {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
+                  @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
+                    · {{ progressPercent(course.id) }}%
+                  }
+                </p>
+              </div>
+
+              <div class="course-catalog-page__actions">
+                <button mat-flat-button type="button" (click)="startCourse(course.id)">
+                  Начать
+                </button>
+              </div>
+            </li>
+          }
+        </ul>
+
+        <app-pagination
+          [length]="totalItems()"
+          [pageIndex]="pageIndex()"
+          [pageSize]="pageSize()"
+          (pageChange)="onPageChange($event)"
+        />
+      </mat-card-content>
+    </mat-card>
   }
 </section>

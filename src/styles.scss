@@ -3,33 +3,6 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-.cjk-ruby__base {
-  font-family: "Noto Sans SC", "Noto Sans TC", sans-serif;
-}
-
-.cjk-ruby__reading--zhuyin {
-  font-family: "Noto Sans TC", sans-serif;
-}
-
-.phonetic-ipa,
-.lexeme-display .phonetic-ipa {
-  font-family: "Charis SIL", "Doulos SIL", serif;
-}
-
-.lexeme-display {
-  display: inline-flex;
-  flex-direction: column;
-  gap: 0.125rem;
-}
-
-.lexeme-display--inline {
-  display: inline-flex;
-  flex-direction: row;
-  align-items: baseline;
-  flex-wrap: wrap;
-  gap: 0.375rem;
-}
-
 .quiz-card__sound {
   align-items: center;
   display: flex;

@@ -5,9 +5,19 @@ import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/ph
 import { UserStore } from '../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
 
+const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
+  pinyin: '拼音',
+  zhuyin: '注音',
+  palladius: 'Pal.',
+};
+
 @Component({
   selector: 'app-lexeme-display',
   imports: [PhoneticIpaComponent],
+  host: {
+    class: 'lexeme-display-host',
+    '[class.lexeme-display-host--inline]': 'inline()',
+  },
   templateUrl: './lexeme-display.component.html',
   styleUrl: './lexeme-display.component.scss',
 })
@@ -21,6 +31,8 @@ export class LexemeDisplayComponent {
   readonly showIpa = input<boolean | null>(null);
   readonly ipaVariantLabel = input<string | undefined>(undefined);
   readonly inline = input(false);
+
+  readonly romanizationLabel = (system: RomanizationSystem): string => ROMANIZATION_LABELS[system];
 
   readonly effectiveRomanizations = computed<readonly RomanizationSystem[]>(() => {
     const override = this.romanizations();

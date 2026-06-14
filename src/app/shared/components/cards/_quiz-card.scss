@@ -14,20 +14,28 @@
   font-size: 1.125rem;
 }
 
+.quiz-card mat-card-subtitle {
+  line-height: 1.45;
+  white-space: normal;
+}
+
 .quiz-card__options {
   display: grid;
   gap: 0.75rem;
 }
 
 .option {
+  align-items: flex-start;
   border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
   border-radius: 0.5rem;
   background: var(--mat-sys-surface-container-lowest);
   color: inherit;
   cursor: pointer;
+  display: flex;
   padding: 0.875rem 1rem;
   text-align: left;
   transition: border-color 0.15s ease, background-color 0.15s ease;
+  width: 100%;
 }
 
 .option:hover {

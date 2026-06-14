@@ -1,12 +1,18 @@
+:host {
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+}
+
 .phonetic-ipa {
-  display: block;
-  font-family: 'Charis SIL', 'Gentium Plus', 'Noto Sans', serif;
-  font-size: 0.95em;
-  letter-spacing: 0.01em;
-  margin-top: 0.35rem;
+  display: inline;
+  font: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  margin: 0;
 }
 
 .phonetic-ipa--inline {
   display: inline;
-  margin-top: 0;
 }
