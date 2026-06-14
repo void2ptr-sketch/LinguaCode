@@ -66,6 +66,9 @@ export class UserPageComponent {
   readonly displayRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin']);
   readonly showIpaDraft = signal(false);
   readonly ipaVariantLabelDraft = signal('');
+  readonly selectedTabIndex = signal(0);
+
+  private static readonly pairSettingsTabIndex = 2;
 
   constructor() {
     this.syncPairSettingsDrafts();
@@ -116,10 +119,6 @@ export class UserPageComponent {
     return this.userStore.isActiveEntry(entry);
   }
 
-  isSettingsTarget(entry: UserLanguagePairEntry): boolean {
-    return entry.id === this.settingsPairIdDraft();
-  }
-
   isRomanizationEnabled(system: RomanizationSystem): boolean {
     return this.displayRomanizationsDraft().includes(system);
   }
@@ -133,9 +132,15 @@ export class UserPageComponent {
     this.displayRomanizationsDraft.set(next.length > 0 ? next : ['pinyin']);
   }
 
-  selectPairForSettings(id: string): void {
+  onSettingsPairChange(id: string): void {
     this.settingsPairIdDraft.set(id);
     this.syncPairSettingsDrafts();
+  }
+
+  openPairSettings(id: string): void {
+    this.settingsPairIdDraft.set(id);
+    this.syncPairSettingsDrafts();
+    this.selectedTabIndex.set(UserPageComponent.pairSettingsTabIndex);
   }
 
   setActive(id: string): void {

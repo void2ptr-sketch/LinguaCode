@@ -5,7 +5,12 @@
   </mat-card-header>
 
   <mat-card-content class="page-card__content">
-    <mat-tab-group class="page-card__tabs" dynamicHeight>
+    <mat-tab-group
+      class="page-card__tabs"
+      dynamicHeight
+      [selectedIndex]="selectedTabIndex()"
+      (selectedIndexChange)="selectedTabIndex.set($event)"
+    >
       <mat-tab label="Пользователь">
         <div class="page-card__tab-panel">
           <mat-form-field appearance="outline">
@@ -15,7 +20,7 @@
         </div>
       </mat-tab>
 
-      <mat-tab label="Язык">
+      <mat-tab label="Курс">
         <div class="page-card__tab-panel">
           <section class="page-card__section">
             <h2 class="page-card__section-title">Языки обучения</h2>
@@ -28,23 +33,17 @@
                 <li
                   class="page-card__pair-item"
                   [class.page-card__pair-item--active]="isActive(entry)"
-                  [class.page-card__pair-item--settings]="isSettingsTarget(entry)"
                 >
                   <span class="page-card__pair-label">
                     {{ entryLabel(entry) }}
                     @if (isActive(entry)) {
                       <span class="page-card__pair-badge">активная</span>
                     }
-                    @if (isSettingsTarget(entry) && !isActive(entry)) {
-                      <span class="page-card__pair-badge page-card__pair-badge--settings">настройки</span>
-                    }
                   </span>
                   <span class="page-card__pair-actions">
-                    @if (!isSettingsTarget(entry)) {
-                      <button mat-stroked-button type="button" (click)="selectPairForSettings(entry.id)">
-                        Настройки
-                      </button>
-                    }
+                    <button mat-stroked-button type="button" (click)="openPairSettings(entry.id)">
+                      Настройки
+                    </button>
                     @if (!isActive(entry)) {
                       <button mat-stroked-button type="button" (click)="setActive(entry.id)">
                         Сделать активной
@@ -101,6 +100,30 @@
               Добавить пару
             </button>
           </section>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Настройка курса">
+        <div class="page-card__tab-panel">
+          <section class="page-card__section">
+            <h2 class="page-card__section-title">Настройка курса</h2>
+            <p class="page-card__hint">
+              Романизация и фонетика для выбранной пары. Сохраняются отдельно для каждой пары.
+            </p>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Языковая пара</mat-label>
+              <mat-select
+                [ngModel]="settingsPairIdDraft()"
+                (ngModelChange)="onSettingsPairChange($event)"
+                name="settingsPair"
+              >
+                @for (entry of languagePairs(); track entry.id) {
+                  <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </section>
 
           @if (showCjkPreferences()) {
             <section class="page-card__section">
@@ -150,6 +173,12 @@
                 <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
               </mat-form-field>
             </section>
+          }
+
+          @if (!showCjkPreferences() && !showPhoneticPreferences()) {
+            <p class="page-card__hint">
+              Для этой пары нет дополнительных настроек романизации или IPA.
+            </p>
           }
         </div>
       </mat-tab>
