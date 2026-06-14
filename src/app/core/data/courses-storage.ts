@@ -1,6 +1,8 @@
 import type { Course, Lesson } from '../models';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
+import { RU_ZH_LANGUAGE_PAIR } from './scenario-catalog.defaults';
+
 export const COURSE_CATALOG_STORAGE_KEY = 'lingua-code.course-catalog';
 
 export type CourseCatalogState = {
@@ -8,7 +10,7 @@ export type CourseCatalogState = {
   lessons: Lesson[];
 };
 
-export const DEFAULT_COURSE_CATALOG: CourseCatalogState = {
+export const DEFAULT_EN_COURSE_CATALOG: CourseCatalogState = {
   courses: [
     {
       id: 'demo-course',
@@ -45,6 +47,117 @@ export const DEFAULT_COURSE_CATALOG: CourseCatalogState = {
   ],
 };
 
+export const DEFAULT_ZH_COURSE_CATALOG: CourseCatalogState = {
+  courses: [
+    {
+      id: 'course-zh-a1',
+      title: 'Китайский A1: первые шаги',
+      description: 'Базовый курс для пары ru→zh: приветствия, фонетика и иероглифы.',
+      authorId: 'local-user',
+      languagePair: RU_ZH_LANGUAGE_PAIR,
+      lessonIds: ['lesson-zh-greetings', 'lesson-zh-phonetics', 'lesson-zh-characters'],
+      published: true,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+    {
+      id: 'course-zh-conversation',
+      title: 'Китайский: разговорная практика',
+      description: 'Короткий курс для закрепления приветствий и смешанных упражнений.',
+      authorId: 'local-user',
+      languagePair: RU_ZH_LANGUAGE_PAIR,
+      lessonIds: ['lesson-zh-quick-start', 'lesson-zh-review'],
+      published: true,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+  ],
+  lessons: [
+    {
+      id: 'lesson-zh-greetings',
+      courseId: 'course-zh-a1',
+      title: 'Урок 1: Приветствия',
+      description: '你好, 谢谢, 再见 — узнавание и сопоставление.',
+      scenarioIds: ['scenario-zh-greetings'],
+      prerequisiteLessonIds: [],
+      order: 0,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+    {
+      id: 'lesson-zh-phonetics',
+      courseId: 'course-zh-a1',
+      title: 'Урок 2: Пиньинь и тоны',
+      description: 'Ввод пиньинь, IPA и выбор тона.',
+      scenarioIds: ['scenario-zh-phonetics'],
+      prerequisiteLessonIds: ['lesson-zh-greetings'],
+      order: 1,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+    {
+      id: 'lesson-zh-characters',
+      courseId: 'course-zh-a1',
+      title: 'Урок 3: Иероглифы',
+      description: 'Черты, радикалы и чтение 行.',
+      scenarioIds: ['scenario-zh-characters'],
+      prerequisiteLessonIds: ['lesson-zh-phonetics'],
+      order: 2,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+    {
+      id: 'lesson-zh-quick-start',
+      courseId: 'course-zh-conversation',
+      title: 'Быстрый старт',
+      description: 'Первые фразы и базовые упражнения.',
+      scenarioIds: ['scenario-zh-greetings'],
+      prerequisiteLessonIds: [],
+      order: 0,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+    {
+      id: 'lesson-zh-review',
+      courseId: 'course-zh-conversation',
+      title: 'Закрепление',
+      description: 'Смешанная практика после быстрого старта.',
+      scenarioIds: ['scenario-zh-review'],
+      prerequisiteLessonIds: ['lesson-zh-quick-start'],
+      order: 1,
+      updatedAt: '2026-06-14T10:00:00.000Z',
+    },
+  ],
+};
+
+export const DEFAULT_COURSE_CATALOG: CourseCatalogState = {
+  courses: [...DEFAULT_EN_COURSE_CATALOG.courses, ...DEFAULT_ZH_COURSE_CATALOG.courses],
+  lessons: [...DEFAULT_EN_COURSE_CATALOG.lessons, ...DEFAULT_ZH_COURSE_CATALOG.lessons],
+};
+
+export function mergeCourseCatalogWithDefaults(
+  stored: CourseCatalogState,
+  defaults: CourseCatalogState = DEFAULT_COURSE_CATALOG,
+): CourseCatalogState {
+  const coursesById = new Map<string, Course>();
+  const lessonsById = new Map<string, Lesson>();
+
+  for (const course of defaults.courses) {
+    coursesById.set(course.id, course);
+  }
+
+  for (const lesson of defaults.lessons) {
+    lessonsById.set(lesson.id, lesson);
+  }
+
+  for (const course of stored.courses) {
+    coursesById.set(course.id, course);
+  }
+
+  for (const lesson of stored.lessons) {
+    lessonsById.set(lesson.id, lesson);
+  }
+
+  return {
+    courses: [...coursesById.values()],
+    lessons: [...lessonsById.values()],
+  };
+}
+
 export function loadCourseCatalogFromStorage(): CourseCatalogState {
   const raw = localStorage.getItem(COURSE_CATALOG_STORAGE_KEY);
   if (!raw) {
@@ -57,10 +170,12 @@ export function loadCourseCatalogFromStorage(): CourseCatalogState {
       return cloneCatalog(DEFAULT_COURSE_CATALOG);
     }
 
-    return {
+    const stored: CourseCatalogState = {
       courses: parsed.courses.filter(isCourse),
       lessons: parsed.lessons.filter(isLesson).map(normalizeStoredLesson),
     };
+
+    return cloneCatalog(mergeCourseCatalogWithDefaults(stored));
   } catch {
     return cloneCatalog(DEFAULT_COURSE_CATALOG);
   }
