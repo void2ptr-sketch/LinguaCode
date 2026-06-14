@@ -4,78 +4,88 @@
   <div class="lexeme-fields__grid">
     <mat-form-field appearance="outline">
       <mat-label>Основной текст</mat-label>
-      <input
-        matInput
-        [ngModel]="fields().primary"
-        (ngModelChange)="updateField('primary', $event)"
-      />
+      <input matInput [ngModel]="fields().primary" (ngModelChange)="updatePrimary($event)" />
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Письменность</mat-label>
-      <mat-select [ngModel]="fields().script" (ngModelChange)="updateField('script', $event)">
-        @for (option of scriptOptions; track option.value) {
-          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+    @if (showScript()) {
+      <mat-form-field appearance="outline">
+        <mat-label>Письменность</mat-label>
+        <mat-select [ngModel]="fields().script" (ngModelChange)="updateField('script', $event)">
+          @for (option of scriptOptions; track option.value) {
+            <mat-option [value]="option.value">{{ option.label }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    }
+
+    @if (showPinyin()) {
+      <mat-form-field appearance="outline">
+        <mat-label>Пиньинь</mat-label>
+        <input matInput [ngModel]="fields().pinyin" (ngModelChange)="updateField('pinyin', $event)" />
+      </mat-form-field>
+    }
+
+    @if (showPalladius()) {
+      <mat-form-field appearance="outline" class="lexeme-fields__palladius">
+        <mat-label>Палладица</mat-label>
+        <input
+          matInput
+          [ngModel]="fields().palladius"
+          (ngModelChange)="updateField('palladius', $event)"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          type="button"
+          aria-label="Заполнить из пиньинь"
+          [disabled]="!fields().pinyin.trim()"
+          (click)="fillPalladiusFromPinyin()"
+        >
+          <mat-icon>auto_fix_high</mat-icon>
+        </button>
+      </mat-form-field>
+    }
+
+    @if (showIpa()) {
+      <mat-form-field appearance="outline">
+        <mat-label>IPA</mat-label>
+        <input matInput [ngModel]="fields().ipa" (ngModelChange)="updateField('ipa', $event)" />
+        @if (showLegacyLayout()) {
+          <mat-hint>Одна транскрипция или BrE|θɔːt; AmE|θɑːt</mat-hint>
         }
-      </mat-select>
-    </mat-form-field>
+        @if (enLearningPair() || showLegacyLayout()) {
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            aria-label="IPA из слова (en)"
+            [disabled]="!fields().primary.trim()"
+            (click)="fillIpaFromEnglish()"
+          >
+            <mat-icon>translate</mat-icon>
+          </button>
+        }
+        @if (ruZhPair() || showLegacyLayout()) {
+          <button
+            mat-icon-button
+            matSuffix
+            type="button"
+            aria-label="IPA из пиньинь"
+            [disabled]="!fields().pinyin.trim()"
+            (click)="fillIpaFromPinyin()"
+          >
+            <mat-icon>auto_fix_high</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+    }
 
-    <mat-form-field appearance="outline">
-      <mat-label>Пиньинь</mat-label>
-      <input matInput [ngModel]="fields().pinyin" (ngModelChange)="updateField('pinyin', $event)" />
-    </mat-form-field>
+    @if (showLegacyLayout() && !compact()) {
+      <mat-form-field appearance="outline">
+        <mat-label>Жуинь (Bopomofo)</mat-label>
+        <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Жуинь (Bopomofo)</mat-label>
-      <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="lexeme-fields__palladius">
-      <mat-label>Палладица</mat-label>
-      <input
-        matInput
-        [ngModel]="fields().palladius"
-        (ngModelChange)="updateField('palladius', $event)"
-      />
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        aria-label="Заполнить из пиньинь"
-        [disabled]="!fields().pinyin.trim()"
-        (click)="fillPalladiusFromPinyin()"
-      >
-        <mat-icon>auto_fix_high</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>IPA</mat-label>
-      <input matInput [ngModel]="fields().ipa" (ngModelChange)="updateField('ipa', $event)" />
-      <mat-hint>Одна транскрипция или BrE|θɔːt; AmE|θɑːt</mat-hint>
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        aria-label="IPA из слова (en)"
-        [disabled]="!fields().primary.trim()"
-        (click)="fillIpaFromEnglish()"
-      >
-        <mat-icon>translate</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        matSuffix
-        type="button"
-        aria-label="IPA из пиньинь"
-        [disabled]="!fields().pinyin.trim()"
-        (click)="fillIpaFromPinyin()"
-      >
-        <mat-icon>auto_fix_high</mat-icon>
-      </button>
-    </mat-form-field>
-
-    @if (!compact()) {
       <mat-form-field appearance="outline">
         <mat-label>Доп. ответы (через запятую)</mat-label>
         <input
@@ -86,4 +96,48 @@
       </mat-form-field>
     }
   </div>
+
+  @if (showAdvancedPanel()) {
+    <mat-expansion-panel class="lexeme-fields__advanced" [expanded]="advancedExpanded()">
+      <mat-expansion-panel-header>
+        <mat-panel-title>Доп. фонетика</mat-panel-title>
+        <mat-panel-description>Жуинь, IPA, доп. ответы</mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="lexeme-fields__grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Жуинь (Bopomofo)</mat-label>
+          <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
+        </mat-form-field>
+
+        @if (ruZhPair()) {
+          <mat-form-field appearance="outline">
+            <mat-label>IPA</mat-label>
+            <input matInput [ngModel]="fields().ipa" (ngModelChange)="updateField('ipa', $event)" />
+            <button
+              mat-icon-button
+              matSuffix
+              type="button"
+              aria-label="IPA из пиньинь"
+              [disabled]="!fields().pinyin.trim()"
+              (click)="fillIpaFromPinyin()"
+            >
+              <mat-icon>auto_fix_high</mat-icon>
+            </button>
+          </mat-form-field>
+        }
+
+        @if (!compact()) {
+          <mat-form-field appearance="outline">
+            <mat-label>Доп. ответы (через запятую)</mat-label>
+            <input
+              matInput
+              [ngModel]="fields().acceptedReadings"
+              (ngModelChange)="updateField('acceptedReadings', $event)"
+            />
+          </mat-form-field>
+        }
+      </div>
+    </mat-expansion-panel>
+  }
 </section>
