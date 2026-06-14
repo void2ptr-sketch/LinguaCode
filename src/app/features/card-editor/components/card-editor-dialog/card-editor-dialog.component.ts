@@ -24,7 +24,10 @@ import {
   saveEditorUxMode,
   type CardEditorUxMode,
 } from '../../utils/card-editor-ux.utils';
+import { CardCreateWizardComponent } from '../card-create-wizard/card-create-wizard.component';
 import { CardFormComponent } from '../card-form/card-form.component';
+import { applyLexemeFirstToDraft } from '../../utils/card-draft-lexeme-first.utils';
+import { indexTagsForDraft } from '../../utils/card-kind-index-meta.utils';
 import { CardEditorDiscardDialogComponent } from './card-editor-discard-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
 
@@ -43,6 +46,7 @@ function serializeDraft(draft: CardDraft): string {
     MatFormFieldModule,
     MatSelectModule,
     CardFormComponent,
+    CardCreateWizardComponent,
   ],
   templateUrl: './card-editor-dialog.component.html',
   styleUrl: './card-editor-dialog.component.scss',
@@ -65,6 +69,7 @@ export class CardEditorDialogComponent implements OnInit {
     learningLanguage: this.userStore.languagePair().learning,
   });
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
+  readonly useFullEditor = signal(false);
   private readonly initialSnapshot = signal('');
   private readonly initialMetaSnapshot = signal('');
 
@@ -77,6 +82,13 @@ export class CardEditorDialogComponent implements OnInit {
     () =>
       serializeDraft(this.draft()) !== this.initialSnapshot() ||
       JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot(),
+  );
+
+  readonly showWizard = computed(
+    () =>
+      this.data.mode === 'create' &&
+      this.editorUxMode() === 'basic' &&
+      !this.useFullEditor(),
   );
 
   readonly title = computed(() => {
@@ -125,6 +137,13 @@ export class CardEditorDialogComponent implements OnInit {
   setEditorUxMode(mode: CardEditorUxMode): void {
     this.editorUxMode.set(mode);
     saveEditorUxMode(mode);
+    if (mode === 'advanced') {
+      this.useFullEditor.set(true);
+    }
+  }
+
+  expandToFullEditor(): void {
+    this.useFullEditor.set(true);
   }
 
   updateDraft(nextDraft: CardDraft): void {
@@ -145,11 +164,12 @@ export class CardEditorDialogComponent implements OnInit {
 
   async saveCard(): Promise<void> {
     let saved = false;
+    const draftToSave = this.prepareDraftForSave(this.draft());
     const meta = {
       knownLanguage: this.indexMeta().knownLanguage,
       learningLanguage: this.indexMeta().learningLanguage,
+      tags: [...indexTagsForDraft(draftToSave)],
     };
-    const draftToSave = this.prepareDraftForSave(this.draft());
 
     if (this.data.mode === 'create') {
       saved = await this.store.createCard(draftToSave, meta);
@@ -172,14 +192,16 @@ export class CardEditorDialogComponent implements OnInit {
   }
 
   private prepareDraftForSave(draft: CardDraft): CardDraft {
+    let next = applyLexemeFirstToDraft(draft);
+
     if (this.editorUxMode() === 'basic') {
-      return {
-        ...draft,
+      next = {
+        ...next,
         appearance: { ...this.defaultAppearance() },
       };
     }
 
-    return draft;
+    return next;
   }
 
   private async confirmClose(): Promise<boolean> {

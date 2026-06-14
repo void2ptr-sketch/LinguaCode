@@ -19,6 +19,7 @@ export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;
 })
 export class InputCardFormComponent {
   readonly draft = input.required<InputCardDraft>();
+  readonly hidePrompt = input(false);
   readonly knownLanguage = input<ContentLanguage>('ru');
   readonly learningLanguage = input<ContentLanguage>('en');
 

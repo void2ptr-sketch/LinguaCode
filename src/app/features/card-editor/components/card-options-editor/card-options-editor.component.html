@@ -3,12 +3,12 @@
 
   @if (config().showCorrectRadio) {
     <mat-radio-group [ngModel]="correctIndex()" (ngModelChange)="onCorrectIndexChange($event)">
-      @for (item of options(); track $index) {
+      @for (item of options(); track optionTrack($index)) {
         <div
           class="card-options-editor__row"
           [class.card-options-editor__row--with-lexeme]="showLexemes()"
         >
-          <mat-radio-button [value]="$index" />
+          <mat-radio-button [value]="$index" aria-label="Правильный вариант {{ $index + 1 }}" />
           <mat-form-field appearance="outline" class="card-options-editor__field">
             <mat-label>{{ config().optionLabelPrefix }} {{ $index + 1 }}</mat-label>
             <input
@@ -16,6 +16,7 @@
               [readonly]="isOptionReadonly(lexemes()[$index])"
               [ngModel]="item"
               (ngModelChange)="onOptionTextChange($index, $event)"
+              (click)="$event.stopPropagation()"
             />
             @if (isOptionReadonly(lexemes()[$index])) {
               <mat-hint>Текст из лексемы — измените во вкладке «Фонетика»</mat-hint>
@@ -37,7 +38,9 @@
             type="button"
             class="card-options-editor__remove"
             [disabled]="options().length <= minOptions"
-            (click)="onRemoveOption($index)"
+            [matTooltip]="removeTooltip()"
+            [attr.aria-label]="'Удалить вариант ' + ($index + 1)"
+            (click)="onRemoveOption($index, $event)"
           >
             <mat-icon>remove_circle_outline</mat-icon>
           </button>
@@ -45,7 +48,7 @@
       }
     </mat-radio-group>
   } @else {
-    @for (item of options(); track $index) {
+    @for (item of options(); track optionTrack($index)) {
       <div class="card-options-editor__row card-options-editor__row--no-radio">
         <mat-form-field appearance="outline" class="card-options-editor__field">
           <mat-label>{{ config().optionLabelPrefix }} {{ $index + 1 }}</mat-label>
@@ -56,7 +59,9 @@
           type="button"
           class="card-options-editor__remove"
           [disabled]="options().length <= minOptions"
-          (click)="onRemoveOption($index)"
+          [matTooltip]="removeTooltip()"
+          [attr.aria-label]="'Удалить вариант ' + ($index + 1)"
+          (click)="onRemoveOption($index, $event)"
         >
           <mat-icon>remove_circle_outline</mat-icon>
         </button>

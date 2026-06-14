@@ -49,15 +49,25 @@
       </mat-form-field>
     </section>
 
-    <app-card-form
-      [draft]="draft()"
-      [previewId]="store.editingCardId() ?? 'preview-card'"
-      [editorUxMode]="editorUxMode()"
-      [knownLanguage]="indexMeta().knownLanguage"
-      [learningLanguage]="indexMeta().learningLanguage"
-      [defaultAppearance]="defaultAppearance()"
-      (draftChange)="updateDraft($event)"
-    />
+    @if (showWizard()) {
+      <app-card-create-wizard
+        [draft]="draft()"
+        [knownLanguage]="indexMeta().knownLanguage"
+        [learningLanguage]="indexMeta().learningLanguage"
+        (draftChange)="updateDraft($event)"
+        (expandToFull)="expandToFullEditor()"
+      />
+    } @else {
+      <app-card-form
+        [draft]="draft()"
+        [previewId]="store.editingCardId() ?? 'preview-card'"
+        [editorUxMode]="editorUxMode()"
+        [knownLanguage]="indexMeta().knownLanguage"
+        [learningLanguage]="indexMeta().learningLanguage"
+        [defaultAppearance]="defaultAppearance()"
+        (draftChange)="updateDraft($event)"
+      />
+    }
   }
 </mat-dialog-content>
 

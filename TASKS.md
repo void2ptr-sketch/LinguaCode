@@ -484,11 +484,11 @@
 
 **G12c — фаза 3: упрощение домена (опционально, высокий риск)**
 
-- [ ] Объединить kind'ы в UI создания: **Выбор** / **Ввод** / **Пары** / **Медиа** (4 пункта вместо 10)
-- [ ] `reading` → select + тег / meta; `tone` → select с автогенерацией вариантов из `syllableBase`
-- [ ] **Lexeme-first:** вариант = только `PhoneticLexeme`; `optionsLearning[i]` — derived при save (migration legacy JSON)
-- [ ] Wizard create: тип → слово → варианты → (опц.) расширить
-- [ ] Документ **`docs/EDITOR-UX.md`**: целевой UX, метрики (время создания demo-карточки, число полей)
+- [x] Объединить kind'ы в UI создания: **Выбор** / **Ввод** / **Пары** / **Медиа** (4 пункта вместо 10)
+- [x] `reading` → select + тег / meta; `tone` → select с автогенерацией вариантов из `syllableBase`
+- [x] **Lexeme-first:** вариант = только `PhoneticLexeme`; `optionsLearning[i]` — derived при save (migration legacy JSON)
+- [x] Wizard create: тип → слово → варианты → (опц.) расширить
+- [x] Документ **`docs/EDITOR-UX.md`**: целевой UX, метрики (время создания demo-карточки, число полей)
 
 **G12d — метрики и приёмка**
 

@@ -21,7 +21,12 @@ import { UserStore } from '../../../../core/state';
 import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../services/card-editor.store';
-import { CARD_KINDS } from '../../types';
+import {
+  CARD_CREATE_GROUP_HINTS,
+  CARD_CREATE_GROUP_LABELS,
+  CARD_CREATE_GROUPS,
+  KINDS_BY_CREATE_GROUP,
+} from '../../utils/card-create-groups.utils';
 
 let lastKnownActiveLanguagePairId: string | null = null;
 
@@ -50,7 +55,10 @@ export class CardEditorPageComponent implements OnInit {
   private readonly cardTryDialog = inject(CardTryDialogService);
   private readonly userStore = inject(UserStore);
 
-  readonly cardKinds = CARD_KINDS;
+  readonly createGroups = CARD_CREATE_GROUPS;
+  readonly createGroupLabels = CARD_CREATE_GROUP_LABELS;
+  readonly createGroupHints = CARD_CREATE_GROUP_HINTS;
+  readonly kindsByGroup = KINDS_BY_CREATE_GROUP;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;

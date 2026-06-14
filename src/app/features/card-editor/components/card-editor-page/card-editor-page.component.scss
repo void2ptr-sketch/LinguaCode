@@ -84,6 +84,8 @@
   padding: 2rem 0;
 }
 
-.card-editor-page__message {
-  max-width: 40rem;
+.card-editor-page__menu-hint {
+  display: block;
+  font-size: 0.75rem;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 55%, transparent);
 }

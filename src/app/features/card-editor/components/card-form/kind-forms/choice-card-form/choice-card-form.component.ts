@@ -12,6 +12,7 @@ import type {
   TimedCardDraft,
   ToneCardDraft,
 } from '../../../../types';
+import { toneVariantPreview } from '../../../../utils/tone-variant.utils';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';
 
 export type ChoiceCardDraft =
@@ -34,6 +35,7 @@ export type ChoiceCardDraft =
 })
 export class ChoiceCardFormComponent {
   readonly draft = input.required<ChoiceCardDraft>();
+  readonly hidePrompt = input(false);
 
   readonly draftChange = output<ChoiceCardDraft>();
 
@@ -139,5 +141,14 @@ export class ChoiceCardFormComponent {
       default:
         return { title: 'Варианты', optionLabelPrefix: 'Вариант', showCorrectRadio: true };
     }
+  }
+
+  tonePreview(): string {
+    const draft = this.draft();
+    if (draft.kind !== 'tone') {
+      return '';
+    }
+
+    return toneVariantPreview(draft.syllableBase, draft.toneOptions);
   }
 }
