@@ -1,8 +1,14 @@
 <div class="card-form">
-  <div class="card-form__fields">
+  <div class="card-form__main">
     @if (!isAdvanced()) {
       <p class="card-form__hint">
-        Базовый режим: только текст и варианты. Лексемы, audio, оформление и режимы — в «Расширенном».
+        Базовый режим: текст и варианты на «Контенте». Лексемы и оформление — в «Расширенном».
+      </p>
+    } @else {
+      <p class="card-form__hint">
+        <strong>Контент</strong> — подсказка, варианты ответа и правильный вариант.
+        <strong>Фонетика</strong> — лексемы, IPA, пиньинь, URL аудио.
+        <strong>Настройки</strong> — тема, шрифт, лимит времени и режимы.
       </p>
     }
 
@@ -11,421 +17,67 @@
       <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
     </mat-form-field>
 
-    @if (lexemeDraft(); as lexeme) {
-      @if (isAdvanced() && lexeme.kind !== 'draw') {
-        <app-lexeme-fields
-          label="Подсказка (лексема)"
-          [fields]="lexeme.promptLexeme"
-          [knownLanguage]="knownLanguage()"
-          [learningLanguage]="learningLanguage()"
-          (fieldsChange)="updatePromptLexeme($event)"
-        />
-        <mat-form-field appearance="outline">
-          <mat-label>URL аудио</mat-label>
-          <input matInput [ngModel]="lexeme.audioUrl" (ngModelChange)="updateAudioUrl($event)" />
-        </mat-form-field>
-      }
-    }
-
-    @if (selectDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="3" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Варианты (новый)</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (item of d.optionsLearning; track $index) {
-            <div class="card-form__option-row">
-              <mat-radio-button [value]="$index" />
-              <mat-form-field appearance="outline" class="card-form__option-field">
-                <mat-label>Новый {{ $index + 1 }}</mat-label>
-                <input
-                  matInput
-                  [readonly]="optionTextReadonly(d.optionsLexemes[$index])"
-                  [ngModel]="item"
-                  (ngModelChange)="updateSelectOption($index, $event)"
-                />
-                @if (optionTextReadonly(d.optionsLexemes[$index])) {
-                  <mat-hint>Текст из лексемы — измените в блоке ниже</mat-hint>
-                }
-              </mat-form-field>
-              @if (isAdvanced()) {
-                <app-lexeme-fields
-                  class="card-form__option-lexeme"
-                  [compact]="true"
-                  [label]="'Лексема ' + ($index + 1)"
-                  [fields]="d.optionsLexemes[$index]"
-                  [knownLanguage]="knownLanguage()"
-                  [learningLanguage]="learningLanguage()"
-                  (fieldsChange)="updateSelectOptionLexeme($index, $event)"
-                />
-              }
-              <button mat-icon-button type="button" [disabled]="d.optionsLearning.length <= 2" (click)="removeSelectOption($index)">
-                <mat-icon>remove_circle_outline</mat-icon>
-              </button>
-            </div>
+    <mat-tab-group class="card-form__tabs" dynamicHeight>
+      <mat-tab label="Контент">
+        <div class="card-form__tab-body">
+          @if (choiceDraft(); as choice) {
+            <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
           }
-        </mat-radio-group>
-        <button mat-button type="button" [disabled]="d.optionsLearning.length >= 8" (click)="addSelectOption()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
-
-    @if (readingDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Контекст (известный)</mat-label>
-        <textarea matInput rows="3" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Варианты чтения</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (item of d.optionsLearning; track $index) {
-            <div class="card-form__option-row">
-              <mat-radio-button [value]="$index" />
-              <mat-form-field appearance="outline" class="card-form__option-field">
-                <mat-label>Чтение {{ $index + 1 }}</mat-label>
-                <input
-                  matInput
-                  [readonly]="optionTextReadonly(d.optionsLexemes[$index])"
-                  [ngModel]="item"
-                  (ngModelChange)="updateSelectOption($index, $event)"
-                />
-              </mat-form-field>
-              @if (isAdvanced()) {
-                <app-lexeme-fields
-                  class="card-form__option-lexeme"
-                  [compact]="true"
-                  [label]="'Лексема ' + ($index + 1)"
-                  [fields]="d.optionsLexemes[$index]"
-                  [knownLanguage]="knownLanguage()"
-                  [learningLanguage]="learningLanguage()"
-                  (fieldsChange)="updateSelectOptionLexeme($index, $event)"
-                />
-              }
-              <button mat-icon-button type="button" [disabled]="d.optionsLearning.length <= 2" (click)="removeSelectOption($index)">
-                <mat-icon>remove_circle_outline</mat-icon>
-              </button>
-            </div>
+          @if (inputDraft(); as inputDraftValue) {
+            <app-input-card-form
+              [draft]="inputDraftValue"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (draftChange)="updateDraft($event)"
+            />
           }
-        </mat-radio-group>
-        <button mat-button type="button" [disabled]="d.optionsLearning.length >= 8" (click)="addSelectOption()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
-
-    @if (toneDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Подсказка</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Слог без тона (пиньинь)</mat-label>
-        <input matInput [ngModel]="d.syllableBase" (ngModelChange)="updateSyllableBase($event)" placeholder="ma" />
-        <mat-hint>База для кнопок тонов: ma → mā má mǎ mà</mat-hint>
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Правильный тон</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (tone of d.toneOptions; track tone; let index = $index) {
-            <mat-radio-button [value]="index">{{ tone }}-й тон</mat-radio-button>
+          @if (pairsDraft(); as pairs) {
+            <app-pairs-card-form
+              [draft]="pairs"
+              [isAdvanced]="isAdvanced()"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (draftChange)="updateDraft($event)"
+            />
           }
-        </mat-radio-group>
-      </section>
-    }
-
-    @if (timedDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="3" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Лимит времени (сек)</mat-label>
-        <input matInput type="number" min="5" max="600" [ngModel]="d.timeLimitSec" (ngModelChange)="updateTimeLimitSec(+$event)" />
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Варианты (новый)</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (item of d.optionsLearning; track $index) {
-            <div class="card-form__option-row">
-              <mat-radio-button [value]="$index" />
-              <mat-form-field appearance="outline" class="card-form__option-field">
-                <mat-label>Новый {{ $index + 1 }}</mat-label>
-                <input
-                  matInput
-                  [readonly]="optionTextReadonly(d.optionsLexemes[$index])"
-                  [ngModel]="item"
-                  (ngModelChange)="updateTimedOption($index, $event)"
-                />
-              </mat-form-field>
-              @if (isAdvanced()) {
-                <app-lexeme-fields
-                  class="card-form__option-lexeme"
-                  [compact]="true"
-                  [label]="'Лексема ' + ($index + 1)"
-                  [fields]="d.optionsLexemes[$index]"
-                  [knownLanguage]="knownLanguage()"
-                  [learningLanguage]="learningLanguage()"
-                  (fieldsChange)="updateTimedOptionLexeme($index, $event)"
-                />
-              }
-              <button mat-icon-button type="button" [disabled]="d.optionsLearning.length <= 2" (click)="removeTimedOption($index)">
-                <mat-icon>remove_circle_outline</mat-icon>
-              </button>
-            </div>
+          @if (mediaDraft(); as media) {
+            <app-media-card-form
+              [draft]="media"
+              [isAdvanced]="isAdvanced()"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (draftChange)="updateDraft($event)"
+            />
           }
-        </mat-radio-group>
-        <button mat-button type="button" [disabled]="d.optionsLearning.length >= 8" (click)="addTimedOption()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
+        </div>
+      </mat-tab>
 
-    @if (memoryDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <section class="card-form__pairs">
-        <h3>Пары</h3>
-        @for (pair of d.pairs; track $index) {
-          <div class="card-form__pair-row">
-            <mat-form-field appearance="outline">
-              <mat-label>Известный</mat-label>
-              <input matInput [ngModel]="pair.known" (ngModelChange)="updatePair($index, 'known', $event)" />
-            </mat-form-field>
-            <mat-form-field appearance="outline">
-              <mat-label>Новый</mat-label>
-              <input matInput [ngModel]="pair.learning" (ngModelChange)="updatePair($index, 'learning', $event)" />
-            </mat-form-field>
-            @if (isAdvanced()) {
-              <app-lexeme-fields
-                class="card-form__option-lexeme"
-                [compact]="true"
-                [label]="'Лексема пары ' + ($index + 1)"
-                [fields]="pair.learningLexeme"
-                [knownLanguage]="knownLanguage()"
-                [learningLanguage]="learningLanguage()"
-                (fieldsChange)="updatePairLexeme($index, $event)"
-              />
-            }
-            <button mat-icon-button type="button" [disabled]="d.pairs.length <= 1" (click)="removePair($index)">
-              <mat-icon>remove_circle_outline</mat-icon>
-            </button>
+      @if (isAdvanced()) {
+        <mat-tab label="Фонетика">
+          <div class="card-form__tab-body">
+            <p class="card-form__hint card-form__hint--tab">
+              Текст вариантов и правильный ответ — на вкладке «Контент». Здесь только фонетика и лексемы.
+            </p>
+            <app-card-form-phonetics-panel
+              [draft]="draft()"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (draftChange)="updateDraft($event)"
+            />
           </div>
-        }
-        <button mat-button type="button" [disabled]="d.pairs.length >= 12" (click)="addPair()">
-          <mat-icon>add</mat-icon> Добавить пару
-        </button>
-      </section>
-    }
-
-    @if (symbolDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Символы</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (item of d.symbols; track $index) {
-            <div class="card-form__option-row">
-              <mat-radio-button [value]="$index" />
-              <mat-form-field appearance="outline" class="card-form__option-field">
-                <mat-label>Символ {{ $index + 1 }}</mat-label>
-                <input
-                  matInput
-                  [readonly]="optionTextReadonly(d.symbolLexemes[$index])"
-                  [ngModel]="item"
-                  (ngModelChange)="updateSymbolOption($index, $event)"
-                />
-              </mat-form-field>
-              @if (isAdvanced()) {
-                <app-lexeme-fields
-                  class="card-form__option-lexeme"
-                  [compact]="true"
-                  [label]="'Лексема ' + ($index + 1)"
-                  [fields]="d.symbolLexemes[$index]"
-                  [knownLanguage]="knownLanguage()"
-                  [learningLanguage]="learningLanguage()"
-                  (fieldsChange)="updateSymbolOptionLexeme($index, $event)"
-                />
-              }
-              <button mat-icon-button type="button" [disabled]="d.symbols.length <= 2" (click)="removeSymbolOption($index)">
-                <mat-icon>remove_circle_outline</mat-icon>
-              </button>
-            </div>
-          }
-        </mat-radio-group>
-        <button mat-button type="button" [disabled]="d.symbols.length >= 8" (click)="addSymbolOption()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
-
-    @if (soundDraft(); as d) {
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Метка звука (новый)</mat-label>
-        <input matInput [ngModel]="d.audioLabelLearning" (ngModelChange)="updateAudioLabelLearning($event)" />
-      </mat-form-field>
-      @if (isAdvanced()) {
-        <app-lexeme-fields
-          label="Лексема звука"
-          [compact]="true"
-          [fields]="d.audioLabelLexeme"
-          [knownLanguage]="knownLanguage()"
-          [learningLanguage]="learningLanguage()"
-          (fieldsChange)="updateAudioLabelLexeme($event)"
-        />
+        </mat-tab>
       }
-      <section class="card-form__options">
-        <h3>Варианты (известный)</h3>
-        <mat-radio-group [ngModel]="d.correctIndex" (ngModelChange)="updateCorrectIndex($event)">
-          @for (item of d.optionsKnown; track $index) {
-            <div class="card-form__option-row">
-              <mat-radio-button [value]="$index" />
-              <mat-form-field appearance="outline" class="card-form__option-field">
-                <mat-label>Известный {{ $index + 1 }}</mat-label>
-                <input
-                  matInput
-                  [readonly]="optionTextReadonly(d.optionsLexemes[$index])"
-                  [ngModel]="item"
-                  (ngModelChange)="updateSoundOption($index, $event)"
-                />
-              </mat-form-field>
-              @if (isAdvanced()) {
-                <app-lexeme-fields
-                  class="card-form__option-lexeme"
-                  [compact]="true"
-                  [label]="'Лексема ' + ($index + 1)"
-                  [fields]="d.optionsLexemes[$index]"
-                  [knownLanguage]="knownLanguage()"
-                  [learningLanguage]="learningLanguage()"
-                  (fieldsChange)="updateSoundOptionLexeme($index, $event)"
-                />
-              }
-              <button mat-icon-button type="button" [disabled]="d.optionsKnown.length <= 2" (click)="removeSoundOption($index)">
-                <mat-icon>remove_circle_outline</mat-icon>
-              </button>
-            </div>
-          }
-        </mat-radio-group>
-        <button mat-button type="button" [disabled]="d.optionsKnown.length >= 8" (click)="addSoundOption()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
 
-    @if (keyboardDraft(); as d) {
-      @if (isAdvanced()) {
-        <mat-form-field appearance="outline">
-          <mat-label>Режим ответа</mat-label>
-          <mat-select
-            [ngModel]="d.answerMode ?? 'auto'"
-            (ngModelChange)="updateKeyboardAnswerMode($event)"
-          >
-            @for (option of keyboardAnswerModeOptions; track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-      }
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <section class="card-form__options">
-        <h3>Допустимые ответы (известный)</h3>
-        @for (item of d.acceptedAnswersKnown; track $index) {
-          <div class="card-form__option-row card-form__option-row--no-radio">
-            <mat-form-field appearance="outline" class="card-form__option-field">
-              <mat-label>Известный {{ $index + 1 }}</mat-label>
-              <input matInput [ngModel]="item" (ngModelChange)="updateKeyboardAnswer($index, $event)" />
-            </mat-form-field>
-            <button mat-icon-button type="button" [disabled]="d.acceptedAnswersKnown.length <= 1" (click)="removeKeyboardAnswer($index)">
-              <mat-icon>remove_circle_outline</mat-icon>
-            </button>
-          </div>
-        }
-        <button mat-button type="button" [disabled]="d.acceptedAnswersKnown.length >= 8" (click)="addKeyboardAnswer()">
-          <mat-icon>add</mat-icon> Добавить
-        </button>
-      </section>
-    }
-
-    @if (drawDraft(); as d) {
-      @if (isAdvanced()) {
-        <app-lexeme-fields
-          label="Лексема (иероглиф)"
-          [fields]="d.promptLexeme"
-          [knownLanguage]="knownLanguage()"
-          [learningLanguage]="learningLanguage()"
-          (fieldsChange)="updatePromptLexeme($event)"
-        />
-      } @else {
-        <mat-form-field appearance="outline">
-          <mat-label>Иероглиф</mat-label>
-          <input
-            matInput
-            [ngModel]="d.promptLexeme.primary || d.targetCharacter"
-            (ngModelChange)="updateDrawPrimary($event)"
+      <mat-tab label="Настройки">
+        <div class="card-form__tab-body">
+          <app-card-form-settings-panel
+            [draft]="draft()"
+            [isAdvanced]="isAdvanced()"
+            (draftChange)="updateDraft($event)"
           />
-        </mat-form-field>
-      }
-      <mat-form-field appearance="outline">
-        <mat-label>Известный</mat-label>
-        <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-      </mat-form-field>
-      <mat-form-field appearance="outline">
-        <mat-label>Ориентир для рисования</mat-label>
-        <input matInput [ngModel]="d.referenceHintKnown" (ngModelChange)="updateReferenceHintKnown($event)" />
-      </mat-form-field>
-      @if (isAdvanced()) {
-        <mat-form-field appearance="outline">
-          <mat-label>Режим практики</mat-label>
-          <mat-select [ngModel]="d.practiceMode ?? 'freehand'" (ngModelChange)="updateDrawPracticeMode($event)">
-            @for (option of drawPracticeModeOptions; track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label>Иероглиф-призрак</mat-label>
-          <input matInput [ngModel]="d.targetCharacter" (ngModelChange)="updateDrawTargetCharacter($event)" />
-          <mat-hint>Отображается полупрозрачно на canvas</mat-hint>
-        </mat-form-field>
-        @if ((d.practiceMode ?? 'freehand') === 'radicals') {
-          <mat-form-field appearance="outline">
-            <mat-label>Подсказка: радикалы</mat-label>
-            <input matInput [ngModel]="d.radicalHint" (ngModelChange)="updateDrawRadicalHint($event)" placeholder="女 + 子" />
-          </mat-form-field>
-        }
-        @if ((d.practiceMode ?? 'freehand') === 'stroke-order' && d.strokeGuides.length > 0) {
-          <p class="card-form__draw-meta">Черт: {{ d.strokeGuides.length }} (загружено из справочника)</p>
-        }
-        <button mat-button type="button" (click)="autofillDrawHints()">
-          <mat-icon>auto_fix_high</mat-icon>
-          Подставить черты / радикалы
-        </button>
-      }
-    }
-
-    @if (isAdvanced()) {
-      <app-card-appearance-fields
-        [appearance]="draft().appearance"
-        (appearanceChange)="updateAppearance($event)"
-      />
-    } @else {
-      <p class="card-form__hint card-form__hint--appearance">
-        Оформление берётся из профиля пользователя (тема и размер шрифта).
-      </p>
-    }
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </div>
 
   <app-card-preview [card]="previewCard()" [fontSize]="previewFontSize()" />

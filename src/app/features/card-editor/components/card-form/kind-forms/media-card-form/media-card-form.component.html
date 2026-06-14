@@ -1,0 +1,17 @@
+<mat-form-field appearance="outline">
+  <mat-label>Известный</mat-label>
+  <textarea matInput rows="2" [ngModel]="draft().promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+</mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Метка звука (новый)</mat-label>
+  <input matInput [ngModel]="draft().audioLabelLearning" (ngModelChange)="updateAudioLabelLearning($event)" />
+</mat-form-field>
+
+<app-card-options-editor
+  [config]="{ title: 'Варианты (известный)', optionLabelPrefix: 'Известный', showCorrectRadio: true }"
+  [options]="draft().optionsKnown"
+  [lexemes]="draft().optionsLexemes"
+  [correctIndex]="draft().correctIndex"
+  (stateChange)="onOptionsStateChange($event)"
+/>

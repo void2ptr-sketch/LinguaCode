@@ -1,0 +1,61 @@
+@if (isAdvanced()) {
+  <app-card-appearance-fields
+    [appearance]="draft().appearance"
+    (appearanceChange)="updateAppearance($event)"
+  />
+} @else {
+  <p class="card-form-settings-panel__hint">
+    Оформление берётся из профиля пользователя (тема и размер шрифта).
+  </p>
+}
+
+@if (timedDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>Лимит времени (сек)</mat-label>
+    <input matInput type="number" min="5" max="600" [ngModel]="d.timeLimitSec" (ngModelChange)="updateTimeLimitSec(+$event)" />
+  </mat-form-field>
+}
+
+@if (keyboardDraft(); as d) {
+  @if (isAdvanced()) {
+    <mat-form-field appearance="outline">
+      <mat-label>Режим ответа</mat-label>
+      <mat-select [ngModel]="d.answerMode ?? 'auto'" (ngModelChange)="updateKeyboardAnswerMode($event)">
+        @for (option of keyboardAnswerModeOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  }
+}
+
+@if (drawDraft(); as d) {
+  @if (isAdvanced()) {
+    <mat-form-field appearance="outline">
+      <mat-label>Режим практики</mat-label>
+      <mat-select [ngModel]="d.practiceMode ?? 'freehand'" (ngModelChange)="updateDrawPracticeMode($event)">
+        @for (option of drawPracticeModeOptions; track option.value) {
+          <mat-option [value]="option.value">{{ option.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Иероглиф-призрак</mat-label>
+      <input matInput [ngModel]="d.targetCharacter" (ngModelChange)="updateDrawTargetCharacter($event)" />
+      <mat-hint>Отображается полупрозрачно на canvas</mat-hint>
+    </mat-form-field>
+    @if ((d.practiceMode ?? 'freehand') === 'radicals') {
+      <mat-form-field appearance="outline">
+        <mat-label>Подсказка: радикалы</mat-label>
+        <input matInput [ngModel]="d.radicalHint" (ngModelChange)="updateDrawRadicalHint($event)" placeholder="女 + 子" />
+      </mat-form-field>
+    }
+    @if ((d.practiceMode ?? 'freehand') === 'stroke-order' && d.strokeGuides.length > 0) {
+      <p class="card-form-settings-panel__meta">Черт: {{ d.strokeGuides.length }} (загружено из справочника)</p>
+    }
+    <button mat-button type="button" (click)="autofillDrawHints()">
+      <mat-icon>auto_fix_high</mat-icon>
+      Подставить черты / радикалы
+    </button>
+  }
+}

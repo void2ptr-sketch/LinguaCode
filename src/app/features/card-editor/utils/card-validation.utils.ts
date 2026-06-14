@@ -109,38 +109,75 @@ const normalizeLexemeList = (
   return lexemes.length > 0 ? lexemes : undefined;
 };
 
-export const normalizeSelectCardDraft = (
-  draft: SelectCardDraft,
-  cardId: string,
-): SelectCard | null => {
+type OptionCardDraftSlice = {
+  title: string;
+  direction: CardDirection;
+  promptKnown: string;
+  promptLexeme: LexemeDraftFields;
+  audioUrl: string;
+  correctIndex: number;
+  appearance: CardAppearance;
+};
+
+type OptionCardNormalizedCore = {
+  title: string;
+  direction: CardDirection;
+  promptKnown: string;
+  correctIndex: number;
+  appearance: CardAppearance;
+  promptLexeme?: PhoneticLexeme;
+  audioUrl?: string;
+  optionsLexemes?: readonly PhoneticLexeme[];
+};
+
+const normalizeOptionCardDraftCore = (
+  draft: OptionCardDraftSlice,
+  options: readonly string[] | null,
+  optionLexemes: readonly LexemeDraftFields[] | undefined,
+): OptionCardNormalizedCore | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
-  const optionsLearning = normalizeOptions(draft.optionsLearning);
 
-  if (!title || !promptKnown || !optionsLearning) {
+  if (!title || !promptKnown || !options) {
     return null;
   }
 
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
   if (correctIndex === null) {
     return null;
   }
 
   const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
-  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
+  const optionsLexemes = normalizeLexemeList(options, optionLexemes);
 
   return {
-    id: cardId,
-    kind: 'select',
     title,
     direction: normalizeDirection(draft.direction),
     promptKnown,
-    optionsLearning,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
     ...(optionsLexemes ? { optionsLexemes } : {}),
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+  };
+};
+
+export const normalizeSelectCardDraft = (
+  draft: SelectCardDraft,
+  cardId: string,
+): SelectCard | null => {
+  const optionsLearning = normalizeOptions(draft.optionsLearning);
+  const core = normalizeOptionCardDraftCore(draft, optionsLearning, draft.optionsLexemes);
+
+  if (!core) {
+    return null;
+  }
+
+  return {
+    id: cardId,
+    kind: 'select',
+    optionsLearning: optionsLearning!,
+    ...core,
   };
 };
 
@@ -186,104 +223,62 @@ export const normalizeSymbolCardDraft = (
   draft: SymbolCardDraft,
   cardId: string,
 ): SymbolCard | null => {
-  const title = sanitizeTitle(draft.title);
-  const promptKnown = sanitizePrompt(draft.promptKnown);
   const symbols = normalizeOptions(draft.symbols);
+  const core = normalizeOptionCardDraftCore(draft, symbols, draft.symbolLexemes);
 
-  if (!title || !promptKnown || !symbols) {
+  if (!core) {
     return null;
   }
 
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, symbols.length);
-  if (correctIndex === null) {
-    return null;
-  }
-
-  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
-  const symbolLexemes = normalizeLexemeList(symbols, draft.symbolLexemes);
+  const { optionsLexemes: symbolLexemes, ...rest } = core;
 
   return {
     id: cardId,
     kind: 'symbol',
-    title,
-    direction: normalizeDirection(draft.direction),
-    promptKnown,
-    symbols,
-    correctIndex,
-    appearance: normalizeAppearance(draft.appearance),
+    symbols: symbols!,
     ...(symbolLexemes ? { symbolLexemes } : {}),
-    ...(promptLexeme ? { promptLexeme } : {}),
-    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    ...rest,
   };
 };
 
 export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): SoundCard | null => {
-  const title = sanitizeTitle(draft.title);
-  const promptKnown = sanitizePrompt(draft.promptKnown);
   const audioLabelLearning = sanitizeShort(draft.audioLabelLearning);
   const optionsKnown = normalizeOptions(draft.optionsKnown);
+  const core = normalizeOptionCardDraftCore(draft, optionsKnown, draft.optionsLexemes);
 
-  if (!title || !promptKnown || !audioLabelLearning || !optionsKnown) {
-    return null;
-  }
-
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsKnown.length);
-  if (correctIndex === null) {
+  if (!core || !audioLabelLearning) {
     return null;
   }
 
   const promptLexeme =
-    normalizeLexemeDraft(draft.promptLexeme, promptKnown) ??
+    core.promptLexeme ??
     normalizeLexemeDraft(draft.audioLabelLexeme, audioLabelLearning);
-  const optionsLexemes = normalizeLexemeList(optionsKnown, draft.optionsLexemes);
 
   return {
     id: cardId,
     kind: 'sound',
-    title,
-    direction: normalizeDirection(draft.direction),
-    promptKnown,
     audioLabelLearning,
-    optionsKnown,
-    correctIndex,
-    appearance: normalizeAppearance(draft.appearance),
-    ...(optionsLexemes ? { optionsLexemes } : {}),
+    optionsKnown: optionsKnown!,
+    ...core,
     ...(promptLexeme ? { promptLexeme } : {}),
-    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
 export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): TimedCard | null => {
-  const title = sanitizeTitle(draft.title);
-  const promptKnown = sanitizePrompt(draft.promptKnown);
   const optionsLearning = normalizeOptions(draft.optionsLearning);
   const timeLimitSec = Math.round(draft.timeLimitSec);
+  const core = normalizeOptionCardDraftCore(draft, optionsLearning, draft.optionsLexemes);
 
-  if (!title || !promptKnown || !optionsLearning) {
+  if (!core || timeLimitSec < MIN_TIME_SEC || timeLimitSec > MAX_TIME_SEC) {
     return null;
   }
-
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
-  if (correctIndex === null || timeLimitSec < MIN_TIME_SEC || timeLimitSec > MAX_TIME_SEC) {
-    return null;
-  }
-
-  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
-  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
 
   return {
     id: cardId,
     kind: 'timed',
-    title,
-    direction: normalizeDirection(draft.direction),
-    promptKnown,
-    optionsLearning,
-    correctIndex,
+    optionsLearning: optionsLearning!,
     timeLimitSec,
-    appearance: normalizeAppearance(draft.appearance),
-    ...(optionsLexemes ? { optionsLexemes } : {}),
-    ...(promptLexeme ? { promptLexeme } : {}),
-    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    ...core,
   };
 };
 
@@ -411,34 +406,18 @@ export const normalizeReadingCardDraft = (
   draft: ReadingCardDraft,
   cardId: string,
 ): ReadingCard | null => {
-  const title = sanitizeTitle(draft.title);
-  const promptKnown = sanitizePrompt(draft.promptKnown);
   const optionsLearning = normalizeOptions(draft.optionsLearning);
+  const core = normalizeOptionCardDraftCore(draft, optionsLearning, draft.optionsLexemes);
 
-  if (!title || !promptKnown || !optionsLearning) {
+  if (!core) {
     return null;
   }
-
-  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
-  if (correctIndex === null) {
-    return null;
-  }
-
-  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
-  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
 
   return {
     id: cardId,
     kind: 'reading',
-    title,
-    direction: normalizeDirection(draft.direction),
-    promptKnown,
-    optionsLearning,
-    correctIndex,
-    appearance: normalizeAppearance(draft.appearance),
-    ...(optionsLexemes ? { optionsLexemes } : {}),
-    ...(promptLexeme ? { promptLexeme } : {}),
-    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    optionsLearning: optionsLearning!,
+    ...core,
   };
 };
 

@@ -469,18 +469,18 @@
 
 **G12b — фаза 2: структурный рефакторинг (средний риск)**
 
-- [ ] Вынести **`app-card-options-editor`** — единый UI для select / timed / reading / sound / symbol
+- [x] Вынести **`app-card-options-editor`** — единый UI для select / timed / reading / sound / symbol
   - config: `side`, `options`, `lexemes`, `correctIndex`, labels
   - общие add / remove / reorder / correctIndex в одном TS-модуле
-- [ ] **Вкладки** в dialog: «Контент» | «Фонетика» | «Настройки» + preview справа
-- [ ] Разбить `card-form` на shell + kind-forms:
+- [x] **Вкладки** в dialog: «Контент» | «Фонетика» | «Настройки» + preview справа
+- [x] Разбить `card-form` на shell + kind-forms:
   - `choice-card-form` (select, timed, reading, symbol, tone)
   - `input-card-form` (keyboard, draw)
   - `pairs-card-form` (memory)
   - `media-card-form` (sound)
-- [ ] Registry `CARD_FORM_BY_KIND` вместо монолитного `@if (kind)` в одном HTML
-- [ ] Сократить дублирование в `card-validation.utils` (общие validators для option-cards)
-- [ ] Исправить layout option-row (grid под radio + text + lexeme + delete)
+- [x] Registry `CARD_FORM_BY_KIND` вместо монолитного `@if (kind)` в одном HTML
+- [x] Сократить дублирование в `card-validation.utils` (общие validators для option-cards)
+- [x] Исправить layout option-row (grid под radio + text + lexeme + delete)
 
 **G12c — фаза 3: упрощение домена (опционально, высокий риск)**
 

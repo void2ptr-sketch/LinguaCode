@@ -1,0 +1,13 @@
+.pairs-card-form__pairs h3 {
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.pairs-card-form__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 0.5rem;
+  align-items: start;
+  margin-bottom: 0.5rem;
+}
