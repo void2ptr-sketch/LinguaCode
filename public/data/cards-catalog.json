@@ -8,6 +8,13 @@
     { "id": "sound-1", "kind": "sound", "title": "Звук" },
     { "id": "timed-1", "kind": "timed", "title": "На время" },
     { "id": "keyboard-1", "kind": "keyboard", "title": "Ввод с клавиатуры" },
-    { "id": "draw-1", "kind": "draw", "title": "Рисование" }
+    { "id": "keyboard-en-ipa-1", "kind": "keyboard", "title": "Hello (IPA ввод)" },
+    { "id": "keyboard-zh-ipa-1", "kind": "keyboard", "title": "你好 (IPA из пиньинь)" },
+    { "id": "keyboard-zh-pinyin-1", "kind": "keyboard", "title": "你好 — ввод пиньинь" },
+    { "id": "tone-ma-1", "kind": "tone", "title": "Тон: 妈" },
+    { "id": "reading-xing-1", "kind": "reading", "title": "Полифония: 行" },
+    { "id": "draw-1", "kind": "draw", "title": "Рисование" },
+    { "id": "draw-ren-1", "kind": "draw", "title": "Иероглиф 人 — порядок черт" },
+    { "id": "draw-hao-1", "kind": "draw", "title": "Иероглиф 好 — радикалы" }
   ]
 }

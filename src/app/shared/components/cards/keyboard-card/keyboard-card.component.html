@@ -11,11 +11,25 @@
       <mat-label>Ваш ответ</mat-label>
       <input
         matInput
+        [class.phonetic-ipa]="usesIpaInput()"
         [ngModel]="answerText()"
         [disabled]="feedback() !== null"
         (ngModelChange)="answerTextChange.emit($event)"
       />
+      @if (usesIpaInput()) {
+        <mat-hint>Введите IPA-транскрипцию (например həˈləʊ)</mat-hint>
+      } @else if (usesPinyinKeyboard()) {
+        <mat-hint>Пиньинь с тонами (например nǐ hǎo)</mat-hint>
+      }
     </mat-form-field>
+
+    @if (usesPinyinKeyboard()) {
+      <app-pinyin-keyboard
+        [value]="answerText()"
+        [disabled]="feedback() !== null"
+        (valueChange)="answerTextChange.emit($event)"
+      />
+    }
   </mat-card-content>
 
   @if (feedback() === 'correct') {

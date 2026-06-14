@@ -36,9 +36,32 @@ export { scenarioToIndexEntry } from './scenario-index.mapper';
 export { filterScenarioIndex, matchesScenarioIndexEntry } from './scenario-search.utils';
 export { ScenariosApiService } from './scenarios-api.service';
 export { ScenarioSearchService } from './scenario-search.service';
+export { collectCardIpaReadings, cardHasIpaContent, collectLexemeIpaReadings } from './card-ipa-index.utils';
 export {
-  DEFAULT_SCENARIOS,
-  SCENARIOS_STORAGE_KEY,
-  loadScenariosFromStorage,
-  saveScenariosToStorage,
-} from './scenarios-storage';
+  HAN_RADICAL_HINTS,
+  HAN_STROKE_GUIDES,
+  lookupHanRadicalHint,
+  lookupHanStrokeGuides,
+  primaryHanCharacter,
+} from './draw-stroke-guides.data';
+export {
+  applyToneToPinyinSyllable,
+  DEFAULT_TONE_OPTIONS,
+  normalizeToneOptions,
+  toneMarkLabel,
+} from './tone-mark.utils';
+export { validateIpaInput, answersMatchIpa, isLikelyIpa, normalizeIpa } from './ipa-normalize.utils';
+export { lookupEnglishIpa } from './ipa-en-lookup.utils';
+export { pinyinToIpa, pinyinSyllableToIpa, parsePinyinSyllable } from './pinyin-to-ipa.utils';
+export { resolveKeyboardAnswerMode } from './keyboard-answer-mode.utils';
+export type { ResolvedKeyboardAnswerMode } from './keyboard-answer-mode.utils';
+export {
+  applyPinyinKeyboardKey,
+  createPinyinKeyboardState,
+  formatPinyinKeyboardValue,
+  PINYIN_KEYBOARD_LAYOUT,
+  pinyinKeyboardKeyAriaLabel,
+  pinyinKeyboardKeyLabel,
+  toneKeyPreview,
+} from './pinyin-keyboard.utils';
+export type { PinyinKeyboardKey, PinyinKeyboardState } from './pinyin-keyboard.utils';

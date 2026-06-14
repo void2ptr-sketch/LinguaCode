@@ -21,7 +21,7 @@ G9 не заменяет `ContentLanguage` и не смешивается с **U
 | Рендер | `{{ text }}`, шрифт Roboto | Нет ruby, CJK-шрифтов, тоновых знаков |
 | `keyboard` | `trim().toLowerCase()` | Ломает пиньинь (ǎ, ǐ), жуинь, кириллицу Палладия |
 | `sound` | `audioLabelLearning` — строка | Нет `audioUrl`, TTS, проверки произношения |
-| `draw` | Заглушка | Нет canvas, порядка черт, радикалов |
+| `draw` | Заглушка | ~~Нет canvas~~ → canvas, порядок черт, радикалы (G9.8) |
 | `symbol` | Символ в кнопке | Подходит для иероглифа, без слоёв чтения |
 
 Пара **ru→zh** в профиле (G7) и фильтрация каталога (G8) уже работают; не хватает **структурированной орфографии** внутри карточки.
@@ -120,9 +120,9 @@ type CjkLearningPreferences = {
 | `sound` | Текстовая метка | `audioUrl`; подпись по `displayRomanization` |
 | `keyboard` | Точное совпадение строки | Нормализатор CJK; `acceptedReadings[]` |
 | `timed` | Как `select` | Быстрый выбор тона / чтения |
-| `draw` | Заглушка | Canvas; (позже) stroke order, радикалы |
-
-**Опционально (фаза 2):** kind `tone` (выбор тона), `reading` (полифония 多音字).
+| `draw` | Canvas + режимы практики | `freehand`, `stroke-order`, `radicals` |
+| `tone` | — | Выбор тона для слога (mā/má/mǎ/mà) |
+| `reading` | — | Полифония: выбор чтения в контексте |
 
 ## Проверка ответов (`keyboard`)
 
@@ -186,7 +186,7 @@ type CjkLearningPreferences = {
 | G9.5 | CJK normalizer для `keyboard`; `acceptedReadings` |
 | G9.6 | `sound`: `audioUrl`; упражнения на тон |
 | G9.7 | Demo-карточки ru→zh; теги `hsk1`, `tones` |
-| G9.8 | (опц.) `draw`: canvas; stroke order; радикалы |
+| G9.8 | (опц.) `draw`: canvas; stroke order; радикалы — `app-draw-canvas`, справочник черт |
 
 ## Связанные пути в коде (план)
 

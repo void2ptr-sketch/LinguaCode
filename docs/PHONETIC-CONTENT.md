@@ -160,7 +160,7 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 
 - Поле **IPA** (+ опционально несколько `IpaVariant`) в форме карточки.
 - Preview: `PhoneticDisplayMode` (`primary-ipa`, `primary-orthography-ipa`).
-- Каталог: тег `ipa`; поиск по транскрипции (осторожно с special chars).
+- Каталог: тег `ipa` (авто при наличии транскрипций); поиск по IPA через `normalizeIpa()`.
 - Валидация: символы из IPA Unicode ranges; запрет смешения IPA и пиньиня в одном поле.
 
 ## Связь с G9
@@ -190,17 +190,21 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 | G10.2 | IPA-шрифты; `app-phonetic-ipa` |
 | G10.3 | Показ IPA в `sound`, `select`, `memory` (ruby / subtitle) |
 | G10.4 | `PhoneticPreferences.showIpa`; профиль / appearance |
-| G10.5 | Demo ru→en с IPA; тег `ipa` в каталоге |
-| G10.6 | (опц.) автозаполнение en (CMUdict / Wiktionary) |
-| G10.7 | (опц.) zh IPA + Chao tones; keyboard с IPA |
+| G10.5 | Demo ru→en с IPA; тег `ipa` в каталоге; поиск по транскрипции |
+| G10.6 | (опц.) автозаполнение en (CMUdict / Wiktionary) — `lookupEnglishIpa`, кнопка в редакторе |
+| G10.7 | (опц.) zh IPA + Chao tones; `pinyinToIpa`; keyboard `answerMode` |
 
 ## Связанные пути в коде (план)
 
 ```
 src/app/core/models/phonetic-content.types.ts   # PhoneticLexeme, IpaVariant
 src/app/core/data/ipa-normalize.utils.ts        # normalizeIpa, validation
+src/app/core/data/ipa-en-lookup.utils.ts        # lookupEnglishIpa (editor autofill)
+src/app/core/data/pinyin-to-ipa.utils.ts        # pinyinToIpa, Chao tone contours
+src/app/core/data/card-ipa-index.utils.ts        # collectCardIpaReadings для каталога
+src/app/core/data/card-search.utils.ts          # matchesSearchQuery по IPA
 src/app/shared/components/phonetic-ipa/         # app-phonetic-ipa
-src/app/features/card-editor/                   # поле IPA, preview
+src/app/features/card-editor/                   # поле IPA, preview, autofill
 public/fonts/                                   # Charis SIL / Doulos SIL
 ```
 

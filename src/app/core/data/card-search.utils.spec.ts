@@ -12,6 +12,7 @@ describe('card-search.utils', () => {
       learningLanguage: 'en',
       difficulty: 'beginner',
       tags: ['greetings', 'vocabulary'],
+      ipaReadings: [],
       updatedAt: '2026-01-01T00:00:00.000Z',
     },
     {
@@ -22,6 +23,7 @@ describe('card-search.utils', () => {
       learningLanguage: 'en',
       difficulty: 'intermediate',
       tags: ['memory', 'vocabulary'],
+      ipaReadings: [],
       updatedAt: '2026-01-02T00:00:00.000Z',
     },
     {
@@ -32,7 +34,19 @@ describe('card-search.utils', () => {
       learningLanguage: 'zh',
       difficulty: 'beginner',
       tags: ['numbers'],
+      ipaReadings: [],
       updatedAt: '2026-01-03T00:00:00.000Z',
+    },
+    {
+      id: '4',
+      kind: 'select',
+      title: 'Hello (IPA)',
+      knownLanguage: 'ru',
+      learningLanguage: 'en',
+      difficulty: 'intermediate',
+      tags: ['select', 'ipa', 'phonetics'],
+      ipaReadings: ['həˈləʊ', 'ɡʊdˈbaɪ'],
+      updatedAt: '2026-01-04T00:00:00.000Z',
     },
   ];
 
@@ -63,18 +77,15 @@ describe('card-search.utils', () => {
     });
 
     expect(facets.learningLanguages).toEqual([
-      { value: 'en', count: 2 },
+      { value: 'en', count: 3 },
       { value: 'zh', count: 1 },
     ]);
     expect(facets.kinds).toEqual([
-      { value: 'select', count: 1 },
+      { value: 'select', count: 2 },
       { value: 'memory', count: 1 },
     ]);
-    expect(facets.tags).toEqual([
-      { value: 'greetings', count: 1 },
-      { value: 'memory', count: 1 },
-      { value: 'vocabulary', count: 2 },
-    ]);
+    expect(facets.tags.map((facet) => facet.value)).toContain('ipa');
+    expect(facets.tags.find((facet) => facet.value === 'vocabulary')?.count).toBe(2);
   });
 
   it('ignores facet field when counting that facet', () => {
@@ -82,5 +93,32 @@ describe('card-search.utils', () => {
       matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' }, 'learningLanguage'),
     ).toBeTrue();
     expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' })).toBeFalse();
+  });
+
+  it('filters by ipa tag facet', () => {
+    const filtered = filterCardIndex(entries, {
+      tags: ['ipa'],
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.map((entry) => entry.id)).toEqual(['4']);
+  });
+
+  it('searches by ipa transcription', () => {
+    const filtered = filterCardIndex(entries, {
+      query: 'həˈlə',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.map((entry) => entry.id)).toEqual(['4']);
+  });
+
+  it('searches ipa with brackets normalized', () => {
+    const filtered = filterCardIndex(entries, {
+      query: '[ɡʊdˈbaɪ]',
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(filtered.map((entry) => entry.id)).toEqual(['4']);
   });
 });

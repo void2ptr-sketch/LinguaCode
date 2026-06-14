@@ -39,7 +39,7 @@ export function resolveOptionCard(
     return {
       prompt: card.promptKnown,
       options:
-        card.kind === 'select' || card.kind === 'timed'
+        card.kind === 'select' || card.kind === 'timed' || card.kind === 'reading'
           ? card.optionsLearning
           : card.symbols,
       correctIndex: card.correctIndex,
@@ -57,7 +57,7 @@ export function resolveOptionCard(
   return {
     prompt: card.promptKnown,
     options:
-      card.kind === 'select' || card.kind === 'timed'
+      card.kind === 'select' || card.kind === 'timed' || card.kind === 'reading'
         ? card.optionsLearning
         : card.symbols,
     correctIndex: card.correctIndex,
@@ -92,6 +92,10 @@ export function resolveCardPrompt(card: Card, direction: CardDirection): string 
     return card.promptKnown;
   }
 
+  if (card.kind === 'tone') {
+    return card.promptKnown;
+  }
+
   return '';
 }
 
@@ -100,7 +104,8 @@ function isOptionCard(card: Card): card is OptionCard {
     card.kind === 'select' ||
     card.kind === 'symbol' ||
     card.kind === 'sound' ||
-    card.kind === 'timed'
+    card.kind === 'timed' ||
+    card.kind === 'reading'
   );
 }
 

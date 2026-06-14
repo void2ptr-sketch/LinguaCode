@@ -4,14 +4,17 @@ export type {
   CardBase,
   CardKind,
   DrawCard,
+  KeyboardAnswerMode,
   KeyboardCard,
   MemoryCard,
   MemoryPair,
   OptionCard,
+  ReadingCard,
   SelectCard,
   SoundCard,
   SymbolCard,
   TimedCard,
+  ToneCard,
 } from './card.types';
 export { isOptionCard } from './card.types';
 export type {
@@ -69,4 +72,8 @@ export type {
   ScriptCode,
   ToneMark,
 } from './phonetic-content.types';
-export type { UserLanguagePairEntry } from './user-language-pair.types';
+export type {
+  DrawPracticeMode,
+  DrawStrokeGuide,
+} from './draw-practice.types';
+export type { UserLanguagePairEntry, UserLanguagePairSettings } from './user-language-pair.types';

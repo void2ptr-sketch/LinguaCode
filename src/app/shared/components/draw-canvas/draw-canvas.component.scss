@@ -1,0 +1,50 @@
+.draw-canvas {
+  display: grid;
+  gap: 0.5rem;
+  justify-items: start;
+}
+
+.draw-canvas__surface {
+  position: relative;
+  width: 100%;
+  max-width: 20rem;
+  aspect-ratio: 1;
+}
+
+.draw-canvas__canvas {
+  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, white);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
+  border-radius: 0.5rem;
+  display: block;
+  height: 100%;
+  touch-action: none;
+  width: 100%;
+}
+
+.draw-canvas__canvas--disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.draw-canvas__guides {
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.draw-canvas__guide path {
+  fill: none;
+  stroke: color-mix(in srgb, var(--mat-sys-primary) 55%, transparent);
+  stroke-dasharray: 4 3;
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+
+.draw-canvas__guide-order {
+  fill: var(--mat-sys-primary);
+  font-size: 8px;
+  font-weight: 600;
+  paint-order: stroke;
+  stroke: var(--mat-sys-surface);
+  stroke-width: 2px;
+}

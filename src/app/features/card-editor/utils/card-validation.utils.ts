@@ -1,8 +1,11 @@
+import { stripPinyinTones } from '../../../core/data/cjk-romanization.utils';
+import type { DrawPracticeMode } from '../../../core/models/draw-practice.types';
+import { normalizeToneOptions } from '../../../core/data/tone-mark.utils';
+import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
 } from '../../../core/data/lexeme-draft.utils';
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import {
   isAllowedFontSize,
   sanitizePlainText,
@@ -16,10 +19,12 @@ import {
   DrawCard,
   KeyboardCard,
   MemoryCard,
+  ReadingCard,
   SelectCard,
   SoundCard,
   SymbolCard,
   TimedCard,
+  ToneCard,
 } from '../../../core/models';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import {
@@ -28,10 +33,12 @@ import {
   DrawCardDraft,
   KeyboardCardDraft,
   MemoryCardDraft,
+  ReadingCardDraft,
   SelectCardDraft,
   SoundCardDraft,
   SymbolCardDraft,
   TimedCardDraft,
+  ToneCardDraft,
 } from '../types';
 
 const MIN_OPTIONS = 2;
@@ -300,6 +307,7 @@ export const normalizeKeyboardCardDraft = (
   }
 
   const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+  const answerMode = draft.answerMode;
 
   return {
     id: cardId,
@@ -311,13 +319,41 @@ export const normalizeKeyboardCardDraft = (
     appearance: normalizeAppearance(draft.appearance),
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    ...(answerMode && answerMode !== 'auto' ? { answerMode } : {}),
   };
+};
+
+const normalizeStrokeGuides = (
+  guides: readonly { order: number; path: string }[],
+): readonly { order: number; path: string }[] | undefined => {
+  const normalized = guides
+    .map((guide) => ({
+      order: guide.order,
+      path: sanitizePlainText(guide.path, 512),
+    }))
+    .filter((guide) => guide.path.length > 0 && guide.order > 0)
+    .sort((left, right) => left.order - right.order);
+
+  return normalized.length > 0 ? normalized : undefined;
+};
+
+const normalizePracticeMode = (mode?: DrawPracticeMode): DrawPracticeMode | undefined => {
+  if (mode === 'stroke-order' || mode === 'radicals' || mode === 'freehand') {
+    return mode;
+  }
+
+  return undefined;
 };
 
 export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): DrawCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
   const referenceHintKnown = sanitizeHint(draft.referenceHintKnown);
+  const practiceMode = normalizePracticeMode(draft.practiceMode);
+  const targetCharacter = sanitizeShort(draft.targetCharacter);
+  const radicalHint = sanitizeHint(draft.radicalHint);
+  const strokeGuides = normalizeStrokeGuides(draft.strokeGuides);
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
 
   if (!title || !promptKnown || !referenceHintKnown) {
     return null;
@@ -330,6 +366,79 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
     promptKnown,
     referenceHintKnown,
     appearance: normalizeAppearance(draft.appearance),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    ...(practiceMode && practiceMode !== 'freehand' ? { practiceMode } : {}),
+    ...(targetCharacter ? { targetCharacter } : {}),
+    ...(radicalHint ? { radicalHint } : {}),
+    ...(strokeGuides ? { strokeGuides } : {}),
+  };
+};
+
+export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): ToneCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const syllableBase = stripPinyinTones(sanitizeShort(draft.syllableBase || draft.promptLexeme.pinyin));
+  const toneOptions = normalizeToneOptions(draft.toneOptions);
+
+  if (!title || !promptKnown || !syllableBase || !toneOptions) {
+    return null;
+  }
+
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, toneOptions.length);
+  if (correctIndex === null) {
+    return null;
+  }
+
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+
+  return {
+    id: cardId,
+    kind: 'tone',
+    title,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    syllableBase,
+    toneOptions,
+    correctIndex,
+    appearance: normalizeAppearance(draft.appearance),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+  };
+};
+
+export const normalizeReadingCardDraft = (
+  draft: ReadingCardDraft,
+  cardId: string,
+): ReadingCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const promptKnown = sanitizePrompt(draft.promptKnown);
+  const optionsLearning = normalizeOptions(draft.optionsLearning);
+
+  if (!title || !promptKnown || !optionsLearning) {
+    return null;
+  }
+
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, optionsLearning.length);
+  if (correctIndex === null) {
+    return null;
+  }
+
+  const optionsLexemes = normalizeLexemeList(optionsLearning, draft.optionsLexemes);
+  const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
+
+  return {
+    id: cardId,
+    kind: 'reading',
+    title,
+    direction: normalizeDirection(draft.direction),
+    promptKnown,
+    optionsLearning,
+    correctIndex,
+    appearance: normalizeAppearance(draft.appearance),
+    ...(optionsLexemes ? { optionsLexemes } : {}),
+    ...(promptLexeme ? { promptLexeme } : {}),
+    ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
   };
 };
 
@@ -349,6 +458,10 @@ export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | nul
       return normalizeKeyboardCardDraft(draft, cardId);
     case 'draw':
       return normalizeDrawCardDraft(draft, cardId);
+    case 'tone':
+      return normalizeToneCardDraft(draft, cardId);
+    case 'reading':
+      return normalizeReadingCardDraft(draft, cardId);
   }
 };
 
@@ -368,5 +481,9 @@ export const cardValidationErrorMessage = (kind: CardKind): string => {
       return 'Проверьте название, подсказку, символы и правильный ответ';
     case 'select':
       return 'Проверьте название, подсказку (известный), варианты (новый) и правильный ответ';
+    case 'reading':
+      return 'Проверьте название, контекст, варианты чтения и правильный ответ';
+    case 'tone':
+      return 'Проверьте название, подсказку, слог без тона и правильный тон';
   }
 };

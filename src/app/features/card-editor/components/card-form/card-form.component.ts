@@ -5,6 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
+import {
+  lookupHanRadicalHint,
+  lookupHanStrokeGuides,
+  primaryHanCharacter,
+} from '../../../../core/data/draw-stroke-guides.data';
+import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/tone-mark.utils';
 import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { Card } from '../../../../core/models';
@@ -23,6 +31,7 @@ import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component'
     MatIconModule,
     MatInputModule,
     MatRadioModule,
+    MatSelectModule,
     CardAppearanceFieldsComponent,
     CardPreviewComponent,
     LexemeFieldsComponent,
@@ -74,17 +83,36 @@ export class CardFormComponent {
     return draft.kind === 'keyboard' ? draft : null;
   });
 
+  readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
+    { value: 'freehand', label: 'Свободное рисование' },
+    { value: 'stroke-order', label: 'Порядок черт' },
+    { value: 'radicals', label: 'Радикалы' },
+  ];
+
+  readonly keyboardAnswerModeOptions: readonly { value: KeyboardAnswerMode; label: string }[] = [
+    { value: 'auto', label: 'Авто (IPA / пиньинь / текст)' },
+    { value: 'text', label: 'Текст' },
+    { value: 'pinyin', label: 'Пиньинь с тонами' },
+    { value: 'ipa', label: 'IPA' },
+  ];
+
   readonly drawDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;
   });
 
+  readonly toneDraft = computed(() => {
+    const draft = this.draft();
+    return draft.kind === 'tone' ? draft : null;
+  });
+
+  readonly readingDraft = computed(() => {
+    const draft = this.draft();
+    return draft.kind === 'reading' ? draft : null;
+  });
+
   readonly lexemeDraft = computed(() => {
     const draft = this.draft();
-    if (draft.kind === 'draw') {
-      return null;
-    }
-
     return draft;
   });
 
@@ -102,19 +130,11 @@ export class CardFormComponent {
 
   updatePromptLexeme(fields: LexemeDraftFields): void {
     const draft = this.draft();
-    if (draft.kind === 'draw') {
-      return;
-    }
-
     this.updateDraft({ ...draft, promptLexeme: fields });
   }
 
   updateAudioUrl(value: string): void {
     const draft = this.draft();
-    if (draft.kind === 'draw') {
-      return;
-    }
-
     this.updateDraft({ ...draft, audioUrl: value });
   }
 
@@ -144,6 +164,59 @@ export class CardFormComponent {
     if (draft.kind === 'draw') {
       this.updateDraft({ ...draft, referenceHintKnown: value });
     }
+  }
+
+  updateDrawPracticeMode(value: DrawPracticeMode): void {
+    const draft = this.draft();
+    if (draft.kind !== 'draw') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, practiceMode: value });
+  }
+
+  updateDrawTargetCharacter(value: string): void {
+    const draft = this.draft();
+    if (draft.kind !== 'draw') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, targetCharacter: value });
+  }
+
+  updateDrawRadicalHint(value: string): void {
+    const draft = this.draft();
+    if (draft.kind !== 'draw') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, radicalHint: value });
+  }
+
+  autofillDrawHints(): void {
+    const draft = this.draft();
+    if (draft.kind !== 'draw') {
+      return;
+    }
+
+    const source =
+      draft.targetCharacter.trim() ||
+      draft.promptLexeme.primary.trim() ||
+      primaryHanCharacter(draft.referenceHintKnown);
+    const character = primaryHanCharacter(source);
+    if (!character) {
+      return;
+    }
+
+    const strokeGuides = lookupHanStrokeGuides(character).map((guide) => ({ ...guide }));
+    const radicalHint = lookupHanRadicalHint(character) ?? draft.radicalHint;
+
+    this.updateDraft({
+      ...draft,
+      targetCharacter: character,
+      strokeGuides,
+      radicalHint,
+    });
   }
 
   updateTimeLimitSec(value: number): void {
@@ -207,7 +280,7 @@ export class CardFormComponent {
 
   updateSelectOption(index: number, value: string): void {
     const draft = this.draft();
-    if (draft.kind !== 'select') {
+    if (draft.kind !== 'select' && draft.kind !== 'reading') {
       return;
     }
 
@@ -219,7 +292,7 @@ export class CardFormComponent {
 
   updateSelectOptionLexeme(index: number, fields: LexemeDraftFields): void {
     const draft = this.draft();
-    if (draft.kind !== 'select') {
+    if (draft.kind !== 'select' && draft.kind !== 'reading') {
       return;
     }
 
@@ -230,7 +303,7 @@ export class CardFormComponent {
 
   addSelectOption(): void {
     const draft = this.draft();
-    if (draft.kind !== 'select' || draft.optionsLearning.length >= 8) {
+    if ((draft.kind !== 'select' && draft.kind !== 'reading') || draft.optionsLearning.length >= 8) {
       return;
     }
 
@@ -239,7 +312,7 @@ export class CardFormComponent {
 
   removeSelectOption(index: number): void {
     const draft = this.draft();
-    if (draft.kind !== 'select' || draft.optionsLearning.length <= 2) {
+    if ((draft.kind !== 'select' && draft.kind !== 'reading') || draft.optionsLearning.length <= 2) {
       return;
     }
 
@@ -437,6 +510,24 @@ export class CardFormComponent {
     this.updateDraft({ ...draft, acceptedAnswersKnown });
   }
 
+  updateKeyboardAnswerMode(value: KeyboardAnswerMode): void {
+    const draft = this.draft();
+    if (draft.kind !== 'keyboard') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, answerMode: value });
+  }
+
+  updateSyllableBase(value: string): void {
+    const draft = this.draft();
+    if (draft.kind !== 'tone') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, syllableBase: value });
+  }
+
   private syncOptionLexemes(
     lexemes: readonly LexemeDraftFields[],
     texts: readonly string[],
@@ -532,6 +623,33 @@ export class CardFormComponent {
           title: draft.title || 'Новая карточка',
           promptKnown: draft.promptKnown || 'Подсказка',
           referenceHintKnown: draft.referenceHintKnown || 'Ориентир',
+          practiceMode: draft.practiceMode ?? 'freehand',
+          targetCharacter: draft.targetCharacter || draft.promptLexeme?.primary || '',
+          radicalHint: draft.radicalHint,
+          strokeGuides: draft.strokeGuides,
+          appearance,
+        };
+      case 'tone':
+        return {
+          id: this.previewId(),
+          kind: 'tone',
+          title: draft.title || 'Новая карточка',
+          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
+          promptKnown: draft.promptKnown || 'Какой тон?',
+          syllableBase: draft.syllableBase || 'ma',
+          toneOptions: [...DEFAULT_TONE_OPTIONS],
+          correctIndex: 0,
+          appearance,
+        };
+      case 'reading':
+        return {
+          id: this.previewId(),
+          kind: 'reading',
+          title: draft.title || 'Новая карточка',
+          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
+          promptKnown: draft.promptKnown || 'Какое чтение?',
+          optionsLearning: ['xíng', 'háng'],
+          correctIndex: 0,
           appearance,
         };
     }

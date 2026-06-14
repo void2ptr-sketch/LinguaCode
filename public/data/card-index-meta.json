@@ -56,12 +56,82 @@
       "tags": ["keyboard", "vocabulary"],
       "updatedAt": "2026-01-17T09:00:00.000Z"
     },
+    "keyboard-en-ipa-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "en",
+      "difficulty": "intermediate",
+      "tags": ["keyboard", "ipa", "phonetics"],
+      "updatedAt": "2026-06-13T09:00:00.000Z"
+    },
+    "keyboard-zh-ipa-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["keyboard", "ipa", "phonetics", "cjk"],
+      "updatedAt": "2026-06-13T09:00:00.000Z"
+    },
+    "keyboard-zh-pinyin-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["keyboard", "pinyin", "cjk", "tones"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
     "draw-1": {
       "knownLanguage": "ru",
       "learningLanguage": "en",
       "difficulty": "beginner",
       "tags": ["draw", "visual"],
       "updatedAt": "2026-01-18T09:00:00.000Z"
+    },
+    "draw-ren-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["draw", "stroke-order", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "draw-hao-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["draw", "radicals", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "select-zh-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["greetings", "cjk", "vocabulary"],
+      "updatedAt": "2026-01-19T09:00:00.000Z"
+    },
+    "select-en-ipa-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "en",
+      "difficulty": "intermediate",
+      "tags": ["ipa", "phonetics", "vocabulary"],
+      "updatedAt": "2026-06-01T09:00:00.000Z"
+    },
+    "select-en-ipa-2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "en",
+      "difficulty": "intermediate",
+      "tags": ["ipa", "phonetics", "vocabulary"],
+      "updatedAt": "2026-06-02T09:00:00.000Z"
+    },
+    "tone-ma-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["tones", "cjk", "phonetics"],
+      "updatedAt": "2026-06-13T10:00:00.000Z"
+    },
+    "reading-xing-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["reading", "polyphony", "cjk"],
+      "updatedAt": "2026-06-13T10:00:00.000Z"
     }
   }
 }

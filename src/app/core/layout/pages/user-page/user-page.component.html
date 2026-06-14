@@ -4,137 +4,180 @@
     <mat-card-subtitle>{{ displayName() }}</mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content class="page-card__form">
-    <mat-form-field appearance="outline">
-      <mat-label>Имя</mat-label>
-      <input matInput [ngModel]="nameDraft()" (ngModelChange)="nameDraft.set($event)" name="displayName" />
-    </mat-form-field>
+  <mat-card-content class="page-card__content">
+    <mat-tab-group class="page-card__tabs" dynamicHeight>
+      <mat-tab label="Пользователь">
+        <div class="page-card__tab-panel">
+          <mat-form-field appearance="outline">
+            <mat-label>Имя</mat-label>
+            <input matInput [ngModel]="nameDraft()" (ngModelChange)="nameDraft.set($event)" name="displayName" />
+          </mat-form-field>
+        </div>
+      </mat-tab>
 
-    <section class="page-card__section">
-      <h2 class="page-card__section-title">Языки обучения</h2>
-      <p class="page-card__hint">
-        Можно добавить несколько пар; активная пара используется в обучении и редакторах.
-      </p>
+      <mat-tab label="Язык">
+        <div class="page-card__tab-panel">
+          <section class="page-card__section">
+            <h2 class="page-card__section-title">Языки обучения</h2>
+            <p class="page-card__hint">
+              Можно добавить несколько пар; активная пара используется в обучении и редакторах.
+            </p>
 
-      <ul class="page-card__pair-list">
-        @for (entry of languagePairs(); track entry.id) {
-          <li class="page-card__pair-item" [class.page-card__pair-item--active]="isActive(entry)">
-            <span class="page-card__pair-label">
-              {{ entryLabel(entry) }}
-              @if (isActive(entry)) {
-                <span class="page-card__pair-badge">активная</span>
-              }
-            </span>
-            <span class="page-card__pair-actions">
-              @if (!isActive(entry)) {
-                <button mat-stroked-button type="button" (click)="setActive(entry.id)">
-                  Сделать активной
-                </button>
-              }
-              @if (canRemovePair()) {
-                <button
-                  mat-icon-button
-                  type="button"
-                  aria-label="Удалить пару"
-                  (click)="removePair(entry.id)"
+            <ul class="page-card__pair-list">
+              @for (entry of languagePairs(); track entry.id) {
+                <li
+                  class="page-card__pair-item"
+                  [class.page-card__pair-item--active]="isActive(entry)"
+                  [class.page-card__pair-item--settings]="isSettingsTarget(entry)"
                 >
-                  <mat-icon>delete_outline</mat-icon>
-                </button>
+                  <span class="page-card__pair-label">
+                    {{ entryLabel(entry) }}
+                    @if (isActive(entry)) {
+                      <span class="page-card__pair-badge">активная</span>
+                    }
+                    @if (isSettingsTarget(entry) && !isActive(entry)) {
+                      <span class="page-card__pair-badge page-card__pair-badge--settings">настройки</span>
+                    }
+                  </span>
+                  <span class="page-card__pair-actions">
+                    @if (!isSettingsTarget(entry)) {
+                      <button mat-stroked-button type="button" (click)="selectPairForSettings(entry.id)">
+                        Настройки
+                      </button>
+                    }
+                    @if (!isActive(entry)) {
+                      <button mat-stroked-button type="button" (click)="setActive(entry.id)">
+                        Сделать активной
+                      </button>
+                    }
+                    @if (canRemovePair()) {
+                      <button
+                        mat-icon-button
+                        type="button"
+                        aria-label="Удалить пару"
+                        (click)="removePair(entry.id)"
+                      >
+                        <mat-icon>delete_outline</mat-icon>
+                      </button>
+                    }
+                  </span>
+                </li>
               }
-            </span>
-          </li>
-        }
-      </ul>
+            </ul>
 
-      <h3 class="page-card__subsection-title">Добавить пару</h3>
+            <h3 class="page-card__subsection-title">Добавить пару</h3>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Известный язык</mat-label>
-        <mat-select [ngModel]="knownLanguageDraft()" (ngModelChange)="knownLanguageDraft.set($event)" name="knownLanguage">
-          @for (language of languages; track language) {
-            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Известный язык</mat-label>
+              <mat-select
+                [ngModel]="knownLanguageDraft()"
+                (ngModelChange)="knownLanguageDraft.set($event)"
+                name="knownLanguage"
+              >
+                @for (language of languages; track language) {
+                  <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Новый язык</mat-label>
-        <mat-select [ngModel]="learningLanguageDraft()" (ngModelChange)="learningLanguageDraft.set($event)" name="learningLanguage">
-          @for (language of languages; track language) {
-            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Новый язык</mat-label>
+              <mat-select
+                [ngModel]="learningLanguageDraft()"
+                (ngModelChange)="learningLanguageDraft.set($event)"
+                name="learningLanguage"
+              >
+                @for (language of languages; track language) {
+                  <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
 
-      @if (languagePairInvalid()) {
-        <p class="page-card__error">Языки должны отличаться.</p>
-      }
-
-      <button mat-stroked-button type="button" [disabled]="languagePairInvalid()" (click)="addPair()">
-        Добавить пару
-      </button>
-    </section>
-
-    @if (showCjkPreferences()) {
-      <section class="page-card__section">
-        <h2 class="page-card__section-title">Китайский (ru → zh)</h2>
-        <p class="page-card__hint">Романизация для иероглифов в карточках и упражнениях.</p>
-
-        <mat-form-field appearance="outline">
-          <mat-label>Отображать романизацию</mat-label>
-          <mat-select
-            [ngModel]="displayRomanizationDraft()"
-            (ngModelChange)="displayRomanizationDraft.set($event)"
-            name="displayRomanization"
-          >
-            @for (option of romanizationOptions(); track option.value) {
-              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            @if (languagePairInvalid()) {
+              <p class="page-card__error">Языки должны отличаться.</p>
             }
-          </mat-select>
-        </mat-form-field>
-      </section>
-    }
 
-    @if (showPhoneticPreferences()) {
-      <section class="page-card__section">
-        <h2 class="page-card__section-title">Фонетика (IPA)</h2>
-        <p class="page-card__hint">Транскрипция IPA под словами для пары с английским.</p>
+            <button mat-stroked-button type="button" [disabled]="languagePairInvalid()" (click)="addPair()">
+              Добавить пару
+            </button>
+          </section>
 
-        <mat-slide-toggle [ngModel]="showIpaDraft()" (ngModelChange)="showIpaDraft.set($event)" name="showIpa">
-          Показывать IPA
-        </mat-slide-toggle>
+          @if (showCjkPreferences()) {
+            <section class="page-card__section">
+              <h2 class="page-card__section-title">
+                Китайский — {{ entryLabel(settingsEntry()!) }}
+              </h2>
+              <p class="page-card__hint">
+                Романизация для иероглифов в карточках и упражнениях (только для этой пары).
+              </p>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Вариант IPA (label)</mat-label>
-          <input
-            matInput
-            placeholder="BrE / AmE"
-            [ngModel]="ipaVariantLabelDraft()"
-            (ngModelChange)="ipaVariantLabelDraft.set($event)"
-            name="ipaVariantLabel"
-          />
-          <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
-        </mat-form-field>
-      </section>
-    }
+              <mat-form-field appearance="outline">
+                <mat-label>Отображать романизацию</mat-label>
+                <mat-select
+                  [ngModel]="displayRomanizationDraft()"
+                  (ngModelChange)="displayRomanizationDraft.set($event)"
+                  name="displayRomanization"
+                >
+                  @for (option of romanizationOptions(); track option.value) {
+                    <mat-option [value]="option.value">{{ option.label }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </section>
+          }
 
-    <section class="page-card__section">
-      <h2 class="page-card__section-title">Внешний вид карточек</h2>
+          @if (showPhoneticPreferences()) {
+            <section class="page-card__section">
+              <h2 class="page-card__section-title">
+                Фонетика (IPA) — {{ entryLabel(settingsEntry()!) }}
+              </h2>
+              <p class="page-card__hint">
+                Транскрипция IPA под словами (только для этой пары с английским).
+              </p>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Тема карточек</mat-label>
-        <input matInput [ngModel]="themeDraft()" (ngModelChange)="themeDraft.set($event)" name="theme" />
-      </mat-form-field>
+              <mat-slide-toggle [ngModel]="showIpaDraft()" (ngModelChange)="showIpaDraft.set($event)" name="showIpa">
+                Показывать IPA
+              </mat-slide-toggle>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Размер шрифта</mat-label>
-        <mat-select [ngModel]="fontSizeDraft()" (ngModelChange)="fontSizeDraft.set($event)" name="fontSize">
-          <mat-option value="sm">Маленький</mat-option>
-          <mat-option value="md">Средний</mat-option>
-          <mat-option value="lg">Большой</mat-option>
-        </mat-select>
-      </mat-form-field>
-    </section>
+              <mat-form-field appearance="outline">
+                <mat-label>Вариант IPA (label)</mat-label>
+                <input
+                  matInput
+                  placeholder="BrE / AmE"
+                  [ngModel]="ipaVariantLabelDraft()"
+                  (ngModelChange)="ipaVariantLabelDraft.set($event)"
+                  name="ipaVariantLabel"
+                />
+                <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
+              </mat-form-field>
+            </section>
+          }
+        </div>
+      </mat-tab>
+
+      <mat-tab label="Внешний вид">
+        <div class="page-card__tab-panel">
+          <section class="page-card__section">
+            <h2 class="page-card__section-title">Внешний вид карточек</h2>
+            <p class="page-card__hint">Тема и размер шрифта по умолчанию для новых карточек и обучения.</p>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Тема карточек</mat-label>
+              <input matInput [ngModel]="themeDraft()" (ngModelChange)="themeDraft.set($event)" name="theme" />
+            </mat-form-field>
+
+            <mat-form-field appearance="outline">
+              <mat-label>Размер шрифта</mat-label>
+              <mat-select [ngModel]="fontSizeDraft()" (ngModelChange)="fontSizeDraft.set($event)" name="fontSize">
+                <mat-option value="sm">Маленький</mat-option>
+                <mat-option value="md">Средний</mat-option>
+                <mat-option value="lg">Большой</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </section>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
   </mat-card-content>
 
   <mat-card-actions align="end">

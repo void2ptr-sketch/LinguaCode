@@ -31,9 +31,46 @@ describe('UserPersistence', () => {
     expect(user?.preferences.languagePairs).toHaveSize(1);
     expect(user?.preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(user?.preferences.activeLanguagePairId).toBe(user?.preferences.languagePairs[0].id);
+    expect(user?.preferences.languagePairs[0].settings?.cjkLearning?.displayRomanization).toBe('pinyin');
   });
 
-  it('should normalize stored languagePairs', () => {
+  it('should normalize stored languagePairs with per-pair settings', () => {
+    localStorage.setItem(
+      USER_STORAGE_KEY,
+      JSON.stringify({
+        id: 'local-user',
+        displayName: 'Alex',
+        preferences: {
+          theme: 'azure-blue',
+          fontSize: 'md',
+          languagePairs: [
+            {
+              id: 'pair-1',
+              pair: { known: 'ru', learning: 'en' },
+              createdAt: '2026-01-01T00:00:00.000Z',
+              settings: { phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['ipa'] } },
+            },
+            {
+              id: 'pair-2',
+              pair: { known: 'ru', learning: 'zh' },
+              createdAt: '2026-01-02T00:00:00.000Z',
+              settings: { cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: false } },
+            },
+          ],
+          activeLanguagePairId: 'pair-2',
+        },
+      }),
+    );
+
+    const user = persistence.load();
+
+    expect(user?.preferences.languagePairs).toHaveSize(2);
+    expect(user?.preferences.activeLanguagePairId).toBe('pair-2');
+    expect(user?.preferences.languagePairs[0].settings?.phonetic?.showIpa).toBeTrue();
+    expect(user?.preferences.languagePairs[1].settings?.cjkLearning?.displayRomanization).toBe('palladius');
+  });
+
+  it('should migrate legacy global cjkLearning and phonetic into pair entries', () => {
     localStorage.setItem(
       USER_STORAGE_KEY,
       JSON.stringify({
@@ -47,15 +84,20 @@ describe('UserPersistence', () => {
             { id: 'pair-2', pair: { known: 'ru', learning: 'zh' }, createdAt: '2026-01-02T00:00:00.000Z' },
           ],
           activeLanguagePairId: 'pair-2',
+          cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: true },
+          phonetic: { showIpa: true, ipaVariantLabel: 'AmE', answerModes: ['orthography', 'ipa'] },
         },
       }),
     );
 
     const user = persistence.load();
 
-    expect(user?.preferences.languagePairs).toHaveSize(2);
-    expect(user?.preferences.activeLanguagePairId).toBe('pair-2');
-    expect(user?.preferences.cjkLearning?.displayRomanization).toBe('pinyin');
-    expect(user?.preferences.phonetic?.showIpa).toBeFalse();
+    const enEntry = user?.preferences.languagePairs.find((entry) => entry.id === 'pair-1');
+    const zhEntry = user?.preferences.languagePairs.find((entry) => entry.id === 'pair-2');
+
+    expect(enEntry?.settings?.phonetic?.showIpa).toBeTrue();
+    expect(enEntry?.settings?.phonetic?.ipaVariantLabel).toBe('AmE');
+    expect(zhEntry?.settings?.cjkLearning?.displayRomanization).toBe('palladius');
+    expect(zhEntry?.settings?.phonetic).toBeUndefined();
   });
 });

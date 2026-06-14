@@ -1,10 +1,19 @@
 .page-card {
-  max-width: 32rem;
+  max-width: 36rem;
 }
 
-.page-card__form {
+.page-card__content {
+  padding-top: 0.25rem;
+}
+
+.page-card__tabs {
+  margin-top: 0.25rem;
+}
+
+.page-card__tab-panel {
   display: grid;
   gap: 0.75rem;
+  padding: 1rem 0.25rem 0.5rem;
 }
 
 .page-card__section {
@@ -56,6 +65,15 @@
 
 .page-card__pair-item--active {
   border-color: var(--mat-sys-primary);
+}
+
+.page-card__pair-item--settings:not(.page-card__pair-item--active) {
+  border-color: color-mix(in srgb, var(--mat-sys-secondary) 50%, transparent);
+}
+
+.page-card__pair-badge--settings {
+  background: color-mix(in srgb, var(--mat-sys-secondary) 12%, transparent);
+  color: var(--mat-sys-secondary);
 }
 
 .page-card__pair-label {

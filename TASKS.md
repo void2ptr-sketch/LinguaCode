@@ -357,8 +357,9 @@
 - [x] CJK normalizer для `keyboard` (`cjk-answer-normalize.utils.ts`)
 - [x] `acceptedReadings` в нескольких системах
 - [x] `SoundCard`: `audioUrl`; подпись по `displayRomanization`
-- [ ] Упражнения на тон (опц. kind `tone` / полифония `reading`)
-- [ ] (опц.) `draw`: canvas, stroke order, радикалы
+- [x] Упражнения на тон (опц. kind `tone` / полифония `reading`)
+- [x] (опц.) `draw`: canvas, stroke order, радикалы
+- [x] (опц.) Виртуальная клавиатура пиньинь с тонами (`app-pinyin-keyboard`, `answerMode: pinyin`)
 
 **G10 — фонетический контент: IPA (International Phonetic Alphabet)**
 
@@ -396,13 +397,13 @@
 **G10f — контент и каталог**
 
 - [x] Demo-карточки ru→en с IPA (`select-en-ipa-1`, `select-en-ipa-2`)
-- [ ] Тег `ipa` в каталоге; поиск по транскрипции (опц.)
+- [x] Тег `ipa` в каталоге; поиск по транскрипции (опц.)
 
 **G10g — опционально**
 
-- [ ] Автозаполнение IPA для en (CMUdict / Wiktionary)
-- [ ] zh: IPA с контурами тонов Chao; цепочка pinyin → IPA
-- [ ] `keyboard`: свободный ввод IPA
+- [x] Автозаполнение IPA для en (CMUdict / Wiktionary)
+- [x] zh: IPA с контурами тонов Chao; цепочка pinyin → IPA
+- [x] `keyboard`: свободный ввод IPA
 
 **G11 — уроки и курсы (Lesson, Course)**
 

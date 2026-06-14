@@ -83,5 +83,29 @@
         (nextCard)="nextCard.emit()"
       />
     }
+    @case ('tone') {
+      <app-tone-card
+        [card]="current"
+        [direction]="direction()"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
+    @case ('reading') {
+      <app-reading-card
+        [card]="current"
+        [direction]="direction()"
+        [selectedIndex]="selectedIndex()"
+        [feedback]="feedback()"
+        [fontSize]="fontSize()"
+        (optionSelected)="optionSelected.emit($event)"
+        (checkAnswer)="checkAnswer.emit()"
+        (nextCard)="nextCard.emit()"
+      />
+    }
   }
 }

@@ -1,4 +1,5 @@
 import { Card, CardAppearance, CardKind } from '../../../core/models';
+import { DEFAULT_TONE_OPTIONS } from '../../../core/data/tone-mark.utils';
 import { lexemeToDraftFields } from '../../../core/data/lexeme-draft.utils';
 import {
   CardDraft,
@@ -88,7 +89,35 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         title: '',
         promptKnown: '',
         referenceHintKnown: '',
+        targetCharacter: '',
+        radicalHint: '',
+        strokeGuides: [],
         appearance: { ...appearance },
+        ...lexemeFields,
+      };
+    case 'tone':
+      return {
+        kind: 'tone',
+        title: '',
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        syllableBase: '',
+        toneOptions: [...DEFAULT_TONE_OPTIONS],
+        correctIndex: 0,
+        appearance: { ...appearance },
+        ...lexemeFields,
+      };
+    case 'reading':
+      return {
+        kind: 'reading',
+        title: '',
+        direction: DEFAULT_CARD_DIRECTION,
+        promptKnown: '',
+        optionsLearning: ['', ''],
+        optionsLexemes: emptyOptionLexemes(2),
+        correctIndex: 0,
+        appearance: { ...appearance },
+        ...lexemeFields,
       };
   }
 };
@@ -190,6 +219,7 @@ export const cardToDraft = (card: Card): CardDraft => {
         appearance,
         promptLexeme,
         audioUrl,
+        ...(card.answerMode ? { answerMode: card.answerMode } : {}),
       };
     case 'draw':
       return {
@@ -197,7 +227,41 @@ export const cardToDraft = (card: Card): CardDraft => {
         title: card.title,
         promptKnown: card.promptKnown,
         referenceHintKnown: card.referenceHintKnown,
+        practiceMode: card.practiceMode,
+        targetCharacter: card.targetCharacter ?? '',
+        radicalHint: card.radicalHint ?? '',
+        strokeGuides: (card.strokeGuides ?? []).map((guide) => ({ ...guide })),
         appearance,
+        promptLexeme,
+        audioUrl,
+      };
+    case 'tone':
+      return {
+        kind: 'tone',
+        title: card.title,
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        syllableBase: card.syllableBase,
+        toneOptions: [...card.toneOptions],
+        correctIndex: card.correctIndex,
+        appearance,
+        promptLexeme,
+        audioUrl,
+      };
+    case 'reading':
+      return {
+        kind: 'reading',
+        title: card.title,
+        direction: card.direction,
+        promptKnown: card.promptKnown,
+        optionsLearning: [...card.optionsLearning],
+        optionsLexemes: card.optionsLearning.map((option, index) =>
+          lexemeToDraftFields(card.optionsLexemes?.[index] ?? { primary: option, script: 'latn' }),
+        ),
+        correctIndex: card.correctIndex,
+        appearance,
+        promptLexeme,
+        audioUrl,
       };
   }
 };

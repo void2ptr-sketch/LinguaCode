@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
 import { pinyinToPalladius } from '../../../../core/data/cjk-romanization.utils';
+import { lookupEnglishIpa } from '../../../../core/data/ipa-en-lookup.utils';
+import { pinyinToIpa } from '../../../../core/data/pinyin-to-ipa.utils';
 import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import type { ScriptCode } from '../../../../core/models/phonetic-content.types';
 
@@ -48,6 +50,35 @@ export class LexemeFieldsComponent {
     this.fieldsChange.emit({
       ...this.fields(),
       palladius: pinyinToPalladius(pinyin),
+    });
+  }
+
+  fillIpaFromEnglish(): void {
+    const word = this.fields().primary.trim();
+    if (!word) {
+      return;
+    }
+
+    const ipa = lookupEnglishIpa(word);
+    if (!ipa) {
+      return;
+    }
+
+    this.fieldsChange.emit({
+      ...this.fields(),
+      ipa,
+    });
+  }
+
+  fillIpaFromPinyin(): void {
+    const pinyin = this.fields().pinyin.trim();
+    if (!pinyin) {
+      return;
+    }
+
+    this.fieldsChange.emit({
+      ...this.fields(),
+      ipa: pinyinToIpa(pinyin),
     });
   }
 }

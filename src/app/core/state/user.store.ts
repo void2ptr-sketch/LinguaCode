@@ -2,19 +2,21 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { formatLanguagePair, isContentLanguage, normalizeLanguagePair } from '../data/language-pair.utils';
 import {
-  normalizeCjkLearningPreferences,
-  normalizePhoneticPreferences,
-} from '../data/phonetic-preferences.utils';
-import {
   createDefaultLanguagePairPreferences,
   createUserLanguagePairEntry,
+  defaultSettingsForPair,
   findLanguagePairEntryId,
+  mergeLanguagePairSettings,
+  resolveCjkLearningForPair,
+  resolvePhoneticForPair,
 } from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
-import type { LanguagePair, User, UserLanguagePairEntry, UserPreferences } from '../models';
-import {
-  DEFAULT_CJK_LEARNING_PREFERENCES,
-  DEFAULT_PHONETIC_PREFERENCES,
+import type {
+  LanguagePair,
+  User,
+  UserLanguagePairEntry,
+  UserLanguagePairSettings,
+  UserPreferences,
 } from '../models';
 import { UserPersistence } from './user.persistence';
 
@@ -25,8 +27,6 @@ const DEFAULT_USER: User = {
     theme: 'azure-blue',
     fontSize: 'md',
     ...createDefaultLanguagePairPreferences(),
-    cjkLearning: DEFAULT_CJK_LEARNING_PREFERENCES,
-    phonetic: DEFAULT_PHONETIC_PREFERENCES,
   },
 };
 
@@ -53,8 +53,8 @@ export class UserStore {
   });
 
   readonly languagePairLabel = computed(() => formatLanguagePair(this.languagePair()));
-  readonly cjkLearning = computed(() => this.preferences().cjkLearning);
-  readonly phonetic = computed(() => this.preferences().phonetic);
+  readonly cjkLearning = computed(() => resolveCjkLearningForPair(this.activeLanguagePairEntry()));
+  readonly phonetic = computed(() => resolvePhoneticForPair(this.activeLanguagePairEntry()));
 
   updateDisplayName(displayName: string): void {
     const sanitized = sanitizePlainText(displayName);
@@ -77,20 +77,40 @@ export class UserStore {
         nextPreferences.fontSize = preferences.fontSize;
       }
 
-      if (preferences.cjkLearning !== undefined) {
-        nextPreferences.cjkLearning = normalizeCjkLearningPreferences(preferences.cjkLearning);
-      }
-
-      if (preferences.phonetic !== undefined) {
-        nextPreferences.phonetic = normalizePhoneticPreferences(preferences.phonetic);
-      }
-
       return {
         ...user,
         preferences: nextPreferences,
       };
     });
     this.persist();
+  }
+
+  updateLanguagePairSettings(id: string, patch: Partial<UserLanguagePairSettings>): void {
+    const entry = this.languagePairs().find((item) => item.id === id);
+    if (!entry) {
+      return;
+    }
+
+    const nextSettings = mergeLanguagePairSettings(entry.pair, entry.settings, patch);
+    if (!nextSettings) {
+      return;
+    }
+
+    this.userState.update((user) => ({
+      ...user,
+      preferences: {
+        ...user.preferences,
+        languagePairs: user.preferences.languagePairs.map((item) =>
+          item.id === id ? { ...item, settings: nextSettings } : item,
+        ),
+      },
+    }));
+    this.persist();
+  }
+
+  /** Обновляет настройки активной языковой пары. */
+  updateActiveLanguagePairSettings(patch: Partial<UserLanguagePairSettings>): void {
+    this.updateLanguagePairSettings(this.activeLanguagePairId(), patch);
   }
 
   /** Обновляет пару у активной записи (legacy API для совместимости). */
@@ -103,7 +123,13 @@ export class UserStore {
       preferences: {
         ...user.preferences,
         languagePairs: user.preferences.languagePairs.map((entry) =>
-          entry.id === activeId ? { ...entry, pair: normalized } : entry,
+          entry.id === activeId
+            ? {
+                ...entry,
+                pair: normalized,
+                settings: defaultSettingsForPair(normalized) ?? entry.settings,
+              }
+            : entry,
         ),
       },
     }));

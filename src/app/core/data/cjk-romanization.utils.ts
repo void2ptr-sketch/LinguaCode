@@ -1,4 +1,4 @@
-const PINYIN_TONE_MAP: Record<string, string> = {
+export const PINYIN_TONE_MAP: Record<string, string> = {
   ā: 'a',
   á: 'a',
   ǎ: 'a',

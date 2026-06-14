@@ -1,5 +1,6 @@
 import type { Card } from '../models';
 import type { CardIndexEntry } from '../models/card-index.types';
+import { collectCardIpaReadings } from './card-ipa-index.utils';
 import { isContentLanguage } from './language-pair.utils';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
@@ -21,6 +22,10 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
       ? meta.learningLanguage
       : DEFAULT_LANGUAGE_PAIR.learning;
 
+  const ipaReadings = collectCardIpaReadings(card);
+  const baseTags = meta?.tags ?? [card.kind];
+  const tags = ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
+
   return {
     id: card.id,
     kind: card.kind,
@@ -28,7 +33,8 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     knownLanguage,
     learningLanguage,
     difficulty: meta?.difficulty ?? 'beginner',
-    tags: meta?.tags ?? [card.kind],
+    tags,
+    ipaReadings,
     updatedAt: meta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
   };
 }

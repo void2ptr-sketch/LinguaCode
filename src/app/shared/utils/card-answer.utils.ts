@@ -95,6 +95,8 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
     case 'symbol':
     case 'sound':
     case 'timed':
+    case 'reading':
+    case 'tone':
       return state.selectedIndex !== null;
     case 'keyboard':
       return state.answerText.trim().length > 0;
@@ -126,6 +128,8 @@ export const checkCardAnswer = (
       const accepted = resolveKeyboardAcceptedAnswers(card, direction);
       return matchesKeyboardAnswer(state.answerText, accepted, card.promptLexeme);
     }
+    case 'tone':
+      return state.selectedIndex === card.correctIndex;
     case 'memory':
       return state.memoryComplete;
     case 'draw':
@@ -158,11 +162,16 @@ export const getCorrectAnswerLabel = (
     return accepted[0] ?? null;
   }
 
+  if (card.kind === 'tone') {
+    const tone = card.toneOptions[card.correctIndex];
+    return tone !== undefined ? String(tone) : null;
+  }
+
   return null;
 };
 
 function resolveOptionLexeme(card: Card, index: number): PhoneticLexeme | undefined {
-  if (card.kind === 'select' || card.kind === 'timed' || card.kind === 'sound') {
+  if (card.kind === 'select' || card.kind === 'timed' || card.kind === 'sound' || card.kind === 'reading') {
     return card.optionsLexemes?.[index];
   }
 

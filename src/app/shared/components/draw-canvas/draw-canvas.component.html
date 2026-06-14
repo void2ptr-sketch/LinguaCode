@@ -1,0 +1,36 @@
+<div class="draw-canvas">
+  <div class="draw-canvas__surface">
+    <canvas
+      #canvas
+      class="draw-canvas__canvas"
+      [class.draw-canvas__canvas--disabled]="disabled()"
+      (pointerdown)="onPointerDown($event)"
+      (pointermove)="onPointerMove($event)"
+      (pointerup)="onPointerUp($event)"
+      (pointerleave)="onPointerUp($event)"
+      (pointercancel)="onPointerUp($event)"
+    ></canvas>
+
+    @if (strokeGuides().length > 0) {
+      <svg class="draw-canvas__guides" viewBox="0 0 100 100" aria-hidden="true">
+        @for (guide of strokeGuides(); track guide.order) {
+          <g class="draw-canvas__guide">
+            <path [attr.d]="guide.path" />
+            <text
+              class="draw-canvas__guide-order"
+              [attr.x]="guidePathCenter(guide).x"
+              [attr.y]="guidePathCenter(guide).y"
+            >
+              {{ guide.order }}
+            </text>
+          </g>
+        }
+      </svg>
+    }
+  </div>
+
+  <button mat-button type="button" [disabled]="disabled() || !hasStrokes()" (click)="clear()">
+    <mat-icon>refresh</mat-icon>
+    Очистить
+  </button>
+</div>

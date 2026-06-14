@@ -6,10 +6,12 @@ export type {
   EditableCardKind,
   KeyboardCardDraft,
   MemoryCardDraft,
+  ReadingCardDraft,
   SelectCardDraft,
   SoundCardDraft,
   SymbolCardDraft,
   TimedCardDraft,
+  ToneCardDraft,
 } from './card-draft.types';
 export { CARD_KIND_LABELS, CARD_KINDS, DEFAULT_CARD_DIRECTION } from './card-draft.types';
 export {
