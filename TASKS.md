@@ -295,7 +295,7 @@
 - [x] `/tools/cards`: `CardCatalogSearchStore.applyLanguagePair()` на init из `UserStore.languagePair()`
 - [x] Reload каталога при смене `activeLanguagePairId`
 - [x] `clearFilters()` не сбрасывает locked pair (known/learning остаются активными)
-- [x] UI: chip «Пара: …» или read-only фильтры языка (режим `pairLocked`) + hint в каталоге
+- [x] UI: chip «Курс: …» + hint в шапке фильтров (активная `LanguagePair`; термин «Курс» = scope пары в UI профиля/каталога)
 
 **G8b — pickers в конструкторе**
 
@@ -336,9 +336,49 @@
 
 **G9c — настройки ru→zh**
 
-- [x] `CjkLearningPreferences`: `displayRomanization`, `answerRomanization`, `showTones`
-- [x] UI `/user`: выбор пиньинь / палладица / жуинь (при `known === 'ru'`, `learning === 'zh'`)
+- [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`
+- [x] UI `/user` (вкладка «Настройка курса»): чекбоксы романизации для **задания** (`displayRomanizations`)
 - [x] Палладица скрыта для пар без `known === 'ru'`
+- [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
+
+**G9g — раздельные настройки «задание» / «ответы» (профиль → карточки)**
+
+Контекст: в модели уже есть `displayRomanizations` (задание) и `answerRomanization` (ответы), но UI профиля и `LexemeDisplay` используют только первое; `answerRomanization` / `answerModes` сохраняются, но **не читаются** в рендере.
+
+| Роль | Где на карточке | Поля профиля (CJK) | Поля профиля (IPA) |
+|------|-----------------|--------------------|--------------------|
+| **Задание** | subtitle / prompt (`promptLexeme`) | `displayRomanizations[]` | `showIpa`, `ipaVariantLabel` |
+| **Ответы** | варианты, плитки memory, feedback | `answerRomanization[]` | `answerModes[]` (`orthography` / `ipa`) |
+
+Направление сессии (`known-to-learning` ↔ `learning-to-known`) меняет **какой текст** показывается, но не роль: заголовок = задание, кнопки/плитки = ответы.
+
+**G9g-a — `LexemeDisplay`**
+
+- [ ] Input `surface: 'prompt' | 'answer'` (default `'prompt'`)
+- [ ] `surface === 'prompt'` → `displayRomanizations` + `showIpa`
+- [ ] `surface === 'answer'` → `answerRomanization`; IPA по `answerModes`
+- [ ] Сохранить overrides `romanizations` / `showIpa` для preview редактора
+
+**G9g-b — UI профиля (`/user`, вкладка «Настройка курса»)**
+
+- [ ] Секция **«Задание»**: чекбоксы романизации + IPA (текущие поля, переименовать подписи)
+- [ ] Секция **«Ответы»**: отдельные чекбоксы `answerRomanization`; для en/zh — `answerModes` (орфография / IPA)
+- [ ] `saveProfile()` / drafts: сохранять обе стороны (`answerRomanization`, `answerModes`)
+- [ ] Подсказки: пример ru→zh (задание: 汉字+拼音; ответы: палладица)
+
+**G9g-c — карточки (передать `surface`)**
+
+- [ ] `select`, `timed`, `reading`, `symbol`, `sound`: prompt в header → `'prompt'`; варианты и feedback → `'answer'`
+- [ ] `memory`: плитки → `'answer'` (обе стороны)
+- [ ] `keyboard`: prompt → `'prompt'` (поле ввода — проверка через `answerMode` карточки, не профиль)
+- [ ] `tone`, `draw`: prompt → `'prompt'`
+
+**G9g-d — edge cases и приёмка**
+
+- [ ] Редактор / try dialog: preview «как задание» и «как ответ» (опц.)
+- [ ] Миграция не нужна: дефолты уже разные (`displayRomanizations: ['pinyin']`, `answerRomanization: ['pinyin','palladius']`)
+- [ ] Тесты: `lexeme-display`, `user-page`, persistence, smoke ru→zh demo-карточек
+- [ ] Синхронизировать CJK-CONTENT.md / PHONETIC-CONTENT.md
 
 **G9d — payload карточек**
 
@@ -380,7 +420,8 @@
 **G10c — настройки пользователя**
 
 - [x] `PhoneticPreferences`: `showIpa`, `ipaVariantLabel`, `answerModes`
-- [x] UI `/user`: включение IPA (для ru→en при активной паре)
+- [x] UI `/user` (вкладка «Настройка курса»): IPA для **задания** (`showIpa`, label)
+- [ ] UI + рендер: `answerModes` на стороне **ответов** — см. **G9g**
 
 **G10d — payload и редактор**
 
@@ -441,8 +482,9 @@
 
 **G11e — терминология UI**
 
-- [x] Переименовать chip «Курс: …» → «Пара: …» (активная `LanguagePair`)
-- [x] «Курс» в UI — только для сущности `Course`
+- [x] Профиль: вкладки «Курс» / «Настройка курса» (scope `LanguagePair` + настройки пары)
+- [x] Каталог карточек: chip/подпись «Курс: …» для locked pair
+- [x] Сущность `Course` (G11) — отдельно от scope пары в UI
 - [x] Обновить LANGUAGE-PAIR.md / подсказки в каталоге
 
 **G11f — опционально**
