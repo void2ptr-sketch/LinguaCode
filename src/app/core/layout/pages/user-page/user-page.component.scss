@@ -67,15 +67,6 @@
   border-color: var(--mat-sys-primary);
 }
 
-.page-card__pair-item--settings:not(.page-card__pair-item--active) {
-  border-color: color-mix(in srgb, var(--mat-sys-secondary) 50%, transparent);
-}
-
-.page-card__pair-badge--settings {
-  background: color-mix(in srgb, var(--mat-sys-secondary) 12%, transparent);
-  color: var(--mat-sys-secondary);
-}
-
 .page-card__pair-label {
   align-items: center;
   display: flex;
