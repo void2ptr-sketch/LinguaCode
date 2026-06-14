@@ -105,7 +105,9 @@
         "primary": "人",
         "script": "hani",
         "pinyin": "rén",
-        "palladius": "жэнь"
+        "zhuyin": "ㄖㄣˊ",
+        "palladius": "жэнь",
+        "ipa": "ʐən˧˥"
       },
       "strokeGuides": [
         { "order": 1, "path": "M 35 12 L 65 88" },
@@ -126,7 +128,9 @@
         "primary": "好",
         "script": "hani",
         "pinyin": "hǎo",
-        "palladius": "хао"
+        "zhuyin": "ㄏㄠˇ",
+        "palladius": "хао",
+        "ipa": "xaʊ˨˩˦"
       }
     },
     {
@@ -140,15 +144,44 @@
         "primary": "你好",
         "script": "hani",
         "pinyin": "nǐ hǎo",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
         "palladius": "ни хао",
-        "zhuyin": "ㄋㄧˇ ㄏㄠˇ"
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "optionsLearning": ["你好", "谢谢", "再见", "请"],
       "optionsLexemes": [
-        { "primary": "你好", "script": "hani", "pinyin": "nǐ hǎo", "palladius": "ни хао" },
-        { "primary": "谢谢", "script": "hani", "pinyin": "xièxie", "palladius": "сие сие" },
-        { "primary": "再见", "script": "hani", "pinyin": "zàijiàn", "palladius": "цзай цзянь" },
-        { "primary": "请", "script": "hani", "pinyin": "qǐng", "palladius": "цин" }
+        {
+          "primary": "你好",
+          "script": "hani",
+          "pinyin": "nǐ hǎo",
+          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+          "palladius": "ни хао",
+          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        },
+        {
+          "primary": "谢谢",
+          "script": "hani",
+          "pinyin": "xièxie",
+          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+          "palladius": "сие сие",
+          "ipa": "ɕiɛ˥˩ ɕiɛ"
+        },
+        {
+          "primary": "再见",
+          "script": "hani",
+          "pinyin": "zàijiàn",
+          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+          "palladius": "цзай цзянь",
+          "ipa": "tsai˥˩ tɕiɛn˥˩"
+        },
+        {
+          "primary": "请",
+          "script": "hani",
+          "pinyin": "qǐng",
+          "zhuyin": "ㄑㄧㄥˇ",
+          "palladius": "цин",
+          "ipa": "tɕʰiŋ˨˩˦"
+        }
       ],
       "correctIndex": 0
     },
@@ -215,6 +248,8 @@
         "primary": "你好",
         "script": "hani",
         "pinyin": "nǐ hǎo",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+        "palladius": "ни хао",
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "acceptedAnswersKnown": ["ni˨˩˦ xaʊ˨˩˦"],
@@ -231,7 +266,9 @@
         "primary": "你好",
         "script": "hani",
         "pinyin": "nǐ hǎo",
-        "palladius": "ни хао"
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+        "palladius": "ни хао",
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "acceptedAnswersKnown": ["nǐ hǎo", "ni hao"],
       "answerMode": "pinyin"
@@ -246,7 +283,10 @@
       "promptLexeme": {
         "primary": "妈",
         "script": "hani",
-        "pinyin": "mā"
+        "pinyin": "mā",
+        "zhuyin": "ㄇㄚ",
+        "palladius": "ма",
+        "ipa": "ma˥"
       },
       "syllableBase": "ma",
       "toneOptions": [1, 2, 3, 4],
@@ -262,14 +302,218 @@
       "promptLexeme": {
         "primary": "银行",
         "script": "hani",
-        "pinyin": "yínháng"
+        "pinyin": "yínháng",
+        "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
+        "palladius": "инь хан",
+        "ipa": "in˧˥ xaŋ˧˥"
       },
       "optionsLearning": ["háng", "xíng"],
       "optionsLexemes": [
-        { "primary": "háng", "script": "latn", "pinyin": "háng", "palladius": "хан" },
-        { "primary": "xíng", "script": "latn", "pinyin": "xíng", "palladius": "син" }
+        {
+          "primary": "háng",
+          "script": "latn",
+          "pinyin": "háng",
+          "zhuyin": "ㄏㄤˊ",
+          "palladius": "хан",
+          "ipa": "xaŋ˧˥"
+        },
+        {
+          "primary": "xíng",
+          "script": "latn",
+          "pinyin": "xíng",
+          "zhuyin": "ㄒㄧㄥˊ",
+          "palladius": "син",
+          "ipa": "ɕiŋ˧˥"
+        }
       ],
       "correctIndex": 0
+    },
+    {
+      "id": "memory-zh-1",
+      "kind": "memory",
+      "title": "Пары слов (китайский)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Найдите пары: русский — китайский",
+      "promptLexeme": {
+        "primary": "配对",
+        "script": "hani",
+        "pinyin": "pèiduì",
+        "zhuyin": "ㄆㄟˋ ㄉㄨㄟˋ",
+        "palladius": "пэй дуй",
+        "ipa": "pʰei˥˩ twei˥˩"
+      },
+      "pairs": [
+        {
+          "known": "Привет",
+          "learning": "你好",
+          "learningLexeme": {
+            "primary": "你好",
+            "script": "hani",
+            "pinyin": "nǐ hǎo",
+            "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+            "palladius": "ни хао",
+            "ipa": "ni˨˩˦ xaʊ˨˩˦"
+          }
+        },
+        {
+          "known": "Спасибо",
+          "learning": "谢谢",
+          "learningLexeme": {
+            "primary": "谢谢",
+            "script": "hani",
+            "pinyin": "xièxie",
+            "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+            "palladius": "сие сие",
+            "ipa": "ɕiɛ˥˩ ɕiɛ"
+          }
+        },
+        {
+          "known": "До свидания",
+          "learning": "再见",
+          "learningLexeme": {
+            "primary": "再见",
+            "script": "hani",
+            "pinyin": "zàijiàn",
+            "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+            "palladius": "цзай цзянь",
+            "ipa": "tsai˥˩ tɕiɛn˥˩"
+          }
+        }
+      ]
+    },
+    {
+      "id": "symbol-zh-1",
+      "kind": "symbol",
+      "title": "Иероглифы приветствия",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Выберите иероглиф «Привет» (你好)",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+        "palladius": "ни хао",
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+      },
+      "symbols": ["你", "好", "谢", "再"],
+      "symbolLexemes": [
+        {
+          "primary": "你",
+          "script": "hani",
+          "pinyin": "nǐ",
+          "zhuyin": "ㄋㄧˇ",
+          "palladius": "ни",
+          "ipa": "ni˨˩˦"
+        },
+        {
+          "primary": "好",
+          "script": "hani",
+          "pinyin": "hǎo",
+          "zhuyin": "ㄏㄠˇ",
+          "palladius": "хао",
+          "ipa": "xaʊ˨˩˦"
+        },
+        {
+          "primary": "谢",
+          "script": "hani",
+          "pinyin": "xiè",
+          "zhuyin": "ㄒㄧㄝˋ",
+          "palladius": "сие",
+          "ipa": "ɕiɛ˥˩"
+        },
+        {
+          "primary": "再",
+          "script": "hani",
+          "pinyin": "zài",
+          "zhuyin": "ㄗㄞˋ",
+          "palladius": "цзай",
+          "ipa": "tsai˥˩"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "sound-zh-1",
+      "kind": "sound",
+      "title": "Звук (китайский)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Как переводится услышанное слово?",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+        "palladius": "ни хао",
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+      },
+      "audioLabelLearning": "你好",
+      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
+      "correctIndex": 0
+    },
+    {
+      "id": "timed-zh-1",
+      "kind": "timed",
+      "title": "На время (китайский)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Быстрый перевод: Спасибо",
+      "promptLexeme": {
+        "primary": "谢谢",
+        "script": "hani",
+        "pinyin": "xièxie",
+        "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+        "palladius": "сие сие",
+        "ipa": "ɕiɛ˥˩ ɕiɛ",
+        "glossKnown": "Спасибо"
+      },
+      "optionsLearning": ["谢谢", "你好", "再见"],
+      "optionsLexemes": [
+        {
+          "primary": "谢谢",
+          "script": "hani",
+          "pinyin": "xièxie",
+          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+          "palladius": "сие сие",
+          "ipa": "ɕiɛ˥˩ ɕiɛ"
+        },
+        {
+          "primary": "你好",
+          "script": "hani",
+          "pinyin": "nǐ hǎo",
+          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+          "palladius": "ни хао",
+          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        },
+        {
+          "primary": "再见",
+          "script": "hani",
+          "pinyin": "zàijiàn",
+          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+          "palladius": "цзай цзянь",
+          "ipa": "tsai˥˩ tɕiɛn˥˩"
+        }
+      ],
+      "correctIndex": 0,
+      "timeLimitSec": 30
+    },
+    {
+      "id": "keyboard-zh-1",
+      "kind": "keyboard",
+      "title": "Ввод перевода (китайский)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Введите перевод «你好» на русский",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+        "palladius": "ни хао",
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+      },
+      "acceptedAnswersKnown": ["Привет", "привет"]
     }
   ]
 }

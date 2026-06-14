@@ -1,0 +1,74 @@
+<p class="card-create-wizard__intro">
+  Быстрое создание: {{ kindLabels[draft().kind] }}.
+  @if (variantHint(); as hint) {
+    <span class="card-create-wizard__variant">{{ hint }}</span>
+  }
+</p>
+
+<mat-stepper linear class="card-create-wizard">
+  <mat-step label="Слово">
+    <div class="card-create-wizard__step">
+      <mat-form-field appearance="outline">
+        <mat-label>Название</mat-label>
+        <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+      </mat-form-field>
+
+      @if (hasPrompt()) {
+        <mat-form-field appearance="outline">
+          <mat-label>Подсказка</mat-label>
+          <textarea
+            matInput
+            rows="3"
+            [ngModel]="promptKnownValue()"
+            (ngModelChange)="updatePromptKnown($event)"
+          ></textarea>
+        </mat-form-field>
+      }
+
+      <div class="card-create-wizard__actions">
+        <button mat-flat-button matStepperNext type="button">Далее: варианты</button>
+      </div>
+    </div>
+  </mat-step>
+
+  <mat-step label="Варианты">
+    <div class="card-create-wizard__step">
+      @if (choiceDraft(); as choice) {
+        <app-choice-card-form [draft]="choice" [hidePrompt]="true" (draftChange)="updateDraft($event)" />
+      }
+      @if (inputDraft(); as inputDraftValue) {
+        <app-input-card-form
+          [draft]="inputDraftValue"
+          [hidePrompt]="true"
+          [knownLanguage]="knownLanguage()"
+          [learningLanguage]="learningLanguage()"
+          (draftChange)="updateDraft($event)"
+        />
+      }
+      @if (pairsDraft(); as pairs) {
+        <app-pairs-card-form
+          [draft]="pairs"
+          [knownLanguage]="knownLanguage()"
+          [learningLanguage]="learningLanguage()"
+          (draftChange)="updateDraft($event)"
+        />
+      }
+      @if (mediaDraft(); as media) {
+        <app-media-card-form
+          [draft]="media"
+          [knownLanguage]="knownLanguage()"
+          [learningLanguage]="learningLanguage()"
+          (draftChange)="updateDraft($event)"
+        />
+      }
+
+      <div class="card-create-wizard__actions">
+        <button mat-button matStepperPrevious type="button">Назад</button>
+        <button mat-button type="button" (click)="expandToFull.emit()">
+          <mat-icon>open_in_full</mat-icon>
+          Расширить
+        </button>
+      </div>
+    </div>
+  </mat-step>
+</mat-stepper>

@@ -1,4 +1,9 @@
-import { lexemeFromHan, resolveIpaString, resolveRomanizationReading } from './phonetic-lexeme.utils';
+import {
+  lexemeFromHan,
+  resolveIpaString,
+  resolveRomanizationReading,
+  resolveVisibleRomanizationReadings,
+} from './phonetic-lexeme.utils';
 
 describe('phonetic-lexeme.utils', () => {
   it('should build han lexeme', () => {
@@ -16,6 +21,21 @@ describe('phonetic-lexeme.utils', () => {
 
     expect(resolveRomanizationReading(lexeme, 'pinyin')).toBe('guó');
     expect(resolveRomanizationReading(lexeme, 'palladius')).toBe('го');
+  });
+
+  it('should resolve visible romanization readings in profile order', () => {
+    const lexeme = {
+      primary: '国',
+      script: 'hani' as const,
+      pinyin: 'guó',
+      zhuyin: 'ㄍㄨㄛˊ',
+      palladius: 'го',
+    };
+
+    expect(resolveVisibleRomanizationReadings(lexeme, ['pinyin', 'palladius'])).toEqual([
+      { system: 'pinyin', reading: 'guó' },
+      { system: 'palladius', reading: 'го' },
+    ]);
   });
 
   it('should resolve ipa variants by label', () => {

@@ -47,16 +47,21 @@ describe('user-language-pair.utils', () => {
   it('should create pair-specific default settings', () => {
     expect(defaultSettingsForPair({ known: 'ru', learning: 'en' })?.phonetic).toBeDefined();
     expect(defaultSettingsForPair({ known: 'ru', learning: 'zh' })?.cjkLearning).toBeDefined();
-    expect(defaultSettingsForPair({ known: 'ru', learning: 'zh' })?.phonetic).toBeUndefined();
+    expect(defaultSettingsForPair({ known: 'ru', learning: 'zh' })?.phonetic).toBeDefined();
   });
 
   it('should resolve settings from active pair entry', () => {
     const zhEntry = createUserLanguagePairEntry({ known: 'ru', learning: 'zh' }, 'zh-1');
     zhEntry.settings = {
-      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: false },
+      cjkLearning: {
+        displayRomanizations: ['palladius'],
+        answerRomanization: ['palladius'],
+        showTones: false,
+      },
+      phonetic: { showIpa: true, answerModes: ['orthography'] },
     };
 
-    expect(resolveCjkLearningForPair(zhEntry).displayRomanization).toBe('palladius');
-    expect(resolvePhoneticForPair(zhEntry).showIpa).toBeFalse();
+    expect(resolveCjkLearningForPair(zhEntry).displayRomanizations).toEqual(['palladius']);
+    expect(resolvePhoneticForPair(zhEntry).showIpa).toBeTrue();
   });
 });

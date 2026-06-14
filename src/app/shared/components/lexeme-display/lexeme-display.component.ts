@@ -1,15 +1,13 @@
 import { Component, computed, inject, input } from '@angular/core';
 
-import { resolveIpaString, resolveLexemeRubyAnnotation } from '../../../core/data/phonetic-lexeme.utils';
-import { shouldShowPalladius } from '../../../core/data/phonetic-preferences.utils';
+import { resolveIpaString, resolveVisibleRomanizationReadings } from '../../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/phonetic-content.types';
 import { UserStore } from '../../../core/state';
-import { CjkRubyComponent } from '../cjk-ruby/cjk-ruby.component';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
 
 @Component({
   selector: 'app-lexeme-display',
-  imports: [CjkRubyComponent, PhoneticIpaComponent],
+  imports: [PhoneticIpaComponent],
   templateUrl: './lexeme-display.component.html',
   styleUrl: './lexeme-display.component.scss',
 })
@@ -18,24 +16,19 @@ export class LexemeDisplayComponent {
 
   readonly lexeme = input<PhoneticLexeme | null | undefined>(null);
   readonly fallbackText = input('');
-  readonly romanization = input<RomanizationSystem | null>(null);
+  /** Переопределяет набор романизаций из профиля (для превью редактора). */
+  readonly romanizations = input<readonly RomanizationSystem[] | null>(null);
   readonly showIpa = input<boolean | null>(null);
   readonly ipaVariantLabel = input<string | undefined>(undefined);
   readonly inline = input(false);
 
-  readonly effectiveRomanization = computed<RomanizationSystem>(() => {
-    const override = this.romanization();
+  readonly effectiveRomanizations = computed<readonly RomanizationSystem[]>(() => {
+    const override = this.romanizations();
     if (override) {
       return override;
     }
 
-    const prefs = this.userStore.cjkLearning();
-    const pair = this.userStore.languagePair();
-    if (shouldShowPalladius(pair.known, pair.learning) && prefs.displayRomanization === 'palladius') {
-      return 'palladius';
-    }
-
-    return prefs.displayRomanization;
+    return this.userStore.cjkLearning().displayRomanizations;
   });
 
   readonly effectiveShowIpa = computed(() => this.showIpa() ?? this.userStore.phonetic().showIpa);
@@ -54,13 +47,13 @@ export class LexemeDisplayComponent {
     return { primary: fallback, script: 'latn' as const };
   });
 
-  readonly rubyReading = computed(() => {
+  readonly visibleRomanizations = computed(() => {
     const lexeme = this.displayLexeme();
     if (!lexeme) {
-      return null;
+      return [];
     }
 
-    return resolveLexemeRubyAnnotation(lexeme, this.effectiveRomanization());
+    return resolveVisibleRomanizationReadings(lexeme, this.effectiveRomanizations());
   });
 
   readonly ipaText = computed(() => {

@@ -1,11 +1,14 @@
 @if (displayLexeme(); as item) {
   <div class="lexeme-display" [class.lexeme-display--inline]="inline()">
     @if (item.script === 'hani') {
-      <app-cjk-ruby
-        [base]="item.primary"
-        [reading]="rubyReading()"
-        [romanization]="effectiveRomanization()"
-      />
+      <div class="lexeme-display__cjk">
+        @for (reading of visibleRomanizations(); track reading.system) {
+          <div class="lexeme-display__reading lexeme-display__reading--{{ reading.system }}">
+            {{ reading.reading }}
+          </div>
+        }
+        <span class="lexeme-display__han" lang="zh-Hans">{{ item.primary }}</span>
+      </div>
     } @else {
       <span class="lexeme-display__primary">{{ item.primary }}</span>
     }

@@ -41,7 +41,8 @@ export type CjkDisplayMode =
   | 'palladius-only';
 
 export type CjkLearningPreferences = {
-  displayRomanization: RomanizationSystem;
+  /** Какие системы романизации показывать на карточках (режим «И», не «ИЛИ»). */
+  displayRomanizations: readonly RomanizationSystem[];
   answerRomanization: readonly RomanizationSystem[];
   showTones: boolean;
 };
@@ -59,8 +60,10 @@ export type PhoneticPreferences = {
   answerModes: readonly ('orthography' | 'ipa')[];
 };
 
+export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
+
 export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
-  displayRomanization: 'pinyin',
+  displayRomanizations: ['pinyin'],
   answerRomanization: ['pinyin', 'palladius'],
   showTones: true,
 };

@@ -32,6 +32,7 @@
 .card-options-editor__field {
   grid-area: text;
   width: 100%;
+  min-width: 0;
 }
 
 .card-options-editor__lexeme {
@@ -41,4 +42,6 @@
 .card-options-editor__remove {
   grid-area: remove;
   margin-top: 0.25rem;
+  position: relative;
+  z-index: 1;
 }

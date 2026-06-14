@@ -9,7 +9,47 @@
       Создать карточку
     </button>
     <mat-menu #createMenu="matMenu">
-      @for (kind of cardKinds; track kind) {
+      <button mat-menu-item [matMenuTriggerFor]="choiceMenu">
+        {{ createGroupLabels.choice }}
+        <span class="card-editor-page__menu-hint">{{ createGroupHints.choice }}</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="inputMenu">
+        {{ createGroupLabels.input }}
+        <span class="card-editor-page__menu-hint">{{ createGroupHints.input }}</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="pairsMenu">
+        {{ createGroupLabels.pairs }}
+        <span class="card-editor-page__menu-hint">{{ createGroupHints.pairs }}</span>
+      </button>
+      <button mat-menu-item [matMenuTriggerFor]="mediaMenu">
+        {{ createGroupLabels.media }}
+        <span class="card-editor-page__menu-hint">{{ createGroupHints.media }}</span>
+      </button>
+    </mat-menu>
+
+    <mat-menu #choiceMenu="matMenu">
+      @for (kind of kindsByGroup.choice; track kind) {
+        <button mat-menu-item type="button" (click)="startCreate(kind)">
+          {{ kindLabels[kind] }}
+        </button>
+      }
+    </mat-menu>
+    <mat-menu #inputMenu="matMenu">
+      @for (kind of kindsByGroup.input; track kind) {
+        <button mat-menu-item type="button" (click)="startCreate(kind)">
+          {{ kindLabels[kind] }}
+        </button>
+      }
+    </mat-menu>
+    <mat-menu #pairsMenu="matMenu">
+      @for (kind of kindsByGroup.pairs; track kind) {
+        <button mat-menu-item type="button" (click)="startCreate(kind)">
+          {{ kindLabels[kind] }}
+        </button>
+      }
+    </mat-menu>
+    <mat-menu #mediaMenu="matMenu">
+      @for (kind of kindsByGroup.media; track kind) {
         <button mat-menu-item type="button" (click)="startCreate(kind)">
           {{ kindLabels[kind] }}
         </button>

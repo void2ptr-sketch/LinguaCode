@@ -108,21 +108,20 @@
                 Китайский — {{ entryLabel(settingsEntry()!) }}
               </h2>
               <p class="page-card__hint">
-                Романизация для иероглифов в карточках и упражнениях (только для этой пары).
+                Какие системы романизации показывать на карточках (можно включить несколько сразу).
               </p>
 
-              <mat-form-field appearance="outline">
-                <mat-label>Отображать романизацию</mat-label>
-                <mat-select
-                  [ngModel]="displayRomanizationDraft()"
-                  (ngModelChange)="displayRomanizationDraft.set($event)"
-                  name="displayRomanization"
-                >
-                  @for (option of romanizationOptions(); track option.value) {
-                    <mat-option [value]="option.value">{{ option.label }}</mat-option>
-                  }
-                </mat-select>
-              </mat-form-field>
+              <div class="page-card__romanization-toggles">
+                @for (option of romanizationOptions(); track option.value) {
+                  <mat-checkbox
+                    [ngModel]="isRomanizationEnabled(option.value)"
+                    (ngModelChange)="setRomanizationEnabled(option.value, $event)"
+                    [name]="'displayRomanization-' + option.value"
+                  >
+                    {{ option.label }}
+                  </mat-checkbox>
+                }
+              </div>
             </section>
           }
 
@@ -132,7 +131,7 @@
                 Фонетика (IPA) — {{ entryLabel(settingsEntry()!) }}
               </h2>
               <p class="page-card__hint">
-                Транскрипция IPA под словами (только для этой пары с английским).
+                Транскрипция IPA под словами (можно показывать вместе с романизацией).
               </p>
 
               <mat-slide-toggle [ngModel]="showIpaDraft()" (ngModelChange)="showIpaDraft.set($event)" name="showIpa">

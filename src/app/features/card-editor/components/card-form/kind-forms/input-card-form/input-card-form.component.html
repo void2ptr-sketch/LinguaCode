@@ -7,10 +7,12 @@
       (ngModelChange)="updateDrawPrimary($event)"
     />
   </mat-form-field>
-  <mat-form-field appearance="outline">
-    <mat-label>Известный</mat-label>
-    <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-  </mat-form-field>
+  @if (!hidePrompt()) {
+    <mat-form-field appearance="outline">
+      <mat-label>Известный</mat-label>
+      <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+    </mat-form-field>
+  }
   <mat-form-field appearance="outline">
     <mat-label>Ориентир для рисования</mat-label>
     <input matInput [ngModel]="d.referenceHintKnown" (ngModelChange)="updateReferenceHintKnown($event)" />
@@ -18,10 +20,12 @@
 }
 
 @if (keyboardDraft(); as d) {
-  <mat-form-field appearance="outline">
-    <mat-label>Известный</mat-label>
-    <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
-  </mat-form-field>
+  @if (!hidePrompt()) {
+    <mat-form-field appearance="outline">
+      <mat-label>Известный</mat-label>
+      <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+    </mat-form-field>
+  }
   <section>
     <h3>Допустимые ответы (известный)</h3>
     @for (item of d.acceptedAnswersKnown; track $index) {

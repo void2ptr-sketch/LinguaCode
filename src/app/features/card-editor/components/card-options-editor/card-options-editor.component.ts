@@ -5,6 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import type { ContentLanguage } from '../../../../core/models';
 import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
@@ -35,6 +36,7 @@ export type CardOptionsEditorConfig = {
     MatIconModule,
     MatInputModule,
     MatRadioModule,
+    MatTooltipModule,
     LexemeFieldsComponent,
   ],
   templateUrl: './card-options-editor.component.html',
@@ -98,10 +100,23 @@ export class CardOptionsEditorComponent {
     }
   }
 
-  onRemoveOption(index: number): void {
+  onRemoveOption(index: number, event?: MouseEvent): void {
+    event?.preventDefault();
+    event?.stopPropagation();
+
     const next = removeOption(this.editorState(), index);
     if (next) {
       this.emitState(next);
     }
+  }
+
+  optionTrack(index: number): string {
+    return `${this.options().length}-${index}`;
+  }
+
+  removeTooltip(): string {
+    return this.options().length <= this.minOptions
+      ? 'Нужно минимум 2 варианта'
+      : 'Удалить вариант';
   }
 }
