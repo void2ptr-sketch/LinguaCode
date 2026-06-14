@@ -25,6 +25,16 @@
   font-weight: 500;
 }
 
+.card-form__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.8125rem;
+  margin: 0;
+}
+
+.card-form__hint--appearance {
+  margin-top: 0.25rem;
+}
+
 .card-form__option-row {
   display: grid;
   grid-template-columns: auto 1fr auto;

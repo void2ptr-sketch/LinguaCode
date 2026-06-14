@@ -4,6 +4,21 @@
   padding-top: 0.25rem;
 }
 
+.card-editor-dialog__toolbar {
+  margin-bottom: 0.75rem;
+}
+
+.card-editor-dialog__mode {
+  width: 100%;
+}
+
+.card-editor-dialog__languages {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  margin-bottom: 0.75rem;
+}
+
 .card-editor-dialog__state {
   display: grid;
   gap: 1rem;

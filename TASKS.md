@@ -457,15 +457,15 @@
 
 **G12a — фаза 1: быстрые wins (низкий риск)**
 
-- [ ] Toggle **«Базовый / Расширенный»** в `CardEditorDialog` (сохранять предпочтение в `sessionStorage`)
-- [ ] **Базовый:** title, prompt, варианты / пары, correctIndex; без lexeme-блоков, appearance, answerMode, draw meta
-- [ ] **Расширенный:** текущие поля (лексемы, audio, appearance, режимы)
-- [ ] `app-lexeme-fields`: контекст **языковой пары** из диалога (`knownLanguage`, `learningLanguage`)
+- [x] Toggle **«Базовый / Расширенный»** в `CardEditorDialog` (сохранять предпочтение в `sessionStorage`)
+- [x] **Базовый:** title, prompt, варианты / пары, correctIndex; без lexeme-блоков, appearance, answerMode, draw meta
+- [x] **Расширенный:** текущие поля (лексемы, audio, appearance, режимы)
+- [x] `app-lexeme-fields`: контекст **языковой пары** из диалога (`knownLanguage`, `learningLanguage`)
   - ru→en: primary + IPA; остальное в collapsible «Доп. фонетика»
   - ru→zh: primary (han) + pinyin + кнопка palladius; zhuyin/ipa — в «Доп.»
-- [ ] **Appearance по умолчанию** из `UserStore.preferences()`; override только в «Расширенном»
-- [ ] **Автосинхронизация** строки варианта и `lexeme.primary` (если lexeme заполнена — строка readonly или auto-fill)
-- [ ] Подсказки / hints в базовом режиме («лексема — в расширенном»)
+- [x] **Appearance по умолчанию** из `UserStore.preferences()`; override только в «Расширенном»
+- [x] **Автосинхронизация** строки варианта и `lexeme.primary` (если lexeme заполнена — строка readonly или auto-fill)
+- [x] Подсказки / hints в базовом режиме («лексема — в расширенном»)
 
 **G12b — фаза 2: структурный рефакторинг (средний риск)**
 

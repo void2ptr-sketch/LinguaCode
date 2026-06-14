@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
-import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
+import type { ContentLanguage, DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
+import type { CardAppearance } from '../../../../core/models/card.types';
 import {
   lookupHanRadicalHint,
   lookupHanStrokeGuides,
@@ -17,6 +18,11 @@ import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils
 import { emptyLexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import { Card } from '../../../../core/models';
 import { CardDraft, DEFAULT_CARD_DIRECTION, emptyMemoryPairDraft } from '../../types';
+import type { CardEditorUxMode } from '../../utils/card-editor-ux.utils';
+import {
+  defaultScriptForLanguages,
+  syncLexemePrimaryFromText,
+} from '../../utils/card-editor-ux.utils';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
@@ -42,16 +48,32 @@ import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component'
 export class CardFormComponent {
   readonly draft = input.required<CardDraft>();
   readonly previewId = input('preview-card');
+  readonly editorUxMode = input<CardEditorUxMode>('basic');
+  readonly knownLanguage = input<ContentLanguage>('ru');
+  readonly learningLanguage = input<ContentLanguage>('en');
+  readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
 
   readonly draftChange = output<CardDraft>();
 
+  readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
+
+  readonly effectiveAppearance = computed(() =>
+    this.isAdvanced() ? this.draft().appearance : this.defaultAppearance(),
+  );
+
+  readonly draftForPreview = computed(() => ({
+    ...this.draft(),
+    appearance: this.effectiveAppearance(),
+  }));
+
   readonly previewCard = computed((): Card => {
     return (
-      normalizeCardDraft(this.draft(), this.previewId()) ?? this.fallbackPreviewCard(this.draft())
+      normalizeCardDraft(this.draftForPreview(), this.previewId()) ??
+      this.fallbackPreviewCard(this.draftForPreview())
     );
   });
 
-  readonly previewFontSize = computed(() => this.draft().appearance.fontSize);
+  readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
 
   readonly selectDraft = computed(() => {
     const draft = this.draft();
@@ -148,7 +170,21 @@ export class CardFormComponent {
   updateAudioLabelLearning(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'sound') {
-      this.updateDraft({ ...draft, audioLabelLearning: value });
+      const nextDraft = {
+        ...draft,
+        audioLabelLearning: value,
+      };
+
+      if (!this.isAdvanced()) {
+        nextDraft.audioLabelLexeme = syncLexemePrimaryFromText(
+          draft.audioLabelLexeme,
+          value,
+          this.knownLanguage(),
+          this.learningLanguage(),
+        );
+      }
+
+      this.updateDraft(nextDraft);
     }
   }
 
@@ -191,6 +227,29 @@ export class CardFormComponent {
     }
 
     this.updateDraft({ ...draft, radicalHint: value });
+  }
+
+  updateDrawPrimary(value: string): void {
+    const draft = this.draft();
+    if (draft.kind !== 'draw') {
+      return;
+    }
+
+    const character = primaryHanCharacter(value) || value.trim();
+    this.updateDraft({
+      ...draft,
+      promptLexeme: syncLexemePrimaryFromText(
+        draft.promptLexeme,
+        character,
+        this.knownLanguage(),
+        this.learningLanguage(),
+      ),
+      targetCharacter: character,
+    });
+  }
+
+  optionTextReadonly(lexeme: LexemeDraftFields): boolean {
+    return this.isAdvanced() && lexeme.primary.trim().length > 0;
   }
 
   autofillDrawHints(): void {
@@ -239,9 +298,26 @@ export class CardFormComponent {
       return;
     }
 
-    const pairs = draft.pairs.map((pair, pairIndex) =>
-      pairIndex === index ? { ...pair, [side]: value } : pair,
-    );
+    const pairs = draft.pairs.map((pair, pairIndex) => {
+      if (pairIndex !== index) {
+        return pair;
+      }
+
+      if (side === 'learning' && !this.isAdvanced()) {
+        return {
+          ...pair,
+          learning: value,
+          learningLexeme: syncLexemePrimaryFromText(
+            pair.learningLexeme,
+            value,
+            this.knownLanguage(),
+            this.learningLanguage(),
+          ),
+        };
+      }
+
+      return { ...pair, [side]: value };
+    });
     this.updateDraft({ ...draft, pairs });
   }
 
@@ -251,9 +327,15 @@ export class CardFormComponent {
       return;
     }
 
-    const pairs = draft.pairs.map((pair, pairIndex) =>
-      pairIndex === index ? { ...pair, learningLexeme: fields } : pair,
-    );
+    const pairs = draft.pairs.map((pair, pairIndex) => {
+      if (pairIndex !== index) {
+        return pair;
+      }
+
+      const learning = fields.primary.trim() ? fields.primary : pair.learning;
+      return { ...pair, learning, learningLexeme: fields };
+    });
+
     this.updateDraft({ ...draft, pairs });
   }
 
@@ -298,7 +380,12 @@ export class CardFormComponent {
 
     const optionsLexemes = [...draft.optionsLexemes];
     optionsLexemes[index] = fields;
-    this.updateDraft({ ...draft, optionsLexemes });
+    const optionsLearning = [...draft.optionsLearning];
+    if (fields.primary.trim()) {
+      optionsLearning[index] = fields.primary;
+    }
+
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
   }
 
   addSelectOption(): void {
@@ -348,7 +435,12 @@ export class CardFormComponent {
 
     const optionsLexemes = [...draft.optionsLexemes];
     optionsLexemes[index] = fields;
-    this.updateDraft({ ...draft, optionsLexemes });
+    const optionsLearning = [...draft.optionsLearning];
+    if (fields.primary.trim()) {
+      optionsLearning[index] = fields.primary;
+    }
+
+    this.updateDraft({ ...draft, optionsLearning, optionsLexemes });
   }
 
   addTimedOption(): void {
@@ -398,7 +490,12 @@ export class CardFormComponent {
 
     const symbolLexemes = [...draft.symbolLexemes];
     symbolLexemes[index] = fields;
-    this.updateDraft({ ...draft, symbolLexemes });
+    const symbols = [...draft.symbols];
+    if (fields.primary.trim()) {
+      symbols[index] = fields.primary;
+    }
+
+    this.updateDraft({ ...draft, symbols, symbolLexemes });
   }
 
   addSymbolOption(): void {
@@ -448,7 +545,12 @@ export class CardFormComponent {
 
     const optionsLexemes = [...draft.optionsLexemes];
     optionsLexemes[index] = fields;
-    this.updateDraft({ ...draft, optionsLexemes });
+    const optionsKnown = [...draft.optionsKnown];
+    if (fields.primary.trim()) {
+      optionsKnown[index] = fields.primary;
+    }
+
+    this.updateDraft({ ...draft, optionsKnown, optionsLexemes });
   }
 
   addSoundOption(): void {
@@ -536,15 +638,35 @@ export class CardFormComponent {
   ): readonly LexemeDraftFields[] {
     const next = [...lexemes];
     while (next.length < texts.length) {
-      next.push(emptyLexemeDraftFields());
+      next.push(emptyLexemeDraftFields(this.defaultOptionScript()));
     }
 
-    const current = next[index] ?? emptyLexemeDraftFields();
+    const current = next[index] ?? emptyLexemeDraftFields(this.defaultOptionScript());
+
+    if (!this.isAdvanced()) {
+      next[index] = syncLexemePrimaryFromText(
+        current,
+        value,
+        this.knownLanguage(),
+        this.learningLanguage(),
+      );
+      return next;
+    }
+
     if (!current.primary.trim() && value.trim()) {
-      next[index] = { ...current, primary: value };
+      next[index] = syncLexemePrimaryFromText(
+        current,
+        value,
+        this.knownLanguage(),
+        this.learningLanguage(),
+      );
     }
 
     return next;
+  }
+
+  private defaultOptionScript() {
+    return defaultScriptForLanguages(this.knownLanguage(), this.learningLanguage());
   }
 
   private fallbackPreviewCard(draft: CardDraft): Card {

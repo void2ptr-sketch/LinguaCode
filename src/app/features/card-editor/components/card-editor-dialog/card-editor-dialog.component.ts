@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -18,6 +19,11 @@ import { CardsCatalogMockHandler } from '../../../../core/api/cards-catalog.mock
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
 import type { CardDraft, CardIndexMetaDraft } from '../../types';
+import {
+  loadEditorUxMode,
+  saveEditorUxMode,
+  type CardEditorUxMode,
+} from '../../utils/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { CardEditorDiscardDialogComponent } from './card-editor-discard-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
@@ -31,6 +37,7 @@ function serializeDraft(draft: CardDraft): string {
   imports: [
     FormsModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
@@ -57,8 +64,14 @@ export class CardEditorDialogComponent implements OnInit {
     knownLanguage: this.userStore.languagePair().known,
     learningLanguage: this.userStore.languagePair().learning,
   });
+  readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
   private readonly initialSnapshot = signal('');
   private readonly initialMetaSnapshot = signal('');
+
+  readonly defaultAppearance = computed(() => {
+    const prefs = this.userStore.preferences();
+    return { theme: prefs.theme, fontSize: prefs.fontSize };
+  });
 
   readonly dirty = computed(
     () =>
@@ -109,6 +122,11 @@ export class CardEditorDialogComponent implements OnInit {
     this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
   }
 
+  setEditorUxMode(mode: CardEditorUxMode): void {
+    this.editorUxMode.set(mode);
+    saveEditorUxMode(mode);
+  }
+
   updateDraft(nextDraft: CardDraft): void {
     this.draft.set(nextDraft);
   }
@@ -131,11 +149,12 @@ export class CardEditorDialogComponent implements OnInit {
       knownLanguage: this.indexMeta().knownLanguage,
       learningLanguage: this.indexMeta().learningLanguage,
     };
+    const draftToSave = this.prepareDraftForSave(this.draft());
 
     if (this.data.mode === 'create') {
-      saved = await this.store.createCard(this.draft(), meta);
+      saved = await this.store.createCard(draftToSave, meta);
     } else {
-      saved = await this.store.updateCard(this.data.cardId, this.draft(), meta);
+      saved = await this.store.updateCard(this.data.cardId, draftToSave, meta);
     }
 
     if (saved) {
@@ -150,6 +169,17 @@ export class CardEditorDialogComponent implements OnInit {
 
     this.store.cancelEdit();
     this.dialogRef.close({ saved: false });
+  }
+
+  private prepareDraftForSave(draft: CardDraft): CardDraft {
+    if (this.editorUxMode() === 'basic') {
+      return {
+        ...draft,
+        appearance: { ...this.defaultAppearance() },
+      };
+    }
+
+    return draft;
   }
 
   private async confirmClose(): Promise<boolean> {

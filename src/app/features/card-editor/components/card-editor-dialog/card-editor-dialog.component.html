@@ -11,6 +11,18 @@
       <p class="card-editor-dialog__error">{{ store.error() }}</p>
     }
 
+    <section class="card-editor-dialog__toolbar">
+      <mat-button-toggle-group
+        class="card-editor-dialog__mode"
+        [ngModel]="editorUxMode()"
+        (ngModelChange)="setEditorUxMode($event)"
+        aria-label="Режим редактора"
+      >
+        <mat-button-toggle value="basic">Базовый</mat-button-toggle>
+        <mat-button-toggle value="advanced">Расширенный</mat-button-toggle>
+      </mat-button-toggle-group>
+    </section>
+
     <section class="card-editor-dialog__languages">
       <mat-form-field appearance="outline">
         <mat-label>Известный язык</mat-label>
@@ -40,6 +52,10 @@
     <app-card-form
       [draft]="draft()"
       [previewId]="store.editingCardId() ?? 'preview-card'"
+      [editorUxMode]="editorUxMode()"
+      [knownLanguage]="indexMeta().knownLanguage"
+      [learningLanguage]="indexMeta().learningLanguage"
+      [defaultAppearance]="defaultAppearance()"
       (draftChange)="updateDraft($event)"
     />
   }
