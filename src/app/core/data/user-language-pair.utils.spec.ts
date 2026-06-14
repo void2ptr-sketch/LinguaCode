@@ -1,7 +1,10 @@
 import {
   createDefaultLanguagePairPreferences,
   createUserLanguagePairEntry,
+  defaultSettingsForPair,
   normalizeUserPreferences,
+  resolveCjkLearningForPair,
+  resolvePhoneticForPair,
 } from './user-language-pair.utils';
 
 describe('user-language-pair.utils', () => {
@@ -15,6 +18,7 @@ describe('user-language-pair.utils', () => {
     expect(preferences.languagePairs).toHaveSize(1);
     expect(preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(preferences.activeLanguagePairId).toBe(preferences.languagePairs[0].id);
+    expect(preferences.languagePairs[0].settings?.cjkLearning).toBeDefined();
   });
 
   it('should dedupe language pair entries', () => {
@@ -37,5 +41,22 @@ describe('user-language-pair.utils', () => {
 
     expect(defaults.languagePairs).toHaveSize(1);
     expect(defaults.activeLanguagePairId).toBe(defaults.languagePairs[0].id);
+    expect(defaults.languagePairs[0].settings?.phonetic).toBeDefined();
+  });
+
+  it('should create pair-specific default settings', () => {
+    expect(defaultSettingsForPair({ known: 'ru', learning: 'en' })?.phonetic).toBeDefined();
+    expect(defaultSettingsForPair({ known: 'ru', learning: 'zh' })?.cjkLearning).toBeDefined();
+    expect(defaultSettingsForPair({ known: 'ru', learning: 'zh' })?.phonetic).toBeUndefined();
+  });
+
+  it('should resolve settings from active pair entry', () => {
+    const zhEntry = createUserLanguagePairEntry({ known: 'ru', learning: 'zh' }, 'zh-1');
+    zhEntry.settings = {
+      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: false },
+    };
+
+    expect(resolveCjkLearningForPair(zhEntry).displayRomanization).toBe('palladius');
+    expect(resolvePhoneticForPair(zhEntry).showIpa).toBeFalse();
   });
 });

@@ -1,4 +1,6 @@
-import { CardAppearance, CardKind } from '../../../core/models';
+import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../core/models';
+import type { DrawPracticeMode } from '../../../core/models/draw-practice.types';
+import type { ToneMark } from '../../../core/models/phonetic-content.types';
 import { CardDirection } from '../../../core/models/language-pair.types';
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
@@ -79,14 +81,46 @@ export type KeyboardCardDraft = LexemeCardDraft & {
   direction: CardDirection;
   promptKnown: string;
   acceptedAnswersKnown: readonly string[];
+  answerMode?: KeyboardAnswerMode;
   appearance: CardAppearanceDraft;
 };
 
-export type DrawCardDraft = {
+export type DrawStrokeGuideDraft = {
+  order: number;
+  path: string;
+};
+
+export type DrawCardDraft = LexemeCardDraft & {
   kind: 'draw';
   title: string;
   promptKnown: string;
   referenceHintKnown: string;
+  practiceMode?: DrawPracticeMode;
+  targetCharacter: string;
+  radicalHint: string;
+  strokeGuides: readonly DrawStrokeGuideDraft[];
+  appearance: CardAppearanceDraft;
+};
+
+export type ToneCardDraft = LexemeCardDraft & {
+  kind: 'tone';
+  title: string;
+  direction: CardDirection;
+  promptKnown: string;
+  syllableBase: string;
+  toneOptions: readonly ToneMark[];
+  correctIndex: number;
+  appearance: CardAppearanceDraft;
+};
+
+export type ReadingCardDraft = LexemeCardDraft & {
+  kind: 'reading';
+  title: string;
+  direction: CardDirection;
+  promptKnown: string;
+  optionsLearning: readonly string[];
+  optionsLexemes: readonly LexemeDraftFields[];
+  correctIndex: number;
   appearance: CardAppearanceDraft;
 };
 
@@ -97,7 +131,9 @@ export type CardDraft =
   | SoundCardDraft
   | TimedCardDraft
   | KeyboardCardDraft
-  | DrawCardDraft;
+  | DrawCardDraft
+  | ToneCardDraft
+  | ReadingCardDraft;
 
 export type EditableCardKind = CardKind;
 
@@ -109,6 +145,8 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   timed: 'На время',
   keyboard: 'Клавиатура',
   draw: 'Рисование',
+  tone: 'Тон',
+  reading: 'Чтение (полифония)',
 };
 
 export const CARD_KINDS: readonly CardKind[] = [
@@ -119,6 +157,8 @@ export const CARD_KINDS: readonly CardKind[] = [
   'timed',
   'keyboard',
   'draw',
+  'tone',
+  'reading',
 ];
 
 export const emptyLexemeCardDraft = (): LexemeCardDraft => ({

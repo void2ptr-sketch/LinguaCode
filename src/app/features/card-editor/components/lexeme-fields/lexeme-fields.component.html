@@ -53,6 +53,26 @@
       <mat-label>IPA</mat-label>
       <input matInput [ngModel]="fields().ipa" (ngModelChange)="updateField('ipa', $event)" />
       <mat-hint>Одна транскрипция или BrE|θɔːt; AmE|θɑːt</mat-hint>
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="IPA из слова (en)"
+        [disabled]="!fields().primary.trim()"
+        (click)="fillIpaFromEnglish()"
+      >
+        <mat-icon>translate</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matSuffix
+        type="button"
+        aria-label="IPA из пиньинь"
+        [disabled]="!fields().pinyin.trim()"
+        (click)="fillIpaFromPinyin()"
+      >
+        <mat-icon>auto_fix_high</mat-icon>
+      </button>
     </mat-form-field>
 
     @if (!compact()) {

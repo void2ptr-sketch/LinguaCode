@@ -1,0 +1,23 @@
+@use '../quiz-card';
+
+.tone-card__base {
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+}
+
+.quiz-card__options--tones .option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 5.5rem;
+}
+
+.tone-card__pinyin {
+  font-size: 1.35rem;
+  line-height: 1.2;
+}
+
+.tone-card__label {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}

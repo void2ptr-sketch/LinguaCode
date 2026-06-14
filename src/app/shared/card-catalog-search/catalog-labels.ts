@@ -20,6 +20,8 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   timed: 'На время',
   keyboard: 'Клавиатура',
   draw: 'Рисование',
+  tone: 'Тон',
+  reading: 'Чтение (полифония)',
 };
 
 export const CARD_KINDS: readonly CardKind[] = [
@@ -30,6 +32,8 @@ export const CARD_KINDS: readonly CardKind[] = [
   'timed',
   'keyboard',
   'draw',
+  'tone',
+  'reading',
 ];
 
 export const CONTENT_LANGUAGES = contentLanguages();

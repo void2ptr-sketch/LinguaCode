@@ -89,7 +89,45 @@
       "title": "Рисование",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "promptKnown": "Нарисуйте символ, связанный со словом Hello",
-      "referenceHintKnown": "Приветствие"
+      "referenceHintKnown": "Приветствие",
+      "practiceMode": "freehand"
+    },
+    {
+      "id": "draw-ren-1",
+      "kind": "draw",
+      "title": "Иероглиф 人 — порядок черт",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Нарисуйте иероглиф «人» (человек)",
+      "referenceHintKnown": "Две черты: слева направо вниз, затем справа налево",
+      "practiceMode": "stroke-order",
+      "targetCharacter": "人",
+      "promptLexeme": {
+        "primary": "人",
+        "script": "hani",
+        "pinyin": "rén",
+        "palladius": "жэнь"
+      },
+      "strokeGuides": [
+        { "order": 1, "path": "M 35 12 L 65 88" },
+        { "order": 2, "path": "M 65 12 L 35 88" }
+      ]
+    },
+    {
+      "id": "draw-hao-1",
+      "kind": "draw",
+      "title": "Иероглиф 好 — радикалы",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Нарисуйте иероглиф «好» (хорошо)",
+      "referenceHintKnown": "Слева 女, справа 子",
+      "practiceMode": "radicals",
+      "targetCharacter": "好",
+      "radicalHint": "女 + 子",
+      "promptLexeme": {
+        "primary": "好",
+        "script": "hani",
+        "pinyin": "hǎo",
+        "palladius": "хао"
+      }
     },
     {
       "id": "select-zh-1",
@@ -148,6 +186,88 @@
         },
         { "primary": "through", "script": "latn", "ipa": "θruː" },
         { "primary": "taught", "script": "latn", "ipa": "tɔːt" }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "keyboard-en-ipa-1",
+      "kind": "keyboard",
+      "title": "Hello (IPA ввод)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Введите IPA-транскрипцию слова «Hello»",
+      "promptLexeme": {
+        "primary": "Hello",
+        "script": "latn",
+        "ipa": "həˈləʊ"
+      },
+      "acceptedAnswersKnown": ["həˈləʊ", "həˈloʊ"],
+      "answerMode": "ipa"
+    },
+    {
+      "id": "keyboard-zh-ipa-1",
+      "kind": "keyboard",
+      "title": "你好 (IPA из пиньинь)",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Введите IPA для «你好» (nǐ hǎo)",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+      },
+      "acceptedAnswersKnown": ["ni˨˩˦ xaʊ˨˩˦"],
+      "answerMode": "ipa"
+    },
+    {
+      "id": "keyboard-zh-pinyin-1",
+      "kind": "keyboard",
+      "title": "你好 — ввод пиньинь",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Введите пиньинь для «你好»",
+      "promptLexeme": {
+        "primary": "你好",
+        "script": "hani",
+        "pinyin": "nǐ hǎo",
+        "palladius": "ни хао"
+      },
+      "acceptedAnswersKnown": ["nǐ hǎo", "ni hao"],
+      "answerMode": "pinyin"
+    },
+    {
+      "id": "tone-ma-1",
+      "kind": "tone",
+      "title": "Тон: 妈",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тон у иероглифа «妈»?",
+      "promptLexeme": {
+        "primary": "妈",
+        "script": "hani",
+        "pinyin": "mā"
+      },
+      "syllableBase": "ma",
+      "toneOptions": [1, 2, 3, 4],
+      "correctIndex": 0
+    },
+    {
+      "id": "reading-xing-1",
+      "kind": "reading",
+      "title": "Полифония: 行",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Как читается «行» в слове «银行»?",
+      "promptLexeme": {
+        "primary": "银行",
+        "script": "hani",
+        "pinyin": "yínháng"
+      },
+      "optionsLearning": ["háng", "xíng"],
+      "optionsLexemes": [
+        { "primary": "háng", "script": "latn", "pinyin": "háng", "palladius": "хан" },
+        { "primary": "xíng", "script": "latn", "pinyin": "xíng", "palladius": "син" }
       ],
       "correctIndex": 0
     }

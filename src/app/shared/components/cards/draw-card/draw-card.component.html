@@ -1,13 +1,36 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>{{ card().promptKnown }}</mat-card-subtitle>
+    <mat-card-subtitle>
+      @if (card().promptLexeme) {
+        <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+      } @else {
+        {{ card().promptKnown }}
+      }
+    </mat-card-subtitle>
   </mat-card-header>
 
-  <mat-card-content>
-    <div class="draw-area">
-      <p>Нарисуйте: {{ card().referenceHintKnown }}</p>
-    </div>
+  <mat-card-content class="draw-card__content">
+    <p class="draw-card__hint">{{ card().referenceHintKnown }}</p>
+    <p class="draw-card__mode">{{ practiceLabel() }}</p>
+
+    @if (radicalHint(); as radicals) {
+      <p class="draw-card__radicals">
+        <mat-icon inline>account_tree</mat-icon>
+        Состав: <strong>{{ radicals }}</strong>
+      </p>
+    }
+
+    @if (practiceMode() === 'stroke-order' && strokeGuides().length > 0) {
+      <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
+    }
+
+    <app-draw-canvas
+      [ghostCharacter]="ghostCharacter()"
+      [strokeGuides]="strokeGuides()"
+      [disabled]="feedback() !== null"
+      (strokesChange)="onStrokesChange($event)"
+    />
   </mat-card-content>
 
   @if (feedback() === 'correct') {
@@ -19,7 +42,8 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="drawSubmitted()" (click)="submitDrawing()">
+      <button mat-button type="button" [disabled]="drawSubmitted()" (click)="tryAgain()">Сбросить</button>
+      <button mat-flat-button type="button" [disabled]="!hasStrokes() || drawSubmitted()" (click)="submitDrawing()">
         Готово
       </button>
       <button mat-flat-button type="button" [disabled]="!drawSubmitted()" (click)="checkAnswer.emit()">

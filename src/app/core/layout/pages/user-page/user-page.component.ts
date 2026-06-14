@@ -7,12 +7,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTabsModule } from '@angular/material/tabs';
 import type {
   ContentLanguage,
   RomanizationSystem,
   UserLanguagePairEntry,
+  UserLanguagePairSettings,
   UserPreferences,
 } from '../../../models';
+import {
+  resolveCjkLearningForPair,
+  resolvePhoneticForPair,
+} from '../../../data/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
 import { UserStore } from '../../../state';
 import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
@@ -28,6 +34,7 @@ import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/languag
     MatButtonModule,
     MatIconModule,
     MatSlideToggleModule,
+    MatTabsModule,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss',
@@ -39,7 +46,6 @@ export class UserPageComponent {
   readonly preferences = this.userStore.preferences;
   readonly languagePairs = this.userStore.languagePairs;
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
-  readonly languagePair = this.userStore.languagePair;
   readonly languages = contentLanguages();
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
@@ -48,11 +54,14 @@ export class UserPageComponent {
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
   readonly knownLanguageDraft = signal<ContentLanguage>('ru');
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
-  readonly displayRomanizationDraft = signal<RomanizationSystem>(
-    this.preferences().cjkLearning.displayRomanization,
-  );
-  readonly showIpaDraft = signal(this.preferences().phonetic.showIpa);
-  readonly ipaVariantLabelDraft = signal(this.preferences().phonetic.ipaVariantLabel ?? '');
+  readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
+  readonly displayRomanizationDraft = signal<RomanizationSystem>('pinyin');
+  readonly showIpaDraft = signal(false);
+  readonly ipaVariantLabelDraft = signal('');
+
+  constructor() {
+    this.syncPairSettingsDrafts();
+  }
 
   readonly languagePairInvalid = computed(
     () => this.knownLanguageDraft() === this.learningLanguageDraft(),
@@ -60,12 +69,17 @@ export class UserPageComponent {
 
   readonly canRemovePair = computed(() => this.languagePairs().length > 1);
 
-  readonly showCjkPreferences = computed(() => {
-    const pair = this.languagePair();
-    return shouldShowPalladius(pair.known, pair.learning);
+  readonly settingsEntry = computed(() => {
+    const id = this.settingsPairIdDraft();
+    return this.languagePairs().find((entry) => entry.id === id) ?? this.languagePairs()[0] ?? null;
   });
 
-  readonly showPhoneticPreferences = computed(() => this.languagePair().learning === 'en');
+  readonly showCjkPreferences = computed(() => {
+    const entry = this.settingsEntry();
+    return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
+  });
+
+  readonly showPhoneticPreferences = computed(() => this.settingsEntry()?.pair.learning === 'en');
 
   readonly romanizationOptions = computed((): readonly { value: RomanizationSystem; label: string }[] => {
     const options: { value: RomanizationSystem; label: string }[] = [
@@ -88,14 +102,30 @@ export class UserPageComponent {
     return this.userStore.isActiveEntry(entry);
   }
 
+  isSettingsTarget(entry: UserLanguagePairEntry): boolean {
+    return entry.id === this.settingsPairIdDraft();
+  }
+
+  selectPairForSettings(id: string): void {
+    this.settingsPairIdDraft.set(id);
+    this.syncPairSettingsDrafts();
+  }
+
   setActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
-    this.syncPreferenceDrafts();
+    this.settingsPairIdDraft.set(id);
+    this.syncPairSettingsDrafts();
   }
 
   removePair(id: string): void {
+    const wasSettingsTarget = this.settingsPairIdDraft() === id;
     this.userStore.removeLanguagePair(id);
-    this.syncPreferenceDrafts();
+
+    if (wasSettingsTarget) {
+      this.settingsPairIdDraft.set(this.activeLanguagePairId());
+    }
+
+    this.syncPairSettingsDrafts();
   }
 
   addPair(): void {
@@ -107,7 +137,8 @@ export class UserPageComponent {
       known: this.knownLanguageDraft(),
       learning: this.learningLanguageDraft(),
     });
-    this.syncPreferenceDrafts();
+    this.settingsPairIdDraft.set(this.activeLanguagePairId());
+    this.syncPairSettingsDrafts();
   }
 
   saveProfile(): void {
@@ -115,21 +146,42 @@ export class UserPageComponent {
     this.userStore.updatePreferences({
       theme: this.themeDraft(),
       fontSize: this.fontSizeDraft(),
-      cjkLearning: {
-        ...this.preferences().cjkLearning,
+    });
+
+    const entry = this.settingsEntry();
+    if (!entry) {
+      return;
+    }
+
+    const patch: Partial<UserLanguagePairSettings> = {};
+
+    if (this.showCjkPreferences()) {
+      patch.cjkLearning = {
+        ...resolveCjkLearningForPair(entry),
         displayRomanization: this.displayRomanizationDraft(),
-      },
-      phonetic: {
-        ...this.preferences().phonetic,
+      };
+    }
+
+    if (this.showPhoneticPreferences()) {
+      patch.phonetic = {
+        ...resolvePhoneticForPair(entry),
         showIpa: this.showIpaDraft(),
         ipaVariantLabel: this.ipaVariantLabelDraft().trim() || undefined,
-      },
-    });
+      };
+    }
+
+    if (patch.cjkLearning || patch.phonetic) {
+      this.userStore.updateLanguagePairSettings(entry.id, patch);
+    }
   }
 
-  private syncPreferenceDrafts(): void {
-    this.displayRomanizationDraft.set(this.preferences().cjkLearning.displayRomanization);
-    this.showIpaDraft.set(this.preferences().phonetic.showIpa);
-    this.ipaVariantLabelDraft.set(this.preferences().phonetic.ipaVariantLabel ?? '');
+  private syncPairSettingsDrafts(): void {
+    const entry = this.settingsEntry();
+    const cjk = resolveCjkLearningForPair(entry);
+    const phonetic = resolvePhoneticForPair(entry);
+
+    this.displayRomanizationDraft.set(cjk.displayRomanization);
+    this.showIpaDraft.set(phonetic.showIpa);
+    this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
   }
 }

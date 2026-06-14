@@ -7,6 +7,7 @@ import type {
   ContentLanguage,
   FacetCount,
 } from '../models';
+import { normalizeIpa } from './ipa-normalize.utils';
 
 export type CardSearchFilterField =
   | 'query'
@@ -26,6 +27,8 @@ const CARD_KINDS: readonly CardKind[] = [
   'timed',
   'keyboard',
   'draw',
+  'tone',
+  'reading',
 ];
 
 export function toSearchFilters(
@@ -36,15 +39,33 @@ export function toSearchFilters(
   return filters;
 }
 
+function matchesSearchQuery(entry: CardIndexEntry, rawQuery: string): boolean {
+  const query = rawQuery.trim();
+  if (!query) {
+    return true;
+  }
+
+  const queryLower = query.toLowerCase();
+  const textHaystack = `${entry.title} ${entry.tags.join(' ')}`.toLowerCase();
+  if (textHaystack.includes(queryLower)) {
+    return true;
+  }
+
+  const queryIpa = normalizeIpa(query);
+  if (!queryIpa) {
+    return false;
+  }
+
+  return entry.ipaReadings.some((reading) => normalizeIpa(reading).includes(queryIpa));
+}
+
 export function matchesCardIndexEntry(
   entry: CardIndexEntry,
   filters: Omit<CardSearchCriteria, 'page'>,
   ignore?: CardSearchFilterField,
 ): boolean {
   if (ignore !== 'query' && filters.query?.trim()) {
-    const query = filters.query.trim().toLowerCase();
-    const haystack = `${entry.title} ${entry.tags.join(' ')}`.toLowerCase();
-    if (!haystack.includes(query)) {
+    if (!matchesSearchQuery(entry, filters.query)) {
       return false;
     }
   }

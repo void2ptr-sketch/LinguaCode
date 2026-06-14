@@ -27,6 +27,7 @@ describe('UserStore', () => {
     expect(store.isActiveEntry(store.languagePairs()[0])).toBeTrue();
     expect(store.cjkLearning().displayRomanization).toBe('pinyin');
     expect(store.phonetic().showIpa).toBeFalse();
+    expect(store.languagePairs()[0].settings?.phonetic).toBeDefined();
   });
 
   it('should update display name', () => {
@@ -66,6 +67,9 @@ describe('UserStore', () => {
 
     expect(store.languagePairs()).toHaveSize(2);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
+
+    const zhEntry = store.languagePairs().find((entry) => entry.pair.learning === 'zh');
+    expect(zhEntry?.settings?.cjkLearning?.displayRomanization).toBe('pinyin');
   });
 
   it('should not duplicate language pairs when adding existing pair', () => {
@@ -76,14 +80,27 @@ describe('UserStore', () => {
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
-  it('should switch active language pair', () => {
+  it('should switch active language pair and resolve pair-specific settings', () => {
     store.addLanguagePair({ known: 'ru', learning: 'zh' });
-    const firstId = store.languagePairs().find((entry) => entry.pair.learning === 'en')?.id;
+    const zhId = store.languagePairs().find((entry) => entry.pair.learning === 'zh')!.id;
 
-    expect(firstId).toBeTruthy();
-    store.setActiveLanguagePair(firstId!);
+    store.updateLanguagePairSettings(zhId, {
+      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: true },
+    });
 
-    expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
+    const enId = store.languagePairs().find((entry) => entry.pair.learning === 'en')!.id;
+    store.updateLanguagePairSettings(enId, {
+      phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['orthography', 'ipa'] },
+    });
+
+    store.setActiveLanguagePair(zhId);
+    expect(store.cjkLearning().displayRomanization).toBe('palladius');
+    expect(store.phonetic().showIpa).toBeFalse();
+
+    store.setActiveLanguagePair(enId);
+    expect(store.cjkLearning().displayRomanization).toBe('pinyin');
+    expect(store.phonetic().showIpa).toBeTrue();
+    expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });
 
   it('should remove language pair and reassign active id', () => {
@@ -116,13 +133,11 @@ describe('UserStore', () => {
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
-  it('should update cjk and phonetic preferences', () => {
-    store.updatePreferences({
-      cjkLearning: { displayRomanization: 'palladius', answerRomanization: ['palladius'], showTones: true },
+  it('should update pair-specific cjk and phonetic settings', () => {
+    store.updateActiveLanguagePairSettings({
       phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['orthography', 'ipa'] },
     });
 
-    expect(store.cjkLearning().displayRomanization).toBe('palladius');
     expect(store.phonetic().showIpa).toBeTrue();
     expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });

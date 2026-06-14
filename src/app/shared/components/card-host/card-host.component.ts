@@ -5,10 +5,12 @@ import { CardFeedback } from '../../types';
 import { DrawCardComponent } from '../cards/draw-card/draw-card.component';
 import { KeyboardCardComponent } from '../cards/keyboard-card/keyboard-card.component';
 import { MemoryCardComponent } from '../cards/memory-card/memory-card.component';
+import { ReadingCardComponent } from '../cards/reading-card/reading-card.component';
 import { SelectCardComponent } from '../cards/select-card/select-card.component';
 import { SoundCardComponent } from '../cards/sound-card/sound-card.component';
 import { SymbolCardComponent } from '../cards/symbol-card/symbol-card.component';
 import { TimedCardComponent } from '../cards/timed-card/timed-card.component';
+import { ToneCardComponent } from '../cards/tone-card/tone-card.component';
 
 @Component({
   selector: 'app-card-host',
@@ -20,6 +22,8 @@ import { TimedCardComponent } from '../cards/timed-card/timed-card.component';
     TimedCardComponent,
     KeyboardCardComponent,
     DrawCardComponent,
+    ToneCardComponent,
+    ReadingCardComponent,
   ],
   templateUrl: './card-host.component.html',
 })

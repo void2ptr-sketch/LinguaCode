@@ -17,5 +17,7 @@ export type CardIndexEntry = {
   learningLanguage: ContentLanguage;
   difficulty: CardDifficulty;
   tags: readonly string[];
+  /** Нормализованные IPA-транскрипции для поиска в каталоге. */
+  ipaReadings: readonly string[];
   updatedAt: string;
 };

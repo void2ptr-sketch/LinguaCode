@@ -7,7 +7,9 @@ export type CardKind =
   | 'sound'
   | 'timed'
   | 'keyboard'
-  | 'draw';
+  | 'draw'
+  | 'tone'
+  | 'reading';
 
 export type CardAppearance = {
   theme: string;
@@ -21,7 +23,8 @@ export type CardBase = {
   appearance: CardAppearance;
 };
 
-import type { PhoneticLexeme } from './phonetic-content.types';
+import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';
+import type { DrawPracticeMode, DrawStrokeGuide } from './draw-practice.types';
 
 export type MemoryPair = {
   known: string;
@@ -83,19 +86,47 @@ export type TimedCard = CardBase &
     timeLimitSec: number;
   };
 
+export type KeyboardAnswerMode = 'text' | 'ipa' | 'pinyin' | 'auto';
+
 export type KeyboardCard = CardBase &
   LexemeCardFields & {
     kind: 'keyboard';
     direction: CardDirection;
     promptKnown: string;
     acceptedAnswersKnown: readonly string[];
+    answerMode?: KeyboardAnswerMode;
   };
 
-export type DrawCard = CardBase & {
-  kind: 'draw';
-  promptKnown: string;
-  referenceHintKnown: string;
-};
+export type DrawCard = CardBase &
+  LexemeCardFields & {
+    kind: 'draw';
+    promptKnown: string;
+    referenceHintKnown: string;
+    practiceMode?: DrawPracticeMode;
+    targetCharacter?: string;
+    strokeGuides?: readonly DrawStrokeGuide[];
+    radicalHint?: string;
+  };
+
+export type ToneCard = CardBase &
+  LexemeCardFields & {
+    kind: 'tone';
+    direction: CardDirection;
+    promptKnown: string;
+    syllableBase: string;
+    toneOptions: readonly ToneMark[];
+    correctIndex: number;
+  };
+
+export type ReadingCard = CardBase &
+  LexemeCardFields & {
+    kind: 'reading';
+    direction: CardDirection;
+    promptKnown: string;
+    optionsLearning: readonly string[];
+    optionsLexemes?: readonly PhoneticLexeme[];
+    correctIndex: number;
+  };
 
 export type Card =
   | SelectCard
@@ -104,15 +135,18 @@ export type Card =
   | SoundCard
   | TimedCard
   | KeyboardCard
-  | DrawCard;
+  | DrawCard
+  | ToneCard
+  | ReadingCard;
 
-export type OptionCard = SelectCard | SymbolCard | SoundCard | TimedCard;
+export type OptionCard = SelectCard | SymbolCard | SoundCard | TimedCard | ReadingCard;
 
 export const isOptionCard = (card: Card): card is OptionCard => {
   return (
     card.kind === 'select' ||
     card.kind === 'symbol' ||
     card.kind === 'sound' ||
-    card.kind === 'timed'
+    card.kind === 'timed' ||
+    card.kind === 'reading'
   );
 };

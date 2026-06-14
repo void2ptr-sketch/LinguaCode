@@ -1,0 +1,47 @@
+<mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
+  <mat-card-header>
+    <mat-card-title>{{ card().title }}</mat-card-title>
+    <mat-card-subtitle>
+      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+    </mat-card-subtitle>
+  </mat-card-header>
+
+  <mat-card-content class="quiz-card__syllable">
+    <span class="tone-card__base">{{ card().syllableBase }}</span>
+  </mat-card-content>
+
+  <mat-card-content class="quiz-card__options quiz-card__options--tones">
+    @for (tone of card().toneOptions; track tone; let index = $index) {
+      <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+        <span class="tone-card__pinyin">{{ tonedSyllable(tone) }}</span>
+        <span class="tone-card__label">{{ toneLabel(tone) }}</span>
+      </button>
+    }
+  </mat-card-content>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Верно!
+    </mat-card-content>
+  }
+
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Неверно. Правильный тон:
+      <strong>{{ toneLabel(card().toneOptions[card().correctIndex]) }}</strong>
+      ({{ tonedSyllable(card().toneOptions[card().correctIndex]) }})
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button mat-flat-button type="button" [disabled]="selectedIndex() === null" (click)="checkAnswer.emit()">
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

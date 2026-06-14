@@ -1,29 +1,135 @@
 import type { LanguagePair } from '../models';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
-import type { UserLanguagePairEntry, UserPreferences } from '../models/user.types';
+import type {
+  CjkLearningPreferences,
+  PhoneticPreferences,
+  UserLanguagePairEntry,
+  UserLanguagePairSettings,
+  UserPreferences,
+} from '../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../security';
 import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,
+  shouldShowPalladius,
 } from './phonetic-preferences.utils';
+import {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+} from '../models/phonetic-content.types';
 
 type LegacyUserPreferences = Partial<UserPreferences> & {
   languagePair?: Partial<LanguagePair>;
+  cjkLearning?: Partial<CjkLearningPreferences>;
+  phonetic?: Partial<PhoneticPreferences>;
 };
 
 const DEFAULT_THEME = 'azure-blue';
 const DEFAULT_FONT_SIZE: UserPreferences['fontSize'] = 'md';
 
+export function defaultSettingsForPair(pair: LanguagePair): UserLanguagePairSettings | undefined {
+  const settings: UserLanguagePairSettings = {};
+  let hasAny = false;
+
+  if (shouldShowPalladius(pair.known, pair.learning)) {
+    settings.cjkLearning = { ...DEFAULT_CJK_LEARNING_PREFERENCES };
+    hasAny = true;
+  }
+
+  if (pair.learning === 'en') {
+    settings.phonetic = { ...DEFAULT_PHONETIC_PREFERENCES };
+    hasAny = true;
+  }
+
+  return hasAny ? settings : undefined;
+}
+
+export function resolveCjkLearningForPair(
+  entry: UserLanguagePairEntry | null | undefined,
+): CjkLearningPreferences {
+  if (!entry || !shouldShowPalladius(entry.pair.known, entry.pair.learning)) {
+    return { ...DEFAULT_CJK_LEARNING_PREFERENCES };
+  }
+
+  return normalizeCjkLearningPreferences(entry.settings?.cjkLearning);
+}
+
+export function resolvePhoneticForPair(
+  entry: UserLanguagePairEntry | null | undefined,
+): PhoneticPreferences {
+  if (!entry || entry.pair.learning !== 'en') {
+    return { ...DEFAULT_PHONETIC_PREFERENCES };
+  }
+
+  return normalizePhoneticPreferences(entry.settings?.phonetic);
+}
+
+function normalizeEntrySettings(
+  pair: LanguagePair,
+  rawSettings?: Partial<UserLanguagePairSettings> | null,
+  legacy?: {
+    cjkLearning?: Partial<CjkLearningPreferences> | null;
+    phonetic?: Partial<PhoneticPreferences> | null;
+  },
+): UserLanguagePairSettings | undefined {
+  const settings: UserLanguagePairSettings = {};
+  let hasAny = false;
+
+  if (shouldShowPalladius(pair.known, pair.learning)) {
+    settings.cjkLearning = normalizeCjkLearningPreferences({
+      ...legacy?.cjkLearning,
+      ...rawSettings?.cjkLearning,
+    });
+    hasAny = true;
+  }
+
+  if (pair.learning === 'en') {
+    settings.phonetic = normalizePhoneticPreferences({
+      ...legacy?.phonetic,
+      ...rawSettings?.phonetic,
+    });
+    hasAny = true;
+  }
+
+  return hasAny ? settings : undefined;
+}
+
+export function normalizeLanguagePairSettings(
+  pair: LanguagePair,
+  raw?: Partial<UserLanguagePairSettings> | null,
+): UserLanguagePairSettings | undefined {
+  return normalizeEntrySettings(pair, raw);
+}
+
+export function mergeLanguagePairSettings(
+  pair: LanguagePair,
+  current: UserLanguagePairSettings | undefined,
+  patch: Partial<UserLanguagePairSettings>,
+): UserLanguagePairSettings | undefined {
+  return normalizeEntrySettings(pair, {
+    cjkLearning: patch.cjkLearning
+      ? { ...current?.cjkLearning, ...patch.cjkLearning }
+      : current?.cjkLearning,
+    phonetic: patch.phonetic
+      ? { ...current?.phonetic, ...patch.phonetic }
+      : current?.phonetic,
+  });
+}
+
 export function createUserLanguagePairEntry(
   pair?: Partial<LanguagePair> | null,
   id?: string,
   createdAt?: string,
+  settings?: UserLanguagePairSettings,
 ): UserLanguagePairEntry {
+  const normalizedPair = normalizeLanguagePair(pair);
+
   return {
     id: id ?? crypto.randomUUID(),
-    pair: normalizeLanguagePair(pair),
+    pair: normalizedPair,
     createdAt: createdAt ?? new Date().toISOString(),
+    settings: settings ?? defaultSettingsForPair(normalizedPair),
   };
 }
 
@@ -39,7 +145,13 @@ export function createDefaultLanguagePairPreferences(): Pick<
   };
 }
 
-function normalizeLanguagePairEntry(raw: unknown): UserLanguagePairEntry | null {
+function normalizeLanguagePairEntry(
+  raw: unknown,
+  legacy?: {
+    cjkLearning?: Partial<CjkLearningPreferences> | null;
+    phonetic?: Partial<PhoneticPreferences> | null;
+  },
+): UserLanguagePairEntry | null {
   if (!raw || typeof raw !== 'object') {
     return null;
   }
@@ -62,10 +174,18 @@ function normalizeLanguagePairEntry(raw: unknown): UserLanguagePairEntry | null 
     return null;
   }
 
+  const normalizedPair = { known: pair.known, learning: pair.learning } as LanguagePair;
+  const settings = normalizeEntrySettings(
+    normalizedPair,
+    candidate.settings as Partial<UserLanguagePairSettings> | undefined,
+    legacy,
+  );
+
   return createUserLanguagePairEntry(
-    { known: pair.known, learning: pair.learning },
+    normalizedPair,
     candidate.id,
     typeof candidate.createdAt === 'string' ? candidate.createdAt : undefined,
+    settings,
   );
 }
 
@@ -94,12 +214,17 @@ export function normalizeUserPreferences(
       ? preferences.fontSize
       : DEFAULT_FONT_SIZE;
 
+  const legacy = {
+    cjkLearning: preferences?.cjkLearning,
+    phonetic: preferences?.phonetic,
+  };
+
   const defaults = createDefaultLanguagePairPreferences();
 
   if (Array.isArray(preferences?.languagePairs)) {
     const normalizedEntries = dedupeLanguagePairEntries(
       preferences.languagePairs
-        .map((entry) => normalizeLanguagePairEntry(entry))
+        .map((entry) => normalizeLanguagePairEntry(entry, legacy))
         .filter((entry): entry is UserLanguagePairEntry => entry !== null),
     );
 
@@ -108,8 +233,6 @@ export function normalizeUserPreferences(
         theme,
         fontSize,
         ...defaults,
-        cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
-        phonetic: normalizePhoneticPreferences(preferences?.phonetic),
       };
     }
 
@@ -124,21 +247,22 @@ export function normalizeUserPreferences(
       fontSize,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
-      cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
-      phonetic: normalizePhoneticPreferences(preferences?.phonetic),
     };
   }
 
   if (preferences?.languagePair) {
-    const entry = createUserLanguagePairEntry(preferences.languagePair);
+    const entry = createUserLanguagePairEntry(
+      preferences.languagePair,
+      undefined,
+      undefined,
+      normalizeEntrySettings(normalizeLanguagePair(preferences.languagePair), undefined, legacy),
+    );
 
     return {
       theme,
       fontSize,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
-      cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
-      phonetic: normalizePhoneticPreferences(preferences?.phonetic),
     };
   }
 
@@ -146,8 +270,6 @@ export function normalizeUserPreferences(
     theme,
     fontSize,
     ...defaults,
-    cjkLearning: normalizeCjkLearningPreferences(preferences?.cjkLearning),
-    phonetic: normalizePhoneticPreferences(preferences?.phonetic),
   };
 }
 
