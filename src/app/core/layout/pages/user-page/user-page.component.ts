@@ -1,6 +1,7 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -8,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type {
+  AppColorScheme,
   ContentLanguage,
   RomanizationSystem,
   UserLanguagePairEntry,
@@ -39,6 +41,7 @@ import {
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatIconModule,
     MatTabsModule,
     CourseDisplaySettingsMatrixComponent,
@@ -59,6 +62,7 @@ export class UserPageComponent implements OnInit {
   readonly nameDraft = signal(this.displayName());
   readonly themeDraft = signal(this.preferences().theme);
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
+  readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme);
   readonly knownLanguageDraft = signal<ContentLanguage>('ru');
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
   readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
@@ -179,6 +183,7 @@ export class UserPageComponent implements OnInit {
     this.userStore.updatePreferences({
       theme: this.themeDraft(),
       fontSize: this.fontSizeDraft(),
+      colorScheme: this.colorSchemeDraft(),
     });
 
     const entry = this.settingsEntry();

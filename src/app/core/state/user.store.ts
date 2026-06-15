@@ -12,6 +12,7 @@ import {
   resolvePhoneticForPair,
 } from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
+import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
 import type {
   LanguagePair,
   LearningSessionPreferences,
@@ -28,6 +29,7 @@ const DEFAULT_USER: User = {
   preferences: {
     theme: 'azure-blue',
     fontSize: 'md',
+    colorScheme: 'light',
     ...createDefaultLanguagePairPreferences(),
   },
 };
@@ -78,6 +80,10 @@ export class UserStore {
 
       if (preferences.fontSize !== undefined && isAllowedFontSize(preferences.fontSize)) {
         nextPreferences.fontSize = preferences.fontSize;
+      }
+
+      if (preferences.colorScheme !== undefined) {
+        nextPreferences.colorScheme = normalizeColorScheme(preferences.colorScheme);
       }
 
       return {

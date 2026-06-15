@@ -12,7 +12,7 @@
 }
 
 .draw-canvas__canvas {
-  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, white);
+  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, var(--mat-sys-surface-container-lowest));
   border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
   border-radius: 0.5rem;
   display: block;

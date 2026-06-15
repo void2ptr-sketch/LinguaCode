@@ -21,6 +21,7 @@ describe('UserStore', () => {
   it('should expose default user with active language pair', () => {
     expect(store.displayName()).toBe('Ученик');
     expect(store.preferences().fontSize).toBe('md');
+    expect(store.preferences().colorScheme).toBe('light');
     expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
@@ -53,6 +54,14 @@ describe('UserStore', () => {
   it('should ignore invalid font size', () => {
     store.updatePreferences({ fontSize: 'xl' as CardAppearance['fontSize'] });
     expect(store.preferences().fontSize).toBe('md');
+  });
+
+  it('should update color scheme preference', () => {
+    store.updatePreferences({ colorScheme: 'dark' });
+    expect(store.preferences().colorScheme).toBe('dark');
+
+    store.updatePreferences({ colorScheme: 'invalid' as 'light' });
+    expect(store.preferences().colorScheme).toBe('light');
   });
 
   it('should update appearance preferences partially', () => {
