@@ -1,7 +1,7 @@
 <section class="course-catalog-page">
   <header class="course-catalog-page__header">
     <h1>Каталог курсов</h1>
-    <p>Опубликованные учебные программы для активной языковой пары.</p>
+    <p>Опубликованные учебные программы для активного курса.</p>
   </header>
 
   @if (loading() && items().length === 0) {
@@ -19,8 +19,8 @@
   } @else if (items().length === 0) {
     <mat-card class="course-catalog-page__message">
       <mat-card-content>
-        Опубликованных курсов для текущей пары пока нет. Смените пару в
-        <a routerLink="/user">профиле</a> или создайте курс в
+        Опубликованных программ для активного курса пока нет. Смените курс в
+        <a routerLink="/user">профиле</a> или создайте программу в
         <a routerLink="/tools/courses">конструкторе</a>.
       </mat-card-content>
     </mat-card>

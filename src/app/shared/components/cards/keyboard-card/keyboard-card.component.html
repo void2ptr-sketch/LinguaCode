@@ -2,7 +2,11 @@
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
     <mat-card-subtitle>
-      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+      <app-lexeme-display
+        surface="prompt"
+        [lexeme]="card().promptLexeme"
+        [fallbackText]="card().promptKnown"
+      />
     </mat-card-subtitle>
   </mat-card-header>
 
@@ -44,6 +48,7 @@
       <mat-icon>cancel</mat-icon>
       Неверно. Правильный ответ:
       <app-lexeme-display
+        surface="answer"
         [lexeme]="card().promptLexeme"
         [fallbackText]="correctLabel() ?? ''"
         [inline]="true"

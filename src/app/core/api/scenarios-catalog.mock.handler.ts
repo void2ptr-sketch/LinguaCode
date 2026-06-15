@@ -181,7 +181,7 @@ export class ScenariosCatalogMockHandler {
       for (const cardId of source.cardIds) {
         const entry = await this.cardsHandler.getIndexEntry(cardId);
         if (entry && !cardIndexMatchesPair(entry, languagePair)) {
-          throw badRequest(`Карточка ${cardId} не соответствует паре языков сценария`);
+          throw badRequest(`Карточка ${cardId} не соответствует курсу сценария`);
         }
       }
     }

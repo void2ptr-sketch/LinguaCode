@@ -1,0 +1,88 @@
+@if (showCjk() || showPhonetic()) {
+  <div class="display-matrix" role="grid" aria-describedby="display-matrix-hint">
+    <p id="display-matrix-hint" class="display-matrix__hint">
+      Задание — текст вопроса на карточке; ответы — варианты, плитки memory и блок «Правильный ответ».
+      В одной колонке можно включить несколько систем; снимите лишние галочки.
+    </p>
+
+    <div class="display-matrix__header" role="row">
+      <span class="display-matrix__header-label" role="rowheader">Система</span>
+      <span class="display-matrix__header-col display-matrix__header-col--prompt" role="columnheader">Задание</span>
+      <span class="display-matrix__header-col display-matrix__header-col--answer" role="columnheader">Ответы</span>
+    </div>
+
+    @if (showCjk()) {
+      @for (option of romanizationOptions(); track option.value) {
+        <div class="display-matrix__row" role="row">
+          <span class="display-matrix__label" role="rowheader">{{ option.label }}</span>
+
+          <div class="display-matrix__prompt" role="gridcell">
+            <mat-checkbox
+              [checked]="isPromptRomanizationEnabled(option.value)"
+              (click)="onPromptRomanizationClick(option.value, $event)"
+              [attr.aria-label]="promptRomanizationAriaLabel(option)"
+            />
+          </div>
+
+          <div class="display-matrix__answer" role="gridcell">
+            <mat-checkbox
+              [checked]="isAnswerRomanizationEnabled(option.value)"
+              (click)="onAnswerRomanizationClick(option.value, $event)"
+              [attr.aria-label]="answerRomanizationAriaLabel(option)"
+            />
+          </div>
+        </div>
+      }
+    }
+
+    @if (showPhonetic()) {
+      <div class="display-matrix__row" role="row">
+        <span class="display-matrix__label" role="rowheader">IPA</span>
+
+        <div class="display-matrix__prompt" role="gridcell">
+          <mat-checkbox
+            [checked]="showIpa()"
+            (click)="onShowIpaClick($event)"
+            [attr.aria-label]="'IPA в задании' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+          />
+        </div>
+
+        <div class="display-matrix__answer" role="gridcell">
+          <mat-checkbox
+            [checked]="isAnswerModeEnabled('ipa')"
+            (click)="onAnswerModeClick('ipa', $event)"
+            [attr.aria-label]="'IPA в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+          />
+        </div>
+      </div>
+
+      <div class="display-matrix__row" role="row">
+        <span class="display-matrix__label" role="rowheader">Орфография</span>
+
+        <div class="display-matrix__prompt display-matrix__prompt--empty" role="gridcell" aria-hidden="true">—</div>
+
+        <div class="display-matrix__answer" role="gridcell">
+          <mat-checkbox
+            [checked]="isAnswerModeEnabled('orthography')"
+            (click)="onAnswerModeClick('orthography', $event)"
+            [attr.aria-label]="'Орфография в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+          />
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (showPhonetic() && showIpaVariantField()) {
+    <mat-form-field appearance="outline" class="display-matrix__ipa-label">
+      <mat-label>Вариант IPA (label)</mat-label>
+      <input
+        matInput
+        placeholder="BrE / AmE"
+        [ngModel]="ipaVariantLabel()"
+        (ngModelChange)="ipaVariantLabel.set($event)"
+        name="ipaVariantLabel"
+      />
+      <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>
+    </mat-form-field>
+  }
+}

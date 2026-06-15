@@ -2,12 +2,10 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import type {
   ContentLanguage,
@@ -24,25 +22,29 @@ import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../models/phonetic-content.types';
 import { UserStore } from '../../../state';
 import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
-
-type RomanizationOption = {
-  value: RomanizationSystem;
-  label: string;
-};
+import {
+  CourseDisplaySettingsMatrixComponent,
+  type RomanizationOption,
+} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+import {
+  normalizeAnswerModesForSave,
+  normalizeRomanizationsForSave,
+  type AnswerDisplayMode,
+} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import { DEFAULT_CJK_LEARNING_PREFERENCES } from '../../../models/phonetic-content.types';
 
 @Component({
   selector: 'app-user-page',
   imports: [
     FormsModule,
     MatCardModule,
-    MatCheckboxModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    MatSlideToggleModule,
     MatTabsModule,
+    CourseDisplaySettingsMatrixComponent,
   ],
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss',
@@ -64,8 +66,10 @@ export class UserPageComponent {
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
   readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
   readonly displayRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin']);
+  readonly answerRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin', 'palladius']);
   readonly showIpaDraft = signal(false);
   readonly ipaVariantLabelDraft = signal('');
+  readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
   readonly selectedTabIndex = signal(0);
 
   private static readonly pairSettingsTabIndex = 2;
@@ -85,6 +89,11 @@ export class UserPageComponent {
     return this.languagePairs().find((entry) => entry.id === id) ?? this.languagePairs()[0] ?? null;
   });
 
+  readonly settingsCourseLabel = computed(() => {
+    const entry = this.settingsEntry();
+    return entry ? this.entryLabel(entry) : '';
+  });
+
   readonly showCjkPreferences = computed(() => {
     const entry = this.settingsEntry();
     return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
@@ -94,6 +103,10 @@ export class UserPageComponent {
     const learning = this.settingsEntry()?.pair.learning;
     return learning === 'en' || learning === 'zh';
   });
+
+  readonly showDisplaySettings = computed(
+    () => this.showCjkPreferences() || this.showPhoneticPreferences(),
+  );
 
   readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
     const options: RomanizationOption[] = [
@@ -117,19 +130,6 @@ export class UserPageComponent {
 
   isActive(entry: UserLanguagePairEntry): boolean {
     return this.userStore.isActiveEntry(entry);
-  }
-
-  isRomanizationEnabled(system: RomanizationSystem): boolean {
-    return this.displayRomanizationsDraft().includes(system);
-  }
-
-  setRomanizationEnabled(system: RomanizationSystem, enabled: boolean): void {
-    const current = this.displayRomanizationsDraft();
-    const next = enabled
-      ? ROMANIZATION_DISPLAY_ORDER.filter((item) => current.includes(item) || item === system)
-      : current.filter((item) => item !== system);
-
-    this.displayRomanizationsDraft.set(next.length > 0 ? next : ['pinyin']);
   }
 
   onSettingsPairChange(id: string): void {
@@ -190,7 +190,14 @@ export class UserPageComponent {
     if (this.showCjkPreferences()) {
       patch.cjkLearning = {
         ...resolveCjkLearningForPair(entry),
-        displayRomanizations: [...this.displayRomanizationsDraft()],
+        displayRomanizations: normalizeRomanizationsForSave(
+          this.displayRomanizationsDraft(),
+          DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations,
+        ),
+        answerRomanization: normalizeRomanizationsForSave(
+          this.answerRomanizationsDraft(),
+          DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization,
+        ),
       };
     }
 
@@ -199,6 +206,7 @@ export class UserPageComponent {
         ...resolvePhoneticForPair(entry),
         showIpa: this.showIpaDraft(),
         ipaVariantLabel: this.ipaVariantLabelDraft().trim() || undefined,
+        answerModes: normalizeAnswerModesForSave(this.answerModesDraft()),
       };
     }
 
@@ -213,7 +221,9 @@ export class UserPageComponent {
     const phonetic = resolvePhoneticForPair(entry);
 
     this.displayRomanizationsDraft.set([...cjk.displayRomanizations]);
+    this.answerRomanizationsDraft.set([...cjk.answerRomanization]);
     this.showIpaDraft.set(phonetic.showIpa);
     this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
+    this.answerModesDraft.set([...phonetic.answerModes]);
   }
 }

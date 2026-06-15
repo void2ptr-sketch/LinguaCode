@@ -1,0 +1,63 @@
+.display-matrix {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.display-matrix__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.875rem;
+  grid-column: 1 / -1;
+  margin: 0 0 0.35rem;
+}
+
+.display-matrix__header,
+.display-matrix__row {
+  align-items: center;
+  display: grid;
+  gap: 0 0.75rem;
+  grid-template-areas: 'label prompt answer';
+  grid-template-columns: minmax(7rem, 1fr) 3.5rem 3.5rem;
+}
+
+.display-matrix__header-label,
+.display-matrix__label {
+  font-size: 0.875rem;
+  grid-area: label;
+}
+
+.display-matrix__header-col {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  justify-self: center;
+  text-align: center;
+}
+
+.display-matrix__header-col--prompt {
+  grid-area: prompt;
+}
+
+.display-matrix__header-col--answer {
+  grid-area: answer;
+}
+
+.display-matrix__prompt {
+  display: flex;
+  grid-area: prompt;
+  justify-content: center;
+}
+
+.display-matrix__answer {
+  display: flex;
+  grid-area: answer;
+  justify-content: center;
+}
+
+.display-matrix__prompt--empty {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 45%, transparent);
+  user-select: none;
+}
+
+.display-matrix__ipa-label {
+  margin-top: 0.5rem;
+  width: 100%;
+}

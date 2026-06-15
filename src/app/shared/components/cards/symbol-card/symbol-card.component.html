@@ -2,7 +2,11 @@
   <mat-card-header>
     <mat-card-title>{{ card().title }}</mat-card-title>
     <mat-card-subtitle>
-      <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="resolved().prompt" />
+      <app-lexeme-display
+        surface="prompt"
+        [lexeme]="card().promptLexeme"
+        [fallbackText]="resolved().prompt"
+      />
     </mat-card-subtitle>
   </mat-card-header>
 
@@ -10,6 +14,7 @@
     @for (symbol of resolved().options; track symbol; let index = $index) {
       <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
         <app-lexeme-display
+          surface="answer"
           [lexeme]="optionLexeme(index)"
           [fallbackText]="symbol"
           [inline]="true"
@@ -30,6 +35,7 @@
       <mat-icon>cancel</mat-icon>
       Неверно. Правильный символ:
       <app-lexeme-display
+        surface="answer"
         [lexeme]="optionLexeme(resolved().correctIndex)"
         [fallbackText]="resolved().options[resolved().correctIndex]"
         [inline]="true"

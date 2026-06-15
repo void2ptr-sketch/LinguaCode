@@ -91,3 +91,30 @@ export function isRomanizationDisplayEnabled(
 ): boolean {
   return prefs.displayRomanizations.includes(system);
 }
+
+export type LexemeDisplaySurface = 'prompt' | 'answer';
+
+export type AnswerDisplayMode = PhoneticPreferences['answerModes'][number];
+
+export function resolveRomanizationsForSurface(
+  surface: LexemeDisplaySurface,
+  cjk: CjkLearningPreferences,
+  phonetic: PhoneticPreferences,
+): readonly RomanizationSystem[] {
+  if (surface === 'prompt') {
+    return cjk.displayRomanizations;
+  }
+
+  if (!phonetic.answerModes.includes('orthography')) {
+    return [];
+  }
+
+  return cjk.answerRomanization;
+}
+
+export function resolveShowIpaForSurface(
+  surface: LexemeDisplaySurface,
+  phonetic: PhoneticPreferences,
+): boolean {
+  return surface === 'prompt' ? phonetic.showIpa : phonetic.answerModes.includes('ipa');
+}
