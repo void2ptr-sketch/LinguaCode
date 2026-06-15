@@ -19,7 +19,7 @@
           <div class="display-matrix__prompt" role="gridcell">
             <mat-checkbox
               [checked]="isPromptRomanizationEnabled(option.value)"
-              (click)="onPromptRomanizationClick(option.value, $event)"
+              (change)="onPromptRomanizationChange(option.value, $event)"
               [attr.aria-label]="promptRomanizationAriaLabel(option)"
             />
           </div>
@@ -27,7 +27,7 @@
           <div class="display-matrix__answer" role="gridcell">
             <mat-checkbox
               [checked]="isAnswerRomanizationEnabled(option.value)"
-              (click)="onAnswerRomanizationClick(option.value, $event)"
+              (change)="onAnswerRomanizationChange(option.value, $event)"
               [attr.aria-label]="answerRomanizationAriaLabel(option)"
             />
           </div>
@@ -42,7 +42,7 @@
         <div class="display-matrix__prompt" role="gridcell">
           <mat-checkbox
             [checked]="showIpa()"
-            (click)="onShowIpaClick($event)"
+            (change)="onShowIpaChange($event)"
             [attr.aria-label]="'IPA в задании' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
           />
         </div>
@@ -50,7 +50,7 @@
         <div class="display-matrix__answer" role="gridcell">
           <mat-checkbox
             [checked]="isAnswerModeEnabled('ipa')"
-            (click)="onAnswerModeClick('ipa', $event)"
+            (change)="onAnswerModeChange('ipa', $event)"
             [attr.aria-label]="'IPA в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
           />
         </div>
@@ -64,7 +64,7 @@
         <div class="display-matrix__answer" role="gridcell">
           <mat-checkbox
             [checked]="isAnswerModeEnabled('orthography')"
-            (click)="onAnswerModeClick('orthography', $event)"
+            (change)="onAnswerModeChange('orthography', $event)"
             [attr.aria-label]="'Орфография в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
           />
         </div>
@@ -79,7 +79,7 @@
         matInput
         placeholder="BrE / AmE"
         [ngModel]="ipaVariantLabel()"
-        (ngModelChange)="ipaVariantLabel.set($event)"
+        (ngModelChange)="onIpaVariantLabelChange($event)"
         name="ipaVariantLabel"
       />
       <mat-hint>Для карточек с несколькими вариантами (например thought)</mat-hint>

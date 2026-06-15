@@ -1,5 +1,4 @@
 import {
-  DEFAULT_PHONETIC_PREFERENCES,
   normalizeAnswerModesForSave,
   normalizeRomanizationsForSave,
   toggleAnswerModes,
@@ -37,8 +36,8 @@ describe('course-display-settings-matrix.utils', () => {
   });
 
   describe('normalizeRomanizationsForSave', () => {
-    it('falls back when draft is empty', () => {
-      expect(normalizeRomanizationsForSave([], ['pinyin'])).toEqual(['pinyin']);
+    it('preserves empty draft', () => {
+      expect(normalizeRomanizationsForSave([])).toEqual([]);
     });
   });
 
@@ -53,8 +52,8 @@ describe('course-display-settings-matrix.utils', () => {
   });
 
   describe('normalizeAnswerModesForSave', () => {
-    it('falls back when draft is empty', () => {
-      expect(normalizeAnswerModesForSave([])).toEqual([...DEFAULT_PHONETIC_PREFERENCES.answerModes]);
+    it('preserves empty draft', () => {
+      expect(normalizeAnswerModesForSave([])).toEqual([]);
     });
   });
 });

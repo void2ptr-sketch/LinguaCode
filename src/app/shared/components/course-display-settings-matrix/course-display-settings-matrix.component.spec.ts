@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { MatCheckboxChange } from '@angular/material/checkbox';
 import { CourseDisplaySettingsMatrixComponent } from './course-display-settings-matrix.component';
 
 describe('CourseDisplaySettingsMatrixComponent', () => {
@@ -22,17 +23,25 @@ describe('CourseDisplaySettingsMatrixComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should uncheck pinyin in prompt without disabling palladius row', () => {
-    component.onPromptRomanizationClick('pinyin', new MouseEvent('click'));
+  it('should emit prompt romanization changes to parent', () => {
+    let emitted: readonly string[] | undefined;
+    component.displayRomanizationsChange.subscribe((value) => {
+      emitted = value;
+    });
 
-    expect(component.displayRomanizations()).toEqual(['palladius']);
-    expect(component.isPromptRomanizationEnabled('palladius')).toBeTrue();
-    expect(component.isPromptRomanizationEnabled('pinyin')).toBeFalse();
+    component.onPromptRomanizationChange('pinyin', { checked: false } as MatCheckboxChange);
+
+    expect(emitted).toEqual(['palladius']);
   });
 
-  it('should keep answer column unchanged when prompt column toggles', () => {
-    component.onPromptRomanizationClick('pinyin', new MouseEvent('click'));
+  it('should emit answer column unchanged when prompt column toggles', () => {
+    let answerEmitted: readonly string[] | undefined;
+    component.answerRomanizationsChange.subscribe((value) => {
+      answerEmitted = value;
+    });
 
-    expect(component.answerRomanizations()).toEqual(['pinyin', 'palladius']);
+    component.onPromptRomanizationChange('pinyin', { checked: false } as MatCheckboxChange);
+
+    expect(answerEmitted).toBeUndefined();
   });
 });

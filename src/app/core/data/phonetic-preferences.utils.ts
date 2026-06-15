@@ -19,49 +19,61 @@ type LegacyCjkLearningPreferences = Partial<CjkLearningPreferences> & {
   displayRomanization?: RomanizationSystem;
 };
 
+function normalizeRomanizationList(values: readonly unknown[]): readonly RomanizationSystem[] {
+  const selected = values.filter(isRomanizationSystem);
+  return ROMANIZATION_DISPLAY_ORDER.filter((system) => selected.includes(system));
+}
+
 function normalizeDisplayRomanizations(raw?: LegacyCjkLearningPreferences | null): readonly RomanizationSystem[] {
-  const fromArray = Array.isArray(raw?.displayRomanizations)
-    ? raw.displayRomanizations.filter(isRomanizationSystem)
-    : [];
+  if (raw && 'displayRomanizations' in raw && Array.isArray(raw.displayRomanizations)) {
+    return normalizeRomanizationList(raw.displayRomanizations);
+  }
 
-  const fromLegacy =
-    fromArray.length === 0 && isRomanizationSystem(raw?.displayRomanization)
-      ? [raw.displayRomanization]
-      : fromArray;
-
-  const ordered = ROMANIZATION_DISPLAY_ORDER.filter((system) => fromLegacy.includes(system));
-
-  if (ordered.length > 0) {
-    return ordered;
+  if (isRomanizationSystem(raw?.displayRomanization)) {
+    return [raw.displayRomanization];
   }
 
   return [...DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations];
 }
 
+function normalizeAnswerRomanization(raw?: LegacyCjkLearningPreferences | null): readonly RomanizationSystem[] {
+  if (raw && 'answerRomanization' in raw && Array.isArray(raw.answerRomanization)) {
+    return normalizeRomanizationList(raw.answerRomanization);
+  }
+
+  return [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization];
+}
+
 export function normalizeCjkLearningPreferences(
   raw?: LegacyCjkLearningPreferences | null,
 ): CjkLearningPreferences {
-  const answerRomanization = Array.isArray(raw?.answerRomanization)
-    ? raw.answerRomanization.filter(isRomanizationSystem)
-    : [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization];
-
   return {
     displayRomanizations: normalizeDisplayRomanizations(raw),
-    answerRomanization:
-      answerRomanization.length > 0
-        ? answerRomanization
-        : [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization],
+    answerRomanization: normalizeAnswerRomanization(raw),
     showTones: raw?.showTones ?? DEFAULT_CJK_LEARNING_PREFERENCES.showTones,
   };
+}
+
+const ANSWER_DISPLAY_MODES: readonly ('orthography' | 'ipa')[] = ['orthography', 'ipa'];
+
+function isAnswerDisplayMode(value: unknown): value is 'orthography' | 'ipa' {
+  return value === 'orthography' || value === 'ipa';
+}
+
+function normalizeAnswerModes(
+  raw?: Partial<PhoneticPreferences> | null,
+): readonly PhoneticPreferences['answerModes'][number][] {
+  if (raw && 'answerModes' in raw && Array.isArray(raw.answerModes)) {
+    const selected = raw.answerModes.filter(isAnswerDisplayMode);
+    return ANSWER_DISPLAY_MODES.filter((mode) => selected.includes(mode));
+  }
+
+  return [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
 }
 
 export function normalizePhoneticPreferences(
   raw?: Partial<PhoneticPreferences> | null,
 ): PhoneticPreferences {
-  const answerModes = Array.isArray(raw?.answerModes)
-    ? raw.answerModes.filter((mode): mode is 'orthography' | 'ipa' => mode === 'orthography' || mode === 'ipa')
-    : [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
-
   return {
     showIpa: raw?.showIpa ?? DEFAULT_PHONETIC_PREFERENCES.showIpa,
     ipaVariantLabel:
@@ -73,7 +85,7 @@ export function normalizePhoneticPreferences(
       : raw?.displayOrthography === 'orthographic'
         ? 'orthographic'
         : undefined,
-    answerModes: answerModes.length > 0 ? answerModes : [...DEFAULT_PHONETIC_PREFERENCES.answerModes],
+    answerModes: normalizeAnswerModes(raw),
   };
 }
 

@@ -1,5 +1,4 @@
 import {
-  DEFAULT_PHONETIC_PREFERENCES,
   ROMANIZATION_DISPLAY_ORDER,
   type RomanizationSystem,
 } from '../../../core/models/phonetic-content.types';
@@ -40,13 +39,12 @@ export function toggleAnswerModes(
 
 export function normalizeRomanizationsForSave(
   current: readonly RomanizationSystem[],
-  fallback: readonly RomanizationSystem[],
 ): readonly RomanizationSystem[] {
-  return current.length > 0 ? [...current] : [...fallback];
+  return [...current];
 }
 
 export function normalizeAnswerModesForSave(
   current: readonly AnswerDisplayMode[],
 ): readonly AnswerDisplayMode[] {
-  return current.length > 0 ? [...current] : [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
+  return [...current];
 }

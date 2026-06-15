@@ -25,6 +25,32 @@ describe('phonetic-preferences.utils', () => {
     expect(prefs.displayRomanizations).toEqual(['palladius']);
   });
 
+  it('should prefer displayRomanizations array over legacy displayRomanization', () => {
+    const prefs = normalizeCjkLearningPreferences({
+      displayRomanization: 'pinyin',
+      displayRomanizations: ['palladius'],
+    });
+
+    expect(prefs.displayRomanizations).toEqual(['palladius']);
+  });
+
+  it('should preserve empty displayRomanizations when explicitly saved', () => {
+    const prefs = normalizeCjkLearningPreferences({
+      displayRomanization: 'pinyin',
+      displayRomanizations: [],
+    });
+
+    expect(prefs.displayRomanizations).toEqual([]);
+  });
+
+  it('should preserve empty answerRomanization when explicitly saved', () => {
+    const prefs = normalizeCjkLearningPreferences({
+      answerRomanization: [],
+    });
+
+    expect(prefs.answerRomanization).toEqual([]);
+  });
+
   it('should preserve displayRomanizations order', () => {
     const prefs = normalizeCjkLearningPreferences({
       displayRomanizations: ['palladius', 'pinyin', 'zhuyin'],
@@ -38,6 +64,12 @@ describe('phonetic-preferences.utils', () => {
 
     expect(prefs.showIpa).toBeTrue();
     expect(prefs.ipaVariantLabel).toBe('BrE');
+  });
+
+  it('should preserve empty answerModes when explicitly saved', () => {
+    const prefs = normalizePhoneticPreferences({ answerModes: [] });
+
+    expect(prefs.answerModes).toEqual([]);
   });
 
   it('should show palladius only for ru to zh pair', () => {
