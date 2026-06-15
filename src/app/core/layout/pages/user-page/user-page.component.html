@@ -130,11 +130,16 @@
                 [showPhonetic]="showPhoneticPreferences()"
                 [romanizationOptions]="romanizationOptions()"
                 [courseLabel]="settingsCourseLabel()"
-                [(displayRomanizations)]="displayRomanizationsDraft"
-                [(answerRomanizations)]="answerRomanizationsDraft"
-                [(showIpa)]="showIpaDraft"
-                [(ipaVariantLabel)]="ipaVariantLabelDraft"
-                [(answerModes)]="answerModesDraft"
+                [displayRomanizations]="displayRomanizationsDraft()"
+                [answerRomanizations]="answerRomanizationsDraft()"
+                [showIpa]="showIpaDraft()"
+                [ipaVariantLabel]="ipaVariantLabelDraft()"
+                [answerModes]="answerModesDraft()"
+                (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
+                (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
+                (showIpaChange)="showIpaDraft.set($event)"
+                (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
+                (answerModesChange)="answerModesDraft.set($event)"
               />
             } @else {
               <p class="page-card__hint">

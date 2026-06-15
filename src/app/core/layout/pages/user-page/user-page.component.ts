@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -27,11 +27,8 @@ import {
   type RomanizationOption,
 } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
 import {
-  normalizeAnswerModesForSave,
-  normalizeRomanizationsForSave,
   type AnswerDisplayMode,
 } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
-import { DEFAULT_CJK_LEARNING_PREFERENCES } from '../../../models/phonetic-content.types';
 
 @Component({
   selector: 'app-user-page',
@@ -49,7 +46,7 @@ import { DEFAULT_CJK_LEARNING_PREFERENCES } from '../../../models/phonetic-conte
   templateUrl: './user-page.component.html',
   styleUrl: './user-page.component.scss',
 })
-export class UserPageComponent {
+export class UserPageComponent implements OnInit {
   private readonly userStore = inject(UserStore);
 
   readonly displayName = this.userStore.displayName;
@@ -75,6 +72,10 @@ export class UserPageComponent {
   private static readonly pairSettingsTabIndex = 2;
 
   constructor() {
+    this.syncPairSettingsDrafts();
+  }
+
+  ngOnInit(): void {
     this.syncPairSettingsDrafts();
   }
 
@@ -188,30 +189,27 @@ export class UserPageComponent {
     const patch: Partial<UserLanguagePairSettings> = {};
 
     if (this.showCjkPreferences()) {
+      const cjk = resolveCjkLearningForPair(entry);
       patch.cjkLearning = {
-        ...resolveCjkLearningForPair(entry),
-        displayRomanizations: normalizeRomanizationsForSave(
-          this.displayRomanizationsDraft(),
-          DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations,
-        ),
-        answerRomanization: normalizeRomanizationsForSave(
-          this.answerRomanizationsDraft(),
-          DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization,
-        ),
+        displayRomanizations: [...this.displayRomanizationsDraft()],
+        answerRomanization: [...this.answerRomanizationsDraft()],
+        showTones: cjk.showTones,
       };
     }
 
     if (this.showPhoneticPreferences()) {
+      const phonetic = resolvePhoneticForPair(entry);
       patch.phonetic = {
-        ...resolvePhoneticForPair(entry),
         showIpa: this.showIpaDraft(),
         ipaVariantLabel: this.ipaVariantLabelDraft().trim() || undefined,
-        answerModes: normalizeAnswerModesForSave(this.answerModesDraft()),
+        answerModes: [...this.answerModesDraft()],
+        displayOrthography: phonetic.displayOrthography,
       };
     }
 
     if (patch.cjkLearning || patch.phonetic) {
       this.userStore.updateLanguagePairSettings(entry.id, patch);
+      this.syncPairSettingsDrafts();
     }
   }
 

@@ -1,6 +1,6 @@
-import { Component, computed, input, model } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import type { RomanizationSystem } from '../../../core/models/phonetic-content.types';
@@ -27,11 +27,17 @@ export class CourseDisplaySettingsMatrixComponent {
   readonly romanizationOptions = input<readonly RomanizationOption[]>([]);
   readonly courseLabel = input('');
 
-  readonly displayRomanizations = model<readonly RomanizationSystem[]>([]);
-  readonly answerRomanizations = model<readonly RomanizationSystem[]>([]);
-  readonly showIpa = model(false);
-  readonly ipaVariantLabel = model('');
-  readonly answerModes = model<readonly AnswerDisplayMode[]>([]);
+  readonly displayRomanizations = input<readonly RomanizationSystem[]>([]);
+  readonly answerRomanizations = input<readonly RomanizationSystem[]>([]);
+  readonly showIpa = input(false);
+  readonly ipaVariantLabel = input('');
+  readonly answerModes = input<readonly AnswerDisplayMode[]>([]);
+
+  readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
+  readonly answerRomanizationsChange = output<readonly RomanizationSystem[]>();
+  readonly showIpaChange = output<boolean>();
+  readonly ipaVariantLabelChange = output<string>();
+  readonly answerModesChange = output<readonly AnswerDisplayMode[]>();
 
   readonly showIpaVariantField = computed(
     () => this.showIpa() || this.answerModes().includes('ipa'),
@@ -49,34 +55,28 @@ export class CourseDisplaySettingsMatrixComponent {
     return this.answerModes().includes(mode);
   }
 
-  onPromptRomanizationClick(system: RomanizationSystem, event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.displayRomanizations.set(
-      toggleRomanizations(this.displayRomanizations(), system, !this.isPromptRomanizationEnabled(system)),
+  onPromptRomanizationChange(system: RomanizationSystem, event: MatCheckboxChange): void {
+    this.displayRomanizationsChange.emit(
+      toggleRomanizations(this.displayRomanizations(), system, event.checked),
     );
   }
 
-  onAnswerRomanizationClick(system: RomanizationSystem, event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.answerRomanizations.set(
-      toggleRomanizations(this.answerRomanizations(), system, !this.isAnswerRomanizationEnabled(system)),
+  onAnswerRomanizationChange(system: RomanizationSystem, event: MatCheckboxChange): void {
+    this.answerRomanizationsChange.emit(
+      toggleRomanizations(this.answerRomanizations(), system, event.checked),
     );
   }
 
-  onShowIpaClick(event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.showIpa.set(!this.showIpa());
+  onShowIpaChange(event: MatCheckboxChange): void {
+    this.showIpaChange.emit(event.checked);
   }
 
-  onAnswerModeClick(mode: AnswerDisplayMode, event: MouseEvent): void {
-    event.preventDefault();
-    event.stopPropagation();
-    this.answerModes.set(
-      toggleAnswerModes(this.answerModes(), mode, !this.isAnswerModeEnabled(mode)),
-    );
+  onAnswerModeChange(mode: AnswerDisplayMode, event: MatCheckboxChange): void {
+    this.answerModesChange.emit(toggleAnswerModes(this.answerModes(), mode, event.checked));
+  }
+
+  onIpaVariantLabelChange(value: string): void {
+    this.ipaVariantLabelChange.emit(value);
   }
 
   promptRomanizationAriaLabel(option: RomanizationOption): string {
