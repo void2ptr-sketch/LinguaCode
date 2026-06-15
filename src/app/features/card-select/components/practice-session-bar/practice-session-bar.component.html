@@ -1,0 +1,25 @@
+<aside class="practice-session-bar" aria-label="Текущая сессия">
+  @for (segment of segments(); track segment.tabIndex) {
+    <button
+      type="button"
+      class="practice-session-bar__segment"
+      [class.practice-session-bar__segment--completed]="segment.completed"
+      [class.practice-session-bar__segment--locked]="segment.locked"
+      [disabled]="segment.locked"
+      [matTooltip]="segment.locked ? (segment.lockReason ?? 'Сначала выберите предыдущий шаг') : null"
+      (click)="selectSegment(segment.tabIndex, segment.locked)"
+    >
+      <span class="practice-session-bar__label">{{ segment.label }}</span>
+      <span class="practice-session-bar__value">
+        @if (segment.value) {
+          @if (segment.completed) {
+            <mat-icon class="practice-session-bar__icon" aria-hidden="true">check_circle</mat-icon>
+          }
+          {{ segment.value }}
+        } @else {
+          {{ segment.placeholder }}
+        }
+      </span>
+    </button>
+  }
+</aside>

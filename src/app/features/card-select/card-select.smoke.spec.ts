@@ -111,7 +111,19 @@ describe('Card select smoke', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
+    const startButton = Array.from(
+      fixture.nativeElement.querySelectorAll('button') as NodeListOf<HTMLButtonElement>,
+    ).find((button) => button.textContent?.trim() === 'Начать практику');
+    expect(startButton).withContext('start practice button').toBeTruthy();
+    startButton?.click();
+    fixture.detectChanges();
+
+    flushFixtures();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const text = fixture.nativeElement.textContent as string;
+    expect(text).toContain('Практика');
     expect(text).toContain('Демо-сценарий');
     expect(text).toContain('Как сказать «Привет» по-английски?');
     expect(text).toContain('Hello');

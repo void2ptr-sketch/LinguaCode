@@ -2,6 +2,7 @@ import { Component, effect, inject, input, OnInit, output, signal } from '@angul
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
@@ -20,6 +21,7 @@ let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
     FormsModule,
     MatButtonToggleModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,

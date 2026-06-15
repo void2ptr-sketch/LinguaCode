@@ -1,63 +1,85 @@
 <section class="course-picker">
   <div class="course-picker__header">
     <div class="course-picker__title-row">
-      <h3>Курс</h3>
+      <h3>Программа</h3>
       <ng-content select="[coursePickerLink]" />
     </div>
-    @if (selectedCourseId()) {
-      <button mat-button type="button" (click)="clearSelection()">Без курса</button>
+    @if (selectedCourseId() && (!compact() || showFullList())) {
+      <button mat-button type="button" (click)="clearSelection()">Без программы</button>
     }
   </div>
 
-  <mat-form-field appearance="outline" class="course-picker__query">
-    <mat-label>Поиск курса</mat-label>
-    <input matInput [ngModel]="query()" (ngModelChange)="onQueryChange($event)" />
-  </mat-form-field>
-
-  <mat-button-toggle-group
-    class="course-picker__scope"
-    [ngModel]="scope()"
-    (ngModelChange)="onScopeChange($event)"
-  >
-    <mat-button-toggle value="published">Доступные</mat-button-toggle>
-    <mat-button-toggle value="mine">Мои</mat-button-toggle>
-    <mat-button-toggle value="all">Все</mat-button-toggle>
-  </mat-button-toggle-group>
-
-  @if (loading()) {
-    <mat-spinner diameter="32" />
-  } @else if (items().length === 0) {
-    <p class="course-picker__empty">Курсы не найдены.</p>
+  @if (compact() && selectedCourseId() && !showFullList()) {
+    <div class="course-picker__compact">
+      <div class="course-picker__compact-card">
+        <span class="course-picker__title">{{ selectedCourseLabel() || 'Выбранная программа' }}</span>
+        <span class="course-picker__meta">Текущая программа сессии</span>
+      </div>
+      <div class="course-picker__compact-actions">
+        <button mat-stroked-button type="button" (click)="expandList()">Сменить</button>
+      </div>
+    </div>
   } @else {
-    <ul class="course-picker__list">
-      @for (entry of items(); track entry.id) {
-        <li>
-          <button
-            type="button"
-            class="course-picker__item"
-            [class.course-picker__item--selected]="entry.id === selectedCourseId()"
-            (click)="pick(entry)"
-          >
-            <span class="course-picker__title-row">
-              <span class="course-picker__title">{{ entry.title }}</span>
-              @if (entry.published) {
-                <span class="course-picker__badge">опубликован</span>
-              }
-            </span>
-            <span class="course-picker__meta">
-              {{ entry.lessonCount }} уроков · {{ entry.languagePairSummary }}
-            </span>
-          </button>
-        </li>
-      }
-    </ul>
+    @if (compact() && selectedCourseId()) {
+      <button mat-button type="button" class="course-picker__collapse" (click)="collapseList()">
+        Свернуть список
+      </button>
+    }
 
-    <app-pagination
-      [length]="totalItems()"
-      [pageIndex]="pageIndex()"
-      [pageSize]="pageSize()"
-      [pageSizeOptions]="[5, 10, 25]"
-      (pageChange)="onPageChange($event)"
-    />
+    <mat-form-field appearance="outline" class="course-picker__query">
+      <mat-label>Поиск программы</mat-label>
+      <input matInput [ngModel]="query()" (ngModelChange)="onQueryChange($event)" />
+    </mat-form-field>
+
+    <mat-button-toggle-group
+      class="course-picker__scope"
+      [ngModel]="scope()"
+      (ngModelChange)="onScopeChange($event)"
+    >
+      <mat-button-toggle value="published">Доступные</mat-button-toggle>
+      <mat-button-toggle value="mine">Мои</mat-button-toggle>
+      <mat-button-toggle value="all">Все</mat-button-toggle>
+    </mat-button-toggle-group>
+
+    @if (loading()) {
+      <mat-spinner diameter="32" />
+    } @else if (items().length === 0) {
+      <div class="course-picker__empty-state">
+        <mat-icon aria-hidden="true">school</mat-icon>
+        <p class="course-picker__empty">Программы не найдены.</p>
+        <ng-content select="[coursePickerEmptyAction]" />
+      </div>
+    } @else {
+      <ul class="course-picker__list">
+        @for (entry of items(); track entry.id) {
+          <li>
+            <button
+              type="button"
+              class="course-picker__item"
+              [class.course-picker__item--selected]="entry.id === selectedCourseId()"
+              (click)="pick(entry)"
+            >
+              <span class="course-picker__title-row">
+                <span class="course-picker__title">{{ entry.title }}</span>
+                @if (entry.published) {
+                  <span class="course-picker__badge">опубликован</span>
+                }
+              </span>
+              <span class="course-picker__meta">
+                {{ entry.lessonCount }} уроков · {{ entry.languagePairSummary }}
+              </span>
+            </button>
+          </li>
+        }
+      </ul>
+
+      <app-pagination
+        [length]="totalItems()"
+        [pageIndex]="pageIndex()"
+        [pageSize]="pageSize()"
+        [pageSizeOptions]="[5, 10, 25]"
+        (pageChange)="onPageChange($event)"
+      />
+    }
   }
 </section>

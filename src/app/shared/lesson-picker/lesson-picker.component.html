@@ -1,13 +1,18 @@
 @if (selectedCourseId()) {
   <section class="lesson-picker">
-    <h3>Урок</h3>
+    @if (!hideTitle()) {
+      <h3>Урок</h3>
+    }
 
     @if (loading()) {
       <mat-spinner diameter="32" />
     } @else if (error()) {
       <p class="lesson-picker__error">{{ error() }}</p>
     } @else if (lessonItems().length === 0) {
-      <p class="lesson-picker__empty">В курсе пока нет уроков.</p>
+      <div class="lesson-picker__empty-state">
+        <mat-icon aria-hidden="true">menu_book</mat-icon>
+        <p class="lesson-picker__empty">В программе пока нет уроков.</p>
+      </div>
     } @else {
       <ul class="lesson-picker__list">
         @for (item of lessonItems(); track item.lesson.id) {
@@ -19,6 +24,7 @@
               [class.lesson-picker__item--selected]="item.lesson.id === selectedLessonId()"
               [class.lesson-picker__item--locked]="!item.unlocked"
               [class.lesson-picker__item--completed]="item.completed"
+              [matTooltip]="!item.unlocked ? (item.blockReason ?? 'Урок заблокирован') : null"
               (click)="pick(item.lesson)"
             >
               <span class="lesson-picker__title-row">
@@ -29,7 +35,7 @@
               </span>
               <span class="lesson-picker__meta">
                 @if (item.unlocked) {
-                  {{ item.lesson.scenarioIds.length }} сценариев
+                  {{ item.completedScenarios }}/{{ item.lesson.scenarioIds.length }} сценариев
                 } @else if (item.blockReason) {
                   {{ item.blockReason }}
                 }

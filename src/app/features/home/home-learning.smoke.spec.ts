@@ -69,7 +69,9 @@ describe('Home learning dashboard smoke', () => {
         }
 
         if (url.includes('/scenarios/demo-scenario')) {
-          request.flush(DEFAULT_SCENARIOS.find((scenario) => scenario.id === 'demo-scenario'));
+          request.flush(
+            DEFAULT_SCENARIOS.find((scenario) => scenario.id === 'demo-scenario') ?? DEFAULT_SCENARIOS[0],
+          );
           continue;
         }
 

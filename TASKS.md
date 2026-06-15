@@ -512,6 +512,83 @@
 - [x] **G13d** — deep links `courseId` / `lessonId` / `scenarioId` / `tab` на `/cards/select`; сохранение сессии при ответе
 - [x] **G13e** — навигация (`/home` = Обучение), smoke-тест, docs
 
+**G14 — UX страницы «Практика» (`/cards/select`)**
+
+Контекст: после G13 dashboard на `/home` закрывает «куда идти»; `/cards/select` — **студия сессии** (программа → урок → сценарий → карточки). Сейчас: 4 вкладки без sticky-контекста, длинная строка прогресса, карточка теряется среди toolbar. Терминология: **Программа** = `Course`; **Курс** в профиле = `LanguagePair`. Файлы: `features/card-select/components/card-select-page/`, `shared/course-picker`, `lesson-picker`, `scenario-picker`.
+
+**G14a — sticky session bar (P0)**
+
+- [x] Компонент `app-practice-session-bar` (или блок в `card-select-page`): программа · урок · сценарий
+- [x] Placeholder для невыбранных шагов («Программа не выбрана»); клик по сегменту → соответствующая вкладка
+- [x] Статусы: ✓ завершён, 🔒 заблокирован (tooltip с `blockReason` для урока)
+- [x] Sticky под шапкой layout; виден на всех вкладках
+- [x] SCSS: grid / chips; не дублировать длинную строку из вкладки «Обучение»
+
+**G14b — вкладка «Обучение»: фокус на карточке (P0)**
+
+- [x] Chips (программа, урок, сценарий) + «Карточка N/M»
+- [x] `mat-progress-bar` по текущему сценарию (`CardSelectStore`)
+- [x] Layout: toolbar → context → card (hero) → progress; `max-width` ~42rem
+- [x] Карточка: elevation, min-height, padding
+- [ ] Completion: CTA «К урокам» через `learning-resume` (есть «Следующий сценарий урока»)
+
+**G14c — навигация по шагам (P0)**
+
+- [x] Кнопка **«Далее»** на вкладках Программа / Уроки
+- [x] **«Начать практику»** на вкладке Сценарии
+- [x] Без автоперехода вкладок при `pick()` / `onScenarioChange`
+- [x] Disabled кнопки, пока шаг не выбран; hint под кнопкой
+
+**G14d — compact course picker на практике (P1)**
+
+- [x] Input `compact` у `CoursePickerComponent`
+- [x] Выбранная программа — карточка + «Сменить»
+- [x] Поиск + scope — в развёрнутом списке («Свернуть список»)
+- [x] Каталог `/courses` — отдельная ссылка, не дублируется
+
+**G14e — stepper / состояние вкладок (P1)**
+
+- [x] `app-practice-stepper`: ✓ · • · ○ над `mat-tab-group`
+- [x] Кастомный horizontal stepper (без смены URL-контракта `tab=`)
+- [x] Синхронизация с `activeTabIndex` и deep links
+
+**G14f — связь с Learning Home (P1)**
+
+- [x] Ссылка «← Обучение» в шапке → `/home`
+- [x] Подзаголовок и h1 «Практика»
+- [x] Deep link `tab=learning` — сразу вкладка «Обучение», card zone в фокусе
+
+**G14g — вкладки «Уроки» и «Сценарии» (P1)**
+
+- [x] `hideTitle` у `lesson-picker` на практике
+- [x] Meta «N/M сценариев» на строке урока
+- [x] Сценарии без урока (при выбранной программе): hint + «Перейти к урокам»
+- [x] Списки: на mobile `max-height: none` (course / lesson / scenario pickers)
+
+**G14h — layout desktop: sidebar + main (P2, опционально)**
+
+- [ ] Grid `sidebar | main`: настройка (~280px) слева, «Обучение» справа на wide breakpoint
+- [ ] Mobile: bottom sheet / collapsible «Настройки сессии» + fullscreen card zone
+- [ ] Сохранить вкладки как fallback или заменить sidebar-селектами (program / lesson / scenario)
+
+**G14i — общий паттерн списков (P2)**
+
+- [ ] `app-selectable-list-item`: title, badge, meta, states (default / selected / locked / completed)
+- [ ] Подключить в course / lesson / scenario pickers (без изменения API stores)
+
+**G14j — mobile (P2)**
+
+- [ ] Scrollable / icon-only вкладки при узкой ширине
+- [ ] Direction toggle: короткий label или icon `ru → en`
+- [ ] FAB «Настройки» на вкладке «Обучение» (открывает sheet с pickers)
+
+**G14k — пустые состояния, docs, тесты**
+
+- [x] Empty states: иконка + текст + CTA (программа / уроки / сценарии / обучение)
+- [x] Обновить DOMAIN.md — роль «Практика» vs «Обучение» (G14)
+- [x] Smoke: «Начать практику» после выбора сценария; заголовок «Практика»
+- [x] Roadmap уроков не дублируется (только на `/home`)
+
 **G12 — Editor UX (упрощение редактора карточек)**
 
 Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-кomponent.
