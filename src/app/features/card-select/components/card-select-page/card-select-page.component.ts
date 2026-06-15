@@ -7,12 +7,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTabsModule } from '@angular/material/tabs';
 
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 
 import { CourseSearchService } from '../../../../core/data';
 
-import { ActiveLanguagePairSwitcherComponent } from '../../../../shared/components/active-language-pair-switcher/active-language-pair-switcher.component';
 import { CardHostComponent } from '../../../../shared/components/card-host';
 import { CoursePickerComponent } from '../../../../shared/course-picker';
 import { LessonPickerComponent, type LessonPickPayload } from '../../../../shared/lesson-picker';
@@ -20,6 +20,13 @@ import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
+
+const LEARNING_TAB = {
+  course: 0,
+  lessons: 1,
+  scenarios: 2,
+  learning: 3,
+} as const;
 
 let lastKnownActiveLanguagePairId: string | null = null;
 
@@ -34,7 +41,7 @@ let lastKnownActiveLanguagePairId: string | null = null;
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,
-    ActiveLanguagePairSwitcherComponent,
+    MatTabsModule,
     CardHostComponent,
     CoursePickerComponent,
     LessonPickerComponent,
@@ -61,6 +68,7 @@ export class CardSelectPageComponent implements OnInit {
   readonly scenarioTitle = signal<string>('');
   readonly scenarioSourceLabel = signal<string>('');
   readonly missingCardsWarning = signal<string | null>(null);
+  readonly activeTabIndex = signal<number>(LEARNING_TAB.course);
 
   readonly lessonProgressLabel = computed(() => {
     const ids = this.lessonScenarioIds();
@@ -136,6 +144,7 @@ export class CardSelectPageComponent implements OnInit {
     this.scenarioTitle.set('');
     this.scenarioSourceLabel.set('');
     this.missingCardsWarning.set(null);
+    this.activeTabIndex.set(LEARNING_TAB.course);
   }
 
   async onCourseChange(courseId: string): Promise<void> {
@@ -151,6 +160,8 @@ export class CardSelectPageComponent implements OnInit {
     this.missingCardsWarning.set(null);
 
     if (courseId) {
+      this.activeTabIndex.set(LEARNING_TAB.lessons);
+
       try {
         const course = await this.courseSearchService.getById(courseId);
         this.courseTitle.set(course.title);
@@ -165,6 +176,7 @@ export class CardSelectPageComponent implements OnInit {
       }
     } else {
       this.courseTitle.set('');
+      this.activeTabIndex.set(LEARNING_TAB.course);
     }
   }
 
@@ -184,9 +196,7 @@ export class CardSelectPageComponent implements OnInit {
   async onLessonPick(payload: LessonPickPayload): Promise<void> {
     this.lessonTitle.set(payload.title);
     this.lessonScenarioIds.set(payload.scenarioIds);
-    if (payload.scenarioIds.length > 0) {
-      await this.onScenarioChange(payload.scenarioIds[0]);
-    }
+    this.activeTabIndex.set(LEARNING_TAB.scenarios);
   }
 
   async loadCards(): Promise<void> {
@@ -217,7 +227,20 @@ export class CardSelectPageComponent implements OnInit {
 
   async onScenarioChange(scenarioId: string): Promise<void> {
     this.selectedScenarioId.set(scenarioId);
+
+    if (!scenarioId) {
+      this.store.reset();
+      this.scenarioTitle.set('');
+      this.scenarioSourceLabel.set('');
+      this.missingCardsWarning.set(null);
+      return;
+    }
+
     await this.loadCards();
+
+    if (!this.store.error() && this.activeTabIndex() === LEARNING_TAB.scenarios) {
+      this.activeTabIndex.set(LEARNING_TAB.learning);
+    }
   }
 
   onScenarioLabelChange(label: string): void {
@@ -277,6 +300,7 @@ export class CardSelectPageComponent implements OnInit {
       return;
     }
 
+    this.activeTabIndex.set(LEARNING_TAB.learning);
     await this.onScenarioChange(ids[index + 1]);
   }
 

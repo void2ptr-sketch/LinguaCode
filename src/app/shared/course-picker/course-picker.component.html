@@ -1,6 +1,9 @@
 <section class="course-picker">
   <div class="course-picker__header">
-    <h3>Курс</h3>
+    <div class="course-picker__title-row">
+      <h3>Курс</h3>
+      <ng-content select="[coursePickerLink]" />
+    </div>
     @if (selectedCourseId()) {
       <button mat-button type="button" (click)="clearSelection()">Без курса</button>
     }

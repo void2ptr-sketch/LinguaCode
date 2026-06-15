@@ -88,8 +88,30 @@ describe('Card select smoke', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
+    const tabLabels = Array.from(
+      fixture.nativeElement.querySelectorAll('.mdc-tab__text-label') as NodeListOf<HTMLElement>,
+    ).map((element) => element.textContent?.trim());
+    const scenariosTabIndex = tabLabels.indexOf('Сценарии');
+    expect(scenariosTabIndex).toBeGreaterThanOrEqual(0);
+
+    const tabButtons = fixture.nativeElement.querySelectorAll('[role="tab"]') as NodeListOf<HTMLElement>;
+    tabButtons[scenariosTabIndex]?.click();
+    fixture.detectChanges();
+
+    flushFixtures();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const scenarioItem = fixture.nativeElement.querySelector('.scenario-picker__item') as HTMLElement | null;
+    expect(scenarioItem).withContext('scenario list item').not.toBeNull();
+    scenarioItem?.click();
+    fixture.detectChanges();
+
+    flushFixtures();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
     const text = fixture.nativeElement.textContent as string;
-    expect(text).toContain('Карточки обучения');
     expect(text).toContain('Демо-сценарий');
     expect(text).toContain('Как сказать «Привет» по-английски?');
     expect(text).toContain('Hello');
