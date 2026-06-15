@@ -10,8 +10,8 @@
 
 | Термин в UI | Домен | Пример | Где |
 |-------------|-------|--------|-----|
-| **Курс** | `LanguagePair` | Русский → 中文 (ru→zh) | Профиль `/user` (вкладки «Курс», «Настройка курса»), switcher на `/cards/select`, подпись в каталоге `/tools/cards` |
-| **Программа** / **учебная программа** | `Course` (G11) | «Демо: базовый English» — программа из уроков | `/courses`, `/tools/courses`, picker на `/cards/select` |
+| **Курс** | `LanguagePair` | Русский → 中文 (ru→zh) | Профиль `/user` (вкладки «Курс», «Настройка курса»), подпись на dashboard `/home` |
+| **Программа** / **учебная программа** | `Course` (G11) | «Демо: базовый English» — программа из уроков | `/home`, `/courses`, `/tools/courses`, picker на `/cards/select` |
 
 - **Курс** (UI) — scope контента: какие карточки, сценарии и результаты видны в текущей сессии (G7/G8). В коде — `LanguagePair`, `activeLanguagePairId`.
 - **Программа** (`Course`) — учебная программа: упорядоченные уроки → сценарии в рамках одного курса (`LanguagePair`).
@@ -51,9 +51,30 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 | Default | `{ known: 'ru', learning: 'en' }` — одна запись в списке |
 | Store | `UserStore.languagePair` (active alias), `languagePairs`, `addLanguagePair()`, `setActiveLanguagePair()` |
 | Persist | `localStorage` · `lingua-code.user` · миграция legacy `languagePair` |
-| UI | `/user` — список пар + add/remove/set active; switcher на `/cards/select` и в header |
+| UI | `/user` — список пар + add/remove/set active; compact switcher в header (menu-user) |
 
 Подпись пары: `formatLanguagePair()` → «Русский → English».
+
+## Learning Home (G13)
+
+> **Статус:** готово (G13). Dashboard на `/home` · сессия на `/cards/select`.
+
+| Экран | Маршрут | Роль |
+|-------|---------|------|
+| **Обучение** (dashboard) | `/home` | CTA «Продолжить», прогресс программы, roadmap уроков |
+| **Практика** (сессия) | `/cards/select` | вкладки: программа → уроки → сценарии → карточки |
+
+**Курс** (`LanguagePair`) выбирается в **профиле**; dashboard только показывает активную пару.
+
+**Программа** (`Course`) — `LearningSessionPreferences.activeCourseId` per pair; resume через `learning-resume.utils`.
+
+Deep link с dashboard:
+
+```text
+/cards/select?courseId=…&lessonId=…&scenarioId=…&tab=learning
+```
+
+Файлы: `features/home/` · `core/data/learning-resume.utils.ts` · `core/data/learning-session.utils.ts`.
 
 ## G7 — несколько пар, одна активная
 

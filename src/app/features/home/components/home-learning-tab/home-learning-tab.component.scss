@@ -1,0 +1,92 @@
+.home-learning-tab {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.home-learning-tab__hero {
+  align-items: start;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    'copy'
+    'action';
+  grid-template-columns: 1fr;
+
+  @media (min-width: 40rem) {
+    align-items: center;
+    grid-template-areas: 'copy action';
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.home-learning-tab__hero-copy {
+  display: grid;
+  gap: 0.35rem;
+  grid-area: copy;
+}
+
+.home-learning-tab__hero a[mat-stroked-button] {
+  grid-area: action;
+  justify-self: start;
+
+  @media (min-width: 40rem) {
+    justify-self: end;
+  }
+}
+
+.home-learning-tab__greeting {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.home-learning-tab__context {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 72%, transparent);
+  font-size: 0.9375rem;
+  margin: 0;
+}
+
+.home-learning-tab__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas:
+    'continue'
+    'progress'
+    'roadmap'
+    'stats';
+}
+
+.home-learning-tab__continue {
+  grid-area: continue;
+}
+
+.home-learning-tab__progress {
+  grid-area: progress;
+}
+
+.home-learning-tab__roadmap {
+  grid-area: roadmap;
+}
+
+.home-learning-tab__stats {
+  grid-area: stats;
+}
+
+.home-learning-tab__stats-empty,
+.home-learning-tab__stats-line {
+  margin: 0;
+}
+
+.home-learning-tab__stats-line + .home-learning-tab__stats-line {
+  margin-top: 0.35rem;
+}
+
+.home-learning-tab__state {
+  align-items: center;
+  display: grid;
+  gap: 1rem;
+  justify-items: center;
+}
+
+.home-learning-tab__message {
+  max-width: 36rem;
+}

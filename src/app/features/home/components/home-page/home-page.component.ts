@@ -11,8 +11,7 @@ import { HomeTab } from '../../types';
 })
 export class HomePageComponent {
   readonly tabs: readonly HomeTab[] = [
-    { label: 'Приветствие', path: '/home', exact: true },
+    { label: 'Обучение', path: '/home', exact: true },
     { label: 'Прогресс', path: '/home/progress' },
-    { label: 'Разделы', path: '/home/sections' },
   ];
 }

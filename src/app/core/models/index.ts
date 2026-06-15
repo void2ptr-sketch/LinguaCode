@@ -55,6 +55,7 @@ export type {
   CourseSearchPage,
 } from './course-index.types';
 export type { Lesson } from './lesson.types';
+export type { LearningSessionPreferences } from './learning-session.types';
 export type { User, UserPreferences, CjkLearningPreferences, PhoneticPreferences } from './user.types';
 export {
   DEFAULT_CJK_LEARNING_PREFERENCES,

@@ -15,6 +15,7 @@ import {
   pairSupportsPhoneticDisplay,
   shouldShowPalladius,
 } from './phonetic-preferences.utils';
+import { normalizeLearningSessionPreferences } from './learning-session.utils';
 import {
   DEFAULT_CJK_LEARNING_PREFERENCES,
   DEFAULT_PHONETIC_PREFERENCES,
@@ -62,6 +63,8 @@ export function resolvePhoneticForPair(
   return normalizePhoneticPreferences(entry?.settings?.phonetic);
 }
 
+export { resolveLearningSessionForPair } from './learning-session.utils';
+
 function normalizeEntrySettings(
   pair: LanguagePair,
   rawSettings?: Partial<UserLanguagePairSettings> | null,
@@ -92,6 +95,12 @@ function normalizeEntrySettings(
     hasAny = true;
   }
 
+  const learning = normalizeLearningSessionPreferences(rawSettings?.learning);
+  if (learning) {
+    settings.learning = learning;
+    hasAny = true;
+  }
+
   return hasAny ? settings : undefined;
 }
 
@@ -114,6 +123,8 @@ export function mergeLanguagePairSettings(
     phonetic: patch.phonetic
       ? { ...current?.phonetic, ...patch.phonetic }
       : current?.phonetic,
+    learning:
+      patch.learning !== undefined ? { ...current?.learning, ...patch.learning } : current?.learning,
   });
 }
 

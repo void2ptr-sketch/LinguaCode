@@ -46,6 +46,32 @@ Card  →  Scenario  →  Lesson  →  Course
 
 Рекомендация для UI (G11e): активный scope подписывать **«Курс: …»** (`LanguagePair`); сущность **`Course`** в UI называть **программой** / **учебной программой**, чтобы не путать с scope.
 
+## Learning Home (G13)
+
+Точка входа обучения — **`/home`** (вкладка «Обучение»). Экран отвечает на вопрос **«что делать дальше»**, не дублируя пикеры с `/cards/select`.
+
+| Элемент | Назначение |
+|---------|------------|
+| Hero | активный **курс** (`LanguagePair`) и **программа** (`Course`) |
+| CTA «Продолжить / Начать» | deep link на `/cards/select?courseId&lessonId&scenarioId&tab=learning` |
+| Прогресс программы | агрегация `LearningResultsStore.courseProgress` |
+| Roadmap уроков | locked / in progress / done (`lesson-prerequisites.utils`) |
+| Статистика | краткая точность; подробности — `/home/progress` |
+
+**Persistence:** `UserLanguagePairSettings.learning` (`LearningSessionPreferences`):
+
+```typescript
+type LearningSessionPreferences = {
+  activeCourseId?: string;
+  lastLessonId?: string;
+  lastScenarioId?: string;
+};
+```
+
+**Алгоритм resume:** `learning-resume.utils` → первый непройденный сценарий в разблокированном уроке; иначе «программа завершена».
+
+**Разделение с `/cards/select`:** dashboard — hub; сессия — вкладки Курс / Уроки / Сценарии / Обучение для ручной настройки.
+
 ## Конструктор сценариев
 
 Инструмент для авторов и пользователей, которые собирают собственные сценарии обучения.
