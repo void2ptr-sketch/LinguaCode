@@ -6,12 +6,35 @@
 .course-picker__header {
   align-items: center;
   display: flex;
+  gap: 0.75rem;
   justify-content: space-between;
 }
 
-.course-picker__header h3 {
+.course-picker__title-row {
+  align-items: center;
+  display: flex;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  min-width: 0;
+}
+
+.course-picker__title-row h3 {
   margin: 0;
+  flex-shrink: 0;
   font-size: 1rem;
+}
+
+:host ::ng-deep [coursePickerLink] {
+  color: var(--mat-sys-primary);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .course-picker__query,

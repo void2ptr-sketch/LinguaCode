@@ -33,6 +33,7 @@ export class ScenarioPickerComponent implements OnInit {
 
   readonly selectedScenarioId = input.required<string>();
   readonly allowedScenarioIds = input<readonly string[] | null>(null);
+  readonly autoSelectFirst = input(true);
 
   readonly selectedScenarioIdChange = output<string>();
   readonly scenarioLabelChange = output<string>();
@@ -93,7 +94,7 @@ export class ScenarioPickerComponent implements OnInit {
 
       const current = this.selectedScenarioId();
       const hasCurrent = filtered.some((item) => item.id === current);
-      if (!hasCurrent && filtered.length > 0) {
+      if (!hasCurrent && filtered.length > 0 && this.autoSelectFirst()) {
         this.pick(filtered[0]);
       } else if (hasCurrent) {
         const entry = filtered.find((item) => item.id === current);
