@@ -6,6 +6,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
@@ -20,6 +21,14 @@ import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
+import {
+  PracticeSessionBarComponent,
+  type PracticeSessionSegment,
+} from '../practice-session-bar/practice-session-bar.component';
+import {
+  PracticeStepperComponent,
+  type PracticeStepState,
+} from '../practice-stepper/practice-stepper.component';
 
 const LEARNING_TAB = {
   course: 0,
@@ -40,12 +49,15 @@ let lastKnownActiveLanguagePairId: string | null = null;
     MatButtonToggleModule,
     MatChipsModule,
     MatIconModule,
+    MatProgressBarModule,
     MatProgressSpinnerModule,
     MatTabsModule,
     CardHostComponent,
     CoursePickerComponent,
     LessonPickerComponent,
     ScenarioPickerComponent,
+    PracticeSessionBarComponent,
+    PracticeStepperComponent,
   ],
   templateUrl: './card-select-page.component.html',
   styleUrl: './card-select-page.component.scss',
@@ -70,27 +82,6 @@ export class CardSelectPageComponent implements OnInit {
   readonly missingCardsWarning = signal<string | null>(null);
   readonly activeTabIndex = signal<number>(LEARNING_TAB.course);
 
-  readonly lessonProgressLabel = computed(() => {
-    const ids = this.lessonScenarioIds();
-    if (ids.length === 0) {
-      return '';
-    }
-
-    const progress = this.resultsStore.scenarioSetProgress(ids);
-    return `Урок: ${progress.completed}/${progress.total} сценариев`;
-  });
-
-  readonly courseProgressLabel = computed(() => {
-    const courseId = this.selectedCourseId();
-    const lessons = this.courseLessons();
-    if (!courseId || lessons.length === 0) {
-      return '';
-    }
-
-    const progress = this.resultsStore.courseProgress(courseId, lessons);
-    return `Курс: ${progress.percent}%`;
-  });
-
   readonly courseCompleted = computed(() => {
     const lessons = this.courseLessons();
     if (lessons.length === 0) {
@@ -111,6 +102,110 @@ export class CardSelectPageComponent implements OnInit {
     const current = this.selectedScenarioId();
     const index = ids.indexOf(current);
     return index >= 0 && index < ids.length - 1;
+  });
+
+  readonly cardProgressPercent = computed(() => {
+    const total = this.store.cards().length;
+    if (total === 0) {
+      return 0;
+    }
+
+    return Math.round(((this.store.currentIndex() + 1) / total) * 100);
+  });
+
+  readonly sessionSegments = computed((): readonly PracticeSessionSegment[] => {
+    const courseId = this.selectedCourseId();
+    const lessonId = this.selectedLessonId();
+    const scenarioId = this.selectedScenarioId();
+
+    return [
+      {
+        tabIndex: LEARNING_TAB.course,
+        label: 'Программа',
+        value: courseId ? this.courseTitle() || 'Выбранная программа' : null,
+        placeholder: 'Программа не выбрана',
+        completed: !!courseId,
+        locked: false,
+      },
+      {
+        tabIndex: LEARNING_TAB.lessons,
+        label: 'Урок',
+        value: lessonId ? this.lessonTitle() || 'Выбранный урок' : null,
+        placeholder: 'Урок не выбран',
+        completed: !!lessonId,
+        locked: !courseId,
+        lockReason: 'Сначала выберите программу',
+      },
+      {
+        tabIndex: LEARNING_TAB.scenarios,
+        label: 'Сценарий',
+        value: scenarioId ? this.scenarioTitle() || 'Выбранный сценарий' : null,
+        placeholder: 'Сценарий не выбран',
+        completed: !!scenarioId,
+        locked: false,
+      },
+    ];
+  });
+
+  readonly practiceSteps = computed((): readonly PracticeStepState[] => {
+    const active = this.activeTabIndex();
+    const courseId = this.selectedCourseId();
+    const lessonId = this.selectedLessonId();
+    const scenarioId = this.selectedScenarioId();
+
+    return [
+      {
+        index: LEARNING_TAB.course,
+        label: 'Программа',
+        done: !!courseId,
+        current: active === LEARNING_TAB.course,
+        locked: false,
+      },
+      {
+        index: LEARNING_TAB.lessons,
+        label: 'Урок',
+        done: !!lessonId,
+        current: active === LEARNING_TAB.lessons,
+        locked: !courseId,
+      },
+      {
+        index: LEARNING_TAB.scenarios,
+        label: 'Сценарий',
+        done: !!scenarioId,
+        current: active === LEARNING_TAB.scenarios,
+        locked: false,
+      },
+      {
+        index: LEARNING_TAB.learning,
+        label: 'Обучение',
+        done: false,
+        current: active === LEARNING_TAB.learning,
+        locked: !scenarioId,
+      },
+    ];
+  });
+
+  readonly canAdvanceFromCourse = computed(() => !!this.selectedCourseId());
+  readonly canAdvanceFromLessons = computed(() => !!this.selectedLessonId());
+  readonly canStartPractice = computed(() => !!this.selectedScenarioId());
+
+  readonly nextStepHint = computed(() => {
+    switch (this.activeTabIndex()) {
+      case LEARNING_TAB.course:
+        return this.canAdvanceFromCourse()
+          ? 'Перейдите к выбору урока'
+          : 'Выберите программу, чтобы продолжить';
+      case LEARNING_TAB.lessons:
+        return this.canAdvanceFromLessons()
+          ? 'Перейдите к выбору сценария'
+          : 'Выберите урок, чтобы продолжить';
+      case LEARNING_TAB.scenarios:
+        return this.canStartPractice()
+          ? 'Запустите прохождение карточек'
+          : 'Выберите сценарий, чтобы начать практику';
+      default:
+        return '';
+    }
   });
 
   readonly fontSize = this.userStore.preferences;
@@ -199,6 +294,44 @@ export class CardSelectPageComponent implements OnInit {
     this.activeTabIndex.set(LEARNING_TAB.course);
   }
 
+  goToTab(tabIndex: number): void {
+    if (tabIndex === LEARNING_TAB.lessons && !this.selectedCourseId()) {
+      return;
+    }
+
+    if (tabIndex === LEARNING_TAB.learning && !this.selectedScenarioId()) {
+      return;
+    }
+
+    this.activeTabIndex.set(tabIndex);
+  }
+
+  advanceFromCurrentTab(): void {
+    const current = this.activeTabIndex();
+
+    if (current === LEARNING_TAB.scenarios) {
+      this.startPractice();
+      return;
+    }
+
+    if (current === LEARNING_TAB.course && this.canAdvanceFromCourse()) {
+      this.activeTabIndex.set(LEARNING_TAB.lessons);
+      return;
+    }
+
+    if (current === LEARNING_TAB.lessons && this.canAdvanceFromLessons()) {
+      this.activeTabIndex.set(LEARNING_TAB.scenarios);
+    }
+  }
+
+  startPractice(): void {
+    if (!this.canStartPractice()) {
+      return;
+    }
+
+    this.activeTabIndex.set(LEARNING_TAB.learning);
+  }
+
   async onCourseChange(courseId: string): Promise<void> {
     this.selectedCourseId.set(courseId);
     this.selectedLessonId.set('');
@@ -257,7 +390,6 @@ export class CardSelectPageComponent implements OnInit {
   async onLessonPick(payload: LessonPickPayload): Promise<void> {
     this.lessonTitle.set(payload.title);
     this.lessonScenarioIds.set(payload.scenarioIds);
-    this.activeTabIndex.set(LEARNING_TAB.scenarios);
     this.persistLearningSession({ lastLessonId: payload.lessonId });
   }
 
@@ -305,10 +437,6 @@ export class CardSelectPageComponent implements OnInit {
       ...(this.selectedLessonId() ? { lastLessonId: this.selectedLessonId() } : {}),
       lastScenarioId: scenarioId,
     });
-
-    if (!this.store.error() && this.activeTabIndex() === LEARNING_TAB.scenarios) {
-      this.activeTabIndex.set(LEARNING_TAB.learning);
-    }
   }
 
   onScenarioLabelChange(label: string): void {

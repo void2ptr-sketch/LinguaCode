@@ -57,7 +57,7 @@ type CardDirection = 'known-to-learning' | 'learning-to-known';
 
 ## Learning Home (G13)
 
-> **Статус:** готово (G13). Dashboard на `/home` · сессия на `/cards/select`.
+> **Статус:** готово (G13 + G14). Dashboard на `/home` · студия сессии на `/cards/select`.
 
 | Экран | Маршрут | Роль |
 |-------|---------|------|

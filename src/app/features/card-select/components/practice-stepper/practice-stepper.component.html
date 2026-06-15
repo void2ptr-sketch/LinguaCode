@@ -1,0 +1,31 @@
+<nav class="practice-stepper" aria-label="Шаги практики">
+  @for (step of steps(); track step.index; let last = $last) {
+    <button
+      type="button"
+      class="practice-stepper__step"
+      [class.practice-stepper__step--done]="step.done"
+      [class.practice-stepper__step--current]="step.current"
+      [class.practice-stepper__step--locked]="step.locked"
+      [disabled]="step.locked"
+      (click)="selectStep(step.index, step.locked)"
+    >
+      <span class="practice-stepper__marker" aria-hidden="true">
+        @if (step.done) {
+          <mat-icon>check</mat-icon>
+        } @else if (step.current) {
+          <span class="practice-stepper__dot"></span>
+        } @else {
+          <span class="practice-stepper__circle"></span>
+        }
+      </span>
+      <span class="practice-stepper__label">{{ step.label }}</span>
+    </button>
+    @if (!last) {
+      <span
+        class="practice-stepper__connector"
+        [class.practice-stepper__connector--done]="step.done"
+        aria-hidden="true"
+      ></span>
+    }
+  }
+</nav>

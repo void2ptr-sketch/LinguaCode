@@ -1,0 +1,87 @@
+.practice-stepper {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.practice-stepper__step {
+  align-items: center;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  gap: 0.35rem;
+  padding: 0.25rem 0.35rem;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+  }
+}
+
+.practice-stepper__step--current .practice-stepper__label {
+  color: var(--mat-sys-primary);
+  font-weight: 600;
+}
+
+.practice-stepper__step--done .practice-stepper__marker {
+  background: color-mix(in srgb, var(--mat-sys-primary) 14%, transparent);
+  color: var(--mat-sys-primary);
+}
+
+.practice-stepper__marker {
+  align-items: center;
+  border-radius: 999px;
+  display: inline-flex;
+  height: 1.5rem;
+  justify-content: center;
+  width: 1.5rem;
+
+  mat-icon {
+    font-size: 1rem;
+    height: 1rem;
+    width: 1rem;
+  }
+}
+
+.practice-stepper__dot {
+  background: var(--mat-sys-primary);
+  border-radius: 999px;
+  height: 0.5rem;
+  width: 0.5rem;
+}
+
+.practice-stepper__circle {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 60%, transparent);
+  border-radius: 999px;
+  height: 0.625rem;
+  width: 0.625rem;
+}
+
+.practice-stepper__label {
+  font-size: 0.8125rem;
+  line-height: 1.2;
+}
+
+.practice-stepper__connector {
+  background: color-mix(in srgb, var(--mat-sys-outline) 40%, transparent);
+  flex: 0 0 1.25rem;
+  height: 1px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
+}
+
+.practice-stepper__connector--done {
+  background: color-mix(in srgb, var(--mat-sys-primary) 45%, transparent);
+}
+
+@media (max-width: 600px) {
+  .practice-stepper__label {
+    font-size: 0.75rem;
+  }
+}

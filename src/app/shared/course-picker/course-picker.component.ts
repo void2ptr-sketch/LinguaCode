@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
@@ -22,6 +23,7 @@ let lastKnownCoursePickerActiveLanguagePairId: string | null = null;
     MatButtonModule,
     MatButtonToggleModule,
     MatFormFieldModule,
+    MatIconModule,
     MatInputModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,
@@ -34,7 +36,9 @@ export class CoursePickerComponent implements OnInit {
   private readonly userStore = inject(UserStore);
 
   readonly selectedCourseId = input.required<string>();
+  readonly selectedCourseLabel = input<string>('');
   readonly defaultScope = input<CourseListScope>('published');
+  readonly compact = input(false);
 
   readonly selectedCourseIdChange = output<string>();
   readonly courseLabelChange = output<string>();
@@ -46,6 +50,7 @@ export class CoursePickerComponent implements OnInit {
   readonly pageIndex = signal(0);
   readonly pageSize = signal(10);
   readonly loading = signal(false);
+  readonly showFullList = signal(false);
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
@@ -87,11 +92,24 @@ export class CoursePickerComponent implements OnInit {
   pick(entry: CourseIndexEntry): void {
     this.selectedCourseIdChange.emit(entry.id);
     this.courseLabelChange.emit(this.formatLabel(entry));
+
+    if (this.compact()) {
+      this.showFullList.set(false);
+    }
   }
 
   clearSelection(): void {
     this.selectedCourseIdChange.emit('');
     this.courseLabelChange.emit('');
+    this.showFullList.set(false);
+  }
+
+  expandList(): void {
+    this.showFullList.set(true);
+  }
+
+  collapseList(): void {
+    this.showFullList.set(false);
   }
 
   onQueryChange(value: string): void {

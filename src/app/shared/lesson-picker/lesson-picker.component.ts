@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 import {
   buildLessonsById,
@@ -21,12 +22,13 @@ type LessonListItem = {
   lesson: Lesson;
   unlocked: boolean;
   completed: boolean;
+  completedScenarios: number;
   blockReason: string | null;
 };
 
 @Component({
   selector: 'app-lesson-picker',
-  imports: [MatIconModule, MatProgressSpinnerModule],
+  imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
   templateUrl: './lesson-picker.component.html',
   styleUrl: './lesson-picker.component.scss',
 })
@@ -37,6 +39,7 @@ export class LessonPickerComponent {
   readonly selectedCourseId = input.required<string>();
   readonly selectedLessonId = input.required<string>();
   readonly autoPickFirstLesson = input(false);
+  readonly hideTitle = input(false);
 
   readonly selectedLessonIdChange = output<string>();
   readonly lessonPickChange = output<LessonPickPayload>();
@@ -51,12 +54,19 @@ export class LessonPickerComponent {
     const hasScenarioResult = (scenarioId: string) =>
       this.resultsStore.resultsForScenario(scenarioId).length > 0;
 
-    return lessons.map((lesson) => ({
-      lesson,
-      unlocked: isLessonUnlocked(lesson, lessonsById, hasScenarioResult),
-      completed: this.resultsStore.isLessonCompleted(lesson.scenarioIds),
-      blockReason: prerequisiteBlockReason(lesson, lessons, hasScenarioResult),
-    }));
+    return lessons.map((lesson) => {
+      const completedScenarios = lesson.scenarioIds.filter((scenarioId) =>
+        hasScenarioResult(scenarioId),
+      ).length;
+
+      return {
+        lesson,
+        unlocked: isLessonUnlocked(lesson, lessonsById, hasScenarioResult),
+        completed: this.resultsStore.isLessonCompleted(lesson.scenarioIds),
+        completedScenarios,
+        blockReason: prerequisiteBlockReason(lesson, lessons, hasScenarioResult),
+      };
+    });
   });
 
   private readonly loadOnCourseChange = effect(() => {
