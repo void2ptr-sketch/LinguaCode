@@ -36,6 +36,7 @@ export class LessonPickerComponent {
 
   readonly selectedCourseId = input.required<string>();
   readonly selectedLessonId = input.required<string>();
+  readonly autoPickFirstLesson = input(false);
 
   readonly selectedLessonIdChange = output<string>();
   readonly lessonPickChange = output<LessonPickPayload>();
@@ -64,6 +65,10 @@ export class LessonPickerComponent {
   });
 
   private readonly pickFirstUnlocked = effect(() => {
+    if (!this.autoPickFirstLesson()) {
+      return;
+    }
+
     const items = this.lessonItems();
     const current = this.selectedLessonId();
     const currentItem = items.find((item) => item.lesson.id === current);

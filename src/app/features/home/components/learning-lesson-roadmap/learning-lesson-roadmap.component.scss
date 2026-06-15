@@ -1,0 +1,7 @@
+.learning-lesson-roadmap__item--locked {
+  opacity: 0.72;
+}
+
+.learning-lesson-roadmap__item--completed mat-icon[matListItemIcon] {
+  color: var(--mat-sys-primary);
+}

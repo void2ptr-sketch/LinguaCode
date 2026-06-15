@@ -4,7 +4,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { LearningResultsStore } from '../../../../core/state';
+import { LearningResultsStore, UserStore } from '../../../../core/state';
+import { scenarioDisplayLabel } from '../../../../core/data/scenario-display-label.utils';
 
 @Component({
   selector: 'app-learning-progress',
@@ -26,11 +27,7 @@ export class LearningProgressComponent {
   }
 
   scenarioLabel(scenarioId: string): string {
-    if (scenarioId === 'demo-scenario') {
-      return 'Демо-сценарий';
-    }
-
-    return scenarioId;
+    return scenarioDisplayLabel(scenarioId);
   }
 
   formatDate(isoDate: string): string {

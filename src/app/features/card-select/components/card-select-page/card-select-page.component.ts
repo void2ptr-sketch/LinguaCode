@@ -126,10 +126,62 @@ export class CardSelectPageComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    const courseId = this.route.snapshot.queryParamMap.get('courseId');
+    const query = this.route.snapshot.queryParamMap;
+    const courseId = query.get('courseId');
+    const lessonId = query.get('lessonId');
+    const scenarioId = query.get('scenarioId');
+    const tab = query.get('tab');
+
     if (courseId) {
       await this.onCourseChange(courseId);
     }
+
+    if (lessonId) {
+      await this.applyLessonFromCourse(lessonId);
+    }
+
+    if (scenarioId) {
+      await this.onScenarioChange(scenarioId);
+    }
+
+    if (tab === 'learning' && scenarioId) {
+      this.activeTabIndex.set(LEARNING_TAB.learning);
+    } else if (tab === 'scenarios') {
+      this.activeTabIndex.set(LEARNING_TAB.scenarios);
+    } else if (tab === 'lessons' && courseId) {
+      this.activeTabIndex.set(LEARNING_TAB.lessons);
+    } else if (tab === 'course') {
+      this.activeTabIndex.set(LEARNING_TAB.course);
+    }
+  }
+
+  private async applyLessonFromCourse(lessonId: string): Promise<void> {
+    const courseId = this.selectedCourseId();
+    if (!courseId) {
+      return;
+    }
+
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      const lesson = course.lessons.find((item) => item.id === lessonId);
+      if (!lesson) {
+        return;
+      }
+
+      this.selectedLessonId.set(lesson.id);
+      this.lessonTitle.set(lesson.title);
+      this.lessonScenarioIds.set(lesson.scenarioIds);
+    } catch {
+      // ignore invalid deep link
+    }
+  }
+
+  private persistLearningSession(
+    patch: Partial<{ activeCourseId: string; lastLessonId: string; lastScenarioId: string }>,
+  ): void {
+    queueMicrotask(() => {
+      this.userStore.updateLearningSession(patch);
+    });
   }
 
   private resetSessionState(): void {
@@ -160,7 +212,11 @@ export class CardSelectPageComponent implements OnInit {
     this.missingCardsWarning.set(null);
 
     if (courseId) {
-      this.activeTabIndex.set(LEARNING_TAB.lessons);
+      this.persistLearningSession({
+        activeCourseId: courseId,
+        lastLessonId: '',
+        lastScenarioId: '',
+      });
 
       try {
         const course = await this.courseSearchService.getById(courseId);
@@ -177,6 +233,11 @@ export class CardSelectPageComponent implements OnInit {
     } else {
       this.courseTitle.set('');
       this.activeTabIndex.set(LEARNING_TAB.course);
+      this.persistLearningSession({
+        activeCourseId: '',
+        lastLessonId: '',
+        lastScenarioId: '',
+      });
     }
   }
 
@@ -197,6 +258,7 @@ export class CardSelectPageComponent implements OnInit {
     this.lessonTitle.set(payload.title);
     this.lessonScenarioIds.set(payload.scenarioIds);
     this.activeTabIndex.set(LEARNING_TAB.scenarios);
+    this.persistLearningSession({ lastLessonId: payload.lessonId });
   }
 
   async loadCards(): Promise<void> {
@@ -237,6 +299,12 @@ export class CardSelectPageComponent implements OnInit {
     }
 
     await this.loadCards();
+
+    this.persistLearningSession({
+      ...(this.selectedCourseId() ? { activeCourseId: this.selectedCourseId() } : {}),
+      ...(this.selectedLessonId() ? { lastLessonId: this.selectedLessonId() } : {}),
+      lastScenarioId: scenarioId,
+    });
 
     if (!this.store.error() && this.activeTabIndex() === LEARNING_TAB.scenarios) {
       this.activeTabIndex.set(LEARNING_TAB.learning);
@@ -290,6 +358,12 @@ export class CardSelectPageComponent implements OnInit {
       direction: this.store.sessionDirection(),
       lessonId: this.selectedLessonId() || undefined,
       courseId: this.selectedCourseId() || undefined,
+    });
+
+    this.persistLearningSession({
+      activeCourseId: this.selectedCourseId() || undefined,
+      lastLessonId: this.selectedLessonId() || undefined,
+      lastScenarioId: this.store.scenarioId(),
     });
   }
 

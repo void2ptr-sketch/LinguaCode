@@ -1,0 +1,73 @@
+<section class="home-learning-tab">
+  <header class="home-learning-tab__hero">
+    <div class="home-learning-tab__hero-copy">
+      <h1 class="home-learning-tab__greeting">Привет, {{ displayName() }}</h1>
+      <p class="home-learning-tab__context">Курс: {{ languagePairLabel() }}</p>
+      @if (course(); as activeCourse) {
+        <p class="home-learning-tab__context">Программа: {{ activeCourse.title }}</p>
+      } @else if (!loading()) {
+        <p class="home-learning-tab__context">Программа: не выбрана</p>
+      }
+    </div>
+    <a mat-stroked-button routerLink="/user">Профиль</a>
+  </header>
+
+  @if (loading()) {
+    <div class="home-learning-tab__state">
+      <mat-spinner diameter="40" />
+      <p>Загрузка программы…</p>
+    </div>
+  } @else if (error()) {
+    <mat-card class="home-learning-tab__message">
+      <mat-card-content>{{ error() }}</mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-flat-button type="button" (click)="retryLoad()">Повторить</button>
+      </mat-card-actions>
+    </mat-card>
+  } @else {
+    <div class="home-learning-tab__grid">
+      <app-learning-continue-card
+        class="home-learning-tab__continue"
+        [label]="continueLabel()"
+        [resumeTarget]="resumeTarget()"
+        [continueQueryParams]="continueQueryParams()"
+      />
+
+      @if (course() && courseProgress(); as progress) {
+        <app-learning-program-progress
+          class="home-learning-tab__progress"
+          [courseTitle]="course()!.title"
+          [completed]="progress.completed"
+          [total]="progress.total"
+          [percent]="progress.percent"
+        />
+      }
+
+      @if (roadmap().length > 0) {
+        <app-learning-lesson-roadmap
+          class="home-learning-tab__roadmap"
+          [items]="roadmap()"
+          [courseId]="course()?.id ?? ''"
+        />
+      }
+
+      <mat-card class="home-learning-tab__stats">
+        <mat-card-header>
+          <mat-card-title>Статистика</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+          @if (totalResults() === 0) {
+            <p class="home-learning-tab__stats-empty">Пройдите карточки, чтобы увидеть точность.</p>
+          } @else {
+            <p class="home-learning-tab__stats-line">Точность: {{ accuracyPercent() }}%</p>
+            <p class="home-learning-tab__stats-line">Ответов: {{ totalResults() }}</p>
+          }
+        </mat-card-content>
+        <mat-card-actions>
+          <a mat-button routerLink="/home/progress">Подробнее</a>
+          <a mat-button routerLink="/cards/select">Свободная практика</a>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  }
+</section>

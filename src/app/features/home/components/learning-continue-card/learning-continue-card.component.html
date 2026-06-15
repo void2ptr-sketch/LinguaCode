@@ -1,0 +1,20 @@
+<mat-card class="learning-continue-card">
+  <mat-card-content>
+    @if (continueQueryParams(); as params) {
+      <a
+        mat-flat-button
+        class="learning-continue-card__action"
+        [routerLink]="['/cards/select']"
+        [queryParams]="params"
+      >
+        <mat-icon>play_arrow</mat-icon>
+        {{ label() }}
+      </a>
+    } @else {
+      <a mat-flat-button class="learning-continue-card__action" routerLink="/courses">
+        <mat-icon>menu_book</mat-icon>
+        {{ label() }}
+      </a>
+    }
+  </mat-card-content>
+</mat-card>

@@ -502,6 +502,16 @@
 - [x] Prerequisites между уроками
 - [x] Сертификат / badge по завершению курса
 
+**G13 — Learning Home (dashboard обучения)**
+
+Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#learning-home-g13).
+
+- [x] **G13a** — `LearningSessionPreferences` в `UserLanguagePairSettings` + persistence
+- [x] **G13b** — `learning-resume.utils` + `LearningDashboardService` (следующий шаг, roadmap)
+- [x] **G13c** — `home-learning-tab` + continue / progress / roadmap components
+- [x] **G13d** — deep links `courseId` / `lessonId` / `scenarioId` / `tab` на `/cards/select`; сохранение сессии при ответе
+- [x] **G13e** — навигация (`/home` = Обучение), smoke-тест, docs
+
 **G12 — Editor UX (упрощение редактора карточек)**
 
 Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-кomponent.

@@ -8,11 +8,13 @@ import {
   findLanguagePairEntryId,
   mergeLanguagePairSettings,
   resolveCjkLearningForPair,
+  resolveLearningSessionForPair,
   resolvePhoneticForPair,
 } from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import type {
   LanguagePair,
+  LearningSessionPreferences,
   User,
   UserLanguagePairEntry,
   UserLanguagePairSettings,
@@ -55,6 +57,7 @@ export class UserStore {
   readonly languagePairLabel = computed(() => formatLanguagePair(this.languagePair()));
   readonly cjkLearning = computed(() => resolveCjkLearningForPair(this.activeLanguagePairEntry()));
   readonly phonetic = computed(() => resolvePhoneticForPair(this.activeLanguagePairEntry()));
+  readonly learningSession = computed(() => resolveLearningSessionForPair(this.activeLanguagePairEntry()));
 
   updateDisplayName(displayName: string): void {
     const sanitized = sanitizePlainText(displayName);
@@ -106,6 +109,10 @@ export class UserStore {
       },
     }));
     this.persist();
+  }
+
+  updateLearningSession(patch: Partial<LearningSessionPreferences>): void {
+    this.updateActiveLanguagePairSettings({ learning: patch });
   }
 
   /** Обновляет настройки активной языковой пары. */
