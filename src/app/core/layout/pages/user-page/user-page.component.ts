@@ -26,7 +26,12 @@ import {
   CourseDisplaySettingsMatrixComponent,
   type RomanizationOption,
 } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
-import type { AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import {
+  normalizeAnswerModesForSave,
+  normalizeRomanizationsForSave,
+  type AnswerDisplayMode,
+} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import { DEFAULT_CJK_LEARNING_PREFERENCES } from '../../../models/phonetic-content.types';
 
 @Component({
   selector: 'app-user-page',
@@ -185,8 +190,14 @@ export class UserPageComponent {
     if (this.showCjkPreferences()) {
       patch.cjkLearning = {
         ...resolveCjkLearningForPair(entry),
-        displayRomanizations: [...this.displayRomanizationsDraft()],
-        answerRomanization: [...this.answerRomanizationsDraft()],
+        displayRomanizations: normalizeRomanizationsForSave(
+          this.displayRomanizationsDraft(),
+          DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations,
+        ),
+        answerRomanization: normalizeRomanizationsForSave(
+          this.answerRomanizationsDraft(),
+          DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization,
+        ),
       };
     }
 
@@ -195,7 +206,7 @@ export class UserPageComponent {
         ...resolvePhoneticForPair(entry),
         showIpa: this.showIpaDraft(),
         ipaVariantLabel: this.ipaVariantLabelDraft().trim() || undefined,
-        answerModes: [...this.answerModesDraft()],
+        answerModes: normalizeAnswerModesForSave(this.answerModesDraft()),
       };
     }
 

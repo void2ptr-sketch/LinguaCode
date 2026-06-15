@@ -1,8 +1,7 @@
 import {
-  DEFAULT_ANSWER_ROMANIZATIONS,
-  DEFAULT_DISPLAY_ROMANIZATIONS,
-  isOnlyAnswerModeEnabled,
-  isOnlyRomanizationEnabled,
+  DEFAULT_PHONETIC_PREFERENCES,
+  normalizeAnswerModesForSave,
+  normalizeRomanizationsForSave,
   toggleAnswerModes,
   toggleRomanizations,
 } from './course-display-settings-matrix.utils';
@@ -10,32 +9,36 @@ import {
 describe('course-display-settings-matrix.utils', () => {
   describe('toggleRomanizations', () => {
     it('adds a system in display order', () => {
-      expect(toggleRomanizations(['pinyin'], 'palladius', true, DEFAULT_DISPLAY_ROMANIZATIONS)).toEqual([
-        'pinyin',
-        'palladius',
-      ]);
+      expect(toggleRomanizations(['pinyin'], 'palladius', true)).toEqual(['pinyin', 'palladius']);
     });
 
-    it('removes a system when disabled', () => {
-      expect(
-        toggleRomanizations(['pinyin', 'palladius'], 'palladius', false, DEFAULT_DISPLAY_ROMANIZATIONS),
-      ).toEqual(['pinyin']);
+    it('keeps palladius only when disabling pinyin', () => {
+      expect(toggleRomanizations(['pinyin', 'palladius'], 'pinyin', false)).toEqual(['palladius']);
     });
 
-    it('falls back when disabling the last system', () => {
-      expect(toggleRomanizations(['pinyin'], 'pinyin', false, DEFAULT_DISPLAY_ROMANIZATIONS)).toEqual([
-        ...DEFAULT_DISPLAY_ROMANIZATIONS,
-      ]);
+    it('keeps pinyin only when disabling palladius', () => {
+      expect(toggleRomanizations(['pinyin', 'palladius'], 'palladius', false)).toEqual(['pinyin']);
+    });
+
+    it('allows disabling the last system', () => {
+      expect(toggleRomanizations(['pinyin'], 'pinyin', false)).toEqual([]);
+    });
+
+    it('toggles pinyin and palladius independently', () => {
+      let current = toggleRomanizations(['pinyin', 'palladius'], 'pinyin', false);
+      expect(current).toEqual(['palladius']);
+
+      current = toggleRomanizations(current, 'palladius', false);
+      expect(current).toEqual([]);
+
+      current = toggleRomanizations(current, 'pinyin', true);
+      expect(current).toEqual(['pinyin']);
     });
   });
 
-  describe('isOnlyRomanizationEnabled', () => {
-    it('returns true for the sole enabled system', () => {
-      expect(isOnlyRomanizationEnabled(['pinyin'], 'pinyin')).toBeTrue();
-    });
-
-    it('returns false when multiple systems are enabled', () => {
-      expect(isOnlyRomanizationEnabled(['pinyin', 'zhuyin'], 'pinyin')).toBeFalse();
+  describe('normalizeRomanizationsForSave', () => {
+    it('falls back when draft is empty', () => {
+      expect(normalizeRomanizationsForSave([], ['pinyin'])).toEqual(['pinyin']);
     });
   });
 
@@ -44,14 +47,14 @@ describe('course-display-settings-matrix.utils', () => {
       expect(toggleAnswerModes(['orthography'], 'ipa', true)).toEqual(['orthography', 'ipa']);
     });
 
-    it('falls back when disabling the last answer mode', () => {
-      expect(toggleAnswerModes(['orthography'], 'orthography', false)).toEqual(['orthography']);
+    it('allows disabling the last answer mode in draft', () => {
+      expect(toggleAnswerModes(['orthography'], 'orthography', false)).toEqual([]);
     });
   });
 
-  describe('isOnlyAnswerModeEnabled', () => {
-    it('returns true for the sole enabled mode', () => {
-      expect(isOnlyAnswerModeEnabled(['ipa'], 'ipa')).toBeTrue();
+  describe('normalizeAnswerModesForSave', () => {
+    it('falls back when draft is empty', () => {
+      expect(normalizeAnswerModesForSave([])).toEqual([...DEFAULT_PHONETIC_PREFERENCES.answerModes]);
     });
   });
 });

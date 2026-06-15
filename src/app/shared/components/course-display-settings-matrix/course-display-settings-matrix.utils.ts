@@ -1,5 +1,4 @@
 import {
-  DEFAULT_CJK_LEARNING_PREFERENCES,
   DEFAULT_PHONETIC_PREFERENCES,
   ROMANIZATION_DISPLAY_ORDER,
   type RomanizationSystem,
@@ -11,20 +10,16 @@ export function toggleRomanizations(
   current: readonly RomanizationSystem[],
   system: RomanizationSystem,
   enabled: boolean,
-  fallback: readonly RomanizationSystem[],
 ): readonly RomanizationSystem[] {
-  const next = enabled
-    ? ROMANIZATION_DISPLAY_ORDER.filter((item) => current.includes(item) || item === system)
-    : current.filter((item) => item !== system);
+  const selected = new Set(current);
 
-  return next.length > 0 ? next : [...fallback];
-}
+  if (enabled) {
+    selected.add(system);
+  } else {
+    selected.delete(system);
+  }
 
-export function isOnlyRomanizationEnabled(
-  current: readonly RomanizationSystem[],
-  system: RomanizationSystem,
-): boolean {
-  return current.length === 1 && current[0] === system;
+  return ROMANIZATION_DISPLAY_ORDER.filter((item) => selected.has(item));
 }
 
 export function toggleAnswerModes(
@@ -32,19 +27,26 @@ export function toggleAnswerModes(
   mode: AnswerDisplayMode,
   enabled: boolean,
 ): readonly AnswerDisplayMode[] {
-  const next = enabled
-    ? [...new Set([...current, mode])]
-    : current.filter((item) => item !== mode);
+  const selected = new Set(current);
 
-  return next.length > 0 ? next : [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
+  if (enabled) {
+    selected.add(mode);
+  } else {
+    selected.delete(mode);
+  }
+
+  return [...selected];
 }
 
-export function isOnlyAnswerModeEnabled(
+export function normalizeRomanizationsForSave(
+  current: readonly RomanizationSystem[],
+  fallback: readonly RomanizationSystem[],
+): readonly RomanizationSystem[] {
+  return current.length > 0 ? [...current] : [...fallback];
+}
+
+export function normalizeAnswerModesForSave(
   current: readonly AnswerDisplayMode[],
-  mode: AnswerDisplayMode,
-): boolean {
-  return current.length === 1 && current[0] === mode;
+): readonly AnswerDisplayMode[] {
+  return current.length > 0 ? [...current] : [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
 }
-
-export const DEFAULT_DISPLAY_ROMANIZATIONS = DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations;
-export const DEFAULT_ANSWER_ROMANIZATIONS = DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization;

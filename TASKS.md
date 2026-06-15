@@ -379,8 +379,8 @@
 - [x] Компонент `app-course-display-settings-matrix`: строки = система (пиньинь, жуинь, палладица, IPA, орфография), столбцы = **Задание** / **Ответы**
 - [x] Объединить секции CJK и IPA в одну grid-таблицу на вкладке «Настройка курса»
 - [x] Единые `mat-checkbox` (вместо slide для IPA в задании); поле `ipaVariantLabel` под таблицей
-- [x] Запрет снять последнюю галочку в столбце (disabled)
-- [x] Утилиты `toggleRomanizations` / `toggleAnswerModes` + unit-тесты
+- [x] Независимое включение систем в колонке; минимум одной — при сохранении профиля
+- [x] Утилиты `toggleRomanizations` / `toggleAnswerModes` + unit/component-тесты
 
 **G9g-d — edge cases и приёмка**
 

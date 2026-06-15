@@ -28,34 +28,32 @@
 .display-matrix__header-col {
   font-size: 0.8125rem;
   font-weight: 500;
-  grid-area: auto;
   justify-self: center;
   text-align: center;
 }
 
-.display-matrix__header-col:nth-child(2) {
+.display-matrix__header-col--prompt {
   grid-area: prompt;
 }
 
-.display-matrix__header-col:nth-child(3) {
+.display-matrix__header-col--answer {
   grid-area: answer;
 }
 
-.display-matrix__cell {
-  justify-self: center;
-}
-
-.display-matrix__row .display-matrix__cell:nth-child(2) {
+.display-matrix__prompt {
+  display: flex;
   grid-area: prompt;
+  justify-content: center;
 }
 
-.display-matrix__row .display-matrix__cell:nth-child(3) {
+.display-matrix__answer {
+  display: flex;
   grid-area: answer;
+  justify-content: center;
 }
 
-.display-matrix__na {
+.display-matrix__prompt--empty {
   color: color-mix(in srgb, var(--mat-sys-on-surface) 45%, transparent);
-  justify-self: center;
   user-select: none;
 }
 
