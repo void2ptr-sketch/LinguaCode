@@ -56,8 +56,9 @@ export type {
 } from './course-index.types';
 export type { Lesson } from './lesson.types';
 export type { LearningSessionPreferences } from './learning-session.types';
-export type { User, UserPreferences, CjkLearningPreferences, PhoneticPreferences } from './user.types';
+export type { User, UserPreferences, CjkLearningPreferences, PhoneticPreferences, AppColorScheme } from './user.types';
 export {
+  DEFAULT_APP_COLOR_SCHEME,
   DEFAULT_CJK_LEARNING_PREFERENCES,
   DEFAULT_PHONETIC_PREFERENCES,
 } from './user.types';

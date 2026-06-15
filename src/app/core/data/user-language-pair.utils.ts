@@ -8,6 +8,7 @@ import type {
   UserPreferences,
 } from '../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../security';
+import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
 import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
@@ -224,6 +225,7 @@ export function normalizeUserPreferences(
     preferences?.fontSize && isAllowedFontSize(preferences.fontSize)
       ? preferences.fontSize
       : DEFAULT_FONT_SIZE;
+  const colorScheme = normalizeColorScheme(preferences?.colorScheme);
 
   const legacy = {
     cjkLearning: preferences?.cjkLearning,
@@ -243,6 +245,7 @@ export function normalizeUserPreferences(
       return {
         theme,
         fontSize,
+        colorScheme,
         ...defaults,
       };
     }
@@ -256,6 +259,7 @@ export function normalizeUserPreferences(
     return {
       theme,
       fontSize,
+      colorScheme,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
     };
@@ -272,6 +276,7 @@ export function normalizeUserPreferences(
     return {
       theme,
       fontSize,
+      colorScheme,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
     };
@@ -280,6 +285,7 @@ export function normalizeUserPreferences(
   return {
     theme,
     fontSize,
+    colorScheme,
     ...defaults,
   };
 }

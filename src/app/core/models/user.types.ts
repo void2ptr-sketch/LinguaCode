@@ -1,4 +1,5 @@
 import { CardAppearance } from './card.types';
+import type { AppColorScheme } from '../theme/app-color-scheme.types';
 import type { UserLanguagePairEntry } from './user-language-pair.types';
 
 export type { UserLanguagePairEntry, UserLanguagePairSettings } from './user-language-pair.types';
@@ -8,7 +9,11 @@ export {
   DEFAULT_PHONETIC_PREFERENCES,
 } from './phonetic-content.types';
 
+export type { AppColorScheme } from '../theme/app-color-scheme.types';
+export { DEFAULT_APP_COLOR_SCHEME } from '../theme/app-color-scheme.types';
+
 export type UserPreferences = CardAppearance & {
+  colorScheme: AppColorScheme;
   languagePairs: readonly UserLanguagePairEntry[];
   activeLanguagePairId: string;
 };

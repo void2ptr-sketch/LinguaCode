@@ -153,6 +153,32 @@
       <mat-tab label="Внешний вид">
         <div class="page-card__tab-panel">
           <section class="page-card__section">
+            <h2 class="page-card__section-title">Интерфейс приложения</h2>
+            <p class="page-card__hint">Мягкая светлая или тёмная тема оформления.</p>
+
+            <mat-button-toggle-group
+              class="page-card__color-scheme"
+              [ngModel]="colorSchemeDraft()"
+              (ngModelChange)="colorSchemeDraft.set($event)"
+              name="colorScheme"
+            >
+              <mat-button-toggle value="light">
+                <mat-icon aria-hidden="true">light_mode</mat-icon>
+                Светлая
+              </mat-button-toggle>
+              <mat-button-toggle value="dark">
+                <mat-icon aria-hidden="true">dark_mode</mat-icon>
+                Тёмная
+              </mat-button-toggle>
+            </mat-button-toggle-group>
+
+            <div class="page-card__theme-preview" [class.page-card__theme-preview--dark]="colorSchemeDraft() === 'dark'">
+              <span class="page-card__theme-preview-surface">Фон</span>
+              <span class="page-card__theme-preview-primary">Акцент</span>
+            </div>
+          </section>
+
+          <section class="page-card__section">
             <h2 class="page-card__section-title">Внешний вид карточек</h2>
             <p class="page-card__hint">Тема и размер шрифта по умолчанию для новых карточек и обучения.</p>
 
