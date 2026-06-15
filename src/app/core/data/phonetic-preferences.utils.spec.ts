@@ -2,8 +2,14 @@ import {
   isRomanizationDisplayEnabled,
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,
+  resolveRomanizationsForSurface,
+  resolveShowIpaForSurface,
   shouldShowPalladius,
 } from './phonetic-preferences.utils';
+import {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+} from '../models/phonetic-content.types';
 
 describe('phonetic-preferences.utils', () => {
   it('should default cjk learning preferences', () => {
@@ -47,5 +53,67 @@ describe('phonetic-preferences.utils', () => {
 
     expect(isRomanizationDisplayEnabled(prefs, 'pinyin')).toBeTrue();
     expect(isRomanizationDisplayEnabled(prefs, 'palladius')).toBeFalse();
+  });
+
+  it('should resolve prompt romanizations from displayRomanizations', () => {
+    const cjk = {
+      ...DEFAULT_CJK_LEARNING_PREFERENCES,
+      displayRomanizations: ['pinyin', 'zhuyin'] as const,
+      answerRomanization: ['palladius'] as const,
+    };
+    const phonetic = {
+      ...DEFAULT_PHONETIC_PREFERENCES,
+      answerModes: ['orthography', 'ipa'] as const,
+    };
+
+    expect(resolveRomanizationsForSurface('prompt', cjk, phonetic)).toEqual(['pinyin', 'zhuyin']);
+  });
+
+  it('should resolve answer romanizations from answerRomanization when orthography enabled', () => {
+    const cjk = {
+      ...DEFAULT_CJK_LEARNING_PREFERENCES,
+      displayRomanizations: ['pinyin'] as const,
+      answerRomanization: ['palladius', 'pinyin'] as const,
+    };
+    const phonetic = {
+      ...DEFAULT_PHONETIC_PREFERENCES,
+      answerModes: ['orthography'] as const,
+    };
+
+    expect(resolveRomanizationsForSurface('answer', cjk, phonetic)).toEqual(['palladius', 'pinyin']);
+  });
+
+  it('should hide answer romanizations when orthography mode disabled', () => {
+    const cjk = {
+      ...DEFAULT_CJK_LEARNING_PREFERENCES,
+      answerRomanization: ['palladius'] as const,
+    };
+    const phonetic = {
+      ...DEFAULT_PHONETIC_PREFERENCES,
+      answerModes: ['ipa'] as const,
+    };
+
+    expect(resolveRomanizationsForSurface('answer', cjk, phonetic)).toEqual([]);
+  });
+
+  it('should resolve IPA visibility by surface', () => {
+    const phonetic = {
+      ...DEFAULT_PHONETIC_PREFERENCES,
+      showIpa: true,
+      answerModes: ['orthography', 'ipa'] as const,
+    };
+
+    expect(resolveShowIpaForSurface('prompt', phonetic)).toBeTrue();
+    expect(resolveShowIpaForSurface('answer', phonetic)).toBeTrue();
+  });
+
+  it('should hide answer IPA when answerModes excludes ipa', () => {
+    const phonetic = {
+      ...DEFAULT_PHONETIC_PREFERENCES,
+      showIpa: true,
+      answerModes: ['orthography'] as const,
+    };
+
+    expect(resolveShowIpaForSurface('answer', phonetic)).toBeFalse();
   });
 });

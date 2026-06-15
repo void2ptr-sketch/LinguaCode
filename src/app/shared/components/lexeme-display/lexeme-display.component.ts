@@ -1,9 +1,16 @@
 import { Component, computed, inject, input } from '@angular/core';
 
+import {
+  resolveRomanizationsForSurface,
+  resolveShowIpaForSurface,
+  type LexemeDisplaySurface,
+} from '../../../core/data/phonetic-preferences.utils';
 import { resolveIpaString, resolveVisibleRomanizationReadings } from '../../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/phonetic-content.types';
 import { UserStore } from '../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
+
+export type { LexemeDisplaySurface };
 
 const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
   pinyin: '拼音',
@@ -26,6 +33,7 @@ export class LexemeDisplayComponent {
 
   readonly lexeme = input<PhoneticLexeme | null | undefined>(null);
   readonly fallbackText = input('');
+  readonly surface = input<LexemeDisplaySurface>('prompt');
   /** Переопределяет набор романизаций из профиля (для превью редактора). */
   readonly romanizations = input<readonly RomanizationSystem[] | null>(null);
   readonly showIpa = input<boolean | null>(null);
@@ -40,10 +48,21 @@ export class LexemeDisplayComponent {
       return override;
     }
 
-    return this.userStore.cjkLearning().displayRomanizations;
+    return resolveRomanizationsForSurface(
+      this.surface(),
+      this.userStore.cjkLearning(),
+      this.userStore.phonetic(),
+    );
   });
 
-  readonly effectiveShowIpa = computed(() => this.showIpa() ?? this.userStore.phonetic().showIpa);
+  readonly effectiveShowIpa = computed(() => {
+    const override = this.showIpa();
+    if (override !== null) {
+      return override;
+    }
+
+    return resolveShowIpaForSurface(this.surface(), this.userStore.phonetic());
+  });
 
   readonly displayLexeme = computed(() => {
     const lexeme = this.lexeme();

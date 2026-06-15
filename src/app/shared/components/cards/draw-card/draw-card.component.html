@@ -3,7 +3,11 @@
     <mat-card-title>{{ card().title }}</mat-card-title>
     <mat-card-subtitle>
       @if (card().promptLexeme) {
-        <app-lexeme-display [lexeme]="card().promptLexeme" [fallbackText]="card().promptKnown" />
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="card().promptLexeme"
+          [fallbackText]="card().promptKnown"
+        />
       } @else {
         {{ card().promptKnown }}
       }

@@ -57,7 +57,7 @@ export class CardTryDialogComponent implements OnInit {
       const pair = this.userStore.languagePair();
 
       if (entry && !cardIndexMatchesPair(entry, pair)) {
-        this.playStore.setError('Карточка не относится к активной паре');
+        this.playStore.setError('Карточка не относится к активному курсу');
         return;
       }
 

@@ -15,7 +15,7 @@ export const DEFAULT_EN_COURSE_CATALOG: CourseCatalogState = {
     {
       id: 'demo-course',
       title: 'Демо: базовый English',
-      description: 'Вводный учебный курс для пары ru→en.',
+      description: 'Вводная учебная программа для курса ru→en.',
       authorId: 'local-user',
       languagePair: DEFAULT_LANGUAGE_PAIR,
       lessonIds: ['demo-lesson-1', 'demo-lesson-2'],
@@ -52,7 +52,7 @@ export const DEFAULT_ZH_COURSE_CATALOG: CourseCatalogState = {
     {
       id: 'course-zh-a1',
       title: 'Китайский A1: первые шаги',
-      description: 'Базовый курс для пары ru→zh: приветствия, фонетика и иероглифы.',
+      description: 'Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.',
       authorId: 'local-user',
       languagePair: RU_ZH_LANGUAGE_PAIR,
       lessonIds: ['lesson-zh-greetings', 'lesson-zh-phonetics', 'lesson-zh-characters'],

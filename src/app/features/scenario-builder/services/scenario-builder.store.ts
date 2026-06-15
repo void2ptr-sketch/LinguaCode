@@ -333,7 +333,7 @@ export class ScenarioBuilderStore {
     for (const cardId of cardIds) {
       const entry = await this.cardsCatalogHandler.getIndexEntry(cardId);
       if (entry && !cardIndexMatchesPair(entry, languagePair)) {
-        return `Карточка ${cardId} не соответствует паре языков сценария`;
+        return `Карточка ${cardId} не соответствует курсу сценария`;
       }
     }
 

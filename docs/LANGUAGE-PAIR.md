@@ -4,21 +4,21 @@
 
 Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
-## Терминология: «Пара» и «Курс» (G11e)
+## Терминология: «Курс» (scope) и «Программа» (`Course`) — G11e
 
 В UI и документации важно не смешивать две сущности:
 
 | Термин в UI | Домен | Пример | Где |
 |-------------|-------|--------|-----|
-| **Пара** | `LanguagePair` | Русский → English (ru→en) | Chip в каталоге `/tools/cards`, switcher на `/cards/select`, профиль `/user` |
-| **Курс** | `Course` (G11) | «Демо: базовый English» — программа из уроков | `/tools/courses`, выбор на `/cards/select` |
+| **Курс** | `LanguagePair` | Русский → 中文 (ru→zh) | Профиль `/user` (вкладки «Курс», «Настройка курса»), switcher на `/cards/select`, подпись в каталоге `/tools/cards` |
+| **Программа** / **учебная программа** | `Course` (G11) | «Демо: базовый English» — программа из уроков | `/courses`, `/tools/courses`, picker на `/cards/select` |
 
-- **Пара** — scope контента: какие карточки, сценарии и результаты видны в текущей сессии (G7/G8).
-- **Курс** — учебная программа: упорядоченные уроки → сценарии в рамках одной пары.
+- **Курс** (UI) — scope контента: какие карточки, сценарии и результаты видны в текущей сессии (G7/G8). В коде — `LanguagePair`, `activeLanguagePairId`.
+- **Программа** (`Course`) — учебная программа: упорядоченные уроки → сценарии в рамках одного курса (`LanguagePair`).
 
-Подпись пары: `formatLanguagePair()` → «Русский → English». В locked-режиме каталога chip подписан **«Пара»**, не «Курс».
+Подпись: `formatLanguagePair()` → «Русский → English». В locked-режиме каталога карточек (G8a) — строка **«Курс: …»** в шапке фильтров.
 
-**Подсказки в каталоге:** `app-card-catalog-filters` при `pairLocked` показывает chip активной пары и краткий hint: сменить пару — в Профиле или Обучении; «Курс» в меню инструментов — конструктор учебных программ (G11).
+**Подсказки в каталоге:** `card-editor-page` при `pairLocked` показывает «Курс: …» и hint: сменить курс — в Профиле; учебные **программы** — в меню «Курсы» / конструкторе (G11).
 
 ## Три оси «языка»
 
@@ -169,7 +169,7 @@ G7 даёт **выбор активной пары**; G8 — **enforcement**: п
 
 | Область | Было | Стало (G8) |
 |---------|------|------------|
-| `/tools/cards` каталог | Фильтры вручную | `initWithActivePair` + locked chip **«Пара»** + hint |
+| `/tools/cards` каталог | Фильтры вручную | `initWithActivePair` + locked подпись **«Курс: …»** + hint (G8a) |
 | `clearFilters()` | Сбрасывал known/learning | Сохраняет locked pair |
 | `/tools/scenario-builder` список | Все сценарии | API filter по активной паре |
 | `ScenarioCardPicker` | Без auto-scope | `initWithActivePair` + reload |
@@ -229,7 +229,7 @@ applyLanguagePair(activePair.known, activePair.learning);
 | Конструктор | `/tools/courses` — CRUD курса и вложенных уроков |
 | Обучение | `/cards/select` — опционально: курс → урок → сценарий |
 | Прогресс | `LearningResult.courseId?`, `lessonId?` + агрегация в `LearningResultsStore` |
-| Терминология | Chip scope в каталоге — **«Пара»**; слово **«Курс»** — только для `Course` |
+| Терминология | Подпись scope в каталоге — **«Курс: …»**; **программа** (`Course`) — отдельная сущность G11 |
 
 Курс **не заменяет** `LanguagePair`: одна пара может иметь несколько курсов; без выбора курса обучение идёт напрямую по сценариям (как до G11).
 
@@ -273,7 +273,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G5 | Render по direction; `LearningResult` + pair | готово |
 | G7 | Несколько пар в профиле, одна активная | готово |
 | G8 | Scope UI по активной паре (каталоги, сценарии, pickers) | готово |
-| G11 | `Course` / `Lesson`; терминология «Пара» vs «Курс» | готово |
+| G11 | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`) | готово |
 | G9 | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны | готово |
 | G10 | IPA (International Phonetic Alphabet) | готово |
 | G6 | UiLocale (`@angular/localize`) — отдельный трек | бэклог |
@@ -328,7 +328,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | Шаг | Содержание |
 |-----|------------|
 | G8.1 | Card catalog: `applyLanguagePair` on init + reload on pair change |
-| G8.2 | Locked pair filters; chip **«Пара»** + hint; `clearFilters` preserves pair |
+| G8.2 | Locked pair filters; подпись **«Курс: …»** + hint; `clearFilters` preserves pair |
 | G8.3 | Scenario card picker + criteria editor scoped |
 | G8.4 | Scenario list API filter (`ScenarioSearchCriteria` + mock) |
 | G8.5 | Tools reload on pair change; legacy scenarios; optional author mode |
@@ -372,7 +372,7 @@ src/app/core/state/user.store.ts
 src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
 src/app/core/layout/pages/user-page/
 src/app/shared/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
-src/app/shared/card-catalog-search/card-catalog-filters.component.*  # chip «Пара» + hint
+src/app/features/card-editor/components/card-editor-page/  # «Курс: …» + hint (G8a)
 src/app/features/card-editor/components/card-editor-page/
 src/app/features/course-builder/                 # G11: конструктор Course
 src/app/features/scenario-builder/services/scenario-builder.store.ts
