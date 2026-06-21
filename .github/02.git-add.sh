@@ -2,3 +2,5 @@
 
 git add -A .
 
+git status
+
