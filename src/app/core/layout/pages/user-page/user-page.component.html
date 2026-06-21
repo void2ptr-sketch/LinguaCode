@@ -195,6 +195,18 @@
                 <mat-option value="lg">Большой</mat-option>
               </mat-select>
             </mat-form-field>
+
+            <mat-slide-toggle
+              class="page-card__focus-toggle"
+              [ngModel]="cardFocusFullscreenDraft()"
+              (ngModelChange)="cardFocusFullscreenDraft.set($event)"
+              name="cardFocusFullscreen"
+            >
+              Полный экран при обучении
+            </mat-slide-toggle>
+            <p class="page-card__hint page-card__hint--inline">
+              Карточка сразу открывается на весь экран на вкладке «Обучение». Выход — кнопка или Esc; настройку можно изменить в любой момент.
+            </p>
           </section>
         </div>
       </mat-tab>

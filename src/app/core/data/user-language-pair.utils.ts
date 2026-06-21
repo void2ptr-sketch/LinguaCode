@@ -9,6 +9,7 @@ import type {
 } from '../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
+import { normalizeCardFocusFullscreen } from './card-focus-preference.utils';
 import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
@@ -226,6 +227,7 @@ export function normalizeUserPreferences(
       ? preferences.fontSize
       : DEFAULT_FONT_SIZE;
   const colorScheme = normalizeColorScheme(preferences?.colorScheme);
+  const cardFocusFullscreen = normalizeCardFocusFullscreen(preferences?.cardFocusFullscreen);
 
   const legacy = {
     cjkLearning: preferences?.cjkLearning,
@@ -246,6 +248,7 @@ export function normalizeUserPreferences(
         theme,
         fontSize,
         colorScheme,
+        cardFocusFullscreen,
         ...defaults,
       };
     }
@@ -260,6 +263,7 @@ export function normalizeUserPreferences(
       theme,
       fontSize,
       colorScheme,
+      cardFocusFullscreen,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
     };
@@ -277,6 +281,7 @@ export function normalizeUserPreferences(
       theme,
       fontSize,
       colorScheme,
+      cardFocusFullscreen,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
     };
@@ -286,6 +291,7 @@ export function normalizeUserPreferences(
     theme,
     fontSize,
     colorScheme,
+    cardFocusFullscreen,
     ...defaults,
   };
 }

@@ -1,0 +1,24 @@
+<div
+  class="card-focus-shell"
+  [class.card-focus-shell--fullscreen]="fullscreen()"
+>
+  @if (focusControlsEnabled()) {
+    <div class="card-focus-shell__toolbar">
+      <button
+        mat-icon-button
+        type="button"
+        class="card-focus-shell__toggle"
+        [matTooltip]="fullscreen() ? 'Выйти из полноэкранного режима (Esc)' : 'Полный экран'"
+        [attr.aria-label]="fullscreen() ? 'Выйти из полноэкранного режима' : 'Полный экран'"
+        [attr.aria-pressed]="fullscreen()"
+        (click)="toggleFullscreen()"
+      >
+        <mat-icon>{{ fullscreen() ? 'fullscreen_exit' : 'fullscreen' }}</mat-icon>
+      </button>
+    </div>
+  }
+
+  <div class="card-focus-shell__content">
+    <ng-content />
+  </div>
+</div>

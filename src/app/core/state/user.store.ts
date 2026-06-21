@@ -13,6 +13,7 @@ import {
 } from '../data/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
+import { normalizeCardFocusFullscreen } from '../data/card-focus-preference.utils';
 import type {
   LanguagePair,
   LearningSessionPreferences,
@@ -30,6 +31,7 @@ const DEFAULT_USER: User = {
     theme: 'azure-blue',
     fontSize: 'md',
     colorScheme: 'light',
+    cardFocusFullscreen: false,
     ...createDefaultLanguagePairPreferences(),
   },
 };
@@ -84,6 +86,12 @@ export class UserStore {
 
       if (preferences.colorScheme !== undefined) {
         nextPreferences.colorScheme = normalizeColorScheme(preferences.colorScheme);
+      }
+
+      if (preferences.cardFocusFullscreen !== undefined) {
+        nextPreferences.cardFocusFullscreen = normalizeCardFocusFullscreen(
+          preferences.cardFocusFullscreen,
+        );
       }
 
       return {

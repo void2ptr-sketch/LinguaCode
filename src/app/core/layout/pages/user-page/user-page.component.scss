@@ -37,6 +37,14 @@
   margin: 0;
 }
 
+.page-card__hint--inline {
+  margin-top: -0.25rem;
+}
+
+.page-card__focus-toggle {
+  margin-top: 0.25rem;
+}
+
 .page-card__error {
   color: var(--mat-sys-error);
   margin: 0;

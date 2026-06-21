@@ -188,6 +188,7 @@ export class CardSelectPageComponent implements OnInit {
   readonly canAdvanceFromCourse = computed(() => !!this.selectedCourseId());
   readonly canAdvanceFromLessons = computed(() => !!this.selectedLessonId());
   readonly canStartPractice = computed(() => !!this.selectedScenarioId());
+  readonly isLearningTabActive = computed(() => this.activeTabIndex() === LEARNING_TAB.learning);
 
   readonly nextStepHint = computed(() => {
     switch (this.activeTabIndex()) {
