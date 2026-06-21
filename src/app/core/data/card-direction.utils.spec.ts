@@ -1,5 +1,4 @@
-import type { Card, OptionCard } from '../models';
-import type { CardDirection } from '../models/language-pair.types';
+import type { OptionCard } from '../models';
 import {
   cardDefaultDirection,
   effectiveCardDirection,
