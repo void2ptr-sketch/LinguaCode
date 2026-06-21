@@ -1,6 +1,6 @@
 # Архитектура LinguaCode
 
-Техническое описание frontend-приложения. Бизнес-контекст — в [DOMAIN.md](./DOMAIN.md).
+Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
 
 ## Принципы
 
@@ -52,6 +52,21 @@ features/card-select/
 ```
 
 Фичи **не импортируют** друг друга напрямую. Общие типы — в `core/models/`, специфичные — в `features/*/types/`.
+
+## Архитектура подсистем
+
+Детальный структурный дизайн — в файлах `ARCHITECTURE.<подсистема>.md` (UML-диаграммы в формате Mermaid):
+
+| Подсистема | Документ |
+|------------|----------|
+| `core` | [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) |
+| `shared` | [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md) |
+| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md) |
+| Dashboard (`home`) | [ARCHITECTURE.home.md](./ARCHITECTURE.home.md) |
+| Редактор карточек | [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md) |
+| Конструктор сценариев | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) |
+| Программы (course) | [ARCHITECTURE.course.md](./ARCHITECTURE.course.md) |
+| Результаты обучения | [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) |
 
 ## Layout
 
@@ -251,7 +266,9 @@ export class CardApiService {
 
 ## Связанные документы
 
-- [DOMAIN.md](./DOMAIN.md) — бизнес-логика, модели, конструктор сценариев
+- [INDEX.md](./INDEX.md) — оглавление документации
+- [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
+- [DOMAIN.md](./DOMAIN.md) — доменная модель, типы, конструктор сценариев
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт

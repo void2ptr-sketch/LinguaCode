@@ -2,7 +2,7 @@
 
 План поддержки **международного фонетического алфавита (IPA)** в карточках LinguaCode: точная запись произношения для любого `ContentLanguage`, в связке с аудио и (опционально) орфографическими слоями G9.
 
-Связанные документы: [DOMAIN.md](./DOMAIN.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 > **Статус:** MVP реализован · см. [TASKS.md](../TASKS.md) (G10a–G10g).
 

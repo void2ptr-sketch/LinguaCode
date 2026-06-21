@@ -2,7 +2,7 @@
 
 Переход от in-memory `localStorage` и полной загрузки `CardRepository` к каталогу сценариев и точечной загрузке карточек при прохождении.
 
-Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 ## Решение: индекс сценария + полный Scenario
 
