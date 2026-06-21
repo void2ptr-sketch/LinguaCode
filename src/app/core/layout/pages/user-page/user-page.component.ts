@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import type {
   AppColorScheme,
@@ -44,6 +45,7 @@ import {
     MatButtonToggleModule,
     MatIconModule,
     MatTabsModule,
+    MatSlideToggleModule,
     CourseDisplaySettingsMatrixComponent,
   ],
   templateUrl: './user-page.component.html',
@@ -63,6 +65,7 @@ export class UserPageComponent implements OnInit {
   readonly themeDraft = signal(this.preferences().theme);
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
   readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme);
+  readonly cardFocusFullscreenDraft = signal(this.preferences().cardFocusFullscreen);
   readonly knownLanguageDraft = signal<ContentLanguage>('ru');
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
   readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
@@ -184,6 +187,7 @@ export class UserPageComponent implements OnInit {
       theme: this.themeDraft(),
       fontSize: this.fontSizeDraft(),
       colorScheme: this.colorSchemeDraft(),
+      cardFocusFullscreen: this.cardFocusFullscreenDraft(),
     });
 
     const entry = this.settingsEntry();

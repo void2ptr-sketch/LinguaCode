@@ -223,6 +223,7 @@
                     [drawSubmitted]="store.drawSubmitted()"
                     [feedback]="store.feedback()"
                     [fontSize]="fontSize().fontSize"
+                    [autoFocusFullscreen]="isLearningTabActive()"
                     (optionSelected)="selectOption($event)"
                     (answerTextChange)="setAnswerText($event)"
                     (memoryCompleteChange)="setMemoryComplete($event)"

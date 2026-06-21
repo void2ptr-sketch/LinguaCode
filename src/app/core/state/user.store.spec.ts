@@ -22,6 +22,7 @@ describe('UserStore', () => {
     expect(store.displayName()).toBe('Ученик');
     expect(store.preferences().fontSize).toBe('md');
     expect(store.preferences().colorScheme).toBe('light');
+    expect(store.preferences().cardFocusFullscreen).toBeFalse();
     expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
@@ -62,6 +63,14 @@ describe('UserStore', () => {
 
     store.updatePreferences({ colorScheme: 'invalid' as 'light' });
     expect(store.preferences().colorScheme).toBe('light');
+  });
+
+  it('should update card focus fullscreen preference', () => {
+    store.updatePreferences({ cardFocusFullscreen: true });
+    expect(store.preferences().cardFocusFullscreen).toBeTrue();
+
+    store.updatePreferences({ cardFocusFullscreen: 'yes' as unknown as boolean });
+    expect(store.preferences().cardFocusFullscreen).toBeFalse();
   });
 
   it('should update appearance preferences partially', () => {

@@ -133,7 +133,7 @@ erDiagram
 | Модель | Описание | Файл типов |
 |--------|----------|------------|
 | `User` | Пользователь; `displayName`, `UserPreferences` | `user.types.ts` |
-| `UserPreferences` | `CardAppearance`, `colorScheme`, языковые пары | `user.types.ts` |
+| `UserPreferences` | `CardAppearance`, `colorScheme`, `cardFocusFullscreen`, языковые пары | `user.types.ts` |
 | `UserLanguagePairEntry` | Пара + settings (CJK, IPA, learning) | `user-language-pair.types.ts` |
 | `Card` | Карточка; union по `kind` | `card.types.ts` |
 | `CardKind` | Тип карточки (см. таблицу ниже) | `card.types.ts` |
@@ -245,6 +245,7 @@ type User = {
   displayName: string;
   preferences: CardAppearance & {
     colorScheme: 'light' | 'dark';
+    cardFocusFullscreen: boolean;
     languagePairs: readonly UserLanguagePairEntry[];
     activeLanguagePairId: string;
   };

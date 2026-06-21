@@ -14,6 +14,8 @@ export { DEFAULT_APP_COLOR_SCHEME } from '../theme/app-color-scheme.types';
 
 export type UserPreferences = CardAppearance & {
   colorScheme: AppColorScheme;
+  /** Авто-полный экран карточки на вкладке «Обучение»; также сохраняется при ручном переключении. */
+  cardFocusFullscreen: boolean;
   languagePairs: readonly UserLanguagePairEntry[];
   activeLanguagePairId: string;
 };

@@ -2,6 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { Card } from '../../../core/models';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import { CardFeedback } from '../../types';
+import { CardFocusShellComponent } from '../card-focus-shell/card-focus-shell.component';
 import { DrawCardComponent } from '../cards/draw-card/draw-card.component';
 import { KeyboardCardComponent } from '../cards/keyboard-card/keyboard-card.component';
 import { MemoryCardComponent } from '../cards/memory-card/memory-card.component';
@@ -15,6 +16,7 @@ import { ToneCardComponent } from '../cards/tone-card/tone-card.component';
 @Component({
   selector: 'app-card-host',
   imports: [
+    CardFocusShellComponent,
     SelectCardComponent,
     MemoryCardComponent,
     SymbolCardComponent,
@@ -36,6 +38,8 @@ export class CardHostComponent {
   readonly answerText = input('');
   readonly memoryComplete = input(false);
   readonly drawSubmitted = input(false);
+  readonly focusControlsEnabled = input(true);
+  readonly autoFocusFullscreen = input(false);
 
   readonly optionSelected = output<number>();
   readonly answerTextChange = output<string>();

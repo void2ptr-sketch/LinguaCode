@@ -19,6 +19,16 @@ describe('user-language-pair.utils', () => {
     expect(preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(preferences.activeLanguagePairId).toBe(preferences.languagePairs[0].id);
     expect(preferences.languagePairs[0].settings?.cjkLearning).toBeDefined();
+    expect(preferences.cardFocusFullscreen).toBeFalse();
+  });
+
+  it('should normalize card focus fullscreen preference', () => {
+    const enabled = normalizeUserPreferences({
+      theme: 'azure-blue',
+      fontSize: 'md',
+      cardFocusFullscreen: true,
+    });
+    expect(enabled.cardFocusFullscreen).toBeTrue();
   });
 
   it('should dedupe language pair entries', () => {

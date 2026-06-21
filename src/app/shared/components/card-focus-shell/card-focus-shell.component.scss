@@ -1,0 +1,108 @@
+.card-focus-shell {
+  display: grid;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.card-focus-shell__toolbar {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-focus-shell__toggle {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.card-focus-shell__content {
+  min-width: 0;
+}
+
+.card-focus-shell--fullscreen {
+  animation: card-focus-shell-in 0.2s ease;
+  background: var(--mat-sys-background);
+  box-sizing: border-box;
+  display: grid;
+  gap: 1rem;
+  grid-template-rows: auto minmax(0, 1fr);
+  inset: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  padding: clamp(1rem, 3vw, 2rem);
+  position: fixed;
+  z-index: 1200;
+
+  // Растёт с экраном; на маленьком viewport не опускается ниже базовых размеров карточки.
+  --card-focus-fluid: clamp(1rem, calc(0.75rem + 1.35vmin + 0.45vw), 2rem);
+  --card-focus-space: clamp(0.75rem, calc(0.55rem + 0.9vmin), 1.35rem);
+
+  .card-focus-shell__content {
+    align-content: start;
+    box-sizing: border-box;
+    display: grid;
+    justify-items: center;
+    margin: 0 auto;
+    max-width: min(52rem, 100%);
+    min-height: min(100%, fit-content);
+    padding-block: var(--card-focus-space);
+    width: 100%;
+  }
+
+  .card-focus-shell__toggle {
+    color: var(--mat-sys-on-surface);
+  }
+
+  ::ng-deep .quiz-card {
+    max-width: min(52rem, 100%);
+    width: 100%;
+  }
+
+  ::ng-deep .quiz-card--font-sm {
+    font-size: max(0.875rem, calc(var(--card-focus-fluid) * 0.875));
+  }
+
+  ::ng-deep .quiz-card--font-md {
+    font-size: max(1rem, var(--card-focus-fluid));
+  }
+
+  ::ng-deep .quiz-card--font-lg {
+    font-size: max(1.125rem, calc(var(--card-focus-fluid) * 1.125));
+  }
+
+  ::ng-deep .quiz-card__options {
+    gap: var(--card-focus-space);
+  }
+
+  ::ng-deep .option {
+    padding: calc(var(--card-focus-space) * 1.15) var(--card-focus-space);
+  }
+
+  ::ng-deep .memory-grid {
+    gap: var(--card-focus-space);
+  }
+
+  ::ng-deep .memory-tile {
+    min-height: max(4rem, min(8vmin, 6.5rem));
+  }
+
+  ::ng-deep .draw-area {
+    min-height: max(10rem, min(42vh, 28rem));
+  }
+
+  ::ng-deep mat-card-title {
+    font-size: 1.35em;
+  }
+
+  ::ng-deep mat-card-subtitle {
+    font-size: 1.1em;
+  }
+}
+
+@keyframes card-focus-shell-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
