@@ -1,18 +1,21 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="card().promptLexeme"
-        [fallbackText]="resolved().prompt"
-      />
-    </mat-card-subtitle>
-  </mat-card-header>
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="promptLexeme()"
+          [fallbackText]="resolved().prompt"
+        />
+      </mat-card-subtitle>
+    </mat-card-header>
+  </section>
 
-  <mat-card-content>
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Выберите ответ</p>
     <p class="quiz-card__timer">Осталось: {{ secondsLeft() }} с</p>
-    <div class="quiz-card__options">
+    <mat-card-content class="quiz-card__options">
       @for (option of resolved().options; track option; let index = $index) {
         <button
           type="button"
@@ -28,8 +31,8 @@
           />
         </button>
       }
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">

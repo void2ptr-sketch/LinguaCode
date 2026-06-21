@@ -1,5 +1,10 @@
 @use '../quiz-card';
 
+.draw-card__meta {
+  display: grid;
+  gap: 0.5rem;
+}
+
 .draw-card__content {
   display: grid;
   gap: 0.75rem;

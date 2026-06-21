@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Card } from '../../../../core/models';
+import { cardDefaultDirection } from '../../../../core/data/card-direction.utils';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../../shared/utils/card-answer.utils';
 import { CardFeedback } from '../../../../shared/types';
@@ -40,7 +41,7 @@ export class SingleCardPlayStore {
 
   setCard(card: Card): void {
     this.card.set(card);
-    this.sessionDirection.set('known-to-learning');
+    this.sessionDirection.set(cardDefaultDirection(card));
     this.loading.set(false);
     this.error.set(null);
     this.resetInteraction();

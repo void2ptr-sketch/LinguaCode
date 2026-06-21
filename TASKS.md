@@ -95,7 +95,9 @@
 - [ ] Все карточки должны базироваться на:
   - **вопрос**: изображение (иероглиф, символ, слово…), романизация, звук (прослушивание);
   - **ответ**: отдельная секция.
-- [ ] В карточках секции «вопрос» и «ответ» должны быть визуально отделены.
+- [x] **Ca2a** — секции `.quiz-card__question` / `.quiz-card__answer`: фон, разделитель, подпись; все `CardKind`
+- [x] **Ca2b** — сброс лишних отступов `mat-card-header` / `mat-card-content`, чтобы блоки не наезжали
+- [ ] **Ca2c** — (опц.) настраиваемые подписи секций / скрытие label при minimal UI
 
 #### Ca3. Режим фокуса (полный экран)
 
@@ -276,6 +278,15 @@
 - [x] `LearningResult.languagePair` + `direction?`
 - [x] `LearningResultsStore` — статистика с учётом пары
 - [x] Фильтр сценариев на `/cards/select` по паре пользователя
+
+**G5.1 — исправление toggle «Известный ↔ Новый»** (контекст: [BUSINESS.md](./docs/BUSINESS.md))
+
+- [x] **G5.1a** — `effectiveCardDirection`: в сессии побеждает `sessionDirection`; `card.direction` — только default при загрузке сценария
+- [x] **G5.1b** — `resolveOptionCard` / keyboard: полный swap prompt ↔ options для `learning-to-known`
+- [x] **G5.1c** — опциональные `optionsKnown`, `acceptedAnswersLearning`; fallback через `glossKnown` / `extractQuotedLemma`
+- [x] **G5.1d** — `CardSelectStore.setSessionDirection` + сброс ответа; demo JSON обновлён
+- [x] **G5.1e** — unit-тесты `card-direction.utils.spec.ts`
+- [ ] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
 
 **G7 — несколько пар, одна активная**
 

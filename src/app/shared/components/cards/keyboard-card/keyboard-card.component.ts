@@ -5,6 +5,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
+import {
+  effectiveCardDirection,
+  resolveKeyboardPrompt,
+} from '../../../../core/data/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../../core/data/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
@@ -42,6 +46,24 @@ export class KeyboardCardComponent {
   readonly answerMode = computed(() => resolveKeyboardAnswerMode(this.card()));
   readonly usesIpaInput = computed(() => this.answerMode() === 'ipa');
   readonly usesPinyinKeyboard = computed(() => this.answerMode() === 'pinyin');
+
+  readonly resolvedPrompt = computed(() => {
+    const card = this.card();
+    const direction = effectiveCardDirection(card.direction, this.direction());
+    return resolveKeyboardPrompt(card, direction);
+  });
+
+  readonly promptLexeme = computed(() => {
+    const card = this.card();
+    const direction = effectiveCardDirection(card.direction, this.direction());
+    if (direction === 'learning-to-known') {
+      return card.promptLexeme;
+    }
+
+    return card.promptLexeme?.glossKnown
+      ? { ...card.promptLexeme, primary: this.resolvedPrompt() }
+      : card.promptLexeme;
+  });
 
   correctLabel(): string | null {
     return getCorrectAnswerLabel(this.card(), this.direction());

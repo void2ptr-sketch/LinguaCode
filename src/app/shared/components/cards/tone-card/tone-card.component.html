@@ -1,27 +1,32 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="card().promptLexeme"
-        [fallbackText]="card().promptKnown"
-      />
-    </mat-card-subtitle>
-  </mat-card-header>
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="card().promptLexeme"
+          [fallbackText]="card().promptKnown"
+        />
+      </mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content class="quiz-card__syllable">
-    <span class="tone-card__base">{{ card().syllableBase }}</span>
-  </mat-card-content>
+    <mat-card-content class="quiz-card__syllable">
+      <span class="tone-card__base">{{ card().syllableBase }}</span>
+    </mat-card-content>
+  </section>
 
-  <mat-card-content class="quiz-card__options quiz-card__options--tones">
-    @for (tone of card().toneOptions; track tone; let index = $index) {
-      <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-        <span class="tone-card__pinyin">{{ tonedSyllable(tone) }}</span>
-        <span class="tone-card__label">{{ toneLabel(tone) }}</span>
-      </button>
-    }
-  </mat-card-content>
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Выберите тон</p>
+    <mat-card-content class="quiz-card__options quiz-card__options--tones">
+      @for (tone of card().toneOptions; track tone; let index = $index) {
+        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+          <span class="tone-card__pinyin">{{ tonedSyllable(tone) }}</span>
+          <span class="tone-card__label">{{ toneLabel(tone) }}</span>
+        </button>
+      }
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">

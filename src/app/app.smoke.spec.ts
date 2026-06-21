@@ -26,8 +26,9 @@ describe('App smoke', () => {
     await router.navigateByUrl('/home');
     fixture.detectChanges();
 
-    expect(fixture.nativeElement.textContent).toContain('Добро пожаловать');
-    expect(fixture.nativeElement.textContent).toContain('изучения языков');
+    const text = fixture.nativeElement.textContent as string;
+    expect(text).toContain('Привет');
+    expect(text).toContain('Обучение');
   });
 
   it('should render user profile route', async () => {
@@ -48,6 +49,6 @@ describe('App smoke', () => {
     fixture.detectChanges();
 
     expect(router.url).toBe('/home');
-    expect(fixture.nativeElement.textContent).toContain('Добро пожаловать');
+    expect(fixture.nativeElement.textContent).toContain('Привет');
   });
 });

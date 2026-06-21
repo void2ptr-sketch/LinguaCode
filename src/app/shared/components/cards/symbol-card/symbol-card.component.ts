@@ -35,8 +35,12 @@ export class SymbolCardComponent {
     return resolveOptionCard(card, direction);
   });
 
+  promptLexeme() {
+    return this.resolved().promptLexeme ?? this.card().promptLexeme;
+  }
+
   optionLexeme(index: number) {
-    return this.card().symbolLexemes?.[index];
+    return this.resolved().optionLexemes?.[index] ?? this.card().symbolLexemes?.[index];
   }
 
   optionClass(index: number): string {

@@ -35,10 +35,16 @@ export class SoundCardComponent {
     return resolveOptionCard(card, direction);
   });
 
-  readonly audioLexeme = computed(() => this.card().promptLexeme);
+  readonly audioLexeme = computed(
+    () => this.resolved().promptLexeme ?? this.card().promptLexeme,
+  );
+
+  promptLexeme() {
+    return this.resolved().promptLexeme ?? this.card().promptLexeme;
+  }
 
   optionLexeme(index: number) {
-    return this.card().optionsLexemes?.[index];
+    return this.resolved().optionLexemes?.[index] ?? this.card().optionsLexemes?.[index];
   }
 
   optionClass(index: number): string {

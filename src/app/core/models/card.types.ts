@@ -43,6 +43,8 @@ export type SelectCard = CardBase &
     direction: CardDirection;
     promptKnown: string;
     optionsLearning: readonly string[];
+    /** Варианты на известном языке — для режима «новый → известный». */
+    optionsKnown?: readonly string[];
     optionsLexemes?: readonly PhoneticLexeme[];
     correctIndex: number;
   };
@@ -60,6 +62,7 @@ export type SymbolCard = CardBase &
     direction: CardDirection;
     promptKnown: string;
     symbols: readonly string[];
+    optionsKnown?: readonly string[];
     symbolLexemes?: readonly PhoneticLexeme[];
     correctIndex: number;
   };
@@ -81,6 +84,7 @@ export type TimedCard = CardBase &
     direction: CardDirection;
     promptKnown: string;
     optionsLearning: readonly string[];
+    optionsKnown?: readonly string[];
     optionsLexemes?: readonly PhoneticLexeme[];
     correctIndex: number;
     timeLimitSec: number;
@@ -94,6 +98,8 @@ export type KeyboardCard = CardBase &
     direction: CardDirection;
     promptKnown: string;
     acceptedAnswersKnown: readonly string[];
+    /** Допустимые ответы на изучаемом языке — для режима «известный → новый». */
+    acceptedAnswersLearning?: readonly string[];
     answerMode?: KeyboardAnswerMode;
   };
 
@@ -124,6 +130,7 @@ export type ReadingCard = CardBase &
     direction: CardDirection;
     promptKnown: string;
     optionsLearning: readonly string[];
+    optionsKnown?: readonly string[];
     optionsLexemes?: readonly PhoneticLexeme[];
     correctIndex: number;
   };

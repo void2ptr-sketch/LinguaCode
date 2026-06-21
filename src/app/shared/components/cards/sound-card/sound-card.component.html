@@ -1,16 +1,16 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="card().promptLexeme"
-        [fallbackText]="resolved().prompt"
-      />
-    </mat-card-subtitle>
-  </mat-card-header>
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="promptLexeme()"
+          [fallbackText]="resolved().prompt"
+        />
+      </mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content>
     <div class="quiz-card__sound">
       <app-lexeme-display
         surface="prompt"
@@ -24,8 +24,11 @@
         </button>
       }
     </div>
+  </section>
 
-    <div class="quiz-card__options">
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Выберите перевод</p>
+    <mat-card-content class="quiz-card__options">
       @for (option of resolved().options; track option; let index = $index) {
         <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
           <app-lexeme-display
@@ -36,8 +39,8 @@
           />
         </button>
       }
-    </div>
-  </mat-card-content>
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
