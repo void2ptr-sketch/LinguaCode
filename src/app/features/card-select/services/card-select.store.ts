@@ -1,5 +1,6 @@
 import { Injectable, computed, signal } from '@angular/core';
 import { Card } from '../../../core/models';
+import { cardDefaultDirection } from '../../../core/data/card-direction.utils';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
 import { CardFeedback } from '../../../shared/types';
@@ -53,6 +54,7 @@ export class CardSelectStore {
   setScenario(scenarioId: string, cards: readonly Card[]): void {
     this.scenarioId.set(scenarioId);
     this.cards.set(cards);
+    this.sessionDirection.set(cards[0] ? cardDefaultDirection(cards[0]) : 'known-to-learning');
     this.resetInteraction();
     this.completed.set(false);
     this.loading.set(false);
@@ -137,6 +139,15 @@ export class CardSelectStore {
     }
 
     this.currentIndex.update((index) => index + 1);
+    this.resetInteraction();
+  }
+
+  setSessionDirection(direction: CardDirection): void {
+    if (direction === this.sessionDirection()) {
+      return;
+    }
+
+    this.sessionDirection.set(direction);
     this.resetInteraction();
   }
 

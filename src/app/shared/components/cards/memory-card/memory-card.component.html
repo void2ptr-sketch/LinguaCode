@@ -1,31 +1,36 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="card().promptLexeme"
-        [fallbackText]="card().promptKnown"
-      />
-    </mat-card-subtitle>
-  </mat-card-header>
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="card().promptLexeme"
+          [fallbackText]="card().promptKnown"
+        />
+      </mat-card-subtitle>
+    </mat-card-header>
+  </section>
 
-  <mat-card-content class="memory-grid">
-    @for (tile of tiles(); track tile.id) {
-      <button type="button" mat-stroked-button class="memory-tile" (click)="flipTile(tile)">
-        @if (isVisible(tile)) {
-          <app-lexeme-display
-            surface="answer"
-            [lexeme]="tile.lexeme"
-            [fallbackText]="tile.label"
-            [inline]="true"
-          />
-        } @else {
-          ?
-        }
-      </button>
-    }
-  </mat-card-content>
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Найдите пары</p>
+    <mat-card-content class="memory-grid">
+      @for (tile of tiles(); track tile.id) {
+        <button type="button" mat-stroked-button class="memory-tile" (click)="flipTile(tile)">
+          @if (isVisible(tile)) {
+            <app-lexeme-display
+              surface="answer"
+              [lexeme]="tile.lexeme"
+              [fallbackText]="tile.label"
+              [inline]="true"
+            />
+          } @else {
+            ?
+          }
+        </button>
+      }
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">

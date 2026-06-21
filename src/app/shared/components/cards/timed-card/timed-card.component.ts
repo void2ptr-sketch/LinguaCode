@@ -39,8 +39,12 @@ export class TimedCardComponent implements OnInit, OnDestroy {
     return resolveOptionCard(card, direction);
   });
 
+  promptLexeme() {
+    return this.resolved().promptLexeme ?? this.card().promptLexeme;
+  }
+
   optionLexeme(index: number) {
-    return this.card().optionsLexemes?.[index];
+    return this.resolved().optionLexemes?.[index] ?? this.card().optionsLexemes?.[index];
   }
 
   ngOnInit(): void {

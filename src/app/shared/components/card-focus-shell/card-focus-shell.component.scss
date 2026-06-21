@@ -1,20 +1,29 @@
 .card-focus-shell {
-  display: grid;
-  gap: 0.5rem;
   position: relative;
-}
-
-.card-focus-shell__toolbar {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.card-focus-shell__toggle {
-  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
 }
 
 .card-focus-shell__content {
   min-width: 0;
+  position: relative;
+
+  ::ng-deep .quiz-card mat-card-header {
+    padding-inline-end: 2.75rem;
+  }
+
+  ::ng-deep .quiz-card__question {
+    padding-inline-end: 2.75rem;
+  }
+}
+
+.card-focus-shell__toolbar {
+  position: absolute;
+  right: 0.25rem;
+  top: 0.25rem;
+  z-index: 2;
+}
+
+.card-focus-shell__toggle {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
 }
 
 .card-focus-shell--fullscreen {
@@ -22,8 +31,6 @@
   background: var(--mat-sys-background);
   box-sizing: border-box;
   display: grid;
-  gap: 1rem;
-  grid-template-rows: auto minmax(0, 1fr);
   inset: 0;
   overflow: auto;
   overscroll-behavior: contain;
@@ -31,7 +38,6 @@
   position: fixed;
   z-index: 1200;
 
-  // Растёт с экраном; на маленьком viewport не опускается ниже базовых размеров карточки.
   --card-focus-fluid: clamp(1rem, calc(0.75rem + 1.35vmin + 0.45vw), 2rem);
   --card-focus-space: clamp(0.75rem, calc(0.55rem + 0.9vmin), 1.35rem);
 
@@ -45,6 +51,11 @@
     min-height: min(100%, fit-content);
     padding-block: var(--card-focus-space);
     width: 100%;
+  }
+
+  .card-focus-shell__toolbar {
+    right: 0;
+    top: var(--card-focus-space);
   }
 
   .card-focus-shell__toggle {

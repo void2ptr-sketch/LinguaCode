@@ -156,7 +156,7 @@ export const getCorrectAnswerLabel = (
     const direction = effectiveCardDirection(card.direction, sessionDirection);
     const accepted = resolveKeyboardAcceptedAnswers(card, direction);
     if (card.promptLexeme?.primary.trim()) {
-      return card.promptLexeme.primary;
+      return accepted[0] ?? card.promptLexeme.primary;
     }
 
     return accepted[0] ?? null;

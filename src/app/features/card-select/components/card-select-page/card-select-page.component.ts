@@ -465,7 +465,7 @@ export class CardSelectPageComponent implements OnInit {
   }
 
   onDirectionChange(direction: CardDirection): void {
-    this.store.sessionDirection.set(direction);
+    this.store.setSessionDirection(direction);
   }
 
   checkAnswer(): void {

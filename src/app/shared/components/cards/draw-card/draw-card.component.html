@@ -1,41 +1,48 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      @if (card().promptLexeme) {
-        <app-lexeme-display
-          surface="prompt"
-          [lexeme]="card().promptLexeme"
-          [fallbackText]="card().promptKnown"
-        />
-      } @else {
-        {{ card().promptKnown }}
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        @if (card().promptLexeme) {
+          <app-lexeme-display
+            surface="prompt"
+            [lexeme]="card().promptLexeme"
+            [fallbackText]="card().promptKnown"
+          />
+        } @else {
+          {{ card().promptKnown }}
+        }
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <div class="draw-card__meta">
+      <p class="draw-card__hint">{{ card().referenceHintKnown }}</p>
+      <p class="draw-card__mode">{{ practiceLabel() }}</p>
+
+      @if (radicalHint(); as radicals) {
+        <p class="draw-card__radicals">
+          <mat-icon inline>account_tree</mat-icon>
+          Состав: <strong>{{ radicals }}</strong>
+        </p>
       }
-    </mat-card-subtitle>
-  </mat-card-header>
 
-  <mat-card-content class="draw-card__content">
-    <p class="draw-card__hint">{{ card().referenceHintKnown }}</p>
-    <p class="draw-card__mode">{{ practiceLabel() }}</p>
+      @if (practiceMode() === 'stroke-order' && strokeGuides().length > 0) {
+        <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
+      }
+    </div>
+  </section>
 
-    @if (radicalHint(); as radicals) {
-      <p class="draw-card__radicals">
-        <mat-icon inline>account_tree</mat-icon>
-        Состав: <strong>{{ radicals }}</strong>
-      </p>
-    }
-
-    @if (practiceMode() === 'stroke-order' && strokeGuides().length > 0) {
-      <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
-    }
-
-    <app-draw-canvas
-      [ghostCharacter]="ghostCharacter()"
-      [strokeGuides]="strokeGuides()"
-      [disabled]="feedback() !== null"
-      (strokesChange)="onStrokesChange($event)"
-    />
-  </mat-card-content>
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Нарисуйте ответ</p>
+    <mat-card-content class="draw-card__content">
+      <app-draw-canvas
+        [ghostCharacter]="ghostCharacter()"
+        [strokeGuides]="strokeGuides()"
+        [disabled]="feedback() !== null"
+        (strokesChange)="onStrokesChange($event)"
+      />
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">

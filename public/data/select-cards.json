@@ -9,6 +9,7 @@
       "direction": "known-to-learning",
       "promptKnown": "Как сказать «Привет» по-английски?",
       "optionsLearning": ["Hello", "Goodbye", "Thanks", "Please"],
+      "optionsKnown": ["Привет", "Пока", "Спасибо", "Пожалуйста"],
       "correctIndex": 0
     },
     {
@@ -19,6 +20,7 @@
       "direction": "known-to-learning",
       "promptKnown": "Как будет «один» по-английски?",
       "optionsLearning": ["One", "Two", "Three", "Four"],
+      "optionsKnown": ["один", "два", "три", "четыре"],
       "correctIndex": 0
     },
     {
@@ -29,6 +31,7 @@
       "direction": "known-to-learning",
       "promptKnown": "Как сказать «До свидания» по-английски?",
       "optionsLearning": ["Goodbye", "Hello", "Thanks", "Please"],
+      "optionsKnown": ["До свидания", "Привет", "Спасибо", "Пожалуйста"],
       "correctIndex": 0
     },
     {
@@ -50,6 +53,7 @@
       "direction": "known-to-learning",
       "promptKnown": "Выберите символ приветствия",
       "symbols": ["👋", "🌙", "🔥", "❄️"],
+      "optionsKnown": ["Приветствие", "Ночь", "Огонь", "Снег"],
       "correctIndex": 0
     },
     {
@@ -71,6 +75,7 @@
       "direction": "known-to-learning",
       "promptKnown": "Быстрый перевод: Thanks",
       "optionsLearning": ["Спасибо", "Привет", "До свидания"],
+      "optionsKnown": ["Thanks", "Hello", "Goodbye"],
       "correctIndex": 0,
       "timeLimitSec": 30
     },
@@ -81,7 +86,8 @@
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "direction": "known-to-learning",
       "promptKnown": "Введите перевод слова «Hello»",
-      "acceptedAnswersKnown": ["Привет", "привет"]
+      "acceptedAnswersKnown": ["Привет", "привет"],
+      "acceptedAnswersLearning": ["Hello", "hello"]
     },
     {
       "id": "draw-1",

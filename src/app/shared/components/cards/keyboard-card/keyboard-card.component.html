@@ -1,40 +1,45 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
-  <mat-card-header>
-    <mat-card-title>{{ card().title }}</mat-card-title>
-    <mat-card-subtitle>
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="card().promptLexeme"
-        [fallbackText]="card().promptKnown"
-      />
-    </mat-card-subtitle>
-  </mat-card-header>
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-subtitle>
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="promptLexeme()"
+          [fallbackText]="resolvedPrompt()"
+        />
+      </mat-card-subtitle>
+    </mat-card-header>
+  </section>
 
-  <mat-card-content>
-    <mat-form-field appearance="outline" class="quiz-card__field">
-      <mat-label>Ваш ответ</mat-label>
-      <input
-        matInput
-        [class.phonetic-ipa]="usesIpaInput()"
-        [ngModel]="answerText()"
-        [disabled]="feedback() !== null"
-        (ngModelChange)="answerTextChange.emit($event)"
-      />
-      @if (usesIpaInput()) {
-        <mat-hint>Введите IPA-транскрипцию (например həˈləʊ)</mat-hint>
-      } @else if (usesPinyinKeyboard()) {
-        <mat-hint>Пиньинь с тонами (например nǐ hǎo)</mat-hint>
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Ваш ответ</p>
+    <mat-card-content>
+      <mat-form-field appearance="outline" class="quiz-card__field">
+        <mat-label>Ответ</mat-label>
+        <input
+          matInput
+          [class.phonetic-ipa]="usesIpaInput()"
+          [ngModel]="answerText()"
+          [disabled]="feedback() !== null"
+          (ngModelChange)="answerTextChange.emit($event)"
+        />
+        @if (usesIpaInput()) {
+          <mat-hint>Введите IPA-транскрипцию (например həˈləʊ)</mat-hint>
+        } @else if (usesPinyinKeyboard()) {
+          <mat-hint>Пиньинь с тонами (например nǐ hǎo)</mat-hint>
+        }
+      </mat-form-field>
+
+      @if (usesPinyinKeyboard()) {
+        <app-pinyin-keyboard
+          [value]="answerText()"
+          [disabled]="feedback() !== null"
+          (valueChange)="answerTextChange.emit($event)"
+        />
       }
-    </mat-form-field>
-
-    @if (usesPinyinKeyboard()) {
-      <app-pinyin-keyboard
-        [value]="answerText()"
-        [disabled]="feedback() !== null"
-        (valueChange)="answerTextChange.emit($event)"
-      />
-    }
-  </mat-card-content>
+    </mat-card-content>
+  </section>
 
   @if (feedback() === 'correct') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
