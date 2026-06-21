@@ -21,7 +21,15 @@
 
 | Документ | Описание |
 |----------|----------|
-| [ARCHITECTURE.md](./ARCHITECTURE.md) | Standalone, signals, layout, роутинг, фичи |
+| [ARCHITECTURE.md](./ARCHITECTURE.md) | Обзор: слои, layout, роутинг, signals |
+| [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) | Ядро: layout, state, api, theme |
+| [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md) | CardHost, pickers, lexeme, pagination |
+| [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md) | Практика `/cards/select` |
+| [ARCHITECTURE.home.md](./ARCHITECTURE.home.md) | Dashboard `/home` |
+| [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md) | Редактор `/tools/cards` |
+| [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) | Конструктор сценариев |
+| [ARCHITECTURE.course.md](./ARCHITECTURE.course.md) | Программы и каталог |
+| [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult` |
 | [CARD-CATALOG.md](./CARD-CATALOG.md) | Индекс карточек, поиск, пагинация, API |
 | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) | Конструктор сценариев, `ScenarioCardSource` |
 | [EDITOR-UX.md](./EDITOR-UX.md) | UX редактора карточек (G12) |
@@ -38,6 +46,11 @@
 | Документ | Описание |
 |----------|----------|
 | [.gitrules.md](./.gitrules.md) | Ветки, коммиты, merge |
+
+## Формат
+
+- Кодировка: **UTF-8** (без BOM).
+- Язык: **русский** (идентификаторы кода — как в исходниках).
 
 ## Быстрая навигация по темам
 

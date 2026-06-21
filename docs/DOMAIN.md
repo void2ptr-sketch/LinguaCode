@@ -126,22 +126,28 @@ erDiagram
     }
 ```
 
-> `Lesson` и `Course` на диаграмме — целевая модель (G11). Сейчас в коде связь идёт напрямую `Scenario` → `Card`.
+> `Lesson` и `Course` — **реализовано** (G11). Полная union `Card` — см. `card.types.ts` (9 kind).
 
 ### Сущности
 
-| Модель | Описание |
-|--------|----------|
-| `User` | Пользователь; `displayName` и настройки внешнего вида карточек |
-| `Card` | Карточка обучения; union по полю `kind` |
-| `CardKind` | Тип карточки (см. таблицу ниже) |
-| `CardAppearance` | Внешний вид: тема, размер шрифта и др. |
-| `Scenario` | Сценарий — упорядоченный набор карточек; создаётся вручную или через конструктор |
-| `Lesson` | Урок — упорядоченный набор сценариев внутри курса (G11) |
-| `Course` | Курс — учебная программа: уроки + `languagePair`; не заменяет `LanguagePair` (G11) |
-| `LearningResult` | Результат ответа пользователя на карточку в сценарии |
-| `CardIndexEntry` | Лёгкая запись каталога (метаданные без payload карточки) |
-| `CardSearchCriteria` | Критерии поиска карточек в каталоге + `PageRequest` |
+| Модель | Описание | Файл типов |
+|--------|----------|------------|
+| `User` | Пользователь; `displayName`, `UserPreferences` | `user.types.ts` |
+| `UserPreferences` | `CardAppearance`, `colorScheme`, языковые пары | `user.types.ts` |
+| `UserLanguagePairEntry` | Пара + settings (CJK, IPA, learning) | `user-language-pair.types.ts` |
+| `Card` | Карточка; union по `kind` | `card.types.ts` |
+| `CardKind` | Тип карточки (см. таблицу ниже) | `card.types.ts` |
+| `PhoneticLexeme` | Лексема (han, pinyin, ipa…) | `phonetic-content.types.ts` |
+| `Scenario` | Сценарий; `cardSource` | `scenario.types.ts` |
+| `ScenarioCardSource` | `fixed` / `criteria` / `snapshot` | `scenario-card-source.types.ts` |
+| `Lesson` | Урок программы | `lesson.types.ts` |
+| `Course` | Учебная программа | `course.types.ts` |
+| `LearningResult` | Результат ответа | `learning-result.types.ts` |
+| `LearningSessionPreferences` | activeCourseId, lastLessonId, lastScenarioId | `learning-session.types.ts` |
+| `CardIndexEntry` | Запись каталога | `card-index.types.ts` |
+| `CardSearchCriteria` | Критерии поиска | `card-search.types.ts` |
+
+Реэкспорт: `src/app/core/models/index.ts`.
 
 Подробнее о масштабировании каталога: [CARD-CATALOG.md](./CARD-CATALOG.md).
 
@@ -149,13 +155,15 @@ erDiagram
 
 | `kind` | Назначение | Статус |
 |--------|------------|--------|
-| `select` | Вопрос с выбором ответа | MVP |
-| `memory` | Запоминание | бэклог |
-| `symbol` | Символы | бэклог |
-| `sound` | Звук | бэклог |
-| `timed` | Временное ограничение | бэклог |
-| `keyboard` | Ввод с клавиатуры | бэклог |
-| `draw` | Рисование | бэклог |
+| `select` | Вопрос с выбором ответа | реализовано |
+| `memory` | Запоминание пар | реализовано |
+| `symbol` | Символы | реализовано |
+| `sound` | Звук | реализовано |
+| `timed` | Временное ограничение | реализовано |
+| `keyboard` | Ввод с клавиатуры | реализовано |
+| `draw` | Рисование | реализовано |
+| `tone` | Тоны / слоги | реализовано |
+| `reading` | Чтение | реализовано |
 
 ### Базовые типы
 
@@ -236,6 +244,7 @@ type User = {
   id: string;
   displayName: string;
   preferences: CardAppearance & {
+    colorScheme: 'light' | 'dark';
     languagePairs: readonly UserLanguagePairEntry[];
     activeLanguagePairId: string;
   };
@@ -278,7 +287,8 @@ type CardSearchCriteria = {
 
 type ScenarioCardSource =
   | { mode: 'fixed'; cardIds: readonly string[] }
-  | { mode: 'criteria'; criteria: Omit<CardSearchCriteria, 'page'>; limit?: number };
+  | { mode: 'criteria'; criteria: Omit<CardSearchCriteria, 'page'>; limit?: number }
+  | { mode: 'snapshot'; cardIds: readonly string[]; criteria: Omit<CardSearchCriteria, 'page'>; frozenAt: string };
 ```
 
 Расположение в коде: `src/app/core/models/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).
@@ -288,6 +298,7 @@ type ScenarioCardSource =
 - [INDEX.md](./INDEX.md) — оглавление документации
 - [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
+- [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) — … · полный список в [INDEX.md](./INDEX.md#техническая-документация)
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
 - [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning (scope контента; не путать с `Course`)

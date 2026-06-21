@@ -107,6 +107,6 @@ Card  →  Scenario  →  Lesson  →  Course
 
 - [INDEX.md](./INDEX.md) — оглавление документации
 - [DOMAIN.md](./DOMAIN.md) — доменная модель, типы, ER-диаграмма
-- [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, фичи, роутинг
+- [ARCHITECTURE.md](./ARCHITECTURE.md) — обзор архитектуры · [INDEX.md](./INDEX.md#техническая-документация) (подсистемы)
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и запуск проекта

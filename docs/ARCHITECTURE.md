@@ -53,6 +53,21 @@ features/card-select/
 
 Фичи **не импортируют** друг друга напрямую. Общие типы — в `core/models/`, специфичные — в `features/*/types/`.
 
+## Архитектура подсистем
+
+Детальный структурный дизайн — в файлах `ARCHITECTURE.<подсистема>.md` (UML-диаграммы в формате Mermaid):
+
+| Подсистема | Документ |
+|------------|----------|
+| `core` | [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) |
+| `shared` | [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md) |
+| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md) |
+| Dashboard (`home`) | [ARCHITECTURE.home.md](./ARCHITECTURE.home.md) |
+| Редактор карточек | [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md) |
+| Конструктор сценариев | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) |
+| Программы (course) | [ARCHITECTURE.course.md](./ARCHITECTURE.course.md) |
+| Результаты обучения | [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) |
+
 ## Layout
 
 Shell-приложение. Контент фич — через `<router-outlet>` в `main-layout`.
