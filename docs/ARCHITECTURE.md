@@ -1,6 +1,6 @@
 # Архитектура LinguaCode
 
-Техническое описание frontend-приложения. Бизнес-контекст — в [DOMAIN.md](./DOMAIN.md).
+Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
 
 ## Принципы
 
@@ -251,7 +251,9 @@ export class CardApiService {
 
 ## Связанные документы
 
-- [DOMAIN.md](./DOMAIN.md) — бизнес-логика, модели, конструктор сценариев
+- [INDEX.md](./INDEX.md) — оглавление документации
+- [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
+- [DOMAIN.md](./DOMAIN.md) — доменная модель, типы, конструктор сценариев
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт

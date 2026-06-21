@@ -2,7 +2,7 @@
 
 План перехода от in-memory `CardRepository` к каталогу на сотни тысяч карточек.
 
-Связанные документы: [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
 ## Проблема
 
