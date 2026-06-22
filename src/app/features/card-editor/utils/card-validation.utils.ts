@@ -1,5 +1,5 @@
 import { stripPinyinTones } from '../../../core/data/cjk-romanization.utils';
-import type { DrawPracticeMode } from '../../../core/models/draw-practice.types';
+import type { DrawCharacterTarget, DrawPracticeMode } from '../../../core/models/draw-practice.types';
 import { normalizeToneOptions } from '../../../core/data/tone-mark.utils';
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import {
@@ -333,21 +333,66 @@ const normalizeStrokeGuides = (
 };
 
 const normalizePracticeMode = (mode?: DrawPracticeMode): DrawPracticeMode | undefined => {
-  if (mode === 'stroke-order' || mode === 'radicals' || mode === 'freehand') {
+  if (
+    mode === 'stroke-order' ||
+    mode === 'radicals' ||
+    mode === 'freehand' ||
+    mode === 'memory' ||
+    mode === 'tracing' ||
+    mode === 'hints'
+  ) {
     return mode;
   }
 
   return undefined;
 };
 
+const normalizeCharacterTargets = (
+  targets: readonly DrawCharacterTarget[] | undefined,
+): readonly DrawCharacterTarget[] | undefined => {
+  if (!targets?.length) {
+    return undefined;
+  }
+
+  const normalized = targets
+    .map((target) => {
+      const character = sanitizeShort(target.character);
+      const pinyin = sanitizeShort(target.pinyin ?? '');
+      const zhuyin = sanitizeShort(target.zhuyin ?? '');
+      const glossKnown = sanitizeHint(target.glossKnown ?? '');
+      const radicalHint = sanitizeHint(target.radicalHint ?? '');
+      const audioUrl = target.audioUrl ? normalizeAudioUrl(target.audioUrl) : undefined;
+      const strokeGuides = normalizeStrokeGuides(target.strokeGuides ?? []);
+
+      if (!character) {
+        return null;
+      }
+
+      return {
+        character,
+        ...(pinyin ? { pinyin } : {}),
+        ...(zhuyin ? { zhuyin } : {}),
+        ...(glossKnown ? { glossKnown } : {}),
+        ...(radicalHint ? { radicalHint } : {}),
+        ...(audioUrl ? { audioUrl } : {}),
+        ...(strokeGuides ? { strokeGuides } : {}),
+      };
+    })
+    .filter((target): target is DrawCharacterTarget => target !== null);
+
+  return normalized.length > 0 ? normalized : undefined;
+};
+
 export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): DrawCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
   const referenceHintKnown = sanitizeHint(draft.referenceHintKnown);
+  const meaningKnown = sanitizeHint(draft.meaningKnown ?? '');
   const practiceMode = normalizePracticeMode(draft.practiceMode);
   const targetCharacter = sanitizeShort(draft.targetCharacter);
   const radicalHint = sanitizeHint(draft.radicalHint);
   const strokeGuides = normalizeStrokeGuides(draft.strokeGuides);
+  const characterTargets = normalizeCharacterTargets(draft.characterTargets);
   const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
 
   if (!title || !promptKnown || !referenceHintKnown) {
@@ -363,10 +408,12 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
     appearance: normalizeAppearance(draft.appearance),
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    ...(meaningKnown ? { meaningKnown } : {}),
     ...(practiceMode && practiceMode !== 'freehand' ? { practiceMode } : {}),
     ...(targetCharacter ? { targetCharacter } : {}),
     ...(radicalHint ? { radicalHint } : {}),
     ...(strokeGuides ? { strokeGuides } : {}),
+    ...(characterTargets ? { characterTargets } : {}),
   };
 };
 

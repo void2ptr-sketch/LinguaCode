@@ -2,10 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { buildFixtureUrl } from '../api';
-import { Card } from '../models';
+import { Card, DrawCard } from '../models';
+import { mergeDrawCardQuestionFields } from './draw-card.utils';
 import { normalizeLegacyCards } from './card-legacy.mapper';
 
 export const CARDS_STORAGE_KEY = 'lingua-code.cards';
+
+/** Демо-карточки, снятые с seed — не подмешивать из localStorage. */
+const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
 
 type CardsSeedFixture = {
   cards: readonly Card[];
@@ -47,10 +51,20 @@ export class CardRepository {
     }
 
     for (const card of stored) {
+      if (REMOVED_SEED_CARD_IDS.has(card.id)) {
+        continue;
+      }
+
+      const seedCard = byId.get(card.id);
+      if (card.kind === 'draw' && seedCard?.kind === 'draw') {
+        byId.set(card.id, mergeDrawCardQuestionFields(card, seedCard));
+        continue;
+      }
+
       byId.set(card.id, card);
     }
 
-    return [...byId.values()];
+    return [...byId.values()].filter((card) => !REMOVED_SEED_CARD_IDS.has(card.id));
   }
 
   async ensureLoaded(): Promise<readonly Card[]> {

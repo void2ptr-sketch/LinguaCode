@@ -24,7 +24,7 @@ export type CardBase = {
 };
 
 import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';
-import type { DrawPracticeMode, DrawStrokeGuide } from './draw-practice.types';
+import type { DrawPracticeMode, DrawStrokeGuide, DrawCharacterTarget } from './draw-practice.types';
 
 export type MemoryPair = {
   known: string;
@@ -108,10 +108,14 @@ export type DrawCard = CardBase &
     kind: 'draw';
     promptKnown: string;
     referenceHintKnown: string;
+    /** Значение / перевод в зоне вопроса (без иероглифа). */
+    meaningKnown?: string;
     practiceMode?: DrawPracticeMode;
     targetCharacter?: string;
     strokeGuides?: readonly DrawStrokeGuide[];
     radicalHint?: string;
+    /** По одному иероглифу на вкладку; если нет — из `targetCharacter` / `promptLexeme`. */
+    characterTargets?: readonly DrawCharacterTarget[];
   };
 
 export type ToneCard = CardBase &

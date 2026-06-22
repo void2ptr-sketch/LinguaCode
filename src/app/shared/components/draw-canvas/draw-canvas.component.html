@@ -11,7 +11,7 @@
       (pointercancel)="onPointerUp($event)"
     ></canvas>
 
-    @if (strokeGuides().length > 0) {
+    @if (showStrokeGuides() && strokeGuides().length > 0) {
       <svg class="draw-canvas__guides" viewBox="0 0 100 100" aria-hidden="true">
         @for (guide of strokeGuides(); track guide.order) {
           <g class="draw-canvas__guide">
@@ -29,8 +29,35 @@
     }
   </div>
 
-  <button mat-button type="button" [disabled]="disabled() || !hasStrokes()" (click)="clear()">
-    <mat-icon>refresh</mat-icon>
-    Очистить
-  </button>
+  <div class="draw-canvas__toolbar" role="toolbar" aria-label="Действия с рисунком">
+    <button
+      mat-button
+      type="button"
+      [disabled]="disabled() || !canUndo()"
+      (click)="undoLastStroke()"
+    >
+      <mat-icon>undo</mat-icon>
+      Отменить штрих
+    </button>
+    <button
+      mat-button
+      type="button"
+      [disabled]="disabled() || !hasStrokes()"
+      (click)="clearStrokes()"
+    >
+      <mat-icon>ink_eraser</mat-icon>
+      Очистить
+    </button>
+    @if (showClearAll()) {
+      <button
+        mat-button
+        type="button"
+        [disabled]="disabled() || clearAllDisabled()"
+        (click)="clearAllRequested.emit()"
+      >
+        <mat-icon>layers_clear</mat-icon>
+        Очистить всё
+      </button>
+    }
+  </div>
 </div>

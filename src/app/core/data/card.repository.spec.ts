@@ -2,6 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import type { DrawCard } from '../models';
 import { CardRepository, CARDS_STORAGE_KEY } from './card.repository';
 
 const seedFixture = {
@@ -109,5 +110,24 @@ describe('CardRepository', () => {
 
     expect(cards).toHaveSize(2);
     expect(cards.find((card) => card.id === 'select-zh-1')?.title).toBe('Пользовательская версия');
+  });
+
+  it('should drop removed demo cards from storage on merge', () => {
+    repository.save([
+      {
+        id: 'draw-jiangenshenfang-1',
+        kind: 'draw',
+        title: '将恩深房',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        promptKnown: 'Q',
+        referenceHintKnown: '将恩深房',
+        meaningKnown: '将恩深房',
+      } as DrawCard,
+      seedFixture.cards[0],
+    ]);
+
+    const merged = repository.mergeWithSeed(repository.loadStored(), [...seedFixture.cards]);
+
+    expect(merged.some((card) => card.id === 'draw-jiangenshenfang-1')).toBeFalse();
   });
 });

@@ -75,7 +75,13 @@ export type {
   ToneMark,
 } from './phonetic-content.types';
 export type {
+  DrawCanvasMode,
+  DrawCharacterTarget,
   DrawPracticeMode,
   DrawStrokeGuide,
+} from './draw-practice.types';
+export {
+  DRAW_CANVAS_MODE_LABELS,
+  DRAW_CANVAS_MODES,
 } from './draw-practice.types';
 export type { UserLanguagePairEntry, UserLanguagePairSettings } from './user-language-pair.types';

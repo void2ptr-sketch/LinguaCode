@@ -1,7 +1,14 @@
 .draw-canvas {
   display: grid;
   gap: 0.5rem;
-  justify-items: start;
+  justify-items: stretch;
+  width: 100%;
+}
+
+.draw-canvas__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
 }
 
 .draw-canvas__surface {

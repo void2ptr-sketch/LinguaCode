@@ -2,6 +2,7 @@ import {
   Component,
   ElementRef,
   afterNextRender,
+  effect,
   input,
   output,
   signal,
@@ -10,12 +11,8 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import type { DrawStrokeGuide } from '../../../core/models/draw-practice.types';
-
-type CanvasPoint = {
-  x: number;
-  y: number;
-};
+import type { DrawCanvasMode, DrawStrokeGuide } from '../../../core/models/draw-practice.types';
+import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 
 @Component({
   selector: 'app-draw-canvas',
@@ -26,21 +23,36 @@ type CanvasPoint = {
 export class DrawCanvasComponent {
   readonly ghostCharacter = input<string | null>(null);
   readonly strokeGuides = input<readonly DrawStrokeGuide[]>([]);
+  readonly canvasMode = input<DrawCanvasMode>('memory');
   readonly disabled = input(false);
+  readonly showClearAll = input(false);
+  readonly clearAllDisabled = input(true);
 
   readonly strokesChange = output<boolean>();
+  readonly clearAllRequested = output<void>();
 
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
   readonly hasStrokes = signal(false);
+  readonly canUndo = signal(false);
+  readonly showStrokeGuides = signal(false);
 
+  private strokes: DrawStrokePath[] = [];
+  private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
-  private lastPoint: CanvasPoint | null = null;
   private context: CanvasRenderingContext2D | null = null;
 
   constructor() {
     afterNextRender(() => {
       this.resizeCanvas();
+    });
+
+    effect(() => {
+      this.ghostCharacter();
+      this.canvasMode();
+      this.strokeGuides();
+      this.showStrokeGuides.set(this.shouldShowStrokeGuides());
+      this.redrawAll(false);
     });
   }
 
@@ -53,17 +65,32 @@ export class DrawCanvasComponent {
     return { x: 50, y: 50 };
   }
 
-  clear(): void {
-    const canvas = this.canvasRef()?.nativeElement;
-    const context = this.context ?? canvas?.getContext('2d') ?? null;
-    if (!canvas || !context) {
+  getStrokes(): readonly DrawStrokePath[] {
+    return this.strokes;
+  }
+
+  setStrokes(strokes: readonly DrawStrokePath[]): void {
+    this.strokes = strokes.map((stroke) => [...stroke]);
+    this.activeStroke = [];
+    this.syncStrokeState(false);
+    this.redrawAll(false);
+  }
+
+  undoLastStroke(): void {
+    if (this.strokes.length === 0) {
       return;
     }
 
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    this.paintGhost(context, canvas.width, canvas.height);
-    this.hasStrokes.set(false);
-    this.strokesChange.emit(false);
+    this.strokes.pop();
+    this.syncStrokeState(true);
+    this.redrawAll(true);
+  }
+
+  clearStrokes(): void {
+    this.strokes = [];
+    this.activeStroke = [];
+    this.syncStrokeState(true);
+    this.redrawAll(true);
   }
 
   onPointerDown(event: PointerEvent): void {
@@ -78,7 +105,7 @@ export class DrawCanvasComponent {
 
     canvas.setPointerCapture(event.pointerId);
     this.drawing = true;
-    this.lastPoint = this.eventPoint(event, canvas);
+    this.activeStroke = [this.eventPoint(event, canvas)];
   }
 
   onPointerMove(event: PointerEvent): void {
@@ -88,21 +115,17 @@ export class DrawCanvasComponent {
 
     const canvas = this.canvasRef()?.nativeElement;
     const context = this.ensureContext();
-    if (!canvas || !context || !this.lastPoint) {
+    if (!canvas || !context || this.activeStroke.length === 0) {
       return;
     }
 
     const point = this.eventPoint(event, canvas);
+    const previous = this.activeStroke[this.activeStroke.length - 1];
     context.beginPath();
-    context.moveTo(this.lastPoint.x, this.lastPoint.y);
+    context.moveTo(previous.x, previous.y);
     context.lineTo(point.x, point.y);
     context.stroke();
-    this.lastPoint = point;
-
-    if (!this.hasStrokes()) {
-      this.hasStrokes.set(true);
-      this.strokesChange.emit(true);
-    }
+    this.activeStroke.push(point);
   }
 
   onPointerUp(event: PointerEvent): void {
@@ -111,8 +134,76 @@ export class DrawCanvasComponent {
       canvas.releasePointerCapture(event.pointerId);
     }
 
+    if (!this.drawing) {
+      return;
+    }
+
     this.drawing = false;
-    this.lastPoint = null;
+
+    if (this.activeStroke.length > 0) {
+      this.strokes.push([...this.activeStroke]);
+      this.activeStroke = [];
+      this.syncStrokeState(true);
+    }
+  }
+
+  private shouldShowStrokeGuides(): boolean {
+    const mode = this.canvasMode();
+    return mode === 'stroke-order' || mode === 'hints';
+  }
+
+  private ghostOpacity(): number {
+    switch (this.canvasMode()) {
+      case 'tracing':
+        return 0.38;
+      case 'hints':
+        return 0.14;
+      case 'stroke-order':
+        return 0.1;
+      case 'radicals':
+        return 0.08;
+      default:
+        return 0;
+    }
+  }
+
+  private redrawAll(emitChange: boolean): void {
+    const canvas = this.canvasRef()?.nativeElement;
+    const context = this.context ?? canvas?.getContext('2d') ?? null;
+    if (!canvas || !context) {
+      return;
+    }
+
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    this.paintGhost(context, canvas.width, canvas.height);
+    this.paintStrokes(context);
+  }
+
+  private paintStrokes(context: CanvasRenderingContext2D): void {
+    for (const stroke of this.strokes) {
+      this.paintStroke(context, stroke);
+    }
+  }
+
+  private paintStroke(context: CanvasRenderingContext2D, stroke: DrawStrokePath): void {
+    if (stroke.length === 0) {
+      return;
+    }
+
+    if (stroke.length === 1) {
+      const [point] = stroke;
+      context.beginPath();
+      context.arc(point.x, point.y, 2, 0, Math.PI * 2);
+      context.fill();
+      return;
+    }
+
+    context.beginPath();
+    context.moveTo(stroke[0].x, stroke[0].y);
+    for (let index = 1; index < stroke.length; index += 1) {
+      context.lineTo(stroke[index].x, stroke[index].y);
+    }
+    context.stroke();
   }
 
   private resizeCanvas(): void {
@@ -126,13 +217,9 @@ export class DrawCanvasComponent {
     canvas.width = width;
     canvas.height = height;
 
-    const context = this.ensureContext();
-    if (!context) {
-      return;
-    }
-
-    context.clearRect(0, 0, width, height);
-    this.paintGhost(context, width, height);
+    this.context = null;
+    this.ensureContext();
+    this.redrawAll(false);
   }
 
   private ensureContext(): CanvasRenderingContext2D | null {
@@ -151,6 +238,7 @@ export class DrawCanvasComponent {
       context.lineJoin = 'round';
       context.lineWidth = 4;
       context.strokeStyle = '#1a1a1a';
+      context.fillStyle = '#1a1a1a';
       this.context = context;
     }
 
@@ -159,12 +247,13 @@ export class DrawCanvasComponent {
 
   private paintGhost(context: CanvasRenderingContext2D, width: number, height: number): void {
     const ghost = this.ghostCharacter()?.trim();
-    if (!ghost) {
+    const opacity = this.ghostOpacity();
+    if (!ghost || opacity <= 0) {
       return;
     }
 
     context.save();
-    context.globalAlpha = 0.12;
+    context.globalAlpha = opacity;
     context.fillStyle = '#000';
     context.font = `${Math.floor(width * 0.72)}px "Noto Sans SC", "Noto Sans TC", sans-serif`;
     context.textAlign = 'center';
@@ -173,11 +262,21 @@ export class DrawCanvasComponent {
     context.restore();
   }
 
-  private eventPoint(event: PointerEvent, canvas: HTMLCanvasElement): CanvasPoint {
+  private eventPoint(event: PointerEvent, canvas: HTMLCanvasElement): DrawCanvasPoint {
     const rect = canvas.getBoundingClientRect();
     return {
       x: event.clientX - rect.left,
       y: event.clientY - rect.top,
     };
+  }
+
+  private syncStrokeState(emitChange: boolean): void {
+    const hasStrokes = this.strokes.length > 0;
+    this.hasStrokes.set(hasStrokes);
+    this.canUndo.set(hasStrokes);
+
+    if (emitChange) {
+      this.strokesChange.emit(hasStrokes);
+    }
   }
 }
