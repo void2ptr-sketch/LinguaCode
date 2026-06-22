@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 import { buildFixtureUrl } from '../api';
-import { Card, DrawCard } from '../models';
+import { Card } from '../models';
 import { mergeDrawCardQuestionFields } from './draw-card.utils';
 import { normalizeLegacyCards } from './card-legacy.mapper';
 

@@ -174,6 +174,10 @@ export class DrawCanvasComponent {
       return;
     }
 
+    if (emitChange === false) {
+      return;
+    }
+
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.paintGhost(context, canvas.width, canvas.height);
     this.paintStrokes(context);
