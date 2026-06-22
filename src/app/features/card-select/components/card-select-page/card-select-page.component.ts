@@ -11,6 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { cardSupportsSessionDirection } from '../../../../core/data/card-direction.utils';
 
 import { CourseSearchService } from '../../../../core/data';
 
@@ -112,6 +113,8 @@ export class CardSelectPageComponent implements OnInit {
 
     return Math.round(((this.store.currentIndex() + 1) / total) * 100);
   });
+
+  readonly showDirectionToggle = computed(() => cardSupportsSessionDirection(this.store.currentCard()));
 
   readonly sessionSegments = computed((): readonly PracticeSessionSegment[] => {
     const courseId = this.selectedCourseId();

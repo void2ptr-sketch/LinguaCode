@@ -294,6 +294,7 @@
 - [x] **G5.1c** — опциональные `optionsKnown`, `acceptedAnswersLearning`; fallback через `glossKnown` / `extractQuotedLemma`
 - [x] **G5.1d** — `CardSelectStore.setSessionDirection` + сброс ответа; demo JSON обновлён
 - [x] **G5.1e** — unit-тесты `card-direction.utils.spec.ts`
+- [x] **G5.1g** — toggle direction скрыт на `draw` и `tone` (не влияет на задание)
 - [ ] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
 
 **G7 — несколько пар, одна активная**
