@@ -9,6 +9,7 @@ import { resolveIpaString, resolveVisibleRomanizationReadings } from '../../../c
 import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/phonetic-content.types';
 import { UserStore } from '../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
+import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
 export type { LexemeDisplaySurface };
 
@@ -20,7 +21,7 @@ const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
 
 @Component({
   selector: 'app-lexeme-display',
-  imports: [PhoneticIpaComponent],
+  imports: [PhoneticIpaComponent, ToneColoredTextComponent],
   host: {
     class: 'lexeme-display-host',
     '[class.lexeme-display-host--inline]': 'inline()',
@@ -39,6 +40,7 @@ export class LexemeDisplayComponent {
   readonly showIpa = input<boolean | null>(null);
   readonly ipaVariantLabel = input<string | undefined>(undefined);
   readonly inline = input(false);
+  readonly toneColorEnabled = input<boolean | null>(null);
 
   readonly romanizationLabel = (system: RomanizationSystem): string => ROMANIZATION_LABELS[system];
 
@@ -85,6 +87,15 @@ export class LexemeDisplayComponent {
     }
 
     return resolveVisibleRomanizationReadings(lexeme, this.effectiveRomanizations());
+  });
+
+  readonly effectiveToneColorEnabled = computed(() => {
+    const override = this.toneColorEnabled();
+    if (override !== null) {
+      return override;
+    }
+
+    return this.userStore.cjkLearning().showTones;
   });
 
   readonly ipaText = computed(() => {

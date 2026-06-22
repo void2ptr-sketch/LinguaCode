@@ -2,7 +2,15 @@
   <div class="lexeme-display" [class.lexeme-display--inline]="inline()">
     <div class="lexeme-display__stack">
       @if (item.script === 'hani') {
-        <span class="lexeme-display__primary lexeme-display__han" lang="zh-Hans">{{ item.primary }}</span>
+        <span class="lexeme-display__primary lexeme-display__han" lang="zh-Hans">
+          <app-tone-colored-text
+            [text]="item.primary"
+            mode="han"
+            [lexeme]="item"
+            [enabled]="effectiveToneColorEnabled()"
+            [inline]="true"
+          />
+        </span>
       } @else {
         <span class="lexeme-display__primary">{{ item.primary }}</span>
       }
@@ -10,7 +18,19 @@
       @for (reading of visibleRomanizations(); track reading.system) {
         <div class="lexeme-display__reading lexeme-display__reading--{{ reading.system }}">
           <span class="lexeme-display__reading-label">{{ romanizationLabel(reading.system) }}</span>
-          <span class="lexeme-display__reading-text">{{ reading.reading }}</span>
+          <span class="lexeme-display__reading-text">
+            @if (reading.system === 'pinyin') {
+              <app-tone-colored-text
+                [text]="reading.reading"
+                mode="pinyin"
+                [lexeme]="item"
+                [enabled]="effectiveToneColorEnabled()"
+                [inline]="true"
+              />
+            } @else {
+              {{ reading.reading }}
+            }
+          </span>
         </div>
       }
 

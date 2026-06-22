@@ -146,6 +146,48 @@
                 Для этого курса нет дополнительных настроек романизации или IPA.
               </p>
             }
+
+            @if (showCjkPreferences()) {
+              <section class="page-card__tone-colors">
+                <h3 class="page-card__subsection-title">Цветовая маркировка тонов</h3>
+                <p class="page-card__hint">
+                  Иероглифы и пиньинь на карточках окрашиваются по тону слога.
+                </p>
+
+                <mat-slide-toggle
+                  [checked]="toneColorEnabledDraft()"
+                  (change)="toneColorEnabledDraft.set($event.checked)"
+                >
+                  Включить цветовую поддержку тонов
+                </mat-slide-toggle>
+
+                @if (toneColorEnabledDraft()) {
+                  <mat-form-field appearance="outline">
+                    <mat-label>Цветовая схема</mat-label>
+                    <mat-select
+                      [ngModel]="toneColorSchemeDraft()"
+                      (ngModelChange)="toneColorSchemeDraft.set($event)"
+                      name="toneColorScheme"
+                    >
+                      @for (scheme of toneColorSchemeOptions; track scheme.id) {
+                        <mat-option [value]="scheme.id">{{ scheme.label }}</mat-option>
+                      }
+                    </mat-select>
+                    <mat-hint>{{ toneColorSchemeHint() }}</mat-hint>
+                  </mat-form-field>
+
+                  <div class="tone-color-preview" aria-hidden="true">
+                    @for (tone of tonePreviewMarks; track tone) {
+                      <span
+                        class="tone-color-preview__swatch"
+                        [style.background-color]="tonePreviewColor(tone)"
+                        [attr.title]="tone + '-й тон'"
+                      ></span>
+                    }
+                  </div>
+                }
+              </section>
+            }
           </section>
         </div>
       </mat-tab>

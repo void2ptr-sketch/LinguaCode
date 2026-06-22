@@ -84,4 +84,6 @@ export {
   DRAW_CANVAS_MODE_LABELS,
   DRAW_CANVAS_MODES,
 } from './draw-practice.types';
+export type { ToneColorPalette, ToneColorScheme, ToneColorSchemeId } from './tone-color.types';
+export { DEFAULT_TONE_COLOR_SCHEME_ID, TONE_COLOR_SCHEMES, TONE_COLOR_SCHEME_IDS } from './tone-color.types';
 export type { UserLanguagePairEntry, UserLanguagePairSettings } from './user-language-pair.types';

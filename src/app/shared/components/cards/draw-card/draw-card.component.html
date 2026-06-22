@@ -61,7 +61,14 @@
             [attr.aria-label]="'Слог ' + tabLabel(index)"
             (click)="selectCharacterTab(index)"
           >
-            <span class="draw-card__char-tab-label">{{ tabLabel(index) }}</span>
+            <span class="draw-card__char-tab-label">
+              <app-tone-colored-text
+                [text]="tabLabel(index)"
+                mode="pinyin"
+                [enabled]="toneColorEnabled()"
+                [inline]="true"
+              />
+            </span>
           </button>
         }
       </div>

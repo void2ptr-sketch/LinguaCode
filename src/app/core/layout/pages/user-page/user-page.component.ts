@@ -17,12 +17,15 @@ import type {
   UserLanguagePairSettings,
   UserPreferences,
 } from '../../../models';
+import type { ToneColorSchemeId } from '../../../models/tone-color.types';
+import type { ToneMark } from '../../../models/phonetic-content.types';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
 } from '../../../data/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../models/phonetic-content.types';
+import { TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
 import { UserStore } from '../../../state';
 import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
 import {
@@ -74,6 +77,10 @@ export class UserPageComponent implements OnInit {
   readonly showIpaDraft = signal(false);
   readonly ipaVariantLabelDraft = signal('');
   readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
+  readonly toneColorEnabledDraft = signal(false);
+  readonly toneColorSchemeDraft = signal<ToneColorSchemeId>('classic');
+  readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
+  readonly tonePreviewMarks: readonly ToneMark[] = [1, 2, 3, 4, 5];
   readonly selectedTabIndex = signal(0);
 
   private static readonly pairSettingsTabIndex = 2;
@@ -134,6 +141,16 @@ export class UserPageComponent implements OnInit {
 
   entryLabel(entry: UserLanguagePairEntry): string {
     return this.userStore.formatEntryLabel(entry);
+  }
+
+  toneColorSchemeHint(): string {
+    const scheme = this.toneColorSchemeOptions.find((item) => item.id === this.toneColorSchemeDraft());
+    return scheme?.description ?? '';
+  }
+
+  tonePreviewColor(tone: ToneMark): string {
+    const scheme = this.toneColorSchemeOptions.find((item) => item.id === this.toneColorSchemeDraft());
+    return scheme?.colors[tone] ?? '#757575';
   }
 
   isActive(entry: UserLanguagePairEntry): boolean {
@@ -198,11 +215,11 @@ export class UserPageComponent implements OnInit {
     const patch: Partial<UserLanguagePairSettings> = {};
 
     if (this.showCjkPreferences()) {
-      const cjk = resolveCjkLearningForPair(entry);
       patch.cjkLearning = {
         displayRomanizations: [...this.displayRomanizationsDraft()],
         answerRomanization: [...this.answerRomanizationsDraft()],
-        showTones: cjk.showTones,
+        showTones: this.toneColorEnabledDraft(),
+        toneColorScheme: this.toneColorSchemeDraft(),
       };
     }
 
@@ -229,6 +246,8 @@ export class UserPageComponent implements OnInit {
 
     this.displayRomanizationsDraft.set([...cjk.displayRomanizations]);
     this.answerRomanizationsDraft.set([...cjk.answerRomanization]);
+    this.toneColorEnabledDraft.set(cjk.showTones);
+    this.toneColorSchemeDraft.set(cjk.toneColorScheme);
     this.showIpaDraft.set(phonetic.showIpa);
     this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
     this.answerModesDraft.set([...phonetic.answerModes]);

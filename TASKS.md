@@ -376,8 +376,10 @@
 
 **G9c — настройки ru→zh**
 
-- [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`
+- [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`, `toneColorScheme`
 - [x] UI `/user` (вкладка «Настройка курса»): чекбоксы романизации для **задания** (`displayRomanizations`)
+- [x] UI: переключатель «Цветовая маркировка тонов» + выбор схемы (`classic` / `pastel` / `vivid` / `warm`)
+- [x] Рендер: `app-tone-colored-text` — иероглифы и пиньинь на карточках, draw-вкладки, tone-card
 - [x] Палладица скрыта для пар без `known === 'ru'`
 - [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
 

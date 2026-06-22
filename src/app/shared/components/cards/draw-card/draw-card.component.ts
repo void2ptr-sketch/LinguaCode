@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, output, signal, viewChild } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -12,6 +12,7 @@ import {
   resolveDrawQuestion,
 } from '../../../../core/data/draw-card.utils';
 import { DrawCard } from '../../../../core/models';
+import { UserStore } from '../../../../core/state';
 import {
   DRAW_CANVAS_MODE_LABELS,
   DRAW_CANVAS_MODES,
@@ -19,6 +20,7 @@ import {
 } from '../../../../core/models/draw-practice.types';
 import { DrawCanvasComponent } from '../../draw-canvas/draw-canvas.component';
 import type { DrawStrokePath } from '../../draw-canvas/draw-canvas.types';
+import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 
 @Component({
@@ -29,11 +31,14 @@ import { CardFeedback } from '../../../types';
     MatButtonToggleModule,
     MatIconModule,
     DrawCanvasComponent,
+    ToneColoredTextComponent,
   ],
   templateUrl: './draw-card.component.html',
   styleUrl: './draw-card.component.scss',
 })
 export class DrawCardComponent {
+  private readonly userStore = inject(UserStore);
+
   readonly card = input.required<DrawCard>();
   readonly drawSubmitted = input(false);
   readonly feedback = input<CardFeedback>(null);
@@ -70,6 +75,8 @@ export class DrawCardComponent {
   readonly hasStrokesOnAnyTab = computed(() =>
     this.charStrokes().some((strokes) => strokes.length > 0),
   );
+
+  readonly toneColorEnabled = computed(() => this.userStore.cjkLearning().showTones);
 
   readonly ghostCharacter = computed(() => {
     const character = this.activeTarget()?.character?.trim();
