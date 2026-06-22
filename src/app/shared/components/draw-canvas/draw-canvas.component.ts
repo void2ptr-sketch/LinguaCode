@@ -52,7 +52,7 @@ export class DrawCanvasComponent {
       this.canvasMode();
       this.strokeGuides();
       this.showStrokeGuides.set(this.shouldShowStrokeGuides());
-      this.redrawAll(false);
+      this.redrawAll();
     });
   }
 
@@ -73,7 +73,7 @@ export class DrawCanvasComponent {
     this.strokes = strokes.map((stroke) => [...stroke]);
     this.activeStroke = [];
     this.syncStrokeState(false);
-    this.redrawAll(false);
+    this.redrawAll();
   }
 
   undoLastStroke(): void {
@@ -83,14 +83,14 @@ export class DrawCanvasComponent {
 
     this.strokes.pop();
     this.syncStrokeState(true);
-    this.redrawAll(true);
+    this.redrawAll();
   }
 
   clearStrokes(): void {
     this.strokes = [];
     this.activeStroke = [];
     this.syncStrokeState(true);
-    this.redrawAll(true);
+    this.redrawAll();
   }
 
   onPointerDown(event: PointerEvent): void {
@@ -167,14 +167,10 @@ export class DrawCanvasComponent {
     }
   }
 
-  private redrawAll(emitChange: boolean): void {
+  private redrawAll(): void {
     const canvas = this.canvasRef()?.nativeElement;
     const context = this.context ?? canvas?.getContext('2d') ?? null;
     if (!canvas || !context) {
-      return;
-    }
-
-    if (emitChange === false) {
       return;
     }
 
@@ -223,7 +219,7 @@ export class DrawCanvasComponent {
 
     this.context = null;
     this.ensureContext();
-    this.redrawAll(false);
+    this.redrawAll();
   }
 
   private ensureContext(): CanvasRenderingContext2D | null {

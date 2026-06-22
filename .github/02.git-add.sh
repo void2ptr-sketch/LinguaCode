@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#git status
+cd $(git rev-parse --show-toplevel)
 
 git add -A .
 

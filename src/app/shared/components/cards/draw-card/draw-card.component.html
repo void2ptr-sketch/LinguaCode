@@ -84,7 +84,6 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-button type="button" [disabled]="drawSubmitted()" (click)="tryAgain()">Сбросить</button>
       <button mat-flat-button type="button" [disabled]="!hasStrokes() || drawSubmitted()" (click)="submitDrawing()">
         {{ hasMultipleSyllables() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
       </button>

@@ -204,10 +204,6 @@ export class DrawCardComponent {
     }
   }
 
-  tryAgain(): void {
-    this.clearAllStrokes();
-  }
-
   playAudio(): void {
     const url = this.audioUrl();
     if (!url) {
