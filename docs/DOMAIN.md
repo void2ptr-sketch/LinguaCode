@@ -133,7 +133,8 @@ erDiagram
 | Модель | Описание | Файл типов |
 |--------|----------|------------|
 | `User` | Пользователь; `displayName`, `UserPreferences` | `user.types.ts` |
-| `UserPreferences` | `CardAppearance`, `colorScheme`, `cardFocusFullscreen`, языковые пары | `user.types.ts` |
+| `UserPreferences` | `CardAppearance`, `colorScheme`, `cardFocusFullscreen`, `learningProficiencyLevel`, языковые пары | `user.types.ts` |
+| `LearningProficiencyLevel` | Уровень владения изучаемым языком (строгость проверки) | `learning-proficiency.types.ts` |
 | `UserLanguagePairEntry` | Пара + settings (CJK, IPA, learning) | `user-language-pair.types.ts` |
 | `Card` | Карточка; union по `kind` | `card.types.ts` |
 | `CardKind` | Тип карточки (см. таблицу ниже) | `card.types.ts` |
@@ -246,6 +247,7 @@ type User = {
   preferences: CardAppearance & {
     colorScheme: 'light' | 'dark';
     cardFocusFullscreen: boolean;
+    learningProficiencyLevel: LearningProficiencyLevel;
     languagePairs: readonly UserLanguagePairEntry[];
     activeLanguagePairId: string;
   };

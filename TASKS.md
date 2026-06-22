@@ -249,6 +249,7 @@
 - [x] `UserStore`: `languagePair`, `languagePairLabel`, persist `localStorage`
 - [x] UI `/user` — селекты известный / новый язык
 - [x] Подпись пары на `/cards/select`
+- [x] **G1b** — `UserPreferences.learningProficiencyLevel` + UI на вкладке «Пользователь» (New to language … Professional); `UserStore.learningProficiencyLevel` для строгости проверки (любой изучаемый язык)
 
 **G2+ — бэклог**
 
@@ -315,6 +316,7 @@
 - [x] `/user` — список пар, «сделать активной», удаление (кроме последней)
 - [x] Форма «Добавить пару»; новая пара по умолчанию становится активной
 - [x] При удалении активной — переключение на первую оставшуюся
+- [x] Вкладка «Пользователь»: уровень подготовки (`learningProficiencyLevel`)
 
 **G7c — быстрое переключение**
 
@@ -380,6 +382,7 @@
 - [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`, `toneColorScheme`
 - [x] UI `/user` (вкладка «Настройка курса»): чекбоксы романизации для **задания** (`displayRomanizations`)
 - [x] UI: переключатель «Цветовая маркировка тонов» + выбор схемы (`classic` / `pastel` / `vivid` / `warm`)
+- [x] Схема `classic` — палитра Nathan Dummit (2008): красный · оранжевый · зелёный · синий · чёрный
 - [x] Рендер: `app-tone-colored-text` — иероглифы и пиньинь на карточках, draw-вкладки, tone-card
 - [x] Палладица скрыта для пар без `known === 'ru'`
 - [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**

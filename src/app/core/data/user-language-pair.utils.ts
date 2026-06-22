@@ -10,6 +10,7 @@ import type {
 import { isAllowedFontSize, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from './card-focus-preference.utils';
+import { normalizeLearningProficiencyLevel } from './learning-proficiency.utils';
 import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
@@ -27,6 +28,8 @@ type LegacyUserPreferences = Partial<UserPreferences> & {
   languagePair?: Partial<LanguagePair>;
   cjkLearning?: Partial<CjkLearningPreferences>;
   phonetic?: Partial<PhoneticPreferences>;
+  /** @deprecated renamed to `learningProficiencyLevel` */
+  chineseProficiencyLevel?: UserPreferences['learningProficiencyLevel'];
 };
 
 const DEFAULT_THEME = 'azure-blue';
@@ -228,6 +231,9 @@ export function normalizeUserPreferences(
       : DEFAULT_FONT_SIZE;
   const colorScheme = normalizeColorScheme(preferences?.colorScheme);
   const cardFocusFullscreen = normalizeCardFocusFullscreen(preferences?.cardFocusFullscreen);
+  const learningProficiencyLevel = normalizeLearningProficiencyLevel(
+    preferences?.learningProficiencyLevel ?? preferences?.chineseProficiencyLevel,
+  );
 
   const legacy = {
     cjkLearning: preferences?.cjkLearning,
@@ -249,6 +255,7 @@ export function normalizeUserPreferences(
         fontSize,
         colorScheme,
         cardFocusFullscreen,
+        learningProficiencyLevel,
         ...defaults,
       };
     }
@@ -264,6 +271,7 @@ export function normalizeUserPreferences(
       fontSize,
       colorScheme,
       cardFocusFullscreen,
+      learningProficiencyLevel,
       languagePairs: normalizedEntries,
       activeLanguagePairId,
     };
@@ -282,6 +290,7 @@ export function normalizeUserPreferences(
       fontSize,
       colorScheme,
       cardFocusFullscreen,
+      learningProficiencyLevel,
       languagePairs: [entry],
       activeLanguagePairId: entry.id,
     };
@@ -292,6 +301,7 @@ export function normalizeUserPreferences(
     fontSize,
     colorScheme,
     cardFocusFullscreen,
+    learningProficiencyLevel,
     ...defaults,
   };
 }

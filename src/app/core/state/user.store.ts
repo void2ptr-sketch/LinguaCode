@@ -14,6 +14,7 @@ import {
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../data/card-focus-preference.utils';
+import { normalizeLearningProficiencyLevel } from '../data/learning-proficiency.utils';
 import type {
   LanguagePair,
   LearningSessionPreferences,
@@ -22,6 +23,7 @@ import type {
   UserLanguagePairSettings,
   UserPreferences,
 } from '../models';
+import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../models/learning-proficiency.types';
 import { UserPersistence } from './user.persistence';
 
 const DEFAULT_USER: User = {
@@ -32,6 +34,7 @@ const DEFAULT_USER: User = {
     fontSize: 'md',
     colorScheme: 'light',
     cardFocusFullscreen: false,
+    learningProficiencyLevel: DEFAULT_LEARNING_PROFICIENCY_LEVEL,
     ...createDefaultLanguagePairPreferences(),
   },
 };
@@ -44,6 +47,7 @@ export class UserStore {
   readonly user = this.userState.asReadonly();
   readonly displayName = computed(() => this.user().displayName);
   readonly preferences = computed(() => this.user().preferences);
+  readonly learningProficiencyLevel = computed(() => this.user().preferences.learningProficiencyLevel);
   readonly languagePairs = computed(() => this.user().preferences.languagePairs);
   readonly activeLanguagePairId = computed(() => this.user().preferences.activeLanguagePairId);
 
@@ -91,6 +95,12 @@ export class UserStore {
       if (preferences.cardFocusFullscreen !== undefined) {
         nextPreferences.cardFocusFullscreen = normalizeCardFocusFullscreen(
           preferences.cardFocusFullscreen,
+        );
+      }
+
+      if (preferences.learningProficiencyLevel !== undefined) {
+        nextPreferences.learningProficiencyLevel = normalizeLearningProficiencyLevel(
+          preferences.learningProficiencyLevel,
         );
       }
 

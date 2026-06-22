@@ -17,6 +17,20 @@
             <mat-label>Имя</mat-label>
             <input matInput [ngModel]="nameDraft()" (ngModelChange)="nameDraft.set($event)" name="displayName" />
           </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Уровень подготовки</mat-label>
+            <mat-select
+              [ngModel]="learningProficiencyDraft()"
+              (ngModelChange)="learningProficiencyDraft.set($event)"
+              name="learningProficiencyLevel"
+            >
+              @for (level of learningProficiencyOptions; track level.id) {
+                <mat-option [value]="level.id">{{ level.label }}</mat-option>
+              }
+            </mat-select>
+            <mat-hint>Влияет на строгость проверки ответов в упражнениях.</mat-hint>
+          </mat-form-field>
         </div>
       </mat-tab>
 

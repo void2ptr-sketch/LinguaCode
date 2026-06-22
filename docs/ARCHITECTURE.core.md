@@ -26,13 +26,13 @@ src/app/core/
 | `MainLayoutComponent` | `layout/main-layout` | Grid shell + `router-outlet` |
 | `HeaderComponent` | `layout/header` | Шапка, menu-* |
 | `NavigationComponent` | `layout/navigation` | Боковое меню |
-| `UserPageComponent` | `layout/pages/user-page` | Профиль, пары языков, тема |
+| `UserPageComponent` | `layout/pages/user-page` | Профиль: имя, уровень подготовки, пары языков, тема |
 
 ## Состояние
 
 | Store | Ключ persistence | Назначение |
 |-------|------------------|------------|
-| `UserStore` | `lingua-code.user` | Пользователь, `UserPreferences`, языковые пары |
+| `UserStore` | `lingua-code.user` | Пользователь, `UserPreferences`, `learningProficiencyLevel`, языковые пары |
 | `LearningResultsStore` | `lingua-code.learning-results` | Ответы, прогресс по сценариям/урокам/программам |
 
 ## API (mock + HTTP)

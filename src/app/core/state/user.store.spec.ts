@@ -23,6 +23,8 @@ describe('UserStore', () => {
     expect(store.preferences().fontSize).toBe('md');
     expect(store.preferences().colorScheme).toBe('light');
     expect(store.preferences().cardFocusFullscreen).toBeFalse();
+    expect(store.preferences().learningProficiencyLevel).toBe('beginner');
+    expect(store.learningProficiencyLevel()).toBe('beginner');
     expect(store.languagePairs()).toHaveSize(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
@@ -71,6 +73,14 @@ describe('UserStore', () => {
 
     store.updatePreferences({ cardFocusFullscreen: 'yes' as unknown as boolean });
     expect(store.preferences().cardFocusFullscreen).toBeFalse();
+  });
+
+  it('should update learning proficiency level', () => {
+    store.updatePreferences({ learningProficiencyLevel: 'advanced' });
+    expect(store.learningProficiencyLevel()).toBe('advanced');
+
+    store.updatePreferences({ learningProficiencyLevel: 'invalid' as 'advanced' });
+    expect(store.learningProficiencyLevel()).toBe('beginner');
   });
 
   it('should update appearance preferences partially', () => {

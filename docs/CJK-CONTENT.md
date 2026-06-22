@@ -155,7 +155,7 @@ type CjkLearningPreferences = {
 | `showTones` | `boolean` | Включить окраску иероглифов и пиньинь по тону слога |
 | `toneColorScheme` | `ToneColorSchemeId` | Палитра: `classic`, `pastel`, `vivid`, `warm` |
 
-**Схема `classic` (по умолчанию):** 1-й — красный · 2-й — зелёный · 3-й — синий · 4-й — чёрный · нейтральный — серый.
+**Схема `classic` (по умолчанию):** палитра [Nathan Dummit, *Chinese Through Tone & Color* (2008)](https://en.wikipedia.org/wiki/Tone_number#Color): 1-й — красный · 2-й — оранжевый · 3-й — зелёный · 4-й — синий · нейтральный — чёрный. Та же схема используется в MDBG и ряде словарей.
 
 Рендер: `app-tone-colored-text` внутри `app-lexeme-display`, вкладки draw-карточки, варианты `tone`-карточки. Тон слога берётся из разметки пиньинь (`parsePinyinSyllable`) или явного массива `tones[]` на лексеме.
 
