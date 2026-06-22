@@ -41,14 +41,14 @@
         [strokeGuides]="strokeGuides()"
         [canvasMode]="canvasMode()"
         [disabled]="feedback() !== null"
-        [showClearAll]="showCharacterTabs()"
+        [showClearAll]="hasMultipleSyllables()"
         [clearAllDisabled]="!hasStrokesOnAnyTab()"
         (strokesChange)="onStrokesChange($event)"
         (clearAllRequested)="clearAllStrokes()"
       />
     </mat-card-content>
 
-    @if (showCharacterTabs()) {
+    @if (showSyllableTabs()) {
       <div class="draw-card__char-tabs" role="tablist" aria-label="Слоги слова">
         @for (target of characterTargets(); track target.character; let index = $index) {
           <button
@@ -86,7 +86,7 @@
     @if (feedback() === null) {
       <button mat-button type="button" [disabled]="drawSubmitted()" (click)="tryAgain()">Сбросить</button>
       <button mat-flat-button type="button" [disabled]="!hasStrokes() || drawSubmitted()" (click)="submitDrawing()">
-        {{ showCharacterTabs() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
+        {{ hasMultipleSyllables() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
       </button>
       <button mat-flat-button type="button" [disabled]="!drawSubmitted()" (click)="checkAnswer.emit()">
         Проверить

@@ -70,7 +70,9 @@ export class DrawCardComponent {
 
   readonly audioUrl = computed(() => resolveDrawAudioUrl(this.card()));
 
-  readonly showCharacterTabs = computed(() => this.characterTargets().length > 1);
+  readonly showSyllableTabs = computed(() => this.characterTargets().length > 0);
+
+  readonly hasMultipleSyllables = computed(() => this.characterTargets().length > 1);
 
   readonly hasStrokesOnAnyTab = computed(() =>
     this.charStrokes().some((strokes) => strokes.length > 0),
