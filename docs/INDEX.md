@@ -59,4 +59,6 @@
 - **«Курс» vs программа (`Course`)** — [DOMAIN.md § Термины](./DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md)
 - **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./DOMAIN.md#learning-home-g13)
 - **Модели TypeScript** — [DOMAIN.md § Модели](./DOMAIN.md#модели)
+- **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./DOMAIN.md#сущности) · `learning-proficiency.types.ts`
+- **Цвета тонов (Dummit 2008)** — [CJK-CONTENT.md § Цветовая маркировка](./CJK-CONTENT.md#цветовая-маркировка-тонов)
 - **Структура `src/app`** — [ARCHITECTURE.md § Структура](./ARCHITECTURE.md)

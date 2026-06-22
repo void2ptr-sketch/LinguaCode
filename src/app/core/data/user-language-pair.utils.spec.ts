@@ -20,6 +20,25 @@ describe('user-language-pair.utils', () => {
     expect(preferences.activeLanguagePairId).toBe(preferences.languagePairs[0].id);
     expect(preferences.languagePairs[0].settings?.cjkLearning).toBeDefined();
     expect(preferences.cardFocusFullscreen).toBeFalse();
+    expect(preferences.learningProficiencyLevel).toBe('beginner');
+  });
+
+  it('should normalize learning proficiency level', () => {
+    const preferences = normalizeUserPreferences({
+      theme: 'azure-blue',
+      fontSize: 'md',
+      learningProficiencyLevel: 'professional',
+    });
+    expect(preferences.learningProficiencyLevel).toBe('professional');
+  });
+
+  it('should migrate legacy chineseProficiencyLevel field', () => {
+    const preferences = normalizeUserPreferences({
+      theme: 'azure-blue',
+      fontSize: 'md',
+      chineseProficiencyLevel: 'advanced',
+    });
+    expect(preferences.learningProficiencyLevel).toBe('advanced');
   });
 
   it('should normalize card focus fullscreen preference', () => {

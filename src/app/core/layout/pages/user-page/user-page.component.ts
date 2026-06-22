@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import type {
   AppColorScheme,
   ContentLanguage,
+  LearningProficiencyLevel,
   RomanizationSystem,
   UserLanguagePairEntry,
   UserLanguagePairSettings,
@@ -26,6 +27,7 @@ import {
 import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../models/phonetic-content.types';
 import { TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
 import { UserStore } from '../../../state';
 import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
 import {
@@ -65,6 +67,10 @@ export class UserPageComponent implements OnInit {
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
   readonly nameDraft = signal(this.displayName());
+  readonly learningProficiencyDraft = signal<LearningProficiencyLevel>(
+    this.preferences().learningProficiencyLevel,
+  );
+  readonly learningProficiencyOptions = LEARNING_PROFICIENCY_LEVELS;
   readonly themeDraft = signal(this.preferences().theme);
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
   readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme);
@@ -90,6 +96,7 @@ export class UserPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.learningProficiencyDraft.set(this.preferences().learningProficiencyLevel);
     this.syncPairSettingsDrafts();
   }
 
@@ -205,6 +212,7 @@ export class UserPageComponent implements OnInit {
       fontSize: this.fontSizeDraft(),
       colorScheme: this.colorSchemeDraft(),
       cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+      learningProficiencyLevel: this.learningProficiencyDraft(),
     });
 
     const entry = this.settingsEntry();

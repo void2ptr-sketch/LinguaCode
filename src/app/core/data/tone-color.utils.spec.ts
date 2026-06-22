@@ -27,7 +27,10 @@ describe('tone-color.utils', () => {
 
   it('should resolve classic palette colors', () => {
     const palette = resolveToneColorPalette('classic');
-    expect(palette[1]).toBe('#c62828');
-    expect(palette[5]).toBe('#757575');
+    expect(palette[1]).toBe('#ff0000');
+    expect(palette[2]).toBe('#ffa500');
+    expect(palette[3]).toBe('#008000');
+    expect(palette[4]).toBe('#0000ff');
+    expect(palette[5]).toBe('#000000');
   });
 });

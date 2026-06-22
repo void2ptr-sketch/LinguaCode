@@ -92,6 +92,7 @@ type UserLanguagePairEntry = {
 };
 
 type UserPreferences = CardAppearance & {
+  learningProficiencyLevel: LearningProficiencyLevel;
   languagePairs: readonly UserLanguagePairEntry[];
   activeLanguagePairId: string;
 };
