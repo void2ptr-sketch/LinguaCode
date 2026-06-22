@@ -88,9 +88,10 @@ type CjkDisplayMode =
   | 'palladius-only';
 
 type CjkLearningPreferences = {
-  displayRomanization: RomanizationSystem;
+  displayRomanizations: readonly RomanizationSystem[];
   answerRomanization: readonly RomanizationSystem[];
   showTones: boolean;
+  toneColorScheme: ToneColorSchemeId;
 };
 ```
 
@@ -145,7 +146,18 @@ type CjkLearningPreferences = {
 | Далее | Web Speech API / внешний TTS |
 | Бэклог | ASR, оценка произношения |
 
-**Тоны:** хранить `ToneMark` явно; упражнения «услышь → выбери тон», «иероглиф + 4 кнопки»; визуал (цвета ā á ǎ à). Для палладицы тоны — через **отдельные** упражнения с пиньинь/аудио, не через кириллицу.
+**Тоны:** хранить `ToneMark` явно; упражнения «услышь → выбери тон», «иероглиф + 4 кнопки»; **цветовая маркировка** иероглифов и пиньинь (настройка в профиле → «Настройка курса»). Для палладицы тоны — через **отдельные** упражнения с пиньинь/аудио, не через кириллицу.
+
+### Цветовая маркировка тонов
+
+| Поле | Тип | Описание |
+|------|-----|----------|
+| `showTones` | `boolean` | Включить окраску иероглифов и пиньинь по тону слога |
+| `toneColorScheme` | `ToneColorSchemeId` | Палитра: `classic`, `pastel`, `vivid`, `warm` |
+
+**Схема `classic` (по умолчанию):** 1-й — красный · 2-й — зелёный · 3-й — синий · 4-й — чёрный · нейтральный — серый.
+
+Рендер: `app-tone-colored-text` внутри `app-lexeme-display`, вкладки draw-карточки, варианты `tone`-карточки. Тон слога берётся из разметки пиньинь (`parsePinyinSyllable`) или явного массива `tones[]` на лексеме.
 
 ## Редактор и каталог
 

@@ -21,7 +21,14 @@
     <mat-card-content class="quiz-card__options quiz-card__options--tones">
       @for (tone of card().toneOptions; track tone; let index = $index) {
         <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
-          <span class="tone-card__pinyin">{{ tonedSyllable(tone) }}</span>
+          <span class="tone-card__pinyin">
+            <app-tone-colored-text
+              [text]="tonedSyllable(tone)"
+              mode="pinyin"
+              [fixedTone]="tone"
+              [inline]="true"
+            />
+          </span>
           <span class="tone-card__label">{{ toneLabel(tone) }}</span>
         </button>
       }

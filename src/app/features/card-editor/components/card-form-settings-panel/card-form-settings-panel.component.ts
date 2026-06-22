@@ -35,6 +35,9 @@ export class CardFormSettingsPanelComponent {
   readonly draftChange = output<CardDraft>();
 
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
+    { value: 'memory', label: 'По памяти (default UI)' },
+    { value: 'tracing', label: 'Трассировка' },
+    { value: 'hints', label: 'С подсказками' },
     { value: 'freehand', label: 'Свободное рисование' },
     { value: 'stroke-order', label: 'Порядок черт' },
     { value: 'radicals', label: 'Радикалы' },

@@ -107,6 +107,7 @@ describe('UserStore', () => {
         displayRomanizations: ['palladius'],
         answerRomanization: ['palladius'],
         showTones: true,
+        toneColorScheme: 'classic',
       },
     });
 

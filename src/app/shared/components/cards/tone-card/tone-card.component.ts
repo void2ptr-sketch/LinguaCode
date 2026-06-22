@@ -10,12 +10,13 @@ import { ToneCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
+import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
 
 @Component({
   selector: 'app-tone-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, ToneColoredTextComponent],
   templateUrl: './tone-card.component.html',
   styleUrl: './tone-card.component.scss',
 })

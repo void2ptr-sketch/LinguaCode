@@ -239,3 +239,12 @@ function isOptionCard(card: Card): card is OptionCard {
     card.kind === 'reading'
   );
 }
+
+/** Toggle «Известный ↔ новый» меняет задание только для этих kind. */
+export function cardSupportsSessionDirection(card: Card | null | undefined): boolean {
+  if (!card) {
+    return false;
+  }
+
+  return card.kind !== 'draw' && card.kind !== 'tone';
+}

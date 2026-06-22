@@ -132,14 +132,16 @@
         } @else {
           <div class="card-select-page__learning-shell">
             <div class="card-select-page__learning-toolbar">
-              <mat-button-toggle-group
-                class="card-select-page__direction"
-                [ngModel]="store.sessionDirection()"
-                (ngModelChange)="onDirectionChange($event)"
-              >
-                <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
-                <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
-              </mat-button-toggle-group>
+              @if (showDirectionToggle()) {
+                <mat-button-toggle-group
+                  class="card-select-page__direction"
+                  [ngModel]="store.sessionDirection()"
+                  (ngModelChange)="onDirectionChange($event)"
+                >
+                  <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
+                  <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
+                </mat-button-toggle-group>
+              }
             </div>
 
             @if (scenarioTitle()) {

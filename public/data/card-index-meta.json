@@ -98,6 +98,27 @@
       "tags": ["draw", "radicals", "cjk"],
       "updatedAt": "2026-06-14T09:00:00.000Z"
     },
+    "draw-nihao-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["draw", "multi-char", "greetings", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "draw-henbang-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "beginner",
+      "tags": ["draw", "multi-char", "praise", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
+    "draw-bowuguan-1": {
+      "knownLanguage": "ru",
+      "learningLanguage": "zh",
+      "difficulty": "intermediate",
+      "tags": ["draw", "multi-char", "places", "cjk"],
+      "updatedAt": "2026-06-14T09:00:00.000Z"
+    },
     "select-zh-1": {
       "knownLanguage": "ru",
       "learningLanguage": "zh",

@@ -59,7 +59,15 @@ export const DEFAULT_ZH_SCENARIOS: readonly Scenario[] = [
     languagePair: RU_ZH_LANGUAGE_PAIR,
     cardSource: {
       mode: 'fixed',
-      cardIds: ['draw-ren-1', 'draw-hao-1', 'keyboard-zh-1', 'reading-xing-1'],
+      cardIds: [
+        'draw-nihao-1',
+        'draw-henbang-1',
+        'draw-bowuguan-1',
+        'draw-ren-1',
+        'draw-hao-1',
+        'keyboard-zh-1',
+        'reading-xing-1',
+      ],
     },
   },
   {

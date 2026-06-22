@@ -1,0 +1,7 @@
+@for (segment of segments(); track $index) {
+  @if (toneColorEnabled()) {
+    <span [style.color]="segmentColor(segment.tone)">{{ segment.text }}</span>
+  } @else {
+    <span>{{ segment.text }}</span>
+  }
+}

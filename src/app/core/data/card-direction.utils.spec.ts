@@ -1,6 +1,7 @@
 import type { OptionCard } from '../models';
 import {
   cardDefaultDirection,
+  cardSupportsSessionDirection,
   effectiveCardDirection,
   extractQuotedLemma,
   resolveKeyboardAcceptedAnswers,
@@ -110,5 +111,33 @@ describe('card-direction.utils', () => {
         pairs: [{ known: 'A', learning: 'B' }],
       }),
     ).toBe('known-to-learning');
+  });
+
+  it('should hide session direction toggle for draw and tone cards', () => {
+    expect(
+      cardSupportsSessionDirection({
+        id: 'draw-1',
+        kind: 'draw',
+        title: 'Draw',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        promptKnown: 'Draw',
+        referenceHintKnown: 'hint',
+      }),
+    ).toBeFalse();
+    expect(
+      cardSupportsSessionDirection({
+        id: 'tone-1',
+        kind: 'tone',
+        title: 'Tone',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        direction: 'known-to-learning',
+        promptKnown: 'Tone',
+        syllableBase: 'ma',
+        toneOptions: [1, 2, 3, 4],
+        correctIndex: 0,
+      }),
+    ).toBeFalse();
+    expect(cardSupportsSessionDirection(selectCard)).toBeTrue();
+    expect(cardSupportsSessionDirection(null)).toBeFalse();
   });
 });

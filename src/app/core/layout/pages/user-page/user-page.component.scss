@@ -45,6 +45,24 @@
   margin-top: 0.25rem;
 }
 
+.page-card__tone-colors {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.tone-color-preview {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tone-color-preview__swatch {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 45%, transparent);
+  border-radius: 0.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}
+
 .page-card__error {
   color: var(--mat-sys-error);
   margin: 0;

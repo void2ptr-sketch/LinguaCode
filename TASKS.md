@@ -99,6 +99,14 @@
 - [x] **Ca2b** — сброс лишних отступов `mat-card-header` / `mat-card-content`, чтобы блоки не наезжали
 - [ ] **Ca2c** — (опц.) настраиваемые подписи секций / скрытие label при minimal UI
 
+#### Ca4. Карточка рисования (draw)
+
+- [x] **Ca4a** — зона вопроса: только перевод/значение + аудио (без title, иероглифов, promptKnown)
+- [x] **Ca4b** — режимы canvas: по памяти (default), трассировка, с подсказками, порядок черт, радикалы
+- [x] **Ca4c** — вкладки слогов (pinyin) внизу; для одного иероглифа — одна вкладка; для нескольких — по слогу
+- [x] **Ca4d** — `characterTargets`, `meaningKnown`, `draw-card.utils`; demo `draw-nihao-1`
+- [ ] **Ca4e** — (опц.) редактор: явное редактирование `characterTargets` и аудио на иероглиф
+
 #### Ca3. Режим фокуса (полный экран)
 
 Контекст: [BUSINESS.md](./docs/BUSINESS.md#объект-изучения-и-карточка) — обучение без отвлечений; shell приложения скрывается.
@@ -286,6 +294,7 @@
 - [x] **G5.1c** — опциональные `optionsKnown`, `acceptedAnswersLearning`; fallback через `glossKnown` / `extractQuotedLemma`
 - [x] **G5.1d** — `CardSelectStore.setSessionDirection` + сброс ответа; demo JSON обновлён
 - [x] **G5.1e** — unit-тесты `card-direction.utils.spec.ts`
+- [x] **G5.1g** — toggle direction скрыт на `draw` и `tone` (не влияет на задание)
 - [ ] **G5.1f** — (опц.) редактор карточек: поля `optionsKnown` / `acceptedAnswersLearning` в формах
 
 **G7 — несколько пар, одна активная**
@@ -368,8 +377,10 @@
 
 **G9c — настройки ru→zh**
 
-- [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`
+- [x] `CjkLearningPreferences`: `displayRomanizations[]`, `answerRomanization[]`, `showTones`, `toneColorScheme`
 - [x] UI `/user` (вкладка «Настройка курса»): чекбоксы романизации для **задания** (`displayRomanizations`)
+- [x] UI: переключатель «Цветовая маркировка тонов» + выбор схемы (`classic` / `pastel` / `vivid` / `warm`)
+- [x] Рендер: `app-tone-colored-text` — иероглифы и пиньинь на карточках, draw-вкладки, tone-card
 - [x] Палладица скрыта для пар без `known === 'ru'`
 - [ ] UI: отдельные чекбоксы романизации для **ответов** (`answerRomanization`) — см. **G9g**
 

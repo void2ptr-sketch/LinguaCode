@@ -8,6 +8,8 @@ import {
   DEFAULT_PHONETIC_PREFERENCES,
   ROMANIZATION_DISPLAY_ORDER,
 } from '../models/phonetic-content.types';
+import { isToneColorSchemeId } from './tone-color.utils';
+import { DEFAULT_TONE_COLOR_SCHEME_ID } from '../models/tone-color.types';
 
 const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
 
@@ -51,6 +53,9 @@ export function normalizeCjkLearningPreferences(
     displayRomanizations: normalizeDisplayRomanizations(raw),
     answerRomanization: normalizeAnswerRomanization(raw),
     showTones: raw?.showTones ?? DEFAULT_CJK_LEARNING_PREFERENCES.showTones,
+    toneColorScheme: isToneColorSchemeId(raw?.toneColorScheme)
+      ? raw.toneColorScheme
+      : DEFAULT_TONE_COLOR_SCHEME_ID,
   };
 }
 

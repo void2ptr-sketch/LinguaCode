@@ -1,3 +1,5 @@
+import type { ToneColorSchemeId } from './tone-color.types';
+
 export type ScriptCode = 'latn' | 'hani' | 'bopo' | 'hira' | 'kana' | 'hang' | 'cyrl';
 
 export type ToneMark = 1 | 2 | 3 | 4 | 5;
@@ -44,7 +46,10 @@ export type CjkLearningPreferences = {
   /** Какие системы романизации показывать на карточках (режим «И», не «ИЛИ»). */
   displayRomanizations: readonly RomanizationSystem[];
   answerRomanization: readonly RomanizationSystem[];
+  /** Цветовая маркировка тонов для иероглифов и пиньинь. */
   showTones: boolean;
+  /** Палитра цветов тонов (если `showTones`). */
+  toneColorScheme: ToneColorSchemeId;
 };
 
 export type PhoneticDisplayMode =
@@ -65,7 +70,8 @@ export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = ['pinyi
 export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
   displayRomanizations: ['pinyin'],
   answerRomanization: ['pinyin', 'palladius'],
-  showTones: true,
+  showTones: false,
+  toneColorScheme: 'classic',
 };
 
 export const DEFAULT_PHONETIC_PREFERENCES: PhoneticPreferences = {
