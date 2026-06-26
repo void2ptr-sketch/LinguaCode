@@ -94,4 +94,24 @@ describe('user-language-pair.utils', () => {
     expect(resolveCjkLearningForPair(zhEntry).displayRomanizations).toEqual(['palladius']);
     expect(resolvePhoneticForPair(zhEntry).showIpa).toBeTrue();
   });
+
+  it('should migrate legacy phonetic settings into zh pair entries', () => {
+    const preferences = normalizeUserPreferences({
+      theme: 'azure-blue',
+      fontSize: 'md',
+      languagePairs: [
+        {
+          id: 'zh-1',
+          pair: { known: 'ru', learning: 'zh' },
+          createdAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
+      activeLanguagePairId: 'zh-1',
+      phonetic: { showIpa: true, answerModes: ['orthography', 'ipa'] },
+    });
+
+    const zhEntry = preferences.languagePairs[0];
+    expect(zhEntry.settings?.phonetic?.showIpa).toBeTrue();
+    expect(resolvePhoneticForPair(zhEntry).answerModes).toEqual(['orthography', 'ipa']);
+  });
 });

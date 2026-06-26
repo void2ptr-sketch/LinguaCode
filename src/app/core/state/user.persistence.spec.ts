@@ -108,6 +108,7 @@ describe('UserPersistence', () => {
     expect(enEntry?.settings?.phonetic?.showIpa).toBeTrue();
     expect(enEntry?.settings?.phonetic?.ipaVariantLabel).toBe('AmE');
     expect(zhEntry?.settings?.cjkLearning?.displayRomanizations).toEqual(['palladius']);
-    expect(zhEntry?.settings?.phonetic).toBeUndefined();
+    expect(zhEntry?.settings?.phonetic?.showIpa).toBeTrue();
+    expect(zhEntry?.settings?.phonetic?.ipaVariantLabel).toBe('AmE');
   });
 });

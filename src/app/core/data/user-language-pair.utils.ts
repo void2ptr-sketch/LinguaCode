@@ -65,7 +65,11 @@ export function resolveCjkLearningForPair(
 export function resolvePhoneticForPair(
   entry: UserLanguagePairEntry | null | undefined,
 ): PhoneticPreferences {
-  return normalizePhoneticPreferences(entry?.settings?.phonetic);
+  if (!entry || !pairSupportsPhoneticDisplay(entry.pair.learning)) {
+    return { ...DEFAULT_PHONETIC_PREFERENCES };
+  }
+
+  return normalizePhoneticPreferences(entry.settings?.phonetic);
 }
 
 export { resolveLearningSessionForPair } from './learning-session.utils';
@@ -89,14 +93,11 @@ function normalizeEntrySettings(
     hasAny = true;
   }
 
-  if (pair.learning === 'en') {
+  if (pairSupportsPhoneticDisplay(pair.learning)) {
     settings.phonetic = normalizePhoneticPreferences({
       ...legacy?.phonetic,
       ...rawSettings?.phonetic,
     });
-    hasAny = true;
-  } else if (pair.learning === 'zh' && rawSettings?.phonetic) {
-    settings.phonetic = normalizePhoneticPreferences(rawSettings.phonetic);
     hasAny = true;
   }
 

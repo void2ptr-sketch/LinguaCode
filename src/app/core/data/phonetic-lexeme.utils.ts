@@ -24,18 +24,25 @@ export function lexemeFromHan(han: string): PhoneticLexeme {
   return lexemeFromPrimary(han, 'hani');
 }
 
-export function hasLexemeContent(lexeme: PhoneticLexeme | null | undefined): boolean {
+export function hasLexemePhoneticLayers(lexeme: PhoneticLexeme | null | undefined): boolean {
   if (!lexeme) {
     return false;
   }
 
   return Boolean(
-    lexeme.primary.trim() ||
-      lexeme.pinyin?.trim() ||
+    lexeme.pinyin?.trim() ||
       lexeme.zhuyin?.trim() ||
       lexeme.palladius?.trim() ||
       resolveIpaString(lexeme.ipa),
   );
+}
+
+export function hasLexemeContent(lexeme: PhoneticLexeme | null | undefined): boolean {
+  if (!lexeme) {
+    return false;
+  }
+
+  return Boolean(lexeme.primary.trim() || hasLexemePhoneticLayers(lexeme));
 }
 
 export function resolveIpaString(ipa: PhoneticLexeme['ipa'], preferredLabel?: string): string | null {
@@ -90,7 +97,11 @@ export function resolveVisibleRomanizationReadings(
   lexeme: PhoneticLexeme,
   enabledSystems: readonly RomanizationSystem[],
 ): readonly VisibleRomanizationReading[] {
-  if (lexeme.script !== 'hani') {
+  const hasRomanizationField = Boolean(
+    lexeme.pinyin?.trim() || lexeme.zhuyin?.trim() || lexeme.palladius?.trim(),
+  );
+
+  if (lexeme.script !== 'hani' && !hasRomanizationField) {
     return [];
   }
 

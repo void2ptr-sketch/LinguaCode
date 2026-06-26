@@ -91,7 +91,30 @@
   font-family: Roboto, 'Noto Sans', sans-serif;
 }
 
+.lexeme-display--stacked-readings .lexeme-display__stack {
+  gap: 0.35rem;
+}
+
+.lexeme-display--stacked-readings .lexeme-display__reading {
+  display: block;
+  text-align: center;
+  width: 100%;
+}
+
+.lexeme-display--stacked-readings .lexeme-display__reading-label {
+  display: block;
+  margin-bottom: 0.1rem;
+}
+
+.lexeme-display--stacked-readings .lexeme-display__reading-text {
+  display: block;
+}
+
 .lexeme-display__reading-text--ipa {
   font-family: 'Charis SIL', 'Gentium Plus', 'Noto Sans', serif;
   font-size: calc(var(--lexeme-reading-size) * 0.98);
+}
+
+.lexeme-display--stacked-readings.lexeme-display--inline {
+  --lexeme-reading-size: calc(0.875rem * 1.5);
 }

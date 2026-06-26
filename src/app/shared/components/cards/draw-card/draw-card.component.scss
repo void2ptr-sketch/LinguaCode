@@ -1,7 +1,10 @@
 @use '../quiz-card';
 
-.draw-card__question {
-  min-height: 3rem;
+.draw-card__prompt {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  width: 100%;
 }
 
 .draw-card__meaning-row {
@@ -9,7 +12,6 @@
   display: flex;
   gap: 0.5rem;
   justify-content: center;
-  min-height: 3rem;
   width: 100%;
 }
 
@@ -20,8 +22,14 @@
   font-weight: 600;
   line-height: 1.35;
   margin: 0;
-  min-height: 1.35em;
   text-align: center;
+}
+
+.draw-card__prompt-phonetics {
+  margin: 0;
+  width: 100%;
+
+  --lexeme-reading-gap: 0.25rem;
 }
 
 .draw-card__answer {
@@ -31,13 +39,6 @@
 .draw-card__mode-toggle {
   flex-wrap: wrap;
   width: 100%;
-}
-
-.draw-card__radicals {
-  align-items: center;
-  display: flex;
-  gap: 0.35rem;
-  margin: 0;
 }
 
 .draw-card__stroke-note {
@@ -80,6 +81,6 @@
 
 .draw-card__char-tab-label {
   display: block;
-  font-size: 0.875rem;
+  font-size: calc(0.875rem * 1.5);
   line-height: 1.3;
 }

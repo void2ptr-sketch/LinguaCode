@@ -1,5 +1,12 @@
 import type { DrawCard } from '../models';
 import type { DrawCanvasMode, DrawCharacterTarget } from '../models/draw-practice.types';
+import type { PhoneticLexeme } from '../models/phonetic-content.types';
+
+export type RadicalHintPart = {
+  readonly character: string;
+  /** Порядковый номер компонента в разложении (0…3) — для цвета, не тон слога. */
+  readonly componentIndex: number;
+};
 
 export function splitPinyinSyllables(
   pinyin: string | undefined,
@@ -25,7 +32,41 @@ export function splitPinyinSyllables(
   return Array.from({ length: count }, (_, index) => parts[index] ?? parts[parts.length - 1]);
 }
 
-const HAN_SCRIPT_RE = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/;
+const HAN_SCRIPT_RE = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/gu;
+const HAN_CHARACTER_RE = /^[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]$/u;
+
+export function isHanCharacter(char: string): boolean {
+  return HAN_CHARACTER_RE.test(char);
+}
+
+/** Разбирает сегмент «女(nǚ)» или «女». */
+function parseRadicalHintSegment(segment: string): string | null {
+  const trimmed = segment.trim();
+  if (!trimmed) {
+    return null;
+  }
+
+  const withoutPinyin = trimmed.replace(/\s*\([^)]*\)\s*/u, '').trim();
+  return [...withoutPinyin].find((char) => isHanCharacter(char)) ?? null;
+}
+
+/** Разбирает подсказку «女 + 子» на компоненты с индексом для раскраски. */
+export function parseRadicalHintParts(hint: string): readonly RadicalHintPart[] {
+  const trimmed = hint.trim();
+  if (!trimmed) {
+    return [];
+  }
+
+  const segments = trimmed.includes('+') ? trimmed.split('+') : [trimmed];
+
+  return segments
+    .map((segment) => parseRadicalHintSegment(segment))
+    .filter((character): character is string => Boolean(character))
+    .map((character, componentIndex) => ({
+      character,
+      componentIndex,
+    }));
+}
 
 export function containsHanScript(text: string): boolean {
   return HAN_SCRIPT_RE.test(text);
@@ -53,6 +94,11 @@ export function extractKnownLanguageFromTitle(title: string | undefined): string
   return '';
 }
 
+/** Удаляет иероглифы из строки (подсказки, заголовки с «人» и т.п.). */
+export function stripHanScript(text: string): string {
+  return text.replace(HAN_SCRIPT_RE, '').replace(/\s+/g, ' ').trim();
+}
+
 /** Текст вопроса на известном языке — без иероглифов и без promptKnown. */
 export function resolveDrawQuestion(card: DrawCard): string {
   const candidates = [
@@ -63,8 +109,9 @@ export function resolveDrawQuestion(card: DrawCard): string {
   ].filter((value): value is string => Boolean(value?.length));
 
   for (const text of candidates) {
-    if (!containsHanScript(text)) {
-      return text;
+    const cleaned = stripHanScript(text);
+    if (cleaned) {
+      return cleaned;
     }
   }
 
@@ -135,16 +182,23 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
   const characters = [...primary];
   const pinyinParts = splitPinyinSyllables(card.promptLexeme?.pinyin, characters.length);
   const zhuyinParts = splitPinyinSyllables(card.promptLexeme?.zhuyin, characters.length);
+  const palladiusParts = splitPinyinSyllables(card.promptLexeme?.palladius, characters.length);
 
   return characters.map((character, index) => ({
     character,
     pinyin: pinyinParts[index],
     zhuyin: zhuyinParts[index],
+    palladius: palladiusParts[index],
     glossKnown: index === 0 ? meaning : undefined,
     strokeGuides: index === 0 ? card.strokeGuides : undefined,
     radicalHint: index === 0 ? card.radicalHint : undefined,
     audioUrl: index === 0 ? audioUrl || undefined : undefined,
   }));
+}
+
+export function drawCharacterTabPinyinLabel(target: DrawCharacterTarget, index = 0): string {
+  const pinyin = target.pinyin?.trim();
+  return pinyin || String(index + 1);
 }
 
 export function drawCharacterTabLabel(target: DrawCharacterTarget, index = 0): string {
@@ -158,7 +212,57 @@ export function drawCharacterTabLabel(target: DrawCharacterTarget, index = 0): s
     return zhuyin;
   }
 
+  const palladius = target.palladius?.trim();
+  if (palladius) {
+    return palladius;
+  }
+
   return String(index + 1);
+}
+
+export function buildDrawPhoneticsLexeme(
+  source: PhoneticLexeme,
+  options?: { ipa?: PhoneticLexeme['ipa'] },
+): PhoneticLexeme {
+  return {
+    primary: '',
+    script: 'latn',
+    pinyin: source.pinyin,
+    zhuyin: source.zhuyin,
+    palladius: source.palladius,
+    ipa: options?.ipa ?? source.ipa,
+  };
+}
+
+export function buildDrawTabLexeme(
+  target: DrawCharacterTarget,
+  card: DrawCard,
+  index: number,
+): PhoneticLexeme {
+  return buildDrawPhoneticsLexeme(
+    {
+      primary: '',
+      script: 'latn',
+      pinyin: target.pinyin,
+      zhuyin: target.zhuyin,
+      palladius: target.palladius,
+    },
+    { ipa: index === 0 ? card.promptLexeme?.ipa : undefined },
+  );
+}
+
+export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
+  const lexeme = card.promptLexeme;
+  if (!lexeme) {
+    return null;
+  }
+
+  const phonetics = buildDrawPhoneticsLexeme(lexeme);
+  if (!phonetics.pinyin?.trim() && !phonetics.zhuyin?.trim() && !phonetics.palladius?.trim() && !phonetics.ipa) {
+    return null;
+  }
+
+  return phonetics;
 }
 
 export function initialDrawCanvasMode(): DrawCanvasMode {

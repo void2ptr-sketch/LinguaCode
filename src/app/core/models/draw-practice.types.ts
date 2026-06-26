@@ -19,6 +19,7 @@ export type DrawCharacterTarget = {
   character: string;
   pinyin?: string;
   zhuyin?: string;
+  palladius?: string;
   glossKnown?: string;
   strokeGuides?: readonly DrawStrokeGuide[];
   radicalHint?: string;

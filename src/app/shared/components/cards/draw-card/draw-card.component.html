@@ -1,18 +1,30 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <section class="quiz-card__question draw-card__question" aria-label="Вопрос">
-    <div class="draw-card__meaning-row">
-      <p class="draw-card__meaning">{{ questionLabel() }}</p>
-      @if (audioUrl()) {
-        <button mat-icon-button type="button" aria-label="Прослушать" (click)="playAudio()">
-          <mat-icon>volume_up</mat-icon>
-        </button>
+    <div class="draw-card__prompt">
+      <div class="draw-card__meaning-row">
+        <p class="draw-card__meaning">{{ questionLabel() }}</p>
+        @if (audioUrl()) {
+          <button mat-icon-button type="button" aria-label="Прослушать" (click)="playAudio()">
+            <mat-icon>volume_up</mat-icon>
+          </button>
+        }
+      </div>
+
+      @if (promptLexeme(); as lexeme) {
+        <app-lexeme-display
+          class="draw-card__prompt-phonetics"
+          surface="prompt"
+          [lexeme]="lexeme"
+          [primaryVisible]="false"
+          [labelsVisible]="false"
+          [stackedReadings]="true"
+          readingSize="1.75em"
+        />
       }
     </div>
   </section>
 
   <section class="quiz-card__answer draw-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Рисование</p>
-
     <mat-button-toggle-group
       class="draw-card__mode-toggle"
       [value]="canvasMode()"
@@ -24,20 +36,15 @@
       }
     </mat-button-toggle-group>
 
-    @if (radicalHint(); as radicals) {
-      <p class="draw-card__radicals">
-        <mat-icon aria-hidden="true">account_tree</mat-icon>
-        Состав: <strong>{{ radicals }}</strong>
-      </p>
-    }
-
     @if (canvasMode() === 'stroke-order' && strokeGuides().length > 0) {
       <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
     }
 
     <mat-card-content class="draw-card__content">
       <app-draw-canvas
-        [ghostCharacter]="ghostCharacter()"
+        [ghostCharacter]="canvasMode() === 'radicals' ? null : ghostCharacter()"
+        [radicalHints]="radicalCanvasHints()"
+        [radicalAriaLabel]="radicalCanvasAriaLabel()"
         [strokeGuides]="strokeGuides()"
         [canvasMode]="canvasMode()"
         [disabled]="feedback() !== null"
