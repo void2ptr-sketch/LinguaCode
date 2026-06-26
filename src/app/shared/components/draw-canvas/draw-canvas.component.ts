@@ -14,6 +14,11 @@ import { MatIconModule } from '@angular/material/icon';
 import type { DrawCanvasMode, DrawStrokeGuide } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 
+export type DrawRadicalHint = {
+  readonly character: string;
+  readonly color: string;
+};
+
 @Component({
   selector: 'app-draw-canvas',
   imports: [MatButtonModule, MatIconModule],
@@ -22,6 +27,8 @@ import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 })
 export class DrawCanvasComponent {
   readonly ghostCharacter = input<string | null>(null);
+  readonly radicalHints = input<readonly DrawRadicalHint[]>([]);
+  readonly radicalAriaLabel = input<string | null>(null);
   readonly strokeGuides = input<readonly DrawStrokeGuide[]>([]);
   readonly canvasMode = input<DrawCanvasMode>('memory');
   readonly disabled = input(false);
@@ -49,6 +56,7 @@ export class DrawCanvasComponent {
 
     effect(() => {
       this.ghostCharacter();
+      this.radicalHints();
       this.canvasMode();
       this.strokeGuides();
       this.showStrokeGuides.set(this.shouldShowStrokeGuides());
@@ -176,6 +184,7 @@ export class DrawCanvasComponent {
 
     context.clearRect(0, 0, canvas.width, canvas.height);
     this.paintGhost(context, canvas.width, canvas.height);
+    this.paintRadicalHints(context, canvas.width, canvas.height);
     this.paintStrokes(context);
   }
 
@@ -245,7 +254,104 @@ export class DrawCanvasComponent {
     return this.context;
   }
 
+  private ghostFontSize(width: number): number {
+    return Math.floor(width * 0.72);
+  }
+
+  private ghostFontFamily(): string {
+    return '"Noto Sans SC", "Noto Sans TC", sans-serif';
+  }
+
+  private ghostFont(width: number): string {
+    return `${this.ghostFontSize(width)}px ${this.ghostFontFamily()}`;
+  }
+
+  private fittedRadicalLayout(
+    context: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+    characters: readonly string[],
+  ): { fontSize: number; advances: readonly number[]; gap: number } {
+    const maxWidth = width * 0.9;
+    const maxHeight = height * 0.85;
+    let fontSize = this.ghostFontSize(width);
+    const fontFamily = this.ghostFontFamily();
+
+    for (let attempt = 0; attempt < 12; attempt += 1) {
+      context.font = `${fontSize}px ${fontFamily}`;
+      const advances = characters.map((character) => context.measureText(character).width);
+      const gap = Math.max(2, Math.round(fontSize * 0.06));
+      const totalWidth =
+        advances.reduce((sum, advance) => sum + advance, 0) +
+        gap * Math.max(characters.length - 1, 0);
+      const textHeight = fontSize * 1.05;
+
+      if (totalWidth <= maxWidth && textHeight <= maxHeight) {
+        return { fontSize, advances, gap };
+      }
+
+      const widthScale = maxWidth / Math.max(totalWidth, 1);
+      const heightScale = maxHeight / Math.max(textHeight, 1);
+      const nextSize = Math.floor(fontSize * Math.min(widthScale, heightScale) * 0.98);
+      if (nextSize >= fontSize || nextSize < 12) {
+        return { fontSize: Math.max(nextSize, 12), advances, gap };
+      }
+
+      fontSize = nextSize;
+    }
+
+    context.font = `${fontSize}px ${fontFamily}`;
+    const advances = characters.map((character) => context.measureText(character).width);
+    return {
+      fontSize,
+      advances,
+      gap: Math.max(2, Math.round(fontSize * 0.06)),
+    };
+  }
+
+  private radicalHintOpacity(): number {
+    return this.canvasMode() === 'radicals' ? 0.38 : this.ghostOpacity();
+  }
+
+  private paintRadicalHints(context: CanvasRenderingContext2D, width: number, height: number): void {
+    if (this.canvasMode() !== 'radicals') {
+      return;
+    }
+
+    const hints = this.radicalHints();
+    if (hints.length === 0) {
+      return;
+    }
+
+    const characters = hints.map((hint) => hint.character);
+    context.save();
+    const layout = this.fittedRadicalLayout(context, width, height, characters);
+    context.font = `${layout.fontSize}px ${this.ghostFontFamily()}`;
+    context.textAlign = 'left';
+    context.textBaseline = 'middle';
+
+    const totalWidth =
+      layout.advances.reduce((sum, advance) => sum + advance, 0) +
+      layout.gap * Math.max(hints.length - 1, 0);
+    let x = (width - totalWidth) / 2;
+    const y = height / 2;
+
+    for (let index = 0; index < hints.length; index += 1) {
+      const hint = hints[index];
+      context.globalAlpha = this.radicalHintOpacity();
+      context.fillStyle = hint.color;
+      context.fillText(hint.character, x, y);
+      x += (layout.advances[index] ?? 0) + (index < hints.length - 1 ? layout.gap : 0);
+    }
+
+    context.restore();
+  }
+
   private paintGhost(context: CanvasRenderingContext2D, width: number, height: number): void {
+    if (this.canvasMode() === 'radicals') {
+      return;
+    }
+
     const ghost = this.ghostCharacter()?.trim();
     const opacity = this.ghostOpacity();
     if (!ghost || opacity <= 0) {
@@ -255,7 +361,7 @@ export class DrawCanvasComponent {
     context.save();
     context.globalAlpha = opacity;
     context.fillStyle = '#000';
-    context.font = `${Math.floor(width * 0.72)}px "Noto Sans SC", "Noto Sans TC", sans-serif`;
+    context.font = this.ghostFont(width);
     context.textAlign = 'center';
     context.textBaseline = 'middle';
     context.fillText(ghost, width / 2, height / 2);

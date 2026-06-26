@@ -1,12 +1,16 @@
 import type { DrawCard } from '../models';
 import {
+  buildDrawTabLexeme,
   containsHanScript,
   drawCharacterTabLabel,
+  drawCharacterTabPinyinLabel,
   extractKnownLanguageFromTitle,
+  parseRadicalHintParts,
   resolveDrawCharacterTargets,
   resolveDrawMeaning,
   resolveDrawQuestion,
   splitPinyinSyllables,
+  stripHanScript,
 } from './draw-card.utils';
 
 describe('draw-card.utils', () => {
@@ -45,6 +49,7 @@ describe('draw-card.utils', () => {
         promptKnown: 'Нарисуйте «你好»',
       }),
     ).toBe('');
+    expect(stripHanScript('Иероглиф 人')).toBe('Иероглиф');
     expect(containsHanScript('你好')).toBe(true);
     expect(containsHanScript('Музей')).toBe(false);
   });
@@ -77,6 +82,22 @@ describe('draw-card.utils', () => {
     ).toBe('отлично');
   });
 
+  it('should parse radical hint into components with positional index', () => {
+    expect(parseRadicalHintParts('女 + 子')).toEqual([
+      { character: '女', componentIndex: 0 },
+      { character: '子', componentIndex: 1 },
+    ]);
+    expect(parseRadicalHintParts('氵+可')).toEqual([
+      { character: '氵', componentIndex: 0 },
+      { character: '可', componentIndex: 1 },
+    ]);
+    expect(parseRadicalHintParts('女(nǚ) + 子(zi3)')).toEqual([
+      { character: '女', componentIndex: 0 },
+      { character: '子', componentIndex: 1 },
+    ]);
+    expect(parseRadicalHintParts('')).toEqual([]);
+  });
+
   it('should derive character targets from primary han string', () => {
     const targets = resolveDrawCharacterTargets(baseDrawCard);
     expect(targets).toHaveSize(2);
@@ -87,7 +108,41 @@ describe('draw-card.utils', () => {
   });
 
   it('should build tab label with pinyin only (no han character hint)', () => {
+    expect(drawCharacterTabPinyinLabel({ character: '你', pinyin: 'nǐ' })).toBe('nǐ');
+    expect(drawCharacterTabPinyinLabel({ character: '你', zhuyin: 'ㄋㄧˇ' }, 0)).toBe('1');
     expect(drawCharacterTabLabel({ character: '你', pinyin: 'nǐ' })).toBe('nǐ');
     expect(drawCharacterTabLabel({ character: '你' }, 0)).toBe('1');
+  });
+
+  it('should split palladius across character targets', () => {
+    const targets = resolveDrawCharacterTargets({
+      ...baseDrawCard,
+      promptLexeme: {
+        ...baseDrawCard.promptLexeme!,
+        palladius: 'ни хао',
+      },
+    });
+
+    expect(targets[0].palladius).toBe('ни');
+    expect(targets[1].palladius).toBe('хао');
+  });
+
+  it('should build tab lexeme for draw card phonetics without han', () => {
+    const lexeme = buildDrawTabLexeme(
+      { character: '你', pinyin: 'nǐ' },
+      {
+        ...baseDrawCard,
+        promptLexeme: {
+          ...baseDrawCard.promptLexeme!,
+          ipa: 'ni˨˩˦',
+        },
+      },
+      0,
+    );
+
+    expect(lexeme.primary).toBe('');
+    expect(lexeme.script).toBe('latn');
+    expect(lexeme.pinyin).toBe('nǐ');
+    expect(lexeme.ipa).toBe('ni˨˩˦');
   });
 });

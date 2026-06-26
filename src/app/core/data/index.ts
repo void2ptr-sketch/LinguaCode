@@ -38,8 +38,10 @@ export { ScenariosApiService } from './scenarios-api.service';
 export { ScenarioSearchService } from './scenario-search.service';
 export { collectCardIpaReadings, cardHasIpaContent, collectLexemeIpaReadings } from './card-ipa-index.utils';
 export {
+  HAN_COMPONENT_PINYIN,
   HAN_RADICAL_HINTS,
   HAN_STROKE_GUIDES,
+  lookupHanComponentPinyin,
   lookupHanRadicalHint,
   lookupHanStrokeGuides,
   primaryHanCharacter,

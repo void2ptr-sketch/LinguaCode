@@ -1,29 +1,38 @@
 @if (displayLexeme(); as item) {
-  <div class="lexeme-display" [class.lexeme-display--inline]="inline()">
+  <div
+    class="lexeme-display"
+    [class.lexeme-display--inline]="inline()"
+    [class.lexeme-display--stacked-readings]="stackedReadings()"
+    [style.--lexeme-reading-size]="readingSize() ?? null"
+  >
     <div class="lexeme-display__stack">
-      @if (item.script === 'hani') {
-        <span class="lexeme-display__primary lexeme-display__han" lang="zh-Hans">
-          <app-tone-colored-text
-            [text]="item.primary"
-            mode="han"
-            [lexeme]="item"
-            [enabled]="effectiveToneColorEnabled()"
-            [inline]="true"
-          />
-        </span>
-      } @else {
-        <span class="lexeme-display__primary">{{ item.primary }}</span>
+      @if (primaryVisible()) {
+        @if (item.script === 'hani') {
+          <span class="lexeme-display__primary lexeme-display__han" lang="zh-Hans">
+            <app-tone-colored-text
+              [text]="item.primary"
+              mode="han"
+              [lexeme]="item"
+              [enabled]="effectiveToneColorEnabled()"
+              [inline]="true"
+            />
+          </span>
+        } @else {
+          <span class="lexeme-display__primary">{{ item.primary }}</span>
+        }
       }
 
       @for (reading of visibleRomanizations(); track reading.system) {
         <div class="lexeme-display__reading lexeme-display__reading--{{ reading.system }}">
-          <span class="lexeme-display__reading-label">{{ romanizationLabel(reading.system) }}</span>
+          @if (labelsVisible()) {
+            <span class="lexeme-display__reading-label">{{ romanizationLabel(reading.system) }}</span>
+          }
           <span class="lexeme-display__reading-text">
             @if (reading.system === 'pinyin') {
               <app-tone-colored-text
                 [text]="reading.reading"
                 mode="pinyin"
-                [lexeme]="item"
+                [lexeme]="phoneticToneLexeme(item, reading.reading)"
                 [enabled]="effectiveToneColorEnabled()"
                 [inline]="true"
               />
@@ -36,7 +45,9 @@
 
       @if (ipaText(); as ipa) {
         <div class="lexeme-display__reading lexeme-display__reading--ipa">
-          <span class="lexeme-display__reading-label">IPA</span>
+          @if (labelsVisible()) {
+            <span class="lexeme-display__reading-label">IPA</span>
+          }
           <span class="lexeme-display__reading-text lexeme-display__reading-text--ipa">
             <app-phonetic-ipa [transcription]="ipa" />
           </span>

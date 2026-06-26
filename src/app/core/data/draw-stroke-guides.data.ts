@@ -29,6 +29,29 @@ export const HAN_RADICAL_HINTS: Readonly<Record<string, string>> = {
   语: '讠 + 吾',
 };
 
+/** Типичное пиньинь компонента/радикала для раскраски по тону. */
+export const HAN_COMPONENT_PINYIN: Readonly<Record<string, string>> = {
+  女: 'nǚ',
+  子: 'zǐ',
+  彳: 'chì',
+  亍: 'chù',
+  日: 'rì',
+  月: 'yuè',
+  氵: 'shuǐ',
+  可: 'kě',
+  讠: 'yán',
+  吾: 'wú',
+};
+
+export function lookupHanComponentPinyin(character: string): string | null {
+  const key = character.trim();
+  if (!key) {
+    return null;
+  }
+
+  return HAN_COMPONENT_PINYIN[key] ?? null;
+}
+
 export function lookupHanStrokeGuides(character: string): readonly DrawStrokeGuide[] {
   const key = character.trim();
   return key ? (HAN_STROKE_GUIDES[key] ?? []) : [];

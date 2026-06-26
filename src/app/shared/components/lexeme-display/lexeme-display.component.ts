@@ -5,7 +5,7 @@ import {
   resolveShowIpaForSurface,
   type LexemeDisplaySurface,
 } from '../../../core/data/phonetic-preferences.utils';
-import { resolveIpaString, resolveVisibleRomanizationReadings } from '../../../core/data/phonetic-lexeme.utils';
+import { resolveIpaString, resolveVisibleRomanizationReadings, hasLexemePhoneticLayers } from '../../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/phonetic-content.types';
 import { UserStore } from '../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
@@ -25,6 +25,7 @@ const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
   host: {
     class: 'lexeme-display-host',
     '[class.lexeme-display-host--inline]': 'inline()',
+    '[class.lexeme-display-host--stacked-readings]': 'stackedReadings()',
   },
   templateUrl: './lexeme-display.component.html',
   styleUrl: './lexeme-display.component.scss',
@@ -41,6 +42,14 @@ export class LexemeDisplayComponent {
   readonly ipaVariantLabel = input<string | undefined>(undefined);
   readonly inline = input(false);
   readonly toneColorEnabled = input<boolean | null>(null);
+  /** Скрыть основной текст (иероглиф / слово); оставить романизацию и IPA. */
+  readonly primaryVisible = input(true);
+  /** Подписи систем (拼音 / IPA …). */
+  readonly labelsVisible = input(true);
+  /** Каждая система на отдельной строке (без колонки label + text). */
+  readonly stackedReadings = input(false);
+  /** Переопределяет размер строк романизации / IPA (например `1.75em`). */
+  readonly readingSize = input<string | null>(null);
 
   readonly romanizationLabel = (system: RomanizationSystem): string => ROMANIZATION_LABELS[system];
 
@@ -68,7 +77,7 @@ export class LexemeDisplayComponent {
 
   readonly displayLexeme = computed(() => {
     const lexeme = this.lexeme();
-    if (lexeme?.primary.trim()) {
+    if (lexeme && (lexeme.primary.trim() || hasLexemePhoneticLayers(lexeme))) {
       return lexeme;
     }
 
@@ -107,4 +116,13 @@ export class LexemeDisplayComponent {
     const label = this.ipaVariantLabel() ?? this.userStore.phonetic().ipaVariantLabel;
     return resolveIpaString(lexeme.ipa, label);
   });
+
+  phoneticToneLexeme(lexeme: PhoneticLexeme, reading: string): PhoneticLexeme {
+    return {
+      ...lexeme,
+      primary: '',
+      script: 'latn',
+      pinyin: reading,
+    };
+  }
 }

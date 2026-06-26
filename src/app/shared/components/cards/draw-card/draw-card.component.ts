@@ -5,12 +5,18 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
 import {
-  drawCharacterTabLabel,
+  drawCharacterTabPinyinLabel,
   initialDrawCanvasMode,
+  parseRadicalHintParts,
   resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
+  resolveDrawPromptLexeme,
   resolveDrawQuestion,
 } from '../../../../core/data/draw-card.utils';
+import {
+  radicalComponentColor,
+  resolveRadicalComponentPalette,
+} from '../../../../core/data/radical-component-color.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {
@@ -20,6 +26,7 @@ import {
 } from '../../../../core/models/draw-practice.types';
 import { DrawCanvasComponent } from '../../draw-canvas/draw-canvas.component';
 import type { DrawStrokePath } from '../../draw-canvas/draw-canvas.types';
+import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 
@@ -31,6 +38,7 @@ import { CardFeedback } from '../../../types';
     MatButtonToggleModule,
     MatIconModule,
     DrawCanvasComponent,
+    LexemeDisplayComponent,
     ToneColoredTextComponent,
   ],
   templateUrl: './draw-card.component.html',
@@ -60,6 +68,8 @@ export class DrawCardComponent {
   readonly charStrokes = signal<readonly (readonly DrawStrokePath[])[]>([]);
 
   readonly questionLabel = computed(() => resolveDrawQuestion(this.card()));
+
+  readonly promptLexeme = computed(() => resolveDrawPromptLexeme(this.card()));
 
   readonly characterTargets = computed(() => resolveDrawCharacterTargets(this.card()));
 
@@ -102,6 +112,36 @@ export class DrawCardComponent {
     return this.activeTarget()?.radicalHint?.trim() || null;
   });
 
+  readonly radicalCanvasHints = computed(() => {
+    const hint = this.radicalHint();
+    if (!hint) {
+      return [];
+    }
+
+    const componentPalette = resolveRadicalComponentPalette(
+      this.userStore.cjkLearning().toneColorScheme,
+    );
+
+    return parseRadicalHintParts(hint).map((part) => ({
+      character: part.character,
+      color: radicalComponentColor(componentPalette, part.componentIndex),
+    }));
+  });
+
+  readonly radicalCanvasAriaLabel = computed(() => {
+    const hint = this.radicalHint();
+    if (!hint) {
+      return null;
+    }
+
+    const parts = parseRadicalHintParts(hint);
+    if (parts.length === 0) {
+      return null;
+    }
+
+    return `Состав: ${parts.map((part) => part.character).join(', ')}`;
+  });
+
   readonly allCharsDone = computed(() => {
     const done = this.charDone();
     const targets = this.characterTargets();
@@ -124,7 +164,7 @@ export class DrawCardComponent {
 
   tabLabel(index: number): string {
     const target = this.characterTargets()[index];
-    return target ? drawCharacterTabLabel(target, index) : String(index + 1);
+    return target ? drawCharacterTabPinyinLabel(target, index) : String(index + 1);
   }
 
   isCharTabActive(index: number): boolean {
