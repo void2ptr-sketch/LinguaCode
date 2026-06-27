@@ -53,7 +53,7 @@ npm start
 - **TypeScript** — строгая типизация (`type`, не `interface`)
 - **Angular Material** — UI-компоненты
 - **SCSS** — стили; layout на CSS Grid (`grid-template-areas`)
-- **Signal API** — управление состояние (RxJS только для HTTP/WebSocket)
+- **Signal API** — управление состоянием (RxJS только для HTTP/WebSocket)
 - **ESLint + Prettier** — линтинг и форматирование
 - **@angular/localize** — локализация (бэклог)
 
@@ -97,7 +97,7 @@ docs/                        # документация (оглавление: d
 │ Главная  │                                           │
 │ Обучение │                                           │
 │ Карточки │                                           │
-│ Конструк.│                                           │
+│ Сценарии │                                           │
 ├──────────┴───────────────────────────────────────────┤
 │ footer                                               │
 └──────────────────────────────────────────────────────┘
@@ -111,7 +111,7 @@ docs/                        # документация (оглавление: d
 
 ### Git workflow
 
-Полные правила: [docs/.gitrules](./docs/.gitrules.md).
+Полные правила: [docs/.gitrules.md](./docs/.gitrules.md).
 
 1. От актуальной `main` создать ветку `NUMBER_description` (например, `3_init-angular`).
 2. Коммиты: `[NUMBER_description] краткое описание` — префикс совпадает с именем ветки.

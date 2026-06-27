@@ -194,7 +194,7 @@ RxJS — **только** на границе HTTP/WebSocket, не в шабло
 
 ### MVP
 
-Backend на старте **не требуется**. Данные — mock-сервис + JSON fixtures в `assets/data/`.
+Backend на старте **не требуется**. Данные — mock-сервис + JSON fixtures в `public/data/`.
 
 ```typescript
 @Injectable({ providedIn: 'root' })
@@ -300,4 +300,4 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт
-- [.gitrules](./.gitrules) — Git-процесс
+- [.gitrules.md](./.gitrules.md) — Git-процесс

@@ -78,7 +78,7 @@
 - [x] Точка входа — `menu-tools` в header
 - [x] CRUD сценариев (`Scenario`: title, description, cardIds)
 
-### C. Карточеки
+### C. Карточки
 
 #### Ca1. Типы карточек
 
@@ -497,7 +497,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [ ] Редактор / try dialog: preview «как задание» и «как ответ» (опц.)
 - [ ] Миграция не нужна: дефолты уже разные (`displayRomanizations: ['pinyin']`, `answerRomanization: ['pinyin','palladius']`)
 - [ ] Тесты: `lexeme-display`, `user-page`, persistence, smoke ru→zh demo-карточек
-- [ ] Синхронизировать CJK-CONTENT.md / PHONETIC-CONTENT.md — частично (2025-06): pinyin keyboard, reading, TTS, overlay
+- [x] Синхронизировать CJK-CONTENT.md / PHONETIC-CONTENT.md (2026-06): pinyin keyboard, reading, TTS, overlay
 
 **G9d — payload карточек**
 
@@ -735,7 +735,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G12 — Editor UX (упрощение редактора карточек)**
 
-Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-кomponent.
+Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-component.
 
 **G12a — фаза 1: быстрые wins (низкий риск)**
 
