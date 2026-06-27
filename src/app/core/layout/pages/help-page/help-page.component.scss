@@ -1,8 +1,23 @@
-.page-card {
-  max-width: 40rem;
+:host {
+  display: block;
+  min-height: 100%;
 }
 
-.page-card__content {
+.help-page {
+  align-content: start;
+  display: grid;
+  justify-items: center;
+  margin-inline: auto;
+  padding-top: 0.5rem;
+  width: 100%;
+}
+
+.help-page__card {
+  max-width: 40rem;
+  width: 100%;
+}
+
+.help-page__content {
   display: grid;
   gap: 0.75rem;
 }

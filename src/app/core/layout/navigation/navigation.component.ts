@@ -23,8 +23,6 @@ export class NavigationComponent {
     { label: 'Карточки', path: '/tools/cards', icon: 'style' },
     { label: 'Конструктор сценариев', path: '/tools/scenario-builder', icon: 'view_list' },
     { label: 'Конструктор курсов', path: '/tools/courses', icon: 'menu_book' },
-    { label: 'Справка', path: '/help', icon: 'help_outline' },
-    { label: 'Сценарии использования', path: '/help/scenarios', icon: 'stars' },
     { label: 'Профиль', path: '/user', icon: 'person_outline' },
   ];
 }
