@@ -240,8 +240,8 @@ export class DrawCanvasComponent {
     return medianToSvgPath(points);
   }
 
-  medianLabel(points: readonly HanziPoint[]): HanziPoint {
-    return medianLabelPoint(points);
+  medianLabelCanvas(points: readonly HanziPoint[]): HanziPoint {
+    return this.hanziPositioner().toCanvas(medianLabelPoint(points));
   }
 
   radicalModelFor(character: string): HanziCharacterModel | null {

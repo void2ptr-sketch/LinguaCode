@@ -64,18 +64,20 @@
       >
         <g [attr.transform]="hanziSvgTransform()">
           @for (stroke of hanziStrokes(); track stroke.strokeNum) {
-            <g class="draw-canvas__guide">
-              <path [attr.d]="medianPath(stroke.points)" />
-              <text
-                class="draw-canvas__guide-order"
-                [attr.x]="medianLabel(stroke.points).x"
-                [attr.y]="medianLabel(stroke.points).y"
-              >
-                {{ stroke.strokeNum + 1 }}
-              </text>
-            </g>
+            <path class="draw-canvas__guide" [attr.d]="medianPath(stroke.points)" />
           }
         </g>
+        @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+          <text
+            class="draw-canvas__guide-order"
+            [attr.x]="medianLabelCanvas(stroke.points).x"
+            [attr.y]="medianLabelCanvas(stroke.points).y"
+            text-anchor="middle"
+            dominant-baseline="central"
+          >
+            {{ stroke.strokeNum + 1 }}
+          </text>
+        }
       </svg>
     }
 

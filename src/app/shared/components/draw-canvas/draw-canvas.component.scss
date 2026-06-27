@@ -106,7 +106,7 @@
   opacity: 0.65;
 }
 
-.draw-canvas__guide path {
+.draw-canvas__guide {
   fill: none;
   stroke: color-mix(in srgb, var(--mat-sys-primary) 55%, transparent);
   stroke-dasharray: 4 3;
@@ -116,9 +116,9 @@
 
 .draw-canvas__guide-order {
   fill: var(--mat-sys-primary);
-  font-size: 8px;
-  font-weight: 600;
+  font-size: 20px;
+  font-weight: 700;
   paint-order: stroke;
   stroke: var(--mat-sys-surface);
-  stroke-width: 2px;
+  stroke-width: 3px;
 }

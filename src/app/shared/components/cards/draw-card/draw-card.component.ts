@@ -123,9 +123,10 @@ export class DrawCardComponent {
     return character || null;
   });
 
-  readonly showStrokeOrderNote = computed(
-    () => this.panelMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
-  );
+  readonly showStrokeOrderNote = computed(() => {
+    const mode = this.panelMode();
+    return (mode === 'stroke-order' || mode === 'hints') && Boolean(this.ghostCharacter());
+  });
 
   readonly radicalHint = computed(() => {
     if (this.panelMode() !== 'radicals') {
