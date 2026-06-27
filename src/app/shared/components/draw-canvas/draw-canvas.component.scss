@@ -1,7 +1,7 @@
 .draw-canvas {
   display: grid;
   gap: 0.5rem;
-  justify-items: stretch;
+  justify-items: center;
   width: 100%;
 }
 
@@ -9,34 +9,101 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.25rem;
+  justify-content: center;
+  width: 100%;
 }
 
 .draw-canvas__surface {
+  background: color-mix(
+    in srgb,
+    var(--mat-sys-surface-container) 80%,
+    var(--mat-sys-surface-container-lowest)
+  );
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
   position: relative;
   width: 100%;
   max-width: 20rem;
   aspect-ratio: 1;
 }
 
-.draw-canvas__canvas {
-  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, var(--mat-sys-surface-container-lowest));
-  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
+.draw-canvas__ghost,
+.draw-canvas__guides,
+.draw-canvas__radicals {
+  height: 100%;
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+  width: 100%;
+}
+
+.draw-canvas__ghost,
+.draw-canvas__radicals {
+  z-index: 1;
+}
+
+.draw-canvas__guides {
+  z-index: 4;
+}
+
+.draw-canvas__ghost-stroke {
+  fill: #000;
+}
+
+.draw-canvas__ghost-stroke--radical {
+  fill: var(--mat-sys-primary);
+}
+
+.draw-canvas__radical-stroke {
+  opacity: 0.38;
+}
+
+.draw-canvas__overlay {
+  align-items: center;
+  background: color-mix(in srgb, var(--mat-sys-surface) 82%, transparent);
   border-radius: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  inset: 0;
+  justify-content: center;
+  pointer-events: none;
+  position: absolute;
+  text-align: center;
+  z-index: 5;
+
+  mat-icon {
+    font-size: 1.75rem;
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+
+  span {
+    color: var(--mat-sys-on-surface-variant);
+    font-size: 0.85rem;
+    max-width: 12rem;
+  }
+}
+
+.draw-canvas__canvas {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-sizing: border-box;
   display: block;
   height: 100%;
+  inset: 0;
+  position: absolute;
   touch-action: none;
   width: 100%;
+  z-index: 3;
 }
 
 .draw-canvas__canvas--disabled {
   cursor: not-allowed;
   opacity: 0.65;
-}
-
-.draw-canvas__guides {
-  inset: 0;
-  pointer-events: none;
-  position: absolute;
 }
 
 .draw-canvas__guide path {

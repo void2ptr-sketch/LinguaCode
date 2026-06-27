@@ -6,12 +6,12 @@
 
 ## Решение: индекс сценария + полный Scenario
 
-| Слой | Тип | Назначение |
-|------|-----|------------|
-| Каталог | `ScenarioIndexEntry` | id, title, authorId, cardSource summary, published, updatedAt |
-| Детали | `Scenario` | title, description, `cardSource`, `published`, `updatedAt` |
-| Поиск | `ScenarioSearchCriteria` + `PageRequest` | query, scope, authorId + пагинация |
-| Ответ API | `PageResponse<ScenarioIndexEntry>` | items + totalItems + totalPages |
+| Слой      | Тип                                      | Назначение                                                    |
+| --------- | ---------------------------------------- | ------------------------------------------------------------- |
+| Каталог   | `ScenarioIndexEntry`                     | id, title, authorId, cardSource summary, published, updatedAt |
+| Детали    | `Scenario`                               | title, description, `cardSource`, `published`, `updatedAt`    |
+| Поиск     | `ScenarioSearchCriteria` + `PageRequest` | query, scope, authorId + пагинация                            |
+| Ответ API | `PageResponse<ScenarioIndexEntry>`       | items + totalItems + totalPages                               |
 
 Полный `Scenario` запрашивается по `id` только при открытии редактора или прохождении.
 
@@ -43,27 +43,27 @@ type ScenarioCardSource =
 
 ## HTTP API
 
-| Метод | Путь | Назначение |
-|-------|------|------------|
-| GET | `/api/scenarios/search?...` | index + фильтры + пагинация |
-| GET | `/api/scenarios/:id` | полный `Scenario` |
-| POST | `/api/scenarios` | создание |
-| PUT | `/api/scenarios/:id` | обновление |
-| DELETE | `/api/scenarios/:id` | удаление |
-| GET | `/api/scenarios/by-card/:cardId` | сценарии, использующие карточку |
-| POST | `/api/cards/batch` | `{ ids: string[] }` → `Card[]` (прохождение) |
+| Метод  | Путь                             | Назначение                                   |
+| ------ | -------------------------------- | -------------------------------------------- |
+| GET    | `/api/scenarios/search?...`      | index + фильтры + пагинация                  |
+| GET    | `/api/scenarios/:id`             | полный `Scenario`                            |
+| POST   | `/api/scenarios`                 | создание                                     |
+| PUT    | `/api/scenarios/:id`             | обновление                                   |
+| DELETE | `/api/scenarios/:id`             | удаление                                     |
+| GET    | `/api/scenarios/by-card/:cardId` | сценарии, использующие карточку              |
+| POST   | `/api/cards/batch`               | `{ ids: string[] }` → `Card[]` (прохождение) |
 
 Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `ScenariosCatalogMockHandler` (хранение в `localStorage`, миграция из legacy JSON).
 
 ## Multi-user (mock)
 
-| Возможность | Реализация |
-|-------------|------------|
-| Scope | `mine` · `published` · `all` в `ScenarioSearchCriteria` |
-| Публикация | поле `Scenario.published`, toggle в редакторе |
-| Read-only | чужой сценарий — просмотр без save/delete |
-| Валидация | `validateScenarioCardSource` в mock handler |
-| 403 | PUT/DELETE чужого сценария |
+| Возможность | Реализация                                              |
+| ----------- | ------------------------------------------------------- |
+| Scope       | `mine` · `published` · `all` в `ScenarioSearchCriteria` |
+| Публикация  | поле `Scenario.published`, toggle в редакторе           |
+| Read-only   | чужой сценарий — просмотр без save/delete               |
+| Валидация   | `validateScenarioCardSource` в mock handler             |
+| 403         | PUT/DELETE чужого сценария                              |
 
 ## UI
 
@@ -88,50 +88,48 @@ Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `Scena
 
 Create / edit / view в modal (аналог [CARD-CATALOG.md — Dialog](./CARD-CATALOG.md#dialog-редактора)).
 
-| Элемент | Путь |
-|---------|------|
-| Shell dialog | `features/scenario-builder/components/scenario-builder-dialog/` |
-| Открытие | `ScenarioBuilderDialogService.openCreate` / `openEdit` |
-| Форма | `ScenarioEditorFormComponent` |
-| Discard confirm | `CardEditorDiscardDialogComponent` (reuse) |
+| Элемент         | Путь                                                            |
+| --------------- | --------------------------------------------------------------- |
+| Shell dialog    | `features/scenario-builder/components/scenario-builder-dialog/` |
+| Открытие        | `ScenarioBuilderDialogService.openCreate` / `openEdit`          |
+| Форма           | `ScenarioEditorFormComponent`                                   |
+| Discard confirm | `CardEditorDiscardDialogComponent` (reuse)                      |
 
 ### Решение
 
-| Слой | Компонент | Назначение |
-|------|-----------|------------|
-| Страница | `ScenarioBuilderPageComponent` | список, search, scope, paginator, delete |
-| Dialog | `ScenarioBuilderDialogComponent` | shell: title, loading, errors, actions |
-| Форма | `ScenarioEditorFormComponent` | поля + `ScenarioCardPicker` / `ScenarioCardCriteriaEditor` |
-| Сервис | `ScenarioBuilderDialogService` | `openCreate`, `openEdit` |
-| Store | `ScenarioBuilderStore` | без изменения CRUD-логики |
+| Слой     | Компонент                        | Назначение                                                 |
+| -------- | -------------------------------- | ---------------------------------------------------------- |
+| Страница | `ScenarioBuilderPageComponent`   | список, search, scope, paginator, delete                   |
+| Dialog   | `ScenarioBuilderDialogComponent` | shell: title, loading, errors, actions                     |
+| Форма    | `ScenarioEditorFormComponent`    | поля + `ScenarioCardPicker` / `ScenarioCardCriteriaEditor` |
+| Сервис   | `ScenarioBuilderDialogService`   | `openCreate`, `openEdit`                                   |
+| Store    | `ScenarioBuilderStore`           | без изменения CRUD-логики                                  |
 
 ```typescript
-type ScenarioBuilderDialogData =
-  | { mode: 'create' }
-  | { mode: 'edit'; scenarioId: string };
+type ScenarioBuilderDialogData = { mode: 'create' } | { mode: 'edit'; scenarioId: string };
 
 type ScenarioBuilderDialogResult = { saved: boolean };
 ```
 
 ### Режимы dialog
 
-| Режим | Заголовок | Save | Discard confirm |
-|-------|-----------|------|-----------------|
-| create | «Новый сценарий» | да | при dirty draft |
-| edit (свой) | «Редактирование» | да | при dirty draft |
-| view (чужой) | «Просмотр сценария» | нет | не требуется |
+| Режим        | Заголовок           | Save | Discard confirm |
+| ------------ | ------------------- | ---- | --------------- |
+| create       | «Новый сценарий»    | да   | при dirty draft |
+| edit (свой)  | «Редактирование»    | да   | при dirty draft |
+| view (чужой) | «Просмотр сценария» | нет  | не требуется    |
 
 Read-only определяется через `ScenarioBuilderStore.isReadOnly()`.
 
 ### Конфигурация MatDialog
 
-| Параметр | Значение |
-|----------|----------|
-| `panelClass` | `scenario-builder-dialog` |
-| `width` | `min(1100px, 96vw)` |
-| `maxHeight` | `90vh` |
-| `disableClose` | `true` |
-| Mobile | fullscreen через `@media (max-width: 48rem)` в `styles.scss` |
+| Параметр       | Значение                                                     |
+| -------------- | ------------------------------------------------------------ |
+| `panelClass`   | `scenario-builder-dialog`                                    |
+| `width`        | `min(1100px, 96vw)`                                          |
+| `maxHeight`    | `90vh`                                                       |
+| `disableClose` | `true`                                                       |
+| Mobile         | fullscreen через `@media (max-width: 48rem)` в `styles.scss` |
 
 Scroll — только в `mat-dialog-content`; footer с кнопками фиксирован.
 
@@ -143,23 +141,23 @@ Scroll — только в `mat-dialog-content`; footer с кнопками фи
 
 ### Этап F — dialog UI
 
-| Шаг | Содержание | Статус |
-|-----|------------|--------|
-| F1 | `ScenarioEditorFormComponent` — вынести форму из page | готово |
-| F2 | `ScenarioBuilderDialogComponent` + `ScenarioBuilderDialogService` | готово |
-| F3 | Page: убрать inline editor, wiring open/close | готово |
-| F4 | Discard confirm, responsive styles, docs | готово |
+| Шаг | Содержание                                                        | Статус |
+| --- | ----------------------------------------------------------------- | ------ |
+| F1  | `ScenarioEditorFormComponent` — вынести форму из page             | готово |
+| F2  | `ScenarioBuilderDialogComponent` + `ScenarioBuilderDialogService` | готово |
+| F3  | Page: убрать inline editor, wiring open/close                     | готово |
+| F4  | Discard confirm, responsive styles, docs                          | готово |
 
 ## Этапы реализации
 
-| Этап | Содержание | Статус |
-|------|------------|--------|
-| A | типы, HTTP, mock, `ScenarioSearchService` | готово |
-| B | paginator, search, index→detail, API validation | готово |
-| C | batch cards, scenario picker, source label | готово |
-| D | snapshot, sort/seed, preview ids, `scenarioUsesCardEntry` | готово |
-| E | scope, published, read-only, server validation | готово |
-| F | dialog UI: список на page, CRUD в MatDialog | готово |
+| Этап | Содержание                                                | Статус |
+| ---- | --------------------------------------------------------- | ------ |
+| A    | типы, HTTP, mock, `ScenarioSearchService`                 | готово |
+| B    | paginator, search, index→detail, API validation           | готово |
+| C    | batch cards, scenario picker, source label                | готово |
+| D    | snapshot, sort/seed, preview ids, `scenarioUsesCardEntry` | готово |
+| E    | scope, published, read-only, server validation            | готово |
+| F    | dialog UI: список на page, CRUD в MatDialog               | готово |
 
 ## Связанные пути в коде
 

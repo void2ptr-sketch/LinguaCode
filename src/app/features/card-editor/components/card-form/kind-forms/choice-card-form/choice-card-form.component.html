@@ -1,14 +1,24 @@
 @if (!hidePrompt()) {
   <mat-form-field appearance="outline">
     <mat-label>{{ promptLabel() }}</mat-label>
-    <textarea matInput rows="3" [ngModel]="draft().promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+    <textarea
+      matInput
+      rows="3"
+      [ngModel]="draft().promptKnown"
+      (ngModelChange)="updatePromptKnown($event)"
+    ></textarea>
   </mat-form-field>
 }
 
 @if (toneDraft(); as d) {
   <mat-form-field appearance="outline">
     <mat-label>Слог без тона (пиньинь)</mat-label>
-    <input matInput [ngModel]="d.syllableBase" (ngModelChange)="updateSyllableBase($event)" placeholder="ma" />
+    <input
+      matInput
+      [ngModel]="d.syllableBase"
+      (ngModelChange)="updateSyllableBase($event)"
+      placeholder="ma"
+    />
     <mat-hint>Автоварианты: {{ tonePreview() || 'ma → mā · má · mǎ · mà' }}</mat-hint>
   </mat-form-field>
   <section>

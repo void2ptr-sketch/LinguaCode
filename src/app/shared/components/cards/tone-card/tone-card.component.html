@@ -53,7 +53,12 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="selectedIndex() === null" (click)="checkAnswer.emit()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="selectedIndex() === null"
+        (click)="checkAnswer.emit()"
+      >
         Проверить
       </button>
     } @else {

@@ -69,7 +69,12 @@
     }
   }
 
-  <button mat-button type="button" [disabled]="options().length >= maxOptions" (click)="onAddOption()">
+  <button
+    mat-button
+    type="button"
+    [disabled]="options().length >= maxOptions"
+    (click)="onAddOption()"
+  >
     <mat-icon>add</mat-icon> Добавить
   </button>
 </section>

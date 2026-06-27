@@ -1,14 +1,22 @@
 @if (showCjk() || showPhonetic()) {
   <div class="display-matrix" role="grid" aria-describedby="display-matrix-hint">
     <p id="display-matrix-hint" class="display-matrix__hint">
-      Задание — текст вопроса на карточке; ответы — варианты, плитки memory и блок «Правильный ответ».
-      В одной колонке можно включить несколько систем; снимите лишние галочки.
+      Задание — текст вопроса на карточке; ответы — варианты, плитки memory и блок «Правильный
+      ответ». В одной колонке можно включить несколько систем; снимите лишние галочки.
     </p>
 
     <div class="display-matrix__header" role="row">
       <span class="display-matrix__header-label" role="rowheader">Система</span>
-      <span class="display-matrix__header-col display-matrix__header-col--prompt" role="columnheader">Задание</span>
-      <span class="display-matrix__header-col display-matrix__header-col--answer" role="columnheader">Ответы</span>
+      <span
+        class="display-matrix__header-col display-matrix__header-col--prompt"
+        role="columnheader"
+        >Задание</span
+      >
+      <span
+        class="display-matrix__header-col display-matrix__header-col--answer"
+        role="columnheader"
+        >Ответы</span
+      >
     </div>
 
     @if (showCjk()) {
@@ -59,13 +67,21 @@
       <div class="display-matrix__row" role="row">
         <span class="display-matrix__label" role="rowheader">Орфография</span>
 
-        <div class="display-matrix__prompt display-matrix__prompt--empty" role="gridcell" aria-hidden="true">—</div>
+        <div
+          class="display-matrix__prompt display-matrix__prompt--empty"
+          role="gridcell"
+          aria-hidden="true"
+        >
+          —
+        </div>
 
         <div class="display-matrix__answer" role="gridcell">
           <mat-checkbox
             [checked]="isAnswerModeEnabled('orthography')"
             (change)="onAnswerModeChange('orthography', $event)"
-            [attr.aria-label]="'Орфография в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')"
+            [attr.aria-label]="
+              'Орфография в ответах' + (courseLabel() ? ' (' + courseLabel() + ')' : '')
+            "
           />
         </div>
       </div>

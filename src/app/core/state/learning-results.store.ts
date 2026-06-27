@@ -124,9 +124,7 @@ export class LearningResultsStore {
     return scenarioIds.every((scenarioId) => this.resultsForScenario(scenarioId).length > 0);
   }
 
-  isCourseCompleted(
-    lessons: readonly { scenarioIds: readonly string[] }[],
-  ): boolean {
+  isCourseCompleted(lessons: readonly { scenarioIds: readonly string[] }[]): boolean {
     const progress = this.scenarioSetProgress(lessons.flatMap((lesson) => lesson.scenarioIds));
     return progress.total > 0 && progress.percent === 100;
   }

@@ -16,10 +16,7 @@ describe('card-draft-lexeme-first.utils', () => {
       direction: 'known-to-learning',
       promptKnown: 'Q',
       optionsLearning: ['old-a', 'old-b'],
-      optionsLexemes: [
-        { ...emptyLexemeDraftFields(), primary: 'new-a' },
-        emptyLexemeDraftFields(),
-      ],
+      optionsLexemes: [{ ...emptyLexemeDraftFields(), primary: 'new-a' }, emptyLexemeDraftFields()],
       correctIndex: 0,
       appearance: { theme: 'azure-blue', fontSize: 'md' },
       promptLexeme: emptyLexemeDraftFields(),

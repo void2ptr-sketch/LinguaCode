@@ -85,10 +85,7 @@ export class CardEditorDialogComponent implements OnInit {
   );
 
   readonly showWizard = computed(
-    () =>
-      this.data.mode === 'create' &&
-      this.editorUxMode() === 'basic' &&
-      !this.useFullEditor(),
+    () => this.data.mode === 'create' && this.editorUxMode() === 'basic' && !this.useFullEditor(),
   );
 
   readonly title = computed(() => {

@@ -106,8 +106,8 @@ export class CourseFormComponent implements OnInit {
   }
 
   prerequisiteOptions(index: number): readonly { key: string; label: string }[] {
-    return this.draft().lessons
-      .map((lesson, lessonIndex) => ({
+    return this.draft()
+      .lessons.map((lesson, lessonIndex) => ({
         key: lessonDraftKey(lesson),
         label: this.lessonLabel(lesson, lessonIndex),
         index: lessonIndex,

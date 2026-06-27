@@ -41,7 +41,12 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="matched().length !== card().pairs.length" (click)="checkAnswer.emit()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="matched().length !== card().pairs.length"
+        (click)="checkAnswer.emit()"
+      >
         Проверить
       </button>
     } @else {

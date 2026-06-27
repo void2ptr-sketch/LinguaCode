@@ -1,8 +1,5 @@
 import { DEFAULT_COURSE_CATALOG } from './courses-storage';
-import {
-  buildLessonRoadmap,
-  resolveLearningResumeTarget,
-} from './learning-resume.utils';
+import { buildLessonRoadmap, resolveLearningResumeTarget } from './learning-resume.utils';
 import type { CourseWithLessons } from '../models';
 
 describe('learning-resume.utils', () => {

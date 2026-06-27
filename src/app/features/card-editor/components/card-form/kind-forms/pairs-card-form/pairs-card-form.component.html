@@ -1,6 +1,11 @@
 <mat-form-field appearance="outline">
   <mat-label>Известный</mat-label>
-  <textarea matInput rows="2" [ngModel]="draft().promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+  <textarea
+    matInput
+    rows="2"
+    [ngModel]="draft().promptKnown"
+    (ngModelChange)="updatePromptKnown($event)"
+  ></textarea>
 </mat-form-field>
 
 <section class="pairs-card-form__pairs">
@@ -9,13 +14,26 @@
     <div class="pairs-card-form__row">
       <mat-form-field appearance="outline">
         <mat-label>Известный</mat-label>
-        <input matInput [ngModel]="pair.known" (ngModelChange)="updatePair($index, 'known', $event)" />
+        <input
+          matInput
+          [ngModel]="pair.known"
+          (ngModelChange)="updatePair($index, 'known', $event)"
+        />
       </mat-form-field>
       <mat-form-field appearance="outline">
         <mat-label>Новый</mat-label>
-        <input matInput [ngModel]="pair.learning" (ngModelChange)="updatePair($index, 'learning', $event)" />
+        <input
+          matInput
+          [ngModel]="pair.learning"
+          (ngModelChange)="updatePair($index, 'learning', $event)"
+        />
       </mat-form-field>
-      <button mat-icon-button type="button" [disabled]="draft().pairs.length <= 1" (click)="removePair($index)">
+      <button
+        mat-icon-button
+        type="button"
+        [disabled]="draft().pairs.length <= 1"
+        (click)="removePair($index)"
+      >
         <mat-icon>remove_circle_outline</mat-icon>
       </button>
     </div>

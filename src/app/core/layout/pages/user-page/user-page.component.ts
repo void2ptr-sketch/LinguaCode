@@ -34,9 +34,7 @@ import {
   CourseDisplaySettingsMatrixComponent,
   type RomanizationOption,
 } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
-import {
-  type AnswerDisplayMode,
-} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import { type AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
 
 @Component({
   selector: 'app-user-page',
@@ -79,7 +77,10 @@ export class UserPageComponent implements OnInit {
   readonly learningLanguageDraft = signal<ContentLanguage>('en');
   readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
   readonly displayRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin']);
-  readonly answerRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin', 'palladius']);
+  readonly answerRomanizationsDraft = signal<readonly RomanizationSystem[]>([
+    'pinyin',
+    'palladius',
+  ]);
   readonly showIpaDraft = signal(false);
   readonly ipaVariantLabelDraft = signal('');
   readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
@@ -151,12 +152,16 @@ export class UserPageComponent implements OnInit {
   }
 
   toneColorSchemeHint(): string {
-    const scheme = this.toneColorSchemeOptions.find((item) => item.id === this.toneColorSchemeDraft());
+    const scheme = this.toneColorSchemeOptions.find(
+      (item) => item.id === this.toneColorSchemeDraft(),
+    );
     return scheme?.description ?? '';
   }
 
   tonePreviewColor(tone: ToneMark): string {
-    const scheme = this.toneColorSchemeOptions.find((item) => item.id === this.toneColorSchemeDraft());
+    const scheme = this.toneColorSchemeOptions.find(
+      (item) => item.id === this.toneColorSchemeDraft(),
+    );
     return scheme?.colors[tone] ?? '#757575';
   }
 

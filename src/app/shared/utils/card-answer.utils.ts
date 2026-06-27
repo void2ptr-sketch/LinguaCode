@@ -1,6 +1,9 @@
 import { Card, DrawCard, isOptionCard } from '../../core/models';
 import type { CardDirection } from '../../core/models/language-pair.types';
-import { checkDrawCardAnswer } from '../../core/data/draw-card-answer.utils';
+import {
+  checkDrawCardAnswer,
+  type HanziModelResolver,
+} from '../../core/data/draw-card-answer.utils';
 import {
   answersMatchRomanization,
   normalizeHanAnswer,
@@ -13,7 +16,10 @@ import {
 } from '../../core/data/card-direction.utils';
 import { answersMatchIpa } from '../../core/data/ipa-normalize.utils';
 import { collectLexemeAcceptedAnswers } from '../../core/data/lexeme-draft.utils';
-import { resolveIpaString, resolveRomanizationReading } from '../../core/data/phonetic-lexeme.utils';
+import {
+  resolveIpaString,
+  resolveRomanizationReading,
+} from '../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../core/models/phonetic-content.types';
 import { CardAnswerState } from '../types';
 
@@ -31,7 +37,10 @@ const matchesLexemeAnswer = (actual: string, lexeme: PhoneticLexeme): boolean =>
     }
   }
 
-  if (lexeme.script === 'hani' && normalizeHanAnswer(lexeme.primary) === normalizeHanAnswer(trimmed)) {
+  if (
+    lexeme.script === 'hani' &&
+    normalizeHanAnswer(lexeme.primary) === normalizeHanAnswer(trimmed)
+  ) {
     return true;
   }
 
@@ -112,6 +121,7 @@ export const checkCardAnswer = (
   card: Card,
   state: CardAnswerState,
   sessionDirection: CardDirection = 'known-to-learning',
+  getHanziModel?: HanziModelResolver,
 ): boolean | null => {
   if (!canCheckCardAnswer(card, state)) {
     return null;
@@ -139,6 +149,7 @@ export const checkCardAnswer = (
         state.drawSubmitted,
         state.drawAnswer,
         state.learningProficiencyLevel,
+        getHanziModel,
       );
   }
 };
@@ -177,7 +188,12 @@ export const getCorrectAnswerLabel = (
 };
 
 function resolveOptionLexeme(card: Card, index: number): PhoneticLexeme | undefined {
-  if (card.kind === 'select' || card.kind === 'timed' || card.kind === 'sound' || card.kind === 'reading') {
+  if (
+    card.kind === 'select' ||
+    card.kind === 'timed' ||
+    card.kind === 'sound' ||
+    card.kind === 'reading'
+  ) {
     return card.optionsLexemes?.[index];
   }
 

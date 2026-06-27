@@ -3,14 +3,19 @@ import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 
 import { ScenarioBuilderDialogComponent } from './scenario-builder-dialog.component';
-import type { ScenarioBuilderDialogData, ScenarioBuilderDialogResult } from './scenario-builder-dialog.types';
+import type {
+  ScenarioBuilderDialogData,
+  ScenarioBuilderDialogResult,
+} from './scenario-builder-dialog.types';
 
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderDialogService {
   private readonly dialog = inject(MatDialog);
 
-  private activeRef: MatDialogRef<ScenarioBuilderDialogComponent, ScenarioBuilderDialogResult> | null =
-    null;
+  private activeRef: MatDialogRef<
+    ScenarioBuilderDialogComponent,
+    ScenarioBuilderDialogResult
+  > | null = null;
 
   openCreate(): Promise<ScenarioBuilderDialogResult | undefined> {
     return this.open({ mode: 'create' });

@@ -21,7 +21,11 @@
     @if (showPinyin()) {
       <mat-form-field appearance="outline">
         <mat-label>Пиньинь</mat-label>
-        <input matInput [ngModel]="fields().pinyin" (ngModelChange)="updateField('pinyin', $event)" />
+        <input
+          matInput
+          [ngModel]="fields().pinyin"
+          (ngModelChange)="updateField('pinyin', $event)"
+        />
       </mat-form-field>
     }
 
@@ -83,7 +87,11 @@
     @if (showLegacyLayout() && !compact()) {
       <mat-form-field appearance="outline">
         <mat-label>Жуинь (Bopomofo)</mat-label>
-        <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
+        <input
+          matInput
+          [ngModel]="fields().zhuyin"
+          (ngModelChange)="updateField('zhuyin', $event)"
+        />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
@@ -107,7 +115,11 @@
       <div class="lexeme-fields__grid">
         <mat-form-field appearance="outline">
           <mat-label>Жуинь (Bopomofo)</mat-label>
-          <input matInput [ngModel]="fields().zhuyin" (ngModelChange)="updateField('zhuyin', $event)" />
+          <input
+            matInput
+            [ngModel]="fields().zhuyin"
+            (ngModelChange)="updateField('zhuyin', $event)"
+          />
         </mat-form-field>
 
         @if (ruZhPair()) {

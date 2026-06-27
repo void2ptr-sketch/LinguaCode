@@ -4,3 +4,5 @@ export type DrawCanvasPoint = {
 };
 
 export type DrawStrokePath = readonly DrawCanvasPoint[];
+
+export type DrawMemoryStrokeGrade = 'correct' | 'incorrect';

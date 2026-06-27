@@ -30,7 +30,9 @@ export function isLessonUnlocked(
   return true;
 }
 
-export function buildLessonsById(lessons: readonly LessonProgressCheck[]): Map<string, LessonProgressCheck> {
+export function buildLessonsById(
+  lessons: readonly LessonProgressCheck[],
+): Map<string, LessonProgressCheck> {
   return new Map(lessons.map((lesson) => [lesson.id, lesson]));
 }
 

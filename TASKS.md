@@ -15,7 +15,7 @@
 
 - [x] Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
 - [x] Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
-- [x] Добавить layout (шапка, подвал, навигация, контент, menu-*)
+- [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
   - шапка — `/src/app/core/layout/header`
     - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
     - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
@@ -107,6 +107,72 @@
 - [x] **Ca4d** — `characterTargets`, `meaningKnown`, `draw-card.utils`; demo `draw-nihao-1`
 - [ ] **Ca4e** — (опц.) редактор: явное редактирование `characterTargets` и аудио на иероглиф
 
+#### H15. Hanzi Engine (`public/assets/hanzi/` + свой движок)
+
+Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/core/hanzi-engine/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
+
+**H15a — Sprint 1: foundation (API + data)** ✅ старт
+
+- [x] `HanziDataService` — load/cache, `assetUrl`, states `idle|loading|ready|missing|error`
+- [x] `HanziPositioner` — MMH 1024 → canvas px, round-trip
+- [x] `HanziCharacterModel` — parse `strokes` / `medians` / `radStrokes`
+- [x] `HanziQuizSession` — порядок черт, leniency по proficiency, hints signal
+- [x] `hanzi-stroke-match.utils` — grading (distance, direction, Fréchet, length)
+- [x] `scripts/sync-hanzi-assets.mjs` + `npm run sync:hanzi`
+- [x] Unit tests: positioner, data service, quiz session
+- [ ] Экспорт API в `docs/ARCHITECTURE.md` (краткий раздел)
+
+**H15b — Sprint 2: render (draw-canvas integration)** ✅
+
+- [x] `draw-canvas`: SVG ghost из `strokes[]` (убрать `fillText` / Noto для draw)
+- [x] SVG guides из `medians[]` через `HanziPositioner`
+- [x] Prefetch символа в `draw-card` через `HanziDataService.loadCharacter`
+- [x] Loading / missing states в UI
+- [x] Удалить `draw-ghost-layout.utils.ts` после миграции
+
+**H15c — Sprint 3: animation (tracing)** ✅
+
+- [x] Reveal-анимация вдоль medians (SVG mask по контуру черты)
+- [x] `delayBetweenStrokes`, loop для режима «Трассировка»
+- [x] Brush tip по tangent path (ellipse на canvas)
+- [x] Удалить `draw-stroke-path.utils.ts` (tracing part)
+
+**H15d — Sprint 4: validation + card flow**
+
+- [x] Memory mode: `HanziQuizSession` или batch validate all strokes
+- [x] Заменить `draw-stroke-validation.utils.ts` на hanzi-engine grading
+- [x] `draw-card-answer.utils` — leniency из `learningProficiencyLevel`
+- [x] Card editor: guides runtime-only, deprecate `strokeGuides` в JSON карточки
+- [x] Удалить `HAN_STROKE_GUIDES` (3 символа)
+
+**H15e — Sprint 5: production polish**
+
+- [x] Golden tests: 人 / 大 / 好 / 你 / 水 — quiz accept/reject fixtures
+- [x] Prefetch всех символов вкладки (`你好` → 2 JSON)
+- [x] CI: `npm run sync:hanzi` перед build (или commit assets)
+- [x] Smoke: offline (airplane mode) — ghost + tracing работают (cache replay + local URLs)
+- [x] Калибровка leniency по уровням (automated bands в `hanzi-golden-quiz.spec.ts`)
+
+**H15 — API reference (целевой контракт)**
+
+```typescript
+// Data
+hanziData.loadCharacter('人'): Promise<HanziCharacterModel | null>
+hanziData.loadCharacters(['你','好']): Promise<Map<string, HanziCharacterModel>>
+hanziData.getLoadState('人'): HanziLoadState
+hanziData.assetUrl('人'): '/assets/hanzi/%E4%BA%BA.json'
+
+// Layout
+new HanziPositioner({ width, height, padding }).toCanvas(mmhPoint)
+positioner.toCharacterSpace(canvasPoint)
+
+// Quiz (per character session)
+new HanziQuizSession(model, positioner, { proficiencyLevel: 'beginner' })
+session.submitCanvasStroke(canvasPoints): HanziQuizStrokeResult
+session.shouldShowHint(): boolean
+session.summary(): { character, totalMistakes, strokeCount }
+```
+
 #### Ca3. Режим фокуса (полный экран)
 
 Контекст: [BUSINESS.md](./docs/BUSINESS.md#объект-изучения-и-карточка) — обучение без отвлечений; shell приложения скрывается.
@@ -117,7 +183,6 @@
 - [x] **Ca3d** — в fullscreen контент масштабируется по viewport (`clamp` + `vmin`/`vw`); на маленьком экране не меньше базового размера шрифта карточки — при нехватке места прокрутка
 - [x] **Ca3e** — `UserPreferences.cardFocusFullscreen`: запоминание при переключении; авто-вход на вкладке «Обучение»; настройка в профиле «Внешний вид»
 - [x] **Ca3f** — unit-тест `card-focus-shell.component.spec.ts`
-
 
 ### Результаты обучения
 
@@ -161,7 +226,6 @@
 - [x] Каталог: фильтры сверху, результаты снизу (вертикальный layout)
 - [x] Sidebar: пункт «Карточки» переименован в «Обучение» (`/cards/select`, icon `school`)
 - [x] Sidebar: дублированы маршруты из header — «Карточки» (`/tools/cards`), «Конструктор сценариев» (шапка без изменений)
-
 
 ### Конструктор сценариев (масштаб)
 
@@ -391,10 +455,10 @@
 
 Контекст: в модели уже есть `displayRomanizations` (задание) и `answerRomanization` (ответы), но UI профиля и `LexemeDisplay` используют только первое; `answerRomanization` / `answerModes` сохраняются, но **не читаются** в рендере.
 
-| Роль | Где на карточке | Поля профиля (CJK) | Поля профиля (IPA) |
-|------|-----------------|--------------------|--------------------|
-| **Задание** | subtitle / prompt (`promptLexeme`) | `displayRomanizations[]` | `showIpa`, `ipaVariantLabel` |
-| **Ответы** | варианты, плитки memory, feedback | `answerRomanization[]` | `answerModes[]` (`orthography` / `ipa`) |
+| Роль        | Где на карточке                    | Поля профиля (CJK)       | Поля профиля (IPA)                      |
+| ----------- | ---------------------------------- | ------------------------ | --------------------------------------- |
+| **Задание** | subtitle / prompt (`promptLexeme`) | `displayRomanizations[]` | `showIpa`, `ipaVariantLabel`            |
+| **Ответы**  | варианты, плитки memory, feedback  | `answerRomanization[]`   | `answerModes[]` (`orthography` / `ipa`) |
 
 Направление сессии (`known-to-learning` ↔ `learning-to-known`) меняет **какой текст** показывается, но не роль: заголовок = задание, кнопки/плитки = ответы.
 
@@ -695,7 +759,6 @@
 
 - [ ] Не смешивать с `ContentLanguage` / `LanguagePair`
 
-
 ## D. Документация
 
 - [x] Все файлы должны быть связаны через линки (для удобного перехода по документации).
@@ -719,14 +782,12 @@
 - [x] Документацию вести на русском языке
 - [x] Формат документации UTF-8 (см. [INDEX.md § Формат](./docs/INDEX.md))
 
-
 ### L. Локализация (UiLocale)
 
-- [ ]  Настройка каждого языка в отдельном файле
-- [ ]  Поддержка английского языка
-- [ ]  Поддержка китайского языка
-- [ ]  Фича `features/locale/`
-- [ ]  Файлы переводов в `/src/locale`, формат: `messages.LANG.ts`
-- [ ]  Подключить локализацию в роутинг — в навигации
-- [ ]  Автоматическое переключение языка
-
+- [ ] Настройка каждого языка в отдельном файле
+- [ ] Поддержка английского языка
+- [ ] Поддержка китайского языка
+- [ ] Фича `features/locale/`
+- [ ] Файлы переводов в `/src/locale`, формат: `messages.LANG.ts`
+- [ ] Подключить локализацию в роутинг — в навигации
+- [ ] Автоматическое переключение языка

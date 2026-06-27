@@ -31,9 +31,9 @@ export function hasLexemePhoneticLayers(lexeme: PhoneticLexeme | null | undefine
 
   return Boolean(
     lexeme.pinyin?.trim() ||
-      lexeme.zhuyin?.trim() ||
-      lexeme.palladius?.trim() ||
-      resolveIpaString(lexeme.ipa),
+    lexeme.zhuyin?.trim() ||
+    lexeme.palladius?.trim() ||
+    resolveIpaString(lexeme.ipa),
   );
 }
 
@@ -45,7 +45,10 @@ export function hasLexemeContent(lexeme: PhoneticLexeme | null | undefined): boo
   return Boolean(lexeme.primary.trim() || hasLexemePhoneticLayers(lexeme));
 }
 
-export function resolveIpaString(ipa: PhoneticLexeme['ipa'], preferredLabel?: string): string | null {
+export function resolveIpaString(
+  ipa: PhoneticLexeme['ipa'],
+  preferredLabel?: string,
+): string | null {
   if (!ipa) {
     return null;
   }
@@ -174,5 +177,7 @@ export function formatIpaForEditor(ipa: PhoneticLexeme['ipa']): string {
     return ipa;
   }
 
-  return ipa.map((item) => (item.label ? `${item.label}:${item.transcription}` : item.transcription)).join(' | ');
+  return ipa
+    .map((item) => (item.label ? `${item.label}:${item.transcription}` : item.transcription))
+    .join(' | ');
 }

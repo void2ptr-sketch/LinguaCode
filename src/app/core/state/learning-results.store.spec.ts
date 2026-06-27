@@ -1,5 +1,8 @@
 import { TestBed } from '@angular/core/testing';
-import { LEARNING_RESULTS_STORAGE_KEY, LearningResultsPersistence } from './learning-results.persistence';
+import {
+  LEARNING_RESULTS_STORAGE_KEY,
+  LearningResultsPersistence,
+} from './learning-results.persistence';
 import { LearningResultsStore } from './learning-results.store';
 import { UserStore } from './user.store';
 
@@ -106,9 +109,7 @@ describe('LearningResultsStore', () => {
       courseId: 'crs1',
     });
 
-    expect(
-      store.isCourseCompleted([{ scenarioIds: ['s1'] }, { scenarioIds: ['s2'] }]),
-    ).toBe(false);
+    expect(store.isCourseCompleted([{ scenarioIds: ['s1'] }, { scenarioIds: ['s2'] }])).toBe(false);
     expect(store.isCourseCompleted([{ scenarioIds: ['s1'] }])).toBe(true);
   });
 

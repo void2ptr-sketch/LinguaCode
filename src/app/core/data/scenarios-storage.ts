@@ -2,12 +2,14 @@ import type { Scenario } from '../models';
 import type { LegacyScenario } from '../models/scenario.types';
 
 import { normalizeScenario } from './scenario-card-source.utils';
-import {
-  DEFAULT_SCENARIOS,
-  mergeScenariosWithDefaults,
-} from './scenario-catalog.defaults';
+import { DEFAULT_SCENARIOS, mergeScenariosWithDefaults } from './scenario-catalog.defaults';
 
-export { DEFAULT_SCENARIOS, DEFAULT_EN_SCENARIOS, DEFAULT_ZH_SCENARIOS, RU_ZH_LANGUAGE_PAIR } from './scenario-catalog.defaults';
+export {
+  DEFAULT_SCENARIOS,
+  DEFAULT_EN_SCENARIOS,
+  DEFAULT_ZH_SCENARIOS,
+  RU_ZH_LANGUAGE_PAIR,
+} from './scenario-catalog.defaults';
 
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 

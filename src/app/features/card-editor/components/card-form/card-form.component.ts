@@ -9,7 +9,12 @@ import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/tone-mark.utils';
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
-import { CardDraft, DEFAULT_CARD_DIRECTION, type MemoryCardDraft, type SoundCardDraft } from '../../types';
+import {
+  CardDraft,
+  DEFAULT_CARD_DIRECTION,
+  type MemoryCardDraft,
+  type SoundCardDraft,
+} from '../../types';
 import type { CardEditorUxMode } from '../../utils/card-editor-ux.utils';
 import { cardFormKindGroup } from '../../utils/card-form.registry';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
@@ -177,7 +182,6 @@ export class CardFormComponent {
           practiceMode: draft.practiceMode ?? 'freehand',
           targetCharacter: draft.targetCharacter || draft.promptLexeme?.primary || '',
           radicalHint: draft.radicalHint,
-          strokeGuides: draft.strokeGuides,
           appearance,
         };
       case 'tone':

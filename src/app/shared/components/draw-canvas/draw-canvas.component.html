@@ -1,5 +1,48 @@
 <div class="draw-canvas">
   <div class="draw-canvas__surface">
+    @if (showHanziGhost()) {
+      <svg
+        class="draw-canvas__ghost"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <g [attr.transform]="hanziSvgTransform()">
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+            <path
+              class="draw-canvas__ghost-stroke"
+              [class.draw-canvas__ghost-stroke--radical]="stroke.isRadical"
+              [attr.d]="stroke.path"
+              [style.opacity]="ghostOpacity()"
+            />
+          }
+        </g>
+      </svg>
+    }
+
+    @if (showRadicalLayer()) {
+      <svg
+        class="draw-canvas__radicals"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        @for (hint of radicalHints(); track hint.character; let index = $index) {
+          @if (radicalModelFor(hint.character); as model) {
+            <g [attr.transform]="radicalComponentTransform(index, radicalHints().length)">
+              @for (stroke of model.strokes; track stroke.strokeNum) {
+                <path
+                  class="draw-canvas__radical-stroke"
+                  [attr.d]="stroke.path"
+                  [attr.fill]="hint.color"
+                />
+              }
+            </g>
+          }
+        }
+      </svg>
+    }
+
     <canvas
       #canvas
       class="draw-canvas__canvas"
@@ -12,21 +55,49 @@
       (pointercancel)="onPointerUp($event)"
     ></canvas>
 
-    @if (showStrokeGuides() && strokeGuides().length > 0) {
-      <svg class="draw-canvas__guides" viewBox="0 0 100 100" aria-hidden="true">
-        @for (guide of strokeGuides(); track guide.order) {
-          <g class="draw-canvas__guide">
-            <path [attr.d]="guide.path" />
-            <text
-              class="draw-canvas__guide-order"
-              [attr.x]="guidePathCenter(guide).x"
-              [attr.y]="guidePathCenter(guide).y"
-            >
-              {{ guide.order }}
-            </text>
-          </g>
-        }
+    @if (showHanziGuides()) {
+      <svg
+        class="draw-canvas__guides"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <g [attr.transform]="hanziSvgTransform()">
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+            <g class="draw-canvas__guide">
+              <path [attr.d]="medianPath(stroke.points)" />
+              <text
+                class="draw-canvas__guide-order"
+                [attr.x]="medianLabel(stroke.points).x"
+                [attr.y]="medianLabel(stroke.points).y"
+              >
+                {{ stroke.strokeNum + 1 }}
+              </text>
+            </g>
+          }
+        </g>
       </svg>
+    }
+
+    @if (hanziLoadState() === 'loading' && hanziDataRequired()) {
+      <div class="draw-canvas__overlay draw-canvas__overlay--loading" aria-live="polite">
+        <mat-icon>hourglass_empty</mat-icon>
+        <span>Загрузка черт…</span>
+      </div>
+    }
+
+    @if (radicalLoadState() === 'loading' && radicalDataRequired()) {
+      <div class="draw-canvas__overlay draw-canvas__overlay--loading" aria-live="polite">
+        <mat-icon>hourglass_empty</mat-icon>
+        <span>Загрузка компонентов…</span>
+      </div>
+    }
+
+    @if (hanziLoadState() === 'missing' && hanziDataRequired()) {
+      <div class="draw-canvas__overlay draw-canvas__overlay--missing" role="status">
+        <mat-icon>info</mat-icon>
+        <span>Данные черт недоступны</span>
+      </div>
     }
   </div>
 

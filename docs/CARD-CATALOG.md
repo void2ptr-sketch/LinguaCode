@@ -14,12 +14,12 @@
 
 ## Решение: индекс + полная карточка
 
-| Слой | Тип | Назначение |
-|------|-----|------------|
-| Каталог | `CardIndexEntry` | id, kind, title, language, difficulty, tags, updatedAt |
-| Детали | `Card` | полный payload по `kind` (question, options, …) |
-| Поиск | `CardSearchCriteria` + `PageRequest` | фильтры + пагинация |
-| Ответ API | `PageResponse<CardIndexEntry>` | items + totalItems + totalPages |
+| Слой      | Тип                                  | Назначение                                             |
+| --------- | ------------------------------------ | ------------------------------------------------------ |
+| Каталог   | `CardIndexEntry`                     | id, kind, title, language, difficulty, tags, updatedAt |
+| Детали    | `Card`                               | полный payload по `kind` (question, options, …)        |
+| Поиск     | `CardSearchCriteria` + `PageRequest` | фильтры + пагинация                                    |
+| Ответ API | `PageResponse<CardIndexEntry>`       | items + totalItems + totalPages                        |
 
 Полная карточка запрашивается по `id` только когда нужна (редактор, preview, прохождение).
 
@@ -27,12 +27,12 @@
 
 Модуль **`shared/pagination/`** — типы, утилиты и UI:
 
-| Экспорт | Назначение |
-|---------|------------|
-| `PageRequest`, `PageResponse<T>` | API и mock search |
-| `paginateArray`, `clampPage`, `toOffsetLimit` | server-side / mock |
-| `paginateItems`, `createPaginationState` | in-memory списки (signals) |
-| `UiPaginationComponent` | обёртка над `MatPaginator` |
+| Экспорт                                       | Назначение                 |
+| --------------------------------------------- | -------------------------- |
+| `PageRequest`, `PageResponse<T>`              | API и mock search          |
+| `paginateArray`, `clampPage`, `toOffsetLimit` | server-side / mock         |
+| `paginateItems`, `createPaginationState`      | in-memory списки (signals) |
+| `UiPaginationComponent`                       | обёртка над `MatPaginator` |
 
 ```typescript
 type PageRequest = { page: number; pageSize: number };
@@ -93,12 +93,12 @@ type ScenarioCardSource =
 
 ## Dialog редактора
 
-| Элемент | Путь |
-|---------|------|
-| Shell dialog | `features/card-editor/components/card-editor-dialog/` |
-| Открытие | `CardEditorDialogService.openCreate` / `openEdit` |
-| Форма | `CardFormComponent` (переиспользуется) |
-| Discard confirm | `CardEditorDiscardDialogComponent` |
+| Элемент         | Путь                                                  |
+| --------------- | ----------------------------------------------------- |
+| Shell dialog    | `features/card-editor/components/card-editor-dialog/` |
+| Открытие        | `CardEditorDialogService.openCreate` / `openEdit`     |
+| Форма           | `CardFormComponent` (переиспользуется)                |
+| Discard confirm | `CardEditorDiscardDialogComponent`                    |
 
 - `disableClose: true` — закрытие только через кнопки;
 - при dirty draft — confirm «Закрыть без сохранения?»;
@@ -106,12 +106,12 @@ type ScenarioCardSource =
 
 ## Dialog прогона карточки (try)
 
-| Элемент | Путь |
-|---------|------|
+| Элемент      | Путь                                               |
+| ------------ | -------------------------------------------------- |
 | Shell dialog | `features/card-editor/components/card-try-dialog/` |
-| Открытие | `CardTryDialogService.open(cardId)` |
-| Store | `SingleCardPlayStore` (provider на dialog) |
-| Рендер | `CardHostComponent` + `card-answer.utils` |
+| Открытие     | `CardTryDialogService.open(cardId)`                |
+| Store        | `SingleCardPlayStore` (provider на dialog)         |
+| Рендер       | `CardHostComponent` + `card-answer.utils`          |
 
 - кнопка **play** на строке каталога `/tools/cards`;
 - direction toggle, feedback, «Ещё раз» / «Закрыть»;
@@ -120,12 +120,12 @@ type ScenarioCardSource =
 
 ## Этапы реализации
 
-| Этап | Содержание | Статус |
-|------|------------|--------|
-| A | `shared/pagination`, типы `CardIndexEntry` / `CardSearchCriteria`, docs | готово |
-| B | Mock `CardSearchService` с `paginateArray` + facets | готово |
-| C | UI каталога + editor merge в `/tools/cards` | готово |
-| D | HTTP API: `GET /cards/search`, `GET /cards/:id` (mock interceptor в dev) | готово |
+| Этап | Содержание                                                               | Статус |
+| ---- | ------------------------------------------------------------------------ | ------ |
+| A    | `shared/pagination`, типы `CardIndexEntry` / `CardSearchCriteria`, docs  | готово |
+| B    | Mock `CardSearchService` с `paginateArray` + facets                      | готово |
+| C    | UI каталога + editor merge в `/tools/cards`                              | готово |
+| D    | HTTP API: `GET /cards/search`, `GET /cards/:id` (mock interceptor в dev) | готово |
 
 ## Связанные пути в коде
 

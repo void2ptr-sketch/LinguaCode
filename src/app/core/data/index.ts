@@ -6,10 +6,20 @@ export {
   isContentLanguage,
   normalizeLanguagePair,
 } from './language-pair.utils';
-export { buildCardIndex, cardToIndexEntry, type CardIndexMetaFixture, type CardIndexMetaOverride } from './card-index.mapper';
+export {
+  buildCardIndex,
+  cardToIndexEntry,
+  type CardIndexMetaFixture,
+  type CardIndexMetaOverride,
+} from './card-index.mapper';
 export { CardsApiService } from './cards-api.service';
 export { CardSearchService } from './card-search.service';
-export { buildCardSearchFacets, filterCardIndex, matchesCardIndexEntry, toSearchFilters } from './card-search.utils';
+export {
+  buildCardSearchFacets,
+  filterCardIndex,
+  matchesCardIndexEntry,
+  toSearchFilters,
+} from './card-search.utils';
 export {
   DEFAULT_CRITERIA_LIMIT,
   buildSnapshotCardSource,
@@ -36,14 +46,16 @@ export { scenarioToIndexEntry } from './scenario-index.mapper';
 export { filterScenarioIndex, matchesScenarioIndexEntry } from './scenario-search.utils';
 export { ScenariosApiService } from './scenarios-api.service';
 export { ScenarioSearchService } from './scenario-search.service';
-export { collectCardIpaReadings, cardHasIpaContent, collectLexemeIpaReadings } from './card-ipa-index.utils';
+export {
+  collectCardIpaReadings,
+  cardHasIpaContent,
+  collectLexemeIpaReadings,
+} from './card-ipa-index.utils';
 export {
   HAN_COMPONENT_PINYIN,
   HAN_RADICAL_HINTS,
-  HAN_STROKE_GUIDES,
   lookupHanComponentPinyin,
   lookupHanRadicalHint,
-  lookupHanStrokeGuides,
   primaryHanCharacter,
 } from './draw-stroke-guides.data';
 export {
@@ -52,7 +64,12 @@ export {
   normalizeToneOptions,
   toneMarkLabel,
 } from './tone-mark.utils';
-export { validateIpaInput, answersMatchIpa, isLikelyIpa, normalizeIpa } from './ipa-normalize.utils';
+export {
+  validateIpaInput,
+  answersMatchIpa,
+  isLikelyIpa,
+  normalizeIpa,
+} from './ipa-normalize.utils';
 export { lookupEnglishIpa } from './ipa-en-lookup.utils';
 export { pinyinToIpa, pinyinSyllableToIpa, parsePinyinSyllable } from './pinyin-to-ipa.utils';
 export { resolveKeyboardAnswerMode } from './keyboard-answer-mode.utils';

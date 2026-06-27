@@ -26,7 +26,9 @@ function normalizeRomanizationList(values: readonly unknown[]): readonly Romaniz
   return ROMANIZATION_DISPLAY_ORDER.filter((system) => selected.includes(system));
 }
 
-function normalizeDisplayRomanizations(raw?: LegacyCjkLearningPreferences | null): readonly RomanizationSystem[] {
+function normalizeDisplayRomanizations(
+  raw?: LegacyCjkLearningPreferences | null,
+): readonly RomanizationSystem[] {
   if (raw && 'displayRomanizations' in raw && Array.isArray(raw.displayRomanizations)) {
     return normalizeRomanizationList(raw.displayRomanizations);
   }
@@ -38,7 +40,9 @@ function normalizeDisplayRomanizations(raw?: LegacyCjkLearningPreferences | null
   return [...DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations];
 }
 
-function normalizeAnswerRomanization(raw?: LegacyCjkLearningPreferences | null): readonly RomanizationSystem[] {
+function normalizeAnswerRomanization(
+  raw?: LegacyCjkLearningPreferences | null,
+): readonly RomanizationSystem[] {
   if (raw && 'answerRomanization' in raw && Array.isArray(raw.answerRomanization)) {
     return normalizeRomanizationList(raw.answerRomanization);
   }

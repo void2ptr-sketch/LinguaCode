@@ -99,7 +99,9 @@ export class InputCardFormComponent {
 
     this.updateDraft({
       ...draft,
-      acceptedAnswersKnown: draft.acceptedAnswersKnown.filter((_, answerIndex) => answerIndex !== index),
+      acceptedAnswersKnown: draft.acceptedAnswersKnown.filter(
+        (_, answerIndex) => answerIndex !== index,
+      ),
     });
   }
 }

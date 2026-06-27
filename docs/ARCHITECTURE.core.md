@@ -21,19 +21,19 @@ src/app/core/
 
 ## Компоненты layout
 
-| Компонент | Путь | Роль |
-|-----------|------|------|
-| `MainLayoutComponent` | `layout/main-layout` | Grid shell + `router-outlet` |
-| `HeaderComponent` | `layout/header` | Шапка, menu-* |
-| `NavigationComponent` | `layout/navigation` | Боковое меню |
-| `UserPageComponent` | `layout/pages/user-page` | Профиль: имя, уровень подготовки, пары языков, тема |
+| Компонент             | Путь                     | Роль                                                |
+| --------------------- | ------------------------ | --------------------------------------------------- |
+| `MainLayoutComponent` | `layout/main-layout`     | Grid shell + `router-outlet`                        |
+| `HeaderComponent`     | `layout/header`          | Шапка, menu-\*                                      |
+| `NavigationComponent` | `layout/navigation`      | Боковое меню                                        |
+| `UserPageComponent`   | `layout/pages/user-page` | Профиль: имя, уровень подготовки, пары языков, тема |
 
 ## Состояние
 
-| Store | Ключ persistence | Назначение |
-|-------|------------------|------------|
-| `UserStore` | `lingua-code.user` | Пользователь, `UserPreferences`, `learningProficiencyLevel`, языковые пары |
-| `LearningResultsStore` | `lingua-code.learning-results` | Ответы, прогресс по сценариям/урокам/программам |
+| Store                  | Ключ persistence               | Назначение                                                                 |
+| ---------------------- | ------------------------------ | -------------------------------------------------------------------------- |
+| `UserStore`            | `lingua-code.user`             | Пользователь, `UserPreferences`, `learningProficiencyLevel`, языковые пары |
+| `LearningResultsStore` | `lingua-code.learning-results` | Ответы, прогресс по сценариям/урокам/программам                            |
 
 ## API (mock + HTTP)
 

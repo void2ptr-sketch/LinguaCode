@@ -10,12 +10,21 @@
   @if (!hidePrompt()) {
     <mat-form-field appearance="outline">
       <mat-label>Известный</mat-label>
-      <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+      <textarea
+        matInput
+        rows="2"
+        [ngModel]="d.promptKnown"
+        (ngModelChange)="updatePromptKnown($event)"
+      ></textarea>
     </mat-form-field>
   }
   <mat-form-field appearance="outline">
     <mat-label>Ориентир для рисования</mat-label>
-    <input matInput [ngModel]="d.referenceHintKnown" (ngModelChange)="updateReferenceHintKnown($event)" />
+    <input
+      matInput
+      [ngModel]="d.referenceHintKnown"
+      (ngModelChange)="updateReferenceHintKnown($event)"
+    />
   </mat-form-field>
 }
 
@@ -23,7 +32,12 @@
   @if (!hidePrompt()) {
     <mat-form-field appearance="outline">
       <mat-label>Известный</mat-label>
-      <textarea matInput rows="2" [ngModel]="d.promptKnown" (ngModelChange)="updatePromptKnown($event)"></textarea>
+      <textarea
+        matInput
+        rows="2"
+        [ngModel]="d.promptKnown"
+        (ngModelChange)="updatePromptKnown($event)"
+      ></textarea>
     </mat-form-field>
   }
   <section>
@@ -44,7 +58,12 @@
         </button>
       </div>
     }
-    <button mat-button type="button" [disabled]="d.acceptedAnswersKnown.length >= 8" (click)="addKeyboardAnswer()">
+    <button
+      mat-button
+      type="button"
+      [disabled]="d.acceptedAnswersKnown.length >= 8"
+      (click)="addKeyboardAnswer()"
+    >
       <mat-icon>add</mat-icon> Добавить
     </button>
   </section>

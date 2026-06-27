@@ -1,10 +1,7 @@
 import { parsePinyinSyllable } from './pinyin-to-ipa.utils';
 import type { ToneMark } from '../models/phonetic-content.types';
 import type { ToneColorPalette, ToneColorSchemeId } from '../models/tone-color.types';
-import {
-  DEFAULT_TONE_COLOR_SCHEME_ID,
-  TONE_COLOR_SCHEMES,
-} from '../models/tone-color.types';
+import { DEFAULT_TONE_COLOR_SCHEME_ID, TONE_COLOR_SCHEMES } from '../models/tone-color.types';
 
 export type ToneTextSegment = {
   text: string;
@@ -33,7 +30,10 @@ export function toneColorForMark(palette: ToneColorPalette, tone: ToneMark): str
   return palette[tone];
 }
 
-export function inferTonesFromPinyin(pinyin: string | undefined, count: number): readonly ToneMark[] {
+export function inferTonesFromPinyin(
+  pinyin: string | undefined,
+  count: number,
+): readonly ToneMark[] {
   if (count <= 0) {
     return [];
   }
@@ -66,9 +66,8 @@ export function segmentHanText(
     return [];
   }
 
-  const toneList = tones?.length === characters.length
-    ? tones
-    : inferTonesFromPinyin(pinyin, characters.length);
+  const toneList =
+    tones?.length === characters.length ? tones : inferTonesFromPinyin(pinyin, characters.length);
 
   return characters.map((character, index) => ({
     text: character,

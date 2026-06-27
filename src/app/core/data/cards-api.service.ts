@@ -19,9 +19,9 @@ export class CardsApiService {
   }
 
   getById(cardId: string): Promise<Card> {
-    return firstValueFrom(
-      this.http.get<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`)),
-    ).then((response) => response.data);
+    return firstValueFrom(this.http.get<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`))).then(
+      (response) => response.data,
+    );
   }
 
   getByIds(cardIds: readonly string[]): Promise<readonly Card[]> {

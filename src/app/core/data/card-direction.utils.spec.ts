@@ -23,7 +23,9 @@ describe('card-direction.utils', () => {
   };
 
   it('should prefer session direction over card default', () => {
-    expect(effectiveCardDirection('known-to-learning', 'learning-to-known')).toBe('learning-to-known');
+    expect(effectiveCardDirection('known-to-learning', 'learning-to-known')).toBe(
+      'learning-to-known',
+    );
   });
 
   it('should resolve known-to-learning select card', () => {

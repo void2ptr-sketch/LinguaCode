@@ -41,11 +41,7 @@ export function matchesScenarioIndexEntry(
   }
 
   if (
-    !scenarioIndexMatchesLanguageCriteria(
-      entry,
-      criteria.knownLanguage,
-      criteria.learningLanguage,
-    )
+    !scenarioIndexMatchesLanguageCriteria(entry, criteria.knownLanguage, criteria.learningLanguage)
   ) {
     return false;
   }

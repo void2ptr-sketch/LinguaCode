@@ -5,7 +5,10 @@ export {
   setAsyncLoading,
   setAsyncSuccess,
 } from './async-state.types';
-export { LearningResultsPersistence, LEARNING_RESULTS_STORAGE_KEY } from './learning-results.persistence';
+export {
+  LearningResultsPersistence,
+  LEARNING_RESULTS_STORAGE_KEY,
+} from './learning-results.persistence';
 export { LearningResultsStore } from './learning-results.store';
 export { UserPersistence, USER_STORAGE_KEY } from './user.persistence';
 export { UserStore } from './user.store';

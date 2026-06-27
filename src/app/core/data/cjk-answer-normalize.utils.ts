@@ -2,11 +2,7 @@ import type { RomanizationSystem } from '../models/phonetic-content.types';
 import { stripPinyinTones } from './cjk-romanization.utils';
 
 export function normalizePalladiusAnswer(value: string): string {
-  return value
-    .trim()
-    .replace(/ё/g, 'е')
-    .replace(/\s+/g, ' ')
-    .toLowerCase();
+  return value.trim().replace(/ё/g, 'е').replace(/\s+/g, ' ').toLowerCase();
 }
 
 export function normalizePinyinAnswer(value: string, stripTones = true): string {

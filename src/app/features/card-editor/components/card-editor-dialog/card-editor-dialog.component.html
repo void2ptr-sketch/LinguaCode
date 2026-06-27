@@ -73,12 +73,7 @@
 
 <mat-dialog-actions align="end">
   <button mat-button type="button" (click)="cancel()">Отмена</button>
-  <button
-    mat-flat-button
-    type="button"
-    [disabled]="store.editorLoading()"
-    (click)="saveCard()"
-  >
+  <button mat-flat-button type="button" [disabled]="store.editorLoading()" (click)="saveCard()">
     Сохранить
   </button>
 </mat-dialog-actions>

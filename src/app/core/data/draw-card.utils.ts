@@ -185,7 +185,6 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
         character: '',
         pinyin: card.promptLexeme?.pinyin,
         glossKnown: meaning,
-        strokeGuides: card.strokeGuides,
         radicalHint: card.radicalHint,
         audioUrl: audioUrl || undefined,
       },
@@ -203,7 +202,6 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
     zhuyin: zhuyinParts[index],
     palladius: palladiusParts[index],
     glossKnown: index === 0 ? meaning : undefined,
-    strokeGuides: index === 0 ? card.strokeGuides : undefined,
     radicalHint: index === 0 ? card.radicalHint : undefined,
     audioUrl: index === 0 ? audioUrl || undefined : undefined,
   }));
@@ -271,13 +269,24 @@ export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
   }
 
   const phonetics = buildDrawPhoneticsLexeme(lexeme);
-  if (!phonetics.pinyin?.trim() && !phonetics.zhuyin?.trim() && !phonetics.palladius?.trim() && !phonetics.ipa) {
+  if (
+    !phonetics.pinyin?.trim() &&
+    !phonetics.zhuyin?.trim() &&
+    !phonetics.palladius?.trim() &&
+    !phonetics.ipa
+  ) {
     return null;
   }
 
   return phonetics;
 }
 
-export function initialDrawCanvasMode(): DrawCanvasMode {
+/** UI draw cards always open on «По памяти»; `practiceMode` on card is editor metadata only. */
+export function resolveInitialDrawCanvasMode(): DrawCanvasMode {
   return 'memory';
+}
+
+/** @deprecated Use resolveInitialDrawCanvasMode(). */
+export function initialDrawCanvasMode(): DrawCanvasMode {
+  return resolveInitialDrawCanvasMode();
 }

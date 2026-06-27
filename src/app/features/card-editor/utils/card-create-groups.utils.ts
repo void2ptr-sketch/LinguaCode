@@ -3,12 +3,7 @@ import type { CardFormKindGroup } from './card-form.registry';
 
 export type CardCreateGroup = CardFormKindGroup;
 
-export const CARD_CREATE_GROUPS: readonly CardCreateGroup[] = [
-  'choice',
-  'input',
-  'pairs',
-  'media',
-];
+export const CARD_CREATE_GROUPS: readonly CardCreateGroup[] = ['choice', 'input', 'pairs', 'media'];
 
 export const CARD_CREATE_GROUP_LABELS: Record<CardCreateGroup, string> = {
   choice: 'Выбор',

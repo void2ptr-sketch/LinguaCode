@@ -19,7 +19,10 @@ const TONE_PREVIEW_BASE = 'a';
 export const PINYIN_KEYBOARD_LAYOUT: readonly (readonly PinyinKeyboardKey[])[] = [
   LETTER_ROWS[0].split('').map((char) => ({ kind: 'letter' as const, char })),
   LETTER_ROWS[1].split('').map((char) => ({ kind: 'letter' as const, char })),
-  [{ kind: 'letter' as const, char: 'v', label: 'ü' }, ...'zxcbnm'.split('').map((char) => ({ kind: 'letter' as const, char }))],
+  [
+    { kind: 'letter' as const, char: 'v', label: 'ü' },
+    ...'zxcbnm'.split('').map((char) => ({ kind: 'letter' as const, char })),
+  ],
   [
     { kind: 'tone' as const, tone: 1 },
     { kind: 'tone' as const, tone: 2 },
@@ -48,7 +51,9 @@ export function formatPinyinKeyboardValue(state: PinyinKeyboardState): string {
     return pendingSyllable;
   }
 
-  return committed.endsWith(' ') ? `${committed}${pendingSyllable}` : `${committed} ${pendingSyllable}`;
+  return committed.endsWith(' ')
+    ? `${committed}${pendingSyllable}`
+    : `${committed} ${pendingSyllable}`;
 }
 
 export function toneKeyPreview(tone: ToneMark): string {

@@ -53,6 +53,11 @@
 .draw-card__content {
   display: grid;
   justify-items: center;
+  width: 100%;
+}
+
+.draw-card__panel {
+  width: 100%;
 }
 
 .draw-card__char-tabs {
@@ -70,7 +75,9 @@
   cursor: pointer;
   padding: 0.625rem 0.5rem;
   text-align: center;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
 }
 
 .draw-card__char-tab--active {

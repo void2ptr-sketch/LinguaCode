@@ -23,11 +23,11 @@ features/home/
 
 ## Компоненты dashboard
 
-| Компонент | Данные |
-|-----------|--------|
-| `learning-continue-card` | `learning-resume.utils` → CTA + query params |
-| `learning-program-progress` | `LearningResultsStore.courseProgress` |
-| `learning-lesson-roadmap` | уроки, prerequisites, locked/done |
+| Компонент                   | Данные                                       |
+| --------------------------- | -------------------------------------------- |
+| `learning-continue-card`    | `learning-resume.utils` → CTA + query params |
+| `learning-program-progress` | `LearningResultsStore.courseProgress`        |
+| `learning-lesson-roadmap`   | уроки, prerequisites, locked/done            |
 
 ## Диаграмма
 

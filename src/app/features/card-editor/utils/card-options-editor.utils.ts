@@ -1,10 +1,7 @@
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../core/models';
-import {
-  defaultScriptForLanguages,
-  syncLexemePrimaryFromText,
-} from './card-editor-ux.utils';
+import { defaultScriptForLanguages, syncLexemePrimaryFromText } from './card-editor-ux.utils';
 
 export const MIN_CARD_OPTIONS = 2;
 export const MAX_CARD_OPTIONS = 8;
@@ -105,7 +102,10 @@ export function addOption(state: CardOptionsEditorState): CardOptionsEditorState
   };
 }
 
-export function removeOption(state: CardOptionsEditorState, index: number): CardOptionsEditorState | null {
+export function removeOption(
+  state: CardOptionsEditorState,
+  index: number,
+): CardOptionsEditorState | null {
   if (state.options.length <= MIN_CARD_OPTIONS) {
     return null;
   }

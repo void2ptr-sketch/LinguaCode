@@ -1,5 +1,9 @@
 @if (languagePairs().length > 1) {
-  <mat-form-field appearance="outline" class="pair-switcher" [class.pair-switcher--compact]="compact()">
+  <mat-form-field
+    appearance="outline"
+    class="pair-switcher"
+    [class.pair-switcher--compact]="compact()"
+  >
     <mat-label>Курс</mat-label>
     <mat-select
       [ngModel]="activeLanguagePairId()"
@@ -11,11 +15,15 @@
         <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
       }
     </mat-select>
-    <mat-hint id="pair-switcher-hint">Контекст карточек и сценариев (не учебная программа)</mat-hint>
+    <mat-hint id="pair-switcher-hint"
+      >Контекст карточек и сценариев (не учебная программа)</mat-hint
+    >
   </mat-form-field>
 } @else if (languagePairs().length === 1) {
   <p class="pair-switcher__single" [class.pair-switcher__single--compact]="compact()">
     Курс: {{ entryLabel(languagePairs()[0]) }}
   </p>
-  <p class="pair-switcher__hint" id="pair-switcher-hint">Контекст карточек и сценариев (не учебная программа)</p>
+  <p class="pair-switcher__hint" id="pair-switcher-hint">
+    Контекст карточек и сценариев (не учебная программа)
+  </p>
 }

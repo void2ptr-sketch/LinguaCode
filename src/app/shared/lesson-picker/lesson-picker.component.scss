@@ -60,12 +60,20 @@
   width: 100%;
 
   &:hover:not(:disabled) {
-    background: color-mix(in srgb, var(--mat-sys-primary) 6%, var(--mat-sys-surface-container-lowest));
+    background: color-mix(
+      in srgb,
+      var(--mat-sys-primary) 6%,
+      var(--mat-sys-surface-container-lowest)
+    );
   }
 }
 
 .lesson-picker__item--selected {
-  background: color-mix(in srgb, var(--mat-sys-primary) 12%, var(--mat-sys-surface-container-lowest));
+  background: color-mix(
+    in srgb,
+    var(--mat-sys-primary) 12%,
+    var(--mat-sys-surface-container-lowest)
+  );
   border-color: color-mix(in srgb, var(--mat-sys-primary) 35%, transparent);
 }
 

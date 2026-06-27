@@ -109,7 +109,9 @@
           }
 
           @if (catalogStore.entries().length === 0) {
-            <p class="card-editor-page__empty">Ничего не найдено. Измените фильтры или создайте карточку.</p>
+            <p class="card-editor-page__empty">
+              Ничего не найдено. Измените фильтры или создайте карточку.
+            </p>
           } @else {
             <ul class="card-editor-page__list">
               @for (entry of catalogStore.entries(); track entry.id) {
@@ -117,8 +119,7 @@
                   <span class="card-editor-page__title">{{ entry.title }}</span>
                   <span class="card-editor-page__meta-text">
                     {{ kindLabels[entry.kind] }}
-                    · {{ formatEntryLanguages(entry) }}
-                    · {{ difficultyLabels[entry.difficulty] }}
+                    · {{ formatEntryLanguages(entry) }} · {{ difficultyLabels[entry.difficulty] }}
                   </span>
                   <mat-chip-set class="card-editor-page__tags" aria-label="Теги">
                     @for (tag of entry.tags; track tag) {

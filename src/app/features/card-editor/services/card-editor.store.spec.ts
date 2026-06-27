@@ -1,7 +1,12 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
-import { CardRepository, CARDS_STORAGE_KEY, CardSearchService, ScenarioSearchService } from '../../../core/data';
+import {
+  CardRepository,
+  CARDS_STORAGE_KEY,
+  CardSearchService,
+  ScenarioSearchService,
+} from '../../../core/data';
 import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardEditorStore } from './card-editor.store';

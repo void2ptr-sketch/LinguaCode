@@ -10,6 +10,7 @@ import {
   resolveDrawLearningSpeechText,
   resolveDrawMeaning,
   resolveDrawQuestion,
+  resolveInitialDrawCanvasMode,
   splitPinyinSyllables,
   stripHanScript,
 } from './draw-card.utils';
@@ -90,9 +91,9 @@ describe('draw-card.utils', () => {
         targetCharacter: '很棒',
       }),
     ).toBe('很棒');
-    expect(
-      resolveDrawLearningSpeechText(baseDrawCard, { character: '好', pinyin: 'hǎo' }),
-    ).toBe('好');
+    expect(resolveDrawLearningSpeechText(baseDrawCard, { character: '好', pinyin: 'hǎo' })).toBe(
+      '好',
+    );
   });
 
   it('should parse radical hint into components with positional index', () => {
@@ -138,6 +139,10 @@ describe('draw-card.utils', () => {
 
     expect(targets[0].palladius).toBe('ни');
     expect(targets[1].palladius).toBe('хао');
+  });
+
+  it('should always open draw canvas on memory mode', () => {
+    expect(resolveInitialDrawCanvasMode()).toBe('memory');
   });
 
   it('should build tab lexeme for draw card phonetics without han', () => {

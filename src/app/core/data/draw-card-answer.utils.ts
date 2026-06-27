@@ -1,17 +1,18 @@
 import type { DrawCard } from '../models';
 import type { LearningProficiencyLevel } from '../models/learning-proficiency.types';
 import type { DrawAnswerPayload } from '../../shared/types/draw-answer.types';
-import { resolveDrawCharacterTargets } from './draw-card.utils';
-import {
-  resolveDrawStrokeValidationThresholds,
-  validateDrawStrokesAgainstGuides,
-} from './draw-stroke-validation.utils';
+import type { HanziCharacterModel } from '../hanzi-engine/hanzi-character.model';
+import { validateHanziMemoryStrokes } from '../hanzi-engine/hanzi-memory-validation.utils';
+import { isHanCharacter, resolveDrawCharacterTargets } from './draw-card.utils';
+
+export type HanziModelResolver = (character: string) => HanziCharacterModel | null;
 
 export function checkDrawCardAnswer(
   card: DrawCard,
   drawSubmitted: boolean,
   drawAnswer: DrawAnswerPayload | null | undefined,
   proficiencyLevel: LearningProficiencyLevel,
+  getHanziModel?: HanziModelResolver,
 ): boolean {
   if (!drawSubmitted || !drawAnswer) {
     return false;
@@ -26,28 +27,26 @@ export function checkDrawCardAnswer(
     return true;
   }
 
-  const thresholds = resolveDrawStrokeValidationThresholds(proficiencyLevel);
   const targets = resolveDrawCharacterTargets(card);
 
   for (let index = 0; index < targets.length; index += 1) {
-    const target = targets[index];
-    const guides = target.strokeGuides?.length
-      ? target.strokeGuides
-      : index === 0
-        ? card.strokeGuides
-        : undefined;
-
-    if (!guides?.length) {
+    const character = targets[index]?.character?.trim() ?? '';
+    if (!character || !isHanCharacter(character)) {
       continue;
     }
 
+    const model = getHanziModel?.(character) ?? null;
+    if (!model) {
+      return false;
+    }
+
     const strokes = drawAnswer.strokesByCharacter[index] ?? [];
-    const result = validateDrawStrokesAgainstGuides({
+    const result = validateHanziMemoryStrokes(
+      model,
+      drawAnswer.canvasSize,
       strokes,
-      guides,
-      canvasSize: drawAnswer.canvasSize,
-      thresholds,
-    });
+      proficiencyLevel,
+    );
 
     if (!result.passed) {
       return false;

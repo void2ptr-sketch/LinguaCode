@@ -6,7 +6,9 @@
       [class.practice-session-bar__segment--completed]="segment.completed"
       [class.practice-session-bar__segment--locked]="segment.locked"
       [disabled]="segment.locked"
-      [matTooltip]="segment.locked ? (segment.lockReason ?? 'Сначала выберите предыдущий шаг') : null"
+      [matTooltip]="
+        segment.locked ? (segment.lockReason ?? 'Сначала выберите предыдущий шаг') : null
+      "
       (click)="selectSegment(segment.tabIndex, segment.locked)"
     >
       <span class="practice-session-bar__label">{{ segment.label }}</span>

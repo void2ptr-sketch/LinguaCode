@@ -5,8 +5,15 @@ import {
   resolveShowIpaForSurface,
   type LexemeDisplaySurface,
 } from '../../../core/data/phonetic-preferences.utils';
-import { resolveIpaString, resolveVisibleRomanizationReadings, hasLexemePhoneticLayers } from '../../../core/data/phonetic-lexeme.utils';
-import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models/phonetic-content.types';
+import {
+  resolveIpaString,
+  resolveVisibleRomanizationReadings,
+  hasLexemePhoneticLayers,
+} from '../../../core/data/phonetic-lexeme.utils';
+import type {
+  PhoneticLexeme,
+  RomanizationSystem,
+} from '../../../core/models/phonetic-content.types';
 import { UserStore } from '../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';

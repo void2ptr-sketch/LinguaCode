@@ -2,7 +2,10 @@
   <p class="pinyin-keyboard__hint">Введите слог латиницей, затем выберите тон (1–5).</p>
 
   @for (row of layout; track $index) {
-    <div class="pinyin-keyboard__row" [class.pinyin-keyboard__row--utility]="$index === layout.length - 1">
+    <div
+      class="pinyin-keyboard__row"
+      [class.pinyin-keyboard__row--utility]="$index === layout.length - 1"
+    >
       @for (key of row; track $index) {
         <button
           mat-stroked-button

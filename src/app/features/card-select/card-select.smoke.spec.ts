@@ -94,7 +94,9 @@ describe('Card select smoke', () => {
     const scenariosTabIndex = tabLabels.indexOf('Сценарии');
     expect(scenariosTabIndex).toBeGreaterThanOrEqual(0);
 
-    const tabButtons = fixture.nativeElement.querySelectorAll('[role="tab"]') as NodeListOf<HTMLElement>;
+    const tabButtons = fixture.nativeElement.querySelectorAll(
+      '[role="tab"]',
+    ) as NodeListOf<HTMLElement>;
     tabButtons[scenariosTabIndex]?.click();
     fixture.detectChanges();
 
@@ -102,7 +104,9 @@ describe('Card select smoke', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    const scenarioItem = fixture.nativeElement.querySelector('.scenario-picker__item') as HTMLElement | null;
+    const scenarioItem = fixture.nativeElement.querySelector(
+      '.scenario-picker__item',
+    ) as HTMLElement | null;
     expect(scenarioItem).withContext('scenario list item').not.toBeNull();
     scenarioItem?.click();
     fixture.detectChanges();

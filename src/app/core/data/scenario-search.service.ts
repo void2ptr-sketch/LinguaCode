@@ -1,6 +1,11 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import type { Scenario, ScenarioIndexEntry, ScenarioSearchCriteria, ScenarioSearchPage } from '../models';
+import type {
+  Scenario,
+  ScenarioIndexEntry,
+  ScenarioSearchCriteria,
+  ScenarioSearchPage,
+} from '../models';
 
 import { ScenariosApiService, type ScenarioWritePayload } from './scenarios-api.service';
 

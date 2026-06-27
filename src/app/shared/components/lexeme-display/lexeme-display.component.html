@@ -25,7 +25,9 @@
       @for (reading of visibleRomanizations(); track reading.system) {
         <div class="lexeme-display__reading lexeme-display__reading--{{ reading.system }}">
           @if (labelsVisible()) {
-            <span class="lexeme-display__reading-label">{{ romanizationLabel(reading.system) }}</span>
+            <span class="lexeme-display__reading-label">{{
+              romanizationLabel(reading.system)
+            }}</span>
           }
           <span class="lexeme-display__reading-text">
             @if (reading.system === 'pinyin') {

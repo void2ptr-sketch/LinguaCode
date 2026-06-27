@@ -15,7 +15,12 @@
         <div class="page-card__tab-panel">
           <mat-form-field appearance="outline">
             <mat-label>Имя</mat-label>
-            <input matInput [ngModel]="nameDraft()" (ngModelChange)="nameDraft.set($event)" name="displayName" />
+            <input
+              matInput
+              [ngModel]="nameDraft()"
+              (ngModelChange)="nameDraft.set($event)"
+              name="displayName"
+            />
           </mat-form-field>
 
           <mat-form-field appearance="outline">
@@ -110,7 +115,12 @@
               <p class="page-card__error">Языки должны отличаться.</p>
             }
 
-            <button mat-stroked-button type="button" [disabled]="languagePairInvalid()" (click)="addPair()">
+            <button
+              mat-stroked-button
+              type="button"
+              [disabled]="languagePairInvalid()"
+              (click)="addPair()"
+            >
               Добавить курс
             </button>
           </section>
@@ -228,7 +238,10 @@
               </mat-button-toggle>
             </mat-button-toggle-group>
 
-            <div class="page-card__theme-preview" [class.page-card__theme-preview--dark]="colorSchemeDraft() === 'dark'">
+            <div
+              class="page-card__theme-preview"
+              [class.page-card__theme-preview--dark]="colorSchemeDraft() === 'dark'"
+            >
               <span class="page-card__theme-preview-surface">Фон</span>
               <span class="page-card__theme-preview-primary">Акцент</span>
             </div>
@@ -236,16 +249,27 @@
 
           <section class="page-card__section">
             <h2 class="page-card__section-title">Внешний вид карточек</h2>
-            <p class="page-card__hint">Тема и размер шрифта по умолчанию для новых карточек и обучения.</p>
+            <p class="page-card__hint">
+              Тема и размер шрифта по умолчанию для новых карточек и обучения.
+            </p>
 
             <mat-form-field appearance="outline">
               <mat-label>Тема карточек</mat-label>
-              <input matInput [ngModel]="themeDraft()" (ngModelChange)="themeDraft.set($event)" name="theme" />
+              <input
+                matInput
+                [ngModel]="themeDraft()"
+                (ngModelChange)="themeDraft.set($event)"
+                name="theme"
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Размер шрифта</mat-label>
-              <mat-select [ngModel]="fontSizeDraft()" (ngModelChange)="fontSizeDraft.set($event)" name="fontSize">
+              <mat-select
+                [ngModel]="fontSizeDraft()"
+                (ngModelChange)="fontSizeDraft.set($event)"
+                name="fontSize"
+              >
                 <mat-option value="sm">Маленький</mat-option>
                 <mat-option value="md">Средний</mat-option>
                 <mat-option value="lg">Большой</mat-option>
@@ -261,7 +285,8 @@
               Полный экран при обучении
             </mat-slide-toggle>
             <p class="page-card__hint page-card__hint--inline">
-              Карточка сразу открывается на весь экран на вкладке «Обучение». Выход — кнопка или Esc; настройку можно изменить в любой момент.
+              Карточка сразу открывается на весь экран на вкладке «Обучение». Выход — кнопка или
+              Esc; настройку можно изменить в любой момент.
             </p>
           </section>
         </div>

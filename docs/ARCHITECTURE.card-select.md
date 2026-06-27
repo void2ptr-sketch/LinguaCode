@@ -41,12 +41,12 @@ sequenceDiagram
 
 ## UI (G14)
 
-| Элемент | Компонент |
-|---------|-----------|
-| Sticky контекст | `app-practice-session-bar` |
-| Шаги | `app-practice-stepper` |
-| Вкладки | Программа / Уроки / Сценарии / Обучение |
-| Карточка | `app-card-host` в centered zone |
+| Элемент         | Компонент                               |
+| --------------- | --------------------------------------- |
+| Sticky контекст | `app-practice-session-bar`              |
+| Шаги            | `app-practice-stepper`                  |
+| Вкладки         | Программа / Уроки / Сценарии / Обучение |
+| Карточка        | `app-card-host` в centered zone         |
 
 Deep links: `?courseId&lessonId&scenarioId&tab=learning|scenarios|lessons|course`.
 

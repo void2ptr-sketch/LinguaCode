@@ -4,14 +4,14 @@
 
 ## Принципы
 
-| Принцип | Решение |
-|---------|---------|
-| Компоненты | Angular **standalone**, без NgModule |
-| Типизация | `type`, не `interface` |
-| Состояние | **Signal API**; RxJS — только HTTP/WebSocket |
-| UI | **Angular Material** + SCSS |
-| Layout | CSS **Grid**, предпочтительно `grid-template-areas` |
-| Организация кода | `core` / `shared` / `features` |
+| Принцип          | Решение                                             |
+| ---------------- | --------------------------------------------------- |
+| Компоненты       | Angular **standalone**, без NgModule                |
+| Типизация        | `type`, не `interface`                              |
+| Состояние        | **Signal API**; RxJS — только HTTP/WebSocket        |
+| UI               | **Angular Material** + SCSS                         |
+| Layout           | CSS **Grid**, предпочтительно `grid-template-areas` |
+| Организация кода | `core` / `shared` / `features`                      |
 
 ## Слои приложения
 
@@ -57,16 +57,16 @@ features/card-select/
 
 Детальный структурный дизайн — в файлах `ARCHITECTURE.<подсистема>.md` (UML-диаграммы в формате Mermaid):
 
-| Подсистема | Документ |
-|------------|----------|
-| `core` | [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) |
-| `shared` | [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md) |
-| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md) |
-| Dashboard (`home`) | [ARCHITECTURE.home.md](./ARCHITECTURE.home.md) |
-| Редактор карточек | [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md) |
-| Конструктор сценариев | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) |
-| Программы (course) | [ARCHITECTURE.course.md](./ARCHITECTURE.course.md) |
-| Результаты обучения | [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) |
+| Подсистема               | Документ                                                               |
+| ------------------------ | ---------------------------------------------------------------------- |
+| `core`                   | [ARCHITECTURE.core.md](./ARCHITECTURE.core.md)                         |
+| `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md)                     |
+| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)           |
+| Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)                         |
+| Редактор карточек        | [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md)           |
+| Конструктор сценариев    | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) |
+| Программы (course)       | [ARCHITECTURE.course.md](./ARCHITECTURE.course.md)                     |
+| Результаты обучения      | [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) |
 
 ## Layout
 
@@ -85,23 +85,23 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 ### Компоненты layout
 
-| Компонент | Путь | Назначение |
-|-----------|------|------------|
-| Header | `core/layout/header` | Шапка, контейнер для menu-* |
-| MenuCards | `core/layout/menu-cards` | Навигация к карточкам и режимам обучения |
-| MenuTools | `core/layout/menu-tools` | Инструменты (конструктор сценариев и др.) |
-| MenuHelp | `core/layout/menu-help` | Справка |
-| MenuUser | `core/layout/menu-user` | Профиль пользователя |
-| Navigation | `core/layout/navigation` | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
-| MainLayout | `core/layout/main-layout` | Область контента |
-| Footer | `core/layout/footer` | Подвал |
+| Компонент  | Путь                      | Назначение                                                                       |
+| ---------- | ------------------------- | -------------------------------------------------------------------------------- |
+| Header     | `core/layout/header`      | Шапка, контейнер для menu-\*                                                     |
+| MenuCards  | `core/layout/menu-cards`  | Навигация к карточкам и режимам обучения                                         |
+| MenuTools  | `core/layout/menu-tools`  | Инструменты (конструктор сценариев и др.)                                        |
+| MenuHelp   | `core/layout/menu-help`   | Справка                                                                          |
+| MenuUser   | `core/layout/menu-user`   | Профиль пользователя                                                             |
+| Navigation | `core/layout/navigation`  | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
+| MainLayout | `core/layout/main-layout` | Область контента                                                                 |
+| Footer     | `core/layout/footer`      | Подвал                                                                           |
 
 Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
 
-| Пункт (sidebar) | Маршрут | Дублирует в header |
-|-----------------|---------|-------------------|
-| Обучение | `/cards/select` | `menu-cards` → «Карточки» |
-| Карточки | `/tools/cards` | `menu-tools` → «Карточки» |
+| Пункт (sidebar)       | Маршрут                   | Дублирует в header                     |
+| --------------------- | ------------------------- | -------------------------------------- |
+| Обучение              | `/cards/select`           | `menu-cards` → «Карточки»              |
+| Карточки              | `/tools/cards`            | `menu-tools` → «Карточки»              |
 | Конструктор сценариев | `/tools/scenario-builder` | `menu-tools` → «Конструктор сценариев» |
 
 ### Grid (SCSS)
@@ -110,9 +110,9 @@ Shell-приложение. Контент фич — через `<router-outlet
 .shell {
   display: grid;
   grid-template-areas:
-    "header header"
-    "nav    main"
-    "footer footer";
+    'header header'
+    'nav    main'
+    'footer footer';
   grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
@@ -181,12 +181,12 @@ export class CardSelectStore {
 
 ### Правила
 
-| Данные | Где хранить |
-|--------|-------------|
-| UI-состояние фичи | signal-сервис внутри `features/*/` |
-| Глобальные настройки, пользователь | `core/state/` |
-| Сценарии (конструктор) | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
-| Ответ API | signal; конвертация из Observable через `toSignal()` или `rxResource` |
+| Данные                             | Где хранить                                                                 |
+| ---------------------------------- | --------------------------------------------------------------------------- |
+| UI-состояние фичи                  | signal-сервис внутри `features/*/`                                          |
+| Глобальные настройки, пользователь | `core/state/`                                                               |
+| Сценарии (конструктор)             | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
+| Ответ API                          | signal; конвертация из Observable через `toSignal()` или `rxResource`       |
 
 RxJS — **только** на границе HTTP/WebSocket, не в шаблонах и не в компонентах напрямую.
 
@@ -220,37 +220,37 @@ export class CardApiService {
 2. Выбор ответа и проверка (верно / неверно).
 3. Переход к следующей карточке в сценарии.
 
-| | |
-|---|---|
-| Маршрут | `/cards/select` |
+|             |                                                 |
+| ----------- | ----------------------------------------------- |
+| Маршрут     | `/cards/select`                                 |
 | Точка входа | `menu-cards` в header, **«Обучение»** в sidebar |
-| Путь | `features/card-select/` |
+| Путь        | `features/card-select/`                         |
 
 ### `scenario-builder`
 
 Конструктор сценариев — список на странице, CRUD в `MatDialog` (`cardSource`: fixed / criteria / snapshot).
 
-| | |
-|---|---|
-| Маршрут | `/tools/scenario-builder` |
-| Точка входа | `menu-tools` в header, **«Конструктор сценариев»** в sidebar |
-| Путь | `features/scenario-builder/` |
-| Список | `ScenarioBuilderStore` + `ScenarioSearchService` |
-| Редактор | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent` |
-| Пара языков | [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
-| Масштабирование | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
+|                 |                                                                          |
+| --------------- | ------------------------------------------------------------------------ |
+| Маршрут         | `/tools/scenario-builder`                                                |
+| Точка входа     | `menu-tools` в header, **«Конструктор сценариев»** в sidebar             |
+| Путь            | `features/scenario-builder/`                                             |
+| Список          | `ScenarioBuilderStore` + `ScenarioSearchService`                         |
+| Редактор        | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent`         |
+| Пара языков     | [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
+| Масштабирование | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md)                             |
 
 ### `card-management` (`features/card-editor/`)
 
 Единый экран **«Карточки»** — поиск по index, CRUD в `MatDialog`, каталог на странице.
 
-| | |
-|---|---|
-| Маршрут | `/tools/cards` (redirect: `/tools/card-editor`, `/tools/card-catalog`) |
-| Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar |
-| Путь | `features/card-editor/` |
-| Список | `CardCatalogSearchStore` + `CardSearchService` |
-| Редактор | `CardEditorDialogComponent` + `CardEditorStore` + `card-form` |
+|             |                                                                        |
+| ----------- | ---------------------------------------------------------------------- |
+| Маршрут     | `/tools/cards` (redirect: `/tools/card-editor`, `/tools/card-catalog`) |
+| Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar           |
+| Путь        | `features/card-editor/`                                                |
+| Список      | `CardCatalogSearchStore` + `CardSearchService`                         |
+| Редактор    | `CardEditorDialogComponent` + `CardEditorStore` + `card-form`          |
 
 ## Безопасность
 

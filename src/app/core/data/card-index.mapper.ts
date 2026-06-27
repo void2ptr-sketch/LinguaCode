@@ -24,7 +24,8 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
 
   const ipaReadings = collectCardIpaReadings(card);
   const baseTags = meta?.tags ?? [card.kind];
-  const tags = ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
+  const tags =
+    ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
 
   return {
     id: card.id,

@@ -11,7 +11,11 @@ import { isAllowedFontSize, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from './card-focus-preference.utils';
 import { normalizeLearningProficiencyLevel } from './learning-proficiency.utils';
-import { isContentLanguage, languagePairsEqual, normalizeLanguagePair } from './language-pair.utils';
+import {
+  isContentLanguage,
+  languagePairsEqual,
+  normalizeLanguagePair,
+} from './language-pair.utils';
 import {
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,
@@ -126,11 +130,11 @@ export function mergeLanguagePairSettings(
     cjkLearning: patch.cjkLearning
       ? { ...current?.cjkLearning, ...patch.cjkLearning }
       : current?.cjkLearning,
-    phonetic: patch.phonetic
-      ? { ...current?.phonetic, ...patch.phonetic }
-      : current?.phonetic,
+    phonetic: patch.phonetic ? { ...current?.phonetic, ...patch.phonetic } : current?.phonetic,
     learning:
-      patch.learning !== undefined ? { ...current?.learning, ...patch.learning } : current?.learning,
+      patch.learning !== undefined
+        ? { ...current?.learning, ...patch.learning }
+        : current?.learning,
   });
 }
 

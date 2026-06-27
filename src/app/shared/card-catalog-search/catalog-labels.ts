@@ -1,8 +1,5 @@
 import type { CardDifficulty, CardKind } from '../../core/models';
-import {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
-} from '../../core/data/language-pair.utils';
+import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../core/data/language-pair.utils';
 
 export { CONTENT_LANGUAGE_LABELS };
 

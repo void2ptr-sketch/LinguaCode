@@ -1,4 +1,14 @@
-import { Component, computed, effect, inject, input, output, signal, viewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -7,18 +17,20 @@ import { MatIconModule } from '@angular/material/icon';
 import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/card-learning-audio.utils';
 import {
   drawCharacterTabPinyinLabel,
-  initialDrawCanvasMode,
   parseRadicalHintParts,
   resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
   resolveDrawLearningSpeechText,
   resolveDrawPromptLexeme,
   resolveDrawQuestion,
+  resolveInitialDrawCanvasMode,
 } from '../../../../core/data/draw-card.utils';
 import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
 } from '../../../../core/data/radical-component-color.utils';
+import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
+import { gradeHanziMemoryStrokes } from '../../../../core/hanzi-engine/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {
@@ -49,6 +61,7 @@ import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
 })
 export class DrawCardComponent {
   private readonly userStore = inject(UserStore);
+  private readonly hanziData = inject(HanziDataService);
 
   readonly card = input.required<DrawCard>();
   readonly drawSubmitted = input(false);
@@ -66,7 +79,8 @@ export class DrawCardComponent {
   readonly canvasModeLabels = DRAW_CANVAS_MODE_LABELS;
 
   readonly hasStrokes = signal(false);
-  readonly canvasMode = signal<DrawCanvasMode>(initialDrawCanvasMode());
+  readonly panelMode = signal<DrawCanvasMode>('memory');
+  readonly reviewCanvasSize = signal({ width: 280, height: 280 });
   readonly activeCharIndex = signal(0);
   readonly charDone = signal<readonly boolean[]>([]);
   readonly charStrokes = signal<readonly (readonly DrawStrokePath[])[]>([]);
@@ -82,16 +96,14 @@ export class DrawCardComponent {
     return targets[this.activeCharIndex()] ?? targets[0];
   });
 
-  readonly learningAudioUrl = computed(() =>
-    resolveDrawAudioUrl(this.card(), this.activeTarget()),
-  );
+  readonly learningAudioUrl = computed(() => resolveDrawAudioUrl(this.card(), this.activeTarget()));
 
   readonly learningSpeechText = computed(() =>
     resolveDrawLearningSpeechText(this.card(), this.activeTarget()),
   );
 
-  readonly canPlayLearningAudio = computed(
-    () => Boolean(this.learningAudioUrl() || this.learningSpeechText()),
+  readonly canPlayLearningAudio = computed(() =>
+    Boolean(this.learningAudioUrl() || this.learningSpeechText()),
   );
 
   readonly showSyllableTabs = computed(() => this.characterTargets().length > 0);
@@ -104,22 +116,19 @@ export class DrawCardComponent {
 
   readonly toneColorEnabled = computed(() => this.userStore.cjkLearning().showTones);
 
+  readonly visiblePanelModes = computed((): readonly DrawCanvasMode[] => DRAW_CANVAS_MODES);
+
   readonly ghostCharacter = computed(() => {
     const character = this.activeTarget()?.character?.trim();
     return character || null;
   });
 
-  readonly strokeGuides = computed(() => {
-    const mode = this.canvasMode();
-    if (mode !== 'stroke-order' && mode !== 'hints') {
-      return [];
-    }
-
-    return this.activeTarget()?.strokeGuides ?? [];
-  });
+  readonly showStrokeOrderNote = computed(
+    () => this.panelMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
+  );
 
   readonly radicalHint = computed(() => {
-    if (this.canvasMode() !== 'radicals') {
+    if (this.panelMode() !== 'radicals') {
       return null;
     }
 
@@ -162,18 +171,86 @@ export class DrawCardComponent {
     return targets.length > 0 && done.length === targets.length && done.every(Boolean);
   });
 
+  readonly showMemoryReview = computed(
+    () => this.feedback() !== null && this.panelMode() === 'memory',
+  );
+
+  readonly memoryStrokeGrades = computed(() => {
+    if (!this.showMemoryReview()) {
+      return [];
+    }
+
+    const character = this.ghostCharacter()?.trim();
+    if (!character) {
+      return [];
+    }
+
+    const model = this.hanziData.getCachedModel(character);
+    if (!model) {
+      return [];
+    }
+
+    const index = this.activeCharIndex();
+    const strokes = this.charStrokes()[index] ?? [];
+
+    return gradeHanziMemoryStrokes(
+      model,
+      this.reviewCanvasSize(),
+      strokes,
+      this.userStore.learningProficiencyLevel(),
+    );
+  });
+
+  private lastCardId: string | null = null;
+
   constructor() {
     effect(() => {
-      this.card();
+      const characters = this.characterTargets()
+        .map((target) => target.character.trim())
+        .filter(Boolean);
+      if (characters.length > 0) {
+        void this.hanziData.loadCharacters(characters);
+      }
+    });
+
+    effect(() => {
+      const card = this.card();
+      const cardId = card.id;
       const count = this.characterTargets().length;
+
+      if (this.lastCardId === cardId) {
+        return;
+      }
+
+      this.lastCardId = cardId;
+      this.panelMode.set(resolveInitialDrawCanvasMode());
       this.activeCharIndex.set(0);
-      this.canvasMode.set(initialDrawCanvasMode());
       this.charDone.set(Array.from({ length: count }, () => false));
       this.charStrokes.set(Array.from({ length: count }, () => []));
       this.hasStrokes.set(false);
       this.drawSubmittedChange.emit(false);
       this.drawAnswerChange.emit(null);
       queueMicrotask(() => this.loadActiveStrokes());
+    });
+
+    effect(() => {
+      const feedback = this.feedback();
+
+      if (feedback === null) {
+        return;
+      }
+
+      untracked(() => {
+        this.saveActiveStrokes();
+        this.captureReviewCanvasSize();
+      });
+
+      const characters = this.characterTargets()
+        .map((target) => target.character.trim())
+        .filter(Boolean);
+      if (characters.length > 0) {
+        void this.hanziData.loadCharacters(characters);
+      }
     });
   }
 
@@ -191,16 +268,31 @@ export class DrawCardComponent {
   }
 
   onCanvasModeChange(mode: DrawCanvasMode | null): void {
-    if (!mode || mode === this.canvasMode()) {
+    if (!mode || mode === this.panelMode()) {
       return;
     }
 
-    this.canvasMode.set(mode);
-    this.clearActiveTabStrokes();
+    this.selectCanvasPanel(mode);
+  }
+
+  selectCanvasPanel(mode: DrawCanvasMode): void {
+    this.panelMode.set(mode);
+
+    if (this.feedback() === null) {
+      this.clearActiveTabStrokes();
+    } else {
+      queueMicrotask(() => this.loadActiveStrokes());
+    }
   }
 
   selectCharacterTab(index: number): void {
-    if (index === this.activeCharIndex() || this.feedback() !== null) {
+    if (index === this.activeCharIndex()) {
+      return;
+    }
+
+    if (this.feedback() !== null) {
+      this.activeCharIndex.set(index);
+      this.loadActiveStrokes();
       return;
     }
 
@@ -272,12 +364,27 @@ export class DrawCardComponent {
   }
 
   private buildDrawAnswerPayload(): DrawAnswerPayload {
-    const canvas = this.canvasRef();
+    this.captureReviewCanvasSize();
     return {
-      canvasMode: this.canvasMode(),
-      canvasSize: canvas?.getCanvasSize() ?? { width: 280, height: 280 },
+      canvasMode: 'memory',
+      canvasSize: this.reviewCanvasSize(),
       strokesByCharacter: this.charStrokes(),
     };
+  }
+
+  private captureReviewCanvasSize(): void {
+    const canvas = this.canvasRef();
+    if (!canvas) {
+      return;
+    }
+
+    const next = canvas.getCanvasSize();
+    const current = this.reviewCanvasSize();
+    if (current.width === next.width && current.height === next.height) {
+      return;
+    }
+
+    this.reviewCanvasSize.set(next);
   }
 
   private saveActiveStrokes(): void {
@@ -288,6 +395,11 @@ export class DrawCardComponent {
     }
 
     const strokes = canvas.getStrokes();
+    const current = this.charStrokes()[index] ?? [];
+    if (strokesEqual(current, strokes)) {
+      return;
+    }
+
     const next = [...this.charStrokes()];
     next[index] = strokes;
     this.charStrokes.set(next);
@@ -324,4 +436,32 @@ export class DrawCardComponent {
       this.drawAnswerChange.emit(null);
     }
   }
+}
+
+function strokesEqual(left: readonly DrawStrokePath[], right: readonly DrawStrokePath[]): boolean {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  for (let strokeIndex = 0; strokeIndex < left.length; strokeIndex += 1) {
+    const leftStroke = left[strokeIndex];
+    const rightStroke = right[strokeIndex];
+    if (!leftStroke || !rightStroke || leftStroke.length !== rightStroke.length) {
+      return false;
+    }
+
+    for (let pointIndex = 0; pointIndex < leftStroke.length; pointIndex += 1) {
+      const leftPoint = leftStroke[pointIndex];
+      const rightPoint = rightStroke[pointIndex];
+      if (!leftPoint || !rightPoint) {
+        return false;
+      }
+
+      if (leftPoint.x !== rightPoint.x || leftPoint.y !== rightPoint.y) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }

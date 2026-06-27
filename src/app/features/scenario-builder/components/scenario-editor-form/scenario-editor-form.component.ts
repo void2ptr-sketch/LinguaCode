@@ -10,7 +10,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models';
-import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../../core/data/language-pair.utils';
+import {
+  CONTENT_LANGUAGE_LABELS,
+  contentLanguages,
+} from '../../../../core/data/language-pair.utils';
 import {
   ScenarioCardCriteriaEditorComponent,
   ScenarioCardPickerComponent,
@@ -53,9 +56,7 @@ export class ScenarioEditorFormComponent {
     effect(() => {
       const form = this.draft();
       const cardIds =
-        form.sourceMode === 'fixed' || form.sourceMode === 'snapshot'
-          ? form.fixedCardIds
-          : [];
+        form.sourceMode === 'fixed' || form.sourceMode === 'snapshot' ? form.fixedCardIds : [];
 
       void this.refreshCardTitles(cardIds);
     });

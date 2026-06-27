@@ -2,7 +2,12 @@ import {
   DEFAULT_CRITERIA_LIMIT,
   emptyCardSearchCriteria,
 } from '../../../core/data/scenario-card-source.utils';
-import type { LanguagePair, Scenario, ScenarioCardSource, ScenarioCardSort } from '../../../core/models';
+import type {
+  LanguagePair,
+  Scenario,
+  ScenarioCardSource,
+  ScenarioCardSort,
+} from '../../../core/models';
 import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models/language-pair.types';
 import type { ScenarioCardSourceMode, ScenarioCriteriaDraft, ScenarioDraft } from '../types';
 
@@ -20,7 +25,9 @@ export type ScenarioFormDraft = {
   snapshotFrozenAt: string | null;
 };
 
-export function emptyScenarioFormDraft(languagePair: LanguagePair = DEFAULT_LANGUAGE_PAIR): ScenarioFormDraft {
+export function emptyScenarioFormDraft(
+  languagePair: LanguagePair = DEFAULT_LANGUAGE_PAIR,
+): ScenarioFormDraft {
   return {
     title: '',
     description: '',

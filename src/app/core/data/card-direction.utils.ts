@@ -55,10 +55,8 @@ export function resolveMemoryPairs(
     pairId: String(index),
     left: direction === 'known-to-learning' ? pair.known : pair.learning,
     right: direction === 'known-to-learning' ? pair.learning : pair.known,
-    leftLexeme:
-      direction === 'known-to-learning' ? undefined : pair.learningLexeme,
-    rightLexeme:
-      direction === 'known-to-learning' ? pair.learningLexeme : undefined,
+    leftLexeme: direction === 'known-to-learning' ? undefined : pair.learningLexeme,
+    rightLexeme: direction === 'known-to-learning' ? pair.learningLexeme : undefined,
   }));
 }
 
@@ -96,9 +94,7 @@ export function resolveKeyboardPrompt(
   }
 
   return (
-    extractQuotedLemma(card.promptKnown) ||
-    card.promptLexeme?.primary.trim() ||
-    card.promptKnown
+    extractQuotedLemma(card.promptKnown) || card.promptLexeme?.primary.trim() || card.promptKnown
   );
 }
 
@@ -159,8 +155,7 @@ function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard 
       ? card.optionsLearning
       : card.symbols;
 
-  const learningLexemes =
-    card.kind === 'symbol' ? card.symbolLexemes : card.optionsLexemes;
+  const learningLexemes = card.kind === 'symbol' ? card.symbolLexemes : card.optionsLexemes;
 
   const prompt = learningOptions[card.correctIndex] ?? card.promptKnown;
   const promptLexeme = learningLexemes?.[card.correctIndex];

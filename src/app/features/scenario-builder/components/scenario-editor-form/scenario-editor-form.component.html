@@ -26,7 +26,9 @@
 
   <section class="scenario-editor-form__languages">
     <h2>Курс</h2>
-    <p class="scenario-editor-form__hint">Карточки сценария должны соответствовать выбранному курсу.</p>
+    <p class="scenario-editor-form__hint">
+      Карточки сценария должны соответствовать выбранному курсу.
+    </p>
 
     <mat-form-field appearance="outline">
       <mat-label>Известный язык</mat-label>
@@ -97,10 +99,20 @@
                 <span matListItemTitle>{{ cardTitle(cardId) }}</span>
                 @if (!readOnly() && draft().sourceMode === 'fixed') {
                   <div matListItemMeta class="scenario-editor-form__order-actions">
-                    <button mat-icon-button type="button" aria-label="Выше" (click)="moveCard(cardId, -1)">
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Выше"
+                      (click)="moveCard(cardId, -1)"
+                    >
                       <mat-icon>arrow_upward</mat-icon>
                     </button>
-                    <button mat-icon-button type="button" aria-label="Ниже" (click)="moveCard(cardId, 1)">
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Ниже"
+                      (click)="moveCard(cardId, 1)"
+                    >
                       <mat-icon>arrow_downward</mat-icon>
                     </button>
                   </div>

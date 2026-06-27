@@ -12,7 +12,9 @@ export function collectLexemeIpaReadings(lexeme?: PhoneticLexeme): readonly stri
     return trimmed ? [trimmed] : [];
   }
 
-  return lexeme.ipa.map((variant) => variant.transcription.trim()).filter((value) => value.length > 0);
+  return lexeme.ipa
+    .map((variant) => variant.transcription.trim())
+    .filter((value) => value.length > 0);
 }
 
 export function collectCardIpaReadings(card: Card): readonly string[] {

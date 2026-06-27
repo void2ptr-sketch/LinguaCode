@@ -33,26 +33,30 @@
   <section class="quiz-card__answer draw-card__answer" aria-label="Ответ">
     <mat-button-toggle-group
       class="draw-card__mode-toggle"
-      [value]="canvasMode()"
+      [value]="panelMode()"
       (change)="onCanvasModeChange($event.value)"
       aria-label="Режим рисования"
     >
-      @for (mode of canvasModes; track mode) {
+      @for (mode of visiblePanelModes(); track mode) {
         <mat-button-toggle [value]="mode">{{ canvasModeLabels[mode] }}</mat-button-toggle>
       }
     </mat-button-toggle-group>
 
-    @if (canvasMode() === 'stroke-order' && strokeGuides().length > 0) {
-      <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
+    @if (showStrokeOrderNote()) {
+      <p class="draw-card__stroke-note">
+        Пунктир — порядок черт; цифры указывают последовательность.
+      </p>
     }
 
     <mat-card-content class="draw-card__content">
       <app-draw-canvas
-        [ghostCharacter]="canvasMode() === 'radicals' ? null : ghostCharacter()"
+        class="draw-card__panel"
+        [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
         [radicalHints]="radicalCanvasHints()"
         [radicalAriaLabel]="radicalCanvasAriaLabel()"
-        [strokeGuides]="strokeGuides()"
-        [canvasMode]="canvasMode()"
+        [canvasMode]="panelMode()"
+        [showMemoryReview]="showMemoryReview()"
+        [memoryStrokeGrades]="memoryStrokeGrades()"
         [disabled]="feedback() !== null"
         [showClearAll]="hasMultipleSyllables()"
         [clearAllDisabled]="!hasStrokesOnAnyTab()"
@@ -95,12 +99,29 @@
     </mat-card-content>
   }
 
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Есть ошибки в чертах
+    </mat-card-content>
+  }
+
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="!hasStrokes() || drawSubmitted()" (click)="submitDrawing()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="!hasStrokes() || drawSubmitted()"
+        (click)="submitDrawing()"
+      >
         {{ hasMultipleSyllables() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
       </button>
-      <button mat-flat-button type="button" [disabled]="!drawSubmitted()" (click)="checkAnswer.emit()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="!drawSubmitted()"
+        (click)="checkAnswer.emit()"
+      >
         Проверить
       </button>
     } @else {

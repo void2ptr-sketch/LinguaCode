@@ -115,11 +115,7 @@
         "zhuyin": "ㄖㄣˊ",
         "palladius": "жэнь",
         "ipa": "ʐən˧˥"
-      },
-      "strokeGuides": [
-        { "order": 1, "path": "M 35 12 L 65 88" },
-        { "order": 2, "path": "M 65 12 L 35 88" }
-      ]
+      }
     },
     {
       "id": "draw-hao-1",

@@ -1,7 +1,4 @@
-import {
-  contentLanguageSpeechLocale,
-  playLearningAudio,
-} from './card-learning-audio.utils';
+import { contentLanguageSpeechLocale, playLearningAudio } from './card-learning-audio.utils';
 
 describe('card-learning-audio.utils', () => {
   it('should map content language to speech locale', () => {
@@ -12,7 +9,9 @@ describe('card-learning-audio.utils', () => {
 
   it('should prefer audio url over speech synthesis', () => {
     const play = jasmine.createSpy('play');
-    const audioSpy = spyOn(window, 'Audio').and.returnValue({ play } as unknown as HTMLAudioElement);
+    const audioSpy = spyOn(window, 'Audio').and.returnValue({
+      play,
+    } as unknown as HTMLAudioElement);
 
     playLearningAudio({
       audioUrl: 'https://example.com/word.mp3',

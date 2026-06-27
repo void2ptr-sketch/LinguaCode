@@ -1,10 +1,7 @@
 import type { Course, CourseIndexEntry } from '../models';
 import { formatLanguagePair } from './language-pair.utils';
 
-export function courseToIndexEntry(
-  course: Course,
-  lessonCount: number,
-): CourseIndexEntry {
+export function courseToIndexEntry(course: Course, lessonCount: number): CourseIndexEntry {
   return {
     id: course.id,
     title: course.title,

@@ -37,7 +37,10 @@ export function scenarioIndexMatchesLanguageCriteria(
     return true;
   }
 
-  return scenarioIndexMatchesLanguagePair(entry, { known: knownLanguage, learning: learningLanguage });
+  return scenarioIndexMatchesLanguagePair(entry, {
+    known: knownLanguage,
+    learning: learningLanguage,
+  });
 }
 
 export function courseIndexMatchesLanguageCriteria(
@@ -49,5 +52,8 @@ export function courseIndexMatchesLanguageCriteria(
     return true;
   }
 
-  return courseIndexMatchesLanguagePair(entry, { known: knownLanguage, learning: learningLanguage });
+  return courseIndexMatchesLanguagePair(entry, {
+    known: knownLanguage,
+    learning: learningLanguage,
+  });
 }

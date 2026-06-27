@@ -77,7 +77,9 @@ export class CardSelectPageComponent implements OnInit {
   readonly courseTitle = signal<string>('');
   readonly lessonTitle = signal<string>('');
   readonly lessonScenarioIds = signal<readonly string[]>([]);
-  readonly courseLessons = signal<readonly { lessonId: string; scenarioIds: readonly string[] }[]>([]);
+  readonly courseLessons = signal<readonly { lessonId: string; scenarioIds: readonly string[] }[]>(
+    [],
+  );
   readonly selectedScenarioId = signal<string>('');
   readonly scenarioTitle = signal<string>('');
   readonly scenarioSourceLabel = signal<string>('');
@@ -115,7 +117,9 @@ export class CardSelectPageComponent implements OnInit {
     return Math.round(((this.store.currentIndex() + 1) / total) * 100);
   });
 
-  readonly showDirectionToggle = computed(() => cardSupportsSessionDirection(this.store.currentCard()));
+  readonly showDirectionToggle = computed(() =>
+    cardSupportsSessionDirection(this.store.currentCard()),
+  );
 
   readonly sessionSegments = computed((): readonly PracticeSessionSegment[] => {
     const courseId = this.selectedCourseId();
