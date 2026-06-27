@@ -2,12 +2,18 @@
   <section class="quiz-card__question draw-card__question" aria-label="Вопрос">
     <div class="draw-card__prompt">
       <div class="draw-card__meaning-row">
-        <p class="draw-card__meaning">{{ questionLabel() }}</p>
-        @if (audioUrl()) {
-          <button mat-icon-button type="button" aria-label="Прослушать" (click)="playAudio()">
+        @if (canPlayLearningAudio()) {
+          <button
+            mat-icon-button
+            type="button"
+            class="draw-card__audio-btn"
+            aria-label="Прослушать слово на изучаемом языке"
+            (click)="playLearningAudio()"
+          >
             <mat-icon>volume_up</mat-icon>
           </button>
         }
+        <p class="draw-card__meaning">{{ questionLabel() }}</p>
       </div>
 
       @if (promptLexeme(); as lexeme) {

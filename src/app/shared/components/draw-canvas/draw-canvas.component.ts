@@ -77,6 +77,14 @@ export class DrawCanvasComponent {
     return this.strokes;
   }
 
+  getCanvasSize(): { width: number; height: number } {
+    const canvas = this.canvasRef()?.nativeElement;
+    return {
+      width: canvas?.width ?? 280,
+      height: canvas?.height ?? 280,
+    };
+  }
+
   setStrokes(strokes: readonly DrawStrokePath[]): void {
     this.strokes = strokes.map((stroke) => [...stroke]);
     this.activeStroke = [];

@@ -11,13 +11,16 @@
   align-items: center;
   display: flex;
   gap: 0.5rem;
-  justify-content: center;
   width: 100%;
+}
+
+.draw-card__audio-btn {
+  flex: 0 0 auto;
 }
 
 .draw-card__meaning {
   color: var(--mat-sys-on-surface);
-  flex: 0 1 auto;
+  flex: 1 1 auto;
   font-size: 1.75em;
   font-weight: 600;
   line-height: 1.35;

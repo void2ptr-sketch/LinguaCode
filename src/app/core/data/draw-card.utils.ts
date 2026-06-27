@@ -157,6 +157,19 @@ export function resolveDrawAudioUrl(card: DrawCard, target?: DrawCharacterTarget
   return card.promptLexeme?.audioUrl?.trim() || null;
 }
 
+/** Текст слова на изучаемом языке для озвучки (иероглиф / слово). */
+export function resolveDrawLearningSpeechText(
+  card: DrawCard,
+  target?: DrawCharacterTarget,
+): string {
+  const fromTarget = target?.character?.trim();
+  if (fromTarget) {
+    return fromTarget;
+  }
+
+  return card.targetCharacter?.trim() || card.promptLexeme?.primary?.trim() || '';
+}
+
 export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharacterTarget[] {
   if (card.characterTargets?.length) {
     return card.characterTargets;

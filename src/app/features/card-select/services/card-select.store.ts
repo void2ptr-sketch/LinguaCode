@@ -1,12 +1,16 @@
-import { Injectable, computed, signal } from '@angular/core';
+import { Injectable, computed, inject, signal } from '@angular/core';
 import { Card } from '../../../core/models';
 import { cardDefaultDirection } from '../../../core/data/card-direction.utils';
 import type { CardDirection } from '../../../core/models/language-pair.types';
+import { UserStore } from '../../../core/state';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
 import { CardFeedback } from '../../../shared/types';
+import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
 
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
+  private readonly userStore = inject(UserStore);
+
   readonly cards = signal<readonly Card[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
   readonly sessionDirection = signal<CardDirection>('known-to-learning');
@@ -17,6 +21,7 @@ export class CardSelectStore {
   readonly answerText = signal('');
   readonly memoryComplete = signal(false);
   readonly drawSubmitted = signal(false);
+  readonly drawAnswer = signal<DrawAnswerPayload | null>(null);
   readonly feedback = signal<CardFeedback>(null);
   readonly completed = signal(false);
 
@@ -103,6 +108,17 @@ export class CardSelectStore {
     }
 
     this.drawSubmitted.set(value);
+    if (!value) {
+      this.drawAnswer.set(null);
+    }
+  }
+
+  setDrawAnswer(payload: DrawAnswerPayload | null): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.drawAnswer.set(payload);
   }
 
   handleTimeExpired(): void {
@@ -168,6 +184,8 @@ export class CardSelectStore {
       answerText: this.answerText(),
       memoryComplete: this.memoryComplete(),
       drawSubmitted: this.drawSubmitted(),
+      drawAnswer: this.drawAnswer(),
+      learningProficiencyLevel: this.userStore.learningProficiencyLevel(),
     };
   }
 
@@ -176,6 +194,7 @@ export class CardSelectStore {
     this.answerText.set('');
     this.memoryComplete.set(false);
     this.drawSubmitted.set(false);
+    this.drawAnswer.set(null);
     this.feedback.set(null);
   }
 }

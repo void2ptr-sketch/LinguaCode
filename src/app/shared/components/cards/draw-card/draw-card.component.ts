@@ -4,12 +4,14 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
+import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/card-learning-audio.utils';
 import {
   drawCharacterTabPinyinLabel,
   initialDrawCanvasMode,
   parseRadicalHintParts,
   resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
+  resolveDrawLearningSpeechText,
   resolveDrawPromptLexeme,
   resolveDrawQuestion,
 } from '../../../../core/data/draw-card.utils';
@@ -29,6 +31,7 @@ import type { DrawStrokePath } from '../../draw-canvas/draw-canvas.types';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
+import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
 
 @Component({
   selector: 'app-draw-card',
@@ -53,6 +56,7 @@ export class DrawCardComponent {
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
   readonly drawSubmittedChange = output<boolean>();
+  readonly drawAnswerChange = output<DrawAnswerPayload | null>();
   readonly checkAnswer = output<void>();
   readonly nextCard = output<void>();
 
@@ -78,7 +82,17 @@ export class DrawCardComponent {
     return targets[this.activeCharIndex()] ?? targets[0];
   });
 
-  readonly audioUrl = computed(() => resolveDrawAudioUrl(this.card()));
+  readonly learningAudioUrl = computed(() =>
+    resolveDrawAudioUrl(this.card(), this.activeTarget()),
+  );
+
+  readonly learningSpeechText = computed(() =>
+    resolveDrawLearningSpeechText(this.card(), this.activeTarget()),
+  );
+
+  readonly canPlayLearningAudio = computed(
+    () => Boolean(this.learningAudioUrl() || this.learningSpeechText()),
+  );
 
   readonly showSyllableTabs = computed(() => this.characterTargets().length > 0);
 
@@ -158,6 +172,7 @@ export class DrawCardComponent {
       this.charStrokes.set(Array.from({ length: count }, () => []));
       this.hasStrokes.set(false);
       this.drawSubmittedChange.emit(false);
+      this.drawAnswerChange.emit(null);
       queueMicrotask(() => this.loadActiveStrokes());
     });
   }
@@ -208,6 +223,7 @@ export class DrawCardComponent {
 
       if (this.drawSubmitted()) {
         this.drawSubmittedChange.emit(false);
+        this.drawAnswerChange.emit(null);
       }
     }
   }
@@ -219,6 +235,7 @@ export class DrawCardComponent {
     this.canvasRef()?.clearStrokes();
     this.hasStrokes.set(false);
     this.drawSubmittedChange.emit(false);
+    this.drawAnswerChange.emit(null);
   }
 
   submitDrawing(): void {
@@ -232,7 +249,9 @@ export class DrawCardComponent {
     this.charDone.set(nextDone);
 
     if (this.allCharsDone()) {
+      this.saveActiveStrokes();
       this.drawSubmittedChange.emit(true);
+      this.drawAnswerChange.emit(this.buildDrawAnswerPayload());
       return;
     }
 
@@ -244,14 +263,21 @@ export class DrawCardComponent {
     }
   }
 
-  playAudio(): void {
-    const url = this.audioUrl();
-    if (!url) {
-      return;
-    }
+  playLearningAudio(): void {
+    playCardLearningAudio({
+      audioUrl: this.learningAudioUrl(),
+      text: this.learningSpeechText(),
+      language: this.userStore.languagePair().learning,
+    });
+  }
 
-    const audio = new Audio(url);
-    void audio.play();
+  private buildDrawAnswerPayload(): DrawAnswerPayload {
+    const canvas = this.canvasRef();
+    return {
+      canvasMode: this.canvasMode(),
+      canvasSize: canvas?.getCanvasSize() ?? { width: 280, height: 280 },
+      strokesByCharacter: this.charStrokes(),
+    };
   }
 
   private saveActiveStrokes(): void {
@@ -295,6 +321,7 @@ export class DrawCardComponent {
       nextDone[index] = false;
       this.charDone.set(nextDone);
       this.drawSubmittedChange.emit(false);
+      this.drawAnswerChange.emit(null);
     }
   }
 }

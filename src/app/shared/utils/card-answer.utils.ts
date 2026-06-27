@@ -1,5 +1,6 @@
-import { Card, isOptionCard } from '../../core/models';
+import { Card, DrawCard, isOptionCard } from '../../core/models';
 import type { CardDirection } from '../../core/models/language-pair.types';
+import { checkDrawCardAnswer } from '../../core/data/draw-card-answer.utils';
 import {
   answersMatchRomanization,
   normalizeHanAnswer,
@@ -133,7 +134,12 @@ export const checkCardAnswer = (
     case 'memory':
       return state.memoryComplete;
     case 'draw':
-      return state.drawSubmitted;
+      return checkDrawCardAnswer(
+        card as DrawCard,
+        state.drawSubmitted,
+        state.drawAnswer,
+        state.learningProficiencyLevel,
+      );
   }
 };
 

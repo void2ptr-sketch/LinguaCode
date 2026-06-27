@@ -1,3 +1,4 @@
+import { TestBed } from '@angular/core/testing';
 import { Card } from '../../../core/models';
 import { CardSelectStore } from './card-select.store';
 
@@ -27,7 +28,8 @@ describe('CardSelectStore', () => {
   let store: CardSelectStore;
 
   beforeEach(() => {
-    store = new CardSelectStore();
+    TestBed.configureTestingModule({});
+    store = TestBed.inject(CardSelectStore);
     store.setScenario('scenario-1', CARDS);
   });
 

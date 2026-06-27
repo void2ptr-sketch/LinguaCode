@@ -1,3 +1,4 @@
+import { TestBed } from '@angular/core/testing';
 import { Card } from '../../../../core/models';
 import { SingleCardPlayStore } from './single-card-play.store';
 
@@ -16,7 +17,8 @@ describe('SingleCardPlayStore', () => {
   let store: SingleCardPlayStore;
 
   beforeEach(() => {
-    store = new SingleCardPlayStore();
+    TestBed.configureTestingModule({ providers: [SingleCardPlayStore] });
+    store = TestBed.inject(SingleCardPlayStore);
     store.setCard(SELECT_CARD);
   });
 
