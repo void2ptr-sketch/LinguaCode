@@ -1,9 +1,10 @@
 import type { HanziPoint } from './hanzi-character.types';
 import type { HanziPositioner } from './hanzi-positioner';
 
-/** SVG transform для paths в MMH-координатах поверх canvas. */
+/** SVG transform для paths в MMH-координатах поверх canvas (как HanziWriter.getScalingTransform). */
 export function resolveHanziSvgGroupTransform(positioner: HanziPositioner): string {
-  return `translate(${positioner.xOffset}, ${positioner.yOffset}) scale(${positioner.scale}, ${-positioner.scale})`;
+  const translateY = positioner.height - positioner.yOffset;
+  return `translate(${positioner.xOffset}, ${translateY}) scale(${positioner.scale}, ${-positioner.scale})`;
 }
 
 export function medianToSvgPath(points: readonly HanziPoint[]): string {

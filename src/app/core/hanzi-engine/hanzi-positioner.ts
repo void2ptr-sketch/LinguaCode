@@ -39,14 +39,14 @@ export class HanziPositioner {
   toCanvas(point: HanziPoint): HanziPoint {
     return {
       x: point.x * this.scale + this.xOffset,
-      y: this.yOffset - point.y * this.scale,
+      y: this.height - this.yOffset - point.y * this.scale,
     };
   }
 
   toCharacterSpace(point: HanziPoint): HanziPoint {
     return {
       x: (point.x - this.xOffset) / this.scale,
-      y: (this.yOffset - point.y) / this.scale,
+      y: (this.height - this.yOffset - point.y) / this.scale,
     };
   }
 

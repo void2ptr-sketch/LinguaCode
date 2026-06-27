@@ -11,6 +11,16 @@ describe('HanziPositioner', () => {
     expect(restored.y).toBeCloseTo(original.y, 3);
   });
 
+  it('should fit MMH bounding box inside padded canvas', () => {
+    const height = 280;
+    const positioner = new HanziPositioner({ width: height, height, padding: 20 });
+    const top = positioner.toCanvas({ x: 512, y: 900 });
+    const bottom = positioner.toCanvas({ x: 512, y: -124 });
+
+    expect(top.y).toBeCloseTo(20, 0);
+    expect(bottom.y).toBeCloseTo(260, 0);
+  });
+
   it('should scale MMH width into padded canvas width', () => {
     const width = 280;
     const positioner = new HanziPositioner({ width, height: 280, padding: 20 });
