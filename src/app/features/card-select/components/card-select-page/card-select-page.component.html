@@ -48,12 +48,13 @@
     </mat-tab>
 
     <mat-tab label="Уроки" [disabled]="!selectedCourseId()">
-      <div class="card-select-page__tab">
+      <div class="card-select-page__tab card-select-page__tab--lessons">
         @if (selectedCourseId()) {
           <app-lesson-picker
             [hideTitle]="true"
             [selectedCourseId]="selectedCourseId()"
             [selectedLessonId]="selectedLessonId()"
+            [enforcePrerequisites]="enforceLessonPrerequisites()"
             (selectedLessonIdChange)="onLessonChange($event)"
             (lessonPickChange)="onLessonPick($event)"
           />
@@ -81,7 +82,7 @@
 
     <mat-tab label="Сценарии">
       <div class="card-select-page__tab">
-        @if (selectedCourseId() && !selectedLessonId()) {
+        @if (selectedCourseId() && !selectedLessonId() && requiresLessonForScenarios()) {
           <div class="card-select-page__empty-state">
             <mat-icon aria-hidden="true">view_list</mat-icon>
             <p class="card-select-page__tab-hint">
@@ -92,10 +93,29 @@
         } @else {
           @if (selectedCourseId() && selectedLessonId()) {
             <p class="card-select-page__tab-note">Показаны сценарии урока «{{ lessonTitle() }}».</p>
+          } @else if (isOpenPractice() && selectedCourseId()) {
+            <p class="card-select-page__tab-note">
+              Свободная практика: все сценарии программы «{{ courseTitle() }}».
+            </p>
           }
+
+          @if (showDifficultyFilter()) {
+            <mat-button-toggle-group
+              class="card-select-page__difficulty"
+              [ngModel]="selectedDifficulty()"
+              (ngModelChange)="onDifficultyChange($event)"
+              aria-label="Уровень сложности"
+            >
+              <mat-button-toggle [value]="null">Все уровни</mat-button-toggle>
+              @for (level of difficultyLevels; track level) {
+                <mat-button-toggle [value]="level">{{ difficultyLabels[level] }}</mat-button-toggle>
+              }
+            </mat-button-toggle-group>
+          }
+
           <app-scenario-picker
             [selectedScenarioId]="selectedScenarioId()"
-            [allowedScenarioIds]="lessonScenarioIds().length > 0 ? lessonScenarioIds() : null"
+            [allowedScenarioIds]="allowedScenarioIdsForPicker()"
             [autoSelectFirst]="false"
             (selectedScenarioIdChange)="onScenarioChange($event)"
             (scenarioLabelChange)="onScenarioLabelChange($event)"

@@ -2,14 +2,17 @@
   "version": 1,
   "cardFiles": [
     "select-cards.json",
-    "radicals-course-cards.json"
+    "radicals-course-cards.json",
+    "perl-interview-cards.json"
   ],
   "scenarioFiles": [
     "/scenarios/demo-scenarios.json",
-    "/scenarios/radicals-scenarios.json"
+    "/scenarios/radicals-scenarios.json",
+    "/scenarios/perl-interview-scenarios.json"
   ],
   "courseFiles": [
     "/courses/demo-courses.json",
-    "/courses/radicals-214-course.json"
+    "/courses/radicals-214-course.json",
+    "/courses/perl-interview-course.json"
   ]
 }

@@ -1,0 +1,17 @@
+<mat-card-header>
+  @if (mode() === 'prompt-only') {
+    <mat-card-title>
+      @if (plainText()) {
+        {{ prompt() }}
+      } @else {
+        <app-lexeme-display
+          surface="prompt"
+          [lexeme]="promptLexeme()"
+          [fallbackText]="prompt()"
+        />
+      }
+    </mat-card-title>
+  } @else {
+    <mat-card-title>{{ title() }}</mat-card-title>
+  }
+</mat-card-header>

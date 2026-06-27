@@ -5,6 +5,9 @@ const SPEECH_LOCALE: Record<ContentLanguage, string> = {
   en: 'en-US',
   zh: 'zh-CN',
   ru: 'ru-RU',
+  perl: 'en-US',
+  java: 'en-US',
+  cpp: 'en-US',
 };
 
 export type PlayLearningAudioOptions = {

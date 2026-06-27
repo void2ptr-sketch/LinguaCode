@@ -40,6 +40,7 @@ export class LessonPickerComponent {
   readonly selectedLessonId = input.required<string>();
   readonly autoPickFirstLesson = input(false);
   readonly hideTitle = input(false);
+  readonly enforcePrerequisites = input(true);
 
   readonly selectedLessonIdChange = output<string>();
   readonly lessonPickChange = output<LessonPickPayload>();
@@ -53,18 +54,23 @@ export class LessonPickerComponent {
     const lessonsById = buildLessonsById(lessons);
     const hasScenarioResult = (scenarioId: string) =>
       this.resultsStore.resultsForScenario(scenarioId).length > 0;
+    const enforcePrerequisites = this.enforcePrerequisites();
 
     return lessons.map((lesson) => {
       const completedScenarios = lesson.scenarioIds.filter((scenarioId) =>
         hasScenarioResult(scenarioId),
       ).length;
+      const unlocked =
+        enforcePrerequisites && isLessonUnlocked(lesson, lessonsById, hasScenarioResult);
 
       return {
         lesson,
-        unlocked: isLessonUnlocked(lesson, lessonsById, hasScenarioResult),
+        unlocked: enforcePrerequisites ? unlocked : true,
         completed: this.resultsStore.isLessonCompleted(lesson.scenarioIds),
         completedScenarios,
-        blockReason: prerequisiteBlockReason(lesson, lessons, hasScenarioResult),
+        blockReason: enforcePrerequisites
+          ? prerequisiteBlockReason(lesson, lessons, hasScenarioResult)
+          : null,
       };
     });
   });

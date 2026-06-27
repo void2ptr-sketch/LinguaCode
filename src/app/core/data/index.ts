@@ -36,6 +36,15 @@ export { courseToIndexEntry } from './course-index.mapper';
 export { filterCourseIndex, matchesCourseIndexEntry } from './course-search.utils';
 export { CoursesApiService } from './courses-api.service';
 export { CourseSearchService } from './course-search.service';
+export {
+  buildScenarioDifficultyMap,
+  collectCourseScenarioIds,
+  filterScenarioIdsByDifficulty,
+  isOpenPracticeCourse,
+  resolveCoursePracticeSettings,
+  resolveScenarioDifficulty,
+  scenarioCardIds,
+} from './course-practice.utils';
 export { ContentSeedRepository } from './content-seed.repository';
 export {
   isEditableContentAuthor,

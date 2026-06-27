@@ -17,10 +17,11 @@ import { UserStore } from '../../../../core/state';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
+import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 @Component({
   selector: 'app-sound-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
   templateUrl: './sound-card.component.html',
   styleUrl: './sound-card.component.scss',
 })

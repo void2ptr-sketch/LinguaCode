@@ -1,0 +1,33 @@
+<div class="markdown-field">
+  @if (!readOnly()) {
+    <mat-button-toggle-group
+      class="markdown-field__mode"
+      [value]="effectiveMode()"
+      (change)="setMode($event.value)"
+      aria-label="Режим поля Markdown"
+    >
+      <mat-button-toggle value="edit">Редактор</mat-button-toggle>
+      <mat-button-toggle value="preview">Просмотр</mat-button-toggle>
+    </mat-button-toggle-group>
+  }
+
+  @if (effectiveMode() === 'edit') {
+    <mat-form-field appearance="outline" class="markdown-field__editor">
+      <mat-label>{{ label() }}</mat-label>
+      <textarea
+        matInput
+        [rows]="rows()"
+        [disabled]="readOnly()"
+        [ngModel]="value()"
+        (ngModelChange)="onValueChange($event)"
+      ></textarea>
+      @if (hint(); as hintText) {
+        <mat-hint>{{ hintText }}</mat-hint>
+      }
+    </mat-form-field>
+  } @else if (hasPreviewContent()) {
+    <section class="markdown-field__preview markdown-body" [innerHTML]="previewHtml()"></section>
+  } @else {
+    <p class="markdown-field__empty">Нет текста для предпросмотра</p>
+  }
+</div>

@@ -1,9 +1,10 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <section class="quiz-card__question" aria-label="Вопрос">
-    <mat-card-header>
-      <mat-card-title>{{ card().title }}</mat-card-title>
-      <mat-card-subtitle>{{ resolved().prompt }}</mat-card-subtitle>
-    </mat-card-header>
+    <app-quiz-card-question-header
+      [title]="card().title"
+      [prompt]="resolved().prompt"
+      [plainText]="true"
+    />
 
     <div class="quiz-card__sound">
       <p class="quiz-card__section-label">Прослушайте</p>

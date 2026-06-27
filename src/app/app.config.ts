@@ -4,6 +4,7 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { provideApiHttp } from './core/api';
 import { ContentSeedRepository } from './core/data/content-seed.repository';
 import { migrateUserContentOverlayIfNeeded } from './core/data/user-content-overlay.migration';
+import { repairUserContentOverlayIfNeeded } from './core/data/user-content-overlay.repair';
 
 import { routes } from './app.routes';
 
@@ -16,6 +17,7 @@ export const appConfig: ApplicationConfig = {
     provideAppInitializer(async () => {
       await inject(ContentSeedRepository).preload();
       migrateUserContentOverlayIfNeeded();
+      repairUserContentOverlayIfNeeded();
     }),
   ],
 };

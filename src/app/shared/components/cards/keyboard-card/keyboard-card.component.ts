@@ -16,6 +16,7 @@ import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.comp
 import { PinyinKeyboardComponent } from '../../pinyin-keyboard/pinyin-keyboard.component';
 import { CardFeedback } from '../../../types';
 import { getCorrectAnswerLabel } from '../../../utils/card-answer.utils';
+import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 @Component({
   selector: 'app-keyboard-card',
@@ -28,6 +29,7 @@ import { getCorrectAnswerLabel } from '../../../utils/card-answer.utils';
     MatInputModule,
     LexemeDisplayComponent,
     PinyinKeyboardComponent,
+    QuizCardQuestionHeaderComponent,
   ],
   templateUrl: './keyboard-card.component.html',
   styleUrl: './keyboard-card.component.scss',

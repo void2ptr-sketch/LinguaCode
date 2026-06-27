@@ -1,8 +1,93 @@
-<mat-card class="page-card">
-  <mat-card-header>
-    <mat-card-title>Справка</mat-card-title>
-  </mat-card-header>
-  <mat-card-content>
-    <p>LinguaCode — приложение для изучения языков с помощью карточек и сценариев.</p>
-  </mat-card-content>
-</mat-card>
+<section class="help-page">
+  <header class="help-page__hero">
+    <div class="help-page__hero-copy">
+      <p class="help-page__eyebrow">{{ hero.eyebrow }}</p>
+      <h1 class="help-page__title">{{ hero.title }}</h1>
+      <p class="help-page__lead">{{ hero.lead }}</p>
+      <div class="help-page__hero-actions">
+        <a mat-flat-button color="primary" [routerLink]="hero.primaryCtaPath">
+          {{ hero.primaryCtaLabel }}
+        </a>
+        <a mat-stroked-button [routerLink]="hero.secondaryCtaPath">
+          {{ hero.secondaryCtaLabel }}
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <section class="help-page__section" aria-labelledby="help-features-title">
+    <h2 id="help-features-title" class="help-page__section-title">Почему LinguaCode</h2>
+    <p class="help-page__section-lead">
+      Платформа объединяет обучение, практику и оценку знаний — без лишней сложности.
+    </p>
+
+    <div class="help-page__features">
+      @for (feature of features; track feature.id) {
+        <mat-card class="help-page__feature-card">
+          <mat-card-header>
+            <mat-icon mat-card-avatar class="help-page__feature-icon">{{ feature.icon }}</mat-icon>
+            <mat-card-title>{{ feature.title }}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <p class="help-page__feature-text">{{ feature.description }}</p>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <a mat-button [routerLink]="feature.path">Подробнее</a>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  </section>
+
+  <section class="help-page__section help-page__section--hierarchy" aria-labelledby="help-hierarchy-title">
+    <h2 id="help-hierarchy-title" class="help-page__section-title">Как устроен контент</h2>
+    <p class="help-page__section-lead">
+      Материал собирается снизу вверх — от одного упражнения до полной программы.
+    </p>
+
+    <ol class="help-page__hierarchy">
+      @for (level of hierarchy; track level.id; let last = $last) {
+        <li class="help-page__hierarchy-step">
+          <div class="help-page__hierarchy-icon-wrap">
+            <mat-icon class="help-page__hierarchy-icon">{{ level.icon }}</mat-icon>
+          </div>
+          <div class="help-page__hierarchy-body">
+            <p class="help-page__hierarchy-label">{{ level.label }}</p>
+            <h3 class="help-page__hierarchy-title">{{ level.title }}</h3>
+            <p class="help-page__hierarchy-text">{{ level.description }}</p>
+          </div>
+          @if (!last) {
+            <mat-icon class="help-page__hierarchy-arrow" aria-hidden="true">arrow_downward</mat-icon>
+          }
+        </li>
+      }
+    </ol>
+  </section>
+
+  <section class="help-page__highlights" aria-label="Ключевые преимущества">
+    <ul class="help-page__highlights-list">
+      @for (item of highlights; track item) {
+        <li class="help-page__highlights-item">
+          <mat-icon>check_circle</mat-icon>
+          <span>{{ item }}</span>
+        </li>
+      }
+    </ul>
+  </section>
+
+  <footer class="help-page__footer">
+    <mat-card class="help-page__cta-card">
+      <mat-card-content class="help-page__cta-content">
+        <h2 class="help-page__cta-title">Готовы начать?</h2>
+        <p class="help-page__cta-text">
+          Выберите программу в каталоге или посмотрите, как платформу используют ученики, кандидаты
+          и интервьюеры.
+        </p>
+      </mat-card-content>
+      <mat-card-actions class="help-page__cta-actions">
+        <a mat-flat-button color="primary" routerLink="/courses">Каталог курсов</a>
+        <a mat-stroked-button routerLink="/help/scenarios">Сценарии использования</a>
+      </mat-card-actions>
+    </mat-card>
+  </footer>
+</section>

@@ -1,3 +1,5 @@
+import type { CourseAuthoring } from '../../../core/models/course-authoring.types';
+
 export type LessonFormDraft = {
   clientId: string;
   id?: string;
@@ -12,6 +14,7 @@ export type CourseFormDraft = {
   title: string;
   description: string;
   published: boolean;
+  authoring: CourseAuthoring;
   lessons: readonly LessonFormDraft[];
 };
 

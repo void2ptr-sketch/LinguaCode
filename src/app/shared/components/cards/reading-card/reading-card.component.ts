@@ -11,10 +11,11 @@ import type { CardDirection } from '../../../../core/models/language-pair.types'
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
+import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 @Component({
   selector: 'app-reading-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
   templateUrl: './reading-card.component.html',
   styleUrl: './reading-card.component.scss',
 })

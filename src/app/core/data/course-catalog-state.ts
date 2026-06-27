@@ -1,6 +1,7 @@
 import type { Course, Lesson } from '../models';
 
 import { normalizeLanguagePair } from './language-pair.utils';
+import { normalizeCourseAuthoring } from './course-authoring.utils';
 import type { CoursesSeedFixture } from './content-seed.types';
 
 export type CourseCatalogState = {
@@ -17,6 +18,7 @@ export function normalizeStoredCourse(course: Course): Course {
     lessonIds: [...course.lessonIds],
     published: course.published ?? false,
     updatedAt: course.updatedAt ?? new Date(0).toISOString(),
+    authoring: normalizeCourseAuthoring(course.authoring),
   };
 }
 

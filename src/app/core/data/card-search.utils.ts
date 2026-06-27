@@ -4,10 +4,10 @@ import type {
   CardKind,
   CardSearchCriteria,
   CardSearchFacets,
-  ContentLanguage,
   FacetCount,
 } from '../models';
 import { normalizeIpa } from './ipa-normalize.utils';
+import { contentLanguages } from './language-pair.utils';
 
 export type CardSearchFilterField =
   | 'query'
@@ -17,7 +17,7 @@ export type CardSearchFilterField =
   | 'kinds'
   | 'tags';
 
-const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru'];
+const CONTENT_LANGUAGES = contentLanguages();
 const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
 const CARD_KINDS: readonly CardKind[] = [
   'select',

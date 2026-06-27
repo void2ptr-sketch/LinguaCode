@@ -40,7 +40,10 @@ export type { LearningResult } from './learning-result.types';
 export type { CardDirection, LanguagePair } from './language-pair.types';
 export { DEFAULT_LANGUAGE_PAIR } from './language-pair.types';
 export type { Scenario, LegacyScenario } from './scenario.types';
-export type { Course, CourseWithLessons } from './course.types';
+export type { Course, CourseWithLessons, CourseAuthoring, CourseAuthoringStatus } from './course.types';
+export { COURSE_AUTHORING_STATUSES } from './course.types';
+export type { CoursePracticeMode, CoursePracticeSettings } from './course-practice.types';
+export { DEFAULT_COURSE_PRACTICE_SETTINGS } from './course-practice.types';
 export type {
   CourseIndexEntry,
   CourseListScope,
