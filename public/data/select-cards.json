@@ -470,53 +470,50 @@
       "title": "Иероглифы приветствия",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "direction": "known-to-learning",
-      "promptKnown": "Выберите иероглиф «Привет» (你好)",
+      "promptKnown": "Выберите иероглиф слова «Привет»",
       "promptLexeme": {
-        "primary": "你好",
-        "script": "hani",
-        "pinyin": "nǐ hǎo",
-        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
-        "palladius": "ни хао",
-        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        "primary": "Привет",
+        "script": "latn",
+        "glossKnown": "Привет"
       },
-      "symbols": ["你", "好", "谢", "再"],
-      "optionsKnown": ["ты", "хорошо", "благодарность", "снова"],
+      "symbols": ["你好", "谢谢", "再见", "请"],
+      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
       "symbolLexemes": [
         {
-          "primary": "你",
+          "primary": "你好",
           "script": "hani",
-          "pinyin": "nǐ",
-          "zhuyin": "ㄋㄧˇ",
-          "palladius": "ни",
-          "ipa": "ni˨˩˦",
-          "glossKnown": "ты"
+          "pinyin": "nǐ hǎo",
+          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+          "palladius": "ни хао",
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
-          "primary": "好",
+          "primary": "谢谢",
           "script": "hani",
-          "pinyin": "hǎo",
-          "zhuyin": "ㄏㄠˇ",
-          "palladius": "хао",
-          "ipa": "xaʊ˨˩˦",
-          "glossKnown": "хорошо"
+          "pinyin": "xièxie",
+          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+          "palladius": "сие сие",
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
-          "primary": "谢",
+          "primary": "再见",
           "script": "hani",
-          "pinyin": "xiè",
-          "zhuyin": "ㄒㄧㄝˋ",
-          "palladius": "сие",
-          "ipa": "ɕiɛ˥˩",
-          "glossKnown": "благодарность"
+          "pinyin": "zàijiàn",
+          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+          "palladius": "цзай цзянь",
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         },
         {
-          "primary": "再",
+          "primary": "请",
           "script": "hani",
-          "pinyin": "zài",
-          "zhuyin": "ㄗㄞˋ",
-          "palladius": "цзай",
-          "ipa": "tsai˥˩",
-          "glossKnown": "снова"
+          "pinyin": "qǐng",
+          "zhuyin": "ㄑㄧㄥˇ",
+          "palladius": "цин",
+          "ipa": "tɕʰiŋ˨˩˦",
+          "glossKnown": "Пожалуйста"
         }
       ],
       "correctIndex": 0
