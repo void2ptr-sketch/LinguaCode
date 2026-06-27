@@ -15,19 +15,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { paintCalligraphyPolyline } from '../../../core/data/draw-calligraphy-paint.utils';
-import {
-  resolveStrokeAnimationFrame,
-  slicePolylineAtProgress,
-} from '../../../core/data/draw-stroke-path.utils';
 import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
 import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-character.model';
 import type { HanziLoadState, HanziPoint } from '../../../core/hanzi-engine/hanzi-character.types';
-import { HanziPositioner, mapPointsToCanvas } from '../../../core/hanzi-engine/hanzi-positioner';
+import { HanziPositioner } from '../../../core/hanzi-engine/hanzi-positioner';
 import {
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
 } from '../../../core/hanzi-engine/hanzi-render.utils';
+import {
+  prepareHanziTracingSamples,
+  resolveHanziTracingFrame,
+  sliceHanziPolylineByProgress,
+  tracingRevealProgress,
+  type HanziTracingFrame,
+  type HanziTracingStrokeSample,
+} from '../../../core/hanzi-engine/hanzi-tracing-animation.utils';
 import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 
@@ -38,6 +42,15 @@ export type DrawRadicalHint = {
 
 const DEFAULT_SURFACE_SIZE = 280;
 const GHOST_FONT_RATIO = 0.72;
+const TRACING_MASK_STROKE_WIDTH = 140;
+
+const EMPTY_TRACING_FRAME: HanziTracingFrame = {
+  completedStrokeCount: 0,
+  activeStrokeIndex: 0,
+  activeProgress: 0,
+  isLoopPause: false,
+  tip: null,
+};
 
 @Component({
   selector: 'app-draw-canvas',
@@ -68,6 +81,9 @@ export class DrawCanvasComponent {
   readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
   readonly hanziModel = signal<HanziCharacterModel | null>(null);
   readonly hanziLoadState = signal<HanziLoadState>('idle');
+  readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
+
+  readonly tracingMaskStrokeWidth = TRACING_MASK_STROKE_WIDTH;
 
   readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
 
@@ -134,7 +150,8 @@ export class DrawCanvasComponent {
   private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
   private context: CanvasRenderingContext2D | null = null;
-  private tracingMedianSamples: HanziPoint[][] = [];
+  private readonly tracingMaskPrefix = `ht-${Math.random().toString(36).slice(2, 9)}`;
+  private tracingSamples: readonly HanziTracingStrokeSample[] = [];
   private tracingAnimationStart = 0;
   private tracingAnimationFrameId = 0;
 
@@ -169,6 +186,51 @@ export class DrawCanvasComponent {
 
   medianLabel(points: readonly HanziPoint[]): HanziPoint {
     return medianLabelPoint(points);
+  }
+
+  tracingMaskId(strokeNum: number): string {
+    return `${this.tracingMaskPrefix}-mask-${strokeNum}`;
+  }
+
+  tracingMaskPath(strokeNum: number): string {
+    const sample = this.tracingSamples[strokeNum];
+    if (!sample) {
+      return '';
+    }
+
+    const progress = tracingRevealProgress(this.tracingFrame(), strokeNum);
+    if (progress <= 0) {
+      return '';
+    }
+
+    const points = sliceHanziPolylineByProgress(sample.densified, progress);
+    return medianToSvgPath(points);
+  }
+
+  tracingStrokeVisible(strokeNum: number): boolean {
+    const frame = this.tracingFrame();
+    if (frame.isLoopPause) {
+      return true;
+    }
+
+    return tracingRevealProgress(frame, strokeNum) > 0;
+  }
+
+  tracingStrokeOpacity(strokeNum: number): number {
+    const frame = this.tracingFrame();
+    if (frame.isLoopPause) {
+      return 0.32;
+    }
+
+    if (strokeNum < frame.completedStrokeCount) {
+      return 0.34;
+    }
+
+    if (strokeNum === frame.activeStrokeIndex) {
+      return 0.92;
+    }
+
+    return 0;
   }
 
   getStrokes(): readonly DrawStrokePath[] {
@@ -497,8 +559,11 @@ export class DrawCanvasComponent {
       return;
     }
 
-    this.tracingMedianSamples = model.strokes.map((stroke) => [...stroke.points]);
+    this.tracingSamples = prepareHanziTracingSamples(
+      model.strokes.map((stroke) => stroke.points),
+    );
     this.tracingAnimationStart = performance.now();
+    this.tracingFrame.set(EMPTY_TRACING_FRAME);
     this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
   }
 
@@ -507,6 +572,8 @@ export class DrawCanvasComponent {
       cancelAnimationFrame(this.tracingAnimationFrameId);
       this.tracingAnimationFrameId = 0;
     }
+
+    this.tracingFrame.set(EMPTY_TRACING_FRAME);
   }
 
   private runTracingAnimation(): void {
@@ -514,74 +581,43 @@ export class DrawCanvasComponent {
       return;
     }
 
+    const elapsedMs = performance.now() - this.tracingAnimationStart;
+    this.tracingFrame.set(resolveHanziTracingFrame(elapsedMs, this.tracingSamples));
     this.redrawAll();
     this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
   }
 
   private paintTracingAnimation(context: CanvasRenderingContext2D): void {
-    if (!this.showTracingAnimation() || this.tracingMedianSamples.length === 0) {
+    if (!this.showTracingAnimation()) {
+      return;
+    }
+
+    const frame = this.tracingFrame();
+    if (!frame.tip || frame.isLoopPause) {
       return;
     }
 
     const positioner = this.hanziPositioner();
-    const elapsedMs = performance.now() - this.tracingAnimationStart;
-    const frame = resolveStrokeAnimationFrame(
-      elapsedMs,
-      this.tracingMedianSamples.length,
-      this.tracingMedianSamples,
-    );
-    const lineWidth = Math.max(2.5, positioner.scale * 0.42);
-    const brushRadius = Math.max(3, positioner.scale * 0.2);
+    const activeSample = this.tracingSamples[frame.activeStrokeIndex];
+    const progress = tracingRevealProgress(frame, frame.activeStrokeIndex);
+    const lookbackPoints = activeSample
+      ? sliceHanziPolylineByProgress(activeSample.densified, Math.max(0, progress - 0.04))
+      : [];
+    const canvasTip = positioner.toCanvas(frame.tip.point);
+    const canvasTail = positioner.toCanvas(lookbackPoints.at(-1) ?? frame.tip.point);
+    const angleRad = Math.atan2(canvasTip.y - canvasTail.y, canvasTip.x - canvasTail.x);
+    const brushRadius = Math.max(3.5, positioner.scale * 0.22);
     const strokeColor = this.resolvePrimaryColor();
 
-    for (let index = 0; index < frame.completedStrokeCount; index += 1) {
-      this.paintTracingPolyline(
-        context,
-        this.tracingMedianSamples[index] ?? [],
-        positioner,
-        lineWidth * 0.85,
-        0.28,
-        strokeColor,
-      );
-    }
-
-    const activeSamples = this.tracingMedianSamples[frame.activeStrokeIndex] ?? [];
-    const activePolyline = slicePolylineAtProgress(activeSamples, frame.activeProgress);
-    if (activePolyline.length > 0) {
-      this.paintTracingPolyline(context, activePolyline, positioner, lineWidth, 0.92, strokeColor);
-    }
-
-    if (frame.tip) {
-      const tip = positioner.toCanvas(frame.tip);
-      context.save();
-      context.globalAlpha = 1;
-      context.fillStyle = strokeColor;
-      context.beginPath();
-      context.arc(tip.x, tip.y, brushRadius, 0, Math.PI * 2);
-      context.fill();
-      context.restore();
-    }
-  }
-
-  private paintTracingPolyline(
-    context: CanvasRenderingContext2D,
-    points: readonly HanziPoint[],
-    positioner: HanziPositioner,
-    lineWidth: number,
-    alpha: number,
-    strokeColor: string,
-  ): void {
-    if (points.length === 0) {
-      return;
-    }
-
-    const canvasPoints = mapPointsToCanvas(points, positioner);
-    paintCalligraphyPolyline(context, canvasPoints, {
-      baseWidth: lineWidth,
-      color: strokeColor,
-      alpha,
-      taper: true,
-    });
+    context.save();
+    context.globalAlpha = 1;
+    context.fillStyle = strokeColor;
+    context.translate(canvasTip.x, canvasTip.y);
+    context.rotate(angleRad);
+    context.beginPath();
+    context.ellipse(0, 0, brushRadius * 1.15, brushRadius * 0.72, 0, 0, Math.PI * 2);
+    context.fill();
+    context.restore();
   }
 
   private resolvePrimaryColor(): string {

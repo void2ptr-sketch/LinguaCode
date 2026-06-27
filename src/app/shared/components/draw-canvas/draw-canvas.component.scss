@@ -19,10 +19,15 @@
 }
 
 .draw-canvas__ghost,
+.draw-canvas__tracing,
 .draw-canvas__guides {
   inset: 0;
   pointer-events: none;
   position: absolute;
+}
+
+.draw-canvas__tracing-stroke {
+  fill: var(--mat-sys-primary);
 }
 
 .draw-canvas__ghost-stroke {

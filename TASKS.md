@@ -130,12 +130,12 @@
 - [x] Loading / missing states в UI
 - [x] Удалить `draw-ghost-layout.utils.ts` после миграции
 
-**H15c — Sprint 3: animation (tracing)**
+**H15c — Sprint 3: animation (tracing)** ✅
 
-- [ ] Reveal-анимация вдоль medians (не polyline целиком)
-- [ ] `delayBetweenStrokes`, loop для режима «Трассировка»
-- [ ] Brush tip по tangent path
-- [ ] Удалить/заменить `draw-stroke-path.utils.ts` (tracing part)
+- [x] Reveal-анимация вдоль medians (SVG mask по контуру черты)
+- [x] `delayBetweenStrokes`, loop для режима «Трассировка»
+- [x] Brush tip по tangent path (ellipse на canvas)
+- [x] Удалить `draw-stroke-path.utils.ts` (tracing part)
 
 **H15d — Sprint 4: validation + card flow**
 

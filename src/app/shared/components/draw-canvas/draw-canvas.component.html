@@ -20,6 +20,42 @@
       </svg>
     }
 
+    @if (showTracingAnimation()) {
+      <svg
+        class="draw-canvas__tracing"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <defs>
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+            <mask [attr.id]="tracingMaskId(stroke.strokeNum)">
+              <path
+                [attr.d]="tracingMaskPath(stroke.strokeNum)"
+                stroke="white"
+                [attr.stroke-width]="tracingMaskStrokeWidth"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </mask>
+          }
+        </defs>
+        <g [attr.transform]="hanziSvgTransform()">
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+            @if (tracingStrokeVisible(stroke.strokeNum)) {
+              <path
+                class="draw-canvas__tracing-stroke"
+                [attr.d]="stroke.path"
+                [attr.mask]="'url(#' + tracingMaskId(stroke.strokeNum) + ')'"
+                [style.opacity]="tracingStrokeOpacity(stroke.strokeNum)"
+              />
+            }
+          }
+        </g>
+      </svg>
+    }
+
     <canvas
       #canvas
       class="draw-canvas__canvas"

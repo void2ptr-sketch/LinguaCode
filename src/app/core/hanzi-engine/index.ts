@@ -37,6 +37,18 @@ export {
 export { matchHanziUserStroke, type HanziStrokeMatchResult } from './hanzi-stroke-match.utils';
 
 export {
+  DEFAULT_HANZI_TRACING_OPTIONS,
+  prepareHanziTracingSamples,
+  resolveHanziTracingFrame,
+  sliceHanziPolylineByProgress,
+  tracingRevealProgress,
+  type HanziTracingAnimationOptions,
+  type HanziTracingFrame,
+  type HanziTracingStrokeSample,
+  type HanziTracingTip,
+} from './hanzi-tracing-animation.utils';
+
+export {
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
