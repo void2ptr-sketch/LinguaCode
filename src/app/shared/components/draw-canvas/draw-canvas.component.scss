@@ -12,6 +12,11 @@
 }
 
 .draw-canvas__surface {
+  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, var(--mat-sys-surface-container-lowest));
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
+  border-radius: 0.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
   position: relative;
   width: 100%;
   max-width: 20rem;
@@ -19,15 +24,20 @@
 }
 
 .draw-canvas__ghost,
-.draw-canvas__tracing,
 .draw-canvas__guides {
+  height: 100%;
   inset: 0;
   pointer-events: none;
   position: absolute;
+  width: 100%;
 }
 
-.draw-canvas__tracing-stroke {
-  fill: var(--mat-sys-primary);
+.draw-canvas__ghost {
+  z-index: 1;
+}
+
+.draw-canvas__guides {
+  z-index: 4;
 }
 
 .draw-canvas__ghost-stroke {
@@ -50,7 +60,7 @@
   pointer-events: none;
   position: absolute;
   text-align: center;
-  z-index: 1;
+  z-index: 5;
 
   mat-icon {
     font-size: 1.75rem;
@@ -66,14 +76,17 @@
 }
 
 .draw-canvas__canvas {
-  background: color-mix(in srgb, var(--mat-sys-surface-container) 80%, var(--mat-sys-surface-container-lowest));
-  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
-  border-radius: 0.5rem;
+  background: transparent;
+  border: none;
+  border-radius: 0;
   box-sizing: border-box;
   display: block;
   height: 100%;
+  inset: 0;
+  position: absolute;
   touch-action: none;
   width: 100%;
+  z-index: 3;
 }
 
 .draw-canvas__canvas--disabled {

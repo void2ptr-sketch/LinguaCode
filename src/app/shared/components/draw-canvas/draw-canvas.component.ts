@@ -42,7 +42,6 @@ export type DrawRadicalHint = {
 
 const DEFAULT_SURFACE_SIZE = 280;
 const GHOST_FONT_RATIO = 0.72;
-const TRACING_MASK_STROKE_WIDTH = 140;
 
 const EMPTY_TRACING_FRAME: HanziTracingFrame = {
   completedStrokeCount: 0,
@@ -83,7 +82,6 @@ export class DrawCanvasComponent {
   readonly hanziLoadState = signal<HanziLoadState>('idle');
   readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
 
-  readonly tracingMaskStrokeWidth = TRACING_MASK_STROKE_WIDTH;
 
   readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
 
@@ -150,15 +148,17 @@ export class DrawCanvasComponent {
   private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
   private context: CanvasRenderingContext2D | null = null;
-  private readonly tracingMaskPrefix = `ht-${Math.random().toString(36).slice(2, 9)}`;
   private tracingSamples: readonly HanziTracingStrokeSample[] = [];
   private tracingAnimationStart = 0;
   private tracingAnimationFrameId = 0;
+  private tracingAnimationActive = false;
+  private tracingLoopToken = 0;
 
   constructor() {
     afterNextRender(() => {
       this.resizeCanvas();
       this.observeCanvasResize();
+      this.syncTracingAnimation();
     });
 
     effect(() => {
@@ -170,9 +170,9 @@ export class DrawCanvasComponent {
 
     effect(() => {
       this.hanziModel();
+      this.hanziLoadState();
       this.canvasMode();
       this.syncTracingAnimation();
-      this.redrawAll();
     });
 
     this.destroyRef.onDestroy(() => {
@@ -186,51 +186,6 @@ export class DrawCanvasComponent {
 
   medianLabel(points: readonly HanziPoint[]): HanziPoint {
     return medianLabelPoint(points);
-  }
-
-  tracingMaskId(strokeNum: number): string {
-    return `${this.tracingMaskPrefix}-mask-${strokeNum}`;
-  }
-
-  tracingMaskPath(strokeNum: number): string {
-    const sample = this.tracingSamples[strokeNum];
-    if (!sample) {
-      return '';
-    }
-
-    const progress = tracingRevealProgress(this.tracingFrame(), strokeNum);
-    if (progress <= 0) {
-      return '';
-    }
-
-    const points = sliceHanziPolylineByProgress(sample.densified, progress);
-    return medianToSvgPath(points);
-  }
-
-  tracingStrokeVisible(strokeNum: number): boolean {
-    const frame = this.tracingFrame();
-    if (frame.isLoopPause) {
-      return true;
-    }
-
-    return tracingRevealProgress(frame, strokeNum) > 0;
-  }
-
-  tracingStrokeOpacity(strokeNum: number): number {
-    const frame = this.tracingFrame();
-    if (frame.isLoopPause) {
-      return 0.32;
-    }
-
-    if (strokeNum < frame.completedStrokeCount) {
-      return 0.34;
-    }
-
-    if (strokeNum === frame.activeStrokeIndex) {
-      return 0.92;
-    }
-
-    return 0;
   }
 
   getStrokes(): readonly DrawStrokePath[] {
@@ -353,7 +308,7 @@ export class DrawCanvasComponent {
 
   private redrawAll(): void {
     const canvas = this.canvasRef()?.nativeElement;
-    const context = this.context ?? canvas?.getContext('2d') ?? null;
+    const context = this.ensureContext();
     if (!canvas || !context) {
       return;
     }
@@ -548,9 +503,14 @@ export class DrawCanvasComponent {
   }
 
   private syncTracingAnimation(): void {
-    this.stopTracingAnimation();
+    this.stopTracingAnimation(false);
 
-    if (!this.showTracingAnimation()) {
+    if (
+      this.canvasMode() !== 'tracing' ||
+      this.hanziLoadState() !== 'ready' ||
+      !this.hanziModel()
+    ) {
+      this.redrawAll();
       return;
     }
 
@@ -564,40 +524,81 @@ export class DrawCanvasComponent {
     );
     this.tracingAnimationStart = performance.now();
     this.tracingFrame.set(EMPTY_TRACING_FRAME);
-    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
+    this.tracingAnimationActive = true;
+    this.tracingLoopToken += 1;
+    const token = this.tracingLoopToken;
+    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation(token));
   }
 
-  private stopTracingAnimation(): void {
+  private stopTracingAnimation(redraw = true): void {
+    this.tracingAnimationActive = false;
+    this.tracingLoopToken += 1;
+
     if (this.tracingAnimationFrameId) {
       cancelAnimationFrame(this.tracingAnimationFrameId);
       this.tracingAnimationFrameId = 0;
     }
 
     this.tracingFrame.set(EMPTY_TRACING_FRAME);
+
+    if (redraw) {
+      this.redrawAll();
+    }
   }
 
-  private runTracingAnimation(): void {
-    if (!this.showTracingAnimation()) {
+  private runTracingAnimation(token: number): void {
+    if (!this.tracingAnimationActive || token !== this.tracingLoopToken) {
       return;
     }
 
     const elapsedMs = performance.now() - this.tracingAnimationStart;
     this.tracingFrame.set(resolveHanziTracingFrame(elapsedMs, this.tracingSamples));
     this.redrawAll();
-    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
+    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation(token));
   }
 
   private paintTracingAnimation(context: CanvasRenderingContext2D): void {
-    if (!this.showTracingAnimation()) {
+    if (!this.tracingAnimationActive || this.tracingSamples.length === 0) {
       return;
     }
 
     const frame = this.tracingFrame();
+    const positioner = this.hanziPositioner();
+    const strokeColor = this.resolvePrimaryColor();
+    const lineWidth = Math.max(8, positioner.scale * 0.34);
+
+    for (let strokeNum = 0; strokeNum < this.tracingSamples.length; strokeNum += 1) {
+      const sample = this.tracingSamples[strokeNum];
+      if (!sample) {
+        continue;
+      }
+
+      const progress = frame.isLoopPause ? 1 : tracingRevealProgress(frame, strokeNum);
+      if (progress <= 0) {
+        continue;
+      }
+
+      const isActive = !frame.isLoopPause && strokeNum === frame.activeStrokeIndex;
+      const alpha = frame.isLoopPause
+        ? 0.32
+        : strokeNum < frame.completedStrokeCount
+          ? 0.34
+          : isActive
+            ? 0.92
+            : 0;
+
+      if (alpha <= 0) {
+        continue;
+      }
+
+      const points = sliceHanziPolylineByProgress(sample.densified, progress);
+      this.paintTracingPolyline(context, points, positioner, strokeColor, lineWidth, alpha);
+    }
+
     if (!frame.tip || frame.isLoopPause) {
       return;
     }
 
-    const positioner = this.hanziPositioner();
     const activeSample = this.tracingSamples[frame.activeStrokeIndex];
     const progress = tracingRevealProgress(frame, frame.activeStrokeIndex);
     const lookbackPoints = activeSample
@@ -607,7 +608,6 @@ export class DrawCanvasComponent {
     const canvasTail = positioner.toCanvas(lookbackPoints.at(-1) ?? frame.tip.point);
     const angleRad = Math.atan2(canvasTip.y - canvasTail.y, canvasTip.x - canvasTail.x);
     const brushRadius = Math.max(3.5, positioner.scale * 0.22);
-    const strokeColor = this.resolvePrimaryColor();
 
     context.save();
     context.globalAlpha = 1;
@@ -617,6 +617,34 @@ export class DrawCanvasComponent {
     context.beginPath();
     context.ellipse(0, 0, brushRadius * 1.15, brushRadius * 0.72, 0, 0, Math.PI * 2);
     context.fill();
+    context.restore();
+  }
+
+  private paintTracingPolyline(
+    context: CanvasRenderingContext2D,
+    points: readonly HanziPoint[],
+    positioner: HanziPositioner,
+    color: string,
+    width: number,
+    alpha: number,
+  ): void {
+    if (points.length < 2) {
+      return;
+    }
+
+    const canvasPoints = points.map((point) => positioner.toCanvas(point));
+    context.save();
+    context.strokeStyle = color;
+    context.lineCap = 'round';
+    context.lineJoin = 'round';
+    context.lineWidth = width;
+    context.globalAlpha = alpha;
+    context.beginPath();
+    context.moveTo(canvasPoints[0]!.x, canvasPoints[0]!.y);
+    for (let index = 1; index < canvasPoints.length; index += 1) {
+      context.lineTo(canvasPoints[index]!.x, canvasPoints[index]!.y);
+    }
+    context.stroke();
     context.restore();
   }
 

@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/card-learning-audio.utils';
 import {
   drawCharacterTabPinyinLabel,
-  initialDrawCanvasMode,
+  resolveInitialDrawCanvasMode,
   parseRadicalHintParts,
   resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
@@ -68,7 +68,7 @@ export class DrawCardComponent {
   readonly canvasModeLabels = DRAW_CANVAS_MODE_LABELS;
 
   readonly hasStrokes = signal(false);
-  readonly canvasMode = signal<DrawCanvasMode>(initialDrawCanvasMode());
+  readonly canvasMode = signal<DrawCanvasMode>('memory');
   readonly activeCharIndex = signal(0);
   readonly charDone = signal<readonly boolean[]>([]);
   readonly charStrokes = signal<readonly (readonly DrawStrokePath[])[]>([]);
@@ -159,6 +159,8 @@ export class DrawCardComponent {
     return targets.length > 0 && done.length === targets.length && done.every(Boolean);
   });
 
+  private lastCardId: string | null = null;
+
   constructor() {
     effect(() => {
       const characters = this.characterTargets()
@@ -170,10 +172,15 @@ export class DrawCardComponent {
     });
 
     effect(() => {
-      this.card();
+      const card = this.card();
       const count = this.characterTargets().length;
+
+      if (this.lastCardId !== card.id) {
+        this.lastCardId = card.id;
+        this.canvasMode.set(resolveInitialDrawCanvasMode(card));
+      }
+
       this.activeCharIndex.set(0);
-      this.canvasMode.set(initialDrawCanvasMode());
       this.charDone.set(Array.from({ length: count }, () => false));
       this.charStrokes.set(Array.from({ length: count }, () => []));
       this.hasStrokes.set(false);

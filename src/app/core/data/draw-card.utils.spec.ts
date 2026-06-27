@@ -10,6 +10,7 @@ import {
   resolveDrawLearningSpeechText,
   resolveDrawMeaning,
   resolveDrawQuestion,
+  resolveInitialDrawCanvasMode,
   splitPinyinSyllables,
   stripHanScript,
 } from './draw-card.utils';
@@ -138,6 +139,11 @@ describe('draw-card.utils', () => {
 
     expect(targets[0].palladius).toBe('ни');
     expect(targets[1].palladius).toBe('хао');
+  });
+
+  it('should map card practiceMode to initial canvas mode', () => {
+    expect(resolveInitialDrawCanvasMode({ ...baseDrawCard, practiceMode: 'tracing' })).toBe('tracing');
+    expect(resolveInitialDrawCanvasMode({ ...baseDrawCard, practiceMode: 'freehand' })).toBe('memory');
   });
 
   it('should build tab lexeme for draw card phonetics without han', () => {

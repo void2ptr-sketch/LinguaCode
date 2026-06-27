@@ -276,6 +276,22 @@ export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
   return phonetics;
 }
 
+export function resolveInitialDrawCanvasMode(card: DrawCard): DrawCanvasMode {
+  const mode = card.practiceMode;
+  if (
+    mode === 'memory' ||
+    mode === 'tracing' ||
+    mode === 'hints' ||
+    mode === 'stroke-order' ||
+    mode === 'radicals'
+  ) {
+    return mode;
+  }
+
+  return 'memory';
+}
+
+/** @deprecated Use resolveInitialDrawCanvasMode(card) when card context is available. */
 export function initialDrawCanvasMode(): DrawCanvasMode {
   return 'memory';
 }
