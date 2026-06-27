@@ -141,8 +141,8 @@ describe('draw-card.utils', () => {
     expect(targets[1].palladius).toBe('хао');
   });
 
-  it('should map card practiceMode to initial canvas mode', () => {
-    expect(resolveInitialDrawCanvasMode({ ...baseDrawCard, practiceMode: 'tracing' })).toBe('tracing');
+  it('should always open draw canvas on memory mode', () => {
+    expect(resolveInitialDrawCanvasMode({ ...baseDrawCard, practiceMode: 'tracing' })).toBe('memory');
     expect(resolveInitialDrawCanvasMode({ ...baseDrawCard, practiceMode: 'freehand' })).toBe('memory');
   });
 

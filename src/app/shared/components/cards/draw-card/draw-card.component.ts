@@ -7,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/card-learning-audio.utils';
 import {
   drawCharacterTabPinyinLabel,
-  resolveInitialDrawCanvasMode,
   parseRadicalHintParts,
   resolveDrawAudioUrl,
   resolveDrawCharacterTargets,
@@ -209,7 +208,7 @@ export class DrawCardComponent {
 
       if (this.lastCardId !== card.id) {
         this.lastCardId = card.id;
-        this.canvasMode.set(resolveInitialDrawCanvasMode(card));
+        this.canvasMode.set('memory');
       }
 
       this.activeCharIndex.set(0);

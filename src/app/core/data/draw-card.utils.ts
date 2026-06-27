@@ -276,18 +276,8 @@ export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
   return phonetics;
 }
 
-export function resolveInitialDrawCanvasMode(card: DrawCard): DrawCanvasMode {
-  const mode = card.practiceMode;
-  if (
-    mode === 'memory' ||
-    mode === 'tracing' ||
-    mode === 'hints' ||
-    mode === 'stroke-order' ||
-    mode === 'radicals'
-  ) {
-    return mode;
-  }
-
+/** UI draw cards always open on «По памяти»; `practiceMode` on card is editor metadata only. */
+export function resolveInitialDrawCanvasMode(_card: DrawCard): DrawCanvasMode {
   return 'memory';
 }
 
