@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Card } from '../../../core/models';
 import { CardSelectStore } from './card-select.store';
@@ -28,7 +30,9 @@ describe('CardSelectStore', () => {
   let store: CardSelectStore;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [provideHttpClient(), provideHttpClientTesting()],
+    });
     store = TestBed.inject(CardSelectStore);
     store.setScenario('scenario-1', CARDS);
   });

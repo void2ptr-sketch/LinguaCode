@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { Card } from '../../../../core/models';
 import { SingleCardPlayStore } from './single-card-play.store';
@@ -17,7 +19,9 @@ describe('SingleCardPlayStore', () => {
   let store: SingleCardPlayStore;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({ providers: [SingleCardPlayStore] });
+    TestBed.configureTestingModule({
+      providers: [SingleCardPlayStore, provideHttpClient(), provideHttpClientTesting()],
+    });
     store = TestBed.inject(SingleCardPlayStore);
     store.setCard(SELECT_CARD);
   });
