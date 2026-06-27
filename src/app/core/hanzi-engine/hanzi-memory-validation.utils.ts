@@ -1,8 +1,12 @@
 import type { LearningProficiencyLevel } from '../models/learning-proficiency.types';
 import type { DrawStrokePath } from '../../shared/components/draw-canvas/draw-canvas.types';
 import type { HanziCharacterModel } from './hanzi-character.model';
+import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from './hanzi-character.types';
 import { HanziPositioner } from './hanzi-positioner';
-import { HanziQuizSession } from './hanzi-quiz-session';
+import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
+import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
+
+export type HanziMemoryStrokeGrade = 'correct' | 'incorrect';
 
 export type HanziMemoryValidationResult = {
   passed: boolean;
@@ -30,6 +34,42 @@ export function resolveHanziMemoryStrokeCountTolerance(
   level: LearningProficiencyLevel,
 ): number {
   return STROKE_COUNT_TOLERANCE[level];
+}
+
+export function resolveHanziMemoryQuizOptions(
+  proficiencyLevel: LearningProficiencyLevel,
+): HanziQuizOptions {
+  return {
+    leniency: DEFAULT_HANZI_QUIZ_OPTIONS.leniency * resolveHanziQuizLeniency(proficiencyLevel),
+    averageDistanceThreshold: DEFAULT_HANZI_QUIZ_OPTIONS.averageDistanceThreshold,
+    acceptBackwardsStrokes: DEFAULT_HANZI_QUIZ_OPTIONS.acceptBackwardsStrokes,
+  };
+}
+
+/** Оценка каждого штриха пользователя для подсветки после «Проверить». */
+export function gradeHanziMemoryStrokes(
+  model: HanziCharacterModel,
+  canvasSize: { width: number; height: number },
+  strokes: readonly DrawStrokePath[],
+  proficiencyLevel: LearningProficiencyLevel,
+  options: HanziMemoryValidationOptions = {},
+): readonly HanziMemoryStrokeGrade[] {
+  const positioner = new HanziPositioner({
+    width: canvasSize.width,
+    height: canvasSize.height,
+    padding: options.padding ?? 20,
+  });
+  const quizOptions = resolveHanziMemoryQuizOptions(proficiencyLevel);
+
+  return strokes.map((stroke, strokeIndex) => {
+    if (!stroke.length) {
+      return 'incorrect';
+    }
+
+    const characterPoints = stroke.map((point) => positioner.toCharacterSpace(point));
+    const match = matchHanziUserStroke(characterPoints, model, strokeIndex, quizOptions);
+    return match.isMatch ? 'correct' : 'incorrect';
+  });
 }
 
 /** Batch-валидация всех черт пользователя в memory mode (порядок + форма). */

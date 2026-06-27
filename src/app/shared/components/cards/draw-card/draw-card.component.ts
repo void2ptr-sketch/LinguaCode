@@ -20,6 +20,7 @@ import {
   resolveRadicalComponentPalette,
 } from '../../../../core/data/radical-component-color.utils';
 import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
+import { gradeHanziMemoryStrokes } from '../../../../core/hanzi-engine/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {
@@ -159,6 +160,37 @@ export class DrawCardComponent {
     return targets.length > 0 && done.length === targets.length && done.every(Boolean);
   });
 
+  readonly showMemoryReview = computed(
+    () => this.feedback() !== null && this.canvasMode() === 'memory',
+  );
+
+  readonly memoryStrokeGrades = computed(() => {
+    if (!this.showMemoryReview()) {
+      return [];
+    }
+
+    const character = this.ghostCharacter()?.trim();
+    if (!character) {
+      return [];
+    }
+
+    const model = this.hanziData.getCachedModel(character);
+    if (!model) {
+      return [];
+    }
+
+    const index = this.activeCharIndex();
+    const strokes = this.charStrokes()[index] ?? [];
+    const canvas = this.canvasRef();
+
+    return gradeHanziMemoryStrokes(
+      model,
+      canvas?.getCanvasSize() ?? { width: 280, height: 280 },
+      strokes,
+      this.userStore.learningProficiencyLevel(),
+    );
+  });
+
   private lastCardId: string | null = null;
 
   constructor() {
@@ -213,7 +245,13 @@ export class DrawCardComponent {
   }
 
   selectCharacterTab(index: number): void {
-    if (index === this.activeCharIndex() || this.feedback() !== null) {
+    if (index === this.activeCharIndex()) {
+      return;
+    }
+
+    if (this.feedback() !== null) {
+      this.activeCharIndex.set(index);
+      this.loadActiveStrokes();
       return;
     }
 

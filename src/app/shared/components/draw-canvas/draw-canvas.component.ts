@@ -38,7 +38,7 @@ import {
   type HanziTracingStrokeSample,
 } from '../../../core/hanzi-engine/hanzi-tracing-animation.utils';
 import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
-import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
+import type { DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from './draw-canvas.types';
 
 export type DrawRadicalHint = {
   readonly character: string;
@@ -71,6 +71,8 @@ export class DrawCanvasComponent {
   readonly radicalAriaLabel = input<string | null>(null);
   readonly canvasMode = input<DrawCanvasMode>('memory');
   readonly disabled = input(false);
+  readonly showMemoryReview = input(false);
+  readonly memoryStrokeGrades = input<readonly DrawMemoryStrokeGrade[]>([]);
   readonly showClearAll = input(false);
   readonly clearAllDisabled = input(true);
 
@@ -116,10 +118,14 @@ export class DrawCanvasComponent {
 
   readonly showHanziGhost = computed(
     () =>
-      this.hanziDataRequired() &&
+      (this.hanziDataRequired() || this.showMemoryReviewGhost()) &&
       this.hanziLoadState() === 'ready' &&
       this.hanziStrokes().length > 0 &&
       this.ghostOpacity() > 0,
+  );
+
+  readonly showMemoryReviewGhost = computed(
+    () => this.showMemoryReview() && this.canvasMode() === 'memory',
   );
 
   readonly showHanziGuides = computed(() => {
@@ -150,6 +156,10 @@ export class DrawCanvasComponent {
   );
 
   readonly ghostOpacity = computed(() => {
+    if (this.showMemoryReviewGhost()) {
+      return 0.38;
+    }
+
     switch (this.canvasMode()) {
       case 'tracing':
         return 0.38;
@@ -204,6 +214,12 @@ export class DrawCanvasComponent {
       this.hanziLoadState();
       this.canvasMode();
       this.syncTracingAnimation();
+    });
+
+    effect(() => {
+      this.showMemoryReview();
+      this.memoryStrokeGrades();
+      this.redrawAll();
     });
 
     this.destroyRef.onDestroy(() => {
@@ -397,16 +413,31 @@ export class DrawCanvasComponent {
   }
 
   private paintStrokes(context: CanvasRenderingContext2D): void {
-    for (const stroke of this.strokes) {
-      this.paintStroke(context, stroke);
+    const reviewActive = this.showMemoryReview() && this.canvasMode() === 'memory';
+
+    for (let index = 0; index < this.strokes.length; index += 1) {
+      const stroke = this.strokes[index];
+      if (!stroke) {
+        continue;
+      }
+
+      this.paintStroke(context, stroke, reviewActive ? this.memoryStrokeGradeAt(index) : null);
     }
 
     if (this.activeStroke.length > 0) {
-      this.paintStroke(context, this.activeStroke);
+      this.paintStroke(context, this.activeStroke, null);
     }
   }
 
-  private paintStroke(context: CanvasRenderingContext2D, stroke: DrawStrokePath): void {
+  private memoryStrokeGradeAt(index: number): DrawMemoryStrokeGrade | null {
+    return this.memoryStrokeGrades()[index] ?? 'incorrect';
+  }
+
+  private paintStroke(
+    context: CanvasRenderingContext2D,
+    stroke: DrawStrokePath,
+    memoryGrade: DrawMemoryStrokeGrade | null,
+  ): void {
     if (stroke.length === 0) {
       return;
     }
@@ -414,9 +445,33 @@ export class DrawCanvasComponent {
     const baseWidth = Math.max(3.5, this.surfaceWidth() * 0.022);
     paintCalligraphyPolyline(context, stroke, {
       baseWidth,
-      color: '#1a1a1a',
+      color: this.resolveStrokeColor(memoryGrade),
       taper: true,
     });
+  }
+
+  private resolveStrokeColor(memoryGrade: DrawMemoryStrokeGrade | null): string {
+    if (memoryGrade === 'correct') {
+      return this.resolveThemeColor('--mat-sys-tertiary', '#386a20');
+    }
+
+    if (memoryGrade === 'incorrect') {
+      return this.resolveThemeColor('--mat-sys-error', '#b3261e');
+    }
+
+    return '#1a1a1a';
+  }
+
+  private resolveThemeColor(variable: string, fallback: string): string {
+    const canvas = this.canvasRef()?.nativeElement;
+    const fromCanvas = canvas
+      ? getComputedStyle(canvas).getPropertyValue(variable).trim()
+      : '';
+    if (fromCanvas) {
+      return fromCanvas;
+    }
+
+    return getComputedStyle(document.documentElement).getPropertyValue(variable).trim() || fallback;
   }
 
   private resizeCanvas(): void {
@@ -705,17 +760,6 @@ export class DrawCanvasComponent {
   }
 
   private resolvePrimaryColor(): string {
-    const canvas = this.canvasRef()?.nativeElement;
-    const fromCanvas = canvas
-      ? getComputedStyle(canvas).getPropertyValue('--mat-sys-primary').trim()
-      : '';
-    if (fromCanvas) {
-      return fromCanvas;
-    }
-
-    return (
-      getComputedStyle(document.documentElement).getPropertyValue('--mat-sys-primary').trim() ||
-      '#6750a4'
-    );
+    return this.resolveThemeColor('--mat-sys-primary', '#6750a4');
   }
 }

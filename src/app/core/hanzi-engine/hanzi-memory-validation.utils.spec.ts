@@ -2,6 +2,7 @@ import type { HanziCharacterJson } from './hanzi-character.types';
 import { buildHanziCharacterModel } from './hanzi-character.model';
 import { HanziPositioner } from './hanzi-positioner';
 import {
+  gradeHanziMemoryStrokes,
   resolveHanziMemoryStrokeCountTolerance,
   validateHanziMemoryStrokes,
 } from './hanzi-memory-validation.utils';
@@ -66,5 +67,22 @@ describe('hanzi-memory-validation.utils', () => {
   it('should expose stroke count tolerance by proficiency', () => {
     expect(resolveHanziMemoryStrokeCountTolerance('beginner')).toBe(1);
     expect(resolveHanziMemoryStrokeCountTolerance('professional')).toBe(0);
+  });
+
+  it('should grade each user stroke for memory review', () => {
+    const model = buildHanziCharacterModel('人', REN_JSON);
+    const strokes = alignedRenStrokes();
+    const grades = gradeHanziMemoryStrokes(model, canvasSize, strokes, 'beginner');
+
+    expect(grades).toEqual(['correct', 'correct']);
+  });
+
+  it('should mark misaligned strokes as incorrect in memory review', () => {
+    const model = buildHanziCharacterModel('人', REN_JSON);
+    const strokes = alignedRenStrokes();
+    const reversed = [strokes[1]!, strokes[0]!];
+    const grades = gradeHanziMemoryStrokes(model, canvasSize, reversed, 'professional');
+
+    expect(grades[0]).toBe('incorrect');
   });
 });

@@ -52,6 +52,8 @@
         [radicalHints]="radicalCanvasHints()"
         [radicalAriaLabel]="radicalCanvasAriaLabel()"
         [canvasMode]="canvasMode()"
+        [showMemoryReview]="showMemoryReview()"
+        [memoryStrokeGrades]="memoryStrokeGrades()"
         [disabled]="feedback() !== null"
         [showClearAll]="hasMultipleSyllables()"
         [clearAllDisabled]="!hasStrokesOnAnyTab()"
@@ -91,6 +93,13 @@
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
       <mat-icon>check_circle</mat-icon>
       Ответ принят!
+    </mat-card-content>
+  }
+
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Есть ошибки в чертах
     </mat-card-content>
   }
 
