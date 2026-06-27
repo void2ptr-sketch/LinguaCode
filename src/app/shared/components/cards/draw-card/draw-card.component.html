@@ -33,11 +33,11 @@
   <section class="quiz-card__answer draw-card__answer" aria-label="Ответ">
     <mat-button-toggle-group
       class="draw-card__mode-toggle"
-      [value]="canvasMode()"
+      [value]="panelMode()"
       (change)="onCanvasModeChange($event.value)"
       aria-label="Режим рисования"
     >
-      @for (mode of canvasModes; track mode) {
+      @for (mode of visiblePanelModes(); track mode) {
         <mat-button-toggle [value]="mode">{{ canvasModeLabels[mode] }}</mat-button-toggle>
       }
     </mat-button-toggle-group>
@@ -48,10 +48,11 @@
 
     <mat-card-content class="draw-card__content">
       <app-draw-canvas
-        [ghostCharacter]="canvasMode() === 'radicals' ? null : ghostCharacter()"
+        class="draw-card__panel"
+        [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
         [radicalHints]="radicalCanvasHints()"
         [radicalAriaLabel]="radicalCanvasAriaLabel()"
-        [canvasMode]="canvasMode()"
+        [canvasMode]="panelMode()"
         [showMemoryReview]="showMemoryReview()"
         [memoryStrokeGrades]="memoryStrokeGrades()"
         [disabled]="feedback() !== null"

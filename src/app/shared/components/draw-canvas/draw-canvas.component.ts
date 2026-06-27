@@ -9,6 +9,7 @@ import {
   input,
   output,
   signal,
+  untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -217,9 +218,13 @@ export class DrawCanvasComponent {
     });
 
     effect(() => {
-      this.showMemoryReview();
-      this.memoryStrokeGrades();
-      this.redrawAll();
+      const reviewActive = this.showMemoryReview();
+      const grades = this.memoryStrokeGrades();
+      if (!reviewActive && grades.length === 0) {
+        return;
+      }
+
+      untracked(() => this.redrawAll());
     });
 
     this.destroyRef.onDestroy(() => {

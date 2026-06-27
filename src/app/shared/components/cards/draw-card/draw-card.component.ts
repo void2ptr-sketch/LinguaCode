@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output, signal, viewChild } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal, untracked, viewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -68,7 +68,8 @@ export class DrawCardComponent {
   readonly canvasModeLabels = DRAW_CANVAS_MODE_LABELS;
 
   readonly hasStrokes = signal(false);
-  readonly canvasMode = signal<DrawCanvasMode>('memory');
+  readonly panelMode = signal<DrawCanvasMode>('memory');
+  readonly reviewCanvasSize = signal({ width: 280, height: 280 });
   readonly activeCharIndex = signal(0);
   readonly charDone = signal<readonly boolean[]>([]);
   readonly charStrokes = signal<readonly (readonly DrawStrokePath[])[]>([]);
@@ -106,17 +107,19 @@ export class DrawCardComponent {
 
   readonly toneColorEnabled = computed(() => this.userStore.cjkLearning().showTones);
 
+  readonly visiblePanelModes = computed((): readonly DrawCanvasMode[] => DRAW_CANVAS_MODES);
+
   readonly ghostCharacter = computed(() => {
     const character = this.activeTarget()?.character?.trim();
     return character || null;
   });
 
   readonly showStrokeOrderNote = computed(
-    () => this.canvasMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
+    () => this.panelMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
   );
 
   readonly radicalHint = computed(() => {
-    if (this.canvasMode() !== 'radicals') {
+    if (this.panelMode() !== 'radicals') {
       return null;
     }
 
@@ -160,7 +163,7 @@ export class DrawCardComponent {
   });
 
   readonly showMemoryReview = computed(
-    () => this.feedback() !== null && this.canvasMode() === 'memory',
+    () => this.feedback() !== null && this.panelMode() === 'memory',
   );
 
   readonly memoryStrokeGrades = computed(() => {
@@ -180,11 +183,10 @@ export class DrawCardComponent {
 
     const index = this.activeCharIndex();
     const strokes = this.charStrokes()[index] ?? [];
-    const canvas = this.canvasRef();
 
     return gradeHanziMemoryStrokes(
       model,
-      canvas?.getCanvasSize() ?? { width: 280, height: 280 },
+      this.reviewCanvasSize(),
       strokes,
       this.userStore.learningProficiencyLevel(),
     );
@@ -204,13 +206,15 @@ export class DrawCardComponent {
 
     effect(() => {
       const card = this.card();
+      const cardId = card.id;
       const count = this.characterTargets().length;
 
-      if (this.lastCardId !== card.id) {
-        this.lastCardId = card.id;
-        this.canvasMode.set('memory');
+      if (this.lastCardId === cardId) {
+        return;
       }
 
+      this.lastCardId = cardId;
+      this.panelMode.set('memory');
       this.activeCharIndex.set(0);
       this.charDone.set(Array.from({ length: count }, () => false));
       this.charStrokes.set(Array.from({ length: count }, () => []));
@@ -218,6 +222,26 @@ export class DrawCardComponent {
       this.drawSubmittedChange.emit(false);
       this.drawAnswerChange.emit(null);
       queueMicrotask(() => this.loadActiveStrokes());
+    });
+
+    effect(() => {
+      const feedback = this.feedback();
+
+      if (feedback === null) {
+        return;
+      }
+
+      untracked(() => {
+        this.saveActiveStrokes();
+        this.captureReviewCanvasSize();
+      });
+
+      const characters = this.characterTargets()
+        .map((target) => target.character.trim())
+        .filter(Boolean);
+      if (characters.length > 0) {
+        void this.hanziData.loadCharacters(characters);
+      }
     });
   }
 
@@ -235,12 +259,21 @@ export class DrawCardComponent {
   }
 
   onCanvasModeChange(mode: DrawCanvasMode | null): void {
-    if (!mode || mode === this.canvasMode()) {
+    if (!mode || mode === this.panelMode()) {
       return;
     }
 
-    this.canvasMode.set(mode);
-    this.clearActiveTabStrokes();
+    this.selectCanvasPanel(mode);
+  }
+
+  selectCanvasPanel(mode: DrawCanvasMode): void {
+    this.panelMode.set(mode);
+
+    if (this.feedback() === null) {
+      this.clearActiveTabStrokes();
+    } else {
+      queueMicrotask(() => this.loadActiveStrokes());
+    }
   }
 
   selectCharacterTab(index: number): void {
@@ -322,12 +355,27 @@ export class DrawCardComponent {
   }
 
   private buildDrawAnswerPayload(): DrawAnswerPayload {
-    const canvas = this.canvasRef();
+    this.captureReviewCanvasSize();
     return {
-      canvasMode: this.canvasMode(),
-      canvasSize: canvas?.getCanvasSize() ?? { width: 280, height: 280 },
+      canvasMode: 'memory',
+      canvasSize: this.reviewCanvasSize(),
       strokesByCharacter: this.charStrokes(),
     };
+  }
+
+  private captureReviewCanvasSize(): void {
+    const canvas = this.canvasRef();
+    if (!canvas) {
+      return;
+    }
+
+    const next = canvas.getCanvasSize();
+    const current = this.reviewCanvasSize();
+    if (current.width === next.width && current.height === next.height) {
+      return;
+    }
+
+    this.reviewCanvasSize.set(next);
   }
 
   private saveActiveStrokes(): void {
@@ -338,6 +386,11 @@ export class DrawCardComponent {
     }
 
     const strokes = canvas.getStrokes();
+    const current = this.charStrokes()[index] ?? [];
+    if (strokesEqual(current, strokes)) {
+      return;
+    }
+
     const next = [...this.charStrokes()];
     next[index] = strokes;
     this.charStrokes.set(next);
@@ -374,4 +427,35 @@ export class DrawCardComponent {
       this.drawAnswerChange.emit(null);
     }
   }
+}
+
+function strokesEqual(
+  left: readonly DrawStrokePath[],
+  right: readonly DrawStrokePath[],
+): boolean {
+  if (left.length !== right.length) {
+    return false;
+  }
+
+  for (let strokeIndex = 0; strokeIndex < left.length; strokeIndex += 1) {
+    const leftStroke = left[strokeIndex];
+    const rightStroke = right[strokeIndex];
+    if (!leftStroke || !rightStroke || leftStroke.length !== rightStroke.length) {
+      return false;
+    }
+
+    for (let pointIndex = 0; pointIndex < leftStroke.length; pointIndex += 1) {
+      const leftPoint = leftStroke[pointIndex];
+      const rightPoint = rightStroke[pointIndex];
+      if (!leftPoint || !rightPoint) {
+        return false;
+      }
+
+      if (leftPoint.x !== rightPoint.x || leftPoint.y !== rightPoint.y) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }

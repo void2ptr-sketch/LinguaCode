@@ -53,6 +53,11 @@
 .draw-card__content {
   display: grid;
   justify-items: center;
+  width: 100%;
+}
+
+.draw-card__panel {
+  width: 100%;
 }
 
 .draw-card__char-tabs {
