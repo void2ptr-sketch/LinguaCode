@@ -1,13 +1,19 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import {
+  playLearningAudio,
+  resolveLearningSpeech,
+} from '../../../../core/data/card-learning-audio.utils';
 import {
   effectiveCardDirection,
   resolveOptionCard,
 } from '../../../../core/data/card-direction.utils';
 import { SoundCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';
+import { UserStore } from '../../../../core/state';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
@@ -19,6 +25,8 @@ import { buildOptionClass } from '../option-card.utils';
   styleUrl: './sound-card.component.scss',
 })
 export class SoundCardComponent {
+  private readonly userStore = inject(UserStore);
+
   readonly card = input.required<SoundCard>();
   readonly direction = input<CardDirection>('known-to-learning');
   readonly selectedIndex = input<number | null>(null);
@@ -35,11 +43,18 @@ export class SoundCardComponent {
     return resolveOptionCard(card, direction);
   });
 
-  readonly audioLexeme = computed(() => this.resolved().promptLexeme ?? this.card().promptLexeme);
+  readonly stimulusLexeme = computed((): PhoneticLexeme => {
+    const card = this.card();
+    const label = card.audioLabelLearning.trim();
 
-  promptLexeme() {
-    return this.resolved().promptLexeme ?? this.card().promptLexeme;
-  }
+    if (card.promptLexeme?.primary.trim()) {
+      return card.promptLexeme;
+    }
+
+    return { primary: label, script: 'latn' };
+  });
+
+  readonly hasAudioFile = computed(() => Boolean(this.card().audioUrl?.trim()));
 
   optionLexeme(index: number) {
     return this.resolved().optionLexemes?.[index];
@@ -51,13 +66,19 @@ export class SoundCardComponent {
   }
 
   playAudio(): void {
-    const url = this.card().audioUrl?.trim();
-    if (!url) {
-      return;
-    }
+    const learningLanguage = this.userStore.languagePair().learning;
+    const speech = resolveLearningSpeech(
+      this.stimulusLexeme(),
+      this.card().audioLabelLearning,
+      learningLanguage,
+    );
 
-    const audio = new Audio(url);
-    void audio.play();
+    playLearningAudio({
+      audioUrl: this.card().audioUrl,
+      text: speech.text,
+      language: learningLanguage,
+      speechLocale: speech.locale,
+    });
   }
 
   selectOption(index: number): void {

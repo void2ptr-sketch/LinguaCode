@@ -2,27 +2,30 @@
   <section class="quiz-card__question" aria-label="Вопрос">
     <mat-card-header>
       <mat-card-title>{{ card().title }}</mat-card-title>
-      <mat-card-subtitle>
-        <app-lexeme-display
-          surface="prompt"
-          [lexeme]="promptLexeme()"
-          [fallbackText]="resolved().prompt"
-        />
-      </mat-card-subtitle>
+      <mat-card-subtitle>{{ resolved().prompt }}</mat-card-subtitle>
     </mat-card-header>
 
     <div class="quiz-card__sound">
-      <app-lexeme-display
-        surface="prompt"
-        [lexeme]="audioLexeme()"
-        [fallbackText]="card().audioLabelLearning"
-        [inline]="true"
-      />
-      @if (card().audioUrl) {
-        <button mat-icon-button type="button" aria-label="Воспроизвести" (click)="playAudio()">
+      <p class="quiz-card__section-label">Прослушайте</p>
+      <div class="sound-card__stimulus">
+        <button
+          mat-stroked-button
+          type="button"
+          class="sound-card__play"
+          [attr.aria-label]="hasAudioFile() ? 'Воспроизвести запись' : 'Прослушать синтез речи'"
+          (click)="playAudio()"
+        >
           <mat-icon>volume_up</mat-icon>
+          Прослушать
         </button>
-      }
+        <div class="sound-card__lexeme">
+          <app-lexeme-display
+            surface="prompt"
+            [lexeme]="stimulusLexeme()"
+            [fallbackText]="card().audioLabelLearning"
+          />
+        </div>
+      </div>
     </div>
   </section>
 

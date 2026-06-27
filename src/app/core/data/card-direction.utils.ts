@@ -117,8 +117,7 @@ export function resolveKeyboardAcceptedAnswers(
 function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard {
   if (card.kind === 'sound') {
     return {
-      prompt: `${card.promptKnown} (${card.audioLabelLearning})`,
-      promptLexeme: card.promptLexeme,
+      prompt: card.promptKnown,
       options: card.optionsKnown,
       optionLexemes: card.optionsLexemes,
       correctIndex: card.correctIndex,
@@ -142,8 +141,7 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
 function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard {
   if (card.kind === 'sound') {
     return {
-      prompt: card.audioLabelLearning,
-      promptLexeme: card.promptLexeme,
+      prompt: card.promptKnown,
       options: card.optionsKnown,
       optionLexemes: card.optionsLexemes,
       correctIndex: card.correctIndex,

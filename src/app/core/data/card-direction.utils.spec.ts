@@ -134,7 +134,12 @@ describe('card-direction.utils', () => {
     };
 
     expect(resolveOptionCard(soundCard, 'known-to-learning').options).toEqual(['Привет', 'Пока']);
-    expect(resolveOptionCard(soundCard, 'learning-to-known').prompt).toBe('Hello');
+    expect(resolveOptionCard(soundCard, 'known-to-learning').prompt).toBe(
+      'Как переводится услышанное слово?',
+    );
+    expect(resolveOptionCard(soundCard, 'learning-to-known').prompt).toBe(
+      'Как переводится услышанное слово?',
+    );
     expect(resolveOptionCard(soundCard, 'learning-to-known').options).toEqual(['Привет', 'Пока']);
   });
 
