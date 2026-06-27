@@ -1,4 +1,20 @@
-<a mat-button routerLink="/help" routerLinkActive="menu-link--active">
+<button
+  mat-button
+  [matMenuTriggerFor]="helpMenu"
+  class="menu-help__trigger"
+  [class.menu-link--active]="isHelpSection()"
+>
   <mat-icon>help_outline</mat-icon>
   Справка
-</a>
+</button>
+
+<mat-menu #helpMenu="matMenu">
+  <a mat-menu-item routerLink="/help" routerLinkActive="menu-link--active">
+    <mat-icon>info</mat-icon>
+    <span>О приложении</span>
+  </a>
+  <a mat-menu-item routerLink="/help/scenarios" routerLinkActive="menu-link--active">
+    <mat-icon>stars</mat-icon>
+    <span>Сценарии использования</span>
+  </a>
+</mat-menu>

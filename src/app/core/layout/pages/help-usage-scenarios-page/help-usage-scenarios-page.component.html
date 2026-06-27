@@ -1,0 +1,48 @@
+<section class="help-scenarios">
+  <header class="help-scenarios__hero">
+    <div class="help-scenarios__hero-copy">
+      <p class="help-scenarios__eyebrow">LinguaCode</p>
+      <h1 class="help-scenarios__title">Один инструмент — десятки сценариев</h1>
+      <p class="help-scenarios__lead">
+        От первого слова до технического интервью: карточки, сценарии и программы в едином
+        формате. Прогресс сохраняется, результат виден сразу.
+      </p>
+    </div>
+    <a mat-flat-button color="primary" routerLink="/home">Попробовать бесплатно</a>
+  </header>
+
+  <div class="help-scenarios__grid">
+    @for (scenario of scenarios; track scenario.id) {
+      <mat-card class="help-scenarios__card">
+        <mat-card-header>
+          <mat-icon mat-card-avatar class="help-scenarios__icon">{{ scenario.icon }}</mat-icon>
+          <mat-card-title>{{ scenario.title }}</mat-card-title>
+          <mat-card-subtitle>{{ scenario.tagline }}</mat-card-subtitle>
+        </mat-card-header>
+
+        <mat-card-content class="help-scenarios__content">
+          <mat-chip-set aria-label="Аудитория">
+            <mat-chip disabled>{{ scenario.audience }}</mat-chip>
+          </mat-chip-set>
+
+          <ul class="help-scenarios__highlights">
+            @for (item of scenario.highlights; track item) {
+              <li>{{ item }}</li>
+            }
+          </ul>
+        </mat-card-content>
+
+        <mat-card-actions align="end">
+          <a mat-stroked-button [routerLink]="scenario.ctaPath">{{ scenario.ctaLabel }}</a>
+        </mat-card-actions>
+      </mat-card>
+    }
+  </div>
+
+  <footer class="help-scenarios__footer">
+    <p>
+      Нужна справка по интерфейсу?
+      <a routerLink="/help">Вернуться на страницу «О приложении»</a>
+    </p>
+  </footer>
+</section>

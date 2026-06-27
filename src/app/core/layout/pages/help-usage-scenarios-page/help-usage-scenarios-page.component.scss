@@ -1,0 +1,121 @@
+.help-scenarios {
+  display: grid;
+  gap: 2rem;
+  margin-inline: auto;
+  max-width: 64rem;
+}
+
+.help-scenarios__hero {
+  align-items: start;
+  display: grid;
+  gap: 1.25rem;
+  grid-template-areas:
+    'copy'
+    'action';
+  grid-template-columns: 1fr;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--mat-sys-primary) 12%, var(--mat-sys-surface)),
+    color-mix(in srgb, var(--mat-sys-tertiary) 8%, var(--mat-sys-surface))
+  );
+
+  @media (min-width: 40rem) {
+    align-items: center;
+    grid-template-areas: 'copy action';
+    grid-template-columns: 1fr auto;
+  }
+}
+
+.help-scenarios__hero-copy {
+  display: grid;
+  gap: 0.5rem;
+  grid-area: copy;
+}
+
+.help-scenarios__hero a[mat-flat-button] {
+  grid-area: action;
+  justify-self: start;
+
+  @media (min-width: 40rem) {
+    justify-self: end;
+  }
+}
+
+.help-scenarios__eyebrow {
+  color: var(--mat-sys-primary);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.help-scenarios__title {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.help-scenarios__lead {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 78%, transparent);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 42rem;
+}
+
+.help-scenarios__grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+
+  @media (min-width: 48rem) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.help-scenarios__card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100%;
+}
+
+.help-scenarios__icon {
+  align-items: center;
+  background: color-mix(in srgb, var(--mat-sys-primary) 14%, transparent);
+  border-radius: 50%;
+  color: var(--mat-sys-primary);
+  display: grid;
+  font-size: 1.5rem;
+  height: 2.5rem;
+  justify-items: center;
+  width: 2.5rem;
+}
+
+.help-scenarios__content {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.help-scenarios__highlights {
+  display: grid;
+  gap: 0.5rem;
+  margin: 0;
+  padding-inline-start: 1.15rem;
+}
+
+.help-scenarios__highlights li {
+  line-height: 1.45;
+}
+
+.help-scenarios__footer {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 72%, transparent);
+  font-size: 0.9375rem;
+  text-align: center;
+
+  p {
+    margin: 0;
+  }
+}

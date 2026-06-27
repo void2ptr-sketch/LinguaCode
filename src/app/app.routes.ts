@@ -76,6 +76,13 @@ export const routes: Routes = [
           ),
       },
       {
+        path: 'help/scenarios',
+        loadComponent: () =>
+          import('./core/layout/pages/help-usage-scenarios-page/help-usage-scenarios-page.component').then(
+            (m) => m.HelpUsageScenariosPageComponent,
+          ),
+      },
+      {
         path: 'user',
         loadComponent: () =>
           import('./core/layout/pages/user-page/user-page.component').then(
