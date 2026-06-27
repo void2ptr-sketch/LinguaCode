@@ -26,7 +26,7 @@ export type HanziTracingStrokeSample = {
 };
 
 export const DEFAULT_HANZI_TRACING_OPTIONS: Required<HanziTracingAnimationOptions> = {
-  strokeDurationMs: 900,
+  strokeDurationMs: 1000,
   delayBetweenStrokesMs: 450,
   loopPauseMs: 800,
   sampleSpacing: 8,

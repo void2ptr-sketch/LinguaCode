@@ -1,14 +1,17 @@
-import { DEFAULT_COURSE_CATALOG } from './courses-storage';
-import { buildLessonRoadmap, resolveLearningResumeTarget } from './learning-resume.utils';
-import type { CourseWithLessons } from '../models';
+import { getTestDemoCourseWithLessons, seedTestContentCache } from './content-seed.test-utils';
+import {
+  buildLessonRoadmap,
+  courseMatchesActiveLanguagePair,
+  resolveLearningResumeTarget,
+} from './learning-resume.utils';
 
 describe('learning-resume.utils', () => {
-  const demoCourse: CourseWithLessons = {
-    ...DEFAULT_COURSE_CATALOG.courses[0],
-    lessons: DEFAULT_COURSE_CATALOG.lessons.filter((lesson) => lesson.courseId === 'demo-course'),
-  };
+  beforeEach(() => {
+    seedTestContentCache();
+  });
 
   it('should suggest first scenario when nothing completed', () => {
+    const demoCourse = getTestDemoCourseWithLessons();
     const target = resolveLearningResumeTarget({
       course: demoCourse,
       pairResults: [],
@@ -21,6 +24,7 @@ describe('learning-resume.utils', () => {
   });
 
   it('should continue next scenario in lesson', () => {
+    const demoCourse = getTestDemoCourseWithLessons();
     const target = resolveLearningResumeTarget({
       course: demoCourse,
       pairResults: [
@@ -42,10 +46,26 @@ describe('learning-resume.utils', () => {
   });
 
   it('should build roadmap with locked lesson', () => {
+    const demoCourse = getTestDemoCourseWithLessons();
     const roadmap = buildLessonRoadmap(demoCourse.lessons, () => false);
 
     expect(roadmap).toHaveSize(2);
     expect(roadmap[0]?.unlocked).toBeTrue();
     expect(roadmap[1]?.unlocked).toBeFalse();
+  });
+
+  it('should detect course language pair mismatch', () => {
+    expect(
+      courseMatchesActiveLanguagePair(
+        { languagePair: { known: 'ru', learning: 'zh' } },
+        { known: 'ru', learning: 'en' },
+      ),
+    ).toBeFalse();
+    expect(
+      courseMatchesActiveLanguagePair(
+        { languagePair: { known: 'ru', learning: 'zh' } },
+        { known: 'ru', learning: 'zh' },
+      ),
+    ).toBeTrue();
   });
 });

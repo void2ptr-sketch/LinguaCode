@@ -118,6 +118,7 @@ describe('UserStore', () => {
         answerRomanization: ['palladius'],
         showTones: true,
         toneColorScheme: 'classic',
+        tracingStrokeDurationSec: 1,
       },
     });
 

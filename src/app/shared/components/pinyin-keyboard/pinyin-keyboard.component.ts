@@ -1,21 +1,27 @@
-import { Component, effect, input, output, signal, untracked } from '@angular/core';
+import { Component, computed, effect, input, output, signal, untracked } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
   applyPinyinKeyboardKey,
-  canApplyPinyinTone,
   createPinyinKeyboardState,
   formatPinyinKeyboardValue,
-  PINYIN_KEYBOARD_LAYOUT,
+  PINYIN_KEYBOARD_LETTER_ROWS,
+  PINYIN_KEYBOARD_UTILITY_KEYS,
+  PINYIN_TONE_MARKS,
+  pendingSyllableTonePreview,
   pinyinKeyboardKeyAriaLabel,
   pinyinKeyboardKeyLabel,
+  pinyinKeyboardToneKeyAriaLabel,
+  shouldShowPinyinToneRow,
   type PinyinKeyboardKey,
   type PinyinKeyboardState,
 } from '../../../core/data/pinyin-keyboard.utils';
+import type { ToneMark } from '../../../core/models/phonetic-content.types';
+import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
 @Component({
   selector: 'app-pinyin-keyboard',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, ToneColoredTextComponent],
   templateUrl: './pinyin-keyboard.component.html',
   styleUrl: './pinyin-keyboard.component.scss',
 })
@@ -25,13 +31,16 @@ export class PinyinKeyboardComponent {
 
   readonly valueChange = output<string>();
 
-  readonly layout = PINYIN_KEYBOARD_LAYOUT;
+  readonly letterRows = PINYIN_KEYBOARD_LETTER_ROWS;
+  readonly utilityKeys = PINYIN_KEYBOARD_UTILITY_KEYS;
+  readonly toneMarks = PINYIN_TONE_MARKS;
   readonly keyLabel = pinyinKeyboardKeyLabel;
   readonly keyAriaLabel = pinyinKeyboardKeyAriaLabel;
-  readonly canApplyTone = canApplyPinyinTone;
 
   private readonly state = signal<PinyinKeyboardState>(createPinyinKeyboardState());
   private lastEmitted = '';
+
+  readonly showToneRow = computed(() => shouldShowPinyinToneRow(this.state()));
 
   constructor() {
     effect(() => {
@@ -47,13 +56,21 @@ export class PinyinKeyboardComponent {
     });
   }
 
+  tonePreview(tone: ToneMark): string {
+    return pendingSyllableTonePreview(this.state(), tone);
+  }
+
+  toneAriaLabel(tone: ToneMark): string {
+    return pinyinKeyboardToneKeyAriaLabel(this.state(), tone);
+  }
+
+  isToneKeyDisabled(): boolean {
+    return this.disabled() || !this.showToneRow();
+  }
+
   isKeyDisabled(key: PinyinKeyboardKey): boolean {
     if (this.disabled()) {
       return true;
-    }
-
-    if (key.kind === 'tone') {
-      return !this.canApplyTone(this.state());
     }
 
     if (key.kind === 'space') {
@@ -67,6 +84,10 @@ export class PinyinKeyboardComponent {
     }
 
     return false;
+  }
+
+  pressTone(tone: ToneMark): void {
+    this.pressKey({ kind: 'tone', tone });
   }
 
   pressKey(key: PinyinKeyboardKey): void {

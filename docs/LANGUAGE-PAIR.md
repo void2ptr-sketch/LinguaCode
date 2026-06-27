@@ -273,7 +273,21 @@ type SelectCard = CardBase & {
 };
 ```
 
-Legacy JSON нормализуется через `card-legacy.mapper.ts` при загрузке из `localStorage`.
+Legacy JSON нормализуется через `card-legacy.mapper.ts` при загрузке seed; пользовательские правки — в `UserContentOverlay` (G15).
+
+### G5.1 — render по `CardDirection` (по kind)
+
+Утилиты: `card-direction.utils.ts` — `resolveOptionCard`, `resolveMemoryPairs`, `effectiveCardDirection`.
+
+| Kind | Поведение при `learning-to-known` |
+| ---- | --------------------------------- |
+| `select`, `timed`, `reading`, `symbol`, `tone` | Swap prompt ↔ options; `optionsKnown` / `glossKnown` для known-side |
+| `keyboard` | Swap prompt; `acceptedAnswersLearning` для обратного направления |
+| `memory` | Swap колонок known ↔ learning; лексемы на learning-side |
+| `sound` | **Инвариант** — аудио всегда на learning; direction не меняет источник звука |
+| `draw`, `tone` | Toggle direction **скрыт** в UI (не влияет на задание) |
+
+Сессия: `CardSelectStore.sessionDirection` побеждает над `card.direction` (default при старте сценария).
 
 ## Сценарии (G4 — готово)
 
@@ -296,6 +310,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 | G7   | Несколько пар в профиле, одна активная                                                       | готово |
 | G8   | Scope UI по активной паре (каталоги, сценарии, pickers)                                      | готово |
 | G11  | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`)                   | готово |
+| G15  | User content overlay + content seed manifest                                                 | готово |
 | G9   | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны                                       | готово |
 | G10  | IPA (International Phonetic Alphabet)                                                        | готово |
 | G6   | UiLocale (`@angular/localize`) — отдельный трек                                              | бэклог |
@@ -331,7 +346,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 | Шаг  | Содержание                      |
 | ---- | ------------------------------- |
-| G5.1 | Render по `CardDirection`       |
+| G5.1 | Render по `CardDirection` — см. таблицу по kind выше |
 | G5.2 | `LearningResult` + pair context |
 | G5.3 | Filter scenarios by user pair   |
 

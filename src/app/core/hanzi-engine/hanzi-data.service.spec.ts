@@ -121,15 +121,39 @@ describe('HanziDataService', () => {
   });
 
   it('should cache missing characters', async () => {
-    const first = service.loadCharacter('未');
-    const request = httpMock.expectOne('/assets/hanzi/%E6%9C%AA.json');
-    request.flush('not found', { status: 404, statusText: 'Not Found' });
-    await first;
+    const promise = service.loadCharacter('未');
+    httpMock.expectOne('/assets/hanzi/%E6%9C%AA.json').flush('not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+    await Promise.resolve();
+    httpMock.expectOne('/assets/hanzi/radical/%E6%9C%AA.json').flush('not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+    await promise;
 
     expect(service.getLoadState('未')).toBe('missing');
     const second = await service.loadCharacter('未');
     expect(second).toBeNull();
     httpMock.expectNone('/assets/hanzi/%E6%9C%AA.json');
+    httpMock.expectNone('/assets/hanzi/radical/%E6%9C%AA.json');
+  });
+
+  it('should load radicals from radical assets path when missing in main folder', async () => {
+    const promise = service.loadCharacter('鬲');
+    httpMock.expectOne('/assets/hanzi/%E9%AC%B2.json').flush('not found', {
+      status: 404,
+      statusText: 'Not Found',
+    });
+    await Promise.resolve();
+    httpMock
+      .expectOne('/assets/hanzi/radical/%E9%AC%B2.json')
+      .flush({ strokes: ['M 0 0 Z'], medians: [[{ x: 0, y: 0 }]] });
+
+    const model = await promise;
+    expect(model?.character).toBe('鬲');
+    expect(model?.strokes.length).toBe(1);
   });
 
   it('should prefetch all tab characters (你好 → 2 JSON)', async () => {
@@ -164,6 +188,10 @@ describe('HanziDataService offline smoke', () => {
   });
 
   it('should expose local relative asset URLs only (no CDN)', () => {
+    expect(service.assetUrls('人')).toEqual([
+      '/assets/hanzi/%E4%BA%BA.json',
+      '/assets/hanzi/radical/%E4%BA%BA.json',
+    ]);
     expect(service.assetUrl('人')).toBe('/assets/hanzi/%E4%BA%BA.json');
     expect(service.assetUrl('人')).not.toMatch(/^https?:\/\//);
   });

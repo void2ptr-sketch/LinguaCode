@@ -3,10 +3,11 @@ import { TestBed } from '@angular/core/testing';
 import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
 import {
   CardRepository,
-  CARDS_STORAGE_KEY,
   CardSearchService,
   ScenarioSearchService,
 } from '../../../core/data';
+import { seedTestContentCache } from '../../../core/data/content-seed.test-utils';
+import { USER_CONTENT_OVERLAY_KEY } from '../../../core/data/user-content-overlay.types';
 import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardEditorStore } from './card-editor.store';
@@ -28,8 +29,9 @@ describe('CardEditorStore', () => {
     appearance: { theme: 'azure-blue', fontSize: 'md' as const },
   };
 
-  beforeEach(() => {
+  beforeEach(async () => {
     localStorage.clear();
+    seedTestContentCache();
     scenariosUsingCard = [];
 
     TestBed.configureTestingModule({
@@ -58,7 +60,8 @@ describe('CardEditorStore', () => {
 
     store = TestBed.inject(CardEditorStore);
     cardRepository = TestBed.inject(CardRepository);
-    cardRepository.save([selectCard]);
+    const cards = await cardRepository.ensureLoaded();
+    cardRepository.save([...cards, selectCard]);
   });
 
   afterEach(() => {
@@ -83,7 +86,7 @@ describe('CardEditorStore', () => {
 
     expect(created).toBeTrue();
     expect(cardRepository.loadStored().some((card) => card.title === 'Новая')).toBeTrue();
-    expect(localStorage.getItem(CARDS_STORAGE_KEY)).toContain('Новая');
+    expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toContain('Новая');
   });
 
   it('should create memory card', async () => {

@@ -40,7 +40,7 @@ export class ReadingCardComponent {
   }
 
   optionLexeme(index: number) {
-    return this.resolved().optionLexemes?.[index] ?? this.card().optionsLexemes?.[index];
+    return this.resolved().optionLexemes?.[index];
   }
 
   optionClass(index: number): string {

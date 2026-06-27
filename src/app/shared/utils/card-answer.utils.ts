@@ -1,4 +1,4 @@
-import { Card, DrawCard, isOptionCard } from '../../core/models';
+import { Card, DrawCard, isOptionCard, ReadingCard } from '../../core/models';
 import type { CardDirection } from '../../core/models/language-pair.types';
 import {
   checkDrawCardAnswer,
@@ -21,9 +21,120 @@ import {
   resolveRomanizationReading,
 } from '../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../core/models/phonetic-content.types';
+import type { ResolvedOptionCard } from '../../core/data/card-direction.utils';
 import { CardAnswerState } from '../types';
 
 const normalizeLatinAnswer = (value: string): string => value.trim().toLowerCase();
+
+function readingCandidateTexts(
+  optionText: string,
+  lexeme: PhoneticLexeme | undefined,
+): readonly string[] {
+  const candidates = new Set<string>();
+  const add = (value: string | undefined): void => {
+    const trimmed = value?.trim();
+    if (trimmed) {
+      candidates.add(trimmed);
+    }
+  };
+
+  add(optionText);
+  add(lexeme?.primary);
+  add(lexeme?.pinyin);
+  add(lexeme?.palladius);
+  if (lexeme) {
+    add(resolveRomanizationReading(lexeme, 'pinyin') ?? undefined);
+    add(resolveRomanizationReading(lexeme, 'zhuyin') ?? undefined);
+  }
+
+  return [...candidates];
+}
+
+function readingTextsMatch(left: string, right: string): boolean {
+  if (normalizeLatinAnswer(left) === normalizeLatinAnswer(right)) {
+    return true;
+  }
+
+  if (answersMatchRomanization(left, right, 'pinyin', false)) {
+    return true;
+  }
+
+  if (answersMatchRomanization(left, right, 'pinyin', true)) {
+    return true;
+  }
+
+  if (answersMatchRomanization(left, right, 'palladius')) {
+    return true;
+  }
+
+  if (normalizeHanAnswer(left) === normalizeHanAnswer(right)) {
+    return true;
+  }
+
+  return answersMatchRomanization(left, right, 'zhuyin', false);
+}
+
+function readingCorrectTexts(card: ReadingCard, resolved: ResolvedOptionCard): readonly string[] {
+  const correctIndex = resolved.correctIndex;
+  const correctLexeme =
+    card.optionsLexemes?.[correctIndex] ?? resolved.optionLexemes?.[correctIndex];
+  const texts = new Set(
+    readingCandidateTexts(resolved.options[correctIndex] ?? '', correctLexeme),
+  );
+
+  if (card.promptLexeme) {
+    for (const text of readingCandidateTexts(card.promptLexeme.primary, card.promptLexeme)) {
+      texts.add(text);
+    }
+  }
+
+  return [...texts];
+}
+
+function matchesReadingCardSelection(
+  card: ReadingCard,
+  resolved: ResolvedOptionCard,
+  selectedIndex: number,
+): boolean {
+  const correctIndex = resolved.correctIndex;
+  if (selectedIndex === correctIndex) {
+    return true;
+  }
+
+  const selectedLexeme =
+    resolved.optionLexemes?.[selectedIndex] ?? card.optionsLexemes?.[selectedIndex];
+
+  const correctTexts = readingCorrectTexts(card, resolved);
+  const selectedTexts = readingCandidateTexts(
+    resolved.options[selectedIndex] ?? '',
+    selectedLexeme,
+  );
+
+  for (const selected of selectedTexts) {
+    for (const correct of correctTexts) {
+      if (readingTextsMatch(selected, correct)) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function checkOptionCardAnswer(
+  card: Card & { kind: 'select' | 'symbol' | 'sound' | 'timed' | 'reading' },
+  selectedIndex: number,
+  sessionDirection: CardDirection,
+): boolean {
+  const direction = effectiveCardDirection(card.direction, sessionDirection);
+  const resolved = resolveOptionCard(card, direction);
+
+  if (card.kind === 'reading') {
+    return matchesReadingCardSelection(card, resolved, selectedIndex);
+  }
+
+  return selectedIndex === resolved.correctIndex;
+}
 
 const matchesLexemeAnswer = (actual: string, lexeme: PhoneticLexeme): boolean => {
   const trimmed = actual.trim();
@@ -128,9 +239,7 @@ export const checkCardAnswer = (
   }
 
   if (isOptionCard(card)) {
-    const direction = effectiveCardDirection(card.direction, sessionDirection);
-    const resolved = resolveOptionCard(card, direction);
-    return state.selectedIndex === resolved.correctIndex;
+    return checkOptionCardAnswer(card, state.selectedIndex!, sessionDirection);
   }
 
   switch (card.kind) {
@@ -161,7 +270,19 @@ export const getCorrectAnswerLabel = (
   if (isOptionCard(card)) {
     const direction = effectiveCardDirection(card.direction, sessionDirection);
     const resolved = resolveOptionCard(card, direction);
-    const lexeme = resolveOptionLexeme(card, resolved.correctIndex);
+
+    if (card.kind === 'reading' && card.promptLexeme?.primary.trim()) {
+      const prompt = card.promptLexeme;
+      return (
+        resolveRomanizationReading(prompt, 'pinyin') ??
+        prompt.palladius?.trim() ??
+        prompt.primary
+      );
+    }
+
+    const lexeme =
+      resolved.optionLexemes?.[resolved.correctIndex] ??
+      resolveOptionLexeme(card, resolved.correctIndex);
     if (lexeme?.primary.trim()) {
       return lexeme.primary;
     }

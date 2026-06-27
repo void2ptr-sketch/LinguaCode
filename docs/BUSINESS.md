@@ -89,7 +89,7 @@ Card  →  Scenario  →  Lesson  →  Course
 
 ## Контент и данные
 
-- Данные хранятся в базе (в MVP — mock / localStorage + fixtures).
+- Данные: mock API + seed fixtures; пользовательские правки — `UserContentOverlay` в `localStorage` (G15).
 - В базе доступны **готовые программы** (`Course`) с уроками и сценариями.
 - Пользователь может **создавать и публиковать** свои сценарии и программы (UGC).
 

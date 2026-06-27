@@ -4,6 +4,7 @@ import { firstValueFrom } from 'rxjs';
 
 import {
   HANZI_ASSETS_BASE_PATH,
+  HANZI_RADICAL_ASSETS_BASE_PATH,
   type HanziCharacterJson,
   type HanziLoadState,
 } from './hanzi-character.types';
@@ -25,8 +26,15 @@ export class HanziDataService {
   readonly lastLoadedCharacter = signal<string | null>(null);
 
   assetUrl(character: string): string {
+    return this.assetUrls(character)[0]!;
+  }
+
+  assetUrls(character: string): readonly string[] {
     const key = character.trim();
-    return `${HANZI_ASSETS_BASE_PATH}/${encodeURIComponent(key)}.json`;
+    return [
+      `${HANZI_ASSETS_BASE_PATH}/${encodeURIComponent(key)}.json`,
+      `${HANZI_RADICAL_ASSETS_BASE_PATH}/${encodeURIComponent(key)}.json`,
+    ];
   }
 
   getLoadState(character: string): HanziLoadState {
@@ -102,33 +110,44 @@ export class HanziDataService {
       error: null,
     });
 
-    try {
-      const json = await firstValueFrom(
-        this.http.get<HanziCharacterJson>(this.assetUrl(character), {
-          headers: { Accept: 'application/json' },
-        }),
-      );
+    let lastError: unknown = null;
 
-      const model = buildHanziCharacterModel(character, json);
-      this.setCacheEntry(character, {
-        state: 'ready',
-        json,
-        model,
-        error: null,
-      });
-      this.lastLoadedCharacter.set(character);
-      return model;
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Failed to load hanzi data';
-      const isMissing = error instanceof HttpErrorResponse && error.status === 404;
-      this.setCacheEntry(character, {
-        state: isMissing ? 'missing' : 'error',
-        json: null,
-        model: null,
-        error: message,
-      });
-      return null;
+    for (const url of this.assetUrls(character)) {
+      try {
+        const json = await firstValueFrom(
+          this.http.get<HanziCharacterJson>(url, {
+            headers: { Accept: 'application/json' },
+          }),
+        );
+
+        const model = buildHanziCharacterModel(character, json);
+        this.setCacheEntry(character, {
+          state: 'ready',
+          json,
+          model,
+          error: null,
+        });
+        this.lastLoadedCharacter.set(character);
+        return model;
+      } catch (error) {
+        lastError = error;
+        const isMissing = error instanceof HttpErrorResponse && error.status === 404;
+        if (!isMissing) {
+          break;
+        }
+      }
     }
+
+    const message =
+      lastError instanceof Error ? lastError.message : 'Failed to load hanzi data';
+    const isMissing = lastError instanceof HttpErrorResponse && lastError.status === 404;
+    this.setCacheEntry(character, {
+      state: isMissing ? 'missing' : 'error',
+      json: null,
+      model: null,
+      error: message,
+    });
+    return null;
   }
 
   private setCacheEntry(character: string, entry: HanziCacheEntry): void {

@@ -30,15 +30,19 @@ describe('CardFocusShellComponent', () => {
 
   it('should toggle fullscreen and lock body scroll', () => {
     const component = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const initialParent = host.parentElement;
     expect(component.fullscreen()).toBeFalse();
 
     component.toggleFullscreen();
     expect(component.fullscreen()).toBeTrue();
+    expect(host.parentElement).toBe(document.body);
     expect(document.body.classList.contains('card-focus-shell-open')).toBeTrue();
     expect(userStore.preferences().cardFocusFullscreen).toBeTrue();
 
     component.toggleFullscreen();
     expect(component.fullscreen()).toBeFalse();
+    expect(host.parentElement).toBe(initialParent);
     expect(document.body.classList.contains('card-focus-shell-open')).toBeFalse();
     expect(userStore.preferences().cardFocusFullscreen).toBeFalse();
   });

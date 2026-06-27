@@ -36,12 +36,29 @@ export { courseToIndexEntry } from './course-index.mapper';
 export { filterCourseIndex, matchesCourseIndexEntry } from './course-search.utils';
 export { CoursesApiService } from './courses-api.service';
 export { CourseSearchService } from './course-search.service';
+export { ContentSeedRepository } from './content-seed.repository';
+export {
+  isEditableContentAuthor,
+  isSystemAuthor,
+  SYSTEM_AUTHOR_ID,
+} from './system-author.constants';
+export {
+  USER_CONTENT_OVERLAY_KEY,
+  type UserContentOverlay,
+} from './user-content-overlay.types';
 export {
   COURSE_CATALOG_STORAGE_KEY,
   DEFAULT_COURSE_CATALOG,
+  getDefaultCourseCatalog,
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
 } from './courses-storage';
+export {
+  getDefaultScenarios,
+  mergeScenariosWithDefaults,
+  RU_ZH_LANGUAGE_PAIR,
+} from './scenario-catalog.defaults';
+export { scenarioDisplayLabel } from './scenario-display-label.utils';
 export { scenarioToIndexEntry } from './scenario-index.mapper';
 export { filterScenarioIndex, matchesScenarioIndexEntry } from './scenario-search.utils';
 export { ScenariosApiService } from './scenarios-api.service';

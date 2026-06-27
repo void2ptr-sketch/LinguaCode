@@ -1,4 +1,4 @@
-import { Component, input, OnInit, output, signal } from '@angular/core';
+import { Component, computed, effect, input, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,11 +9,12 @@ import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.ty
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 
-type MemoryTile = {
+export type MemoryColumnItem = {
   id: string;
+  pairId: string;
+  column: 'left' | 'right';
   label: string;
   lexeme?: PhoneticLexeme;
-  pairId: string;
 };
 
 @Component({
@@ -22,9 +23,11 @@ type MemoryTile = {
   templateUrl: './memory-card.component.html',
   styleUrl: './memory-card.component.scss',
 })
-export class MemoryCardComponent implements OnInit {
+export class MemoryCardComponent {
   readonly card = input.required<MemoryCard>();
   readonly direction = input<CardDirection>('known-to-learning');
+  /** Меняется при каждом повторном открытии карточки в сессии — запускает перемешивание. */
+  readonly boardNonce = input(0);
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
@@ -32,66 +35,96 @@ export class MemoryCardComponent implements OnInit {
   readonly checkAnswer = output<void>();
   readonly nextCard = output<void>();
 
-  readonly flipped = signal<readonly string[]>([]);
-  readonly matched = signal<readonly string[]>([]);
-  readonly activeTileId = signal<string | null>(null);
+  readonly leftItems = signal<readonly MemoryColumnItem[]>([]);
+  readonly rightItems = signal<readonly MemoryColumnItem[]>([]);
+  readonly selectedItemId = signal<string | null>(null);
+  readonly matchedPairIds = signal<readonly string[]>([]);
+  readonly mismatchItemIds = signal<readonly string[]>([]);
 
-  readonly tiles = signal<readonly MemoryTile[]>([]);
+  readonly columnLabels = computed(() => {
+    if (this.direction() === 'known-to-learning') {
+      return { left: 'Известный', right: 'Новый' };
+    }
 
-  ngOnInit(): void {
-    this.resetTiles();
+    return { left: 'Новый', right: 'Известный' };
+  });
+
+  private mismatchTimerId: number | null = null;
+
+  constructor() {
+    effect(() => {
+      this.card();
+      this.direction();
+      this.boardNonce();
+      this.resetBoard();
+    });
   }
 
-  resetTiles(): void {
+  resetBoard(): void {
+    this.clearMismatchTimer();
     const pairs = resolveMemoryPairs(this.card().pairs, this.direction());
-    const tiles = pairs.flatMap((pair) => [
-      {
-        id: `${pair.pairId}-left`,
-        label: pair.left,
-        lexeme: pair.leftLexeme,
-        pairId: pair.pairId,
-      },
-      {
-        id: `${pair.pairId}-right`,
-        label: pair.right,
-        lexeme: pair.rightLexeme,
-        pairId: pair.pairId,
-      },
-    ]);
 
-    this.tiles.set(this.shuffle(tiles));
-    this.flipped.set([]);
-    this.matched.set([]);
-    this.activeTileId.set(null);
+    this.leftItems.set(
+      this.shuffle(
+        pairs.map((pair) => ({
+          id: `${pair.pairId}-left`,
+          pairId: pair.pairId,
+          column: 'left' as const,
+          label: pair.left,
+          lexeme: pair.leftLexeme,
+        })),
+      ),
+    );
+
+    this.rightItems.set(
+      this.shuffle(
+        pairs.map((pair) => ({
+          id: `${pair.pairId}-right`,
+          pairId: pair.pairId,
+          column: 'right' as const,
+          label: pair.right,
+          lexeme: pair.rightLexeme,
+        })),
+      ),
+    );
+
+    this.selectedItemId.set(null);
+    this.matchedPairIds.set([]);
+    this.mismatchItemIds.set([]);
   }
 
-  flipTile(tile: MemoryTile): void {
-    if (
-      this.feedback() !== null ||
-      this.matched().includes(tile.pairId) ||
-      this.flipped().includes(tile.id)
-    ) {
+  selectItem(item: MemoryColumnItem): void {
+    if (this.feedback() !== null || this.isMatched(item)) {
       return;
     }
 
-    const active = this.activeTileId();
-    if (!active) {
-      this.flipped.update((items) => [...items, tile.id]);
-      this.activeTileId.set(tile.id);
+    const selectedId = this.selectedItemId();
+    if (!selectedId) {
+      this.selectedItemId.set(item.id);
       return;
     }
 
-    const activeTile = this.tiles().find((item) => item.id === active);
-    if (!activeTile) {
+    if (selectedId === item.id) {
+      this.selectedItemId.set(null);
       return;
     }
 
-    this.flipped.update((items) => [...items, tile.id]);
+    const selected = this.findItem(selectedId);
+    if (!selected) {
+      this.selectedItemId.set(item.id);
+      return;
+    }
 
-    if (activeTile.pairId === tile.pairId) {
-      const nextMatched = [...this.matched(), tile.pairId];
-      this.matched.set(nextMatched);
-      this.activeTileId.set(null);
+    if (selected.column === item.column) {
+      this.selectedItemId.set(item.id);
+      return;
+    }
+
+    if (selected.pairId === item.pairId) {
+      const nextMatched = [...this.matchedPairIds(), item.pairId];
+      this.matchedPairIds.set(nextMatched);
+      this.selectedItemId.set(null);
+      this.mismatchItemIds.set([]);
 
       if (nextMatched.length === this.card().pairs.length) {
         this.memoryComplete.emit(true);
@@ -99,14 +132,53 @@ export class MemoryCardComponent implements OnInit {
       return;
     }
 
-    this.activeTileId.set(null);
-    window.setTimeout(() => {
-      this.flipped.set([]);
+    this.selectedItemId.set(null);
+    this.mismatchItemIds.set([selected.id, item.id]);
+    this.clearMismatchTimer();
+    this.mismatchTimerId = window.setTimeout(() => {
+      this.mismatchItemIds.set([]);
+      this.mismatchTimerId = null;
     }, 700);
   }
 
-  isVisible(tile: MemoryTile): boolean {
-    return this.flipped().includes(tile.id) || this.matched().includes(tile.pairId);
+  isMatched(item: MemoryColumnItem): boolean {
+    return this.matchedPairIds().includes(item.pairId);
+  }
+
+  isSelected(item: MemoryColumnItem): boolean {
+    return this.selectedItemId() === item.id;
+  }
+
+  isMismatch(item: MemoryColumnItem): boolean {
+    return this.mismatchItemIds().includes(item.id);
+  }
+
+  itemClass(item: MemoryColumnItem): string {
+    const classes = ['memory-item'];
+    if (this.isMatched(item)) {
+      classes.push('memory-item--matched');
+    }
+    if (this.isSelected(item)) {
+      classes.push('memory-item--selected');
+    }
+    if (this.isMismatch(item)) {
+      classes.push('memory-item--mismatch');
+    }
+    return classes.join(' ');
+  }
+
+  private findItem(itemId: string): MemoryColumnItem | undefined {
+    return (
+      this.leftItems().find((item) => item.id === itemId) ??
+      this.rightItems().find((item) => item.id === itemId)
+    );
+  }
+
+  private clearMismatchTimer(): void {
+    if (this.mismatchTimerId !== null) {
+      window.clearTimeout(this.mismatchTimerId);
+      this.mismatchTimerId = null;
+    }
   }
 
   private shuffle<T>(items: readonly T[]): readonly T[] {

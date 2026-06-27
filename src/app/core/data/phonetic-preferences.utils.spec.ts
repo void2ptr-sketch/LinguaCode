@@ -2,6 +2,7 @@ import {
   isRomanizationDisplayEnabled,
   normalizeCjkLearningPreferences,
   normalizePhoneticPreferences,
+  normalizeTracingStrokeDurationSec,
   resolveRomanizationsForSurface,
   resolveShowIpaForSurface,
   shouldShowPalladius,
@@ -17,6 +18,7 @@ describe('phonetic-preferences.utils', () => {
 
     expect(prefs.displayRomanizations).toEqual(['pinyin']);
     expect(prefs.answerRomanization).toContain('palladius');
+    expect(prefs.tracingStrokeDurationSec).toBe(1);
   });
 
   it('should migrate legacy displayRomanization into displayRomanizations', () => {
@@ -57,6 +59,13 @@ describe('phonetic-preferences.utils', () => {
     });
 
     expect(prefs.displayRomanizations).toEqual(['pinyin', 'zhuyin', 'palladius']);
+  });
+
+  it('should clamp tracing stroke duration to 0.1–2.0 seconds', () => {
+    expect(normalizeTracingStrokeDurationSec(undefined)).toBe(1);
+    expect(normalizeTracingStrokeDurationSec(0.05)).toBe(0.1);
+    expect(normalizeTracingStrokeDurationSec(2.5)).toBe(2);
+    expect(normalizeTracingStrokeDurationSec(1.23)).toBe(1.2);
   });
 
   it('should normalize phonetic preferences', () => {

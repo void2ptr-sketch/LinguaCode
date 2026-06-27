@@ -42,6 +42,12 @@
       }
     </mat-button-toggle-group>
 
+    @if (showHintsNote()) {
+      <p class="draw-card__stroke-note">
+        Кружок — начало черты; анимация показывает направление движения кисти.
+      </p>
+    }
+
     @if (showStrokeOrderNote()) {
       <p class="draw-card__stroke-note">
         Пунктир — порядок черт; цифры указывают последовательность.

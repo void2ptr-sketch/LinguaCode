@@ -127,6 +127,10 @@ export class DrawCardComponent {
     () => this.panelMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
   );
 
+  readonly showHintsNote = computed(
+    () => this.panelMode() === 'hints' && Boolean(this.ghostCharacter()),
+  );
+
   readonly radicalHint = computed(() => {
     if (this.panelMode() !== 'radicals') {
       return null;
@@ -276,13 +280,9 @@ export class DrawCardComponent {
   }
 
   selectCanvasPanel(mode: DrawCanvasMode): void {
+    this.saveActiveStrokes();
     this.panelMode.set(mode);
-
-    if (this.feedback() === null) {
-      this.clearActiveTabStrokes();
-    } else {
-      queueMicrotask(() => this.loadActiveStrokes());
-    }
+    queueMicrotask(() => this.loadActiveStrokes());
   }
 
   selectCharacterTab(index: number): void {
@@ -415,26 +415,6 @@ export class DrawCardComponent {
     const strokes = this.charStrokes()[index] ?? [];
     canvas.setStrokes(strokes);
     this.hasStrokes.set(strokes.length > 0);
-  }
-
-  private clearActiveTabStrokes(): void {
-    const index = this.activeCharIndex();
-    const next = [...this.charStrokes()];
-    if (index >= 0 && index < next.length) {
-      next[index] = [];
-      this.charStrokes.set(next);
-    }
-
-    this.canvasRef()?.clearStrokes();
-    this.hasStrokes.set(false);
-
-    const nextDone = [...this.charDone()];
-    if (index >= 0 && index < nextDone.length && nextDone[index]) {
-      nextDone[index] = false;
-      this.charDone.set(nextDone);
-      this.drawSubmittedChange.emit(false);
-      this.drawAnswerChange.emit(null);
-    }
   }
 }
 

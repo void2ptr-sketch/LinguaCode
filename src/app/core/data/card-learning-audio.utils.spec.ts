@@ -1,4 +1,4 @@
-import { contentLanguageSpeechLocale, playLearningAudio } from './card-learning-audio.utils';
+import { contentLanguageSpeechLocale, playLearningAudio, resolveLearningSpeech } from './card-learning-audio.utils';
 
 describe('card-learning-audio.utils', () => {
   it('should map content language to speech locale', () => {
@@ -26,15 +26,27 @@ describe('card-learning-audio.utils', () => {
   it('should speak text when audio url is missing', () => {
     const speak = spyOn(speechSynthesis, 'speak');
     spyOn(speechSynthesis, 'cancel');
+    spyOn(speechSynthesis, 'getVoices').and.returnValue([]);
 
     playLearningAudio({
-      text: '你好',
-      language: 'zh',
+      text: 'Hello',
+      language: 'en',
     });
 
     expect(speak).toHaveBeenCalled();
     const utterance = speak.calls.mostRecent().args[0] as SpeechSynthesisUtterance;
-    expect(utterance.text).toBe('你好');
-    expect(utterance.lang).toBe('zh-CN');
+    expect(utterance.text).toBe('Hello');
+    expect(utterance.lang).toBe('en-US');
+  });
+
+  it('should prefer pinyin for chinese speech text', () => {
+    const speech = resolveLearningSpeech(
+      { primary: '你好', script: 'hani', pinyin: 'nǐ hǎo' },
+      '你好',
+      'zh',
+    );
+
+    expect(speech.text).toBe('nǐ hǎo');
+    expect(speech.locale).toBe('en-US');
   });
 });

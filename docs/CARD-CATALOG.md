@@ -6,7 +6,9 @@
 
 ## Проблема
 
-Сейчас `CardRepository` загружает все карточки в память (`localStorage` + seed JSON). Для большого каталога это не масштабируется:
+Сейчас каталог карточек: **seed** (`ContentSeedRepository` + `content-manifest.json`) **+ пользовательский overlay** (`lingua-code.user-content.v1`). `CardRepository` и mock API отдают merged catalog, не полную загрузку всех JSON в отдельные legacy-ключи.
+
+Для большого каталога in-memory merge всё ещё не масштабируется:
 
 - медленная первичная загрузка;
 - тяжёлые списки в scenario-builder и card-editor;
@@ -130,12 +132,16 @@ type ScenarioCardSource =
 ## Связанные пути в коде
 
 ```
-src/app/shared/pagination/           # PageRequest, PageResponse, utils, UiPaginationComponent
-src/app/shared/card-catalog-search/  # поиск, фильтры, ScenarioCardPickerComponent
-src/app/core/models/                 # card-index.types, card-search.types
-src/app/core/data/                 # CardSearchService, CardsApiService
-src/app/core/api/                  # cardsApiMockInterceptor, CardsCatalogMockHandler
-src/app/features/card-editor/     # UI «Карточки»: каталог + dialog CRUD
+src/app/shared/pagination/                   # PageRequest, PageResponse, utils, UiPaginationComponent
+src/app/shared/card-catalog-search/          # поиск, фильтры, ScenarioCardPickerComponent
+src/app/core/models/                         # card-index.types, card-search.types
+src/app/core/data/user-content-overlay.*     # overlay model, resolver, migration
+src/app/core/data/content-seed.repository.ts # manifest preload
+src/app/core/data/card.repository.ts         # seed + overlay merge
+src/app/core/data/                           # CardSearchService, CardsApiService
+src/app/core/api/                            # cardsApiMockInterceptor, CardsCatalogMockHandler
+src/app/features/card-editor/                # UI «Карточки»: каталог + dialog CRUD
 src/app/features/card-editor/components/card-editor-dialog/
 src/app/features/card-editor/components/card-try-dialog/
+public/data/content-manifest.json
 ```

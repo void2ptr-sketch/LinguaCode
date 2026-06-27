@@ -1,41 +1,40 @@
 import type { CardIndexMetaOverride } from './card-index.mapper';
+import { migrateUserContentOverlayIfNeeded } from './user-content-overlay.migration';
+import { patchUserContentOverlay, readUserContentOverlay } from './user-content-overlay.storage';
+import { LEGACY_CARD_INDEX_META_KEY } from './user-content-overlay.types';
 
-export const CARD_INDEX_META_STORAGE_KEY = 'lingua-code.card-index-meta';
+/** @deprecated Legacy key; metadata lives in user-content overlay. */
+export const CARD_INDEX_META_STORAGE_KEY = LEGACY_CARD_INDEX_META_KEY;
 
 export function loadCardIndexMetaOverrides(): Record<string, CardIndexMetaOverride> {
-  const raw = localStorage.getItem(CARD_INDEX_META_STORAGE_KEY);
-  if (!raw) {
-    return {};
-  }
-
-  try {
-    const parsed = JSON.parse(raw) as Record<string, CardIndexMetaOverride>;
-    return parsed && typeof parsed === 'object' ? parsed : {};
-  } catch {
-    return {};
-  }
+  migrateUserContentOverlayIfNeeded();
+  return { ...readUserContentOverlay().cardIndexMeta };
 }
 
 export function saveCardIndexMetaOverrides(metaById: Record<string, CardIndexMetaOverride>): void {
-  localStorage.setItem(CARD_INDEX_META_STORAGE_KEY, JSON.stringify(metaById));
+  migrateUserContentOverlayIfNeeded();
+  patchUserContentOverlay({ cardIndexMeta: metaById });
 }
 
 export function upsertCardIndexMetaOverride(
   cardId: string,
   meta: CardIndexMetaOverride,
 ): Record<string, CardIndexMetaOverride> {
-  const next = { ...loadCardIndexMetaOverrides(), [cardId]: meta };
-  saveCardIndexMetaOverrides(next);
+  migrateUserContentOverlayIfNeeded();
+  const overlay = readUserContentOverlay();
+  const next = { ...overlay.cardIndexMeta, [cardId]: meta };
+  patchUserContentOverlay({ cardIndexMeta: next });
   return next;
 }
 
 export function removeCardIndexMetaOverride(cardId: string): void {
-  const current = loadCardIndexMetaOverrides();
-  if (!(cardId in current)) {
+  migrateUserContentOverlayIfNeeded();
+  const overlay = readUserContentOverlay();
+  if (!(cardId in overlay.cardIndexMeta)) {
     return;
   }
 
-  const { [cardId]: removed, ...rest } = current;
+  const { [cardId]: removed, ...rest } = overlay.cardIndexMeta;
   void removed;
-  saveCardIndexMetaOverrides(rest);
+  patchUserContentOverlay({ cardIndexMeta: rest });
 }

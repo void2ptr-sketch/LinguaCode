@@ -2,7 +2,7 @@
 
 cd $(git rev-parse --show-toplevel)
 
-npm run test
+npm run test:ci
 
 
 

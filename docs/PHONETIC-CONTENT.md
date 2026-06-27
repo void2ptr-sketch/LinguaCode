@@ -23,9 +23,9 @@ G10 не заменяет G9 и **не смешивается** с UiLocale (G6)
 
 | Слой                 | Сейчас                       | Ограничение                                      |
 | -------------------- | ---------------------------- | ------------------------------------------------ |
-| `SoundCard`          | `audioLabelLearning: string` | Нет IPA, нет `audioUrl`                          |
-| Рендер               | Roboto                       | Нет IPA-глифов (ʃ, ŋ, ɪ, …)                      |
-| `keyboard`           | `trim().toLowerCase()`       | Неприменимо к IPA (регистр и символы значимы)    |
+| `SoundCard`          | `audioUrl` + TTS fallback    | Нет offline CDN аудио по умолчанию               |
+| Рендер               | Charis SIL для IPA           | IPA-глифы в отдельном шрифте                     |
+| `keyboard`           | `answerMode`: plain/ipa/pinyin/palladius/han | IPA — **системная клавиатура** в `<input>`, экранной IPA-клавиатуры нет |
 | Модель G9 (черновик) | `RomanizationSystem`         | Только орфография zh, без универсальной фонетики |
 
 ## IPA vs орфографические системы (G9)

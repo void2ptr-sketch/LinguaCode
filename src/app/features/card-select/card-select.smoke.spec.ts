@@ -72,6 +72,12 @@ describe('Card select smoke', () => {
       for (const request of httpMock.match(() => true)) {
         if (request.request.url.includes('select-cards.json')) {
           request.flush({ cards: demoCards });
+          continue;
+        }
+
+        if (request.request.url.includes('radicals-course-cards.json')) {
+          request.flush({ cards: [] });
+          continue;
         }
 
         if (request.request.url.includes('card-index-meta.json')) {

@@ -1,8 +1,4 @@
-import { DEFAULT_SCENARIOS } from './scenario-catalog.defaults';
-
-const SCENARIO_TITLE_BY_ID = new Map(
-  DEFAULT_SCENARIOS.map((scenario) => [scenario.id, scenario.title]),
-);
+import { getScenarioSeedCache } from './content-seed.cache';
 
 export function scenarioDisplayLabel(scenarioId: string, title?: string | null): string {
   const resolved = title?.trim();
@@ -10,5 +6,6 @@ export function scenarioDisplayLabel(scenarioId: string, title?: string | null):
     return resolved;
   }
 
-  return SCENARIO_TITLE_BY_ID.get(scenarioId) ?? scenarioId;
+  const seedTitle = getScenarioSeedCache().find((scenario) => scenario.id === scenarioId)?.title;
+  return seedTitle ?? scenarioId;
 }

@@ -34,6 +34,28 @@ src/app/core/
 | ---------------------- | ------------------------------ | -------------------------------------------------------------------------- |
 | `UserStore`            | `lingua-code.user`             | Пользователь, `UserPreferences`, `learningProficiencyLevel`, языковые пары |
 | `LearningResultsStore` | `lingua-code.learning-results` | Ответы, прогресс по сценариям/урокам/программам                            |
+| User content overlay   | `lingua-code.user-content.v1`  | Пользовательские правки courses / lessons / scenarios / cards поверх seed  |
+
+## Content seed + overlay
+
+Системный контент загружается один раз через **`ContentSeedRepository`** по манифесту `public/data/content-manifest.json` (списки JSON для карточек, сценариев, программ). Кэш в памяти — `content-seed.cache.ts`.
+
+Пользовательские изменения (CRUD в редакторах) сохраняются в **`UserContentOverlay`** (`user-content-overlay.storage.ts`). При чтении каталога seed **мерджится** с overlay (`user-content-overlay.resolver.ts`); удаления системных сущностей — через `deletedSystemIds`.
+
+Миграция при первом запуске: legacy ключи `lingua-code.cards`, `lingua-code.scenarios`, `lingua-code.course-catalog`, `lingua-code.card-index-meta` → единый overlay (`user-content-overlay.migration.ts`).
+
+Экспорт overlay обратно в репозиторий: `npm run export:content-seed`.
+
+```mermaid
+flowchart LR
+  Manifest[content-manifest.json] --> ContentSeedRepository
+  ContentSeedRepository --> SeedCache[in-memory seed cache]
+  SeedCache --> Resolver[user-content-overlay.resolver]
+  Overlay[localStorage overlay] --> Resolver
+  Resolver --> CardRepository
+  Resolver --> ScenariosStorage
+  Resolver --> CoursesStorage
+```
 
 ## API (mock + HTTP)
 
@@ -66,6 +88,8 @@ flowchart TB
     ScenarioSearchService
     CourseSearchService
     CardRepository
+    ContentSeedRepository
+    UserContentOverlay
   end
 
   Features[features/*] --> state
@@ -81,6 +105,19 @@ flowchart TB
 - **Standalone** — без NgModule.
 - **Lazy routes** — фичи не загружаются в `core`.
 - **Theme** — `colorScheme` из `UserStore` → классы `theme-light` / `theme-dark` на `<html>`.
+
+## Связанные пути (overlay + seed)
+
+```
+src/app/core/data/content-seed.repository.ts
+src/app/core/data/content-seed.cache.ts
+src/app/core/data/user-content-overlay.types.ts
+src/app/core/data/user-content-overlay.storage.ts
+src/app/core/data/user-content-overlay.resolver.ts
+src/app/core/data/user-content-overlay.migration.ts
+public/data/content-manifest.json
+scripts/export-content-seed.mjs
+```
 
 ## Связанные документы
 

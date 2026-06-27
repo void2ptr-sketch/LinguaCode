@@ -20,6 +20,7 @@
         <app-memory-card
           [card]="current"
           [direction]="direction()"
+          [boardNonce]="memoryBoardNonce()"
           [feedback]="feedback()"
           [fontSize]="fontSize()"
           (memoryComplete)="memoryCompleteChange.emit($event)"

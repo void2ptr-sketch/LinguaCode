@@ -258,6 +258,34 @@ export class CardApiService {
 - Пользовательский ввод — санитизация через Angular (`DomSanitizer`) при отображении HTML.
 - Зависимости — периодический `npm audit`.
 
+## Hanzi Engine (draw-карточки)
+
+Offline stroke-data + TypeScript-движок в `src/app/core/hanzi-engine/`. Данные: `public/assets/hanzi/` (Make Me a Hanzi). Sync: `npm run sync:hanzi`.
+
+```typescript
+// Data
+hanziData.loadCharacter('人'): Promise<HanziCharacterModel | null>
+hanziData.loadCharacters(['你','好']): Promise<Map<string, HanziCharacterModel>>
+hanziData.getLoadState('人'): HanziLoadState
+hanziData.assetUrl('人'): '/assets/hanzi/%E4%BA%BA.json'
+
+// Layout
+new HanziPositioner({ width, height, padding }).toCanvas(mmhPoint)
+positioner.toCharacterSpace(canvasPoint)
+
+// Quiz (per character session)
+new HanziQuizSession(model, positioner, { proficiencyLevel: 'beginner' })
+session.submitCanvasStroke(canvasPoints): HanziQuizStrokeResult
+session.shouldShowHint(): boolean
+session.summary(): { character, totalMistakes, strokeCount }
+```
+
+Интеграция: `draw-canvas`, `draw-card`, grading через `hanzi-stroke-match.utils`. Подробности: [TASKS.md](../TASKS.md) (H15).
+
+## Content seed + overlay
+
+Системный контент — `ContentSeedRepository` + `public/data/content-manifest.json`. Пользовательские правки — `UserContentOverlay` (`lingua-code.user-content.v1`). Merge в `user-content-overlay.resolver.ts`. Подробности: [ARCHITECTURE.core.md](./ARCHITECTURE.core.md#content-seed--overlay), [TASKS.md](../TASKS.md) (G15).
+
 ## Локализация (бэклог)
 
 - `@angular/localize`, файлы `src/locale/messages.LANG.ts`.

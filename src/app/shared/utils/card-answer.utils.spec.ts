@@ -143,18 +143,73 @@ describe('card-answer.utils', () => {
     expect(getCorrectAnswerLabel(card)).toBe('1');
   });
 
-  it('should validate reading card answers', () => {
+  it('should validate reading card answers for contextual word readings', () => {
     const card = {
-      id: '7',
+      id: 'reading-xing-1',
       kind: 'reading' as const,
-      title: '行',
+      title: 'Полифония: 行',
       appearance: { theme: 'azure-blue', fontSize: 'md' as const },
       direction: 'known-to-learning' as const,
-      promptKnown: '银行',
-      optionsLearning: ['háng', 'xíng'],
+      promptKnown: 'Как читается «银行»?',
+      promptLexeme: {
+        primary: '银行',
+        script: 'hani' as const,
+        pinyin: 'yínháng',
+        palladius: 'инь хан',
+      },
+      optionsLearning: ['银行', 'yínxíng'],
+      optionsLexemes: [
+        {
+          primary: '银行',
+          script: 'hani' as const,
+          pinyin: 'yínháng',
+          palladius: 'инь хан',
+        },
+        {
+          primary: 'yínxíng',
+          script: 'latn' as const,
+          pinyin: 'yínxíng',
+        },
+      ],
       correctIndex: 0,
     };
 
     expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(getCorrectAnswerLabel(card)).toBe('yínháng');
+  });
+
+  it('should accept reading card answer by full-word pinyin alias', () => {
+    const card = {
+      id: 'reading-xing-1',
+      kind: 'reading' as const,
+      title: 'Полифония: 行',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      direction: 'known-to-learning' as const,
+      promptKnown: 'Как читается «银行»?',
+      promptLexeme: {
+        primary: '银行',
+        script: 'hani' as const,
+        pinyin: 'yínháng',
+        palladius: 'инь хан',
+      },
+      optionsLearning: ['yínxíng', 'yínháng'],
+      optionsLexemes: [
+        {
+          primary: 'yínxíng',
+          script: 'latn' as const,
+          pinyin: 'yínxíng',
+        },
+        {
+          primary: 'yínháng',
+          script: 'latn' as const,
+          pinyin: 'yínháng',
+          palladius: 'инь хан',
+        },
+      ],
+      correctIndex: 1,
+    };
+
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeFalse();
   });
 });

@@ -1,1 +1,80 @@
 @use '../quiz-card';
+
+.memory-card__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 65%, transparent);
+  font-size: 0.875rem;
+  margin: 0 0 0.75rem;
+}
+
+.memory-columns {
+  display: grid;
+  gap: 1rem;
+  grid-template-areas: 'left right';
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.memory-column {
+  display: grid;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.memory-column--left {
+  grid-area: left;
+}
+
+.memory-column--right {
+  grid-area: right;
+}
+
+.memory-column__title {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.memory-column__items {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.memory-item {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  min-height: 3.5rem;
+  padding: 0.75rem;
+  text-align: center;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease;
+  white-space: normal;
+}
+
+.memory-item--selected {
+  border-color: var(--mat-sys-primary);
+  background: color-mix(in srgb, var(--mat-sys-primary) 12%, transparent);
+}
+
+.memory-item--matched {
+  border-color: var(--mat-sys-tertiary);
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 12%, transparent);
+  opacity: 0.85;
+}
+
+.memory-item--mismatch {
+  border-color: var(--mat-sys-error);
+  background: color-mix(in srgb, var(--mat-sys-error) 10%, transparent);
+}
+
+@media (max-width: 640px) {
+  .memory-columns {
+    grid-template-areas:
+      'left'
+      'right';
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

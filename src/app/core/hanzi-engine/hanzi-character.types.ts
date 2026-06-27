@@ -51,6 +51,7 @@ export type HanziUserStrokeInput = {
 };
 
 export const HANZI_ASSETS_BASE_PATH = '/assets/hanzi';
+export const HANZI_RADICAL_ASSETS_BASE_PATH = '/assets/hanzi/radical';
 
 export const DEFAULT_HANZI_QUIZ_OPTIONS: Required<
   Pick<

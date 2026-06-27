@@ -217,9 +217,11 @@
         "pinyin": "nǐ hǎo",
         "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
         "palladius": "ни хао",
-        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        "ipa": "ni˨˩˦ xaʊ˨˩˦",
+        "glossKnown": "Привет"
       },
       "optionsLearning": ["你好", "谢谢", "再见", "请"],
+      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
       "optionsLexemes": [
         {
           "primary": "你好",
@@ -227,7 +229,8 @@
           "pinyin": "nǐ hǎo",
           "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
           "palladius": "ни хао",
-          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
           "primary": "谢谢",
@@ -235,7 +238,8 @@
           "pinyin": "xièxie",
           "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
           "palladius": "сие сие",
-          "ipa": "ɕiɛ˥˩ ɕiɛ"
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
           "primary": "再见",
@@ -243,7 +247,8 @@
           "pinyin": "zàijiàn",
           "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
           "palladius": "цзай цзянь",
-          "ipa": "tsai˥˩ tɕiɛn˥˩"
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         },
         {
           "primary": "请",
@@ -251,7 +256,8 @@
           "pinyin": "qǐng",
           "zhuyin": "ㄑㄧㄥˇ",
           "palladius": "цин",
-          "ipa": "tɕʰiŋ˨˩˦"
+          "ipa": "tɕʰiŋ˨˩˦",
+          "glossKnown": "Пожалуйста"
         }
       ],
       "correctIndex": 0
@@ -264,10 +270,11 @@
       "direction": "known-to-learning",
       "promptKnown": "Как звучит слово «Hello»?",
       "optionsLearning": ["Hello", "Goodbye", "Thanks"],
+      "optionsKnown": ["Привет", "Пока", "Спасибо"],
       "optionsLexemes": [
-        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ" },
-        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ" },
-        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks" }
+        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ", "glossKnown": "Привет" },
+        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ", "glossKnown": "Пока" },
+        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks", "glossKnown": "Спасибо" }
       ],
       "correctIndex": 0
     },
@@ -279,17 +286,19 @@
       "direction": "known-to-learning",
       "promptKnown": "Транскрипция слова «thought»",
       "optionsLearning": ["thought", "through", "taught"],
+      "optionsKnown": ["мысль", "через", "учил"],
       "optionsLexemes": [
         {
           "primary": "thought",
           "script": "latn",
+          "glossKnown": "мысль",
           "ipa": [
             { "transcription": "θɔːt", "label": "BrE" },
             { "transcription": "θɑːt", "label": "AmE" }
           ]
         },
-        { "primary": "through", "script": "latn", "ipa": "θruː" },
-        { "primary": "taught", "script": "latn", "ipa": "tɔːt" }
+        { "primary": "through", "script": "latn", "glossKnown": "через", "ipa": "θruː" },
+        { "primary": "taught", "script": "latn", "glossKnown": "учил", "ipa": "tɔːt" }
       ],
       "correctIndex": 0
     },
@@ -369,32 +378,33 @@
       "title": "Полифония: 行",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "direction": "known-to-learning",
-      "promptKnown": "Как читается «行» в слове «银行»?",
+      "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
       "promptLexeme": {
         "primary": "银行",
         "script": "hani",
         "pinyin": "yínháng",
         "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
         "palladius": "инь хан",
-        "ipa": "in˧˥ xaŋ˧˥"
+        "ipa": "in˧˥ xaŋ˧˥",
+        "glossKnown": "банк"
       },
-      "optionsLearning": ["háng", "xíng"],
+      "optionsLearning": ["银行", "yínxíng"],
+      "optionsKnown": ["инь хан — банк", "неверное чтение «行» как xíng"],
       "optionsLexemes": [
         {
-          "primary": "háng",
-          "script": "latn",
-          "pinyin": "háng",
-          "zhuyin": "ㄏㄤˊ",
-          "palladius": "хан",
-          "ipa": "xaŋ˧˥"
+          "primary": "银行",
+          "script": "hani",
+          "pinyin": "yínháng",
+          "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
+          "palladius": "инь хан",
+          "ipa": "in˧˥ xaŋ˧˥",
+          "glossKnown": "инь хан — банк"
         },
         {
-          "primary": "xíng",
+          "primary": "yínxíng",
           "script": "latn",
-          "pinyin": "xíng",
-          "zhuyin": "ㄒㄧㄥˊ",
-          "palladius": "син",
-          "ipa": "ɕiŋ˧˥"
+          "pinyin": "yínxíng",
+          "glossKnown": "неверное чтение «行» как xíng"
         }
       ],
       "correctIndex": 0
@@ -458,48 +468,50 @@
       "title": "Иероглифы приветствия",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "direction": "known-to-learning",
-      "promptKnown": "Выберите иероглиф «Привет» (你好)",
+      "promptKnown": "Выберите иероглиф слова «Привет»",
       "promptLexeme": {
-        "primary": "你好",
-        "script": "hani",
-        "pinyin": "nǐ hǎo",
-        "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
-        "palladius": "ни хао",
-        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        "primary": "Привет",
+        "script": "latn",
+        "glossKnown": "Привет"
       },
-      "symbols": ["你", "好", "谢", "再"],
+      "symbols": ["你好", "谢谢", "再见", "请"],
+      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
       "symbolLexemes": [
         {
-          "primary": "你",
+          "primary": "你好",
           "script": "hani",
-          "pinyin": "nǐ",
-          "zhuyin": "ㄋㄧˇ",
-          "palladius": "ни",
-          "ipa": "ni˨˩˦"
+          "pinyin": "nǐ hǎo",
+          "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
+          "palladius": "ни хао",
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
-          "primary": "好",
+          "primary": "谢谢",
           "script": "hani",
-          "pinyin": "hǎo",
-          "zhuyin": "ㄏㄠˇ",
-          "palladius": "хао",
-          "ipa": "xaʊ˨˩˦"
+          "pinyin": "xièxie",
+          "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
+          "palladius": "сие сие",
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
-          "primary": "谢",
+          "primary": "再见",
           "script": "hani",
-          "pinyin": "xiè",
-          "zhuyin": "ㄒㄧㄝˋ",
-          "palladius": "сие",
-          "ipa": "ɕiɛ˥˩"
+          "pinyin": "zàijiàn",
+          "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
+          "palladius": "цзай цзянь",
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         },
         {
-          "primary": "再",
+          "primary": "请",
           "script": "hani",
-          "pinyin": "zài",
-          "zhuyin": "ㄗㄞˋ",
-          "palladius": "цзай",
-          "ipa": "tsai˥˩"
+          "pinyin": "qǐng",
+          "zhuyin": "ㄑㄧㄥˇ",
+          "palladius": "цин",
+          "ipa": "tɕʰiŋ˨˩˦",
+          "glossKnown": "Пожалуйста"
         }
       ],
       "correctIndex": 0
@@ -540,6 +552,7 @@
         "glossKnown": "Спасибо"
       },
       "optionsLearning": ["谢谢", "你好", "再见"],
+      "optionsKnown": ["Спасибо", "Привет", "До свидания"],
       "optionsLexemes": [
         {
           "primary": "谢谢",
@@ -547,7 +560,8 @@
           "pinyin": "xièxie",
           "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
           "palladius": "сие сие",
-          "ipa": "ɕiɛ˥˩ ɕiɛ"
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
           "primary": "你好",
@@ -555,7 +569,8 @@
           "pinyin": "nǐ hǎo",
           "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
           "palladius": "ни хао",
-          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
           "primary": "再见",
@@ -563,7 +578,8 @@
           "pinyin": "zàijiàn",
           "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
           "palladius": "цзай цзянь",
-          "ipa": "tsai˥˩ tɕiɛn˥˩"
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         }
       ],
       "correctIndex": 0,

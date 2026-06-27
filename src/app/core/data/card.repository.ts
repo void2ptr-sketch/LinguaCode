@@ -1,46 +1,49 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
-import { buildFixtureUrl } from '../api';
-import { Card } from '../models';
-import { mergeDrawCardQuestionFields } from './draw-card.utils';
-import { normalizeLegacyCards } from './card-legacy.mapper';
 
+import { Card } from '../models';
+import { getCardSeedCache } from './content-seed.cache';
+import { ContentSeedRepository } from './content-seed.repository';
+import { normalizeLegacyCards } from './card-legacy.mapper';
+import { mergeDrawCardQuestionFields } from './draw-card.utils';
+import { migrateUserContentOverlayIfNeeded } from './user-content-overlay.migration';
+import { computeCardsOverlay, resolveCards } from './user-content-overlay.resolver';
+import {
+  patchUserContentOverlay,
+  readUserContentOverlay,
+} from './user-content-overlay.storage';
+
+/** @deprecated Legacy monolithic storage key; migrated into user-content overlay. */
 export const CARDS_STORAGE_KEY = 'lingua-code.cards';
 
-/** Демо-карточки, снятые с seed — не подмешивать из localStorage. */
+/** Демо-карточки, снятые с seed — не подмешивать из overlay. */
 const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
-
-type CardsSeedFixture = {
-  cards: readonly Card[];
-};
 
 @Injectable({ providedIn: 'root' })
 export class CardRepository {
-  private readonly http = inject(HttpClient);
+  private readonly contentSeed = inject(ContentSeedRepository);
 
   loadStored(): readonly Card[] {
-    const raw = localStorage.getItem(CARDS_STORAGE_KEY);
-    if (!raw) {
-      return [];
-    }
-
-    try {
-      const parsed = JSON.parse(raw) as readonly Card[];
-      return Array.isArray(parsed) ? normalizeLegacyCards(parsed) : [];
-    } catch {
-      return [];
-    }
+    migrateUserContentOverlayIfNeeded();
+    return resolveCards(this.getSeed(), readUserContentOverlay());
   }
 
   save(cards: readonly Card[]): void {
-    localStorage.setItem(CARDS_STORAGE_KEY, JSON.stringify(cards));
+    migrateUserContentOverlayIfNeeded();
+    const seed = this.getSeed();
+    const previous = readUserContentOverlay();
+    const computed = computeCardsOverlay(cards, seed, previous);
+
+    patchUserContentOverlay({
+      cards: computed.cards,
+      deletedSystemIds: {
+        ...previous.deletedSystemIds,
+        cards: computed.deletedSystemIds?.cards,
+      },
+    });
   }
 
   loadSeed(): Promise<readonly Card[]> {
-    return firstValueFrom(
-      this.http.get<CardsSeedFixture>(buildFixtureUrl('/select-cards.json')),
-    ).then((fixture) => normalizeLegacyCards(fixture.cards));
+    return this.contentSeed.preload().then(() => this.getSeed());
   }
 
   mergeWithSeed(stored: readonly Card[], seed: readonly Card[]): readonly Card[] {
@@ -68,23 +71,9 @@ export class CardRepository {
   }
 
   async ensureLoaded(): Promise<readonly Card[]> {
-    const seed = await this.loadSeed();
-    const stored = this.loadStored();
-
-    if (stored.length === 0) {
-      this.save(seed);
-      return seed;
-    }
-
-    const merged = this.mergeWithSeed(stored, seed);
-    const storedIds = new Set(stored.map((card) => card.id));
-    const hasMissingSeedCards = seed.some((card) => !storedIds.has(card.id));
-
-    if (hasMissingSeedCards || merged.length !== stored.length) {
-      this.save(merged);
-    }
-
-    return merged;
+    await this.contentSeed.preload();
+    migrateUserContentOverlayIfNeeded();
+    return this.loadStored();
   }
 
   getById(cards: readonly Card[], cardId: string): Card | null {
@@ -99,5 +88,10 @@ export class CardRepository {
       kind: card.kind,
       title: card.title,
     }));
+  }
+
+  private getSeed(): readonly Card[] {
+    const seed = getCardSeedCache();
+    return seed.length > 0 ? seed : normalizeLegacyCards([]);
   }
 }

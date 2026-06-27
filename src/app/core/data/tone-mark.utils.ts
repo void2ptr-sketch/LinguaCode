@@ -40,6 +40,51 @@ export function toneMarkLabel(tone: ToneMark): string {
   return TONE_LABELS_RU[tone];
 }
 
+export function applyToneMarkToVowel(vowel: string, tone: ToneMark): string {
+  const normalized = vowel === 'v' ? 'ü' : vowel.toLowerCase();
+  if (tone === 5) {
+    return normalized === 'ü' ? 'ü' : normalized;
+  }
+
+  const marks = VOWEL_TONE_MARKS[normalized];
+  return marks?.[tone] ?? vowel;
+}
+
+function applyToneMarkAtIndex(
+  displayBase: string,
+  vowelIndex: number,
+  vowelKey: string,
+  tone: 1 | 2 | 3 | 4,
+): string {
+  const chars = displayBase.split('');
+  const marks = VOWEL_TONE_MARKS[vowelKey];
+  chars[vowelIndex] = marks?.[tone] ?? chars[vowelIndex];
+  return chars.join('');
+}
+
+export function applyToneToLastVowelInSyllable(rawBase: string, tone: ToneMark): string {
+  const base = stripPinyinTones(rawBase);
+  if (!base) {
+    return '';
+  }
+
+  const displayBase = base.replace(/v/g, 'ü');
+  if (tone === 5) {
+    return displayBase;
+  }
+
+  const lower = base.toLowerCase();
+  for (let index = lower.length - 1; index >= 0; index -= 1) {
+    const char = lower[index];
+    if (char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u' || char === 'v') {
+      const vowelKey = char === 'v' ? 'ü' : char;
+      return applyToneMarkAtIndex(displayBase, index, vowelKey, tone);
+    }
+  }
+
+  return displayBase;
+}
+
 export function applyToneToPinyinSyllable(rawBase: string, tone: ToneMark): string {
   const base = stripPinyinTones(rawBase);
   if (!base) {
@@ -79,8 +124,5 @@ export function applyToneToPinyinSyllable(rawBase: string, tone: ToneMark): stri
     return displayBase;
   }
 
-  const chars = displayBase.split('');
-  const marks = VOWEL_TONE_MARKS[vowelKey];
-  chars[vowelIndex] = marks?.[tone] ?? chars[vowelIndex];
-  return chars.join('');
+  return applyToneMarkAtIndex(displayBase, vowelIndex, vowelKey, tone);
 }

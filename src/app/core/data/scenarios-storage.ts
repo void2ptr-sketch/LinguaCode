@@ -1,33 +1,52 @@
 import type { Scenario } from '../models';
-import type { LegacyScenario } from '../models/scenario.types';
 
-import { normalizeScenario } from './scenario-card-source.utils';
-import { DEFAULT_SCENARIOS, mergeScenariosWithDefaults } from './scenario-catalog.defaults';
+import { getScenarioSeedCache } from './content-seed.cache';
+import { migrateUserContentOverlayIfNeeded } from './user-content-overlay.migration';
+import { computeScenariosOverlay, resolveScenarios } from './user-content-overlay.resolver';
+import {
+  patchUserContentOverlay,
+  readUserContentOverlay,
+} from './user-content-overlay.storage';
 
 export {
-  DEFAULT_SCENARIOS,
-  DEFAULT_EN_SCENARIOS,
-  DEFAULT_ZH_SCENARIOS,
   RU_ZH_LANGUAGE_PAIR,
+  getDefaultScenarios,
+  mergeScenariosWithDefaults,
 } from './scenario-catalog.defaults';
 
+/** @deprecated Legacy monolithic storage key; migrated into user-content overlay. */
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 
-export function loadScenariosFromStorage(): readonly Scenario[] {
-  const raw = localStorage.getItem(SCENARIOS_STORAGE_KEY);
-  if (!raw) {
-    return [...DEFAULT_SCENARIOS];
+export function readStoredScenarios(): readonly Scenario[] | null {
+  const overlay = readUserContentOverlay();
+  const hasStored =
+    Object.keys(overlay.scenarios).length > 0 ||
+    Boolean(overlay.deletedSystemIds?.scenarios?.length);
+
+  if (!hasStored) {
+    return null;
   }
 
-  try {
-    const parsed = JSON.parse(raw) as readonly LegacyScenario[];
-    const stored = Array.isArray(parsed) ? parsed.map(normalizeScenario) : [];
-    return mergeScenariosWithDefaults(stored);
-  } catch {
-    return [...DEFAULT_SCENARIOS];
-  }
+  migrateUserContentOverlayIfNeeded();
+  return [...loadScenariosFromStorage()];
+}
+
+export function loadScenariosFromStorage(): readonly Scenario[] {
+  migrateUserContentOverlayIfNeeded();
+  return resolveScenarios(getScenarioSeedCache(), readUserContentOverlay());
 }
 
 export function saveScenariosToStorage(scenarios: readonly Scenario[]): void {
-  localStorage.setItem(SCENARIOS_STORAGE_KEY, JSON.stringify(scenarios));
+  migrateUserContentOverlayIfNeeded();
+  const seed = getScenarioSeedCache();
+  const previous = readUserContentOverlay();
+  const computed = computeScenariosOverlay(scenarios, seed, previous);
+
+  patchUserContentOverlay({
+    scenarios: computed.scenarios,
+    deletedSystemIds: {
+      ...previous.deletedSystemIds,
+      scenarios: computed.deletedSystemIds?.scenarios,
+    },
+  });
 }

@@ -203,7 +203,7 @@ export class CardFormComponent {
           title: draft.title || 'Новая карточка',
           direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
           promptKnown: draft.promptKnown || 'Какое чтение?',
-          optionsLearning: ['xíng', 'háng'],
+          optionsLearning: ['银行', 'yínxíng'],
           correctIndex: 0,
           appearance,
         };

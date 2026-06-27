@@ -36,7 +36,7 @@
   overscroll-behavior: contain;
   padding: clamp(1rem, 3vw, 2rem);
   position: fixed;
-  z-index: 1200;
+  z-index: 1400;
 
   --card-focus-fluid: clamp(1rem, calc(0.75rem + 1.35vmin + 0.45vw), 2rem);
   --card-focus-space: clamp(0.75rem, calc(0.55rem + 0.9vmin), 1.35rem);
@@ -87,12 +87,12 @@
     padding: calc(var(--card-focus-space) * 1.15) var(--card-focus-space);
   }
 
-  ::ng-deep .memory-grid {
+  ::ng-deep .memory-columns {
     gap: var(--card-focus-space);
   }
 
-  ::ng-deep .memory-tile {
-    min-height: max(4rem, min(8vmin, 6.5rem));
+  ::ng-deep .memory-item {
+    min-height: max(3.5rem, min(8vmin, 5rem));
   }
 
   ::ng-deep .draw-area {

@@ -143,10 +143,39 @@ type CjkLearningPreferences = {
 | Уровень | Содержание                             |
 | ------- | -------------------------------------- |
 | MVP     | `audioUrl` в `CjkLexeme` / `SoundCard` |
-| Далее   | Web Speech API / внешний TTS           |
+| MVP     | TTS fallback: `playLearningAudio` — Web Speech API, если нет `audioUrl` |
+| Далее   | Внешний TTS / CDN аудио                |
 | Бэклог  | ASR, оценка произношения               |
 
+Для zh без файла: синтез по **pinyin** (`resolveLearningSpeech`), иначе по `primary` (иероглиф) с locale `zh-CN`.
+
 **Тоны:** хранить `ToneMark` явно; упражнения «услышь → выбери тон», «иероглиф + 4 кнопки»; **цветовая маркировка** иероглифов и пиньинь (настройка в профиле → «Настройка курса»). Для палладицы тоны — через **отдельные** упражнения с пиньинь/аудио, не через кириллицу.
+
+### Виртуальная клавиатура пиньинь
+
+Для `keyboard` с `answerMode: 'pinyin'` — компонент `app-pinyin-keyboard`:
+
+| Поведение | Описание |
+| --------- | -------- |
+| Ряд тонов | Над буквами; всегда в DOM (placeholder `—`) — без скачков layout |
+| Открытие  | Ввод гласной открывает ряд; согласная закрывает |
+| Превью    | Диакритика только на **последней** гласной текущего слога |
+| Лимит     | 6 символов в слоге → автофиксация с лёгким (5-м) тоном |
+| Утилиты   | `pinyin-keyboard.utils.ts`, `tone-mark.utils.ts` |
+
+### Полифония (`reading`)
+
+Kind `reading` — выбор чтения **в контексте слова**, не изолированного иероглифа.
+
+Пример demo-карточки `reading-xing-1`:
+
+- Вопрос: «Как читается «银行»?»
+- Правильный ответ: слово **银行** / `yínháng` / «инь хан»
+- Дistractor: `yínxíng` (неверное чтение 行 как xíng вне контекста банка)
+
+Проверка: `matchesReadingCardSelection` сравнивает выбранный вариант с эталоном по множеству текстов (`readingCandidateTexts`: primary, pinyin, palladius, glossKnown).
+
+Эталон для feedback: pinyin из `promptLexeme` (`getCorrectAnswerLabel`).
 
 ### Цветовая маркировка тонов
 
@@ -200,14 +229,20 @@ type CjkLearningPreferences = {
 | G9.7 | Demo-карточки ru→zh; теги `hsk1`, `tones`                                          |
 | G9.8 | (опц.) `draw`: canvas; stroke order; радикалы — `app-draw-canvas`, справочник черт |
 
-## Связанные пути в коде (план)
+## Связанные пути в коде
 
 ```
 src/app/core/models/cjk-content.types.ts      # CjkLexeme, RomanizationSystem
 src/app/core/data/cjk-romanization.utils.ts   # pinyin ↔ palladius, normalizers
+src/app/core/data/pinyin-keyboard.utils.ts    # виртуальная клавиатура пиньинь
+src/app/core/data/tone-mark.utils.ts          # applyToneToLastVowelInSyllable
+src/app/core/data/card-learning-audio.utils.ts # audioUrl + TTS fallback
 src/app/shared/components/cjk-ruby/           # app-cjk-ruby
+src/app/shared/components/pinyin-keyboard/    # app-pinyin-keyboard
+src/app/shared/components/cards/reading-card/ # kind reading
 src/app/features/card-editor/                 # поля лексемы, preview
-src/app/shared/utils/card-answer.utils.ts     # CJK-aware check (G9.5)
+src/app/shared/utils/card-answer.utils.ts     # CJK-aware check, reading fuzzy match
+public/data/select-cards.json                 # demo: reading-xing-1, select-zh-1, …
 ```
 
 ## Отличие осей «языка»

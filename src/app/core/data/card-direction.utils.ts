@@ -117,8 +117,7 @@ export function resolveKeyboardAcceptedAnswers(
 function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard {
   if (card.kind === 'sound') {
     return {
-      prompt: `${card.promptKnown} (${card.audioLabelLearning})`,
-      promptLexeme: card.promptLexeme,
+      prompt: card.promptKnown,
       options: card.optionsKnown,
       optionLexemes: card.optionsLexemes,
       correctIndex: card.correctIndex,
@@ -142,8 +141,7 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
 function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard {
   if (card.kind === 'sound') {
     return {
-      prompt: card.audioLabelLearning,
-      promptLexeme: card.promptLexeme,
+      prompt: card.promptKnown,
       options: card.optionsKnown,
       optionLexemes: card.optionsLexemes,
       correctIndex: card.correctIndex,
@@ -173,9 +171,23 @@ function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard 
     prompt,
     promptLexeme,
     options: knownOptions,
-    optionLexemes: buildKnownOptionLexemes(knownOptions, card.promptLexeme, card.correctIndex),
+    optionLexemes: buildKnownOptionLexemes(
+      knownOptions,
+      card.promptLexeme,
+      card.correctIndex,
+      learningLexemes,
+    ),
     correctIndex: card.correctIndex,
   };
+}
+
+export function deriveKnownOptionsFromLexemes(
+  learningOptions: readonly string[],
+  learningLexemes: readonly PhoneticLexeme[] | undefined,
+  knownOptions: readonly string[] | undefined,
+): readonly string[] | undefined {
+  const merged = mergeKnownOptionsByIndex(learningOptions, knownOptions, learningLexemes);
+  return merged ?? undefined;
 }
 
 function resolveParallelKnownOptions(
@@ -186,42 +198,78 @@ function resolveParallelKnownOptions(
   promptLexeme: PhoneticLexeme | undefined,
   correctIndex: number,
 ): readonly string[] {
-  if (knownOptions && knownOptions.length === learningOptions.length) {
-    return knownOptions;
-  }
-
-  const glossOptions = learningLexemes?.map((item) => item.glossKnown?.trim() ?? '');
-  if (
-    glossOptions &&
-    glossOptions.length === learningOptions.length &&
-    glossOptions.every(Boolean)
-  ) {
-    return glossOptions;
+  const merged = mergeKnownOptionsByIndex(learningOptions, knownOptions, learningLexemes);
+  if (merged) {
+    return merged;
   }
 
   const quoted = extractQuotedLemma(promptKnown) ?? promptLexeme?.glossKnown?.trim();
   if (quoted) {
-    return learningOptions.map((_, index) => (index === correctIndex ? quoted : `—`));
+    const withQuoted = learningOptions.map((_, index) => {
+      if (index === correctIndex) {
+        return quoted;
+      }
+
+      const gloss = learningLexemes?.[index]?.glossKnown?.trim();
+      if (gloss) {
+        return gloss;
+      }
+
+      const known = knownOptions?.[index]?.trim();
+      if (known) {
+        return known;
+      }
+
+      return learningOptions[index] ?? '';
+    });
+
+    return withQuoted;
   }
 
   return learningOptions;
 }
 
+function mergeKnownOptionsByIndex(
+  learningOptions: readonly string[],
+  knownOptions: readonly string[] | undefined,
+  learningLexemes: readonly PhoneticLexeme[] | undefined,
+): readonly string[] | null {
+  if (knownOptions && knownOptions.length === learningOptions.length) {
+    return knownOptions;
+  }
+
+  const glossOptions = learningLexemes?.map((item) => item.glossKnown?.trim() ?? '');
+  if (glossOptions && glossOptions.length === learningOptions.length) {
+    const merged = glossOptions.map((gloss, index) => gloss || knownOptions?.[index]?.trim() || '');
+    if (merged.every(Boolean)) {
+      return merged;
+    }
+  }
+
+  return null;
+}
+
 function buildKnownOptionLexemes(
   knownOptions: readonly string[],
-  promptLexeme: PhoneticLexeme | undefined,
-  correctIndex: number,
+  _promptLexeme: PhoneticLexeme | undefined,
+  _correctIndex: number,
+  learningLexemes?: readonly PhoneticLexeme[],
 ): readonly (PhoneticLexeme | undefined)[] {
   return knownOptions.map((option, index) => {
-    if (index !== correctIndex) {
+    const trimmed = option.trim();
+    if (!trimmed) {
       return undefined;
     }
 
-    if (promptLexeme?.glossKnown === option) {
-      return promptLexeme;
-    }
-
-    return { primary: option, script: 'latn' as const, glossKnown: option };
+    const learningLexeme = learningLexemes?.[index];
+    return {
+      primary: trimmed,
+      script: 'latn' as const,
+      glossKnown: trimmed,
+      ...(learningLexeme?.glossKnown?.trim() === trimmed && learningLexeme.ipa
+        ? { ipa: learningLexeme.ipa }
+        : {}),
+    };
   });
 }
 

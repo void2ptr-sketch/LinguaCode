@@ -6,6 +6,7 @@ import { CourseSearchService } from '../../../core/data';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
+import { isEditableContentAuthor } from '../../../core/data/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
@@ -38,7 +39,7 @@ export class CourseBuilderStore {
       return false;
     }
 
-    return course.authorId !== this.userStore.user().id;
+    return !isEditableContentAuthor(course.authorId, this.userStore.user().id);
   });
 
   async loadList(): Promise<void> {
@@ -161,7 +162,7 @@ export class CourseBuilderStore {
 
   async deleteCourse(courseId: string): Promise<void> {
     const item = this.indexItems().find((course) => course.id === courseId);
-    if (item && item.authorId !== this.userStore.user().id) {
+    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
       this.error.set('Нельзя удалять чужой курс');
       return;
     }

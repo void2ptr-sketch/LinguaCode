@@ -17,9 +17,13 @@ import {
   validateScenarioCardSource,
 } from '../data/scenario-card-source.utils';
 import { cardIndexMatchesPair, normalizeLanguagePair } from '../data/language-pair.utils';
-import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import {
-  DEFAULT_SCENARIOS,
+  isEditableContentAuthor,
+  isSystemAuthor,
+} from '../data/system-author.constants';
+import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
+import { ContentSeedRepository } from '../data/content-seed.repository';
+import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
 } from '../data/scenarios-storage';
@@ -30,6 +34,7 @@ import type { ScenarioWritePayload } from '../data/scenarios-api.service';
 export class ScenariosCatalogMockHandler {
   private readonly cardsHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly contentSeed = inject(ContentSeedRepository);
 
   private scenarios: Scenario[] | null = null;
 
@@ -89,15 +94,23 @@ export class ScenariosCatalogMockHandler {
     const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
     await this.assertValidCardSource(payload.cardSource, languagePair);
 
-    const updated: Scenario = {
-      ...current,
-      title: payload.title,
-      description: payload.description,
-      cardSource: payload.cardSource,
-      published: payload.published,
-      updatedAt: new Date().toISOString(),
-      languagePair,
-    };
+    const updated: Scenario = isSystemAuthor(current.authorId)
+      ? {
+          ...current,
+          title: payload.title,
+          description: payload.description,
+          published: payload.published,
+          updatedAt: new Date().toISOString(),
+        }
+      : {
+          ...current,
+          title: payload.title,
+          description: payload.description,
+          cardSource: payload.cardSource,
+          published: payload.published,
+          updatedAt: new Date().toISOString(),
+          languagePair,
+        };
 
     this.scenarios = this.scenarios!.map((item) => (item.id === scenarioId ? updated : item));
     this.persist();
@@ -136,13 +149,8 @@ export class ScenariosCatalogMockHandler {
   }
 
   private async ensureData(): Promise<void> {
-    if (this.scenarios) {
-      return;
-    }
-
-    const migrated = loadScenariosFromStorage();
-    this.scenarios = migrated.length > 0 ? [...migrated] : [...DEFAULT_SCENARIOS];
-    this.persist();
+    await this.contentSeed.preload();
+    this.scenarios = [...loadScenariosFromStorage()];
   }
 
   private persist(): void {
@@ -151,7 +159,7 @@ export class ScenariosCatalogMockHandler {
 
   private assertCanEdit(scenario: Scenario): void {
     const userId = this.userStore.user().id;
-    if (scenario.authorId !== userId) {
+    if (!isEditableContentAuthor(scenario.authorId, userId)) {
       throw forbidden('Нельзя изменять чужой сценарий');
     }
   }

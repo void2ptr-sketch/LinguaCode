@@ -4,6 +4,7 @@ import { activeLanguagePairCriteria } from '../../../core/data/language-pair-sco
 import {
   buildLessonRoadmap,
   collectScenarioIds,
+  courseMatchesActiveLanguagePair,
   inferActiveCourseId,
   resolveLearningResumeTarget,
   type LearningResumeTarget,
@@ -51,6 +52,7 @@ export class LearningDashboardService {
     this.error.set(null);
 
     try {
+      const pair = this.userStore.languagePair();
       const saved = this.learningSession();
       const pairResults = this.resultsStore.pairResults();
       const hasScenarioResult = (scenarioId: string) =>
@@ -58,10 +60,21 @@ export class LearningDashboardService {
 
       let courseId = inferActiveCourseId(saved, pairResults, null);
 
+      if (courseId) {
+        try {
+          const candidate = await this.courseSearchService.getById(courseId);
+          if (!courseMatchesActiveLanguagePair(candidate, pair)) {
+            courseId = null;
+          }
+        } catch {
+          courseId = null;
+        }
+      }
+
       if (!courseId) {
         const page = await this.courseSearchService.search({
           scope: 'published',
-          ...activeLanguagePairCriteria(this.userStore.languagePair()),
+          ...activeLanguagePairCriteria(pair),
           page: { page: 0, pageSize: 1 },
         });
         courseId = page.items[0]?.id ?? null;
@@ -85,7 +98,9 @@ export class LearningDashboardService {
       const course = await this.courseSearchService.getById(courseId);
       this.course.set(course);
 
-      if (!saved.activeCourseId) {
+      const shouldPersistActiveCourse =
+        !saved.activeCourseId || saved.activeCourseId !== courseId;
+      if (shouldPersistActiveCourse) {
         queueMicrotask(() => {
           this.userStore.updateActiveLanguagePairSettings({
             learning: { activeCourseId: courseId },

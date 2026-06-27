@@ -1,29 +1,68 @@
 <div class="pinyin-keyboard" role="group" aria-label="Клавиатура пиньинь">
-  <p class="pinyin-keyboard__hint">Введите слог латиницей, затем выберите тон (1–5).</p>
+  <p class="pinyin-keyboard__hint">
+    Введите слог: после гласной выберите тон над клавиатурой; согласная продолжит слог.
+  </p>
 
-  @for (row of layout; track $index) {
-    <div
-      class="pinyin-keyboard__row"
-      [class.pinyin-keyboard__row--utility]="$index === layout.length - 1"
-    >
-      @for (key of row; track $index) {
-        <button
-          mat-stroked-button
-          type="button"
-          class="pinyin-keyboard__key"
-          [class.pinyin-keyboard__key--tone]="key.kind === 'tone'"
-          [class.pinyin-keyboard__key--wide]="key.kind === 'space' || key.kind === 'backspace'"
-          [disabled]="isKeyDisabled(key)"
-          [attr.aria-label]="keyAriaLabel(key)"
-          (click)="pressKey(key)"
-        >
-          @if (key.kind === 'backspace') {
-            <mat-icon fontIcon="backspace" />
-          } @else {
+  <div
+    class="pinyin-keyboard__row pinyin-keyboard__row--tones"
+    [class.pinyin-keyboard__row--tones-active]="showToneRow()"
+    [attr.aria-hidden]="showToneRow() ? null : true"
+    aria-label="Выбор тона"
+  >
+    @for (tone of toneMarks; track tone) {
+      <button
+        mat-stroked-button
+        type="button"
+        class="pinyin-keyboard__key pinyin-keyboard__key--tone"
+        [disabled]="isToneKeyDisabled()"
+        [attr.aria-label]="showToneRow() ? toneAriaLabel(tone) : null"
+        [attr.tabindex]="showToneRow() ? 0 : -1"
+        (click)="pressTone(tone)"
+      >
+        @if (showToneRow()) {
+          <app-tone-colored-text [text]="tonePreview(tone)" [fixedTone]="tone" [inline]="true" />
+        } @else {
+          <span class="pinyin-keyboard__tone-placeholder" aria-hidden="true">—</span>
+        }
+      </button>
+    }
+  </div>
+
+  <div class="pinyin-keyboard__letters">
+    @for (row of letterRows; track $index) {
+      <div class="pinyin-keyboard__row">
+        @for (key of row; track $index) {
+          <button
+            mat-stroked-button
+            type="button"
+            class="pinyin-keyboard__key"
+            [disabled]="isKeyDisabled(key)"
+            [attr.aria-label]="keyAriaLabel(key)"
+            (click)="pressKey(key)"
+          >
             {{ keyLabel(key) }}
-          }
-        </button>
-      }
-    </div>
-  }
+          </button>
+        }
+      </div>
+    }
+  </div>
+
+  <div class="pinyin-keyboard__row pinyin-keyboard__row--utility">
+    @for (key of utilityKeys; track $index) {
+      <button
+        mat-stroked-button
+        type="button"
+        class="pinyin-keyboard__key pinyin-keyboard__key--wide"
+        [disabled]="isKeyDisabled(key)"
+        [attr.aria-label]="keyAriaLabel(key)"
+        (click)="pressKey(key)"
+      >
+        @if (key.kind === 'backspace') {
+          <mat-icon fontIcon="backspace" />
+        } @else {
+          {{ keyLabel(key) }}
+        }
+      </button>
+    }
+  </div>
 </div>

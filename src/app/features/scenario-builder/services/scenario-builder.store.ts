@@ -22,6 +22,7 @@ import type {
 } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
+import { isEditableContentAuthor } from '../../../core/data/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
@@ -55,7 +56,7 @@ export class ScenarioBuilderStore {
       return false;
     }
 
-    return scenario.authorId !== this.userStore.user().id;
+    return !isEditableContentAuthor(scenario.authorId, this.userStore.user().id);
   });
 
   async loadList(): Promise<void> {
@@ -170,7 +171,7 @@ export class ScenarioBuilderStore {
 
   async deleteScenario(scenarioId: string): Promise<void> {
     const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
-    if (item && item.authorId !== this.userStore.user().id) {
+    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
       this.error.set('Нельзя удалять чужой сценарий');
       return;
     }

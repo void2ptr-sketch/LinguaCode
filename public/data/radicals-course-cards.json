@@ -1,0 +1,4070 @@
+{
+  "cards": [
+    {
+      "id": "draw-radical-001",
+      "kind": "draw",
+      "title": "Радикал №1: 一",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №1 «一»",
+      "referenceHintKnown": "один (yī)",
+      "meaningKnown": "один",
+      "practiceMode": "tracing",
+      "targetCharacter": "一",
+      "promptLexeme": {
+        "primary": "一",
+        "script": "hani",
+        "pinyin": "yī"
+      }
+    },
+    {
+      "id": "draw-radical-002",
+      "kind": "draw",
+      "title": "Радикал №2: 丨",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №2 «丨»",
+      "referenceHintKnown": "вертикальная черта (gǔn)",
+      "meaningKnown": "вертикальная черта",
+      "practiceMode": "tracing",
+      "targetCharacter": "丨",
+      "promptLexeme": {
+        "primary": "丨",
+        "script": "hani",
+        "pinyin": "gǔn"
+      }
+    },
+    {
+      "id": "draw-radical-003",
+      "kind": "draw",
+      "title": "Радикал №3: 丶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №3 «丶»",
+      "referenceHintKnown": "точка (zhǔ)",
+      "meaningKnown": "точка",
+      "practiceMode": "tracing",
+      "targetCharacter": "丶",
+      "promptLexeme": {
+        "primary": "丶",
+        "script": "hani",
+        "pinyin": "zhǔ"
+      }
+    },
+    {
+      "id": "draw-radical-004",
+      "kind": "draw",
+      "title": "Радикал №4: 丿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №4 «丿»",
+      "referenceHintKnown": "косая черта (piě)",
+      "meaningKnown": "косая черта",
+      "practiceMode": "tracing",
+      "targetCharacter": "丿",
+      "promptLexeme": {
+        "primary": "丿",
+        "script": "hani",
+        "pinyin": "piě"
+      }
+    },
+    {
+      "id": "draw-radical-005",
+      "kind": "draw",
+      "title": "Радикал №5: 乙",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №5 «乙»",
+      "referenceHintKnown": "второй (yǐ)",
+      "meaningKnown": "второй",
+      "practiceMode": "tracing",
+      "targetCharacter": "乙",
+      "promptLexeme": {
+        "primary": "乙",
+        "script": "hani",
+        "pinyin": "yǐ"
+      }
+    },
+    {
+      "id": "draw-radical-006",
+      "kind": "draw",
+      "title": "Радикал №6: 亅",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №6 «亅»",
+      "referenceHintKnown": "крючок (jué)",
+      "meaningKnown": "крючок",
+      "practiceMode": "tracing",
+      "targetCharacter": "亅",
+      "promptLexeme": {
+        "primary": "亅",
+        "script": "hani",
+        "pinyin": "jué"
+      }
+    },
+    {
+      "id": "draw-radical-007",
+      "kind": "draw",
+      "title": "Радикал №7: 二",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №7 «二»",
+      "referenceHintKnown": "два (èr)",
+      "meaningKnown": "два",
+      "practiceMode": "tracing",
+      "targetCharacter": "二",
+      "promptLexeme": {
+        "primary": "二",
+        "script": "hani",
+        "pinyin": "èr"
+      }
+    },
+    {
+      "id": "draw-radical-008",
+      "kind": "draw",
+      "title": "Радикал №8: 亠",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №8 «亠»",
+      "referenceHintKnown": "крышка (tóu)",
+      "meaningKnown": "крышка",
+      "practiceMode": "tracing",
+      "targetCharacter": "亠",
+      "promptLexeme": {
+        "primary": "亠",
+        "script": "hani",
+        "pinyin": "tóu"
+      }
+    },
+    {
+      "id": "draw-radical-009",
+      "kind": "draw",
+      "title": "Радикал №9: 人",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №9 «人»",
+      "referenceHintKnown": "человек (rén)",
+      "meaningKnown": "человек",
+      "practiceMode": "tracing",
+      "targetCharacter": "人",
+      "promptLexeme": {
+        "primary": "人",
+        "script": "hani",
+        "pinyin": "rén"
+      }
+    },
+    {
+      "id": "draw-radical-010",
+      "kind": "draw",
+      "title": "Радикал №10: 儿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №10 «儿»",
+      "referenceHintKnown": "ноги (ér)",
+      "meaningKnown": "ноги",
+      "practiceMode": "tracing",
+      "targetCharacter": "儿",
+      "promptLexeme": {
+        "primary": "儿",
+        "script": "hani",
+        "pinyin": "ér"
+      }
+    },
+    {
+      "id": "draw-radical-011",
+      "kind": "draw",
+      "title": "Радикал №11: 入",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №11 «入»",
+      "referenceHintKnown": "вход (rù)",
+      "meaningKnown": "вход",
+      "practiceMode": "tracing",
+      "targetCharacter": "入",
+      "promptLexeme": {
+        "primary": "入",
+        "script": "hani",
+        "pinyin": "rù"
+      }
+    },
+    {
+      "id": "draw-radical-012",
+      "kind": "draw",
+      "title": "Радикал №12: 八",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №12 «八»",
+      "referenceHintKnown": "восемь (bā)",
+      "meaningKnown": "восемь",
+      "practiceMode": "tracing",
+      "targetCharacter": "八",
+      "promptLexeme": {
+        "primary": "八",
+        "script": "hani",
+        "pinyin": "bā"
+      }
+    },
+    {
+      "id": "draw-radical-013",
+      "kind": "draw",
+      "title": "Радикал №13: 冂",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №13 «冂»",
+      "referenceHintKnown": "широкий (jiōng)",
+      "meaningKnown": "широкий",
+      "practiceMode": "tracing",
+      "targetCharacter": "冂",
+      "promptLexeme": {
+        "primary": "冂",
+        "script": "hani",
+        "pinyin": "jiōng"
+      }
+    },
+    {
+      "id": "draw-radical-014",
+      "kind": "draw",
+      "title": "Радикал №14: 冖",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №14 «冖»",
+      "referenceHintKnown": "покрывало (mì)",
+      "meaningKnown": "покрывало",
+      "practiceMode": "tracing",
+      "targetCharacter": "冖",
+      "promptLexeme": {
+        "primary": "冖",
+        "script": "hani",
+        "pinyin": "mì"
+      }
+    },
+    {
+      "id": "draw-radical-015",
+      "kind": "draw",
+      "title": "Радикал №15: 冫",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №15 «冫»",
+      "referenceHintKnown": "лёд (bīng)",
+      "meaningKnown": "лёд",
+      "practiceMode": "tracing",
+      "targetCharacter": "冫",
+      "promptLexeme": {
+        "primary": "冫",
+        "script": "hani",
+        "pinyin": "bīng"
+      }
+    },
+    {
+      "id": "draw-radical-016",
+      "kind": "draw",
+      "title": "Радикал №16: 几",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №16 «几»",
+      "referenceHintKnown": "стол (jī)",
+      "meaningKnown": "стол",
+      "practiceMode": "tracing",
+      "targetCharacter": "几",
+      "promptLexeme": {
+        "primary": "几",
+        "script": "hani",
+        "pinyin": "jī"
+      }
+    },
+    {
+      "id": "draw-radical-017",
+      "kind": "draw",
+      "title": "Радикал №17: 凵",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №17 «凵»",
+      "referenceHintKnown": "ёмкость (kǎn)",
+      "meaningKnown": "ёмкость",
+      "practiceMode": "tracing",
+      "targetCharacter": "凵",
+      "promptLexeme": {
+        "primary": "凵",
+        "script": "hani",
+        "pinyin": "kǎn"
+      }
+    },
+    {
+      "id": "draw-radical-018",
+      "kind": "draw",
+      "title": "Радикал №18: 刀",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №18 «刀»",
+      "referenceHintKnown": "nож (dāo)",
+      "meaningKnown": "nож",
+      "practiceMode": "tracing",
+      "targetCharacter": "刀",
+      "promptLexeme": {
+        "primary": "刀",
+        "script": "hani",
+        "pinyin": "dāo"
+      }
+    },
+    {
+      "id": "draw-radical-019",
+      "kind": "draw",
+      "title": "Радикал №19: 力",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №19 «力»",
+      "referenceHintKnown": "сила (lì)",
+      "meaningKnown": "сила",
+      "practiceMode": "tracing",
+      "targetCharacter": "力",
+      "promptLexeme": {
+        "primary": "力",
+        "script": "hani",
+        "pinyin": "lì"
+      }
+    },
+    {
+      "id": "draw-radical-020",
+      "kind": "draw",
+      "title": "Радикал №20: 勹",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №20 «勹»",
+      "referenceHintKnown": "обёртка (bāo)",
+      "meaningKnown": "обёртка",
+      "practiceMode": "tracing",
+      "targetCharacter": "勹",
+      "promptLexeme": {
+        "primary": "勹",
+        "script": "hani",
+        "pinyin": "bāo"
+      }
+    },
+    {
+      "id": "draw-radical-021",
+      "kind": "draw",
+      "title": "Радикал №21: 匕",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №21 «匕»",
+      "referenceHintKnown": "ложка (bǐ)",
+      "meaningKnown": "ложка",
+      "practiceMode": "tracing",
+      "targetCharacter": "匕",
+      "promptLexeme": {
+        "primary": "匕",
+        "script": "hani",
+        "pinyin": "bǐ"
+      }
+    },
+    {
+      "id": "draw-radical-022",
+      "kind": "draw",
+      "title": "Радикал №22: 匚",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №22 «匚»",
+      "referenceHintKnown": "ящик (fāng)",
+      "meaningKnown": "ящик",
+      "practiceMode": "tracing",
+      "targetCharacter": "匚",
+      "promptLexeme": {
+        "primary": "匚",
+        "script": "hani",
+        "pinyin": "fāng"
+      }
+    },
+    {
+      "id": "draw-radical-023",
+      "kind": "draw",
+      "title": "Радикал №23: 匸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №23 «匸»",
+      "referenceHintKnown": "укрытие (xǐ)",
+      "meaningKnown": "укрытие",
+      "practiceMode": "tracing",
+      "targetCharacter": "匸",
+      "promptLexeme": {
+        "primary": "匸",
+        "script": "hani",
+        "pinyin": "xǐ"
+      }
+    },
+    {
+      "id": "draw-radical-024",
+      "kind": "draw",
+      "title": "Радикал №24: 十",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №24 «十»",
+      "referenceHintKnown": "десять (shí)",
+      "meaningKnown": "десять",
+      "practiceMode": "tracing",
+      "targetCharacter": "十",
+      "promptLexeme": {
+        "primary": "十",
+        "script": "hani",
+        "pinyin": "shí"
+      }
+    },
+    {
+      "id": "draw-radical-025",
+      "kind": "draw",
+      "title": "Радикал №25: 卜",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №25 «卜»",
+      "referenceHintKnown": "гадание (bǔ)",
+      "meaningKnown": "гадание",
+      "practiceMode": "tracing",
+      "targetCharacter": "卜",
+      "promptLexeme": {
+        "primary": "卜",
+        "script": "hani",
+        "pinyin": "bǔ"
+      }
+    },
+    {
+      "id": "draw-radical-026",
+      "kind": "draw",
+      "title": "Радикал №26: 卩",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №26 «卩»",
+      "referenceHintKnown": "печать (jié)",
+      "meaningKnown": "печать",
+      "practiceMode": "tracing",
+      "targetCharacter": "卩",
+      "promptLexeme": {
+        "primary": "卩",
+        "script": "hani",
+        "pinyin": "jié"
+      }
+    },
+    {
+      "id": "draw-radical-027",
+      "kind": "draw",
+      "title": "Радикал №27: 厂",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №27 «厂»",
+      "referenceHintKnown": "скала (hǎn)",
+      "meaningKnown": "скала",
+      "practiceMode": "tracing",
+      "targetCharacter": "厂",
+      "promptLexeme": {
+        "primary": "厂",
+        "script": "hani",
+        "pinyin": "hǎn"
+      }
+    },
+    {
+      "id": "draw-radical-028",
+      "kind": "draw",
+      "title": "Радикал №28: 厶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №28 «厶»",
+      "referenceHintKnown": "личный (sī)",
+      "meaningKnown": "личный",
+      "practiceMode": "tracing",
+      "targetCharacter": "厶",
+      "promptLexeme": {
+        "primary": "厶",
+        "script": "hani",
+        "pinyin": "sī"
+      }
+    },
+    {
+      "id": "draw-radical-029",
+      "kind": "draw",
+      "title": "Радикал №29: 又",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №29 «又»",
+      "referenceHintKnown": "снова (yòu)",
+      "meaningKnown": "снова",
+      "practiceMode": "tracing",
+      "targetCharacter": "又",
+      "promptLexeme": {
+        "primary": "又",
+        "script": "hani",
+        "pinyin": "yòu"
+      }
+    },
+    {
+      "id": "draw-radical-030",
+      "kind": "draw",
+      "title": "Радикал №30: 口",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №30 «口»",
+      "referenceHintKnown": "рот (kǒu)",
+      "meaningKnown": "рот",
+      "practiceMode": "tracing",
+      "targetCharacter": "口",
+      "promptLexeme": {
+        "primary": "口",
+        "script": "hani",
+        "pinyin": "kǒu"
+      }
+    },
+    {
+      "id": "draw-radical-031",
+      "kind": "draw",
+      "title": "Радикал №31: 囗",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №31 «囗»",
+      "referenceHintKnown": "ограждение (wéi)",
+      "meaningKnown": "ограждение",
+      "practiceMode": "tracing",
+      "targetCharacter": "囗",
+      "promptLexeme": {
+        "primary": "囗",
+        "script": "hani",
+        "pinyin": "wéi"
+      }
+    },
+    {
+      "id": "draw-radical-032",
+      "kind": "draw",
+      "title": "Радикал №32: 土",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №32 «土»",
+      "referenceHintKnown": "земля (tǔ)",
+      "meaningKnown": "земля",
+      "practiceMode": "tracing",
+      "targetCharacter": "土",
+      "promptLexeme": {
+        "primary": "土",
+        "script": "hani",
+        "pinyin": "tǔ"
+      }
+    },
+    {
+      "id": "draw-radical-033",
+      "kind": "draw",
+      "title": "Радикал №33: 士",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №33 «士»",
+      "referenceHintKnown": "учёный (shì)",
+      "meaningKnown": "учёный",
+      "practiceMode": "tracing",
+      "targetCharacter": "士",
+      "promptLexeme": {
+        "primary": "士",
+        "script": "hani",
+        "pinyin": "shì"
+      }
+    },
+    {
+      "id": "draw-radical-034",
+      "kind": "draw",
+      "title": "Радикал №34: 夂",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №34 «夂»",
+      "referenceHintKnown": "идти (zhǐ)",
+      "meaningKnown": "идти",
+      "practiceMode": "tracing",
+      "targetCharacter": "夂",
+      "promptLexeme": {
+        "primary": "夂",
+        "script": "hani",
+        "pinyin": "zhǐ"
+      }
+    },
+    {
+      "id": "draw-radical-035",
+      "kind": "draw",
+      "title": "Радикал №35: 夊",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №35 «夊»",
+      "referenceHintKnown": "медленный шаг (suī)",
+      "meaningKnown": "медленный шаг",
+      "practiceMode": "tracing",
+      "targetCharacter": "夊",
+      "promptLexeme": {
+        "primary": "夊",
+        "script": "hani",
+        "pinyin": "suī"
+      }
+    },
+    {
+      "id": "draw-radical-036",
+      "kind": "draw",
+      "title": "Радикал №36: 夕",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №36 «夕»",
+      "referenceHintKnown": "вечер (xī)",
+      "meaningKnown": "вечер",
+      "practiceMode": "tracing",
+      "targetCharacter": "夕",
+      "promptLexeme": {
+        "primary": "夕",
+        "script": "hani",
+        "pinyin": "xī"
+      }
+    },
+    {
+      "id": "draw-radical-037",
+      "kind": "draw",
+      "title": "Радикал №37: 大",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №37 «大»",
+      "referenceHintKnown": "большой (dà)",
+      "meaningKnown": "большой",
+      "practiceMode": "tracing",
+      "targetCharacter": "大",
+      "promptLexeme": {
+        "primary": "大",
+        "script": "hani",
+        "pinyin": "dà"
+      }
+    },
+    {
+      "id": "draw-radical-038",
+      "kind": "draw",
+      "title": "Радикал №38: 女",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №38 «女»",
+      "referenceHintKnown": "женщина (nǚ)",
+      "meaningKnown": "женщина",
+      "practiceMode": "tracing",
+      "targetCharacter": "女",
+      "promptLexeme": {
+        "primary": "女",
+        "script": "hani",
+        "pinyin": "nǚ"
+      }
+    },
+    {
+      "id": "draw-radical-039",
+      "kind": "draw",
+      "title": "Радикал №39: 子",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №39 «子»",
+      "referenceHintKnown": "ребёнок (zǐ)",
+      "meaningKnown": "ребёнок",
+      "practiceMode": "tracing",
+      "targetCharacter": "子",
+      "promptLexeme": {
+        "primary": "子",
+        "script": "hani",
+        "pinyin": "zǐ"
+      }
+    },
+    {
+      "id": "draw-radical-040",
+      "kind": "draw",
+      "title": "Радикал №40: 宀",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №40 «宀»",
+      "referenceHintKnown": "крыша (mián)",
+      "meaningKnown": "крыша",
+      "practiceMode": "tracing",
+      "targetCharacter": "宀",
+      "promptLexeme": {
+        "primary": "宀",
+        "script": "hani",
+        "pinyin": "mián"
+      }
+    },
+    {
+      "id": "draw-radical-041",
+      "kind": "draw",
+      "title": "Радикал №41: 寸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №41 «寸»",
+      "referenceHintKnown": "цунь (дюйм) (cùn)",
+      "meaningKnown": "цунь (дюйм)",
+      "practiceMode": "tracing",
+      "targetCharacter": "寸",
+      "promptLexeme": {
+        "primary": "寸",
+        "script": "hani",
+        "pinyin": "cùn"
+      }
+    },
+    {
+      "id": "draw-radical-042",
+      "kind": "draw",
+      "title": "Радикал №42: 小",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №42 «小»",
+      "referenceHintKnown": "малый (xiǎo)",
+      "meaningKnown": "малый",
+      "practiceMode": "tracing",
+      "targetCharacter": "小",
+      "promptLexeme": {
+        "primary": "小",
+        "script": "hani",
+        "pinyin": "xiǎo"
+      }
+    },
+    {
+      "id": "draw-radical-043",
+      "kind": "draw",
+      "title": "Радикал №43: 尢",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №43 «尢»",
+      "referenceHintKnown": "хромой (wāng)",
+      "meaningKnown": "хромой",
+      "practiceMode": "tracing",
+      "targetCharacter": "尢",
+      "promptLexeme": {
+        "primary": "尢",
+        "script": "hani",
+        "pinyin": "wāng"
+      }
+    },
+    {
+      "id": "draw-radical-044",
+      "kind": "draw",
+      "title": "Радикал №44: 尸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №44 «尸»",
+      "referenceHintKnown": "труп (shī)",
+      "meaningKnown": "труп",
+      "practiceMode": "tracing",
+      "targetCharacter": "尸",
+      "promptLexeme": {
+        "primary": "尸",
+        "script": "hani",
+        "pinyin": "shī"
+      }
+    },
+    {
+      "id": "draw-radical-045",
+      "kind": "draw",
+      "title": "Радикал №45: 屮",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №45 «屮»",
+      "referenceHintKnown": "росток (chè)",
+      "meaningKnown": "росток",
+      "practiceMode": "tracing",
+      "targetCharacter": "屮",
+      "promptLexeme": {
+        "primary": "屮",
+        "script": "hani",
+        "pinyin": "chè"
+      }
+    },
+    {
+      "id": "draw-radical-046",
+      "kind": "draw",
+      "title": "Радикал №46: 山",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №46 «山»",
+      "referenceHintKnown": "гора (shān)",
+      "meaningKnown": "гора",
+      "practiceMode": "tracing",
+      "targetCharacter": "山",
+      "promptLexeme": {
+        "primary": "山",
+        "script": "hani",
+        "pinyin": "shān"
+      }
+    },
+    {
+      "id": "draw-radical-047",
+      "kind": "draw",
+      "title": "Радикал №47: 巛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №47 «巛»",
+      "referenceHintKnown": "река (chuān)",
+      "meaningKnown": "река",
+      "practiceMode": "tracing",
+      "targetCharacter": "巛",
+      "promptLexeme": {
+        "primary": "巛",
+        "script": "hani",
+        "pinyin": "chuān"
+      }
+    },
+    {
+      "id": "draw-radical-048",
+      "kind": "draw",
+      "title": "Радикал №48: 工",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №48 «工»",
+      "referenceHintKnown": "работа (gōng)",
+      "meaningKnown": "работа",
+      "practiceMode": "tracing",
+      "targetCharacter": "工",
+      "promptLexeme": {
+        "primary": "工",
+        "script": "hani",
+        "pinyin": "gōng"
+      }
+    },
+    {
+      "id": "draw-radical-049",
+      "kind": "draw",
+      "title": "Радикал №49: 己",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №49 «己»",
+      "referenceHintKnown": "сам (jǐ)",
+      "meaningKnown": "сам",
+      "practiceMode": "tracing",
+      "targetCharacter": "己",
+      "promptLexeme": {
+        "primary": "己",
+        "script": "hani",
+        "pinyin": "jǐ"
+      }
+    },
+    {
+      "id": "draw-radical-050",
+      "kind": "draw",
+      "title": "Радикал №50: 巾",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №50 «巾»",
+      "referenceHintKnown": "тюрбан (jīn)",
+      "meaningKnown": "тюрбан",
+      "practiceMode": "tracing",
+      "targetCharacter": "巾",
+      "promptLexeme": {
+        "primary": "巾",
+        "script": "hani",
+        "pinyin": "jīn"
+      }
+    },
+    {
+      "id": "draw-radical-051",
+      "kind": "draw",
+      "title": "Радикал №51: 干",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №51 «干»",
+      "referenceHintKnown": "сухой (gān)",
+      "meaningKnown": "сухой",
+      "practiceMode": "tracing",
+      "targetCharacter": "干",
+      "promptLexeme": {
+        "primary": "干",
+        "script": "hani",
+        "pinyin": "gān"
+      }
+    },
+    {
+      "id": "draw-radical-052",
+      "kind": "draw",
+      "title": "Радикал №52: 幺",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №52 «幺»",
+      "referenceHintKnown": "короткая нить (yāo)",
+      "meaningKnown": "короткая нить",
+      "practiceMode": "tracing",
+      "targetCharacter": "幺",
+      "promptLexeme": {
+        "primary": "幺",
+        "script": "hani",
+        "pinyin": "yāo"
+      }
+    },
+    {
+      "id": "draw-radical-053",
+      "kind": "draw",
+      "title": "Радикал №53: 广",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №53 «广»",
+      "referenceHintKnown": "навес (yǎn)",
+      "meaningKnown": "навес",
+      "practiceMode": "tracing",
+      "targetCharacter": "广",
+      "promptLexeme": {
+        "primary": "广",
+        "script": "hani",
+        "pinyin": "yǎn"
+      }
+    },
+    {
+      "id": "draw-radical-054",
+      "kind": "draw",
+      "title": "Радикал №54: 廴",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №54 «廴»",
+      "referenceHintKnown": "длинный шаг (yǐn)",
+      "meaningKnown": "длинный шаг",
+      "practiceMode": "tracing",
+      "targetCharacter": "廴",
+      "promptLexeme": {
+        "primary": "廴",
+        "script": "hani",
+        "pinyin": "yǐn"
+      }
+    },
+    {
+      "id": "draw-radical-055",
+      "kind": "draw",
+      "title": "Радикал №55: 廾",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №55 «廾»",
+      "referenceHintKnown": "дуга (gǒng)",
+      "meaningKnown": "дуга",
+      "practiceMode": "tracing",
+      "targetCharacter": "廾",
+      "promptLexeme": {
+        "primary": "廾",
+        "script": "hani",
+        "pinyin": "gǒng"
+      }
+    },
+    {
+      "id": "draw-radical-056",
+      "kind": "draw",
+      "title": "Радикал №56: 弋",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №56 «弋»",
+      "referenceHintKnown": "стрелять (yì)",
+      "meaningKnown": "стрелять",
+      "practiceMode": "tracing",
+      "targetCharacter": "弋",
+      "promptLexeme": {
+        "primary": "弋",
+        "script": "hani",
+        "pinyin": "yì"
+      }
+    },
+    {
+      "id": "draw-radical-057",
+      "kind": "draw",
+      "title": "Радикал №57: 弓",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №57 «弓»",
+      "referenceHintKnown": "лук (gōng)",
+      "meaningKnown": "лук",
+      "practiceMode": "tracing",
+      "targetCharacter": "弓",
+      "promptLexeme": {
+        "primary": "弓",
+        "script": "hani",
+        "pinyin": "gōng"
+      }
+    },
+    {
+      "id": "draw-radical-058",
+      "kind": "draw",
+      "title": "Радикал №58: 彐",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №58 «彐»",
+      "referenceHintKnown": "морда (jì)",
+      "meaningKnown": "морда",
+      "practiceMode": "tracing",
+      "targetCharacter": "彐",
+      "promptLexeme": {
+        "primary": "彐",
+        "script": "hani",
+        "pinyin": "jì"
+      }
+    },
+    {
+      "id": "draw-radical-059",
+      "kind": "draw",
+      "title": "Радикал №59: 彡",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №59 «彡»",
+      "referenceHintKnown": "щетина (shān)",
+      "meaningKnown": "щетина",
+      "practiceMode": "tracing",
+      "targetCharacter": "彡",
+      "promptLexeme": {
+        "primary": "彡",
+        "script": "hani",
+        "pinyin": "shān"
+      }
+    },
+    {
+      "id": "draw-radical-060",
+      "kind": "draw",
+      "title": "Радикал №60: 彳",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №60 «彳»",
+      "referenceHintKnown": "шаг (chì)",
+      "meaningKnown": "шаг",
+      "practiceMode": "tracing",
+      "targetCharacter": "彳",
+      "promptLexeme": {
+        "primary": "彳",
+        "script": "hani",
+        "pinyin": "chì"
+      }
+    },
+    {
+      "id": "draw-radical-061",
+      "kind": "draw",
+      "title": "Радикал №61: 心",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №61 «心»",
+      "referenceHintKnown": "сердце (xīn)",
+      "meaningKnown": "сердце",
+      "practiceMode": "tracing",
+      "targetCharacter": "心",
+      "promptLexeme": {
+        "primary": "心",
+        "script": "hani",
+        "pinyin": "xīn"
+      }
+    },
+    {
+      "id": "draw-radical-062",
+      "kind": "draw",
+      "title": "Радикал №62: 戈",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №62 «戈»",
+      "referenceHintKnown": "алебарда (gē)",
+      "meaningKnown": "алебарда",
+      "practiceMode": "tracing",
+      "targetCharacter": "戈",
+      "promptLexeme": {
+        "primary": "戈",
+        "script": "hani",
+        "pinyin": "gē"
+      }
+    },
+    {
+      "id": "draw-radical-063",
+      "kind": "draw",
+      "title": "Радикал №63: 戶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №63 «戶»",
+      "referenceHintKnown": "дверь (hù)",
+      "meaningKnown": "дверь",
+      "practiceMode": "tracing",
+      "targetCharacter": "戶",
+      "promptLexeme": {
+        "primary": "戶",
+        "script": "hani",
+        "pinyin": "hù"
+      }
+    },
+    {
+      "id": "draw-radical-064",
+      "kind": "draw",
+      "title": "Радикал №64: 手",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №64 «手»",
+      "referenceHintKnown": "рука (shǒu)",
+      "meaningKnown": "рука",
+      "practiceMode": "tracing",
+      "targetCharacter": "手",
+      "promptLexeme": {
+        "primary": "手",
+        "script": "hani",
+        "pinyin": "shǒu"
+      }
+    },
+    {
+      "id": "draw-radical-065",
+      "kind": "draw",
+      "title": "Радикал №65: 支",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №65 «支»",
+      "referenceHintKnown": "ветка (zhī)",
+      "meaningKnown": "ветка",
+      "practiceMode": "tracing",
+      "targetCharacter": "支",
+      "promptLexeme": {
+        "primary": "支",
+        "script": "hani",
+        "pinyin": "zhī"
+      }
+    },
+    {
+      "id": "draw-radical-066",
+      "kind": "draw",
+      "title": "Радикал №66: 攴",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №66 «攴»",
+      "referenceHintKnown": "удар (pū)",
+      "meaningKnown": "удар",
+      "practiceMode": "tracing",
+      "targetCharacter": "攴",
+      "promptLexeme": {
+        "primary": "攴",
+        "script": "hani",
+        "pinyin": "pū"
+      }
+    },
+    {
+      "id": "draw-radical-067",
+      "kind": "draw",
+      "title": "Радикал №67: 文",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №67 «文»",
+      "referenceHintKnown": "письменность (wén)",
+      "meaningKnown": "письменность",
+      "practiceMode": "tracing",
+      "targetCharacter": "文",
+      "promptLexeme": {
+        "primary": "文",
+        "script": "hani",
+        "pinyin": "wén"
+      }
+    },
+    {
+      "id": "draw-radical-068",
+      "kind": "draw",
+      "title": "Радикал №68: 斗",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №68 «斗»",
+      "referenceHintKnown": "ковш (dǒu)",
+      "meaningKnown": "ковш",
+      "practiceMode": "tracing",
+      "targetCharacter": "斗",
+      "promptLexeme": {
+        "primary": "斗",
+        "script": "hani",
+        "pinyin": "dǒu"
+      }
+    },
+    {
+      "id": "draw-radical-069",
+      "kind": "draw",
+      "title": "Радикал №69: 斤",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №69 «斤»",
+      "referenceHintKnown": "топор (jīn)",
+      "meaningKnown": "топор",
+      "practiceMode": "tracing",
+      "targetCharacter": "斤",
+      "promptLexeme": {
+        "primary": "斤",
+        "script": "hani",
+        "pinyin": "jīn"
+      }
+    },
+    {
+      "id": "draw-radical-070",
+      "kind": "draw",
+      "title": "Радикал №70: 方",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №70 «方»",
+      "referenceHintKnown": "квадрат (fāng)",
+      "meaningKnown": "квадрат",
+      "practiceMode": "tracing",
+      "targetCharacter": "方",
+      "promptLexeme": {
+        "primary": "方",
+        "script": "hani",
+        "pinyin": "fāng"
+      }
+    },
+    {
+      "id": "draw-radical-071",
+      "kind": "draw",
+      "title": "Радикал №71: 无",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №71 «无»",
+      "referenceHintKnown": "нет (wú)",
+      "meaningKnown": "нет",
+      "practiceMode": "tracing",
+      "targetCharacter": "无",
+      "promptLexeme": {
+        "primary": "无",
+        "script": "hani",
+        "pinyin": "wú"
+      }
+    },
+    {
+      "id": "draw-radical-072",
+      "kind": "draw",
+      "title": "Радикал №72: 日",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №72 «日»",
+      "referenceHintKnown": "солнце (rì)",
+      "meaningKnown": "солнце",
+      "practiceMode": "tracing",
+      "targetCharacter": "日",
+      "promptLexeme": {
+        "primary": "日",
+        "script": "hani",
+        "pinyin": "rì"
+      }
+    },
+    {
+      "id": "draw-radical-073",
+      "kind": "draw",
+      "title": "Радикал №73: 曰",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №73 «曰»",
+      "referenceHintKnown": "говорить (yuē)",
+      "meaningKnown": "говорить",
+      "practiceMode": "tracing",
+      "targetCharacter": "曰",
+      "promptLexeme": {
+        "primary": "曰",
+        "script": "hani",
+        "pinyin": "yuē"
+      }
+    },
+    {
+      "id": "draw-radical-074",
+      "kind": "draw",
+      "title": "Радикал №74: 月",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №74 «月»",
+      "referenceHintKnown": "луна (yuè)",
+      "meaningKnown": "луна",
+      "practiceMode": "tracing",
+      "targetCharacter": "月",
+      "promptLexeme": {
+        "primary": "月",
+        "script": "hani",
+        "pinyin": "yuè"
+      }
+    },
+    {
+      "id": "draw-radical-075",
+      "kind": "draw",
+      "title": "Радикал №75: 木",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №75 «木»",
+      "referenceHintKnown": "дерево (mù)",
+      "meaningKnown": "дерево",
+      "practiceMode": "tracing",
+      "targetCharacter": "木",
+      "promptLexeme": {
+        "primary": "木",
+        "script": "hani",
+        "pinyin": "mù"
+      }
+    },
+    {
+      "id": "draw-radical-076",
+      "kind": "draw",
+      "title": "Радикал №76: 欠",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №76 «欠»",
+      "referenceHintKnown": "недостаток (qiàn)",
+      "meaningKnown": "недостаток",
+      "practiceMode": "tracing",
+      "targetCharacter": "欠",
+      "promptLexeme": {
+        "primary": "欠",
+        "script": "hani",
+        "pinyin": "qiàn"
+      }
+    },
+    {
+      "id": "draw-radical-077",
+      "kind": "draw",
+      "title": "Радикал №77: 止",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №77 «止»",
+      "referenceHintKnown": "остановка (zhǐ)",
+      "meaningKnown": "остановка",
+      "practiceMode": "tracing",
+      "targetCharacter": "止",
+      "promptLexeme": {
+        "primary": "止",
+        "script": "hani",
+        "pinyin": "zhǐ"
+      }
+    },
+    {
+      "id": "draw-radical-078",
+      "kind": "draw",
+      "title": "Радикал №78: 歹",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №78 «歹»",
+      "referenceHintKnown": "смерть (dǎi)",
+      "meaningKnown": "смерть",
+      "practiceMode": "tracing",
+      "targetCharacter": "歹",
+      "promptLexeme": {
+        "primary": "歹",
+        "script": "hani",
+        "pinyin": "dǎi"
+      }
+    },
+    {
+      "id": "draw-radical-079",
+      "kind": "draw",
+      "title": "Радикал №79: 殳",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №79 «殳»",
+      "referenceHintKnown": "оружие (shū)",
+      "meaningKnown": "оружие",
+      "practiceMode": "tracing",
+      "targetCharacter": "殳",
+      "promptLexeme": {
+        "primary": "殳",
+        "script": "hani",
+        "pinyin": "shū"
+      }
+    },
+    {
+      "id": "draw-radical-080",
+      "kind": "draw",
+      "title": "Радикал №80: 毋",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №80 «毋»",
+      "referenceHintKnown": "не (wú)",
+      "meaningKnown": "не",
+      "practiceMode": "tracing",
+      "targetCharacter": "毋",
+      "promptLexeme": {
+        "primary": "毋",
+        "script": "hani",
+        "pinyin": "wú"
+      }
+    },
+    {
+      "id": "draw-radical-081",
+      "kind": "draw",
+      "title": "Радикал №81: 比",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №81 «比»",
+      "referenceHintKnown": "сравнение (bǐ)",
+      "meaningKnown": "сравнение",
+      "practiceMode": "tracing",
+      "targetCharacter": "比",
+      "promptLexeme": {
+        "primary": "比",
+        "script": "hani",
+        "pinyin": "bǐ"
+      }
+    },
+    {
+      "id": "draw-radical-082",
+      "kind": "draw",
+      "title": "Радикал №82: 毛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №82 «毛»",
+      "referenceHintKnown": "мех (máo)",
+      "meaningKnown": "мех",
+      "practiceMode": "tracing",
+      "targetCharacter": "毛",
+      "promptLexeme": {
+        "primary": "毛",
+        "script": "hani",
+        "pinyin": "máo"
+      }
+    },
+    {
+      "id": "draw-radical-083",
+      "kind": "draw",
+      "title": "Радикал №83: 氏",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №83 «氏»",
+      "referenceHintKnown": "род (shì)",
+      "meaningKnown": "род",
+      "practiceMode": "tracing",
+      "targetCharacter": "氏",
+      "promptLexeme": {
+        "primary": "氏",
+        "script": "hani",
+        "pinyin": "shì"
+      }
+    },
+    {
+      "id": "draw-radical-084",
+      "kind": "draw",
+      "title": "Радикал №84: 气",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №84 «气»",
+      "referenceHintKnown": "пар (qì)",
+      "meaningKnown": "пар",
+      "practiceMode": "tracing",
+      "targetCharacter": "气",
+      "promptLexeme": {
+        "primary": "气",
+        "script": "hani",
+        "pinyin": "qì"
+      }
+    },
+    {
+      "id": "draw-radical-085",
+      "kind": "draw",
+      "title": "Радикал №85: 水",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №85 «水»",
+      "referenceHintKnown": "вода (shuǐ)",
+      "meaningKnown": "вода",
+      "practiceMode": "tracing",
+      "targetCharacter": "水",
+      "promptLexeme": {
+        "primary": "水",
+        "script": "hani",
+        "pinyin": "shuǐ"
+      }
+    },
+    {
+      "id": "draw-radical-086",
+      "kind": "draw",
+      "title": "Радикал №86: 火",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №86 «火»",
+      "referenceHintKnown": "огонь (huǒ)",
+      "meaningKnown": "огонь",
+      "practiceMode": "tracing",
+      "targetCharacter": "火",
+      "promptLexeme": {
+        "primary": "火",
+        "script": "hani",
+        "pinyin": "huǒ"
+      }
+    },
+    {
+      "id": "draw-radical-087",
+      "kind": "draw",
+      "title": "Радикал №87: 爪",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №87 «爪»",
+      "referenceHintKnown": "коготь (zhǎo)",
+      "meaningKnown": "коготь",
+      "practiceMode": "tracing",
+      "targetCharacter": "爪",
+      "promptLexeme": {
+        "primary": "爪",
+        "script": "hani",
+        "pinyin": "zhǎo"
+      }
+    },
+    {
+      "id": "draw-radical-088",
+      "kind": "draw",
+      "title": "Радикал №88: 父",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №88 «父»",
+      "referenceHintKnown": "отец (fù)",
+      "meaningKnown": "отец",
+      "practiceMode": "tracing",
+      "targetCharacter": "父",
+      "promptLexeme": {
+        "primary": "父",
+        "script": "hani",
+        "pinyin": "fù"
+      }
+    },
+    {
+      "id": "draw-radical-089",
+      "kind": "draw",
+      "title": "Радикал №89: 爻",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №89 «爻»",
+      "referenceHintKnown": "триграммы (yáo)",
+      "meaningKnown": "триграммы",
+      "practiceMode": "tracing",
+      "targetCharacter": "爻",
+      "promptLexeme": {
+        "primary": "爻",
+        "script": "hani",
+        "pinyin": "yáo"
+      }
+    },
+    {
+      "id": "draw-radical-090",
+      "kind": "draw",
+      "title": "Радикал №90: 爿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №90 «爿»",
+      "referenceHintKnown": "доска (qiáng)",
+      "meaningKnown": "доска",
+      "practiceMode": "tracing",
+      "targetCharacter": "爿",
+      "promptLexeme": {
+        "primary": "爿",
+        "script": "hani",
+        "pinyin": "qiáng"
+      }
+    },
+    {
+      "id": "draw-radical-091",
+      "kind": "draw",
+      "title": "Радикал №91: 片",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №91 «片»",
+      "referenceHintKnown": "ломtик (piàn)",
+      "meaningKnown": "ломtик",
+      "practiceMode": "tracing",
+      "targetCharacter": "片",
+      "promptLexeme": {
+        "primary": "片",
+        "script": "hani",
+        "pinyin": "piàn"
+      }
+    },
+    {
+      "id": "draw-radical-092",
+      "kind": "draw",
+      "title": "Радикал №92: 牙",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №92 «牙»",
+      "referenceHintKnown": "клык (yá)",
+      "meaningKnown": "клык",
+      "practiceMode": "tracing",
+      "targetCharacter": "牙",
+      "promptLexeme": {
+        "primary": "牙",
+        "script": "hani",
+        "pinyin": "yá"
+      }
+    },
+    {
+      "id": "draw-radical-093",
+      "kind": "draw",
+      "title": "Радикал №93: 牛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №93 «牛»",
+      "referenceHintKnown": "корова (niú)",
+      "meaningKnown": "корова",
+      "practiceMode": "tracing",
+      "targetCharacter": "牛",
+      "promptLexeme": {
+        "primary": "牛",
+        "script": "hani",
+        "pinyin": "niú"
+      }
+    },
+    {
+      "id": "draw-radical-094",
+      "kind": "draw",
+      "title": "Радикал №94: 犬",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №94 «犬»",
+      "referenceHintKnown": "собака (quǎn)",
+      "meaningKnown": "собака",
+      "practiceMode": "tracing",
+      "targetCharacter": "犬",
+      "promptLexeme": {
+        "primary": "犬",
+        "script": "hani",
+        "pinyin": "quǎn"
+      }
+    },
+    {
+      "id": "draw-radical-095",
+      "kind": "draw",
+      "title": "Радикал №95: 玄",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №95 «玄»",
+      "referenceHintKnown": "глубокий (xuán)",
+      "meaningKnown": "глубокий",
+      "practiceMode": "tracing",
+      "targetCharacter": "玄",
+      "promptLexeme": {
+        "primary": "玄",
+        "script": "hani",
+        "pinyin": "xuán"
+      }
+    },
+    {
+      "id": "draw-radical-096",
+      "kind": "draw",
+      "title": "Радикал №96: 玉",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №96 «玉»",
+      "referenceHintKnown": "нефрит (yù)",
+      "meaningKnown": "нефрит",
+      "practiceMode": "tracing",
+      "targetCharacter": "玉",
+      "promptLexeme": {
+        "primary": "玉",
+        "script": "hani",
+        "pinyin": "yù"
+      }
+    },
+    {
+      "id": "draw-radical-097",
+      "kind": "draw",
+      "title": "Радикал №97: 瓜",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №97 «瓜»",
+      "referenceHintKnown": "дыня (guā)",
+      "meaningKnown": "дыня",
+      "practiceMode": "tracing",
+      "targetCharacter": "瓜",
+      "promptLexeme": {
+        "primary": "瓜",
+        "script": "hani",
+        "pinyin": "guā"
+      }
+    },
+    {
+      "id": "draw-radical-098",
+      "kind": "draw",
+      "title": "Радикал №98: 瓦",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №98 «瓦»",
+      "referenceHintKnown": "черепица (wǎ)",
+      "meaningKnown": "черепица",
+      "practiceMode": "tracing",
+      "targetCharacter": "瓦",
+      "promptLexeme": {
+        "primary": "瓦",
+        "script": "hani",
+        "pinyin": "wǎ"
+      }
+    },
+    {
+      "id": "draw-radical-099",
+      "kind": "draw",
+      "title": "Радикал №99: 甘",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №99 «甘»",
+      "referenceHintKnown": "сладкий (gān)",
+      "meaningKnown": "сладкий",
+      "practiceMode": "tracing",
+      "targetCharacter": "甘",
+      "promptLexeme": {
+        "primary": "甘",
+        "script": "hani",
+        "pinyin": "gān"
+      }
+    },
+    {
+      "id": "draw-radical-100",
+      "kind": "draw",
+      "title": "Радикал №100: 生",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №100 «生»",
+      "referenceHintKnown": "жизнь (shēng)",
+      "meaningKnown": "жизнь",
+      "practiceMode": "tracing",
+      "targetCharacter": "生",
+      "promptLexeme": {
+        "primary": "生",
+        "script": "hani",
+        "pinyin": "shēng"
+      }
+    },
+    {
+      "id": "draw-radical-101",
+      "kind": "draw",
+      "title": "Радикал №101: 用",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №101 «用»",
+      "referenceHintKnown": "использование (yòng)",
+      "meaningKnown": "использование",
+      "practiceMode": "tracing",
+      "targetCharacter": "用",
+      "promptLexeme": {
+        "primary": "用",
+        "script": "hani",
+        "pinyin": "yòng"
+      }
+    },
+    {
+      "id": "draw-radical-102",
+      "kind": "draw",
+      "title": "Радикал №102: 田",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №102 «田»",
+      "referenceHintKnown": "поле (tián)",
+      "meaningKnown": "поле",
+      "practiceMode": "tracing",
+      "targetCharacter": "田",
+      "promptLexeme": {
+        "primary": "田",
+        "script": "hani",
+        "pinyin": "tián"
+      }
+    },
+    {
+      "id": "draw-radical-103",
+      "kind": "draw",
+      "title": "Радикал №103: 疋",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №103 «疋»",
+      "referenceHintKnown": "ткань (pǐ)",
+      "meaningKnown": "ткань",
+      "practiceMode": "tracing",
+      "targetCharacter": "疋",
+      "promptLexeme": {
+        "primary": "疋",
+        "script": "hani",
+        "pinyin": "pǐ"
+      }
+    },
+    {
+      "id": "draw-radical-104",
+      "kind": "draw",
+      "title": "Радикал №104: 疒",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №104 «疒»",
+      "referenceHintKnown": "болезнь (nè)",
+      "meaningKnown": "болезнь",
+      "practiceMode": "tracing",
+      "targetCharacter": "疒",
+      "promptLexeme": {
+        "primary": "疒",
+        "script": "hani",
+        "pinyin": "nè"
+      }
+    },
+    {
+      "id": "draw-radical-105",
+      "kind": "draw",
+      "title": "Радикал №105: 癶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №105 «癶»",
+      "referenceHintKnown": "следы (bō)",
+      "meaningKnown": "следы",
+      "practiceMode": "tracing",
+      "targetCharacter": "癶",
+      "promptLexeme": {
+        "primary": "癶",
+        "script": "hani",
+        "pinyin": "bō"
+      }
+    },
+    {
+      "id": "draw-radical-106",
+      "kind": "draw",
+      "title": "Радикал №106: 白",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №106 «白»",
+      "referenceHintKnown": "белый (bái)",
+      "meaningKnown": "белый",
+      "practiceMode": "tracing",
+      "targetCharacter": "白",
+      "promptLexeme": {
+        "primary": "白",
+        "script": "hani",
+        "pinyin": "bái"
+      }
+    },
+    {
+      "id": "draw-radical-107",
+      "kind": "draw",
+      "title": "Радикал №107: 皮",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №107 «皮»",
+      "referenceHintKnown": "кожа (pí)",
+      "meaningKnown": "кожа",
+      "practiceMode": "tracing",
+      "targetCharacter": "皮",
+      "promptLexeme": {
+        "primary": "皮",
+        "script": "hani",
+        "pinyin": "pí"
+      }
+    },
+    {
+      "id": "draw-radical-108",
+      "kind": "draw",
+      "title": "Радикал №108: 皿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №108 «皿»",
+      "referenceHintKnown": "блюдо (mǐn)",
+      "meaningKnown": "блюдо",
+      "practiceMode": "tracing",
+      "targetCharacter": "皿",
+      "promptLexeme": {
+        "primary": "皿",
+        "script": "hani",
+        "pinyin": "mǐn"
+      }
+    },
+    {
+      "id": "draw-radical-109",
+      "kind": "draw",
+      "title": "Радикал №109: 目",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №109 «目»",
+      "referenceHintKnown": "глаз (mù)",
+      "meaningKnown": "глаз",
+      "practiceMode": "tracing",
+      "targetCharacter": "目",
+      "promptLexeme": {
+        "primary": "目",
+        "script": "hani",
+        "pinyin": "mù"
+      }
+    },
+    {
+      "id": "draw-radical-110",
+      "kind": "draw",
+      "title": "Радикал №110: 矛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №110 «矛»",
+      "referenceHintKnown": "копьё (máo)",
+      "meaningKnown": "копьё",
+      "practiceMode": "tracing",
+      "targetCharacter": "矛",
+      "promptLexeme": {
+        "primary": "矛",
+        "script": "hani",
+        "pinyin": "máo"
+      }
+    },
+    {
+      "id": "draw-radical-111",
+      "kind": "draw",
+      "title": "Радикал №111: 矢",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №111 «矢»",
+      "referenceHintKnown": "стрела (shǐ)",
+      "meaningKnown": "стрела",
+      "practiceMode": "tracing",
+      "targetCharacter": "矢",
+      "promptLexeme": {
+        "primary": "矢",
+        "script": "hani",
+        "pinyin": "shǐ"
+      }
+    },
+    {
+      "id": "draw-radical-112",
+      "kind": "draw",
+      "title": "Радикал №112: 石",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №112 «石»",
+      "referenceHintKnown": "камень (shí)",
+      "meaningKnown": "камень",
+      "practiceMode": "tracing",
+      "targetCharacter": "石",
+      "promptLexeme": {
+        "primary": "石",
+        "script": "hani",
+        "pinyin": "shí"
+      }
+    },
+    {
+      "id": "draw-radical-113",
+      "kind": "draw",
+      "title": "Радикал №113: 示",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №113 «示»",
+      "referenceHintKnown": "дух (shì)",
+      "meaningKnown": "дух",
+      "practiceMode": "tracing",
+      "targetCharacter": "示",
+      "promptLexeme": {
+        "primary": "示",
+        "script": "hani",
+        "pinyin": "shì"
+      }
+    },
+    {
+      "id": "draw-radical-114",
+      "kind": "draw",
+      "title": "Радикал №114: 禸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №114 «禸»",
+      "referenceHintKnown": "след (róu)",
+      "meaningKnown": "след",
+      "practiceMode": "tracing",
+      "targetCharacter": "禸",
+      "promptLexeme": {
+        "primary": "禸",
+        "script": "hani",
+        "pinyin": "róu"
+      }
+    },
+    {
+      "id": "draw-radical-115",
+      "kind": "draw",
+      "title": "Радикал №115: 禾",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №115 «禾»",
+      "referenceHintKnown": "зерно (hé)",
+      "meaningKnown": "зерно",
+      "practiceMode": "tracing",
+      "targetCharacter": "禾",
+      "promptLexeme": {
+        "primary": "禾",
+        "script": "hani",
+        "pinyin": "hé"
+      }
+    },
+    {
+      "id": "draw-radical-116",
+      "kind": "draw",
+      "title": "Радикал №116: 穴",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №116 «穴»",
+      "referenceHintKnown": "пещера (xué)",
+      "meaningKnown": "пещера",
+      "practiceMode": "tracing",
+      "targetCharacter": "穴",
+      "promptLexeme": {
+        "primary": "穴",
+        "script": "hani",
+        "pinyin": "xué"
+      }
+    },
+    {
+      "id": "draw-radical-117",
+      "kind": "draw",
+      "title": "Радикал №117: 立",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №117 «立»",
+      "referenceHintKnown": "стоять (lì)",
+      "meaningKnown": "стоять",
+      "practiceMode": "tracing",
+      "targetCharacter": "立",
+      "promptLexeme": {
+        "primary": "立",
+        "script": "hani",
+        "pinyin": "lì"
+      }
+    },
+    {
+      "id": "draw-radical-118",
+      "kind": "draw",
+      "title": "Радикал №118: 竹",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №118 «竹»",
+      "referenceHintKnown": "бамбук (zhú)",
+      "meaningKnown": "бамбук",
+      "practiceMode": "tracing",
+      "targetCharacter": "竹",
+      "promptLexeme": {
+        "primary": "竹",
+        "script": "hani",
+        "pinyin": "zhú"
+      }
+    },
+    {
+      "id": "draw-radical-119",
+      "kind": "draw",
+      "title": "Радикал №119: 米",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №119 «米»",
+      "referenceHintKnown": "рис (mǐ)",
+      "meaningKnown": "рис",
+      "practiceMode": "tracing",
+      "targetCharacter": "米",
+      "promptLexeme": {
+        "primary": "米",
+        "script": "hani",
+        "pinyin": "mǐ"
+      }
+    },
+    {
+      "id": "draw-radical-120",
+      "kind": "draw",
+      "title": "Радикал №120: 糸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №120 «糸»",
+      "referenceHintKnown": "шёлк (mì)",
+      "meaningKnown": "шёлк",
+      "practiceMode": "tracing",
+      "targetCharacter": "糸",
+      "promptLexeme": {
+        "primary": "糸",
+        "script": "hani",
+        "pinyin": "mì"
+      }
+    },
+    {
+      "id": "draw-radical-121",
+      "kind": "draw",
+      "title": "Радикал №121: 缶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №121 «缶»",
+      "referenceHintKnown": "кувшин (fǒu)",
+      "meaningKnown": "кувшин",
+      "practiceMode": "tracing",
+      "targetCharacter": "缶",
+      "promptLexeme": {
+        "primary": "缶",
+        "script": "hani",
+        "pinyin": "fǒu"
+      }
+    },
+    {
+      "id": "draw-radical-122",
+      "kind": "draw",
+      "title": "Радикал №122: 网",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №122 «网»",
+      "referenceHintKnown": "сеть (wǎng)",
+      "meaningKnown": "сеть",
+      "practiceMode": "tracing",
+      "targetCharacter": "网",
+      "promptLexeme": {
+        "primary": "网",
+        "script": "hani",
+        "pinyin": "wǎng"
+      }
+    },
+    {
+      "id": "draw-radical-123",
+      "kind": "draw",
+      "title": "Радикал №123: 羊",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №123 «羊»",
+      "referenceHintKnown": "овца (yáng)",
+      "meaningKnown": "овца",
+      "practiceMode": "tracing",
+      "targetCharacter": "羊",
+      "promptLexeme": {
+        "primary": "羊",
+        "script": "hani",
+        "pinyin": "yáng"
+      }
+    },
+    {
+      "id": "draw-radical-124",
+      "kind": "draw",
+      "title": "Радикал №124: 羽",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №124 «羽»",
+      "referenceHintKnown": "перо (yǔ)",
+      "meaningKnown": "перо",
+      "practiceMode": "tracing",
+      "targetCharacter": "羽",
+      "promptLexeme": {
+        "primary": "羽",
+        "script": "hani",
+        "pinyin": "yǔ"
+      }
+    },
+    {
+      "id": "draw-radical-125",
+      "kind": "draw",
+      "title": "Радикал №125: 老",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №125 «老»",
+      "referenceHintKnown": "старый (lǎo)",
+      "meaningKnown": "старый",
+      "practiceMode": "tracing",
+      "targetCharacter": "老",
+      "promptLexeme": {
+        "primary": "老",
+        "script": "hani",
+        "pinyin": "lǎo"
+      }
+    },
+    {
+      "id": "draw-radical-126",
+      "kind": "draw",
+      "title": "Радикал №126: 而",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №126 «而»",
+      "referenceHintKnown": "и (ér)",
+      "meaningKnown": "и",
+      "practiceMode": "tracing",
+      "targetCharacter": "而",
+      "promptLexeme": {
+        "primary": "而",
+        "script": "hani",
+        "pinyin": "ér"
+      }
+    },
+    {
+      "id": "draw-radical-127",
+      "kind": "draw",
+      "title": "Радикал №127: 耒",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №127 «耒»",
+      "referenceHintKnown": "плуг (lěi)",
+      "meaningKnown": "плуг",
+      "practiceMode": "tracing",
+      "targetCharacter": "耒",
+      "promptLexeme": {
+        "primary": "耒",
+        "script": "hani",
+        "pinyin": "lěi"
+      }
+    },
+    {
+      "id": "draw-radical-128",
+      "kind": "draw",
+      "title": "Радикал №128: 耳",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №128 «耳»",
+      "referenceHintKnown": "ухо (ěr)",
+      "meaningKnown": "ухо",
+      "practiceMode": "tracing",
+      "targetCharacter": "耳",
+      "promptLexeme": {
+        "primary": "耳",
+        "script": "hani",
+        "pinyin": "ěr"
+      }
+    },
+    {
+      "id": "draw-radical-129",
+      "kind": "draw",
+      "title": "Радикал №129: 聿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №129 «聿»",
+      "referenceHintKnown": "кисть (yù)",
+      "meaningKnown": "кисть",
+      "practiceMode": "tracing",
+      "targetCharacter": "聿",
+      "promptLexeme": {
+        "primary": "聿",
+        "script": "hani",
+        "pinyin": "yù"
+      }
+    },
+    {
+      "id": "draw-radical-130",
+      "kind": "draw",
+      "title": "Радикал №130: 肉",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №130 «肉»",
+      "referenceHintKnown": "мясо (ròu)",
+      "meaningKnown": "мясо",
+      "practiceMode": "tracing",
+      "targetCharacter": "肉",
+      "promptLexeme": {
+        "primary": "肉",
+        "script": "hani",
+        "pinyin": "ròu"
+      }
+    },
+    {
+      "id": "draw-radical-131",
+      "kind": "draw",
+      "title": "Радикал №131: 臣",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №131 «臣»",
+      "referenceHintKnown": "министр (chén)",
+      "meaningKnown": "министр",
+      "practiceMode": "tracing",
+      "targetCharacter": "臣",
+      "promptLexeme": {
+        "primary": "臣",
+        "script": "hani",
+        "pinyin": "chén"
+      }
+    },
+    {
+      "id": "draw-radical-132",
+      "kind": "draw",
+      "title": "Радикал №132: 自",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №132 «自»",
+      "referenceHintKnown": "сам (zì)",
+      "meaningKnown": "сам",
+      "practiceMode": "tracing",
+      "targetCharacter": "自",
+      "promptLexeme": {
+        "primary": "自",
+        "script": "hani",
+        "pinyin": "zì"
+      }
+    },
+    {
+      "id": "draw-radical-133",
+      "kind": "draw",
+      "title": "Радикал №133: 至",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №133 «至»",
+      "referenceHintKnown": "прибыть (zhì)",
+      "meaningKnown": "прибыть",
+      "practiceMode": "tracing",
+      "targetCharacter": "至",
+      "promptLexeme": {
+        "primary": "至",
+        "script": "hani",
+        "pinyin": "zhì"
+      }
+    },
+    {
+      "id": "draw-radical-134",
+      "kind": "draw",
+      "title": "Радикал №134: 臼",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №134 «臼»",
+      "referenceHintKnown": "ступа (jiù)",
+      "meaningKnown": "ступа",
+      "practiceMode": "tracing",
+      "targetCharacter": "臼",
+      "promptLexeme": {
+        "primary": "臼",
+        "script": "hani",
+        "pinyin": "jiù"
+      }
+    },
+    {
+      "id": "draw-radical-135",
+      "kind": "draw",
+      "title": "Радикал №135: 舌",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №135 «舌»",
+      "referenceHintKnown": "язык (shé)",
+      "meaningKnown": "язык",
+      "practiceMode": "tracing",
+      "targetCharacter": "舌",
+      "promptLexeme": {
+        "primary": "舌",
+        "script": "hani",
+        "pinyin": "shé"
+      }
+    },
+    {
+      "id": "draw-radical-136",
+      "kind": "draw",
+      "title": "Радикал №136: 舛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №136 «舛»",
+      "referenceHintKnown": "противоположность (chuǎn)",
+      "meaningKnown": "противоположность",
+      "practiceMode": "tracing",
+      "targetCharacter": "舛",
+      "promptLexeme": {
+        "primary": "舛",
+        "script": "hani",
+        "pinyin": "chuǎn"
+      }
+    },
+    {
+      "id": "draw-radical-137",
+      "kind": "draw",
+      "title": "Радикал №137: 舟",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №137 «舟»",
+      "referenceHintKnown": "лодка (zhōu)",
+      "meaningKnown": "лодка",
+      "practiceMode": "tracing",
+      "targetCharacter": "舟",
+      "promptLexeme": {
+        "primary": "舟",
+        "script": "hani",
+        "pinyin": "zhōu"
+      }
+    },
+    {
+      "id": "draw-radical-138",
+      "kind": "draw",
+      "title": "Радикал №138: 艮",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №138 «艮»",
+      "referenceHintKnown": "остановка (gèn)",
+      "meaningKnown": "остановка",
+      "practiceMode": "tracing",
+      "targetCharacter": "艮",
+      "promptLexeme": {
+        "primary": "艮",
+        "script": "hani",
+        "pinyin": "gèn"
+      }
+    },
+    {
+      "id": "draw-radical-139",
+      "kind": "draw",
+      "title": "Радикал №139: 色",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №139 «色»",
+      "referenceHintKnown": "цвет (sè)",
+      "meaningKnown": "цвет",
+      "practiceMode": "tracing",
+      "targetCharacter": "色",
+      "promptLexeme": {
+        "primary": "色",
+        "script": "hani",
+        "pinyin": "sè"
+      }
+    },
+    {
+      "id": "draw-radical-140",
+      "kind": "draw",
+      "title": "Радикал №140: 艸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №140 «艸»",
+      "referenceHintKnown": "трава (cǎo)",
+      "meaningKnown": "трава",
+      "practiceMode": "tracing",
+      "targetCharacter": "艸",
+      "promptLexeme": {
+        "primary": "艸",
+        "script": "hani",
+        "pinyin": "cǎo"
+      }
+    },
+    {
+      "id": "draw-radical-141",
+      "kind": "draw",
+      "title": "Радикал №141: 虍",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №141 «虍»",
+      "referenceHintKnown": "тигр (hū)",
+      "meaningKnown": "тигр",
+      "practiceMode": "tracing",
+      "targetCharacter": "虍",
+      "promptLexeme": {
+        "primary": "虍",
+        "script": "hani",
+        "pinyin": "hū"
+      }
+    },
+    {
+      "id": "draw-radical-142",
+      "kind": "draw",
+      "title": "Радикал №142: 虫",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №142 «虫»",
+      "referenceHintKnown": "насекомое (chóng)",
+      "meaningKnown": "насекомое",
+      "practiceMode": "tracing",
+      "targetCharacter": "虫",
+      "promptLexeme": {
+        "primary": "虫",
+        "script": "hani",
+        "pinyin": "chóng"
+      }
+    },
+    {
+      "id": "draw-radical-143",
+      "kind": "draw",
+      "title": "Радикал №143: 血",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №143 «血»",
+      "referenceHintKnown": "кровь (xuè)",
+      "meaningKnown": "кровь",
+      "practiceMode": "tracing",
+      "targetCharacter": "血",
+      "promptLexeme": {
+        "primary": "血",
+        "script": "hani",
+        "pinyin": "xuè"
+      }
+    },
+    {
+      "id": "draw-radical-144",
+      "kind": "draw",
+      "title": "Радикал №144: 行",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №144 «行»",
+      "referenceHintKnown": "улица (xíng)",
+      "meaningKnown": "улица",
+      "practiceMode": "tracing",
+      "targetCharacter": "行",
+      "promptLexeme": {
+        "primary": "行",
+        "script": "hani",
+        "pinyin": "xíng"
+      }
+    },
+    {
+      "id": "draw-radical-145",
+      "kind": "draw",
+      "title": "Радикал №145: 衣",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №145 «衣»",
+      "referenceHintKnown": "одежда (yī)",
+      "meaningKnown": "одежда",
+      "practiceMode": "tracing",
+      "targetCharacter": "衣",
+      "promptLexeme": {
+        "primary": "衣",
+        "script": "hani",
+        "pinyin": "yī"
+      }
+    },
+    {
+      "id": "draw-radical-146",
+      "kind": "draw",
+      "title": "Радикал №146: 襾",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №146 «襾»",
+      "referenceHintKnown": "покрытие (yà)",
+      "meaningKnown": "покрытие",
+      "practiceMode": "tracing",
+      "targetCharacter": "襾",
+      "promptLexeme": {
+        "primary": "襾",
+        "script": "hani",
+        "pinyin": "yà"
+      }
+    },
+    {
+      "id": "draw-radical-147",
+      "kind": "draw",
+      "title": "Радикал №147: 見",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №147 «見»",
+      "referenceHintKnown": "видеть (jiàn)",
+      "meaningKnown": "видеть",
+      "practiceMode": "tracing",
+      "targetCharacter": "見",
+      "promptLexeme": {
+        "primary": "見",
+        "script": "hani",
+        "pinyin": "jiàn"
+      }
+    },
+    {
+      "id": "draw-radical-148",
+      "kind": "draw",
+      "title": "Радикал №148: 角",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №148 «角»",
+      "referenceHintKnown": "рог (jiǎo)",
+      "meaningKnown": "рог",
+      "practiceMode": "tracing",
+      "targetCharacter": "角",
+      "promptLexeme": {
+        "primary": "角",
+        "script": "hani",
+        "pinyin": "jiǎo"
+      }
+    },
+    {
+      "id": "draw-radical-149",
+      "kind": "draw",
+      "title": "Радикал №149: 言",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №149 «言»",
+      "referenceHintKnown": "речь (yán)",
+      "meaningKnown": "речь",
+      "practiceMode": "tracing",
+      "targetCharacter": "言",
+      "promptLexeme": {
+        "primary": "言",
+        "script": "hani",
+        "pinyin": "yán"
+      }
+    },
+    {
+      "id": "draw-radical-150",
+      "kind": "draw",
+      "title": "Радикал №150: 谷",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №150 «谷»",
+      "referenceHintKnown": "долина (gǔ)",
+      "meaningKnown": "долина",
+      "practiceMode": "tracing",
+      "targetCharacter": "谷",
+      "promptLexeme": {
+        "primary": "谷",
+        "script": "hani",
+        "pinyin": "gǔ"
+      }
+    },
+    {
+      "id": "draw-radical-151",
+      "kind": "draw",
+      "title": "Радикал №151: 豆",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №151 «豆»",
+      "referenceHintKnown": "боб (dòu)",
+      "meaningKnown": "боб",
+      "practiceMode": "tracing",
+      "targetCharacter": "豆",
+      "promptLexeme": {
+        "primary": "豆",
+        "script": "hani",
+        "pinyin": "dòu"
+      }
+    },
+    {
+      "id": "draw-radical-152",
+      "kind": "draw",
+      "title": "Радикал №152: 豕",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №152 «豕»",
+      "referenceHintKnown": "свинья (shǐ)",
+      "meaningKnown": "свинья",
+      "practiceMode": "tracing",
+      "targetCharacter": "豕",
+      "promptLexeme": {
+        "primary": "豕",
+        "script": "hani",
+        "pinyin": "shǐ"
+      }
+    },
+    {
+      "id": "draw-radical-153",
+      "kind": "draw",
+      "title": "Радикал №153: 豸",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №153 «豸»",
+      "referenceHintKnown": "барсук (zhì)",
+      "meaningKnown": "барсук",
+      "practiceMode": "tracing",
+      "targetCharacter": "豸",
+      "promptLexeme": {
+        "primary": "豸",
+        "script": "hani",
+        "pinyin": "zhì"
+      }
+    },
+    {
+      "id": "draw-radical-154",
+      "kind": "draw",
+      "title": "Радикал №154: 貝",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №154 «貝»",
+      "referenceHintKnown": "раковина (bèi)",
+      "meaningKnown": "раковина",
+      "practiceMode": "tracing",
+      "targetCharacter": "貝",
+      "promptLexeme": {
+        "primary": "貝",
+        "script": "hani",
+        "pinyin": "bèi"
+      }
+    },
+    {
+      "id": "draw-radical-155",
+      "kind": "draw",
+      "title": "Радикал №155: 赤",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №155 «赤»",
+      "referenceHintKnown": "красный (chì)",
+      "meaningKnown": "красный",
+      "practiceMode": "tracing",
+      "targetCharacter": "赤",
+      "promptLexeme": {
+        "primary": "赤",
+        "script": "hani",
+        "pinyin": "chì"
+      }
+    },
+    {
+      "id": "draw-radical-156",
+      "kind": "draw",
+      "title": "Радикал №156: 走",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №156 «走»",
+      "referenceHintKnown": "бег (zǒu)",
+      "meaningKnown": "бег",
+      "practiceMode": "tracing",
+      "targetCharacter": "走",
+      "promptLexeme": {
+        "primary": "走",
+        "script": "hani",
+        "pinyin": "zǒu"
+      }
+    },
+    {
+      "id": "draw-radical-157",
+      "kind": "draw",
+      "title": "Радикал №157: 足",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №157 «足»",
+      "referenceHintKnown": "нога (zú)",
+      "meaningKnown": "нога",
+      "practiceMode": "tracing",
+      "targetCharacter": "足",
+      "promptLexeme": {
+        "primary": "足",
+        "script": "hani",
+        "pinyin": "zú"
+      }
+    },
+    {
+      "id": "draw-radical-158",
+      "kind": "draw",
+      "title": "Радикал №158: 身",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №158 «身»",
+      "referenceHintKnown": "тело (shēn)",
+      "meaningKnown": "тело",
+      "practiceMode": "tracing",
+      "targetCharacter": "身",
+      "promptLexeme": {
+        "primary": "身",
+        "script": "hani",
+        "pinyin": "shēn"
+      }
+    },
+    {
+      "id": "draw-radical-159",
+      "kind": "draw",
+      "title": "Радикал №159: 車",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №159 «車»",
+      "referenceHintKnown": "телега (chē)",
+      "meaningKnown": "телега",
+      "practiceMode": "tracing",
+      "targetCharacter": "車",
+      "promptLexeme": {
+        "primary": "車",
+        "script": "hani",
+        "pinyin": "chē"
+      }
+    },
+    {
+      "id": "draw-radical-160",
+      "kind": "draw",
+      "title": "Радикал №160: 辛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №160 «辛»",
+      "referenceHintKnown": "горький (xīn)",
+      "meaningKnown": "горький",
+      "practiceMode": "tracing",
+      "targetCharacter": "辛",
+      "promptLexeme": {
+        "primary": "辛",
+        "script": "hani",
+        "pinyin": "xīn"
+      }
+    },
+    {
+      "id": "draw-radical-161",
+      "kind": "draw",
+      "title": "Радикал №161: 辰",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №161 «辰»",
+      "referenceHintKnown": "утро (chén)",
+      "meaningKnown": "утро",
+      "practiceMode": "tracing",
+      "targetCharacter": "辰",
+      "promptLexeme": {
+        "primary": "辰",
+        "script": "hani",
+        "pinyin": "chén"
+      }
+    },
+    {
+      "id": "draw-radical-162",
+      "kind": "draw",
+      "title": "Радикал №162: 辵",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №162 «辵»",
+      "referenceHintKnown": "ходить (chuò)",
+      "meaningKnown": "ходить",
+      "practiceMode": "tracing",
+      "targetCharacter": "辵",
+      "promptLexeme": {
+        "primary": "辵",
+        "script": "hani",
+        "pinyin": "chuò"
+      }
+    },
+    {
+      "id": "draw-radical-163",
+      "kind": "draw",
+      "title": "Радикал №163: 邑",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №163 «邑»",
+      "referenceHintKnown": "город (yì)",
+      "meaningKnown": "город",
+      "practiceMode": "tracing",
+      "targetCharacter": "邑",
+      "promptLexeme": {
+        "primary": "邑",
+        "script": "hani",
+        "pinyin": "yì"
+      }
+    },
+    {
+      "id": "draw-radical-164",
+      "kind": "draw",
+      "title": "Радикал №164: 酉",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №164 «酉»",
+      "referenceHintKnown": "вино (yǒu)",
+      "meaningKnown": "вино",
+      "practiceMode": "tracing",
+      "targetCharacter": "酉",
+      "promptLexeme": {
+        "primary": "酉",
+        "script": "hani",
+        "pinyin": "yǒu"
+      }
+    },
+    {
+      "id": "draw-radical-165",
+      "kind": "draw",
+      "title": "Радикал №165: 釆",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №165 «釆»",
+      "referenceHintKnown": "различать (biàn)",
+      "meaningKnown": "различать",
+      "practiceMode": "tracing",
+      "targetCharacter": "釆",
+      "promptLexeme": {
+        "primary": "釆",
+        "script": "hani",
+        "pinyin": "biàn"
+      }
+    },
+    {
+      "id": "draw-radical-166",
+      "kind": "draw",
+      "title": "Радикал №166: 里",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №166 «里»",
+      "referenceHintKnown": "деревня (lǐ)",
+      "meaningKnown": "деревня",
+      "practiceMode": "tracing",
+      "targetCharacter": "里",
+      "promptLexeme": {
+        "primary": "里",
+        "script": "hani",
+        "pinyin": "lǐ"
+      }
+    },
+    {
+      "id": "draw-radical-167",
+      "kind": "draw",
+      "title": "Радикал №167: 金",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №167 «金»",
+      "referenceHintKnown": "золото (jīn)",
+      "meaningKnown": "золото",
+      "practiceMode": "tracing",
+      "targetCharacter": "金",
+      "promptLexeme": {
+        "primary": "金",
+        "script": "hani",
+        "pinyin": "jīn"
+      }
+    },
+    {
+      "id": "draw-radical-168",
+      "kind": "draw",
+      "title": "Радикал №168: 長",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №168 «長»",
+      "referenceHintKnown": "длинный (cháng)",
+      "meaningKnown": "длинный",
+      "practiceMode": "tracing",
+      "targetCharacter": "長",
+      "promptLexeme": {
+        "primary": "長",
+        "script": "hani",
+        "pinyin": "cháng"
+      }
+    },
+    {
+      "id": "draw-radical-169",
+      "kind": "draw",
+      "title": "Радикал №169: 門",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №169 «門»",
+      "referenceHintKnown": "ворота (mén)",
+      "meaningKnown": "ворота",
+      "practiceMode": "tracing",
+      "targetCharacter": "門",
+      "promptLexeme": {
+        "primary": "門",
+        "script": "hani",
+        "pinyin": "mén"
+      }
+    },
+    {
+      "id": "draw-radical-170",
+      "kind": "draw",
+      "title": "Радикал №170: 阜",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №170 «阜»",
+      "referenceHintKnown": "холм (fù)",
+      "meaningKnown": "холм",
+      "practiceMode": "tracing",
+      "targetCharacter": "阜",
+      "promptLexeme": {
+        "primary": "阜",
+        "script": "hani",
+        "pinyin": "fù"
+      }
+    },
+    {
+      "id": "draw-radical-171",
+      "kind": "draw",
+      "title": "Радикал №171: 隶",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №171 «隶»",
+      "referenceHintKnown": "раб (lì)",
+      "meaningKnown": "раб",
+      "practiceMode": "tracing",
+      "targetCharacter": "隶",
+      "promptLexeme": {
+        "primary": "隶",
+        "script": "hani",
+        "pinyin": "lì"
+      }
+    },
+    {
+      "id": "draw-radical-172",
+      "kind": "draw",
+      "title": "Радикал №172: 隹",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №172 «隹»",
+      "referenceHintKnown": "птица (zhuī)",
+      "meaningKnown": "птица",
+      "practiceMode": "tracing",
+      "targetCharacter": "隹",
+      "promptLexeme": {
+        "primary": "隹",
+        "script": "hani",
+        "pinyin": "zhuī"
+      }
+    },
+    {
+      "id": "draw-radical-173",
+      "kind": "draw",
+      "title": "Радикал №173: 雨",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №173 «雨»",
+      "referenceHintKnown": "дождь (yǔ)",
+      "meaningKnown": "дождь",
+      "practiceMode": "tracing",
+      "targetCharacter": "雨",
+      "promptLexeme": {
+        "primary": "雨",
+        "script": "hani",
+        "pinyin": "yǔ"
+      }
+    },
+    {
+      "id": "draw-radical-174",
+      "kind": "draw",
+      "title": "Радикал №174: 靑",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №174 «靑»",
+      "referenceHintKnown": "синий (qīng)",
+      "meaningKnown": "синий",
+      "practiceMode": "tracing",
+      "targetCharacter": "靑",
+      "promptLexeme": {
+        "primary": "靑",
+        "script": "hani",
+        "pinyin": "qīng"
+      }
+    },
+    {
+      "id": "draw-radical-175",
+      "kind": "draw",
+      "title": "Радикал №175: 非",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №175 «非»",
+      "referenceHintKnown": "неправильный (fēi)",
+      "meaningKnown": "неправильный",
+      "practiceMode": "tracing",
+      "targetCharacter": "非",
+      "promptLexeme": {
+        "primary": "非",
+        "script": "hani",
+        "pinyin": "fēi"
+      }
+    },
+    {
+      "id": "draw-radical-176",
+      "kind": "draw",
+      "title": "Радикал №176: 面",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №176 «面»",
+      "referenceHintKnown": "лицо (miàn)",
+      "meaningKnown": "лицо",
+      "practiceMode": "tracing",
+      "targetCharacter": "面",
+      "promptLexeme": {
+        "primary": "面",
+        "script": "hani",
+        "pinyin": "miàn"
+      }
+    },
+    {
+      "id": "draw-radical-177",
+      "kind": "draw",
+      "title": "Радикал №177: 革",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №177 «革»",
+      "referenceHintKnown": "кожа (gé)",
+      "meaningKnown": "кожа",
+      "practiceMode": "tracing",
+      "targetCharacter": "革",
+      "promptLexeme": {
+        "primary": "革",
+        "script": "hani",
+        "pinyin": "gé"
+      }
+    },
+    {
+      "id": "draw-radical-178",
+      "kind": "draw",
+      "title": "Радикал №178: 韋",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №178 «韋»",
+      "referenceHintKnown": "выделанная кожа (wéi)",
+      "meaningKnown": "выделанная кожа",
+      "practiceMode": "tracing",
+      "targetCharacter": "韋",
+      "promptLexeme": {
+        "primary": "韋",
+        "script": "hani",
+        "pinyin": "wéi"
+      }
+    },
+    {
+      "id": "draw-radical-179",
+      "kind": "draw",
+      "title": "Радикал №179: 韭",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №179 «韭»",
+      "referenceHintKnown": "лук-порей (jiǔ)",
+      "meaningKnown": "лук-порей",
+      "practiceMode": "tracing",
+      "targetCharacter": "韭",
+      "promptLexeme": {
+        "primary": "韭",
+        "script": "hani",
+        "pinyin": "jiǔ"
+      }
+    },
+    {
+      "id": "draw-radical-180",
+      "kind": "draw",
+      "title": "Радикал №180: 音",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №180 «音»",
+      "referenceHintKnown": "звук (yīn)",
+      "meaningKnown": "звук",
+      "practiceMode": "tracing",
+      "targetCharacter": "音",
+      "promptLexeme": {
+        "primary": "音",
+        "script": "hani",
+        "pinyin": "yīn"
+      }
+    },
+    {
+      "id": "draw-radical-181",
+      "kind": "draw",
+      "title": "Радикал №181: 頁",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №181 «頁»",
+      "referenceHintKnown": "лист (yè)",
+      "meaningKnown": "лист",
+      "practiceMode": "tracing",
+      "targetCharacter": "頁",
+      "promptLexeme": {
+        "primary": "頁",
+        "script": "hani",
+        "pinyin": "yè"
+      }
+    },
+    {
+      "id": "draw-radical-182",
+      "kind": "draw",
+      "title": "Радикал №182: 風",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №182 «風»",
+      "referenceHintKnown": "ветер (fēng)",
+      "meaningKnown": "ветер",
+      "practiceMode": "tracing",
+      "targetCharacter": "風",
+      "promptLexeme": {
+        "primary": "風",
+        "script": "hani",
+        "pinyin": "fēng"
+      }
+    },
+    {
+      "id": "draw-radical-183",
+      "kind": "draw",
+      "title": "Радикал №183: 飛",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №183 «飛»",
+      "referenceHintKnown": "летать (fēi)",
+      "meaningKnown": "летать",
+      "practiceMode": "tracing",
+      "targetCharacter": "飛",
+      "promptLexeme": {
+        "primary": "飛",
+        "script": "hani",
+        "pinyin": "fēi"
+      }
+    },
+    {
+      "id": "draw-radical-184",
+      "kind": "draw",
+      "title": "Радикал №184: 食",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №184 «食»",
+      "referenceHintKnown": "есть (shí)",
+      "meaningKnown": "есть",
+      "practiceMode": "tracing",
+      "targetCharacter": "食",
+      "promptLexeme": {
+        "primary": "食",
+        "script": "hani",
+        "pinyin": "shí"
+      }
+    },
+    {
+      "id": "draw-radical-185",
+      "kind": "draw",
+      "title": "Радикал №185: 首",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №185 «首»",
+      "referenceHintKnown": "голова (shǒu)",
+      "meaningKnown": "голова",
+      "practiceMode": "tracing",
+      "targetCharacter": "首",
+      "promptLexeme": {
+        "primary": "首",
+        "script": "hani",
+        "pinyin": "shǒu"
+      }
+    },
+    {
+      "id": "draw-radical-186",
+      "kind": "draw",
+      "title": "Радикал №186: 香",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №186 «香»",
+      "referenceHintKnown": "аромат (xiāng)",
+      "meaningKnown": "аромат",
+      "practiceMode": "tracing",
+      "targetCharacter": "香",
+      "promptLexeme": {
+        "primary": "香",
+        "script": "hani",
+        "pinyin": "xiāng"
+      }
+    },
+    {
+      "id": "draw-radical-187",
+      "kind": "draw",
+      "title": "Радикал №187: 馬",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №187 «馬»",
+      "referenceHintKnown": "лошадь (mǎ)",
+      "meaningKnown": "лошадь",
+      "practiceMode": "tracing",
+      "targetCharacter": "馬",
+      "promptLexeme": {
+        "primary": "馬",
+        "script": "hani",
+        "pinyin": "mǎ"
+      }
+    },
+    {
+      "id": "draw-radical-188",
+      "kind": "draw",
+      "title": "Радикал №188: 骨",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №188 «骨»",
+      "referenceHintKnown": "кость (gǔ)",
+      "meaningKnown": "кость",
+      "practiceMode": "tracing",
+      "targetCharacter": "骨",
+      "promptLexeme": {
+        "primary": "骨",
+        "script": "hani",
+        "pinyin": "gǔ"
+      }
+    },
+    {
+      "id": "draw-radical-189",
+      "kind": "draw",
+      "title": "Радикал №189: 高",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №189 «高»",
+      "referenceHintKnown": "высокий (gāo)",
+      "meaningKnown": "высокий",
+      "practiceMode": "tracing",
+      "targetCharacter": "高",
+      "promptLexeme": {
+        "primary": "高",
+        "script": "hani",
+        "pinyin": "gāo"
+      }
+    },
+    {
+      "id": "draw-radical-190",
+      "kind": "draw",
+      "title": "Радикал №190: 髟",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №190 «髟»",
+      "referenceHintKnown": "волосы (biāo)",
+      "meaningKnown": "волосы",
+      "practiceMode": "tracing",
+      "targetCharacter": "髟",
+      "promptLexeme": {
+        "primary": "髟",
+        "script": "hani",
+        "pinyin": "biāo"
+      }
+    },
+    {
+      "id": "draw-radical-191",
+      "kind": "draw",
+      "title": "Радикал №191: 鬥",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №191 «鬥»",
+      "referenceHintKnown": "бой (dòu)",
+      "meaningKnown": "бой",
+      "practiceMode": "tracing",
+      "targetCharacter": "鬥",
+      "promptLexeme": {
+        "primary": "鬥",
+        "script": "hani",
+        "pinyin": "dòu"
+      }
+    },
+    {
+      "id": "draw-radical-192",
+      "kind": "draw",
+      "title": "Радикал №192: 鬯",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №192 «鬯»",
+      "referenceHintKnown": "ритуальное вино (chàng)",
+      "meaningKnown": "ритуальное вино",
+      "practiceMode": "tracing",
+      "targetCharacter": "鬯",
+      "promptLexeme": {
+        "primary": "鬯",
+        "script": "hani",
+        "pinyin": "chàng"
+      }
+    },
+    {
+      "id": "draw-radical-193",
+      "kind": "draw",
+      "title": "Радикал №193: 鬲",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №193 «鬲»",
+      "referenceHintKnown": "котёл (lì)",
+      "meaningKnown": "котёл",
+      "practiceMode": "tracing",
+      "targetCharacter": "鬲",
+      "promptLexeme": {
+        "primary": "鬲",
+        "script": "hani",
+        "pinyin": "lì"
+      }
+    },
+    {
+      "id": "draw-radical-194",
+      "kind": "draw",
+      "title": "Радикал №194: 鬼",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №194 «鬼»",
+      "referenceHintKnown": "призрак (guǐ)",
+      "meaningKnown": "призрак",
+      "practiceMode": "tracing",
+      "targetCharacter": "鬼",
+      "promptLexeme": {
+        "primary": "鬼",
+        "script": "hani",
+        "pinyin": "guǐ"
+      }
+    },
+    {
+      "id": "draw-radical-195",
+      "kind": "draw",
+      "title": "Радикал №195: 魚",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №195 «魚»",
+      "referenceHintKnown": "рыба (yú)",
+      "meaningKnown": "рыба",
+      "practiceMode": "tracing",
+      "targetCharacter": "魚",
+      "promptLexeme": {
+        "primary": "魚",
+        "script": "hani",
+        "pinyin": "yú"
+      }
+    },
+    {
+      "id": "draw-radical-196",
+      "kind": "draw",
+      "title": "Радикал №196: 鳥",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №196 «鳥»",
+      "referenceHintKnown": "птица (niǎo)",
+      "meaningKnown": "птица",
+      "practiceMode": "tracing",
+      "targetCharacter": "鳥",
+      "promptLexeme": {
+        "primary": "鳥",
+        "script": "hani",
+        "pinyin": "niǎo"
+      }
+    },
+    {
+      "id": "draw-radical-197",
+      "kind": "draw",
+      "title": "Радикал №197: 鹵",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №197 «鹵»",
+      "referenceHintKnown": "соль (lǔ)",
+      "meaningKnown": "соль",
+      "practiceMode": "tracing",
+      "targetCharacter": "鹵",
+      "promptLexeme": {
+        "primary": "鹵",
+        "script": "hani",
+        "pinyin": "lǔ"
+      }
+    },
+    {
+      "id": "draw-radical-198",
+      "kind": "draw",
+      "title": "Радикал №198: 鹿",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №198 «鹿»",
+      "referenceHintKnown": "олень (lù)",
+      "meaningKnown": "олень",
+      "practiceMode": "tracing",
+      "targetCharacter": "鹿",
+      "promptLexeme": {
+        "primary": "鹿",
+        "script": "hani",
+        "pinyin": "lù"
+      }
+    },
+    {
+      "id": "draw-radical-199",
+      "kind": "draw",
+      "title": "Радикал №199: 麥",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №199 «麥»",
+      "referenceHintKnown": "пшеница (mài)",
+      "meaningKnown": "пшеница",
+      "practiceMode": "tracing",
+      "targetCharacter": "麥",
+      "promptLexeme": {
+        "primary": "麥",
+        "script": "hani",
+        "pinyin": "mài"
+      }
+    },
+    {
+      "id": "draw-radical-200",
+      "kind": "draw",
+      "title": "Радикал №200: 麻",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №200 «麻»",
+      "referenceHintKnown": "конопля (má)",
+      "meaningKnown": "конопля",
+      "practiceMode": "tracing",
+      "targetCharacter": "麻",
+      "promptLexeme": {
+        "primary": "麻",
+        "script": "hani",
+        "pinyin": "má"
+      }
+    },
+    {
+      "id": "draw-radical-201",
+      "kind": "draw",
+      "title": "Радикал №201: 黃",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №201 «黃»",
+      "referenceHintKnown": "жёлтый (huáng)",
+      "meaningKnown": "жёлтый",
+      "practiceMode": "tracing",
+      "targetCharacter": "黃",
+      "promptLexeme": {
+        "primary": "黃",
+        "script": "hani",
+        "pinyin": "huáng"
+      }
+    },
+    {
+      "id": "draw-radical-202",
+      "kind": "draw",
+      "title": "Радикал №202: 黍",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №202 «黍»",
+      "referenceHintKnown": "просо (shǔ)",
+      "meaningKnown": "просо",
+      "practiceMode": "tracing",
+      "targetCharacter": "黍",
+      "promptLexeme": {
+        "primary": "黍",
+        "script": "hani",
+        "pinyin": "shǔ"
+      }
+    },
+    {
+      "id": "draw-radical-203",
+      "kind": "draw",
+      "title": "Радикал №203: 黑",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №203 «黑»",
+      "referenceHintKnown": "чёрный (hēi)",
+      "meaningKnown": "чёрный",
+      "practiceMode": "tracing",
+      "targetCharacter": "黑",
+      "promptLexeme": {
+        "primary": "黑",
+        "script": "hani",
+        "pinyin": "hēi"
+      }
+    },
+    {
+      "id": "draw-radical-204",
+      "kind": "draw",
+      "title": "Радикал №204: 黹",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №204 «黹»",
+      "referenceHintKnown": "вышивка (zhǐ)",
+      "meaningKnown": "вышивка",
+      "practiceMode": "tracing",
+      "targetCharacter": "黹",
+      "promptLexeme": {
+        "primary": "黹",
+        "script": "hani",
+        "pinyin": "zhǐ"
+      }
+    },
+    {
+      "id": "draw-radical-205",
+      "kind": "draw",
+      "title": "Радикал №205: 黽",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №205 «黽»",
+      "referenceHintKnown": "лягушка (mǐn)",
+      "meaningKnown": "лягушка",
+      "practiceMode": "tracing",
+      "targetCharacter": "黽",
+      "promptLexeme": {
+        "primary": "黽",
+        "script": "hani",
+        "pinyin": "mǐn"
+      }
+    },
+    {
+      "id": "draw-radical-206",
+      "kind": "draw",
+      "title": "Радикал №206: 鼎",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №206 «鼎»",
+      "referenceHintKnown": "треножник (dǐng)",
+      "meaningKnown": "треножник",
+      "practiceMode": "tracing",
+      "targetCharacter": "鼎",
+      "promptLexeme": {
+        "primary": "鼎",
+        "script": "hani",
+        "pinyin": "dǐng"
+      }
+    },
+    {
+      "id": "draw-radical-207",
+      "kind": "draw",
+      "title": "Радикал №207: 鼓",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №207 «鼓»",
+      "referenceHintKnown": "барабан (gǔ)",
+      "meaningKnown": "барабан",
+      "practiceMode": "tracing",
+      "targetCharacter": "鼓",
+      "promptLexeme": {
+        "primary": "鼓",
+        "script": "hani",
+        "pinyin": "gǔ"
+      }
+    },
+    {
+      "id": "draw-radical-208",
+      "kind": "draw",
+      "title": "Радикал №208: 鼠",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №208 «鼠»",
+      "referenceHintKnown": "крыса (shǔ)",
+      "meaningKnown": "крыса",
+      "practiceMode": "tracing",
+      "targetCharacter": "鼠",
+      "promptLexeme": {
+        "primary": "鼠",
+        "script": "hani",
+        "pinyin": "shǔ"
+      }
+    },
+    {
+      "id": "draw-radical-209",
+      "kind": "draw",
+      "title": "Радикал №209: 鼻",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №209 «鼻»",
+      "referenceHintKnown": "нос (bí)",
+      "meaningKnown": "нос",
+      "practiceMode": "tracing",
+      "targetCharacter": "鼻",
+      "promptLexeme": {
+        "primary": "鼻",
+        "script": "hani",
+        "pinyin": "bí"
+      }
+    },
+    {
+      "id": "draw-radical-210",
+      "kind": "draw",
+      "title": "Радикал №210: 齊",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №210 «齊»",
+      "referenceHintKnown": "ровный (qí)",
+      "meaningKnown": "ровный",
+      "practiceMode": "tracing",
+      "targetCharacter": "齊",
+      "promptLexeme": {
+        "primary": "齊",
+        "script": "hani",
+        "pinyin": "qí"
+      }
+    },
+    {
+      "id": "draw-radical-211",
+      "kind": "draw",
+      "title": "Радикал №211: 齒",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №211 «齒»",
+      "referenceHintKnown": "зуб (chǐ)",
+      "meaningKnown": "зуб",
+      "practiceMode": "tracing",
+      "targetCharacter": "齒",
+      "promptLexeme": {
+        "primary": "齒",
+        "script": "hani",
+        "pinyin": "chǐ"
+      }
+    },
+    {
+      "id": "draw-radical-212",
+      "kind": "draw",
+      "title": "Радикал №212: 龍",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №212 «龍»",
+      "referenceHintKnown": "дракон (lóng)",
+      "meaningKnown": "дракон",
+      "practiceMode": "tracing",
+      "targetCharacter": "龍",
+      "promptLexeme": {
+        "primary": "龍",
+        "script": "hani",
+        "pinyin": "lóng"
+      }
+    },
+    {
+      "id": "draw-radical-213",
+      "kind": "draw",
+      "title": "Радикал №213: 龜",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №213 «龜»",
+      "referenceHintKnown": "черепаха (guī)",
+      "meaningKnown": "черепаха",
+      "practiceMode": "tracing",
+      "targetCharacter": "龜",
+      "promptLexeme": {
+        "primary": "龜",
+        "script": "hani",
+        "pinyin": "guī"
+      }
+    },
+    {
+      "id": "draw-radical-214",
+      "kind": "draw",
+      "title": "Радикал №214: 龠",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Нарисуйте радикал №214 «龠»",
+      "referenceHintKnown": "флейта (yuè)",
+      "meaningKnown": "флейта",
+      "practiceMode": "tracing",
+      "targetCharacter": "龠",
+      "promptLexeme": {
+        "primary": "龠",
+        "script": "hani",
+        "pinyin": "yuè"
+      }
+    }
+  ]
+}

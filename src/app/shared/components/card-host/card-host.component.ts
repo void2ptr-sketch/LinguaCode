@@ -38,6 +38,7 @@ export class CardHostComponent {
   readonly selectedIndex = input<number | null>(null);
   readonly answerText = input('');
   readonly memoryComplete = input(false);
+  readonly memoryBoardNonce = input(0);
   readonly drawSubmitted = input(false);
   readonly drawAnswer = input<DrawAnswerPayload | null>(null);
   readonly focusControlsEnabled = input(true);

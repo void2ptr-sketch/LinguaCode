@@ -1,7 +1,39 @@
 @use '../quiz-card';
 
-.quiz-card__sound {
+:host .quiz-card__sound {
+  display: grid;
+  gap: 0.75rem;
+  margin-bottom: 0;
+}
+
+.sound-card__stimulus {
   align-items: center;
-  display: flex;
-  gap: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 35%, transparent);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-areas: 'play lexeme';
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 1rem 1.25rem;
+}
+
+.sound-card__play {
+  align-self: center;
+  grid-area: play;
+  white-space: nowrap;
+}
+
+.sound-card__lexeme {
+  grid-area: lexeme;
+  min-width: 0;
+}
+
+@media (max-width: 480px) {
+  .sound-card__stimulus {
+    grid-template-areas:
+      'play'
+      'lexeme';
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: start;
+  }
 }

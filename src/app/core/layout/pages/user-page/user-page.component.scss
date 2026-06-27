@@ -51,6 +51,34 @@
   margin-top: 0.5rem;
 }
 
+.page-card__tracing-speed {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.page-card__tracing-speed-control {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto 1fr auto;
+}
+
+.page-card__tracing-speed-bound {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.page-card__tracing-speed-slider {
+  width: 100%;
+}
+
+.page-card__tracing-speed-value {
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
 .tone-color-preview {
   display: flex;
   gap: 0.5rem;
