@@ -217,9 +217,11 @@
         "pinyin": "nǐ hǎo",
         "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
         "palladius": "ни хао",
-        "ipa": "ni˨˩˦ xaʊ˨˩˦"
+        "ipa": "ni˨˩˦ xaʊ˨˩˦",
+        "glossKnown": "Привет"
       },
       "optionsLearning": ["你好", "谢谢", "再见", "请"],
+      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
       "optionsLexemes": [
         {
           "primary": "你好",
@@ -227,7 +229,8 @@
           "pinyin": "nǐ hǎo",
           "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
           "palladius": "ни хао",
-          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
           "primary": "谢谢",
@@ -235,7 +238,8 @@
           "pinyin": "xièxie",
           "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
           "palladius": "сие сие",
-          "ipa": "ɕiɛ˥˩ ɕiɛ"
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
           "primary": "再见",
@@ -243,7 +247,8 @@
           "pinyin": "zàijiàn",
           "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
           "palladius": "цзай цзянь",
-          "ipa": "tsai˥˩ tɕiɛn˥˩"
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         },
         {
           "primary": "请",
@@ -251,7 +256,8 @@
           "pinyin": "qǐng",
           "zhuyin": "ㄑㄧㄥˇ",
           "palladius": "цин",
-          "ipa": "tɕʰiŋ˨˩˦"
+          "ipa": "tɕʰiŋ˨˩˦",
+          "glossKnown": "Пожалуйста"
         }
       ],
       "correctIndex": 0
@@ -264,10 +270,11 @@
       "direction": "known-to-learning",
       "promptKnown": "Как звучит слово «Hello»?",
       "optionsLearning": ["Hello", "Goodbye", "Thanks"],
+      "optionsKnown": ["Привет", "Пока", "Спасибо"],
       "optionsLexemes": [
-        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ" },
-        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ" },
-        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks" }
+        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ", "glossKnown": "Привет" },
+        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ", "glossKnown": "Пока" },
+        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks", "glossKnown": "Спасибо" }
       ],
       "correctIndex": 0
     },
@@ -279,17 +286,19 @@
       "direction": "known-to-learning",
       "promptKnown": "Транскрипция слова «thought»",
       "optionsLearning": ["thought", "through", "taught"],
+      "optionsKnown": ["мысль", "через", "учил"],
       "optionsLexemes": [
         {
           "primary": "thought",
           "script": "latn",
+          "glossKnown": "мысль",
           "ipa": [
             { "transcription": "θɔːt", "label": "BrE" },
             { "transcription": "θɑːt", "label": "AmE" }
           ]
         },
-        { "primary": "through", "script": "latn", "ipa": "θruː" },
-        { "primary": "taught", "script": "latn", "ipa": "tɔːt" }
+        { "primary": "through", "script": "latn", "glossKnown": "через", "ipa": "θruː" },
+        { "primary": "taught", "script": "latn", "glossKnown": "учил", "ipa": "tɔːt" }
       ],
       "correctIndex": 0
     },
@@ -379,6 +388,7 @@
         "ipa": "in˧˥ xaŋ˧˥"
       },
       "optionsLearning": ["háng", "xíng"],
+      "optionsKnown": ["читается háng (банк)", "читается xíng (идти)"],
       "optionsLexemes": [
         {
           "primary": "háng",
@@ -386,7 +396,8 @@
           "pinyin": "háng",
           "zhuyin": "ㄏㄤˊ",
           "palladius": "хан",
-          "ipa": "xaŋ˧˥"
+          "ipa": "xaŋ˧˥",
+          "glossKnown": "читается háng (банк)"
         },
         {
           "primary": "xíng",
@@ -394,7 +405,8 @@
           "pinyin": "xíng",
           "zhuyin": "ㄒㄧㄥˊ",
           "palladius": "син",
-          "ipa": "ɕiŋ˧˥"
+          "ipa": "ɕiŋ˧˥",
+          "glossKnown": "читается xíng (идти)"
         }
       ],
       "correctIndex": 0
@@ -468,6 +480,7 @@
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "symbols": ["你", "好", "谢", "再"],
+      "optionsKnown": ["ты", "хорошо", "благодарность", "снова"],
       "symbolLexemes": [
         {
           "primary": "你",
@@ -475,7 +488,8 @@
           "pinyin": "nǐ",
           "zhuyin": "ㄋㄧˇ",
           "palladius": "ни",
-          "ipa": "ni˨˩˦"
+          "ipa": "ni˨˩˦",
+          "glossKnown": "ты"
         },
         {
           "primary": "好",
@@ -483,7 +497,8 @@
           "pinyin": "hǎo",
           "zhuyin": "ㄏㄠˇ",
           "palladius": "хао",
-          "ipa": "xaʊ˨˩˦"
+          "ipa": "xaʊ˨˩˦",
+          "glossKnown": "хорошо"
         },
         {
           "primary": "谢",
@@ -491,7 +506,8 @@
           "pinyin": "xiè",
           "zhuyin": "ㄒㄧㄝˋ",
           "palladius": "сие",
-          "ipa": "ɕiɛ˥˩"
+          "ipa": "ɕiɛ˥˩",
+          "glossKnown": "благодарность"
         },
         {
           "primary": "再",
@@ -499,7 +515,8 @@
           "pinyin": "zài",
           "zhuyin": "ㄗㄞˋ",
           "palladius": "цзай",
-          "ipa": "tsai˥˩"
+          "ipa": "tsai˥˩",
+          "glossKnown": "снова"
         }
       ],
       "correctIndex": 0
@@ -540,6 +557,7 @@
         "glossKnown": "Спасибо"
       },
       "optionsLearning": ["谢谢", "你好", "再见"],
+      "optionsKnown": ["Спасибо", "Привет", "До свидания"],
       "optionsLexemes": [
         {
           "primary": "谢谢",
@@ -547,7 +565,8 @@
           "pinyin": "xièxie",
           "zhuyin": "ㄒㄧㄝˋ ㄒㄧㄝ",
           "palladius": "сие сие",
-          "ipa": "ɕiɛ˥˩ ɕiɛ"
+          "ipa": "ɕiɛ˥˩ ɕiɛ",
+          "glossKnown": "Спасибо"
         },
         {
           "primary": "你好",
@@ -555,7 +574,8 @@
           "pinyin": "nǐ hǎo",
           "zhuyin": "ㄋㄧˇ ㄏㄠˇ",
           "palladius": "ни хао",
-          "ipa": "ni˨˩˦ xaʊ˨˩˦"
+          "ipa": "ni˨˩˦ xaʊ˨˩˦",
+          "glossKnown": "Привет"
         },
         {
           "primary": "再见",
@@ -563,7 +583,8 @@
           "pinyin": "zàijiàn",
           "zhuyin": "ㄗㄞˋ ㄐㄧㄢˋ",
           "palladius": "цзай цзянь",
-          "ipa": "tsai˥˩ tɕiɛn˥˩"
+          "ipa": "tsai˥˩ tɕiɛn˥˩",
+          "glossKnown": "До свидания"
         }
       ],
       "correctIndex": 0,

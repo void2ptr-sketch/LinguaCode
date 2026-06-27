@@ -1,3 +1,4 @@
+import { deriveKnownOptionsFromLexemes } from '../../../core/data/card-direction.utils';
 import { stripPinyinTones } from '../../../core/data/cjk-romanization.utils';
 import type {
   DrawCharacterTarget,
@@ -172,10 +173,17 @@ export const normalizeSelectCardDraft = (
     return null;
   }
 
+  const optionsKnown = deriveKnownOptionsFromLexemes(
+    optionsLearning!,
+    core.optionsLexemes,
+    undefined,
+  );
+
   return {
     id: cardId,
     kind: 'select',
     optionsLearning: optionsLearning!,
+    ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
   };
 };
@@ -230,12 +238,14 @@ export const normalizeSymbolCardDraft = (
   }
 
   const { optionsLexemes: symbolLexemes, ...rest } = core;
+  const optionsKnown = deriveKnownOptionsFromLexemes(symbols!, symbolLexemes, undefined);
 
   return {
     id: cardId,
     kind: 'symbol',
     symbols: symbols!,
     ...(symbolLexemes ? { symbolLexemes } : {}),
+    ...(optionsKnown ? { optionsKnown } : {}),
     ...rest,
   };
 };
@@ -277,11 +287,18 @@ export const normalizeTimedCardDraft = (
     return null;
   }
 
+  const optionsKnown = deriveKnownOptionsFromLexemes(
+    optionsLearning!,
+    core.optionsLexemes,
+    undefined,
+  );
+
   return {
     id: cardId,
     kind: 'timed',
     optionsLearning: optionsLearning!,
     timeLimitSec,
+    ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
   };
 };
@@ -448,10 +465,17 @@ export const normalizeReadingCardDraft = (
     return null;
   }
 
+  const optionsKnown = deriveKnownOptionsFromLexemes(
+    optionsLearning!,
+    core.optionsLexemes,
+    undefined,
+  );
+
   return {
     id: cardId,
     kind: 'reading',
     optionsLearning: optionsLearning!,
+    ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
   };
 };

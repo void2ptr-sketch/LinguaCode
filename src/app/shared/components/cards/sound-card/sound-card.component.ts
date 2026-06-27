@@ -42,7 +42,7 @@ export class SoundCardComponent {
   }
 
   optionLexeme(index: number) {
-    return this.resolved().optionLexemes?.[index] ?? this.card().optionsLexemes?.[index];
+    return this.resolved().optionLexemes?.[index];
   }
 
   optionClass(index: number): string {

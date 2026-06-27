@@ -40,6 +40,64 @@ describe('card-direction.utils', () => {
     expect(resolved.prompt).toBe('Hello');
     expect(resolved.options).toEqual(['Привет', 'Пока', 'Спасибо']);
     expect(resolved.correctIndex).toBe(0);
+    expect(resolved.optionLexemes?.map((item) => item?.primary)).toEqual([
+      'Привет',
+      'Пока',
+      'Спасибо',
+    ]);
+  });
+
+  it('should show known-language primary for correct option lexeme in learning-to-known', () => {
+    const card: OptionCard = {
+      id: 'select-zh-1',
+      kind: 'select',
+      title: 'Приветствие (китайский)',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      direction: 'known-to-learning',
+      promptKnown: 'Как сказать «Привет» по-китайски?',
+      promptLexeme: {
+        primary: '你好',
+        script: 'hani',
+        glossKnown: 'Привет',
+      },
+      optionsLearning: ['你好', '谢谢'],
+      optionsKnown: ['Привет', 'Спасибо'],
+      optionsLexemes: [
+        { primary: '你好', script: 'hani', glossKnown: 'Привет' },
+        { primary: '谢谢', script: 'hani', glossKnown: 'Спасибо' },
+      ],
+      correctIndex: 0,
+    };
+
+    const resolved = resolveOptionCard(card, 'learning-to-known');
+    expect(resolved.optionLexemes?.[0]?.primary).toBe('Привет');
+    expect(resolved.optionLexemes?.[1]?.primary).toBe('Спасибо');
+  });
+
+  it('should fill distractors from glossKnown when prompt quote covers only correct answer', () => {
+    const card: OptionCard = {
+      ...selectCard,
+      optionsKnown: undefined,
+      optionsLexemes: [
+        { primary: 'Hello', script: 'latn', glossKnown: 'Привет' },
+        { primary: 'Goodbye', script: 'latn', glossKnown: 'Пока' },
+        { primary: 'Thanks', script: 'latn', glossKnown: 'Спасибо' },
+      ],
+    };
+
+    const resolved = resolveOptionCard(card, 'learning-to-known');
+    expect(resolved.options).toEqual(['Привет', 'Пока', 'Спасибо']);
+  });
+
+  it('should prefer optionsKnown over quoted prompt fallback for distractors', () => {
+    const card: OptionCard = {
+      ...selectCard,
+      optionsKnown: ['Привет', 'Пока', 'Спасибо'],
+      optionsLexemes: undefined,
+    };
+
+    const resolved = resolveOptionCard(card, 'learning-to-known');
+    expect(resolved.options).toEqual(['Привет', 'Пока', 'Спасибо']);
   });
 
   it('should derive known options from glossKnown when optionsKnown missing', () => {
@@ -55,6 +113,11 @@ describe('card-direction.utils', () => {
 
     const resolved = resolveOptionCard(card, 'learning-to-known');
     expect(resolved.options).toEqual(['Привет', 'Пока', 'Спасибо']);
+    expect(resolved.optionLexemes?.map((item) => item?.primary)).toEqual([
+      'Привет',
+      'Пока',
+      'Спасибо',
+    ]);
   });
 
   it('should resolve sound card in both directions', () => {
