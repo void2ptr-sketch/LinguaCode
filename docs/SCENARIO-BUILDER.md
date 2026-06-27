@@ -1,6 +1,6 @@
 # Конструктор сценариев (масштабирование)
 
-Переход от in-memory `localStorage` и полной загрузки `CardRepository` к каталогу сценариев и точечной загрузке карточек при прохождении.
+Переход от legacy `localStorage`-ключей к каталогу сценариев (seed + overlay) и точечной загрузке карточек при прохождении.
 
 Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
@@ -53,7 +53,7 @@ type ScenarioCardSource =
 | GET    | `/api/scenarios/by-card/:cardId` | сценарии, использующие карточку              |
 | POST   | `/api/cards/batch`               | `{ ids: string[] }` → `Card[]` (прохождение) |
 
-Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `ScenariosCatalogMockHandler` (хранение в `localStorage`, миграция из legacy JSON).
+Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `ScenariosCatalogMockHandler` (overlay + seed через `UserContentOverlay`, миграция из legacy ключей).
 
 ## Multi-user (mock)
 

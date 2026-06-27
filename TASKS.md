@@ -120,7 +120,7 @@
 - [x] `hanzi-stroke-match.utils` — grading (distance, direction, Fréchet, length)
 - [x] `scripts/sync-hanzi-assets.mjs` + `npm run sync:hanzi`
 - [x] Unit tests: positioner, data service, quiz session
-- [ ] Экспорт API в `docs/ARCHITECTURE.md` (краткий раздел)
+- [x] Экспорт API в `docs/ARCHITECTURE.md` (раздел Hanzi Engine)
 
 **H15b — Sprint 2: render (draw-canvas integration)** ✅
 
@@ -177,7 +177,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Контекст: [BUSINESS.md](./docs/BUSINESS.md#объект-изучения-и-карточка) — обучение без отвлечений; shell приложения скрывается.
 
-- [x] **Ca3a** — `app-card-focus-shell`: overlay на весь viewport, блокировка scroll (`body.card-focus-shell-open`)
+- [x] **Ca3a** — `app-card-focus-shell`: overlay на весь viewport, блокировка scroll (`body.card-focus-shell-open`); при входе в fullscreen host **reparent в `document.body`** (portal), при выходе — возврат в исходный DOM
 - [x] **Ca3b** — обёртка в `CardHostComponent` — все `CardKind` (практика, try dialog, preview)
 - [x] **Ca3c** — кнопка «Полный экран» / «Выйти» + **Esc**; tooltip с подсказкой
 - [x] **Ca3d** — в fullscreen контент масштабируется по viewport (`clamp` + `vmin`/`vw`); на маленьком экране не меньше базового размера шрифта карточки — при нехватке места прокрутка
@@ -195,7 +195,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 - [x] Фича `features/card-editor/` — каталог + CRUD, маршрут `/tools/cards`
 - [x] Объединение «Каталог карточек» и «Редактор карточек» в один экран «Карточки»
-- [x] `CardRepository` (localStorage, seed из `select-cards.json`)
+- [x] `CardRepository` (overlay `lingua-code.user-content.v1` + seed через `ContentSeedRepository`)
 - [x] CRUD карточки `select` + preview через `CardHost`
 - [x] Редактирование `appearance` (theme, fontSize)
 - [x] Подключить repository в scenario-builder
@@ -233,7 +233,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Уже сделано (MVP + интеграция с каталогом карточек):
 
-- [x] CRUD сценариев в `features/scenario-builder/` (`localStorage`)
+- [x] CRUD сценариев в `features/scenario-builder/` (overlay + seed)
 - [x] `ScenarioCardSource` (fixed / criteria) — см. также «Каталог карточек (масштаб)»
 - [x] Выбор карточек через поиск каталога (`ScenarioCardPicker`, `ScenarioCardCriteriaEditor`)
 
@@ -497,7 +497,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [ ] Редактор / try dialog: preview «как задание» и «как ответ» (опц.)
 - [ ] Миграция не нужна: дефолты уже разные (`displayRomanizations: ['pinyin']`, `answerRomanization: ['pinyin','palladius']`)
 - [ ] Тесты: `lexeme-display`, `user-page`, persistence, smoke ru→zh demo-карточек
-- [ ] Синхронизировать CJK-CONTENT.md / PHONETIC-CONTENT.md
+- [ ] Синхронизировать CJK-CONTENT.md / PHONETIC-CONTENT.md — частично (2025-06): pinyin keyboard, reading, TTS, overlay
 
 **G9d — payload карточек**
 
@@ -519,6 +519,14 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Упражнения на тон (опц. kind `tone` / полифония `reading`)
 - [x] (опц.) `draw`: canvas, stroke order, радикалы
 - [x] (опц.) Виртуальная клавиатура пиньинь с тонами (`app-pinyin-keyboard`, `answerMode: pinyin`)
+  - динамический ряд тонов **над** буквами; placeholder `—` + `min-height` — без скачков layout
+  - гласная → открыть ряд; согласная → закрыть; повтор той же гласной — игнор; тон только на **последней** гласной слога
+  - переполнение слога (6 символов) → автофиксация с лёгким тоном (`MAX_PENDING_SYLLABLE_LENGTH`)
+  - утилиты: `pinyin-keyboard.utils.ts`, `tone-mark.utils.ts` (`applyToneToLastVowelInSyllable`)
+- [x] `reading`: fuzzy-проверка ответа — `matchesReadingCardSelection`, `readingCandidateTexts` (pinyin / palladius / primary)
+- [x] demo `reading-xing-1`: контекст слова **银行** (`yínháng`), не изолированный иероглиф 行
+- [x] `SoundCard` / draw: TTS fallback через `playLearningAudio` (`card-learning-audio.utils.ts`) — `audioUrl` или Web Speech API
+- [x] `memory`: перемешивание колонок при смене карточки (`memoryBoardNonce` в `CardSelectStore`)
 
 **G10 — фонетический контент: IPA (International Phonetic Alphabet)**
 
@@ -698,6 +706,32 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Обновить DOMAIN.md — роль «Практика» vs «Обучение» (G14)
 - [x] Smoke: «Начать практику» после выбора сценария; заголовок «Практика»
 - [x] Roadmap уроков не дублируется (только на `/home`)
+
+**G15 — User content overlay + content seed**
+
+Контекст: единая модель пользовательских правок поверх системного seed; preload контента через manifest вместо разрозненных JSON.
+
+**G15a — overlay model**
+
+- [x] `UserContentOverlay` (`user-content-overlay.types.ts`): `courses`, `lessons`, `scenarios`, `cards`, `cardIndexMeta`, `deletedSystemIds`
+- [x] Ключ persistence: `lingua-code.user-content.v1`
+- [x] `resolveUserContentOverlay` / merge seed + overlay (`user-content-overlay.resolver.ts`)
+- [x] Миграция legacy ключей (`lingua-code.cards`, `lingua-code.scenarios`, `lingua-code.course-catalog`, `lingua-code.card-index-meta`) → overlay (`user-content-overlay.migration.ts`)
+
+**G15b — content seed pipeline**
+
+- [x] `public/data/content-manifest.json` — списки `cardFiles`, `scenarioFiles`, `courseFiles`
+- [x] `ContentSeedRepository` — preload по manifest, in-memory cache (`content-seed.cache.ts`)
+- [x] `CardRepository`, `ScenariosStorage`, `CoursesStorage` — seed из repository + overlay пользователя
+- [x] `authorId: 'system'` для seed-сущностей; пользовательские — `authorId: 'user'`
+- [x] `npm run export:content-seed` — экспорт overlay → JSON для репозитория (`scripts/export-content-seed.mjs`)
+- [x] `APP_INITIALIZER` — preload seed при старте приложения
+
+**G15c — интеграция и тесты**
+
+- [x] Mock handlers (`cards`, `scenarios`, `courses`) читают resolved catalog
+- [x] `LearningResultsStore` — корректные `courseId` / `lessonId` при сохранении прогресса
+- [x] Unit-тесты resolver, migration, storage
 
 **G12 — Editor UX (упрощение редактора карточек)**
 

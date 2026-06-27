@@ -2,13 +2,13 @@
 
 **LinguaCode: языки в цифровую эпоху**
 
-Приложение для исследования и изучения языков — от естественных до искусственных. Основная единица обучения — **карточка** (вопрос с выбором ответа, запоминание, символы, звук, таймер, ввод с клавиатуры, рисование и др.). Карточки объединяются в **сценарии**; пользователь настраивает их внешний вид, результаты обучения сохраняются.
+Приложение для исследования и изучения языков — от естественных до искусственных. Основная единица обучения — **карточка** (выбор ответа, запоминание, символы, звук, таймер, ввод с клавиатуры, рисование и др.). Карточки объединяются в **сценарии**, сценарии — в **уроки** и **программы**. Пользователь настраивает внешний вид и языковую пару; результаты обучения сохраняются локально.
 
 Документация: [docs/INDEX.md](./docs/INDEX.md) · бизнес-идеи: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/DOMAIN.md](./docs/DOMAIN.md).
 
 ## Статус
 
-**MVP в разработке.** Angular 19 инициализирован; следующий шаг — layout и первая фича.
+**MVP реализован; активный бэклог G9g–G14.** Angular 19, 10 типов карточек, каталог с поиском, конструктор сценариев, программы/уроки, CJK/IPA-контент, Hanzi Engine для draw-карточек, режим фокуса (fullscreen).
 
 Актуальный чеклист: [TASKS.md](./TASKS.md).
 
@@ -34,13 +34,18 @@ npm start
 
 ## Скрипты
 
-| Команда          | Описание                |
-| ---------------- | ----------------------- |
-| `npm start`      | Dev-сервер с hot reload |
-| `npm run build`  | Production-сборка       |
-| `npm test`       | Unit-тесты              |
-| `npm run lint`   | ESLint                  |
-| `npm run format` | Prettier                |
+| Команда                    | Описание                                              |
+| -------------------------- | ----------------------------------------------------- |
+| `npm start`                | Dev-сервер с hot reload                               |
+| `npm run build`            | Production-сборка                                     |
+| `npm run build:prod`       | Production-сборка (alias)                             |
+| `npm test`                 | Unit-тесты                                            |
+| `npm run test:ci`          | Тесты в CI-режиме                                     |
+| `npm run lint`             | ESLint                                                |
+| `npm run format`           | Prettier                                              |
+| `npm run verify`           | lint + sync:hanzi + build + test (полная проверка)    |
+| `npm run sync:hanzi`       | Синхронизация stroke-data для draw-карточек           |
+| `npm run export:content-seed` | Экспорт пользовательского overlay → seed JSON      |
 
 ## Стек
 
@@ -48,7 +53,7 @@ npm start
 - **TypeScript** — строгая типизация (`type`, не `interface`)
 - **Angular Material** — UI-компоненты
 - **SCSS** — стили; layout на CSS Grid (`grid-template-areas`)
-- **Signal API** — управление состоянием (RxJS только для HTTP/WebSocket)
+- **Signal API** — управление состояние (RxJS только для HTTP/WebSocket)
 - **ESLint + Prettier** — линтинг и форматирование
 - **@angular/localize** — локализация (бэклог)
 
@@ -58,20 +63,22 @@ npm start
 src/app/
 ├── core/
 │   ├── layout/              # shell (header, navigation, main-layout, footer)
-│   ├── models/              # User, Card, Scenario, CardIndexEntry, …
-│   ├── state/               # глобальные signal-сервисы
-│   └── api/                 # HttpClient, interceptors
+│   ├── models/              # User, Card, Scenario, Course, Lesson, …
+│   ├── state/               # UserStore, LearningResultsStore
+│   ├── data/                # repositories, overlay, content seed, hanzi-engine
+│   └── api/                 # HttpClient, interceptors, mock handlers
 ├── shared/                  # переиспользуемые UI и утилиты
 │   ├── pagination/          # PageRequest, PageResponse, UiPaginationComponent
-│   └── card-catalog-search/ # фильтры каталога, ScenarioCardPickerComponent
-├── features/                # фичи (card-select, scenario-builder, card-editor, …)
+│   ├── card-catalog-search/ # фильтры каталога, ScenarioCardPickerComponent
+│   └── components/          # CardHost, cards/*, pinyin-keyboard, card-focus-shell
+├── features/                # card-select, card-editor, scenario-builder, home, …
 ├── app.component.ts
 ├── app.config.ts
 └── app.routes.ts
 
+public/data/                 # seed JSON + content-manifest.json
 src/environments/            # конфигурация окружения
-src/locale/                  # переводы (бэклог): messages.LANG.ts
-docs/                        # документация проекта (оглавление: docs/INDEX.md)
+docs/                        # документация (оглавление: docs/INDEX.md)
 ```
 
 ## Архитектура
@@ -79,13 +86,15 @@ docs/                        # документация проекта (огла
 - **Фичи** — изолированные модули в `features/` (компонент, сервис, типы в отдельных подпапках).
 - **Layout** — shell-приложение с шапкой, навигацией, контентом и подвалом.
 - **Состояние** — сервисы на signals; загрузка и ошибки API — тоже через signals.
-- **Роутинг** — `app.routes.ts`; фичи подключаются из меню в **header** (`menu-cards`, `menu-tools`) и дублируются в боковой **navigation**.
+- **Контент** — системный seed (`ContentSeedRepository` + manifest) + пользовательский overlay (`UserContentOverlay` в `localStorage`).
+- **Роутинг** — `app.routes.ts`; фичи подключаются из меню в **header** и боковой **navigation**.
 
 ```
 ┌──────────────────────────────────────────────────────┐
 │ header (menu-cards / tools / help / user)            │
 ├──────────┬───────────────────────────────────────────┤
 │ nav      │ main-layout (router-outlet)               │
+│ Главная  │                                           │
 │ Обучение │                                           │
 │ Карточки │                                           │
 │ Конструк.│                                           │
@@ -94,7 +103,7 @@ docs/                        # документация проекта (огла
 └──────────────────────────────────────────────────────┘
 ```
 
-Боковое меню: **Главная** · **Обучение** (`/cards/select`) · **Карточки** (`/tools/cards`) · **Конструктор сценариев** · **Справка** · **Профиль**. Шапка сохраняет прежние пункты «Карточки» и «Инструменты».
+Боковое меню: **Главная** (`/home`) · **Обучение** (`/cards/select`) · **Карточки** (`/tools/cards`) · **Конструктор сценариев** · **Справка** · **Профиль**.
 
 Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/DOMAIN.md](./docs/DOMAIN.md#модели)
 
@@ -121,18 +130,19 @@ npm run format
 
 ## Roadmap
 
-**MVP**
+**MVP** — выполнен (см. [TASKS.md](./TASKS.md) §1–7).
 
-1. ~~Инициализация Angular и структура `core` / `shared` / `features`~~
-2. Layout (header, navigation, main-layout, footer)
-3. Первая фича — `features/card-select/` (карточка с выбором ответов)
-4. HTTP, interceptors, обработка ошибок
-5. Smoke-тесты, production-сборка, CI
+**Текущий фокус**
+
+- G9g — раздельные настройки отображения «задание» / «ответы» в `LexemeDisplay`
+- G14h–j — layout практики (sidebar + mobile)
+- G6 — локализация UI (`@angular/localize`)
 
 **Бэклог**
 
-- Локализация (`@angular/localize`, `src/locale/messages.*.ts`, EN/ZH)
-- Остальные типы карточек (запоминание, символы, звук, таймер, ввод, рисование)
+- Backend API (production вместо mock interceptors)
+- ASR / оценка произношения
+- Экранная IPA-клавиатура
 
 ## Документация
 
@@ -140,7 +150,9 @@ npm run format
 - [Бизнес-идеи](./docs/BUSINESS.md) — продуктовое видение
 - [Домен](./docs/DOMAIN.md) — сущности, модели и терминология
 - [Каталог карточек](./docs/CARD-CATALOG.md) — индекс, поиск, пагинация
-- [Конструктор сценариев](./docs/SCENARIO-BUILDER.md) — масштабирование сценариев и card-select
+- [Конструктор сценариев](./docs/SCENARIO-BUILDER.md) — масштабирование сценариев
+- [CJK-контент](./docs/CJK-CONTENT.md) — иероглифы, пиньинь, тоны, полифония
+- [IPA](./docs/PHONETIC-CONTENT.md) — фонетическая транскрипция
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога
 - [Архитектура](./docs/ARCHITECTURE.md) — технические решения
 - [Git rules](./docs/.gitrules.md) — ветки, коммиты, merge
