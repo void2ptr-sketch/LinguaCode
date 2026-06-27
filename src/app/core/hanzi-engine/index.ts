@@ -37,8 +37,7 @@ export {
 export { matchHanziUserStroke, type HanziStrokeMatchResult } from './hanzi-stroke-match.utils';
 
 export {
-  hanziDistance,
-  hanziFrechetDistance,
-  hanziLength,
-  hanziNormalizeCurve,
-} from './hanzi-geometry.utils';
+  medianLabelPoint,
+  medianToSvgPath,
+  resolveHanziSvgGroupTransform,
+} from './hanzi-render.utils';

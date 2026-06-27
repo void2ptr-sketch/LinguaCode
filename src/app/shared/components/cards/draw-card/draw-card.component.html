@@ -42,7 +42,7 @@
       }
     </mat-button-toggle-group>
 
-    @if (canvasMode() === 'stroke-order' && strokeGuides().length > 0) {
+    @if (showStrokeOrderNote()) {
       <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
     }
 
@@ -51,7 +51,6 @@
         [ghostCharacter]="canvasMode() === 'radicals' ? null : ghostCharacter()"
         [radicalHints]="radicalCanvasHints()"
         [radicalAriaLabel]="radicalCanvasAriaLabel()"
-        [strokeGuides]="strokeGuides()"
         [canvasMode]="canvasMode()"
         [disabled]="feedback() !== null"
         [showClearAll]="hasMultipleSyllables()"

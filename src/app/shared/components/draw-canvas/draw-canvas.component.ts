@@ -14,28 +14,30 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import {
-  mapViewBoxPoint,
-  resolveGhostFontSize,
-  resolveGhostGuideTransform,
-  resolveGhostInkTransform,
-  resolveSvgGuideGroupTransform,
-  type GhostGuideTransform,
-} from '../../../core/data/draw-ghost-layout.utils';
 import { paintCalligraphyPolyline } from '../../../core/data/draw-calligraphy-paint.utils';
 import {
   resolveStrokeAnimationFrame,
-  sampleGuidePath,
   slicePolylineAtProgress,
-  type ViewBoxPoint,
 } from '../../../core/data/draw-stroke-path.utils';
-import type { DrawCanvasMode, DrawStrokeGuide } from '../../../core/models/draw-practice.types';
+import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
+import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-character.model';
+import type { HanziLoadState, HanziPoint } from '../../../core/hanzi-engine/hanzi-character.types';
+import { HanziPositioner, mapPointsToCanvas } from '../../../core/hanzi-engine/hanzi-positioner';
+import {
+  medianLabelPoint,
+  medianToSvgPath,
+  resolveHanziSvgGroupTransform,
+} from '../../../core/hanzi-engine/hanzi-render.utils';
+import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 
 export type DrawRadicalHint = {
   readonly character: string;
   readonly color: string;
 };
+
+const DEFAULT_SURFACE_SIZE = 280;
+const GHOST_FONT_RATIO = 0.72;
 
 @Component({
   selector: 'app-draw-canvas',
@@ -45,11 +47,11 @@ export type DrawRadicalHint = {
 })
 export class DrawCanvasComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly hanziData = inject(HanziDataService);
 
   readonly ghostCharacter = input<string | null>(null);
   readonly radicalHints = input<readonly DrawRadicalHint[]>([]);
   readonly radicalAriaLabel = input<string | null>(null);
-  readonly strokeGuides = input<readonly DrawStrokeGuide[]>([]);
   readonly canvasMode = input<DrawCanvasMode>('memory');
   readonly disabled = input(false);
   readonly showClearAll = input(false);
@@ -62,19 +64,77 @@ export class DrawCanvasComponent {
 
   readonly hasStrokes = signal(false);
   readonly canUndo = signal(false);
-  readonly showStrokeGuides = signal(false);
-  readonly showTracingAnimation = computed(
-    () => this.canvasMode() === 'tracing' && this.strokeGuides().length > 0,
+  readonly surfaceWidth = signal(DEFAULT_SURFACE_SIZE);
+  readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
+  readonly hanziModel = signal<HanziCharacterModel | null>(null);
+  readonly hanziLoadState = signal<HanziLoadState>('idle');
+
+  readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
+
+  readonly svgViewBox = computed(
+    () => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`,
   );
 
-  readonly svgGuideTransform = signal('translate(0 0) scale(1)');
+  readonly hanziPositioner = computed(
+    () =>
+      new HanziPositioner({
+        width: this.surfaceWidth(),
+        height: this.surfaceHeight(),
+        padding: 20,
+      }),
+  );
+
+  readonly hanziSvgTransform = computed(() =>
+    resolveHanziSvgGroupTransform(this.hanziPositioner()),
+  );
+
+  readonly hanziDataRequired = computed(() => {
+    const mode = this.canvasMode();
+    return mode !== 'memory' && mode !== 'radicals' && Boolean(this.ghostCharacter()?.trim());
+  });
+
+  readonly showHanziGhost = computed(
+    () =>
+      this.hanziDataRequired() &&
+      this.hanziLoadState() === 'ready' &&
+      this.hanziStrokes().length > 0 &&
+      this.ghostOpacity() > 0,
+  );
+
+  readonly showHanziGuides = computed(() => {
+    const mode = this.canvasMode();
+    return (
+      (mode === 'stroke-order' || mode === 'hints') &&
+      this.hanziLoadState() === 'ready' &&
+      this.hanziStrokes().length > 0
+    );
+  });
+
+  readonly showTracingAnimation = computed(
+    () =>
+      this.canvasMode() === 'tracing' &&
+      this.hanziLoadState() === 'ready' &&
+      this.hanziStrokes().length > 0,
+  );
+
+  readonly ghostOpacity = computed(() => {
+    switch (this.canvasMode()) {
+      case 'tracing':
+        return 0.38;
+      case 'hints':
+        return 0.14;
+      case 'stroke-order':
+        return 0.1;
+      default:
+        return 0;
+    }
+  });
 
   private strokes: DrawStrokePath[] = [];
   private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
   private context: CanvasRenderingContext2D | null = null;
-  private guideTransform: GhostGuideTransform | null = null;
-  private tracingSamples: ViewBoxPoint[][] = [];
+  private tracingMedianSamples: HanziPoint[][] = [];
   private tracingAnimationStart = 0;
   private tracingAnimationFrameId = 0;
 
@@ -85,11 +145,15 @@ export class DrawCanvasComponent {
     });
 
     effect(() => {
-      this.ghostCharacter();
+      const character = this.ghostCharacter()?.trim() ?? '';
       this.radicalHints();
       this.canvasMode();
-      this.strokeGuides();
-      this.showStrokeGuides.set(this.shouldShowStrokeGuides());
+      this.syncHanziCharacter(character);
+    });
+
+    effect(() => {
+      this.hanziModel();
+      this.canvasMode();
       this.syncTracingAnimation();
       this.redrawAll();
     });
@@ -99,13 +163,12 @@ export class DrawCanvasComponent {
     });
   }
 
-  guidePathCenter(guide: DrawStrokeGuide): { x: number; y: number } {
-    const match = guide.path.match(/M\s+([\d.]+)\s+([\d.]+)/);
-    if (match) {
-      return { x: Number(match[1]), y: Number(match[2]) };
-    }
+  medianPath(points: readonly HanziPoint[]): string {
+    return medianToSvgPath(points);
+  }
 
-    return { x: 50, y: 50 };
+  medianLabel(points: readonly HanziPoint[]): HanziPoint {
+    return medianLabelPoint(points);
   }
 
   getStrokes(): readonly DrawStrokePath[] {
@@ -113,10 +176,9 @@ export class DrawCanvasComponent {
   }
 
   getCanvasSize(): { width: number; height: number } {
-    const canvas = this.canvasRef()?.nativeElement;
     return {
-      width: canvas?.width ?? 280,
-      height: canvas?.height ?? 280,
+      width: this.surfaceWidth(),
+      height: this.surfaceHeight(),
     };
   }
 
@@ -165,13 +227,11 @@ export class DrawCanvasComponent {
     }
 
     const canvas = this.canvasRef()?.nativeElement;
-    const context = this.ensureContext();
-    if (!canvas || !context || this.activeStroke.length === 0) {
+    if (!canvas || this.activeStroke.length === 0) {
       return;
     }
 
-    const point = this.eventPoint(event, canvas);
-    this.activeStroke.push(point);
+    this.activeStroke.push(this.eventPoint(event, canvas));
     this.redrawAll();
   }
 
@@ -194,24 +254,39 @@ export class DrawCanvasComponent {
     }
   }
 
-  private shouldShowStrokeGuides(): boolean {
-    const mode = this.canvasMode();
-    return mode === 'stroke-order' || mode === 'hints';
-  }
-
-  private ghostOpacity(): number {
-    switch (this.canvasMode()) {
-      case 'tracing':
-        return 0.38;
-      case 'hints':
-        return 0.14;
-      case 'stroke-order':
-        return 0.1;
-      case 'radicals':
-        return 0.08;
-      default:
-        return 0;
+  private async syncHanziCharacter(character: string): Promise<void> {
+    if (!character) {
+      this.hanziModel.set(null);
+      this.hanziLoadState.set('idle');
+      this.redrawAll();
+      return;
     }
+
+    const cached = this.hanziData.getCachedModel(character);
+    if (cached) {
+      this.hanziModel.set(cached);
+      this.hanziLoadState.set('ready');
+      this.redrawAll();
+      return;
+    }
+
+    const state = this.hanziData.getLoadState(character);
+    if (state === 'missing') {
+      this.hanziModel.set(null);
+      this.hanziLoadState.set('missing');
+      this.redrawAll();
+      return;
+    }
+
+    this.hanziLoadState.set('loading');
+    const model = await this.hanziData.loadCharacter(character);
+    if (this.ghostCharacter()?.trim() !== character) {
+      return;
+    }
+
+    this.hanziModel.set(model);
+    this.hanziLoadState.set(model ? 'ready' : this.hanziData.getLoadState(character));
+    this.redrawAll();
   }
 
   private redrawAll(): void {
@@ -222,13 +297,8 @@ export class DrawCanvasComponent {
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
-    this.guideTransform = this.resolveGuideTransform(context, canvas.width, canvas.height);
-    this.svgGuideTransform.set(
-      resolveSvgGuideGroupTransform(canvas.width, canvas.height, this.guideTransform),
-    );
-    this.paintGhost(context, canvas.width, canvas.height);
     this.paintRadicalHints(context, canvas.width, canvas.height);
-    this.paintTracingAnimation(context, canvas.width, canvas.height);
+    this.paintTracingAnimation(context);
     this.paintStrokes(context);
   }
 
@@ -247,8 +317,7 @@ export class DrawCanvasComponent {
       return;
     }
 
-    const canvas = this.canvasRef()?.nativeElement;
-    const baseWidth = Math.max(3.5, (canvas?.width ?? 280) * 0.022);
+    const baseWidth = Math.max(3.5, this.surfaceWidth() * 0.022);
     paintCalligraphyPolyline(context, stroke, {
       baseWidth,
       color: '#1a1a1a',
@@ -262,10 +331,12 @@ export class DrawCanvasComponent {
       return;
     }
 
-    const width = canvas.clientWidth || 280;
-    const height = canvas.clientHeight || 280;
+    const width = canvas.clientWidth || DEFAULT_SURFACE_SIZE;
+    const height = canvas.clientHeight || DEFAULT_SURFACE_SIZE;
     canvas.width = width;
     canvas.height = height;
+    this.surfaceWidth.set(width);
+    this.surfaceHeight.set(height);
 
     this.context = null;
     this.ensureContext();
@@ -296,15 +367,11 @@ export class DrawCanvasComponent {
   }
 
   private ghostFontSize(width: number): number {
-    return resolveGhostFontSize(width);
+    return Math.floor(width * GHOST_FONT_RATIO);
   }
 
   private ghostFontFamily(): string {
     return '"Noto Sans SC", "Noto Sans TC", sans-serif';
-  }
-
-  private ghostFont(width: number): string {
-    return `${this.ghostFontSize(width)}px ${this.ghostFontFamily()}`;
   }
 
   private fittedRadicalLayout(
@@ -350,10 +417,6 @@ export class DrawCanvasComponent {
     };
   }
 
-  private radicalHintOpacity(): number {
-    return this.canvasMode() === 'radicals' ? 0.38 : this.ghostOpacity();
-  }
-
   private paintRadicalHints(context: CanvasRenderingContext2D, width: number, height: number): void {
     if (this.canvasMode() !== 'radicals') {
       return;
@@ -379,33 +442,12 @@ export class DrawCanvasComponent {
 
     for (let index = 0; index < hints.length; index += 1) {
       const hint = hints[index];
-      context.globalAlpha = this.radicalHintOpacity();
+      context.globalAlpha = 0.38;
       context.fillStyle = hint.color;
       context.fillText(hint.character, x, y);
       x += (layout.advances[index] ?? 0) + (index < hints.length - 1 ? layout.gap : 0);
     }
 
-    context.restore();
-  }
-
-  private paintGhost(context: CanvasRenderingContext2D, width: number, height: number): void {
-    if (this.canvasMode() === 'radicals') {
-      return;
-    }
-
-    const ghost = this.ghostCharacter()?.trim();
-    const opacity = this.ghostOpacity();
-    if (!ghost || opacity <= 0) {
-      return;
-    }
-
-    context.save();
-    context.globalAlpha = opacity;
-    context.fillStyle = '#000';
-    context.font = this.ghostFont(width);
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.fillText(ghost, width / 2, height / 2);
     context.restore();
   }
 
@@ -418,27 +460,6 @@ export class DrawCanvasComponent {
       x: (event.clientX - rect.left - canvas.clientLeft) * scaleX,
       y: (event.clientY - rect.top - canvas.clientTop) * scaleY,
     };
-  }
-
-  private resolveGuideTransform(
-    context: CanvasRenderingContext2D,
-    width: number,
-    height: number,
-  ): GhostGuideTransform {
-    const ghost = this.ghostCharacter()?.trim();
-    const fontSize = this.ghostFontSize(width);
-
-    if (!ghost) {
-      return resolveGhostGuideTransform(width, height, fontSize);
-    }
-
-    return resolveGhostInkTransform(context, {
-      character: ghost,
-      width,
-      height,
-      fontSize,
-      fontFamily: this.ghostFontFamily(),
-    });
   }
 
   private observeCanvasResize(): void {
@@ -471,8 +492,12 @@ export class DrawCanvasComponent {
       return;
     }
 
-    const guides = this.sortedStrokeGuides();
-    this.tracingSamples = guides.map((guide) => sampleGuidePath(guide.path));
+    const model = this.hanziModel();
+    if (!model) {
+      return;
+    }
+
+    this.tracingMedianSamples = model.strokes.map((stroke) => [...stroke.points]);
     this.tracingAnimationStart = performance.now();
     this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
   }
@@ -493,45 +518,41 @@ export class DrawCanvasComponent {
     this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
   }
 
-  private paintTracingAnimation(
-    context: CanvasRenderingContext2D,
-    width: number,
-    height: number,
-  ): void {
-    if (!this.showTracingAnimation() || this.tracingSamples.length === 0) {
+  private paintTracingAnimation(context: CanvasRenderingContext2D): void {
+    if (!this.showTracingAnimation() || this.tracingMedianSamples.length === 0) {
       return;
     }
 
+    const positioner = this.hanziPositioner();
     const elapsedMs = performance.now() - this.tracingAnimationStart;
     const frame = resolveStrokeAnimationFrame(
       elapsedMs,
-      this.tracingSamples.length,
-      this.tracingSamples,
+      this.tracingMedianSamples.length,
+      this.tracingMedianSamples,
     );
-    const guideTransform = this.guideTransform ?? this.resolveGuideTransform(context, width, height);
-    const lineWidth = Math.max(2.5, guideTransform.scaleX * 0.42);
-    const brushRadius = Math.max(3, guideTransform.scaleX * 0.2);
+    const lineWidth = Math.max(2.5, positioner.scale * 0.42);
+    const brushRadius = Math.max(3, positioner.scale * 0.2);
     const strokeColor = this.resolvePrimaryColor();
 
     for (let index = 0; index < frame.completedStrokeCount; index += 1) {
       this.paintTracingPolyline(
         context,
-        this.tracingSamples[index],
-        guideTransform,
+        this.tracingMedianSamples[index] ?? [],
+        positioner,
         lineWidth * 0.85,
         0.28,
         strokeColor,
       );
     }
 
-    const activeSamples = this.tracingSamples[frame.activeStrokeIndex] ?? [];
+    const activeSamples = this.tracingMedianSamples[frame.activeStrokeIndex] ?? [];
     const activePolyline = slicePolylineAtProgress(activeSamples, frame.activeProgress);
     if (activePolyline.length > 0) {
-      this.paintTracingPolyline(context, activePolyline, guideTransform, lineWidth, 0.92, strokeColor);
+      this.paintTracingPolyline(context, activePolyline, positioner, lineWidth, 0.92, strokeColor);
     }
 
     if (frame.tip) {
-      const tip = mapViewBoxPoint(frame.tip, guideTransform);
+      const tip = positioner.toCanvas(frame.tip);
       context.save();
       context.globalAlpha = 1;
       context.fillStyle = strokeColor;
@@ -544,8 +565,8 @@ export class DrawCanvasComponent {
 
   private paintTracingPolyline(
     context: CanvasRenderingContext2D,
-    points: readonly ViewBoxPoint[],
-    guideTransform: GhostGuideTransform,
+    points: readonly HanziPoint[],
+    positioner: HanziPositioner,
     lineWidth: number,
     alpha: number,
     strokeColor: string,
@@ -554,7 +575,7 @@ export class DrawCanvasComponent {
       return;
     }
 
-    const canvasPoints = points.map((point) => mapViewBoxPoint(point, guideTransform));
+    const canvasPoints = mapPointsToCanvas(points, positioner);
     paintCalligraphyPolyline(context, canvasPoints, {
       baseWidth: lineWidth,
       color: strokeColor,
@@ -572,10 +593,9 @@ export class DrawCanvasComponent {
       return fromCanvas;
     }
 
-    return getComputedStyle(document.documentElement).getPropertyValue('--mat-sys-primary').trim() || '#6750a4';
-  }
-
-  private sortedStrokeGuides(): readonly DrawStrokeGuide[] {
-    return [...this.strokeGuides()].sort((left, right) => left.order - right.order);
+    return (
+      getComputedStyle(document.documentElement).getPropertyValue('--mat-sys-primary').trim() ||
+      '#6750a4'
+    );
   }
 }

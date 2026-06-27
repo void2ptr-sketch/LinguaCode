@@ -1,5 +1,25 @@
 <div class="draw-canvas">
   <div class="draw-canvas__surface">
+    @if (showHanziGhost()) {
+      <svg
+        class="draw-canvas__ghost"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <g [attr.transform]="hanziSvgTransform()">
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
+            <path
+              class="draw-canvas__ghost-stroke"
+              [class.draw-canvas__ghost-stroke--radical]="stroke.isRadical"
+              [attr.d]="stroke.path"
+              [style.opacity]="ghostOpacity()"
+            />
+          }
+        </g>
+      </svg>
+    }
+
     <canvas
       #canvas
       class="draw-canvas__canvas"
@@ -12,23 +32,42 @@
       (pointercancel)="onPointerUp($event)"
     ></canvas>
 
-    @if (showStrokeGuides() && strokeGuides().length > 0) {
-      <svg class="draw-canvas__guides" viewBox="0 0 100 100" aria-hidden="true">
-        <g [attr.transform]="svgGuideTransform()">
-          @for (guide of strokeGuides(); track guide.order) {
+    @if (showHanziGuides()) {
+      <svg
+        class="draw-canvas__guides"
+        [attr.viewBox]="svgViewBox()"
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <g [attr.transform]="hanziSvgTransform()">
+          @for (stroke of hanziStrokes(); track stroke.strokeNum) {
             <g class="draw-canvas__guide">
-              <path [attr.d]="guide.path" />
+              <path [attr.d]="medianPath(stroke.points)" />
               <text
                 class="draw-canvas__guide-order"
-                [attr.x]="guidePathCenter(guide).x"
-                [attr.y]="guidePathCenter(guide).y"
+                [attr.x]="medianLabel(stroke.points).x"
+                [attr.y]="medianLabel(stroke.points).y"
               >
-                {{ guide.order }}
+                {{ stroke.strokeNum + 1 }}
               </text>
             </g>
           }
         </g>
       </svg>
+    }
+
+    @if (hanziLoadState() === 'loading' && hanziDataRequired()) {
+      <div class="draw-canvas__overlay draw-canvas__overlay--loading" aria-live="polite">
+        <mat-icon>hourglass_empty</mat-icon>
+        <span>Загрузка черт…</span>
+      </div>
+    }
+
+    @if (hanziLoadState() === 'missing' && hanziDataRequired()) {
+      <div class="draw-canvas__overlay draw-canvas__overlay--missing" role="status">
+        <mat-icon>info</mat-icon>
+        <span>Данные черт недоступны</span>
+      </div>
     }
   </div>
 

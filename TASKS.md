@@ -122,13 +122,13 @@
 - [x] Unit tests: positioner, data service, quiz session
 - [ ] Экспорт API в `docs/ARCHITECTURE.md` (краткий раздел)
 
-**H15b — Sprint 2: render (draw-canvas integration)**
+**H15b — Sprint 2: render (draw-canvas integration)** ✅
 
-- [ ] `draw-canvas`: SVG ghost из `strokes[]` (убрать `fillText` / Noto для draw)
-- [ ] SVG guides из `medians[]` через `HanziPositioner`
-- [ ] Prefetch символа в `draw-card` через `HanziDataService.loadCharacter`
-- [ ] Loading / missing states в UI
-- [ ] Удалить `draw-ghost-layout.utils.ts` после миграции
+- [x] `draw-canvas`: SVG ghost из `strokes[]` (убрать `fillText` / Noto для draw)
+- [x] SVG guides из `medians[]` через `HanziPositioner`
+- [x] Prefetch символа в `draw-card` через `HanziDataService.loadCharacter`
+- [x] Loading / missing states в UI
+- [x] Удалить `draw-ghost-layout.utils.ts` после миграции
 
 **H15c — Sprint 3: animation (tracing)**
 

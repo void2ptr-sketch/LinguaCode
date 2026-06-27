@@ -19,6 +19,7 @@ import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
 } from '../../../../core/data/radical-component-color.utils';
+import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {
@@ -49,6 +50,7 @@ import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
 })
 export class DrawCardComponent {
   private readonly userStore = inject(UserStore);
+  private readonly hanziData = inject(HanziDataService);
 
   readonly card = input.required<DrawCard>();
   readonly drawSubmitted = input(false);
@@ -109,14 +111,9 @@ export class DrawCardComponent {
     return character || null;
   });
 
-  readonly strokeGuides = computed(() => {
-    const mode = this.canvasMode();
-    if (mode !== 'stroke-order' && mode !== 'hints' && mode !== 'tracing') {
-      return [];
-    }
-
-    return this.activeTarget()?.strokeGuides ?? [];
-  });
+  readonly showStrokeOrderNote = computed(
+    () => this.canvasMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
+  );
 
   readonly radicalHint = computed(() => {
     if (this.canvasMode() !== 'radicals') {
@@ -163,6 +160,15 @@ export class DrawCardComponent {
   });
 
   constructor() {
+    effect(() => {
+      const characters = this.characterTargets()
+        .map((target) => target.character.trim())
+        .filter(Boolean);
+      if (characters.length > 0) {
+        void this.hanziData.loadCharacters(characters);
+      }
+    });
+
     effect(() => {
       this.card();
       const count = this.characterTargets().length;
