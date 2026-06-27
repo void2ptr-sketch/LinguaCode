@@ -1,8 +1,24 @@
-<a mat-button routerLink="/cards/select" routerLinkActive="menu-link--active">
+<button
+  mat-button
+  [matMenuTriggerFor]="learningMenu"
+  class="menu-cards__trigger"
+  [class.menu-link--active]="isLearningSection()"
+>
   <mat-icon>school</mat-icon>
   Обучение
-</a>
-<a mat-button routerLink="/courses" routerLinkActive="menu-link--active">
-  <mat-icon>menu_book</mat-icon>
-  Курсы
-</a>
+</button>
+
+<mat-menu #learningMenu="matMenu">
+  <a mat-menu-item routerLink="/home" routerLinkActive="menu-link--active">
+    <mat-icon>school</mat-icon>
+    <span>Обучение</span>
+  </a>
+  <a mat-menu-item routerLink="/cards/select" routerLinkActive="menu-link--active">
+    <mat-icon>style</mat-icon>
+    <span>Практика</span>
+  </a>
+  <a mat-menu-item routerLink="/courses" routerLinkActive="menu-link--active">
+    <mat-icon>menu_book</mat-icon>
+    <span>Каталог Курсов</span>
+  </a>
+</mat-menu>
