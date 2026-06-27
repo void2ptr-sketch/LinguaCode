@@ -226,6 +226,14 @@ type Course = {
   languagePair: LanguagePair;
   lessonIds: readonly string[];
   published: boolean;
+  /** Авторская идея программы (G16); не в CourseIndexEntry */
+  authoring?: {
+    idea: string;
+    status: 'draft' | 'planned' | 'generating' | 'materialized' | 'failed';
+    ideaUpdatedAt?: string;
+    materializedAt?: string;
+    lastError?: string;
+  };
 };
 
 type LearningResult = {

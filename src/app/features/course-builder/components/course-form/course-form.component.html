@@ -1,106 +1,160 @@
 <div class="course-form">
-  <mat-form-field appearance="outline">
-    <mat-label>Название курса</mat-label>
-    <input
-      matInput
-      [disabled]="readOnly()"
-      [ngModel]="draft().title"
-      (ngModelChange)="updateTitle($event)"
-    />
-  </mat-form-field>
-
-  <mat-form-field appearance="outline">
-    <mat-label>Описание</mat-label>
-    <textarea
-      matInput
-      rows="3"
-      [disabled]="readOnly()"
-      [ngModel]="draft().description"
-      (ngModelChange)="updateDescription($event)"
-    ></textarea>
-  </mat-form-field>
-
-  <mat-checkbox
-    [disabled]="readOnly()"
-    [ngModel]="draft().published"
-    (ngModelChange)="updatePublished($event)"
-  >
-    Опубликовать курс
-  </mat-checkbox>
-
-  <section class="course-form__lessons">
-    <h3>Уроки</h3>
-
-    @for (lesson of draft().lessons; track $index) {
-      <div class="course-form__lesson">
+  <mat-tab-group class="course-form__tabs" dynamicHeight>
+    <mat-tab label="Основное">
+      <div class="course-form__tab-panel">
         <mat-form-field appearance="outline">
-          <mat-label>Урок {{ $index + 1 }}</mat-label>
+          <mat-label>Название программы</mat-label>
           <input
             matInput
             [disabled]="readOnly()"
-            [ngModel]="lesson.title"
-            (ngModelChange)="updateLessonTitle($index, $event)"
+            [ngModel]="draft().title"
+            (ngModelChange)="updateTitle($event)"
           />
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Описание урока</mat-label>
-          <input
+          <mat-label>Описание для учеников</mat-label>
+          <textarea
             matInput
+            rows="3"
             [disabled]="readOnly()"
-            [ngModel]="lesson.description"
-            (ngModelChange)="updateLessonDescription($index, $event)"
-          />
+            [ngModel]="draft().description"
+            (ngModelChange)="updateDescription($event)"
+          ></textarea>
+          <mat-hint>Короткий текст для каталога и обучения</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline">
-          <mat-label>Сценарии</mat-label>
+          <mat-label>Статус авторства</mat-label>
           <mat-select
-            multiple
             [disabled]="readOnly()"
-            [ngModel]="lesson.scenarioIds"
-            (ngModelChange)="updateLessonScenarioIds($index, $event)"
+            [ngModel]="draft().authoring.status"
+            (ngModelChange)="updateAuthoringStatus($event)"
           >
-            @for (scenario of scenarioOptions(); track scenario.id) {
-              <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
+            @for (status of authoringStatusOptions; track status) {
+              <mat-option [value]="status">{{ authoringStatusLabels[status] }}</mat-option>
             }
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field appearance="outline">
-          <mat-label>Предварительные уроки</mat-label>
-          <mat-select
-            multiple
-            [disabled]="readOnly() || prerequisiteOptions($index).length === 0"
-            [ngModel]="prerequisiteSelection($index)"
-            (ngModelChange)="updateLessonPrerequisites($index, $event)"
-          >
-            @for (option of prerequisiteOptions($index); track option.key) {
-              <mat-option [value]="option.key">{{ option.label }}</mat-option>
-            }
-          </mat-select>
-          <mat-hint>Урок станет доступен после завершения выбранных</mat-hint>
-        </mat-form-field>
+        <mat-checkbox
+          [disabled]="readOnly()"
+          [ngModel]="draft().published"
+          (ngModelChange)="updatePublished($event)"
+        >
+          Опубликовать программу
+        </mat-checkbox>
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Идея программы">
+      <div class="course-form__tab-panel">
+        <p class="course-form__idea-hint">
+          Опишите цели, аудиторию, темы и формат в Markdown. На основе этой идеи позже можно
+          будет сгенерировать уроки, сценарии и карточки.
+        </p>
+
+        <app-markdown-field
+          class="course-form__idea-field"
+          label="Идея программы"
+          [rows]="14"
+          [readOnly]="readOnly()"
+          [value]="draft().authoring.idea"
+          hint="Markdown: заголовки (#), списки, **жирный**, `код`, ссылки"
+          (valueChange)="updateAuthoringIdea($event)"
+        />
+      </div>
+    </mat-tab>
+
+    <mat-tab label="Уроки">
+      <div class="course-form__tab-panel">
+        <p class="course-form__lessons-hint">Каждый урок — отдельный блок. Заполните название, сценарии и при необходимости prerequisites.</p>
+
+        <div class="course-form__lessons">
+          @for (lesson of draft().lessons; track lessonDraftKey(lesson); let index = $index) {
+            <mat-card class="course-form__lesson" appearance="outlined">
+              <div class="course-form__lesson-header">
+                <span class="course-form__lesson-badge">Урок {{ index + 1 }}</span>
+                @if (lesson.title.trim()) {
+                  <span class="course-form__lesson-title-preview">{{ lesson.title }}</span>
+                }
+                @if (!readOnly()) {
+                  <button
+                    mat-icon-button
+                    type="button"
+                    class="course-form__lesson-delete"
+                    [attr.aria-label]="'Удалить урок ' + (index + 1)"
+                    [disabled]="draft().lessons.length <= 1"
+                    (click)="removeLesson(index)"
+                  >
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                }
+              </div>
+
+              <mat-card-content class="course-form__lesson-content">
+                <mat-form-field appearance="outline">
+                  <mat-label>Название</mat-label>
+                  <input
+                    matInput
+                    [disabled]="readOnly()"
+                    [ngModel]="lesson.title"
+                    (ngModelChange)="updateLessonTitle(index, $event)"
+                  />
+                </mat-form-field>
+
+                <mat-form-field appearance="outline">
+                  <mat-label>Описание урока</mat-label>
+                  <input
+                    matInput
+                    [disabled]="readOnly()"
+                    [ngModel]="lesson.description"
+                    (ngModelChange)="updateLessonDescription(index, $event)"
+                  />
+                </mat-form-field>
+
+                <div class="course-form__lesson-links">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Сценарии</mat-label>
+                    <mat-select
+                      multiple
+                      [disabled]="readOnly()"
+                      [ngModel]="lesson.scenarioIds"
+                      (ngModelChange)="updateLessonScenarioIds(index, $event)"
+                    >
+                      @for (scenario of scenarioOptions(); track scenario.id) {
+                        <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Предварительные уроки</mat-label>
+                    <mat-select
+                      multiple
+                      [disabled]="readOnly() || prerequisiteOptions(index).length === 0"
+                      [ngModel]="prerequisiteSelection(index)"
+                      (ngModelChange)="updateLessonPrerequisites(index, $event)"
+                    >
+                      @for (option of prerequisiteOptions(index); track option.key) {
+                        <mat-option [value]="option.key">{{ option.label }}</mat-option>
+                      }
+                    </mat-select>
+                    <mat-hint>Урок станет доступен после завершения выбранных</mat-hint>
+                  </mat-form-field>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          }
+        </div>
 
         @if (!readOnly()) {
-          <button
-            mat-icon-button
-            type="button"
-            aria-label="Удалить урок"
-            [disabled]="draft().lessons.length <= 1"
-            (click)="removeLesson($index)"
-          >
-            <mat-icon>delete</mat-icon>
+          <button mat-stroked-button type="button" class="course-form__add-lesson" (click)="addLesson()">
+            <mat-icon>add</mat-icon>
+            Добавить урок
           </button>
         }
       </div>
-    }
-
-    @if (!readOnly()) {
-      <button mat-stroked-button type="button" (click)="addLesson()">
-        <mat-icon>add</mat-icon>
-        Добавить урок
-      </button>
-    }
-  </section>
+    </mat-tab>
+  </mat-tab-group>
 </div>

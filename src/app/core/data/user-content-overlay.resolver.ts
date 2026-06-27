@@ -9,6 +9,7 @@ import {
   normalizeStoredLesson,
   type CourseCatalogState,
 } from './course-catalog-state';
+import { normalizeCourseAuthoring, sameCourseAuthoring } from './course-authoring.utils';
 import { mergeDrawCardQuestionFields } from './draw-card.utils';
 import { isObsoleteRadicalsCatalogItem } from './radicals-course.defaults';
 import { mergeScenariosWithDefaults } from './scenario-catalog.defaults';
@@ -402,6 +403,10 @@ function diffCourse(resolved: Course, seed: Course): CoursePatch {
 
   if (!sameStringArray(resolved.lessonIds, seed.lessonIds)) {
     patch.lessonIds = [...resolved.lessonIds];
+  }
+
+  if (!sameCourseAuthoring(resolved.authoring, seed.authoring)) {
+    patch.authoring = normalizeCourseAuthoring(resolved.authoring);
   }
 
   return patch;

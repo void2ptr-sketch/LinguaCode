@@ -1,5 +1,9 @@
 import type { CourseWithLessons } from '../../../core/models';
 import type { CourseWritePayload } from '../../../core/data/courses-api.service';
+import {
+  emptyCourseAuthoring,
+  normalizeCourseAuthoring,
+} from '../../../core/data/course-authoring.utils';
 import type { CourseFormDraft, LessonFormDraft } from '../types';
 
 export function lessonDraftKey(lesson: Pick<LessonFormDraft, 'id' | 'clientId'>): string {
@@ -19,6 +23,7 @@ export const emptyCourseFormDraft = (): CourseFormDraft => ({
   title: '',
   description: '',
   published: false,
+  authoring: emptyCourseAuthoring(),
   lessons: [emptyLessonFormDraft(0)],
 });
 
@@ -27,6 +32,7 @@ export function courseToFormDraft(course: CourseWithLessons): CourseFormDraft {
     title: course.title,
     description: course.description,
     published: course.published,
+    authoring: course.authoring ?? emptyCourseAuthoring(),
     lessons: course.lessons
       .map((lesson) => ({
         clientId: lesson.id,
@@ -52,6 +58,7 @@ export function formDraftToCourseWritePayload(draft: CourseFormDraft): CourseWri
     title: draft.title,
     description: draft.description,
     published: draft.published,
+    authoring: normalizeCourseAuthoring(draft.authoring),
     lessons: draft.lessons.map((lesson, index) => {
       const ownKey = lessonDraftKey(lesson);
       const prerequisiteLessonIds = lesson.prerequisiteLessonIds

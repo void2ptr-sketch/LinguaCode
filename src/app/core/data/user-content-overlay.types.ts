@@ -15,7 +15,7 @@ export const LEGACY_CARDS_KEY = 'lingua-code.cards';
 export const LEGACY_CARD_INDEX_META_KEY = 'lingua-code.card-index-meta';
 
 export type CoursePatch = Partial<
-  Pick<Course, 'title' | 'description' | 'published' | 'updatedAt' | 'lessonIds'>
+  Pick<Course, 'title' | 'description' | 'published' | 'updatedAt' | 'lessonIds' | 'authoring'>
 >;
 
 export type LessonPatch = Partial<

@@ -4,7 +4,10 @@ import { activeLanguagePairCriteria } from '../../../core/data/language-pair-sco
 import { normalizeLanguagePair } from '../../../core/data/language-pair.utils';
 import { CourseSearchService } from '../../../core/data';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
-import { sanitizePlainText } from '../../../core/security';
+import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
+import {
+  COURSE_IDEA_MAX_LENGTH,
+} from '../../../core/data/course-authoring.utils';
 import { UserStore } from '../../../core/state';
 import { isEditableContentAuthor } from '../../../core/data/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
@@ -13,6 +16,8 @@ import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils'
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
+const sanitizeCourseIdea = (value: string): string =>
+  sanitizeMarkdownText(value, COURSE_IDEA_MAX_LENGTH);
 
 @Injectable({ providedIn: 'root' })
 export class CourseBuilderStore {
@@ -215,6 +220,10 @@ export class CourseBuilderStore {
       title,
       description,
       published: draft.published,
+      authoring: {
+        ...draft.authoring,
+        idea: sanitizeCourseIdea(draft.authoring.idea),
+      },
       lessons,
     });
   }

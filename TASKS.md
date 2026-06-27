@@ -733,6 +733,29 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] `LearningResultsStore` — корректные `courseId` / `lessonId` при сохранении прогресса
 - [x] Unit-тесты resolver, migration, storage
 
+**G16 — авторская идея программы (`Course.authoring`)**
+
+Контекст: большое текстовое описание идеи программы — основа для будущей генерации уроков, сценариев и карточек. Отдельно от короткого `description` для учеников.
+
+**G16a — домен и хранение**
+
+- [x] `CourseAuthoring`, `CourseAuthoringStatus` в `core/models/course-authoring.types.ts`
+- [x] Поле `Course.authoring?`; не включается в `CourseIndexEntry`
+- [x] `CoursePatch`, overlay diff/merge, `normalizeStoredCourse`
+- [x] `CourseWritePayload.authoring`; mock handler create/update
+
+**G16b — UI конструктора**
+
+- [x] Вкладка «Идея программы» в `course-form` (textarea + статус)
+- [x] Разделение: «Описание для учеников» vs «Идея программы»
+- [x] Санитизация идеи до 16 000 символов
+
+**G16c — генерация (бэклог)**
+
+- [ ] `CourseAuthoring.outline` — структурный план уроков/сценариев
+- [ ] Сервис материализации: outline → `Lesson` / `Scenario` / `Card`
+- [ ] LLM-интеграция поверх `authoring.idea`
+
 **G12 — Editor UX (упрощение редактора карточек)**
 
 Контекст: `card-form` (~650 строк TS + ~350 HTML) + `card-validation` (~490 строк) обслуживают **10** `CardKind`; дублируются блоки вариантов (select / timed / reading / sound / symbol); на каждый вариант — **строка + полная лексема** (pinyin, zhuyin, palladius, ipa). Цель: **≤ 8 полей** в базовом режиме для типовой select-карточки; новый kind — **один файл формы**, не правка god-component.

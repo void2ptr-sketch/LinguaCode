@@ -12,6 +12,7 @@ import type {
 import { paginateArray } from '../../shared/pagination';
 import { UserStore } from '../state';
 
+import { normalizeCourseAuthoring } from '../data/course-authoring.utils';
 import { courseToIndexEntry } from '../data/course-index.mapper';
 import { filterCourseIndex } from '../data/course-search.utils';
 import { ContentSeedRepository } from '../data/content-seed.repository';
@@ -80,6 +81,7 @@ export class CoursesCatalogMockHandler {
       lessonIds: lessons.map((lesson) => lesson.id),
       published: payload.published,
       updatedAt: new Date().toISOString(),
+      authoring: normalizeCourseAuthoring(payload.authoring),
     };
 
     this.catalog = {
@@ -108,6 +110,7 @@ export class CoursesCatalogMockHandler {
         description: payload.description,
         published: payload.published,
         updatedAt: new Date().toISOString(),
+        authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
       };
       const lessons = this.lessonsForCourse(updated).sort((left, right) => left.order - right.order);
 
@@ -129,6 +132,7 @@ export class CoursesCatalogMockHandler {
       languagePair,
       lessonIds: lessons.map((lesson) => lesson.id),
       updatedAt: new Date().toISOString(),
+      authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
     };
 
     this.catalog = {
