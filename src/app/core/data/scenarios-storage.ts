@@ -1,19 +1,8 @@
 import type { Scenario } from '../models';
-import type { LegacyScenario } from '../models/scenario.types';
 
 import { getScenarioSeedCache } from './content-seed.cache';
-import { normalizeScenario } from './scenario-card-source.utils';
-import {
-  getDefaultScenarios,
-  mergeScenariosWithDefaults,
-  RU_ZH_LANGUAGE_PAIR,
-} from './scenario-catalog.defaults';
 import { migrateUserContentOverlayIfNeeded } from './user-content-overlay.migration';
-import {
-  computeScenariosOverlay,
-  mergeLegacyScenariosWithSeed,
-  resolveScenarios,
-} from './user-content-overlay.resolver';
+import { computeScenariosOverlay, resolveScenarios } from './user-content-overlay.resolver';
 import {
   patchUserContentOverlay,
   readUserContentOverlay,

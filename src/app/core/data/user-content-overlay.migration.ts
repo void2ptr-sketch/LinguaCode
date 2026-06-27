@@ -20,11 +20,7 @@ import {
   LEGACY_SCENARIOS_KEY,
   USER_CONTENT_MIGRATED_KEY,
 } from './user-content-overlay.types';
-import {
-  emptyUserContentOverlay,
-  readUserContentOverlay,
-  writeUserContentOverlay,
-} from './user-content-overlay.storage';
+import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
 
 export function migrateUserContentOverlayIfNeeded(): void {
   if (localStorage.getItem(USER_CONTENT_MIGRATED_KEY) === '1') {

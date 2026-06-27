@@ -225,13 +225,15 @@ export class DrawCanvasComponent {
     });
 
     effect(() => {
-      this.canvasRef()?.nativeElement;
-      this.surfaceWidth();
-      this.surfaceHeight();
-      this.hanziModel();
-      this.hanziLoadState();
-      this.canvasMode();
-      this.tracingStrokeDurationMs();
+      void [
+        this.canvasRef()?.nativeElement,
+        this.surfaceWidth(),
+        this.surfaceHeight(),
+        this.hanziModel(),
+        this.hanziLoadState(),
+        this.canvasMode(),
+        this.tracingStrokeDurationMs(),
+      ];
       untracked(() => this.syncGuidanceAnimation());
     });
 
