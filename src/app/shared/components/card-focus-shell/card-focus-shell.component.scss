@@ -87,12 +87,12 @@
     padding: calc(var(--card-focus-space) * 1.15) var(--card-focus-space);
   }
 
-  ::ng-deep .memory-grid {
+  ::ng-deep .memory-columns {
     gap: var(--card-focus-space);
   }
 
-  ::ng-deep .memory-tile {
-    min-height: max(4rem, min(8vmin, 6.5rem));
+  ::ng-deep .memory-item {
+    min-height: max(3.5rem, min(8vmin, 5rem));
   }
 
   ::ng-deep .draw-area {

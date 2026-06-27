@@ -13,22 +13,55 @@
   </section>
 
   <section class="quiz-card__answer" aria-label="Ответ">
-    <p class="quiz-card__section-label">Найдите пары</p>
-    <mat-card-content class="memory-grid">
-      @for (tile of tiles(); track tile.id) {
-        <button type="button" mat-stroked-button class="memory-tile" (click)="flipTile(tile)">
-          @if (isVisible(tile)) {
-            <app-lexeme-display
-              surface="answer"
-              [lexeme]="tile.lexeme"
-              [fallbackText]="tile.label"
-              [inline]="true"
-            />
-          } @else {
-            ?
+    <p class="quiz-card__section-label">Сопоставьте пары</p>
+    <p class="memory-card__hint">
+      Выберите слово в одной колонке, затем его перевод в другой.
+    </p>
+
+    <mat-card-content class="memory-columns">
+      <div class="memory-column memory-column--left">
+        <p class="memory-column__title">{{ columnLabels().left }}</p>
+        <div class="memory-column__items">
+          @for (item of leftItems(); track item.id) {
+            <button
+              type="button"
+              mat-stroked-button
+              [class]="itemClass(item)"
+              [disabled]="isMatched(item)"
+              (click)="selectItem(item)"
+            >
+              <app-lexeme-display
+                surface="answer"
+                [lexeme]="item.lexeme"
+                [fallbackText]="item.label"
+                [inline]="true"
+              />
+            </button>
           }
-        </button>
-      }
+        </div>
+      </div>
+
+      <div class="memory-column memory-column--right">
+        <p class="memory-column__title">{{ columnLabels().right }}</p>
+        <div class="memory-column__items">
+          @for (item of rightItems(); track item.id) {
+            <button
+              type="button"
+              mat-stroked-button
+              [class]="itemClass(item)"
+              [disabled]="isMatched(item)"
+              (click)="selectItem(item)"
+            >
+              <app-lexeme-display
+                surface="answer"
+                [lexeme]="item.lexeme"
+                [fallbackText]="item.label"
+                [inline]="true"
+              />
+            </button>
+          }
+        </div>
+      </div>
     </mat-card-content>
   </section>
 
@@ -44,7 +77,7 @@
       <button
         mat-flat-button
         type="button"
-        [disabled]="matched().length !== card().pairs.length"
+        [disabled]="matchedPairIds().length !== card().pairs.length"
         (click)="checkAnswer.emit()"
       >
         Проверить
