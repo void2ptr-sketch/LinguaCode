@@ -7,7 +7,10 @@ import {
   resolveScenarioCardIds,
   validateScenarioCardSource,
 } from '../../../core/data/scenario-card-source.utils';
-import { cardIndexMatchesPair, normalizeLanguagePair } from '../../../core/data/language-pair.utils';
+import {
+  cardIndexMatchesPair,
+  normalizeLanguagePair,
+} from '../../../core/data/language-pair.utils';
 import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
 import { CardSearchService, ScenarioSearchService } from '../../../core/data';
 import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
@@ -231,7 +234,9 @@ export class ScenarioBuilderStore {
     return buildSnapshotCardSource(cardIds, criteria, limit);
   }
 
-  private async normalizeDraft(draft: ScenarioDraft): Promise<import('../../../core/data/scenarios-api.service').ScenarioWritePayload | null> {
+  private async normalizeDraft(
+    draft: ScenarioDraft,
+  ): Promise<import('../../../core/data/scenarios-api.service').ScenarioWritePayload | null> {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
     const languagePair = normalizeLanguagePair(draft.languagePair);
@@ -264,15 +269,10 @@ export class ScenarioBuilderStore {
 
     if (source.mode === 'fixed') {
       const cardIds = [
-        ...new Set(
-          (await this.validateFixedCardIds(source.cardIds)).filter(Boolean),
-        ),
+        ...new Set((await this.validateFixedCardIds(source.cardIds)).filter(Boolean)),
       ];
 
-      const error = await validateScenarioCardSource(
-        { mode: 'fixed', cardIds },
-        cardExists,
-      );
+      const error = await validateScenarioCardSource({ mode: 'fixed', cardIds }, cardExists);
 
       if (error) {
         this.error.set(error.message);

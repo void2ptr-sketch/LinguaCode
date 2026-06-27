@@ -30,9 +30,7 @@ const STROKE_COUNT_TOLERANCE: Record<LearningProficiencyLevel, number> = {
   professional: 0,
 };
 
-export function resolveHanziMemoryStrokeCountTolerance(
-  level: LearningProficiencyLevel,
-): number {
+export function resolveHanziMemoryStrokeCountTolerance(level: LearningProficiencyLevel): number {
   return STROKE_COUNT_TOLERANCE[level];
 }
 

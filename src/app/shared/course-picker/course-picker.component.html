@@ -12,7 +12,9 @@
   @if (compact() && selectedCourseId() && !showFullList()) {
     <div class="course-picker__compact">
       <div class="course-picker__compact-card">
-        <span class="course-picker__title">{{ selectedCourseLabel() || 'Выбранная программа' }}</span>
+        <span class="course-picker__title">{{
+          selectedCourseLabel() || 'Выбранная программа'
+        }}</span>
         <span class="course-picker__meta">Текущая программа сессии</span>
       </div>
       <div class="course-picker__compact-actions">

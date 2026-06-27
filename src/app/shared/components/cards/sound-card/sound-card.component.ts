@@ -35,9 +35,7 @@ export class SoundCardComponent {
     return resolveOptionCard(card, direction);
   });
 
-  readonly audioLexeme = computed(
-    () => this.resolved().promptLexeme ?? this.card().promptLexeme,
-  );
+  readonly audioLexeme = computed(() => this.resolved().promptLexeme ?? this.card().promptLexeme);
 
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;

@@ -10,34 +10,34 @@
 
 G9 закрывает **орфографию CJK**: иероглифы, пиньинь, жуинь, система Палладия. **IPA** решает другую задачу — **как звучит** слово/слог, независимо от языка и письменности.
 
-| Пара | Польза IPA |
-|------|------------|
+| Пара      | Польза IPA                                                                           |
+| --------- | ------------------------------------------------------------------------------------ |
 | **ru→en** | Высокая: `[θ]`, `[ð]`, `[ŋ]`, ударение — hello → `[həˈləʊ]` (BrE) / `[həˈloʊ]` (AmE) |
-| **ru→zh** | Средняя: фонетика в учебниках; тоны как контуры Chao: `ma˧˥` |
-| **en→zh** | Низкая для MVP; пиньинь достаточен; IPA — лингвистические курсы |
-| **Любая** | `sound`: аудио + выбор/сопоставление транскрипции |
+| **ru→zh** | Средняя: фонетика в учебниках; тоны как контуры Chao: `ma˧˥`                         |
+| **en→zh** | Низкая для MVP; пиньинь достаточен; IPA — лингвистические курсы                      |
+| **Любая** | `sound`: аудио + выбор/сопоставление транскрипции                                    |
 
 G10 не заменяет G9 и **не смешивается** с UiLocale (G6): IPA — слой **контента карточки**, подписи UI остаются на языке интерфейса.
 
 ## Текущее состояние
 
-| Слой | Сейчас | Ограничение |
-|------|--------|-------------|
-| `SoundCard` | `audioLabelLearning: string` | Нет IPA, нет `audioUrl` |
-| Рендер | Roboto | Нет IPA-глифов (ʃ, ŋ, ɪ, …) |
-| `keyboard` | `trim().toLowerCase()` | Неприменимо к IPA (регистр и символы значимы) |
-| Модель G9 (черновик) | `RomanizationSystem` | Только орфография zh, без универсальной фонетики |
+| Слой                 | Сейчас                       | Ограничение                                      |
+| -------------------- | ---------------------------- | ------------------------------------------------ |
+| `SoundCard`          | `audioLabelLearning: string` | Нет IPA, нет `audioUrl`                          |
+| Рендер               | Roboto                       | Нет IPA-глифов (ʃ, ŋ, ɪ, …)                      |
+| `keyboard`           | `trim().toLowerCase()`       | Неприменимо к IPA (регистр и символы значимы)    |
+| Модель G9 (черновик) | `RomanizationSystem`         | Только орфография zh, без универсальной фонетики |
 
 ## IPA vs орфографические системы (G9)
 
-| | Пиньинь / жуинь / Палладия | IPA |
-|--|---------------------------|-----|
-| Тип | Орфография / романизация | Фонетическая транскрипция |
-| Языки | В основном zh (+ Палладия при ru) | Любой |
-| Символы | Буквы языка, Bopomofo, кириллица | Международный набор IPA |
-| Тоны (zh) | Диакритика, цифры | Контурные тоны Chao: `˥˩`, `˧˥` |
-| Ввод | Относительно простой | Сложный (редкий Unicode) |
-| MVP в LinguaCode | Показ + keyboard | **Показ + select**; keyboard — позже |
+|                  | Пиньинь / жуинь / Палладия        | IPA                                  |
+| ---------------- | --------------------------------- | ------------------------------------ |
+| Тип              | Орфография / романизация          | Фонетическая транскрипция            |
+| Языки            | В основном zh (+ Палладия при ru) | Любой                                |
+| Символы          | Буквы языка, Bopomofo, кириллица  | Международный набор IPA              |
+| Тоны (zh)        | Диакритика, цифры                 | Контурные тоны Chao: `˥˩`, `˧˥`      |
+| Ввод             | Относительно простой              | Сложный (редкий Unicode)             |
+| MVP в LinguaCode | Показ + keyboard                  | **Показ + select**; keyboard — позже |
 
 IPA **дополняет** G9, не конкурирует: для 国 возможны одновременно `guó`, `го` и `[kuɔ˧˥]`.
 
@@ -53,9 +53,9 @@ type OrthographySystem = 'pinyin' | 'zhuyin' | 'palladius' | 'orthographic';
 type PhoneticNotation = 'ipa';
 
 type IpaVariant = {
-  transcription: string;   // "[həˈləʊ]"
-  label?: string;          // "BrE", "AmE", "путунхуа"
-  locale?: string;         // en-GB, zh-CN
+  transcription: string; // "[həˈləʊ]"
+  label?: string; // "BrE", "AmE", "путунхуа"
+  locale?: string; // en-GB, zh-CN
 };
 
 type PhoneticLexeme = {
@@ -77,12 +77,12 @@ type PhoneticLexeme = {
 type PhoneticDisplayMode =
   | 'primary-only'
   | 'primary-ipa'
-  | 'primary-orthography'      // pinyin / palladius / …
+  | 'primary-orthography' // pinyin / palladius / …
   | 'primary-orthography-ipa';
 
 type PhoneticPreferences = {
   showIpa: boolean;
-  ipaVariant?: string;         // предпочтительный label (BrE / AmE)
+  ipaVariant?: string; // предпочтительный label (BrE / AmE)
   displayOrthography?: OrthographySystem;
   answerModes: readonly ('orthography' | 'ipa')[];
 };
@@ -96,26 +96,26 @@ type PhoneticPreferences = {
 
 IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7F, combining marks).
 
-| Требование | Решение |
-|------------|---------|
-| Шрифт | **Charis SIL**, **Doulos SIL** или **Gentium Plus** (self-hosted в `angular.json`) |
-| CSS | `.phonetic-ipa { font-family: 'Charis SIL', serif; }` |
-| Ударение | `ˈ` (U+02C8), `ˌ` (U+02CC) — не ASCII-апостроф |
-| Тоны Mandarin | Chao: `ma˧˥` (má), `ma˨˩˦` (mǎ) |
-| Компонент | `app-phonetic-ipa` или `app-lexeme-annotation` (ruby + IPA в `<rt>`) |
+| Требование    | Решение                                                                            |
+| ------------- | ---------------------------------------------------------------------------------- |
+| Шрифт         | **Charis SIL**, **Doulos SIL** или **Gentium Plus** (self-hosted в `angular.json`) |
+| CSS           | `.phonetic-ipa { font-family: 'Charis SIL', serif; }`                              |
+| Ударение      | `ˈ` (U+02C8), `ˌ` (U+02CC) — не ASCII-апостроф                                     |
+| Тоны Mandarin | Chao: `ma˧˥` (má), `ma˨˩˦` (mǎ)                                                    |
+| Компонент     | `app-phonetic-ipa` или `app-lexeme-annotation` (ruby + IPA в `<rt>`)               |
 
 Без IPA-шрифта символы отображаются как «тофу» — загрузка шрифта обязательна для G10b.
 
 ## Привязка к `CardKind`
 
-| `kind` | С IPA |
-|--------|--------|
-| `select` | Выбор транскрипции: *thought* → `[θɔːt]` vs `[sɔːt]` |
-| `memory` | ru ↔ en word ↔ `[ IPA ]` |
-| `sound` | Аудио + подпись IPA; варианты BrE/AmE |
-| `keyboard` | **Бэклог:** свободный ввод IPA сложен; MVP — только select |
-| `symbol` | Выбор IPA-символа: `[ŋ]` среди похожих |
-| `select` / zh | Иероглиф + IPA с контурами тона |
+| `kind`        | С IPA                                                      |
+| ------------- | ---------------------------------------------------------- |
+| `select`      | Выбор транскрипции: _thought_ → `[θɔːt]` vs `[sɔːt]`       |
+| `memory`      | ru ↔ en word ↔ `[ IPA ]`                                   |
+| `sound`       | Аудио + подпись IPA; варианты BrE/AmE                      |
+| `keyboard`    | **Бэклог:** свободный ввод IPA сложен; MVP — только select |
+| `symbol`      | Выбор IPA-символа: `[ŋ]` среди похожих                     |
+| `select` / zh | Иероглиф + IPA с контурами тона                            |
 
 ## Нормализация и проверка ответов
 
@@ -131,12 +131,12 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 
 ## Автогенерация IPA
 
-| Источник | Реализуемость |
-|----------|----------------|
-| **en** | Словари: CMUdict, Wiktionary API; BrE vs AmE |
-| **zh** | pinyin → IPA по таблицам; зависит от стандарта; ручная правка |
-| **palladius → IPA** | Цепочка через pinyin; накопление погрешностей |
-| **Ручной ввод** | Обязателен для авторов в MVP |
+| Источник            | Реализуемость                                                 |
+| ------------------- | ------------------------------------------------------------- |
+| **en**              | Словари: CMUdict, Wiktionary API; BrE vs AmE                  |
+| **zh**              | pinyin → IPA по таблицам; зависит от стандарта; ручная правка |
+| **palladius → IPA** | Цепочка через pinyin; накопление погрешностей                 |
+| **Ручной ввод**     | Обязателен для авторов в MVP                                  |
 
 Рекомендация: **G10 MVP — поле `ipa` в редакторе**; автозаполнение — G10f (опционально).
 
@@ -144,17 +144,17 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 
 ### ru→en
 
-| Primary | IPA (BrE) | IPA (AmE) |
-|---------|-----------|-----------|
-| hello | `[həˈləʊ]` | `[həˈloʊ]` |
-| thought | `[θɔːt]` | `[θɔt]` |
+| Primary | IPA (BrE)  | IPA (AmE)  |
+| ------- | ---------- | ---------- |
+| hello   | `[həˈləʊ]` | `[həˈloʊ]` |
+| thought | `[θɔːt]`   | `[θɔt]`    |
 
 ### ru→zh (вместе с G9)
 
-| Han | Pinyin | Палладица | IPA (путунхуа) |
-|-----|--------|-----------|----------------|
-| 国 | guó | го | `[kuɔ˧˥]` |
-| 马 (má) | má | ма | `[ma˧˥]` |
+| Han     | Pinyin | Палладица | IPA (путунхуа) |
+| ------- | ------ | --------- | -------------- |
+| 国      | guó    | го        | `[kuɔ˧˥]`      |
+| 马 (má) | má     | ма        | `[ma˧˥]`       |
 
 ## Редактор и каталог
 
@@ -165,34 +165,34 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 
 ## Связь с G9
 
-| Трек | Фокус |
-|------|--------|
-| **G9** | Орфография CJK: han, pinyin, zhuyin, palladius, тоны в орфографии |
-| **G10** | Универсальная фонетика: IPA для любого языка |
+| Трек    | Фокус                                                             |
+| ------- | ----------------------------------------------------------------- |
+| **G9**  | Орфография CJK: han, pinyin, zhuyin, palladius, тоны в орфографии |
+| **G10** | Универсальная фонетика: IPA для любого языка                      |
 
 Общий контейнер **`PhoneticLexeme`** объединяет оба слоя; `CjkLexeme` — частный случай или type alias.
 
 ## Риски
 
-| Тема | Решение |
-|------|---------|
-| Нет IPA-шрифта | Self-hosted Charis SIL / Doulos SIL |
-| BrE vs AmE | `IpaVariant[]` с `label` |
-| Санитизация | Не обрезать combining marks |
-| UiLocale ≠ IPA | Подписи UI на русском; контент — IPA-символы |
-| Сложный keyboard | Отложить; MVP = показ + select |
+| Тема             | Решение                                      |
+| ---------------- | -------------------------------------------- |
+| Нет IPA-шрифта   | Self-hosted Charis SIL / Doulos SIL          |
+| BrE vs AmE       | `IpaVariant[]` с `label`                     |
+| Санитизация      | Не обрезать combining marks                  |
+| UiLocale ≠ IPA   | Подписи UI на русском; контент — IPA-символы |
+| Сложный keyboard | Отложить; MVP = показ + select               |
 
 ## Этапы G10
 
-| Шаг | Содержание |
-|-----|------------|
-| G10.1 | `IpaVariant`, `ipa` в `PhoneticLexeme`; расширение G9-типов |
-| G10.2 | IPA-шрифты; `app-phonetic-ipa` |
-| G10.3 | Показ IPA в `sound`, `select`, `memory` (ruby / subtitle) |
-| G10.4 | `PhoneticPreferences.showIpa`; профиль / appearance |
-| G10.5 | Demo ru→en с IPA; тег `ipa` в каталоге; поиск по транскрипции |
+| Шаг   | Содержание                                                                               |
+| ----- | ---------------------------------------------------------------------------------------- |
+| G10.1 | `IpaVariant`, `ipa` в `PhoneticLexeme`; расширение G9-типов                              |
+| G10.2 | IPA-шрифты; `app-phonetic-ipa`                                                           |
+| G10.3 | Показ IPA в `sound`, `select`, `memory` (ruby / subtitle)                                |
+| G10.4 | `PhoneticPreferences.showIpa`; профиль / appearance                                      |
+| G10.5 | Demo ru→en с IPA; тег `ipa` в каталоге; поиск по транскрипции                            |
 | G10.6 | (опц.) автозаполнение en (CMUdict / Wiktionary) — `lookupEnglishIpa`, кнопка в редакторе |
-| G10.7 | (опц.) zh IPA + Chao tones; `pinyinToIpa`; keyboard `answerMode` |
+| G10.7 | (опц.) zh IPA + Chao tones; `pinyinToIpa`; keyboard `answerMode`                         |
 
 ## Связанные пути в коде (план)
 
@@ -210,12 +210,12 @@ public/fonts/                                   # Charis SIL / Doulos SIL
 
 ## Отличие осей
 
-| Ось | Пример | Трек |
-|-----|--------|------|
-| **UiLocale** (G6) | Кнопка «Проверить» | UI |
-| **Orthography** (G9) | guó, го, 国 | Контент |
-| **Phonetics** (G10) | `[kuɔ˧˥]` | Контент |
-| **Audio** | `audioUrl`, TTS | G9/G10 + `sound` |
+| Ось                  | Пример             | Трек             |
+| -------------------- | ------------------ | ---------------- |
+| **UiLocale** (G6)    | Кнопка «Проверить» | UI               |
+| **Orthography** (G9) | guó, го, 国        | Контент          |
+| **Phonetics** (G10)  | `[kuɔ˧˥]`          | Контент          |
+| **Audio**            | `audioUrl`, TTS    | G9/G10 + `sound` |
 
 ## Ссылки
 

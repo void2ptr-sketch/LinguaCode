@@ -3,7 +3,12 @@ import { medianToSvgPath, resolveHanziSvgGroupTransform } from './hanzi-render.u
 
 describe('hanzi-render.utils', () => {
   it('should build median svg path', () => {
-    expect(medianToSvgPath([{ x: 10, y: 20 }, { x: 30, y: 40 }])).toBe('M 10 20 L 30 40');
+    expect(
+      medianToSvgPath([
+        { x: 10, y: 20 },
+        { x: 30, y: 40 },
+      ]),
+    ).toBe('M 10 20 L 30 40');
   });
 
   it('should build svg group transform from positioner (Hanzi Writer compatible)', () => {

@@ -16,7 +16,10 @@ import {
 } from '../../core/data/card-direction.utils';
 import { answersMatchIpa } from '../../core/data/ipa-normalize.utils';
 import { collectLexemeAcceptedAnswers } from '../../core/data/lexeme-draft.utils';
-import { resolveIpaString, resolveRomanizationReading } from '../../core/data/phonetic-lexeme.utils';
+import {
+  resolveIpaString,
+  resolveRomanizationReading,
+} from '../../core/data/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../core/models/phonetic-content.types';
 import { CardAnswerState } from '../types';
 
@@ -34,7 +37,10 @@ const matchesLexemeAnswer = (actual: string, lexeme: PhoneticLexeme): boolean =>
     }
   }
 
-  if (lexeme.script === 'hani' && normalizeHanAnswer(lexeme.primary) === normalizeHanAnswer(trimmed)) {
+  if (
+    lexeme.script === 'hani' &&
+    normalizeHanAnswer(lexeme.primary) === normalizeHanAnswer(trimmed)
+  ) {
     return true;
   }
 
@@ -182,7 +188,12 @@ export const getCorrectAnswerLabel = (
 };
 
 function resolveOptionLexeme(card: Card, index: number): PhoneticLexeme | undefined {
-  if (card.kind === 'select' || card.kind === 'timed' || card.kind === 'sound' || card.kind === 'reading') {
+  if (
+    card.kind === 'select' ||
+    card.kind === 'timed' ||
+    card.kind === 'sound' ||
+    card.kind === 'reading'
+  ) {
     return card.optionsLexemes?.[index];
   }
 

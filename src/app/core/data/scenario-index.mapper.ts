@@ -11,7 +11,9 @@ export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
     cardSourceSummary: scenarioCardsLabel(scenario.cardSource),
     published: scenario.published,
     updatedAt: scenario.updatedAt,
-    languagePairSummary: scenario.languagePair ? formatLanguagePair(scenario.languagePair) : undefined,
+    languagePairSummary: scenario.languagePair
+      ? formatLanguagePair(scenario.languagePair)
+      : undefined,
   };
 }
 

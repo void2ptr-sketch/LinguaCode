@@ -1,4 +1,14 @@
-import { Component, computed, effect, inject, input, output, signal, untracked, viewChild } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+  untracked,
+  viewChild,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +23,7 @@ import {
   resolveDrawLearningSpeechText,
   resolveDrawPromptLexeme,
   resolveDrawQuestion,
+  resolveInitialDrawCanvasMode,
 } from '../../../../core/data/draw-card.utils';
 import {
   radicalComponentColor,
@@ -85,16 +96,14 @@ export class DrawCardComponent {
     return targets[this.activeCharIndex()] ?? targets[0];
   });
 
-  readonly learningAudioUrl = computed(() =>
-    resolveDrawAudioUrl(this.card(), this.activeTarget()),
-  );
+  readonly learningAudioUrl = computed(() => resolveDrawAudioUrl(this.card(), this.activeTarget()));
 
   readonly learningSpeechText = computed(() =>
     resolveDrawLearningSpeechText(this.card(), this.activeTarget()),
   );
 
-  readonly canPlayLearningAudio = computed(
-    () => Boolean(this.learningAudioUrl() || this.learningSpeechText()),
+  readonly canPlayLearningAudio = computed(() =>
+    Boolean(this.learningAudioUrl() || this.learningSpeechText()),
   );
 
   readonly showSyllableTabs = computed(() => this.characterTargets().length > 0);
@@ -214,7 +223,7 @@ export class DrawCardComponent {
       }
 
       this.lastCardId = cardId;
-      this.panelMode.set('memory');
+      this.panelMode.set(resolveInitialDrawCanvasMode());
       this.activeCharIndex.set(0);
       this.charDone.set(Array.from({ length: count }, () => false));
       this.charStrokes.set(Array.from({ length: count }, () => []));
@@ -429,10 +438,7 @@ export class DrawCardComponent {
   }
 }
 
-function strokesEqual(
-  left: readonly DrawStrokePath[],
-  right: readonly DrawStrokePath[],
-): boolean {
+function strokesEqual(left: readonly DrawStrokePath[], right: readonly DrawStrokePath[]): boolean {
   if (left.length !== right.length) {
     return false;
   }

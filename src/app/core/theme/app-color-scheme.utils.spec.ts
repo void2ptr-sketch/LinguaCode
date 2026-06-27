@@ -1,4 +1,8 @@
-import { applyColorSchemeToDocument, normalizeColorScheme, readStoredColorScheme } from './app-color-scheme.utils';
+import {
+  applyColorSchemeToDocument,
+  normalizeColorScheme,
+  readStoredColorScheme,
+} from './app-color-scheme.utils';
 
 describe('app-color-scheme.utils', () => {
   beforeEach(() => {
@@ -19,7 +23,13 @@ describe('app-color-scheme.utils', () => {
       JSON.stringify({
         id: 'u1',
         displayName: 'Test',
-        preferences: { colorScheme: 'dark', theme: 'azure-blue', fontSize: 'md', languagePairs: [], activeLanguagePairId: '' },
+        preferences: {
+          colorScheme: 'dark',
+          theme: 'azure-blue',
+          fontSize: 'md',
+          languagePairs: [],
+          activeLanguagePairId: '',
+        },
       }),
     );
 

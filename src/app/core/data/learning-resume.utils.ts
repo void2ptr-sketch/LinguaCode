@@ -48,7 +48,9 @@ export function inferActiveCourseId(
     return saved.activeCourseId;
   }
 
-  const sorted = [...pairResults].sort((left, right) => right.answeredAt.localeCompare(left.answeredAt));
+  const sorted = [...pairResults].sort((left, right) =>
+    right.answeredAt.localeCompare(left.answeredAt),
+  );
   const fromResults = sorted.find((item) => item.courseId)?.courseId;
   if (fromResults) {
     return fromResults;
@@ -65,7 +67,9 @@ export function buildLessonRoadmap(
   const lessonsById = buildLessonsById(sorted);
 
   return sorted.map((lesson) => {
-    const completedScenarios = lesson.scenarioIds.filter((scenarioId) => hasScenarioResult(scenarioId)).length;
+    const completedScenarios = lesson.scenarioIds.filter((scenarioId) =>
+      hasScenarioResult(scenarioId),
+    ).length;
 
     return {
       lessonId: lesson.id,
@@ -80,7 +84,9 @@ export function buildLessonRoadmap(
   });
 }
 
-export function resolveLearningResumeTarget(context: LearningResumeContext): LearningResumeTarget | null {
+export function resolveLearningResumeTarget(
+  context: LearningResumeContext,
+): LearningResumeTarget | null {
   const { course, hasScenarioResult, scenarioTitles, pairResults } = context;
   const lessons = [...course.lessons].sort((left, right) => left.order - right.order);
 
@@ -97,7 +103,8 @@ export function resolveLearningResumeTarget(context: LearningResumeContext): Lea
   }
 
   const lessonsById = buildLessonsById(lessons);
-  const hasAnyResult = pairResults.some((item) => item.courseId === course.id) ||
+  const hasAnyResult =
+    pairResults.some((item) => item.courseId === course.id) ||
     lessons.some((item) => item.scenarioIds.some((id) => hasScenarioResult(id)));
 
   for (const lesson of lessons) {
@@ -120,7 +127,9 @@ export function resolveLearningResumeTarget(context: LearningResumeContext): Lea
     }
   }
 
-  const firstLesson = lessons.find((lesson) => isLessonUnlocked(lesson, lessonsById, hasScenarioResult));
+  const firstLesson = lessons.find((lesson) =>
+    isLessonUnlocked(lesson, lessonsById, hasScenarioResult),
+  );
   const firstScenarioId = firstLesson?.scenarioIds[0] ?? '';
 
   return {

@@ -92,12 +92,9 @@ export class DrawCanvasComponent {
   readonly radicalLoadState = signal<HanziLoadState>('idle');
   readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
 
-
   readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
 
-  readonly svgViewBox = computed(
-    () => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`,
-  );
+  readonly svgViewBox = computed(() => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`);
 
   readonly hanziPositioner = computed(
     () =>
@@ -469,9 +466,7 @@ export class DrawCanvasComponent {
 
   private resolveThemeColor(variable: string, fallback: string): string {
     const canvas = this.canvasRef()?.nativeElement;
-    const fromCanvas = canvas
-      ? getComputedStyle(canvas).getPropertyValue(variable).trim()
-      : '';
+    const fromCanvas = canvas ? getComputedStyle(canvas).getPropertyValue(variable).trim() : '';
     if (fromCanvas) {
       return fromCanvas;
     }
@@ -533,7 +528,11 @@ export class DrawCanvasComponent {
     return Boolean(model && model.strokes.length > 0);
   }
 
-  private paintRadicalHints(context: CanvasRenderingContext2D, width: number, height: number): void {
+  private paintRadicalHints(
+    context: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+  ): void {
     if (this.canvasMode() !== 'radicals' || this.radicalLoadState() !== 'ready') {
       return;
     }
@@ -617,9 +616,7 @@ export class DrawCanvasComponent {
       return;
     }
 
-    this.tracingSamples = prepareHanziTracingSamples(
-      model.strokes.map((stroke) => stroke.points),
-    );
+    this.tracingSamples = prepareHanziTracingSamples(model.strokes.map((stroke) => stroke.points));
     this.tracingAnimationStart = performance.now();
     this.tracingFrame.set(EMPTY_TRACING_FRAME);
     this.tracingAnimationActive = true;
@@ -680,7 +677,14 @@ export class DrawCanvasComponent {
         if (strokePath) {
           this.paintTracingStrokeFill(context, strokePath, positioner, strokeColor);
         } else {
-          this.paintTracingPolyline(context, sample.densified, positioner, strokeColor, lineWidth, 1);
+          this.paintTracingPolyline(
+            context,
+            sample.densified,
+            positioner,
+            strokeColor,
+            lineWidth,
+            1,
+          );
         }
         continue;
       }

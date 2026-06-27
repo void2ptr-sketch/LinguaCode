@@ -63,14 +63,17 @@ describe('Home learning dashboard smoke', () => {
         if (url.includes('/courses/demo-course')) {
           request.flush({
             ...DEFAULT_COURSE_CATALOG.courses[0],
-            lessons: DEFAULT_COURSE_CATALOG.lessons.filter((lesson) => lesson.courseId === 'demo-course'),
+            lessons: DEFAULT_COURSE_CATALOG.lessons.filter(
+              (lesson) => lesson.courseId === 'demo-course',
+            ),
           });
           continue;
         }
 
         if (url.includes('/scenarios/demo-scenario')) {
           request.flush(
-            DEFAULT_SCENARIOS.find((scenario) => scenario.id === 'demo-scenario') ?? DEFAULT_SCENARIOS[0],
+            DEFAULT_SCENARIOS.find((scenario) => scenario.id === 'demo-scenario') ??
+              DEFAULT_SCENARIOS[0],
           );
           continue;
         }

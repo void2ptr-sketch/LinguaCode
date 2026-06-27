@@ -66,7 +66,11 @@ export class MemoryCardComponent implements OnInit {
   }
 
   flipTile(tile: MemoryTile): void {
-    if (this.feedback() !== null || this.matched().includes(tile.pairId) || this.flipped().includes(tile.id)) {
+    if (
+      this.feedback() !== null ||
+      this.matched().includes(tile.pairId) ||
+      this.flipped().includes(tile.id)
+    ) {
       return;
     }
 

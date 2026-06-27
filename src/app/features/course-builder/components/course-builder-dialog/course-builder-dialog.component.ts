@@ -10,7 +10,10 @@ import {
   serializeCourseFormDraft,
 } from '../../utils/course-form-draft.utils';
 import { CourseFormComponent } from '../course-form/course-form.component';
-import type { CourseBuilderDialogData, CourseBuilderDialogResult } from './course-builder-dialog.types';
+import type {
+  CourseBuilderDialogData,
+  CourseBuilderDialogResult,
+} from './course-builder-dialog.types';
 import type { CourseFormDraft } from '../../types';
 
 @Component({

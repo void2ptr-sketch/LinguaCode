@@ -112,7 +112,10 @@ describe('phonetic-preferences.utils', () => {
       answerModes: ['orthography'] as const,
     };
 
-    expect(resolveRomanizationsForSurface('answer', cjk, phonetic)).toEqual(['palladius', 'pinyin']);
+    expect(resolveRomanizationsForSurface('answer', cjk, phonetic)).toEqual([
+      'palladius',
+      'pinyin',
+    ]);
   });
 
   it('should hide answer romanizations when orthography mode disabled', () => {

@@ -77,7 +77,10 @@ export function hanziNormalizeCurve(points: readonly HanziPoint[]): HanziPoint[]
 }
 
 /** Discrete Fréchet distance between two polylines. */
-export function hanziFrechetDistance(left: readonly HanziPoint[], right: readonly HanziPoint[]): number {
+export function hanziFrechetDistance(
+  left: readonly HanziPoint[],
+  right: readonly HanziPoint[],
+): number {
   if (left.length === 0 || right.length === 0) {
     return Number.POSITIVE_INFINITY;
   }

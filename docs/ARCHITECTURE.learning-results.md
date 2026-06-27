@@ -46,13 +46,13 @@ flowchart LR
 
 ## API store (ключевые методы)
 
-| Метод | Назначение |
-|-------|------------|
-| `addResult` | Запись ответа |
-| `resultsForScenario` | История по сценарию |
+| Метод                 | Назначение                            |
+| --------------------- | ------------------------------------- |
+| `addResult`           | Запись ответа                         |
+| `resultsForScenario`  | История по сценарию                   |
 | `scenarioSetProgress` | completed/total по списку scenarioIds |
-| `courseProgress` | % по программе |
-| `isLessonCompleted` | все сценарии урока пройдены |
+| `courseProgress`      | % по программе                        |
+| `isLessonCompleted`   | все сценарии урока пройдены           |
 
 ## Связанные документы
 

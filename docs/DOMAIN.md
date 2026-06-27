@@ -18,23 +18,23 @@
 Card  →  Scenario  →  Lesson  →  Course
 ```
 
-| Уровень | Сущность | Назначение | Статус |
-|---------|----------|------------|--------|
-| 1 | `Card` | Атомарное упражнение (вопрос, пара, ввод…) | MVP |
-| 2 | `Scenario` | Один прогон: фиксированный или criteria-набор карточек | MVP |
-| 3 | `Lesson` | Тема: несколько сценариев в заданном порядке | G11 |
-| 4 | `Course` | Программа: несколько уроков; привязана к `LanguagePair` | G11 |
+| Уровень | Сущность   | Назначение                                              | Статус |
+| ------- | ---------- | ------------------------------------------------------- | ------ |
+| 1       | `Card`     | Атомарное упражнение (вопрос, пара, ввод…)              | MVP    |
+| 2       | `Scenario` | Один прогон: фиксированный или criteria-набор карточек  | MVP    |
+| 3       | `Lesson`   | Тема: несколько сценариев в заданном порядке            | G11    |
+| 4       | `Course`   | Программа: несколько уроков; привязана к `LanguagePair` | G11    |
 
 ### Термины: не путать «курс» и `LanguagePair`
 
 В UI и документации G7/G8 слово **«курс»** иногда означает **активную языковую пару** (ru→en, ru→zh) — scope контента в каталогах и обучении. В домене G11 **`Course`** — отдельная сущность: **учебная программа** из уроков.
 
-| В речи / UI | В домене | Пример |
-|-------------|----------|--------|
+| В речи / UI                         | В домене       | Пример                            |
+| ----------------------------------- | -------------- | --------------------------------- |
 | языковая пара, «курс ru→en» (G7/G8) | `LanguagePair` | `{ known: 'ru', learning: 'en' }` |
-| учебная программа | `Course` | «Английский A1: базовый» |
-| тематический блок | `Lesson` | «Урок 3: Приветствия» |
-| прогон упражнений | `Scenario` | «Демо: приветствие» |
+| учебная программа                   | `Course`       | «Английский A1: базовый»          |
+| тематический блок                   | `Lesson`       | «Урок 3: Приветствия»             |
+| прогон упражнений                   | `Scenario`     | «Демо: приветствие»               |
 
 Рекомендация для UI (G11e): активный scope подписывать **«Курс: …»** (`LanguagePair`); сущность **`Course`** в UI называть **программой** / **учебной программой**, чтобы не путать с scope.
 
@@ -42,13 +42,13 @@ Card  →  Scenario  →  Lesson  →  Course
 
 Точка входа обучения — **`/home`** (вкладка «Обучение»). Экран отвечает на вопрос **«что делать дальше»**, не дублируя пикеры с `/cards/select`.
 
-| Элемент | Назначение |
-|---------|------------|
-| Hero | активный **курс** (`LanguagePair`) и **программа** (`Course`) |
+| Элемент                   | Назначение                                                             |
+| ------------------------- | ---------------------------------------------------------------------- |
+| Hero                      | активный **курс** (`LanguagePair`) и **программа** (`Course`)          |
 | CTA «Продолжить / Начать» | deep link на `/cards/select?courseId&lessonId&scenarioId&tab=learning` |
-| Прогресс программы | агрегация `LearningResultsStore.courseProgress` |
-| Roadmap уроков | locked / in progress / done (`lesson-prerequisites.utils`) |
-| Статистика | краткая точность; подробности — `/home/progress` |
+| Прогресс программы        | агрегация `LearningResultsStore.courseProgress`                        |
+| Roadmap уроков            | locked / in progress / done (`lesson-prerequisites.utils`)             |
+| Статистика                | краткая точность; подробности — `/home/progress`                       |
 
 **Persistence:** `UserLanguagePairSettings.learning` (`LearningSessionPreferences`):
 
@@ -130,23 +130,23 @@ erDiagram
 
 ### Сущности
 
-| Модель | Описание | Файл типов |
-|--------|----------|------------|
-| `User` | Пользователь; `displayName`, `UserPreferences` | `user.types.ts` |
-| `UserPreferences` | `CardAppearance`, `colorScheme`, `cardFocusFullscreen`, `learningProficiencyLevel`, языковые пары | `user.types.ts` |
-| `LearningProficiencyLevel` | Уровень владения изучаемым языком (строгость проверки) | `learning-proficiency.types.ts` |
-| `UserLanguagePairEntry` | Пара + settings (CJK, IPA, learning) | `user-language-pair.types.ts` |
-| `Card` | Карточка; union по `kind` | `card.types.ts` |
-| `CardKind` | Тип карточки (см. таблицу ниже) | `card.types.ts` |
-| `PhoneticLexeme` | Лексема (han, pinyin, ipa…) | `phonetic-content.types.ts` |
-| `Scenario` | Сценарий; `cardSource` | `scenario.types.ts` |
-| `ScenarioCardSource` | `fixed` / `criteria` / `snapshot` | `scenario-card-source.types.ts` |
-| `Lesson` | Урок программы | `lesson.types.ts` |
-| `Course` | Учебная программа | `course.types.ts` |
-| `LearningResult` | Результат ответа | `learning-result.types.ts` |
-| `LearningSessionPreferences` | activeCourseId, lastLessonId, lastScenarioId | `learning-session.types.ts` |
-| `CardIndexEntry` | Запись каталога | `card-index.types.ts` |
-| `CardSearchCriteria` | Критерии поиска | `card-search.types.ts` |
+| Модель                       | Описание                                                                                          | Файл типов                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------- | ------------------------------- |
+| `User`                       | Пользователь; `displayName`, `UserPreferences`                                                    | `user.types.ts`                 |
+| `UserPreferences`            | `CardAppearance`, `colorScheme`, `cardFocusFullscreen`, `learningProficiencyLevel`, языковые пары | `user.types.ts`                 |
+| `LearningProficiencyLevel`   | Уровень владения изучаемым языком (строгость проверки)                                            | `learning-proficiency.types.ts` |
+| `UserLanguagePairEntry`      | Пара + settings (CJK, IPA, learning)                                                              | `user-language-pair.types.ts`   |
+| `Card`                       | Карточка; union по `kind`                                                                         | `card.types.ts`                 |
+| `CardKind`                   | Тип карточки (см. таблицу ниже)                                                                   | `card.types.ts`                 |
+| `PhoneticLexeme`             | Лексема (han, pinyin, ipa…)                                                                       | `phonetic-content.types.ts`     |
+| `Scenario`                   | Сценарий; `cardSource`                                                                            | `scenario.types.ts`             |
+| `ScenarioCardSource`         | `fixed` / `criteria` / `snapshot`                                                                 | `scenario-card-source.types.ts` |
+| `Lesson`                     | Урок программы                                                                                    | `lesson.types.ts`               |
+| `Course`                     | Учебная программа                                                                                 | `course.types.ts`               |
+| `LearningResult`             | Результат ответа                                                                                  | `learning-result.types.ts`      |
+| `LearningSessionPreferences` | activeCourseId, lastLessonId, lastScenarioId                                                      | `learning-session.types.ts`     |
+| `CardIndexEntry`             | Запись каталога                                                                                   | `card-index.types.ts`           |
+| `CardSearchCriteria`         | Критерии поиска                                                                                   | `card-search.types.ts`          |
 
 Реэкспорт: `src/app/core/models/index.ts`.
 
@@ -154,17 +154,17 @@ erDiagram
 
 ### Типы карточек (`CardKind`)
 
-| `kind` | Назначение | Статус |
-|--------|------------|--------|
-| `select` | Вопрос с выбором ответа | реализовано |
-| `memory` | Запоминание пар | реализовано |
-| `symbol` | Символы | реализовано |
-| `sound` | Звук | реализовано |
-| `timed` | Временное ограничение | реализовано |
-| `keyboard` | Ввод с клавиатуры | реализовано |
-| `draw` | Рисование | реализовано |
-| `tone` | Тоны / слоги | реализовано |
-| `reading` | Чтение | реализовано |
+| `kind`     | Назначение              | Статус      |
+| ---------- | ----------------------- | ----------- |
+| `select`   | Вопрос с выбором ответа | реализовано |
+| `memory`   | Запоминание пар         | реализовано |
+| `symbol`   | Символы                 | реализовано |
+| `sound`    | Звук                    | реализовано |
+| `timed`    | Временное ограничение   | реализовано |
+| `keyboard` | Ввод с клавиатуры       | реализовано |
+| `draw`     | Рисование               | реализовано |
+| `tone`     | Тоны / слоги            | реализовано |
+| `reading`  | Чтение                  | реализовано |
 
 ### Базовые типы
 
@@ -237,8 +237,8 @@ type LearningResult = {
   answeredAt: string; // ISO 8601
   languagePair: LanguagePair;
   direction?: CardDirection;
-  lessonId?: string;   // G11 — опционально для агрегации прогресса по уроку
-  courseId?: string;   // G11 — опционально для агрегации прогресса по курсу
+  lessonId?: string; // G11 — опционально для агрегации прогресса по уроку
+  courseId?: string; // G11 — опционально для агрегации прогресса по курсу
 };
 
 type User = {
@@ -291,7 +291,12 @@ type CardSearchCriteria = {
 type ScenarioCardSource =
   | { mode: 'fixed'; cardIds: readonly string[] }
   | { mode: 'criteria'; criteria: Omit<CardSearchCriteria, 'page'>; limit?: number }
-  | { mode: 'snapshot'; cardIds: readonly string[]; criteria: Omit<CardSearchCriteria, 'page'>; frozenAt: string };
+  | {
+      mode: 'snapshot';
+      cardIds: readonly string[];
+      criteria: Omit<CardSearchCriteria, 'page'>;
+      frozenAt: string;
+    };
 ```
 
 Расположение в коде: `src/app/core/models/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).

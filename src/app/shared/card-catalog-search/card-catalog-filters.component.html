@@ -1,4 +1,7 @@
-<section class="card-catalog-filters" [class.card-catalog-filters--pair-locked]="store.pairLocked()">
+<section
+  class="card-catalog-filters"
+  [class.card-catalog-filters--pair-locked]="store.pairLocked()"
+>
   <mat-form-field class="card-catalog-filters__query" appearance="outline">
     <mat-label>Поиск</mat-label>
     <input
@@ -14,10 +17,7 @@
   @if (!store.pairLocked()) {
     <mat-form-field class="card-catalog-filters__known" appearance="outline">
       <mat-label>Известный язык</mat-label>
-      <mat-select
-        [ngModel]="store.knownLanguage()"
-        (ngModelChange)="onKnownLanguageChange($event)"
-      >
+      <mat-select [ngModel]="store.knownLanguage()" (ngModelChange)="onKnownLanguageChange($event)">
         <mat-option [value]="null">Все</mat-option>
         @for (language of languages; track language) {
           <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
@@ -41,10 +41,7 @@
 
   <mat-form-field class="card-catalog-filters__difficulty" appearance="outline">
     <mat-label>Сложность</mat-label>
-    <mat-select
-      [ngModel]="store.difficulty()"
-      (ngModelChange)="onDifficultyChange($event)"
-    >
+    <mat-select [ngModel]="store.difficulty()" (ngModelChange)="onDifficultyChange($event)">
       <mat-option [value]="null">Все</mat-option>
       @for (level of difficulties; track level) {
         <mat-option [value]="level">{{ difficultyLabels[level] }}</mat-option>

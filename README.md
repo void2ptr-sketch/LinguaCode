@@ -14,12 +14,12 @@
 
 ## Требования
 
-| Инструмент | Версия |
-|------------|--------|
-| Node.js | 20 LTS или новее (см. `.nvmrc`) |
-| npm | 10+ |
-| Angular CLI | 19+ |
-| Git | 2.x |
+| Инструмент  | Версия                          |
+| ----------- | ------------------------------- |
+| Node.js     | 20 LTS или новее (см. `.nvmrc`) |
+| npm         | 10+                             |
+| Angular CLI | 19+                             |
+| Git         | 2.x                             |
 
 ## Быстрый старт
 
@@ -34,13 +34,13 @@ npm start
 
 ## Скрипты
 
-| Команда | Описание |
-|---------|----------|
-| `npm start` | Dev-сервер с hot reload |
-| `npm run build` | Production-сборка |
-| `npm test` | Unit-тесты |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier |
+| Команда          | Описание                |
+| ---------------- | ----------------------- |
+| `npm start`      | Dev-сервер с hot reload |
+| `npm run build`  | Production-сборка       |
+| `npm test`       | Unit-тесты              |
+| `npm run lint`   | ESLint                  |
+| `npm run format` | Prettier                |
 
 ## Стек
 

@@ -13,14 +13,7 @@ export function applyHanziCanvasPathTransform(
   positioner: HanziPositioner,
 ): void {
   const translateY = positioner.height - positioner.yOffset;
-  context.transform(
-    positioner.scale,
-    0,
-    0,
-    -positioner.scale,
-    positioner.xOffset,
-    translateY,
-  );
+  context.transform(positioner.scale, 0, 0, -positioner.scale, positioner.xOffset, translateY);
 }
 
 export function medianToSvgPath(points: readonly HanziPoint[]): string {

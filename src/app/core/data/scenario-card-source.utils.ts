@@ -27,11 +27,11 @@ export function emptyCardSearchCriteria(): Omit<CardSearchCriteria, 'page'> {
 export function hasCardSearchFilters(criteria: Omit<CardSearchCriteria, 'page'>): boolean {
   return Boolean(
     criteria.query?.trim() ||
-      criteria.knownLanguage ||
-      criteria.learningLanguage ||
-      criteria.difficulty ||
-      (criteria.kinds?.length ?? 0) > 0 ||
-      (criteria.tags?.length ?? 0) > 0,
+    criteria.knownLanguage ||
+    criteria.learningLanguage ||
+    criteria.difficulty ||
+    (criteria.kinds?.length ?? 0) > 0 ||
+    (criteria.tags?.length ?? 0) > 0,
   );
 }
 
@@ -43,10 +43,7 @@ export function scenarioUsesCardId(source: ScenarioCardSource, cardId: string): 
   return false;
 }
 
-export function scenarioUsesCardEntry(
-  source: ScenarioCardSource,
-  entry: CardIndexEntry,
-): boolean {
+export function scenarioUsesCardEntry(source: ScenarioCardSource, entry: CardIndexEntry): boolean {
   if (source.mode === 'fixed' || source.mode === 'snapshot') {
     return source.cardIds.includes(entry.id);
   }

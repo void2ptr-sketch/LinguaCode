@@ -91,7 +91,9 @@ export class CardRepository {
     return cards.find((card) => card.id === cardId) ?? null;
   }
 
-  toCatalogItems(cards: readonly Card[]): readonly { id: string; kind: Card['kind']; title: string }[] {
+  toCatalogItems(
+    cards: readonly Card[],
+  ): readonly { id: string; kind: Card['kind']; title: string }[] {
     return cards.map((card) => ({
       id: card.id,
       kind: card.kind,

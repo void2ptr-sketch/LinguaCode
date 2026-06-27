@@ -1,8 +1,4 @@
-import type {
-  CardSearchCriteria,
-  ContentLanguage,
-  LanguagePair,
-} from '../models';
+import type { CardSearchCriteria, ContentLanguage, LanguagePair } from '../models';
 import type { CardIndexEntry } from '../models/card-index.types';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
@@ -20,7 +16,9 @@ export function isContentLanguage(value: unknown): value is ContentLanguage {
 
 export function normalizeLanguagePair(pair?: Partial<LanguagePair> | null): LanguagePair {
   const known = isContentLanguage(pair?.known) ? pair.known : DEFAULT_LANGUAGE_PAIR.known;
-  const learning = isContentLanguage(pair?.learning) ? pair.learning : DEFAULT_LANGUAGE_PAIR.learning;
+  const learning = isContentLanguage(pair?.learning)
+    ? pair.learning
+    : DEFAULT_LANGUAGE_PAIR.learning;
 
   if (known === learning) {
     return DEFAULT_LANGUAGE_PAIR;
@@ -53,8 +51,7 @@ export function cardSearchCriteriaMatchesPair(
   pair: LanguagePair,
 ): boolean {
   const knownMatches = !criteria.knownLanguage || criteria.knownLanguage === pair.known;
-  const learningMatches =
-    !criteria.learningLanguage || criteria.learningLanguage === pair.learning;
+  const learningMatches = !criteria.learningLanguage || criteria.learningLanguage === pair.learning;
 
   return knownMatches && learningMatches;
 }

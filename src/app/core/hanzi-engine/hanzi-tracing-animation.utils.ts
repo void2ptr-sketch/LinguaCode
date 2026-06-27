@@ -52,7 +52,8 @@ export function resolveHanziTracingFrame(
     return emptyHanziTracingFrame();
   }
 
-  const strokeDurationMs = options.strokeDurationMs ?? DEFAULT_HANZI_TRACING_OPTIONS.strokeDurationMs;
+  const strokeDurationMs =
+    options.strokeDurationMs ?? DEFAULT_HANZI_TRACING_OPTIONS.strokeDurationMs;
   const delayBetweenStrokesMs =
     options.delayBetweenStrokesMs ?? DEFAULT_HANZI_TRACING_OPTIONS.delayBetweenStrokesMs;
   const loopPauseMs = options.loopPauseMs ?? DEFAULT_HANZI_TRACING_OPTIONS.loopPauseMs;
@@ -176,10 +177,7 @@ export function resolveHanziPolylineTip(
   return { point: tail, angleRad };
 }
 
-export function tracingRevealProgress(
-  frame: HanziTracingFrame,
-  strokeIndex: number,
-): number {
+export function tracingRevealProgress(frame: HanziTracingFrame, strokeIndex: number): number {
   if (strokeIndex < frame.completedStrokeCount) {
     return 1;
   }

@@ -13,11 +13,15 @@ export class ApiClient {
   }
 
   getData<T>(path: string): Promise<T> {
-    return firstValueFrom(this.http.get<ApiResponse<T>>(buildApiUrl(path))).then((response) => response.data);
+    return firstValueFrom(this.http.get<ApiResponse<T>>(buildApiUrl(path))).then(
+      (response) => response.data,
+    );
   }
 
   getList<T>(path: string): Promise<readonly T[]> {
-    return firstValueFrom(this.http.get<ApiListResponse<T>>(buildApiUrl(path))).then((response) => response.data);
+    return firstValueFrom(this.http.get<ApiListResponse<T>>(buildApiUrl(path))).then(
+      (response) => response.data,
+    );
   }
 
   post<T, B = unknown>(path: string, body: B): Promise<T> {

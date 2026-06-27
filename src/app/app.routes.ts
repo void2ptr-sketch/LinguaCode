@@ -25,46 +25,46 @@ export const routes: Routes = [
           {
             path: 'progress',
             loadComponent: () =>
-              import(
-                './features/learning-results/components/learning-progress/learning-progress.component'
-              ).then((m) => m.LearningProgressComponent),
+              import('./features/learning-results/components/learning-progress/learning-progress.component').then(
+                (m) => m.LearningProgressComponent,
+              ),
           },
         ],
       },
       {
         path: 'cards/select',
         loadComponent: () =>
-          import(
-            './features/card-select/components/card-select-page/card-select-page.component'
-          ).then((m) => m.CardSelectPageComponent),
+          import('./features/card-select/components/card-select-page/card-select-page.component').then(
+            (m) => m.CardSelectPageComponent,
+          ),
       },
       {
         path: 'courses',
         loadComponent: () =>
-          import(
-            './features/course-catalog/components/course-catalog-page/course-catalog-page.component'
-          ).then((m) => m.CourseCatalogPageComponent),
+          import('./features/course-catalog/components/course-catalog-page/course-catalog-page.component').then(
+            (m) => m.CourseCatalogPageComponent,
+          ),
       },
       {
         path: 'tools/scenario-builder',
         loadComponent: () =>
-          import(
-            './features/scenario-builder/components/scenario-builder-page/scenario-builder-page.component'
-          ).then((m) => m.ScenarioBuilderPageComponent),
+          import('./features/scenario-builder/components/scenario-builder-page/scenario-builder-page.component').then(
+            (m) => m.ScenarioBuilderPageComponent,
+          ),
       },
       {
         path: 'tools/courses',
         loadComponent: () =>
-          import(
-            './features/course-builder/components/course-builder-page/course-builder-page.component'
-          ).then((m) => m.CourseBuilderPageComponent),
+          import('./features/course-builder/components/course-builder-page/course-builder-page.component').then(
+            (m) => m.CourseBuilderPageComponent,
+          ),
       },
       {
         path: 'tools/cards',
         loadComponent: () =>
-          import(
-            './features/card-editor/components/card-editor-page/card-editor-page.component'
-          ).then((m) => m.CardEditorPageComponent),
+          import('./features/card-editor/components/card-editor-page/card-editor-page.component').then(
+            (m) => m.CardEditorPageComponent,
+          ),
       },
       { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },

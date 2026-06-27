@@ -1,8 +1,4 @@
-import {
-  applyToneToPinyinSyllable,
-  normalizeToneOptions,
-  toneMarkLabel,
-} from './tone-mark.utils';
+import { applyToneToPinyinSyllable, normalizeToneOptions, toneMarkLabel } from './tone-mark.utils';
 
 describe('tone-mark.utils', () => {
   it('should apply tone marks to pinyin syllable', () => {

@@ -65,7 +65,11 @@ export type PhoneticPreferences = {
   answerModes: readonly ('orthography' | 'ipa')[];
 };
 
-export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
+export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = [
+  'pinyin',
+  'zhuyin',
+  'palladius',
+];
 
 export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
   displayRomanizations: ['pinyin'],

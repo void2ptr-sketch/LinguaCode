@@ -269,7 +269,12 @@ export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
   }
 
   const phonetics = buildDrawPhoneticsLexeme(lexeme);
-  if (!phonetics.pinyin?.trim() && !phonetics.zhuyin?.trim() && !phonetics.palladius?.trim() && !phonetics.ipa) {
+  if (
+    !phonetics.pinyin?.trim() &&
+    !phonetics.zhuyin?.trim() &&
+    !phonetics.palladius?.trim() &&
+    !phonetics.ipa
+  ) {
     return null;
   }
 
@@ -277,11 +282,11 @@ export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
 }
 
 /** UI draw cards always open on «По памяти»; `practiceMode` on card is editor metadata only. */
-export function resolveInitialDrawCanvasMode(_card: DrawCard): DrawCanvasMode {
+export function resolveInitialDrawCanvasMode(): DrawCanvasMode {
   return 'memory';
 }
 
-/** @deprecated Use resolveInitialDrawCanvasMode(card) when card context is available. */
+/** @deprecated Use resolveInitialDrawCanvasMode(). */
 export function initialDrawCanvasMode(): DrawCanvasMode {
-  return 'memory';
+  return resolveInitialDrawCanvasMode();
 }

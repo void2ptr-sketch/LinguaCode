@@ -137,19 +137,16 @@ export class CoursesCatalogMockHandler {
   async findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     await this.ensureData();
 
-    return this.catalog!.courses
-      .filter((course) =>
-        this.catalog!.lessons.some(
-          (lesson) =>
-            lesson.courseId === course.id && lesson.scenarioIds.includes(scenarioId),
-        ),
-      )
-      .map((course) =>
-        courseToIndexEntry(
-          course,
-          this.catalog!.lessons.filter((lesson) => lesson.courseId === course.id).length,
-        ),
-      );
+    return this.catalog!.courses.filter((course) =>
+      this.catalog!.lessons.some(
+        (lesson) => lesson.courseId === course.id && lesson.scenarioIds.includes(scenarioId),
+      ),
+    ).map((course) =>
+      courseToIndexEntry(
+        course,
+        this.catalog!.lessons.filter((lesson) => lesson.courseId === course.id).length,
+      ),
+    );
   }
 
   resetCache(): void {
@@ -162,8 +159,7 @@ export class CoursesCatalogMockHandler {
     }
 
     const migrated = loadCourseCatalogFromStorage();
-    this.catalog =
-      migrated.courses.length > 0 ? migrated : structuredClone(DEFAULT_COURSE_CATALOG);
+    this.catalog = migrated.courses.length > 0 ? migrated : structuredClone(DEFAULT_COURSE_CATALOG);
     this.persist();
   }
 
@@ -175,10 +171,7 @@ export class CoursesCatalogMockHandler {
     return this.catalog!.lessons.filter((lesson) => course.lessonIds.includes(lesson.id));
   }
 
-  private normalizeLessons(
-    courseId: string,
-    drafts: CourseWritePayload['lessons'],
-  ): Lesson[] {
+  private normalizeLessons(courseId: string, drafts: CourseWritePayload['lessons']): Lesson[] {
     return drafts.map((draft, index) => ({
       id: draft.id ?? crypto.randomUUID(),
       courseId,

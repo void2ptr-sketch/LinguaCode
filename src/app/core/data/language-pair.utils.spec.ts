@@ -1,4 +1,8 @@
-import { formatLanguagePair, isContentLanguage, normalizeLanguagePair } from './language-pair.utils';
+import {
+  formatLanguagePair,
+  isContentLanguage,
+  normalizeLanguagePair,
+} from './language-pair.utils';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
 describe('language-pair.utils', () => {
@@ -8,7 +12,9 @@ describe('language-pair.utils', () => {
 
   it('should normalize invalid pair to default', () => {
     expect(normalizeLanguagePair({ known: 'ru', learning: 'ru' })).toEqual(DEFAULT_LANGUAGE_PAIR);
-    expect(normalizeLanguagePair({ known: 'xx' as 'en', learning: 'en' })).toEqual(DEFAULT_LANGUAGE_PAIR);
+    expect(normalizeLanguagePair({ known: 'xx' as 'en', learning: 'en' })).toEqual(
+      DEFAULT_LANGUAGE_PAIR,
+    );
   });
 
   it('should accept valid content languages', () => {

@@ -74,7 +74,9 @@ export class HanziDataService {
 
   async loadCharacters(characters: readonly string[]): Promise<Map<string, HanziCharacterModel>> {
     const unique = [...new Set(characters.map((character) => character.trim()).filter(Boolean))];
-    const models = await Promise.all(unique.map(async (character) => [character, await this.loadCharacter(character)] as const));
+    const models = await Promise.all(
+      unique.map(async (character) => [character, await this.loadCharacter(character)] as const),
+    );
     const result = new Map<string, HanziCharacterModel>();
 
     for (const [character, model] of models) {

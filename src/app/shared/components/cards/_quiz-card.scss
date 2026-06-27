@@ -84,7 +84,9 @@
   display: flex;
   padding: 0.875rem 1rem;
   text-align: left;
-  transition: border-color 0.15s ease, background-color 0.15s ease;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
   width: 100%;
 }
 

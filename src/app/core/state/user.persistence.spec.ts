@@ -31,7 +31,9 @@ describe('UserPersistence', () => {
     expect(user?.preferences.languagePairs).toHaveSize(1);
     expect(user?.preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(user?.preferences.activeLanguagePairId).toBe(user?.preferences.languagePairs[0].id);
-    expect(user?.preferences.languagePairs[0].settings?.cjkLearning?.displayRomanizations).toEqual(['pinyin']);
+    expect(user?.preferences.languagePairs[0].settings?.cjkLearning?.displayRomanizations).toEqual([
+      'pinyin',
+    ]);
   });
 
   it('should normalize stored languagePairs with per-pair settings', () => {
@@ -48,7 +50,9 @@ describe('UserPersistence', () => {
               id: 'pair-1',
               pair: { known: 'ru', learning: 'en' },
               createdAt: '2026-01-01T00:00:00.000Z',
-              settings: { phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['ipa'] } },
+              settings: {
+                phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['ipa'] },
+              },
             },
             {
               id: 'pair-2',
@@ -73,7 +77,9 @@ describe('UserPersistence', () => {
     expect(user?.preferences.languagePairs).toHaveSize(2);
     expect(user?.preferences.activeLanguagePairId).toBe('pair-2');
     expect(user?.preferences.languagePairs[0].settings?.phonetic?.showIpa).toBeTrue();
-    expect(user?.preferences.languagePairs[1].settings?.cjkLearning?.displayRomanizations).toEqual(['palladius']);
+    expect(user?.preferences.languagePairs[1].settings?.cjkLearning?.displayRomanizations).toEqual([
+      'palladius',
+    ]);
   });
 
   it('should migrate legacy global cjkLearning and phonetic into pair entries', () => {
@@ -86,8 +92,16 @@ describe('UserPersistence', () => {
           theme: 'azure-blue',
           fontSize: 'md',
           languagePairs: [
-            { id: 'pair-1', pair: { known: 'ru', learning: 'en' }, createdAt: '2026-01-01T00:00:00.000Z' },
-            { id: 'pair-2', pair: { known: 'ru', learning: 'zh' }, createdAt: '2026-01-02T00:00:00.000Z' },
+            {
+              id: 'pair-1',
+              pair: { known: 'ru', learning: 'en' },
+              createdAt: '2026-01-01T00:00:00.000Z',
+            },
+            {
+              id: 'pair-2',
+              pair: { known: 'ru', learning: 'zh' },
+              createdAt: '2026-01-02T00:00:00.000Z',
+            },
           ],
           activeLanguagePairId: 'pair-2',
           cjkLearning: {

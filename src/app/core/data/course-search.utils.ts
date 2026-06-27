@@ -37,11 +37,7 @@ export function matchesCourseIndexEntry(
   }
 
   if (
-    !courseIndexMatchesLanguageCriteria(
-      entry,
-      criteria.knownLanguage,
-      criteria.learningLanguage,
-    )
+    !courseIndexMatchesLanguageCriteria(entry, criteria.knownLanguage, criteria.learningLanguage)
   ) {
     return false;
   }

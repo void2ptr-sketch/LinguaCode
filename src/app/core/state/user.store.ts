@@ -1,6 +1,10 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { formatLanguagePair, isContentLanguage, normalizeLanguagePair } from '../data/language-pair.utils';
+import {
+  formatLanguagePair,
+  isContentLanguage,
+  normalizeLanguagePair,
+} from '../data/language-pair.utils';
 import {
   createDefaultLanguagePairPreferences,
   createUserLanguagePairEntry,
@@ -47,7 +51,9 @@ export class UserStore {
   readonly user = this.userState.asReadonly();
   readonly displayName = computed(() => this.user().displayName);
   readonly preferences = computed(() => this.user().preferences);
-  readonly learningProficiencyLevel = computed(() => this.user().preferences.learningProficiencyLevel);
+  readonly learningProficiencyLevel = computed(
+    () => this.user().preferences.learningProficiencyLevel,
+  );
   readonly languagePairs = computed(() => this.user().preferences.languagePairs);
   readonly activeLanguagePairId = computed(() => this.user().preferences.activeLanguagePairId);
 
@@ -65,7 +71,9 @@ export class UserStore {
   readonly languagePairLabel = computed(() => formatLanguagePair(this.languagePair()));
   readonly cjkLearning = computed(() => resolveCjkLearningForPair(this.activeLanguagePairEntry()));
   readonly phonetic = computed(() => resolvePhoneticForPair(this.activeLanguagePairEntry()));
-  readonly learningSession = computed(() => resolveLearningSessionForPair(this.activeLanguagePairEntry()));
+  readonly learningSession = computed(() =>
+    resolveLearningSessionForPair(this.activeLanguagePairEntry()),
+  );
 
   updateDisplayName(displayName: string): void {
     const sanitized = sanitizePlainText(displayName);

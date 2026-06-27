@@ -31,18 +31,26 @@ describe('hanzi golden quiz fixtures', () => {
       it('should accept aligned strokes at beginner and professional levels', () => {
         const strokes = goldenAlignedStrokes(model);
 
-        expect(validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'beginner').passed).toBeTrue();
-        expect(validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'professional').passed).toBeTrue();
+        expect(
+          validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'beginner').passed,
+        ).toBeTrue();
+        expect(
+          validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'professional').passed,
+        ).toBeTrue();
       });
 
       it('should reject a corner scribble', () => {
         const scribble = Array.from({ length: model.strokes.length }, () => cornerScribbleStroke());
-        expect(validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, scribble, 'beginner').passed).toBeFalse();
+        expect(
+          validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, scribble, 'beginner').passed,
+        ).toBeFalse();
       });
 
       it('should reject heavily offset strokes at professional level', () => {
         const offset = offsetDrawStrokes(goldenAlignedStrokes(model), 80, 80);
-        expect(validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, offset, 'professional').passed).toBeFalse();
+        expect(
+          validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, offset, 'professional').passed,
+        ).toBeFalse();
       });
 
       it('should reject incomplete stroke order at intermediate level', () => {
@@ -51,7 +59,9 @@ describe('hanzi golden quiz fixtures', () => {
         }
 
         const partial = goldenAlignedStrokes(model).slice(0, 1);
-        expect(validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, partial, 'intermediate').passed).toBeFalse();
+        expect(
+          validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, partial, 'intermediate').passed,
+        ).toBeFalse();
       });
     });
   }
@@ -70,7 +80,8 @@ describe('hanzi golden quiz fixtures', () => {
         );
 
         expect(
-          validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'beginner').passed,
+          validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'beginner')
+            .passed,
         ).toBeTrue();
       });
 
@@ -84,7 +95,8 @@ describe('hanzi golden quiz fixtures', () => {
         );
 
         expect(
-          validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'professional').passed,
+          validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'professional')
+            .passed,
         ).toBeFalse();
       });
     }
@@ -106,7 +118,9 @@ describe('hanzi golden quiz fixtures', () => {
       const alignedFirstStroke = goldenAlignedStrokes(calibrationModel)[0]!;
 
       for (const { level, leniency } of levelExpectations) {
-        const session = new HanziQuizSession(calibrationModel, positioner, { proficiencyLevel: level });
+        const session = new HanziQuizSession(calibrationModel, positioner, {
+          proficiencyLevel: level,
+        });
         const result = session.submitCanvasStroke(alignedFirstStroke);
         expect(result.accepted).withContext(level).toBeTrue();
         expect(session.summary().strokeCount).withContext(level).toBe(2);

@@ -8,7 +8,9 @@ describe('courses-storage', () => {
   it('should include ru→zh demo courses and lessons', () => {
     expect(DEFAULT_ZH_COURSE_CATALOG.courses).toHaveSize(2);
     expect(DEFAULT_ZH_COURSE_CATALOG.lessons).toHaveSize(5);
-    expect(DEFAULT_ZH_COURSE_CATALOG.courses.every((course) => course.languagePair.learning === 'zh')).toBeTrue();
+    expect(
+      DEFAULT_ZH_COURSE_CATALOG.courses.every((course) => course.languagePair.learning === 'zh'),
+    ).toBeTrue();
   });
 
   it('should merge missing default courses and lessons into stored catalog', () => {

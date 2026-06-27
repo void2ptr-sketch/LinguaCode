@@ -8,15 +8,15 @@
 
 ## Основные модули
 
-| Область | Путь | Назначение |
-|---------|------|------------|
-| Card host | `shared/components/card-host` | Рендер `Card` по `kind` |
-| Quiz cards | `shared/components/cards/*` | Select, memory, keyboard, draw… |
-| Lexeme | `shared/components/lexeme-display`, `cjk-ruby`, `phonetic-ipa` | G9/G10 отображение |
-| Pickers | `shared/course-picker`, `lesson-picker`, `scenario-picker` | Выбор программы/урока/сценария |
-| Pagination | `shared/pagination` | `UiPaginationComponent`, `PageRequest` |
-| Catalog search | `shared/card-catalog-search` | Фильтры и store поиска карточек |
-| Utils | `shared/utils/card-answer.utils` | Проверка ответов |
+| Область        | Путь                                                           | Назначение                             |
+| -------------- | -------------------------------------------------------------- | -------------------------------------- |
+| Card host      | `shared/components/card-host`                                  | Рендер `Card` по `kind`                |
+| Quiz cards     | `shared/components/cards/*`                                    | Select, memory, keyboard, draw…        |
+| Lexeme         | `shared/components/lexeme-display`, `cjk-ruby`, `phonetic-ipa` | G9/G10 отображение                     |
+| Pickers        | `shared/course-picker`, `lesson-picker`, `scenario-picker`     | Выбор программы/урока/сценария         |
+| Pagination     | `shared/pagination`                                            | `UiPaginationComponent`, `PageRequest` |
+| Catalog search | `shared/card-catalog-search`                                   | Фильтры и store поиска карточек        |
+| Utils          | `shared/utils/card-answer.utils`                               | Проверка ответов                       |
 
 ## CardHost — маршрутизация по kind
 

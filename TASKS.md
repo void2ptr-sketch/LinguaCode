@@ -15,7 +15,7 @@
 
 - [x] Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
 - [x] Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
-- [x] Добавить layout (шапка, подвал, навигация, контент, menu-*)
+- [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
   - шапка — `/src/app/core/layout/header`
     - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
     - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
@@ -184,7 +184,6 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] **Ca3e** — `UserPreferences.cardFocusFullscreen`: запоминание при переключении; авто-вход на вкладке «Обучение»; настройка в профиле «Внешний вид»
 - [x] **Ca3f** — unit-тест `card-focus-shell.component.spec.ts`
 
-
 ### Результаты обучения
 
 - [x] Сохранение `LearningResult` (локально / API)
@@ -227,7 +226,6 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Каталог: фильтры сверху, результаты снизу (вертикальный layout)
 - [x] Sidebar: пункт «Карточки» переименован в «Обучение» (`/cards/select`, icon `school`)
 - [x] Sidebar: дублированы маршруты из header — «Карточки» (`/tools/cards`), «Конструктор сценариев» (шапка без изменений)
-
 
 ### Конструктор сценариев (масштаб)
 
@@ -457,10 +455,10 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Контекст: в модели уже есть `displayRomanizations` (задание) и `answerRomanization` (ответы), но UI профиля и `LexemeDisplay` используют только первое; `answerRomanization` / `answerModes` сохраняются, но **не читаются** в рендере.
 
-| Роль | Где на карточке | Поля профиля (CJK) | Поля профиля (IPA) |
-|------|-----------------|--------------------|--------------------|
-| **Задание** | subtitle / prompt (`promptLexeme`) | `displayRomanizations[]` | `showIpa`, `ipaVariantLabel` |
-| **Ответы** | варианты, плитки memory, feedback | `answerRomanization[]` | `answerModes[]` (`orthography` / `ipa`) |
+| Роль        | Где на карточке                    | Поля профиля (CJK)       | Поля профиля (IPA)                      |
+| ----------- | ---------------------------------- | ------------------------ | --------------------------------------- |
+| **Задание** | subtitle / prompt (`promptLexeme`) | `displayRomanizations[]` | `showIpa`, `ipaVariantLabel`            |
+| **Ответы**  | варианты, плитки memory, feedback  | `answerRomanization[]`   | `answerModes[]` (`orthography` / `ipa`) |
 
 Направление сессии (`known-to-learning` ↔ `learning-to-known`) меняет **какой текст** показывается, но не роль: заголовок = задание, кнопки/плитки = ответы.
 
@@ -761,7 +759,6 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 - [ ] Не смешивать с `ContentLanguage` / `LanguagePair`
 
-
 ## D. Документация
 
 - [x] Все файлы должны быть связаны через линки (для удобного перехода по документации).
@@ -785,14 +782,12 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] Документацию вести на русском языке
 - [x] Формат документации UTF-8 (см. [INDEX.md § Формат](./docs/INDEX.md))
 
-
 ### L. Локализация (UiLocale)
 
-- [ ]  Настройка каждого языка в отдельном файле
-- [ ]  Поддержка английского языка
-- [ ]  Поддержка китайского языка
-- [ ]  Фича `features/locale/`
-- [ ]  Файлы переводов в `/src/locale`, формат: `messages.LANG.ts`
-- [ ]  Подключить локализацию в роутинг — в навигации
-- [ ]  Автоматическое переключение языка
-
+- [ ] Настройка каждого языка в отдельном файле
+- [ ] Поддержка английского языка
+- [ ] Поддержка китайского языка
+- [ ] Фича `features/locale/`
+- [ ] Файлы переводов в `/src/locale`, формат: `messages.LANG.ts`
+- [ ] Подключить локализацию в роутинг — в навигации
+- [ ] Автоматическое переключение языка

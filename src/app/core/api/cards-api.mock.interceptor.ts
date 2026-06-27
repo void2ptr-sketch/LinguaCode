@@ -24,7 +24,11 @@ const extractCardId = (url: string): string | null => {
 export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   const handler = inject(CardsCatalogMockHandler);
 
-  if (req.method === 'POST' && isApiRequest(req.url) && req.url.endsWith(`${environment.apiUrl}/cards/batch`)) {
+  if (
+    req.method === 'POST' &&
+    isApiRequest(req.url) &&
+    req.url.endsWith(`${environment.apiUrl}/cards/batch`)
+  ) {
     const body = req.body as { ids?: readonly string[] };
     const ids = body?.ids ?? [];
 

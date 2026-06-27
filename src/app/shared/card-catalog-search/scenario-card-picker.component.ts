@@ -5,11 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { UiPaginationComponent } from '../pagination';
 import { formatIndexLanguagePair } from '../../core/data/language-pair.utils';
 import { UserStore } from '../../core/state';
-import {
-  CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
-  DIFFICULTY_LABELS,
-} from './catalog-labels';
+import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS, DIFFICULTY_LABELS } from './catalog-labels';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
@@ -17,12 +13,7 @@ let lastKnownPickerActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-scenario-card-picker',
-  imports: [
-    MatCheckboxModule,
-    MatListModule,
-    UiPaginationComponent,
-    CardCatalogFiltersComponent,
-  ],
+  imports: [MatCheckboxModule, MatListModule, UiPaginationComponent, CardCatalogFiltersComponent],
   templateUrl: './scenario-card-picker.component.html',
   styleUrl: './scenario-card-picker.component.scss',
 })

@@ -42,7 +42,11 @@ describe('hanzi-memory-validation.utils', () => {
 
   function alignedRenStrokes() {
     const model = buildHanziCharacterModel('人', REN_JSON);
-    const positioner = new HanziPositioner({ width: canvasSize.width, height: canvasSize.height, padding: 20 });
+    const positioner = new HanziPositioner({
+      width: canvasSize.width,
+      height: canvasSize.height,
+      padding: 20,
+    });
     return model.strokes.map((stroke) => stroke.points.map((point) => positioner.toCanvas(point)));
   }
 
@@ -51,7 +55,9 @@ describe('hanzi-memory-validation.utils', () => {
     const strokes = alignedRenStrokes();
 
     expect(validateHanziMemoryStrokes(model, canvasSize, strokes, 'beginner').passed).toBeTrue();
-    expect(validateHanziMemoryStrokes(model, canvasSize, strokes, 'professional').passed).toBeTrue();
+    expect(
+      validateHanziMemoryStrokes(model, canvasSize, strokes, 'professional').passed,
+    ).toBeTrue();
   });
 
   it('should reject wrong stroke count for intermediate level', () => {

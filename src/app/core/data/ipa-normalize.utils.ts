@@ -4,7 +4,10 @@ export function normalizeIpa(value: string, stripBrackets = true): string {
   let normalized = value.normalize('NFKC').trim();
 
   if (stripBrackets) {
-    normalized = normalized.replace(/^\[(.*)\]$/u, '$1').replace(/^\/(.*)\/$/u, '$1').trim();
+    normalized = normalized
+      .replace(/^\[(.*)\]$/u, '$1')
+      .replace(/^\/(.*)\/$/u, '$1')
+      .trim();
   }
 
   return normalized.replace(/\s+/g, ' ');

@@ -49,7 +49,9 @@
           @for (result of recentResults(); track result.id) {
             <mat-list-item>
               <mat-icon matListItemIcon>{{ result.correct ? 'check_circle' : 'cancel' }}</mat-icon>
-              <span matListItemTitle>{{ scenarioLabel(result.scenarioId) }} · {{ result.cardId }}</span>
+              <span matListItemTitle
+                >{{ scenarioLabel(result.scenarioId) }} · {{ result.cardId }}</span
+              >
               <span matListItemLine>{{ formatDate(result.answeredAt) }}</span>
             </mat-list-item>
           }

@@ -66,10 +66,14 @@
                   <button
                     mat-icon-button
                     type="button"
-                    [attr.aria-label]="isOwnScenario(scenario.authorId) ? 'Редактировать' : 'Просмотр'"
+                    [attr.aria-label]="
+                      isOwnScenario(scenario.authorId) ? 'Редактировать' : 'Просмотр'
+                    "
                     (click)="startEdit(scenario.id)"
                   >
-                    <mat-icon>{{ isOwnScenario(scenario.authorId) ? 'edit' : 'visibility' }}</mat-icon>
+                    <mat-icon>{{
+                      isOwnScenario(scenario.authorId) ? 'edit' : 'visibility'
+                    }}</mat-icon>
                   </button>
                   @if (isOwnScenario(scenario.authorId)) {
                     <button

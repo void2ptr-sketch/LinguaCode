@@ -415,7 +415,5 @@ export function pinyinToPalladius(pinyin: string): string {
     return '';
   }
 
-  return syllables
-    .map((syllable) => pinyinSyllableToPalladius(syllable) ?? syllable)
-    .join(' ');
+  return syllables.map((syllable) => pinyinSyllableToPalladius(syllable) ?? syllable).join(' ');
 }

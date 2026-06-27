@@ -3,7 +3,10 @@ import type { AppColorScheme } from '../theme/app-color-scheme.types';
 import type { LearningProficiencyLevel } from './learning-proficiency.types';
 import type { UserLanguagePairEntry } from './user-language-pair.types';
 
-export type { LearningProficiencyLevel, LearningProficiencyOption } from './learning-proficiency.types';
+export type {
+  LearningProficiencyLevel,
+  LearningProficiencyOption,
+} from './learning-proficiency.types';
 export {
   LEARNING_PROFICIENCY_LEVELS,
   DEFAULT_LEARNING_PROFICIENCY_LEVEL,

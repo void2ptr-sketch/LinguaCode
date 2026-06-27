@@ -12,11 +12,7 @@ export {
   type HanziUserStrokeInput,
 } from './hanzi-character.types';
 
-export {
-  HanziPositioner,
-  mapPointsToCanvas,
-  parseHanziMedianPoints,
-} from './hanzi-positioner';
+export { HanziPositioner, mapPointsToCanvas, parseHanziMedianPoints } from './hanzi-positioner';
 
 export {
   buildHanziCharacterModel,

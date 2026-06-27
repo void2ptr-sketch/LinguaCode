@@ -47,12 +47,20 @@ export function matchHanziUserStroke(
 ): HanziStrokeMatchResult {
   const points = hanziStripDuplicatePoints(userPoints);
   if (points.length < 2) {
-    return { isMatch: false, avgDist: Number.POSITIVE_INFINITY, meta: { isStrokeBackwards: false } };
+    return {
+      isMatch: false,
+      avgDist: Number.POSITIVE_INFINITY,
+      meta: { isStrokeBackwards: false },
+    };
   }
 
   const targetStroke = character.strokes[strokeNum];
   if (!targetStroke) {
-    return { isMatch: false, avgDist: Number.POSITIVE_INFINITY, meta: { isStrokeBackwards: false } };
+    return {
+      isMatch: false,
+      avgDist: Number.POSITIVE_INFINITY,
+      meta: { isStrokeBackwards: false },
+    };
   }
 
   const { isMatch, meta, avgDist } = getHanziStrokeMatchData(points, targetStroke, options);
@@ -106,10 +114,12 @@ function getHanziStrokeMatchData(
   }
 
   const startAndEndMatch = startAndEndMatches(points, stroke, leniency);
-  const directionMatch = hanziStrokeDirectionSimilarity(points, stroke) > COSINE_SIMILARITY_THRESHOLD;
+  const directionMatch =
+    hanziStrokeDirectionSimilarity(points, stroke) > COSINE_SIMILARITY_THRESHOLD;
   const shapeMatch = shapeFit(points, stroke.points, leniency);
   const lengthMatch = lengthMatches(points, stroke, leniency);
-  const isMatch = withinDistThresh && startAndEndMatch && directionMatch && shapeMatch && lengthMatch;
+  const isMatch =
+    withinDistThresh && startAndEndMatch && directionMatch && shapeMatch && lengthMatch;
 
   if (checkBackwards && !isMatch) {
     const backwards = getHanziStrokeMatchData([...points].reverse(), stroke, {
@@ -147,10 +157,16 @@ function lengthMatches(
   stroke: HanziStrokeModel,
   leniency: number,
 ): boolean {
-  return (leniency * (hanziLength(points) + 25)) / (hanziStrokeLength(stroke) + 25) >= MIN_LEN_THRESHOLD;
+  return (
+    (leniency * (hanziLength(points) + 25)) / (hanziStrokeLength(stroke) + 25) >= MIN_LEN_THRESHOLD
+  );
 }
 
-function shapeFit(userCurve: readonly HanziPoint[], strokeCurve: readonly HanziPoint[], leniency: number): boolean {
+function shapeFit(
+  userCurve: readonly HanziPoint[],
+  strokeCurve: readonly HanziPoint[],
+  leniency: number,
+): boolean {
   const normUser = hanziNormalizeCurve(userCurve);
   const normStroke = hanziNormalizeCurve(strokeCurve);
   let minDist = Number.POSITIVE_INFINITY;

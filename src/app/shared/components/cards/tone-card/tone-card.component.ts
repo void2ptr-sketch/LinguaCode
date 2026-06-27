@@ -2,10 +2,7 @@ import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  applyToneToPinyinSyllable,
-  toneMarkLabel,
-} from '../../../../core/data/tone-mark.utils';
+import { applyToneToPinyinSyllable, toneMarkLabel } from '../../../../core/data/tone-mark.utils';
 import { ToneCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';
@@ -16,7 +13,13 @@ import { buildOptionClass } from '../option-card.utils';
 
 @Component({
   selector: 'app-tone-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, ToneColoredTextComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    ToneColoredTextComponent,
+  ],
   templateUrl: './tone-card.component.html',
   styleUrl: './tone-card.component.scss',
 })

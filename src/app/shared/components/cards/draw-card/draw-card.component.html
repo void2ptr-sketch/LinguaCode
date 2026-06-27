@@ -43,7 +43,9 @@
     </mat-button-toggle-group>
 
     @if (showStrokeOrderNote()) {
-      <p class="draw-card__stroke-note">Пунктир — порядок черт; цифры указывают последовательность.</p>
+      <p class="draw-card__stroke-note">
+        Пунктир — порядок черт; цифры указывают последовательность.
+      </p>
     }
 
     <mat-card-content class="draw-card__content">
@@ -106,10 +108,20 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button mat-flat-button type="button" [disabled]="!hasStrokes() || drawSubmitted()" (click)="submitDrawing()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="!hasStrokes() || drawSubmitted()"
+        (click)="submitDrawing()"
+      >
         {{ hasMultipleSyllables() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
       </button>
-      <button mat-flat-button type="button" [disabled]="!drawSubmitted()" (click)="checkAnswer.emit()">
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="!drawSubmitted()"
+        (click)="checkAnswer.emit()"
+      >
         Проверить
       </button>
     } @else {

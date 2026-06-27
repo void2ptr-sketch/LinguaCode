@@ -10,10 +10,7 @@
     </div>
   </header>
 
-  <app-practice-session-bar
-    [segments]="sessionSegments()"
-    (segmentSelect)="goToTab($event)"
-  />
+  <app-practice-session-bar [segments]="sessionSegments()" (segmentSelect)="goToTab($event)" />
 
   <app-practice-stepper [steps]="practiceSteps()" (stepSelect)="goToTab($event)" />
 
@@ -94,9 +91,7 @@
           </div>
         } @else {
           @if (selectedCourseId() && selectedLessonId()) {
-            <p class="card-select-page__tab-note">
-              Показаны сценарии урока «{{ lessonTitle() }}».
-            </p>
+            <p class="card-select-page__tab-note">Показаны сценарии урока «{{ lessonTitle() }}».</p>
           }
           <app-scenario-picker
             [selectedScenarioId]="selectedScenarioId()"
@@ -210,7 +205,9 @@
                       Следующий сценарий урока
                     </button>
                   }
-                  <button mat-stroked-button type="button" (click)="loadCards()">Начать заново</button>
+                  <button mat-stroked-button type="button" (click)="loadCards()">
+                    Начать заново
+                  </button>
                 </mat-card-actions>
               </mat-card>
             } @else {

@@ -1,4 +1,8 @@
-import { pinyinSyllableToPalladius, pinyinToPalladius, stripPinyinTones } from './cjk-romanization.utils';
+import {
+  pinyinSyllableToPalladius,
+  pinyinToPalladius,
+  stripPinyinTones,
+} from './cjk-romanization.utils';
 
 describe('cjk-romanization.utils', () => {
   it('should strip pinyin tone marks', () => {

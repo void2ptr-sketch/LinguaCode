@@ -1,6 +1,9 @@
 import { HttpParams } from '@angular/common/http';
 
-import { buildScenarioSearchParams, parseScenarioSearchCriteria } from './scenarios-api.params.utils';
+import {
+  buildScenarioSearchParams,
+  parseScenarioSearchCriteria,
+} from './scenarios-api.params.utils';
 
 describe('scenarios-api.params.utils', () => {
   it('should build and parse scenario search params', () => {

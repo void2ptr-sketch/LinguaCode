@@ -1,5 +1,8 @@
 import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../core/models';
-import type { DrawPracticeMode, DrawCharacterTarget } from '../../../core/models/draw-practice.types';
+import type {
+  DrawPracticeMode,
+  DrawCharacterTarget,
+} from '../../../core/models/draw-practice.types';
 import type { ToneMark } from '../../../core/models/phonetic-content.types';
 import { CardDirection } from '../../../core/models/language-pair.types';
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';

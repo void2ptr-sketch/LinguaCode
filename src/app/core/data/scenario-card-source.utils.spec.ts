@@ -1,4 +1,9 @@
-import { normalizeScenario, scenarioCardsLabel, scenarioUsesCardEntry, scenarioUsesCardId } from './scenario-card-source.utils';
+import {
+  normalizeScenario,
+  scenarioCardsLabel,
+  scenarioUsesCardEntry,
+  scenarioUsesCardId,
+} from './scenario-card-source.utils';
 import type { CardIndexEntry } from '../models';
 
 describe('scenario-card-source.utils', () => {

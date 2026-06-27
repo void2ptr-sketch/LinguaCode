@@ -72,10 +72,7 @@ export function hanziStrokeAverageDistance(
   return total / points.length;
 }
 
-function hanziMinDistanceToPolyline(
-  point: HanziPoint,
-  polyline: readonly HanziPoint[],
-): number {
+function hanziMinDistanceToPolyline(point: HanziPoint, polyline: readonly HanziPoint[]): number {
   let min = Number.POSITIVE_INFINITY;
   for (let index = 1; index < polyline.length; index += 1) {
     const distance = hanziDistancePointToSegment(point, polyline[index - 1]!, polyline[index]!);

@@ -1,16 +1,15 @@
 import { stripPinyinTones } from '../../../core/data/cjk-romanization.utils';
-import type { DrawCharacterTarget, DrawPracticeMode } from '../../../core/models/draw-practice.types';
+import type {
+  DrawCharacterTarget,
+  DrawPracticeMode,
+} from '../../../core/models/draw-practice.types';
 import { normalizeToneOptions } from '../../../core/data/tone-mark.utils';
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
 } from '../../../core/data/lexeme-draft.utils';
-import {
-  isAllowedFontSize,
-  sanitizePlainText,
-  sanitizeTheme,
-} from '../../../core/security';
+import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../../../core/security';
 import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import {
   Card,
@@ -241,7 +240,10 @@ export const normalizeSymbolCardDraft = (
   };
 };
 
-export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): SoundCard | null => {
+export const normalizeSoundCardDraft = (
+  draft: SoundCardDraft,
+  cardId: string,
+): SoundCard | null => {
   const audioLabelLearning = sanitizeShort(draft.audioLabelLearning);
   const optionsKnown = normalizeOptions(draft.optionsKnown);
   const core = normalizeOptionCardDraftCore(draft, optionsKnown, draft.optionsLexemes);
@@ -251,8 +253,7 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
   }
 
   const promptLexeme =
-    core.promptLexeme ??
-    normalizeLexemeDraft(draft.audioLabelLexeme, audioLabelLearning);
+    core.promptLexeme ?? normalizeLexemeDraft(draft.audioLabelLexeme, audioLabelLearning);
 
   return {
     id: cardId,
@@ -264,7 +265,10 @@ export const normalizeSoundCardDraft = (draft: SoundCardDraft, cardId: string): 
   };
 };
 
-export const normalizeTimedCardDraft = (draft: TimedCardDraft, cardId: string): TimedCard | null => {
+export const normalizeTimedCardDraft = (
+  draft: TimedCardDraft,
+  cardId: string,
+): TimedCard | null => {
   const optionsLearning = normalizeOptions(draft.optionsLearning);
   const timeLimitSec = Math.round(draft.timeLimitSec);
   const core = normalizeOptionCardDraftCore(draft, optionsLearning, draft.optionsLexemes);
@@ -402,7 +406,9 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
 export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): ToneCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
-  const syllableBase = stripPinyinTones(sanitizeShort(draft.syllableBase || draft.promptLexeme.pinyin));
+  const syllableBase = stripPinyinTones(
+    sanitizeShort(draft.syllableBase || draft.promptLexeme.pinyin),
+  );
   const toneOptions = normalizeToneOptions(draft.toneOptions);
 
   if (!title || !promptKnown || !syllableBase || !toneOptions) {

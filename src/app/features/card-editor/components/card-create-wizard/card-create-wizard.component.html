@@ -34,7 +34,11 @@
   <mat-step label="Варианты">
     <div class="card-create-wizard__step">
       @if (choiceDraft(); as choice) {
-        <app-choice-card-form [draft]="choice" [hidePrompt]="true" (draftChange)="updateDraft($event)" />
+        <app-choice-card-form
+          [draft]="choice"
+          [hidePrompt]="true"
+          (draftChange)="updateDraft($event)"
+        />
       }
       @if (inputDraft(); as inputDraftValue) {
         <app-input-card-form

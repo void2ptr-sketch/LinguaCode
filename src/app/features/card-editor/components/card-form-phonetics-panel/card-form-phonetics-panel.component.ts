@@ -158,18 +158,32 @@ export class CardFormPhoneticsPanelComponent {
 
   hasOptionLexemes(): boolean {
     const kind = this.draft().kind;
-    return kind === 'select' || kind === 'reading' || kind === 'timed' || kind === 'symbol' || kind === 'sound';
+    return (
+      kind === 'select' ||
+      kind === 'reading' ||
+      kind === 'timed' ||
+      kind === 'symbol' ||
+      kind === 'sound'
+    );
   }
 
   optionsConfig() {
     const draft = this.draft();
     switch (draft.kind) {
       case 'reading':
-        return { title: 'Лексемы вариантов чтения', optionLabelPrefix: 'Чтение', showCorrectRadio: false };
+        return {
+          title: 'Лексемы вариантов чтения',
+          optionLabelPrefix: 'Чтение',
+          showCorrectRadio: false,
+        };
       case 'symbol':
         return { title: 'Лексемы символов', optionLabelPrefix: 'Символ', showCorrectRadio: false };
       case 'sound':
-        return { title: 'Лексемы вариантов', optionLabelPrefix: 'Известный', showCorrectRadio: false };
+        return {
+          title: 'Лексемы вариантов',
+          optionLabelPrefix: 'Известный',
+          showCorrectRadio: false,
+        };
       default:
         return { title: 'Лексемы вариантов', optionLabelPrefix: 'Новый', showCorrectRadio: false };
     }

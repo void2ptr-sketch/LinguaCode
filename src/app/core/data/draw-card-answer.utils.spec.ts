@@ -50,7 +50,11 @@ describe('draw-card-answer.utils', () => {
   };
 
   function alignedRenPayload(): DrawAnswerPayload {
-    const positioner = new HanziPositioner({ width: canvasSize.width, height: canvasSize.height, padding: 20 });
+    const positioner = new HanziPositioner({
+      width: canvasSize.width,
+      height: canvasSize.height,
+      padding: 20,
+    });
     const strokes = renModel.strokes.map((stroke) =>
       stroke.points.map((point) => positioner.toCanvas(point)),
     );
@@ -78,7 +82,14 @@ describe('draw-card-answer.utils', () => {
         {
           ...alignedRenPayload(),
           canvasMode: 'tracing',
-          strokesByCharacter: [[[{ x: 10, y: 10 }, { x: 20, y: 20 }]]],
+          strokesByCharacter: [
+            [
+              [
+                { x: 10, y: 10 },
+                { x: 20, y: 20 },
+              ],
+            ],
+          ],
         },
         'professional',
         getHanziModel,

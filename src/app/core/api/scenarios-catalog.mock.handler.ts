@@ -126,9 +126,9 @@ export class ScenariosCatalogMockHandler {
       return [];
     }
 
-    return this.scenarios!
-      .filter((scenario) => scenarioUsesCardEntry(scenario.cardSource, entry))
-      .map(scenarioToIndexEntry);
+    return this.scenarios!.filter((scenario) =>
+      scenarioUsesCardEntry(scenario.cardSource, entry),
+    ).map(scenarioToIndexEntry);
   }
 
   resetCache(): void {

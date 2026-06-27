@@ -10,7 +10,10 @@ export { buildApiUrl, buildFixtureUrl, isApiRequest } from './api-url';
 export type { ApiErrorBody, ApiListResponse, ApiResponse, HttpApiError } from './api.types';
 export { buildCardSearchParams, parseCardSearchCriteria } from './cards-api.params.utils';
 export { buildCourseSearchParams, parseCourseSearchCriteria } from './courses-api.params.utils';
-export { buildScenarioSearchParams, parseScenarioSearchCriteria } from './scenarios-api.params.utils';
+export {
+  buildScenarioSearchParams,
+  parseScenarioSearchCriteria,
+} from './scenarios-api.params.utils';
 export { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 export { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 export { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';

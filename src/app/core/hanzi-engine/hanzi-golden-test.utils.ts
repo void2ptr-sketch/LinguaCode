@@ -24,7 +24,11 @@ export function goldenAlignedStrokes(
   canvasSize = GOLDEN_CANVAS_SIZE,
   padding = GOLDEN_CANVAS_PADDING,
 ): DrawStrokePath[] {
-  const positioner = new HanziPositioner({ width: canvasSize.width, height: canvasSize.height, padding });
+  const positioner = new HanziPositioner({
+    width: canvasSize.width,
+    height: canvasSize.height,
+    padding,
+  });
   return model.strokes.map((stroke) => stroke.points.map((point) => positioner.toCanvas(point)));
 }
 
@@ -44,7 +48,9 @@ export function cornerScribbleStroke(): DrawStrokePath {
   ];
 }
 
-export async function fetchGoldenHanziJson(character: GoldenHanziCharacter): Promise<HanziCharacterJson> {
+export async function fetchGoldenHanziJson(
+  character: GoldenHanziCharacter,
+): Promise<HanziCharacterJson> {
   const response = await fetch(`/assets/hanzi/${encodeURIComponent(character)}.json`);
   if (!response.ok) {
     throw new Error(`Failed to load golden hanzi JSON for ${character}: ${response.status}`);

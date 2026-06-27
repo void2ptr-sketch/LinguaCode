@@ -1,10 +1,7 @@
 import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
 import type { CardDraft } from '../types';
 
-export function deriveOptionText(
-  lexeme: LexemeDraftFields | undefined,
-  fallback: string,
-): string {
+export function deriveOptionText(lexeme: LexemeDraftFields | undefined, fallback: string): string {
   const primary = lexeme?.primary.trim() ?? '';
   return primary || fallback.trim();
 }

@@ -21,7 +21,10 @@ import {
   type ScenarioFormDraft,
 } from '../../utils/scenario-form-draft.utils';
 import { ScenarioEditorFormComponent } from '../scenario-editor-form/scenario-editor-form.component';
-import type { ScenarioBuilderDialogData, ScenarioBuilderDialogResult } from './scenario-builder-dialog.types';
+import type {
+  ScenarioBuilderDialogData,
+  ScenarioBuilderDialogResult,
+} from './scenario-builder-dialog.types';
 
 @Component({
   selector: 'app-scenario-builder-dialog',
