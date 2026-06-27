@@ -4,9 +4,10 @@ import {
   isLessonUnlocked,
   prerequisiteBlockReason,
 } from './lesson-prerequisites.utils';
+import { languagePairsEqual } from './language-pair.utils';
 import { scenarioDisplayLabel } from './scenario-display-label.utils';
 import type { LearningSessionPreferences } from '../models/learning-session.types';
-import type { CourseWithLessons, LearningResult, Lesson } from '../models';
+import type { Course, CourseWithLessons, LanguagePair, LearningResult, Lesson } from '../models';
 
 export type LearningResumeKind = 'no-program' | 'start' | 'continue' | 'course-complete';
 
@@ -57,6 +58,13 @@ export function inferActiveCourseId(
   }
 
   return course?.id ?? null;
+}
+
+export function courseMatchesActiveLanguagePair(
+  course: Pick<Course, 'languagePair'>,
+  pair: LanguagePair,
+): boolean {
+  return languagePairsEqual(course.languagePair, pair);
 }
 
 export function buildLessonRoadmap(

@@ -16,7 +16,6 @@ import { courseToIndexEntry } from '../data/course-index.mapper';
 import { filterCourseIndex } from '../data/course-search.utils';
 import { normalizeLanguagePair } from '../data/language-pair.utils';
 import {
-  DEFAULT_COURSE_CATALOG,
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
   type CourseCatalogState,
@@ -154,13 +153,7 @@ export class CoursesCatalogMockHandler {
   }
 
   private async ensureData(): Promise<void> {
-    if (this.catalog) {
-      return;
-    }
-
-    const migrated = loadCourseCatalogFromStorage();
-    this.catalog = migrated.courses.length > 0 ? migrated : structuredClone(DEFAULT_COURSE_CATALOG);
-    this.persist();
+    this.catalog = loadCourseCatalogFromStorage();
   }
 
   private persist(): void {

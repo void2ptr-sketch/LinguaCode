@@ -1,5 +1,9 @@
 import { DEFAULT_COURSE_CATALOG } from './courses-storage';
-import { buildLessonRoadmap, resolveLearningResumeTarget } from './learning-resume.utils';
+import {
+  buildLessonRoadmap,
+  courseMatchesActiveLanguagePair,
+  resolveLearningResumeTarget,
+} from './learning-resume.utils';
 import type { CourseWithLessons } from '../models';
 
 describe('learning-resume.utils', () => {
@@ -47,5 +51,20 @@ describe('learning-resume.utils', () => {
     expect(roadmap).toHaveSize(2);
     expect(roadmap[0]?.unlocked).toBeTrue();
     expect(roadmap[1]?.unlocked).toBeFalse();
+  });
+
+  it('should detect course language pair mismatch', () => {
+    expect(
+      courseMatchesActiveLanguagePair(
+        { languagePair: { known: 'ru', learning: 'zh' } },
+        { known: 'ru', learning: 'en' },
+      ),
+    ).toBeFalse();
+    expect(
+      courseMatchesActiveLanguagePair(
+        { languagePair: { known: 'ru', learning: 'zh' } },
+        { known: 'ru', learning: 'zh' },
+      ),
+    ).toBeTrue();
   });
 });

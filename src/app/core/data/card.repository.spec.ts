@@ -53,8 +53,10 @@ describe('CardRepository', () => {
   it('should load seed cards when storage is empty', async () => {
     const loadPromise = repository.ensureLoaded();
 
-    const request = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    request.flush(seedFixture);
+    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
+    mainRequest.flush(seedFixture);
+    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
+    radicalsRequest.flush({ cards: [] });
 
     const cards = await loadPromise;
 
@@ -77,8 +79,10 @@ describe('CardRepository', () => {
     ]);
 
     const loadPromise = repository.ensureLoaded();
-    const request = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    request.flush(seedFixture);
+    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
+    mainRequest.flush(seedFixture);
+    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
+    radicalsRequest.flush({ cards: [] });
 
     const cards = await loadPromise;
 
@@ -103,8 +107,10 @@ describe('CardRepository', () => {
     ]);
 
     const loadPromise = repository.ensureLoaded();
-    const request = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    request.flush(seedFixture);
+    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
+    mainRequest.flush(seedFixture);
+    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
+    radicalsRequest.flush({ cards: [] });
 
     const cards = await loadPromise;
 

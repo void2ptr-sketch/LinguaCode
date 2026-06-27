@@ -1,6 +1,11 @@
 import type { Scenario } from '../models';
 import { DEFAULT_LANGUAGE_PAIR, type LanguagePair } from '../models/language-pair.types';
 
+import {
+  DEFAULT_RADICALS_SCENARIOS,
+  isObsoleteRadicalsCatalogItem,
+} from './radicals-course.defaults';
+
 export const RU_ZH_LANGUAGE_PAIR: LanguagePair = {
   known: 'ru',
   learning: 'zh',
@@ -88,6 +93,7 @@ export const DEFAULT_ZH_SCENARIOS: readonly Scenario[] = [
 export const DEFAULT_SCENARIOS: readonly Scenario[] = [
   ...DEFAULT_EN_SCENARIOS,
   ...DEFAULT_ZH_SCENARIOS,
+  ...DEFAULT_RADICALS_SCENARIOS,
 ];
 
 export function mergeScenariosWithDefaults(
@@ -101,8 +107,26 @@ export function mergeScenariosWithDefaults(
   }
 
   for (const scenario of stored) {
-    byId.set(scenario.id, scenario);
+    if (isObsoleteRadicalsCatalogItem(scenario.id)) {
+      continue;
+    }
+
+    const defaultScenario = byId.get(scenario.id);
+    byId.set(scenario.id, mergeStoredScenario(scenario, defaultScenario));
   }
 
   return [...byId.values()];
+}
+
+function mergeStoredScenario(stored: Scenario, defaultScenario?: Scenario): Scenario {
+  if (!defaultScenario) {
+    return stored;
+  }
+
+  return {
+    ...defaultScenario,
+    ...stored,
+    languagePair: defaultScenario.languagePair,
+    cardSource: defaultScenario.cardSource,
+  };
 }

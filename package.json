@@ -13,7 +13,8 @@
     "lint": "ng lint",
     "audit": "npm audit --audit-level=high",
     "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\"",
-    "sync:hanzi": "node scripts/sync-hanzi-assets.mjs"
+    "sync:hanzi": "node scripts/sync-hanzi-assets.mjs",
+    "generate:radicals-course": "node scripts/generate-radicals-course.mjs"
   },
   "private": true,
   "dependencies": {

@@ -6,8 +6,8 @@ import {
 
 describe('courses-storage', () => {
   it('should include ru→zh demo courses and lessons', () => {
-    expect(DEFAULT_ZH_COURSE_CATALOG.courses).toHaveSize(2);
-    expect(DEFAULT_ZH_COURSE_CATALOG.lessons).toHaveSize(5);
+    expect(DEFAULT_ZH_COURSE_CATALOG.courses).toHaveSize(3);
+    expect(DEFAULT_ZH_COURSE_CATALOG.lessons).toHaveSize(10);
     expect(
       DEFAULT_ZH_COURSE_CATALOG.courses.every((course) => course.languagePair.learning === 'zh'),
     ).toBeTrue();
@@ -48,5 +48,50 @@ describe('courses-storage', () => {
     expect(merged.lessons.some((lesson) => lesson.id === 'lesson-zh-greetings')).toBeTrue();
     expect(merged.courses.length).toBe(DEFAULT_COURSE_CATALOG.courses.length + 1);
     expect(merged.lessons.length).toBe(DEFAULT_COURSE_CATALOG.lessons.length + 1);
+  });
+
+  it('should keep default languagePair when stored course overrides without it', () => {
+    const merged = mergeCourseCatalogWithDefaults({
+      courses: [
+        {
+          id: 'course-zh-radicals-214',
+          title: 'Пользовательское название',
+          description: '',
+          authorId: 'local-user',
+          languagePair: undefined as unknown as import('../models').LanguagePair,
+          lessonIds: [],
+          published: true,
+          updatedAt: '2026-06-14T10:00:00.000Z',
+        },
+      ],
+      lessons: [],
+    });
+
+    const radicals = merged.courses.find((course) => course.id === 'course-zh-radicals-214');
+    expect(radicals?.title).toBe('Пользовательское название');
+    expect(radicals?.languagePair).toEqual({ known: 'ru', learning: 'zh' });
+    expect(radicals?.lessonIds.length).toBeGreaterThan(0);
+  });
+
+  it('should keep default zh languagePair when stored seed course has en pair', () => {
+    const merged = mergeCourseCatalogWithDefaults({
+      courses: [
+        {
+          id: 'course-zh-radicals-214',
+          title: '214 китайских радикалов',
+          description: '',
+          authorId: 'local-user',
+          languagePair: { known: 'ru', learning: 'en' },
+          lessonIds: [],
+          published: true,
+          updatedAt: '2026-06-14T10:00:00.000Z',
+        },
+      ],
+      lessons: [],
+    });
+
+    expect(
+      merged.courses.find((course) => course.id === 'course-zh-radicals-214')?.languagePair,
+    ).toEqual({ known: 'ru', learning: 'zh' });
   });
 });

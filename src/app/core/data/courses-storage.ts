@@ -1,6 +1,12 @@
 import type { Course, Lesson } from '../models';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
+import { normalizeLanguagePair } from './language-pair.utils';
+import {
+  DEFAULT_RADICALS_COURSE,
+  DEFAULT_RADICALS_LESSONS,
+  isObsoleteRadicalsCatalogItem,
+} from './radicals-course.defaults';
 import { RU_ZH_LANGUAGE_PAIR } from './scenario-catalog.defaults';
 
 export const COURSE_CATALOG_STORAGE_KEY = 'lingua-code.course-catalog';
@@ -69,6 +75,7 @@ export const DEFAULT_ZH_COURSE_CATALOG: CourseCatalogState = {
       published: true,
       updatedAt: '2026-06-14T10:00:00.000Z',
     },
+    DEFAULT_RADICALS_COURSE,
   ],
   lessons: [
     {
@@ -121,6 +128,7 @@ export const DEFAULT_ZH_COURSE_CATALOG: CourseCatalogState = {
       order: 1,
       updatedAt: '2026-06-14T10:00:00.000Z',
     },
+    ...DEFAULT_RADICALS_LESSONS,
   ],
 };
 
@@ -145,11 +153,21 @@ export function mergeCourseCatalogWithDefaults(
   }
 
   for (const course of stored.courses) {
-    coursesById.set(course.id, course);
+    if (isObsoleteRadicalsCatalogItem(course.id)) {
+      continue;
+    }
+
+    const defaultCourse = coursesById.get(course.id);
+    coursesById.set(course.id, mergeStoredCourse(course, defaultCourse));
   }
 
   for (const lesson of stored.lessons) {
-    lessonsById.set(lesson.id, lesson);
+    if (isObsoleteRadicalsCatalogItem(lesson.id)) {
+      continue;
+    }
+
+    const defaultLesson = lessonsById.get(lesson.id);
+    lessonsById.set(lesson.id, mergeStoredLesson(lesson, defaultLesson));
   }
 
   return {
@@ -171,7 +189,7 @@ export function loadCourseCatalogFromStorage(): CourseCatalogState {
     }
 
     const stored: CourseCatalogState = {
-      courses: parsed.courses.filter(isCourse),
+      courses: parsed.courses.filter(isCourse).map((course) => normalizeStoredCourse(course)),
       lessons: parsed.lessons.filter(isLesson).map(normalizeStoredLesson),
     };
 
@@ -187,13 +205,51 @@ export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
 
 function cloneCatalog(catalog: CourseCatalogState): CourseCatalogState {
   return {
-    courses: catalog.courses.map((course) => ({ ...course, lessonIds: [...course.lessonIds] })),
-    lessons: catalog.lessons.map((lesson) => ({
-      ...lesson,
-      scenarioIds: [...lesson.scenarioIds],
-      prerequisiteLessonIds: [...(lesson.prerequisiteLessonIds ?? [])],
-    })),
+    courses: catalog.courses.map((course) => normalizeStoredCourse(course)),
+    lessons: catalog.lessons.map((lesson) => normalizeStoredLesson(lesson)),
   };
+}
+
+function normalizeStoredCourse(course: Course): Course {
+  return {
+    ...course,
+    description: course.description ?? '',
+    authorId: course.authorId ?? 'local-user',
+    languagePair: normalizeLanguagePair(course.languagePair),
+    lessonIds: [...course.lessonIds],
+    published: course.published ?? false,
+    updatedAt: course.updatedAt ?? new Date(0).toISOString(),
+  };
+}
+
+function mergeStoredCourse(stored: Course, defaultCourse?: Course): Course {
+  if (!defaultCourse) {
+    return normalizeStoredCourse(stored);
+  }
+
+  return normalizeStoredCourse({
+    ...defaultCourse,
+    ...stored,
+    languagePair: defaultCourse.languagePair,
+    lessonIds: stored.lessonIds.length > 0 ? stored.lessonIds : defaultCourse.lessonIds,
+  });
+}
+
+function mergeStoredLesson(stored: Lesson, defaultLesson?: Lesson): Lesson {
+  if (!defaultLesson) {
+    return normalizeStoredLesson(stored);
+  }
+
+  return normalizeStoredLesson({
+    ...defaultLesson,
+    ...stored,
+    scenarioIds:
+      stored.scenarioIds.length > 0 ? stored.scenarioIds : defaultLesson.scenarioIds,
+    prerequisiteLessonIds:
+      stored.prerequisiteLessonIds.length > 0
+        ? stored.prerequisiteLessonIds
+        : defaultLesson.prerequisiteLessonIds,
+  });
 }
 
 function isCourse(value: unknown): value is Course {

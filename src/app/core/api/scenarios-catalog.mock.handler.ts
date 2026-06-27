@@ -19,7 +19,6 @@ import {
 import { cardIndexMatchesPair, normalizeLanguagePair } from '../data/language-pair.utils';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 import {
-  DEFAULT_SCENARIOS,
   loadScenariosFromStorage,
   saveScenariosToStorage,
 } from '../data/scenarios-storage';
@@ -136,13 +135,7 @@ export class ScenariosCatalogMockHandler {
   }
 
   private async ensureData(): Promise<void> {
-    if (this.scenarios) {
-      return;
-    }
-
-    const migrated = loadScenariosFromStorage();
-    this.scenarios = migrated.length > 0 ? [...migrated] : [...DEFAULT_SCENARIOS];
-    this.persist();
+    this.scenarios = [...loadScenariosFromStorage()];
   }
 
   private persist(): void {

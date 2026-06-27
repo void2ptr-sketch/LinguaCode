@@ -38,9 +38,14 @@ export class CardRepository {
   }
 
   loadSeed(): Promise<readonly Card[]> {
-    return firstValueFrom(
-      this.http.get<CardsSeedFixture>(buildFixtureUrl('/select-cards.json')),
-    ).then((fixture) => normalizeLegacyCards(fixture.cards));
+    return Promise.all([
+      firstValueFrom(this.http.get<CardsSeedFixture>(buildFixtureUrl('/select-cards.json'))),
+      firstValueFrom(
+        this.http.get<CardsSeedFixture>(buildFixtureUrl('/radicals-course-cards.json')),
+      ).catch(() => ({ cards: [] as Card[] })),
+    ]).then(([mainFixture, radicalsFixture]) =>
+      normalizeLegacyCards([...mainFixture.cards, ...radicalsFixture.cards]),
+    );
   }
 
   mergeWithSeed(stored: readonly Card[], seed: readonly Card[]): readonly Card[] {
