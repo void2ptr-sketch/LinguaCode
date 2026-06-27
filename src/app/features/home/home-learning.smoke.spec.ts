@@ -6,12 +6,16 @@ import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from '../../app.component';
 import { routes } from '../../app.routes';
 import { provideApiHttp } from '../../core/api';
-import { DEFAULT_COURSE_CATALOG } from '../../core/data/courses-storage';
-import { DEFAULT_SCENARIOS } from '../../core/data/scenario-catalog.defaults';
+import {
+  getTestDefaultScenarios,
+  getTestDemoCourseWithLessons,
+  seedTestContentCache,
+} from '../../core/data/content-seed.test-utils';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {
     localStorage.clear();
+    seedTestContentCache();
 
     await TestBed.configureTestingModule({
       imports: [AppComponent],
@@ -61,19 +65,14 @@ describe('Home learning dashboard smoke', () => {
         }
 
         if (url.includes('/courses/demo-course')) {
-          request.flush({
-            ...DEFAULT_COURSE_CATALOG.courses[0],
-            lessons: DEFAULT_COURSE_CATALOG.lessons.filter(
-              (lesson) => lesson.courseId === 'demo-course',
-            ),
-          });
+          request.flush(getTestDemoCourseWithLessons());
           continue;
         }
 
         if (url.includes('/scenarios/demo-scenario')) {
+          const scenarios = getTestDefaultScenarios();
           request.flush(
-            DEFAULT_SCENARIOS.find((scenario) => scenario.id === 'demo-scenario') ??
-              DEFAULT_SCENARIOS[0],
+            scenarios.find((scenario) => scenario.id === 'demo-scenario') ?? scenarios[0],
           );
           continue;
         }

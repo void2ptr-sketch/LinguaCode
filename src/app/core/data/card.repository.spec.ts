@@ -3,7 +3,9 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 
 import type { DrawCard } from '../models';
-import { CardRepository, CARDS_STORAGE_KEY } from './card.repository';
+import { CardRepository } from './card.repository';
+import { seedTestContentCache } from './content-seed.test-utils';
+import { USER_CONTENT_OVERLAY_KEY } from './user-content-overlay.types';
 
 const seedFixture = {
   cards: [
@@ -36,6 +38,7 @@ describe('CardRepository', () => {
 
   beforeEach(() => {
     localStorage.clear();
+    seedTestContentCache();
 
     TestBed.configureTestingModule({
       providers: [CardRepository, provideHttpClient(), provideHttpClientTesting()],
@@ -50,22 +53,17 @@ describe('CardRepository', () => {
     localStorage.clear();
   });
 
-  it('should load seed cards when storage is empty', async () => {
-    const loadPromise = repository.ensureLoaded();
+  it('should load seed cards when overlay is empty', async () => {
+    const cards = await repository.ensureLoaded();
 
-    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    mainRequest.flush(seedFixture);
-    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
-    radicalsRequest.flush({ cards: [] });
-
-    const cards = await loadPromise;
-
-    expect(cards).toHaveSize(2);
-    expect(localStorage.getItem(CARDS_STORAGE_KEY)).toContain('select-zh-1');
+    expect(cards.some((card) => card.id === 'select-zh-1')).toBeTrue();
+    expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toBeNull();
   });
 
-  it('should merge missing seed cards into existing storage', async () => {
-    repository.save([
+  it('should merge user cards from overlay with seed catalog', async () => {
+    await repository.ensureLoaded();
+    await repository.save([
+      ...(await repository.ensureLoaded()),
       {
         id: 'custom-1',
         kind: 'select',
@@ -78,61 +76,46 @@ describe('CardRepository', () => {
       },
     ]);
 
-    const loadPromise = repository.ensureLoaded();
-    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    mainRequest.flush(seedFixture);
-    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
-    radicalsRequest.flush({ cards: [] });
+    const cards = await repository.ensureLoaded();
 
-    const cards = await loadPromise;
-
-    expect(cards).toHaveSize(3);
     expect(cards.some((card) => card.id === 'custom-1')).toBeTrue();
     expect(cards.some((card) => card.id === 'select-zh-1')).toBeTrue();
-    expect(cards.some((card) => card.id === 'select-1')).toBeTrue();
+    expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toContain('custom-1');
   });
 
   it('should keep user-edited card when id matches seed', async () => {
-    repository.save([
-      {
-        id: 'select-zh-1',
-        kind: 'select',
-        title: 'Пользовательская версия',
-        appearance: { theme: 'azure-blue', fontSize: 'md' },
-        direction: 'known-to-learning',
-        promptKnown: 'Q',
-        optionsLearning: ['A'],
-        correctIndex: 0,
-      },
-    ]);
+    const seedCards = await repository.ensureLoaded();
+    const edited = seedCards.map((card) =>
+      card.id === 'select-zh-1'
+        ? {
+            ...card,
+            title: 'Пользовательская версия',
+          }
+        : card,
+    );
 
-    const loadPromise = repository.ensureLoaded();
-    const mainRequest = httpMock.expectOne((req) => req.url.includes('select-cards.json'));
-    mainRequest.flush(seedFixture);
-    const radicalsRequest = httpMock.expectOne((req) => req.url.includes('radicals-course-cards.json'));
-    radicalsRequest.flush({ cards: [] });
+    repository.save(edited);
+    const cards = await repository.ensureLoaded();
 
-    const cards = await loadPromise;
-
-    expect(cards).toHaveSize(2);
     expect(cards.find((card) => card.id === 'select-zh-1')?.title).toBe('Пользовательская версия');
   });
 
-  it('should drop removed demo cards from storage on merge', () => {
-    repository.save([
-      {
-        id: 'draw-jiangenshenfang-1',
-        kind: 'draw',
-        title: '将恩深房',
-        appearance: { theme: 'azure-blue', fontSize: 'md' },
-        promptKnown: 'Q',
-        referenceHintKnown: '将恩深房',
-        meaningKnown: '将恩深房',
-      } as DrawCard,
-      seedFixture.cards[0],
-    ]);
-
-    const merged = repository.mergeWithSeed(repository.loadStored(), [...seedFixture.cards]);
+  it('should drop removed demo cards from overlay merge', () => {
+    const merged = repository.mergeWithSeed(
+      [
+        {
+          id: 'draw-jiangenshenfang-1',
+          kind: 'draw',
+          title: '将恩深房',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          promptKnown: 'Q',
+          referenceHintKnown: '将恩深房',
+          meaningKnown: '将恩深房',
+        } as DrawCard,
+        seedFixture.cards[0],
+      ],
+      [...seedFixture.cards],
+    );
 
     expect(merged.some((card) => card.id === 'draw-jiangenshenfang-1')).toBeFalse();
   });

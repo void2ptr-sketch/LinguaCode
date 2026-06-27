@@ -1,0 +1,93 @@
+{
+  "courses": [
+    {
+      "id": "course-zh-radicals-214",
+      "title": "214 китайских радикалов",
+      "description": "Полный курс по 214 классическим ключам (康熙部首): прописывание формы и порядка черт каждого радикала.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "lessonIds": [
+        "lesson-radicals-01",
+        "lesson-radicals-02",
+        "lesson-radicals-03",
+        "lesson-radicals-04",
+        "lesson-radicals-05"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson-radicals-01",
+      "courseId": "course-zh-radicals-214",
+      "title": "Урок 1: радикалы 1–50",
+      "description": "214 ключей Канси: радикалы с №1 по №50.",
+      "scenarioIds": [
+        "scenario-radicals-01"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-radicals-02",
+      "courseId": "course-zh-radicals-214",
+      "title": "Урок 2: радикалы 51–100",
+      "description": "214 ключей Канси: радикалы с №51 по №100.",
+      "scenarioIds": [
+        "scenario-radicals-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-radicals-01"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-radicals-03",
+      "courseId": "course-zh-radicals-214",
+      "title": "Урок 3: радикалы 101–150",
+      "description": "214 ключей Канси: радикалы с №101 по №150.",
+      "scenarioIds": [
+        "scenario-radicals-03"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-radicals-02"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-radicals-04",
+      "courseId": "course-zh-radicals-214",
+      "title": "Урок 4: радикалы 151–200",
+      "description": "214 ключей Канси: радикалы с №151 по №200.",
+      "scenarioIds": [
+        "scenario-radicals-04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-radicals-03"
+      ],
+      "order": 3,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-radicals-05",
+      "courseId": "course-zh-radicals-214",
+      "title": "Урок 5: радикалы 201–214",
+      "description": "214 ключей Канси: радикалы с №201 по №214.",
+      "scenarioIds": [
+        "scenario-radicals-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-radicals-04"
+      ],
+      "order": 4,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    }
+  ]
+}

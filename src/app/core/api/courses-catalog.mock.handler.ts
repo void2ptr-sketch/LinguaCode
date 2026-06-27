@@ -14,7 +14,12 @@ import { UserStore } from '../state';
 
 import { courseToIndexEntry } from '../data/course-index.mapper';
 import { filterCourseIndex } from '../data/course-search.utils';
+import { ContentSeedRepository } from '../data/content-seed.repository';
 import { normalizeLanguagePair } from '../data/language-pair.utils';
+import {
+  isEditableContentAuthor,
+  isSystemAuthor,
+} from '../data/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
@@ -26,6 +31,7 @@ import type { CourseWritePayload } from '../data/courses-api.service';
 @Injectable({ providedIn: 'root' })
 export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
+  private readonly contentSeed = inject(ContentSeedRepository);
 
   private catalog: CourseCatalogState | null = null;
 
@@ -94,6 +100,25 @@ export class CoursesCatalogMockHandler {
 
     this.assertCanEdit(current);
     const languagePair = normalizeLanguagePair(payload.languagePair ?? current.languagePair);
+
+    if (isSystemAuthor(current.authorId)) {
+      const updated: Course = {
+        ...current,
+        title: payload.title,
+        description: payload.description,
+        published: payload.published,
+        updatedAt: new Date().toISOString(),
+      };
+      const lessons = this.lessonsForCourse(updated).sort((left, right) => left.order - right.order);
+
+      this.catalog = {
+        courses: this.catalog!.courses.map((item) => (item.id === courseId ? updated : item)),
+        lessons: this.catalog!.lessons,
+      };
+      this.persist();
+      return { ...updated, lessons };
+    }
+
     const lessons = this.normalizeLessons(courseId, payload.lessons);
 
     const updated: Course = {
@@ -153,6 +178,7 @@ export class CoursesCatalogMockHandler {
   }
 
   private async ensureData(): Promise<void> {
+    await this.contentSeed.preload();
     this.catalog = loadCourseCatalogFromStorage();
   }
 
@@ -178,7 +204,7 @@ export class CoursesCatalogMockHandler {
   }
 
   private assertCanEdit(course: Course): void {
-    if (course.authorId !== this.userStore.user().id) {
+    if (!isEditableContentAuthor(course.authorId, this.userStore.user().id)) {
       throw forbidden('Нельзя изменять чужой курс');
     }
   }

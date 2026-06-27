@@ -1,19 +1,21 @@
-import {
-  DEFAULT_COURSE_CATALOG,
-  DEFAULT_ZH_COURSE_CATALOG,
-  mergeCourseCatalogWithDefaults,
-} from './courses-storage';
+import { seedTestContentCache, getTestDefaultCourseCatalog, getTestZhCourseCatalog } from './content-seed.test-utils';
+import { mergeCourseCatalogWithDefaults } from './courses-storage';
 
 describe('courses-storage', () => {
+  beforeEach(() => {
+    seedTestContentCache();
+  });
+
   it('should include ru→zh demo courses and lessons', () => {
-    expect(DEFAULT_ZH_COURSE_CATALOG.courses).toHaveSize(3);
-    expect(DEFAULT_ZH_COURSE_CATALOG.lessons).toHaveSize(10);
-    expect(
-      DEFAULT_ZH_COURSE_CATALOG.courses.every((course) => course.languagePair.learning === 'zh'),
-    ).toBeTrue();
+    const zhCatalog = getTestZhCourseCatalog();
+
+    expect(zhCatalog.courses).toHaveSize(3);
+    expect(zhCatalog.lessons).toHaveSize(10);
+    expect(zhCatalog.courses.every((course) => course.languagePair.learning === 'zh')).toBeTrue();
   });
 
   it('should merge missing default courses and lessons into stored catalog', () => {
+    const defaults = getTestDefaultCourseCatalog();
     const stored = {
       courses: [
         {
@@ -46,8 +48,8 @@ describe('courses-storage', () => {
     expect(merged.courses.some((course) => course.id === 'custom-course')).toBeTrue();
     expect(merged.courses.some((course) => course.id === 'course-zh-a1')).toBeTrue();
     expect(merged.lessons.some((lesson) => lesson.id === 'lesson-zh-greetings')).toBeTrue();
-    expect(merged.courses.length).toBe(DEFAULT_COURSE_CATALOG.courses.length + 1);
-    expect(merged.lessons.length).toBe(DEFAULT_COURSE_CATALOG.lessons.length + 1);
+    expect(merged.courses.length).toBe(defaults.courses.length + 1);
+    expect(merged.lessons.length).toBe(defaults.lessons.length + 1);
   });
 
   it('should keep default languagePair when stored course overrides without it', () => {

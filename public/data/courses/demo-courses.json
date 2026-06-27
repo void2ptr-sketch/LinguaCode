@@ -1,0 +1,147 @@
+{
+  "courses": [
+    {
+      "id": "demo-course",
+      "title": "Демо: базовый English",
+      "description": "Вводная учебная программа для курса ru→en.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "lessonIds": [
+        "demo-lesson-1",
+        "demo-lesson-2"
+      ],
+      "published": true,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "course-zh-a1",
+      "title": "Китайский A1: первые шаги",
+      "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "lessonIds": [
+        "lesson-zh-greetings",
+        "lesson-zh-phonetics",
+        "lesson-zh-characters"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "course-zh-conversation",
+      "title": "Китайский: разговорная практика",
+      "description": "Короткий курс для закрепления приветствий и смешанных упражнений.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "lessonIds": [
+        "lesson-zh-quick-start",
+        "lesson-zh-review"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "demo-lesson-1",
+      "courseId": "demo-course",
+      "title": "Приветствия",
+      "description": "Первые сценарии приветствия.",
+      "scenarioIds": [
+        "demo-scenario"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "demo-lesson-2",
+      "courseId": "demo-course",
+      "title": "Повторение",
+      "description": "Закрепление после первого урока.",
+      "scenarioIds": [
+        "demo-scenario"
+      ],
+      "prerequisiteLessonIds": [
+        "demo-lesson-1"
+      ],
+      "order": 1,
+      "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-greetings",
+      "courseId": "course-zh-a1",
+      "title": "Урок 1: Приветствия",
+      "description": "你好, 谢谢, 再见 — узнавание и сопоставление.",
+      "scenarioIds": [
+        "scenario-zh-greetings"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-phonetics",
+      "courseId": "course-zh-a1",
+      "title": "Урок 2: Пиньинь и тоны",
+      "description": "Ввод пиньинь, IPA и выбор тона.",
+      "scenarioIds": [
+        "scenario-zh-phonetics"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-greetings"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-characters",
+      "courseId": "course-zh-a1",
+      "title": "Урок 3: Иероглифы",
+      "description": "Черты, радикалы и чтение 行.",
+      "scenarioIds": [
+        "scenario-zh-characters"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-phonetics"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-quick-start",
+      "courseId": "course-zh-conversation",
+      "title": "Быстрый старт",
+      "description": "Первые фразы и базовые упражнения.",
+      "scenarioIds": [
+        "scenario-zh-greetings"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    },
+    {
+      "id": "lesson-zh-review",
+      "courseId": "course-zh-conversation",
+      "title": "Закрепление",
+      "description": "Смешанная практика после быстрого старта.",
+      "scenarioIds": [
+        "scenario-zh-review"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-zh-quick-start"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T10:00:00.000Z"
+    }
+  ]
+}

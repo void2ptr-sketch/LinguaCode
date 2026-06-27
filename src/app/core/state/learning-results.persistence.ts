@@ -28,6 +28,8 @@ export class LearningResultsPersistence {
         answeredAt: item.answeredAt ?? new Date().toISOString(),
         languagePair: normalizeLanguagePair(item.languagePair ?? DEFAULT_LANGUAGE_PAIR),
         direction: item.direction,
+        lessonId: typeof item.lessonId === 'string' ? item.lessonId : undefined,
+        courseId: typeof item.courseId === 'string' ? item.courseId : undefined,
       }));
     } catch {
       return [];

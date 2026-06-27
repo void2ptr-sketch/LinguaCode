@@ -2,32 +2,16 @@ import { writeFileSync } from 'node:fs';
 import { KANGXI_RADICALS } from './kangxi-radicals.mjs';
 import { KANGXI_RADICAL_META } from './kangxi-radical-meta.mjs';
 
-export const RADICALS_COURSE_ID = 'course-zh-radicals-214';
-export const RADICALS_PER_SCENARIO = 50;
-export const RADICALS_LESSON_COUNT = Math.ceil(KANGXI_RADICALS.length / RADICALS_PER_SCENARIO);
-
-export function radicalCardId(index) {
-  return `draw-radical-${String(index).padStart(3, '0')}`;
-}
-
-export function radicalLessonId(lessonIndex) {
-  return `lesson-radicals-${String(lessonIndex + 1).padStart(2, '0')}`;
-}
-
-export function radicalScenarioId(lessonIndex) {
-  return `scenario-radicals-${String(lessonIndex + 1).padStart(2, '0')}`;
-}
-
-export function radicalLessonRange(lessonIndex) {
-  const start = lessonIndex * RADICALS_PER_SCENARIO + 1;
-  const end = Math.min(start + RADICALS_PER_SCENARIO - 1, KANGXI_RADICALS.length);
-  return { start, end };
-}
-
-export function radicalLessonCardIds(lessonIndex) {
-  const { start, end } = radicalLessonRange(lessonIndex);
-  return Array.from({ length: end - start + 1 }, (_, offset) => radicalCardId(start + offset));
-}
+export {
+  RADICALS_COURSE_ID,
+  RADICALS_PER_SCENARIO,
+  RADICALS_LESSON_COUNT,
+  radicalCardId,
+  radicalLessonId,
+  radicalScenarioId,
+  radicalLessonRange,
+  radicalLessonCardIds,
+} from './content-seed/radicals-content.mjs';
 
 function buildDrawCard(index) {
   const character = KANGXI_RADICALS[index - 1];
@@ -36,7 +20,7 @@ function buildDrawCard(index) {
   const pinyin = meta?.pinyin ?? '';
 
   return {
-    id: radicalCardId(index),
+    id: `draw-radical-${String(index).padStart(3, '0')}`,
     kind: 'draw',
     title: `Радикал №${index}: ${character}`,
     appearance: { theme: 'azure-blue', fontSize: 'md' },
@@ -53,14 +37,8 @@ function buildDrawCard(index) {
   };
 }
 
-function buildCardsFixture() {
-  return {
-    cards: KANGXI_RADICALS.map((_, index) => buildDrawCard(index + 1)),
-  };
-}
-
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const fixture = buildCardsFixture();
+  const fixture = { cards: KANGXI_RADICALS.map((_, index) => buildDrawCard(index + 1)) };
   writeFileSync(
     new URL('../public/data/radicals-course-cards.json', import.meta.url),
     `${JSON.stringify(fixture, null, 2)}\n`,

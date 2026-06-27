@@ -1,7 +1,10 @@
 import {
-  DEFAULT_RADICALS_COURSE,
-  DEFAULT_RADICALS_LESSONS,
-  DEFAULT_RADICALS_SCENARIOS,
+  getTestDefaultCourseCatalog,
+  getTestDefaultScenarios,
+  seedTestContentCache,
+} from './content-seed.test-utils';
+import {
+  RADICALS_COURSE_ID,
   RADICALS_LESSON_COUNT,
   RADICALS_TOTAL,
   radicalCardId,
@@ -9,14 +12,25 @@ import {
 } from './radicals-course.defaults';
 
 describe('radicals-course.defaults', () => {
+  beforeEach(() => {
+    seedTestContentCache();
+  });
+
   it('should define 214 draw cards across 5 scenarios', () => {
-    expect(DEFAULT_RADICALS_COURSE.title).toBe('214 китайских радикалов');
-    expect(DEFAULT_RADICALS_LESSONS).toHaveSize(RADICALS_LESSON_COUNT);
-    expect(DEFAULT_RADICALS_SCENARIOS).toHaveSize(RADICALS_LESSON_COUNT);
+    const catalog = getTestDefaultCourseCatalog();
+    const course = catalog.courses.find((item) => item.id === RADICALS_COURSE_ID);
+    const lessons = catalog.lessons.filter((lesson) => lesson.courseId === RADICALS_COURSE_ID);
+    const scenarios = getTestDefaultScenarios().filter((scenario) =>
+      scenario.id.startsWith('scenario-radicals-'),
+    );
+
+    expect(course?.title).toBe('214 китайских радикалов');
+    expect(lessons).toHaveSize(RADICALS_LESSON_COUNT);
+    expect(scenarios).toHaveSize(RADICALS_LESSON_COUNT);
     expect(RADICALS_LESSON_COUNT).toBe(5);
 
     const cardIds = new Set(
-      DEFAULT_RADICALS_SCENARIOS.flatMap((scenario) =>
+      scenarios.flatMap((scenario) =>
         scenario.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds : [],
       ),
     );
