@@ -1,0 +1,1204 @@
+{
+  "cards": [
+    {
+      "id": "card-perl-s01-q01-c1",
+      "title": "Что такое scalar context и list context? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что такое scalar context и list context?",
+      "optionsLearning": [
+        "Контекст определяет, сколько значений ожидает оператор: одно или список",
+        "Это два разных типа переменных в Perl",
+        "Scalar context всегда означает число, list — строку",
+        "Контекст задаётся только директивой use strict"
+      ],
+      "optionsKnown": [
+        "Ожидание одного значения vs списка значений",
+        "Два типа переменных",
+        "Число vs строка",
+        "Только через strict"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q01-c2",
+      "title": "Что такое scalar context и list context? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "В каком выражении массив `@items` используется в list context?",
+      "optionsLearning": [
+        "my @copy = @items;",
+        "my $count = @items;",
+        "my $last = $#items;",
+        "print scalar @items;"
+      ],
+      "optionsKnown": [
+        "Присвоение другому массиву",
+        "Присвоение скаляру (scalar context)",
+        "Индекс последнего элемента",
+        "Явный scalar context"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q02-c1",
+      "title": "Что вернёт `@array` в scalar context? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что вернёт `@array` в scalar context?",
+      "optionsLearning": [
+        "$#array + 1",
+        "@array",
+        "%array",
+        "undef"
+      ],
+      "optionsKnown": [
+        "Количество элементов",
+        "Сам массив",
+        "Хеш",
+        "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q02-c2",
+      "title": "Что вернёт `@array` в scalar context? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какое выражение вернёт число элементов массива `@array` в scalar context?",
+      "optionsLearning": [
+        "scalar @array",
+        "@array",
+        "length @array",
+        "$#array"
+      ],
+      "optionsKnown": [
+        "scalar @array",
+        "массив как list",
+        "нет length для @",
+        "индекс последнего, не count"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q02-c3",
+      "title": "Что вернёт `@array` в scalar context? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чему равен `$#array` для `@array = qw(a b c)`?",
+      "optionsLearning": [
+        "2",
+        "3",
+        "0",
+        "-1"
+      ],
+      "optionsKnown": [
+        "2 (индекс последнего)",
+        "3 (количество)",
+        "0",
+        "-1 для пустого"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q03-c1",
+      "title": "Чем отличаются sigils `$`, `@`, `%`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какие sigils соответствуют скаляру, массиву и хешу?",
+      "optionsLearning": [
+        "$ — скаляр, @ — массив, % — хеш",
+        "$ — массив, @ — хеш, % — скаляр",
+        "@ — скаляр, $ — массив",
+        "% — массив, @ — хеш, $ — скаляр"
+      ],
+      "optionsKnown": [
+        "$ @ %",
+        "перепутаны",
+        "перепутаны",
+        "перепутаны"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q03-c2",
+      "title": "Чем отличаются sigils `$`, `@`, `%`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что хранит переменная `@names`?",
+      "optionsLearning": [
+        "Список скаляров (массив)",
+        "Один строковый скаляр",
+        "Пары ключ-значение",
+        "Ссылку только на хеш"
+      ],
+      "optionsKnown": [
+        "Массив скаляров",
+        "Один скаляр",
+        "Хеш",
+        "Ссылка на хеш"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q04-c1",
+      "title": "Когда используется `undef`? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Когда используется `undef` в Perl?",
+      "optionsLearning": [
+        "Для обозначения отсутствующего значения / пустого скаляра",
+        "Только при ошибке компиляции",
+        "Как синоним NULL в SQL внутри regex",
+        "Чтобы удалить пакет из @INC"
+      ],
+      "optionsKnown": [
+        "Отсутствие значения",
+        "Ошибка компиляции",
+        "NULL в regex",
+        "Удаление из @INC"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q04-c2",
+      "title": "Когда используется `undef`? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чему равно `scalar @arr` для `my @arr = (undef, 1, undef);`?",
+      "optionsLearning": [
+        "3",
+        "1",
+        "2",
+        "undef"
+      ],
+      "optionsKnown": [
+        "3 элемента (undef тоже считается)",
+        "1 truthy элемент",
+        "2 не-undef",
+        "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q04-c3",
+      "title": "Когда используется `undef`? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как проверить, что скаляр `$x` не задан (undef)?",
+      "optionsLearning": [
+        "defined $x",
+        "exists $x",
+        "length $x",
+        "truth $x"
+      ],
+      "optionsKnown": [
+        "defined $x",
+        "exists (для хешей)",
+        "length",
+        "нет такой функции"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q01-c1",
+      "title": "Зачем подключать `use strict`? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Зачем подключать `use strict`?",
+      "optionsLearning": [
+        "Ловить опечатки в именах и небезопасные глобальные переменные",
+        "Ускорить интерпретатор Perl",
+        "Включить только OO-синтаксис",
+        "Отключить все предупреждения"
+      ],
+      "optionsKnown": [
+        "Безопасность имён и vars",
+        "Ускорение",
+        "Только ОО",
+        "Отключение warnings"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q01-c2",
+      "title": "Зачем подключать `use strict`? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какая директива `use strict` включает проверку объявления переменных?",
+      "optionsLearning": [
+        "vars",
+        "subs",
+        "refs",
+        "warnings"
+      ],
+      "optionsKnown": [
+        "strict vars",
+        "strict subs",
+        "strict refs",
+        "не часть strict"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q01-c3",
+      "title": "Зачем подключать `use strict`? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что произойдёт с `use strict` при опечатке `$nam` вместо `$name`?",
+      "optionsLearning": [
+        "Compile/runtime error о глобальной/не объявленной переменной",
+        "Perl создаст новую глобальную молча",
+        "Автоисправление имени",
+        "Только warning, выполнение продолжится всегда"
+      ],
+      "optionsKnown": [
+        "Ошибка strict",
+        "Тихий global",
+        "Autofix",
+        "Только warning"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q02-c1",
+      "title": "Что даёт `use warnings`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что даёт `use warnings`?",
+      "optionsLearning": [
+        "Включает предупреждения о подозрительных конструкциях",
+        "Запрещает использование regex",
+        "Превращает warnings в die всегда",
+        "Отключает strict"
+      ],
+      "optionsKnown": [
+        "Предупреждения",
+        "Запрет regex",
+        "Всегда die",
+        "Отключает strict"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q02-c2",
+      "title": "Что даёт `use warnings`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как эквивалентно включить warnings из командной строки?",
+      "optionsLearning": [
+        "-w или $^W",
+        "-Mstrict",
+        "-P",
+        "--warnings=fatal только"
+      ],
+      "optionsKnown": [
+        "-w / $^W",
+        "strict",
+        "-P",
+        "только fatal"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q03-c1",
+      "title": "Разница между `my`, `our` и глобальными переменными? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как объявить лексическую переменную `$count` в блоке?",
+      "optionsLearning": [
+        "my $count",
+        "our $count",
+        "$count",
+        "local $count"
+      ],
+      "optionsKnown": [
+        "лексическая my",
+        "пакетный алиас our",
+        "не объявлена — ошибка strict",
+        "local — динамическая, не my"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q03-c2",
+      "title": "Разница между `my`, `our` и глобальными переменными? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чем `our $VERSION` отличается от `my $version`?",
+      "optionsLearning": [
+        "`our` создаёт алиас к пакетной переменной, `my` — лексическую",
+        "`our` видна только в sub, `my` — глобальна",
+        "Разницы нет",
+        "`our` работает только в BEGIN"
+      ],
+      "optionsKnown": [
+        "Пакетная vs лексическая",
+        "Неверно про sub/global",
+        "Нет разницы",
+        "Только BEGIN"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q03-c3",
+      "title": "Разница между `my`, `our` и глобальными переменными? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Где видна `my $x`, объявленная внутри `{ ... }` блока?",
+      "optionsLearning": [
+        "Только внутри этого блока",
+        "Во всём файле",
+        "Во всех подпрограммах пакета",
+        "Только в main::"
+      ],
+      "optionsKnown": [
+        "В пределах блока",
+        "Весь файл",
+        "Все subs",
+        "main::"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q04-c1",
+      "title": "Что такое `use feature 'say'`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что такое `use feature 'say'`?",
+      "optionsLearning": [
+        "Подключает функцию say (print с \"\\n\") без IO::All",
+        "Запрещает print",
+        "Включает строгий режим say",
+        "Экспортирует say в @EXPORT"
+      ],
+      "optionsKnown": [
+        "say с переводом строки",
+        "Запрет print",
+        "strict say",
+        "@EXPORT"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q04-c2",
+      "title": "Что такое `use feature 'say'`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой однострочник с `say` корректно выведет hi? (Perl 5.10+, `use feature \"say\"`)",
+      "optionsLearning": [
+        "say \"hi\";",
+        "say hi;",
+        "print say \"hi\"",
+        "echo \"hi\";"
+      ],
+      "optionsKnown": [
+        "say со строкой",
+        "hi без кавычек — bareword",
+        "неверный синтаксис",
+        "не Perl"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q01-c1",
+      "title": "Как работают захваты `$1`, `$2` в regex? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как работают захваты `$1`, `$2` в regex?",
+      "optionsLearning": [
+        "Содержат подстроки, совпавшие с 1-й и 2-й скобочной группой",
+        "Номера строк в файле",
+        "Индексы символов в `@_`",
+        "Глобальные переменные только для split"
+      ],
+      "optionsKnown": [
+        "Группы захвата",
+        "Номера строк",
+        "Индексы @_",
+        "Только split"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q01-c2",
+      "title": "Как работают захваты `$1`, `$2` в regex? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "После `\"abc\" =~ /(b)(c)/` чему равен `$2`?",
+      "optionsLearning": [
+        "c",
+        "b",
+        "bc",
+        "undef"
+      ],
+      "optionsKnown": [
+        "c",
+        "b",
+        "bc",
+        "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q02-c1",
+      "title": "Что делают модификаторы `/g`, `/i`, `/x`? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает модификатор `/g`?",
+      "optionsLearning": [
+        "Ищет все совпадения, не только первое",
+        "Делает regex case-sensitive",
+        "Компилирует regex один раз",
+        "Включает extended whitespace в паттерне"
+      ],
+      "optionsKnown": [
+        "Global / все совпадения",
+        "Case sensitive",
+        "Компиляция",
+        "Extended whitespace"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q02-c2",
+      "title": "Что делают модификаторы `/g`, `/i`, `/x`? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой модификатор regex делает поиск без учёта регистра?",
+      "optionsLearning": [
+        "/i",
+        "/g",
+        "/x",
+        "/m только"
+      ],
+      "optionsKnown": [
+        "case-insensitive",
+        "global",
+        "extended",
+        "/m — multiline, не регистр"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q02-c3",
+      "title": "Что делают модификаторы `/g`, `/i`, `/x`? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Для чего модификатор `/x`?",
+      "optionsLearning": [
+        "Extended mode: пробелы и комментарии внутри паттерна",
+        "Execute pattern in hexadecimal mode",
+        "Exclusive match (только начало строки)",
+        "XML-safe regex"
+      ],
+      "optionsKnown": [
+        "Пробелы и # комментарии",
+        "Hex mode",
+        "Exclusive",
+        "XML"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q03-c1",
+      "title": "Разница между `=~` и `!~`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как записать, что строка `$s` НЕ совпадает с `/pat/`?",
+      "optionsLearning": [
+        "$s !~ /pat/",
+        "$s =~ /pat/",
+        "$s != /pat/",
+        "!$s =~ /pat/"
+      ],
+      "optionsKnown": [
+        "оператор !~",
+        "положительное совпадение",
+        "!= не для regex",
+        "неверный синтаксис"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q03-c2",
+      "title": "Разница между `=~` и `!~`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чем `=~` отличается от `!~`?",
+      "optionsLearning": [
+        "`=~` — успешное совпадение, `!~` — отсутствие совпадения",
+        "`=~` только для хешей",
+        "`!~` только в list context",
+        "Это синонимы в Perl 5.38"
+      ],
+      "optionsKnown": [
+        "Match vs negated match",
+        "Только hash",
+        "List context",
+        "Синонимы"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q04-c1",
+      "title": "Зачем использовать `qr//`? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Зачем использовать `qr//`?",
+      "optionsLearning": [
+        "Скомпилировать regex один раз и переиспользовать",
+        "Сделать regex case-sensitive",
+        "Запретить backtracking",
+        "Конвертировать regex в JSON"
+      ],
+      "optionsKnown": [
+        "Компиляция и reuse",
+        "Case sensitive",
+        "No backtrack",
+        "JSON"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q04-c2",
+      "title": "Зачем использовать `qr//`? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как сохранить скомпилированный паттерн цифр в `$re`?",
+      "optionsLearning": [
+        "my $re = qr/\\d+/;",
+        "my $re = \"/\\\\d+/\";",
+        "my $re = regex(\\d+);",
+        "my $re = m/\\d+/ once;"
+      ],
+      "optionsKnown": [
+        "qr// — compiled regex",
+        "строка, не regex-объект",
+        "нет функции regex()",
+        "m// — match, не сохранение"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q04-c3",
+      "title": "Зачем использовать `qr//`? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что вернёт `ref(qr/\\d+/)`?",
+      "optionsLearning": [
+        "Regexp",
+        "REGEXP",
+        "SCALAR",
+        "CODE"
+      ],
+      "optionsKnown": [
+        "Regexp",
+        "REGEXP",
+        "SCALAR",
+        "CODE"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q01-c1",
+      "title": "Как устроен `@_` в подпрограмме? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как устроен `@_` в подпрограмме?",
+      "optionsLearning": [
+        "Массив аргументов, переданных в текущий sub",
+        "Копия @ARGV",
+        "Стек возвратов caller()",
+        "Только именованные параметры"
+      ],
+      "optionsKnown": [
+        "Аргументы sub",
+        "@ARGV",
+        "caller stack",
+        "Named only"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q01-c2",
+      "title": "Как устроен `@_` в подпрограмме? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как получить первый аргумент sub в `$first`?",
+      "optionsLearning": [
+        "my $first = shift;",
+        "my $first = @_",
+        "my $first = @ARGV",
+        "my $first = caller(0)"
+      ],
+      "optionsKnown": [
+        "shift из @_",
+        "@_ целиком — массив",
+        "@ARGV — CLI args",
+        "caller — stack info"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q01-c3",
+      "title": "Как устроен `@_` в подпрограмме? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает `shift` без аргументов внутри sub?",
+      "optionsLearning": [
+        "Убирает и возвращает первый элемент `@_`",
+        "Сдвигает @INC",
+        "Удаляет первый ключ хеша",
+        "Syntax error в strict"
+      ],
+      "optionsKnown": [
+        "shift @_",
+        "@INC",
+        "hash key",
+        "Syntax error"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q02-c1",
+      "title": "Когда применять `map` и `grep`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Когда применять `map` и `grep`?",
+      "optionsLearning": [
+        "`map` — преобразовать каждый элемент, `grep` — отфильтровать",
+        "`grep` только для файлов, `map` только для строк",
+        "Взаимозаменяемы без разницы",
+        "Только в scalar context"
+      ],
+      "optionsKnown": [
+        "map transform, grep filter",
+        "grep files only",
+        "Same",
+        "Scalar only"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q02-c2",
+      "title": "Когда применять `map` и `grep`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что вернёт `map { $_ * 2 } (1, 2, 3)`?",
+      "optionsLearning": [
+        "(2, 4, 6)",
+        "6",
+        "(1, 2, 3)",
+        "undef"
+      ],
+      "optionsKnown": [
+        "(2, 4, 6)",
+        "6 (если scalar context)",
+        "исходный",
+        "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q03-c1",
+      "title": "Что делает оператор `<=>` (spaceship)? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как называется оператор `<=>`?",
+      "optionsLearning": [
+        "spaceship",
+        "rocket",
+        "cmp-only",
+        "compare"
+      ],
+      "optionsKnown": [
+        "трёхстороннее сравнение",
+        "неофициальное имя",
+        "cmp — другой оператор",
+        "не ключевое слово"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q03-c2",
+      "title": "Что делает оператор `<=>` (spaceship)? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чему равно `\"a\" <=> \"b\"`?",
+      "optionsLearning": [
+        "-1",
+        "0",
+        "1",
+        "undef"
+      ],
+      "optionsKnown": [
+        "-1 (a раньше b)",
+        "0",
+        "1",
+        "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q03-c3",
+      "title": "Что делает оператор `<=>` (spaceship)? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Для чего используют `<=>` в `sort`?",
+      "optionsLearning": [
+        "Задать трёхстороннее сравнение элементов",
+        "Сортировать только числа в строковом виде",
+        "Сравнивать ссылки на хеши по умолчанию",
+        "Включить stable sort в Perl"
+      ],
+      "optionsKnown": [
+        "Comparison function",
+        "String numbers only",
+        "Hash refs default",
+        "Stable sort flag"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q04-c1",
+      "title": "Разница между `sort` и `sort { ... }`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Разница между `sort @arr` и `sort { $a <=> $b } @arr`?",
+      "optionsLearning": [
+        "Первый — строковая сортировка, второй — числовая через spaceship",
+        "Нет разницы для чисел",
+        "Блоковая форма запрещена в strict",
+        "Первый сортирует по длине строки"
+      ],
+      "optionsKnown": [
+        "String vs numeric sort",
+        "No diff",
+        "Block forbidden",
+        "By length"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q04-c2",
+      "title": "Разница между `sort` и `sort { ... }`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как отсортировать `@nums` по возрастанию как числа?",
+      "optionsLearning": [
+        "sort { $a <=> $b } @nums",
+        "sort @nums",
+        "sort { $a cmp $b } @nums",
+        "sort numeric @nums"
+      ],
+      "optionsKnown": [
+        "числовой spaceship",
+        "строковая сортировка по умолчанию",
+        "строковое cmp",
+        "нет sort numeric"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q01-c1",
+      "title": "Как подключить модуль через `use` и `require`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как подключить модуль через `use` и `require`?",
+      "optionsLearning": [
+        "`use` — compile time + import, `require` — runtime по строке пути",
+        "Это синонимы",
+        "`require` только для CPAN, `use` только core",
+        "`use` не вызывает import"
+      ],
+      "optionsKnown": [
+        "Compile vs runtime",
+        "Synonyms",
+        "CPAN vs core",
+        "No import"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q01-c2",
+      "title": "Как подключить модуль через `use` и `require`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как условно загрузить `JSON::MaybeXS` только если `$ENV{USE_JSON}`?",
+      "optionsLearning": [
+        "require JSON::MaybeXS if $ENV{USE_JSON};",
+        "use JSON::MaybeXS if $ENV{USE_JSON};",
+        "import JSON::MaybeXS when $ENV{USE_JSON};",
+        "load module JSON::MaybeXS($ENV{USE_JSON});"
+      ],
+      "optionsKnown": [
+        "require — runtime",
+        "use — compile time, не для if",
+        "нет import when",
+        "нет load module()"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q02-c1",
+      "title": "Базовый синтаксис bless для ООП в Perl? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Базовый синтаксис bless для ООП в Perl?",
+      "optionsLearning": [
+        "bless $ref, \"Class::Name\" делает объект класса",
+        "bless создаёт пакет автоматически в strict",
+        "bless только для @ISA",
+        "bless вызывается только в DESTROY"
+      ],
+      "optionsKnown": [
+        "bless ref into class",
+        "Auto package",
+        "@ISA only",
+        "DESTROY only"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q02-c2",
+      "title": "Базовый синтаксис bless для ООП в Perl? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как сделать объект `My::Class` из хеша `$self`?",
+      "optionsLearning": [
+        "bless $self, \"My::Class\"",
+        "new My::Class($self)",
+        "object $self, My::Class",
+        "$self->class(\"My::Class\")"
+      ],
+      "optionsKnown": [
+        "bless ref, class",
+        "нет встроенного new без конструктора",
+        "нет object()",
+        "нет метода class()"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q02-c3",
+      "title": "Базовый синтаксис bless для ООП в Perl? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как вызвать метод `save` у объекта `$obj` класса `My::Class`?",
+      "optionsLearning": [
+        "$obj->save",
+        "My::Class->save($obj)",
+        "save($obj)",
+        "$obj.save"
+      ],
+      "optionsKnown": [
+        "Стрелочный вызов",
+        "Класс->метод(объект) — другой паттерн",
+        "Произвольная функция",
+        "Синтаксис других языков"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q03-c1",
+      "title": "Как безопасно открыть файл и обработать ошибки? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как безопасно открыть файл и обработать ошибки?",
+      "optionsLearning": [
+        "open my $fh, \"<\", $path or die \"open $path: $!\";",
+        "open FH, $path; ignore errors",
+        "sysopen без проверки $!",
+        "eval { open } всегда молча"
+      ],
+      "optionsKnown": [
+        "open or die with $!",
+        "Ignore errors",
+        "sysopen no check",
+        "silent eval"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q03-c2",
+      "title": "Как безопасно открыть файл и обработать ошибки? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой шаблон безопасного `open` с обработкой ошибки через `$!`?",
+      "optionsLearning": [
+        "open my $fh, \"<\", $path or die \"open $path: $!\";",
+        "open FH, $path or warn;",
+        "open my $fh, $path;",
+        "open($path) || print $!;"
+      ],
+      "optionsKnown": [
+        "lexical FH + or die + $!",
+        "голый FH без die",
+        "нет проверки ошибки",
+        "print вместо die"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q04-c1",
+      "title": "Типовые red flags в Perl-коде на собеседовании? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Типовые red flags в Perl-коде на собеседовании?",
+      "optionsLearning": [
+        "Отсутствие strict/warnings, голые filehandles, двусмысленный context",
+        "Использование map/grep",
+        "Наличие комментариев",
+        "Применение my в subs"
+      ],
+      "optionsKnown": [
+        "no strict, global FH, context bugs",
+        "map/grep bad",
+        "Comments bad",
+        "my bad"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q04-c2",
+      "title": "Типовые red flags в Perl-коде на собеседовании? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какие две директивы обычно пишут в начале современного Perl-скрипта?",
+      "optionsLearning": [
+        "use strict; use warnings;",
+        "use say; use utf8;",
+        "no strict; no warnings;",
+        "use Moose; use Dancer2;"
+      ],
+      "optionsKnown": [
+        "strict + warnings",
+        "feature/utf8 — не минимум",
+        "отключают защиту",
+        "фреймворки, не базовый минимум"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q04-c3",
+      "title": "Типовые red flags в Perl-коде на собеседовании? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой признак устаревшего стиля работы с файлами?",
+      "optionsLearning": [
+        "Голый filehandle `open FH, \"<\", $path` без lexicals",
+        "Лексический `open my $fh, ...`",
+        "Проверка `$!` после open",
+        "Использование `<$fh>` в while"
+      ],
+      "optionsKnown": [
+        "Global FH без my",
+        "Lexical FH — современный стиль",
+        "Проверка $!",
+        "Чтение через handle OK"
+      ],
+      "correctIndex": 0
+    }
+  ]
+}

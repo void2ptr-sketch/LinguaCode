@@ -2,12 +2,22 @@ import type { CardSearchCriteria, ContentLanguage, LanguagePair } from '../model
 import type { CardIndexEntry } from '../models/card-index.types';
 import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
 
-const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru'];
+const CONTENT_LANGUAGES: readonly ContentLanguage[] = [
+  'en',
+  'zh',
+  'ru',
+  'perl',
+  'java',
+  'cpp',
+];
 
 export const CONTENT_LANGUAGE_LABELS: Record<ContentLanguage, string> = {
   en: 'English',
   zh: '中文',
   ru: 'Русский',
+  perl: 'Perl',
+  java: 'Java',
+  cpp: 'C++',
 };
 
 export function isContentLanguage(value: unknown): value is ContentLanguage {

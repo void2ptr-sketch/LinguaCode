@@ -8,6 +8,7 @@ import type { CardDirection } from '../../../../core/models/language-pair.types'
 import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
+import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 export type MemoryColumnItem = {
   id: string;
@@ -19,7 +20,7 @@ export type MemoryColumnItem = {
 
 @Component({
   selector: 'app-memory-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent],
+  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
   templateUrl: './memory-card.component.html',
   styleUrl: './memory-card.component.scss',
 })

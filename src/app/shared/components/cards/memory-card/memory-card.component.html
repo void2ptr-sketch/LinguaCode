@@ -1,15 +1,10 @@
 <mat-card class="quiz-card quiz-card--font-{{ fontSize() }}">
   <section class="quiz-card__question" aria-label="Вопрос">
-    <mat-card-header>
-      <mat-card-title>{{ card().title }}</mat-card-title>
-      <mat-card-subtitle>
-        <app-lexeme-display
-          surface="prompt"
-          [lexeme]="card().promptLexeme"
-          [fallbackText]="card().promptKnown"
-        />
-      </mat-card-subtitle>
-    </mat-card-header>
+    <app-quiz-card-question-header
+      [title]="card().title"
+      [prompt]="card().promptKnown"
+      [promptLexeme]="card().promptLexeme"
+    />
   </section>
 
   <section class="quiz-card__answer" aria-label="Ответ">

@@ -10,6 +10,7 @@ import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.comp
 import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.utils';
+import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 @Component({
   selector: 'app-tone-card',
@@ -19,6 +20,7 @@ import { buildOptionClass } from '../option-card.utils';
     MatIconModule,
     LexemeDisplayComponent,
     ToneColoredTextComponent,
+    QuizCardQuestionHeaderComponent,
   ],
   templateUrl: './tone-card.component.html',
   styleUrl: './tone-card.component.scss',

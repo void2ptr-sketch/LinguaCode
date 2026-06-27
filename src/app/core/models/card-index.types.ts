@@ -1,7 +1,7 @@
 import type { CardKind } from './card.types';
 
 /** Язык контента карточек и UI приложения — не путать с UiLocale (см. docs/LANGUAGE-PAIR.md). */
-export type ContentLanguage = 'en' | 'zh' | 'ru';
+export type ContentLanguage = 'en' | 'zh' | 'ru' | 'perl' | 'java' | 'cpp';
 
 export type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
 

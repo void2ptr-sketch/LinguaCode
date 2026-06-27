@@ -1,0 +1,113 @@
+{
+  "courses": [
+    {
+      "id": "course-ru-perl-interview",
+      "title": "Собеседование на языке Perl",
+      "description": "Подготовка к техническому собеседованию по Perl: программа сгенерирована из «Идеи программы».",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "lessonIds": [
+        "lesson-perl-interview-01",
+        "lesson-perl-interview-02",
+        "lesson-perl-interview-03",
+        "lesson-perl-interview-04",
+        "lesson-perl-interview-05"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "authoring": {
+        "idea": "# Идея программы: Собеседование на языке Perl\n\n<!-- Формат материализации:\n     ## Этап N: название  → 1 урок\n     - вопрос             → 1 сценарий (тема)\n     Карточки генерируются автоматически (2–3 на сценарий).\n     npm run export:content-seed -->\n\n## Цели\n\nПодготовка к техническому собеседованию по Perl: базовый синтаксис, контексты, модули, регулярные выражения, работа с данными.\n\n## Аудитория\n\nРазработчики с опытом в других языках, которым нужно быстро освежить Perl перед интервью.\n\n## Формат\n\n- Короткие сценарии с карточками «вопрос → ответ»\n- Акцент на типовых вопросах интервью, а не на полном учебнике\n\n## Этап 1: Контексты и sigils\n\n- Что такое scalar context и list context?\n- Что вернёт `@array` в scalar context?\n- Чем отличаются sigils `$`, `@`, `%`?\n- Когда используется `undef`?\n\n## Этап 2: Строгость и объявления\n\n- Зачем подключать `use strict`?\n- Что даёт `use warnings`?\n- Разница между `my`, `our` и глобальными переменными?\n- Что такое `use feature 'say'`?\n\n## Этап 3: Регулярные выражения\n\n- Как работают захваты `$1`, `$2` в regex?\n- Что делают модификаторы `/g`, `/i`, `/x`?\n- Разница между `=~` и `!~`?\n- Зачем использовать `qr//`?\n\n## Этап 4: Подпрограммы и встроенные функции\n\n- Как устроен `@_` в подпрограмме?\n- Когда применять `map` и `grep`?\n- Что делает оператор `<=>` (spaceship)?\n- Разница между `sort` и `sort { ... }`?\n\n## Этап 5: Модули, ООП и практика на интервью\n\n- Как подключить модуль через `use` и `require`?\n- Базовый синтаксис bless для ООП в Perl?\n- Как безопасно открыть файл и обработать ошибки?\n- Типовые red flags в Perl-коде на собеседовании?",
+        "status": "planned",
+        "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson-perl-interview-01",
+      "courseId": "course-ru-perl-interview",
+      "title": "Контексты и sigils",
+      "description": "4 тем (сценариев) для этапа «Контексты и sigils».",
+      "scenarioIds": [
+        "scenario-perl-s01-q01",
+        "scenario-perl-s01-q02",
+        "scenario-perl-s01-q03",
+        "scenario-perl-s01-q04"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-02",
+      "courseId": "course-ru-perl-interview",
+      "title": "Строгость и объявления",
+      "description": "4 тем (сценариев) для этапа «Строгость и объявления».",
+      "scenarioIds": [
+        "scenario-perl-s02-q01",
+        "scenario-perl-s02-q02",
+        "scenario-perl-s02-q03",
+        "scenario-perl-s02-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-01"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-03",
+      "courseId": "course-ru-perl-interview",
+      "title": "Регулярные выражения",
+      "description": "4 тем (сценариев) для этапа «Регулярные выражения».",
+      "scenarioIds": [
+        "scenario-perl-s03-q01",
+        "scenario-perl-s03-q02",
+        "scenario-perl-s03-q03",
+        "scenario-perl-s03-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-02"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-04",
+      "courseId": "course-ru-perl-interview",
+      "title": "Подпрограммы и встроенные функции",
+      "description": "4 тем (сценариев) для этапа «Подпрограммы и встроенные функции».",
+      "scenarioIds": [
+        "scenario-perl-s04-q01",
+        "scenario-perl-s04-q02",
+        "scenario-perl-s04-q03",
+        "scenario-perl-s04-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-03"
+      ],
+      "order": 3,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-05",
+      "courseId": "course-ru-perl-interview",
+      "title": "Модули, ООП и практика на интервью",
+      "description": "4 тем (сценариев) для этапа «Модули, ООП и практика на интервью».",
+      "scenarioIds": [
+        "scenario-perl-s05-q01",
+        "scenario-perl-s05-q02",
+        "scenario-perl-s05-q03",
+        "scenario-perl-s05-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-04"
+      ],
+      "order": 4,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    }
+  ]
+}

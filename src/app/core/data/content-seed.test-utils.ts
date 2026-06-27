@@ -11,10 +11,13 @@ import { normalizeScenario } from './scenario-card-source.utils';
 import { USER_CONTENT_MIGRATED_KEY } from './user-content-overlay.types';
 
 import demoCoursesFixture from '../../../../public/data/courses/demo-courses.json';
+import perlInterviewCourseFixture from '../../../../public/data/courses/perl-interview-course.json';
 import radicalsCourseFixture from '../../../../public/data/courses/radicals-214-course.json';
 import demoScenariosFixture from '../../../../public/data/scenarios/demo-scenarios.json';
+import perlInterviewScenariosFixture from '../../../../public/data/scenarios/perl-interview-scenarios.json';
 import radicalsScenariosFixture from '../../../../public/data/scenarios/radicals-scenarios.json';
 import selectCardsFixture from '../../../../public/data/select-cards.json';
+import perlInterviewCardsFixture from '../../../../public/data/perl-interview-cards.json';
 import radicalsCardsFixture from '../../../../public/data/radicals-course-cards.json';
 
 export function seedTestContentCache(): void {
@@ -24,17 +27,23 @@ export function seedTestContentCache(): void {
   const radicalsScenarios = (radicalsScenariosFixture as ScenariosSeedFixture).scenarios.map(
     (scenario) => normalizeScenario(scenario),
   );
+  const perlScenarios = (perlInterviewScenariosFixture as ScenariosSeedFixture).scenarios.map(
+    (scenario) => normalizeScenario(scenario),
+  );
 
-  setScenarioSeedCache([...demoScenarios, ...radicalsScenarios]);
+  setScenarioSeedCache([...demoScenarios, ...radicalsScenarios, ...perlScenarios]);
 
   const demoCourses = normalizeStoredCourseCatalog(demoCoursesFixture as CoursesSeedFixture);
   const radicalsCourses = normalizeStoredCourseCatalog(
     radicalsCourseFixture as CoursesSeedFixture,
   );
+  const perlCourses = normalizeStoredCourseCatalog(
+    perlInterviewCourseFixture as CoursesSeedFixture,
+  );
 
   const catalog: CourseCatalogState = {
-    courses: [...demoCourses.courses, ...radicalsCourses.courses],
-    lessons: [...demoCourses.lessons, ...radicalsCourses.lessons],
+    courses: [...demoCourses.courses, ...radicalsCourses.courses, ...perlCourses.courses],
+    lessons: [...demoCourses.lessons, ...radicalsCourses.lessons, ...perlCourses.lessons],
   };
 
   setCourseSeedCache(catalog);
@@ -42,6 +51,7 @@ export function seedTestContentCache(): void {
     normalizeLegacyCards([
       ...(selectCardsFixture as CardsSeedFixture).cards,
       ...(radicalsCardsFixture as CardsSeedFixture).cards,
+      ...(perlInterviewCardsFixture as CardsSeedFixture).cards,
     ]),
   );
   localStorage.setItem(USER_CONTENT_MIGRATED_KEY, '1');
@@ -72,6 +82,17 @@ export function getTestZhScenarios(): readonly Scenario[] {
   return getTestDefaultScenarios().filter(
     (scenario) => scenario.languagePair?.learning === 'zh',
   );
+}
+
+export function getTestPerlCourseCatalog(): CourseCatalogState {
+  const catalog = getTestDefaultCourseCatalog();
+  const perlCourses = catalog.courses.filter((course) => course.languagePair.learning === 'perl');
+  const perlCourseIds = new Set(perlCourses.map((course) => course.id));
+
+  return {
+    courses: perlCourses,
+    lessons: catalog.lessons.filter((lesson) => perlCourseIds.has(lesson.courseId)),
+  };
 }
 
 export function getTestDemoCourseWithLessons(): CourseWithLessons {
