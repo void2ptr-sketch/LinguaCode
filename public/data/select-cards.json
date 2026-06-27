@@ -378,35 +378,33 @@
       "title": "Полифония: 行",
       "appearance": { "theme": "azure-blue", "fontSize": "md" },
       "direction": "known-to-learning",
-      "promptKnown": "Как читается «行» в слове «银行»?",
+      "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
       "promptLexeme": {
         "primary": "银行",
         "script": "hani",
         "pinyin": "yínháng",
         "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
         "palladius": "инь хан",
-        "ipa": "in˧˥ xaŋ˧˥"
+        "ipa": "in˧˥ xaŋ˧˥",
+        "glossKnown": "банк"
       },
-      "optionsLearning": ["háng", "xíng"],
-      "optionsKnown": ["читается háng (банк)", "читается xíng (идти)"],
+      "optionsLearning": ["银行", "yínxíng"],
+      "optionsKnown": ["инь хан — банк", "неверное чтение «行» как xíng"],
       "optionsLexemes": [
         {
-          "primary": "háng",
-          "script": "latn",
-          "pinyin": "háng",
-          "zhuyin": "ㄏㄤˊ",
-          "palladius": "хан",
-          "ipa": "xaŋ˧˥",
-          "glossKnown": "читается háng (банк)"
+          "primary": "银行",
+          "script": "hani",
+          "pinyin": "yínháng",
+          "zhuyin": "ㄧㄣˊ ㄏㄤˊ",
+          "palladius": "инь хан",
+          "ipa": "in˧˥ xaŋ˧˥",
+          "glossKnown": "инь хан — банк"
         },
         {
-          "primary": "xíng",
+          "primary": "yínxíng",
           "script": "latn",
-          "pinyin": "xíng",
-          "zhuyin": "ㄒㄧㄥˊ",
-          "palladius": "син",
-          "ipa": "ɕiŋ˧˥",
-          "glossKnown": "читается xíng (идти)"
+          "pinyin": "yínxíng",
+          "glossKnown": "неверное чтение «行» как xíng"
         }
       ],
       "correctIndex": 0
