@@ -1,0 +1,862 @@
+{
+  "version": 1,
+  "count": 214,
+  "radicals": [
+    {
+      "index": 1,
+      "character": "一"
+    },
+    {
+      "index": 2,
+      "character": "丨"
+    },
+    {
+      "index": 3,
+      "character": "丶"
+    },
+    {
+      "index": 4,
+      "character": "丿"
+    },
+    {
+      "index": 5,
+      "character": "乙"
+    },
+    {
+      "index": 6,
+      "character": "亅"
+    },
+    {
+      "index": 7,
+      "character": "二"
+    },
+    {
+      "index": 8,
+      "character": "亠"
+    },
+    {
+      "index": 9,
+      "character": "人"
+    },
+    {
+      "index": 10,
+      "character": "儿"
+    },
+    {
+      "index": 11,
+      "character": "入"
+    },
+    {
+      "index": 12,
+      "character": "八"
+    },
+    {
+      "index": 13,
+      "character": "冂"
+    },
+    {
+      "index": 14,
+      "character": "冖"
+    },
+    {
+      "index": 15,
+      "character": "冫"
+    },
+    {
+      "index": 16,
+      "character": "几"
+    },
+    {
+      "index": 17,
+      "character": "凵"
+    },
+    {
+      "index": 18,
+      "character": "刀"
+    },
+    {
+      "index": 19,
+      "character": "力"
+    },
+    {
+      "index": 20,
+      "character": "勹"
+    },
+    {
+      "index": 21,
+      "character": "匕"
+    },
+    {
+      "index": 22,
+      "character": "匚"
+    },
+    {
+      "index": 23,
+      "character": "匸"
+    },
+    {
+      "index": 24,
+      "character": "十"
+    },
+    {
+      "index": 25,
+      "character": "卜"
+    },
+    {
+      "index": 26,
+      "character": "卩"
+    },
+    {
+      "index": 27,
+      "character": "厂"
+    },
+    {
+      "index": 28,
+      "character": "厶"
+    },
+    {
+      "index": 29,
+      "character": "又"
+    },
+    {
+      "index": 30,
+      "character": "口"
+    },
+    {
+      "index": 31,
+      "character": "囗"
+    },
+    {
+      "index": 32,
+      "character": "土"
+    },
+    {
+      "index": 33,
+      "character": "士"
+    },
+    {
+      "index": 34,
+      "character": "夂"
+    },
+    {
+      "index": 35,
+      "character": "夊"
+    },
+    {
+      "index": 36,
+      "character": "夕"
+    },
+    {
+      "index": 37,
+      "character": "大"
+    },
+    {
+      "index": 38,
+      "character": "女"
+    },
+    {
+      "index": 39,
+      "character": "子"
+    },
+    {
+      "index": 40,
+      "character": "宀"
+    },
+    {
+      "index": 41,
+      "character": "寸"
+    },
+    {
+      "index": 42,
+      "character": "小"
+    },
+    {
+      "index": 43,
+      "character": "尢"
+    },
+    {
+      "index": 44,
+      "character": "尸"
+    },
+    {
+      "index": 45,
+      "character": "屮"
+    },
+    {
+      "index": 46,
+      "character": "山"
+    },
+    {
+      "index": 47,
+      "character": "巛"
+    },
+    {
+      "index": 48,
+      "character": "工"
+    },
+    {
+      "index": 49,
+      "character": "己"
+    },
+    {
+      "index": 50,
+      "character": "巾"
+    },
+    {
+      "index": 51,
+      "character": "干"
+    },
+    {
+      "index": 52,
+      "character": "幺"
+    },
+    {
+      "index": 53,
+      "character": "广"
+    },
+    {
+      "index": 54,
+      "character": "廴"
+    },
+    {
+      "index": 55,
+      "character": "廾"
+    },
+    {
+      "index": 56,
+      "character": "弋"
+    },
+    {
+      "index": 57,
+      "character": "弓"
+    },
+    {
+      "index": 58,
+      "character": "彐"
+    },
+    {
+      "index": 59,
+      "character": "彡"
+    },
+    {
+      "index": 60,
+      "character": "彳"
+    },
+    {
+      "index": 61,
+      "character": "心"
+    },
+    {
+      "index": 62,
+      "character": "戈"
+    },
+    {
+      "index": 63,
+      "character": "戶"
+    },
+    {
+      "index": 64,
+      "character": "手"
+    },
+    {
+      "index": 65,
+      "character": "支"
+    },
+    {
+      "index": 66,
+      "character": "攴"
+    },
+    {
+      "index": 67,
+      "character": "文"
+    },
+    {
+      "index": 68,
+      "character": "斗"
+    },
+    {
+      "index": 69,
+      "character": "斤"
+    },
+    {
+      "index": 70,
+      "character": "方"
+    },
+    {
+      "index": 71,
+      "character": "无"
+    },
+    {
+      "index": 72,
+      "character": "日"
+    },
+    {
+      "index": 73,
+      "character": "曰"
+    },
+    {
+      "index": 74,
+      "character": "月"
+    },
+    {
+      "index": 75,
+      "character": "木"
+    },
+    {
+      "index": 76,
+      "character": "欠"
+    },
+    {
+      "index": 77,
+      "character": "止"
+    },
+    {
+      "index": 78,
+      "character": "歹"
+    },
+    {
+      "index": 79,
+      "character": "殳"
+    },
+    {
+      "index": 80,
+      "character": "毋"
+    },
+    {
+      "index": 81,
+      "character": "比"
+    },
+    {
+      "index": 82,
+      "character": "毛"
+    },
+    {
+      "index": 83,
+      "character": "氏"
+    },
+    {
+      "index": 84,
+      "character": "气"
+    },
+    {
+      "index": 85,
+      "character": "水"
+    },
+    {
+      "index": 86,
+      "character": "火"
+    },
+    {
+      "index": 87,
+      "character": "爪"
+    },
+    {
+      "index": 88,
+      "character": "父"
+    },
+    {
+      "index": 89,
+      "character": "爻"
+    },
+    {
+      "index": 90,
+      "character": "爿"
+    },
+    {
+      "index": 91,
+      "character": "片"
+    },
+    {
+      "index": 92,
+      "character": "牙"
+    },
+    {
+      "index": 93,
+      "character": "牛"
+    },
+    {
+      "index": 94,
+      "character": "犬"
+    },
+    {
+      "index": 95,
+      "character": "玄"
+    },
+    {
+      "index": 96,
+      "character": "玉"
+    },
+    {
+      "index": 97,
+      "character": "瓜"
+    },
+    {
+      "index": 98,
+      "character": "瓦"
+    },
+    {
+      "index": 99,
+      "character": "甘"
+    },
+    {
+      "index": 100,
+      "character": "生"
+    },
+    {
+      "index": 101,
+      "character": "用"
+    },
+    {
+      "index": 102,
+      "character": "田"
+    },
+    {
+      "index": 103,
+      "character": "疋"
+    },
+    {
+      "index": 104,
+      "character": "疒"
+    },
+    {
+      "index": 105,
+      "character": "癶"
+    },
+    {
+      "index": 106,
+      "character": "白"
+    },
+    {
+      "index": 107,
+      "character": "皮"
+    },
+    {
+      "index": 108,
+      "character": "皿"
+    },
+    {
+      "index": 109,
+      "character": "目"
+    },
+    {
+      "index": 110,
+      "character": "矛"
+    },
+    {
+      "index": 111,
+      "character": "矢"
+    },
+    {
+      "index": 112,
+      "character": "石"
+    },
+    {
+      "index": 113,
+      "character": "示"
+    },
+    {
+      "index": 114,
+      "character": "禸"
+    },
+    {
+      "index": 115,
+      "character": "禾"
+    },
+    {
+      "index": 116,
+      "character": "穴"
+    },
+    {
+      "index": 117,
+      "character": "立"
+    },
+    {
+      "index": 118,
+      "character": "竹"
+    },
+    {
+      "index": 119,
+      "character": "米"
+    },
+    {
+      "index": 120,
+      "character": "糸"
+    },
+    {
+      "index": 121,
+      "character": "缶"
+    },
+    {
+      "index": 122,
+      "character": "网"
+    },
+    {
+      "index": 123,
+      "character": "羊"
+    },
+    {
+      "index": 124,
+      "character": "羽"
+    },
+    {
+      "index": 125,
+      "character": "老"
+    },
+    {
+      "index": 126,
+      "character": "而"
+    },
+    {
+      "index": 127,
+      "character": "耒"
+    },
+    {
+      "index": 128,
+      "character": "耳"
+    },
+    {
+      "index": 129,
+      "character": "聿"
+    },
+    {
+      "index": 130,
+      "character": "肉"
+    },
+    {
+      "index": 131,
+      "character": "臣"
+    },
+    {
+      "index": 132,
+      "character": "自"
+    },
+    {
+      "index": 133,
+      "character": "至"
+    },
+    {
+      "index": 134,
+      "character": "臼"
+    },
+    {
+      "index": 135,
+      "character": "舌"
+    },
+    {
+      "index": 136,
+      "character": "舛"
+    },
+    {
+      "index": 137,
+      "character": "舟"
+    },
+    {
+      "index": 138,
+      "character": "艮"
+    },
+    {
+      "index": 139,
+      "character": "色"
+    },
+    {
+      "index": 140,
+      "character": "艸"
+    },
+    {
+      "index": 141,
+      "character": "虍"
+    },
+    {
+      "index": 142,
+      "character": "虫"
+    },
+    {
+      "index": 143,
+      "character": "血"
+    },
+    {
+      "index": 144,
+      "character": "行"
+    },
+    {
+      "index": 145,
+      "character": "衣"
+    },
+    {
+      "index": 146,
+      "character": "襾"
+    },
+    {
+      "index": 147,
+      "character": "見"
+    },
+    {
+      "index": 148,
+      "character": "角"
+    },
+    {
+      "index": 149,
+      "character": "言"
+    },
+    {
+      "index": 150,
+      "character": "谷"
+    },
+    {
+      "index": 151,
+      "character": "豆"
+    },
+    {
+      "index": 152,
+      "character": "豕"
+    },
+    {
+      "index": 153,
+      "character": "豸"
+    },
+    {
+      "index": 154,
+      "character": "貝"
+    },
+    {
+      "index": 155,
+      "character": "赤"
+    },
+    {
+      "index": 156,
+      "character": "走"
+    },
+    {
+      "index": 157,
+      "character": "足"
+    },
+    {
+      "index": 158,
+      "character": "身"
+    },
+    {
+      "index": 159,
+      "character": "車"
+    },
+    {
+      "index": 160,
+      "character": "辛"
+    },
+    {
+      "index": 161,
+      "character": "辰"
+    },
+    {
+      "index": 162,
+      "character": "辵"
+    },
+    {
+      "index": 163,
+      "character": "邑"
+    },
+    {
+      "index": 164,
+      "character": "酉"
+    },
+    {
+      "index": 165,
+      "character": "釆"
+    },
+    {
+      "index": 166,
+      "character": "里"
+    },
+    {
+      "index": 167,
+      "character": "金"
+    },
+    {
+      "index": 168,
+      "character": "長"
+    },
+    {
+      "index": 169,
+      "character": "門"
+    },
+    {
+      "index": 170,
+      "character": "阜"
+    },
+    {
+      "index": 171,
+      "character": "隶"
+    },
+    {
+      "index": 172,
+      "character": "隹"
+    },
+    {
+      "index": 173,
+      "character": "雨"
+    },
+    {
+      "index": 174,
+      "character": "靑"
+    },
+    {
+      "index": 175,
+      "character": "非"
+    },
+    {
+      "index": 176,
+      "character": "面"
+    },
+    {
+      "index": 177,
+      "character": "革"
+    },
+    {
+      "index": 178,
+      "character": "韋"
+    },
+    {
+      "index": 179,
+      "character": "韭"
+    },
+    {
+      "index": 180,
+      "character": "音"
+    },
+    {
+      "index": 181,
+      "character": "頁"
+    },
+    {
+      "index": 182,
+      "character": "風"
+    },
+    {
+      "index": 183,
+      "character": "飛"
+    },
+    {
+      "index": 184,
+      "character": "食"
+    },
+    {
+      "index": 185,
+      "character": "首"
+    },
+    {
+      "index": 186,
+      "character": "香"
+    },
+    {
+      "index": 187,
+      "character": "馬"
+    },
+    {
+      "index": 188,
+      "character": "骨"
+    },
+    {
+      "index": 189,
+      "character": "高"
+    },
+    {
+      "index": 190,
+      "character": "髟"
+    },
+    {
+      "index": 191,
+      "character": "鬥"
+    },
+    {
+      "index": 192,
+      "character": "鬯"
+    },
+    {
+      "index": 193,
+      "character": "鬲"
+    },
+    {
+      "index": 194,
+      "character": "鬼"
+    },
+    {
+      "index": 195,
+      "character": "魚"
+    },
+    {
+      "index": 196,
+      "character": "鳥"
+    },
+    {
+      "index": 197,
+      "character": "鹵"
+    },
+    {
+      "index": 198,
+      "character": "鹿"
+    },
+    {
+      "index": 199,
+      "character": "麥"
+    },
+    {
+      "index": 200,
+      "character": "麻"
+    },
+    {
+      "index": 201,
+      "character": "黃"
+    },
+    {
+      "index": 202,
+      "character": "黍"
+    },
+    {
+      "index": 203,
+      "character": "黑"
+    },
+    {
+      "index": 204,
+      "character": "黹"
+    },
+    {
+      "index": 205,
+      "character": "黽"
+    },
+    {
+      "index": 206,
+      "character": "鼎"
+    },
+    {
+      "index": 207,
+      "character": "鼓"
+    },
+    {
+      "index": 208,
+      "character": "鼠"
+    },
+    {
+      "index": 209,
+      "character": "鼻"
+    },
+    {
+      "index": 210,
+      "character": "齊"
+    },
+    {
+      "index": 211,
+      "character": "齒"
+    },
+    {
+      "index": 212,
+      "character": "龍"
+    },
+    {
+      "index": 213,
+      "character": "龜"
+    },
+    {
+      "index": 214,
+      "character": "龠"
+    }
+  ]
+}
