@@ -24,7 +24,8 @@
 }
 
 .draw-canvas__ghost,
-.draw-canvas__guides {
+.draw-canvas__guides,
+.draw-canvas__radicals {
   height: 100%;
   inset: 0;
   pointer-events: none;
@@ -32,7 +33,8 @@
   width: 100%;
 }
 
-.draw-canvas__ghost {
+.draw-canvas__ghost,
+.draw-canvas__radicals {
   z-index: 1;
 }
 
@@ -46,6 +48,10 @@
 
 .draw-canvas__ghost-stroke--radical {
   fill: var(--mat-sys-primary);
+}
+
+.draw-canvas__radical-stroke {
+  opacity: 0.38;
 }
 
 .draw-canvas__overlay {

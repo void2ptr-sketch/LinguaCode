@@ -7,6 +7,22 @@ export function resolveHanziSvgGroupTransform(positioner: HanziPositioner): stri
   return `translate(${positioner.xOffset}, ${translateY}) scale(${positioner.scale}, ${-positioner.scale})`;
 }
 
+/** MMH → canvas для заливки stroke.path (Path2D) в том же месте, что ghost SVG. */
+export function applyHanziCanvasPathTransform(
+  context: CanvasRenderingContext2D,
+  positioner: HanziPositioner,
+): void {
+  const translateY = positioner.height - positioner.yOffset;
+  context.transform(
+    positioner.scale,
+    0,
+    0,
+    -positioner.scale,
+    positioner.xOffset,
+    translateY,
+  );
+}
+
 export function medianToSvgPath(points: readonly HanziPoint[]): string {
   if (points.length === 0) {
     return '';

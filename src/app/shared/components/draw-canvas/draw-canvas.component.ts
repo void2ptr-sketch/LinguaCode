@@ -20,6 +20,11 @@ import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-chara
 import type { HanziLoadState, HanziPoint } from '../../../core/hanzi-engine/hanzi-character.types';
 import { HanziPositioner } from '../../../core/hanzi-engine/hanzi-positioner';
 import {
+  resolveRadicalComponentCellCenter,
+  resolveRadicalComponentSvgTransform,
+} from '../../../core/hanzi-engine/hanzi-radical-layout.utils';
+import {
+  applyHanziCanvasPathTransform,
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
@@ -80,6 +85,8 @@ export class DrawCanvasComponent {
   readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
   readonly hanziModel = signal<HanziCharacterModel | null>(null);
   readonly hanziLoadState = signal<HanziLoadState>('idle');
+  readonly radicalModels = signal<ReadonlyMap<string, HanziCharacterModel>>(new Map());
+  readonly radicalLoadState = signal<HanziLoadState>('idle');
   readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
 
 
@@ -131,6 +138,17 @@ export class DrawCanvasComponent {
       this.hanziStrokes().length > 0,
   );
 
+  readonly radicalDataRequired = computed(
+    () => this.canvasMode() === 'radicals' && this.radicalHints().length > 0,
+  );
+
+  readonly showRadicalLayer = computed(
+    () =>
+      this.radicalDataRequired() &&
+      this.radicalLoadState() === 'ready' &&
+      this.radicalHints().some((hint) => this.hasRadicalStrokeModel(hint.character)),
+  );
+
   readonly ghostOpacity = computed(() => {
     switch (this.canvasMode()) {
       case 'tracing':
@@ -163,9 +181,22 @@ export class DrawCanvasComponent {
 
     effect(() => {
       const character = this.ghostCharacter()?.trim() ?? '';
-      this.radicalHints();
       this.canvasMode();
       this.syncHanziCharacter(character);
+    });
+
+    effect(() => {
+      const mode = this.canvasMode();
+      const hints = this.radicalHints();
+
+      if (mode !== 'radicals') {
+        this.radicalModels.set(new Map());
+        this.radicalLoadState.set('idle');
+        return;
+      }
+
+      const characters = hints.map((hint) => hint.character.trim()).filter(Boolean);
+      void this.syncRadicalCharacters(characters);
     });
 
     effect(() => {
@@ -186,6 +217,17 @@ export class DrawCanvasComponent {
 
   medianLabel(points: readonly HanziPoint[]): HanziPoint {
     return medianLabelPoint(points);
+  }
+
+  radicalModelFor(character: string): HanziCharacterModel | null {
+    return this.radicalModels().get(character.trim()) ?? null;
+  }
+
+  radicalComponentTransform(componentIndex: number, componentCount: number): string {
+    return resolveRadicalComponentSvgTransform(componentIndex, componentCount, {
+      width: this.surfaceWidth(),
+      height: this.surfaceHeight(),
+    });
   }
 
   getStrokes(): readonly DrawStrokePath[] {
@@ -269,6 +311,41 @@ export class DrawCanvasComponent {
       this.activeStroke = [];
       this.syncStrokeState(true);
     }
+  }
+
+  private async syncRadicalCharacters(characters: readonly string[]): Promise<void> {
+    if (characters.length === 0) {
+      this.radicalModels.set(new Map());
+      this.radicalLoadState.set('idle');
+      this.redrawAll();
+      return;
+    }
+
+    const requestKey = characters.join('\u0000');
+    const allCached = characters.every(
+      (character) =>
+        this.hanziData.hasCachedData(character) ||
+        this.hanziData.getLoadState(character) === 'missing' ||
+        this.hanziData.getLoadState(character) === 'error',
+    );
+
+    if (!allCached) {
+      this.radicalLoadState.set('loading');
+    }
+
+    const models = await this.hanziData.loadCharacters(characters);
+    const currentKey = this.radicalHints()
+      .map((hint) => hint.character.trim())
+      .filter(Boolean)
+      .join('\u0000');
+
+    if (currentKey !== requestKey || this.canvasMode() !== 'radicals') {
+      return;
+    }
+
+    this.radicalModels.set(models);
+    this.radicalLoadState.set(models.size > 0 ? 'ready' : 'missing');
+    this.redrawAll();
   }
 
   private async syncHanziCharacter(character: string): Promise<void> {
@@ -391,78 +468,39 @@ export class DrawCanvasComponent {
     return '"Noto Sans SC", "Noto Sans TC", sans-serif';
   }
 
-  private fittedRadicalLayout(
-    context: CanvasRenderingContext2D,
-    width: number,
-    height: number,
-    characters: readonly string[],
-  ): { fontSize: number; advances: readonly number[]; gap: number } {
-    const maxWidth = width * 0.9;
-    const maxHeight = height * 0.85;
-    let fontSize = this.ghostFontSize(width);
-    const fontFamily = this.ghostFontFamily();
-
-    for (let attempt = 0; attempt < 12; attempt += 1) {
-      context.font = `${fontSize}px ${fontFamily}`;
-      const advances = characters.map((character) => context.measureText(character).width);
-      const gap = Math.max(2, Math.round(fontSize * 0.06));
-      const totalWidth =
-        advances.reduce((sum, advance) => sum + advance, 0) +
-        gap * Math.max(characters.length - 1, 0);
-      const textHeight = fontSize * 1.05;
-
-      if (totalWidth <= maxWidth && textHeight <= maxHeight) {
-        return { fontSize, advances, gap };
-      }
-
-      const widthScale = maxWidth / Math.max(totalWidth, 1);
-      const heightScale = maxHeight / Math.max(textHeight, 1);
-      const nextSize = Math.floor(fontSize * Math.min(widthScale, heightScale) * 0.98);
-      if (nextSize >= fontSize || nextSize < 12) {
-        return { fontSize: Math.max(nextSize, 12), advances, gap };
-      }
-
-      fontSize = nextSize;
-    }
-
-    context.font = `${fontSize}px ${fontFamily}`;
-    const advances = characters.map((character) => context.measureText(character).width);
-    return {
-      fontSize,
-      advances,
-      gap: Math.max(2, Math.round(fontSize * 0.06)),
-    };
+  private hasRadicalStrokeModel(character: string): boolean {
+    const model = this.radicalModels().get(character.trim());
+    return Boolean(model && model.strokes.length > 0);
   }
 
   private paintRadicalHints(context: CanvasRenderingContext2D, width: number, height: number): void {
-    if (this.canvasMode() !== 'radicals') {
+    if (this.canvasMode() !== 'radicals' || this.radicalLoadState() !== 'ready') {
       return;
     }
 
     const hints = this.radicalHints();
-    if (hints.length === 0) {
+    if (hints.every((hint) => this.hasRadicalStrokeModel(hint.character))) {
       return;
     }
 
-    const characters = hints.map((hint) => hint.character);
+    const cellCount = hints.length;
+    const cellWidth = width / Math.max(cellCount, 1);
+    const fontSize = Math.min(this.ghostFontSize(cellWidth), this.ghostFontSize(width));
     context.save();
-    const layout = this.fittedRadicalLayout(context, width, height, characters);
-    context.font = `${layout.fontSize}px ${this.ghostFontFamily()}`;
-    context.textAlign = 'left';
+    context.font = `${fontSize}px ${this.ghostFontFamily()}`;
+    context.textAlign = 'center';
     context.textBaseline = 'middle';
-
-    const totalWidth =
-      layout.advances.reduce((sum, advance) => sum + advance, 0) +
-      layout.gap * Math.max(hints.length - 1, 0);
-    let x = (width - totalWidth) / 2;
-    const y = height / 2;
+    context.globalAlpha = 0.38;
 
     for (let index = 0; index < hints.length; index += 1) {
       const hint = hints[index];
-      context.globalAlpha = 0.38;
+      if (this.hasRadicalStrokeModel(hint.character)) {
+        continue;
+      }
+
+      const center = resolveRadicalComponentCellCenter(index, cellCount, { width, height });
       context.fillStyle = hint.color;
-      context.fillText(hint.character, x, y);
-      x += (layout.advances[index] ?? 0) + (index < hints.length - 1 ? layout.gap : 0);
+      context.fillText(hint.character, center.x, center.y);
     }
 
     context.restore();
@@ -563,36 +601,36 @@ export class DrawCanvasComponent {
     }
 
     const frame = this.tracingFrame();
+    const model = this.hanziModel();
     const positioner = this.hanziPositioner();
     const strokeColor = this.resolvePrimaryColor();
     const lineWidth = Math.max(8, positioner.scale * 0.34);
 
     for (let strokeNum = 0; strokeNum < this.tracingSamples.length; strokeNum += 1) {
       const sample = this.tracingSamples[strokeNum];
+      const strokePath = model?.strokes[strokeNum]?.path;
       if (!sample) {
         continue;
       }
 
       const progress = frame.isLoopPause ? 1 : tracingRevealProgress(frame, strokeNum);
+      const isFullyRevealed = strokeNum < frame.completedStrokeCount || progress >= 1;
+
+      if (isFullyRevealed) {
+        if (strokePath) {
+          this.paintTracingStrokeFill(context, strokePath, positioner, strokeColor);
+        } else {
+          this.paintTracingPolyline(context, sample.densified, positioner, strokeColor, lineWidth, 1);
+        }
+        continue;
+      }
+
       if (progress <= 0) {
         continue;
       }
 
-      const isActive = !frame.isLoopPause && strokeNum === frame.activeStrokeIndex;
-      const alpha = frame.isLoopPause
-        ? 0.32
-        : strokeNum < frame.completedStrokeCount
-          ? 0.34
-          : isActive
-            ? 0.92
-            : 0;
-
-      if (alpha <= 0) {
-        continue;
-      }
-
       const points = sliceHanziPolylineByProgress(sample.densified, progress);
-      this.paintTracingPolyline(context, points, positioner, strokeColor, lineWidth, alpha);
+      this.paintTracingPolyline(context, points, positioner, strokeColor, lineWidth, 1);
     }
 
     if (!frame.tip || frame.isLoopPause) {
@@ -601,6 +639,10 @@ export class DrawCanvasComponent {
 
     const activeSample = this.tracingSamples[frame.activeStrokeIndex];
     const progress = tracingRevealProgress(frame, frame.activeStrokeIndex);
+    if (progress >= 1) {
+      return;
+    }
+
     const lookbackPoints = activeSample
       ? sliceHanziPolylineByProgress(activeSample.densified, Math.max(0, progress - 0.04))
       : [];
@@ -617,6 +659,20 @@ export class DrawCanvasComponent {
     context.beginPath();
     context.ellipse(0, 0, brushRadius * 1.15, brushRadius * 0.72, 0, 0, Math.PI * 2);
     context.fill();
+    context.restore();
+  }
+
+  private paintTracingStrokeFill(
+    context: CanvasRenderingContext2D,
+    pathD: string,
+    positioner: HanziPositioner,
+    color: string,
+  ): void {
+    context.save();
+    context.globalAlpha = 1;
+    context.fillStyle = color;
+    applyHanziCanvasPathTransform(context, positioner);
+    context.fill(new Path2D(pathD));
     context.restore();
   }
 
