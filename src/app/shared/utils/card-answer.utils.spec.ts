@@ -1,4 +1,7 @@
 import { checkCardAnswer, canCheckCardAnswer, getCorrectAnswerLabel } from './card-answer.utils';
+import { createCardAnswerState } from '../types';
+
+const baseState = createCardAnswerState('beginner');
 
 describe('card-answer.utils', () => {
   it('should validate option cards', () => {
@@ -13,8 +16,8 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(canCheckCardAnswer(card, { selectedIndex: 0, answerText: '', memoryComplete: false, drawSubmitted: false })).toBeTrue();
-    expect(checkCardAnswer(card, { selectedIndex: 0, answerText: '', memoryComplete: false, drawSubmitted: false })).toBeTrue();
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
     expect(getCorrectAnswerLabel(card)).toBe('A');
   });
 
@@ -29,7 +32,7 @@ describe('card-answer.utils', () => {
       acceptedAnswersKnown: ['Hello', 'hello'],
     };
 
-    expect(checkCardAnswer(card, { selectedIndex: null, answerText: '  HELLO ', memoryComplete: false, drawSubmitted: false })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, answerText: '  HELLO ' })).toBeTrue();
   });
 
   it('should match palladius keyboard answer', () => {
@@ -51,10 +54,8 @@ describe('card-answer.utils', () => {
 
     expect(
       checkCardAnswer(card, {
-        selectedIndex: null,
+        ...baseState,
         answerText: 'Ни хао',
-        memoryComplete: false,
-        drawSubmitted: false,
       }),
     ).toBeTrue();
   });
@@ -78,10 +79,8 @@ describe('card-answer.utils', () => {
 
     expect(
       checkCardAnswer(card, {
-        selectedIndex: null,
+        ...baseState,
         answerText: '[həˈləʊ]',
-        memoryComplete: false,
-        drawSubmitted: false,
       }),
     ).toBeTrue();
   });
@@ -105,10 +104,8 @@ describe('card-answer.utils', () => {
 
     expect(
       checkCardAnswer(card, {
-        selectedIndex: null,
+        ...baseState,
         answerText: 'ni hao',
-        memoryComplete: false,
-        drawSubmitted: false,
       }),
     ).toBeTrue();
   });
@@ -142,14 +139,7 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(
-      checkCardAnswer(card, {
-        selectedIndex: 0,
-        answerText: '',
-        memoryComplete: false,
-        drawSubmitted: false,
-      }),
-    ).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
     expect(getCorrectAnswerLabel(card)).toBe('1');
   });
 
@@ -165,13 +155,6 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(
-      checkCardAnswer(card, {
-        selectedIndex: 0,
-        answerText: '',
-        memoryComplete: false,
-        drawSubmitted: false,
-      }),
-    ).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
   });
 });

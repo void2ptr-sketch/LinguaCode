@@ -1,6 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { Card } from '../../../core/models';
 import type { CardDirection } from '../../../core/models/language-pair.types';
+import type { DrawAnswerPayload } from '../../types/draw-answer.types';
 import { CardFeedback } from '../../types';
 import { CardFocusShellComponent } from '../card-focus-shell/card-focus-shell.component';
 import { DrawCardComponent } from '../cards/draw-card/draw-card.component';
@@ -38,6 +39,7 @@ export class CardHostComponent {
   readonly answerText = input('');
   readonly memoryComplete = input(false);
   readonly drawSubmitted = input(false);
+  readonly drawAnswer = input<DrawAnswerPayload | null>(null);
   readonly focusControlsEnabled = input(true);
   readonly autoFocusFullscreen = input(false);
 
@@ -45,6 +47,7 @@ export class CardHostComponent {
   readonly answerTextChange = output<string>();
   readonly memoryCompleteChange = output<boolean>();
   readonly drawSubmittedChange = output<boolean>();
+  readonly drawAnswerChange = output<DrawAnswerPayload | null>();
   readonly timeExpired = output<void>();
   readonly checkAnswer = output<void>();
   readonly nextCard = output<void>();

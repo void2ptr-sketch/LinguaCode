@@ -32,6 +32,7 @@
         (answerTextChange)="playStore.setAnswerText($event)"
         (memoryCompleteChange)="playStore.setMemoryComplete($event)"
         (drawSubmittedChange)="playStore.setDrawSubmitted($event)"
+        (drawAnswerChange)="playStore.setDrawAnswer($event)"
         (timeExpired)="playStore.handleTimeExpired()"
         (checkAnswer)="checkAnswer()"
         (nextCard)="playStore.tryAgain()"

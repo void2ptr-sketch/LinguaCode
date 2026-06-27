@@ -12,6 +12,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { cardSupportsSessionDirection } from '../../../../core/data/card-direction.utils';
+import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
 
 import { CourseSearchService } from '../../../../core/data';
 
@@ -461,6 +462,10 @@ export class CardSelectPageComponent implements OnInit {
 
   setDrawSubmitted(value: boolean): void {
     this.store.setDrawSubmitted(value);
+  }
+
+  setDrawAnswer(payload: DrawAnswerPayload | null): void {
+    this.store.setDrawAnswer(payload);
   }
 
   handleTimeExpired(): void {

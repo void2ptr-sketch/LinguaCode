@@ -7,6 +7,7 @@ import {
   extractKnownLanguageFromTitle,
   parseRadicalHintParts,
   resolveDrawCharacterTargets,
+  resolveDrawLearningSpeechText,
   resolveDrawMeaning,
   resolveDrawQuestion,
   splitPinyinSyllables,
@@ -80,6 +81,18 @@ describe('draw-card.utils', () => {
         referenceHintKnown: '很棒',
       }),
     ).toBe('отлично');
+  });
+
+  it('should resolve learning speech text from draw card', () => {
+    expect(
+      resolveDrawLearningSpeechText({
+        ...baseDrawCard,
+        targetCharacter: '很棒',
+      }),
+    ).toBe('很棒');
+    expect(
+      resolveDrawLearningSpeechText(baseDrawCard, { character: '好', pinyin: 'hǎo' }),
+    ).toBe('好');
   });
 
   it('should parse radical hint into components with positional index', () => {
