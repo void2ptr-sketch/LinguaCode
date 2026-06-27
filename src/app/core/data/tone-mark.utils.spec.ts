@@ -1,4 +1,10 @@
-import { applyToneToPinyinSyllable, normalizeToneOptions, toneMarkLabel } from './tone-mark.utils';
+import {
+  applyToneToLastVowelInSyllable,
+  applyToneToPinyinSyllable,
+  applyToneMarkToVowel,
+  normalizeToneOptions,
+  toneMarkLabel,
+} from './tone-mark.utils';
 
 describe('tone-mark.utils', () => {
   it('should apply tone marks to pinyin syllable', () => {
@@ -6,6 +12,17 @@ describe('tone-mark.utils', () => {
     expect(applyToneToPinyinSyllable('ma', 3)).toBe('mǎ');
     expect(applyToneToPinyinSyllable('ma', 5)).toBe('ma');
     expect(applyToneToPinyinSyllable('lv', 2)).toBe('lǘ');
+  });
+
+  it('should apply tone marks to the last vowel in a syllable', () => {
+    expect(applyToneToLastVowelInSyllable('hao', 3)).toBe('haǒ');
+    expect(applyToneToLastVowelInSyllable('oioi', 4)).toBe('oioì');
+    expect(applyToneToLastVowelInSyllable('ni', 3)).toBe('nǐ');
+  });
+
+  it('should tone-mark a single vowel for keyboard previews', () => {
+    expect(applyToneMarkToVowel('i', 4)).toBe('ì');
+    expect(applyToneMarkToVowel('o', 3)).toBe('ǒ');
   });
 
   it('should normalize tone option lists', () => {
