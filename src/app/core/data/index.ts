@@ -40,10 +40,8 @@ export { collectCardIpaReadings, cardHasIpaContent, collectLexemeIpaReadings } f
 export {
   HAN_COMPONENT_PINYIN,
   HAN_RADICAL_HINTS,
-  HAN_STROKE_GUIDES,
   lookupHanComponentPinyin,
   lookupHanRadicalHint,
-  lookupHanStrokeGuides,
   primaryHanCharacter,
 } from './draw-stroke-guides.data';
 export {

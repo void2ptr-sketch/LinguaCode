@@ -185,7 +185,6 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
         character: '',
         pinyin: card.promptLexeme?.pinyin,
         glossKnown: meaning,
-        strokeGuides: card.strokeGuides,
         radicalHint: card.radicalHint,
         audioUrl: audioUrl || undefined,
       },
@@ -203,7 +202,6 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
     zhuyin: zhuyinParts[index],
     palladius: palladiusParts[index],
     glossKnown: index === 0 ? meaning : undefined,
-    strokeGuides: index === 0 ? card.strokeGuides : undefined,
     radicalHint: index === 0 ? card.radicalHint : undefined,
     audioUrl: index === 0 ? audioUrl || undefined : undefined,
   }));

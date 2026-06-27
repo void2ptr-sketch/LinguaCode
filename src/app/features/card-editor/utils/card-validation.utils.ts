@@ -318,16 +318,36 @@ export const normalizeKeyboardCardDraft = (
   };
 };
 
-const normalizeStrokeGuides = (
-  guides: readonly { order: number; path: string }[],
-): readonly { order: number; path: string }[] | undefined => {
-  const normalized = guides
-    .map((guide) => ({
-      order: guide.order,
-      path: sanitizePlainText(guide.path, 512),
-    }))
-    .filter((guide) => guide.path.length > 0 && guide.order > 0)
-    .sort((left, right) => left.order - right.order);
+const normalizeCharacterTargets = (
+  targets: readonly DrawCharacterTarget[] | undefined,
+): readonly DrawCharacterTarget[] | undefined => {
+  if (!targets?.length) {
+    return undefined;
+  }
+
+  const normalized = targets
+    .map((target) => {
+      const character = sanitizeShort(target.character);
+      const pinyin = sanitizeShort(target.pinyin ?? '');
+      const zhuyin = sanitizeShort(target.zhuyin ?? '');
+      const glossKnown = sanitizeHint(target.glossKnown ?? '');
+      const radicalHint = sanitizeHint(target.radicalHint ?? '');
+      const audioUrl = target.audioUrl ? normalizeAudioUrl(target.audioUrl) : undefined;
+
+      if (!character) {
+        return null;
+      }
+
+      return {
+        character,
+        ...(pinyin ? { pinyin } : {}),
+        ...(zhuyin ? { zhuyin } : {}),
+        ...(glossKnown ? { glossKnown } : {}),
+        ...(radicalHint ? { radicalHint } : {}),
+        ...(audioUrl ? { audioUrl } : {}),
+      };
+    })
+    .filter((target): target is DrawCharacterTarget => target !== null);
 
   return normalized.length > 0 ? normalized : undefined;
 };
@@ -347,42 +367,6 @@ const normalizePracticeMode = (mode?: DrawPracticeMode): DrawPracticeMode | unde
   return undefined;
 };
 
-const normalizeCharacterTargets = (
-  targets: readonly DrawCharacterTarget[] | undefined,
-): readonly DrawCharacterTarget[] | undefined => {
-  if (!targets?.length) {
-    return undefined;
-  }
-
-  const normalized = targets
-    .map((target) => {
-      const character = sanitizeShort(target.character);
-      const pinyin = sanitizeShort(target.pinyin ?? '');
-      const zhuyin = sanitizeShort(target.zhuyin ?? '');
-      const glossKnown = sanitizeHint(target.glossKnown ?? '');
-      const radicalHint = sanitizeHint(target.radicalHint ?? '');
-      const audioUrl = target.audioUrl ? normalizeAudioUrl(target.audioUrl) : undefined;
-      const strokeGuides = normalizeStrokeGuides(target.strokeGuides ?? []);
-
-      if (!character) {
-        return null;
-      }
-
-      return {
-        character,
-        ...(pinyin ? { pinyin } : {}),
-        ...(zhuyin ? { zhuyin } : {}),
-        ...(glossKnown ? { glossKnown } : {}),
-        ...(radicalHint ? { radicalHint } : {}),
-        ...(audioUrl ? { audioUrl } : {}),
-        ...(strokeGuides ? { strokeGuides } : {}),
-      };
-    })
-    .filter((target): target is DrawCharacterTarget => target !== null);
-
-  return normalized.length > 0 ? normalized : undefined;
-};
-
 export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): DrawCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
@@ -391,7 +375,6 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
   const practiceMode = normalizePracticeMode(draft.practiceMode);
   const targetCharacter = sanitizeShort(draft.targetCharacter);
   const radicalHint = sanitizeHint(draft.radicalHint);
-  const strokeGuides = normalizeStrokeGuides(draft.strokeGuides);
   const characterTargets = normalizeCharacterTargets(draft.characterTargets);
   const promptLexeme = normalizeLexemeDraft(draft.promptLexeme, promptKnown);
 
@@ -412,7 +395,6 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
     ...(practiceMode && practiceMode !== 'freehand' ? { practiceMode } : {}),
     ...(targetCharacter ? { targetCharacter } : {}),
     ...(radicalHint ? { radicalHint } : {}),
-    ...(strokeGuides ? { strokeGuides } : {}),
     ...(characterTargets ? { characterTargets } : {}),
   };
 };

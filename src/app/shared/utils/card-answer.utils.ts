@@ -1,6 +1,9 @@
 import { Card, DrawCard, isOptionCard } from '../../core/models';
 import type { CardDirection } from '../../core/models/language-pair.types';
-import { checkDrawCardAnswer } from '../../core/data/draw-card-answer.utils';
+import {
+  checkDrawCardAnswer,
+  type HanziModelResolver,
+} from '../../core/data/draw-card-answer.utils';
 import {
   answersMatchRomanization,
   normalizeHanAnswer,
@@ -112,6 +115,7 @@ export const checkCardAnswer = (
   card: Card,
   state: CardAnswerState,
   sessionDirection: CardDirection = 'known-to-learning',
+  getHanziModel?: HanziModelResolver,
 ): boolean | null => {
   if (!canCheckCardAnswer(card, state)) {
     return null;
@@ -139,6 +143,7 @@ export const checkCardAnswer = (
         state.drawSubmitted,
         state.drawAnswer,
         state.learningProficiencyLevel,
+        getHanziModel,
       );
   }
 };

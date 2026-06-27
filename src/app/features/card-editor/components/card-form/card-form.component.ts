@@ -177,7 +177,6 @@ export class CardFormComponent {
           practiceMode: draft.practiceMode ?? 'freehand',
           targetCharacter: draft.targetCharacter || draft.promptLexeme?.primary || '',
           radicalHint: draft.radicalHint,
-          strokeGuides: draft.strokeGuides,
           appearance,
         };
       case 'tone':

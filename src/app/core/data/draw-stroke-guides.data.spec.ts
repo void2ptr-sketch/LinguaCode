@@ -1,16 +1,10 @@
 import {
   lookupHanComponentPinyin,
   lookupHanRadicalHint,
-  lookupHanStrokeGuides,
   primaryHanCharacter,
 } from './draw-stroke-guides.data';
 
 describe('draw-stroke-guides.data', () => {
-  it('should lookup stroke guides for curated han characters', () => {
-    expect(lookupHanStrokeGuides('人').length).toBe(2);
-    expect(lookupHanStrokeGuides('人')[0]?.order).toBe(1);
-  });
-
   it('should lookup component pinyin for radical coloring', () => {
     expect(lookupHanComponentPinyin('女')).toBe('nǚ');
     expect(lookupHanComponentPinyin('彳')).toBe('chì');

@@ -1,6 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Card } from '../../../core/models';
 import { cardDefaultDirection } from '../../../core/data/card-direction.utils';
+import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import { UserStore } from '../../../core/state';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
@@ -10,6 +11,7 @@ import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types'
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
   private readonly userStore = inject(UserStore);
+  private readonly hanziData = inject(HanziDataService);
 
   readonly cards = signal<readonly Card[]>([]);
   readonly scenarioId = signal<string>('demo-scenario');
@@ -135,7 +137,12 @@ export class CardSelectStore {
       return null;
     }
 
-    const isCorrect = checkCardAnswer(card, this.answerState(), this.sessionDirection());
+    const isCorrect = checkCardAnswer(
+      card,
+      this.answerState(),
+      this.sessionDirection(),
+      (character) => this.hanziData.getCachedModel(character),
+    );
     if (isCorrect === null) {
       return null;
     }

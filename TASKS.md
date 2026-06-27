@@ -139,11 +139,11 @@
 
 **H15d — Sprint 4: validation + card flow**
 
-- [ ] Memory mode: `HanziQuizSession` или batch validate all strokes
-- [ ] Заменить `draw-stroke-validation.utils.ts` на hanzi-engine grading
-- [ ] `draw-card-answer.utils` — leniency из `learningProficiencyLevel`
-- [ ] Card editor: guides runtime-only, deprecate `strokeGuides` в JSON карточки
-- [ ] Удалить `HAN_STROKE_GUIDES` (3 символа)
+- [x] Memory mode: `HanziQuizSession` или batch validate all strokes
+- [x] Заменить `draw-stroke-validation.utils.ts` на hanzi-engine grading
+- [x] `draw-card-answer.utils` — leniency из `learningProficiencyLevel`
+- [x] Card editor: guides runtime-only, deprecate `strokeGuides` в JSON карточки
+- [x] Удалить `HAN_STROKE_GUIDES` (3 символа)
 
 **H15e — Sprint 5: production polish**
 

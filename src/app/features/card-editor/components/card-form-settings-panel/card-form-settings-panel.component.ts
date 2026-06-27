@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,9 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import {
   lookupHanRadicalHint,
-  lookupHanStrokeGuides,
   primaryHanCharacter,
 } from '../../../../core/data/draw-stroke-guides.data';
+import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
 import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
@@ -29,10 +29,14 @@ import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-ap
   styleUrl: './card-form-settings-panel.component.scss',
 })
 export class CardFormSettingsPanelComponent {
+  private readonly hanziData = inject(HanziDataService);
+
   readonly draft = input.required<CardDraft>();
   readonly isAdvanced = input(false);
 
   readonly draftChange = output<CardDraft>();
+
+  readonly drawHanziStrokeCount = signal<number | null>(null);
 
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
     { value: 'memory', label: 'По памяти (default UI)' },
@@ -64,6 +68,21 @@ export class CardFormSettingsPanelComponent {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;
   });
+
+  constructor() {
+    effect(() => {
+      const draft = this.drawDraft();
+      const character = primaryHanCharacter(draft?.targetCharacter?.trim() ?? '');
+      if (!character || (draft?.practiceMode ?? 'freehand') !== 'stroke-order') {
+        this.drawHanziStrokeCount.set(null);
+        return;
+      }
+
+      void this.hanziData.loadCharacter(character).then((model) => {
+        this.drawHanziStrokeCount.set(model?.strokes.length ?? null);
+      });
+    });
+  }
 
   updateDraft(next: CardDraft): void {
     this.draftChange.emit(next);
@@ -126,7 +145,6 @@ export class CardFormSettingsPanelComponent {
     this.updateDraft({
       ...draft,
       targetCharacter: character,
-      strokeGuides: lookupHanStrokeGuides(character).map((guide) => ({ ...guide })),
       radicalHint: lookupHanRadicalHint(character) ?? draft.radicalHint,
     });
   }

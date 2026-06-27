@@ -53,3 +53,10 @@ export {
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
 } from './hanzi-render.utils';
+
+export {
+  resolveHanziMemoryStrokeCountTolerance,
+  validateHanziMemoryStrokes,
+  type HanziMemoryValidationOptions,
+  type HanziMemoryValidationResult,
+} from './hanzi-memory-validation.utils';

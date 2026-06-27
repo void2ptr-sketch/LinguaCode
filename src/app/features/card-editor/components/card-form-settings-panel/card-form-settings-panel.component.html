@@ -50,8 +50,8 @@
         <input matInput [ngModel]="d.radicalHint" (ngModelChange)="updateDrawRadicalHint($event)" placeholder="女 + 子" />
       </mat-form-field>
     }
-    @if ((d.practiceMode ?? 'freehand') === 'stroke-order' && d.strokeGuides.length > 0) {
-      <p class="card-form-settings-panel__meta">Черт: {{ d.strokeGuides.length }} (загружено из справочника)</p>
+    @if ((d.practiceMode ?? 'freehand') === 'stroke-order' && drawHanziStrokeCount() !== null) {
+      <p class="card-form-settings-panel__meta">Черт: {{ drawHanziStrokeCount() }} (из assets/hanzi)</p>
     }
     <button mat-button type="button" (click)="autofillDrawHints()">
       <mat-icon>auto_fix_high</mat-icon>
