@@ -1,11 +1,20 @@
-import { Component, DestroyRef, effect, HostListener, inject, input, signal } from '@angular/core';
+import {
+  Component,
+  DestroyRef,
+  effect,
+  ElementRef,
+  HostListener,
+  inject,
+  input,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { UserStore } from '../../../core/state';
 
-const BODY_LOCK_CLASS = 'card-focus-shell-open';
+export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
 
 @Component({
   selector: 'app-card-focus-shell',
@@ -15,6 +24,7 @@ const BODY_LOCK_CLASS = 'card-focus-shell-open';
 })
 export class CardFocusShellComponent {
   private readonly destroyRef = inject(DestroyRef);
+  private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly userStore = inject(UserStore);
 
   /** Показывать кнопку полноэкранного режима (для preview без chrome — false). */
@@ -26,6 +36,8 @@ export class CardFocusShellComponent {
   readonly fullscreen = signal(false);
 
   private autoEnterWasActive = false;
+  private originalParent: HTMLElement | null = null;
+  private originalNextSibling: Node | null = null;
 
   constructor() {
     effect(() => {
@@ -43,7 +55,8 @@ export class CardFocusShellComponent {
     });
 
     this.destroyRef.onDestroy(() => {
-      document.body.classList.remove(BODY_LOCK_CLASS);
+      this.restoreShellParent();
+      document.body.classList.remove(CARD_FOCUS_BODY_LOCK_CLASS);
     });
   }
 
@@ -69,7 +82,8 @@ export class CardFocusShellComponent {
     }
 
     this.fullscreen.set(true);
-    document.body.classList.add(BODY_LOCK_CLASS);
+    this.attachShellToBody();
+    document.body.classList.add(CARD_FOCUS_BODY_LOCK_CLASS);
 
     if (persistPreference) {
       this.userStore.updatePreferences({ cardFocusFullscreen: true });
@@ -82,10 +96,37 @@ export class CardFocusShellComponent {
     }
 
     this.fullscreen.set(false);
-    document.body.classList.remove(BODY_LOCK_CLASS);
+    this.restoreShellParent();
+    document.body.classList.remove(CARD_FOCUS_BODY_LOCK_CLASS);
 
     if (persistPreference) {
       this.userStore.updatePreferences({ cardFocusFullscreen: false });
     }
+  }
+
+  private attachShellToBody(): void {
+    const host = this.elementRef.nativeElement;
+    const parent = host.parentElement;
+
+    if (!parent || parent === document.body) {
+      return;
+    }
+
+    this.originalParent = parent;
+    this.originalNextSibling = host.nextSibling;
+    document.body.appendChild(host);
+  }
+
+  private restoreShellParent(): void {
+    const host = this.elementRef.nativeElement;
+    const parent = this.originalParent;
+
+    if (!parent || host.parentElement !== document.body) {
+      return;
+    }
+
+    parent.insertBefore(host, this.originalNextSibling);
+    this.originalParent = null;
+    this.originalNextSibling = null;
   }
 }

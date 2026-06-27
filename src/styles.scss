@@ -13,6 +13,21 @@ body {
 
 body.card-focus-shell-open {
   overflow: hidden;
+
+  .shell__header,
+  .shell__nav,
+  .shell__footer,
+  .practice-session-bar,
+  .practice-stepper,
+  .card-select-page__header,
+  .card-select-page__tabs > .mat-mdc-tab-header,
+  .card-select-page__learning-toolbar,
+  .card-select-page__context,
+  .card-select-page__card-progress,
+  .card-select-page__warning {
+    visibility: hidden;
+    pointer-events: none;
+  }
 }
 
 .quiz-card__sound {
