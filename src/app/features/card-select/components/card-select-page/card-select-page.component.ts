@@ -11,12 +11,23 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import type { CardDirection } from '../../../../core/models/language-pair.types';
+import type { CardDifficulty } from '../../../../core/models/card-index.types';
+import type { CourseWithLessons } from '../../../../core/models';
 import { cardSupportsSessionDirection } from '../../../../core/data/card-direction.utils';
-import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
-
-import { CourseSearchService } from '../../../../core/data';
+import {
+  CardSearchService,
+  collectCourseScenarioIds,
+  filterScenarioIdsByDifficulty,
+  buildScenarioDifficultyMap,
+  resolveCoursePracticeSettings,
+  isOpenPracticeCourse,
+  CourseSearchService,
+  ScenarioSearchService,
+} from '../../../../core/data';
 
 import { CardHostComponent } from '../../../../shared/components/card-host';
+import { DIFFICULTY_LABELS } from '../../../../shared/card-catalog-search';
+import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
 import { CoursePickerComponent } from '../../../../shared/course-picker';
 import { LessonPickerComponent, type LessonPickPayload } from '../../../../shared/lesson-picker';
 import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
@@ -69,11 +80,19 @@ export class CardSelectPageComponent implements OnInit {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly courseSearchService = inject(CourseSearchService);
+  private readonly cardSearchService = inject(CardSearchService);
+  private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly route = inject(ActivatedRoute);
   readonly store = inject(CardSelectStore);
 
+  readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly difficultyLevels: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
+
   readonly selectedCourseId = signal<string>('');
   readonly selectedLessonId = signal<string>('');
+  readonly currentCourse = signal<CourseWithLessons | null>(null);
+  readonly selectedDifficulty = signal<CardDifficulty | null>(null);
+  readonly scenarioDifficultyMap = signal<ReadonlyMap<string, CardDifficulty>>(new Map());
   readonly courseTitle = signal<string>('');
   readonly lessonTitle = signal<string>('');
   readonly lessonScenarioIds = signal<readonly string[]>([]);
@@ -85,6 +104,44 @@ export class CardSelectPageComponent implements OnInit {
   readonly scenarioSourceLabel = signal<string>('');
   readonly missingCardsWarning = signal<string | null>(null);
   readonly activeTabIndex = signal<number>(LEARNING_TAB.course);
+
+  readonly practiceSettings = computed(() => resolveCoursePracticeSettings(this.currentCourse()));
+  readonly isOpenPractice = computed(() => isOpenPracticeCourse(this.currentCourse()));
+  readonly showDifficultyFilter = computed(
+    () => this.practiceSettings().allowDifficultyFilter === true && !!this.selectedCourseId(),
+  );
+  readonly enforceLessonPrerequisites = computed(
+    () => this.practiceSettings().enforceLessonPrerequisites !== false,
+  );
+  readonly requiresLessonForScenarios = computed(() => {
+    if (!this.selectedCourseId()) {
+      return false;
+    }
+
+    return this.practiceSettings().requireLessonForScenarios !== false;
+  });
+
+  readonly allowedScenarioIdsForPicker = computed(() => {
+    const lessonIds = this.lessonScenarioIds();
+    const course = this.currentCourse();
+    const difficulty = this.selectedDifficulty();
+    const difficultyMap = this.scenarioDifficultyMap();
+
+    let base: readonly string[] | null = null;
+    if (lessonIds.length > 0) {
+      base = lessonIds;
+    } else if (course && this.isOpenPractice()) {
+      base = collectCourseScenarioIds(course);
+    } else {
+      base = null;
+    }
+
+    if (!base || base.length === 0) {
+      return null;
+    }
+
+    return filterScenarioIdsByDifficulty(base, difficultyMap, difficulty);
+  });
 
   readonly courseCompleted = computed(() => {
     const lessons = this.courseLessons();
@@ -201,9 +258,13 @@ export class CardSelectPageComponent implements OnInit {
   readonly nextStepHint = computed(() => {
     switch (this.activeTabIndex()) {
       case LEARNING_TAB.course:
-        return this.canAdvanceFromCourse()
-          ? 'Перейдите к выбору урока'
-          : 'Выберите программу, чтобы продолжить';
+        if (!this.canAdvanceFromCourse()) {
+          return 'Выберите программу, чтобы продолжить';
+        }
+
+        return this.isOpenPractice() && !this.requiresLessonForScenarios()
+          ? 'Перейдите к сценариям или выберите урок для фильтрации'
+          : 'Перейдите к выбору урока';
       case LEARNING_TAB.lessons:
         return this.canAdvanceFromLessons()
           ? 'Перейдите к выбору сценария'
@@ -246,6 +307,15 @@ export class CardSelectPageComponent implements OnInit {
 
     if (scenarioId) {
       await this.onScenarioChange(scenarioId);
+    }
+
+    const difficulty = query.get('difficulty');
+    if (
+      difficulty === 'beginner' ||
+      difficulty === 'intermediate' ||
+      difficulty === 'advanced'
+    ) {
+      this.selectedDifficulty.set(difficulty);
     }
 
     if (tab === 'learning' && scenarioId) {
@@ -292,6 +362,9 @@ export class CardSelectPageComponent implements OnInit {
     this.store.reset();
     this.selectedCourseId.set('');
     this.selectedLessonId.set('');
+    this.currentCourse.set(null);
+    this.selectedDifficulty.set(null);
+    this.scenarioDifficultyMap.set(new Map());
     this.courseTitle.set('');
     this.lessonTitle.set('');
     this.lessonScenarioIds.set([]);
@@ -324,7 +397,11 @@ export class CardSelectPageComponent implements OnInit {
     }
 
     if (current === LEARNING_TAB.course && this.canAdvanceFromCourse()) {
-      this.activeTabIndex.set(LEARNING_TAB.lessons);
+      if (this.isOpenPractice() && !this.requiresLessonForScenarios()) {
+        this.activeTabIndex.set(LEARNING_TAB.scenarios);
+      } else {
+        this.activeTabIndex.set(LEARNING_TAB.lessons);
+      }
       return;
     }
 
@@ -344,6 +421,9 @@ export class CardSelectPageComponent implements OnInit {
   async onCourseChange(courseId: string): Promise<void> {
     this.selectedCourseId.set(courseId);
     this.selectedLessonId.set('');
+    this.currentCourse.set(null);
+    this.selectedDifficulty.set(null);
+    this.scenarioDifficultyMap.set(new Map());
     this.lessonTitle.set('');
     this.lessonScenarioIds.set([]);
     this.courseLessons.set([]);
@@ -362,6 +442,7 @@ export class CardSelectPageComponent implements OnInit {
 
       try {
         const course = await this.courseSearchService.getById(courseId);
+        this.currentCourse.set(course);
         this.courseTitle.set(course.title);
         this.courseLessons.set(
           course.lessons.map((lesson) => ({
@@ -369,8 +450,10 @@ export class CardSelectPageComponent implements OnInit {
             scenarioIds: lesson.scenarioIds,
           })),
         );
+        await this.loadScenarioDifficultyMap(course);
       } catch {
         this.courseTitle.set('');
+        this.currentCourse.set(null);
       }
     } else {
       this.courseTitle.set('');
@@ -450,6 +533,31 @@ export class CardSelectPageComponent implements OnInit {
 
   onScenarioLabelChange(label: string): void {
     this.scenarioSourceLabel.set(label.split(' · ').slice(1).join(' · ') || label);
+  }
+
+  onDifficultyChange(value: CardDifficulty | null): void {
+    this.selectedDifficulty.set(value);
+    this.selectedScenarioId.set('');
+    this.scenarioTitle.set('');
+    this.scenarioSourceLabel.set('');
+    this.store.reset();
+    this.missingCardsWarning.set(null);
+  }
+
+  private async loadScenarioDifficultyMap(course: CourseWithLessons): Promise<void> {
+    if (!resolveCoursePracticeSettings(course).allowDifficultyFilter) {
+      this.scenarioDifficultyMap.set(new Map());
+      return;
+    }
+
+    await this.cardSearchService.ensureIndexLoaded();
+    const scenarioIds = collectCourseScenarioIds(course);
+    const scenarios = await Promise.all(
+      scenarioIds.map((scenarioId) => this.scenarioSearchService.getById(scenarioId)),
+    );
+    this.scenarioDifficultyMap.set(
+      buildScenarioDifficultyMap(scenarios, this.cardSearchService.indexEntries()),
+    );
   }
 
   selectOption(index: number): void {

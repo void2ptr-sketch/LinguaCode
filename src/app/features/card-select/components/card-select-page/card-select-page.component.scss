@@ -56,6 +56,16 @@
   padding-top: 1rem;
 }
 
+.card-select-page__tab--lessons {
+  grid-template-rows: 1fr auto;
+  min-height: calc(100dvh - 14rem);
+
+  app-lesson-picker {
+    display: block;
+    min-height: 0;
+  }
+}
+
 .card-select-page__tab--learning {
   gap: 1.25rem;
 }
@@ -75,6 +85,12 @@
   margin: 0;
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   font-size: 0.9375rem;
+}
+
+.card-select-page__difficulty {
+  flex-wrap: wrap;
+  margin: 0.75rem 0;
+  width: 100%;
 }
 
 .card-select-page__empty-state {

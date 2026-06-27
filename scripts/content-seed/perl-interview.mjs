@@ -216,6 +216,12 @@ export function buildPerlInterviewCourse() {
         published: true,
         updatedAt: PERL_INTERVIEW_UPDATED_AT,
         ...(authoring ? { authoring } : {}),
+        practiceSettings: {
+          mode: 'open',
+          requireLessonForScenarios: false,
+          enforceLessonPrerequisites: false,
+          allowDifficultyFilter: true,
+        },
       },
     ],
     lessons,

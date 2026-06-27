@@ -48,7 +48,20 @@ sequenceDiagram
 | Вкладки         | Программа / Уроки / Сценарии / Обучение |
 | Карточка        | `app-card-host` в centered zone         |
 
-Deep links: `?courseId&lessonId&scenarioId&tab=learning|scenarios|lessons|course`.
+Deep links: `?courseId&lessonId&scenarioId&tab=learning|scenarios|lessons|course&difficulty=beginner|intermediate|advanced`.
+
+### Open practice (opt-in)
+
+Курс может задать `practiceSettings` (`CoursePracticeSettings`):
+
+| Поле | По умолчанию | `open` (интервью) |
+| ---- | ------------ | ----------------- |
+| `mode` | `guided` | `open` |
+| `requireLessonForScenarios` | `true` | `false` — сценарии без урока |
+| `enforceLessonPrerequisites` | `true` | `false` — все уроки кликабельны |
+| `allowDifficultyFilter` | `false` | `true` — chips уровня на вкладке «Сценарии» |
+
+Demo/radicals без `practiceSettings` — поведение без изменений. Home/resume остаётся linear.
 
 ## Зависимости
 
