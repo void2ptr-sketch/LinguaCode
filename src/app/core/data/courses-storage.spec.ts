@@ -10,7 +10,7 @@ describe('courses-storage', () => {
     const zhCatalog = getTestZhCourseCatalog();
 
     expect(zhCatalog.courses).toHaveSize(3);
-    expect(zhCatalog.lessons).toHaveSize(10);
+    expect(zhCatalog.lessons).toHaveSize(16);
     expect(zhCatalog.courses.every((course) => course.languagePair.learning === 'zh')).toBeTrue();
   });
 

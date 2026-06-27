@@ -1,5 +1,5 @@
 export const RADICALS_COURSE_ID = 'course-zh-radicals-214';
-export const RADICALS_PER_SCENARIO = 50;
+export const RADICALS_PER_SCENARIO = 20;
 export const RADICALS_TOTAL = 214;
 export const RADICALS_LESSON_COUNT = Math.ceil(RADICALS_TOTAL / RADICALS_PER_SCENARIO);
 

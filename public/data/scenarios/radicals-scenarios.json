@@ -2,8 +2,8 @@
   "scenarios": [
     {
       "id": "scenario-radicals-01",
-      "title": "Радикалы 1–50",
-      "description": "Отработка радикалов Канси №1–50: прописывание черт и порядок написания.",
+      "title": "Радикалы 1–20",
+      "description": "20 карточек: радикалы Канси №1–20. Прописывание черт и порядок написания.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -33,7 +33,24 @@
           "draw-radical-017",
           "draw-radical-018",
           "draw-radical-019",
-          "draw-radical-020",
+          "draw-radical-020"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-02",
+      "title": "Радикалы 21–40",
+      "description": "20 карточек: радикалы Канси №21–40. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-021",
           "draw-radical-022",
           "draw-radical-023",
@@ -53,24 +70,14 @@
           "draw-radical-037",
           "draw-radical-038",
           "draw-radical-039",
-          "draw-radical-040",
-          "draw-radical-041",
-          "draw-radical-042",
-          "draw-radical-043",
-          "draw-radical-044",
-          "draw-radical-045",
-          "draw-radical-046",
-          "draw-radical-047",
-          "draw-radical-048",
-          "draw-radical-049",
-          "draw-radical-050"
+          "draw-radical-040"
         ]
       }
     },
     {
-      "id": "scenario-radicals-02",
-      "title": "Радикалы 51–100",
-      "description": "Отработка радикалов Канси №51–100: прописывание черт и порядок написания.",
+      "id": "scenario-radicals-03",
+      "title": "Радикалы 41–60",
+      "description": "20 карточек: радикалы Канси №41–60. Прописывание черт и порядок написания.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -81,6 +88,16 @@
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
+          "draw-radical-041",
+          "draw-radical-042",
+          "draw-radical-043",
+          "draw-radical-044",
+          "draw-radical-045",
+          "draw-radical-046",
+          "draw-radical-047",
+          "draw-radical-048",
+          "draw-radical-049",
+          "draw-radical-050",
           "draw-radical-051",
           "draw-radical-052",
           "draw-radical-053",
@@ -90,7 +107,24 @@
           "draw-radical-057",
           "draw-radical-058",
           "draw-radical-059",
-          "draw-radical-060",
+          "draw-radical-060"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-04",
+      "title": "Радикалы 61–80",
+      "description": "20 карточек: радикалы Канси №61–80. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-061",
           "draw-radical-062",
           "draw-radical-063",
@@ -110,7 +144,24 @@
           "draw-radical-077",
           "draw-radical-078",
           "draw-radical-079",
-          "draw-radical-080",
+          "draw-radical-080"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-05",
+      "title": "Радикалы 81–100",
+      "description": "20 карточек: радикалы Канси №81–100. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-081",
           "draw-radical-082",
           "draw-radical-083",
@@ -135,9 +186,9 @@
       }
     },
     {
-      "id": "scenario-radicals-03",
-      "title": "Радикалы 101–150",
-      "description": "Отработка радикалов Канси №101–150: прописывание черт и порядок написания.",
+      "id": "scenario-radicals-06",
+      "title": "Радикалы 101–120",
+      "description": "20 карточек: радикалы Канси №101–120. Прописывание черт и порядок написания.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -167,7 +218,24 @@
           "draw-radical-117",
           "draw-radical-118",
           "draw-radical-119",
-          "draw-radical-120",
+          "draw-radical-120"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-07",
+      "title": "Радикалы 121–140",
+      "description": "20 карточек: радикалы Канси №121–140. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-121",
           "draw-radical-122",
           "draw-radical-123",
@@ -187,24 +255,14 @@
           "draw-radical-137",
           "draw-radical-138",
           "draw-radical-139",
-          "draw-radical-140",
-          "draw-radical-141",
-          "draw-radical-142",
-          "draw-radical-143",
-          "draw-radical-144",
-          "draw-radical-145",
-          "draw-radical-146",
-          "draw-radical-147",
-          "draw-radical-148",
-          "draw-radical-149",
-          "draw-radical-150"
+          "draw-radical-140"
         ]
       }
     },
     {
-      "id": "scenario-radicals-04",
-      "title": "Радикалы 151–200",
-      "description": "Отработка радикалов Канси №151–200: прописывание черт и порядок написания.",
+      "id": "scenario-radicals-08",
+      "title": "Радикалы 141–160",
+      "description": "20 карточек: радикалы Канси №141–160. Прописывание черт и порядок написания.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -215,6 +273,16 @@
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
+          "draw-radical-141",
+          "draw-radical-142",
+          "draw-radical-143",
+          "draw-radical-144",
+          "draw-radical-145",
+          "draw-radical-146",
+          "draw-radical-147",
+          "draw-radical-148",
+          "draw-radical-149",
+          "draw-radical-150",
           "draw-radical-151",
           "draw-radical-152",
           "draw-radical-153",
@@ -224,7 +292,24 @@
           "draw-radical-157",
           "draw-radical-158",
           "draw-radical-159",
-          "draw-radical-160",
+          "draw-radical-160"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-09",
+      "title": "Радикалы 161–180",
+      "description": "20 карточек: радикалы Канси №161–180. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-161",
           "draw-radical-162",
           "draw-radical-163",
@@ -244,7 +329,24 @@
           "draw-radical-177",
           "draw-radical-178",
           "draw-radical-179",
-          "draw-radical-180",
+          "draw-radical-180"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-10",
+      "title": "Радикалы 181–200",
+      "description": "20 карточек: радикалы Канси №181–200. Прописывание черт и порядок написания.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-181",
           "draw-radical-182",
           "draw-radical-183",
@@ -269,9 +371,9 @@
       }
     },
     {
-      "id": "scenario-radicals-05",
+      "id": "scenario-radicals-11",
       "title": "Радикалы 201–214",
-      "description": "Отработка радикалов Канси №201–214: прописывание черт и порядок написания.",
+      "description": "14 карточек: радикалы Канси №201–214. Прописывание черт и порядок написания.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",

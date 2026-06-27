@@ -4,7 +4,7 @@ import { KANGXI_RADICALS } from '../kangxi-radicals.mjs';
 
 export const RU_ZH_LANGUAGE_PAIR = { known: 'ru', learning: 'zh' };
 export const RADICALS_COURSE_ID = 'course-zh-radicals-214';
-export const RADICALS_PER_SCENARIO = 50;
+export const RADICALS_PER_SCENARIO = 20;
 export const RADICALS_TOTAL = KANGXI_RADICALS.length;
 export const RADICALS_LESSON_COUNT = Math.ceil(RADICALS_TOTAL / RADICALS_PER_SCENARIO);
 export const RADICALS_UPDATED_AT = '2026-06-14T12:00:00.000Z';
@@ -35,10 +35,11 @@ export function radicalLessonCardIds(lessonIndex) {
 export function buildRadicalsScenarios() {
   return Array.from({ length: RADICALS_LESSON_COUNT }, (_, lessonIndex) => {
     const { start, end } = radicalLessonRange(lessonIndex);
+    const cardCount = end - start + 1;
     return {
       id: radicalScenarioId(lessonIndex),
       title: `Радикалы ${start}–${end}`,
-      description: `Отработка радикалов Канси №${start}–${end}: прописывание черт и порядок написания.`,
+      description: `${cardCount} карточек: радикалы Канси №${start}–${end}. Прописывание черт и порядок написания.`,
       authorId: 'system',
       published: true,
       updatedAt: RADICALS_UPDATED_AT,
@@ -54,13 +55,14 @@ export function buildRadicalsScenarios() {
 export function buildRadicalsLessons() {
   return Array.from({ length: RADICALS_LESSON_COUNT }, (_, lessonIndex) => {
     const { start, end } = radicalLessonRange(lessonIndex);
+    const cardCount = end - start + 1;
     const previousLessonId = lessonIndex > 0 ? radicalLessonId(lessonIndex - 1) : null;
 
     return {
       id: radicalLessonId(lessonIndex),
       courseId: RADICALS_COURSE_ID,
       title: `Урок ${lessonIndex + 1}: радикалы ${start}–${end}`,
-      description: `214 ключей Канси: радикалы с №${start} по №${end}.`,
+      description: `${cardCount} карточек — ключи Канси №${start}–${end}.`,
       scenarioIds: [radicalScenarioId(lessonIndex)],
       prerequisiteLessonIds: previousLessonId ? [previousLessonId] : [],
       order: lessonIndex,
@@ -76,8 +78,7 @@ export function buildRadicalsCourse() {
       {
         id: RADICALS_COURSE_ID,
         title: '214 китайских радикалов',
-        description:
-          'Полный курс по 214 классическим ключам (康熙部首): прописывание формы и порядка черт каждого радикала.',
+        description: `Полный курс по 214 классическим ключам (康熙部首): ${RADICALS_LESSON_COUNT} сценариев по ${RADICALS_PER_SCENARIO} карточек, прописывание формы и порядка черт каждого радикала.`,
         authorId: 'system',
         languagePair: RU_ZH_LANGUAGE_PAIR,
         lessonIds: lessons.map((lesson) => lesson.id),

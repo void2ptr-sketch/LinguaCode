@@ -7,7 +7,7 @@ export const DEMO_SCENARIOS = [
   {
     id: 'demo-scenario',
     title: 'Демо-сценарий',
-    description: 'Базовый набор карточек для начала обучения (ru→en).',
+    description: '3 карточки для начала обучения (ru→en): выбор ответа.',
     authorId: 'system',
     published: true,
     updatedAt: '2026-01-01T00:00:00.000Z',
@@ -20,7 +20,7 @@ export const DEMO_SCENARIOS = [
   {
     id: 'scenario-zh-greetings',
     title: 'Приветствия (китайский)',
-    description: 'Базовые фразы: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.',
+    description: '4 карточки: 你好, 谢谢, 再见 — выбор, память, символы и аудирование.',
     authorId: 'system',
     published: true,
     updatedAt: '2026-06-14T10:00:00.000Z',
@@ -33,7 +33,7 @@ export const DEMO_SCENARIOS = [
   {
     id: 'scenario-zh-phonetics',
     title: 'Фонетика: пиньинь и тоны',
-    description: 'Пиньинь, IPA и тоны на примере 你好 и 妈.',
+    description: '3 карточки: пиньинь, IPA и тоны на примере 你好 и 妈.',
     authorId: 'system',
     published: true,
     updatedAt: '2026-06-14T10:00:00.000Z',
@@ -46,7 +46,7 @@ export const DEMO_SCENARIOS = [
   {
     id: 'scenario-zh-characters',
     title: 'Иероглифы и чтение',
-    description: 'Черты 人 и 好, ввод перевода, полифония 行 в 银行.',
+    description: '7 карточек: черты 人 и 好, ввод перевода, полифония 行 в 银行.',
     authorId: 'system',
     published: true,
     updatedAt: '2026-06-14T10:00:00.000Z',
@@ -67,7 +67,7 @@ export const DEMO_SCENARIOS = [
   {
     id: 'scenario-zh-review',
     title: 'Закрепление (китайский)',
-    description: 'Смешанная практика: на время, выбор и пары.',
+    description: '3 карточки: на время, выбор и пары.',
     authorId: 'system',
     published: true,
     updatedAt: '2026-06-14T10:00:00.000Z',
