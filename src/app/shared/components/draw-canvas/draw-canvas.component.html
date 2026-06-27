@@ -14,18 +14,20 @@
 
     @if (showStrokeGuides() && strokeGuides().length > 0) {
       <svg class="draw-canvas__guides" viewBox="0 0 100 100" aria-hidden="true">
-        @for (guide of strokeGuides(); track guide.order) {
-          <g class="draw-canvas__guide">
-            <path [attr.d]="guide.path" />
-            <text
-              class="draw-canvas__guide-order"
-              [attr.x]="guidePathCenter(guide).x"
-              [attr.y]="guidePathCenter(guide).y"
-            >
-              {{ guide.order }}
-            </text>
-          </g>
-        }
+        <g [attr.transform]="svgGuideTransform()">
+          @for (guide of strokeGuides(); track guide.order) {
+            <g class="draw-canvas__guide">
+              <path [attr.d]="guide.path" />
+              <text
+                class="draw-canvas__guide-order"
+                [attr.x]="guidePathCenter(guide).x"
+                [attr.y]="guidePathCenter(guide).y"
+              >
+                {{ guide.order }}
+              </text>
+            </g>
+          }
+        </g>
       </svg>
     }
   </div>

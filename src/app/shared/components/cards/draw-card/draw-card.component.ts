@@ -111,7 +111,7 @@ export class DrawCardComponent {
 
   readonly strokeGuides = computed(() => {
     const mode = this.canvasMode();
-    if (mode !== 'stroke-order' && mode !== 'hints') {
+    if (mode !== 'stroke-order' && mode !== 'hints' && mode !== 'tracing') {
       return [];
     }
 

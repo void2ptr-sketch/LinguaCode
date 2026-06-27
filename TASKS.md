@@ -107,6 +107,72 @@
 - [x] **Ca4d** — `characterTargets`, `meaningKnown`, `draw-card.utils`; demo `draw-nihao-1`
 - [ ] **Ca4e** — (опц.) редактор: явное редактирование `characterTargets` и аудио на иероглиф
 
+#### H15. Hanzi Engine (`public/assets/hanzi/` + свой движок)
+
+Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/core/hanzi-engine/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
+
+**H15a — Sprint 1: foundation (API + data)** ✅ старт
+
+- [x] `HanziDataService` — load/cache, `assetUrl`, states `idle|loading|ready|missing|error`
+- [x] `HanziPositioner` — MMH 1024 → canvas px, round-trip
+- [x] `HanziCharacterModel` — parse `strokes` / `medians` / `radStrokes`
+- [x] `HanziQuizSession` — порядок черт, leniency по proficiency, hints signal
+- [x] `hanzi-stroke-match.utils` — grading (distance, direction, Fréchet, length)
+- [x] `scripts/sync-hanzi-assets.mjs` + `npm run sync:hanzi`
+- [x] Unit tests: positioner, data service, quiz session
+- [ ] Экспорт API в `docs/ARCHITECTURE.md` (краткий раздел)
+
+**H15b — Sprint 2: render (draw-canvas integration)**
+
+- [ ] `draw-canvas`: SVG ghost из `strokes[]` (убрать `fillText` / Noto для draw)
+- [ ] SVG guides из `medians[]` через `HanziPositioner`
+- [ ] Prefetch символа в `draw-card` через `HanziDataService.loadCharacter`
+- [ ] Loading / missing states в UI
+- [ ] Удалить `draw-ghost-layout.utils.ts` после миграции
+
+**H15c — Sprint 3: animation (tracing)**
+
+- [ ] Reveal-анимация вдоль medians (не polyline целиком)
+- [ ] `delayBetweenStrokes`, loop для режима «Трассировка»
+- [ ] Brush tip по tangent path
+- [ ] Удалить/заменить `draw-stroke-path.utils.ts` (tracing part)
+
+**H15d — Sprint 4: validation + card flow**
+
+- [ ] Memory mode: `HanziQuizSession` или batch validate all strokes
+- [ ] Заменить `draw-stroke-validation.utils.ts` на hanzi-engine grading
+- [ ] `draw-card-answer.utils` — leniency из `learningProficiencyLevel`
+- [ ] Card editor: guides runtime-only, deprecate `strokeGuides` в JSON карточки
+- [ ] Удалить `HAN_STROKE_GUIDES` (3 символа)
+
+**H15e — Sprint 5: production polish**
+
+- [ ] Golden tests: 人 / 大 / 好 / 好 / 水 — quiz accept/reject fixtures
+- [ ] Prefetch всех символов вкладки (`你好` → 2 JSON)
+- [ ] CI: `npm run sync:hanzi` перед build (или commit assets)
+- [ ] Smoke: offline (airplane mode) — ghost + tracing работают
+- [ ] Калибровка leniency по уровням (ручное тестирование)
+
+**H15 — API reference (целевой контракт)**
+
+```typescript
+// Data
+hanziData.loadCharacter('人'): Promise<HanziCharacterModel | null>
+hanziData.loadCharacters(['你','好']): Promise<Map<string, HanziCharacterModel>>
+hanziData.getLoadState('人'): HanziLoadState
+hanziData.assetUrl('人'): '/assets/hanzi/%E4%BA%BA.json'
+
+// Layout
+new HanziPositioner({ width, height, padding }).toCanvas(mmhPoint)
+positioner.toCharacterSpace(canvasPoint)
+
+// Quiz (per character session)
+new HanziQuizSession(model, positioner, { proficiencyLevel: 'beginner' })
+session.submitCanvasStroke(canvasPoints): HanziQuizStrokeResult
+session.shouldShowHint(): boolean
+session.summary(): { character, totalMistakes, strokeCount }
+```
+
 #### Ca3. Режим фокуса (полный экран)
 
 Контекст: [BUSINESS.md](./docs/BUSINESS.md#объект-изучения-и-карточка) — обучение без отвлечений; shell приложения скрывается.

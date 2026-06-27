@@ -12,7 +12,8 @@
     "verify": "npm run lint && npm run build:prod && npm run test:ci",
     "lint": "ng lint",
     "audit": "npm audit --audit-level=high",
-    "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\""
+    "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\"",
+    "sync:hanzi": "node scripts/sync-hanzi-assets.mjs"
   },
   "private": true,
   "dependencies": {
@@ -38,6 +39,7 @@
     "angular-eslint": "21.0.1",
     "eslint": "^9.39.1",
     "eslint-config-prettier": "^10.1.8",
+    "hanzi-writer-data": "^2.0.1",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",

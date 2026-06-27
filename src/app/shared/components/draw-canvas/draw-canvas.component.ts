@@ -1,8 +1,11 @@
 import {
   Component,
+  DestroyRef,
   ElementRef,
   afterNextRender,
+  computed,
   effect,
+  inject,
   input,
   output,
   signal,
@@ -11,6 +14,21 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import {
+  mapViewBoxPoint,
+  resolveGhostFontSize,
+  resolveGhostGuideTransform,
+  resolveGhostInkTransform,
+  resolveSvgGuideGroupTransform,
+  type GhostGuideTransform,
+} from '../../../core/data/draw-ghost-layout.utils';
+import { paintCalligraphyPolyline } from '../../../core/data/draw-calligraphy-paint.utils';
+import {
+  resolveStrokeAnimationFrame,
+  sampleGuidePath,
+  slicePolylineAtProgress,
+  type ViewBoxPoint,
+} from '../../../core/data/draw-stroke-path.utils';
 import type { DrawCanvasMode, DrawStrokeGuide } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawStrokePath } from './draw-canvas.types';
 
@@ -26,6 +44,8 @@ export type DrawRadicalHint = {
   styleUrl: './draw-canvas.component.scss',
 })
 export class DrawCanvasComponent {
+  private readonly destroyRef = inject(DestroyRef);
+
   readonly ghostCharacter = input<string | null>(null);
   readonly radicalHints = input<readonly DrawRadicalHint[]>([]);
   readonly radicalAriaLabel = input<string | null>(null);
@@ -43,15 +63,25 @@ export class DrawCanvasComponent {
   readonly hasStrokes = signal(false);
   readonly canUndo = signal(false);
   readonly showStrokeGuides = signal(false);
+  readonly showTracingAnimation = computed(
+    () => this.canvasMode() === 'tracing' && this.strokeGuides().length > 0,
+  );
+
+  readonly svgGuideTransform = signal('translate(0 0) scale(1)');
 
   private strokes: DrawStrokePath[] = [];
   private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
   private context: CanvasRenderingContext2D | null = null;
+  private guideTransform: GhostGuideTransform | null = null;
+  private tracingSamples: ViewBoxPoint[][] = [];
+  private tracingAnimationStart = 0;
+  private tracingAnimationFrameId = 0;
 
   constructor() {
     afterNextRender(() => {
       this.resizeCanvas();
+      this.observeCanvasResize();
     });
 
     effect(() => {
@@ -60,7 +90,12 @@ export class DrawCanvasComponent {
       this.canvasMode();
       this.strokeGuides();
       this.showStrokeGuides.set(this.shouldShowStrokeGuides());
+      this.syncTracingAnimation();
       this.redrawAll();
+    });
+
+    this.destroyRef.onDestroy(() => {
+      this.stopTracingAnimation();
     });
   }
 
@@ -136,12 +171,8 @@ export class DrawCanvasComponent {
     }
 
     const point = this.eventPoint(event, canvas);
-    const previous = this.activeStroke[this.activeStroke.length - 1];
-    context.beginPath();
-    context.moveTo(previous.x, previous.y);
-    context.lineTo(point.x, point.y);
-    context.stroke();
     this.activeStroke.push(point);
+    this.redrawAll();
   }
 
   onPointerUp(event: PointerEvent): void {
@@ -191,14 +222,23 @@ export class DrawCanvasComponent {
     }
 
     context.clearRect(0, 0, canvas.width, canvas.height);
+    this.guideTransform = this.resolveGuideTransform(context, canvas.width, canvas.height);
+    this.svgGuideTransform.set(
+      resolveSvgGuideGroupTransform(canvas.width, canvas.height, this.guideTransform),
+    );
     this.paintGhost(context, canvas.width, canvas.height);
     this.paintRadicalHints(context, canvas.width, canvas.height);
+    this.paintTracingAnimation(context, canvas.width, canvas.height);
     this.paintStrokes(context);
   }
 
   private paintStrokes(context: CanvasRenderingContext2D): void {
     for (const stroke of this.strokes) {
       this.paintStroke(context, stroke);
+    }
+
+    if (this.activeStroke.length > 0) {
+      this.paintStroke(context, this.activeStroke);
     }
   }
 
@@ -207,20 +247,13 @@ export class DrawCanvasComponent {
       return;
     }
 
-    if (stroke.length === 1) {
-      const [point] = stroke;
-      context.beginPath();
-      context.arc(point.x, point.y, 2, 0, Math.PI * 2);
-      context.fill();
-      return;
-    }
-
-    context.beginPath();
-    context.moveTo(stroke[0].x, stroke[0].y);
-    for (let index = 1; index < stroke.length; index += 1) {
-      context.lineTo(stroke[index].x, stroke[index].y);
-    }
-    context.stroke();
+    const canvas = this.canvasRef()?.nativeElement;
+    const baseWidth = Math.max(3.5, (canvas?.width ?? 280) * 0.022);
+    paintCalligraphyPolyline(context, stroke, {
+      baseWidth,
+      color: '#1a1a1a',
+      taper: true,
+    });
   }
 
   private resizeCanvas(): void {
@@ -263,7 +296,7 @@ export class DrawCanvasComponent {
   }
 
   private ghostFontSize(width: number): number {
-    return Math.floor(width * 0.72);
+    return resolveGhostFontSize(width);
   }
 
   private ghostFontFamily(): string {
@@ -378,10 +411,47 @@ export class DrawCanvasComponent {
 
   private eventPoint(event: PointerEvent, canvas: HTMLCanvasElement): DrawCanvasPoint {
     const rect = canvas.getBoundingClientRect();
+    const scaleX = canvas.width / Math.max(canvas.clientWidth, 1);
+    const scaleY = canvas.height / Math.max(canvas.clientHeight, 1);
+
     return {
-      x: event.clientX - rect.left,
-      y: event.clientY - rect.top,
+      x: (event.clientX - rect.left - canvas.clientLeft) * scaleX,
+      y: (event.clientY - rect.top - canvas.clientTop) * scaleY,
     };
+  }
+
+  private resolveGuideTransform(
+    context: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+  ): GhostGuideTransform {
+    const ghost = this.ghostCharacter()?.trim();
+    const fontSize = this.ghostFontSize(width);
+
+    if (!ghost) {
+      return resolveGhostGuideTransform(width, height, fontSize);
+    }
+
+    return resolveGhostInkTransform(context, {
+      character: ghost,
+      width,
+      height,
+      fontSize,
+      fontFamily: this.ghostFontFamily(),
+    });
+  }
+
+  private observeCanvasResize(): void {
+    const canvas = this.canvasRef()?.nativeElement;
+    if (!canvas || typeof ResizeObserver === 'undefined') {
+      return;
+    }
+
+    const observer = new ResizeObserver(() => {
+      this.resizeCanvas();
+    });
+    observer.observe(canvas);
+    this.destroyRef.onDestroy(() => observer.disconnect());
   }
 
   private syncStrokeState(emitChange: boolean): void {
@@ -392,5 +462,120 @@ export class DrawCanvasComponent {
     if (emitChange) {
       this.strokesChange.emit(hasStrokes);
     }
+  }
+
+  private syncTracingAnimation(): void {
+    this.stopTracingAnimation();
+
+    if (!this.showTracingAnimation()) {
+      return;
+    }
+
+    const guides = this.sortedStrokeGuides();
+    this.tracingSamples = guides.map((guide) => sampleGuidePath(guide.path));
+    this.tracingAnimationStart = performance.now();
+    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
+  }
+
+  private stopTracingAnimation(): void {
+    if (this.tracingAnimationFrameId) {
+      cancelAnimationFrame(this.tracingAnimationFrameId);
+      this.tracingAnimationFrameId = 0;
+    }
+  }
+
+  private runTracingAnimation(): void {
+    if (!this.showTracingAnimation()) {
+      return;
+    }
+
+    this.redrawAll();
+    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation());
+  }
+
+  private paintTracingAnimation(
+    context: CanvasRenderingContext2D,
+    width: number,
+    height: number,
+  ): void {
+    if (!this.showTracingAnimation() || this.tracingSamples.length === 0) {
+      return;
+    }
+
+    const elapsedMs = performance.now() - this.tracingAnimationStart;
+    const frame = resolveStrokeAnimationFrame(
+      elapsedMs,
+      this.tracingSamples.length,
+      this.tracingSamples,
+    );
+    const guideTransform = this.guideTransform ?? this.resolveGuideTransform(context, width, height);
+    const lineWidth = Math.max(2.5, guideTransform.scaleX * 0.42);
+    const brushRadius = Math.max(3, guideTransform.scaleX * 0.2);
+    const strokeColor = this.resolvePrimaryColor();
+
+    for (let index = 0; index < frame.completedStrokeCount; index += 1) {
+      this.paintTracingPolyline(
+        context,
+        this.tracingSamples[index],
+        guideTransform,
+        lineWidth * 0.85,
+        0.28,
+        strokeColor,
+      );
+    }
+
+    const activeSamples = this.tracingSamples[frame.activeStrokeIndex] ?? [];
+    const activePolyline = slicePolylineAtProgress(activeSamples, frame.activeProgress);
+    if (activePolyline.length > 0) {
+      this.paintTracingPolyline(context, activePolyline, guideTransform, lineWidth, 0.92, strokeColor);
+    }
+
+    if (frame.tip) {
+      const tip = mapViewBoxPoint(frame.tip, guideTransform);
+      context.save();
+      context.globalAlpha = 1;
+      context.fillStyle = strokeColor;
+      context.beginPath();
+      context.arc(tip.x, tip.y, brushRadius, 0, Math.PI * 2);
+      context.fill();
+      context.restore();
+    }
+  }
+
+  private paintTracingPolyline(
+    context: CanvasRenderingContext2D,
+    points: readonly ViewBoxPoint[],
+    guideTransform: GhostGuideTransform,
+    lineWidth: number,
+    alpha: number,
+    strokeColor: string,
+  ): void {
+    if (points.length === 0) {
+      return;
+    }
+
+    const canvasPoints = points.map((point) => mapViewBoxPoint(point, guideTransform));
+    paintCalligraphyPolyline(context, canvasPoints, {
+      baseWidth: lineWidth,
+      color: strokeColor,
+      alpha,
+      taper: true,
+    });
+  }
+
+  private resolvePrimaryColor(): string {
+    const canvas = this.canvasRef()?.nativeElement;
+    const fromCanvas = canvas
+      ? getComputedStyle(canvas).getPropertyValue('--mat-sys-primary').trim()
+      : '';
+    if (fromCanvas) {
+      return fromCanvas;
+    }
+
+    return getComputedStyle(document.documentElement).getPropertyValue('--mat-sys-primary').trim() || '#6750a4';
+  }
+
+  private sortedStrokeGuides(): readonly DrawStrokeGuide[] {
+    return [...this.strokeGuides()].sort((left, right) => left.order - right.order);
   }
 }
