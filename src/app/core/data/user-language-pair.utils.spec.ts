@@ -87,6 +87,7 @@ describe('user-language-pair.utils', () => {
         answerRomanization: ['palladius'],
         showTones: false,
         toneColorScheme: 'classic',
+        tracingStrokeDurationSec: 1,
       },
       phonetic: { showIpa: true, answerModes: ['orthography'] },
     };

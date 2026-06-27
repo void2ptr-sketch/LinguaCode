@@ -17,6 +17,7 @@ import { MatIconModule } from '@angular/material/icon';
 
 import { paintCalligraphyPolyline } from '../../../core/data/draw-calligraphy-paint.utils';
 import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
+import { UserStore } from '../../../core/state';
 import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-character.model';
 import type { HanziLoadState, HanziPoint } from '../../../core/hanzi-engine/hanzi-character.types';
 import { HanziPositioner } from '../../../core/hanzi-engine/hanzi-positioner';
@@ -66,6 +67,7 @@ const EMPTY_TRACING_FRAME: HanziTracingFrame = {
 export class DrawCanvasComponent {
   private readonly destroyRef = inject(DestroyRef);
   private readonly hanziData = inject(HanziDataService);
+  private readonly userStore = inject(UserStore);
 
   readonly ghostCharacter = input<string | null>(null);
   readonly radicalHints = input<readonly DrawRadicalHint[]>([]);
@@ -142,6 +144,10 @@ export class DrawCanvasComponent {
       this.hanziStrokes().length > 0,
   );
 
+  readonly tracingStrokeDurationMs = computed(() =>
+    Math.round(this.userStore.cjkLearning().tracingStrokeDurationSec * 1000),
+  );
+
   readonly radicalDataRequired = computed(
     () => this.canvasMode() === 'radicals' && this.radicalHints().length > 0,
   );
@@ -211,6 +217,7 @@ export class DrawCanvasComponent {
       this.hanziModel();
       this.hanziLoadState();
       this.canvasMode();
+      this.tracingStrokeDurationMs();
       this.syncTracingAnimation();
     });
 
@@ -647,7 +654,11 @@ export class DrawCanvasComponent {
     }
 
     const elapsedMs = performance.now() - this.tracingAnimationStart;
-    this.tracingFrame.set(resolveHanziTracingFrame(elapsedMs, this.tracingSamples));
+    this.tracingFrame.set(
+      resolveHanziTracingFrame(elapsedMs, this.tracingSamples, {
+        strokeDurationMs: this.tracingStrokeDurationMs(),
+      }),
+    );
     this.redrawAll();
     this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation(token));
   }

@@ -212,6 +212,37 @@
                 }
               </section>
             }
+
+            @if (showTracingSettings()) {
+              <section class="page-card__tracing-speed">
+                <h3 class="page-card__subsection-title">Трассировка</h3>
+                <p class="page-card__hint">
+                  Скорость анимации одной черты в режиме «Трассировка».
+                </p>
+
+                <div class="page-card__tracing-speed-control">
+                  <span class="page-card__tracing-speed-bound">0.1 с</span>
+                  <mat-slider
+                    class="page-card__tracing-speed-slider"
+                    [min]="tracingDurationMin"
+                    [max]="tracingDurationMax"
+                    [step]="tracingDurationStep"
+                    discrete
+                  >
+                    <input
+                      matSliderThumb
+                      [ngModel]="tracingStrokeDurationDraft()"
+                      (ngModelChange)="tracingStrokeDurationDraft.set($event)"
+                      name="tracingStrokeDuration"
+                    />
+                  </mat-slider>
+                  <span class="page-card__tracing-speed-bound">2.0 с</span>
+                </div>
+                <p class="page-card__tracing-speed-value">
+                  {{ formatTracingDurationSec(tracingStrokeDurationDraft()) }}
+                </p>
+              </section>
+            }
           </section>
         </div>
       </mat-tab>

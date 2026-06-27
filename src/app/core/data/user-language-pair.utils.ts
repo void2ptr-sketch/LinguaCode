@@ -59,11 +59,24 @@ export function defaultSettingsForPair(pair: LanguagePair): UserLanguagePairSett
 export function resolveCjkLearningForPair(
   entry: UserLanguagePairEntry | null | undefined,
 ): CjkLearningPreferences {
-  if (!entry || !shouldShowPalladius(entry.pair.known, entry.pair.learning)) {
+  if (!entry) {
     return { ...DEFAULT_CJK_LEARNING_PREFERENCES };
   }
 
-  return normalizeCjkLearningPreferences(entry.settings?.cjkLearning);
+  const hasFullCjkCourse = shouldShowPalladius(entry.pair.known, entry.pair.learning);
+  const hasZhTracing = entry.pair.learning === 'zh';
+
+  if (!hasFullCjkCourse && !hasZhTracing) {
+    return { ...DEFAULT_CJK_LEARNING_PREFERENCES };
+  }
+
+  if (hasFullCjkCourse) {
+    return normalizeCjkLearningPreferences(entry.settings?.cjkLearning);
+  }
+
+  return normalizeCjkLearningPreferences({
+    tracingStrokeDurationSec: entry.settings?.cjkLearning?.tracingStrokeDurationSec,
+  });
 }
 
 export function resolvePhoneticForPair(

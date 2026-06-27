@@ -50,7 +50,16 @@ export type CjkLearningPreferences = {
   showTones: boolean;
   /** Палитра цветов тонов (если `showTones`). */
   toneColorScheme: ToneColorSchemeId;
+  /** Длительность анимации одной черты в режиме «Трассировка», секунды. */
+  tracingStrokeDurationSec: number;
 };
+
+export const TRACING_STROKE_DURATION_BOUNDS = {
+  minSec: 0.1,
+  maxSec: 2,
+  defaultSec: 1,
+  stepSec: 0.1,
+} as const;
 
 export type PhoneticDisplayMode =
   | 'primary-only'
@@ -76,6 +85,7 @@ export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
   answerRomanization: ['pinyin', 'palladius'],
   showTones: false,
   toneColorScheme: 'classic',
+  tracingStrokeDurationSec: TRACING_STROKE_DURATION_BOUNDS.defaultSec,
 };
 
 export const DEFAULT_PHONETIC_PREFERENCES: PhoneticPreferences = {

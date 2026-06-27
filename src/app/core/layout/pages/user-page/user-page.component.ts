@@ -8,9 +8,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule } from '@angular/material/tabs';
 import type {
   AppColorScheme,
+  CjkLearningPreferences,
   ContentLanguage,
   LearningProficiencyLevel,
   RomanizationSystem,
@@ -25,7 +27,10 @@ import {
   resolvePhoneticForPair,
 } from '../../../data/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
-import { ROMANIZATION_DISPLAY_ORDER } from '../../../models/phonetic-content.types';
+import {
+  ROMANIZATION_DISPLAY_ORDER,
+  TRACING_STROKE_DURATION_BOUNDS,
+} from '../../../models/phonetic-content.types';
 import { TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
 import { UserStore } from '../../../state';
@@ -49,6 +54,7 @@ import { type AnswerDisplayMode } from '../../../../shared/components/course-dis
     MatIconModule,
     MatTabsModule,
     MatSlideToggleModule,
+    MatSliderModule,
     CourseDisplaySettingsMatrixComponent,
   ],
   templateUrl: './user-page.component.html',
@@ -86,6 +92,12 @@ export class UserPageComponent implements OnInit {
   readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
   readonly toneColorEnabledDraft = signal(false);
   readonly toneColorSchemeDraft = signal<ToneColorSchemeId>('classic');
+  readonly tracingStrokeDurationDraft = signal<number>(
+    TRACING_STROKE_DURATION_BOUNDS.defaultSec,
+  );
+  readonly tracingDurationMin = TRACING_STROKE_DURATION_BOUNDS.minSec;
+  readonly tracingDurationMax = TRACING_STROKE_DURATION_BOUNDS.maxSec;
+  readonly tracingDurationStep = TRACING_STROKE_DURATION_BOUNDS.stepSec;
   readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
   readonly tonePreviewMarks: readonly ToneMark[] = [1, 2, 3, 4, 5];
   readonly selectedTabIndex = signal(0);
@@ -127,6 +139,10 @@ export class UserPageComponent implements OnInit {
     return learning === 'en' || learning === 'zh';
   });
 
+  readonly showTracingSettings = computed(
+    () => this.settingsEntry()?.pair.learning === 'zh',
+  );
+
   readonly showDisplaySettings = computed(
     () => this.showCjkPreferences() || this.showPhoneticPreferences(),
   );
@@ -163,6 +179,10 @@ export class UserPageComponent implements OnInit {
       (item) => item.id === this.toneColorSchemeDraft(),
     );
     return scheme?.colors[tone] ?? '#757575';
+  }
+
+  formatTracingDurationSec(value: number): string {
+    return `${value.toFixed(1)} с`;
   }
 
   isActive(entry: UserLanguagePairEntry): boolean {
@@ -227,13 +247,21 @@ export class UserPageComponent implements OnInit {
 
     const patch: Partial<UserLanguagePairSettings> = {};
 
-    if (this.showCjkPreferences()) {
-      patch.cjkLearning = {
-        displayRomanizations: [...this.displayRomanizationsDraft()],
-        answerRomanization: [...this.answerRomanizationsDraft()],
-        showTones: this.toneColorEnabledDraft(),
-        toneColorScheme: this.toneColorSchemeDraft(),
-      };
+    if (this.showCjkPreferences() || this.showTracingSettings()) {
+      const cjkPatch: Partial<CjkLearningPreferences> = {};
+
+      if (this.showCjkPreferences()) {
+        cjkPatch.displayRomanizations = [...this.displayRomanizationsDraft()];
+        cjkPatch.answerRomanization = [...this.answerRomanizationsDraft()];
+        cjkPatch.showTones = this.toneColorEnabledDraft();
+        cjkPatch.toneColorScheme = this.toneColorSchemeDraft();
+      }
+
+      if (this.showTracingSettings()) {
+        cjkPatch.tracingStrokeDurationSec = this.tracingStrokeDurationDraft();
+      }
+
+      patch.cjkLearning = cjkPatch as CjkLearningPreferences;
     }
 
     if (this.showPhoneticPreferences()) {
@@ -261,6 +289,7 @@ export class UserPageComponent implements OnInit {
     this.answerRomanizationsDraft.set([...cjk.answerRomanization]);
     this.toneColorEnabledDraft.set(cjk.showTones);
     this.toneColorSchemeDraft.set(cjk.toneColorScheme);
+    this.tracingStrokeDurationDraft.set(cjk.tracingStrokeDurationSec);
     this.showIpaDraft.set(phonetic.showIpa);
     this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
     this.answerModesDraft.set([...phonetic.answerModes]);
