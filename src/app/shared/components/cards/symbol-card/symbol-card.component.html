@@ -38,7 +38,7 @@
   @if (feedback() === 'incorrect') {
     <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
       <mat-icon>cancel</mat-icon>
-      Неверно. Правильный символ:
+      Неверно. Правильный ответ:
       <app-lexeme-display
         surface="answer"
         [lexeme]="optionLexeme(resolved().correctIndex)"
