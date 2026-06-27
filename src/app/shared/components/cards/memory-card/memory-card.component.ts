@@ -26,6 +26,8 @@ export type MemoryColumnItem = {
 export class MemoryCardComponent {
   readonly card = input.required<MemoryCard>();
   readonly direction = input<CardDirection>('known-to-learning');
+  /** Меняется при каждом повторном открытии карточки в сессии — запускает перемешивание. */
+  readonly boardNonce = input(0);
   readonly feedback = input<CardFeedback>(null);
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
@@ -53,6 +55,7 @@ export class MemoryCardComponent {
     effect(() => {
       this.card();
       this.direction();
+      this.boardNonce();
       this.resetBoard();
     });
   }
@@ -62,13 +65,15 @@ export class MemoryCardComponent {
     const pairs = resolveMemoryPairs(this.card().pairs, this.direction());
 
     this.leftItems.set(
-      pairs.map((pair) => ({
-        id: `${pair.pairId}-left`,
-        pairId: pair.pairId,
-        column: 'left' as const,
-        label: pair.left,
-        lexeme: pair.leftLexeme,
-      })),
+      this.shuffle(
+        pairs.map((pair) => ({
+          id: `${pair.pairId}-left`,
+          pairId: pair.pairId,
+          column: 'left' as const,
+          label: pair.left,
+          lexeme: pair.leftLexeme,
+        })),
+      ),
     );
 
     this.rightItems.set(

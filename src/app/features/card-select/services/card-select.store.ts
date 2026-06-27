@@ -26,6 +26,8 @@ export class CardSelectStore {
   readonly drawAnswer = signal<DrawAnswerPayload | null>(null);
   readonly feedback = signal<CardFeedback>(null);
   readonly completed = signal(false);
+  /** Увеличивается при каждом «свежем» показе memory-карточки — для перемешивания колонок. */
+  readonly memoryBoardNonce = signal(0);
 
   readonly currentCard = computed(() => {
     const cards = this.cards();
@@ -203,5 +205,10 @@ export class CardSelectStore {
     this.drawSubmitted.set(false);
     this.drawAnswer.set(null);
     this.feedback.set(null);
+
+    const card = this.cards()[this.currentIndex()];
+    if (card?.kind === 'memory') {
+      this.memoryBoardNonce.update((nonce) => nonce + 1);
+    }
   }
 }
