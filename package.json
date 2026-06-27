@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "test:ci": "ng test --no-watch --browsers=ChromeHeadlessNoSandbox",
-    "verify": "npm run lint && npm run build:prod && npm run test:ci",
+    "verify": "npm run lint && npm run sync:hanzi && npm run build:prod && npm run test:ci",
     "lint": "ng lint",
     "audit": "npm audit --audit-level=high",
     "format": "prettier --write \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\"",

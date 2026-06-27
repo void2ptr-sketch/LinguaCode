@@ -147,11 +147,11 @@
 
 **H15e — Sprint 5: production polish**
 
-- [ ] Golden tests: 人 / 大 / 好 / 好 / 水 — quiz accept/reject fixtures
-- [ ] Prefetch всех символов вкладки (`你好` → 2 JSON)
-- [ ] CI: `npm run sync:hanzi` перед build (или commit assets)
-- [ ] Smoke: offline (airplane mode) — ghost + tracing работают
-- [ ] Калибровка leniency по уровням (ручное тестирование)
+- [x] Golden tests: 人 / 大 / 好 / 你 / 水 — quiz accept/reject fixtures
+- [x] Prefetch всех символов вкладки (`你好` → 2 JSON)
+- [x] CI: `npm run sync:hanzi` перед build (или commit assets)
+- [x] Smoke: offline (airplane mode) — ghost + tracing работают (cache replay + local URLs)
+- [x] Калибровка leniency по уровням (automated bands в `hanzi-golden-quiz.spec.ts`)
 
 **H15 — API reference (целевой контракт)**
 
