@@ -6,7 +6,7 @@
 
 ## Проблема
 
-Сейчас каталог карточек: **seed** (`ContentSeedRepository` + `content-manifest.json`) **+ пользовательский overlay** (`lingua-code.user-content.v1`). `CardRepository` и mock API отдают merged catalog, не полную загрузку всех JSON в отдельные legacy-ключи.
+Сейчас каталог карточек: **seed** (`ContentSeedRepository` + `content-manifest.json`) **+ пользовательский overlay** (`lingua-code.user-content.v1`). `CardRepository` и mock API отдают объединённый каталог, не полную загрузку всех JSON в отдельные legacy-ключи.
 
 Для большого каталога in-memory merge всё ещё не масштабируется:
 
