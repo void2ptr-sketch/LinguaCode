@@ -77,4 +77,17 @@ export const DEMO_SCENARIOS = [
       cardIds: ['timed-zh-1', 'select-zh-1', 'memory-zh-1'],
     },
   },
+  {
+    id: 'scenario-code-demo',
+    title: 'Код: выбор ответа',
+    description: '3 карточки code-select: Perl, Java и C++ с подсветкой синтаксиса.',
+    authorId: 'system',
+    published: true,
+    updatedAt: '2026-06-14T12:00:00.000Z',
+    languagePair: DEFAULT_LANGUAGE_PAIR,
+    cardSource: {
+      mode: 'fixed',
+      cardIds: ['code-select-perl-1', 'code-select-java-1', 'code-select-cpp-1'],
+    },
+  },
 ];

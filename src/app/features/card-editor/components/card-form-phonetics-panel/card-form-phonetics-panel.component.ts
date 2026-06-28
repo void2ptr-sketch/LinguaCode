@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
-import type { CardDraft } from '../../types';
+import type { CardDraft, LexemeCardDraft } from '../../types';
 import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 
@@ -28,7 +28,19 @@ export class CardFormPhoneticsPanelComponent {
 
   readonly draftChange = output<CardDraft>();
 
-  readonly showPromptLexeme = computed(() => this.draft().kind !== 'tone');
+  readonly showPromptLexeme = computed(() => {
+    const kind = this.draft().kind;
+    return kind !== 'tone' && kind !== 'code-select';
+  });
+
+  readonly promptLexemeDraft = computed((): LexemeCardDraft & CardDraft | null => {
+    const draft = this.draft();
+    if (draft.kind === 'code-select') {
+      return null;
+    }
+
+    return draft as LexemeCardDraft & CardDraft;
+  });
 
   readonly soundDraft = computed(() => {
     const draft = this.draft();
@@ -60,11 +72,21 @@ export class CardFormPhoneticsPanelComponent {
   }
 
   updatePromptLexeme(fields: LexemeDraftFields): void {
-    this.updateDraft({ ...this.draft(), promptLexeme: fields });
+    const draft = this.draft();
+    if (draft.kind === 'code-select') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, promptLexeme: fields });
   }
 
   updateAudioUrl(value: string): void {
-    this.updateDraft({ ...this.draft(), audioUrl: value });
+    const draft = this.draft();
+    if (draft.kind === 'code-select') {
+      return;
+    }
+
+    this.updateDraft({ ...draft, audioUrl: value });
   }
 
   updateAudioLabelLexeme(fields: LexemeDraftFields): void {

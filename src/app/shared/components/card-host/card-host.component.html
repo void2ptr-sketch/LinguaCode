@@ -16,6 +16,17 @@
           (nextCard)="nextCard.emit()"
         />
       }
+      @case ('code-select') {
+        <app-code-select-card
+          [card]="current"
+          [selectedIndex]="selectedIndex()"
+          [feedback]="feedback()"
+          [fontSize]="fontSize()"
+          (optionSelected)="optionSelected.emit($event)"
+          (checkAnswer)="checkAnswer.emit()"
+          (nextCard)="nextCard.emit()"
+        />
+      }
       @case ('memory') {
         <app-memory-card
           [card]="current"

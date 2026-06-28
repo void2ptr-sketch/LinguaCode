@@ -20,6 +20,9 @@
     <mat-tab-group class="card-form__tabs" dynamicHeight>
       <mat-tab label="Контент">
         <div class="card-form__tab-body">
+          @if (codeSelectDraft(); as codeDraft) {
+            <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
+          }
           @if (choiceDraft(); as choice) {
             <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
           }
@@ -52,7 +55,7 @@
         </div>
       </mat-tab>
 
-      @if (isAdvanced()) {
+      @if (isAdvanced() && draft().kind !== 'code-select') {
         <mat-tab label="Фонетика">
           <div class="card-form__tab-body">
             <p class="card-form__hint card-form__hint--tab">

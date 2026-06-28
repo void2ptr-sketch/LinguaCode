@@ -1,4 +1,4 @@
-import { Card, DrawCard, isOptionCard, ReadingCard } from '../../core/models';
+import { Card, DrawCard, isOptionCard, OptionCard, ReadingCard } from '../../core/models';
 import type { CardDirection } from '../../core/models/language-pair.types';
 import {
   checkDrawCardAnswer,
@@ -122,11 +122,18 @@ function matchesReadingCardSelection(
 }
 
 function checkOptionCardAnswer(
-  card: Card & { kind: 'select' | 'symbol' | 'sound' | 'timed' | 'reading' },
+  card: OptionCard,
   selectedIndex: number,
   sessionDirection: CardDirection,
 ): boolean {
-  const direction = effectiveCardDirection(card.direction, sessionDirection);
+  if (card.kind === 'code-select') {
+    return selectedIndex === card.correctIndex;
+  }
+
+  const direction = effectiveCardDirection(
+    'direction' in card ? card.direction : undefined,
+    sessionDirection,
+  );
   const resolved = resolveOptionCard(card, direction);
 
   if (card.kind === 'reading') {
@@ -213,6 +220,7 @@ const matchesKeyboardAnswer = (
 export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean => {
   switch (card.kind) {
     case 'select':
+    case 'code-select':
     case 'symbol':
     case 'sound':
     case 'timed':
@@ -268,8 +276,15 @@ export const getCorrectAnswerLabel = (
   sessionDirection: CardDirection = 'known-to-learning',
 ): string | null => {
   if (isOptionCard(card)) {
-    const direction = effectiveCardDirection(card.direction, sessionDirection);
+    const direction = effectiveCardDirection(
+      'direction' in card ? card.direction : undefined,
+      sessionDirection,
+    );
     const resolved = resolveOptionCard(card, direction);
+
+    if (card.kind === 'code-select') {
+      return resolved.options[resolved.correctIndex] ?? null;
+    }
 
     if (card.kind === 'reading' && card.promptLexeme?.primary.trim()) {
       const prompt = card.promptLexeme;

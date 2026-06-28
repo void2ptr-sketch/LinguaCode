@@ -11,6 +11,7 @@ export const DIFFICULTY_LABELS: Record<CardDifficulty, string> = {
 
 export const CARD_KIND_LABELS: Record<CardKind, string> = {
   select: 'Выбор ответа',
+  'code-select': 'Код: выбор ответа',
   memory: 'Запоминание',
   symbol: 'Символы',
   sound: 'Звук',
@@ -23,6 +24,7 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
 
 export const CARD_KINDS: readonly CardKind[] = [
   'select',
+  'code-select',
   'memory',
   'symbol',
   'sound',

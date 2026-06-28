@@ -1,0 +1,99 @@
+<section class="code-select-card-form">
+  <mat-form-field appearance="outline" class="code-select-card-form__field">
+    <mat-label>Контекст (необязательно)</mat-label>
+    <textarea
+      matInput
+      rows="2"
+      [ngModel]="draft().caption"
+      (ngModelChange)="updateCaption($event)"
+      placeholder="Формулировка вопроса на естественном языке"
+    ></textarea>
+  </mat-form-field>
+
+  <section class="code-select-card-form__block">
+    <h3 class="code-select-card-form__heading">Код вопроса</h3>
+    <div class="code-select-card-form__row">
+      <mat-form-field appearance="outline" class="code-select-card-form__language">
+        <mat-label>Язык</mat-label>
+        <mat-select
+          [ngModel]="draft().prompt.language"
+          (ngModelChange)="updatePromptLanguage($event)"
+        >
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" class="code-select-card-form__field">
+      <mat-label>Код</mat-label>
+      <textarea
+        matInput
+        class="code-select-card-form__code-input"
+        rows="8"
+        [ngModel]="draft().prompt.code"
+        (ngModelChange)="updatePromptCode($event)"
+        spellcheck="false"
+      ></textarea>
+    </mat-form-field>
+    @if (draft().prompt.code.trim()) {
+      <app-code-highlight [code]="draft().prompt.code" [language]="draft().prompt.language" />
+    }
+  </section>
+
+  <section class="code-select-card-form__block">
+    <div class="code-select-card-form__heading-row">
+      <h3 class="code-select-card-form__heading">Варианты ответа</h3>
+      <button mat-stroked-button type="button" (click)="addOption()" [disabled]="draft().options.length >= 8">
+        <mat-icon>add</mat-icon>
+        Добавить
+      </button>
+    </div>
+
+    <mat-radio-group
+      class="code-select-card-form__options"
+      [ngModel]="draft().correctIndex"
+      (ngModelChange)="updateCorrectIndex($event)"
+    >
+      @for (option of draft().options; track $index; let index = $index) {
+        <div class="code-select-card-form__option">
+          <mat-radio-button [value]="index">Правильный</mat-radio-button>
+          <div class="code-select-card-form__option-body">
+            <div class="code-select-card-form__row">
+              <mat-form-field appearance="outline" class="code-select-card-form__language">
+                <mat-label>Язык</mat-label>
+                <mat-select
+                  [ngModel]="option.language"
+                  (ngModelChange)="updateOptionLanguage(index, $event)"
+                >
+                  @for (language of languages; track language) {
+                    <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+              @if (draft().options.length > 2) {
+                <button mat-icon-button type="button" (click)="removeOption(index)" aria-label="Удалить вариант">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              }
+            </div>
+            <mat-form-field appearance="outline" class="code-select-card-form__field">
+              <mat-label>Код варианта {{ index + 1 }}</mat-label>
+              <textarea
+                matInput
+                class="code-select-card-form__code-input"
+                rows="6"
+                [ngModel]="option.code"
+                (ngModelChange)="updateOptionCode(index, $event)"
+                spellcheck="false"
+              ></textarea>
+            </mat-form-field>
+            @if (option.code.trim()) {
+              <app-code-highlight [code]="option.code" [language]="option.language" />
+            }
+          </div>
+        </div>
+      }
+    </mat-radio-group>
+  </section>
+</section>

@@ -115,6 +115,14 @@ export function resolveKeyboardAcceptedAnswers(
 }
 
 function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard {
+  if (card.kind === 'code-select') {
+    return {
+      prompt: card.caption ?? card.prompt.code,
+      options: card.options.map((option) => option.code),
+      correctIndex: card.correctIndex,
+    };
+  }
+
   if (card.kind === 'sound') {
     return {
       prompt: card.promptKnown,
@@ -139,6 +147,10 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
 }
 
 function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard {
+  if (card.kind === 'code-select') {
+    return resolveKnownToLearningOptionCard(card);
+  }
+
   if (card.kind === 'sound') {
     return {
       prompt: card.promptKnown,
@@ -276,6 +288,7 @@ function buildKnownOptionLexemes(
 function isOptionCard(card: Card): card is OptionCard {
   return (
     card.kind === 'select' ||
+    card.kind === 'code-select' ||
     card.kind === 'symbol' ||
     card.kind === 'sound' ||
     card.kind === 'timed' ||
@@ -289,5 +302,5 @@ export function cardSupportsSessionDirection(card: Card | null | undefined): boo
     return false;
   }
 
-  return card.kind !== 'draw' && card.kind !== 'tone';
+  return card.kind !== 'draw' && card.kind !== 'tone' && card.kind !== 'code-select';
 }

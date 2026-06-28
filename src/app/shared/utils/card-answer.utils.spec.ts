@@ -21,6 +21,26 @@ describe('card-answer.utils', () => {
     expect(getCorrectAnswerLabel(card)).toBe('A');
   });
 
+  it('should validate code-select cards by index', () => {
+    const card = {
+      id: 'code-1',
+      kind: 'code-select' as const,
+      title: 'Perl',
+      appearance: { theme: 'azure-blue', fontSize: 'md' as const },
+      prompt: { language: 'perl' as const, code: 'print 1;' },
+      options: [
+        { language: 'perl' as const, code: '1' },
+        { language: 'perl' as const, code: '0' },
+      ],
+      correctIndex: 0,
+    };
+
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBeFalse();
+    expect(getCorrectAnswerLabel(card)).toBe('1');
+  });
+
   it('should validate keyboard answers', () => {
     const card = {
       id: '2',

@@ -13,14 +13,14 @@ export const CARD_CREATE_GROUP_LABELS: Record<CardCreateGroup, string> = {
 };
 
 export const CARD_CREATE_GROUP_HINTS: Record<CardCreateGroup, string> = {
-  choice: 'select, на время, чтение, символы, тон',
+  choice: 'select, code-select, на время, чтение, символы, тон',
   input: 'клавиатура, рисование',
   pairs: 'запоминание пар',
   media: 'звук',
 };
 
 export const KINDS_BY_CREATE_GROUP: Record<CardCreateGroup, readonly CardKind[]> = {
-  choice: ['select', 'timed', 'reading', 'symbol', 'tone'],
+  choice: ['select', 'code-select', 'timed', 'reading', 'symbol', 'tone'],
   input: ['keyboard', 'draw'],
   pairs: ['memory'],
   media: ['sound'],
@@ -36,6 +36,7 @@ export const DEFAULT_KIND_BY_CREATE_GROUP: Record<CardCreateGroup, CardKind> = {
 export function createGroupForKind(kind: CardKind): CardCreateGroup {
   switch (kind) {
     case 'select':
+    case 'code-select':
     case 'timed':
     case 'reading':
     case 'symbol':

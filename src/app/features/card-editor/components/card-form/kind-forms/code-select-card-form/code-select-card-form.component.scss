@@ -1,0 +1,60 @@
+.code-select-card-form {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.code-select-card-form__block {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.code-select-card-form__heading {
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.code-select-card-form__heading-row {
+  align-items: center;
+  display: flex;
+  gap: 0.75rem;
+  justify-content: space-between;
+}
+
+.code-select-card-form__field {
+  width: 100%;
+}
+
+.code-select-card-form__language {
+  min-width: 10rem;
+}
+
+.code-select-card-form__row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.code-select-card-form__code-input {
+  font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
+  line-height: 1.45;
+}
+
+.code-select-card-form__options {
+  display: grid;
+  gap: 1rem;
+}
+
+.code-select-card-form__option {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 35%, transparent);
+  border-radius: 0.75rem;
+  display: grid;
+  gap: 0.75rem;
+  padding: 0.875rem;
+}
+
+.code-select-card-form__option-body {
+  display: grid;
+  gap: 0.75rem;
+}

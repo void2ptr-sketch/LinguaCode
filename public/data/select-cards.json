@@ -601,6 +601,58 @@
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "acceptedAnswersKnown": ["Привет", "привет"]
+    },
+    {
+      "id": "code-select-perl-1",
+      "kind": "code-select",
+      "title": "Perl: scalar context",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "caption": "Что вернёт выражение в scalar context?",
+      "prompt": {
+        "language": "perl",
+        "code": "my @items = qw(a b c);\nmy $count = @items;\nprint $count;"
+      },
+      "options": [
+        { "language": "perl", "code": "3" },
+        { "language": "perl", "code": "@items" },
+        { "language": "perl", "code": "undef" },
+        { "language": "perl", "code": "Syntax error" }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "code-select-java-1",
+      "kind": "code-select",
+      "title": "Java: ArrayList",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "caption": "Какой код создаёт изменяемый список строк?",
+      "prompt": {
+        "language": "java",
+        "code": "import java.util.List;\nimport java.util.ArrayList;\n\n// выберите корректный вариант"
+      },
+      "options": [
+        { "language": "java", "code": "List<String> xs = new ArrayList<>();" },
+        { "language": "java", "code": "List<String> xs = List.of(\"a\");" },
+        { "language": "java", "code": "String[] xs = new List<>();" }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "code-select-cpp-1",
+      "kind": "code-select",
+      "title": "C++: const reference",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "caption": "Как объявить константную ссылку на int?",
+      "prompt": {
+        "language": "cpp",
+        "code": "int value = 42;\n// допишите объявление ref"
+      },
+      "options": [
+        { "language": "cpp", "code": "const int& ref = value;" },
+        { "language": "cpp", "code": "int& const ref = value;" },
+        { "language": "cpp", "code": "const int* ref = value;" }
+      ],
+      "correctIndex": 0
     }
   ]
 }

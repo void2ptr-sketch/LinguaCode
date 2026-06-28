@@ -21,6 +21,7 @@ const CONTENT_LANGUAGES = contentLanguages();
 const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
 const CARD_KINDS: readonly CardKind[] = [
   'select',
+  'code-select',
   'memory',
   'symbol',
   'sound',

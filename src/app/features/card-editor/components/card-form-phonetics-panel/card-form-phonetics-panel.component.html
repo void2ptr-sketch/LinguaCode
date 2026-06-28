@@ -1,17 +1,19 @@
-@if (showPromptLexeme()) {
+@if (showPromptLexeme() && promptLexemeDraft(); as d) {
   <app-lexeme-fields
-    [label]="draft().kind === 'draw' ? 'Лексема (иероглиф)' : 'Подсказка (лексема)'"
-    [fields]="draft().promptLexeme"
+    [label]="d.kind === 'draw' ? 'Лексема (иероглиф)' : 'Подсказка (лексема)'"
+    [fields]="d.promptLexeme"
     [knownLanguage]="knownLanguage()"
     [learningLanguage]="learningLanguage()"
     (fieldsChange)="updatePromptLexeme($event)"
   />
 }
 
-<mat-form-field appearance="outline">
-  <mat-label>URL аудио</mat-label>
-  <input matInput [ngModel]="draft().audioUrl" (ngModelChange)="updateAudioUrl($event)" />
-</mat-form-field>
+@if (promptLexemeDraft(); as d) {
+  <mat-form-field appearance="outline">
+    <mat-label>URL аудио</mat-label>
+    <input matInput [ngModel]="d.audioUrl" (ngModelChange)="updateAudioUrl($event)" />
+  </mat-form-field>
+}
 
 @if (soundDraft(); as d) {
   <app-lexeme-fields
