@@ -1,0 +1,165 @@
+{
+  "courses": [
+    {
+      "id": "course-ru-perl-db",
+      "title": "Программирование на Perl для работы с базами данных",
+      "description": "Полный курс по работе с базами данных в Perl: DBI, Oracle, PostgreSQL, транзакции, оптимизация.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "lessonIds": [
+        "lesson-perl-db-01",
+        "lesson-perl-db-02",
+        "lesson-perl-db-03",
+        "lesson-perl-db-04",
+        "lesson-perl-db-05",
+        "lesson-perl-db-06",
+        "lesson-perl-db-07",
+        "lesson-perl-db-08"
+      ],
+      "published": true,
+      "updatedAt": "2026-06-28T00:00:00.000Z",
+      "authoring": {
+        "idea": "# Идея программы: Программирование на Perl для работы с базами данных\n\n<!-- Формат материализации:\\n     ## Модуль N: название  → 1 урок\\n     - вопрос             → 1 сценарий (тема)\\n     Карточки генерируются автоматически (2–3 на сценарий).\\n     npm run export:content-seed -->\\n\\n## Цели\\n\\nОбучение работе с базами данных в Perl: DBI, Oracle, PostgreSQL, транзакции, оптимизация производительности.\\n\\n## Аудитория\\n\\nРазработчики, которые хотят освоить работу с СУБД через Perl.\\n\\n## Формат\\n\\n- Короткие сценарии с карточками «вопрос → ответ»\\n- Акцент на практике и лучших практиках\\n\\n## Темы (для тегов каталога)\\n\\n- DBI\\n- Oracle\\n- PostgreSQL\\n- Транзакции\\n- Оптимизация\\n- PL/SQL\\n\\n## Модуль 1: Введение в DBI\\n\\n- Обзор DBI и DBD-драйверов\\n- Установка и настройка окружения\\n- Подключение к Oracle и Postgres\\n\\n## Модуль 2: Базовые операции CRUD\\n\\n- Выполнение запросов через DBI\\n- Параметризованные запросы\\n- Работа с результатами\\n\\n## Модуль 3: Транзакции и обработка ошибок\\n\\n- Управление транзакциями\\n- Обработка ошибок через RaiseError/PrintError\\n- Блокировки и уровни изоляции\\n\\n## Модуль 4: Продвинутые выборки и оптимизация\\n\\n- Курсоры и постраничная выборка\\n- Массовое чтение и запись\\n- Индексы и план запроса\\n\\n## Модуль 5: Специфика Oracle\\n\\n- PL/SQL, хранимые процедуры, курсоры\\n- OUT-параметры и REF CURSOR\\n\\n## Модуль 6: Специфика Postgres\\n\\n- Работа с JSONB и массивами\\n- Оконные функции\\n\\n## Модуль 7: Архитектура и интеграция\\n\\n- Пулы соединений\\n- Логирование и мониторинг\\n- Безопасность и тестирование\\n\\n## Модуль 8: Итоговый проект\\n\\n- ETL-процесс\\n- Выбор СУБД под задачу\\n- Code review и Perl Best Practices\",\n        \"status\": \"planned\",\n        \"ideaUpdatedAt\": \"2026-06-28T00:00:00.000Z\"\n      },
+      "practiceSettings": {
+        "mode": "open",
+        "requireLessonForScenarios": false,
+        "enforceLessonPrerequisites": false,
+        "allowDifficultyFilter": true
+      }
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson-perl-db-01",
+      "courseId": "course-ru-perl-db",
+      "title": "Введение в DBI",
+      "description": "Обзор DBI и DBD-драйверов, установка, настройка окружения.",
+      "scenarioIds": [
+        "scenario-perl-db-s01-q01",
+        "scenario-perl-db-s01-q02",
+        "scenario-perl-db-s01-q03"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-02",
+      "courseId": "course-ru-perl-db",
+      "title": "Базовые операции CRUD",
+      "description": "SELECT, INSERT, UPDATE, DELETE через DBI.",
+      "scenarioIds": [
+        "scenario-perl-db-s02-q01",
+        "scenario-perl-db-s02-q02",
+        "scenario-perl-db-s02-q03",
+        "scenario-perl-db-s02-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-01"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-03",
+      "courseId": "course-ru-perl-db",
+      "title": "Транзакции и обработка ошибок",
+      "description": "Управление транзакциями, обработка ошибок, блокировки.",
+      "scenarioIds": [
+        "scenario-perl-db-s03-q01",
+        "scenario-perl-db-s03-q02",
+        "scenario-perl-db-s03-q03"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-02"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-04",
+      "courseId": "course-ru-perl-db",
+      "title": "Продвинутые выборки и оптимизация",
+      "description": "Курсоры, пагинация, массовые операции, EXPLAIN.",
+      "scenarioIds": [
+        "scenario-perl-db-s04-q01",
+        "scenario-perl-db-s04-q02",
+        "scenario-perl-db-s04-q03",
+        "scenario-perl-db-s04-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-03"
+      ],
+      "order": 3,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-05",
+      "courseId": "course-ru-perl-db",
+      "title": "Специфика Oracle",
+      "description": "PL/SQL, хранимые процедуры, REF CURSOR.",
+      "scenarioIds": [
+        "scenario-perl-db-s05-q01",
+        "scenario-perl-db-s05-q02",
+        "scenario-perl-db-s05-q03",
+        "scenario-perl-db-s05-q04"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-04"
+      ],
+      "order": 4,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-06",
+      "courseId": "course-ru-perl-db",
+      "title": "Специфика Postgres",
+      "description": "JSONB, массивы, оконные функции.",
+      "scenarioIds": [
+        "scenario-perl-db-s06-q01",
+        "scenario-perl-db-s06-q02",
+        "scenario-perl-db-s06-q03"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-05"
+      ],
+      "order": 5,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-07",
+      "courseId": "course-ru-perl-db",
+      "title": "Архитектура и интеграция",
+      "description": "Пулы соединений, логирование, безопасность, тестирование.",
+      "scenarioIds": [
+        "scenario-perl-db-s07-q01",
+        "scenario-perl-db-s07-q02",
+        "scenario-perl-db-s07-q03"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-06"
+      ],
+      "order": 6,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-db-08",
+      "courseId": "course-ru-perl-db",
+      "title": "Итоговый проект",
+      "description": "ETL-процесс, выбор СУБД, code review.",
+      "scenarioIds": [
+        "scenario-perl-db-s08-q01",
+        "scenario-perl-db-s08-q02",
+        "scenario-perl-db-s08-q03"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-db-07"
+      ],
+      "order": 7,
+      "updatedAt": "2026-06-28T00:00:00.000Z"
+    }
+  ]
+}
