@@ -28,6 +28,8 @@ export function editorVariantLabel(kind: CardKind): string | null {
       return 'Чтение (select + meta)';
     case 'tone':
       return 'Тон (автоварианты из слога)';
+    case 'code-select':
+      return 'Код: выбор ответа';
     default:
       return null;
   }

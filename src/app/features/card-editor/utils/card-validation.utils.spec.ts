@@ -1,4 +1,5 @@
 import {
+  normalizeCodeSelectCardDraft,
   normalizeKeyboardCardDraft,
   normalizeMemoryCardDraft,
   normalizeSelectCardDraft,
@@ -29,6 +30,28 @@ describe('card-validation.utils', () => {
 
     expect(card?.kind).toBe('select');
     expect(card?.title).toBe('Тест');
+  });
+
+  it('should normalize valid code-select card draft', () => {
+    const card = normalizeCodeSelectCardDraft(
+      {
+        kind: 'code-select',
+        title: 'Perl snippet',
+        caption: 'Что выведет код?',
+        prompt: { language: 'perl', code: 'print 1;' },
+        options: [
+          { language: 'perl', code: '1' },
+          { language: 'perl', code: '0' },
+        ],
+        correctIndex: 0,
+        appearance,
+      },
+      'code-1',
+    );
+
+    expect(card?.kind).toBe('code-select');
+    expect(card?.prompt.code).toBe('print 1;');
+    expect(card?.options.length).toBe(2);
   });
 
   it('should preserve prompt lexeme in select card', () => {

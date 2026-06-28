@@ -25,6 +25,19 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         appearance: { ...appearance },
         ...lexemeFields,
       };
+    case 'code-select':
+      return {
+        kind: 'code-select',
+        title: '',
+        caption: '',
+        prompt: { code: '', language: 'perl' },
+        options: [
+          { code: '', language: 'perl' },
+          { code: '', language: 'perl' },
+        ],
+        correctIndex: 0,
+        appearance: { ...appearance },
+      };
     case 'memory':
       return {
         kind: 'memory',
@@ -142,6 +155,16 @@ export const cardToDraft = (card: Card): CardDraft => {
         appearance,
         promptLexeme,
         audioUrl,
+      };
+    case 'code-select':
+      return {
+        kind: 'code-select',
+        title: card.title,
+        caption: card.caption ?? '',
+        prompt: { ...card.prompt },
+        options: card.options.map((option) => ({ ...option })),
+        correctIndex: card.correctIndex,
+        appearance,
       };
     case 'memory':
       return {
@@ -267,5 +290,9 @@ export const cardToDraft = (card: Card): CardDraft => {
 };
 
 export const cardSummary = (card: Card): string => {
+  if (card.kind === 'code-select') {
+    return card.caption?.trim() || card.prompt.code.split('\n')[0]?.trim() || card.title;
+  }
+
   return card.promptKnown;
 };

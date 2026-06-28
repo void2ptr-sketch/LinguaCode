@@ -5,6 +5,7 @@ describe('card-form.registry', () => {
   it('maps every card kind to a form group', () => {
     const kinds: CardKind[] = [
       'select',
+      'code-select',
       'memory',
       'symbol',
       'sound',

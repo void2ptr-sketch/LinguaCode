@@ -1,0 +1,26 @@
+@use '../quiz-card';
+
+.quiz-card--code {
+  max-width: 48rem;
+}
+
+.code-select-card__prompt {
+  margin: 0;
+  padding: 0;
+}
+
+.code-select-card__options {
+  .option {
+    align-items: stretch;
+    color: unset;
+    display: block;
+    min-height: 4.5rem;
+    padding: 0.75rem;
+  }
+
+  .code-highlight {
+    max-height: 12rem;
+    overflow: auto;
+    width: 100%;
+  }
+}

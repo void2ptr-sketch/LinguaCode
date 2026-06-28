@@ -47,11 +47,13 @@
   gap: 0.5rem;
 }
 
-.card-catalog-filters__group:first-of-type {
+.card-catalog-filters__group--kinds {
   grid-area: kinds;
 }
 
-.card-catalog-filters__group:last-of-type {
+.card-catalog-filters__tag-groups {
+  display: grid;
+  gap: 1rem;
   grid-area: tags;
 }
 

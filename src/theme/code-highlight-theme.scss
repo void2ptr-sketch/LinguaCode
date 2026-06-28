@@ -1,0 +1,34 @@
+// Контрастные цвета для блоков кода (поверх github-dark).
+// Базовый текст и «plain»-варианты не должны наследовать серый цвет родителя.
+
+.code-highlight {
+  --code-fg: #e6edf3;
+  --code-bg: #161b22;
+  --code-comment: #9ea7b3;
+  --code-muted: #c9d1d9;
+
+  background: var(--code-bg);
+  color: var(--code-fg);
+
+  &.hljs,
+  .hljs {
+    background: transparent;
+    color: var(--code-fg);
+  }
+
+  // Токены без явного цвета в github-dark
+  .hljs-char.escape_,
+  .hljs-link,
+  .hljs-params,
+  .hljs-property,
+  .hljs-punctuation,
+  .hljs-tag {
+    color: var(--code-muted);
+  }
+
+  .hljs-comment,
+  .hljs-code,
+  .hljs-formula {
+    color: var(--code-comment);
+  }
+}

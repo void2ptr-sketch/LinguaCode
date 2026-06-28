@@ -1,8 +1,13 @@
 <mat-nav-list class="navigation" aria-label="Навигация">
-  @for (item of items; track item.path) {
-    <a mat-list-item [routerLink]="item.path" routerLinkActive="navigation__link--active">
-      <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
-      <span matListItemTitle>{{ item.label }}</span>
-    </a>
+  @for (group of groups; track group.id; let last = $last) {
+    @for (item of group.items; track item.path) {
+      <a mat-list-item [routerLink]="item.path" routerLinkActive="navigation__link--active">
+        <mat-icon matListItemIcon>{{ item.icon }}</mat-icon>
+        <span matListItemTitle>{{ item.label }}</span>
+      </a>
+    }
+    @if (!last) {
+      <mat-divider class="navigation__divider" />
+    }
   }
 </mat-nav-list>

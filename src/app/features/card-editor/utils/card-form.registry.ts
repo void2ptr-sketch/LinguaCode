@@ -4,6 +4,7 @@ export type CardFormKindGroup = 'choice' | 'input' | 'pairs' | 'media';
 
 export const CARD_FORM_KIND_GROUP: Record<CardKind, CardFormKindGroup> = {
   select: 'choice',
+  'code-select': 'choice',
   timed: 'choice',
   reading: 'choice',
   symbol: 'choice',

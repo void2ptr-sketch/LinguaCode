@@ -2,6 +2,7 @@ import type { CardDirection } from './language-pair.types';
 
 export type CardKind =
   | 'select'
+  | 'code-select'
   | 'memory'
   | 'symbol'
   | 'sound'
@@ -35,6 +36,32 @@ export type MemoryPair = {
 export type LexemeCardFields = {
   promptLexeme?: PhoneticLexeme;
   audioUrl?: string;
+};
+
+export type CodeHighlightLanguage =
+  | 'perl'
+  | 'cpp'
+  | 'java'
+  | 'javascript'
+  | 'typescript'
+  | 'python'
+  | 'sql'
+  | 'bash'
+  | 'rust'
+  | 'go'
+  | 'plain';
+
+export type CodeBlock = {
+  code: string;
+  language: CodeHighlightLanguage;
+};
+
+export type CodeSelectCard = CardBase & {
+  kind: 'code-select';
+  caption?: string;
+  prompt: CodeBlock;
+  options: readonly CodeBlock[];
+  correctIndex: number;
 };
 
 export type SelectCard = CardBase &
@@ -141,6 +168,7 @@ export type ReadingCard = CardBase &
 
 export type Card =
   | SelectCard
+  | CodeSelectCard
   | MemoryCard
   | SymbolCard
   | SoundCard
@@ -150,11 +178,18 @@ export type Card =
   | ToneCard
   | ReadingCard;
 
-export type OptionCard = SelectCard | SymbolCard | SoundCard | TimedCard | ReadingCard;
+export type OptionCard =
+  | SelectCard
+  | CodeSelectCard
+  | SymbolCard
+  | SoundCard
+  | TimedCard
+  | ReadingCard;
 
 export const isOptionCard = (card: Card): card is OptionCard => {
   return (
     card.kind === 'select' ||
+    card.kind === 'code-select' ||
     card.kind === 'symbol' ||
     card.kind === 'sound' ||
     card.kind === 'timed' ||

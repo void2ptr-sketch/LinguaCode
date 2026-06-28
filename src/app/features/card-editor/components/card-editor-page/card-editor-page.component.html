@@ -123,7 +123,7 @@
                   </span>
                   <mat-chip-set class="card-editor-page__tags" aria-label="Теги">
                     @for (tag of entry.tags; track tag) {
-                      <mat-chip>{{ tag }}</mat-chip>
+                      <mat-chip>{{ tagLabel(tag) }}</mat-chip>
                     }
                   </mat-chip-set>
                   <span class="card-editor-page__updated">

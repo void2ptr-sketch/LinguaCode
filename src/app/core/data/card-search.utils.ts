@@ -21,6 +21,7 @@ const CONTENT_LANGUAGES = contentLanguages();
 const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
 const CARD_KINDS: readonly CardKind[] = [
   'select',
+  'code-select',
   'memory',
   'symbol',
   'sound',
@@ -102,6 +103,29 @@ export function matchesCardIndexEntry(
   return true;
 }
 
+/** Подсчёт facet для тега: учитывает все выбранные теги, кроме считаемого. */
+export function matchesTagFacetEntry(
+  entry: CardIndexEntry,
+  filters: Omit<CardSearchCriteria, 'page'>,
+  tag: string,
+): boolean {
+  if (!entry.tags.includes(tag)) {
+    return false;
+  }
+
+  const otherSelectedTags = filters.tags?.filter((selectedTag) => selectedTag !== tag) ?? [];
+  if (otherSelectedTags.length > 0) {
+    const hasAllOtherTags = otherSelectedTags.every((selectedTag) =>
+      entry.tags.includes(selectedTag),
+    );
+    if (!hasAllOtherTags) {
+      return false;
+    }
+  }
+
+  return matchesCardIndexEntry(entry, filters, 'tags');
+}
+
 export function filterCardIndex(
   entries: readonly CardIndexEntry[],
   criteria: CardSearchCriteria,
@@ -171,9 +195,7 @@ export function buildCardSearchFacets(
     tags: tagValues
       .map((tag) => ({
         value: tag,
-        count: entries.filter(
-          (entry) => entry.tags.includes(tag) && matchesCardIndexEntry(entry, filters, 'tags'),
-        ).length,
+        count: entries.filter((entry) => matchesTagFacetEntry(entry, filters, tag)).length,
       }))
       .filter((facet) => facet.count > 0),
   };

@@ -18,7 +18,7 @@ type LegacyMemoryPair = {
   learning?: string;
 };
 
-type LegacyCard = Card & {
+type LegacyCard = Omit<Card, 'options'> & {
   question?: string;
   options?: readonly string[];
   prompt?: string;
@@ -41,7 +41,7 @@ function normalizeMemoryPair(pair: LegacyMemoryPair): MemoryPair {
   };
 }
 
-export function normalizeLegacyCard(raw: LegacyCard): Card {
+export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
   switch (raw.kind) {
     case 'select': {
       const card = raw as SelectCard & LegacyCard;
@@ -114,10 +114,10 @@ export function normalizeLegacyCard(raw: LegacyCard): Card {
       };
     }
     default:
-      return raw;
+      return raw as Card;
   }
 }
 
-export function normalizeLegacyCards(cards: readonly LegacyCard[]): readonly Card[] {
+export function normalizeLegacyCards(cards: readonly (LegacyCard | Card)[]): readonly Card[] {
   return cards.map(normalizeLegacyCard);
 }

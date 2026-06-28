@@ -2,9 +2,12 @@ export type { CardEditorMode, CardIndexMetaDraft } from './card-editor.types';
 export type {
   CardAppearanceDraft,
   CardDraft,
+  CodeBlockDraft,
+  CodeSelectCardDraft,
   DrawCardDraft,
   EditableCardKind,
   KeyboardCardDraft,
+  LexemeCardDraft,
   MemoryCardDraft,
   ReadingCardDraft,
   SelectCardDraft,

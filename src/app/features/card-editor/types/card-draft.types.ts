@@ -1,4 +1,5 @@
 import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../core/models';
+import type { CodeHighlightLanguage } from '../../../core/models';
 import type {
   DrawPracticeMode,
   DrawCharacterTarget,
@@ -21,6 +22,21 @@ export type MemoryPairDraft = {
   known: string;
   learning: string;
   learningLexeme: LexemeDraftFields;
+};
+
+export type CodeBlockDraft = {
+  code: string;
+  language: CodeHighlightLanguage;
+};
+
+export type CodeSelectCardDraft = {
+  kind: 'code-select';
+  title: string;
+  caption: string;
+  prompt: CodeBlockDraft;
+  options: readonly CodeBlockDraft[];
+  correctIndex: number;
+  appearance: CardAppearanceDraft;
 };
 
 export type SelectCardDraft = LexemeCardDraft & {
@@ -131,6 +147,7 @@ export type ReadingCardDraft = LexemeCardDraft & {
 
 export type CardDraft =
   | SelectCardDraft
+  | CodeSelectCardDraft
   | MemoryCardDraft
   | SymbolCardDraft
   | SoundCardDraft
@@ -144,6 +161,7 @@ export type EditableCardKind = CardKind;
 
 export const CARD_KIND_LABELS: Record<CardKind, string> = {
   select: 'Выбор ответа',
+  'code-select': 'Код: выбор ответа',
   memory: 'Запоминание',
   symbol: 'Символы',
   sound: 'Звук',
@@ -156,6 +174,7 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
 
 export const CARD_KINDS: readonly CardKind[] = [
   'select',
+  'code-select',
   'memory',
   'symbol',
   'sound',

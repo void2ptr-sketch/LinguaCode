@@ -1,0 +1,56 @@
+<mat-card class="quiz-card quiz-card--code quiz-card--font-{{ fontSize() }}">
+  <section class="quiz-card__question" aria-label="Вопрос">
+    <mat-card-header>
+      <mat-card-title>{{ questionHeadline() }}</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="code-select-card__prompt">
+      <app-code-highlight [code]="card().prompt.code" [language]="card().prompt.language" />
+    </mat-card-content>
+  </section>
+
+  <section class="quiz-card__answer" aria-label="Ответ">
+    <p class="quiz-card__section-label">Выберите ответ</p>
+    <mat-card-content class="quiz-card__options code-select-card__options">
+      @for (option of card().options; track $index; let index = $index) {
+        <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
+          <app-code-highlight [code]="option.code" [language]="option.language" />
+        </button>
+      }
+    </mat-card-content>
+  </section>
+
+  @if (feedback() === 'correct') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--correct">
+      <mat-icon>check_circle</mat-icon>
+      Верно!
+    </mat-card-content>
+  }
+
+  @if (feedback() === 'incorrect') {
+    <mat-card-content class="quiz-card__feedback quiz-card__feedback--incorrect">
+      <mat-icon>cancel</mat-icon>
+      Неверно. Правильный ответ:
+      <app-code-highlight
+        [code]="card().options[card().correctIndex].code"
+        [language]="card().options[card().correctIndex].language"
+        [inline]="true"
+      />
+    </mat-card-content>
+  }
+
+  <mat-card-actions align="end">
+    @if (feedback() === null) {
+      <button
+        mat-flat-button
+        type="button"
+        [disabled]="selectedIndex() === null"
+        (click)="checkAnswer.emit()"
+      >
+        Проверить
+      </button>
+    } @else {
+      <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
+    }
+  </mat-card-actions>
+</mat-card>

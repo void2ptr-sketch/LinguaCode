@@ -15,6 +15,7 @@ import {
   CardCatalogSearchStore,
   CONTENT_LANGUAGE_LABELS,
   DIFFICULTY_LABELS,
+  tagLabel,
 } from '../../../../shared/card-catalog-search';
 import { UiPaginationComponent } from '../../../../shared/pagination';
 import { UserStore } from '../../../../core/state';
@@ -62,6 +63,7 @@ export class CardEditorPageComponent implements OnInit {
   readonly kindLabels = CARD_KIND_LABELS;
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
+  readonly tagLabel = tagLabel;
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();

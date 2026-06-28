@@ -10,7 +10,9 @@ import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
 } from '../../../core/data/lexeme-draft.utils';
-import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../../../core/security';
+import { sanitizeMarkdownText, sanitizePlainText, sanitizeTheme, isAllowedFontSize } from '../../../core/security';
+import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../core/models';
+import type { CardDirection } from '../../../core/models/language-pair.types';
 import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import {
   Card,
@@ -26,9 +28,10 @@ import {
   TimedCard,
   ToneCard,
 } from '../../../core/models';
-import type { CardDirection } from '../../../core/models/language-pair.types';
 import {
   CardDraft,
+  CodeBlockDraft,
+  CodeSelectCardDraft,
   DEFAULT_CARD_DIRECTION,
   DrawCardDraft,
   KeyboardCardDraft,
@@ -54,6 +57,49 @@ const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizePrompt = (value: string): string => sanitizePlainText(value, 512);
 const sanitizeShort = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeHint = (value: string): string => sanitizePlainText(value, 256);
+const sanitizeCode = (value: string): string => sanitizeMarkdownText(value, 8192);
+
+const CODE_LANGUAGES: readonly CodeHighlightLanguage[] = [
+  'perl',
+  'cpp',
+  'java',
+  'javascript',
+  'typescript',
+  'python',
+  'sql',
+  'bash',
+  'rust',
+  'go',
+  'plain',
+];
+
+const normalizeCodeLanguage = (language: CodeHighlightLanguage): CodeHighlightLanguage => {
+  return CODE_LANGUAGES.includes(language) ? language : 'plain';
+};
+
+const normalizeCodeBlockDraft = (block: CodeBlockDraft): CodeBlock | null => {
+  const code = sanitizeCode(block.code);
+  if (!code) {
+    return null;
+  }
+
+  return {
+    code,
+    language: normalizeCodeLanguage(block.language),
+  };
+};
+
+const normalizeCodeBlocks = (blocks: readonly CodeBlockDraft[]): readonly CodeBlock[] | null => {
+  const normalized = blocks
+    .map(normalizeCodeBlockDraft)
+    .filter((block): block is CodeBlock => block !== null);
+
+  if (normalized.length < MIN_OPTIONS || normalized.length > MAX_OPTIONS) {
+    return null;
+  }
+
+  return normalized;
+};
 
 const normalizeDirection = (direction: CardDirection): CardDirection => {
   return direction === 'learning-to-known' ? 'learning-to-known' : DEFAULT_CARD_DIRECTION;
@@ -454,6 +500,37 @@ export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): To
   };
 };
 
+export const normalizeCodeSelectCardDraft = (
+  draft: CodeSelectCardDraft,
+  cardId: string,
+): CodeSelectCard | null => {
+  const title = sanitizeTitle(draft.title);
+  const prompt = normalizeCodeBlockDraft(draft.prompt);
+  const options = normalizeCodeBlocks(draft.options);
+
+  if (!title || !prompt || !options) {
+    return null;
+  }
+
+  const correctIndex = normalizeCorrectIndex(draft.correctIndex, options.length);
+  if (correctIndex === null) {
+    return null;
+  }
+
+  const caption = sanitizePrompt(draft.caption);
+
+  return {
+    id: cardId,
+    kind: 'code-select',
+    title,
+    ...(caption ? { caption } : {}),
+    prompt,
+    options,
+    correctIndex,
+    appearance: normalizeAppearance(draft.appearance),
+  };
+};
+
 export const normalizeReadingCardDraft = (
   draft: ReadingCardDraft,
   cardId: string,
@@ -484,6 +561,8 @@ export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | nul
   switch (draft.kind) {
     case 'select':
       return normalizeSelectCardDraft(draft, cardId);
+    case 'code-select':
+      return normalizeCodeSelectCardDraft(draft, cardId);
     case 'memory':
       return normalizeMemoryCardDraft(draft, cardId);
     case 'symbol':
@@ -519,6 +598,8 @@ export const cardValidationErrorMessage = (kind: CardKind): string => {
       return 'Проверьте название, подсказку, символы и правильный ответ';
     case 'select':
       return 'Проверьте название, подсказку (известный), варианты (новый) и правильный ответ';
+    case 'code-select':
+      return 'Проверьте название, код вопроса, варианты кода и правильный ответ';
     case 'reading':
       return 'Проверьте название, контекст, варианты чтения и правильный ответ';
     case 'tone':
