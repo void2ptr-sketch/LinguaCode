@@ -19,7 +19,8 @@
           "card-perl-db-s01-q01-c3",
           "card-perl-db-s01-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s01-q02",
@@ -39,7 +40,8 @@
           "card-perl-db-s01-q02-c2",
           "card-perl-db-s01-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s01-q03",
@@ -60,7 +62,8 @@
           "card-perl-db-s01-q03-c3",
           "card-perl-db-s01-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s02-q01",
@@ -81,7 +84,8 @@
           "card-perl-db-s02-q01-c3",
           "card-perl-db-s02-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s02-q02",
@@ -102,7 +106,8 @@
           "card-perl-db-s02-q02-c3",
           "card-perl-db-s02-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s02-q03",
@@ -122,7 +127,8 @@
           "card-perl-db-s02-q03-c2",
           "card-perl-db-s02-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s02-q04",
@@ -142,7 +148,8 @@
           "card-perl-db-s02-q04-c2",
           "card-perl-db-s02-q04-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s03-q01",
@@ -163,7 +170,8 @@
           "card-perl-db-s03-q01-c3",
           "card-perl-db-s03-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s03-q02",
@@ -184,7 +192,8 @@
           "card-perl-db-s03-q02-c3",
           "card-perl-db-s03-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s03-q03",
@@ -204,7 +213,8 @@
           "card-perl-db-s03-q03-c2",
           "card-perl-db-s03-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s04-q01",
@@ -225,7 +235,8 @@
           "card-perl-db-s04-q01-c3",
           "card-perl-db-s04-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s04-q02",
@@ -245,7 +256,8 @@
           "card-perl-db-s04-q02-c2",
           "card-perl-db-s04-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s04-q03",
@@ -265,7 +277,8 @@
           "card-perl-db-s04-q03-c2",
           "card-perl-db-s04-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s04-q04",
@@ -285,7 +298,8 @@
           "card-perl-db-s04-q04-c2",
           "card-perl-db-s04-q04-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s05-q01",
@@ -306,7 +320,8 @@
           "card-perl-db-s05-q01-c3",
           "card-perl-db-s05-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s05-q02",
@@ -327,7 +342,8 @@
           "card-perl-db-s05-q02-c3",
           "card-perl-db-s05-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s05-q03",
@@ -347,7 +363,8 @@
           "card-perl-db-s05-q03-c2",
           "card-perl-db-s05-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s05-q04",
@@ -367,7 +384,8 @@
           "card-perl-db-s05-q04-c2",
           "card-perl-db-s05-q04-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s06-q01",
@@ -388,7 +406,8 @@
           "card-perl-db-s06-q01-c3",
           "card-perl-db-s06-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s06-q02",
@@ -408,7 +427,8 @@
           "card-perl-db-s06-q02-c2",
           "card-perl-db-s06-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s06-q03",
@@ -428,7 +448,8 @@
           "card-perl-db-s06-q03-c2",
           "card-perl-db-s06-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s07-q01",
@@ -449,7 +470,8 @@
           "card-perl-db-s07-q01-c3",
           "card-perl-db-s07-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s07-q02",
@@ -469,7 +491,8 @@
           "card-perl-db-s07-q02-c2",
           "card-perl-db-s07-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s07-q03",
@@ -490,7 +513,8 @@
           "card-perl-db-s07-q03-c3",
           "card-perl-db-s07-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s08-q01",
@@ -511,7 +535,8 @@
           "card-perl-db-s08-q01-c3",
           "card-perl-db-s08-q01-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s08-q02",
@@ -531,7 +556,8 @@
           "card-perl-db-s08-q02-c2",
           "card-perl-db-s08-q02-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     },
     {
       "id": "scenario-perl-db-s08-q03",
@@ -551,7 +577,8 @@
           "card-perl-db-s08-q03-c2",
           "card-perl-db-s08-q03-code"
         ]
-      }
+      },
+      "courseId": "course-ru-perl-db"
     }
   ]
 }

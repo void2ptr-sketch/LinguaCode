@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
+import { MatChipsModule } from '@angular/material/chips';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -25,6 +26,7 @@ let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
     MatCardModule,
     MatButtonModule,
     MatButtonToggleModule,
+    MatChipsModule,
     MatFormFieldModule,
     MatIconModule,
     MatInputModule,
@@ -85,6 +87,10 @@ export class ScenarioBuilderPageComponent implements OnInit {
     void this.store.loadList();
   }
 
+  async onCourseFilterChange(courseId: string | null): Promise<void> {
+    await this.store.setListCourseId(courseId);
+  }
+
   onListPageChange(event: PageEvent): void {
     this.store.setPage(event.pageIndex, event.pageSize);
     void this.store.loadList();
@@ -92,5 +98,14 @@ export class ScenarioBuilderPageComponent implements OnInit {
 
   isOwnScenario(authorId: string): boolean {
     return authorId === this.userStore.user().id;
+  }
+
+  courseTitle(courseId: string | undefined): string | null {
+    if (!courseId) {
+      return null;
+    }
+
+    const course = this.store.courses().find((c) => c.id === courseId);
+    return course?.title ?? null;
   }
 }

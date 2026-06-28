@@ -28,6 +28,29 @@
   margin-bottom: 1rem;
 }
 
+.scenario-builder-page__course-filter {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.scenario-builder-page__filter-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+}
+
+.scenario-builder-page__chip {
+  cursor: pointer;
+}
+
+.scenario-builder-page__chip--active {
+  background: var(--mat-sys-primary-container) !important;
+  color: var(--mat-sys-on-primary-container) !important;
+}
+
 .scenario-builder-page__error {
   color: var(--mat-sys-error);
   margin: 0 0 1rem;

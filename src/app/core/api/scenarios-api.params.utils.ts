@@ -33,6 +33,10 @@ export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): Htt
     params = params.set('learningLanguage', criteria.learningLanguage);
   }
 
+  if (criteria.courseId) {
+    params = params.set('courseId', criteria.courseId);
+  }
+
   return params;
 }
 
@@ -49,6 +53,7 @@ export function parseScenarioSearchCriteria(params: HttpParams): ScenarioSearchC
     cardSourceMode: cardSourceMode ?? undefined,
     knownLanguage: isContentLanguage(knownLanguage) ? knownLanguage : undefined,
     learningLanguage: isContentLanguage(learningLanguage) ? learningLanguage : undefined,
+    courseId: params.get('courseId') ?? undefined,
     page: {
       page: Number(params.get('page') ?? 0),
       pageSize: Number(params.get('pageSize') ?? DEFAULT_PAGE_SIZE),

@@ -32,6 +32,10 @@ export function matchesScenarioIndexEntry(
     return false;
   }
 
+  if (criteria.courseId && entry.courseId !== criteria.courseId) {
+    return false;
+  }
+
   if (criteria.query?.trim()) {
     const query = criteria.query.trim().toLowerCase();
     const haystack = `${entry.title} ${entry.authorId}`.toLowerCase();

@@ -16,9 +16,9 @@ import radicalsCourseFixture from '../../../../public/data/courses/radicals-214-
 import demoScenariosFixture from '../../../../public/data/scenarios/demo-scenarios.json';
 import perlInterviewScenariosFixture from '../../../../public/data/scenarios/perl-interview-scenarios.json';
 import radicalsScenariosFixture from '../../../../public/data/scenarios/radicals-scenarios.json';
-import selectCardsFixture from '../../../../public/data/select-cards.json';
-import perlInterviewCardsFixture from '../../../../public/data/perl-interview-cards.json';
-import radicalsCardsFixture from '../../../../public/data/radicals-course-cards.json';
+import selectCardsFixture from '../../../../public/data/cards/demo-cards.json';
+import perlInterviewCardsFixture from '../../../../public/data/cards/perl-interview-cards.json';
+import radicalsCardsFixture from '../../../../public/data/cards/radicals-course-cards.json';
 
 export function seedTestContentCache(): void {
   const demoScenarios = (demoScenariosFixture as ScenariosSeedFixture).scenarios.map((scenario) =>

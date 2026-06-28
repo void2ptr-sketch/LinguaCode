@@ -1,18 +1,21 @@
 {
   "version": 1,
   "cardFiles": [
-    "select-cards.json",
-    "radicals-course-cards.json",
-    "perl-interview-cards.json"
+    "/cards/demo-cards.json",
+    "/cards/radicals-course-cards.json",
+    "/cards/perl-interview-cards.json",
+    "/cards/perl-db-cards.json"
   ],
   "scenarioFiles": [
     "/scenarios/demo-scenarios.json",
     "/scenarios/radicals-scenarios.json",
-    "/scenarios/perl-interview-scenarios.json"
+    "/scenarios/perl-interview-scenarios.json",
+    "/scenarios/perl-db-scenarios.json"
   ],
   "courseFiles": [
     "/courses/demo-courses.json",
     "/courses/radicals-214-course.json",
-    "/courses/perl-interview-course.json"
+    "/courses/perl-interview-course.json",
+    "/courses/perl-db-course.json"
   ]
 }

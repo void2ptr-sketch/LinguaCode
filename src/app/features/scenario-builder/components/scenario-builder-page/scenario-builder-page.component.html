@@ -46,6 +46,28 @@
           <mat-button-toggle value="all">Все</mat-button-toggle>
         </mat-button-toggle-group>
 
+        <div class="scenario-builder-page__course-filter">
+          <span class="scenario-builder-page__filter-label">Курс</span>
+          <mat-chip-set aria-label="Фильтр по курсу">
+            <mat-chip
+              class="scenario-builder-page__chip"
+              [class.scenario-builder-page__chip--active]="store.listCourseId() === null"
+              (click)="onCourseFilterChange(null)"
+            >
+              Все
+            </mat-chip>
+            @for (course of store.courses(); track course.id) {
+              <mat-chip
+                class="scenario-builder-page__chip"
+                [class.scenario-builder-page__chip--active]="store.listCourseId() === course.id"
+                (click)="onCourseFilterChange(course.id)"
+              >
+                {{ course.title }}
+              </mat-chip>
+            }
+          </mat-chip-set>
+        </div>
+
         @if (store.indexItems().length === 0) {
           <p class="scenario-builder-page__empty">Сценариев пока нет.</p>
         } @else {
@@ -55,6 +77,9 @@
                 <div matListItemTitle>{{ scenario.title }}</div>
                 <div matListItemLine>
                   {{ scenario.cardSourceSummary }}
+                  @if (courseTitle(scenario.courseId); as course) {
+                    · {{ course }}
+                  }
                   @if (scenario.published) {
                     · опубликован
                   }

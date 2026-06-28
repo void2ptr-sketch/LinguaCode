@@ -72,6 +72,7 @@ export function normalizeScenario(raw: LegacyScenario): Scenario {
     published: raw.published ?? false,
     updatedAt: raw.updatedAt ?? new Date().toISOString(),
     languagePair: raw.languagePair ? normalizeLanguagePair(raw.languagePair) : undefined,
+    courseId: raw.courseId,
   };
 
   if (raw.cardSource) {
