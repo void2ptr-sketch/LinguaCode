@@ -22,7 +22,7 @@ export const emptyLessonFormDraft = (order = 0): LessonFormDraft => ({
 export const emptyCourseFormDraft = (): CourseFormDraft => ({
   title: '',
   description: '',
-  published: false,
+  published: true,
   authoring: emptyCourseAuthoring(),
   lessons: [emptyLessonFormDraft(0)],
 });

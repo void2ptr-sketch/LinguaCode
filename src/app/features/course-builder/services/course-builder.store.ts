@@ -13,6 +13,11 @@ import { isEditableContentAuthor } from '../../../core/data/system-author.consta
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
+import { collectCourseBundle } from '../../../core/data/course-bundle.utils';
+import { loadCourseCatalogFromStorage } from '../../../core/data/courses-storage';
+import { loadScenariosFromStorage } from '../../../core/data/scenarios-storage';
+import { CardRepository } from '../../../core/data/card.repository';
+import { loadCardIndexMetaOverrides } from '../../../core/data/card-index-meta.storage';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
@@ -23,6 +28,7 @@ const sanitizeCourseIdea = (value: string): string =>
 export class CourseBuilderStore {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly userStore = inject(UserStore);
+  private readonly cardRepository = inject(CardRepository);
 
   readonly indexItems = signal<readonly CourseIndexEntry[]>([]);
   readonly totalItems = signal(0);
@@ -34,6 +40,7 @@ export class CourseBuilderStore {
   readonly loading = signal(false);
   readonly editorLoading = signal(false);
   readonly error = signal<string | null>(null);
+  readonly exportError = signal<string | null>(null);
   readonly editorMode = signal<CourseEditorMode>('list');
   readonly editingCourseId = signal<string | null>(null);
   readonly editingCourse = signal<CourseWithLessons | null>(null);
@@ -180,6 +187,44 @@ export class CourseBuilderStore {
       await this.loadList();
     } catch {
       this.error.set('Не удалось удалить курс');
+    }
+  }
+
+  /**
+   * Экспортирует курс в самодостаточный CourseBundle-файл.
+   * Возвращает JSON-строку для скачивания или null с описанием ошибки.
+   */
+  async exportCourseBundle(courseId: string): Promise<string | null> {
+    this.exportError.set(null);
+
+    const item = this.indexItems().find((course) => course.id === courseId);
+    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+      this.exportError.set('Нельзя экспортировать чужой курс');
+      return null;
+    }
+
+    try {
+      const catalog = loadCourseCatalogFromStorage();
+      const scenarios = loadScenariosFromStorage();
+      const cards = this.cardRepository.loadStored();
+      const cardIndexMeta = loadCardIndexMetaOverrides();
+
+      const result = collectCourseBundle(courseId, catalog, scenarios, cards, cardIndexMeta);
+
+      if (!result) {
+        this.exportError.set('Не удалось собрать пакет: курс не найден');
+        return null;
+      }
+
+      if (result.errors.length > 0) {
+        this.exportError.set(result.errors.join('\n'));
+        return null;
+      }
+
+      return JSON.stringify(result.bundle, null, 2);
+    } catch {
+      this.exportError.set('Ошибка при экспорте курса');
+      return null;
     }
   }
 

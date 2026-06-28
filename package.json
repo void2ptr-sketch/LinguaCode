@@ -16,6 +16,7 @@
     "sync:hanzi": "node scripts/sync-hanzi-assets.mjs",
     "export:content-seed": "node scripts/content-seed/perl-interview-idea-parser.test.mjs && node scripts/content-seed/perl-interview-tags.test.mjs && node scripts/export-content-seed.mjs",
     "import:perl-idea": "node scripts/import-perl-interview-idea.mjs",
+    "import:course-bundle": "node scripts/import-course-bundle.mjs",
     "generate:radicals-course": "node scripts/generate-radicals-course.mjs && node scripts/export-content-seed.mjs"
   },
   "private": true,

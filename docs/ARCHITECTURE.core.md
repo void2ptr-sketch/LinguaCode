@@ -44,7 +44,16 @@ src/app/core/
 
 Миграция при первом запуске: legacy ключи `lingua-code.cards`, `lingua-code.scenarios`, `lingua-code.course-catalog`, `lingua-code.card-index-meta` → единый overlay (`user-content-overlay.migration.ts`).
 
-Экспорт overlay обратно в репозиторий: `npm run export:content-seed`.
+### Экспорт пользовательского курса в seed
+
+**`npm run export:content-seed`** — регенерация demo/radicals/perl seed из скриптов (`scripts/export-content-seed.mjs`). Не экспортирует пользовательские курсы.
+
+**`CourseBundle`** — формат для переноса пользовательского курса из localStorage в seed репозитория:
+
+- **Экспорт из UI**: кнопка «Экспорт файла» в Конструкторе курсов → скачивание `.linguacode-course.json`.
+- **Импорт в репозиторий**: `npm run import:course-bundle -- --bundle <file> --slug <slug>`.
+- **Модуль сбора**: `src/app/core/data/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
+- **Документация**: [COURSE-BUNDLE.md](./COURSE-BUNDLE.md).
 
 ```mermaid
 flowchart LR
@@ -106,7 +115,7 @@ flowchart TB
 - **Lazy routes** — фичи не загружаются в `core`.
 - **Theme** — `colorScheme` из `UserStore` → классы `theme-light` / `theme-dark` на `<html>`.
 
-## Связанные пути (overlay + seed)
+## Связанные пути (overlay + seed + bundle)
 
 ```
 src/app/core/data/content-seed.repository.ts
@@ -115,8 +124,12 @@ src/app/core/data/user-content-overlay.types.ts
 src/app/core/data/user-content-overlay.storage.ts
 src/app/core/data/user-content-overlay.resolver.ts
 src/app/core/data/user-content-overlay.migration.ts
+src/app/core/data/course-bundle.types.ts
+src/app/core/data/course-bundle.utils.ts
 public/data/content-manifest.json
 scripts/export-content-seed.mjs
+scripts/import-course-bundle.mjs
+docs/COURSE-BUNDLE.md
 ```
 
 ## Связанные документы

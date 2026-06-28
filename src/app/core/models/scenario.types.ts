@@ -10,6 +10,7 @@ export type Scenario = {
   published: boolean;
   updatedAt: string;
   languagePair?: LanguagePair;
+  courseId?: string;
 };
 
 export type LegacyScenario = {
@@ -22,4 +23,5 @@ export type LegacyScenario = {
   published?: boolean;
   updatedAt?: string;
   languagePair?: LanguagePair;
+  courseId?: string;
 };

@@ -8,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import type { PageEvent } from '@angular/material/paginator';
 
 import type { CourseListScope } from '../../../../core/models';
@@ -39,6 +40,7 @@ export class CourseBuilderPageComponent implements OnInit {
   readonly store = inject(CourseBuilderStore);
   readonly userStore = inject(UserStore);
   private readonly courseBuilderDialog = inject(CourseBuilderDialogService);
+  private readonly snackBar = inject(MatSnackBar);
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
@@ -92,5 +94,30 @@ export class CourseBuilderPageComponent implements OnInit {
 
   isOwnCourse(authorId: string): boolean {
     return authorId === this.userStore.user().id;
+  }
+
+  async exportCourse(courseId: string): Promise<void> {
+    const json = await this.store.exportCourseBundle(courseId);
+    if (!json) {
+      const error = this.store.exportError();
+      if (error) {
+        this.snackBar.open(error, 'Закрыть', { duration: 8000 });
+      }
+      return;
+    }
+
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = `${courseId}.linguacode-course.json`;
+    anchor.click();
+    URL.revokeObjectURL(url);
+
+    this.snackBar.open(
+      'Файл экспортирован. Передайте его maintainer’у для добавления в общий каталог.',
+      'Закрыть',
+      { duration: 10000 },
+    );
   }
 }

@@ -12,6 +12,7 @@ export type ScenarioIndexEntry = {
   published: boolean;
   updatedAt: string;
   languagePairSummary?: string;
+  courseId?: string;
 };
 
 export type ScenarioListScope = 'mine' | 'all' | 'published';
@@ -23,6 +24,7 @@ export type ScenarioSearchCriteria = {
   cardSourceMode?: ScenarioCardSourceMode;
   knownLanguage?: ContentLanguage;
   learningLanguage?: ContentLanguage;
+  courseId?: string;
   page: import('../../shared/pagination').PageRequest;
 };
 

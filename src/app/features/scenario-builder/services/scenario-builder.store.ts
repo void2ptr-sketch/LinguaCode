@@ -12,9 +12,10 @@ import {
   normalizeLanguagePair,
 } from '../../../core/data/language-pair.utils';
 import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
-import { CardSearchService, ScenarioSearchService } from '../../../core/data';
-import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
+import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/data';
+import { CardsCatalogMockHandler } from '../../../core/api';
 import type {
+  CourseIndexEntry,
   Scenario,
   ScenarioCardSource,
   ScenarioIndexEntry,
@@ -33,6 +34,7 @@ const sanitizeDescription = (value: string): string => sanitizePlainText(value, 
 export class ScenarioBuilderStore {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly cardSearchService = inject(CardSearchService);
+  private readonly courseSearchService = inject(CourseSearchService);
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
@@ -42,6 +44,8 @@ export class ScenarioBuilderStore {
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
   readonly listQuery = signal('');
   readonly listScope = signal<ScenarioListScope>('mine');
+  readonly listCourseId = signal<string | null>(null);
+  readonly courses = signal<readonly CourseIndexEntry[]>([]);
 
   readonly loading = signal(false);
   readonly editorLoading = signal(false);
@@ -65,9 +69,11 @@ export class ScenarioBuilderStore {
 
     try {
       const pair = this.userStore.languagePair();
+      const courseId = this.listCourseId();
       const page = await this.scenarioSearchService.search({
         query: this.listQuery().trim() || undefined,
         scope: this.listScope(),
+        courseId: courseId ?? undefined,
         ...activeLanguagePairCriteria(pair),
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
@@ -83,6 +89,22 @@ export class ScenarioBuilderStore {
 
   async load(): Promise<void> {
     await this.loadList();
+    await this.loadCourses();
+  }
+
+  async loadCourses(): Promise<void> {
+    try {
+      const pair = this.userStore.languagePair();
+      const page = await this.courseSearchService.search({
+        scope: 'all',
+        knownLanguage: pair.known,
+        learningLanguage: pair.learning,
+        page: { page: 0, pageSize: 100 },
+      });
+      this.courses.set(page.items);
+    } catch {
+      this.courses.set([]);
+    }
   }
 
   setListQuery(query: string): void {
@@ -93,6 +115,12 @@ export class ScenarioBuilderStore {
   setListScope(scope: ScenarioListScope): void {
     this.listScope.set(scope);
     this.pageIndex.set(0);
+  }
+
+  async setListCourseId(courseId: string | null): Promise<void> {
+    this.listCourseId.set(courseId);
+    this.pageIndex.set(0);
+    await this.loadList();
   }
 
   setPage(pageIndex: number, pageSize: number): void {
