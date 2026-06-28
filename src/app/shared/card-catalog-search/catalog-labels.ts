@@ -84,6 +84,22 @@ export const TAG_LABELS: Record<string, string> = {
   'bless-oop': 'bless / ООП',
   'file-io': 'Файлы и ошибки',
   'red-flags': 'Red flags на интервью',
+  'dbi-dbd': 'DBI и DBD',
+  'dbi-placeholders': 'Placeholders в DBI',
+  'dbi-prepare-execute': 'prepare / execute / do',
+  'dbi-transactions': 'Транзакции DBI',
+  'dbi-errors': 'Ошибки DBI',
+  'cgi-module': 'Модуль CGI',
+  'cgi-params': 'Параметры CGI',
+  'cgi-binmode': 'binmode в CGI',
+  'cgi-headers': 'HTTP-заголовки CGI',
+  'cgi-legacy': 'CGI vs PSGI',
+  oracle: 'Oracle',
+  'oracle-dsn': 'Oracle DSN',
+  'oracle-placeholders': 'Oracle placeholders',
+  'oracle-connect': 'SID / service name',
+  'oracle-plsql': 'PL/SQL через DBI',
+  'oracle-lob': 'CLOB / BLOB',
 };
 
 const DIFFICULTY_TAG_IDS = new Set<string>(['beginner', 'intermediate', 'advanced']);

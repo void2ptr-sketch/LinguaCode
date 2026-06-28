@@ -18,6 +18,9 @@ export const CATALOG_TAG_THEME_ORDER = [
   'oop',
 ] as const;
 
+/** Порядок тегов СУБД в фильтре каталога. */
+export const CATALOG_TAG_DB_VENDOR_ORDER = ['oracle'] as const;
+
 /** Порядок подтем Perl interview (по сценариям курса). */
 export const CATALOG_TAG_SUBTOPIC_ORDER = [
   'scalar-context',
@@ -40,11 +43,27 @@ export const CATALOG_TAG_SUBTOPIC_ORDER = [
   'bless-oop',
   'file-io',
   'red-flags',
+  'dbi-dbd',
+  'dbi-placeholders',
+  'dbi-prepare-execute',
+  'dbi-transactions',
+  'dbi-errors',
+  'cgi-module',
+  'cgi-params',
+  'cgi-binmode',
+  'cgi-headers',
+  'cgi-legacy',
+  'oracle-dsn',
+  'oracle-placeholders',
+  'oracle-connect',
+  'oracle-plsql',
+  'oracle-lob',
 ] as const;
 
 const ORDERED_CATALOG_TAG_IDS = new Set<string>([
   ...CATALOG_TAG_DIFFICULTY_ORDER,
   ...CATALOG_TAG_THEME_ORDER,
+  ...CATALOG_TAG_DB_VENDOR_ORDER,
   ...CATALOG_TAG_SUBTOPIC_ORDER,
 ]);
 
@@ -76,6 +95,11 @@ export function groupCatalogTagFacets(
   const themes = pickOrderedFacets(facetsByValue, CATALOG_TAG_THEME_ORDER);
   if (themes.length > 0) {
     groups.push({ label: 'Темы', facets: themes });
+  }
+
+  const dbVendors = pickOrderedFacets(facetsByValue, CATALOG_TAG_DB_VENDOR_ORDER);
+  if (dbVendors.length > 0) {
+    groups.push({ label: 'СУБД', facets: dbVendors });
   }
 
   const subtopics = pickOrderedFacets(facetsByValue, CATALOG_TAG_SUBTOPIC_ORDER);

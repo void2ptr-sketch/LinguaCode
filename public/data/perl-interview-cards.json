@@ -1859,6 +1859,1413 @@
         }
       ],
       "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q01-c1",
+      "title": "Что такое DBI и DBD в Perl? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что такое DBI и DBD в Perl?",
+      "optionsLearning": [
+        "DBI — общий интерфейс к БД, DBD — драйвер конкретной СУБД",
+        "DBI — драйвер Oracle, DBD — драйвер MySQL",
+        "DBI и DBD — синонимы для SQL-запросов",
+        "DBD подключает strict, DBI — warnings"
+      ],
+      "optionsKnown": [
+        "Interface + driver",
+        "Oracle/MySQL перепутаны",
+        "Синонимы",
+        "strict/warnings — неверно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q01-c2",
+      "title": "Что такое DBI и DBD в Perl? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как подключиться к MySQL через DBI?",
+      "optionsLearning": [
+        "use DBI; my $dbh = DBI->connect(\"dbi:mysql:dbname=test\", $user, $pass);",
+        "use DBD::mysql; connect mysql://user@localhost/test;",
+        "require SQL; SQL->connect(\"mysql\", $user, $pass);",
+        "use DBI; DBI->open(\"mysql:test\");"
+      ],
+      "optionsKnown": [
+        "DBI->connect с DSN dbi:mysql:...",
+        "Неверный синтаксис URL",
+        "Нет модуля SQL",
+        "Нет метода open"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q01-c3",
+      "title": "Что такое DBI и DBD в Perl? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой модуль нужен помимо DBI для работы с PostgreSQL?",
+      "optionsLearning": [
+        "DBD::Pg (драйвер)",
+        "DBI::Pg",
+        "Pg::Strict",
+        "use postgres;"
+      ],
+      "optionsKnown": [
+        "DBD::Pg",
+        "DBI::Pg не существует",
+        "Pg::Strict — выдумка",
+        "use postgres — неверно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q01-code",
+      "title": "Код: Что такое DBI и DBD в Perl?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как подключиться к SQLite через DBI?",
+      "prompt": {
+        "language": "perl",
+        "code": "use DBI;\nmy $dbh = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "DBI->connect(\"dbi:SQLite:dbname=test.db\", \"\", \"\", { RaiseError => 1 })"
+        },
+        {
+          "language": "perl",
+          "code": "DBI->open(\"sqlite:test.db\")"
+        },
+        {
+          "language": "perl",
+          "code": "connect SQLite(\"test.db\")"
+        },
+        {
+          "language": "perl",
+          "code": "use DBD::SQLite; SQLite->connect(\"test.db\")"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q02-c1",
+      "title": "Как безопасно передать параметры в SQL через DBI? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как безопасно передать `$id` в SQL через DBI?",
+      "optionsLearning": [
+        "$sth->execute($id) после prepare с placeholder `?`",
+        "qq{SELECT * FROM users WHERE id = $id}",
+        "sprintf(\"... id = %d\", $id) без prepare",
+        "concatenate SQL и $id в строку"
+      ],
+      "optionsKnown": [
+        "placeholders + execute",
+        "интерполяция — SQL injection",
+        "sprintf без prepare",
+        "конкатенация — опасно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q02-c2",
+      "title": "Как безопасно передать параметры в SQL через DBI? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой placeholder использует DBI по умолчанию?",
+      "optionsLearning": [
+        "?",
+        "$1",
+        ":name",
+        "%s"
+      ],
+      "optionsKnown": [
+        "? — стандарт DBI",
+        "$1 — native PostgreSQL",
+        ":name — named в некоторых DBD",
+        "%s — sprintf, не DBI"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q02-code",
+      "title": "Код: Как безопасно передать параметры в SQL через DBI?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой фрагмент защищён от SQL injection?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $id = $input;\n# выбрать пользователя по id"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $sth = $dbh->prepare(\"SELECT * FROM users WHERE id = ?\");\n$sth->execute($id);"
+        },
+        {
+          "language": "perl",
+          "code": "my $sql = \"SELECT * FROM users WHERE id = $id\";\n$dbh->do($sql);"
+        },
+        {
+          "language": "perl",
+          "code": "my $sql = qq{SELECT * FROM users WHERE id = $id};\n$dbh->selectall_arrayref($sql);"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->do(\"SELECT * FROM users WHERE id = \" . $id);"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q03-c1",
+      "title": "Чем `$sth->execute` отличается от `$dbh->do`? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Когда предпочтительнее `$dbh->do`?",
+      "optionsLearning": [
+        "Для простого DDL/DML без возврата строк (CREATE, UPDATE без fetch)",
+        "Когда нужно fetchall_arrayref",
+        "Только для SELECT с большим результатом",
+        "Вместо prepare всегда"
+      ],
+      "optionsKnown": [
+        "Простой DDL/DML",
+        "do не возвращает rows для fetch",
+        "SELECT — prepare/fetch",
+        "prepare нужен для SELECT"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q03-c2",
+      "title": "Чем `$sth->execute` отличается от `$dbh->do`? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что возвращает `$sth->fetchrow_array`?",
+      "optionsLearning": [
+        "Список значений следующей строки или undef в конце",
+        "Весь result set как hashref",
+        "Количество затронутых строк",
+        "Только первый столбец как скаляр всегда"
+      ],
+      "optionsKnown": [
+        "Следующая строка / undef",
+        "fetchall — весь набор",
+        "rows — для do",
+        "Не только первый столбец"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q03-c3",
+      "title": "Чем `$sth->execute` отличается от `$dbh->do`? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Зачем вызывать `$sth->finish`?",
+      "optionsLearning": [
+        "Освободить ресурсы statement handle до disconnect",
+        "Зафиксировать транзакцию",
+        "Повторно выполнить тот же SELECT",
+        "Включить AutoCommit"
+      ],
+      "optionsKnown": [
+        "Освобождение handle",
+        "commit — отдельно",
+        "execute повторно",
+        "AutoCommit — атрибут dbh"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q03-code",
+      "title": "Код: Чем `$sth->execute` отличается от `$dbh->do`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как получить одну строку из SELECT?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $sth = $dbh->prepare(\"SELECT name FROM users WHERE id = ?\");\n$sth->execute(42);"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my ($name) = $sth->fetchrow_array;"
+        },
+        {
+          "language": "perl",
+          "code": "my $name = $sth->fetchall_arrayref;"
+        },
+        {
+          "language": "perl",
+          "code": "my $name = $dbh->selectrow_array($sth);"
+        },
+        {
+          "language": "perl",
+          "code": "my $name = $sth->rows;"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q04-c1",
+      "title": "Как отключить AutoCommit для транзакции в DBI? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как начать транзакцию в DBI?",
+      "optionsLearning": [
+        "$dbh->{AutoCommit} = 0; затем commit/rollback",
+        "BEGIN TRANSACTION; через do достаточно всегда",
+        "AutoCommit нельзя менять",
+        "use transaction;"
+      ],
+      "optionsKnown": [
+        "AutoCommit=0 + commit/rollback",
+        "зависит от СУБД, AutoCommit — стандарт DBI",
+        "можно менять",
+        "нет pragma"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q04-c2",
+      "title": "Как отключить AutoCommit для транзакции в DBI? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает `$dbh->rollback`?",
+      "optionsLearning": [
+        "Отменяет изменения текущей транзакции",
+        "Удаляет таблицу",
+        "Повторяет последний execute",
+        "Закрывает connection pool"
+      ],
+      "optionsKnown": [
+        "Откат транзакции",
+        "DROP — не rollback",
+        "re-execute — нет",
+        "disconnect — другое"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q04-code",
+      "title": "Код: Как отключить AutoCommit для транзакции в DBI?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как зафиксировать транзакцию после нескольких UPDATE?",
+      "prompt": {
+        "language": "perl",
+        "code": "$dbh->{AutoCommit} = 0;\n# ... updates ..."
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "$dbh->commit;"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->finish;"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->disconnect;"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->{AutoCommit} = 1;"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q05-c1",
+      "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает `{ RaiseError => 1 }` при connect DBI?",
+      "optionsLearning": [
+        "Выбрасывает исключение (die) при ошибке DBI",
+        "Печатает warning и продолжает",
+        "Игнорирует все ошибки",
+        "Логирует в syslog только"
+      ],
+      "optionsKnown": [
+        "die on error",
+        "PrintError — печать",
+        "Ignore — нет",
+        "syslog — не встроено"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q05-c2",
+      "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как проверить ошибку после `execute` без RaiseError?",
+      "optionsLearning": [
+        "$sth->errstr или $DBI::errstr",
+        "eval { strict }",
+        "$! как для файлов",
+        "warnings->warn"
+      ],
+      "optionsKnown": [
+        "errstr",
+        "strict — не про DBI",
+        "$! — OS errors",
+        "не DBI API"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q05-c3",
+      "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Чем `PrintError => 1` отличается от `RaiseError => 1`?",
+      "optionsLearning": [
+        "PrintError пишет в STDERR, RaiseError прерывает через die",
+        "PrintError только для MySQL",
+        "RaiseError отключает strict",
+        "Разницы нет"
+      ],
+      "optionsKnown": [
+        "warn vs die",
+        "не только MySQL",
+        "strict не связан",
+        "разница есть"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s06-q05-code",
+      "title": "Код: Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой connect включает die при ошибке DBI?",
+      "prompt": {
+        "language": "perl",
+        "code": "use DBI;\nmy $dbh = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "DBI->connect($dsn, $user, $pass, { RaiseError => 1 })"
+        },
+        {
+          "language": "perl",
+          "code": "DBI->connect($dsn, $user, $pass, { PrintError => 0 })"
+        },
+        {
+          "language": "perl",
+          "code": "DBI->connect($dsn, $user, $pass, { AutoCommit => 0 })"
+        },
+        {
+          "language": "perl",
+          "code": "DBI->connect($dsn, $user, $pass, { Warn => 0 })"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q01-c1",
+      "title": "Для чего использовался модуль CGI в Perl? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Для чего использовался модуль CGI в Perl?",
+      "optionsLearning": [
+        "Парсинг HTTP-запроса и формирование HTTP-ответа в web CGI-скриптах",
+        "Компиляция Perl в bytecode",
+        "Только отправка email",
+        "Замена DBI"
+      ],
+      "optionsKnown": [
+        "HTTP CGI helper",
+        "не bytecode",
+        "не email",
+        "не DBI"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q01-c2",
+      "title": "Для чего использовался модуль CGI в Perl? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как создать объект CGI?",
+      "optionsLearning": [
+        "my $q = CGI->new;",
+        "use CGI; CGI->start;",
+        "CGI::create();",
+        "new CGI::Request from apache;"
+      ],
+      "optionsKnown": [
+        "CGI->new",
+        "нет start",
+        "нет create()",
+        "не apache-specific"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q01-code",
+      "title": "Код: Для чего использовался модуль CGI в Perl?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как создать объект CGI для обработки запроса?",
+      "prompt": {
+        "language": "perl",
+        "code": "use CGI;\nmy $q = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "CGI->new"
+        },
+        {
+          "language": "perl",
+          "code": "CGI->start"
+        },
+        {
+          "language": "perl",
+          "code": "new CGI::Request"
+        },
+        {
+          "language": "perl",
+          "code": "CGI::init()"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q02-c1",
+      "title": "Как получить параметры GET/POST через CGI? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как получить параметр `name` из формы через CGI?",
+      "optionsLearning": [
+        "my $q = CGI->new; my $name = $q->param(\"name\");",
+        "my $name = $ENV{POST name};",
+        "getparam(name);",
+        "$CGI::PARAM{name}"
+      ],
+      "optionsKnown": [
+        "param(\"name\")",
+        "нет такого ENV",
+        "нет getparam",
+        "нет такого hash"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q02-c2",
+      "title": "Как получить параметры GET/POST через CGI? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как получить все значения multi-select `tags`?",
+      "optionsLearning": [
+        "my @tags = $q->param(\"tags\");",
+        "my $tags = $q->param(\"tags\"); # всегда scalar",
+        "$q->params(\"tags\");",
+        "CGI::all(\"tags\");"
+      ],
+      "optionsKnown": [
+        "param в list context",
+        "scalar — одно значение",
+        "params — все пары",
+        "нет CGI::all"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q02-c3",
+      "title": "Как получить параметры GET/POST через CGI? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Где CGI берёт параметры для GET-запроса?",
+      "optionsLearning": [
+        "Из query string (QUERY_STRING)",
+        "Только из POST body",
+        "Из @ARGV",
+        "Из cookies только"
+      ],
+      "optionsKnown": [
+        "QUERY_STRING",
+        "POST тоже, но GET — query",
+        "@ARGV — CLI",
+        "cookies отдельно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q02-code",
+      "title": "Код: Как получить параметры GET/POST через CGI?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как прочитать параметр search из query string?",
+      "prompt": {
+        "language": "perl",
+        "code": "use CGI;\nmy $q = CGI->new;\nmy $term = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "$q->param(\"search\")"
+        },
+        {
+          "language": "perl",
+          "code": "$ENV{search}"
+        },
+        {
+          "language": "perl",
+          "code": "$q->query(\"search\")"
+        },
+        {
+          "language": "perl",
+          "code": "$ARGV[0]"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q03-c1",
+      "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Зачем `binmode STDOUT, \":utf8\"` в CGI-скрипте?",
+      "optionsLearning": [
+        "Корректно выводить UTF-8 в теле HTTP-ответа",
+        "Ускорить CGI на 10x",
+        "Включить strict для stdout",
+        "Отключить заголовки HTTP"
+      ],
+      "optionsKnown": [
+        "UTF-8 output",
+        "не ускорение",
+        "не strict",
+        "заголовки нужны"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q03-c2",
+      "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что будет, если вывести тело ответа до HTTP-заголовков?",
+      "optionsLearning": [
+        "Некорректный ответ: заголовки должны идти первыми",
+        "Браузер автоматически добавит Content-Type",
+        "Это рекомендуемый порядок",
+        "Только warning, HTTP валиден"
+      ],
+      "optionsKnown": [
+        "Headers first",
+        "браузер не исправит",
+        "не рекомендуется",
+        "HTTP сломается"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q03-code",
+      "title": "Код: Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как включить UTF-8 для stdout в CGI-скрипте?",
+      "prompt": {
+        "language": "perl",
+        "code": "use CGI;\nmy $q = CGI->new;\n# перед print html"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "binmode STDOUT, \":utf8\";"
+        },
+        {
+          "language": "perl",
+          "code": "use utf8;"
+        },
+        {
+          "language": "perl",
+          "code": "utf8::encode STDOUT;"
+        },
+        {
+          "language": "perl",
+          "code": "$q->utf8(1);"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q04-c1",
+      "title": "Как отправить заголовок Content-Type перед телом ответа? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как отправить JSON через CGI?",
+      "optionsLearning": [
+        "print $q->header(\"application/json\"); print encode_json($data);",
+        "print encode_json($data); print $q->header;",
+        "header JSON автоматически",
+        "say JSON $data;"
+      ],
+      "optionsKnown": [
+        "header затем body",
+        "неверный порядок",
+        "не автоматически",
+        "нет say JSON"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q04-c2",
+      "title": "Как отправить заголовок Content-Type перед телом ответа? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает `$q->header()` без аргументов?",
+      "optionsLearning": [
+        "Отправляет `Content-Type: text/html` по умолчанию (и статус 200)",
+        "Не отправляет никаких заголовков",
+        "Отправляет только Location",
+        "Завершает процесс без вывода"
+      ],
+      "optionsKnown": [
+        "text/html default",
+        "заголовки есть",
+        "Location — другой метод",
+        "не exit"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q04-c3",
+      "title": "Как отправить заголовок Content-Type перед телом ответа? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как сделать redirect через CGI?",
+      "optionsLearning": [
+        "print $q->redirect(\"/login\");",
+        "print \"Location: /login\"; без header",
+        "CGI->redirect(\"/login\"); # без print",
+        "exit redirect \"/login\";"
+      ],
+      "optionsKnown": [
+        "$q->redirect",
+        "нужен полный header block",
+        "нужен print",
+        "нет exit redirect"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q04-code",
+      "title": "Код: Как отправить заголовок Content-Type перед телом ответа?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как вывести HTML-страницу с корректным Content-Type?",
+      "prompt": {
+        "language": "perl",
+        "code": "use CGI;\nmy $q = CGI->new;\n???\nprint \"<h1>Hi</h1>\";"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "print $q->header;"
+        },
+        {
+          "language": "perl",
+          "code": "print \"<h1>Hi</h1>\";\nprint $q->header;"
+        },
+        {
+          "language": "perl",
+          "code": "print \"Content-Type: html\";"
+        },
+        {
+          "language": "perl",
+          "code": "header(\"text/html\");"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q05-c1",
+      "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Почему CGI часто заменяют PSGI/Plack?",
+      "optionsLearning": [
+        "CGI запускает новый процесс на запрос; PSGI — persistent app server",
+        "PSGI не поддерживает HTTP",
+        "CGI быстрее PSGI",
+        "Plack работает только с Python"
+      ],
+      "optionsKnown": [
+        "fork per request vs persistent",
+        "PSGI — HTTP interface",
+        "CGI медленнее",
+        "Plack — Perl"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q05-c2",
+      "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что такое PSGI в экосистеме Perl?",
+      "optionsLearning": [
+        "Интерфейс между Perl web-приложением и HTTP-сервером (Plack — реализация)",
+        "Замена regex",
+        "Модуль только для CGI",
+        "Синоним CPAN"
+      ],
+      "optionsKnown": [
+        "Web interface spec",
+        "не regex",
+        "ширше CGI",
+        "не CPAN"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s07-q05-code",
+      "title": "Код: Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой современный стек заменяет CGI для Perl web-приложений?",
+      "prompt": {
+        "language": "perl",
+        "code": "use strict;\nuse warnings;\n# deploy web app"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "Plack / PSGI"
+        },
+        {
+          "language": "plain",
+          "code": "CGI::Fast only"
+        },
+        {
+          "language": "plain",
+          "code": "mod_perl 1.0 only"
+        },
+        {
+          "language": "plain",
+          "code": "Apache::SOAP"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q01-c1",
+      "title": "Какой DSN используют для подключения к Oracle через DBI? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой DSN используют для подключения к Oracle через DBI?",
+      "optionsLearning": [
+        "dbi:Oracle:host=dbhost;sid=ORCL (или service_name=...)",
+        "oracle://user:pass@dbhost/ORCL",
+        "dbi:mysql:oracle:ORCL",
+        "DBD::Oracle->connect(\"ORCL\")"
+      ],
+      "optionsKnown": [
+        "Стандартный DBI DSN",
+        "Не URL-схема Perl DBI",
+        "mysql — другая СУБД",
+        "connect — метод DBI, не DBD"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q01-c2",
+      "title": "Какой DSN используют для подключения к Oracle через DBI? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какой CPAN-модуль нужен помимо DBI для Oracle?",
+      "optionsLearning": [
+        "DBD::Oracle",
+        "DBI::Oracle",
+        "Oracle::Strict",
+        "use oracle;"
+      ],
+      "optionsKnown": [
+        "DBD::Oracle — драйвер",
+        "DBI::Oracle не существует",
+        "Oracle::Strict — выдумка",
+        "use oracle — неверно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q01-c3",
+      "title": "Какой DSN используют для подключения к Oracle через DBI? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как подключиться с RaiseError через DBD::Oracle?",
+      "optionsLearning": [
+        "DBI->connect($dsn, $user, $pass, { RaiseError => 1 })",
+        "Oracle->connect($dsn) or die;",
+        "DBD::Oracle->open($dsn);",
+        "connect oracle $user $pass;"
+      ],
+      "optionsKnown": [
+        "DBI->connect + RaiseError",
+        "Oracle->connect — нет",
+        "open — нет",
+        "shell-синтаксис — нет"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q01-code",
+      "title": "Код: Какой DSN используют для подключения к Oracle через DBI?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как подключиться к Oracle через DBI?",
+      "prompt": {
+        "language": "perl",
+        "code": "use DBI;\nmy $dbh = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "DBI->connect(\"dbi:Oracle:host=dbhost;sid=ORCL\", $user, $pass, { RaiseError => 1 })"
+        },
+        {
+          "language": "perl",
+          "code": "DBI->connect(\"oracle://user@dbhost/ORCL\")"
+        },
+        {
+          "language": "perl",
+          "code": "DBD::Oracle->connect(\"ORCL\", $user, $pass)"
+        },
+        {
+          "language": "perl",
+          "code": "connect Oracle $user $pass;"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q02-c1",
+      "title": "Какие placeholders поддерживает DBD::Oracle? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Какие placeholders поддерживает DBD::Oracle?",
+      "optionsLearning": [
+        "Позиционные `?` (как в DBI) и именованные `:name` в SQL",
+        "Только `$1`, `$2` как в PostgreSQL",
+        "Только `%s` как в sprintf",
+        "Placeholders не поддерживаются — только конкатенация"
+      ],
+      "optionsKnown": [
+        "? и :name",
+        "PostgreSQL-style — другой DBD",
+        "sprintf — не DBI",
+        "конкатенация — опасно"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q02-c2",
+      "title": "Какие placeholders поддерживает DBD::Oracle? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как безопасно передать `:id` в Oracle SELECT через DBI?",
+      "optionsLearning": [
+        "prepare с `:id` и bind_param(\":id\", $id) или execute с hash",
+        "qq{SELECT * FROM t WHERE id = $id}",
+        "sprintf(\"... id = %d\", $id) без prepare",
+        "Oracle не поддерживает bind в SELECT"
+      ],
+      "optionsKnown": [
+        "bind_param / named bind",
+        "интерполяция — SQL injection",
+        "sprintf без bind",
+        "Oracle bind поддерживает"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q02-code",
+      "title": "Код: Какие placeholders поддерживает DBD::Oracle?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой фрагмент безопасно передаёт id в Oracle SELECT?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $id = $input;\n# users by id"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $sth = $dbh->prepare(\"SELECT * FROM users WHERE id = :id\");\n$sth->bind_param(\":id\", $id);\n$sth->execute;"
+        },
+        {
+          "language": "perl",
+          "code": "my $sql = \"SELECT * FROM users WHERE id = $id\";\n$dbh->do($sql);"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->do(qq{SELECT * FROM users WHERE id = $id});"
+        },
+        {
+          "language": "perl",
+          "code": "sprintf(\"SELECT * FROM users WHERE id = %d\", $id);"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q03-c1",
+      "title": "Как указать SID или service name в DBI DSN? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как указать SID в DSN DBD::Oracle?",
+      "optionsLearning": [
+        "dbi:Oracle:host=host;sid=ORCL",
+        "dbi:Oracle:ORCL@host",
+        "oracle-sid://ORCL",
+        "sid=ORCL в username"
+      ],
+      "optionsKnown": [
+        "host;sid=ORCL",
+        "не @-синтаксис в DSN",
+        "не URL scheme",
+        "sid не в user"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q03-c2",
+      "title": "Как указать SID или service name в DBI DSN? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как указать service name вместо SID?",
+      "optionsLearning": [
+        "dbi:Oracle://host:1521/pdb1.service (Easy Connect) или service_name=pdb1",
+        "service://pdb1 в username",
+        "sid и service name — одно и то же в DSN всегда",
+        "service name только через TNS_ADMIN файл"
+      ],
+      "optionsKnown": [
+        "Easy Connect //host:port/service",
+        "не в username",
+        "разные параметры DSN",
+        "TNS — опция, не единственный способ"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q03-c3",
+      "title": "Как указать SID или service name в DBI DSN? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Зачем нужен `$ENV{ORACLE_HOME}` для DBD::Oracle?",
+      "optionsLearning": [
+        "Клиент Oracle (OCI) ищет библиотеки и tnsnames.ora",
+        "Включает strict в Perl",
+        "Заменяет DBI->connect",
+        "Только для SQL*Plus, не для Perl"
+      ],
+      "optionsKnown": [
+        "OCI client libs / tnsnames",
+        "не strict",
+        "не замена connect",
+        "Perl DBD тоже использует OCI"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q03-code",
+      "title": "Код: Как указать SID или service name в DBI DSN?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как указать service name в DSN Oracle (Easy Connect)?",
+      "prompt": {
+        "language": "perl",
+        "code": "use DBI;\nmy $dsn = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "\"dbi:Oracle://dbhost:1521/pdb1\""
+        },
+        {
+          "language": "perl",
+          "code": "\"dbi:Oracle:service=pdb1\""
+        },
+        {
+          "language": "perl",
+          "code": "\"oracle://dbhost/pdb1\""
+        },
+        {
+          "language": "perl",
+          "code": "\"dbi:mysql:dbname=pdb1\""
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q04-c1",
+      "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (1/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как вызвать анонимный PL/SQL блок через DBI?",
+      "optionsLearning": [
+        "$dbh->do(\"BEGIN ... END;\") или prepare/execute с BEGIN...END",
+        "use plsql; plsql->run(...);",
+        "Только через SQL*Plus из Perl",
+        "PL/SQL нельзя вызывать из DBI"
+      ],
+      "optionsKnown": [
+        "BEGIN...END через do/prepare",
+        "нет модуля plsql",
+        "не только SQL*Plus",
+        "можно через DBI"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q04-c2",
+      "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (2/2)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как вызвать хранимую процедуру с OUT-параметром?",
+      "optionsLearning": [
+        "prepare CALL с bind_param_inout для OUT/IN OUT",
+        "execute без bind — OUT вернётся автоматически",
+        "Только DBMS_OUTPUT.PUT_LINE",
+        "Процедуры Oracle — только через JDBC"
+      ],
+      "optionsKnown": [
+        "bind_param_inout",
+        "OUT нужен bind",
+        "DBMS_OUTPUT — другой механизм",
+        "DBI поддерживает"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q04-code",
+      "title": "Код: Как вызвать хранимую процедуру PL/SQL через DBI?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как вызвать PL/SQL процедуру с OUT-параметром?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $out;\n# call get_count(OUT cnt)"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $sth = $dbh->prepare(\"BEGIN get_count(:cnt); END;\");\n$sth->bind_param_inout(\":cnt\", \\$out, 10);\n$sth->execute;"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->do(\"CALL get_count()\");"
+        },
+        {
+          "language": "perl",
+          "code": "use plsql; plsql->call(\"get_count\");"
+        },
+        {
+          "language": "perl",
+          "code": "system(\"sqlplus @proc.sql\");"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q05-c1",
+      "title": "Как читать CLOB/BLOB через DBD::Oracle? (1/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как читать большой CLOB через DBD::Oracle?",
+      "optionsLearning": [
+        "Увеличить $dbh->{LongReadLen} и fetch; при необходимости LongTruncOk",
+        "CLOB нельзя читать через DBI",
+        "Только lob_read() без fetch",
+        "AutoCommit должен быть 0"
+      ],
+      "optionsKnown": [
+        "LongReadLen + fetch",
+        "CLOB читается",
+        "lob_read — доп. API, fetch тоже",
+        "AutoCommit не обязателен для read"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q05-c2",
+      "title": "Как читать CLOB/BLOB через DBD::Oracle? (2/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Что делает `$dbh->{LongReadLen} = 1_000_000`?",
+      "optionsLearning": [
+        "Задаёт макс. байт для чтения LONG/CLOB/BLOB за один fetch",
+        "Ограничивает число строк в SELECT",
+        "Включает BLOB streaming автоматически",
+        "Устанавливает timeout соединения"
+      ],
+      "optionsKnown": [
+        "Лимит LOB за fetch",
+        "не число строк",
+        "streaming — отдельные настройки",
+        "не timeout"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q05-c3",
+      "title": "Как читать CLOB/BLOB через DBD::Oracle? (3/3)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "kind": "select",
+      "promptKnown": "Как прочитать BLOB в Perl через DBI?",
+      "optionsLearning": [
+        "SELECT blob_col ... fetch; данные в scalar ref; LongReadLen для размера",
+        "BLOB только через utl_file",
+        "binmode на $dbh обязателен",
+        "BLOB автоматически base64 в DBI"
+      ],
+      "optionsKnown": [
+        "fetch + LongReadLen",
+        "utl_file — PL/SQL",
+        "binmode dbh — нет",
+        "не auto base64"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s08-q05-code",
+      "title": "Код: Как читать CLOB/BLOB через DBD::Oracle?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как прочитать CLOB из Oracle через DBI?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $sth = $dbh->prepare(\"SELECT doc FROM docs WHERE id = ?\");\n$sth->execute(1);"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "$dbh->{LongReadLen} = 1_000_000;\nmy ($doc) = $sth->fetchrow_array;"
+        },
+        {
+          "language": "perl",
+          "code": "my $doc = $sth->rows;"
+        },
+        {
+          "language": "perl",
+          "code": "$dbh->{AutoCommit} = 0;\nmy $doc = $sth->fetchall_hashref;"
+        },
+        {
+          "language": "perl",
+          "code": "my $doc = $DBI::errstr;"
+        }
+      ],
+      "correctIndex": 0
     }
   ]
 }

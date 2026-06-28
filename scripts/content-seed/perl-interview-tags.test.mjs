@@ -19,9 +19,9 @@ for (const [stageIndex, stage] of stages.entries()) {
   }
 }
 
-assert.equal(scenarioKeys.length, 20);
-assert.equal(PERL_INTERVIEW_SUBTOPICS.length, 20);
-assert.equal(Object.keys(PERL_INTERVIEW_THEME_BY_SCENARIO).length, 20);
+assert.equal(scenarioKeys.length, 35);
+assert.equal(PERL_INTERVIEW_SUBTOPICS.length, 35);
+assert.equal(Object.keys(PERL_INTERVIEW_THEME_BY_SCENARIO).length, 35);
 
 for (const key of scenarioKeys) {
   assert.ok(PERL_INTERVIEW_THEME_BY_SCENARIO[key], `theme missing for ${key}`);
@@ -37,10 +37,14 @@ for (const key of scenarioKeys) {
     difficulty,
   );
 
-  assert.equal(tags.length, 3);
+  const expectedLength = stageIndex === 7 ? 4 : 3;
+  assert.equal(tags.length, expectedLength);
   assert.equal(tags[0], difficulty);
   assert.equal(tags[1], PERL_INTERVIEW_THEME_BY_SCENARIO[key]);
   assert.equal(tags[2], subtopic.id);
+  if (stageIndex === 7) {
+    assert.equal(tags[3], 'oracle');
+  }
   assert.doesNotMatch(tags[2], /-{2,}$/, 'subtopic id must not look truncated');
 }
 

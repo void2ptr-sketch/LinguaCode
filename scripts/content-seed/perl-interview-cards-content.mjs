@@ -440,6 +440,387 @@ export const PERL_INTERVIEW_CARD_CONTENT = {
     ],
     ['Global FH без my', 'Lexical FH — современный стиль', 'Проверка $!', 'Чтение через handle OK'],
   ),
+
+  // Этап 6: Базы данных
+  's06-q01-c1': sel(
+    'Что такое DBI и DBD в Perl?',
+    [
+      'DBI — общий интерфейс к БД, DBD — драйвер конкретной СУБД',
+      'DBI — драйвер Oracle, DBD — драйвер MySQL',
+      'DBI и DBD — синонимы для SQL-запросов',
+      'DBD подключает strict, DBI — warnings',
+    ],
+    ['Interface + driver', 'Oracle/MySQL перепутаны', 'Синонимы', 'strict/warnings — неверно'],
+  ),
+  's06-q01-c2': sel(
+    'Как подключиться к MySQL через DBI?',
+    [
+      'use DBI; my $dbh = DBI->connect("dbi:mysql:dbname=test", $user, $pass);',
+      'use DBD::mysql; connect mysql://user@localhost/test;',
+      'require SQL; SQL->connect("mysql", $user, $pass);',
+      'use DBI; DBI->open("mysql:test");',
+    ],
+    ['DBI->connect с DSN dbi:mysql:...', 'Неверный синтаксис URL', 'Нет модуля SQL', 'Нет метода open'],
+  ),
+  's06-q01-c3': sel(
+    'Какой модуль нужен помимо DBI для работы с PostgreSQL?',
+    [
+      'DBD::Pg (драйвер)',
+      'DBI::Pg',
+      'Pg::Strict',
+      'use postgres;',
+    ],
+    ['DBD::Pg', 'DBI::Pg не существует', 'Pg::Strict — выдумка', 'use postgres — неверно'],
+  ),
+  's06-q02-c1': sel(
+    'Как безопасно передать `$id` в SQL через DBI?',
+    [
+      '$sth->execute($id) после prepare с placeholder `?`',
+      'qq{SELECT * FROM users WHERE id = $id}',
+      'sprintf("... id = %d", $id) без prepare',
+      'concatenate SQL и $id в строку',
+    ],
+    ['placeholders + execute', 'интерполяция — SQL injection', 'sprintf без prepare', 'конкатенация — опасно'],
+  ),
+  's06-q02-c2': sel(
+    'Какой placeholder использует DBI по умолчанию?',
+    ['?', '$1', ':name', '%s'],
+    ['? — стандарт DBI', '$1 — native PostgreSQL', ':name — named в некоторых DBD', '%s — sprintf, не DBI'],
+  ),
+  's06-q03-c1': sel(
+    'Когда предпочтительнее `$dbh->do`?',
+    [
+      'Для простого DDL/DML без возврата строк (CREATE, UPDATE без fetch)',
+      'Когда нужно fetchall_arrayref',
+      'Только для SELECT с большим результатом',
+      'Вместо prepare всегда',
+    ],
+    ['Простой DDL/DML', 'do не возвращает rows для fetch', 'SELECT — prepare/fetch', 'prepare нужен для SELECT'],
+  ),
+  's06-q03-c2': sel(
+    'Что возвращает `$sth->fetchrow_array`?',
+    [
+      'Список значений следующей строки или undef в конце',
+      'Весь result set как hashref',
+      'Количество затронутых строк',
+      'Только первый столбец как скаляр всегда',
+    ],
+    ['Следующая строка / undef', 'fetchall — весь набор', 'rows — для do', 'Не только первый столбец'],
+  ),
+  's06-q03-c3': sel(
+    'Зачем вызывать `$sth->finish`?',
+    [
+      'Освободить ресурсы statement handle до disconnect',
+      'Зафиксировать транзакцию',
+      'Повторно выполнить тот же SELECT',
+      'Включить AutoCommit',
+    ],
+    ['Освобождение handle', 'commit — отдельно', 'execute повторно', 'AutoCommit — атрибут dbh'],
+  ),
+  's06-q04-c1': sel(
+    'Как начать транзакцию в DBI?',
+    [
+      '$dbh->{AutoCommit} = 0; затем commit/rollback',
+      'BEGIN TRANSACTION; через do достаточно всегда',
+      'AutoCommit нельзя менять',
+      'use transaction;',
+    ],
+    ['AutoCommit=0 + commit/rollback', 'зависит от СУБД, AutoCommit — стандарт DBI', 'можно менять', 'нет pragma'],
+  ),
+  's06-q04-c2': sel(
+    'Что делает `$dbh->rollback`?',
+    [
+      'Отменяет изменения текущей транзакции',
+      'Удаляет таблицу',
+      'Повторяет последний execute',
+      'Закрывает connection pool',
+    ],
+    ['Откат транзакции', 'DROP — не rollback', 're-execute — нет', 'disconnect — другое'],
+  ),
+  's06-q05-c1': sel(
+    'Что делает `{ RaiseError => 1 }` при connect DBI?',
+    [
+      'Выбрасывает исключение (die) при ошибке DBI',
+      'Печатает warning и продолжает',
+      'Игнорирует все ошибки',
+      'Логирует в syslog только',
+    ],
+    ['die on error', 'PrintError — печать', 'Ignore — нет', 'syslog — не встроено'],
+  ),
+  's06-q05-c2': sel(
+    'Как проверить ошибку после `execute` без RaiseError?',
+    [
+      '$sth->errstr или $DBI::errstr',
+      'eval { strict }',
+      '$! как для файлов',
+      'warnings->warn',
+    ],
+    ['errstr', 'strict — не про DBI', '$! — OS errors', 'не DBI API'],
+  ),
+  's06-q05-c3': sel(
+    'Чем `PrintError => 1` отличается от `RaiseError => 1`?',
+    [
+      'PrintError пишет в STDERR, RaiseError прерывает через die',
+      'PrintError только для MySQL',
+      'RaiseError отключает strict',
+      'Разницы нет',
+    ],
+    ['warn vs die', 'не только MySQL', 'strict не связан', 'разница есть'],
+  ),
+
+  // Этап 7: CGI
+  's07-q01-c1': sel(
+    'Для чего использовался модуль CGI в Perl?',
+    [
+      'Парсинг HTTP-запроса и формирование HTTP-ответа в web CGI-скриптах',
+      'Компиляция Perl в bytecode',
+      'Только отправка email',
+      'Замена DBI',
+    ],
+    ['HTTP CGI helper', 'не bytecode', 'не email', 'не DBI'],
+  ),
+  's07-q01-c2': sel(
+    'Как создать объект CGI?',
+    [
+      'my $q = CGI->new;',
+      'use CGI; CGI->start;',
+      'CGI::create();',
+      'new CGI::Request from apache;',
+    ],
+    ['CGI->new', 'нет start', 'нет create()', 'не apache-specific'],
+  ),
+  's07-q02-c1': sel(
+    'Как получить параметр `name` из формы через CGI?',
+    [
+      'my $q = CGI->new; my $name = $q->param("name");',
+      'my $name = $ENV{POST name};',
+      'getparam(name);',
+      '$CGI::PARAM{name}',
+    ],
+    ['param("name")', 'нет такого ENV', 'нет getparam', 'нет такого hash'],
+  ),
+  's07-q02-c2': sel(
+    'Как получить все значения multi-select `tags`?',
+    [
+      'my @tags = $q->param("tags");',
+      'my $tags = $q->param("tags"); # всегда scalar',
+      '$q->params("tags");',
+      'CGI::all("tags");',
+    ],
+    ['param в list context', 'scalar — одно значение', 'params — все пары', 'нет CGI::all'],
+  ),
+  's07-q02-c3': sel(
+    'Где CGI берёт параметры для GET-запроса?',
+    [
+      'Из query string (QUERY_STRING)',
+      'Только из POST body',
+      'Из @ARGV',
+      'Из cookies только',
+    ],
+    ['QUERY_STRING', 'POST тоже, но GET — query', '@ARGV — CLI', 'cookies отдельно'],
+  ),
+  's07-q03-c1': sel(
+    'Зачем `binmode STDOUT, ":utf8"` в CGI-скрипте?',
+    [
+      'Корректно выводить UTF-8 в теле HTTP-ответа',
+      'Ускорить CGI на 10x',
+      'Включить strict для stdout',
+      'Отключить заголовки HTTP',
+    ],
+    ['UTF-8 output', 'не ускорение', 'не strict', 'заголовки нужны'],
+  ),
+  's07-q03-c2': sel(
+    'Что будет, если вывести тело ответа до HTTP-заголовков?',
+    [
+      'Некорректный ответ: заголовки должны идти первыми',
+      'Браузер автоматически добавит Content-Type',
+      'Это рекомендуемый порядок',
+      'Только warning, HTTP валиден',
+    ],
+    ['Headers first', 'браузер не исправит', 'не рекомендуется', 'HTTP сломается'],
+  ),
+  's07-q04-c1': sel(
+    'Как отправить JSON через CGI?',
+    [
+      'print $q->header("application/json"); print encode_json($data);',
+      'print encode_json($data); print $q->header;',
+      'header JSON автоматически',
+      'say JSON $data;',
+    ],
+    ['header затем body', 'неверный порядок', 'не автоматически', 'нет say JSON'],
+  ),
+  's07-q04-c2': sel(
+    'Что делает `$q->header()` без аргументов?',
+    [
+      'Отправляет `Content-Type: text/html` по умолчанию (и статус 200)',
+      'Не отправляет никаких заголовков',
+      'Отправляет только Location',
+      'Завершает процесс без вывода',
+    ],
+    ['text/html default', 'заголовки есть', 'Location — другой метод', 'не exit'],
+  ),
+  's07-q04-c3': sel(
+    'Как сделать redirect через CGI?',
+    [
+      'print $q->redirect("/login");',
+      'print "Location: /login"; без header',
+      'CGI->redirect("/login"); # без print',
+      'exit redirect "/login";',
+    ],
+    ['$q->redirect', 'нужен полный header block', 'нужен print', 'нет exit redirect'],
+  ),
+  's07-q05-c1': sel(
+    'Почему CGI часто заменяют PSGI/Plack?',
+    [
+      'CGI запускает новый процесс на запрос; PSGI — persistent app server',
+      'PSGI не поддерживает HTTP',
+      'CGI быстрее PSGI',
+      'Plack работает только с Python',
+    ],
+    ['fork per request vs persistent', 'PSGI — HTTP interface', 'CGI медленнее', 'Plack — Perl'],
+  ),
+  's07-q05-c2': sel(
+    'Что такое PSGI в экосистеме Perl?',
+    [
+      'Интерфейс между Perl web-приложением и HTTP-сервером (Plack — реализация)',
+      'Замена regex',
+      'Модуль только для CGI',
+      'Синоним CPAN',
+    ],
+    ['Web interface spec', 'не regex', 'ширше CGI', 'не CPAN'],
+  ),
+
+  // Этап 8: Oracle (DBD::Oracle)
+  's08-q01-c1': sel(
+    'Какой DSN используют для подключения к Oracle через DBI?',
+    [
+      'dbi:Oracle:host=dbhost;sid=ORCL (или service_name=...)',
+      'oracle://user:pass@dbhost/ORCL',
+      'dbi:mysql:oracle:ORCL',
+      'DBD::Oracle->connect("ORCL")',
+    ],
+    ['Стандартный DBI DSN', 'Не URL-схема Perl DBI', 'mysql — другая СУБД', 'connect — метод DBI, не DBD'],
+  ),
+  's08-q01-c2': sel(
+    'Какой CPAN-модуль нужен помимо DBI для Oracle?',
+    [
+      'DBD::Oracle',
+      'DBI::Oracle',
+      'Oracle::Strict',
+      'use oracle;',
+    ],
+    ['DBD::Oracle — драйвер', 'DBI::Oracle не существует', 'Oracle::Strict — выдумка', 'use oracle — неверно'],
+  ),
+  's08-q01-c3': sel(
+    'Как подключиться с RaiseError через DBD::Oracle?',
+    [
+      'DBI->connect($dsn, $user, $pass, { RaiseError => 1 })',
+      'Oracle->connect($dsn) or die;',
+      'DBD::Oracle->open($dsn);',
+      'connect oracle $user $pass;',
+    ],
+    ['DBI->connect + RaiseError', 'Oracle->connect — нет', 'open — нет', 'shell-синтаксис — нет'],
+  ),
+  's08-q02-c1': sel(
+    'Какие placeholders поддерживает DBD::Oracle?',
+    [
+      'Позиционные `?` (как в DBI) и именованные `:name` в SQL',
+      'Только `$1`, `$2` как в PostgreSQL',
+      'Только `%s` как в sprintf',
+      'Placeholders не поддерживаются — только конкатенация',
+    ],
+    ['? и :name', 'PostgreSQL-style — другой DBD', 'sprintf — не DBI', 'конкатенация — опасно'],
+  ),
+  's08-q02-c2': sel(
+    'Как безопасно передать `:id` в Oracle SELECT через DBI?',
+    [
+      'prepare с `:id` и bind_param(":id", $id) или execute с hash',
+      'qq{SELECT * FROM t WHERE id = $id}',
+      'sprintf("... id = %d", $id) без prepare',
+      'Oracle не поддерживает bind в SELECT',
+    ],
+    ['bind_param / named bind', 'интерполяция — SQL injection', 'sprintf без bind', 'Oracle bind поддерживает'],
+  ),
+  's08-q03-c1': sel(
+    'Как указать SID в DSN DBD::Oracle?',
+    [
+      'dbi:Oracle:host=host;sid=ORCL',
+      'dbi:Oracle:ORCL@host',
+      'oracle-sid://ORCL',
+      'sid=ORCL в username',
+    ],
+    ['host;sid=ORCL', 'не @-синтаксис в DSN', 'не URL scheme', 'sid не в user'],
+  ),
+  's08-q03-c2': sel(
+    'Как указать service name вместо SID?',
+    [
+      'dbi:Oracle://host:1521/pdb1.service (Easy Connect) или service_name=pdb1',
+      'service://pdb1 в username',
+      'sid и service name — одно и то же в DSN всегда',
+      'service name только через TNS_ADMIN файл',
+    ],
+    ['Easy Connect //host:port/service', 'не в username', 'разные параметры DSN', 'TNS — опция, не единственный способ'],
+  ),
+  's08-q03-c3': sel(
+    'Зачем нужен `$ENV{ORACLE_HOME}` для DBD::Oracle?',
+    [
+      'Клиент Oracle (OCI) ищет библиотеки и tnsnames.ora',
+      'Включает strict в Perl',
+      'Заменяет DBI->connect',
+      'Только для SQL*Plus, не для Perl',
+    ],
+    ['OCI client libs / tnsnames', 'не strict', 'не замена connect', 'Perl DBD тоже использует OCI'],
+  ),
+  's08-q04-c1': sel(
+    'Как вызвать анонимный PL/SQL блок через DBI?',
+    [
+      '$dbh->do("BEGIN ... END;") или prepare/execute с BEGIN...END',
+      'use plsql; plsql->run(...);',
+      'Только через SQL*Plus из Perl',
+      'PL/SQL нельзя вызывать из DBI',
+    ],
+    ['BEGIN...END через do/prepare', 'нет модуля plsql', 'не только SQL*Plus', 'можно через DBI'],
+  ),
+  's08-q04-c2': sel(
+    'Как вызвать хранимую процедуру с OUT-параметром?',
+    [
+      'prepare CALL с bind_param_inout для OUT/IN OUT',
+      'execute без bind — OUT вернётся автоматически',
+      'Только DBMS_OUTPUT.PUT_LINE',
+      'Процедуры Oracle — только через JDBC',
+    ],
+    ['bind_param_inout', 'OUT нужен bind', 'DBMS_OUTPUT — другой механизм', 'DBI поддерживает'],
+  ),
+  's08-q05-c1': sel(
+    'Как читать большой CLOB через DBD::Oracle?',
+    [
+      'Увеличить $dbh->{LongReadLen} и fetch; при необходимости LongTruncOk',
+      'CLOB нельзя читать через DBI',
+      'Только lob_read() без fetch',
+      'AutoCommit должен быть 0',
+    ],
+    ['LongReadLen + fetch', 'CLOB читается', 'lob_read — доп. API, fetch тоже', 'AutoCommit не обязателен для read'],
+  ),
+  's08-q05-c2': sel(
+    'Что делает `$dbh->{LongReadLen} = 1_000_000`?',
+    [
+      'Задаёт макс. байт для чтения LONG/CLOB/BLOB за один fetch',
+      'Ограничивает число строк в SELECT',
+      'Включает BLOB streaming автоматически',
+      'Устанавливает timeout соединения',
+    ],
+    ['Лимит LOB за fetch', 'не число строк', 'streaming — отдельные настройки', 'не timeout'],
+  ),
+  's08-q05-c3': sel(
+    'Как прочитать BLOB в Perl через DBI?',
+    [
+      'SELECT blob_col ... fetch; данные в scalar ref; LongReadLen для размера',
+      'BLOB только через utl_file',
+      'binmode на $dbh обязателен',
+      'BLOB автоматически base64 в DBI',
+    ],
+    ['fetch + LongReadLen', 'utl_file — PL/SQL', 'binmode dbh — нет', 'не auto base64'],
+  ),
 };
 
 export function cardContentKey(stageIndex, questionIndex, cardIndex) {

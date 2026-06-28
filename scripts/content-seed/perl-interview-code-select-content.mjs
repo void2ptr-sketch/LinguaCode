@@ -162,6 +162,157 @@ export const PERL_INTERVIEW_CODE_SELECT_CONTENT = {
       perl('my $n = scalar @items;'),
     ],
   ),
+
+  // Этап 6: Базы данных
+  's06-q01-code': codeSelect(
+    'Как подключиться к SQLite через DBI?',
+    'use DBI;\nmy $dbh = ???;',
+    [
+      perl('DBI->connect("dbi:SQLite:dbname=test.db", "", "", { RaiseError => 1 })'),
+      perl('DBI->open("sqlite:test.db")'),
+      perl('connect SQLite("test.db")'),
+      perl('use DBD::SQLite; SQLite->connect("test.db")'),
+    ],
+  ),
+  's06-q02-code': codeSelect(
+    'Какой фрагмент защищён от SQL injection?',
+    'my $id = $input;\n# выбрать пользователя по id',
+    [
+      perl('my $sth = $dbh->prepare("SELECT * FROM users WHERE id = ?");\n$sth->execute($id);'),
+      perl('my $sql = "SELECT * FROM users WHERE id = $id";\n$dbh->do($sql);'),
+      perl('my $sql = qq{SELECT * FROM users WHERE id = $id};\n$dbh->selectall_arrayref($sql);'),
+      perl('$dbh->do("SELECT * FROM users WHERE id = " . $id);'),
+    ],
+  ),
+  's06-q03-code': codeSelect(
+    'Как получить одну строку из SELECT?',
+    'my $sth = $dbh->prepare("SELECT name FROM users WHERE id = ?");\n$sth->execute(42);',
+    [
+      perl('my ($name) = $sth->fetchrow_array;'),
+      perl('my $name = $sth->fetchall_arrayref;'),
+      perl('my $name = $dbh->selectrow_array($sth);'),
+      perl('my $name = $sth->rows;'),
+    ],
+  ),
+  's06-q04-code': codeSelect(
+    'Как зафиксировать транзакцию после нескольких UPDATE?',
+    '$dbh->{AutoCommit} = 0;\n# ... updates ...',
+    [
+      perl('$dbh->commit;'),
+      perl('$dbh->finish;'),
+      perl('$dbh->disconnect;'),
+      perl('$dbh->{AutoCommit} = 1;'),
+    ],
+  ),
+  's06-q05-code': codeSelect(
+    'Какой connect включает die при ошибке DBI?',
+    'use DBI;\nmy $dbh = ???;',
+    [
+      perl('DBI->connect($dsn, $user, $pass, { RaiseError => 1 })'),
+      perl('DBI->connect($dsn, $user, $pass, { PrintError => 0 })'),
+      perl('DBI->connect($dsn, $user, $pass, { AutoCommit => 0 })'),
+      perl('DBI->connect($dsn, $user, $pass, { Warn => 0 })'),
+    ],
+  ),
+
+  // Этап 7: CGI
+  's07-q01-code': codeSelect(
+    'Как создать объект CGI для обработки запроса?',
+    'use CGI;\nmy $q = ???;',
+    [perl('CGI->new'), perl('CGI->start'), perl('new CGI::Request'), perl('CGI::init()')],
+  ),
+  's07-q02-code': codeSelect(
+    'Как прочитать параметр search из query string?',
+    'use CGI;\nmy $q = CGI->new;\nmy $term = ???;',
+    [
+      perl('$q->param("search")'),
+      perl('$ENV{search}'),
+      perl('$q->query("search")'),
+      perl('$ARGV[0]'),
+    ],
+  ),
+  's07-q03-code': codeSelect(
+    'Как включить UTF-8 для stdout в CGI-скрипте?',
+    'use CGI;\nmy $q = CGI->new;\n# перед print html',
+    [
+      perl('binmode STDOUT, ":utf8";'),
+      perl('use utf8;'),
+      perl('utf8::encode STDOUT;'),
+      perl('$q->utf8(1);'),
+    ],
+  ),
+  's07-q04-code': codeSelect(
+    'Как вывести HTML-страницу с корректным Content-Type?',
+    'use CGI;\nmy $q = CGI->new;\n???\nprint "<h1>Hi</h1>";',
+    [
+      perl('print $q->header;'),
+      perl('print "<h1>Hi</h1>";\nprint $q->header;'),
+      perl('print "Content-Type: html";'),
+      perl('header("text/html");'),
+    ],
+  ),
+  's07-q05-code': codeSelect(
+    'Какой современный стек заменяет CGI для Perl web-приложений?',
+    'use strict;\nuse warnings;\n# deploy web app',
+    [
+      plain('Plack / PSGI'),
+      plain('CGI::Fast only'),
+      plain('mod_perl 1.0 only'),
+      plain('Apache::SOAP'),
+    ],
+  ),
+
+  // Этап 8: Oracle (DBD::Oracle)
+  's08-q01-code': codeSelect(
+    'Как подключиться к Oracle через DBI?',
+    'use DBI;\nmy $dbh = ???;',
+    [
+      perl('DBI->connect("dbi:Oracle:host=dbhost;sid=ORCL", $user, $pass, { RaiseError => 1 })'),
+      perl('DBI->connect("oracle://user@dbhost/ORCL")'),
+      perl('DBD::Oracle->connect("ORCL", $user, $pass)'),
+      perl('connect Oracle $user $pass;'),
+    ],
+  ),
+  's08-q02-code': codeSelect(
+    'Какой фрагмент безопасно передаёт id в Oracle SELECT?',
+    'my $id = $input;\n# users by id',
+    [
+      perl('my $sth = $dbh->prepare("SELECT * FROM users WHERE id = :id");\n$sth->bind_param(":id", $id);\n$sth->execute;'),
+      perl('my $sql = "SELECT * FROM users WHERE id = $id";\n$dbh->do($sql);'),
+      perl('$dbh->do(qq{SELECT * FROM users WHERE id = $id});'),
+      perl('sprintf("SELECT * FROM users WHERE id = %d", $id);'),
+    ],
+  ),
+  's08-q03-code': codeSelect(
+    'Как указать service name в DSN Oracle (Easy Connect)?',
+    'use DBI;\nmy $dsn = ???;',
+    [
+      perl('"dbi:Oracle://dbhost:1521/pdb1"'),
+      perl('"dbi:Oracle:service=pdb1"'),
+      perl('"oracle://dbhost/pdb1"'),
+      perl('"dbi:mysql:dbname=pdb1"'),
+    ],
+  ),
+  's08-q04-code': codeSelect(
+    'Как вызвать PL/SQL процедуру с OUT-параметром?',
+    'my $out;\n# call get_count(OUT cnt)',
+    [
+      perl('my $sth = $dbh->prepare("BEGIN get_count(:cnt); END;");\n$sth->bind_param_inout(":cnt", \\$out, 10);\n$sth->execute;'),
+      perl('$dbh->do("CALL get_count()");'),
+      perl('use plsql; plsql->call("get_count");'),
+      perl('system("sqlplus @proc.sql");'),
+    ],
+  ),
+  's08-q05-code': codeSelect(
+    'Как прочитать CLOB из Oracle через DBI?',
+    'my $sth = $dbh->prepare("SELECT doc FROM docs WHERE id = ?");\n$sth->execute(1);',
+    [
+      perl('$dbh->{LongReadLen} = 1_000_000;\nmy ($doc) = $sth->fetchrow_array;'),
+      perl('my $doc = $sth->rows;'),
+      perl('$dbh->{AutoCommit} = 0;\nmy $doc = $sth->fetchall_hashref;'),
+      perl('my $doc = $DBI::errstr;'),
+    ],
+  ),
 };
 
 export function codeSelectContentKey(stageIndex, questionIndex) {

@@ -409,6 +409,314 @@
           "card-perl-s05-q04-code"
         ]
       }
+    },
+    {
+      "id": "scenario-perl-s06-q01",
+      "title": "Что такое DBI и DBD в Perl?",
+      "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s06-q01-c1",
+          "card-perl-s06-q01-c2",
+          "card-perl-s06-q01-c3",
+          "card-perl-s06-q01-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s06-q02",
+      "title": "Как безопасно передать параметры в SQL через DBI?",
+      "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s06-q02-c1",
+          "card-perl-s06-q02-c2",
+          "card-perl-s06-q02-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s06-q03",
+      "title": "Чем `$sth->execute` отличается от `$dbh->do`?",
+      "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s06-q03-c1",
+          "card-perl-s06-q03-c2",
+          "card-perl-s06-q03-c3",
+          "card-perl-s06-q03-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s06-q04",
+      "title": "Как отключить AutoCommit для транзакции в DBI?",
+      "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s06-q04-c1",
+          "card-perl-s06-q04-c2",
+          "card-perl-s06-q04-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s06-q05",
+      "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
+      "description": "Тема собеседования Perl (этап «Базы данных»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s06-q05-c1",
+          "card-perl-s06-q05-c2",
+          "card-perl-s06-q05-c3",
+          "card-perl-s06-q05-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s07-q01",
+      "title": "Для чего использовался модуль CGI в Perl?",
+      "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s07-q01-c1",
+          "card-perl-s07-q01-c2",
+          "card-perl-s07-q01-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s07-q02",
+      "title": "Как получить параметры GET/POST через CGI?",
+      "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s07-q02-c1",
+          "card-perl-s07-q02-c2",
+          "card-perl-s07-q02-c3",
+          "card-perl-s07-q02-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s07-q03",
+      "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
+      "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s07-q03-c1",
+          "card-perl-s07-q03-c2",
+          "card-perl-s07-q03-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s07-q04",
+      "title": "Как отправить заголовок Content-Type перед телом ответа?",
+      "description": "Тема собеседования Perl (этап «CGI»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s07-q04-c1",
+          "card-perl-s07-q04-c2",
+          "card-perl-s07-q04-c3",
+          "card-perl-s07-q04-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s07-q05",
+      "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
+      "description": "Тема собеседования Perl (этап «CGI»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s07-q05-c1",
+          "card-perl-s07-q05-c2",
+          "card-perl-s07-q05-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s08-q01",
+      "title": "Какой DSN используют для подключения к Oracle через DBI?",
+      "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s08-q01-c1",
+          "card-perl-s08-q01-c2",
+          "card-perl-s08-q01-c3",
+          "card-perl-s08-q01-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s08-q02",
+      "title": "Какие placeholders поддерживает DBD::Oracle?",
+      "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s08-q02-c1",
+          "card-perl-s08-q02-c2",
+          "card-perl-s08-q02-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s08-q03",
+      "title": "Как указать SID или service name в DBI DSN?",
+      "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s08-q03-c1",
+          "card-perl-s08-q03-c2",
+          "card-perl-s08-q03-c3",
+          "card-perl-s08-q03-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s08-q04",
+      "title": "Как вызвать хранимую процедуру PL/SQL через DBI?",
+      "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 3.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s08-q04-c1",
+          "card-perl-s08-q04-c2",
+          "card-perl-s08-q04-code"
+        ]
+      }
+    },
+    {
+      "id": "scenario-perl-s08-q05",
+      "title": "Как читать CLOB/BLOB через DBD::Oracle?",
+      "description": "Тема собеседования Perl (этап «Oracle (DBD::Oracle)»). Карточек: 4.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T18:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "perl"
+      },
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
+          "card-perl-s08-q05-c1",
+          "card-perl-s08-q05-c2",
+          "card-perl-s08-q05-c3",
+          "card-perl-s08-q05-code"
+        ]
+      }
     }
   ]
 }

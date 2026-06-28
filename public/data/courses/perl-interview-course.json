@@ -14,12 +14,15 @@
         "lesson-perl-interview-02",
         "lesson-perl-interview-03",
         "lesson-perl-interview-04",
-        "lesson-perl-interview-05"
+        "lesson-perl-interview-05",
+        "lesson-perl-interview-06",
+        "lesson-perl-interview-07",
+        "lesson-perl-interview-08"
       ],
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
       "authoring": {
-        "idea": "# Идея программы: Собеседование на языке Perl\n\n<!-- Формат материализации:\n     ## Этап N: название  → 1 урок\n     - вопрос             → 1 сценарий (тема)\n     Карточки генерируются автоматически (2–3 на сценарий).\n     npm run export:content-seed -->\n\n## Цели\n\nПодготовка к техническому собеседованию по Perl: базовый синтаксис, контексты, модули, регулярные выражения, работа с данными.\n\n## Аудитория\n\nРазработчики с опытом в других языках, которым нужно быстро освежить Perl перед интервью.\n\n## Формат\n\n- Короткие сценарии с карточками «вопрос → ответ»\n- Акцент на типовых вопросах интервью, а не на полном учебнике\n\n## Темы (для тегов каталога)\n\n- Введение\n- Основы\n- Современный Perl\n- Инструменты\n- Архитектура и работа с легаси\n- Практика\n- ООП\n\n## Этап 1: Контексты и sigils\n\n- Что такое scalar context и list context?\n- Что вернёт `@array` в scalar context?\n- Чем отличаются sigils `$`, `@`, `%`?\n- Когда используется `undef`?\n\n## Этап 2: Строгость и объявления\n\n- Зачем подключать `use strict`?\n- Что даёт `use warnings`?\n- Разница между `my`, `our` и глобальными переменными?\n- Что такое `use feature 'say'`?\n\n## Этап 3: Регулярные выражения\n\n- Как работают захваты `$1`, `$2` в regex?\n- Что делают модификаторы `/g`, `/i`, `/x`?\n- Разница между `=~` и `!~`?\n- Зачем использовать `qr//`?\n\n## Этап 4: Подпрограммы и встроенные функции\n\n- Как устроен `@_` в подпрограмме?\n- Когда применять `map` и `grep`?\n- Что делает оператор `<=>` (spaceship)?\n- Разница между `sort` и `sort { ... }`?\n\n## Этап 5: Модули, ООП и практика на интервью\n\n- Как подключить модуль через `use` и `require`?\n- Базовый синтаксис bless для ООП в Perl?\n- Как безопасно открыть файл и обработать ошибки?\n- Типовые red flags в Perl-коде на собеседовании?",
+        "idea": "# Идея программы: Собеседование на языке Perl\n\n<!-- Формат материализации:\n     ## Этап N: название  → 1 урок\n     - вопрос             → 1 сценарий (тема)\n     Карточки генерируются автоматически (2–3 на сценарий).\n     npm run export:content-seed -->\n\n## Цели\n\nПодготовка к техническому собеседованию по Perl: базовый синтаксис, контексты, модули, регулярные выражения, работа с данными.\n\n## Аудитория\n\nРазработчики с опытом в других языках, которым нужно быстро освежить Perl перед интервью.\n\n## Формат\n\n- Короткие сценарии с карточками «вопрос → ответ»\n- Акцент на типовых вопросах интервью, а не на полном учебнике\n\n## Темы (для тегов каталога)\n\n- Введение\n- Основы\n- Современный Perl\n- Инструменты\n- Архитектура и работа с легаси\n- Практика\n- ООП\n\n## Этап 1: Контексты и sigils\n\n- Что такое scalar context и list context?\n- Что вернёт `@array` в scalar context?\n- Чем отличаются sigils `$`, `@`, `%`?\n- Когда используется `undef`?\n\n## Этап 2: Строгость и объявления\n\n- Зачем подключать `use strict`?\n- Что даёт `use warnings`?\n- Разница между `my`, `our` и глобальными переменными?\n- Что такое `use feature 'say'`?\n\n## Этап 3: Регулярные выражения\n\n- Как работают захваты `$1`, `$2` в regex?\n- Что делают модификаторы `/g`, `/i`, `/x`?\n- Разница между `=~` и `!~`?\n- Зачем использовать `qr//`?\n\n## Этап 4: Подпрограммы и встроенные функции\n\n- Как устроен `@_` в подпрограмме?\n- Когда применять `map` и `grep`?\n- Что делает оператор `<=>` (spaceship)?\n- Разница между `sort` и `sort { ... }`?\n\n## Этап 5: Модули, ООП и практика на интервью\n\n- Как подключить модуль через `use` и `require`?\n- Базовый синтаксис bless для ООП в Perl?\n- Как безопасно открыть файл и обработать ошибки?\n- Типовые red flags в Perl-коде на собеседовании?\n\n## Этап 6: Базы данных\n\n- Что такое DBI и DBD в Perl?\n- Как безопасно передать параметры в SQL через DBI?\n- Чем `$sth->execute` отличается от `$dbh->do`?\n- Как отключить AutoCommit для транзакции в DBI?\n- Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?\n\n## Этап 7: CGI\n\n- Для чего использовался модуль CGI в Perl?\n- Как получить параметры GET/POST через CGI?\n- Зачем в CGI-скрипте вызывают `binmode STDOUT`?\n- Как отправить заголовок Content-Type перед телом ответа?\n- Почему CGI-серверный Perl часто заменяют PSGI/Plack?\n\n## Этап 8: Oracle (DBD::Oracle)\n\n- Какой DSN используют для подключения к Oracle через DBI?\n- Какие placeholders поддерживает DBD::Oracle?\n- Как указать SID или service name в DBI DSN?\n- Как вызвать хранимую процедуру PL/SQL через DBI?\n- Как читать CLOB/BLOB через DBD::Oracle?",
         "status": "planned",
         "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
       },
@@ -113,6 +116,60 @@
         "lesson-perl-interview-04"
       ],
       "order": 4,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-06",
+      "courseId": "course-ru-perl-interview",
+      "title": "Базы данных",
+      "description": "5 тем (сценариев) для этапа «Базы данных».",
+      "scenarioIds": [
+        "scenario-perl-s06-q01",
+        "scenario-perl-s06-q02",
+        "scenario-perl-s06-q03",
+        "scenario-perl-s06-q04",
+        "scenario-perl-s06-q05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-05"
+      ],
+      "order": 5,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-07",
+      "courseId": "course-ru-perl-interview",
+      "title": "CGI",
+      "description": "5 тем (сценариев) для этапа «CGI».",
+      "scenarioIds": [
+        "scenario-perl-s07-q01",
+        "scenario-perl-s07-q02",
+        "scenario-perl-s07-q03",
+        "scenario-perl-s07-q04",
+        "scenario-perl-s07-q05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-06"
+      ],
+      "order": 6,
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    {
+      "id": "lesson-perl-interview-08",
+      "courseId": "course-ru-perl-interview",
+      "title": "Oracle (DBD::Oracle)",
+      "description": "5 тем (сценариев) для этапа «Oracle (DBD::Oracle)».",
+      "scenarioIds": [
+        "scenario-perl-s08-q01",
+        "scenario-perl-s08-q02",
+        "scenario-perl-s08-q03",
+        "scenario-perl-s08-q04",
+        "scenario-perl-s08-q05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-perl-interview-07"
+      ],
+      "order": 7,
       "updatedAt": "2026-06-14T18:00:00.000Z"
     }
   ]
