@@ -345,6 +345,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s01-q01-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "контексты-и-sigils",
+        "что-такое-scalar-context-и-list-"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s01-q02-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -378,6 +389,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s01-q02-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "контексты-и-sigils",
+        "что-вернёт-array-в-scalar-contex"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s01-q03-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -390,6 +412,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s01-q03-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "контексты-и-sigils",
+        "чем-отличаются-sigils"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s01-q03-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "beginner",
@@ -433,6 +466,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s01-q04-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "контексты-и-sigils",
+        "когда-используется-undef"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s02-q01-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -466,6 +510,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s02-q01-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "строгость-и-объявления",
+        "зачем-подключать-use-strict"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s02-q02-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -478,6 +533,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s02-q02-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "строгость-и-объявления",
+        "что-даёт-use-warnings"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s02-q02-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "beginner",
@@ -521,6 +587,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s02-q03-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "строгость-и-объявления",
+        "разница-между-my-our-и-глобальны"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s02-q04-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -543,6 +620,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s02-q04-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "beginner",
+      "tags": [
+        "beginner",
+        "строгость-и-объявления",
+        "что-такое-use-feature-say"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s03-q01-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -555,6 +643,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s03-q01-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "регулярные-выражения",
+        "как-работают-захваты-1-2-в-regex"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s03-q01-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "intermediate",
@@ -598,6 +697,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s03-q02-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "регулярные-выражения",
+        "что-делают-модификаторы-g-i-x"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s03-q03-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -610,6 +720,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s03-q03-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "регулярные-выражения",
+        "разница-между-и"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s03-q03-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "intermediate",
@@ -653,6 +774,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s03-q04-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "регулярные-выражения",
+        "зачем-использовать-qr"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s04-q01-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -686,6 +818,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s04-q01-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "подпрограммы-и-встроенные-функци",
+        "как-устроен-в-подпрограмме"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s04-q02-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -698,6 +841,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s04-q02-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "подпрограммы-и-встроенные-функци",
+        "когда-применять-map-и-grep"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s04-q02-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "intermediate",
@@ -741,6 +895,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s04-q03-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "подпрограммы-и-встроенные-функци",
+        "что-делает-оператор-spaceship"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s04-q04-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -763,6 +928,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s04-q04-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "intermediate",
+      "tags": [
+        "intermediate",
+        "подпрограммы-и-встроенные-функци",
+        "разница-между-sort-и-sort"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s05-q01-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -775,6 +951,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s05-q01-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "модули-ооп-и-практика-на-интервь",
+        "как-подключить-модуль-через-use-"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s05-q01-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "advanced",
@@ -818,6 +1005,17 @@
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
+    "card-perl-s05-q02-code": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "модули-ооп-и-практика-на-интервь",
+        "базовый-синтаксис-bless-для-ооп-"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
     "card-perl-s05-q03-c1": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
@@ -830,6 +1028,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s05-q03-c2": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "модули-ооп-и-практика-на-интервь",
+        "как-безопасно-открыть-файл-и-обр"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s05-q03-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "advanced",
@@ -863,6 +1072,17 @@
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
     "card-perl-s05-q04-c3": {
+      "knownLanguage": "ru",
+      "learningLanguage": "perl",
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "модули-ооп-и-практика-на-интервь",
+        "типовые-red-flags-в-perl-коде-на"
+      ],
+      "updatedAt": "2026-06-14T18:00:00.000Z"
+    },
+    "card-perl-s05-q04-code": {
       "knownLanguage": "ru",
       "learningLanguage": "perl",
       "difficulty": "advanced",

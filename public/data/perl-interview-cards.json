@@ -49,6 +49,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s01-q01-code",
+      "title": "Код: Что такое scalar context и list context?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "В каком контексте вычисляется правая часть присваивания?",
+      "prompt": {
+        "language": "perl",
+        "code": "my @letters = qw(a b c);\nmy $n = @letters;  # $n = ?"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "3 (scalar context)"
+        },
+        {
+          "language": "plain",
+          "code": "(a, b, c) — list context"
+        },
+        {
+          "language": "plain",
+          "code": "Compile error"
+        },
+        {
+          "language": "plain",
+          "code": "undef"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s01-q02-c1",
       "title": "Что вернёт `@array` в scalar context? (1/3)",
       "appearance": {
@@ -121,6 +154,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s01-q02-code",
+      "title": "Код: Что вернёт `@array` в scalar context?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Что выведет программа?",
+      "prompt": {
+        "language": "perl",
+        "code": "my @items = qw(x y z);\nprint scalar @items;"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "3"
+        },
+        {
+          "language": "plain",
+          "code": "x y z"
+        },
+        {
+          "language": "plain",
+          "code": "@items"
+        },
+        {
+          "language": "plain",
+          "code": "undef"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s01-q03-c1",
       "title": "Чем отличаются sigils `$`, `@`, `%`? (1/2)",
       "appearance": {
@@ -165,6 +231,39 @@
         "Один скаляр",
         "Хеш",
         "Ссылка на хеш"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s01-q03-code",
+      "title": "Код: Чем отличаются sigils `$`, `@`, `%`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как корректно получить первый элемент массива @data?",
+      "prompt": {
+        "language": "perl",
+        "code": "@data = qw(one two three);"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $first = $data[0];"
+        },
+        {
+          "language": "perl",
+          "code": "my $first = @data[0];"
+        },
+        {
+          "language": "perl",
+          "code": "my $first = %data[0];"
+        },
+        {
+          "language": "perl",
+          "code": "my $first = $#data;"
+        }
       ],
       "correctIndex": 0
     },
@@ -241,6 +340,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s01-q04-code",
+      "title": "Код: Когда используется `undef`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Что выведет scalar @arr для массива с undef?",
+      "prompt": {
+        "language": "perl",
+        "code": "my @arr = (undef, 1);\nprint scalar @arr;"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "2"
+        },
+        {
+          "language": "plain",
+          "code": "1"
+        },
+        {
+          "language": "plain",
+          "code": "undef"
+        },
+        {
+          "language": "plain",
+          "code": "0"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s02-q01-c1",
       "title": "Зачем подключать `use strict`? (1/3)",
       "appearance": {
@@ -313,6 +445,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s02-q01-code",
+      "title": "Код: Зачем подключать `use strict`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какую директиву добавить для запрета необъявленных переменных?",
+      "prompt": {
+        "language": "perl",
+        "code": "#!/usr/bin/env perl\n# pragma missing\n$name = \"Perl\";"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "use strict;"
+        },
+        {
+          "language": "perl",
+          "code": "use strict qw(subs);"
+        },
+        {
+          "language": "perl",
+          "code": "no strict vars;"
+        },
+        {
+          "language": "perl",
+          "code": "strict on;"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s02-q02-c1",
       "title": "Что даёт `use warnings`? (1/2)",
       "appearance": {
@@ -357,6 +522,39 @@
         "strict",
         "-P",
         "только fatal"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s02-q02-code",
+      "title": "Код: Что даёт `use warnings`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой фрагмент вызовет warning «use of uninitialized value»?",
+      "prompt": {
+        "language": "perl",
+        "code": "use warnings;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $x;\nprint $x + 1;"
+        },
+        {
+          "language": "perl",
+          "code": "my $x = 0;\nprint $x + 1;"
+        },
+        {
+          "language": "perl",
+          "code": "my $x = undef;\nprint defined $x ? $x : 0;"
+        },
+        {
+          "language": "perl",
+          "code": "print \"ok\";"
+        }
       ],
       "correctIndex": 0
     },
@@ -433,6 +631,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s02-q03-code",
+      "title": "Код: Разница между `my`, `our` и глобальными переменными?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как объявить лексическую переменную внутри блока?",
+      "prompt": {
+        "language": "perl",
+        "code": "{\n  # нужен $count = 42\n  ???\n}"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "my $count = 42;"
+        },
+        {
+          "language": "perl",
+          "code": "our $count = 42;"
+        },
+        {
+          "language": "perl",
+          "code": "local $count = 42;"
+        },
+        {
+          "language": "perl",
+          "code": "$count ||= 42;"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s02-q04-c1",
       "title": "Что такое `use feature 'say'`? (1/2)",
       "appearance": {
@@ -481,6 +712,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s02-q04-code",
+      "title": "Код: Что такое `use feature 'say'`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой однострочник выведет hi с переводом строки (Perl 5.10+)?",
+      "prompt": {
+        "language": "perl",
+        "code": "use feature qw(say);"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "say \"hi\";"
+        },
+        {
+          "language": "perl",
+          "code": "say hi;"
+        },
+        {
+          "language": "perl",
+          "code": "print say \"hi\""
+        },
+        {
+          "language": "perl",
+          "code": "echo \"hi\";"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s03-q01-c1",
       "title": "Как работают захваты `$1`, `$2` в regex? (1/2)",
       "appearance": {
@@ -525,6 +789,39 @@
         "b",
         "bc",
         "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q01-code",
+      "title": "Код: Как работают захваты `$1`, `$2` в regex?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "После успешного match чему равен $2?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $s = \"Perl\";\n$s =~ /(e)(r)/;\n# $2 = ?"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "r"
+        },
+        {
+          "language": "plain",
+          "code": "e"
+        },
+        {
+          "language": "plain",
+          "code": "er"
+        },
+        {
+          "language": "plain",
+          "code": "undef"
+        }
       ],
       "correctIndex": 0
     },
@@ -601,6 +898,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s03-q02-code",
+      "title": "Код: Что делают модификаторы `/g`, `/i`, `/x`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой паттерн найдёт «Perl» и «perl» без учёта регистра?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $word = \"Perl\";\n$word =~ /???/;  # true"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "/perl/i"
+        },
+        {
+          "language": "perl",
+          "code": "/perl/"
+        },
+        {
+          "language": "perl",
+          "code": "/Perl/"
+        },
+        {
+          "language": "perl",
+          "code": "qr/perl/m"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s03-q03-c1",
       "title": "Разница между `=~` и `!~`? (1/2)",
       "appearance": {
@@ -645,6 +975,39 @@
         "Только hash",
         "List context",
         "Синонимы"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s03-q03-code",
+      "title": "Код: Разница между `=~` и `!~`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как проверить, что строка НЕ содержит цифр?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $line = \"hello\";\n# условие «нет цифр»"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "$line !~ /\\d/"
+        },
+        {
+          "language": "perl",
+          "code": "$line =~ /\\d/"
+        },
+        {
+          "language": "perl",
+          "code": "$line != /\\d/"
+        },
+        {
+          "language": "perl",
+          "code": "!$line =~ /\\d/"
+        }
       ],
       "correctIndex": 0
     },
@@ -721,6 +1084,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s03-q04-code",
+      "title": "Код: Зачем использовать `qr//`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как сохранить скомпилированное regex для повторного использования?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $digits = ???;\n\"abc123\" =~ $digits;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "qr/\\d+/"
+        },
+        {
+          "language": "perl",
+          "code": "\"\\d+\""
+        },
+        {
+          "language": "perl",
+          "code": "m/\\d+/"
+        },
+        {
+          "language": "perl",
+          "code": "regex(\"\\d+\")"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s04-q01-c1",
       "title": "Как устроен `@_` в подпрограмме? (1/3)",
       "appearance": {
@@ -793,6 +1189,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s04-q01-code",
+      "title": "Код: Как устроен `@_` в подпрограмме?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Что выведет вызов greet(\"Ann\", \"Bob\")?",
+      "prompt": {
+        "language": "perl",
+        "code": "sub greet { return join \", \", @_; }\nprint greet(\"Ann\", \"Bob\");"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "Ann, Bob"
+        },
+        {
+          "language": "plain",
+          "code": "@_"
+        },
+        {
+          "language": "plain",
+          "code": "2"
+        },
+        {
+          "language": "plain",
+          "code": "Ann"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s04-q02-c1",
       "title": "Когда применять `map` и `grep`? (1/2)",
       "appearance": {
@@ -837,6 +1266,39 @@
         "6 (если scalar context)",
         "исходный",
         "undef"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s04-q02-code",
+      "title": "Код: Когда применять `map` и `grep`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Что вернёт grep в list context?",
+      "prompt": {
+        "language": "perl",
+        "code": "grep { $_ > 2 } (1, 2, 3, 4)"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "(3, 4)"
+        },
+        {
+          "language": "plain",
+          "code": "(1, 2)"
+        },
+        {
+          "language": "plain",
+          "code": "4"
+        },
+        {
+          "language": "plain",
+          "code": "6"
+        }
       ],
       "correctIndex": 0
     },
@@ -913,6 +1375,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s04-q03-code",
+      "title": "Код: Что делает оператор `<=>` (spaceship)?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Чему равно трёхстороннее сравнение «b» <=> «a»?",
+      "prompt": {
+        "language": "perl",
+        "code": "print \"b\" <=> \"a\";"
+      },
+      "options": [
+        {
+          "language": "plain",
+          "code": "1"
+        },
+        {
+          "language": "plain",
+          "code": "-1"
+        },
+        {
+          "language": "plain",
+          "code": "0"
+        },
+        {
+          "language": "plain",
+          "code": "undef"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s04-q04-c1",
       "title": "Разница между `sort` и `sort { ... }`? (1/2)",
       "appearance": {
@@ -961,6 +1456,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s04-q04-code",
+      "title": "Код: Разница между `sort` и `sort { ... }`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как отсортировать @nums = (10, 2, 1) по возрастанию как числа?",
+      "prompt": {
+        "language": "perl",
+        "code": "my @nums = (10, 2, 1);\nmy @sorted = ???;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "sort { $a <=> $b } @nums"
+        },
+        {
+          "language": "perl",
+          "code": "sort @nums"
+        },
+        {
+          "language": "perl",
+          "code": "sort { $a cmp $b } @nums"
+        },
+        {
+          "language": "perl",
+          "code": "sort numeric @nums"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s05-q01-c1",
       "title": "Как подключить модуль через `use` и `require`? (1/2)",
       "appearance": {
@@ -1005,6 +1533,39 @@
         "use — compile time, не для if",
         "нет import when",
         "нет load module()"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q01-code",
+      "title": "Код: Как подключить модуль через `use` и `require`?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как условно загрузить модуль на этапе выполнения?",
+      "prompt": {
+        "language": "perl",
+        "code": "if ($need_json) {\n  ???\n}"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "require JSON::MaybeXS;"
+        },
+        {
+          "language": "perl",
+          "code": "use JSON::MaybeXS;"
+        },
+        {
+          "language": "perl",
+          "code": "import JSON::MaybeXS;"
+        },
+        {
+          "language": "perl",
+          "code": "load \"JSON::MaybeXS\";"
+        }
       ],
       "correctIndex": 0
     },
@@ -1081,6 +1642,39 @@
       "correctIndex": 0
     },
     {
+      "id": "card-perl-s05-q02-code",
+      "title": "Код: Базовый синтаксис bless для ООП в Perl?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Как bless превращает hashref в объект класса User?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $self = { name => \"ann\" };\nmy $obj = ???;\n$obj->{name} eq \"ann\";  # true"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "bless $self, \"User\""
+        },
+        {
+          "language": "perl",
+          "code": "new User($self)"
+        },
+        {
+          "language": "perl",
+          "code": "object $self, User"
+        },
+        {
+          "language": "perl",
+          "code": "$self->class(\"User\")"
+        }
+      ],
+      "correctIndex": 0
+    },
+    {
       "id": "card-perl-s05-q03-c1",
       "title": "Как безопасно открыть файл и обработать ошибки? (1/2)",
       "appearance": {
@@ -1125,6 +1719,39 @@
         "голый FH без die",
         "нет проверки ошибки",
         "print вместо die"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q03-code",
+      "title": "Код: Как безопасно открыть файл и обработать ошибки?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой шаблон open безопасен (lexical FH + обработка ошибки)?",
+      "prompt": {
+        "language": "perl",
+        "code": "my $path = \"data.txt\";\n???"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "open my $fh, \"<\", $path or die $!;"
+        },
+        {
+          "language": "perl",
+          "code": "open FILE, $path;"
+        },
+        {
+          "language": "perl",
+          "code": "open my $fh, $path;"
+        },
+        {
+          "language": "perl",
+          "code": "sysopen FILE, $path, 0;"
+        }
       ],
       "correctIndex": 0
     },
@@ -1197,6 +1824,39 @@
         "Lexical FH — современный стиль",
         "Проверка $!",
         "Чтение через handle OK"
+      ],
+      "correctIndex": 0
+    },
+    {
+      "id": "card-perl-s05-q04-code",
+      "title": "Код: Типовые red flags в Perl-коде на собеседовании?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "kind": "code-select",
+      "caption": "Какой фрагмент — типичный red flag на собеседовании?",
+      "prompt": {
+        "language": "perl",
+        "code": "use strict;\nuse warnings;"
+      },
+      "options": [
+        {
+          "language": "perl",
+          "code": "open FILE, \"<\", $path;  # global FH, no check"
+        },
+        {
+          "language": "perl",
+          "code": "open my $fh, \"<\", $path or die $!;"
+        },
+        {
+          "language": "perl",
+          "code": "sub foo { my ($x) = @_; }"
+        },
+        {
+          "language": "perl",
+          "code": "my $n = scalar @items;"
+        }
       ],
       "correctIndex": 0
     }

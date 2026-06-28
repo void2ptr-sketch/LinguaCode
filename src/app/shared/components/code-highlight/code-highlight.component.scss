@@ -1,9 +1,7 @@
-@use 'highlight.js/styles/github-dark.css';
-
 .code-highlight {
-  background: #0d1117;
+  background: var(--code-bg, #161b22);
   border-radius: 0.5rem;
-  color: #e6edf3;
+  color: var(--code-fg, #e6edf3);
   font-family: ui-monospace, 'Cascadia Code', 'SF Mono', Menlo, Consolas, monospace;
   font-size: 0.875em;
   line-height: 1.5;
@@ -13,6 +11,12 @@
   padding: 0.875rem 1rem;
   text-align: left;
   white-space: pre;
+
+  &.hljs,
+  .hljs {
+    background: transparent;
+    color: var(--code-fg, #e6edf3);
+  }
 }
 
 .code-highlight--inline {
@@ -23,6 +27,7 @@
 
 .code-highlight code {
   background: transparent;
+  color: inherit;
   font-family: inherit;
   font-size: inherit;
   padding: 0;

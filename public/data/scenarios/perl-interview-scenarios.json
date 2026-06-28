@@ -3,7 +3,7 @@
     {
       "id": "scenario-perl-s01-q01",
       "title": "Что такое scalar context и list context?",
-      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -15,14 +15,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s01-q01-c1",
-          "card-perl-s01-q01-c2"
+          "card-perl-s01-q01-c2",
+          "card-perl-s01-q01-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s01-q02",
       "title": "Что вернёт `@array` в scalar context?",
-      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -35,14 +36,15 @@
         "cardIds": [
           "card-perl-s01-q02-c1",
           "card-perl-s01-q02-c2",
-          "card-perl-s01-q02-c3"
+          "card-perl-s01-q02-c3",
+          "card-perl-s01-q02-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s01-q03",
       "title": "Чем отличаются sigils `$`, `@`, `%`?",
-      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -54,14 +56,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s01-q03-c1",
-          "card-perl-s01-q03-c2"
+          "card-perl-s01-q03-c2",
+          "card-perl-s01-q03-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s01-q04",
       "title": "Когда используется `undef`?",
-      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Контексты и sigils»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -74,14 +77,15 @@
         "cardIds": [
           "card-perl-s01-q04-c1",
           "card-perl-s01-q04-c2",
-          "card-perl-s01-q04-c3"
+          "card-perl-s01-q04-c3",
+          "card-perl-s01-q04-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s02-q01",
       "title": "Зачем подключать `use strict`?",
-      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -94,14 +98,15 @@
         "cardIds": [
           "card-perl-s02-q01-c1",
           "card-perl-s02-q01-c2",
-          "card-perl-s02-q01-c3"
+          "card-perl-s02-q01-c3",
+          "card-perl-s02-q01-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s02-q02",
       "title": "Что даёт `use warnings`?",
-      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -113,14 +118,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s02-q02-c1",
-          "card-perl-s02-q02-c2"
+          "card-perl-s02-q02-c2",
+          "card-perl-s02-q02-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s02-q03",
       "title": "Разница между `my`, `our` и глобальными переменными?",
-      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -133,14 +139,15 @@
         "cardIds": [
           "card-perl-s02-q03-c1",
           "card-perl-s02-q03-c2",
-          "card-perl-s02-q03-c3"
+          "card-perl-s02-q03-c3",
+          "card-perl-s02-q03-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s02-q04",
       "title": "Что такое `use feature 'say'`?",
-      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Строгость и объявления»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -152,14 +159,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s02-q04-c1",
-          "card-perl-s02-q04-c2"
+          "card-perl-s02-q04-c2",
+          "card-perl-s02-q04-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s03-q01",
       "title": "Как работают захваты `$1`, `$2` в regex?",
-      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -171,14 +179,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s03-q01-c1",
-          "card-perl-s03-q01-c2"
+          "card-perl-s03-q01-c2",
+          "card-perl-s03-q01-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s03-q02",
       "title": "Что делают модификаторы `/g`, `/i`, `/x`?",
-      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -191,14 +200,15 @@
         "cardIds": [
           "card-perl-s03-q02-c1",
           "card-perl-s03-q02-c2",
-          "card-perl-s03-q02-c3"
+          "card-perl-s03-q02-c3",
+          "card-perl-s03-q02-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s03-q03",
       "title": "Разница между `=~` и `!~`?",
-      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -210,14 +220,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s03-q03-c1",
-          "card-perl-s03-q03-c2"
+          "card-perl-s03-q03-c2",
+          "card-perl-s03-q03-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s03-q04",
       "title": "Зачем использовать `qr//`?",
-      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Регулярные выражения»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -230,14 +241,15 @@
         "cardIds": [
           "card-perl-s03-q04-c1",
           "card-perl-s03-q04-c2",
-          "card-perl-s03-q04-c3"
+          "card-perl-s03-q04-c3",
+          "card-perl-s03-q04-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s04-q01",
       "title": "Как устроен `@_` в подпрограмме?",
-      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -250,14 +262,15 @@
         "cardIds": [
           "card-perl-s04-q01-c1",
           "card-perl-s04-q01-c2",
-          "card-perl-s04-q01-c3"
+          "card-perl-s04-q01-c3",
+          "card-perl-s04-q01-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s04-q02",
       "title": "Когда применять `map` и `grep`?",
-      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -269,14 +282,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s04-q02-c1",
-          "card-perl-s04-q02-c2"
+          "card-perl-s04-q02-c2",
+          "card-perl-s04-q02-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s04-q03",
       "title": "Что делает оператор `<=>` (spaceship)?",
-      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -289,14 +303,15 @@
         "cardIds": [
           "card-perl-s04-q03-c1",
           "card-perl-s04-q03-c2",
-          "card-perl-s04-q03-c3"
+          "card-perl-s04-q03-c3",
+          "card-perl-s04-q03-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s04-q04",
       "title": "Разница между `sort` и `sort { ... }`?",
-      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Подпрограммы и встроенные функции»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -308,14 +323,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s04-q04-c1",
-          "card-perl-s04-q04-c2"
+          "card-perl-s04-q04-c2",
+          "card-perl-s04-q04-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s05-q01",
       "title": "Как подключить модуль через `use` и `require`?",
-      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -327,14 +343,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s05-q01-c1",
-          "card-perl-s05-q01-c2"
+          "card-perl-s05-q01-c2",
+          "card-perl-s05-q01-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s05-q02",
       "title": "Базовый синтаксис bless для ООП в Perl?",
-      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -347,14 +364,15 @@
         "cardIds": [
           "card-perl-s05-q02-c1",
           "card-perl-s05-q02-c2",
-          "card-perl-s05-q02-c3"
+          "card-perl-s05-q02-c3",
+          "card-perl-s05-q02-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s05-q03",
       "title": "Как безопасно открыть файл и обработать ошибки?",
-      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 2.",
+      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -366,14 +384,15 @@
         "mode": "fixed",
         "cardIds": [
           "card-perl-s05-q03-c1",
-          "card-perl-s05-q03-c2"
+          "card-perl-s05-q03-c2",
+          "card-perl-s05-q03-code"
         ]
       }
     },
     {
       "id": "scenario-perl-s05-q04",
       "title": "Типовые red flags в Perl-коде на собеседовании?",
-      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 3.",
+      "description": "Тема собеседования Perl (этап «Модули, ООП и практика на интервью»). Карточек: 4.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T18:00:00.000Z",
@@ -386,7 +405,8 @@
         "cardIds": [
           "card-perl-s05-q04-c1",
           "card-perl-s05-q04-c2",
-          "card-perl-s05-q04-c3"
+          "card-perl-s05-q04-c3",
+          "card-perl-s05-q04-code"
         ]
       }
     }

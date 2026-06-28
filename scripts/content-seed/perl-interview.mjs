@@ -8,6 +8,10 @@ import {
   PERL_INTERVIEW_CARD_CONTENT,
   cardContentKey,
 } from './perl-interview-cards-content.mjs';
+import {
+  PERL_INTERVIEW_CODE_SELECT_CONTENT,
+  codeSelectContentKey,
+} from './perl-interview-code-select-content.mjs';
 import { parsePerlInterviewIdea } from './perl-interview-idea-parser.mjs';
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
@@ -57,6 +61,10 @@ function cardId(stageIndex, questionIndex, cardIndex) {
   return `card-perl-s${String(stageIndex + 1).padStart(2, '0')}-q${String(questionIndex + 1).padStart(2, '0')}-c${cardIndex + 1}`;
 }
 
+function codeSelectCardId(stageIndex, questionIndex) {
+  return `card-perl-s${String(stageIndex + 1).padStart(2, '0')}-q${String(questionIndex + 1).padStart(2, '0')}-code`;
+}
+
 function cardsPerScenario(stageIndex, questionIndex) {
   return 2 + ((stageIndex + questionIndex) % 2);
 }
@@ -92,6 +100,31 @@ function buildCardFromContent(id, title, content) {
     optionsKnown: content.optionsKnown,
     correctIndex: content.correctIndex ?? 0,
   };
+}
+
+function buildCodeSelectFromContent(id, title, content) {
+  return {
+    id,
+    title,
+    appearance: CARD_APPEARANCE,
+    kind: 'code-select',
+    caption: content.caption,
+    prompt: content.prompt,
+    options: content.options,
+    correctIndex: content.correctIndex ?? 0,
+  };
+}
+
+function buildCodeSelectForQuestion(question, stageIndex, questionIndex) {
+  const id = codeSelectCardId(stageIndex, questionIndex);
+  const key = codeSelectContentKey(stageIndex, questionIndex);
+  const content = PERL_INTERVIEW_CODE_SELECT_CONTENT[key];
+  if (!content) {
+    throw new Error(`Missing Perl interview code-select content for ${key} (${id})`);
+  }
+
+  const title = truncate(`Код: ${question}`, 96);
+  return buildCodeSelectFromContent(id, title, content);
 }
 
 function buildCardsForQuestion(stageTitle, question, stageIndex, questionIndex) {
@@ -133,13 +166,14 @@ export function buildPerlInterviewMaterialized() {
 
     for (const [questionIndex, question] of stage.questions.entries()) {
       const scenarioCards = buildCardsForQuestion(stage.title, question, stageIndex, questionIndex);
-      const scenarioCardIds = scenarioCards.map((card) => card.id);
-      cards.push(...scenarioCards);
+      const codeSelectCard = buildCodeSelectForQuestion(question, stageIndex, questionIndex);
+      const scenarioCardIds = [...scenarioCards.map((card) => card.id), codeSelectCard.id];
+      cards.push(...scenarioCards, codeSelectCard);
 
       const scenario = {
         id: scenarioId(stageIndex, questionIndex),
         title: question,
-        description: `Тема собеседования Perl (этап «${stage.title}»). Карточек: ${scenarioCards.length}.`,
+        description: `Тема собеседования Perl (этап «${stage.title}»). Карточек: ${scenarioCardIds.length}.`,
         authorId: 'system',
         published: true,
         updatedAt: PERL_INTERVIEW_UPDATED_AT,
