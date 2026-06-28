@@ -18,20 +18,67 @@ import {
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const dataDir = join(root, 'public/data');
 
-const manifest = {
-  version: 1,
-  cardFiles: ['select-cards.json', 'radicals-course-cards.json', 'perl-interview-cards.json'],
-  scenarioFiles: [
-    '/scenarios/demo-scenarios.json',
-    '/scenarios/radicals-scenarios.json',
-    '/scenarios/perl-interview-scenarios.json',
-  ],
-  courseFiles: [
-    '/courses/demo-courses.json',
-    '/courses/radicals-214-course.json',
-    '/courses/perl-interview-course.json',
-  ],
-};
+// ─── Загрузка существующего manifest (сохраняет imported-записи) ──────────────
+
+function loadExistingManifest() {
+  const manifestPath = join(dataDir, 'content-manifest.json');
+  try {
+    return JSON.parse(readFileSync(manifestPath, 'utf8'));
+  } catch {
+    return null;
+  }
+}
+
+// ─── Определяем, какие файлы сгенерированы скриптами (не imported) ────────────
+
+const GENERATED_CARD_FILES = new Set([
+  'select-cards.json',
+  'radicals-course-cards.json',
+  'perl-interview-cards.json',
+]);
+
+const GENERATED_SCENARIO_FILES = new Set([
+  '/scenarios/demo-scenarios.json',
+  '/scenarios/radicals-scenarios.json',
+  '/scenarios/perl-interview-scenarios.json',
+]);
+
+const GENERATED_COURSE_FILES = new Set([
+  '/courses/demo-courses.json',
+  '/courses/radicals-214-course.json',
+  '/courses/perl-interview-course.json',
+]);
+
+// ─── Сборка manifest с сохранением imported-записей ───────────────────────────
+
+function buildManifest() {
+  const existing = loadExistingManifest();
+
+  const cardFiles = [...GENERATED_CARD_FILES];
+  const scenarioFiles = [...GENERATED_SCENARIO_FILES];
+  const courseFiles = [...GENERATED_COURSE_FILES];
+
+  if (existing) {
+    // Сохраняем imported-записи (те, что не входят в GENERATED_*)
+    for (const file of existing.cardFiles) {
+      if (!GENERATED_CARD_FILES.has(file) && !cardFiles.includes(file)) {
+        cardFiles.push(file);
+      }
+    }
+    for (const file of existing.scenarioFiles) {
+      if (!GENERATED_SCENARIO_FILES.has(file) && !scenarioFiles.includes(file)) {
+        scenarioFiles.push(file);
+      }
+    }
+    for (const file of existing.courseFiles) {
+      if (!GENERATED_COURSE_FILES.has(file) && !courseFiles.includes(file)) {
+        courseFiles.push(file);
+      }
+    }
+  }
+
+  return { version: 1, cardFiles, scenarioFiles, courseFiles };
+}
 
 function writeJson(relativePath, payload) {
   const fullPath = join(dataDir, relativePath.replace(/^\//, ''));
@@ -42,7 +89,7 @@ function writeJson(relativePath, payload) {
 const perlScenarios = buildPerlInterviewScenarios();
 const perlCourse = buildPerlInterviewCourse();
 
-writeJson('content-manifest.json', manifest);
+writeJson('content-manifest.json', buildManifest());
 writeJson('scenarios/demo-scenarios.json', { scenarios: DEMO_SCENARIOS });
 writeJson('scenarios/radicals-scenarios.json', { scenarios: buildRadicalsScenarios() });
 writeJson('scenarios/perl-interview-scenarios.json', { scenarios: perlScenarios });

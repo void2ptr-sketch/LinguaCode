@@ -75,6 +75,14 @@
                     <button
                       mat-icon-button
                       type="button"
+                      aria-label="Экспорт"
+                      (click)="exportCourse(course.id)"
+                    >
+                      <mat-icon>file_download</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      type="button"
                       aria-label="Удалить"
                       (click)="deleteCourse(course.id)"
                     >
