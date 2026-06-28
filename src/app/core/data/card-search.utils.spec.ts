@@ -1,6 +1,6 @@
 import type { CardIndexEntry } from '../models/card-index.types';
 
-import { buildCardSearchFacets, filterCardIndex, matchesCardIndexEntry } from './card-search.utils';
+import { buildCardSearchFacets, filterCardIndex, matchesCardIndexEntry, matchesTagFacetEntry } from './card-search.utils';
 
 describe('card-search.utils', () => {
   const entries: readonly CardIndexEntry[] = [
@@ -93,6 +93,73 @@ describe('card-search.utils', () => {
       matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' }, 'learningLanguage'),
     ).toBeTrue();
     expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' })).toBeFalse();
+  });
+
+  it('refines tag facet counts using other selected tags', () => {
+    const taggedEntries: readonly CardIndexEntry[] = [
+      {
+        id: 'a',
+        kind: 'select',
+        title: 'Oracle card',
+        knownLanguage: 'ru',
+        learningLanguage: 'perl',
+        difficulty: 'advanced',
+        tags: ['advanced', 'practice', 'oracle'],
+        ipaReadings: [],
+        updatedAt: '2026-01-01T00:00:00.000Z',
+      },
+      {
+        id: 'b',
+        kind: 'select',
+        title: 'DBI card',
+        knownLanguage: 'ru',
+        learningLanguage: 'perl',
+        difficulty: 'advanced',
+        tags: ['advanced', 'practice', 'dbi-dbd'],
+        ipaReadings: [],
+        updatedAt: '2026-01-02T00:00:00.000Z',
+      },
+      {
+        id: 'c',
+        kind: 'select',
+        title: 'Basics card',
+        knownLanguage: 'ru',
+        learningLanguage: 'perl',
+        difficulty: 'beginner',
+        tags: ['beginner', 'basics', 'scalar-context'],
+        ipaReadings: [],
+        updatedAt: '2026-01-03T00:00:00.000Z',
+      },
+    ];
+
+    const facets = buildCardSearchFacets(taggedEntries, {
+      tags: ['oracle'],
+      page: { page: 0, pageSize: 10 },
+    });
+
+    expect(facets.tags.find((facet) => facet.value === 'oracle')?.count).toBe(1);
+    expect(facets.tags.find((facet) => facet.value === 'practice')?.count).toBe(1);
+    expect(facets.tags.find((facet) => facet.value === 'dbi-dbd')).toBeUndefined();
+    expect(facets.tags.find((facet) => facet.value === 'beginner')).toBeUndefined();
+  });
+
+  it('matches tag facet entry with conjunctive tag filters', () => {
+    const entry: CardIndexEntry = {
+      id: 'a',
+      kind: 'select',
+      title: 'Oracle card',
+      knownLanguage: 'ru',
+      learningLanguage: 'perl',
+      difficulty: 'advanced',
+      tags: ['advanced', 'practice', 'oracle'],
+      ipaReadings: [],
+      updatedAt: '2026-01-01T00:00:00.000Z',
+    };
+
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'practice')).toBeTrue();
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'dbi-dbd')).toBeFalse();
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'oracle')).toBeTrue();
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'basics')).toBeFalse();
   });
 
   it('filters by ipa tag facet', () => {

@@ -48,7 +48,7 @@ export const PERL_INTERVIEW_SUBTOPICS = [
   { key: 's08-q05', id: 'oracle-lob', label: 'CLOB / BLOB' },
 ];
 
-/** Единый тег СУБД для Oracle-сценариев (этап 8). */
+/** Единый тег Oracle для сценариев этапа 8 (отображается в «Подтемы»). */
 export const PERL_INTERVIEW_ORACLE_TAG = 'oracle';
 
 /** 0-based индекс этапа «Oracle (DBD::Oracle)». */
