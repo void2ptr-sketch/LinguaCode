@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
@@ -16,6 +16,7 @@ import {
   DIFFICULTY_LABELS,
   tagLabel,
 } from './catalog-labels';
+import { groupCatalogTagFacets } from './catalog-tag-groups.utils';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
 @Component({
@@ -41,6 +42,15 @@ export class CardCatalogFiltersComponent {
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly tagLabel = tagLabel;
+
+  readonly tagGroups = computed(() => {
+    const facets = this.store.facets();
+    if (!facets) {
+      return [];
+    }
+
+    return groupCatalogTagFacets(facets.tags);
+  });
 
   onQueryInput(value: string): void {
     this.store.setQuery(value);

@@ -56,7 +56,7 @@
 
   @if (store.facets(); as facets) {
     @if (facets.kinds.length > 0) {
-      <div class="card-catalog-filters__group">
+      <div class="card-catalog-filters__group card-catalog-filters__group--kinds">
         <span class="card-catalog-filters__label">Тип карточки</span>
         <mat-chip-set aria-label="Тип карточки">
           @for (facet of facets.kinds; track facet.value) {
@@ -72,20 +72,24 @@
       </div>
     }
 
-    @if (facets.tags.length > 0) {
-      <div class="card-catalog-filters__group">
-        <span class="card-catalog-filters__label">Теги</span>
-        <mat-chip-set aria-label="Теги">
-          @for (facet of facets.tags; track facet.value) {
-            <mat-chip
-              class="card-catalog-filters__chip"
-              [class.card-catalog-filters__chip--active]="isTagSelected(facet.value)"
-              (click)="toggleTag(facet.value)"
-            >
-              {{ tagLabel(facet.value) }} ({{ facet.count }})
-            </mat-chip>
-          }
-        </mat-chip-set>
+    @if (tagGroups().length > 0) {
+      <div class="card-catalog-filters__tag-groups">
+        @for (group of tagGroups(); track group.label) {
+          <div class="card-catalog-filters__group">
+            <span class="card-catalog-filters__label">{{ group.label }}</span>
+            <mat-chip-set [attr.aria-label]="group.label">
+              @for (facet of group.facets; track facet.value) {
+                <mat-chip
+                  class="card-catalog-filters__chip"
+                  [class.card-catalog-filters__chip--active]="isTagSelected(facet.value)"
+                  (click)="toggleTag(facet.value)"
+                >
+                  {{ tagLabel(facet.value) }} ({{ facet.count }})
+                </mat-chip>
+              }
+            </mat-chip-set>
+          </div>
+        }
       </div>
     }
   }

@@ -39,11 +39,8 @@ export const CONTENT_LANGUAGES = contentLanguages();
 
 export const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
 
-/** Подписи тегов каталога (id → label). Неизвестные id отображаются как есть. */
+/** Подписи тегов каталога (id → label). Сложность — id без перевода. */
 export const TAG_LABELS: Record<string, string> = {
-  beginner: 'Начальный',
-  intermediate: 'Средний',
-  advanced: 'Продвинутый',
   // Demo / общие
   greetings: 'Приветствия',
   vocabulary: 'Лексика',
@@ -89,6 +86,12 @@ export const TAG_LABELS: Record<string, string> = {
   'red-flags': 'Red flags на интервью',
 };
 
+const DIFFICULTY_TAG_IDS = new Set<string>(['beginner', 'intermediate', 'advanced']);
+
 export function tagLabel(tag: string): string {
+  if (DIFFICULTY_TAG_IDS.has(tag)) {
+    return tag;
+  }
+
   return TAG_LABELS[tag] ?? tag;
 }

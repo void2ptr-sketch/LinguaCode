@@ -80,11 +80,8 @@ export function buildPerlInterviewTags(stageIndex, questionIndex, difficulty) {
   return [difficulty, theme, subtopic];
 }
 
-/** id → label для UI каталога (сложность + темы + подтемы). */
+/** id → label для UI каталога (темы + подтемы; сложность — id как есть). */
 export const PERL_TAG_LABELS = Object.fromEntries([
-  ['beginner', 'Начальный'],
-  ['intermediate', 'Средний'],
-  ['advanced', 'Продвинутый'],
   ...PERL_INTERVIEW_THEMES.map((theme) => [theme.id, theme.label]),
   ...PERL_INTERVIEW_SUBTOPICS.map((subtopic) => [subtopic.id, subtopic.label]),
 ]);

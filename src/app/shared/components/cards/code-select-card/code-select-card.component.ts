@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -22,6 +22,12 @@ export class CodeSelectCardComponent {
   readonly optionSelected = output<number>();
   readonly checkAnswer = output<void>();
   readonly nextCard = output<void>();
+
+  /** Текст вопроса для ученика: caption или title (без дубля в блоке кода). */
+  readonly questionHeadline = computed(() => {
+    const caption = this.card().caption?.trim();
+    return caption || this.card().title;
+  });
 
   optionClass(index: number): string {
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);

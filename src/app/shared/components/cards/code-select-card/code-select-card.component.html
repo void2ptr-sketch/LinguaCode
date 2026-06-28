@@ -1,13 +1,10 @@
 <mat-card class="quiz-card quiz-card--code quiz-card--font-{{ fontSize() }}">
   <section class="quiz-card__question" aria-label="Вопрос">
     <mat-card-header>
-      <mat-card-title>{{ card().title }}</mat-card-title>
+      <mat-card-title>{{ questionHeadline() }}</mat-card-title>
     </mat-card-header>
 
     <mat-card-content class="code-select-card__prompt">
-      @if (card().caption) {
-        <p class="code-select-card__caption">{{ card().caption }}</p>
-      }
       <app-code-highlight [code]="card().prompt.code" [language]="card().prompt.language" />
     </mat-card-content>
   </section>

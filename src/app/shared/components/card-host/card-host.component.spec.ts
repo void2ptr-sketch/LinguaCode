@@ -44,12 +44,13 @@ describe('CardHostComponent', () => {
     localStorage.clear();
   });
 
-  it('should render code-select card with caption and option buttons', () => {
+  it('should render code-select card with headline in header and code block only', () => {
     const host = fixture.nativeElement as HTMLElement;
 
     expect(host.querySelector('app-code-select-card')).not.toBeNull();
-    expect(host.textContent).toContain('Perl: вывод');
-    expect(host.textContent).toContain('Что выведет этот код?');
+    expect(host.querySelector('mat-card-title')?.textContent?.trim()).toBe('Что выведет этот код?');
+    expect(host.textContent).not.toContain('Perl: вывод');
+    expect(host.querySelector('.code-select-card__caption')).toBeNull();
     expect(host.querySelectorAll('.code-select-card__options button').length).toBe(3);
   });
 
