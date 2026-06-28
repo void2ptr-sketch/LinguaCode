@@ -329,8 +329,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-такое-scalar-context-и-list-"
+        "basics",
+        "scalar-context"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -340,8 +340,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-такое-scalar-context-и-list-"
+        "basics",
+        "scalar-context"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -351,8 +351,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-такое-scalar-context-и-list-"
+        "basics",
+        "scalar-context"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -362,8 +362,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-вернёт-array-в-scalar-contex"
+        "basics",
+        "array-scalar"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -373,8 +373,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-вернёт-array-в-scalar-contex"
+        "basics",
+        "array-scalar"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -384,8 +384,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-вернёт-array-в-scalar-contex"
+        "basics",
+        "array-scalar"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -395,8 +395,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "что-вернёт-array-в-scalar-contex"
+        "basics",
+        "array-scalar"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -406,8 +406,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "чем-отличаются-sigils"
+        "basics",
+        "sigils"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -417,8 +417,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "чем-отличаются-sigils"
+        "basics",
+        "sigils"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -428,8 +428,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "чем-отличаются-sigils"
+        "basics",
+        "sigils"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -439,8 +439,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "когда-используется-undef"
+        "basics",
+        "undef"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -450,8 +450,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "когда-используется-undef"
+        "basics",
+        "undef"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -461,8 +461,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "когда-используется-undef"
+        "basics",
+        "undef"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -472,8 +472,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "контексты-и-sigils",
-        "когда-используется-undef"
+        "basics",
+        "undef"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -483,8 +483,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "зачем-подключать-use-strict"
+        "modern-perl",
+        "use-strict"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -494,8 +494,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "зачем-подключать-use-strict"
+        "modern-perl",
+        "use-strict"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -505,8 +505,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "зачем-подключать-use-strict"
+        "modern-perl",
+        "use-strict"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -516,8 +516,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "зачем-подключать-use-strict"
+        "modern-perl",
+        "use-strict"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -527,8 +527,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-даёт-use-warnings"
+        "modern-perl",
+        "use-warnings"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -538,8 +538,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-даёт-use-warnings"
+        "modern-perl",
+        "use-warnings"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -549,8 +549,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-даёт-use-warnings"
+        "modern-perl",
+        "use-warnings"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -560,8 +560,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "разница-между-my-our-и-глобальны"
+        "basics",
+        "my-our"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -571,8 +571,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "разница-между-my-our-и-глобальны"
+        "basics",
+        "my-our"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -582,8 +582,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "разница-между-my-our-и-глобальны"
+        "basics",
+        "my-our"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -593,8 +593,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "разница-между-my-our-и-глобальны"
+        "basics",
+        "my-our"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -604,8 +604,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-такое-use-feature-say"
+        "modern-perl",
+        "feature-say"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -615,8 +615,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-такое-use-feature-say"
+        "modern-perl",
+        "feature-say"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -626,8 +626,8 @@
       "difficulty": "beginner",
       "tags": [
         "beginner",
-        "строгость-и-объявления",
-        "что-такое-use-feature-say"
+        "modern-perl",
+        "feature-say"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -637,8 +637,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "как-работают-захваты-1-2-в-regex"
+        "basics",
+        "regex-captures"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -648,8 +648,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "как-работают-захваты-1-2-в-regex"
+        "basics",
+        "regex-captures"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -659,8 +659,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "как-работают-захваты-1-2-в-regex"
+        "basics",
+        "regex-captures"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -670,8 +670,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "что-делают-модификаторы-g-i-x"
+        "basics",
+        "regex-modifiers"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -681,8 +681,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "что-делают-модификаторы-g-i-x"
+        "basics",
+        "regex-modifiers"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -692,8 +692,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "что-делают-модификаторы-g-i-x"
+        "basics",
+        "regex-modifiers"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -703,8 +703,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "что-делают-модификаторы-g-i-x"
+        "basics",
+        "regex-modifiers"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -714,8 +714,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "разница-между-и"
+        "basics",
+        "match-operators"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -725,8 +725,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "разница-между-и"
+        "basics",
+        "match-operators"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -736,8 +736,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "разница-между-и"
+        "basics",
+        "match-operators"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -747,8 +747,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "зачем-использовать-qr"
+        "basics",
+        "qr-compile"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -758,8 +758,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "зачем-использовать-qr"
+        "basics",
+        "qr-compile"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -769,8 +769,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "зачем-использовать-qr"
+        "basics",
+        "qr-compile"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -780,8 +780,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "регулярные-выражения",
-        "зачем-использовать-qr"
+        "basics",
+        "qr-compile"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -791,8 +791,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "как-устроен-в-подпрограмме"
+        "basics",
+        "sub-args"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -802,8 +802,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "как-устроен-в-подпрограмме"
+        "basics",
+        "sub-args"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -813,8 +813,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "как-устроен-в-подпрограмме"
+        "basics",
+        "sub-args"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -824,8 +824,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "как-устроен-в-подпрограмме"
+        "basics",
+        "sub-args"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -835,8 +835,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "когда-применять-map-и-grep"
+        "practice",
+        "map-grep"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -846,8 +846,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "когда-применять-map-и-grep"
+        "practice",
+        "map-grep"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -857,8 +857,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "когда-применять-map-и-grep"
+        "practice",
+        "map-grep"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -868,8 +868,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "что-делает-оператор-spaceship"
+        "practice",
+        "spaceship"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -879,8 +879,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "что-делает-оператор-spaceship"
+        "practice",
+        "spaceship"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -890,8 +890,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "что-делает-оператор-spaceship"
+        "practice",
+        "spaceship"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -901,8 +901,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "что-делает-оператор-spaceship"
+        "practice",
+        "spaceship"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -912,8 +912,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "разница-между-sort-и-sort"
+        "practice",
+        "sort"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -923,8 +923,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "разница-между-sort-и-sort"
+        "practice",
+        "sort"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -934,8 +934,8 @@
       "difficulty": "intermediate",
       "tags": [
         "intermediate",
-        "подпрограммы-и-встроенные-функци",
-        "разница-между-sort-и-sort"
+        "practice",
+        "sort"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -945,8 +945,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-подключить-модуль-через-use-"
+        "tools",
+        "use-require"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -956,8 +956,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-подключить-модуль-через-use-"
+        "tools",
+        "use-require"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -967,8 +967,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-подключить-модуль-через-use-"
+        "tools",
+        "use-require"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -978,8 +978,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "базовый-синтаксис-bless-для-ооп-"
+        "oop",
+        "bless-oop"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -989,8 +989,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "базовый-синтаксис-bless-для-ооп-"
+        "oop",
+        "bless-oop"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1000,8 +1000,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "базовый-синтаксис-bless-для-ооп-"
+        "oop",
+        "bless-oop"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1011,8 +1011,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "базовый-синтаксис-bless-для-ооп-"
+        "oop",
+        "bless-oop"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1022,8 +1022,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-безопасно-открыть-файл-и-обр"
+        "practice",
+        "file-io"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1033,8 +1033,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-безопасно-открыть-файл-и-обр"
+        "practice",
+        "file-io"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1044,8 +1044,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "как-безопасно-открыть-файл-и-обр"
+        "practice",
+        "file-io"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1055,8 +1055,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "типовые-red-flags-в-perl-коде-на"
+        "architecture-legacy",
+        "red-flags"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1066,8 +1066,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "типовые-red-flags-в-perl-коде-на"
+        "architecture-legacy",
+        "red-flags"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1077,8 +1077,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "типовые-red-flags-в-perl-коде-на"
+        "architecture-legacy",
+        "red-flags"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     },
@@ -1088,8 +1088,8 @@
       "difficulty": "advanced",
       "tags": [
         "advanced",
-        "модули-ооп-и-практика-на-интервь",
-        "типовые-red-flags-в-perl-коде-на"
+        "architecture-legacy",
+        "red-flags"
       ],
       "updatedAt": "2026-06-14T18:00:00.000Z"
     }

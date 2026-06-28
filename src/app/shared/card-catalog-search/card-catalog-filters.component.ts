@@ -14,6 +14,7 @@ import {
   CONTENT_LANGUAGES,
   DIFFICULTIES,
   DIFFICULTY_LABELS,
+  tagLabel,
 } from './catalog-labels';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
@@ -39,6 +40,7 @@ export class CardCatalogFiltersComponent {
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly kindLabels = CARD_KIND_LABELS;
+  readonly tagLabel = tagLabel;
 
   onQueryInput(value: string): void {
     this.store.setQuery(value);

@@ -5,6 +5,8 @@ export {
   CONTENT_LANGUAGES,
   DIFFICULTIES,
   DIFFICULTY_LABELS,
+  TAG_LABELS,
+  tagLabel,
 } from './catalog-labels';
 export { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 export { CardCatalogSearchStore } from './card-catalog-search.store';

@@ -82,7 +82,7 @@
               [class.card-catalog-filters__chip--active]="isTagSelected(facet.value)"
               (click)="toggleTag(facet.value)"
             >
-              {{ facet.value }} ({{ facet.count }})
+              {{ tagLabel(facet.value) }} ({{ facet.count }})
             </mat-chip>
           }
         </mat-chip-set>

@@ -12,6 +12,7 @@ import {
   PERL_INTERVIEW_CODE_SELECT_CONTENT,
   codeSelectContentKey,
 } from './perl-interview-code-select-content.mjs';
+import { buildPerlInterviewTags } from './perl-interview-tags.mjs';
 import { parsePerlInterviewIdea } from './perl-interview-idea-parser.mjs';
 
 const scriptDir = dirname(fileURLToPath(import.meta.url));
@@ -193,7 +194,7 @@ export function buildPerlInterviewMaterialized() {
           knownLanguage: 'ru',
           learningLanguage: 'perl',
           difficulty,
-          tags: [difficulty, slugTag(stage.title), slugTag(question)],
+          tags: buildPerlInterviewTags(stageIndex, questionIndex, difficulty),
           updatedAt: PERL_INTERVIEW_UPDATED_AT,
         };
       }
@@ -212,14 +213,6 @@ export function buildPerlInterviewMaterialized() {
   }
 
   return { cards, scenarios, lessons, cardIndexMeta };
-}
-
-function slugTag(value) {
-  return value
-    .toLowerCase()
-    .replace(/[^\p{L}\p{N}]+/gu, '-')
-    .replace(/^-|-$/g, '')
-    .slice(0, 32);
 }
 
 export function buildPerlInterviewCards() {
