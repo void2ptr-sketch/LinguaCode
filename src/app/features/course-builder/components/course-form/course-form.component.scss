@@ -108,3 +108,27 @@
 .course-form__add-lesson {
   justify-self: start;
 }
+
+.course-form__divider {
+  margin: 0.5rem 0;
+}
+
+.course-form__export-section {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.course-form__export-label {
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.course-form__export-controls {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
