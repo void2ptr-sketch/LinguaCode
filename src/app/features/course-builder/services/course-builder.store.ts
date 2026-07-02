@@ -18,6 +18,7 @@ import { loadCourseCatalogFromStorage } from '../../../core/data/courses-storage
 import { loadScenariosFromStorage } from '../../../core/data/scenarios-storage';
 import { CardRepository } from '../../../core/data/card.repository';
 import { loadCardIndexMetaOverrides } from '../../../core/data/card-index-meta.storage';
+import { CoursePdfExportService } from '../services/course-pdf-export.service';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
@@ -29,6 +30,7 @@ export class CourseBuilderStore {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly userStore = inject(UserStore);
   private readonly cardRepository = inject(CardRepository);
+  private readonly pdfExport = inject(CoursePdfExportService);
 
   readonly indexItems = signal<readonly CourseIndexEntry[]>([]);
   readonly totalItems = signal(0);
@@ -226,6 +228,39 @@ export class CourseBuilderStore {
       this.exportError.set('Ошибка при экспорте курса');
       return null;
     }
+  }
+
+  /**
+   * Экспортирует курс в PDF с оглавлением.
+   * Возвращает true при успехе, false при ошибке.
+   */
+  async exportPdf(courseId: string, showHints: boolean): Promise<boolean> {
+    this.exportError.set(null);
+
+    const item = this.indexItems().find((course) => course.id === courseId);
+    if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
+      this.exportError.set('Нельзя экспортировать чужой курс');
+      return false;
+    }
+
+    try {
+      const course = await this.courseSearchService.getById(courseId);
+      const blob = await this.pdfExport.export(course, showHints);
+      this.downloadBlob(blob, `${courseId}.pdf`);
+      return true;
+    } catch {
+      this.exportError.set('Ошибка при экспорте в PDF');
+      return false;
+    }
+  }
+
+  private downloadBlob(blob: Blob, filename: string): void {
+    const url = URL.createObjectURL(blob);
+    const anchor = document.createElement('a');
+    anchor.href = url;
+    anchor.download = filename;
+    anchor.click();
+    URL.revokeObjectURL(url);
   }
 
   private normalizeDraft(draft: CourseFormDraft) {

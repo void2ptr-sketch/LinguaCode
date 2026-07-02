@@ -7,6 +7,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatListModule } from '@angular/material/list';
+import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import type { PageEvent } from '@angular/material/paginator';
@@ -30,6 +31,7 @@ let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
     MatIconModule,
     MatInputModule,
     MatListModule,
+    MatMenuModule,
     MatProgressSpinnerModule,
     UiPaginationComponent,
   ],
@@ -115,9 +117,35 @@ export class CourseBuilderPageComponent implements OnInit {
     URL.revokeObjectURL(url);
 
     this.snackBar.open(
-      'Файл экспортирован. Передайте его maintainer’у для добавления в общий каталог.',
+      'Файл экспортирован. Передайте его maintainer\'у для добавления в общий каталог.',
       'Закрыть',
       { duration: 10000 },
     );
+  }
+
+  async exportPdf(courseId: string): Promise<void> {
+    const success = await this.store.exportPdf(courseId, false);
+    if (!success) {
+      const error = this.store.exportError();
+      if (error) {
+        this.snackBar.open(error, 'Закрыть', { duration: 8000 });
+      }
+      return;
+    }
+
+    this.snackBar.open('PDF с оглавлением экспортирован', 'Закрыть', { duration: 4000 });
+  }
+
+  async exportPdfWithHints(courseId: string): Promise<void> {
+    const success = await this.store.exportPdf(courseId, true);
+    if (!success) {
+      const error = this.store.exportError();
+      if (error) {
+        this.snackBar.open(error, 'Закрыть', { duration: 8000 });
+      }
+      return;
+    }
+
+    this.snackBar.open('PDF с оглавлением и подсказками экспортирован', 'Закрыть', { duration: 4000 });
   }
 }
