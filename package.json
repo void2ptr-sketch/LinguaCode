@@ -17,7 +17,8 @@
     "export:content-seed": "node scripts/content-seed/perl-interview-idea-parser.test.mjs && node scripts/content-seed/perl-interview-tags.test.mjs && node scripts/export-content-seed.mjs",
     "import:perl-idea": "node scripts/import-perl-interview-idea.mjs",
     "import:course-bundle": "node scripts/import-course-bundle.mjs",
-    "generate:radicals-course": "node scripts/generate-radicals-course.mjs && node scripts/export-content-seed.mjs"
+    "generate:radicals-course": "node scripts/generate-radicals-course.mjs && node scripts/export-content-seed.mjs",
+    "export:course-pdf": "node scripts/export-course-pdf.mjs"
   },
   "private": true,
   "dependencies": {
@@ -33,6 +34,7 @@
     "@angular/router": "^19.2.0",
     "highlight.js": "^11.11.1",
     "marked": "^15.0.12",
+    "pdfkit": "^0.19.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.15.0"
