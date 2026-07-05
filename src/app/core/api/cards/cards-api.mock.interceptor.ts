@@ -3,9 +3,9 @@ import { inject } from '@angular/core';
 import { defer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { parseCardSearchCriteria } from './cards-api.params.utils';
-import { isApiRequest } from './api-url';
+import { isApiRequest } from '../api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 
 const isCardsSearchRequest = (url: string): boolean =>

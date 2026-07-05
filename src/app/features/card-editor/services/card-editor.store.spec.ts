@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
+import { CardsCatalogMockHandler } from '../../../core/api/cards/cards-catalog.mock.handler';
 import {
   CardRepository,
   CardSearchService,

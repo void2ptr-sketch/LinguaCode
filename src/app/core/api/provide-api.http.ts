@@ -1,9 +1,9 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { authInterceptor } from './auth.interceptor';
-import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
-import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
-import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
+import { cardsApiMockInterceptor } from './cards/cards-api.mock.interceptor';
+import { scenariosApiMockInterceptor } from './scenarios/scenarios-api.mock.interceptor';
+import { coursesApiMockInterceptor } from './courses/courses-api.mock.interceptor';
 import { errorInterceptor } from './error.interceptor';
 
 export const provideApiHttp = () => {

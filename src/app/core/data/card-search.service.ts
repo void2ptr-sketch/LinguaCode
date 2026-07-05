@@ -4,7 +4,7 @@ import type { Card, CardSearchCriteria, CardSearchPage } from '../models';
 import type { CardIndexEntry } from '../models/card-index.types';
 
 import { CardsApiService } from './cards-api.service';
-import { CardsCatalogMockHandler } from '../api/cards-catalog.mock.handler';
+import { CardsCatalogMockHandler } from '../api/cards/cards-catalog.mock.handler';
 
 const INDEX_CACHE_PAGE_SIZE = 1000;
 

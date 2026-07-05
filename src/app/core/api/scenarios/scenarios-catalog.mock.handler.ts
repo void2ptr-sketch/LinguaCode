@@ -6,29 +6,29 @@ import type {
   ScenarioIndexEntry,
   ScenarioSearchCriteria,
   ScenarioSearchPage,
-} from '../models';
-import { paginateArray } from '../../shared/pagination';
-import { UserStore } from '../state';
+} from '../../models';
+import { paginateArray } from '../../../shared/pagination';
+import { UserStore } from '../../state';
 
-import { scenarioToIndexEntry } from '../data/scenario-index.mapper';
-import { filterScenarioIndex } from '../data/scenario-search.utils';
+import { scenarioToIndexEntry } from '../../data/scenario-index.mapper';
+import { filterScenarioIndex } from '../../data/scenario-search.utils';
 import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
-} from '../data/scenario-card-source.utils';
-import { cardIndexMatchesPair, normalizeLanguagePair } from '../data/language-pair.utils';
+} from '../../data/scenario-card-source.utils';
+import { cardIndexMatchesPair, normalizeLanguagePair } from '../../data/language-pair.utils';
 import {
   isEditableContentAuthor,
   isSystemAuthor,
-} from '../data/system-author.constants';
-import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
-import { ContentSeedRepository } from '../data/content-seed.repository';
+} from '../../data/system-author.constants';
+import { CardsCatalogMockHandler } from '../cards/cards-catalog.mock.handler';
+import { ContentSeedRepository } from '../../data/content-seed.repository';
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
-} from '../data/scenarios-storage';
+} from '../../data/scenarios-storage';
 
-import type { ScenarioWritePayload } from '../data/scenarios-api.service';
+import type { ScenarioWritePayload } from '../../data/scenarios-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ScenariosCatalogMockHandler {
@@ -166,7 +166,7 @@ export class ScenariosCatalogMockHandler {
 
   private async assertValidCardSource(
     source: Scenario['cardSource'],
-    languagePair?: import('../models').LanguagePair,
+    languagePair?: import('../../models').LanguagePair,
   ): Promise<void> {
     const error = await validateScenarioCardSource(source, async (cardId) => {
       try {

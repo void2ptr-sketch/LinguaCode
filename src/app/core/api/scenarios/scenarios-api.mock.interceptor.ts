@@ -3,12 +3,12 @@ import { inject } from '@angular/core';
 import { defer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { parseScenarioSearchCriteria } from './scenarios-api.params.utils';
-import { isApiRequest } from './api-url';
+import { isApiRequest } from '../api-url';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
-import type { ScenarioWritePayload } from '../data/scenarios-api.service';
+import type { ScenarioWritePayload } from '../../data/scenarios-api.service';
 
 const isScenariosSearchRequest = (url: string): boolean =>
   isApiRequest(url) && url.includes('/scenarios/search');

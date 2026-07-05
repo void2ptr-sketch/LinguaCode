@@ -12,7 +12,7 @@ import type {
 import type { CourseAuthoring } from '../models/course-authoring.types';
 import type { ApiResponse } from '../api/api.types';
 import { buildApiUrl } from '../api/api-url';
-import { buildCourseSearchParams } from '../api/courses-api.params.utils';
+import { buildCourseSearchParams } from '../api/courses/courses-api.params.utils';
 
 export type LessonWritePayload = {
   id?: string;

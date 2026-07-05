@@ -2,19 +2,19 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Card, CardSearchCriteria, CardSearchPage } from '../models';
-import type { CardIndexEntry } from '../models/card-index.types';
-import { paginateArray } from '../../shared/pagination';
+import type { Card, CardSearchCriteria, CardSearchPage } from '../../models';
+import type { CardIndexEntry } from '../../models/card-index.types';
+import { paginateArray } from '../../../shared/pagination';
 
-import { buildFixtureUrl } from './api-url';
+import { buildFixtureUrl } from '../api-url';
 import {
   buildCardIndex,
   mergeCardIndexMeta,
   type CardIndexMetaFixture,
-} from '../data/card-index.mapper';
-import { loadCardIndexMetaOverrides } from '../data/card-index-meta.storage';
-import { CardRepository } from '../data/card.repository';
-import { buildCardSearchFacets, filterCardIndex } from '../data/card-search.utils';
+} from '../../data/card-index.mapper';
+import { loadCardIndexMetaOverrides } from '../../data/card-index-meta.storage';
+import { CardRepository } from '../../data/card.repository';
+import { buildCardSearchFacets, filterCardIndex } from '../../data/card-search.utils';
 
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {

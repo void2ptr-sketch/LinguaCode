@@ -1,8 +1,8 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { CourseListScope, CourseSearchCriteria } from '../models';
-import { isContentLanguage } from '../data/language-pair.utils';
-import { DEFAULT_PAGE_SIZE } from '../../shared/pagination';
+import type { CourseListScope, CourseSearchCriteria } from '../../models';
+import { isContentLanguage } from '../../data/language-pair.utils';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 
 export function buildCourseSearchParams(criteria: CourseSearchCriteria): HttpParams {
   let params = new HttpParams()

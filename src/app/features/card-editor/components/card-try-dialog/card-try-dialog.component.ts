@@ -6,7 +6,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { CardsApiService } from '../../../../core/data/cards-api.service';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards-catalog.mock.handler';
+import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
 import { cardIndexMatchesPair } from '../../../../core/data/language-pair.utils';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { UserStore } from '../../../../core/state';

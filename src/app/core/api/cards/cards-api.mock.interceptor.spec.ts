@@ -1,8 +1,8 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { CardsApiService } from '../data/cards-api.service';
-import { CardRepository } from '../data/card.repository';
+import { CardsApiService } from '../../data/cards-api.service';
+import { CardRepository } from '../../data/card.repository';
 import { cardsApiMockInterceptor } from './cards-api.mock.interceptor';
 
 describe('cards API (mock interceptor)', () => {

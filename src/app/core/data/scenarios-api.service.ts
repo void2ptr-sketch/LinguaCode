@@ -11,7 +11,7 @@ import type {
 } from '../models';
 import type { ApiResponse } from '../api/api.types';
 import { buildApiUrl } from '../api/api-url';
-import { buildScenarioSearchParams } from '../api/scenarios-api.params.utils';
+import { buildScenarioSearchParams } from '../api/scenarios/scenarios-api.params.utils';
 
 export type ScenarioWritePayload = {
   title: string;

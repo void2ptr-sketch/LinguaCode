@@ -3,12 +3,12 @@ import { inject } from '@angular/core';
 import { defer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../../environments/environment';
+import { environment } from '../../../../environments/environment';
 import { parseCourseSearchCriteria } from './courses-api.params.utils';
-import { isApiRequest } from './api-url';
+import { isApiRequest } from '../api-url';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 
-import type { CourseWritePayload } from '../data/courses-api.service';
+import type { CourseWritePayload } from '../../data/courses-api.service';
 
 const isCoursesSearchRequest = (url: string): boolean =>
   isApiRequest(url) && url.includes('/courses/search');

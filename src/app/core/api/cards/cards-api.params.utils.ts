@@ -1,7 +1,7 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../models';
-import { DEFAULT_PAGE_SIZE } from '../../shared/pagination';
+import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../../models';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 
 export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams {
   let params = new HttpParams()
