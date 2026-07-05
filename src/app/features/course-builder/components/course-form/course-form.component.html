@@ -44,6 +44,26 @@
         >
           Опубликовать программу
         </mat-checkbox>
+
+        <mat-divider class="course-form__divider"></mat-divider>
+
+        <div class="course-form__export-section">
+          <span class="course-form__export-label">Экспорт PDF</span>
+          <div class="course-form__export-controls">
+            <mat-checkbox #withHintsCheckbox [checked]="true">
+              С ответами
+            </mat-checkbox>
+            <button
+              mat-stroked-button
+              type="button"
+              color="primary"
+              (click)="exportPdf.emit(withHintsCheckbox.checked)"
+            >
+              <mat-icon>picture_as_pdf</mat-icon>
+              Экспорт PDF
+            </button>
+          </div>
+        </div>
       </div>
     </mat-tab>
 
