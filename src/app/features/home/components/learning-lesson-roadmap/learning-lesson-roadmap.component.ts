@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 
-import type { LessonRoadmapItem } from '../../../../core/data/learning-resume.utils';
+import type { LessonRoadmapItem } from '../../../../core/data/learning/learning-resume.utils';
 
 @Component({
   selector: 'app-learning-lesson-roadmap',

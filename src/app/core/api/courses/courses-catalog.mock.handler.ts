@@ -12,22 +12,22 @@ import type {
 import { paginateArray } from '../../../shared/pagination';
 import { UserStore } from '../../state';
 
-import { normalizeCourseAuthoring } from '../../data/course-authoring.utils';
-import { courseToIndexEntry } from '../../data/course-index.mapper';
-import { filterCourseIndex } from '../../data/course-search.utils';
-import { ContentSeedRepository } from '../../data/content-seed.repository';
-import { normalizeLanguagePair } from '../../data/language-pair.utils';
+import { normalizeCourseAuthoring } from '../../data/courses/course-authoring.utils';
+import { courseToIndexEntry } from '../../data/courses/course-index.mapper';
+import { filterCourseIndex } from '../../data/courses/course-search.utils';
+import { ContentSeedRepository } from '../../data/content-seed/content-seed.repository';
+import { normalizeLanguagePair } from '../../data/language-pair/language-pair.utils';
 import {
   isEditableContentAuthor,
   isSystemAuthor,
-} from '../../data/system-author.constants';
+} from '../../data/user/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
   type CourseCatalogState,
-} from '../../data/courses-storage';
+} from '../../data/courses/courses-storage';
 
-import type { CourseWritePayload } from '../../data/courses-api.service';
+import type { CourseWritePayload } from '../../data/courses/courses-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class CoursesCatalogMockHandler {

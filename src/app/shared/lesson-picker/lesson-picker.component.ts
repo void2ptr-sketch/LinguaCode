@@ -7,7 +7,7 @@ import {
   buildLessonsById,
   isLessonUnlocked,
   prerequisiteBlockReason,
-} from '../../core/data/lesson-prerequisites.utils';
+} from '../../core/data/lesson/lesson-prerequisites.utils';
 import { CourseSearchService } from '../../core/data';
 import type { Lesson } from '../../core/models';
 import { LearningResultsStore } from '../../core/state';

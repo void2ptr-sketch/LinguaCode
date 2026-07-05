@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import type { PageEvent } from '@angular/material/paginator';
 
 import { CardSearchService } from '../../core/data';
-import { formatLanguagePair } from '../../core/data/language-pair.utils';
+import { formatLanguagePair } from '../../core/data/language-pair/language-pair.utils';
 import type {
   CardDifficulty,
   CardKind,

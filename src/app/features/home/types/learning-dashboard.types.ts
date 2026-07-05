@@ -1,4 +1,4 @@
-import type { LearningResumeTarget } from '../../../core/data/learning-resume.utils';
+import type { LearningResumeTarget } from '../../../core/data/learning/learning-resume.utils';
 
 export type ContinueLinkQueryParams = {
   courseId: string;

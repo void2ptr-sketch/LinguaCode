@@ -6,7 +6,7 @@ import {
   normalizeTimedCardDraft,
 } from './card-validation.utils';
 import { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from '../types';
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
 describe('card-validation.utils', () => {
   const appearance = { theme: 'azure-blue', fontSize: 'md' as const };

@@ -4,7 +4,7 @@ import {
   isRuZhPair,
   syncLexemePrimaryFromText,
 } from './card-editor-ux.utils';
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
 describe('card-editor-ux.utils', () => {
   it('should pick script from learning language', () => {

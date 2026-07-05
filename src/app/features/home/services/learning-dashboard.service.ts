@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
 import {
   buildLessonRoadmap,
   collectScenarioIds,
@@ -9,10 +9,10 @@ import {
   resolveLearningResumeTarget,
   type LearningResumeTarget,
   type LessonRoadmapItem,
-} from '../../../core/data/learning-resume.utils';
-import { CourseSearchService } from '../../../core/data/course-search.service';
-import { resolveLearningSessionForPair } from '../../../core/data/learning-session.utils';
-import { ScenariosApiService } from '../../../core/data/scenarios-api.service';
+} from '../../../core/data/learning/learning-resume.utils';
+import { CourseSearchService } from '../../../core/data/courses/course-search.service';
+import { resolveLearningSessionForPair } from '../../../core/data/learning/learning-session.utils';
+import { ScenariosApiService } from '../../../core/data/scenarios/scenarios-api.service';
 import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 

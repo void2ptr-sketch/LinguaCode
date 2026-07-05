@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LearningResultsStore } from '../../../../core/state';
-import { scenarioDisplayLabel } from '../../../../core/data/scenario-display-label.utils';
+import { scenarioDisplayLabel } from '../../../../core/data/scenarios/scenario-display-label.utils';
 
 @Component({
   selector: 'app-learning-progress',

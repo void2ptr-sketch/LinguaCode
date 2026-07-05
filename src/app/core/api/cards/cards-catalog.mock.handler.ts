@@ -11,10 +11,10 @@ import {
   buildCardIndex,
   mergeCardIndexMeta,
   type CardIndexMetaFixture,
-} from '../../data/card-index.mapper';
-import { loadCardIndexMetaOverrides } from '../../data/card-index-meta.storage';
-import { CardRepository } from '../../data/card.repository';
-import { buildCardSearchFacets, filterCardIndex } from '../../data/card-search.utils';
+} from '../../data/cards/card-index.mapper';
+import { loadCardIndexMetaOverrides } from '../../data/cards/card-index-meta.storage';
+import { CardRepository } from '../../data/cards/card.repository';
+import { buildCardSearchFacets, filterCardIndex } from '../../data/cards/card-search.utils';
 
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {

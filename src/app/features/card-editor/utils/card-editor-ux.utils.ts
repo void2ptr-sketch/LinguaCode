@@ -1,6 +1,6 @@
 import type { ContentLanguage } from '../../../core/models';
 import type { ScriptCode } from '../../../core/models/phonetic-content.types';
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
 export type CardEditorUxMode = 'basic' | 'advanced';
 

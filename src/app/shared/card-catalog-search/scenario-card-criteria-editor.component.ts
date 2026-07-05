@@ -8,7 +8,7 @@ import { CardSearchService } from '../../core/data';
 import {
   DEFAULT_CRITERIA_LIMIT,
   resolveScenarioCardIds,
-} from '../../core/data/scenario-card-source.utils';
+} from '../../core/data/scenarios/scenario-card-source.utils';
 import type { CardSearchCriteria, ScenarioCardSort } from '../../core/models';
 import { UserStore } from '../../core/state';
 

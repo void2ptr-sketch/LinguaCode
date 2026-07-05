@@ -1,4 +1,4 @@
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import {
   addOption,
   createEmptyOptionsState,

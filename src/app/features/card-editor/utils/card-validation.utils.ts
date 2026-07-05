@@ -1,15 +1,15 @@
-import { deriveKnownOptionsFromLexemes } from '../../../core/data/card-direction.utils';
-import { stripPinyinTones } from '../../../core/data/cjk-romanization.utils';
+import { deriveKnownOptionsFromLexemes } from '../../../core/data/cards/card-direction.utils';
+import { stripPinyinTones } from '../../../core/data/chinese/cjk-romanization.utils';
 import type {
   DrawCharacterTarget,
   DrawPracticeMode,
 } from '../../../core/models/draw-practice.types';
-import { normalizeToneOptions } from '../../../core/data/tone-mark.utils';
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import { normalizeToneOptions } from '../../../core/data/chinese/tone-mark.utils';
+import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
-} from '../../../core/data/lexeme-draft.utils';
+} from '../../../core/data/chinese/lexeme-draft.utils';
 import { sanitizeMarkdownText, sanitizePlainText, sanitizeTheme, isAllowedFontSize } from '../../../core/security';
 import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../core/models';
 import type { CardDirection } from '../../../core/models/language-pair.types';

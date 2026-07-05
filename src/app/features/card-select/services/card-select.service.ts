@@ -6,8 +6,8 @@ import {
   resolveScenarioCardIds,
   ScenarioSearchService,
 } from '../../../core/data';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/data/scenario-card-source.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
+import { scenarioMatchesLanguagePair } from '../../../core/data/scenarios/scenario-card-source.utils';
 import { Card } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 

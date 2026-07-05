@@ -6,12 +6,12 @@ import {
   hasCardSearchFilters,
   resolveScenarioCardIds,
   validateScenarioCardSource,
-} from '../../../core/data/scenario-card-source.utils';
+} from '../../../core/data/scenarios/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../../core/data/language-pair.utils';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
+} from '../../../core/data/language-pair/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
 import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/data';
 import { CardsCatalogMockHandler } from '../../../core/api';
 import type {
@@ -23,7 +23,7 @@ import type {
 } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
-import { isEditableContentAuthor } from '../../../core/data/system-author.constants';
+import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
@@ -265,7 +265,7 @@ export class ScenarioBuilderStore {
 
   private async normalizeDraft(
     draft: ScenarioDraft,
-  ): Promise<import('../../../core/data/scenarios-api.service').ScenarioWritePayload | null> {
+  ): Promise<import('../../../core/data/scenarios/scenarios-api.service').ScenarioWritePayload | null> {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
     const languagePair = normalizeLanguagePair(draft.languagePair);

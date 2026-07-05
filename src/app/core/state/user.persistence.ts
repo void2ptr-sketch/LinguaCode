@@ -3,7 +3,7 @@ import type { User } from '../models';
 import {
   createDefaultLanguagePairPreferences,
   normalizeUserPreferences,
-} from '../data/user-language-pair.utils';
+} from '../data/user/user-language-pair.utils';
 
 export const USER_STORAGE_KEY = 'lingua-code.user';
 

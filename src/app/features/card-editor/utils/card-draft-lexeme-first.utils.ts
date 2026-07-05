@@ -1,4 +1,4 @@
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import type { CardDraft } from '../types';
 
 export function deriveOptionText(lexeme: LexemeDraftFields | undefined, fallback: string): string {

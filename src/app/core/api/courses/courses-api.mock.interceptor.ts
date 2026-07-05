@@ -8,7 +8,7 @@ import { parseCourseSearchCriteria } from './courses-api.params.utils';
 import { isApiRequest } from '../api-url';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 
-import type { CourseWritePayload } from '../../data/courses-api.service';
+import type { CourseWritePayload } from '../../data/courses/courses-api.service';
 
 const isCoursesSearchRequest = (url: string): boolean =>
   isApiRequest(url) && url.includes('/courses/search');
