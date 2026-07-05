@@ -5,9 +5,9 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { CardsApiService } from '../../../../core/data/cards-api.service';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards-catalog.mock.handler';
-import { cardIndexMatchesPair } from '../../../../core/data/language-pair.utils';
+import { CardsApiService } from '../../../../core/data/cards/cards-api.service';
+import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
+import { cardIndexMatchesPair } from '../../../../core/data/language-pair/language-pair.utils';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { UserStore } from '../../../../core/state';
 import { CARD_KIND_LABELS } from '../../../../shared/card-catalog-search';

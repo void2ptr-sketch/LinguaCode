@@ -5,11 +5,11 @@ import { MatIconModule } from '@angular/material/icon';
 import {
   playLearningAudio,
   resolveLearningSpeech,
-} from '../../../../core/data/card-learning-audio.utils';
+} from '../../../../core/data/cards/card-learning-audio.utils';
 import {
   effectiveCardDirection,
   resolveOptionCard,
-} from '../../../../core/data/card-direction.utils';
+} from '../../../../core/data/cards/card-direction.utils';
 import { SoundCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';

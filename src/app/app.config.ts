@@ -2,9 +2,9 @@ import { ApplicationConfig, inject, provideAppInitializer, provideZoneChangeDete
 import { provideRouter } from '@angular/router';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideApiHttp } from './core/api';
-import { ContentSeedRepository } from './core/data/content-seed.repository';
-import { migrateUserContentOverlayIfNeeded } from './core/data/user-content-overlay.migration';
-import { repairUserContentOverlayIfNeeded } from './core/data/user-content-overlay.repair';
+import { ContentSeedRepository } from './core/data/content-seed/content-seed.repository';
+import { migrateUserContentOverlayIfNeeded } from './core/data/user/user-content-overlay.migration';
+import { repairUserContentOverlayIfNeeded } from './core/data/user/user-content-overlay.repair';
 
 import { routes } from './app.routes';
 

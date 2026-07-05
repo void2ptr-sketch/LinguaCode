@@ -8,8 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import {
   effectiveCardDirection,
   resolveKeyboardPrompt,
-} from '../../../../core/data/card-direction.utils';
-import { resolveKeyboardAnswerMode } from '../../../../core/data/keyboard-answer-mode.utils';
+} from '../../../../core/data/cards/card-direction.utils';
+import { resolveKeyboardAnswerMode } from '../../../../core/data/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';

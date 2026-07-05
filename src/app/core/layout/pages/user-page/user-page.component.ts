@@ -25,8 +25,8 @@ import type { ToneMark } from '../../../models/phonetic-content.types';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
-} from '../../../data/user-language-pair.utils';
-import { shouldShowPalladius } from '../../../data/phonetic-preferences.utils';
+} from '../../../data/user/user-language-pair.utils';
+import { shouldShowPalladius } from '../../../data/phonetic/phonetic-preferences.utils';
 import {
   ROMANIZATION_DISPLAY_ORDER,
   TRACING_STROKE_DURATION_BOUNDS,
@@ -34,7 +34,7 @@ import {
 import { TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
 import { UserStore } from '../../../state';
-import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair.utils';
+import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair/language-pair.utils';
 import {
   CourseDisplaySettingsMatrixComponent,
   type RomanizationOption,

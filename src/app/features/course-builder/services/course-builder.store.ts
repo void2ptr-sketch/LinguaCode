@@ -12,25 +12,25 @@
  */
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair-scope.utils';
-import { normalizeLanguagePair } from '../../../core/data/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
+import { normalizeLanguagePair } from '../../../core/data/language-pair/language-pair.utils';
 import { CourseSearchService } from '../../../core/data';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
 import {
   COURSE_IDEA_MAX_LENGTH,
-} from '../../../core/data/course-authoring.utils';
+} from '../../../core/data/courses/course-authoring.utils';
 import { UserStore } from '../../../core/state';
-import { isEditableContentAuthor } from '../../../core/data/system-author.constants';
+import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
-import { collectCourseBundle } from '../../../core/data/course-bundle.utils';
-import { loadCourseCatalogFromStorage } from '../../../core/data/courses-storage';
-import { loadScenariosFromStorage } from '../../../core/data/scenarios-storage';
-import { CardRepository } from '../../../core/data/card.repository';
-import { loadCardIndexMetaOverrides } from '../../../core/data/card-index-meta.storage';
-import { CoursePdfExportService } from '../services/course-pdf-export.service';
+import { collectCourseBundle } from '../../../core/data/courses/course-bundle.utils';
+import { loadCourseCatalogFromStorage } from '../../../core/data/courses/courses-storage';
+import { loadScenariosFromStorage } from '../../../core/data/scenarios/scenarios-storage';
+import { CardRepository } from '../../../core/data/cards/card.repository';
+import { loadCardIndexMetaOverrides } from '../../../core/data/cards/card-index-meta.storage';
+import { CoursePdfExportService } from './course-pdf-export.service';
 
 /** Санитайзер заголовка курса: макс. 128 символов, очистка от HTML */
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);

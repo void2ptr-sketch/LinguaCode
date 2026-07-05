@@ -7,10 +7,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { pinyinToPalladius } from '../../../../core/data/cjk-romanization.utils';
-import { lookupEnglishIpa } from '../../../../core/data/ipa-en-lookup.utils';
-import { pinyinToIpa } from '../../../../core/data/pinyin-to-ipa.utils';
-import type { LexemeDraftFields } from '../../../../core/data/lexeme-draft.utils';
+import { pinyinToPalladius } from '../../../../core/data/chinese/cjk-romanization.utils';
+import { lookupEnglishIpa } from '../../../../core/data/ipa/ipa-en-lookup.utils';
+import { pinyinToIpa } from '../../../../core/data/chinese/pinyin-to-ipa.utils';
+import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
 import type { ScriptCode } from '../../../../core/models/phonetic-content.types';
 import {

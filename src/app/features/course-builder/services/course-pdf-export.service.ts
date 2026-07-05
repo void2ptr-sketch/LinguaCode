@@ -21,8 +21,8 @@ import { firstValueFrom } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
 import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/models';
-import { CardRepository } from '../../../core/data/card.repository';
-import { loadScenariosFromStorage } from '../../../core/data/scenarios-storage';
+import { CardRepository } from '../../../core/data/cards/card.repository';
+import { loadScenariosFromStorage } from '../../../core/data/scenarios/scenarios-storage';
 
 /**
  * Представление карточки в контексте курса.
@@ -119,7 +119,7 @@ export class CoursePdfExportService {
 
     // 2. Загружаем сценарии и карточки
     const allScenarios = loadScenariosFromStorage();
-    const allCards = this.cardRepository.loadStored();
+    const allCards = this.cardRepository.loadStored() as readonly Card[];
 
     // 3. Собираем карточки в порядке курса
     const lessons = [...course.lessons].sort((a, b) => a.order - b.order);
@@ -401,7 +401,7 @@ export class CoursePdfExportService {
       }
 
       case 'symbol': {
-        this.renderSymbolCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
+        this.renderSymbolCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN);
         break;
       }
 
@@ -431,7 +431,7 @@ export class CoursePdfExportService {
       }
 
       case 'tone': {
-        this.renderToneCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
+        this.renderToneCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN);
         break;
       }
 
@@ -629,7 +629,6 @@ export class CoursePdfExportService {
     showHints: boolean,
     contentWidth: number,
     margin: number,
-    pageWidth: number,
   ): void {
     let y = startY;
 
@@ -799,7 +798,6 @@ export class CoursePdfExportService {
     showHints: boolean,
     contentWidth: number,
     margin: number,
-    pageWidth: number,
   ): void {
     let y = startY;
 

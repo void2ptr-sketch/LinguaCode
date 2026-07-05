@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import type { LearningResumeTarget } from '../../../../core/data/learning-resume.utils';
+import type { LearningResumeTarget } from '../../../../core/data/learning/learning-resume.utils';
 import type { ContinueLinkQueryParams } from '../../types/learning-dashboard.types';
 
 @Component({

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import type { LexemeDraftFields } from '../../../../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../../../core/data/chinese/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../../../utils/card-options-editor.utils';
 import type {
   ReadingCardDraft,

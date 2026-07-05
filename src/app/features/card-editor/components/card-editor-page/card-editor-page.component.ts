@@ -8,7 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardKind } from '../../../../core/models';
-import { formatIndexLanguagePair } from '../../../../core/data/language-pair.utils';
+import { formatIndexLanguagePair } from '../../../../core/data/language-pair/language-pair.utils';
 import {
   CARD_KIND_LABELS,
   CardCatalogFiltersComponent,

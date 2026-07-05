@@ -10,7 +10,7 @@ import {
   getTestDefaultScenarios,
   getTestDemoCourseWithLessons,
   seedTestContentCache,
-} from '../../core/data/content-seed.test-utils';
+} from '../../core/data/content-seed/content-seed.test-utils';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {

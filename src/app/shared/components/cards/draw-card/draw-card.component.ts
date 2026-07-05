@@ -14,7 +14,7 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 
-import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/card-learning-audio.utils';
+import { playLearningAudio as playCardLearningAudio } from '../../../../core/data/cards/card-learning-audio.utils';
 import {
   drawCharacterTabPinyinLabel,
   parseRadicalHintParts,
@@ -24,11 +24,11 @@ import {
   resolveDrawPromptLexeme,
   resolveDrawQuestion,
   resolveInitialDrawCanvasMode,
-} from '../../../../core/data/draw-card.utils';
+} from '../../../../core/data/chinese/draw-card.utils';
 import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
-} from '../../../../core/data/radical-component-color.utils';
+} from '../../../../core/data/chinese/radical-component-color.utils';
 import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
 import { gradeHanziMemoryStrokes } from '../../../../core/hanzi-engine/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';

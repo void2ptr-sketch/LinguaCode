@@ -1,13 +1,13 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { CardsCatalogMockHandler } from '../../../core/api/cards-catalog.mock.handler';
+import { CardsCatalogMockHandler } from '../../../core/api/cards/cards-catalog.mock.handler';
 import {
   CardRepository,
   CardSearchService,
   ScenarioSearchService,
 } from '../../../core/data';
-import { seedTestContentCache } from '../../../core/data/content-seed.test-utils';
-import { USER_CONTENT_OVERLAY_KEY } from '../../../core/data/user-content-overlay.types';
+import { seedTestContentCache } from '../../../core/data/content-seed/content-seed.test-utils';
+import { USER_CONTENT_OVERLAY_KEY } from '../../../core/data/user/user-content-overlay.types';
 import type { ScenarioIndexEntry } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardEditorStore } from './card-editor.store';

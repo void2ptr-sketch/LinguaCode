@@ -4,9 +4,9 @@ import type { Scenario } from '../../../core/models';
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
-} from '../../../core/data/scenarios-storage';
+} from '../../../core/data/scenarios/scenarios-storage';
 
-export { SCENARIOS_STORAGE_KEY } from '../../../core/data/scenarios-storage';
+export { SCENARIOS_STORAGE_KEY } from '../../../core/data/scenarios/scenarios-storage';
 
 /** @deprecated Используйте ScenarioSearchService (HTTP). Оставлен для совместимости тестов. */
 @Injectable({ providedIn: 'root' })

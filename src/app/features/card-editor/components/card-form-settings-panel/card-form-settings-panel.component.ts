@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   lookupHanRadicalHint,
   primaryHanCharacter,
-} from '../../../../core/data/draw-stroke-guides.data';
+} from '../../../../core/data/chinese/draw-stroke-guides.data';
 import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
 import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
 import type { CardDraft } from '../../types';

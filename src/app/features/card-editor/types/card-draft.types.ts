@@ -6,8 +6,8 @@ import type {
 } from '../../../core/models/draw-practice.types';
 import type { ToneMark } from '../../../core/models/phonetic-content.types';
 import { CardDirection } from '../../../core/models/language-pair.types';
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
 export type CardAppearanceDraft = CardAppearance;
 

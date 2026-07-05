@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {
   effectiveCardDirection,
   resolveOptionCard,
-} from '../../../../core/data/card-direction.utils';
+} from '../../../../core/data/cards/card-direction.utils';
 import { TimedCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';

@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   CODE_HIGHLIGHT_LANGUAGE_LABELS,
   CODE_HIGHLIGHT_LANGUAGES,
-} from '../../../../../../core/data/code-highlight.utils';
+} from '../../../../../../core/data/code-highlight/code-highlight.utils';
 import type { CodeHighlightLanguage } from '../../../../../../core/models';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
 import { CodeHighlightComponent } from '../../../../../../shared/components/code-highlight/code-highlight.component';

@@ -13,7 +13,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { CardDifficulty } from '../../../../core/models/card-index.types';
 import type { CourseWithLessons } from '../../../../core/models';
-import { cardSupportsSessionDirection } from '../../../../core/data/card-direction.utils';
+import { cardSupportsSessionDirection } from '../../../../core/data/cards/card-direction.utils';
 import {
   CardSearchService,
   collectCourseScenarioIds,

@@ -2,7 +2,7 @@ import { Component, computed, effect, input, output, signal } from '@angular/cor
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { resolveMemoryPairs } from '../../../../core/data/card-direction.utils';
+import { resolveMemoryPairs } from '../../../../core/data/cards/card-direction.utils';
 import { MemoryCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';

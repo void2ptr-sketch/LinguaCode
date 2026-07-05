@@ -1,4 +1,4 @@
-import { applyToneToPinyinSyllable } from '../../../core/data/tone-mark.utils';
+import { applyToneToPinyinSyllable } from '../../../core/data/chinese/tone-mark.utils';
 import type { ToneMark } from '../../../core/models/phonetic-content.types';
 
 export function toneVariantLabels(

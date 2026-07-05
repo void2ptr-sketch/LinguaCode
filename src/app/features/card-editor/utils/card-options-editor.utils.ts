@@ -1,5 +1,5 @@
-import type { LexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../core/models';
 import { defaultScriptForLanguages, syncLexemePrimaryFromText } from './card-editor-ux.utils';
 

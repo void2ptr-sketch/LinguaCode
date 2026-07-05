@@ -1,6 +1,6 @@
 import { indexTagsForDraft } from './card-kind-index-meta.utils';
 import type { ReadingCardDraft } from '../types';
-import { emptyLexemeDraftFields } from '../../../core/data/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
 describe('card-kind-index-meta.utils', () => {
   it('adds reading and polyphony tags for reading cards', () => {

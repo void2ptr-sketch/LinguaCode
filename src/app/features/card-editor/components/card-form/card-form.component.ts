@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
-import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/tone-mark.utils';
+import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/chinese/tone-mark.utils';
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';

@@ -3,25 +3,25 @@ import type { CardDirection } from '../../core/models/language-pair.types';
 import {
   checkDrawCardAnswer,
   type HanziModelResolver,
-} from '../../core/data/draw-card-answer.utils';
+} from '../../core/data/chinese/draw-card-answer.utils';
 import {
   answersMatchRomanization,
   normalizeHanAnswer,
   normalizeZhuyinAnswer,
-} from '../../core/data/cjk-answer-normalize.utils';
+} from '../../core/data/chinese/cjk-answer-normalize.utils';
 import {
   effectiveCardDirection,
   resolveKeyboardAcceptedAnswers,
   resolveOptionCard,
-} from '../../core/data/card-direction.utils';
-import { answersMatchIpa } from '../../core/data/ipa-normalize.utils';
-import { collectLexemeAcceptedAnswers } from '../../core/data/lexeme-draft.utils';
+} from '../../core/data/cards/card-direction.utils';
+import { answersMatchIpa } from '../../core/data/ipa/ipa-normalize.utils';
+import { collectLexemeAcceptedAnswers } from '../../core/data/chinese/lexeme-draft.utils';
 import {
   resolveIpaString,
   resolveRomanizationReading,
-} from '../../core/data/phonetic-lexeme.utils';
+} from '../../core/data/phonetic/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../core/models/phonetic-content.types';
-import type { ResolvedOptionCard } from '../../core/data/card-direction.utils';
+import type { ResolvedOptionCard } from '../../core/data/cards/card-direction.utils';
 import { CardAnswerState } from '../types';
 
 const normalizeLatinAnswer = (value: string): string => value.trim().toLowerCase();
