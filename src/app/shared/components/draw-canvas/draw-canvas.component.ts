@@ -15,7 +15,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { paintCalligraphyPolyline } from '../../../core/data/draw-calligraphy-paint.utils';
+import { paintCalligraphyPolyline } from '../../../core/data/chinese/draw-calligraphy-paint.utils';
 import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
 import { UserStore } from '../../../core/state';
 import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-character.model';
