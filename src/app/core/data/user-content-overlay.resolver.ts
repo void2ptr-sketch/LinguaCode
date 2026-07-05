@@ -1,3 +1,38 @@
+/**
+ * Модуль разрешения пользовательских оверлеев (переопределений).
+ *
+ * Это КРИТИЧЕСКИ важный модуль, который управляет тем, какие данные
+ * отображаются в интерфейсе: seed-данные из файлов или пользовательские изменения.
+ *
+ * Архитектура:
+ * 1. Seed-данные — начальные данные из файлов public/data/*.json
+ * 2. Overlay — пользовательские изменения, сохранённые в localStorage
+ * 3. Resolver — объединяет seed и overlay, применяя правила приоритета
+ *
+ * Правила приоритета:
+ * - Если карточка/сценарий/курс удалён (deletedSystemIds) — не отображается
+ * - Если есть overlay-версия — используется она
+ * - Если overlay нет — используется seed-версия
+ * - Если элемент создан пользователем (нет в seed) — отображается
+ *
+ * Пример проблемы с localStorage:
+ * ```
+ * // В localStorage:
+ * {
+ *   deletedSystemIds: {
+ *     cards: ['perl-db-001', 'perl-db-002'] // ← Карточки исключаются!
+ *   }
+ * }
+ *
+ * // Даже если карточки есть в файле, они не отобразятся!
+ * ```
+ *
+ * Решение:
+ * ```javascript
+ * localStorage.removeItem('lingua-code.user-content-overlay');
+ * location.reload();
+ * ```
+ */
 import type { Card } from '../models';
 import type { Course, Lesson } from '../models';
 import type { Scenario } from '../models';
@@ -21,8 +56,31 @@ import type {
   UserContentOverlay,
 } from './user-content-overlay.types';
 
+/**
+ * ID карточек, которые всегда удаляются (hardcoded).
+ * Используется для удаления устаревших карточек.
+ */
 const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
 
+// -------------------------------------------------------------------------
+// Публичные функции разрешения
+// -------------------------------------------------------------------------
+
+/**
+ * Разрешает каталог курсов: объединяет seed-данные с пользовательскими оверлеями.
+ *
+ * Процесс:
+ * 1. Загружает deletedSystemIds (список удалённых элементов)
+ * 2. Для каждого курса из seed:
+ *    - Если удалён — пропускает
+ *    - Если есть overlay — применяет overlay
+ *    - Иначе — использует seed
+ * 3. Добавляет пользовательские курсы (нет в seed)
+ *
+ * @param seed — seed-данные курсов
+ * @param overlay — пользовательские оверлеи
+ * @returns разрешённый каталог курсов
+ */
 export function resolveCourseCatalog(
   seed: CourseCatalogState,
   overlay: UserContentOverlay,
@@ -77,6 +135,21 @@ export function resolveCourseCatalog(
   };
 }
 
+/**
+ * Разрешает сценарии: объединяет seed-данные с пользовательскими оверлеями.
+ *
+ * Процесс:
+ * 1. Загружает deletedSystemIds (список удалённых сценариев)
+ * 2. Для каждого сценария из seed:
+ *    - Если удалён — пропускает
+ *    - Если есть overlay — применяет overlay
+ *    - Иначе — использует seed
+ * 3. Добавляет пользовательские сценарии (нет в seed)
+ *
+ * @param seed — seed-данные сценариев
+ * @param overlay — пользовательские оверлеи
+ * @returns разрешённые сценарии
+ */
 export function resolveScenarios(
   seed: readonly Scenario[],
   overlay: UserContentOverlay,
@@ -106,6 +179,27 @@ export function resolveScenarios(
   return resolved;
 }
 
+/**
+ * Разрешает карточки: объединяет seed-данные с пользовательскими оверлеями.
+ *
+ * Это КРИТИЧЕСКИ ВАЖНАЯ функция для понимания проблемы "карточки не отображаются".
+ *
+ * Процесс:
+ * 1. Загружает deletedSystemIds (список удалённых карточек)
+ * 2. Для каждой карточки из seed:
+ *    - Если удалена — ПРОПУСКАЕТСЯ (не добавляется в byId)
+ *    - Если есть overlay — использует overlay
+ *    - Иначе — использует seed
+ * 3. Добавляет пользовательские карточки (нет в seed)
+ *
+ * Проблема:
+ * Если ID карточки есть в overlay.deletedSystemIds.cards, то карточка
+ * исключается из каталога, ДАЖЕ если она есть в файле.
+ *
+ * @param seed — seed-данные карточек
+ * @param overlay — пользовательские оверлеи
+ * @returns разрешённые карточки
+ */
 export function resolveCards(
   seed: readonly Card[],
   overlay: UserContentOverlay,
@@ -144,6 +238,22 @@ export function resolveCards(
   return [...byId.values()].filter((card) => !REMOVED_SEED_CARD_IDS.has(card.id));
 }
 
+// -------------------------------------------------------------------------
+// Функции вычисления оверлеев (для сохранения изменений)
+// -------------------------------------------------------------------------
+
+/**
+ * Вычисляет оверлей для курсов на основе разрешённых данных.
+ *
+ * Используется при сохранении изменений в localStorage.
+ * Сравнивает resolved (текущее состояние) с seed (начальным состоянием)
+ * и сохраняет только различия.
+ *
+ * @param resolved — разрешённые данные (текущее состояние)
+ * @param seed — seed-данные (начальное состояние)
+ * @param previous — предыдущий оверлей
+ * @returns оверлей для сохранения
+ */
 export function computeCourseCatalogOverlay(
   resolved: CourseCatalogState,
   seed: CourseCatalogState,
@@ -212,6 +322,14 @@ export function computeCourseCatalogOverlay(
   return { courses, lessons, deletedSystemIds };
 }
 
+/**
+ * Вычисляет оверлей для сценариев на основе разрешённых данных.
+ *
+ * @param resolved — разрешённые данные (текущее состояние)
+ * @param seed — seed-данные (начальное состояние)
+ * @param previous — предыдущий оверлей
+ * @returns оверлей для сохранения
+ */
 export function computeScenariosOverlay(
   resolved: readonly Scenario[],
   seed: readonly Scenario[],
@@ -251,6 +369,14 @@ export function computeScenariosOverlay(
   return { scenarios, deletedSystemIds };
 }
 
+/**
+ * Вычисляет оверлей для карточек на основе разрешённых данных.
+ *
+ * @param resolved — разрешённые данные (текущее состояние)
+ * @param seed — seed-данные (начальное состояние)
+ * @param previous — предыдущий оверлей
+ * @returns оверлей для сохранения
+ */
 export function computeCardsOverlay(
   resolved: readonly Card[],
   seed: readonly Card[],
@@ -289,7 +415,17 @@ export function computeCardsOverlay(
   return { cards, deletedSystemIds };
 }
 
-/** Legacy merge for tests and migration from monolithic storage. */
+// -------------------------------------------------------------------------
+// Вспомогательные функции для миграции и слияния
+// -------------------------------------------------------------------------
+
+/**
+ * Legacy-функция для слияния каталога курсов из старого хранилища.
+ *
+ * @param stored — сохранённые данные
+ * @param seed — seed-данные
+ * @returns объединённый каталог
+ */
 export function mergeLegacyCourseCatalogWithSeed(
   stored: CourseCatalogState,
   seed: CourseCatalogState,
@@ -297,6 +433,13 @@ export function mergeLegacyCourseCatalogWithSeed(
   return mergeCourseCatalogFromLegacyLists(stored, seed);
 }
 
+/**
+ * Legacy-функция для слияния сценариев из старого хранилища.
+ *
+ * @param stored — сохранённые данные
+ * @param seed — seed-данные
+ * @returns объединённые сценарии
+ */
 export function mergeLegacyScenariosWithSeed(
   stored: readonly Scenario[],
   seed: readonly Scenario[],
@@ -304,6 +447,17 @@ export function mergeLegacyScenariosWithSeed(
   return mergeScenariosWithDefaults(stored, seed);
 }
 
+// -------------------------------------------------------------------------
+// Приватные функции
+// -------------------------------------------------------------------------
+
+/**
+ * Слияние каталога курсов из legacy-формата.
+ *
+ * @param stored — сохранённые данные
+ * @param seed — seed-данные
+ * @returns объединённый каталог
+ */
 function mergeCourseCatalogFromLegacyLists(
   stored: CourseCatalogState,
   seed: CourseCatalogState,
@@ -341,6 +495,13 @@ function mergeCourseCatalogFromLegacyLists(
   };
 }
 
+/**
+ * Применяет оверлей к курсу.
+ *
+ * @param base — базовый курс из seed
+ * @param overlayEntry — оверлей (patch или полный курс)
+ * @returns курс с применённым оверлеем
+ */
 function applyCourseOverlay(base: Course, overlayEntry?: Course | CoursePatch): Course {
   if (!overlayEntry) {
     return base;
@@ -353,6 +514,13 @@ function applyCourseOverlay(base: Course, overlayEntry?: Course | CoursePatch): 
   return mergeStoredCourse({ ...base, ...overlayEntry } as Course, base);
 }
 
+/**
+ * Применяет оверлей к уроку.
+ *
+ * @param base — базовый урок из seed
+ * @param overlayEntry — оверлей (patch или полный урок)
+ * @returns урок с применённым оверлеем
+ */
 function applyLessonOverlay(base: Lesson, overlayEntry?: Lesson | LessonPatch): Lesson {
   if (!overlayEntry) {
     return base;
@@ -365,6 +533,13 @@ function applyLessonOverlay(base: Lesson, overlayEntry?: Lesson | LessonPatch): 
   return mergeStoredLesson({ ...base, ...overlayEntry } as Lesson, base);
 }
 
+/**
+ * Применяет оверлей к сценарию.
+ *
+ * @param base — базовый сценарий из seed
+ * @param overlayEntry — оверлей (patch или полный сценарий)
+ * @returns сценарий с применённым оверлеем
+ */
 function applyScenarioOverlay(base: Scenario, overlayEntry?: Scenario | ScenarioPatch): Scenario {
   if (!overlayEntry) {
     return base;
@@ -382,6 +557,13 @@ function applyScenarioOverlay(base: Scenario, overlayEntry?: Scenario | Scenario
   };
 }
 
+/**
+ * Вычисляет разницу между курсом и seed.
+ *
+ * @param resolved — текущий курс
+ * @param seed — seed-курс
+ * @returns patch с различиями
+ */
 function diffCourse(resolved: Course, seed: Course): CoursePatch {
   const patch: CoursePatch = {};
 
@@ -412,6 +594,13 @@ function diffCourse(resolved: Course, seed: Course): CoursePatch {
   return patch;
 }
 
+/**
+ * Вычисляет разницу между уроком и seed.
+ *
+ * @param resolved — текущий урок
+ * @param seed — seed-урок
+ * @returns patch с различиями
+ */
 function diffLesson(resolved: Lesson, seed: Lesson): LessonPatch {
   const patch: LessonPatch = {};
 
@@ -442,6 +631,13 @@ function diffLesson(resolved: Lesson, seed: Lesson): LessonPatch {
   return patch;
 }
 
+/**
+ * Вычисляет разницу между сценарием и seed.
+ *
+ * @param resolved — текущий сценарий
+ * @param seed — seed-сценарий
+ * @returns patch с различиями
+ */
 function diffScenario(resolved: Scenario, seed: Scenario): ScenarioPatch {
   const patch: ScenarioPatch = {};
 
@@ -464,10 +660,23 @@ function diffScenario(resolved: Scenario, seed: Scenario): ScenarioPatch {
   return patch;
 }
 
+/**
+ * Проверяет, отличаются ли две карточки.
+ *
+ * @param resolved — текущая карточка
+ * @param seed — seed-карточка
+ * @returns true если карточки отличаются
+ */
 function cardsDiffer(resolved: Card, seed: Card): boolean {
   return JSON.stringify(resolved) !== JSON.stringify(seed);
 }
 
+/**
+ * Проверяет, является ли значение полным курсом (а не patch).
+ *
+ * @param value — значение для проверки
+ * @returns true если это полный курс
+ */
 function isCompleteCourse(value: Course | CoursePatch): value is Course {
   return (
     typeof (value as Course).languagePair === 'object' &&
@@ -476,6 +685,12 @@ function isCompleteCourse(value: Course | CoursePatch): value is Course {
   );
 }
 
+/**
+ * Проверяет, является ли значение полным уроком (а не patch).
+ *
+ * @param value — значение для проверки
+ * @returns true если это полный урок
+ */
 function isCompleteLesson(value: Lesson | LessonPatch): value is Lesson {
   return (
     typeof (value as Lesson).courseId === 'string' &&
@@ -483,6 +698,12 @@ function isCompleteLesson(value: Lesson | LessonPatch): value is Lesson {
   );
 }
 
+/**
+ * Проверяет, является ли значение полным сценарием (а не patch).
+ *
+ * @param value — значение для проверки
+ * @returns true если это полный сценарий
+ */
 function isCompleteScenario(value: Scenario | ScenarioPatch): value is Scenario {
   return (
     typeof (value as Scenario).authorId === 'string' &&
@@ -490,10 +711,23 @@ function isCompleteScenario(value: Scenario | ScenarioPatch): value is Scenario 
   );
 }
 
+/**
+ * Проверяет, одинаковы ли два строковых массива.
+ *
+ * @param left — первый массив
+ * @param right — второй массив
+ * @returns true если массивы одинаковы
+ */
 function sameStringArray(left: readonly string[], right: readonly string[]): boolean {
   return left.length === right.length && left.every((value, index) => value === right[index]);
 }
 
+/**
+ * Убирает дубликаты и null/undefined из массива ID.
+ *
+ * @param ids — массив ID
+ * @returns массив уникальных ID
+ */
 function uniqueIds(ids: readonly string[]): readonly string[] {
   return [...new Set(ids.filter(Boolean))];
 }

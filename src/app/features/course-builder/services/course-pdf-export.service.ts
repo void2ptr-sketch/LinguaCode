@@ -1,3 +1,20 @@
+/**
+ * Сервис для экспорта курсов в PDF формат.
+ *
+ * Генерирует PDF с:
+ * - Титульной страницей с оглавлением (из authoring.idea курса)
+ * - Отдельными страницами для каждой карточки
+ * - Кликабельными ссылками в оглавлении на страницы карточек
+ * - Ссылкой "← Оглавление" на каждой странице карточки
+ *
+ * Использует jsPDF для генерации PDF и DejaVu Sans шрифт для поддержки кириллицы.
+ *
+ * Пример использования:
+ * ```typescript
+ * const pdfService = inject(CoursePdfExportService);
+ * const blob = await pdfService.export(course, showHints: false);
+ * ```
+ */
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -7,48 +24,92 @@ import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/mo
 import { CardRepository } from '../../../core/data/card.repository';
 import { loadScenariosFromStorage } from '../../../core/data/scenarios-storage';
 
-// ---------------------------------------------------------------------------
-// Types
-// ---------------------------------------------------------------------------
-
+/**
+ * Представление карточки в контексте курса.
+ * Содержит саму карточку и метаданные о её расположении.
+ */
 type CardEntry = {
+  /** Данные карточки */
   card: Card;
+  /** Название сценария, в котором находится карточка */
   scenarioTitle: string;
+  /** Название урока, в котором находится сценарий */
   lessonTitle: string;
 };
 
+/**
+ * Этап из authoring.idea курса.
+ * Соответствует разделу "## Этап N: название" в Markdown.
+ */
 type IdeaStage = {
+  /** Название этапа (например, "Введение в DBI") */
   title: string;
+  /** Список вопросов этапа */
   questions: string[];
 };
 
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
+// -------------------------------------------------------------------------
+// Константы для PDF
+// -------------------------------------------------------------------------
 
+/** Отступ от краёв страницы (pt) */
 const MARGIN = 40;
-const PAGE_WIDTH = 595.28; // A4
-const PAGE_HEIGHT = 841.89; // A4
+/** Ширина страницы A4 в пунктах */
+const PAGE_WIDTH = 595.28;
+/** Высота страницы A4 в пунктах */
+const PAGE_HEIGHT = 841.89;
+/** Полезная ширина контента */
 const CONTENT_WIDTH = PAGE_WIDTH - MARGIN * 2;
 
+/** Имя шрифта для регистрации в jsPDF */
 const FONT_NAME = 'DejaVuSansCondensed';
+/** Путь к TTF-шрифту в assets */
 const FONT_PATH = 'assets/fonts/DejaVuSansCondensed.ttf';
 
-// ---------------------------------------------------------------------------
-// Service
-// ---------------------------------------------------------------------------
-
+/**
+ * Сервис для экспорта курсов в PDF.
+ *
+ * Основные возможности:
+ * - Генерация PDF с оглавлением из authoring.idea
+ * - Рендеринг всех типов карточек (select, code-select, memory, и др.)
+ * - Поддержка кириллицы через DejaVu Sans шрифт
+ * - Кликабельные ссылки в оглавлении
+ * - Опциональное отображение правильных ответов (✓)
+ *
+ * Архитектура:
+ * 1. Загружает шрифт один раз (кэшируется)
+ * 2. Загружает сценарии и карточки из хранилищ
+ * 3. Собирает карточки в порядке курса (lessons → scenarios → cards)
+ * 4. Парсит idea для оглавления
+ * 5. Генерирует PDF через jsPDF
+ */
 @Injectable({ providedIn: 'root' })
 export class CoursePdfExportService {
+  /** HTTP-клиент для загрузки шрифта */
   private readonly http = inject(HttpClient);
+  /** Репозиторий карточек */
   private readonly cardRepository = inject(CardRepository);
 
+  /** Кэш base64-данных шрифта (загружается один раз) */
   private fontData: string | null = null;
+
+  // -------------------------------------------------------------------------
+  // Публичный API
+  // -------------------------------------------------------------------------
 
   /**
    * Экспортирует курс в PDF и возвращает Blob для скачивания.
-   * @param course — курс с уроками
-   * @param showHints — показывать правильные ответы
+   *
+   * Процесс:
+   * 1. Загружает шрифт (если ещё не загружен)
+   * 2. Загружает сценарии и карточки из хранилищ
+   * 3. Собирает карточки в порядке курса
+   * 4. Парсит authoring.idea для оглавления
+   * 5. Генерирует PDF
+   *
+   * @param course — курс с уроками для экспорта
+   * @param showHints — если true, показывает правильные ответы (✓)
+   * @returns Blob с PDF-данными
    */
   async export(course: CourseWithLessons, showHints: boolean): Promise<Blob> {
     // 1. Загружаем шрифт (один раз)
@@ -71,10 +132,25 @@ export class CoursePdfExportService {
     return this.generatePdf(course.title, stages, cardEntries, lessons, showHints);
   }
 
-  // -----------------------------------------------------------------------
-  // Private: PDF generation
-  // -----------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Генерация PDF
+  // -------------------------------------------------------------------------
 
+  /**
+   * Генерирует PDF-документ и возвращает Blob.
+   *
+   * Структура PDF:
+   * - Страница 1: титульная страница с оглавлением (i)
+   * - Страницы 2+: карточки (1, 2, 3, ...)
+   *
+   * @param courseTitle — название курса
+   * @param stages — этапы из authoring.idea
+   * @param cardEntries — карточки в порядке курса
+   * @param lessons — уроки курса
+   * @param showHints — показывать правильные ответы
+   * @returns Blob с PDF
+   * @private
+   */
   private async generatePdf(
     courseTitle: string,
     stages: IdeaStage[],
@@ -82,6 +158,7 @@ export class CoursePdfExportService {
     lessons: readonly Lesson[],
     showHints: boolean,
   ): Promise<Blob> {
+    // Создаём PDF документ A4
     const doc = new jsPDF({
       orientation: 'portrait',
       unit: 'pt',
@@ -89,17 +166,17 @@ export class CoursePdfExportService {
       compress: true,
     });
 
-    // Регистрируем шрифт
+    // Регистрируем шрифт с кириллицей
     doc.addFileToVFS(FONT_NAME, this.fontData!);
     doc.addFont(FONT_NAME, FONT_NAME, 'normal');
     doc.setFont(FONT_NAME);
 
-    // --- Title page with TOC (page 1) ---
+    // --- Титульная страница с оглавлением (стр. 1) ---
     if (stages.length > 0) {
       this.renderTitlePage(doc, courseTitle, stages, cardEntries, lessons);
     }
 
-    // --- Card pages (pages 2+) ---
+    // --- Страницы карточек (стр. 2+) ---
     for (let i = 0; i < cardEntries.length; i++) {
       const { card, scenarioTitle, lessonTitle } = cardEntries[i];
       const pageNum = i + 1;
@@ -111,10 +188,28 @@ export class CoursePdfExportService {
     return doc.output('blob');
   }
 
-  // -----------------------------------------------------------------------
-  // Private: Title page with table of contents
-  // -----------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Рендеринг титульной страницы
+  // -------------------------------------------------------------------------
 
+  /**
+   * Рендерит титульную страницу с оглавлением.
+   *
+   * Содержимое:
+   * - Название курса
+   * - Заголовок "Оглавление"
+   * - Этапы из authoring.idea с вопросами
+   * - Номера страниц для каждого вопроса
+   * - Кликабельные ссылки на страницы карточек
+   * - Нижний колонтитул с римской цифрой "— i —"
+   *
+   * @param doc — jsPDF документ
+   * @param courseTitle — название курса
+   * @param stages — этапы из authoring.idea
+   * @param cardEntries — карточки в порядке курса
+   * @param lessons — уроки курса
+   * @private
+   */
   private renderTitlePage(
     doc: jsPDF,
     courseTitle: string,
@@ -124,19 +219,20 @@ export class CoursePdfExportService {
   ): void {
     let y = MARGIN;
 
-    // Заголовок
+    // Заголовок курса
     doc.setFontSize(18);
     doc.setTextColor(26, 26, 26);
     doc.text(courseTitle, MARGIN, y);
     y += 24;
 
+    // Подзаголовок "Оглавление"
     doc.setFontSize(10);
     doc.setTextColor(102, 102, 102);
     doc.text('Оглавление', MARGIN, y);
     y += 20;
 
     // Строим карту: сценарий → страница первой карточки этого сценария
-    // Страницы карточек начинаются с 2 (page 1 = title page)
+    // Страницы карточек начинаются с 2 (стр. 1 = оглавление)
     const CARD_PAGE_OFFSET = 2;
     const scenarioFirstPage = new Map<string, number>();
     for (let i = 0; i < cardEntries.length; i++) {
@@ -178,7 +274,7 @@ export class CoursePdfExportService {
         doc.setTextColor(85, 85, 85);
         const text = `  • ${question}  ${pageStr}`;
 
-        // Check page overflow
+        // Проверяем переполнение страницы
         const lines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
         const h = lines.length * 12;
 
@@ -208,10 +304,33 @@ export class CoursePdfExportService {
     doc.text('— i —', PAGE_WIDTH / 2, PAGE_HEIGHT - MARGIN - 5, { align: 'center' });
   }
 
-  // -----------------------------------------------------------------------
-  // Private: Card rendering
-  // -----------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Рендеринг карточек
+  // -------------------------------------------------------------------------
 
+  /**
+   * Рендерит одну карточку на странице PDF.
+   *
+   * Содержимое карточки:
+   * - Название курса (мелко, для навигации)
+   * - ID карточки
+   * - Разделитель
+   * - Название урока
+   * - Заголовок карточки (тема сценария)
+   * - Разделитель
+   * - Метка "Вопрос:"
+   * - Контент в зависимости от типа карточки
+   * - Нижний колонтитул с номером страницы и ссылкой "← Оглавление"
+   *
+   * @param doc — jsPDF документ
+   * @param card — данные карточки
+   * @param scenarioTitle — название сценария
+   * @param lessonTitle — название урока
+   * @param courseTitle — название курса
+   * @param pageNum — номер страницы
+   * @param showHints — показывать правильные ответы
+   * @private
+   */
   private renderCard(
     doc: jsPDF,
     card: Card,
@@ -223,7 +342,7 @@ export class CoursePdfExportService {
   ): void {
     let y = MARGIN;
 
-    // --- Header: курс (мелко, только для навигации) ---
+    // --- Название курса (мелко, для навигации) ---
     doc.setFontSize(7);
     doc.setTextColor(153, 153, 153);
     doc.text(courseTitle, MARGIN, y);
@@ -240,7 +359,7 @@ export class CoursePdfExportService {
     doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 12;
 
-    // --- Этап (урок) ---
+    // --- Название урока ---
     doc.setFontSize(10);
     doc.setTextColor(102, 102, 102);
     doc.text(lessonTitle, MARGIN, y);
@@ -258,285 +377,61 @@ export class CoursePdfExportService {
     doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 5;
 
-    // --- Метка "Вопрос" (увеличен шрифт, добавлен отступ) ---
+    // --- Метка "Вопрос" ---
     doc.setFontSize(11);
     doc.setTextColor(100, 100, 100);
     doc.text('Вопрос:', MARGIN, y);
     y += 14;
 
-    // --- Контент в зависимости от типа ---
+    // --- Контент в зависимости от типа карточки ---
     switch (card.kind) {
       case 'select': {
-        // Вопрос — уменьшен в 1.3 раза (было 15)
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        // --- Разделитель перед ответами ---
-        doc.setDrawColor(238, 238, 238);
-        doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
-        y += 10;
-
-        // --- Метка "Ответы" (увеличен шрифт) ---
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Ответы:', MARGIN, y);
-        y += 16;
-
-        // Варианты ответов — уменьшен в 1.3 раза (было 14)
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (let idx = 0; idx < card.optionsLearning.length; idx++) {
-          const opt = card.optionsLearning[idx];
-          const isCorrect = idx === card.correctIndex;
-          const prefix = showHints && isCorrect ? '✓ ' : '  ';
-          const text = `${prefix}${opt}`;
-          const optLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(optLines, MARGIN + 10, y);
-          y += optLines.length * 16 + 5;
-        }
-
-        // Правильный ответ (только в режиме подсказок)
-        if (showHints) {
-          y += 6;
-          doc.setFontSize(10);
-          doc.setTextColor(42, 122, 42);
-          doc.text(`✓ Правильный ответ: ${card.optionsLearning[card.correctIndex]}`, MARGIN, y);
-        }
+        this.renderSelectCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
         break;
       }
 
       case 'code-select': {
-        // caption
-        if (card.caption) {
-          doc.setFontSize(11);
-          doc.setTextColor(34, 34, 34);
-          const captionLines = doc.splitTextToSize(card.caption, CONTENT_WIDTH);
-          doc.text(captionLines, MARGIN, y);
-          y += captionLines.length * 16 + 10;
-        }
-
-        // prompt code — блок с фоном
-        doc.setFontSize(10);
-        doc.setTextColor(26, 26, 26);
-        const codeLines = doc.splitTextToSize(card.prompt.code, CONTENT_WIDTH - 20);
-        const codeBlockHeight = codeLines.length * 14 + 14;
-
-        doc.setFillColor(245, 245, 245);
-        doc.rect(MARGIN, y, CONTENT_WIDTH, codeBlockHeight, 'F');
-        doc.setTextColor(26, 26, 26);
-        doc.setFontSize(10);
-        doc.text(codeLines, MARGIN + 8, y + 10);
-        y += codeBlockHeight + 12;
-
-        // --- Разделитель перед ответами ---
-        doc.setDrawColor(238, 238, 238);
-        doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
-        y += 10;
-
-        // --- Метка "Ответы" (увеличен шрифт) ---
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Ответы:', MARGIN, y);
-        y += 16;
-
-        // Варианты ответов
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (let idx = 0; idx < card.options.length; idx++) {
-          const opt = card.options[idx];
-          const isCorrect = idx === card.correctIndex;
-          const prefix = showHints && isCorrect ? '✓ ' : '  ';
-          const langLabel = opt.language === 'plain' ? '' : `${opt.language}: `;
-          const optText = `${prefix}${langLabel}${opt.code}`;
-          const optLines = doc.splitTextToSize(optText, CONTENT_WIDTH - 20);
-          doc.text(optLines, MARGIN + 10, y);
-          y += optLines.length * 16 + 5;
-        }
-
-        if (showHints) {
-          y += 6;
-          doc.setFontSize(10);
-          doc.setTextColor(42, 122, 42);
-          const correctOpt = card.options[card.correctIndex];
-          const correctLang = correctOpt.language === 'plain' ? '' : `${correctOpt.language}: `;
-          doc.text(`✓ Правильный ответ: ${correctLang}${correctOpt.code}`, MARGIN, y);
-        }
+        this.renderCodeSelectCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
         break;
       }
 
       case 'memory': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Пары:', MARGIN, y);
-        y += 16;
-
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (let idx = 0; idx < card.pairs.length; idx++) {
-          const pair = card.pairs[idx];
-          const text = `${idx + 1}. ${pair.known} ↔ ${pair.learning}`;
-          const pairLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(pairLines, MARGIN + 10, y);
-          y += pairLines.length * 16 + 5;
-        }
+        this.renderMemoryCard(doc, card, y, CONTENT_WIDTH, MARGIN);
         break;
       }
 
       case 'symbol': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Символы:', MARGIN, y);
-        y += 16;
-
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (let idx = 0; idx < card.symbols.length; idx++) {
-          const sym = card.symbols[idx];
-          const isCorrect = idx === card.correctIndex;
-          const prefix = showHints && isCorrect ? '✓ ' : '  ';
-          const text = `${prefix}${sym}`;
-          const symLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(symLines, MARGIN + 10, y);
-          y += symLines.length * 16 + 5;
-        }
-
-        if (showHints) {
-          y += 6;
-          doc.setFontSize(10);
-          doc.setTextColor(42, 122, 42);
-          doc.text(`✓ Правильный ответ: ${card.symbols[card.correctIndex]}`, MARGIN, y);
-        }
+        this.renderSymbolCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
         break;
       }
 
       case 'sound':
       case 'timed':
       case 'reading': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        const options: readonly string[] =
-          'optionsLearning' in card
-            ? (card.optionsLearning ?? [])
-            : 'optionsKnown' in card
-              ? (card.optionsKnown ?? [])
-              : [];
-
-        // --- Разделитель перед ответами ---
-        doc.setDrawColor(238, 238, 238);
-        doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
-        y += 10;
-
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Ответы:', MARGIN, y);
-        y += 16;
-
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (let idx = 0; idx < options.length; idx++) {
-          const opt = options[idx];
-          const isCorrect = idx === card.correctIndex;
-          const prefix = showHints && isCorrect ? '✓ ' : '  ';
-          const text = `${prefix}${opt}`;
-          const optLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(optLines, MARGIN + 10, y);
-          y += optLines.length * 16 + 5;
-        }
-
-        if (showHints) {
-          y += 6;
-          doc.setFontSize(10);
-          doc.setTextColor(42, 122, 42);
-          const correctText = options[card.correctIndex];
-          if (correctText) {
-            doc.text(`✓ Правильный ответ: ${correctText}`, MARGIN, y);
-          }
-        }
+        this.renderOptionCard(
+          doc,
+          card,
+          y,
+          showHints,
+          CONTENT_WIDTH,
+          MARGIN,
+          PAGE_WIDTH,
+        );
         break;
       }
 
       case 'keyboard': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        doc.setFontSize(11);
-        doc.setTextColor(100, 100, 100);
-        doc.text('Допустимые ответы:', MARGIN, y);
-        y += 16;
-
-        const answers = card.acceptedAnswersLearning ?? card.acceptedAnswersKnown ?? [];
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        for (const ans of answers) {
-          const text = `  • ${ans}`;
-          const ansLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(ansLines, MARGIN + 10, y);
-          y += ansLines.length * 16 + 5;
-        }
+        this.renderKeyboardCard(doc, card, y, CONTENT_WIDTH, MARGIN);
         break;
       }
 
       case 'draw': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        doc.text(`Подсказка: ${card.referenceHintKnown}`, MARGIN, y);
-        if (card.meaningKnown) {
-          y += 16;
-          doc.text(`Значение: ${card.meaningKnown}`, MARGIN, y);
-        }
+        this.renderDrawCard(doc, card, y, CONTENT_WIDTH, MARGIN);
         break;
       }
 
       case 'tone': {
-        doc.setFontSize(11);
-        doc.setTextColor(34, 34, 34);
-        const promptLines = doc.splitTextToSize(card.promptKnown, CONTENT_WIDTH);
-        doc.text(promptLines, MARGIN, y);
-        y += promptLines.length * 16 + 12;
-
-        doc.setFontSize(11);
-        doc.setTextColor(68, 68, 68);
-        doc.text(`Слог: ${card.syllableBase}`, MARGIN, y);
-        y += 16;
-
-        for (let idx = 0; idx < card.toneOptions.length; idx++) {
-          const tone = card.toneOptions[idx];
-          const isCorrect = idx === card.correctIndex;
-          const prefix = showHints && isCorrect ? '✓ ' : '  ';
-          const toneStr = String(tone);
-          const text = `${prefix}${toneStr}`;
-          const toneLines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
-          doc.text(toneLines, MARGIN + 10, y);
-          y += toneLines.length * 16 + 5;
-        }
+        this.renderToneCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
         break;
       }
 
@@ -549,27 +444,429 @@ export class CoursePdfExportService {
       }
     }
 
-    // --- Пустая строка перед нижним колонтитулом ---
-    y += 8;
-
-    // --- Нижний колонтитул: номер страницы + ссылка "← Оглавление" ---
-    const footerY = y + 8;
-    doc.setFontSize(7);
-    doc.setTextColor(153, 153, 153);
-    doc.text(`— ${pageNum} —`, PAGE_WIDTH / 2, footerY, { align: 'center' });
-
-    // Ссылка «← Оглавление» в левом нижнем углу (ведёт на страницу 1)
-    doc.setTextColor(51, 102, 204);
-    doc.text('← Оглавление', MARGIN, footerY);
-    doc.link(MARGIN, footerY - 8, 80, 12, { pageNumber: 1 });
+    // --- Нижний колонтитул ---
+    this.renderFooter(doc, pageNum, y, PAGE_WIDTH, MARGIN);
   }
 
-  // -----------------------------------------------------------------------
-  // Private: Helpers
-  // -----------------------------------------------------------------------
+  // -------------------------------------------------------------------------
+  // Рендеринг типов карточек
+  // -------------------------------------------------------------------------
 
   /**
-   * Загружает TTF-шрифт из assets и возвращает как base64 data URL (без префикса).
+   * Рендерит карточку типа 'select'.
+   * @private
+   */
+  private renderSelectCard(
+    doc: jsPDF,
+    card: Card & { kind: 'select' },
+    startY: number,
+    showHints: boolean,
+    contentWidth: number,
+    margin: number,
+    pageWidth: number,
+  ): void {
+    let y = startY;
+
+    // Вопрос
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    // Разделитель
+    doc.setDrawColor(238, 238, 238);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    // Метка "Ответы"
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Ответы:', margin, y);
+    y += 16;
+
+    // Варианты ответов
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (let idx = 0; idx < card.optionsLearning.length; idx++) {
+      const opt = card.optionsLearning[idx];
+      const isCorrect = idx === card.correctIndex;
+      const prefix = showHints && isCorrect ? '✓ ' : '  ';
+      const text = `${prefix}${opt}`;
+      const optLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(optLines, margin + 10, y);
+      y += optLines.length * 16 + 5;
+    }
+
+    // Правильный ответ (если showHints)
+    if (showHints) {
+      y += 6;
+      doc.setFontSize(10);
+      doc.setTextColor(42, 122, 42);
+      doc.text(
+        `✓ Правильный ответ: ${card.optionsLearning[card.correctIndex]}`,
+        margin,
+        y,
+      );
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'code-select'.
+   * @private
+   */
+  private renderCodeSelectCard(
+    doc: jsPDF,
+    card: Card & { kind: 'code-select' },
+    startY: number,
+    showHints: boolean,
+    contentWidth: number,
+    margin: number,
+    pageWidth: number,
+  ): void {
+    let y = startY;
+
+    // Caption
+    if (card.caption) {
+      doc.setFontSize(11);
+      doc.setTextColor(34, 34, 34);
+      const captionLines = doc.splitTextToSize(card.caption, contentWidth);
+      doc.text(captionLines, margin, y);
+      y += captionLines.length * 16 + 10;
+    }
+
+    // Код с фоном
+    doc.setFontSize(10);
+    doc.setTextColor(26, 26, 26);
+    const codeLines = doc.splitTextToSize(card.prompt.code, contentWidth - 20);
+    const codeBlockHeight = codeLines.length * 14 + 14;
+
+    doc.setFillColor(245, 245, 245);
+    doc.rect(margin, y, contentWidth, codeBlockHeight, 'F');
+    doc.setTextColor(26, 26, 26);
+    doc.setFontSize(10);
+    doc.text(codeLines, margin + 8, y + 10);
+    y += codeBlockHeight + 12;
+
+    // Разделитель
+    doc.setDrawColor(238, 238, 238);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    // Метка "Ответы"
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Ответы:', margin, y);
+    y += 16;
+
+    // Варианты ответов
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (let idx = 0; idx < card.options.length; idx++) {
+      const opt = card.options[idx];
+      const isCorrect = idx === card.correctIndex;
+      const prefix = showHints && isCorrect ? '✓ ' : '  ';
+      const langLabel = opt.language === 'plain' ? '' : `${opt.language}: `;
+      const optText = `${prefix}${langLabel}${opt.code}`;
+      const optLines = doc.splitTextToSize(optText, contentWidth - 20);
+      doc.text(optLines, margin + 10, y);
+      y += optLines.length * 16 + 5;
+    }
+
+    if (showHints) {
+      y += 6;
+      doc.setFontSize(10);
+      doc.setTextColor(42, 122, 42);
+      const correctOpt = card.options[card.correctIndex];
+      const correctLang = correctOpt.language === 'plain' ? '' : `${correctOpt.language}: `;
+      doc.text(`✓ Правильный ответ: ${correctLang}${correctOpt.code}`, margin, y);
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'memory'.
+   * @private
+   */
+  private renderMemoryCard(
+    doc: jsPDF,
+    card: Card & { kind: 'memory' },
+    startY: number,
+    contentWidth: number,
+    margin: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Пары:', margin, y);
+    y += 16;
+
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (let idx = 0; idx < card.pairs.length; idx++) {
+      const pair = card.pairs[idx];
+      const text = `${idx + 1}. ${pair.known} ↔ ${pair.learning}`;
+      const pairLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(pairLines, margin + 10, y);
+      y += pairLines.length * 16 + 5;
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'symbol'.
+   * @private
+   */
+  private renderSymbolCard(
+    doc: jsPDF,
+    card: Card & { kind: 'symbol' },
+    startY: number,
+    showHints: boolean,
+    contentWidth: number,
+    margin: number,
+    pageWidth: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Символы:', margin, y);
+    y += 16;
+
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (let idx = 0; idx < card.symbols.length; idx++) {
+      const sym = card.symbols[idx];
+      const isCorrect = idx === card.correctIndex;
+      const prefix = showHints && isCorrect ? '✓ ' : '  ';
+      const text = `${prefix}${sym}`;
+      const symLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(symLines, margin + 10, y);
+      y += symLines.length * 16 + 5;
+    }
+
+    if (showHints) {
+      y += 6;
+      doc.setFontSize(10);
+      doc.setTextColor(42, 122, 42);
+      doc.text(`✓ Правильный ответ: ${card.symbols[card.correctIndex]}`, margin, y);
+    }
+  }
+
+  /**
+   * Рендерит карточки типов 'sound', 'timed', 'reading'.
+   * @private
+   */
+  private renderOptionCard(
+    doc: jsPDF,
+    card: Card & { kind: 'sound' | 'timed' | 'reading' },
+    startY: number,
+    showHints: boolean,
+    contentWidth: number,
+    margin: number,
+    pageWidth: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    const options: readonly string[] =
+      'optionsLearning' in card
+        ? (card.optionsLearning ?? [])
+        : 'optionsKnown' in card
+          ? (card.optionsKnown ?? [])
+          : [];
+
+    // Разделитель
+    doc.setDrawColor(238, 238, 238);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Ответы:', margin, y);
+    y += 16;
+
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (let idx = 0; idx < options.length; idx++) {
+      const opt = options[idx];
+      const isCorrect = idx === card.correctIndex;
+      const prefix = showHints && isCorrect ? '✓ ' : '  ';
+      const text = `${prefix}${opt}`;
+      const optLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(optLines, margin + 10, y);
+      y += optLines.length * 16 + 5;
+    }
+
+    if (showHints) {
+      y += 6;
+      doc.setFontSize(10);
+      doc.setTextColor(42, 122, 42);
+      const correctText = options[card.correctIndex];
+      if (correctText) {
+        doc.text(`✓ Правильный ответ: ${correctText}`, margin, y);
+      }
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'keyboard'.
+   * @private
+   */
+  private renderKeyboardCard(
+    doc: jsPDF,
+    card: Card & { kind: 'keyboard' },
+    startY: number,
+    contentWidth: number,
+    margin: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    doc.setFontSize(11);
+    doc.setTextColor(100, 100, 100);
+    doc.text('Допустимые ответы:', margin, y);
+    y += 16;
+
+    const answers = card.acceptedAnswersLearning ?? card.acceptedAnswersKnown ?? [];
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    for (const ans of answers) {
+      const text = `  • ${ans}`;
+      const ansLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(ansLines, margin + 10, y);
+      y += ansLines.length * 16 + 5;
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'draw'.
+   * @private
+   */
+  private renderDrawCard(
+    doc: jsPDF,
+    card: Card & { kind: 'draw' },
+    startY: number,
+    contentWidth: number,
+    margin: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    doc.text(`Подсказка: ${card.referenceHintKnown}`, margin, y);
+    if (card.meaningKnown) {
+      y += 16;
+      doc.text(`Значение: ${card.meaningKnown}`, margin, y);
+    }
+  }
+
+  /**
+   * Рендерит карточку типа 'tone'.
+   * @private
+   */
+  private renderToneCard(
+    doc: jsPDF,
+    card: Card & { kind: 'tone' },
+    startY: number,
+    showHints: boolean,
+    contentWidth: number,
+    margin: number,
+    pageWidth: number,
+  ): void {
+    let y = startY;
+
+    doc.setFontSize(11);
+    doc.setTextColor(34, 34, 34);
+    const promptLines = doc.splitTextToSize(card.promptKnown, contentWidth);
+    doc.text(promptLines, margin, y);
+    y += promptLines.length * 16 + 12;
+
+    doc.setFontSize(11);
+    doc.setTextColor(68, 68, 68);
+    doc.text(`Слог: ${card.syllableBase}`, margin, y);
+    y += 16;
+
+    for (let idx = 0; idx < card.toneOptions.length; idx++) {
+      const tone = card.toneOptions[idx];
+      const isCorrect = idx === card.correctIndex;
+      const prefix = showHints && isCorrect ? '✓ ' : '  ';
+      const toneStr = String(tone);
+      const text = `${prefix}${toneStr}`;
+      const toneLines = doc.splitTextToSize(text, contentWidth - 20);
+      doc.text(toneLines, margin + 10, y);
+      y += toneLines.length * 16 + 5;
+    }
+  }
+
+  /**
+   * Рендерит нижний колонтитул страницы.
+   * Содержит номер страницы и ссылку "← Оглавление".
+   *
+   * @param doc — jsPDF документ
+   * @param pageNum — номер страницы
+   * @param currentY — текущая позиция Y
+   * @param pageWidth — ширина страницы
+   * @param margin — отступ от края
+   * @private
+   */
+  private renderFooter(
+    doc: jsPDF,
+    pageNum: number,
+    currentY: number,
+    pageWidth: number,
+    margin: number,
+  ): void {
+    const footerY = currentY + 8;
+
+    // Номер страницы
+    doc.setFontSize(7);
+    doc.setTextColor(153, 153, 153);
+    doc.text(`— ${pageNum} —`, pageWidth / 2, footerY, { align: 'center' });
+
+    // Ссылка "← Оглавление"
+    doc.setTextColor(51, 102, 204);
+    doc.text('← Оглавление', margin, footerY);
+    doc.link(margin, currentY, 80, 12, { pageNumber: 1 });
+  }
+
+  // -------------------------------------------------------------------------
+  // Вспомогательные методы
+  // -------------------------------------------------------------------------
+
+  /**
+   * Загружает TTF-шрифт из assets и возвращает как base64.
+   * Результат кэшируется в this.fontData.
+   *
+   * @returns base64-строка шрифта
+   * @private
    */
   private async loadFont(): Promise<string> {
     const arrayBuffer = await firstValueFrom(
@@ -585,6 +882,12 @@ export class CoursePdfExportService {
 
   /**
    * Собирает все карточки курса в порядке: уроки → сценарии → карточки.
+   *
+   * @param lessons — уроки курса (отсортированные по order)
+   * @param allScenarios — все сценарии
+   * @param allCards — все карточки
+   * @returns массив CardEntry в порядке курса
+   * @private
    */
   private collectCardEntries(
     lessons: readonly Lesson[],
@@ -630,6 +933,20 @@ export class CoursePdfExportService {
 
   /**
    * Парсит Markdown-идею курса, извлекая структуру «этап → вопросы».
+   *
+   * Формат Markdown:
+   * ```
+   * ## Этап 1: Название этапа
+   * - Вопрос 1?
+   * - Вопрос 2?
+   *
+   * ## Этап 2: Другой этап
+   * - Вопрос 3?
+   * ```
+   *
+   * @param markdown — Markdown-текст из authoring.idea
+   * @returns массив этапов с вопросами
+   * @private
    */
   private parseIdeaStages(markdown: string): IdeaStage[] {
     const stages: IdeaStage[] = [];
@@ -637,6 +954,7 @@ export class CoursePdfExportService {
     let currentStage: IdeaStage | null = null;
 
     for (const line of lines) {
+      // Ищем заголовок этапа: "## Этап N: название"
       const stageMatch = line.match(/^##\s+Этап\s+\d+\s*:\s*(.+)/i);
       if (stageMatch) {
         currentStage = { title: stageMatch[1].trim(), questions: [] };
@@ -644,9 +962,11 @@ export class CoursePdfExportService {
         continue;
       }
 
+      // Ищем вопрос: "- текст?"
       const questionMatch = line.match(/^-\s+(.+)/);
       if (currentStage && questionMatch) {
         const q = questionMatch[1].trim();
+        // Добавляем только если вопрос заканчивается на "?"
         if (q.endsWith('?')) {
           currentStage.questions.push(q);
         }
