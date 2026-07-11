@@ -5,7 +5,6 @@
  * - Титульной страницей с оглавлением (из authoring.idea курса)
  * - Отдельными страницами для каждой карточки
  * - Кликабельными ссылками в оглавлении на страницы карточек
- * - Ссылкой "← Оглавление" на каждой странице карточки
  *
  * Использует jsPDF для генерации PDF и DejaVu Sans шрифт для поддержки кириллицы.
  *
@@ -15,6 +14,23 @@
  * const blob = await pdfService.export(course, showHints: false);
  * ```
  */
+
+/**
+ * Перемешивает массив методом Фишера-Йейтса.
+ * Исходный массив не изменяется.
+ *
+ * @param array — исходный массив
+ * @returns новый перемешанный массив
+ */
+function shuffle<T>(array: readonly T[]): T[] {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -172,8 +188,10 @@ export class CoursePdfExportService {
     doc.setFont(FONT_NAME);
 
     // --- Титульная страница с оглавлением (стр. 1) ---
+    // lessonPageMap: lessonTitle → { pageNumber, y } — страница и Y-координата заголовка этапа в оглавлении
+    const lessonPageMap = new Map<string, { pageNumber: number; y: number }>();
     if (stages.length > 0) {
-      this.renderTitlePage(doc, courseTitle, stages, cardEntries, lessons);
+      this.renderTitlePage(doc, courseTitle, stages, cardEntries, lessons, lessonPageMap);
     }
 
     // --- Страницы карточек (стр. 2+) ---
@@ -182,7 +200,7 @@ export class CoursePdfExportService {
       const pageNum = i + 1;
 
       doc.addPage();
-      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints);
+      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints, lessonPageMap);
     }
 
     return doc.output('blob');
@@ -216,6 +234,7 @@ export class CoursePdfExportService {
     stages: IdeaStage[],
     cardEntries: CardEntry[],
     lessons: readonly Lesson[],
+    lessonPageMap: Map<string, { pageNumber: number; y: number }>,
   ): void {
     let y = MARGIN;
 
@@ -248,12 +267,25 @@ export class CoursePdfExportService {
       const lesson = lessons[stageIdx];
       if (!lesson) continue;
 
+      // Проверяем переполнение перед заголовком этапа (заголовок + отступ)
+      const stageHeaderHeight = 16;
+      if (y + stageHeaderHeight > PAGE_HEIGHT - MARGIN - 20) {
+        doc.addPage();
+        y = MARGIN;
+      }
+
+      // Заголовок этапа — запоминаем страницу и Y-координату для этого урока
+      lessonPageMap.set(lesson.title, {
+        pageNumber: doc.getNumberOfPages(),
+        y: y,
+      });
+
       // Заголовок этапа
       doc.setFontSize(12);
       doc.setTextColor(51, 51, 51);
       const stageHeader = `Этап ${stageIdx + 1}: ${stage.title}`;
       doc.text(stageHeader, MARGIN, y);
-      y += 16;
+      y += stageHeaderHeight;
 
       // Собираем все сценарии этого урока
       const lessonScenarioTitles = cardEntries
@@ -320,7 +352,7 @@ export class CoursePdfExportService {
    * - Разделитель
    * - Метка "Вопрос:"
    * - Контент в зависимости от типа карточки
-   * - Нижний колонтитул с номером страницы и ссылкой "← Оглавление"
+   * - Нижний колонтитул с номером страницы
    *
    * @param doc — jsPDF документ
    * @param card — данные карточки
@@ -339,42 +371,49 @@ export class CoursePdfExportService {
     courseTitle: string,
     pageNum: number,
     showHints: boolean,
+    lessonPageMap: Map<string, { pageNumber: number; y: number }>,
   ): void {
     let y = MARGIN;
 
-    // --- Название курса (мелко, для навигации) ---
-    doc.setFontSize(7);
-    doc.setTextColor(153, 153, 153);
-    doc.text(courseTitle, MARGIN, y);
+    // -- Ссылка "← Оглавление" --
+    const SHIFT_LINK = PAGE_WIDTH / 2 - MARGIN;
+    doc.setFontSize(8);
+    doc.setTextColor(51, 102, 204);
+    doc.text('← Оглавление', SHIFT_LINK, y);
+    doc.link(SHIFT_LINK, y, 80, 12, { pageNumber: 1 });
+
+    // --- Название урока (кликабельная ссылка на соответствующий раздел в оглавлении) ---
+    doc.setFontSize(10);
+    const tocTarget = lessonPageMap.get(lessonTitle);
+    if (tocTarget !== undefined) {
+      doc.setTextColor(51, 102, 204);
+      doc.text(lessonTitle, MARGIN, y);
+      doc.link(MARGIN, y - 8, doc.getTextWidth(lessonTitle) + 4, 12, {
+        pageNumber: tocTarget.pageNumber,
+        y: tocTarget.y,
+      });
+    } else {
+      doc.setTextColor(102, 102, 102);
+      doc.text(lessonTitle, MARGIN, y);
+    }
+
     y += 10;
 
-    // --- ID карточки (мелко) ---
-    doc.setFontSize(6);
-    doc.setTextColor(187, 187, 187);
-    doc.text(card.id, MARGIN, y);
-    y += 8;
+    // --- Заголовок карточки (тема сценария) ---
+    // doc.setFontSize(8);
+    // doc.setTextColor(26, 26, 26);
+    // const titleLines = doc.splitTextToSize(card.title, CONTENT_WIDTH);
+    // doc.text(titleLines, MARGIN, y);
+    // y += titleLines.length * 18 + 8;
 
     // --- Разделитель ---
     doc.setDrawColor(221, 221, 221);
     doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 12;
 
-    // --- Название урока ---
-    doc.setFontSize(10);
-    doc.setTextColor(102, 102, 102);
-    doc.text(lessonTitle, MARGIN, y);
-    y += 14;
-
-    // --- Заголовок карточки (тема сценария) ---
-    doc.setFontSize(14);
-    doc.setTextColor(26, 26, 26);
-    const titleLines = doc.splitTextToSize(card.title, CONTENT_WIDTH);
-    doc.text(titleLines, MARGIN, y);
-    y += titleLines.length * 18 + 8;
-
     // --- Разделитель перед вопросом ---
-    doc.setDrawColor(238, 238, 238);
-    doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
+    // doc.setDrawColor(238, 238, 238);
+    // doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 5;
 
     // --- Метка "Вопрос" ---
@@ -445,7 +484,7 @@ export class CoursePdfExportService {
     }
 
     // --- Нижний колонтитул ---
-    this.renderFooter(doc, pageNum, y, PAGE_WIDTH, MARGIN);
+    this.renderFooter(doc, pageNum, y + CONTENT_WIDTH, PAGE_WIDTH, MARGIN);
   }
 
   // -------------------------------------------------------------------------
@@ -454,6 +493,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'select'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderSelectCard(
@@ -485,12 +525,19 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(card.optionsLearning);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = card.optionsLearning[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     // Варианты ответов
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.optionsLearning.length; idx++) {
-      const opt = card.optionsLearning[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${opt}`;
       const optLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -504,7 +551,7 @@ export class CoursePdfExportService {
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
       doc.text(
-        `✓ Правильный ответ: ${card.optionsLearning[card.correctIndex]}`,
+        `✓ Правильный ответ: ${shuffledOptions[shuffledCorrectIndex]}`,
         margin,
         y,
       );
@@ -513,6 +560,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'code-select'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderCodeSelectCard(
@@ -559,12 +607,19 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(card.options);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = card.options[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     // Варианты ответов
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.options.length; idx++) {
-      const opt = card.options[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const langLabel = opt.language === 'plain' ? '' : `${opt.language}: `;
       const optText = `${prefix}${langLabel}${opt.code}`;
@@ -577,7 +632,7 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      const correctOpt = card.options[card.correctIndex];
+      const correctOpt = shuffledOptions[shuffledCorrectIndex];
       const correctLang = correctOpt.language === 'plain' ? '' : `${correctOpt.language}: `;
       doc.text(`✓ Правильный ответ: ${correctLang}${correctOpt.code}`, margin, y);
     }
@@ -620,6 +675,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'symbol'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderSymbolCard(
@@ -643,11 +699,18 @@ export class CoursePdfExportService {
     doc.text('Символы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledSymbols = shuffle(card.symbols);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectSymbol = card.symbols[card.correctIndex];
+    const shuffledCorrectIndex = shuffledSymbols.indexOf(originalCorrectSymbol);
+
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.symbols.length; idx++) {
-      const sym = card.symbols[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledSymbols.length; idx++) {
+      const sym = shuffledSymbols[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${sym}`;
       const symLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -659,12 +722,13 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      doc.text(`✓ Правильный ответ: ${card.symbols[card.correctIndex]}`, margin, y);
+      doc.text(`✓ Правильный ответ: ${shuffledSymbols[shuffledCorrectIndex]}`, margin, y);
     }
   }
 
   /**
    * Рендерит карточки типов 'sound', 'timed', 'reading'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderOptionCard(
@@ -701,11 +765,18 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(options);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = options[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < options.length; idx++) {
-      const opt = options[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${opt}`;
       const optLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -717,7 +788,7 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      const correctText = options[card.correctIndex];
+      const correctText = shuffledOptions[shuffledCorrectIndex];
       if (correctText) {
         doc.text(`✓ Правильный ответ: ${correctText}`, margin, y);
       }
@@ -789,6 +860,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'tone'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderToneCard(
@@ -812,9 +884,16 @@ export class CoursePdfExportService {
     doc.text(`Слог: ${card.syllableBase}`, margin, y);
     y += 16;
 
-    for (let idx = 0; idx < card.toneOptions.length; idx++) {
-      const tone = card.toneOptions[idx];
-      const isCorrect = idx === card.correctIndex;
+    // Перемешиваем варианты ответов
+    const shuffledTones = shuffle(card.toneOptions);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectTone = card.toneOptions[card.correctIndex];
+    const shuffledCorrectIndex = shuffledTones.indexOf(originalCorrectTone);
+
+    for (let idx = 0; idx < shuffledTones.length; idx++) {
+      const tone = shuffledTones[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const toneStr = String(tone);
       const text = `${prefix}${toneStr}`;
@@ -826,7 +905,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит нижний колонтитул страницы.
-   * Содержит номер страницы и ссылку "← Оглавление".
+   * Содержит только номер страницы.
    *
    * @param doc — jsPDF документ
    * @param pageNum — номер страницы
@@ -844,15 +923,14 @@ export class CoursePdfExportService {
   ): void {
     const footerY = currentY + 8;
 
+    // --- Разделитель ---
+    doc.setDrawColor(221, 221, 221);
+    doc.line(margin, currentY, PAGE_WIDTH - MARGIN, currentY);
+
     // Номер страницы
     doc.setFontSize(7);
     doc.setTextColor(153, 153, 153);
     doc.text(`— ${pageNum} —`, pageWidth / 2, footerY, { align: 'center' });
-
-    // Ссылка "← Оглавление"
-    doc.setTextColor(51, 102, 204);
-    doc.text('← Оглавление', margin, footerY);
-    doc.link(margin, currentY, 80, 12, { pageNumber: 1 });
   }
 
   // -------------------------------------------------------------------------

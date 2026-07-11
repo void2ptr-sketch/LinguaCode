@@ -1,0 +1,201 @@
+src/app/features/course-builder/services/course-pdf-export.service.ts
+=======================================================================
+
+// ... existing code ...
+
+// 1. Обновляем тип CardEntry
+type CardEntry = {
+  card: Card;
+  scenarioTitle: string;
+  lessonTitle: string;
+  stageIndex: number; // ← ДОБАВЛЕНО
+};
+
+// ... existing code ...
+
+  async export(course: CourseWithLessons, showHints: boolean): Promise<Blob> {
+    // ... existing code ...
+
+    // 3. Собираем карточки в порядке курса
+    const lessons = [...course.lessons].sort((a, b) => a.order - b.order);
+    const cardEntries = this.collectCardEntries(lessons, allScenarios, allCards, course.lessons);
+
+    // ... existing code ...
+  }
+
+  // ... existing code ...
+
+  private collectCardEntries(
+    lessons: readonly Lesson[],
+    allScenarios: readonly Scenario[],
+    allCards: readonly Card[],
+    courseLessons: readonly Lesson[], // ← НОВЫЙ ПАРАМЕТР: все уроки курса (для индексов)
+  ): CardEntry[] {
+    const entries: CardEntry[] = [];
+    const scenarioMap = new Map<string, Scenario>();
+    for (const s of allScenarios) {
+      scenarioMap.set(s.id, s);
+    }
+
+    const cardMap = new Map<string, Card>();
+    for (const c of allCards) {
+      cardMap.set(c.id, c);
+    }
+
+    // 📌 Создаём карту: lessonTitle → stageIndex
+    const lessonToStageIndex = new Map<string, number>();
+    courseLessons.forEach((lesson, i) => {
+      lessonToStageIndex.set(lesson.title, i);
+    });
+
+    for (const lesson of lessons) {
+      for (const scenarioId of lesson.scenarioIds) {
+        const scenario = scenarioMap.get(scenarioId);
+        if (!scenario) continue;
+
+        const cardSource = scenario.cardSource;
+        const cardIds: readonly string[] =
+          cardSource.mode === 'fixed' || cardSource.mode === 'snapshot'
+            ? cardSource.cardIds
+            : [];
+        for (const cardId of cardIds) {
+          const card = cardMap.get(cardId);
+          if (!card) continue;
+
+          entries.push({
+            card,
+            scenarioTitle: scenario.title,
+            lessonTitle: lesson.title,
+            stageIndex: lessonToStageIndex.get(lesson.title) ?? 0, // ← ИСПОЛЬЗУЕМ КАРТУ
+          });
+        }
+      }
+    }
+
+    return entries;
+  }
+
+  // ... existing code ...
+
+  async generatePdf(
+    courseTitle: string,
+    stages: IdeaStage[],
+    cardEntries: CardEntry[],
+    lessons: readonly Lesson[],
+    showHints: boolean,
+  ): Promise<Blob> {
+    // ... existing code ...
+
+    // --- Страницы карточек (стр. 2+) ---
+    for (let i = 0; i < cardEntries.length; i++) {
+      const { card, scenarioTitle, lessonTitle, stageIndex } = cardEntries[i]; // ← ДЕСТРУКТУРИЗАЦИЯ
+      const pageNum = i + 1;
+
+      doc.addPage();
+      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints, stageIndex);
+    }
+
+    return doc.output('blob');
+  }
+
+  // ... existing code ...
+
+  private renderCard(
+    doc: jsPDF,
+    card: Card,
+    scenarioTitle: string,
+    lessonTitle: string,
+    courseTitle: string,
+    pageNum: number,
+    showHints: boolean,
+    stageIndex: number, // ← НОВЫЙ ПАРАМЕТР
+  ): void {
+    let y = MARGIN;
+
+    // ... existing code ...
+
+    // --- Название урока (кликабельная ссылка на соответствующий этап в оглавлении) ---
+    doc.setFontSize(10);
+    doc.setTextColor(51, 102, 204);
+    const lessonTitleLines = doc.splitTextToSize(lessonTitle, CONTENT_WIDTH - 20);
+    doc.text(lessonTitleLines, MARGIN, y);
+
+    // 🔗 ССЫЛКА НА ЯКОРЬ ЭТАПА (а не на первую страницу)
+    const lessonTitleHeight = lessonTitleLines.length * 12;
+    doc.link(MARGIN, y - 2, CONTENT_WIDTH - 20, lessonTitleHeight + 4, {
+      dest: `stage_${stageIndex}`, // ← ИМЕННО ТУТ МЕНЯЕМ
+    });
+
+    // ... existing code ...
+  }
+
+  // ... existing code ...
+
+  private renderTitlePage(
+    doc: jsPDF,
+    courseTitle: string,
+    stages: IdeaStage[],
+    cardEntries: CardEntry[],
+    lessons: readonly Lesson[],
+  ): void {
+    let y = MARGIN;
+
+    // ... existing code ...
+
+    // Сопоставляем этапы идеи с уроками по порядку
+    for (let stageIdx = 0; stageIdx < stages.length; stageIdx++) {
+      const stage = stages[stageIdx];
+      const lesson = lessons[stageIdx];
+      if (!lesson) continue;
+
+      // 📌 ЗАГОЛОВОК ЭТАПА
+      doc.setFontSize(12);
+      doc.setTextColor(51, 51, 51);
+      const stageHeader = `Этап ${stageIdx + 1}: ${stage.title}`;
+      
+      // 🔗 УСТАНАВЛИВАЕМ ИМЕНОВАННЫЙ ЯКОРЬ ДО НАПИСАНИЯ ТЕКСТА
+      // ⚠️ ВАЖНО: ставим на текущую y-позицию, чтобы клик был по заголовку
+      doc.setDestination(`stage_${stageIdx}`);
+
+      doc.text(stageHeader, MARGIN, y);
+      y += 16;
+
+      // ... existing code ...
+
+      // Сопоставляем вопросы из идеи со сценариями урока по порядку
+      for (let qIdx = 0; qIdx < stage.questions.length; qIdx++) {
+        const question = stage.questions[qIdx];
+        // ... existing code ...
+
+        doc.setFontSize(9);
+        doc.setTextColor(85, 85, 85);
+        const text = `  • ${question}  ${pageStr}`;
+        const lines = doc.splitTextToSize(text, CONTENT_WIDTH - 20);
+        const h = lines.length * 12;
+
+        if (y + h > PAGE_HEIGHT - MARGIN - 20) {
+          doc.addPage();
+          y = MARGIN;
+        }
+
+        // 🔗 УСТАНАВЛИВАЕМ ЯКОРЬ НА ВОПРОС (если нужно кликать именно на вопрос)
+        doc.setDestination(`q_${stageIdx}_${qIdx}`);
+
+        doc.text(lines, MARGIN + 10, y);
+
+        // Добавляем кликабельную ссылку на страницу карточки
+        if (pageRef) {
+          doc.link(MARGIN + 10, y - 8, CONTENT_WIDTH - 20, h + 4, {
+            pageNumber: pageRef,
+          });
+        }
+
+        y += h + 4;
+      }
+
+      y += 8;
+    }
+
+    // ... existing code ...
+  }
+  
