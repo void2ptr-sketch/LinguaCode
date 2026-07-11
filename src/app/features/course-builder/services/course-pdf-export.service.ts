@@ -15,6 +15,23 @@
  * const blob = await pdfService.export(course, showHints: false);
  * ```
  */
+
+/**
+ * Перемешивает массив методом Фишера-Йейтса.
+ * Исходный массив не изменяется.
+ *
+ * @param array — исходный массив
+ * @returns новый перемешанный массив
+ */
+function shuffle<T>(array: readonly T[]): T[] {
+  const result = [...array];
+  for (let i = result.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [result[i], result[j]] = [result[j], result[i]];
+  }
+  return result;
+}
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -454,6 +471,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'select'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderSelectCard(
@@ -485,12 +503,19 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(card.optionsLearning);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = card.optionsLearning[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     // Варианты ответов
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.optionsLearning.length; idx++) {
-      const opt = card.optionsLearning[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${opt}`;
       const optLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -504,7 +529,7 @@ export class CoursePdfExportService {
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
       doc.text(
-        `✓ Правильный ответ: ${card.optionsLearning[card.correctIndex]}`,
+        `✓ Правильный ответ: ${shuffledOptions[shuffledCorrectIndex]}`,
         margin,
         y,
       );
@@ -513,6 +538,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'code-select'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderCodeSelectCard(
@@ -559,12 +585,19 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(card.options);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = card.options[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     // Варианты ответов
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.options.length; idx++) {
-      const opt = card.options[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const langLabel = opt.language === 'plain' ? '' : `${opt.language}: `;
       const optText = `${prefix}${langLabel}${opt.code}`;
@@ -577,7 +610,7 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      const correctOpt = card.options[card.correctIndex];
+      const correctOpt = shuffledOptions[shuffledCorrectIndex];
       const correctLang = correctOpt.language === 'plain' ? '' : `${correctOpt.language}: `;
       doc.text(`✓ Правильный ответ: ${correctLang}${correctOpt.code}`, margin, y);
     }
@@ -620,6 +653,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'symbol'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderSymbolCard(
@@ -643,11 +677,18 @@ export class CoursePdfExportService {
     doc.text('Символы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledSymbols = shuffle(card.symbols);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectSymbol = card.symbols[card.correctIndex];
+    const shuffledCorrectIndex = shuffledSymbols.indexOf(originalCorrectSymbol);
+
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < card.symbols.length; idx++) {
-      const sym = card.symbols[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledSymbols.length; idx++) {
+      const sym = shuffledSymbols[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${sym}`;
       const symLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -659,12 +700,13 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      doc.text(`✓ Правильный ответ: ${card.symbols[card.correctIndex]}`, margin, y);
+      doc.text(`✓ Правильный ответ: ${shuffledSymbols[shuffledCorrectIndex]}`, margin, y);
     }
   }
 
   /**
    * Рендерит карточки типов 'sound', 'timed', 'reading'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderOptionCard(
@@ -701,11 +743,18 @@ export class CoursePdfExportService {
     doc.text('Ответы:', margin, y);
     y += 16;
 
+    // Перемешиваем варианты ответов
+    const shuffledOptions = shuffle(options);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectOption = options[card.correctIndex];
+    const shuffledCorrectIndex = shuffledOptions.indexOf(originalCorrectOption);
+
     doc.setFontSize(11);
     doc.setTextColor(68, 68, 68);
-    for (let idx = 0; idx < options.length; idx++) {
-      const opt = options[idx];
-      const isCorrect = idx === card.correctIndex;
+    for (let idx = 0; idx < shuffledOptions.length; idx++) {
+      const opt = shuffledOptions[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const text = `${prefix}${opt}`;
       const optLines = doc.splitTextToSize(text, contentWidth - 20);
@@ -717,7 +766,7 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      const correctText = options[card.correctIndex];
+      const correctText = shuffledOptions[shuffledCorrectIndex];
       if (correctText) {
         doc.text(`✓ Правильный ответ: ${correctText}`, margin, y);
       }
@@ -789,6 +838,7 @@ export class CoursePdfExportService {
 
   /**
    * Рендерит карточку типа 'tone'.
+   * Ответы перемешиваются при экспорте.
    * @private
    */
   private renderToneCard(
@@ -812,9 +862,16 @@ export class CoursePdfExportService {
     doc.text(`Слог: ${card.syllableBase}`, margin, y);
     y += 16;
 
-    for (let idx = 0; idx < card.toneOptions.length; idx++) {
-      const tone = card.toneOptions[idx];
-      const isCorrect = idx === card.correctIndex;
+    // Перемешиваем варианты ответов
+    const shuffledTones = shuffle(card.toneOptions);
+
+    // Находим индекс правильного ответа в перемешанном массиве
+    const originalCorrectTone = card.toneOptions[card.correctIndex];
+    const shuffledCorrectIndex = shuffledTones.indexOf(originalCorrectTone);
+
+    for (let idx = 0; idx < shuffledTones.length; idx++) {
+      const tone = shuffledTones[idx];
+      const isCorrect = idx === shuffledCorrectIndex;
       const prefix = showHints && isCorrect ? '✓ ' : '  ';
       const toneStr = String(tone);
       const text = `${prefix}${toneStr}`;
