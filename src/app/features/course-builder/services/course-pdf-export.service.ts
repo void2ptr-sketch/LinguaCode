@@ -370,17 +370,22 @@ export class CoursePdfExportService {
     // doc.text(card.id, MARGIN, y);
     // y += 8;
 
-    // Ссылка "← Оглавление"
-    const SHIFT_LINK = 250; // сдвиг ссылки в вправо
+    // -- Ссылка "← Оглавление" --
+    const SHIFT_LINK = PAGE_WIDTH / 2 - MARGIN;
+    doc.setFontSize(8);
     doc.setTextColor(51, 102, 204);
-    doc.text('← Оглавление', MARGIN + SHIFT_LINK, y);
-    doc.link(MARGIN + SHIFT_LINK, y, 80, 12, { pageNumber: 1 });
-    // y += 10;
+    doc.text('← Оглавление', SHIFT_LINK, y);
+    doc.link(SHIFT_LINK, y, 80, 12, { pageNumber: 1 });
+
 
     // --- Название урока ---
     doc.setFontSize(10);
     doc.setTextColor(102, 102, 102);
+    //doc.setTextColor(51, 102, 204);
     doc.text(lessonTitle, MARGIN, y);
+    // doc.link(MARGIN, y, 80, 12, { destination: lessonTitle });
+    // doc.textWithLink('← ' + lessonTitle, MARGIN, y, { destination: lessonTitle });
+
     y += 10;
 
     // --- Заголовок карточки (тема сценария) ---
@@ -906,6 +911,10 @@ export class CoursePdfExportService {
     margin: number,
   ): void {
     const footerY = currentY + 8;
+
+    // --- Разделитель ---
+    doc.setDrawColor(221, 221, 221);
+    doc.line(margin, currentY, PAGE_WIDTH - MARGIN, currentY);
 
     // Номер страницы
     doc.setFontSize(7);
