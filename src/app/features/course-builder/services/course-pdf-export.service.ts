@@ -188,8 +188,10 @@ export class CoursePdfExportService {
     doc.setFont(FONT_NAME);
 
     // --- Титульная страница с оглавлением (стр. 1) ---
+    // lessonPageMap: lessonTitle → { pageNumber, y } — страница и Y-координата заголовка этапа в оглавлении
+    const lessonPageMap = new Map<string, { pageNumber: number; y: number }>();
     if (stages.length > 0) {
-      this.renderTitlePage(doc, courseTitle, stages, cardEntries, lessons);
+      this.renderTitlePage(doc, courseTitle, stages, cardEntries, lessons, lessonPageMap);
     }
 
     // --- Страницы карточек (стр. 2+) ---
@@ -198,7 +200,7 @@ export class CoursePdfExportService {
       const pageNum = i + 1;
 
       doc.addPage();
-      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints);
+      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints, lessonPageMap);
     }
 
     return doc.output('blob');
@@ -232,6 +234,7 @@ export class CoursePdfExportService {
     stages: IdeaStage[],
     cardEntries: CardEntry[],
     lessons: readonly Lesson[],
+    lessonPageMap: Map<string, { pageNumber: number; y: number }>,
   ): void {
     let y = MARGIN;
 
@@ -264,12 +267,25 @@ export class CoursePdfExportService {
       const lesson = lessons[stageIdx];
       if (!lesson) continue;
 
+      // Проверяем переполнение перед заголовком этапа (заголовок + отступ)
+      const stageHeaderHeight = 16;
+      if (y + stageHeaderHeight > PAGE_HEIGHT - MARGIN - 20) {
+        doc.addPage();
+        y = MARGIN;
+      }
+
+      // Заголовок этапа — запоминаем страницу и Y-координату для этого урока
+      lessonPageMap.set(lesson.title, {
+        pageNumber: doc.getNumberOfPages(),
+        y: y,
+      });
+
       // Заголовок этапа
       doc.setFontSize(12);
       doc.setTextColor(51, 51, 51);
       const stageHeader = `Этап ${stageIdx + 1}: ${stage.title}`;
       doc.text(stageHeader, MARGIN, y);
-      y += 16;
+      y += stageHeaderHeight;
 
       // Собираем все сценарии этого урока
       const lessonScenarioTitles = cardEntries
@@ -355,20 +371,9 @@ export class CoursePdfExportService {
     courseTitle: string,
     pageNum: number,
     showHints: boolean,
+    lessonPageMap: Map<string, { pageNumber: number; y: number }>,
   ): void {
     let y = MARGIN;
-
-    // --- Название курса (мелко, для навигации) ---
-    // doc.setFontSize(7);
-    // doc.setTextColor(153, 153, 153);
-    // doc.text(courseTitle, MARGIN, y);
-    // y += 10;
-
-    // --- ID карточки (мелко) ---
-    // doc.setFontSize(6);
-    // doc.setTextColor(187, 187, 187);
-    // doc.text(card.id, MARGIN, y);
-    // y += 8;
 
     // -- Ссылка "← Оглавление" --
     const SHIFT_LINK = PAGE_WIDTH / 2 - MARGIN;
@@ -377,14 +382,20 @@ export class CoursePdfExportService {
     doc.text('← Оглавление', SHIFT_LINK, y);
     doc.link(SHIFT_LINK, y, 80, 12, { pageNumber: 1 });
 
-
-    // --- Название урока ---
+    // --- Название урока (кликабельная ссылка на соответствующий раздел в оглавлении) ---
     doc.setFontSize(10);
-    doc.setTextColor(102, 102, 102);
-    //doc.setTextColor(51, 102, 204);
-    doc.text(lessonTitle, MARGIN, y);
-    // doc.link(MARGIN, y, 80, 12, { destination: lessonTitle });
-    // doc.textWithLink('← ' + lessonTitle, MARGIN, y, { destination: lessonTitle });
+    const tocTarget = lessonPageMap.get(lessonTitle);
+    if (tocTarget !== undefined) {
+      doc.setTextColor(51, 102, 204);
+      doc.text(lessonTitle, MARGIN, y);
+      doc.link(MARGIN, y - 8, doc.getTextWidth(lessonTitle) + 4, 12, {
+        pageNumber: tocTarget.pageNumber,
+        y: tocTarget.y,
+      });
+    } else {
+      doc.setTextColor(102, 102, 102);
+      doc.text(lessonTitle, MARGIN, y);
+    }
 
     y += 10;
 
