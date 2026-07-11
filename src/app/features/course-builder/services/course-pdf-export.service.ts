@@ -359,38 +359,45 @@ export class CoursePdfExportService {
     let y = MARGIN;
 
     // --- Название курса (мелко, для навигации) ---
-    doc.setFontSize(7);
-    doc.setTextColor(153, 153, 153);
-    doc.text(courseTitle, MARGIN, y);
-    y += 10;
+    // doc.setFontSize(7);
+    // doc.setTextColor(153, 153, 153);
+    // doc.text(courseTitle, MARGIN, y);
+    // y += 10;
 
     // --- ID карточки (мелко) ---
-    doc.setFontSize(6);
-    doc.setTextColor(187, 187, 187);
-    doc.text(card.id, MARGIN, y);
-    y += 8;
+    // doc.setFontSize(6);
+    // doc.setTextColor(187, 187, 187);
+    // doc.text(card.id, MARGIN, y);
+    // y += 8;
+
+    // Ссылка "← Оглавление"
+    const SHIFT_LINK = 250; // сдвиг ссылки в вправо
+    doc.setTextColor(51, 102, 204);
+    doc.text('← Оглавление', MARGIN + SHIFT_LINK, y);
+    doc.link(MARGIN + SHIFT_LINK, y, 80, 12, { pageNumber: 1 });
+    // y += 10;
+
+    // --- Название урока ---
+    doc.setFontSize(10);
+    doc.setTextColor(102, 102, 102);
+    doc.text(lessonTitle, MARGIN, y);
+    y += 10;
+
+    // --- Заголовок карточки (тема сценария) ---
+    // doc.setFontSize(8);
+    // doc.setTextColor(26, 26, 26);
+    // const titleLines = doc.splitTextToSize(card.title, CONTENT_WIDTH);
+    // doc.text(titleLines, MARGIN, y);
+    // y += titleLines.length * 18 + 8;
 
     // --- Разделитель ---
     doc.setDrawColor(221, 221, 221);
     doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 12;
 
-    // --- Название урока ---
-    doc.setFontSize(10);
-    doc.setTextColor(102, 102, 102);
-    doc.text(lessonTitle, MARGIN, y);
-    y += 14;
-
-    // --- Заголовок карточки (тема сценария) ---
-    doc.setFontSize(14);
-    doc.setTextColor(26, 26, 26);
-    const titleLines = doc.splitTextToSize(card.title, CONTENT_WIDTH);
-    doc.text(titleLines, MARGIN, y);
-    y += titleLines.length * 18 + 8;
-
     // --- Разделитель перед вопросом ---
-    doc.setDrawColor(238, 238, 238);
-    doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
+    // doc.setDrawColor(238, 238, 238);
+    // doc.line(MARGIN, y, PAGE_WIDTH - MARGIN, y);
     y += 5;
 
     // --- Метка "Вопрос" ---
@@ -461,7 +468,7 @@ export class CoursePdfExportService {
     }
 
     // --- Нижний колонтитул ---
-    this.renderFooter(doc, pageNum, y, PAGE_WIDTH, MARGIN);
+    this.renderFooter(doc, pageNum, y + CONTENT_WIDTH, PAGE_WIDTH, MARGIN);
   }
 
   // -------------------------------------------------------------------------
