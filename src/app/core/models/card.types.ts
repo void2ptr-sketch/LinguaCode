@@ -1,4 +1,5 @@
 import type { CardDirection } from './language-pair.types';
+import type { CardIndexMetaOverride } from '../data/cards/card-index.mapper';
 
 export type CardKind =
   | 'select'
@@ -22,6 +23,8 @@ export type CardBase = {
   kind: CardKind;
   title: string;
   appearance: CardAppearance;
+  /** Метаданные карточки. Если отсутствуют, используются данные из card-index-meta.json. */
+  meta?: CardIndexMetaOverride;
 };
 
 import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';
