@@ -5,104 +5,253 @@
       "id": "select-1",
       "kind": "select",
       "title": "Приветствие",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как сказать «Привет» по-английски?",
-      "optionsLearning": ["Hello", "Goodbye", "Thanks", "Please"],
-      "optionsKnown": ["Привет", "Пока", "Спасибо", "Пожалуйста"],
-      "correctIndex": 0
+      "optionsLearning": [
+        "Hello",
+        "Goodbye",
+        "Thanks",
+        "Please"
+      ],
+      "optionsKnown": [
+        "Привет",
+        "Пока",
+        "Спасибо",
+        "Пожалуйста"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "select-2",
       "kind": "select",
       "title": "Числа",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как будет «один» по-английски?",
-      "optionsLearning": ["One", "Two", "Three", "Four"],
-      "optionsKnown": ["один", "два", "три", "четыре"],
-      "correctIndex": 0
+      "optionsLearning": [
+        "One",
+        "Two",
+        "Three",
+        "Four"
+      ],
+      "optionsKnown": [
+        "один",
+        "два",
+        "три",
+        "четыре"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "select-3",
       "kind": "select",
       "title": "Прощание",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как сказать «До свидания» по-английски?",
-      "optionsLearning": ["Goodbye", "Hello", "Thanks", "Please"],
-      "optionsKnown": ["До свидания", "Привет", "Спасибо", "Пожалуйста"],
-      "correctIndex": 0
+      "optionsLearning": [
+        "Goodbye",
+        "Hello",
+        "Thanks",
+        "Please"
+      ],
+      "optionsKnown": [
+        "До свидания",
+        "Привет",
+        "Спасибо",
+        "Пожалуйста"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "memory-1",
       "kind": "memory",
       "title": "Пары слов",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Найдите пары перевода",
       "pairs": [
-        { "known": "Привет", "learning": "Hello" },
-        { "known": "Пока", "learning": "Bye" }
-      ]
+        {
+          "known": "Привет",
+          "learning": "Hello"
+        },
+        {
+          "known": "Пока",
+          "learning": "Bye"
+        }
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "symbol-1",
       "kind": "symbol",
       "title": "Символы",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Выберите символ приветствия",
-      "symbols": ["👋", "🌙", "🔥", "❄️"],
-      "optionsKnown": ["Приветствие", "Ночь", "Огонь", "Снег"],
-      "correctIndex": 0
+      "symbols": [
+        "👋",
+        "🌙",
+        "🔥",
+        "❄️"
+      ],
+      "optionsKnown": [
+        "Приветствие",
+        "Ночь",
+        "Огонь",
+        "Снег"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "sound-1",
       "kind": "sound",
       "title": "Звук",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как переводится услышанное слово?",
       "audioLabelLearning": "Hello",
-      "optionsKnown": ["Привет", "Пока", "Спасибо", "Пожалуйста"],
-      "correctIndex": 0
+      "optionsKnown": [
+        "Привет",
+        "Пока",
+        "Спасибо",
+        "Пожалуйста"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "timed-1",
       "kind": "timed",
       "title": "На время",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Быстрый перевод: Thanks",
-      "optionsLearning": ["Спасибо", "Привет", "До свидания"],
-      "optionsKnown": ["Thanks", "Hello", "Goodbye"],
+      "optionsLearning": [
+        "Спасибо",
+        "Привет",
+        "До свидания"
+      ],
+      "optionsKnown": [
+        "Thanks",
+        "Hello",
+        "Goodbye"
+      ],
       "correctIndex": 0,
-      "timeLimitSec": 30
+      "timeLimitSec": 30,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "keyboard-1",
       "kind": "keyboard",
       "title": "Ввод с клавиатуры",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Введите перевод слова «Hello»",
-      "acceptedAnswersKnown": ["Привет", "привет"],
-      "acceptedAnswersLearning": ["Hello", "hello"]
+      "acceptedAnswersKnown": [
+        "Привет",
+        "привет"
+      ],
+      "acceptedAnswersLearning": [
+        "Hello",
+        "hello"
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "draw-1",
       "kind": "draw",
       "title": "Рисование",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте символ, связанный со словом Hello",
       "referenceHintKnown": "Приветствие",
-      "practiceMode": "freehand"
+      "practiceMode": "freehand",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "draw-ren-1",
       "kind": "draw",
       "title": "Иероглиф 人",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте иероглиф «人» (человек)",
       "referenceHintKnown": "человек",
       "meaningKnown": "человек",
@@ -115,13 +264,22 @@
         "zhuyin": "ㄖㄣˊ",
         "palladius": "жэнь",
         "ipa": "ʐən˧˥"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
       "id": "draw-hao-1",
       "kind": "draw",
       "title": "Иероглиф 好",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте иероглиф «好» (хорошо)",
       "referenceHintKnown": "хорошо",
       "meaningKnown": "хорошо",
@@ -135,13 +293,22 @@
         "zhuyin": "ㄏㄠˇ",
         "palladius": "хао",
         "ipa": "xaʊ˨˩˦"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
       "id": "draw-nihao-1",
       "kind": "draw",
       "title": "你好 — приветствие",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте «你好»",
       "referenceHintKnown": "Привет",
       "meaningKnown": "Привет",
@@ -155,15 +322,31 @@
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "characterTargets": [
-        { "character": "你", "pinyin": "nǐ" },
-        { "character": "好", "pinyin": "hǎo", "radicalHint": "女 + 子" }
-      ]
+        {
+          "character": "你",
+          "pinyin": "nǐ"
+        },
+        {
+          "character": "好",
+          "pinyin": "hǎo",
+          "radicalHint": "女 + 子"
+        }
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "draw-henbang-1",
       "kind": "draw",
       "title": "很棒 — отлично",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте «很棒»",
       "referenceHintKnown": "Отлично",
       "meaningKnown": "Отлично",
@@ -177,15 +360,32 @@
         "ipa": "xən˨˩˦ paŋ˥˩"
       },
       "characterTargets": [
-        { "character": "很", "pinyin": "hěn", "radicalHint": "彳 + 艮" },
-        { "character": "棒", "pinyin": "bàng", "radicalHint": "木 + 奉" }
-      ]
+        {
+          "character": "很",
+          "pinyin": "hěn",
+          "radicalHint": "彳 + 艮"
+        },
+        {
+          "character": "棒",
+          "pinyin": "bàng",
+          "radicalHint": "木 + 奉"
+        }
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "draw-bowuguan-1",
       "kind": "draw",
       "title": "博物馆 — музей",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Нарисуйте «博物馆»",
       "referenceHintKnown": "Музей",
       "meaningKnown": "Музей",
@@ -199,16 +399,37 @@
         "ipa": "pwɔ˧˥ u˥˩ kwan˨˩˦"
       },
       "characterTargets": [
-        { "character": "博", "pinyin": "bó", "radicalHint": "十 + 尃" },
-        { "character": "物", "pinyin": "wù", "radicalHint": "牛 + 勿" },
-        { "character": "馆", "pinyin": "guǎn", "radicalHint": "饣 + 官" }
-      ]
+        {
+          "character": "博",
+          "pinyin": "bó",
+          "radicalHint": "十 + 尃"
+        },
+        {
+          "character": "物",
+          "pinyin": "wù",
+          "radicalHint": "牛 + 勿"
+        },
+        {
+          "character": "馆",
+          "pinyin": "guǎn",
+          "radicalHint": "饣 + 官"
+        }
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "select-zh-1",
       "kind": "select",
       "title": "Приветствие (китайский)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как сказать «Привет» по-китайски?",
       "promptLexeme": {
@@ -220,8 +441,18 @@
         "ipa": "ni˨˩˦ xaʊ˨˩˦",
         "glossKnown": "Привет"
       },
-      "optionsLearning": ["你好", "谢谢", "再见", "请"],
-      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
+      "optionsLearning": [
+        "你好",
+        "谢谢",
+        "再见",
+        "请"
+      ],
+      "optionsKnown": [
+        "Привет",
+        "Спасибо",
+        "До свидания",
+        "Пожалуйста"
+      ],
       "optionsLexemes": [
         {
           "primary": "你好",
@@ -260,53 +491,127 @@
           "glossKnown": "Пожалуйста"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "select-en-ipa-1",
       "kind": "select",
       "title": "Hello (IPA)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как звучит слово «Hello»?",
-      "optionsLearning": ["Hello", "Goodbye", "Thanks"],
-      "optionsKnown": ["Привет", "Пока", "Спасибо"],
-      "optionsLexemes": [
-        { "primary": "Hello", "script": "latn", "ipa": "həˈləʊ", "glossKnown": "Привет" },
-        { "primary": "Goodbye", "script": "latn", "ipa": "ɡʊdˈbaɪ", "glossKnown": "Пока" },
-        { "primary": "Thanks", "script": "latn", "ipa": "θæŋks", "glossKnown": "Спасибо" }
+      "optionsLearning": [
+        "Hello",
+        "Goodbye",
+        "Thanks"
       ],
-      "correctIndex": 0
+      "optionsKnown": [
+        "Привет",
+        "Пока",
+        "Спасибо"
+      ],
+      "optionsLexemes": [
+        {
+          "primary": "Hello",
+          "script": "latn",
+          "ipa": "həˈləʊ",
+          "glossKnown": "Привет"
+        },
+        {
+          "primary": "Goodbye",
+          "script": "latn",
+          "ipa": "ɡʊdˈbaɪ",
+          "glossKnown": "Пока"
+        },
+        {
+          "primary": "Thanks",
+          "script": "latn",
+          "ipa": "θæŋks",
+          "glossKnown": "Спасибо"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "select-en-ipa-2",
       "kind": "select",
       "title": "Thought (IPA variants)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Транскрипция слова «thought»",
-      "optionsLearning": ["thought", "through", "taught"],
-      "optionsKnown": ["мысль", "через", "учил"],
+      "optionsLearning": [
+        "thought",
+        "through",
+        "taught"
+      ],
+      "optionsKnown": [
+        "мысль",
+        "через",
+        "учил"
+      ],
       "optionsLexemes": [
         {
           "primary": "thought",
           "script": "latn",
           "glossKnown": "мысль",
           "ipa": [
-            { "transcription": "θɔːt", "label": "BrE" },
-            { "transcription": "θɑːt", "label": "AmE" }
+            {
+              "transcription": "θɔːt",
+              "label": "BrE"
+            },
+            {
+              "transcription": "θɑːt",
+              "label": "AmE"
+            }
           ]
         },
-        { "primary": "through", "script": "latn", "glossKnown": "через", "ipa": "θruː" },
-        { "primary": "taught", "script": "latn", "glossKnown": "учил", "ipa": "tɔːt" }
+        {
+          "primary": "through",
+          "script": "latn",
+          "glossKnown": "через",
+          "ipa": "θruː"
+        },
+        {
+          "primary": "taught",
+          "script": "latn",
+          "glossKnown": "учил",
+          "ipa": "tɔːt"
+        }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "keyboard-en-ipa-1",
       "kind": "keyboard",
       "title": "Hello (IPA ввод)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Введите IPA-транскрипцию слова «Hello»",
       "promptLexeme": {
@@ -314,14 +619,26 @@
         "script": "latn",
         "ipa": "həˈləʊ"
       },
-      "acceptedAnswersKnown": ["həˈləʊ", "həˈloʊ"],
-      "answerMode": "ipa"
+      "acceptedAnswersKnown": [
+        "həˈləʊ",
+        "həˈloʊ"
+      ],
+      "answerMode": "ipa",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "keyboard-zh-ipa-1",
       "kind": "keyboard",
       "title": "你好 (IPA из пиньинь)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Введите IPA для «你好» (nǐ hǎo)",
       "promptLexeme": {
@@ -332,14 +649,25 @@
         "palladius": "ни хао",
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
-      "acceptedAnswersKnown": ["ni˨˩˦ xaʊ˨˩˦"],
-      "answerMode": "ipa"
+      "acceptedAnswersKnown": [
+        "ni˨˩˦ xaʊ˨˩˦"
+      ],
+      "answerMode": "ipa",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "keyboard-zh-pinyin-1",
       "kind": "keyboard",
       "title": "你好 — ввод пиньинь",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Введите пиньинь для «你好»",
       "promptLexeme": {
@@ -350,14 +678,26 @@
         "palladius": "ни хао",
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
-      "acceptedAnswersKnown": ["nǐ hǎo", "ni hao"],
-      "answerMode": "pinyin"
+      "acceptedAnswersKnown": [
+        "nǐ hǎo",
+        "ni hao"
+      ],
+      "answerMode": "pinyin",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "tone-ma-1",
       "kind": "tone",
       "title": "Тон: 妈",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Какой тон у иероглифа «妈»?",
       "promptLexeme": {
@@ -369,14 +709,28 @@
         "ipa": "ma˥"
       },
       "syllableBase": "ma",
-      "toneOptions": [1, 2, 3, 4],
-      "correctIndex": 0
+      "toneOptions": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "reading-xing-1",
       "kind": "reading",
       "title": "Полифония: 行",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как читается «银行»? (иероглиф «行» здесь читается не как xíng)",
       "promptLexeme": {
@@ -388,8 +742,14 @@
         "ipa": "in˧˥ xaŋ˧˥",
         "glossKnown": "банк"
       },
-      "optionsLearning": ["银行", "yínxíng"],
-      "optionsKnown": ["инь хан — банк", "неверное чтение «行» как xíng"],
+      "optionsLearning": [
+        "银行",
+        "yínxíng"
+      ],
+      "optionsKnown": [
+        "инь хан — банк",
+        "неверное чтение «行» как xíng"
+      ],
       "optionsLexemes": [
         {
           "primary": "银行",
@@ -407,13 +767,22 @@
           "glossKnown": "неверное чтение «行» как xíng"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "memory-zh-1",
       "kind": "memory",
       "title": "Пары слов (китайский)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "promptKnown": "Найдите пары: русский — китайский",
       "promptLexeme": {
         "primary": "配对",
@@ -460,13 +829,22 @@
             "ipa": "tsai˥˩ tɕiɛn˥˩"
           }
         }
-      ]
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "symbol-zh-1",
       "kind": "symbol",
       "title": "Иероглифы приветствия",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Выберите иероглиф слова «Привет»",
       "promptLexeme": {
@@ -474,8 +852,18 @@
         "script": "latn",
         "glossKnown": "Привет"
       },
-      "symbols": ["你好", "谢谢", "再见", "请"],
-      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
+      "symbols": [
+        "你好",
+        "谢谢",
+        "再见",
+        "请"
+      ],
+      "optionsKnown": [
+        "Привет",
+        "Спасибо",
+        "До свидания",
+        "Пожалуйста"
+      ],
       "symbolLexemes": [
         {
           "primary": "你好",
@@ -514,13 +902,22 @@
           "glossKnown": "Пожалуйста"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "sound-zh-1",
       "kind": "sound",
       "title": "Звук (китайский)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Как переводится услышанное слово?",
       "promptLexeme": {
@@ -532,14 +929,28 @@
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
       "audioLabelLearning": "你好",
-      "optionsKnown": ["Привет", "Спасибо", "До свидания", "Пожалуйста"],
-      "correctIndex": 0
+      "optionsKnown": [
+        "Привет",
+        "Спасибо",
+        "До свидания",
+        "Пожалуйста"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "timed-zh-1",
       "kind": "timed",
       "title": "На время (китайский)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Быстрый перевод: Спасибо",
       "promptLexeme": {
@@ -551,8 +962,16 @@
         "ipa": "ɕiɛ˥˩ ɕiɛ",
         "glossKnown": "Спасибо"
       },
-      "optionsLearning": ["谢谢", "你好", "再见"],
-      "optionsKnown": ["Спасибо", "Привет", "До свидания"],
+      "optionsLearning": [
+        "谢谢",
+        "你好",
+        "再见"
+      ],
+      "optionsKnown": [
+        "Спасибо",
+        "Привет",
+        "До свидания"
+      ],
       "optionsLexemes": [
         {
           "primary": "谢谢",
@@ -583,13 +1002,22 @@
         }
       ],
       "correctIndex": 0,
-      "timeLimitSec": 30
+      "timeLimitSec": 30,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "keyboard-zh-1",
       "kind": "keyboard",
       "title": "Ввод перевода (китайский)",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "direction": "known-to-learning",
       "promptKnown": "Введите перевод «你好» на русский",
       "promptLexeme": {
@@ -600,59 +1028,125 @@
         "palladius": "ни хао",
         "ipa": "ni˨˩˦ xaʊ˨˩˦"
       },
-      "acceptedAnswersKnown": ["Привет", "привет"]
+      "acceptedAnswersKnown": [
+        "Привет",
+        "привет"
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "code-select-perl-1",
       "kind": "code-select",
       "title": "Perl: scalar context",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "caption": "Что вернёт выражение в scalar context?",
       "prompt": {
         "language": "perl",
         "code": "my @items = qw(a b c);\nmy $count = @items;\nprint $count;"
       },
       "options": [
-        { "language": "perl", "code": "3" },
-        { "language": "perl", "code": "@items" },
-        { "language": "perl", "code": "undef" },
-        { "language": "perl", "code": "Syntax error" }
+        {
+          "language": "perl",
+          "code": "3"
+        },
+        {
+          "language": "perl",
+          "code": "@items"
+        },
+        {
+          "language": "perl",
+          "code": "undef"
+        },
+        {
+          "language": "perl",
+          "code": "Syntax error"
+        }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "code-select-java-1",
       "kind": "code-select",
       "title": "Java: ArrayList",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "caption": "Какой код создаёт изменяемый список строк?",
       "prompt": {
         "language": "java",
         "code": "import java.util.List;\nimport java.util.ArrayList;\n\n// выберите корректный вариант"
       },
       "options": [
-        { "language": "java", "code": "List<String> xs = new ArrayList<>();" },
-        { "language": "java", "code": "List<String> xs = List.of(\"a\");" },
-        { "language": "java", "code": "String[] xs = new List<>();" }
+        {
+          "language": "java",
+          "code": "List<String> xs = new ArrayList<>();"
+        },
+        {
+          "language": "java",
+          "code": "List<String> xs = List.of(\"a\");"
+        },
+        {
+          "language": "java",
+          "code": "String[] xs = new List<>();"
+        }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     },
     {
       "id": "code-select-cpp-1",
       "kind": "code-select",
       "title": "C++: const reference",
-      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
       "caption": "Как объявить константную ссылку на int?",
       "prompt": {
         "language": "cpp",
         "code": "int value = 42;\n// допишите объявление ref"
       },
       "options": [
-        { "language": "cpp", "code": "const int& ref = value;" },
-        { "language": "cpp", "code": "int& const ref = value;" },
-        { "language": "cpp", "code": "const int* ref = value;" }
+        {
+          "language": "cpp",
+          "code": "const int& ref = value;"
+        },
+        {
+          "language": "cpp",
+          "code": "int& const ref = value;"
+        },
+        {
+          "language": "cpp",
+          "code": "const int* ref = value;"
+        }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
     }
   ]
 }
