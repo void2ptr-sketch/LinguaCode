@@ -81,19 +81,11 @@
                       <mat-icon>picture_as_pdf</mat-icon>
                     </button>
                     <mat-menu #pdfMenu="matMenu">
-                      <button
-                        mat-menu-item
-                        type="button"
-                        (click)="exportPdf(course.id)"
-                      >
+                      <button mat-menu-item type="button" (click)="exportPdf(course.id)">
                         <mat-icon>picture_as_pdf</mat-icon>
                         <span>Без подсказок</span>
                       </button>
-                      <button
-                        mat-menu-item
-                        type="button"
-                        (click)="exportPdfWithHints(course.id)"
-                      >
+                      <button mat-menu-item type="button" (click)="exportPdfWithHints(course.id)">
                         <mat-icon>picture_as_pdf</mat-icon>
                         <span>С подсказками</span>
                       </button>

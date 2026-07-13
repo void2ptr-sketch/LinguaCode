@@ -34,17 +34,17 @@ npm start
 
 ## Скрипты
 
-| Команда                    | Описание                                              |
-| -------------------------- | ----------------------------------------------------- |
-| `npm start`                | Dev-сервер с hot reload                               |
-| `npm run build`            | Production-сборка                                     |
-| `npm run build:prod`       | Production-сборка (alias)                             |
-| `npm test`                 | Unit-тесты                                            |
-| `npm run test:ci`          | Тесты в CI-режиме                                     |
-| `npm run lint`             | ESLint                                                |
-| `npm run format`           | Prettier                                              |
-| `npm run verify`           | lint + sync:hanzi + build + test (полная проверка)    |
-| `npm run sync:hanzi`       | Синхронизация stroke-data для draw-карточек           |
+| Команда                       | Описание                                           |
+| ----------------------------- | -------------------------------------------------- |
+| `npm start`                   | Dev-сервер с hot reload                            |
+| `npm run build`               | Production-сборка                                  |
+| `npm run build:prod`          | Production-сборка (alias)                          |
+| `npm test`                    | Unit-тесты                                         |
+| `npm run test:ci`             | Тесты в CI-режиме                                  |
+| `npm run lint`                | ESLint                                             |
+| `npm run format`              | Prettier                                           |
+| `npm run verify`              | lint + sync:hanzi + build + test (полная проверка) |
+| `npm run sync:hanzi`          | Синхронизация stroke-data для draw-карточек        |
 | `npm run export:content-seed` | Экспорт пользовательского overlay → seed JSON      |
 
 ## Стек

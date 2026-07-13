@@ -16,11 +16,11 @@ import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
 } from '../../data/scenarios/scenario-card-source.utils';
-import { cardIndexMatchesPair, normalizeLanguagePair } from '../../data/language-pair/language-pair.utils';
 import {
-  isEditableContentAuthor,
-  isSystemAuthor,
-} from '../../data/user/system-author.constants';
+  cardIndexMatchesPair,
+  normalizeLanguagePair,
+} from '../../data/language-pair/language-pair.utils';
+import { isEditableContentAuthor, isSystemAuthor } from '../../data/user/system-author.constants';
 import { CardsCatalogMockHandler } from '../cards/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../data/content-seed/content-seed.repository';
 import {

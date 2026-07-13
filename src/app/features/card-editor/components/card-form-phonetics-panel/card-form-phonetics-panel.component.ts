@@ -33,7 +33,7 @@ export class CardFormPhoneticsPanelComponent {
     return kind !== 'tone' && kind !== 'code-select';
   });
 
-  readonly promptLexemeDraft = computed((): LexemeCardDraft & CardDraft | null => {
+  readonly promptLexemeDraft = computed((): (LexemeCardDraft & CardDraft) | null => {
     const draft = this.draft();
     if (draft.kind === 'code-select') {
       return null;

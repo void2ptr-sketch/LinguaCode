@@ -20,7 +20,13 @@ export type MemoryColumnItem = {
 
 @Component({
   selector: 'app-memory-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    QuizCardQuestionHeaderComponent,
+  ],
   templateUrl: './memory-card.component.html',
   styleUrl: './memory-card.component.scss',
 })

@@ -20,7 +20,7 @@ cardsData.cards.forEach((card, index) => {
       knownLanguage: metaById[id].knownLanguage,
       learningLanguage: metaById[id].learningLanguage,
       difficulty: metaById[id].difficulty,
-      tags: metaById[id].tags
+      tags: metaById[id].tags,
     };
     migratedCount++;
   }

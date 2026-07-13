@@ -3,7 +3,11 @@ import type { CourseWithLessons, Scenario } from '../../models';
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
 import type { CourseCatalogState } from '../courses/course-catalog-state';
 import { normalizeStoredCourseCatalog } from '../courses/course-catalog-state';
-import type { CardsSeedFixture, CoursesSeedFixture, ScenariosSeedFixture } from './content-seed.types';
+import type {
+  CardsSeedFixture,
+  CoursesSeedFixture,
+  ScenariosSeedFixture,
+} from './content-seed.types';
 import { normalizeLegacyCards } from '../cards/card-legacy.mapper';
 import { getDefaultCourseCatalog } from '../courses/courses-storage';
 import { getDefaultScenarios } from '../scenarios/scenario-catalog.defaults';
@@ -34,9 +38,7 @@ export function seedTestContentCache(): void {
   setScenarioSeedCache([...demoScenarios, ...radicalsScenarios, ...perlScenarios]);
 
   const demoCourses = normalizeStoredCourseCatalog(demoCoursesFixture as CoursesSeedFixture);
-  const radicalsCourses = normalizeStoredCourseCatalog(
-    radicalsCourseFixture as CoursesSeedFixture,
-  );
+  const radicalsCourses = normalizeStoredCourseCatalog(radicalsCourseFixture as CoursesSeedFixture);
   const perlCourses = normalizeStoredCourseCatalog(
     perlInterviewCourseFixture as CoursesSeedFixture,
   );
@@ -79,9 +81,7 @@ export function getTestZhCourseCatalog(): CourseCatalogState {
 }
 
 export function getTestZhScenarios(): readonly Scenario[] {
-  return getTestDefaultScenarios().filter(
-    (scenario) => scenario.languagePair?.learning === 'zh',
-  );
+  return getTestDefaultScenarios().filter((scenario) => scenario.languagePair?.learning === 'zh');
 }
 
 export function getTestPerlCourseCatalog(): CourseCatalogState {

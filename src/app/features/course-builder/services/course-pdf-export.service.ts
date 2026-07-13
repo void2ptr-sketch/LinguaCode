@@ -200,7 +200,16 @@ export class CoursePdfExportService {
       const pageNum = i + 1;
 
       doc.addPage();
-      this.renderCard(doc, card, scenarioTitle, lessonTitle, courseTitle, pageNum, showHints, lessonPageMap);
+      this.renderCard(
+        doc,
+        card,
+        scenarioTitle,
+        lessonTitle,
+        courseTitle,
+        pageNum,
+        showHints,
+        lessonPageMap,
+      );
     }
 
     return doc.output('blob');
@@ -447,15 +456,7 @@ export class CoursePdfExportService {
       case 'sound':
       case 'timed':
       case 'reading': {
-        this.renderOptionCard(
-          doc,
-          card,
-          y,
-          showHints,
-          CONTENT_WIDTH,
-          MARGIN,
-          PAGE_WIDTH,
-        );
+        this.renderOptionCard(doc, card, y, showHints, CONTENT_WIDTH, MARGIN, PAGE_WIDTH);
         break;
       }
 
@@ -550,11 +551,7 @@ export class CoursePdfExportService {
       y += 6;
       doc.setFontSize(10);
       doc.setTextColor(42, 122, 42);
-      doc.text(
-        `✓ Правильный ответ: ${shuffledOptions[shuffledCorrectIndex]}`,
-        margin,
-        y,
-      );
+      doc.text(`✓ Правильный ответ: ${shuffledOptions[shuffledCorrectIndex]}`, margin, y);
     }
   }
 
@@ -988,9 +985,7 @@ export class CoursePdfExportService {
 
         const cardSource = scenario.cardSource;
         const cardIds: readonly string[] =
-          cardSource.mode === 'fixed' || cardSource.mode === 'snapshot'
-            ? cardSource.cardIds
-            : [];
+          cardSource.mode === 'fixed' || cardSource.mode === 'snapshot' ? cardSource.cardIds : [];
         for (const cardId of cardIds) {
           const card = cardMap.get(cardId);
           if (!card) continue;

@@ -33,21 +33,43 @@ describe('MemoryCardComponent', () => {
   });
 
   it('should show all words in two visible columns', () => {
-    expect(component.leftItems().map((item) => item.label).sort()).toEqual(['Пока', 'Привет']);
-    expect(component.rightItems().map((item) => item.label).sort()).toEqual(['Bye', 'Hello']);
+    expect(
+      component
+        .leftItems()
+        .map((item) => item.label)
+        .sort(),
+    ).toEqual(['Пока', 'Привет']);
+    expect(
+      component
+        .rightItems()
+        .map((item) => item.label)
+        .sort(),
+    ).toEqual(['Bye', 'Hello']);
   });
 
   it('should reshuffle columns when boardNonce changes', () => {
-    const firstRightOrder = component.rightItems().map((item) => item.label).join('|');
-    const firstLeftOrder = component.leftItems().map((item) => item.label).join('|');
+    const firstRightOrder = component
+      .rightItems()
+      .map((item) => item.label)
+      .join('|');
+    const firstLeftOrder = component
+      .leftItems()
+      .map((item) => item.label)
+      .join('|');
 
     let reshuffled = false;
     for (let attempt = 0; attempt < 8; attempt += 1) {
       fixture.componentRef.setInput('boardNonce', attempt + 1);
       fixture.detectChanges();
 
-      const rightOrder = component.rightItems().map((item) => item.label).join('|');
-      const leftOrder = component.leftItems().map((item) => item.label).join('|');
+      const rightOrder = component
+        .rightItems()
+        .map((item) => item.label)
+        .join('|');
+      const leftOrder = component
+        .leftItems()
+        .map((item) => item.label)
+        .join('|');
 
       if (rightOrder !== firstRightOrder || leftOrder !== firstLeftOrder) {
         reshuffled = true;

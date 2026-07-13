@@ -279,13 +279,13 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 Утилиты: `card-direction.utils.ts` — `resolveOptionCard`, `resolveMemoryPairs`, `effectiveCardDirection`.
 
-| Kind | Поведение при `learning-to-known` |
-| ---- | --------------------------------- |
-| `select`, `timed`, `reading`, `symbol`, `tone` | Swap prompt ↔ options; `optionsKnown` / `glossKnown` для known-side |
-| `keyboard` | Swap prompt; `acceptedAnswersLearning` для обратного направления |
-| `memory` | Swap колонок known ↔ learning; лексемы на learning-side |
-| `sound` | **Инвариант** — аудио всегда на learning; direction не меняет источник звука |
-| `draw`, `tone` | Toggle direction **скрыт** в UI (не влияет на задание) |
+| Kind                                           | Поведение при `learning-to-known`                                            |
+| ---------------------------------------------- | ---------------------------------------------------------------------------- |
+| `select`, `timed`, `reading`, `symbol`, `tone` | Swap prompt ↔ options; `optionsKnown` / `glossKnown` для known-side          |
+| `keyboard`                                     | Swap prompt; `acceptedAnswersLearning` для обратного направления             |
+| `memory`                                       | Swap колонок known ↔ learning; лексемы на learning-side                      |
+| `sound`                                        | **Инвариант** — аудио всегда на learning; direction не меняет источник звука |
+| `draw`, `tone`                                 | Toggle direction **скрыт** в UI (не влияет на задание)                       |
 
 Сессия: `CardSelectStore.sessionDirection` побеждает над `card.direction` (default при старте сценария).
 
@@ -344,11 +344,11 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ### G5 — сессия и analytics
 
-| Шаг  | Содержание                      |
-| ---- | ------------------------------- |
+| Шаг  | Содержание                                           |
+| ---- | ---------------------------------------------------- |
 | G5.1 | Render по `CardDirection` — см. таблицу по kind выше |
-| G5.2 | `LearningResult` + pair context |
-| G5.3 | Filter scenarios by user pair   |
+| G5.2 | `LearningResult` + pair context                      |
+| G5.3 | Filter scenarios by user pair                        |
 
 ### G7 — multi-pair profile
 

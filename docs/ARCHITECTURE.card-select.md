@@ -54,12 +54,12 @@ Deep links: `?courseId&lessonId&scenarioId&tab=learning|scenarios|lessons|course
 
 Курс может задать `practiceSettings` (`CoursePracticeSettings`):
 
-| Поле | По умолчанию | `open` (интервью) |
-| ---- | ------------ | ----------------- |
-| `mode` | `guided` | `open` |
-| `requireLessonForScenarios` | `true` | `false` — сценарии без урока |
-| `enforceLessonPrerequisites` | `true` | `false` — все уроки кликабельны |
-| `allowDifficultyFilter` | `false` | `true` — chips уровня на вкладке «Сценарии» |
+| Поле                         | По умолчанию | `open` (интервью)                           |
+| ---------------------------- | ------------ | ------------------------------------------- |
+| `mode`                       | `guided`     | `open`                                      |
+| `requireLessonForScenarios`  | `true`       | `false` — сценарии без урока                |
+| `enforceLessonPrerequisites` | `true`       | `false` — все уроки кликабельны             |
+| `allowDifficultyFilter`      | `false`      | `true` — chips уровня на вкладке «Сценарии» |
 
 Demo/radicals без `practiceSettings` — поведение без изменений. Home/resume остаётся linear.
 

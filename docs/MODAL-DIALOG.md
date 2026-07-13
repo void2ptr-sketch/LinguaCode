@@ -48,10 +48,10 @@ export type CardEditorDialogResult = {
 
 ### Структура типов
 
-| Поле | Назначение | Пример |
-|------|-----------|--------|
-| `DialogData` | Входные данные (контекст) | `{ mode: 'create' | 'edit', kind?: CardKind, cardId?: string }` |
-| `DialogResult` | Результат закрытия | `{ saved: boolean }` или `void` |
+| Поле           | Назначение                | Пример                          |
+| -------------- | ------------------------- | ------------------------------- | ------------------------------------------- |
+| `DialogData`   | Входные данные (контекст) | `{ mode: 'create'               | 'edit', kind?: CardKind, cardId?: string }` |
+| `DialogResult` | Результат закрытия        | `{ saved: boolean }` или `void` |
 
 ---
 
@@ -100,14 +100,14 @@ export class CardEditorDialogService {
 
 ### Ключевые параметры MatDialog
 
-| Параметр | Значение | Назначение |
-|----------|----------|-----------|
-| `panelClass` | `'card-editor-dialog'` | CSS-класс для стилизации |
-| `width` | `'960px'` | Базовая ширина |
-| `maxWidth` | `'96vw'` | Максимальная ширина (viewport) |
-| `maxHeight` | `'90vh'` | Максимальная высота (viewport) |
-| `disableClose` | `true` | Блокировка закрытия по Escape (для форм) |
-| `autoFocus` | `'first-titled-element'` | Автофокус на первый элемент |
+| Параметр       | Значение                 | Назначение                               |
+| -------------- | ------------------------ | ---------------------------------------- |
+| `panelClass`   | `'card-editor-dialog'`   | CSS-класс для стилизации                 |
+| `width`        | `'960px'`                | Базовая ширина                           |
+| `maxWidth`     | `'96vw'`                 | Максимальная ширина (viewport)           |
+| `maxHeight`    | `'90vh'`                 | Максимальная высота (viewport)           |
+| `disableClose` | `true`                   | Блокировка закрытия по Escape (для форм) |
+| `autoFocus`    | `'first-titled-element'` | Автофокус на первый элемент              |
 
 ---
 
@@ -222,16 +222,16 @@ this.initialSnapshot.set(serializeDraft(this.draft()));
 
 ```html
 @if (loading()) {
-  <div class="dialog__state">
-    <mat-spinner></mat-spinner>
-  </div>
+<div class="dialog__state">
+  <mat-spinner></mat-spinner>
+</div>
 } @else if (error()) {
-  <div class="dialog__error">{{ error() }}</div>
+<div class="dialog__error">{{ error() }}</div>
 } @else {
-  <div class="dialog__content">
-    <!-- Форма диалога -->
-    <app-entity-form [draft]="draft()" (draftChange)="updateDraft($event)" />
-  </div>
+<div class="dialog__content">
+  <!-- Форма диалога -->
+  <app-entity-form [draft]="draft()" (draftChange)="updateDraft($event)" />
+</div>
 }
 
 <mat-dialog-actions align="end">
@@ -298,12 +298,12 @@ this.initialSnapshot.set(serializeDraft(this.draft()));
 
 ### Правило: каждый диалог получает уникальный `panelClass`
 
-| Диалог | panelClass | Базовая ширина |
-|--------|-----------|---------------|
-| Card Editor | `card-editor-dialog` | `960px` |
-| Scenario Builder | `scenario-builder-dialog` | `1100px` |
-| Course Builder | `course-builder-dialog` | `1100px` |
-| Card Try | `card-try-dialog` | `720px` |
+| Диалог           | panelClass                | Базовая ширина |
+| ---------------- | ------------------------- | -------------- |
+| Card Editor      | `card-editor-dialog`      | `960px`        |
+| Scenario Builder | `scenario-builder-dialog` | `1100px`       |
+| Course Builder   | `course-builder-dialog`   | `1100px`       |
+| Card Try         | `card-try-dialog`         | `720px`        |
 
 ---
 
@@ -410,14 +410,14 @@ await this.dialogService.open(cardId);
 
 ## Примеры в проекте
 
-| Диалог | Путь | Назначение |
-|--------|------|-----------|
-| Card Editor | `card-editor-dialog/` | Создание/редактирование карточки |
-| Scenario Builder | `scenario-builder-dialog/` | Создание/редактирование сценария |
-| Course Builder | `course-builder-dialog/` | Создание/редактирование курса |
-| Card Try | `card-try-dialog/` | Тестовый прогон карточки |
-| Discard | `card-editor-discard-dialog/` | Подтверждение закрытия без сохранения |
-| Reset Overlay | `reset-overlay-dialog/` | Сброс пользовательских данных |
+| Диалог           | Путь                          | Назначение                            |
+| ---------------- | ----------------------------- | ------------------------------------- |
+| Card Editor      | `card-editor-dialog/`         | Создание/редактирование карточки      |
+| Scenario Builder | `scenario-builder-dialog/`    | Создание/редактирование сценария      |
+| Course Builder   | `course-builder-dialog/`      | Создание/редактирование курса         |
+| Card Try         | `card-try-dialog/`            | Тестовый прогон карточки              |
+| Discard          | `card-editor-discard-dialog/` | Подтверждение закрытия без сохранения |
+| Reset Overlay    | `reset-overlay-dialog/`       | Сброс пользовательских данных         |
 
 ---
 

@@ -11,15 +11,15 @@
 
 ## Ключевые файлы
 
-| Файл | Назначение |
-|------|-----------|
-| `README.md` | Обзор, быстрый старт, стек |
-| `TASKS.md` | Чеклист задач и бэклога |
-| `docs/INDEX.md` | Оглавление документации |
-| `docs/DOMAIN.md` | Сущности, модели, терминология |
-| `docs/ARCHITECTURE.md` | Технические решения |
-| `docs/.gitrules.md` | Правила веток и коммитов |
-| `.cursorrules` | Базовые правила стиля |
+| Файл                   | Назначение                     |
+| ---------------------- | ------------------------------ |
+| `README.md`            | Обзор, быстрый старт, стек     |
+| `TASKS.md`             | Чеклист задач и бэклога        |
+| `docs/INDEX.md`        | Оглавление документации        |
+| `docs/DOMAIN.md`       | Сущности, модели, терминология |
+| `docs/ARCHITECTURE.md` | Технические решения            |
+| `docs/.gitrules.md`    | Правила веток и коммитов       |
+| `.cursorrules`         | Базовые правила стиля          |
 
 ## Архитектура
 
@@ -75,26 +75,26 @@ src/app/
 
 ### Команды
 
-| Команда | Описание |
-|---------|----------|
-| `npm start` | Dev-сервер |
-| `npm run build` | Production-сборка |
-| `npm test` | Unit-тесты (Karma) |
-| `npm run lint` | ESLint |
-| `npm run format` | Prettier |
-| `npm run verify` | lint + sync:hanzi + build + test |
-| `npm run export:content-seed` | Экспорт overlay → seed |
-| `npm run import:course-bundle` | Импорт CourseBundle JSON |
+| Команда                        | Описание                         |
+| ------------------------------ | -------------------------------- |
+| `npm start`                    | Dev-сервер                       |
+| `npm run build`                | Production-сборка                |
+| `npm test`                     | Unit-тесты (Karma)               |
+| `npm run lint`                 | ESLint                           |
+| `npm run format`               | Prettier                         |
+| `npm run verify`               | lint + sync:hanzi + build + test |
+| `npm run export:content-seed`  | Экспорт overlay → seed           |
+| `npm run import:course-bundle` | Импорт CourseBundle JSON         |
 
 ### Скрипты данных
 
-| Скрипт | Назначение |
-|--------|-----------|
-| `scripts/export-content-seed.mjs` | Генерация seed из `perl-interview-idea.md` |
-| `scripts/merge-mock-data.mjs` | Объединение `*-course.json` → `all-courses.json` |
-| `scripts/import-course-bundle.mjs` | Импорт CourseBundle в seed |
-| `scripts/migrate-authoring.mjs` | Миграция полей `authoring` между файлами |
-| `scripts/generate-radicals-course.mjs` | Генерация курса радикалов |
+| Скрипт                                 | Назначение                                       |
+| -------------------------------------- | ------------------------------------------------ |
+| `scripts/export-content-seed.mjs`      | Генерация seed из `perl-interview-idea.md`       |
+| `scripts/merge-mock-data.mjs`          | Объединение `*-course.json` → `all-courses.json` |
+| `scripts/import-course-bundle.mjs`     | Импорт CourseBundle в seed                       |
+| `scripts/migrate-authoring.mjs`        | Миграция полей `authoring` между файлами         |
+| `scripts/generate-radicals-course.mjs` | Генерация курса радикалов                        |
 
 ## Domain модели
 
@@ -115,11 +115,11 @@ Card (10 типов)
 
 ```typescript
 type CourseAuthoring = {
-  idea: string;              // Markdown-описание программы
-  status: CourseAuthoringStatus;  // 'draft' | 'planned' | 'generating' | 'materialized' | 'failed'
-  ideaUpdatedAt?: string;    // ISO 8601
-  materializedAt?: string;   // ISO 8601
-  lastError?: string;        // при status === 'failed'
+  idea: string; // Markdown-описание программы
+  status: CourseAuthoringStatus; // 'draft' | 'planned' | 'generating' | 'materialized' | 'failed'
+  ideaUpdatedAt?: string; // ISO 8601
+  materializedAt?: string; // ISO 8601
+  lastError?: string; // при status === 'failed'
 };
 ```
 
@@ -145,6 +145,7 @@ type CourseAuthoring = {
 ## Миграции данных
 
 При работе с `public/data/courses/`:
+
 - Старые файлы: `{slug}-course.json` (формат `{courses, lessons}`)
 - Единый файл: `all-courses.json` (формат `[{...}]`)
 - Manifest: `content-manifest.json` (список файлов)

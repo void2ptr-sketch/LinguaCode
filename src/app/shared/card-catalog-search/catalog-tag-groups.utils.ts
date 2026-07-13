@@ -1,11 +1,7 @@
 import type { FacetCount } from '../../core/models/card-search.types';
 
 /** Порядок тегов сложности в фильтре каталога (id без перевода). */
-export const CATALOG_TAG_DIFFICULTY_ORDER = [
-  'beginner',
-  'intermediate',
-  'advanced',
-] as const;
+export const CATALOG_TAG_DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'] as const;
 
 /** Порядок тем — как в «Идее курса» Perl interview. */
 export const CATALOG_TAG_THEME_ORDER = [

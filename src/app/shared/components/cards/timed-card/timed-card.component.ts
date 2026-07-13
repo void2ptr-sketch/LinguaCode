@@ -15,7 +15,13 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
 
 @Component({
   selector: 'app-timed-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    QuizCardQuestionHeaderComponent,
+  ],
   templateUrl: './timed-card.component.html',
   styleUrl: './timed-card.component.scss',
 })

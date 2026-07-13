@@ -17,10 +17,7 @@ import { courseToIndexEntry } from '../../data/courses/course-index.mapper';
 import { filterCourseIndex } from '../../data/courses/course-search.utils';
 import { ContentSeedRepository } from '../../data/content-seed/content-seed.repository';
 import { normalizeLanguagePair } from '../../data/language-pair/language-pair.utils';
-import {
-  isEditableContentAuthor,
-  isSystemAuthor,
-} from '../../data/user/system-author.constants';
+import { isEditableContentAuthor, isSystemAuthor } from '../../data/user/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
@@ -112,7 +109,9 @@ export class CoursesCatalogMockHandler {
         updatedAt: new Date().toISOString(),
         authoring: normalizeCourseAuthoring(payload.authoring ?? current.authoring),
       };
-      const lessons = this.lessonsForCourse(updated).sort((left, right) => left.order - right.order);
+      const lessons = this.lessonsForCourse(updated).sort(
+        (left, right) => left.order - right.order,
+      );
 
       this.catalog = {
         courses: this.catalog!.courses.map((item) => (item.id === courseId ? updated : item)),

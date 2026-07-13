@@ -265,7 +265,9 @@ export class ScenarioBuilderStore {
 
   private async normalizeDraft(
     draft: ScenarioDraft,
-  ): Promise<import('../../../core/data/scenarios/scenarios-api.service').ScenarioWritePayload | null> {
+  ): Promise<
+    import('../../../core/data/scenarios/scenarios-api.service').ScenarioWritePayload | null
+  > {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
     const languagePair = normalizeLanguagePair(draft.languagePair);

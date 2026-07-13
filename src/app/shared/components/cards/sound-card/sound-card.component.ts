@@ -21,7 +21,13 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
 
 @Component({
   selector: 'app-sound-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    QuizCardQuestionHeaderComponent,
+  ],
   templateUrl: './sound-card.component.html',
   styleUrl: './sound-card.component.scss',
 })

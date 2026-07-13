@@ -2,14 +2,7 @@ import type { CardSearchCriteria, ContentLanguage, LanguagePair } from '../../mo
 import type { CardIndexEntry } from '../../models/card-index.types';
 import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
 
-const CONTENT_LANGUAGES: readonly ContentLanguage[] = [
-  'en',
-  'zh',
-  'ru',
-  'perl',
-  'java',
-  'cpp',
-];
+const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru', 'perl', 'java', 'cpp'];
 
 export const CONTENT_LANGUAGE_LABELS: Record<ContentLanguage, string> = {
   en: 'English',

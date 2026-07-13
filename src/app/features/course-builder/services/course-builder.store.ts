@@ -17,9 +17,7 @@ import { normalizeLanguagePair } from '../../../core/data/language-pair/language
 import { CourseSearchService } from '../../../core/data';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
-import {
-  COURSE_IDEA_MAX_LENGTH,
-} from '../../../core/data/courses/course-authoring.utils';
+import { COURSE_IDEA_MAX_LENGTH } from '../../../core/data/courses/course-authoring.utils';
 import { UserStore } from '../../../core/state';
 import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';

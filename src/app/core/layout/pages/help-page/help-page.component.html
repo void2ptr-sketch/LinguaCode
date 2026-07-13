@@ -39,7 +39,10 @@
     </div>
   </section>
 
-  <section class="help-page__section help-page__section--hierarchy" aria-labelledby="help-hierarchy-title">
+  <section
+    class="help-page__section help-page__section--hierarchy"
+    aria-labelledby="help-hierarchy-title"
+  >
     <h2 id="help-hierarchy-title" class="help-page__section-title">Как устроен контент</h2>
     <p class="help-page__section-lead">
       Материал собирается снизу вверх — от одного упражнения до полной программы.
@@ -57,7 +60,9 @@
             <p class="help-page__hierarchy-text">{{ level.description }}</p>
           </div>
           @if (!last) {
-            <mat-icon class="help-page__hierarchy-arrow" aria-hidden="true">arrow_downward</mat-icon>
+            <mat-icon class="help-page__hierarchy-arrow" aria-hidden="true"
+              >arrow_downward</mat-icon
+            >
           }
         </li>
       }

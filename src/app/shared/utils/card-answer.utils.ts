@@ -78,9 +78,7 @@ function readingCorrectTexts(card: ReadingCard, resolved: ResolvedOptionCard): r
   const correctIndex = resolved.correctIndex;
   const correctLexeme =
     card.optionsLexemes?.[correctIndex] ?? resolved.optionLexemes?.[correctIndex];
-  const texts = new Set(
-    readingCandidateTexts(resolved.options[correctIndex] ?? '', correctLexeme),
-  );
+  const texts = new Set(readingCandidateTexts(resolved.options[correctIndex] ?? '', correctLexeme));
 
   if (card.promptLexeme) {
     for (const text of readingCandidateTexts(card.promptLexeme.primary, card.promptLexeme)) {
@@ -289,9 +287,7 @@ export const getCorrectAnswerLabel = (
     if (card.kind === 'reading' && card.promptLexeme?.primary.trim()) {
       const prompt = card.promptLexeme;
       return (
-        resolveRomanizationReading(prompt, 'pinyin') ??
-        prompt.palladius?.trim() ??
-        prompt.primary
+        resolveRomanizationReading(prompt, 'pinyin') ?? prompt.palladius?.trim() ?? prompt.primary
       );
     }
 

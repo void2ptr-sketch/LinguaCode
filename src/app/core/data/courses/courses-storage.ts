@@ -1,7 +1,4 @@
-import {
-  cloneCourseCatalog,
-  type CourseCatalogState,
-} from './course-catalog-state';
+import { cloneCourseCatalog, type CourseCatalogState } from './course-catalog-state';
 import { getCourseSeedCache } from '../content-seed/content-seed.cache';
 import { migrateUserContentOverlayIfNeeded } from '../user/user-content-overlay.migration';
 import {

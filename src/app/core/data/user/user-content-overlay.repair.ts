@@ -22,7 +22,9 @@ export const USER_CONTENT_OVERLAY_REPAIR_KEY = 'lingua-code.user-content.repair-
 export const USER_CONTENT_OVERLAY_REPAIR_VERSION = 'perl-interview-ru-perl-v2';
 
 export function repairUserContentOverlayIfNeeded(): void {
-  if (localStorage.getItem(USER_CONTENT_OVERLAY_REPAIR_KEY) === USER_CONTENT_OVERLAY_REPAIR_VERSION) {
+  if (
+    localStorage.getItem(USER_CONTENT_OVERLAY_REPAIR_KEY) === USER_CONTENT_OVERLAY_REPAIR_VERSION
+  ) {
     return;
   }
 
@@ -104,10 +106,7 @@ export function bindPerlInterviewCourseLanguagePair(overlay: UserContentOverlay)
 
     if (entry.cardSource.mode === 'criteria') {
       const criteria = entry.cardSource.criteria;
-      if (
-        criteria.knownLanguage !== pair.known ||
-        criteria.learningLanguage !== pair.learning
-      ) {
+      if (criteria.knownLanguage !== pair.known || criteria.learningLanguage !== pair.learning) {
         scenarios[scenarioId] = {
           ...scenarios[scenarioId],
           cardSource: {
@@ -177,10 +176,7 @@ function isOverlayScenario(value: Scenario | Partial<Scenario>): value is Scenar
   );
 }
 
-function languagePairMatches(
-  pair: LanguagePair | undefined,
-  expected: LanguagePair,
-): boolean {
+function languagePairMatches(pair: LanguagePair | undefined, expected: LanguagePair): boolean {
   if (!pair) {
     return false;
   }
@@ -266,7 +262,9 @@ export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay)
   };
 }
 
-function extractBestPerlInterviewAuthoring(overlay: UserContentOverlay): CourseAuthoring | undefined {
+function extractBestPerlInterviewAuthoring(
+  overlay: UserContentOverlay,
+): CourseAuthoring | undefined {
   let best: CourseAuthoring | undefined;
   let bestLength = 0;
 

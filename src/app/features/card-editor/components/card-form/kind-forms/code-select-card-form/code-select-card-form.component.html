@@ -44,7 +44,12 @@
   <section class="code-select-card-form__block">
     <div class="code-select-card-form__heading-row">
       <h3 class="code-select-card-form__heading">Варианты ответа</h3>
-      <button mat-stroked-button type="button" (click)="addOption()" [disabled]="draft().options.length >= 8">
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="addOption()"
+        [disabled]="draft().options.length >= 8"
+      >
         <mat-icon>add</mat-icon>
         Добавить
       </button>
@@ -72,7 +77,12 @@
                 </mat-select>
               </mat-form-field>
               @if (draft().options.length > 2) {
-                <button mat-icon-button type="button" (click)="removeOption(index)" aria-label="Удалить вариант">
+                <button
+                  mat-icon-button
+                  type="button"
+                  (click)="removeOption(index)"
+                  aria-label="Удалить вариант"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               }

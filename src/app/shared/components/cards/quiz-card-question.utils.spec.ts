@@ -1,10 +1,13 @@
-import { quizQuestionPromptText, resolveQuizQuestionHeaderDisplay } from './quiz-card-question.utils';
+import {
+  quizQuestionPromptText,
+  resolveQuizQuestionHeaderDisplay,
+} from './quiz-card-question.utils';
 
 describe('resolveQuizQuestionHeaderDisplay', () => {
   it('shows prompt when it is set', () => {
-    expect(
-      resolveQuizQuestionHeaderDisplay('Новая карточка', 'Что такое scalar context?'),
-    ).toBe('prompt-only');
+    expect(resolveQuizQuestionHeaderDisplay('Новая карточка', 'Что такое scalar context?')).toBe(
+      'prompt-only',
+    );
   });
 
   it('shows title only when prompt is empty', () => {

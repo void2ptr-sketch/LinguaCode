@@ -97,7 +97,11 @@ export {
   normalizeIpa,
 } from './ipa/ipa-normalize.utils';
 export { lookupEnglishIpa } from './ipa/ipa-en-lookup.utils';
-export { pinyinToIpa, pinyinSyllableToIpa, parsePinyinSyllable } from './chinese/pinyin-to-ipa.utils';
+export {
+  pinyinToIpa,
+  pinyinSyllableToIpa,
+  parsePinyinSyllable,
+} from './chinese/pinyin-to-ipa.utils';
 export { resolveKeyboardAnswerMode } from './keyboard-answer-mode/keyboard-answer-mode.utils';
 export type { ResolvedKeyboardAnswerMode } from './keyboard-answer-mode/keyboard-answer-mode.utils';
 export {

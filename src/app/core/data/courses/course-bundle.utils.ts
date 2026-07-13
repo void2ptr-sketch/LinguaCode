@@ -99,12 +99,23 @@ export function collectCourseBundle(
   }
 
   // 5. Собрать cardIndexMeta
+  // Приоритет: card.meta (встроенные) > cardIndexMeta (из внешнего источника)
   const bundleMeta: Record<string, CardIndexMetaOverride> = {};
   for (const cid of cardIds) {
-    if (cardIndexMeta[cid]) {
-      bundleMeta[cid] = cardIndexMeta[cid];
+    const card = cards.find((c) => c.id === cid);
+    if (!card) {
+      continue;
+    }
+    // Использовать встроенные метаданные карточки, если есть
+    // cardIndexMeta используется только как fallback
+    const effectiveMeta = card.meta ?? cardIndexMeta[cid];
+    if (effectiveMeta) {
+      bundleMeta[cid] = effectiveMeta;
     } else {
-      errors.push(`Мета-информация для карточки ${cid} не найдена в card-index-meta`);
+      // Если нет ни встроенных, ни во внешнем источнике — ошибка
+      errors.push(
+        `Мета-информация для карточки ${cid} не найдена (нет в card.meta и card-index-meta)`,
+      );
     }
   }
 
@@ -202,10 +213,16 @@ export function validateCourseBundle(bundle: CourseBundle): CourseBundleValidati
     }
   }
 
-  // Проверить meta
+  // Проверить meta (приоритет: card.meta > bundle.cardIndexMeta)
+  // Собираем карту всех карточек для быстрого доступа
+  const bundleCardById = new Map(bundle.cards.map((c) => [c.id, c]));
   for (const cid of allCardIds) {
-    if (!bundle.cardIndexMeta[cid]) {
-      errors.push(`Мета-информация для карточки ${cid} отсутствует в пакете`);
+    const card = bundleCardById.get(cid);
+    const effectiveMeta = card?.meta ?? bundle.cardIndexMeta[cid];
+    if (!effectiveMeta) {
+      errors.push(
+        `Мета-информация для карточки ${cid} отсутствует (нет в card.meta и bundle.cardIndexMeta)`,
+      );
     }
   }
 

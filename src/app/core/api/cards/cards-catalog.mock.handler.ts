@@ -87,7 +87,9 @@ export class CardsCatalogMockHandler {
 
     const [cards, metaFixture] = await Promise.all([
       this.cardRepository.ensureLoaded(),
-      firstValueFrom(this.http.get<CardIndexMetaFixture>(buildFixtureUrl('/scenarios/card-index-meta.json'))),
+      firstValueFrom(
+        this.http.get<CardIndexMetaFixture>(buildFixtureUrl('/scenarios/card-index-meta.json')),
+      ).catch(() => ({ metaById: {} }) as CardIndexMetaFixture),
     ]);
 
     const metaById = mergeCardIndexMeta(metaFixture.metaById, loadCardIndexMetaOverrides());
