@@ -6,7 +6,6 @@ import { DEMO_SCENARIOS } from './content-seed/demo-scenarios.mjs';
 import { DEMO_COURSES } from './content-seed/demo-courses.mjs';
 import {
   buildPerlInterviewCards,
-  buildPerlInterviewCardIndexMeta,
   buildPerlInterviewCourse,
   buildPerlInterviewScenarios,
 } from './content-seed/perl-interview.mjs';
@@ -98,18 +97,8 @@ writeJson('courses/radicals-214-course.json', buildRadicalsCourse());
 writeJson('courses/perl-interview-course.json', perlCourse);
 writeJson('perl-interview-cards.json', { cards: buildPerlInterviewCards() });
 
-const cardIndexMetaPath = join(dataDir, 'card-index-meta.json');
-const existingCardIndexMeta = JSON.parse(readFileSync(cardIndexMetaPath, 'utf8'));
-const perlCardIndexMeta = buildPerlInterviewCardIndexMeta();
-const metaWithoutStalePerlCards = Object.fromEntries(
-  Object.entries(existingCardIndexMeta.metaById).filter(([id]) => !id.startsWith('card-perl-s')),
-);
-writeJson('card-index-meta.json', {
-  metaById: {
-    ...metaWithoutStalePerlCards,
-    ...perlCardIndexMeta,
-  },
-});
+// Метаданные теперь хранятся в карточках (card.meta), отдельный файл card-index-meta.json удалён.
+// При экспорте seed метаданные автоматически попадают в карточки.
 
 console.log('Exported content seed:');
 console.log(`  scenarios: ${DEMO_SCENARIOS.length} demo + ${buildRadicalsScenarios().length} radicals + ${perlScenarios.length} perl`);

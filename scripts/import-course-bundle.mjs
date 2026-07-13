@@ -72,9 +72,8 @@ function validateBundle(data) {
     errors.push('Отсутствует cards');
   }
 
-  if (!data.cardIndexMeta || typeof data.cardIndexMeta !== 'object') {
-    errors.push('Отсутствует cardIndexMeta');
-  }
+  // cardIndexMeta устарел — метаданные теперь в карточках (card.meta)
+  // (если есть — используем как fallback при импорте, но не храним отдельно)
 
   if (data.course?.courses?.length !== 1) {
     errors.push(`Пакет должен содержать ровно 1 курс, найдено: ${data.course?.courses?.length ?? 0}`);
@@ -129,7 +128,7 @@ function loadExistingIds() {
 
     for (const file of manifest.courseFiles) {
       try {
-        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\//, '')), 'utf8'));
+        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\/$/, '')), 'utf8'));
         for (const course of fixture.courses ?? []) ids.courses.add(course.id);
         for (const lesson of fixture.lessons ?? []) ids.lessons.add(lesson.id);
       } catch { /* файл может отсутствовать */ }
@@ -137,14 +136,14 @@ function loadExistingIds() {
 
     for (const file of manifest.scenarioFiles) {
       try {
-        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\//, '')), 'utf8'));
+        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\/$/, '')), 'utf8'));
         for (const scenario of fixture.scenarios ?? []) ids.scenarios.add(scenario.id);
       } catch { /* файл может отсутствовать */ }
     }
 
     for (const file of manifest.cardFiles) {
       try {
-        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\//, '')), 'utf8'));
+        const fixture = JSON.parse(readFileSync(join(dataDir, file.replace(/^\/$/, '')), 'utf8'));
         for (const card of fixture.cards ?? []) ids.cards.add(card.id);
       } catch { /* файл может отсутствовать */ }
     }
@@ -179,18 +178,26 @@ function normalizeForSeed(data) {
     updatedAt: now,
   }));
 
-  const cards = data.cards.map((card) => ({
-    ...card,
-    updatedAt: now,
-  }));
+  const cards = data.cards.map((card) => {
+    const cardMeta = card.meta ?? {};
+    // cardIndexMeta из внешнего источника не используется
+    if (data.cardIndexMeta && data.cardIndexMeta[card.id]) {
+      return {
+        ...card,
+        meta: { ...cardMeta, ...data.cardIndexMeta[card.id] },
+        updatedAt: now,
+      };
+    }
+    return { ...card, meta: cardMeta, updatedAt: now };
+  });
 
-  return { courses, lessons, scenarios, cards, cardIndexMeta: data.cardIndexMeta };
+  return { courses, lessons, scenarios, cards };
 }
 
 // ─── Запись файлов ────────────────────────────────────────────────────────────
 
 function writeJson(relativePath, payload) {
-  const fullPath = join(dataDir, relativePath.replace(/^\//, ''));
+  const fullPath = join(dataDir, relativePath.replace(/^\/$/, ''));
   mkdirSync(dirname(fullPath), { recursive: true });
   writeFileSync(fullPath, `${JSON.stringify(payload, null, 2)}\n`);
   console.log(`  ✓ ${relativePath}`);
@@ -227,22 +234,6 @@ function updateManifest(files) {
   manifest.courseFiles = addUnique(manifest.courseFiles, `/${files.courseFile}`);
 
   writeJson('content-manifest.json', manifest);
-}
-
-// ─── Обновление card-index-meta ───────────────────────────────────────────────
-
-function updateCardIndexMeta(cardIndexMeta) {
-  const metaPath = join(dataDir, 'card-index-meta.json');
-  let existing;
-
-  try {
-    existing = JSON.parse(readFileSync(metaPath, 'utf8'));
-  } catch {
-    existing = { metaById: {} };
-  }
-
-  existing.metaById = { ...existing.metaById, ...cardIndexMeta };
-  writeJson('card-index-meta.json', existing);
 }
 
 // ─── Main ─────────────────────────────────────────────────────────────────────
@@ -316,9 +307,6 @@ function main() {
 
   // 7. Обновление manifest
   updateManifest(files);
-
-  // 8. Обновление card-index-meta
-  updateCardIndexMeta(normalized.cardIndexMeta);
 
   console.log(`\nГотово. Курс добавлен в seed.`);
   console.log(`  slug: ${opts.slug}`);
