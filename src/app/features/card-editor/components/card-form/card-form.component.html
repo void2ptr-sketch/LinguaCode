@@ -39,13 +39,25 @@
             <mat-label>Тема вопроса</mat-label>
             <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
           </mat-form-field>
+
+          @if (choiceDraft(); as choice) {
+            <mat-form-field appearance="outline">
+              <mat-label>{{ choice.kind === 'reading' ? 'Контекст (известный)' : choice.kind === 'tone' ? 'Подсказка' : 'Вопрос' }}</mat-label>
+              <textarea
+                matInput
+                rows="4"
+                [ngModel]="choice.promptKnown"
+                (ngModelChange)="updateChoicePromptKnown($event)"
+              ></textarea>
+            </mat-form-field>
+          }
         </div>
       </mat-tab>
 
       <mat-tab label="Контент">
         <div class="card-form__tab-body">
           <p class="card-form__hint card-form__hint--tab">
-            Вопрос, варианты ответа и правильный вариант.
+            Варианты ответа и правильный вариант.
           </p>
           @if (codeSelectDraft(); as codeDraft) {
             <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
@@ -88,7 +100,6 @@
             <p class="card-form__hint card-form__hint--tab">
               Варианты ответов и правильный ответ.
             </p>
-            <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
           </div>
         </mat-tab>
       }

@@ -128,6 +128,13 @@ export class CardFormComponent {
     this.updateDraft({ ...this.draft(), title });
   }
 
+  updateChoicePromptKnown(promptKnown: string): void {
+    const draft = this.draft();
+    if (draft.kind === 'select' || draft.kind === 'reading' || draft.kind === 'timed' || draft.kind === 'symbol') {
+      this.updateDraft({ ...draft, promptKnown });
+    }
+  }
+
   onKnownLanguageChange(knownLanguage: ContentLanguage): void {
     this.knownLanguageChange.emit(knownLanguage);
   }
