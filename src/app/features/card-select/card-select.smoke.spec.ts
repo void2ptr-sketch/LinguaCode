@@ -79,10 +79,6 @@ describe('Card select smoke', () => {
           request.flush({ cards: [] });
           continue;
         }
-
-        if (request.request.url.includes('card-index-meta.json')) {
-          request.flush({ metaById: {} });
-        }
       }
     };
 

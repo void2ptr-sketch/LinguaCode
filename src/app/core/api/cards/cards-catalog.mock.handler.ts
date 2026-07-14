@@ -1,24 +1,16 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { firstValueFrom } from 'rxjs';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../models';
 import type { CardIndexEntry } from '../../models/card-index.types';
 import { paginateArray } from '../../../shared/pagination';
 
-import { buildFixtureUrl } from '../api-url';
-import {
-  buildCardIndex,
-  mergeCardIndexMeta,
-  type CardIndexMetaFixture,
-} from '../../data/cards/card-index.mapper';
+import { buildCardIndex } from '../../data/cards/card-index.mapper';
 import { loadCardIndexMetaOverrides } from '../../data/cards/card-index-meta.storage';
 import { CardRepository } from '../../data/cards/card.repository';
 import { buildCardSearchFacets, filterCardIndex } from '../../data/cards/card-search.utils';
 
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {
-  private readonly http = inject(HttpClient);
   private readonly cardRepository = inject(CardRepository);
 
   private cards: readonly Card[] | null = null;
@@ -42,11 +34,7 @@ export class CardsCatalogMockHandler {
 
     const card = this.cards!.find((item) => item.id === cardId);
     if (!card) {
-      throw new HttpErrorResponse({
-        status: 404,
-        statusText: 'Not Found',
-        error: { message: 'Карточка не найдена' },
-      });
+      throw new Error('Карточка не найдена');
     }
 
     return card;
@@ -85,14 +73,8 @@ export class CardsCatalogMockHandler {
       return;
     }
 
-    const [cards, metaFixture] = await Promise.all([
-      this.cardRepository.ensureLoaded(),
-      firstValueFrom(
-        this.http.get<CardIndexMetaFixture>(buildFixtureUrl('/scenarios/card-index-meta.json')),
-      ).catch(() => ({ metaById: {} }) as CardIndexMetaFixture),
-    ]);
-
-    const metaById = mergeCardIndexMeta(metaFixture.metaById, loadCardIndexMetaOverrides());
+    const cards = await this.cardRepository.ensureLoaded();
+    const metaById = loadCardIndexMetaOverrides();
     this.cards = cards;
     this.index = buildCardIndex(cards, metaById);
   }

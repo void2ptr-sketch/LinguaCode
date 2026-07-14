@@ -15,7 +15,7 @@ export type CardIndexMetaFixture = {
 export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): CardIndexEntry {
   // Приоритет метаданных:
   // 1. card.meta (встроенные в карточку)
-  // 2. meta (из card-index-meta.json)
+  // 2. meta (из user-content-overlay)
   // 3. дефолтные значения
   const cardMeta = card.meta;
   const effectiveMeta = cardMeta ?? meta;

@@ -23,7 +23,7 @@ export type CardBase = {
   kind: CardKind;
   title: string;
   appearance: CardAppearance;
-  /** Метаданные карточки. Если отсутствуют, используются данные из card-index-meta.json. */
+  /** Метаданные карточки. Если отсутствуют, используются данные из user-content-overlay. */
   meta?: CardIndexMetaOverride;
 };
 

@@ -15,7 +15,7 @@ import type { CourseBundle, CourseBundleValidation } from './course-bundle.types
  * @param catalog   Разрешённый каталог (seed + overlay)
  * @param scenarios Все сценарии (seed + overlay, resolved)
  * @param cards     Все карточки (seed + overlay, resolved)
- * @param cardIndexMeta Мета-информация card-index-meta.json
+ * @param cardIndexMeta Мета-информация из user-content-overlay
  * @returns Пакет или null с описанием ошибки
  */
 export function collectCourseBundle(
@@ -114,7 +114,7 @@ export function collectCourseBundle(
     } else {
       // Если нет ни встроенных, ни во внешнем источнике — ошибка
       errors.push(
-        `Мета-информация для карточки ${cid} не найдена (нет в card.meta и card-index-meta)`,
+        "`Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`",
       );
     }
   }

@@ -88,14 +88,14 @@ function writeJson(relativePath, payload) {
 const perlScenarios = buildPerlInterviewScenarios();
 const perlCourse = buildPerlInterviewCourse();
 
-writeJson('content-manifest.json', buildManifest());
+writeJson('cards/content-manifest.json', buildManifest());
 writeJson('scenarios/demo-scenarios.json', { scenarios: DEMO_SCENARIOS });
 writeJson('scenarios/radicals-scenarios.json', { scenarios: buildRadicalsScenarios() });
 writeJson('scenarios/perl-interview-scenarios.json', { scenarios: perlScenarios });
 writeJson('courses/demo-courses.json', DEMO_COURSES);
 writeJson('courses/radicals-214-course.json', buildRadicalsCourse());
 writeJson('courses/perl-interview-course.json', perlCourse);
-writeJson('perl-interview-cards.json', { cards: buildPerlInterviewCards() });
+writeJson('cards/perl-interview-cards.json', { cards: buildPerlInterviewCards() });
 
 // Метаданные теперь хранятся в карточках (card.meta), отдельный файл card-index-meta.json удалён.
 // При экспорте seed метаданные автоматически попадают в карточки.
