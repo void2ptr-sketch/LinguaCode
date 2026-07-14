@@ -1,9 +1,9 @@
 @if (!hidePrompt()) {
-  <mat-form-field appearance="outline">
+  <mat-form-field class="choice-card-form_question" appearance="outline">
     <mat-label>{{ promptLabel() }}</mat-label>
     <textarea
       matInput
-      rows="3"
+      rows="4"
       [ngModel]="draft().promptKnown"
       (ngModelChange)="updatePromptKnown($event)"
     ></textarea>

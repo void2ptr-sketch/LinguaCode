@@ -11,7 +11,6 @@ import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
 import {
-  CARD_KIND_LABELS,
   CONTENT_LANGUAGE_LABELS,
 } from '../../../../shared/card-catalog-search';
 import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
@@ -33,6 +32,7 @@ import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-ca
 import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
+import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-card-form',
@@ -42,6 +42,7 @@ import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-
     MatInputModule,
     MatSelectModule,
     MatTabsModule,
+    MatDividerModule,
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
     CardPreviewComponent,

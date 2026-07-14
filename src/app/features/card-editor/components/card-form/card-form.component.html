@@ -4,9 +4,7 @@
       <mat-tab label="Курс">
         <div class="card-form__tab-body">
           <p class="card-form__hint card-form__hint--tab">
-            <strong>Контент</strong> — подсказка, варианты ответа и правильный вариант.
-            <strong>Фонетика</strong> — лексемы, IPA, пиньинь, URL аудио. <strong>Настройки</strong> —
-            тема, шрифт, лимит времени и режимы.
+            <strong>Языковая Пара</strong> - текущего курса, 
           </p>
 
           <mat-form-field appearance="outline">
@@ -33,8 +31,12 @@
             </mat-select>
           </mat-form-field>
 
+          <mat-divider></mat-divider>
+          <p class="card-form__hint card-form__hint--tab">
+            <strong>Тема вопроса</strong> - заголовок для группировки вопросов.
+          </p>
           <mat-form-field appearance="outline">
-            <mat-label>Название</mat-label>
+            <mat-label>Тема вопроса</mat-label>
             <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
           </mat-form-field>
         </div>
@@ -43,7 +45,7 @@
       <mat-tab label="Контент">
         <div class="card-form__tab-body">
           <p class="card-form__hint card-form__hint--tab">
-            Подсказка, варианты ответа и правильный вариант.
+            Вопрос, варианты ответа и правильный вариант.
           </p>
           @if (codeSelectDraft(); as codeDraft) {
             <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />

@@ -32,6 +32,7 @@ export type ChoiceCardDraft =
     CardOptionsEditorComponent,
   ],
   templateUrl: './choice-card-form.component.html',
+  styleUrl: './choice-card-form.component.scss',
 })
 export class ChoiceCardFormComponent {
   readonly draft = input.required<ChoiceCardDraft>();
@@ -123,7 +124,7 @@ export class ChoiceCardFormComponent {
       case 'tone':
         return 'Подсказка';
       default:
-        return 'Известный';
+        return 'Вопрос';
     }
   }
 
