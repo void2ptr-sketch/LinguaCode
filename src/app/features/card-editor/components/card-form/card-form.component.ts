@@ -27,12 +27,15 @@ import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
+import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
 import { CodeSelectCardFormComponent } from './kind-forms/code-select-card-form/code-select-card-form.component';
 import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-card-form.component';
 import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
+import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
+import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 
 @Component({
   selector: 'app-card-form',
@@ -46,6 +49,7 @@ import { MatDividerModule } from '@angular/material/divider';
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
     CardPreviewComponent,
+    CardOptionsEditorComponent,
     CodeSelectCardFormComponent,
     ChoiceCardFormComponent,
     InputCardFormComponent,
@@ -141,6 +145,82 @@ export class CardFormComponent {
 
   onLearningLanguageChange(learningLanguage: ContentLanguage): void {
     this.learningLanguageChange.emit(learningLanguage);
+  }
+
+  choiceOptionsConfig() {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return { title: '', optionLabelPrefix: '', showCorrectRadio: true };
+    }
+
+    switch (draft.kind) {
+      case 'reading':
+        return { title: 'Варианты чтения', optionLabelPrefix: 'Чтение', showCorrectRadio: true };
+      case 'symbol':
+        return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
+      case 'select':
+      case 'timed':
+        return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
+      default:
+        return { title: 'Варианты', optionLabelPrefix: 'Вариант', showCorrectRadio: true };
+    }
+  }
+
+  choiceOptionTexts(): readonly string[] {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return [];
+    }
+
+    if (draft.kind === 'symbol') {
+      return draft.symbols;
+    }
+
+    if (draft.kind === 'tone') {
+      return [];
+    }
+
+    return draft.optionsLearning;
+  }
+
+  choiceOptionLexemes(): readonly LexemeDraftFields[] {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return [];
+    }
+
+    if (draft.kind === 'symbol') {
+      return draft.symbolLexemes;
+    }
+
+    if (draft.kind === 'tone') {
+      return [];
+    }
+
+    return draft.optionsLexemes;
+  }
+
+  onChoiceOptionsStateChange(state: CardOptionsEditorState): void {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return;
+    }
+
+    if (draft.kind === 'select' || draft.kind === 'reading' || draft.kind === 'timed') {
+      this.updateDraft({
+        ...draft,
+        optionsLearning: state.options,
+        optionsLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    } else if (draft.kind === 'symbol') {
+      this.updateDraft({
+        ...draft,
+        symbols: state.options,
+        symbolLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    }
   }
 
   private fallbackPreviewCard(draft: CardDraft): Card {

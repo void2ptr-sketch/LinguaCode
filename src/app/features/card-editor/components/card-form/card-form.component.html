@@ -100,6 +100,16 @@
             <p class="card-form__hint card-form__hint--tab">
               Варианты ответов и правильный ответ.
             </p>
+            <app-card-options-editor
+              [config]="choiceOptionsConfig()"
+              [options]="choiceOptionTexts()"
+              [lexemes]="choiceOptionLexemes()"
+              [correctIndex]="choice.correctIndex"
+              [showLexemes]="true"
+              [knownLanguage]="knownLanguage()"
+              [learningLanguage]="learningLanguage()"
+              (stateChange)="onChoiceOptionsStateChange($event)"
+            />
           </div>
         </mat-tab>
       }
