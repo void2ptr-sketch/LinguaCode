@@ -1,7 +1,7 @@
 <div class="card-form">
   <div class="card-form__main">
     <mat-tab-group class="card-form__tabs" dynamicHeight>
-      <mat-tab label="Курс">
+      <mat-tab label="Вопрос">
         <div class="card-form__tab-body">
           <p class="card-form__hint card-form__hint--tab">
             <strong>Языковая Пара</strong> - текущего курса, 
@@ -82,6 +82,17 @@
         </div>
       </mat-tab>
 
+      @if (isAdvanced() && choiceDraft(); as choice) {
+        <mat-tab label="Ответы">
+          <div class="card-form__tab-body">
+            <p class="card-form__hint card-form__hint--tab">
+              Варианты ответов и правильный ответ.
+            </p>
+            <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
+          </div>
+        </mat-tab>
+      }
+
       @if (isAdvanced() && draft().kind !== 'code-select') {
         <mat-tab label="Фонетика">
           <div class="card-form__tab-body">
@@ -94,6 +105,20 @@
               [learningLanguage]="learningLanguage()"
               (draftChange)="updateDraft($event)"
             />
+          </div>
+        </mat-tab>
+      }
+
+      @if (isAdvanced()) {
+        <mat-tab label="Метаинфо">
+          <div class="card-form__tab-body">
+            <p class="card-form__hint card-form__hint--tab">
+              Дополнительная информация о карточке.
+            </p>
+            <mat-form-field appearance="outline">
+              <mat-label>Заголовок</mat-label>
+              <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+            </mat-form-field>
           </div>
         </mat-tab>
       }
