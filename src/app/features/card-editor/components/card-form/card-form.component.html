@@ -1,25 +1,50 @@
 <div class="card-form">
   <div class="card-form__main">
-    @if (!isAdvanced()) {
-      <p class="card-form__hint">
-        Базовый режим: текст и варианты на «Контенте». Лексемы и оформление — в «Расширенном».
-      </p>
-    } @else {
-      <p class="card-form__hint">
-        <strong>Контент</strong> — подсказка, варианты ответа и правильный вариант.
-        <strong>Фонетика</strong> — лексемы, IPA, пиньинь, URL аудио. <strong>Настройки</strong> —
-        тема, шрифт, лимит времени и режимы.
-      </p>
-    }
-
-    <mat-form-field appearance="outline">
-      <mat-label>Название</mat-label>
-      <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
-    </mat-form-field>
-
     <mat-tab-group class="card-form__tabs" dynamicHeight>
+      <mat-tab label="Курс">
+        <div class="card-form__tab-body">
+          <p class="card-form__hint card-form__hint--tab">
+            <strong>Контент</strong> — подсказка, варианты ответа и правильный вариант.
+            <strong>Фонетика</strong> — лексемы, IPA, пиньинь, URL аудио. <strong>Настройки</strong> —
+            тема, шрифт, лимит времени и режимы.
+          </p>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Известный язык</mat-label>
+            <mat-select
+              [ngModel]="knownLanguage()"
+              (ngModelChange)="onKnownLanguageChange($event)"
+            >
+              @for (language of languages; track language) {
+                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Новый язык</mat-label>
+            <mat-select
+              [ngModel]="learningLanguage()"
+              (ngModelChange)="onLearningLanguageChange($event)"
+            >
+              @for (language of languages; track language) {
+                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Название</mat-label>
+            <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+          </mat-form-field>
+        </div>
+      </mat-tab>
+
       <mat-tab label="Контент">
         <div class="card-form__tab-body">
+          <p class="card-form__hint card-form__hint--tab">
+            Подсказка, варианты ответа и правильный вариант.
+          </p>
           @if (codeSelectDraft(); as codeDraft) {
             <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
           }
@@ -59,8 +84,7 @@
         <mat-tab label="Фонетика">
           <div class="card-form__tab-body">
             <p class="card-form__hint card-form__hint--tab">
-              Текст вариантов и правильный ответ — на вкладке «Контент». Здесь только фонетика и
-              лексемы.
+              Лексемы, IPA, пиньинь, URL аудио.
             </p>
             <app-card-form-phonetics-panel
               [draft]="draft()"
@@ -74,6 +98,9 @@
 
       <mat-tab label="Настройки">
         <div class="card-form__tab-body">
+          <p class="card-form__hint card-form__hint--tab">
+            Тема, шрифт, лимит времени и режимы.
+          </p>
           <app-card-form-settings-panel
             [draft]="draft()"
             [isAdvanced]="isAdvanced()"

@@ -2,6 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
@@ -9,6 +10,11 @@ import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/chinese/tone-mark.ut
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
+import {
+  CARD_KIND_LABELS,
+  CONTENT_LANGUAGE_LABELS,
+} from '../../../../shared/card-catalog-search';
+import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -34,6 +40,7 @@ import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatTabsModule,
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
@@ -56,6 +63,8 @@ export class CardFormComponent {
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
 
   readonly draftChange = output<CardDraft>();
+  readonly knownLanguageChange = output<ContentLanguage>();
+  readonly learningLanguageChange = output<ContentLanguage>();
 
   readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
@@ -77,6 +86,9 @@ export class CardFormComponent {
   });
 
   readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
+
+  readonly languages = contentLanguages();
+  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
@@ -113,6 +125,14 @@ export class CardFormComponent {
 
   updateTitle(title: string): void {
     this.updateDraft({ ...this.draft(), title });
+  }
+
+  onKnownLanguageChange(knownLanguage: ContentLanguage): void {
+    this.knownLanguageChange.emit(knownLanguage);
+  }
+
+  onLearningLanguageChange(learningLanguage: ContentLanguage): void {
+    this.learningLanguageChange.emit(learningLanguage);
   }
 
   private fallbackPreviewCard(draft: CardDraft): Card {
