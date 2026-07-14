@@ -200,10 +200,7 @@ export function resolveScenarios(
  * @param overlay — пользовательские оверлеи
  * @returns разрешённые карточки
  */
-export function resolveCards(
-  seed: readonly Card[],
-  overlay: UserContentOverlay,
-): readonly Card[] {
+export function resolveCards(seed: readonly Card[], overlay: UserContentOverlay): readonly Card[] {
   const deleted = new Set(overlay.deletedSystemIds?.cards ?? []);
   const seedIds = new Set(seed.map((card) => card.id));
   const byId = new Map<string, Card>();
@@ -297,9 +294,7 @@ export function computeCourseCatalogOverlay(
     ...previous.deletedSystemIds,
     courses: uniqueIds([
       ...(previous.deletedSystemIds?.courses ?? []),
-      ...seed.courses
-        .map((course) => course.id)
-        .filter((id) => !resolvedCourseIds.has(id)),
+      ...seed.courses.map((course) => course.id).filter((id) => !resolvedCourseIds.has(id)),
     ]),
     lessons: uniqueIds([
       ...(previous.deletedSystemIds?.lessons ?? []),
@@ -693,8 +688,7 @@ function isCompleteCourse(value: Course | CoursePatch): value is Course {
  */
 function isCompleteLesson(value: Lesson | LessonPatch): value is Lesson {
   return (
-    typeof (value as Lesson).courseId === 'string' &&
-    Array.isArray((value as Lesson).scenarioIds)
+    typeof (value as Lesson).courseId === 'string' && Array.isArray((value as Lesson).scenarioIds)
   );
 }
 

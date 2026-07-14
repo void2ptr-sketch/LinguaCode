@@ -31,7 +31,10 @@ export function readUserContentOverlay(): UserContentOverlay {
 }
 
 export function writeUserContentOverlay(overlay: UserContentOverlay): void {
-  localStorage.setItem(USER_CONTENT_OVERLAY_KEY, JSON.stringify(normalizeUserContentOverlay(overlay)));
+  localStorage.setItem(
+    USER_CONTENT_OVERLAY_KEY,
+    JSON.stringify(normalizeUserContentOverlay(overlay)),
+  );
 }
 
 export function patchUserContentOverlay(
@@ -50,8 +53,7 @@ function normalizeUserContentOverlay(value: Partial<UserContentOverlay>): UserCo
     version: USER_CONTENT_OVERLAY_VERSION,
     courses: value.courses && typeof value.courses === 'object' ? { ...value.courses } : {},
     lessons: value.lessons && typeof value.lessons === 'object' ? { ...value.lessons } : {},
-    scenarios:
-      value.scenarios && typeof value.scenarios === 'object' ? { ...value.scenarios } : {},
+    scenarios: value.scenarios && typeof value.scenarios === 'object' ? { ...value.scenarios } : {},
     cards: value.cards && typeof value.cards === 'object' ? { ...value.cards } : {},
     cardIndexMeta:
       value.cardIndexMeta && typeof value.cardIndexMeta === 'object'

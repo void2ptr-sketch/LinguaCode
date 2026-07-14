@@ -9,5 +9,7 @@ export function resolveQuizQuestionHeaderDisplay(
 }
 
 export function quizQuestionPromptText(title: string, prompt: string): string {
-  return resolveQuizQuestionHeaderDisplay(title, prompt) === 'prompt-only' ? prompt.trim() : title.trim();
+  return resolveQuizQuestionHeaderDisplay(title, prompt) === 'prompt-only'
+    ? prompt.trim()
+    : title.trim();
 }

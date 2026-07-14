@@ -1,6 +1,11 @@
 import type { CardIndexEntry } from '../../models/card-index.types';
 
-import { buildCardSearchFacets, filterCardIndex, matchesCardIndexEntry, matchesTagFacetEntry } from './card-search.utils';
+import {
+  buildCardSearchFacets,
+  filterCardIndex,
+  matchesCardIndexEntry,
+  matchesTagFacetEntry,
+} from './card-search.utils';
 
 describe('card-search.utils', () => {
   const entries: readonly CardIndexEntry[] = [

@@ -138,8 +138,7 @@ export class HanziDataService {
       }
     }
 
-    const message =
-      lastError instanceof Error ? lastError.message : 'Failed to load hanzi data';
+    const message = lastError instanceof Error ? lastError.message : 'Failed to load hanzi data';
     const isMissing = lastError instanceof HttpErrorResponse && lastError.status === 404;
     this.setCacheEntry(character, {
       state: isMissing ? 'missing' : 'error',

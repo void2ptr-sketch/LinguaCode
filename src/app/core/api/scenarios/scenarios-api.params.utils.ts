@@ -1,6 +1,10 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { ScenarioCardSourceMode, ScenarioListScope, ScenarioSearchCriteria } from '../../models';
+import type {
+  ScenarioCardSourceMode,
+  ScenarioListScope,
+  ScenarioSearchCriteria,
+} from '../../models';
 import { isContentLanguage } from '../../data/language-pair/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
 

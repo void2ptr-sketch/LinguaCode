@@ -28,11 +28,11 @@ npm run import:course-bundle -- --bundle ./path/to/course.linguacode-course.json
 
 Опции:
 
-| Опция | Описание |
-|-------|----------|
-| `--bundle` | Путь к CourseBundle JSON (обязательно) |
-| `--slug` | Уникальный идентификатор для имен файлов (обязательно) |
-| `--replace` | Перезаписать существующие файлы seed при коллизиях id |
+| Опция       | Описание                                               |
+| ----------- | ------------------------------------------------------ |
+| `--bundle`  | Путь к CourseBundle JSON (обязательно)                 |
+| `--slug`    | Уникальный идентификатор для имен файлов (обязательно) |
+| `--replace` | Перезаписать существующие файлы seed при коллизиях id  |
 
 ### Что делает скрипт
 
@@ -74,10 +74,10 @@ npm run test:ci
 ```typescript
 type CourseBundle = {
   formatVersion: 1;
-  exportedAt: string;           // ISO
-  sourceAuthorId?: string;      // local-user из overlay
+  exportedAt: string; // ISO
+  sourceAuthorId?: string; // local-user из overlay
   course: {
-    courses: Course[];          // ровно 1 программа
+    courses: Course[]; // ровно 1 программа
     lessons: Lesson[];
   };
   scenarios: Scenario[];
@@ -95,14 +95,14 @@ type CourseBundle = {
 
 ## Ограничения MVP
 
-| Тема | MVP-поведение |
-|------|---------------|
-| Сценарии criteria | Экспорт запрещён; нужен fixed/snapshot |
-| Прогресс обучения | Не входит в пакет |
-| Обновление курса | Новый bundle → повторный import (--replace) |
-| Права автора | Attribution в sourceAuthorId |
-| In-app import | Не в MVP — только seed через репозиторий |
-| Backend / URL publish | Не в MVP — следующий этап |
+| Тема                  | MVP-поведение                               |
+| --------------------- | ------------------------------------------- |
+| Сценарии criteria     | Экспорт запрещён; нужен fixed/snapshot      |
+| Прогресс обучения     | Не входит в пакет                           |
+| Обновление курса      | Новый bundle → повторный import (--replace) |
+| Права автора          | Attribution в sourceAuthorId                |
+| In-app import         | Не в MVP — только seed через репозиторий    |
+| Backend / URL publish | Не в MVP — следующий этап                   |
 
 ## Troubleshooting
 

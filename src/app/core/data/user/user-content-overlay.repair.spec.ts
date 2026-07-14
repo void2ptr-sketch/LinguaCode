@@ -171,7 +171,9 @@ describe('user-content-overlay.repair', () => {
     expect(localStorage.getItem(USER_CONTENT_OVERLAY_REPAIR_KEY)).toBe(
       USER_CONTENT_OVERLAY_REPAIR_VERSION,
     );
-    const stored = JSON.parse(localStorage.getItem(USER_CONTENT_OVERLAY_KEY) ?? '{}') as UserContentOverlay;
+    const stored = JSON.parse(
+      localStorage.getItem(USER_CONTENT_OVERLAY_KEY) ?? '{}',
+    ) as UserContentOverlay;
     expect(stored.courses['user-course-1']).toBeUndefined();
   });
 });

@@ -6,15 +6,11 @@ const isAllowedMarkdownCharacter = (code: number): boolean =>
   code === 9 || code === 10 || code === 13 || isAllowedPlainTextCharacter(code);
 
 const stripControlCharacters = (value: string): string => {
-  return [...value]
-    .filter((char) => isAllowedPlainTextCharacter(char.charCodeAt(0)))
-    .join('');
+  return [...value].filter((char) => isAllowedPlainTextCharacter(char.charCodeAt(0))).join('');
 };
 
 const stripMarkdownControlCharacters = (value: string): string => {
-  return [...value]
-    .filter((char) => isAllowedMarkdownCharacter(char.charCodeAt(0)))
-    .join('');
+  return [...value].filter((char) => isAllowedMarkdownCharacter(char.charCodeAt(0))).join('');
 };
 
 export const sanitizePlainText = (value: string, maxLength = 64): string => {

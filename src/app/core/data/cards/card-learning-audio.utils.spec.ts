@@ -1,4 +1,8 @@
-import { contentLanguageSpeechLocale, playLearningAudio, resolveLearningSpeech } from './card-learning-audio.utils';
+import {
+  contentLanguageSpeechLocale,
+  playLearningAudio,
+  resolveLearningSpeech,
+} from './card-learning-audio.utils';
 
 describe('card-learning-audio.utils', () => {
   it('should map content language to speech locale', () => {

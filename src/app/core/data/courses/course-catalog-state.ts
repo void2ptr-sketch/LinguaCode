@@ -51,8 +51,7 @@ export function mergeStoredLesson(stored: Lesson, defaultLesson?: Lesson): Lesso
   return normalizeStoredLesson({
     ...defaultLesson,
     ...stored,
-    scenarioIds:
-      stored.scenarioIds.length > 0 ? stored.scenarioIds : defaultLesson.scenarioIds,
+    scenarioIds: stored.scenarioIds.length > 0 ? stored.scenarioIds : defaultLesson.scenarioIds,
     prerequisiteLessonIds:
       stored.prerequisiteLessonIds.length > 0
         ? stored.prerequisiteLessonIds

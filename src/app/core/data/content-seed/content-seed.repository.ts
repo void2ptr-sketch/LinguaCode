@@ -161,11 +161,11 @@ export class ContentSeedRepository {
    * @private
    */
   private loadScenarioFixture(path: string): Promise<ScenariosSeedFixture> {
-    return firstValueFrom(
-      this.http.get<ScenariosSeedFixture>(buildFixtureUrl(path)),
-    ).then((fixture) => ({
-      scenarios: fixture.scenarios.map((scenario) => normalizeScenario(scenario)),
-    }));
+    return firstValueFrom(this.http.get<ScenariosSeedFixture>(buildFixtureUrl(path))).then(
+      (fixture) => ({
+        scenarios: fixture.scenarios.map((scenario) => normalizeScenario(scenario)),
+      }),
+    );
   }
 
   /**
@@ -191,9 +191,9 @@ export class ContentSeedRepository {
    */
   private loadCardFixture(path: string): Promise<CardsSeedFixture> {
     const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-    return firstValueFrom(
-      this.http.get<CardsSeedFixture>(buildFixtureUrl(normalizedPath)),
-    ).catch(() => ({ cards: [] }));
+    return firstValueFrom(this.http.get<CardsSeedFixture>(buildFixtureUrl(normalizedPath))).catch(
+      () => ({ cards: [] }),
+    );
   }
 }
 

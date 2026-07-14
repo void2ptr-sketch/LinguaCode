@@ -50,9 +50,7 @@
         <div class="course-form__export-section">
           <span class="course-form__export-label">Экспорт PDF</span>
           <div class="course-form__export-controls">
-            <mat-checkbox #withHintsCheckbox [checked]="true">
-              С ответами
-            </mat-checkbox>
+            <mat-checkbox #withHintsCheckbox [checked]="true"> С ответами </mat-checkbox>
             <button
               mat-stroked-button
               type="button"
@@ -70,8 +68,8 @@
     <mat-tab label="Идея программы">
       <div class="course-form__tab-panel">
         <p class="course-form__idea-hint">
-          Опишите цели, аудиторию, темы и формат в Markdown. На основе этой идеи позже можно
-          будет сгенерировать уроки, сценарии и карточки.
+          Опишите цели, аудиторию, темы и формат в Markdown. На основе этой идеи позже можно будет
+          сгенерировать уроки, сценарии и карточки.
         </p>
 
         <app-markdown-field
@@ -88,7 +86,10 @@
 
     <mat-tab label="Уроки">
       <div class="course-form__tab-panel">
-        <p class="course-form__lessons-hint">Каждый урок — отдельный блок. Заполните название, сценарии и при необходимости prerequisites.</p>
+        <p class="course-form__lessons-hint">
+          Каждый урок — отдельный блок. Заполните название, сценарии и при необходимости
+          prerequisites.
+        </p>
 
         <div class="course-form__lessons">
           @for (lesson of draft().lessons; track lessonDraftKey(lesson); let index = $index) {
@@ -169,7 +170,12 @@
         </div>
 
         @if (!readOnly()) {
-          <button mat-stroked-button type="button" class="course-form__add-lesson" (click)="addLesson()">
+          <button
+            mat-stroked-button
+            type="button"
+            class="course-form__add-lesson"
+            (click)="addLesson()"
+          >
             <mat-icon>add</mat-icon>
             Добавить урок
           </button>

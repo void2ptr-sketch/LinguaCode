@@ -76,7 +76,14 @@ export function applyToneToLastVowelInSyllable(rawBase: string, tone: ToneMark):
   const lower = base.toLowerCase();
   for (let index = lower.length - 1; index >= 0; index -= 1) {
     const char = lower[index];
-    if (char === 'a' || char === 'e' || char === 'i' || char === 'o' || char === 'u' || char === 'v') {
+    if (
+      char === 'a' ||
+      char === 'e' ||
+      char === 'i' ||
+      char === 'o' ||
+      char === 'u' ||
+      char === 'v'
+    ) {
       const vowelKey = char === 'v' ? 'ü' : char;
       return applyToneMarkAtIndex(displayBase, index, vowelKey, tone);
     }

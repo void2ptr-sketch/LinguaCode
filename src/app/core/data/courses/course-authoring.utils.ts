@@ -37,10 +37,7 @@ export function normalizeCourseAuthoring(
   };
 }
 
-export function courseAuthoringWithIdea(
-  authoring: CourseAuthoring,
-  idea: string,
-): CourseAuthoring {
+export function courseAuthoringWithIdea(authoring: CourseAuthoring, idea: string): CourseAuthoring {
   const trimmed = idea.trim();
   const previousIdea = authoring.idea.trim();
 
@@ -60,6 +57,8 @@ export function sameCourseAuthoring(
   left: CourseAuthoring | undefined,
   right: CourseAuthoring | undefined,
 ): boolean {
-  return JSON.stringify(normalizeCourseAuthoring(left) ?? null) ===
-    JSON.stringify(normalizeCourseAuthoring(right) ?? null);
+  return (
+    JSON.stringify(normalizeCourseAuthoring(left) ?? null) ===
+    JSON.stringify(normalizeCourseAuthoring(right) ?? null)
+  );
 }

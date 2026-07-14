@@ -310,11 +310,7 @@ export class CardSelectPageComponent implements OnInit {
     }
 
     const difficulty = query.get('difficulty');
-    if (
-      difficulty === 'beginner' ||
-      difficulty === 'intermediate' ||
-      difficulty === 'advanced'
-    ) {
+    if (difficulty === 'beginner' || difficulty === 'intermediate' || difficulty === 'advanced') {
       this.selectedDifficulty.set(difficulty);
     }
 

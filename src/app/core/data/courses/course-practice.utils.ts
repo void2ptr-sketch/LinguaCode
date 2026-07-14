@@ -25,7 +25,9 @@ export function isOpenPracticeCourse(
   return resolveCoursePracticeSettings(course).mode === 'open';
 }
 
-export function collectCourseScenarioIds(course: Pick<CourseWithLessons, 'lessons'>): readonly string[] {
+export function collectCourseScenarioIds(
+  course: Pick<CourseWithLessons, 'lessons'>,
+): readonly string[] {
   const ids = new Set<string>();
   for (const lesson of course.lessons) {
     for (const scenarioId of lesson.scenarioIds) {

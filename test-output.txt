@@ -1,0 +1,46 @@
+- Generating browser application bundles (phase: setup)...
+[32m✔[39m Browser application bundle generation complete.
+[32m12 07 2026 23:38:17.153:INFO [karma-server]: [39mKarma v6.4.4 server started at http://localhost:9877/
+[32m12 07 2026 23:38:17.157:INFO [launcher]: [39mLaunching browsers Chrome with concurrency unlimited
+[32m12 07 2026 23:38:17.163:INFO [launcher]: [39mStarting browser Chrome
+[32m12 07 2026 23:38:19.722:INFO [Chrome 144.0.0.0 (Linux 0.0.0)]: [39mConnected on socket VPJoRWnMyCX8vsSVAAAB with id 33279167
+Chrome 144.0.0.0 (Linux 0.0.0): Executed 0 of 1[32m SUCCESS[39m (0 secs / 0 secs)
+[1A[2K[31mChrome 144.0.0.0 (Linux 0.0.0) Card select smoke should load scenario cards and render the first question FAILED[39m
+	scenario list item: Expected null not to be null.
+	    at <Jasmine>
+	    at UserContext.<anonymous> (src/app/features/card-select/card-select.smoke.spec.ts:116:64)
+	    at Generator.next (<anonymous>)
+	    at asyncGeneratorStep (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:3:1)
+	    at _next (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:17:1)
+	Expected 'LinguaCodeschool Обучение
+	build Инструменты
+	help_outline Справка
+	person_outline Ученик schoolОбучениеstyleПрактикаmenu_bookКаталог курсовmenu_bookКонструктор курсовview_listКонструктор сценариевstyleКарточкиperson_outlineПрофильarrow_back Обучение ПрактикаНастройка сессии и прохождение карточекПрограмма Программа не выбрана Урок Урок не выбран Сценарий Сценарий не выбран ПрограммаУрокСценарийОбучениеПрограммаУрокиСценарииОбучениеПоиск сценарияДоступныеМоиВсеВыберите сценарий, чтобы начать практику Начать практику LinguaCode — языки в цифровую эпоху' to contain 'Демо-сценарий'.
+	    at <Jasmine>
+	    at UserContext.<anonymous> (src/app/features/card-select/card-select.smoke.spec.ts:137:18)
+	    at Generator.next (<anonymous>)
+	    at asyncGeneratorStep (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:3:1)
+	    at _next (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:17:1)
+	Expected 'LinguaCodeschool Обучение
+	build Инструменты
+	help_outline Справка
+	person_outline Ученик schoolОбучениеstyleПрактикаmenu_bookКаталог курсовmenu_bookКонструктор курсовview_listКонструктор сценариевstyleКарточкиperson_outlineПрофильarrow_back Обучение ПрактикаНастройка сессии и прохождение карточекПрограмма Программа не выбрана Урок Урок не выбран Сценарий Сценарий не выбран ПрограммаУрокСценарийОбучениеПрограммаУрокиСценарииОбучениеПоиск сценарияДоступныеМоиВсеВыберите сценарий, чтобы начать практику Начать практику LinguaCode — языки в цифровую эпоху' to contain 'Как сказать «Привет» по-английски?'.
+	    at <Jasmine>
+	    at UserContext.<anonymous> (src/app/features/card-select/card-select.smoke.spec.ts:138:18)
+	    at Generator.next (<anonymous>)
+	    at asyncGeneratorStep (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:3:1)
+	    at _next (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:17:1)
+	Expected 'LinguaCodeschool Обучение
+	build Инструменты
+	help_outline Справка
+	person_outline Ученик schoolОбучениеstyleПрактикаmenu_bookКаталог курсовmenu_bookКонструктор курсовview_listКонструктор сценариевstyleКарточкиperson_outlineПрофильarrow_back Обучение ПрактикаНастройка сессии и прохождение карточекПрограмма Программа не выбрана Урок Урок не выбран Сценарий Сценарий не выбран ПрограммаУрокСценарийОбучениеПрограммаУрокиСценарииОбучениеПоиск сценарияДоступныеМоиВсеВыберите сценарий, чтобы начать практику Начать практику LinguaCode — языки в цифровую эпоху' to contain 'Hello'.
+	    at <Jasmine>
+	    at UserContext.<anonymous> (src/app/features/card-select/card-select.smoke.spec.ts:139:18)
+	    at Generator.next (<anonymous>)
+	    at asyncGeneratorStep (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:3:1)
+	    at _next (node_modules/@babel/runtime/helpers/esm/asyncToGenerator.js:17:1)
+Chrome 144.0.0.0 (Linux 0.0.0): Executed 1 of 1[31m (1 FAILED)[39m (0 secs / 1.025 secs)
+[1A[2KChrome 144.0.0.0 (Linux 0.0.0): Executed 1 of 1[31m (1 FAILED)[39m (1.045 secs / 1.025 secs)
+[31mTOTAL: 1 FAILED, 0 SUCCESS[39m
+[32m✔[39m Browser application bundle generation complete.
+[32m✔[39m Browser application bundle generation complete.

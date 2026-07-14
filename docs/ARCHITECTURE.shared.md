@@ -8,17 +8,17 @@
 
 ## Основные модули
 
-| Область        | Путь                                                           | Назначение                                      |
-| -------------- | -------------------------------------------------------------- | ----------------------------------------------- |
-| Card host      | `shared/components/card-host`                                  | Рендер `Card` по `kind`; `memoryBoardNonce`     |
-| Focus shell    | `shared/components/card-focus-shell`                           | Fullscreen overlay; reparent host → `body`      |
-| Quiz cards     | `shared/components/cards/*`                                    | Select, memory, keyboard, draw, reading…        |
-| Pinyin keyboard| `shared/components/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme         | `shared/components/lexeme-display`, `cjk-ruby`, `phonetic-ipa` | G9/G10 отображение                              |
-| Pickers        | `shared/course-picker`, `lesson-picker`, `scenario-picker`     | Выбор программы/урока/сценария                  |
-| Pagination     | `shared/pagination`                                            | `UiPaginationComponent`, `PageRequest`          |
-| Catalog search | `shared/card-catalog-search`                                   | Фильтры и store поиска карточек                 |
-| Utils          | `shared/utils/card-answer.utils`                               | Проверка ответов (CJK, IPA, reading fuzzy)    |
+| Область         | Путь                                                           | Назначение                                      |
+| --------------- | -------------------------------------------------------------- | ----------------------------------------------- |
+| Card host       | `shared/components/card-host`                                  | Рендер `Card` по `kind`; `memoryBoardNonce`     |
+| Focus shell     | `shared/components/card-focus-shell`                           | Fullscreen overlay; reparent host → `body`      |
+| Quiz cards      | `shared/components/cards/*`                                    | Select, memory, keyboard, draw, reading…        |
+| Pinyin keyboard | `shared/components/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
+| Lexeme          | `shared/components/lexeme-display`, `cjk-ruby`, `phonetic-ipa` | G9/G10 отображение                              |
+| Pickers         | `shared/course-picker`, `lesson-picker`, `scenario-picker`     | Выбор программы/урока/сценария                  |
+| Pagination      | `shared/pagination`                                            | `UiPaginationComponent`, `PageRequest`          |
+| Catalog search  | `shared/card-catalog-search`                                   | Фильтры и store поиска карточек                 |
+| Utils           | `shared/utils/card-answer.utils`                               | Проверка ответов (CJK, IPA, reading fuzzy)      |
 
 ## CardHost — маршрутизация по kind
 
@@ -40,13 +40,13 @@ flowchart LR
 
 ## Проверка ответов (`card-answer.utils.ts`)
 
-| Kind / режим | Логика |
-| ------------ | ------ |
-| `select`, `timed`, `symbol`, `tone` | `correctIndex === selectedIndex` после `resolveOptionCard` |
-| `reading` | `matchesReadingCardSelection` — fuzzy match по pinyin / palladius / primary (`readingCandidateTexts`) |
-| `keyboard` | `answerMode`: plain / pinyin / palladius / ipa / han — отдельные normalizers |
-| `memory` | все пары найдены |
-| `draw` | `draw-card-answer.utils` + Hanzi Engine grading |
+| Kind / режим                        | Логика                                                                                                |
+| ----------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `select`, `timed`, `symbol`, `tone` | `correctIndex === selectedIndex` после `resolveOptionCard`                                            |
+| `reading`                           | `matchesReadingCardSelection` — fuzzy match по pinyin / palladius / primary (`readingCandidateTexts`) |
+| `keyboard`                          | `answerMode`: plain / pinyin / palladius / ipa / han — отдельные normalizers                          |
+| `memory`                            | все пары найдены                                                                                      |
+| `draw`                              | `draw-card-answer.utils` + Hanzi Engine grading                                                       |
 
 ## Pinyin keyboard
 

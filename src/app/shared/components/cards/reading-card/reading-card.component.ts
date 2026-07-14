@@ -15,7 +15,13 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
 
 @Component({
   selector: 'app-reading-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    QuizCardQuestionHeaderComponent,
+  ],
   templateUrl: './reading-card.component.html',
   styleUrl: './reading-card.component.scss',
 })

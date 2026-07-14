@@ -9,7 +9,10 @@ export {
 export { buildApiUrl, buildFixtureUrl, isApiRequest } from './api-url';
 export type { ApiErrorBody, ApiListResponse, ApiResponse, HttpApiError } from './api.types';
 export { buildCardSearchParams, parseCardSearchCriteria } from './cards/cards-api.params.utils';
-export { buildCourseSearchParams, parseCourseSearchCriteria } from './courses/courses-api.params.utils';
+export {
+  buildCourseSearchParams,
+  parseCourseSearchCriteria,
+} from './courses/courses-api.params.utils';
 export {
   buildScenarioSearchParams,
   parseScenarioSearchCriteria,

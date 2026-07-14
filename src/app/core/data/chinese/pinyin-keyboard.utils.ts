@@ -291,10 +291,7 @@ export function pinyinKeyboardKeyAriaLabel(key: PinyinKeyboardKey): string {
   }
 }
 
-export function pinyinKeyboardToneKeyAriaLabel(
-  state: PinyinKeyboardState,
-  tone: ToneMark,
-): string {
+export function pinyinKeyboardToneKeyAriaLabel(state: PinyinKeyboardState, tone: ToneMark): string {
   const preview = pendingSyllableTonePreview(state, tone);
   const toneLabel = tone === 5 ? 'Лёгкий тон' : `${tone}-й тон`;
   return `${toneLabel}: ${preview}`;

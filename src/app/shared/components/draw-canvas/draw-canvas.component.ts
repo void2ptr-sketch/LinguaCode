@@ -143,9 +143,7 @@ export class DrawCanvasComponent {
   readonly showHanziGuides = computed(() => {
     const mode = this.canvasMode();
     return (
-      mode === 'stroke-order' &&
-      this.hanziLoadState() === 'ready' &&
-      this.hanziStrokes().length > 0
+      mode === 'stroke-order' && this.hanziLoadState() === 'ready' && this.hanziStrokes().length > 0
     );
   });
 
@@ -893,7 +891,10 @@ export class DrawCanvasComponent {
     sample: HanziTracingStrokeSample,
     progress: number,
   ): void {
-    const lookbackPoints = sliceHanziPolylineByProgress(sample.densified, Math.max(0, progress - 0.04));
+    const lookbackPoints = sliceHanziPolylineByProgress(
+      sample.densified,
+      Math.max(0, progress - 0.04),
+    );
     const canvasTip = positioner.toCanvas(tip.point);
     const canvasTail = positioner.toCanvas(lookbackPoints.at(-1) ?? tip.point);
     const angleRad = Math.atan2(canvasTip.y - canvasTail.y, canvasTip.x - canvasTail.x);

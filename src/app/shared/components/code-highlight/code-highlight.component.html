@@ -1,5 +1,11 @@
 @if (inline()) {
-  <code class="code-highlight code-highlight--inline hljs" [class]="languageClass()" [innerHTML]="highlightedHtml()"></code>
+  <code
+    class="code-highlight code-highlight--inline hljs"
+    [class]="languageClass()"
+    [innerHTML]="highlightedHtml()"
+  ></code>
 } @else {
-  <pre class="code-highlight"><code class="hljs" [class]="languageClass()" [innerHTML]="highlightedHtml()"></code></pre>
+  <pre
+    class="code-highlight"
+  ><code class="hljs" [class]="languageClass()" [innerHTML]="highlightedHtml()"></code></pre>
 }

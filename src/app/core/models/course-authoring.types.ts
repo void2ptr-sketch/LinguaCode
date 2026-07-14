@@ -1,10 +1,5 @@
 /** Статус авторского пайплайна: идея → план → материализация в уроки/сценарии/карточки. */
-export type CourseAuthoringStatus =
-  | 'draft'
-  | 'planned'
-  | 'generating'
-  | 'materialized'
-  | 'failed';
+export type CourseAuthoringStatus = 'draft' | 'planned' | 'generating' | 'materialized' | 'failed';
 
 /** Авторский слой программы (`Course`): большой текст идеи, не для каталога ученика. */
 export type CourseAuthoring = {

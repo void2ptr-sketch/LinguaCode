@@ -17,6 +17,12 @@
         "primary": "一",
         "script": "hani",
         "pinyin": "yī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -36,6 +42,12 @@
         "primary": "丨",
         "script": "hani",
         "pinyin": "gǔn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -55,6 +67,12 @@
         "primary": "丶",
         "script": "hani",
         "pinyin": "zhǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -74,6 +92,12 @@
         "primary": "丿",
         "script": "hani",
         "pinyin": "piě"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -93,6 +117,12 @@
         "primary": "乙",
         "script": "hani",
         "pinyin": "yǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -112,6 +142,12 @@
         "primary": "亅",
         "script": "hani",
         "pinyin": "jué"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -131,6 +167,12 @@
         "primary": "二",
         "script": "hani",
         "pinyin": "èr"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -150,6 +192,12 @@
         "primary": "亠",
         "script": "hani",
         "pinyin": "tóu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -169,6 +217,12 @@
         "primary": "人",
         "script": "hani",
         "pinyin": "rén"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -188,6 +242,12 @@
         "primary": "儿",
         "script": "hani",
         "pinyin": "ér"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -207,6 +267,12 @@
         "primary": "入",
         "script": "hani",
         "pinyin": "rù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -226,6 +292,12 @@
         "primary": "八",
         "script": "hani",
         "pinyin": "bā"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -245,6 +317,12 @@
         "primary": "冂",
         "script": "hani",
         "pinyin": "jiōng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -264,6 +342,12 @@
         "primary": "冖",
         "script": "hani",
         "pinyin": "mì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -283,6 +367,12 @@
         "primary": "冫",
         "script": "hani",
         "pinyin": "bīng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -302,6 +392,12 @@
         "primary": "几",
         "script": "hani",
         "pinyin": "jī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -321,6 +417,12 @@
         "primary": "凵",
         "script": "hani",
         "pinyin": "kǎn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -340,6 +442,12 @@
         "primary": "刀",
         "script": "hani",
         "pinyin": "dāo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -359,6 +467,12 @@
         "primary": "力",
         "script": "hani",
         "pinyin": "lì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -378,6 +492,12 @@
         "primary": "勹",
         "script": "hani",
         "pinyin": "bāo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -397,6 +517,12 @@
         "primary": "匕",
         "script": "hani",
         "pinyin": "bǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -416,6 +542,12 @@
         "primary": "匚",
         "script": "hani",
         "pinyin": "fāng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -435,6 +567,12 @@
         "primary": "匸",
         "script": "hani",
         "pinyin": "xǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -454,6 +592,12 @@
         "primary": "十",
         "script": "hani",
         "pinyin": "shí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -473,6 +617,12 @@
         "primary": "卜",
         "script": "hani",
         "pinyin": "bǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -492,6 +642,12 @@
         "primary": "卩",
         "script": "hani",
         "pinyin": "jié"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -511,6 +667,12 @@
         "primary": "厂",
         "script": "hani",
         "pinyin": "hǎn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -530,6 +692,12 @@
         "primary": "厶",
         "script": "hani",
         "pinyin": "sī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -549,6 +717,12 @@
         "primary": "又",
         "script": "hani",
         "pinyin": "yòu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -568,6 +742,12 @@
         "primary": "口",
         "script": "hani",
         "pinyin": "kǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -587,6 +767,12 @@
         "primary": "囗",
         "script": "hani",
         "pinyin": "wéi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -606,6 +792,12 @@
         "primary": "土",
         "script": "hani",
         "pinyin": "tǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -625,6 +817,12 @@
         "primary": "士",
         "script": "hani",
         "pinyin": "shì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -644,6 +842,12 @@
         "primary": "夂",
         "script": "hani",
         "pinyin": "zhǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -663,6 +867,12 @@
         "primary": "夊",
         "script": "hani",
         "pinyin": "suī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -682,6 +892,12 @@
         "primary": "夕",
         "script": "hani",
         "pinyin": "xī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -701,6 +917,12 @@
         "primary": "大",
         "script": "hani",
         "pinyin": "dà"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -720,6 +942,12 @@
         "primary": "女",
         "script": "hani",
         "pinyin": "nǚ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -739,6 +967,12 @@
         "primary": "子",
         "script": "hani",
         "pinyin": "zǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -758,6 +992,12 @@
         "primary": "宀",
         "script": "hani",
         "pinyin": "mián"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -777,6 +1017,12 @@
         "primary": "寸",
         "script": "hani",
         "pinyin": "cùn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -796,6 +1042,12 @@
         "primary": "小",
         "script": "hani",
         "pinyin": "xiǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -815,6 +1067,12 @@
         "primary": "尢",
         "script": "hani",
         "pinyin": "wāng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -834,6 +1092,12 @@
         "primary": "尸",
         "script": "hani",
         "pinyin": "shī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -853,6 +1117,12 @@
         "primary": "屮",
         "script": "hani",
         "pinyin": "chè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -872,6 +1142,12 @@
         "primary": "山",
         "script": "hani",
         "pinyin": "shān"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -891,6 +1167,12 @@
         "primary": "巛",
         "script": "hani",
         "pinyin": "chuān"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -910,6 +1192,12 @@
         "primary": "工",
         "script": "hani",
         "pinyin": "gōng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -929,6 +1217,12 @@
         "primary": "己",
         "script": "hani",
         "pinyin": "jǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -948,6 +1242,12 @@
         "primary": "巾",
         "script": "hani",
         "pinyin": "jīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -967,6 +1267,12 @@
         "primary": "干",
         "script": "hani",
         "pinyin": "gān"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -986,6 +1292,12 @@
         "primary": "幺",
         "script": "hani",
         "pinyin": "yāo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1005,6 +1317,12 @@
         "primary": "广",
         "script": "hani",
         "pinyin": "yǎn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1024,6 +1342,12 @@
         "primary": "廴",
         "script": "hani",
         "pinyin": "yǐn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1043,6 +1367,12 @@
         "primary": "廾",
         "script": "hani",
         "pinyin": "gǒng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1062,6 +1392,12 @@
         "primary": "弋",
         "script": "hani",
         "pinyin": "yì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1081,6 +1417,12 @@
         "primary": "弓",
         "script": "hani",
         "pinyin": "gōng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1100,6 +1442,12 @@
         "primary": "彐",
         "script": "hani",
         "pinyin": "jì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1119,6 +1467,12 @@
         "primary": "彡",
         "script": "hani",
         "pinyin": "shān"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1138,6 +1492,12 @@
         "primary": "彳",
         "script": "hani",
         "pinyin": "chì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1157,6 +1517,12 @@
         "primary": "心",
         "script": "hani",
         "pinyin": "xīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1176,6 +1542,12 @@
         "primary": "戈",
         "script": "hani",
         "pinyin": "gē"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1195,6 +1567,12 @@
         "primary": "戶",
         "script": "hani",
         "pinyin": "hù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1214,6 +1592,12 @@
         "primary": "手",
         "script": "hani",
         "pinyin": "shǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1233,6 +1617,12 @@
         "primary": "支",
         "script": "hani",
         "pinyin": "zhī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1252,6 +1642,12 @@
         "primary": "攴",
         "script": "hani",
         "pinyin": "pū"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1271,6 +1667,12 @@
         "primary": "文",
         "script": "hani",
         "pinyin": "wén"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1290,6 +1692,12 @@
         "primary": "斗",
         "script": "hani",
         "pinyin": "dǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1309,6 +1717,12 @@
         "primary": "斤",
         "script": "hani",
         "pinyin": "jīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1328,6 +1742,12 @@
         "primary": "方",
         "script": "hani",
         "pinyin": "fāng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1347,6 +1767,12 @@
         "primary": "无",
         "script": "hani",
         "pinyin": "wú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1366,6 +1792,12 @@
         "primary": "日",
         "script": "hani",
         "pinyin": "rì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1385,6 +1817,12 @@
         "primary": "曰",
         "script": "hani",
         "pinyin": "yuē"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1404,6 +1842,12 @@
         "primary": "月",
         "script": "hani",
         "pinyin": "yuè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1423,6 +1867,12 @@
         "primary": "木",
         "script": "hani",
         "pinyin": "mù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1442,6 +1892,12 @@
         "primary": "欠",
         "script": "hani",
         "pinyin": "qiàn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1461,6 +1917,12 @@
         "primary": "止",
         "script": "hani",
         "pinyin": "zhǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1480,6 +1942,12 @@
         "primary": "歹",
         "script": "hani",
         "pinyin": "dǎi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1499,6 +1967,12 @@
         "primary": "殳",
         "script": "hani",
         "pinyin": "shū"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1518,6 +1992,12 @@
         "primary": "毋",
         "script": "hani",
         "pinyin": "wú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1537,6 +2017,12 @@
         "primary": "比",
         "script": "hani",
         "pinyin": "bǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1556,6 +2042,12 @@
         "primary": "毛",
         "script": "hani",
         "pinyin": "máo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1575,6 +2067,12 @@
         "primary": "氏",
         "script": "hani",
         "pinyin": "shì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1594,6 +2092,12 @@
         "primary": "气",
         "script": "hani",
         "pinyin": "qì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1613,6 +2117,12 @@
         "primary": "水",
         "script": "hani",
         "pinyin": "shuǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1632,6 +2142,12 @@
         "primary": "火",
         "script": "hani",
         "pinyin": "huǒ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1651,6 +2167,12 @@
         "primary": "爪",
         "script": "hani",
         "pinyin": "zhǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1670,6 +2192,12 @@
         "primary": "父",
         "script": "hani",
         "pinyin": "fù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1689,6 +2217,12 @@
         "primary": "爻",
         "script": "hani",
         "pinyin": "yáo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1708,6 +2242,12 @@
         "primary": "爿",
         "script": "hani",
         "pinyin": "qiáng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1727,6 +2267,12 @@
         "primary": "片",
         "script": "hani",
         "pinyin": "piàn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1746,6 +2292,12 @@
         "primary": "牙",
         "script": "hani",
         "pinyin": "yá"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1765,6 +2317,12 @@
         "primary": "牛",
         "script": "hani",
         "pinyin": "niú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1784,6 +2342,12 @@
         "primary": "犬",
         "script": "hani",
         "pinyin": "quǎn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1803,6 +2367,12 @@
         "primary": "玄",
         "script": "hani",
         "pinyin": "xuán"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1822,6 +2392,12 @@
         "primary": "玉",
         "script": "hani",
         "pinyin": "yù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1841,6 +2417,12 @@
         "primary": "瓜",
         "script": "hani",
         "pinyin": "guā"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1860,6 +2442,12 @@
         "primary": "瓦",
         "script": "hani",
         "pinyin": "wǎ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1879,6 +2467,12 @@
         "primary": "甘",
         "script": "hani",
         "pinyin": "gān"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1898,6 +2492,12 @@
         "primary": "生",
         "script": "hani",
         "pinyin": "shēng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1917,6 +2517,12 @@
         "primary": "用",
         "script": "hani",
         "pinyin": "yòng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1936,6 +2542,12 @@
         "primary": "田",
         "script": "hani",
         "pinyin": "tián"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1955,6 +2567,12 @@
         "primary": "疋",
         "script": "hani",
         "pinyin": "pǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1974,6 +2592,12 @@
         "primary": "疒",
         "script": "hani",
         "pinyin": "nè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -1993,6 +2617,12 @@
         "primary": "癶",
         "script": "hani",
         "pinyin": "bō"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2012,6 +2642,12 @@
         "primary": "白",
         "script": "hani",
         "pinyin": "bái"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2031,6 +2667,12 @@
         "primary": "皮",
         "script": "hani",
         "pinyin": "pí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2050,6 +2692,12 @@
         "primary": "皿",
         "script": "hani",
         "pinyin": "mǐn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2069,6 +2717,12 @@
         "primary": "目",
         "script": "hani",
         "pinyin": "mù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2088,6 +2742,12 @@
         "primary": "矛",
         "script": "hani",
         "pinyin": "máo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2107,6 +2767,12 @@
         "primary": "矢",
         "script": "hani",
         "pinyin": "shǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2126,6 +2792,12 @@
         "primary": "石",
         "script": "hani",
         "pinyin": "shí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2145,6 +2817,12 @@
         "primary": "示",
         "script": "hani",
         "pinyin": "shì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2164,6 +2842,12 @@
         "primary": "禸",
         "script": "hani",
         "pinyin": "róu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2183,6 +2867,12 @@
         "primary": "禾",
         "script": "hani",
         "pinyin": "hé"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2202,6 +2892,12 @@
         "primary": "穴",
         "script": "hani",
         "pinyin": "xué"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2221,6 +2917,12 @@
         "primary": "立",
         "script": "hani",
         "pinyin": "lì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2240,6 +2942,12 @@
         "primary": "竹",
         "script": "hani",
         "pinyin": "zhú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2259,6 +2967,12 @@
         "primary": "米",
         "script": "hani",
         "pinyin": "mǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2278,6 +2992,12 @@
         "primary": "糸",
         "script": "hani",
         "pinyin": "mì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2297,6 +3017,12 @@
         "primary": "缶",
         "script": "hani",
         "pinyin": "fǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2316,6 +3042,12 @@
         "primary": "网",
         "script": "hani",
         "pinyin": "wǎng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2335,6 +3067,12 @@
         "primary": "羊",
         "script": "hani",
         "pinyin": "yáng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2354,6 +3092,12 @@
         "primary": "羽",
         "script": "hani",
         "pinyin": "yǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2373,6 +3117,12 @@
         "primary": "老",
         "script": "hani",
         "pinyin": "lǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2392,6 +3142,12 @@
         "primary": "而",
         "script": "hani",
         "pinyin": "ér"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2411,6 +3167,12 @@
         "primary": "耒",
         "script": "hani",
         "pinyin": "lěi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2430,6 +3192,12 @@
         "primary": "耳",
         "script": "hani",
         "pinyin": "ěr"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2449,6 +3217,12 @@
         "primary": "聿",
         "script": "hani",
         "pinyin": "yù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2468,6 +3242,12 @@
         "primary": "肉",
         "script": "hani",
         "pinyin": "ròu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2487,6 +3267,12 @@
         "primary": "臣",
         "script": "hani",
         "pinyin": "chén"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2506,6 +3292,12 @@
         "primary": "自",
         "script": "hani",
         "pinyin": "zì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2525,6 +3317,12 @@
         "primary": "至",
         "script": "hani",
         "pinyin": "zhì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2544,6 +3342,12 @@
         "primary": "臼",
         "script": "hani",
         "pinyin": "jiù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2563,6 +3367,12 @@
         "primary": "舌",
         "script": "hani",
         "pinyin": "shé"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2582,6 +3392,12 @@
         "primary": "舛",
         "script": "hani",
         "pinyin": "chuǎn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2601,6 +3417,12 @@
         "primary": "舟",
         "script": "hani",
         "pinyin": "zhōu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2620,6 +3442,12 @@
         "primary": "艮",
         "script": "hani",
         "pinyin": "gèn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2639,6 +3467,12 @@
         "primary": "色",
         "script": "hani",
         "pinyin": "sè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2658,6 +3492,12 @@
         "primary": "艸",
         "script": "hani",
         "pinyin": "cǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2677,6 +3517,12 @@
         "primary": "虍",
         "script": "hani",
         "pinyin": "hū"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2696,6 +3542,12 @@
         "primary": "虫",
         "script": "hani",
         "pinyin": "chóng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2715,6 +3567,12 @@
         "primary": "血",
         "script": "hani",
         "pinyin": "xuè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2734,6 +3592,12 @@
         "primary": "行",
         "script": "hani",
         "pinyin": "xíng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2753,6 +3617,12 @@
         "primary": "衣",
         "script": "hani",
         "pinyin": "yī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2772,6 +3642,12 @@
         "primary": "襾",
         "script": "hani",
         "pinyin": "yà"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2791,6 +3667,12 @@
         "primary": "見",
         "script": "hani",
         "pinyin": "jiàn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2810,6 +3692,12 @@
         "primary": "角",
         "script": "hani",
         "pinyin": "jiǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2829,6 +3717,12 @@
         "primary": "言",
         "script": "hani",
         "pinyin": "yán"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2848,6 +3742,12 @@
         "primary": "谷",
         "script": "hani",
         "pinyin": "gǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2867,6 +3767,12 @@
         "primary": "豆",
         "script": "hani",
         "pinyin": "dòu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2886,6 +3792,12 @@
         "primary": "豕",
         "script": "hani",
         "pinyin": "shǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2905,6 +3817,12 @@
         "primary": "豸",
         "script": "hani",
         "pinyin": "zhì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2924,6 +3842,12 @@
         "primary": "貝",
         "script": "hani",
         "pinyin": "bèi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2943,6 +3867,12 @@
         "primary": "赤",
         "script": "hani",
         "pinyin": "chì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2962,6 +3892,12 @@
         "primary": "走",
         "script": "hani",
         "pinyin": "zǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -2981,6 +3917,12 @@
         "primary": "足",
         "script": "hani",
         "pinyin": "zú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3000,6 +3942,12 @@
         "primary": "身",
         "script": "hani",
         "pinyin": "shēn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3019,6 +3967,12 @@
         "primary": "車",
         "script": "hani",
         "pinyin": "chē"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3038,6 +3992,12 @@
         "primary": "辛",
         "script": "hani",
         "pinyin": "xīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3057,6 +4017,12 @@
         "primary": "辰",
         "script": "hani",
         "pinyin": "chén"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3076,6 +4042,12 @@
         "primary": "辵",
         "script": "hani",
         "pinyin": "chuò"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3095,6 +4067,12 @@
         "primary": "邑",
         "script": "hani",
         "pinyin": "yì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3114,6 +4092,12 @@
         "primary": "酉",
         "script": "hani",
         "pinyin": "yǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3133,6 +4117,12 @@
         "primary": "釆",
         "script": "hani",
         "pinyin": "biàn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3152,6 +4142,12 @@
         "primary": "里",
         "script": "hani",
         "pinyin": "lǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3171,6 +4167,12 @@
         "primary": "金",
         "script": "hani",
         "pinyin": "jīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3190,6 +4192,12 @@
         "primary": "長",
         "script": "hani",
         "pinyin": "cháng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3209,6 +4217,12 @@
         "primary": "門",
         "script": "hani",
         "pinyin": "mén"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3228,6 +4242,12 @@
         "primary": "阜",
         "script": "hani",
         "pinyin": "fù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3247,6 +4267,12 @@
         "primary": "隶",
         "script": "hani",
         "pinyin": "lì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3266,6 +4292,12 @@
         "primary": "隹",
         "script": "hani",
         "pinyin": "zhuī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3285,6 +4317,12 @@
         "primary": "雨",
         "script": "hani",
         "pinyin": "yǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3304,6 +4342,12 @@
         "primary": "靑",
         "script": "hani",
         "pinyin": "qīng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3323,6 +4367,12 @@
         "primary": "非",
         "script": "hani",
         "pinyin": "fēi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3342,6 +4392,12 @@
         "primary": "面",
         "script": "hani",
         "pinyin": "miàn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3361,6 +4417,12 @@
         "primary": "革",
         "script": "hani",
         "pinyin": "gé"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3380,6 +4442,12 @@
         "primary": "韋",
         "script": "hani",
         "pinyin": "wéi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3399,6 +4467,12 @@
         "primary": "韭",
         "script": "hani",
         "pinyin": "jiǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3418,6 +4492,12 @@
         "primary": "音",
         "script": "hani",
         "pinyin": "yīn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3437,6 +4517,12 @@
         "primary": "頁",
         "script": "hani",
         "pinyin": "yè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3456,6 +4542,12 @@
         "primary": "風",
         "script": "hani",
         "pinyin": "fēng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3475,6 +4567,12 @@
         "primary": "飛",
         "script": "hani",
         "pinyin": "fēi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3494,6 +4592,12 @@
         "primary": "食",
         "script": "hani",
         "pinyin": "shí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3513,6 +4617,12 @@
         "primary": "首",
         "script": "hani",
         "pinyin": "shǒu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3532,6 +4642,12 @@
         "primary": "香",
         "script": "hani",
         "pinyin": "xiāng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3551,6 +4667,12 @@
         "primary": "馬",
         "script": "hani",
         "pinyin": "mǎ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3570,6 +4692,12 @@
         "primary": "骨",
         "script": "hani",
         "pinyin": "gǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3589,6 +4717,12 @@
         "primary": "高",
         "script": "hani",
         "pinyin": "gāo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3608,6 +4742,12 @@
         "primary": "髟",
         "script": "hani",
         "pinyin": "biāo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3627,6 +4767,12 @@
         "primary": "鬥",
         "script": "hani",
         "pinyin": "dòu"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3646,6 +4792,12 @@
         "primary": "鬯",
         "script": "hani",
         "pinyin": "chàng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3665,6 +4817,12 @@
         "primary": "鬲",
         "script": "hani",
         "pinyin": "lì"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3684,6 +4842,12 @@
         "primary": "鬼",
         "script": "hani",
         "pinyin": "guǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3703,6 +4867,12 @@
         "primary": "魚",
         "script": "hani",
         "pinyin": "yú"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3722,6 +4892,12 @@
         "primary": "鳥",
         "script": "hani",
         "pinyin": "niǎo"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3741,6 +4917,12 @@
         "primary": "鹵",
         "script": "hani",
         "pinyin": "lǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3760,6 +4942,12 @@
         "primary": "鹿",
         "script": "hani",
         "pinyin": "lù"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3779,6 +4967,12 @@
         "primary": "麥",
         "script": "hani",
         "pinyin": "mài"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3798,6 +4992,12 @@
         "primary": "麻",
         "script": "hani",
         "pinyin": "má"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3817,6 +5017,12 @@
         "primary": "黃",
         "script": "hani",
         "pinyin": "huáng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3836,6 +5042,12 @@
         "primary": "黍",
         "script": "hani",
         "pinyin": "shǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3855,6 +5067,12 @@
         "primary": "黑",
         "script": "hani",
         "pinyin": "hēi"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3874,6 +5092,12 @@
         "primary": "黹",
         "script": "hani",
         "pinyin": "zhǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3893,6 +5117,12 @@
         "primary": "黽",
         "script": "hani",
         "pinyin": "mǐn"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3912,6 +5142,12 @@
         "primary": "鼎",
         "script": "hani",
         "pinyin": "dǐng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3931,6 +5167,12 @@
         "primary": "鼓",
         "script": "hani",
         "pinyin": "gǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3950,6 +5192,12 @@
         "primary": "鼠",
         "script": "hani",
         "pinyin": "shǔ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3969,6 +5217,12 @@
         "primary": "鼻",
         "script": "hani",
         "pinyin": "bí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -3988,6 +5242,12 @@
         "primary": "齊",
         "script": "hani",
         "pinyin": "qí"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -4007,6 +5267,12 @@
         "primary": "齒",
         "script": "hani",
         "pinyin": "chǐ"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -4026,6 +5292,12 @@
         "primary": "龍",
         "script": "hani",
         "pinyin": "lóng"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -4045,6 +5317,12 @@
         "primary": "龜",
         "script": "hani",
         "pinyin": "guī"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     },
     {
@@ -4064,6 +5342,12 @@
         "primary": "龠",
         "script": "hani",
         "pinyin": "yuè"
+      },
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "zh",
+        "difficulty": "beginner",
+        "tags": []
       }
     }
   ]

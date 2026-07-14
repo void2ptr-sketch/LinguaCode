@@ -13,17 +13,24 @@ export type CardIndexMetaFixture = {
 };
 
 export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): CardIndexEntry {
+  // Приоритет метаданных:
+  // 1. card.meta (встроенные в карточку)
+  // 2. meta (из user-content-overlay)
+  // 3. дефолтные значения
+  const cardMeta = card.meta;
+  const effectiveMeta = cardMeta ?? meta;
+
   const knownLanguage =
-    meta?.knownLanguage && isContentLanguage(meta.knownLanguage)
-      ? meta.knownLanguage
+    effectiveMeta?.knownLanguage && isContentLanguage(effectiveMeta.knownLanguage)
+      ? effectiveMeta.knownLanguage
       : DEFAULT_LANGUAGE_PAIR.known;
   const learningLanguage =
-    meta?.learningLanguage && isContentLanguage(meta.learningLanguage)
-      ? meta.learningLanguage
+    effectiveMeta?.learningLanguage && isContentLanguage(effectiveMeta.learningLanguage)
+      ? effectiveMeta.learningLanguage
       : DEFAULT_LANGUAGE_PAIR.learning;
 
   const ipaReadings = collectCardIpaReadings(card);
-  const baseTags = meta?.tags ?? [card.kind];
+  const baseTags = effectiveMeta?.tags ?? [card.kind];
   const tags =
     ipaReadings.length > 0 && !baseTags.includes('ipa') ? [...baseTags, 'ipa'] : baseTags;
 
@@ -33,10 +40,10 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     title: card.title,
     knownLanguage,
     learningLanguage,
-    difficulty: meta?.difficulty ?? 'beginner',
+    difficulty: effectiveMeta?.difficulty ?? 'beginner',
     tags,
     ipaReadings,
-    updatedAt: meta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    updatedAt: effectiveMeta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
   };
 }
 

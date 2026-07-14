@@ -1,6 +1,9 @@
 {
   "version": 1,
   "cardFiles": [
+    "select-cards.json",
+    "radicals-course-cards.json",
+    "perl-interview-cards.json",
     "/cards/demo-cards.json",
     "/cards/radicals-course-cards.json",
     "/cards/perl-interview-cards.json",

@@ -1,4 +1,8 @@
-import { seedTestContentCache, getTestDefaultCourseCatalog, getTestZhCourseCatalog } from '../content-seed/content-seed.test-utils';
+import {
+  seedTestContentCache,
+  getTestDefaultCourseCatalog,
+  getTestZhCourseCatalog,
+} from '../content-seed/content-seed.test-utils';
 import { mergeCourseCatalogWithDefaults } from './courses-storage';
 
 describe('courses-storage', () => {

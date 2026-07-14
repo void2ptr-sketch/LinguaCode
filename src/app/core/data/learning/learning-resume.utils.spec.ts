@@ -1,4 +1,7 @@
-import { getTestDemoCourseWithLessons, seedTestContentCache } from '../content-seed/content-seed.test-utils';
+import {
+  getTestDemoCourseWithLessons,
+  seedTestContentCache,
+} from '../content-seed/content-seed.test-utils';
 import {
   buildLessonRoadmap,
   courseMatchesActiveLanguagePair,

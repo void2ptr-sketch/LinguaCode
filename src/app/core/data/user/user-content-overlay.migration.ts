@@ -1,7 +1,11 @@
 import type { Card } from '../../models';
 import type { LegacyScenario } from '../../models/scenario.types';
 
-import { getCardSeedCache, getCourseSeedCache, getScenarioSeedCache } from '../content-seed/content-seed.cache';
+import {
+  getCardSeedCache,
+  getCourseSeedCache,
+  getScenarioSeedCache,
+} from '../content-seed/content-seed.cache';
 import type { CourseCatalogState } from '../courses/course-catalog-state';
 import { normalizeStoredCourseCatalog } from '../courses/course-catalog-state';
 import { normalizeLegacyCards } from '../cards/card-legacy.mapper';
@@ -101,9 +105,9 @@ function hasOverlayContent(overlay: ReturnType<typeof readUserContentOverlay>): 
     Object.keys(overlay.cardIndexMeta).length > 0 ||
     Boolean(
       overlay.deletedSystemIds?.courses?.length ||
-        overlay.deletedSystemIds?.lessons?.length ||
-        overlay.deletedSystemIds?.scenarios?.length ||
-        overlay.deletedSystemIds?.cards?.length,
+      overlay.deletedSystemIds?.lessons?.length ||
+      overlay.deletedSystemIds?.scenarios?.length ||
+      overlay.deletedSystemIds?.cards?.length,
     )
   );
 }
@@ -149,14 +153,20 @@ function readLegacyCards(): readonly Card[] {
   }
 }
 
-function readLegacyCardIndexMeta(): Record<string, import('../cards/card-index.mapper').CardIndexMetaOverride> {
+function readLegacyCardIndexMeta(): Record<
+  string,
+  import('../cards/card-index.mapper').CardIndexMetaOverride
+> {
   const raw = localStorage.getItem(LEGACY_CARD_INDEX_META_KEY);
   if (!raw) {
     return {};
   }
 
   try {
-    const parsed = JSON.parse(raw) as Record<string, import('../cards/card-index.mapper').CardIndexMetaOverride>;
+    const parsed = JSON.parse(raw) as Record<
+      string,
+      import('../cards/card-index.mapper').CardIndexMetaOverride
+    >;
     return parsed && typeof parsed === 'object' ? parsed : {};
   } catch {
     return {};

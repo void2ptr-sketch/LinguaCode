@@ -34,7 +34,10 @@ import {
 import { TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
 import { UserStore } from '../../../state';
-import { CONTENT_LANGUAGE_LABELS, contentLanguages } from '../../../data/language-pair/language-pair.utils';
+import {
+  CONTENT_LANGUAGE_LABELS,
+  contentLanguages,
+} from '../../../data/language-pair/language-pair.utils';
 import {
   CourseDisplaySettingsMatrixComponent,
   type RomanizationOption,
@@ -92,9 +95,7 @@ export class UserPageComponent implements OnInit {
   readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
   readonly toneColorEnabledDraft = signal(false);
   readonly toneColorSchemeDraft = signal<ToneColorSchemeId>('classic');
-  readonly tracingStrokeDurationDraft = signal<number>(
-    TRACING_STROKE_DURATION_BOUNDS.defaultSec,
-  );
+  readonly tracingStrokeDurationDraft = signal<number>(TRACING_STROKE_DURATION_BOUNDS.defaultSec);
   readonly tracingDurationMin = TRACING_STROKE_DURATION_BOUNDS.minSec;
   readonly tracingDurationMax = TRACING_STROKE_DURATION_BOUNDS.maxSec;
   readonly tracingDurationStep = TRACING_STROKE_DURATION_BOUNDS.stepSec;
@@ -139,9 +140,7 @@ export class UserPageComponent implements OnInit {
     return learning === 'en' || learning === 'zh';
   });
 
-  readonly showTracingSettings = computed(
-    () => this.settingsEntry()?.pair.learning === 'zh',
-  );
+  readonly showTracingSettings = computed(() => this.settingsEntry()?.pair.learning === 'zh');
 
   readonly showDisplaySettings = computed(
     () => this.showCjkPreferences() || this.showPhoneticPreferences(),

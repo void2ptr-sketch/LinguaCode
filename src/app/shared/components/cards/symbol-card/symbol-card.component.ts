@@ -15,7 +15,13 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
 
 @Component({
   selector: 'app-symbol-card',
-  imports: [MatCardModule, MatButtonModule, MatIconModule, LexemeDisplayComponent, QuizCardQuestionHeaderComponent],
+  imports: [
+    MatCardModule,
+    MatButtonModule,
+    MatIconModule,
+    LexemeDisplayComponent,
+    QuizCardQuestionHeaderComponent,
+  ],
   templateUrl: './symbol-card.component.html',
   styleUrl: './symbol-card.component.scss',
 })

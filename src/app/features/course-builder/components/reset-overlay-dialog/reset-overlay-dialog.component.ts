@@ -38,7 +38,9 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
   template: `
     <h2 mat-dialog-title>Сбросить пользовательские данные?</h2>
     <mat-dialog-content>
-      <p>Это действие удалит все пользовательские карточки, сценарии и курсы, созданные в интерфейсе.</p>
+      <p>
+        Это действие удалит все пользовательские карточки, сценарии и курсы, созданные в интерфейсе.
+      </p>
       <p><strong>Seed-данные из файлов (public/data/) будут загружены заново.</strong></p>
       <p>После сброса нужно перезагрузить страницу.</p>
     </mat-dialog-content>
@@ -47,14 +49,16 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
       <button mat-flat-button color="warn" (click)="dialogRef.close(true)">Сбросить</button>
     </mat-dialog-actions>
   `,
-  styles: [`
-    mat-dialog-content {
-      margin: 20px 0;
-    }
-    mat-dialog-actions {
-      justify-content: flex-end;
-    }
-  `],
+  styles: [
+    `
+      mat-dialog-content {
+        margin: 20px 0;
+      }
+      mat-dialog-actions {
+        justify-content: flex-end;
+      }
+    `,
+  ],
   imports: [MatButtonModule, MatDialogModule],
   standalone: true,
 })

@@ -98,8 +98,7 @@ export class LearningDashboardService {
       const course = await this.courseSearchService.getById(courseId);
       this.course.set(course);
 
-      const shouldPersistActiveCourse =
-        !saved.activeCourseId || saved.activeCourseId !== courseId;
+      const shouldPersistActiveCourse = !saved.activeCourseId || saved.activeCourseId !== courseId;
       if (shouldPersistActiveCourse) {
         queueMicrotask(() => {
           this.userStore.updateActiveLanguagePairSettings({

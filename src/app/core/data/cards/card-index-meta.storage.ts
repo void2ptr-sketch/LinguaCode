@@ -1,6 +1,9 @@
 import type { CardIndexMetaOverride } from './card-index.mapper';
 import { migrateUserContentOverlayIfNeeded } from '../user/user-content-overlay.migration';
-import { patchUserContentOverlay, readUserContentOverlay } from '../user/user-content-overlay.storage';
+import {
+  patchUserContentOverlay,
+  readUserContentOverlay,
+} from '../user/user-content-overlay.storage';
 import { LEGACY_CARD_INDEX_META_KEY } from '../user/user-content-overlay.types';
 
 /** @deprecated Legacy key; metadata lives in user-content overlay. */

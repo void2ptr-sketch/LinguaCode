@@ -2,7 +2,10 @@ import { Component, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { applyToneToPinyinSyllable, toneMarkLabel } from '../../../../core/data/chinese/tone-mark.utils';
+import {
+  applyToneToPinyinSyllable,
+  toneMarkLabel,
+} from '../../../../core/data/chinese/tone-mark.utils';
 import { ToneCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';

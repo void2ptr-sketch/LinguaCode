@@ -10,7 +10,12 @@ import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
 } from '../../../core/data/chinese/lexeme-draft.utils';
-import { sanitizeMarkdownText, sanitizePlainText, sanitizeTheme, isAllowedFontSize } from '../../../core/security';
+import {
+  sanitizeMarkdownText,
+  sanitizePlainText,
+  sanitizeTheme,
+  isAllowedFontSize,
+} from '../../../core/security';
 import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../core/models';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';

@@ -22,7 +22,17 @@
         "Число vs строка",
         "Только через strict"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "scalar-context"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q01-c2",
@@ -46,7 +56,17 @@
         "Индекс последнего элемента",
         "Явный scalar context"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "scalar-context"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q01-code",
@@ -79,7 +99,17 @@
           "code": "undef"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "scalar-context"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q02-c1",
@@ -103,7 +133,17 @@
         "Хеш",
         "undef"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "array-scalar"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q02-c2",
@@ -127,7 +167,17 @@
         "нет length для @",
         "индекс последнего, не count"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "array-scalar"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q02-c3",
@@ -151,7 +201,17 @@
         "0",
         "-1 для пустого"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "array-scalar"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q02-code",
@@ -184,7 +244,17 @@
           "code": "undef"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "array-scalar"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q03-c1",
@@ -208,7 +278,17 @@
         "перепутаны",
         "перепутаны"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "sigils"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q03-c2",
@@ -232,7 +312,17 @@
         "Хеш",
         "Ссылка на хеш"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "sigils"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q03-code",
@@ -265,7 +355,17 @@
           "code": "my $first = $#data;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "sigils"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q04-c1",
@@ -289,7 +389,17 @@
         "NULL в regex",
         "Удаление из @INC"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "undef"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q04-c2",
@@ -313,7 +423,17 @@
         "2 не-undef",
         "undef"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "undef"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q04-c3",
@@ -337,7 +457,17 @@
         "length",
         "нет такой функции"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "undef"
+        ]
+      }
     },
     {
       "id": "card-perl-s01-q04-code",
@@ -370,7 +500,17 @@
           "code": "0"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "undef"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q01-c1",
@@ -394,7 +534,17 @@
         "Только ОО",
         "Отключение warnings"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-strict"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q01-c2",
@@ -418,7 +568,17 @@
         "strict refs",
         "не часть strict"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-strict"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q01-c3",
@@ -442,7 +602,17 @@
         "Autofix",
         "Только warning"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-strict"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q01-code",
@@ -475,7 +645,17 @@
           "code": "strict on;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-strict"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q02-c1",
@@ -499,7 +679,17 @@
         "Всегда die",
         "Отключает strict"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-warnings"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q02-c2",
@@ -523,7 +713,17 @@
         "-P",
         "только fatal"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-warnings"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q02-code",
@@ -556,7 +756,17 @@
           "code": "print \"ok\";"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "use-warnings"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q03-c1",
@@ -580,7 +790,17 @@
         "не объявлена — ошибка strict",
         "local — динамическая, не my"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "my-our"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q03-c2",
@@ -604,7 +824,17 @@
         "Нет разницы",
         "Только BEGIN"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "my-our"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q03-c3",
@@ -628,7 +858,17 @@
         "Все subs",
         "main::"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "my-our"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q03-code",
@@ -661,7 +901,17 @@
           "code": "$count ||= 42;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "basics",
+          "my-our"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q04-c1",
@@ -685,7 +935,17 @@
         "strict say",
         "@EXPORT"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "feature-say"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q04-c2",
@@ -709,7 +969,17 @@
         "неверный синтаксис",
         "не Perl"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "feature-say"
+        ]
+      }
     },
     {
       "id": "card-perl-s02-q04-code",
@@ -742,7 +1012,17 @@
           "code": "echo \"hi\";"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "beginner",
+        "tags": [
+          "beginner",
+          "modern-perl",
+          "feature-say"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q01-c1",
@@ -766,7 +1046,17 @@
         "Индексы @_",
         "Только split"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-captures"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q01-c2",
@@ -790,7 +1080,17 @@
         "bc",
         "undef"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-captures"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q01-code",
@@ -823,7 +1123,17 @@
           "code": "undef"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-captures"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q02-c1",
@@ -847,7 +1157,17 @@
         "Компиляция",
         "Extended whitespace"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-modifiers"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q02-c2",
@@ -871,7 +1191,17 @@
         "extended",
         "/m — multiline, не регистр"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-modifiers"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q02-c3",
@@ -895,7 +1225,17 @@
         "Exclusive",
         "XML"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-modifiers"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q02-code",
@@ -928,7 +1268,17 @@
           "code": "qr/perl/m"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "regex-modifiers"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q03-c1",
@@ -952,7 +1302,17 @@
         "!= не для regex",
         "неверный синтаксис"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "match-operators"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q03-c2",
@@ -976,7 +1336,17 @@
         "List context",
         "Синонимы"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "match-operators"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q03-code",
@@ -1009,7 +1379,17 @@
           "code": "!$line =~ /\\d/"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "match-operators"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q04-c1",
@@ -1033,7 +1413,17 @@
         "No backtrack",
         "JSON"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "qr-compile"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q04-c2",
@@ -1057,7 +1447,17 @@
         "нет функции regex()",
         "m// — match, не сохранение"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "qr-compile"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q04-c3",
@@ -1081,7 +1481,17 @@
         "SCALAR",
         "CODE"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "qr-compile"
+        ]
+      }
     },
     {
       "id": "card-perl-s03-q04-code",
@@ -1114,7 +1524,17 @@
           "code": "regex(\"\\d+\")"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "qr-compile"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q01-c1",
@@ -1138,7 +1558,17 @@
         "caller stack",
         "Named only"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "sub-args"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q01-c2",
@@ -1162,7 +1592,17 @@
         "@ARGV — CLI args",
         "caller — stack info"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "sub-args"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q01-c3",
@@ -1186,7 +1626,17 @@
         "hash key",
         "Syntax error"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "sub-args"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q01-code",
@@ -1219,7 +1669,17 @@
           "code": "Ann"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "basics",
+          "sub-args"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q02-c1",
@@ -1243,7 +1703,17 @@
         "Same",
         "Scalar only"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "map-grep"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q02-c2",
@@ -1267,7 +1737,17 @@
         "исходный",
         "undef"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "map-grep"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q02-code",
@@ -1300,7 +1780,17 @@
           "code": "6"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "map-grep"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q03-c1",
@@ -1324,7 +1814,17 @@
         "cmp — другой оператор",
         "не ключевое слово"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "spaceship"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q03-c2",
@@ -1348,7 +1848,17 @@
         "1",
         "undef"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "spaceship"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q03-c3",
@@ -1372,7 +1882,17 @@
         "Hash refs default",
         "Stable sort flag"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "spaceship"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q03-code",
@@ -1405,7 +1925,17 @@
           "code": "undef"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "spaceship"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q04-c1",
@@ -1429,7 +1959,17 @@
         "Block forbidden",
         "By length"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "sort"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q04-c2",
@@ -1453,7 +1993,17 @@
         "строковое cmp",
         "нет sort numeric"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "sort"
+        ]
+      }
     },
     {
       "id": "card-perl-s04-q04-code",
@@ -1486,7 +2036,17 @@
           "code": "sort numeric @nums"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "intermediate",
+        "tags": [
+          "intermediate",
+          "practice",
+          "sort"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q01-c1",
@@ -1510,7 +2070,17 @@
         "CPAN vs core",
         "No import"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "tools",
+          "use-require"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q01-c2",
@@ -1534,7 +2104,17 @@
         "нет import when",
         "нет load module()"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "tools",
+          "use-require"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q01-code",
@@ -1567,7 +2147,17 @@
           "code": "load \"JSON::MaybeXS\";"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "tools",
+          "use-require"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q02-c1",
@@ -1591,7 +2181,17 @@
         "@ISA only",
         "DESTROY only"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "oop",
+          "bless-oop"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q02-c2",
@@ -1615,7 +2215,17 @@
         "нет object()",
         "нет метода class()"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "oop",
+          "bless-oop"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q02-c3",
@@ -1639,7 +2249,17 @@
         "Произвольная функция",
         "Синтаксис других языков"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "oop",
+          "bless-oop"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q02-code",
@@ -1672,7 +2292,17 @@
           "code": "$self->class(\"User\")"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "oop",
+          "bless-oop"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q03-c1",
@@ -1696,7 +2326,17 @@
         "sysopen no check",
         "silent eval"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "file-io"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q03-c2",
@@ -1720,7 +2360,17 @@
         "нет проверки ошибки",
         "print вместо die"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "file-io"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q03-code",
@@ -1753,7 +2403,17 @@
           "code": "sysopen FILE, $path, 0;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "file-io"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q04-c1",
@@ -1777,7 +2437,17 @@
         "Comments bad",
         "my bad"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "red-flags"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q04-c2",
@@ -1801,7 +2471,17 @@
         "отключают защиту",
         "фреймворки, не базовый минимум"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "red-flags"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q04-c3",
@@ -1825,7 +2505,17 @@
         "Проверка $!",
         "Чтение через handle OK"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "red-flags"
+        ]
+      }
     },
     {
       "id": "card-perl-s05-q04-code",
@@ -1858,7 +2548,17 @@
           "code": "my $n = scalar @items;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "red-flags"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q01-c1",
@@ -1882,7 +2582,17 @@
         "Синонимы",
         "strict/warnings — неверно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-dbd"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q01-c2",
@@ -1906,7 +2616,17 @@
         "Нет модуля SQL",
         "Нет метода open"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-dbd"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q01-c3",
@@ -1930,7 +2650,17 @@
         "Pg::Strict — выдумка",
         "use postgres — неверно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-dbd"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q01-code",
@@ -1963,7 +2693,17 @@
           "code": "use DBD::SQLite; SQLite->connect(\"test.db\")"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-dbd"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q02-c1",
@@ -1987,7 +2727,17 @@
         "sprintf без prepare",
         "конкатенация — опасно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-placeholders"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q02-c2",
@@ -2011,7 +2761,17 @@
         ":name — named в некоторых DBD",
         "%s — sprintf, не DBI"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-placeholders"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q02-code",
@@ -2044,7 +2804,17 @@
           "code": "$dbh->do(\"SELECT * FROM users WHERE id = \" . $id);"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-placeholders"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q03-c1",
@@ -2068,7 +2838,17 @@
         "SELECT — prepare/fetch",
         "prepare нужен для SELECT"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-prepare-execute"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q03-c2",
@@ -2092,7 +2872,17 @@
         "rows — для do",
         "Не только первый столбец"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-prepare-execute"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q03-c3",
@@ -2116,7 +2906,17 @@
         "execute повторно",
         "AutoCommit — атрибут dbh"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-prepare-execute"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q03-code",
@@ -2149,7 +2949,17 @@
           "code": "my $name = $sth->rows;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-prepare-execute"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q04-c1",
@@ -2173,7 +2983,17 @@
         "можно менять",
         "нет pragma"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-transactions"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q04-c2",
@@ -2197,7 +3017,17 @@
         "re-execute — нет",
         "disconnect — другое"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-transactions"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q04-code",
@@ -2230,7 +3060,17 @@
           "code": "$dbh->{AutoCommit} = 1;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-transactions"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q05-c1",
@@ -2254,7 +3094,17 @@
         "Ignore — нет",
         "syslog — не встроено"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-errors"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q05-c2",
@@ -2278,7 +3128,17 @@
         "$! — OS errors",
         "не DBI API"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-errors"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q05-c3",
@@ -2302,7 +3162,17 @@
         "strict не связан",
         "разница есть"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-errors"
+        ]
+      }
     },
     {
       "id": "card-perl-s06-q05-code",
@@ -2335,7 +3205,17 @@
           "code": "DBI->connect($dsn, $user, $pass, { Warn => 0 })"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "dbi-errors"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q01-c1",
@@ -2359,7 +3239,17 @@
         "не email",
         "не DBI"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-module"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q01-c2",
@@ -2383,7 +3273,17 @@
         "нет create()",
         "не apache-specific"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-module"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q01-code",
@@ -2416,7 +3316,17 @@
           "code": "CGI::init()"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-module"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q02-c1",
@@ -2440,7 +3350,17 @@
         "нет getparam",
         "нет такого hash"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-params"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q02-c2",
@@ -2464,7 +3384,17 @@
         "params — все пары",
         "нет CGI::all"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-params"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q02-c3",
@@ -2488,7 +3418,17 @@
         "@ARGV — CLI",
         "cookies отдельно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-params"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q02-code",
@@ -2521,7 +3461,17 @@
           "code": "$ARGV[0]"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-params"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q03-c1",
@@ -2545,7 +3495,17 @@
         "не strict",
         "заголовки нужны"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-binmode"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q03-c2",
@@ -2569,7 +3529,17 @@
         "не рекомендуется",
         "HTTP сломается"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-binmode"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q03-code",
@@ -2602,7 +3572,17 @@
           "code": "$q->utf8(1);"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-binmode"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q04-c1",
@@ -2626,7 +3606,17 @@
         "не автоматически",
         "нет say JSON"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-headers"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q04-c2",
@@ -2650,7 +3640,17 @@
         "Location — другой метод",
         "не exit"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-headers"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q04-c3",
@@ -2674,7 +3674,17 @@
         "нужен print",
         "нет exit redirect"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-headers"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q04-code",
@@ -2707,7 +3717,17 @@
           "code": "header(\"text/html\");"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-headers"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q05-c1",
@@ -2731,7 +3751,17 @@
         "CGI медленнее",
         "Plack — Perl"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-legacy"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q05-c2",
@@ -2755,7 +3785,17 @@
         "ширше CGI",
         "не CPAN"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-legacy"
+        ]
+      }
     },
     {
       "id": "card-perl-s07-q05-code",
@@ -2788,7 +3828,17 @@
           "code": "Apache::SOAP"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "architecture-legacy",
+          "cgi-legacy"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q01-c1",
@@ -2812,7 +3862,18 @@
         "mysql — другая СУБД",
         "connect — метод DBI, не DBD"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-dsn",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q01-c2",
@@ -2836,7 +3897,18 @@
         "Oracle::Strict — выдумка",
         "use oracle — неверно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-dsn",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q01-c3",
@@ -2860,7 +3932,18 @@
         "open — нет",
         "shell-синтаксис — нет"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-dsn",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q01-code",
@@ -2893,7 +3976,18 @@
           "code": "connect Oracle $user $pass;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-dsn",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q02-c1",
@@ -2917,7 +4011,18 @@
         "sprintf — не DBI",
         "конкатенация — опасно"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-placeholders",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q02-c2",
@@ -2941,7 +4046,18 @@
         "sprintf без bind",
         "Oracle bind поддерживает"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-placeholders",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q02-code",
@@ -2974,7 +4090,18 @@
           "code": "sprintf(\"SELECT * FROM users WHERE id = %d\", $id);"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-placeholders",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q03-c1",
@@ -2998,7 +4125,18 @@
         "не URL scheme",
         "sid не в user"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-connect",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q03-c2",
@@ -3022,7 +4160,18 @@
         "разные параметры DSN",
         "TNS — опция, не единственный способ"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-connect",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q03-c3",
@@ -3046,7 +4195,18 @@
         "не замена connect",
         "Perl DBD тоже использует OCI"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-connect",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q03-code",
@@ -3079,7 +4239,18 @@
           "code": "\"dbi:mysql:dbname=pdb1\""
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-connect",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q04-c1",
@@ -3103,7 +4274,18 @@
         "не только SQL*Plus",
         "можно через DBI"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-plsql",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q04-c2",
@@ -3127,7 +4309,18 @@
         "DBMS_OUTPUT — другой механизм",
         "DBI поддерживает"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-plsql",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q04-code",
@@ -3160,7 +4353,18 @@
           "code": "system(\"sqlplus @proc.sql\");"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-plsql",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q05-c1",
@@ -3184,7 +4388,18 @@
         "lob_read — доп. API, fetch тоже",
         "AutoCommit не обязателен для read"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-lob",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q05-c2",
@@ -3208,7 +4423,18 @@
         "streaming — отдельные настройки",
         "не timeout"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-lob",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q05-c3",
@@ -3232,7 +4458,18 @@
         "binmode dbh — нет",
         "не auto base64"
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-lob",
+          "oracle"
+        ]
+      }
     },
     {
       "id": "card-perl-s08-q05-code",
@@ -3265,7 +4502,18 @@
           "code": "my $doc = $DBI::errstr;"
         }
       ],
-      "correctIndex": 0
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "perl",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "practice",
+          "oracle-lob",
+          "oracle"
+        ]
+      }
     }
   ]
 }

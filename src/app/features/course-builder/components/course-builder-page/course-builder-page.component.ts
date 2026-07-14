@@ -223,7 +223,7 @@ export class CourseBuilderPageComponent implements OnInit {
     URL.revokeObjectURL(url);
 
     this.snackBar.open(
-      'Файл экспортирован. Передайте его maintainer\'у для добавления в общий каталог.',
+      "Файл экспортирован. Передайте его maintainer'у для добавления в общий каталог.",
       'Закрыть',
       { duration: 10000 },
     );
@@ -264,7 +264,8 @@ export class CourseBuilderPageComponent implements OnInit {
       return;
     }
 
-    this.snackBar.open('PDF с оглавлением и подсказками экспортирован', 'Закрыть', { duration: 4000 });
+    this.snackBar.open('PDF с оглавлением и подсказками экспортирован', 'Закрыть', {
+      duration: 4000,
+    });
   }
 }
-

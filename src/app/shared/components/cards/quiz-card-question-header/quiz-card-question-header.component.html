@@ -4,11 +4,7 @@
       @if (plainText()) {
         {{ prompt() }}
       } @else {
-        <app-lexeme-display
-          surface="prompt"
-          [lexeme]="promptLexeme()"
-          [fallbackText]="prompt()"
-        />
+        <app-lexeme-display surface="prompt" [lexeme]="promptLexeme()" [fallbackText]="prompt()" />
       }
     </mat-card-title>
   } @else {

@@ -161,6 +161,7 @@ readonly dirty = computed(
 ```
 
 **Особенности**:
+
 - Отслеживается изменение двух сущностей: `draft` и `indexMeta`
 - Используется два снимка: `initialSnapshot` и `initialMetaSnapshot`
 
@@ -236,12 +237,12 @@ readonly stepDirty = computed(() => {
 
 ## Преимущества паттерна
 
-| Преимущество | Описание |
-|-------------|----------|
-| **Простота** | Не требует сторонних библиотек, использует встроенные возможности Angular |
+| Преимущество           | Описание                                                                        |
+| ---------------------- | ------------------------------------------------------------------------------- |
+| **Простота**           | Не требует сторонних библиотек, использует встроенные возможности Angular       |
 | **Производительность** | Computed сигналы кэшируются и пересчитываются только при изменении зависимостей |
-| **Декларативность** | Состояние "грязности" вычисляется автоматически, без ручного управления |
-| **Безопасность** | Защищает пользователя от случайной потери данных |
+| **Декларативность**    | Состояние "грязности" вычисляется автоматически, без ручного управления         |
+| **Безопасность**       | Защищает пользователя от случайной потери данных                                |
 
 ---
 
@@ -265,22 +266,22 @@ readonly stepDirty = computed(() => {
 
 ## Метрики
 
-| Метрика | Значение |
-|---------|----------|
-| Строк кода на компонент | ~15–20 строк |
-| Накладные расходы | Минимальные (один computed сигнал + два снимка) |
-| Задержка проверки | Мгновенная (computed) |
+| Метрика                 | Значение                                        |
+| ----------------------- | ----------------------------------------------- |
+| Строк кода на компонент | ~15–20 строк                                    |
+| Накладные расходы       | Минимальные (один computed сигнал + два снимка) |
+| Задержка проверки       | Мгновенная (computed)                           |
 
 ---
 
 ## Связанные паттерны
 
-| Паттерн | Связь |
-|---------|-------|
-| **Modal Dialogs** | Dirty State используется внутри модальных диалогов для проверки закрытия |
-| **Async State** | Dirty State может комбинироваться с loading/error состояниями |
-| **Signal-based State** | Основан на Angular Signals (signal + computed) |
-| **Discard Confirmation** | Следующий шаг после обнаружения dirty состояния |
+| Паттерн                  | Связь                                                                    |
+| ------------------------ | ------------------------------------------------------------------------ |
+| **Modal Dialogs**        | Dirty State используется внутри модальных диалогов для проверки закрытия |
+| **Async State**          | Dirty State может комбинироваться с loading/error состояниями            |
+| **Signal-based State**   | Основан на Angular Signals (signal + computed)                           |
+| **Discard Confirmation** | Следующий шаг после обнаружения dirty состояния                          |
 
 ---
 
@@ -316,10 +317,7 @@ function serializeDraft(draft: FormDraft): string {
   template: `
     <h2 mat-dialog-title>Пример</h2>
     <mat-dialog-content>
-      <input
-        [(ngModel)]="draft().title"
-        placeholder="Заголовок"
-      />
+      <input [(ngModel)]="draft().title" placeholder="Заголовок" />
     </mat-dialog-content>
     <mat-dialog-actions align="end">
       <button mat-button (click)="cancel()">Отмена</button>
@@ -328,15 +326,12 @@ function serializeDraft(draft: FormDraft): string {
   `,
 })
 export class ExampleDialogComponent implements OnInit {
-  private readonly dialogRef =
-    inject<MatDialogRef<ExampleDialogComponent>>(MatDialogRef);
+  private readonly dialogRef = inject<MatDialogRef<ExampleDialogComponent>>(MatDialogRef);
 
   readonly draft = signal<FormDraft>({ title: '', description: '' });
   private readonly initialSnapshot = signal('');
 
-  readonly dirty = computed(
-    () => serializeDraft(this.draft()) !== this.initialSnapshot()
-  );
+  readonly dirty = computed(() => serializeDraft(this.draft()) !== this.initialSnapshot());
 
   async ngOnInit(): Promise<void> {
     // Имитация загрузки данных

@@ -41,7 +41,12 @@ export type CourseBundleValidation = {
  * Ошибка, блокирующая экспорт курса.
  */
 export type CourseBundleError = {
-  code: 'criteria-scenario' | 'missing-lesson' | 'missing-scenario' | 'missing-card' | 'missing-meta';
+  code:
+    | 'criteria-scenario'
+    | 'missing-lesson'
+    | 'missing-scenario'
+    | 'missing-card'
+    | 'missing-meta';
   message: string;
   entityId: string;
 };
