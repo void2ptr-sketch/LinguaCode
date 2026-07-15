@@ -118,7 +118,7 @@
         <mat-tab label="Фонетика">
           <div class="card-form__tab-body">
             <p class="card-form__hint card-form__hint--tab">
-              Лексемы, IPA, пиньинь, URL аудио.
+              Лексемы, IPA, п��ньинь, URL аудио.
             </p>
             <app-card-form-phonetics-panel
               [draft]="draft()"
@@ -136,8 +136,10 @@
             <p class="card-form__hint card-form__hint--tab">
               Дополнительная информация о карточке.
             </p>
-
-
+            <app-card-meta-fields
+              [meta]="meta()"
+              (metaChange)="metaChange.emit($event)"
+            />
           </div>
         </mat-tab>
       }

@@ -38,10 +38,12 @@
         [editorUxMode]="editorUxMode()"
         [knownLanguage]="indexMeta().knownLanguage"
         [learningLanguage]="indexMeta().learningLanguage"
+        [meta]="cardMeta()"
         [defaultAppearance]="defaultAppearance()"
         (draftChange)="updateDraft($event)"
         (knownLanguageChange)="onKnownLanguageChange($event)"
         (learningLanguageChange)="onLearningLanguageChange($event)"
+        (metaChange)="cardMeta.set($event)"
       />
     }
   }

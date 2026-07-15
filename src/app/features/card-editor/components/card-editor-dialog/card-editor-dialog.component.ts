@@ -18,7 +18,7 @@ import { contentLanguages } from '../../../../core/data/language-pair/language-p
 import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
-import type { CardDraft, CardIndexMetaDraft } from '../../types';
+import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
 import {
   loadEditorUxMode,
   saveEditorUxMode,
@@ -68,6 +68,7 @@ export class CardEditorDialogComponent implements OnInit {
     knownLanguage: this.userStore.languagePair().known,
     learningLanguage: this.userStore.languagePair().learning,
   });
+  readonly cardMeta = signal<CardIndexMetaOverride | undefined>(undefined);
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
   readonly useFullEditor = signal(false);
   private readonly initialSnapshot = signal('');
@@ -106,6 +107,7 @@ export class CardEditorDialogComponent implements OnInit {
       };
       this.draft.set(nextDraft);
       this.indexMeta.set(nextMeta);
+      this.cardMeta.set(undefined);
       this.initialSnapshot.set(serializeDraft(nextDraft));
       this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
       return;
@@ -120,12 +122,14 @@ export class CardEditorDialogComponent implements OnInit {
     }
 
     const nextDraft = this.store.cardToDraft(editing);
-    const entry = await this.catalogHandler.getIndexEntry(this.data.cardId);
-    const nextMeta = {
-      knownLanguage: entry?.knownLanguage ?? this.userStore.languagePair().known,
-      learningLanguage: entry?.learningLanguage ?? this.userStore.languagePair().learning,
-    };
     this.draft.set(nextDraft);
+    this.cardMeta.set(editing.meta);
+
+    // Initialize indexMeta from card meta or defaults
+    const nextMeta = {
+      knownLanguage: editing.meta?.knownLanguage ?? this.userStore.languagePair().known,
+      learningLanguage: editing.meta?.learningLanguage ?? this.userStore.languagePair().learning,
+    };
     this.indexMeta.set(nextMeta);
     this.initialSnapshot.set(serializeDraft(nextDraft));
     this.initialMetaSnapshot.set(JSON.stringify(nextMeta));
@@ -153,16 +157,27 @@ export class CardEditorDialogComponent implements OnInit {
 
   onKnownLanguageChange(knownLanguage: CardIndexMetaDraft['knownLanguage']): void {
     this.updateIndexMeta({ ...this.indexMeta(), knownLanguage });
+    // Update cardMeta with the new language
+    this.cardMeta.update(meta => ({
+      ...meta,
+      knownLanguage,
+    }));
   }
 
   onLearningLanguageChange(learningLanguage: CardIndexMetaDraft['learningLanguage']): void {
     this.updateIndexMeta({ ...this.indexMeta(), learningLanguage });
+    // Update cardMeta with the new language
+    this.cardMeta.update(meta => ({
+      ...meta,
+      learningLanguage,
+    }));
   }
 
   async saveCard(): Promise<void> {
     let saved = false;
     const draftToSave = this.prepareDraftForSave(this.draft());
-    const meta = {
+    // Use cardMeta if available, otherwise construct meta from indexMeta and draft tags
+    const meta = this.cardMeta() || {
       knownLanguage: this.indexMeta().knownLanguage,
       learningLanguage: this.indexMeta().learningLanguage,
       tags: [...indexTagsForDraft(draftToSave)],

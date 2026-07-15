@@ -1,4 +1,4 @@
-export type { CardEditorMode, CardIndexMetaDraft } from './card-editor.types';
+export type { CardEditorMode, CardIndexMetaDraft, CardIndexMetaOverride } from './card-editor.types';
 export type {
   CardAppearanceDraft,
   CardDraft,

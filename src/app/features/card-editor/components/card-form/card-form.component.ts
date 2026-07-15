@@ -37,6 +37,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
+import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
+import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 
 @Component({
   selector: 'app-card-form',
@@ -56,6 +58,7 @@ import { emptyOptionLexemes } from '../../types';
     InputCardFormComponent,
     MediaCardFormComponent,
     PairsCardFormComponent,
+    CardMetaFieldsComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -67,10 +70,12 @@ export class CardFormComponent {
   readonly knownLanguage = input<ContentLanguage>('ru');
   readonly learningLanguage = input<ContentLanguage>('en');
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
+  readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
 
   readonly draftChange = output<CardDraft>();
   readonly knownLanguageChange = output<ContentLanguage>();
   readonly learningLanguageChange = output<ContentLanguage>();
+  readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
   readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
@@ -142,10 +147,12 @@ export class CardFormComponent {
 
   onKnownLanguageChange(knownLanguage: ContentLanguage): void {
     this.knownLanguageChange.emit(knownLanguage);
+    this.updateMeta({ ...this.meta(), knownLanguage });
   }
 
   onLearningLanguageChange(learningLanguage: ContentLanguage): void {
     this.learningLanguageChange.emit(learningLanguage);
+    this.updateMeta({ ...this.meta(), learningLanguage });
   }
 
   choiceOptionsConfig() {
@@ -365,5 +372,9 @@ export class CardFormComponent {
           appearance,
         };
     }
+  }
+
+  updateMeta(next: CardIndexMetaOverride): void {
+    this.metaChange.emit(next);
   }
 }
