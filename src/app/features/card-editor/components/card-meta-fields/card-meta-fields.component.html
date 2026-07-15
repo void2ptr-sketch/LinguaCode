@@ -1,0 +1,33 @@
+@if (meta(); as m) {
+  <section class="card-meta-fields">
+    <h3>Метаданные</h3>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Сложность</mat-label>
+      <mat-select [ngModel]="m.difficulty" (ngModelChange)="updateDifficulty($event)">
+        @for (difficulty of difficultyOptions; track difficulty) {
+          <mat-option [value]="difficulty">{{ difficultyLabels[difficulty] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Теги (через запятую)</mat-label>
+      <input
+        matInput
+        [ngModel]="tagsString()"
+        (ngModelChange)="updateTags($event)"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Дата обновления</mat-label>
+      <input
+        matInput
+        type="datetime-local"
+        [ngModel]="m.updatedAt"
+        (ngModelChange)="updateUpdatedAt($event)"
+      />
+    </mat-form-field>
+  </section>
+}

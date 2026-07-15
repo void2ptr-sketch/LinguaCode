@@ -1,0 +1,15 @@
+.card-meta-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+h3 {
+  margin: 0 0 8px 0;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+mat-form-field {
+  width: 100%;
+}

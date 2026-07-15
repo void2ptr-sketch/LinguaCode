@@ -23,32 +23,6 @@
       </mat-button-toggle-group>
     </section>
 
-    <section class="card-editor-dialog__languages">
-      <mat-form-field appearance="outline">
-        <mat-label>Известный язык</mat-label>
-        <mat-select
-          [ngModel]="indexMeta().knownLanguage"
-          (ngModelChange)="onKnownLanguageChange($event)"
-        >
-          @for (language of languages; track language) {
-            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline">
-        <mat-label>Новый язык</mat-label>
-        <mat-select
-          [ngModel]="indexMeta().learningLanguage"
-          (ngModelChange)="onLearningLanguageChange($event)"
-        >
-          @for (language of languages; track language) {
-            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-          }
-        </mat-select>
-      </mat-form-field>
-    </section>
-
     @if (showWizard()) {
       <app-card-create-wizard
         [draft]="draft()"
@@ -64,8 +38,12 @@
         [editorUxMode]="editorUxMode()"
         [knownLanguage]="indexMeta().knownLanguage"
         [learningLanguage]="indexMeta().learningLanguage"
+        [meta]="cardMeta()"
         [defaultAppearance]="defaultAppearance()"
         (draftChange)="updateDraft($event)"
+        (knownLanguageChange)="onKnownLanguageChange($event)"
+        (learningLanguageChange)="onLearningLanguageChange($event)"
+        (metaChange)="cardMeta.set($event)"
       />
     }
   }

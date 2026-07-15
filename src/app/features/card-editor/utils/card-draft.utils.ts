@@ -20,6 +20,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
+        optionsKnown: ['', ''],
         optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         appearance: { ...appearance },
@@ -148,6 +149,7 @@ export const cardToDraft = (card: Card): CardDraft => {
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],
+        optionsKnown: card.optionsKnown ?? card.optionsLearning.map(() => ''),
         optionsLexemes: card.optionsLearning.map((option, index) =>
           lexemeToDraftFields(card.optionsLexemes?.[index] ?? { primary: option, script: 'latn' }),
         ),

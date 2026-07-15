@@ -2,6 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
@@ -9,6 +10,10 @@ import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/chinese/tone-mark.ut
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
+import {
+  CONTENT_LANGUAGE_LABELS,
+} from '../../../../shared/card-catalog-search';
+import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -22,11 +27,18 @@ import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
+import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
 import { CodeSelectCardFormComponent } from './kind-forms/code-select-card-form/code-select-card-form.component';
 import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-card-form.component';
 import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
+import { MatDividerModule } from '@angular/material/divider';
+import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
+import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
+import { emptyOptionLexemes } from '../../types';
+import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
+import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 
 @Component({
   selector: 'app-card-form',
@@ -34,15 +46,19 @@ import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
+    MatSelectModule,
     MatTabsModule,
+    MatDividerModule,
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
     CardPreviewComponent,
+    CardOptionsEditorComponent,
     CodeSelectCardFormComponent,
     ChoiceCardFormComponent,
     InputCardFormComponent,
     MediaCardFormComponent,
     PairsCardFormComponent,
+    CardMetaFieldsComponent,
   ],
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
@@ -54,8 +70,12 @@ export class CardFormComponent {
   readonly knownLanguage = input<ContentLanguage>('ru');
   readonly learningLanguage = input<ContentLanguage>('en');
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
+  readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
 
   readonly draftChange = output<CardDraft>();
+  readonly knownLanguageChange = output<ContentLanguage>();
+  readonly learningLanguageChange = output<ContentLanguage>();
+  readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
   readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
@@ -77,6 +97,9 @@ export class CardFormComponent {
   });
 
   readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
+
+  readonly languages = contentLanguages();
+  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
@@ -115,6 +138,117 @@ export class CardFormComponent {
     this.updateDraft({ ...this.draft(), title });
   }
 
+  updateChoicePromptKnown(promptKnown: string): void {
+    const draft = this.draft();
+    if (draft.kind === 'select' || draft.kind === 'reading' || draft.kind === 'timed' || draft.kind === 'symbol') {
+      this.updateDraft({ ...draft, promptKnown });
+    }
+  }
+
+  onKnownLanguageChange(knownLanguage: ContentLanguage): void {
+    this.knownLanguageChange.emit(knownLanguage);
+    this.updateMeta({ ...this.meta(), knownLanguage });
+  }
+
+  onLearningLanguageChange(learningLanguage: ContentLanguage): void {
+    this.learningLanguageChange.emit(learningLanguage);
+    this.updateMeta({ ...this.meta(), learningLanguage });
+  }
+
+  choiceOptionsConfig() {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return { title: '', optionLabelPrefix: '', showCorrectRadio: true };
+    }
+
+    switch (draft.kind) {
+      case 'reading':
+        return { title: 'Варианты чтения', optionLabelPrefix: 'Чтение', showCorrectRadio: true };
+      case 'symbol':
+        return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
+      case 'select':
+        return { title: 'Варианты (известный)', optionLabelPrefix: 'Ответ', showCorrectRadio: true };
+      case 'timed':
+        return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
+      default:
+        return { title: 'Варианты', optionLabelPrefix: 'Вариант', showCorrectRadio: true };
+    }
+  }
+
+  choiceOptionTexts(): readonly string[] {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return [];
+    }
+
+    if (draft.kind === 'symbol') {
+      return draft.symbols;
+    }
+
+    if (draft.kind === 'tone') {
+      return [];
+    }
+
+    // Для select карточек показываем optionsKnown, а не optionsLearning
+    if (draft.kind === 'select') {
+      return draft.optionsKnown;
+    }
+
+    return draft.optionsLearning;
+  }
+
+  choiceOptionLexemes(): readonly LexemeDraftFields[] {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return [];
+    }
+
+    if (draft.kind === 'symbol') {
+      return draft.symbolLexemes;
+    }
+
+    if (draft.kind === 'tone') {
+      return [];
+    }
+
+    // Для select карточек показываем lexemes для optionsKnown
+    if (draft.kind === 'select') {
+      return draft.optionsLexemes || emptyOptionLexemes(draft.optionsKnown.length);
+    }
+
+    return draft.optionsLexemes;
+  }
+
+  onChoiceOptionsStateChange(state: CardOptionsEditorState): void {
+    const draft = this.choiceDraft();
+    if (!draft) {
+      return;
+    }
+
+    if (draft.kind === 'select') {
+      this.updateDraft({
+        ...draft,
+        optionsKnown: state.options,
+        optionsLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    } else if (draft.kind === 'reading' || draft.kind === 'timed') {
+      this.updateDraft({
+        ...draft,
+        optionsLearning: state.options,
+        optionsLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    } else if (draft.kind === 'symbol') {
+      this.updateDraft({
+        ...draft,
+        symbols: state.options,
+        symbolLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    }
+  }
+
   private fallbackPreviewCard(draft: CardDraft): Card {
     const appearance = draft.appearance;
 
@@ -127,6 +261,7 @@ export class CardFormComponent {
           direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
           promptKnown: draft.promptKnown || 'Подсказка',
           optionsLearning: ['Вариант 1', 'Вариант 2'],
+          optionsKnown: ['Answer 1', 'Answer 2'],
           correctIndex: 0,
           appearance,
         };
@@ -237,5 +372,9 @@ export class CardFormComponent {
           appearance,
         };
     }
+  }
+
+  updateMeta(next: CardIndexMetaOverride): void {
+    this.metaChange.emit(next);
   }
 }

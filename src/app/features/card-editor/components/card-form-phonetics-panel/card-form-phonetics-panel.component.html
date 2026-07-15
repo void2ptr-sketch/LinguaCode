@@ -26,19 +26,6 @@
   />
 }
 
-@if (optionsDraft(); as d) {
-  <app-card-options-editor
-    [config]="optionsConfig()"
-    [options]="optionTexts()"
-    [lexemes]="optionLexemes()"
-    [correctIndex]="optionCorrectIndex()"
-    [showLexemes]="true"
-    [knownLanguage]="knownLanguage()"
-    [learningLanguage]="learningLanguage()"
-    (stateChange)="onOptionsStateChange($event)"
-  />
-}
-
 @if (memoryDraft(); as d) {
   <section class="card-form-phonetics-panel__pairs">
     <h3>Лексемы пар (новый)</h3>
