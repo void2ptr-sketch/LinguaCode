@@ -138,7 +138,7 @@ export class ChoiceCardFormComponent {
         return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
       case 'select':
       case 'timed':
-        return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
+        return { title: 'Варианты (новый)', optionLabelPrefix: 'Ответ', showCorrectRadio: true };
       default:
         return { title: 'Варианты', optionLabelPrefix: 'Вариант', showCorrectRadio: true };
     }

@@ -20,6 +20,7 @@ describe('card-validation.utils', () => {
         direction: 'known-to-learning',
         promptKnown: 'Вопрос?',
         optionsLearning: ['A', 'B'],
+        optionsKnown: ['Answer A', 'Answer B'],
         optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 0,
         appearance,
@@ -62,6 +63,7 @@ describe('card-validation.utils', () => {
         direction: 'known-to-learning',
         promptKnown: 'Привет',
         optionsLearning: ['你好', '谢谢'],
+        optionsKnown: ['Hello', 'Thank you'],
         optionsLexemes: [
           {
             primary: '你好',

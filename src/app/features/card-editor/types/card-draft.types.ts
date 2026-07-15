@@ -45,6 +45,7 @@ export type SelectCardDraft = LexemeCardDraft & {
   direction: CardDirection;
   promptKnown: string;
   optionsLearning: readonly string[];
+  optionsKnown: readonly string[];
   optionsLexemes: readonly LexemeDraftFields[];
   correctIndex: number;
   appearance: CardAppearanceDraft;

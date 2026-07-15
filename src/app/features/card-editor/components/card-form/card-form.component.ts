@@ -36,6 +36,7 @@ import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-
 import { MatDividerModule } from '@angular/material/divider';
 import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
+import { emptyOptionLexemes } from '../../types';
 
 @Component({
   selector: 'app-card-form',
@@ -159,6 +160,7 @@ export class CardFormComponent {
       case 'symbol':
         return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
       case 'select':
+        return { title: 'Варианты (известный)', optionLabelPrefix: 'Ответ', showCorrectRadio: true };
       case 'timed':
         return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
       default:
@@ -180,6 +182,11 @@ export class CardFormComponent {
       return [];
     }
 
+    // Для select карточек показываем optionsKnown, а не optionsLearning
+    if (draft.kind === 'select') {
+      return draft.optionsKnown;
+    }
+
     return draft.optionsLearning;
   }
 
@@ -197,6 +204,11 @@ export class CardFormComponent {
       return [];
     }
 
+    // Для select карточек показываем lexemes для optionsKnown
+    if (draft.kind === 'select') {
+      return draft.optionsLexemes || emptyOptionLexemes(draft.optionsKnown.length);
+    }
+
     return draft.optionsLexemes;
   }
 
@@ -206,7 +218,14 @@ export class CardFormComponent {
       return;
     }
 
-    if (draft.kind === 'select' || draft.kind === 'reading' || draft.kind === 'timed') {
+    if (draft.kind === 'select') {
+      this.updateDraft({
+        ...draft,
+        optionsKnown: state.options,
+        optionsLexemes: state.lexemes,
+        correctIndex: state.correctIndex,
+      });
+    } else if (draft.kind === 'reading' || draft.kind === 'timed') {
       this.updateDraft({
         ...draft,
         optionsLearning: state.options,
@@ -235,6 +254,7 @@ export class CardFormComponent {
           direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
           promptKnown: draft.promptKnown || 'Подсказка',
           optionsLearning: ['Вариант 1', 'Вариант 2'],
+          optionsKnown: ['Answer 1', 'Answer 2'],
           correctIndex: 0,
           appearance,
         };

@@ -21,6 +21,7 @@ describe('CardEditorStore', () => {
     direction: 'known-to-learning' as const,
     promptKnown: 'Q?',
     optionsLearning: ['A', 'B'],
+    optionsKnown: ['A', 'B'],
     correctIndex: 0,
     appearance: { theme: 'azure-blue', fontSize: 'md' as const },
   };
@@ -72,6 +73,7 @@ describe('CardEditorStore', () => {
         direction: 'known-to-learning',
         promptKnown: 'Вопрос?',
         optionsLearning: ['1', '2'],
+        optionsKnown: ['1', '2'],
         optionsLexemes: emptyOptionLexemes(2),
         correctIndex: 1,
         appearance: { theme: 'azure-blue', fontSize: 'md' },
@@ -138,6 +140,7 @@ describe('CardEditorStore', () => {
       direction: 'known-to-learning',
       promptKnown: 'New?',
       optionsLearning: ['X', 'Y'],
+      optionsKnown: ['X', 'Y'],
       optionsLexemes: emptyOptionLexemes(2),
       correctIndex: 0,
       appearance: { theme: 'azure-blue', fontSize: 'lg' },

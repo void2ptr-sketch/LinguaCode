@@ -33,10 +33,10 @@
 
           <mat-divider></mat-divider>
           <p class="card-form__hint card-form__hint--tab">
-            <strong>Тема вопроса</strong> - заголовок для группировки вопросов.
+            <strong>Заголовок</strong> - для группировки вопросов.
           </p>
           <mat-form-field appearance="outline">
-            <mat-label>Тема вопроса</mat-label>
+            <mat-label>Заголовок</mat-label>
             <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
           </mat-form-field>
 
@@ -136,10 +136,8 @@
             <p class="card-form__hint card-form__hint--tab">
               Дополнительная информация о карточке.
             </p>
-            <mat-form-field appearance="outline">
-              <mat-label>Заголовок</mat-label>
-              <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
-            </mat-form-field>
+
+
           </div>
         </mat-tab>
       }
