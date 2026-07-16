@@ -22,7 +22,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные"]
+        "tags": ["числительные", "предметы труда и быта"]
       }
     },
     {
@@ -47,7 +47,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты"]
+        "tags": ["черты", "предметы труда и быта"]
       }
     },
     {
@@ -72,7 +72,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты"]
+        "tags": ["черты", "предметы труда и быта"]
       }
     },
     {
@@ -84,7 +84,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №4 «丿»",
-      "referenceHintKnown": "косая черта (piě)",
+      "referenceHintKnown": "косая черта (piě), наоброт",
       "meaningKnown": "косая черта",
       "practiceMode": "tracing",
       "targetCharacter": "丿",
@@ -97,7 +97,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты"]
+        "tags": ["черты", "предметы труда и быта"]
       }
     },
     {
@@ -109,7 +109,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №5 «乙»",
-      "referenceHintKnown": "второй (yǐ)",
+      "referenceHintKnown": "второй (yǐ), побег",
       "meaningKnown": "второй",
       "practiceMode": "tracing",
       "targetCharacter": "乙",
@@ -122,7 +122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные"]
+        "tags": ["числительные", "растения"]
       }
     },
     {
@@ -147,7 +147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты"]
+        "tags": ["черты", "предметы труда и быта"]
       }
     },
     {
@@ -172,7 +172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные"]
+        "tags": ["числительные","неживая природа и природные явления"]
       }
     },
     {
@@ -197,7 +197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -222,7 +222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -234,7 +234,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №10 «儿»",
-      "referenceHintKnown": "ноги (ér)",
+      "referenceHintKnown": "ноги (ér), шагающий человек",
       "meaningKnown": "ноги",
       "practiceMode": "tracing",
       "targetCharacter": "儿",
@@ -247,7 +247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -272,7 +272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -297,7 +297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные"]
+        "tags": ["числительные", "предметы труда и быта"]
       }
     },
     {
@@ -309,7 +309,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №13 «冂»",
-      "referenceHintKnown": "широкий (jiōng)",
+      "referenceHintKnown": "широкий (jiōng), пустынные земли",
       "meaningKnown": "широкий",
       "practiceMode": "tracing",
       "targetCharacter": "冂",
@@ -322,7 +322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления", "предметы труда и быта"]
       }
     },
     {
@@ -347,7 +347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -372,7 +372,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -397,7 +397,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -409,7 +409,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №17 «凵»",
-      "referenceHintKnown": "ёмкость (kǎn)",
+      "referenceHintKnown": "ёмкость (kǎn), открытый рот",
       "meaningKnown": "ёмкость",
       "practiceMode": "tracing",
       "targetCharacter": "凵",
@@ -422,7 +422,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -447,7 +447,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -472,7 +472,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -497,7 +497,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -522,7 +522,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -547,7 +547,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -572,7 +572,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -597,7 +597,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -622,7 +622,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -634,7 +634,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №26 «卩»",
-      "referenceHintKnown": "печать (jié)",
+      "referenceHintKnown": "печать (jié), колено",
       "meaningKnown": "печать",
       "practiceMode": "tracing",
       "targetCharacter": "卩",
@@ -647,7 +647,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -672,7 +672,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -697,7 +697,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -722,7 +722,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -747,7 +747,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -772,7 +772,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -797,7 +797,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -809,7 +809,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №33 «士»",
-      "referenceHintKnown": "учёный (shì)",
+      "referenceHintKnown": "учёный (shì), воин",
       "meaningKnown": "учёный",
       "practiceMode": "tracing",
       "targetCharacter": "士",
@@ -822,7 +822,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -834,7 +834,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №34 «夂»",
-      "referenceHintKnown": "идти (zhǐ)",
+      "referenceHintKnown": "идти (zhǐ), начинать",
       "meaningKnown": "идти",
       "practiceMode": "tracing",
       "targetCharacter": "夂",
@@ -847,7 +847,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -859,7 +859,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №35 «夊»",
-      "referenceHintKnown": "медленный шаг (suī)",
+      "referenceHintKnown": "медленный шаг (suī), волочить ноги",
       "meaningKnown": "медленный шаг",
       "practiceMode": "tracing",
       "targetCharacter": "夊",
@@ -872,7 +872,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -897,7 +897,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -922,7 +922,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -947,7 +947,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -972,7 +972,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -997,7 +997,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1022,7 +1022,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1047,7 +1047,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1072,7 +1072,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -1097,7 +1097,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -1122,7 +1122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -1147,7 +1147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -1172,7 +1172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -1197,7 +1197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1222,7 +1222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1234,7 +1234,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №50 «巾»",
-      "referenceHintKnown": "тюрбан (jīn)",
+      "referenceHintKnown": "тюрбан (jīn), платок",
       "meaningKnown": "тюрбан",
       "practiceMode": "tracing",
       "targetCharacter": "巾",
@@ -1247,7 +1247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1259,7 +1259,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №51 «干»",
-      "referenceHintKnown": "сухой (gān)",
+      "referenceHintKnown": "сухой (gān), щит",
       "meaningKnown": "сухой",
       "practiceMode": "tracing",
       "targetCharacter": "干",
@@ -1272,7 +1272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1297,7 +1297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1322,7 +1322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1347,7 +1347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1372,7 +1372,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1397,7 +1397,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1422,7 +1422,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1447,7 +1447,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -1472,7 +1472,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -1497,7 +1497,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1522,7 +1522,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1547,7 +1547,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1572,7 +1572,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1597,7 +1597,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1609,7 +1609,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №65 «支»",
-      "referenceHintKnown": "ветка (zhī)",
+      "referenceHintKnown": "ветка (zhī), подпорка",
       "meaningKnown": "ветка",
       "practiceMode": "tracing",
       "targetCharacter": "支",
@@ -1622,7 +1622,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1647,7 +1647,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1659,7 +1659,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №67 «文»",
-      "referenceHintKnown": "письменность (wén)",
+      "referenceHintKnown": "письменность (wén), знак",
       "meaningKnown": "письменность",
       "practiceMode": "tracing",
       "targetCharacter": "文",
@@ -1672,7 +1672,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -1684,7 +1684,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №68 «斗»",
-      "referenceHintKnown": "ковш (dǒu)",
+      "referenceHintKnown": "ковш (dǒu), мерка",
       "meaningKnown": "ковш",
       "practiceMode": "tracing",
       "targetCharacter": "斗",
@@ -1697,7 +1697,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1722,7 +1722,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1734,7 +1734,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №70 «方»",
-      "referenceHintKnown": "квадрат (fāng)",
+      "referenceHintKnown": "квадрат (fāng), сторона",
       "meaningKnown": "квадрат",
       "practiceMode": "tracing",
       "targetCharacter": "方",
@@ -1747,7 +1747,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1759,7 +1759,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №71 «无»",
-      "referenceHintKnown": "нет (wú)",
+      "referenceHintKnown": "нет (wú), небытие",
       "meaningKnown": "нет",
       "practiceMode": "tracing",
       "targetCharacter": "无",
@@ -1772,7 +1772,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -1797,7 +1797,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -1822,7 +1822,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1847,7 +1847,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -1872,7 +1872,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -1884,7 +1884,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №76 «欠»",
-      "referenceHintKnown": "недостаток (qiàn)",
+      "referenceHintKnown": "недостаток (qiàn), зевать",
       "meaningKnown": "недостаток",
       "practiceMode": "tracing",
       "targetCharacter": "欠",
@@ -1897,7 +1897,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -1922,7 +1922,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1947,7 +1947,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -1959,7 +1959,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №79 «殳»",
-      "referenceHintKnown": "оружие (shū)",
+      "referenceHintKnown": "оружие (shū), пика",
       "meaningKnown": "оружие",
       "practiceMode": "tracing",
       "targetCharacter": "殳",
@@ -1972,7 +1972,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -1984,7 +1984,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №80 «毋»",
-      "referenceHintKnown": "не (wú)",
+      "referenceHintKnown": "не (wú), мать",
       "meaningKnown": "не",
       "practiceMode": "tracing",
       "targetCharacter": "毋",
@@ -1997,7 +1997,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -2022,7 +2022,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -2047,7 +2047,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2072,7 +2072,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -2097,7 +2097,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -2122,7 +2122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -2147,7 +2147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -2172,7 +2172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2197,7 +2197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2222,7 +2222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2247,7 +2247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2272,7 +2272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2297,7 +2297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2322,7 +2322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2347,7 +2347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2372,7 +2372,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2397,7 +2397,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2422,7 +2422,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -2447,7 +2447,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2472,7 +2472,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2497,7 +2497,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -2522,7 +2522,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2547,7 +2547,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2572,7 +2572,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2597,7 +2597,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -2609,7 +2609,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №105 «癶»",
-      "referenceHintKnown": "следы (bō)",
+      "referenceHintKnown": "следы (bō), топтать",
       "meaningKnown": "следы",
       "practiceMode": "tracing",
       "targetCharacter": "癶",
@@ -2622,7 +2622,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2647,7 +2647,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["цвет","неживая природа и природные явления"]
       }
     },
     {
@@ -2659,7 +2659,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №107 «皮»",
-      "referenceHintKnown": "кожа (pí)",
+      "referenceHintKnown": "сырая кожа (pí)",
       "meaningKnown": "кожа",
       "practiceMode": "tracing",
       "targetCharacter": "皮",
@@ -2672,7 +2672,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2697,7 +2697,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2722,7 +2722,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -2747,7 +2747,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2772,7 +2772,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2797,7 +2797,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -2822,7 +2822,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -2847,7 +2847,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -2859,7 +2859,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №115 «禾»",
-      "referenceHintKnown": "зерно (hé)",
+      "referenceHintKnown": "зерно (hé), злак",
       "meaningKnown": "зерно",
       "practiceMode": "tracing",
       "targetCharacter": "禾",
@@ -2872,7 +2872,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -2897,7 +2897,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -2922,7 +2922,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -2947,7 +2947,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -2972,7 +2972,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -2997,7 +2997,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3022,7 +3022,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3047,7 +3047,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3072,7 +3072,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3084,7 +3084,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №124 «羽»",
-      "referenceHintKnown": "перо (yǔ)",
+      "referenceHintKnown": "Перья (yǔ)",
       "meaningKnown": "перо",
       "practiceMode": "tracing",
       "targetCharacter": "羽",
@@ -3097,7 +3097,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3122,7 +3122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -3147,7 +3147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3172,7 +3172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3197,7 +3197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3222,7 +3222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3247,7 +3247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3272,7 +3272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3297,7 +3297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3322,7 +3322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3347,7 +3347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3372,7 +3372,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3397,7 +3397,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3422,7 +3422,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3447,7 +3447,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3472,7 +3472,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -3497,7 +3497,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -3522,7 +3522,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3547,7 +3547,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3572,7 +3572,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3597,7 +3597,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3622,7 +3622,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3647,7 +3647,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир", "предметы труда и быта"]
       }
     },
     {
@@ -3672,7 +3672,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3697,7 +3697,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3722,7 +3722,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3747,7 +3747,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -3772,7 +3772,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3797,7 +3797,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3822,7 +3822,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3847,7 +3847,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -3872,7 +3872,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["цвет", "человек и его действия"]
       }
     },
     {
@@ -3897,7 +3897,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3922,7 +3922,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -3947,7 +3947,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -3972,7 +3972,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -3997,7 +3997,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4022,7 +4022,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -4047,7 +4047,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4072,7 +4072,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4097,7 +4097,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4122,7 +4122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4147,7 +4147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4172,7 +4172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -4197,7 +4197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -4222,7 +4222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4247,7 +4247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -4272,7 +4272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4284,7 +4284,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №172 «隹»",
-      "referenceHintKnown": "птица (zhuī)",
+      "referenceHintKnown": "птица, голубь (zhuī)",
       "meaningKnown": "птица",
       "practiceMode": "tracing",
       "targetCharacter": "隹",
@@ -4297,7 +4297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4322,7 +4322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления"]
       }
     },
     {
@@ -4347,7 +4347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["цвета", "предметы труда и быта"]
       }
     },
     {
@@ -4372,7 +4372,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["неживая природа и природные явления", "животный мир"]
       }
     },
     {
@@ -4397,7 +4397,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4422,7 +4422,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4447,7 +4447,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4472,7 +4472,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -4497,7 +4497,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4522,7 +4522,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4547,7 +4547,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4572,7 +4572,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4597,7 +4597,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4622,7 +4622,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4647,7 +4647,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4672,7 +4672,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4697,7 +4697,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4722,7 +4722,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4747,7 +4747,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["человек и его действия"]
       }
     },
     {
@@ -4772,7 +4772,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4797,7 +4797,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4822,7 +4822,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4847,7 +4847,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -4872,7 +4872,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4897,7 +4897,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4922,7 +4922,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -4947,7 +4947,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -4972,7 +4972,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -4997,7 +4997,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -5022,7 +5022,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -5047,7 +5047,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -5072,7 +5072,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -5097,7 +5097,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -5122,7 +5122,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -5147,7 +5147,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -5172,7 +5172,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     },
     {
@@ -5197,7 +5197,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -5222,7 +5222,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -5247,7 +5247,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["растения"]
       }
     },
     {
@@ -5272,7 +5272,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["части тела"]
       }
     },
     {
@@ -5297,7 +5297,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -5322,7 +5322,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["животный мир"]
       }
     },
     {
@@ -5347,7 +5347,7 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": []
+        "tags": ["предметы труда и быта"]
       }
     }
   ]
