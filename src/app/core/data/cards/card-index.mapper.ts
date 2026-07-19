@@ -44,6 +44,9 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
     tags,
     ipaReadings,
     updatedAt: effectiveMeta?.updatedAt ?? '2026-01-01T00:00:00.000Z',
+    courseId: card.courseId,
+    lessonId: card.lessonId,
+    scenarioId: card.scenarioId,
   };
 }
 

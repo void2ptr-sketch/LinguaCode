@@ -9,14 +9,25 @@ import {
   emptyOptionLexemes,
 } from '../types';
 
+/** Иерархические поля карточки: курс, урок, сценарий. */
+function hierarchyFields(card?: { courseId?: string; lessonId?: string; scenarioId?: string }) {
+  return {
+    courseId: card?.courseId ?? '',
+    lessonId: card?.lessonId ?? '',
+    scenarioId: card?.scenarioId ?? '',
+  };
+}
+
 export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): CardDraft => {
   const lexemeFields = emptyLexemeCardDraft();
+  const h = hierarchyFields();
 
   switch (kind) {
     case 'select':
       return {
         kind: 'select',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
@@ -30,6 +41,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'code-select',
         title: '',
+        ...h,
         caption: '',
         prompt: { code: '', language: 'perl' },
         options: [
@@ -43,6 +55,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'memory',
         title: '',
+        ...h,
         promptKnown: '',
         pairs: [emptyMemoryPairDraft()],
         appearance: { ...appearance },
@@ -52,6 +65,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'symbol',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         symbols: ['', ''],
@@ -64,6 +78,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'sound',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         audioLabelLearning: '',
@@ -78,6 +93,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'timed',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
@@ -91,6 +107,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'keyboard',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         acceptedAnswersKnown: [''],
@@ -101,6 +118,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'draw',
         title: '',
+        ...h,
         promptKnown: '',
         referenceHintKnown: '',
         targetCharacter: '',
@@ -113,6 +131,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'tone',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         syllableBase: '',
@@ -125,6 +144,7 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
       return {
         kind: 'reading',
         title: '',
+        ...h,
         direction: DEFAULT_CARD_DIRECTION,
         promptKnown: '',
         optionsLearning: ['', ''],
@@ -140,12 +160,14 @@ export const cardToDraft = (card: Card): CardDraft => {
   const appearance = { ...card.appearance };
   const promptLexeme = lexemeToDraftFields('promptLexeme' in card ? card.promptLexeme : undefined);
   const audioUrl = 'audioUrl' in card ? (card.audioUrl ?? '') : '';
+  const h = hierarchyFields(card);
 
   switch (card.kind) {
     case 'select':
       return {
         kind: 'select',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],
@@ -162,6 +184,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'code-select',
         title: card.title,
+        ...h,
         caption: card.caption ?? '',
         prompt: { ...card.prompt },
         options: card.options.map((option) => ({ ...option })),
@@ -172,6 +195,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'memory',
         title: card.title,
+        ...h,
         promptKnown: card.promptKnown,
         pairs: card.pairs.map((pair) => ({
           known: pair.known,
@@ -188,6 +212,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'symbol',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         symbols: [...card.symbols],
@@ -203,6 +228,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'sound',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         audioLabelLearning: card.audioLabelLearning,
@@ -222,6 +248,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'timed',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],
@@ -238,6 +265,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'keyboard',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         acceptedAnswersKnown: [...card.acceptedAnswersKnown],
@@ -250,6 +278,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'draw',
         title: card.title,
+        ...h,
         promptKnown: card.promptKnown,
         referenceHintKnown: card.referenceHintKnown,
         practiceMode: card.practiceMode,
@@ -264,6 +293,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'tone',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         syllableBase: card.syllableBase,
@@ -277,6 +307,7 @@ export const cardToDraft = (card: Card): CardDraft => {
       return {
         kind: 'reading',
         title: card.title,
+        ...h,
         direction: card.direction,
         promptKnown: card.promptKnown,
         optionsLearning: [...card.optionsLearning],

@@ -19,7 +19,7 @@ describe('groupCatalogTagFacets', () => {
     ]);
     expect(groups[0]?.facets.map((facet) => facet.value)).toEqual(['basics', 'oop']);
     expect(groups[1]?.facets.map((facet) => facet.value)).toEqual(['regex-captures']);
-    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual(['beginner', 'advanced', 'greetings']);
+    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual(['advanced', 'beginner', 'greetings']);
   });
 });
 

@@ -11,6 +11,9 @@ describe('cards-api.params.utils', () => {
       difficulty: 'beginner' as const,
       kinds: ['select', 'memory'] as const,
       tags: ['vocabulary'],
+      courseId: undefined,
+      lessonId: undefined,
+      scenarioId: undefined,
       page: { page: 1, pageSize: 25 },
     };
 

@@ -40,6 +40,7 @@ export class CardCatalogHierarchyService {
       const page = await this.courseSearchService.search({
         knownLanguage: known,
         learningLanguage: learning,
+        scope: 'published',
         page: { page: 0, pageSize: 100 },
       });
 

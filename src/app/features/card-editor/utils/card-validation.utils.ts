@@ -236,6 +236,9 @@ export const normalizeSelectCardDraft = (
     optionsLearning: optionsLearning!,
     ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -274,6 +277,9 @@ export const normalizeMemoryCardDraft = (
     appearance: normalizeAppearance(draft.appearance),
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -298,6 +304,9 @@ export const normalizeSymbolCardDraft = (
     ...(symbolLexemes ? { symbolLexemes } : {}),
     ...(optionsKnown ? { optionsKnown } : {}),
     ...rest,
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -323,6 +332,9 @@ export const normalizeSoundCardDraft = (
     optionsKnown: optionsKnown!,
     ...core,
     ...(promptLexeme ? { promptLexeme } : {}),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -351,6 +363,9 @@ export const normalizeTimedCardDraft = (
     timeLimitSec,
     ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -387,6 +402,9 @@ export const normalizeKeyboardCardDraft = (
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
     ...(answerMode && answerMode !== 'auto' ? { answerMode } : {}),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -468,6 +486,9 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
     ...(targetCharacter ? { targetCharacter } : {}),
     ...(radicalHint ? { radicalHint } : {}),
     ...(characterTargets ? { characterTargets } : {}),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -502,6 +523,9 @@ export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): To
     appearance: normalizeAppearance(draft.appearance),
     ...(promptLexeme ? { promptLexeme } : {}),
     ...(normalizeAudioUrl(draft.audioUrl) ? { audioUrl: normalizeAudioUrl(draft.audioUrl) } : {}),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -533,6 +557,9 @@ export const normalizeCodeSelectCardDraft = (
     options,
     correctIndex,
     appearance: normalizeAppearance(draft.appearance),
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 
@@ -559,6 +586,9 @@ export const normalizeReadingCardDraft = (
     optionsLearning: optionsLearning!,
     ...(optionsKnown ? { optionsKnown } : {}),
     ...core,
+    courseId: draft.courseId || undefined,
+    lessonId: draft.lessonId || undefined,
+    scenarioId: draft.scenarioId || undefined,
   };
 };
 

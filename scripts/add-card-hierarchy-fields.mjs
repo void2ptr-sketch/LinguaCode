@@ -35,19 +35,27 @@ const allScenarios = [
 ];
 
 // ============================================================
-// 2. Загружаем все курсы с уроками
+// 2. Загружаем все курсы и уроки
 // ============================================================
 
-const demoCourses = loadJSON('courses/demo-courses.json').courses;
-const perlInterviewCourse = loadJSON('courses/perl-interview-course.json').courses;
-const perlDbCourse = loadJSON('courses/perl-db-course.json').courses;
-const radicalsCourse = loadJSON('courses/radicals-214-course.json').courses;
+const demoCourseFile = loadJSON('courses/demo-courses.json');
+const perlInterviewCourseFile = loadJSON('courses/perl-interview-course.json');
+const perlDbCourseFile = loadJSON('courses/perl-db-course.json');
+const radicalsCourseFile = loadJSON('courses/radicals-214-course.json');
 
 const allCourses = [
-  ...demoCourses,
-  ...perlInterviewCourse,
-  ...perlDbCourse,
-  ...radicalsCourse,
+  ...demoCourseFile.courses,
+  ...perlInterviewCourseFile.courses,
+  ...perlDbCourseFile.courses,
+  ...radicalsCourseFile.courses,
+];
+
+// Уроки лежат на верхнем уровне файла курса (не внутри course.lessons)
+const allLessons = [
+  ...(demoCourseFile.lessons ?? []),
+  ...(perlInterviewCourseFile.lessons ?? []),
+  ...(perlDbCourseFile.lessons ?? []),
+  ...(radicalsCourseFile.lessons ?? []),
 ];
 
 // ============================================================
@@ -56,13 +64,11 @@ const allCourses = [
 
 // Сначала построим: lessonId -> { courseId, scenarioIds[] }
 const lessonMap = {};
-for (const course of allCourses) {
-  for (const lesson of course.lessons ?? []) {
-    lessonMap[lesson.id] = {
-      courseId: lesson.courseId,
-      scenarioIds: lesson.scenarioIds,
-    };
-  }
+for (const lesson of allLessons) {
+  lessonMap[lesson.id] = {
+    courseId: lesson.courseId,
+    scenarioIds: lesson.scenarioIds,
+  };
 }
 
 // Затем: scenarioId -> { courseId, lessonId }
@@ -113,33 +119,41 @@ function processCardFile(filename, getCardScenarioId) {
 
   let changed = 0;
 
-  if (data.scenarioId) {
-    // Файл с общим scenarioId на верхнем уровне (demo-cards.json)
-    const scenarioId = data.scenarioId;
+  for (let i = 0; i < data.cards.length; i++) {
+    const card = data.cards[i];
+
+    // Определяем scenarioId для карточки:
+    // 1. Из cardToScenarioMap (по cardSource.cardIds в сценариях)
+    // 2. Из getCardScenarioId(card), если передан
+    // 3. Из data.scenarioId (верхний уровень файла) как fallback
+    let scenarioId = cardToScenarioMap[card.id];
+
+    if (!scenarioId && getCardScenarioId) {
+      scenarioId = getCardScenarioId(card);
+    }
+
+    if (!scenarioId && data.scenarioId) {
+      scenarioId = data.scenarioId;
+    }
+
+    if (!scenarioId) continue;
+
     const mapping = scenarioMap[scenarioId];
 
-    for (const card of data.cards) {
-      if (!card.courseId || !card.lessonId || !card.scenarioId) {
-        card.courseId = mapping?.courseId;
-        card.lessonId = mapping?.lessonId;
-        card.scenarioId = scenarioId;
-        changed++;
+    if (!card.courseId || !card.lessonId || !card.scenarioId) {
+      // Создаём новый объект с полями в правильном порядке:
+      // id, kind, title, courseId, lessonId, scenarioId, ...остальные поля
+      const ordered = {};
+      for (const key of Object.keys(card)) {
+        ordered[key] = card[key];
+        if (key === 'title') {
+          ordered.courseId = mapping?.courseId;
+          ordered.lessonId = mapping?.lessonId;
+          ordered.scenarioId = scenarioId;
+        }
       }
-    }
-  } else {
-    // Файл с карточками, где ID карточки определяет сценарий
-    for (const card of data.cards) {
-      const scenarioId = getCardScenarioId(card);
-      if (!scenarioId) continue;
-
-      const mapping = scenarioMap[scenarioId];
-
-      if (!card.courseId || !card.lessonId || !card.scenarioId) {
-        card.courseId = mapping?.courseId;
-        card.lessonId = mapping?.lessonId;
-        card.scenarioId = scenarioId;
-        changed++;
-      }
+      data.cards[i] = ordered;
+      changed++;
     }
   }
 

@@ -4,6 +4,9 @@
       "id": "draw-radical-001",
       "kind": "draw",
       "title": "Радикал №1: 一",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -22,13 +25,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные", "предметы труда и быта"]
+        "tags": [
+          "числительные",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-002",
       "kind": "draw",
       "title": "Радикал №2: 丨",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -47,13 +56,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты", "предметы труда и быта"]
+        "tags": [
+          "черты",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-003",
       "kind": "draw",
       "title": "Радикал №3: 丶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -72,13 +87,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты", "предметы труда и быта"]
+        "tags": [
+          "черты",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-004",
       "kind": "draw",
       "title": "Радикал №4: 丿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -97,13 +118,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты", "предметы труда и быта"]
+        "tags": [
+          "черты",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-005",
       "kind": "draw",
       "title": "Радикал №5: 乙",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -122,13 +149,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные", "растения"]
+        "tags": [
+          "числительные",
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-006",
       "kind": "draw",
       "title": "Радикал №6: 亅",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -147,13 +180,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["черты", "предметы труда и быта"]
+        "tags": [
+          "черты",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-007",
       "kind": "draw",
       "title": "Радикал №7: 二",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -172,13 +211,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные","неживая природа и природные явления"]
+        "tags": [
+          "числительные",
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-008",
       "kind": "draw",
       "title": "Радикал №8: 亠",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -197,13 +242,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-009",
       "kind": "draw",
       "title": "Радикал №9: 人",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -222,13 +272,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-010",
       "kind": "draw",
       "title": "Радикал №10: 儿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -247,13 +302,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-011",
       "kind": "draw",
       "title": "Радикал №11: 入",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -272,13 +332,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-012",
       "kind": "draw",
       "title": "Радикал №12: 八",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -297,13 +362,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["числительные", "предметы труда и быта"]
+        "tags": [
+          "числительные",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-013",
       "kind": "draw",
       "title": "Радикал №13: 冂",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -322,13 +393,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления", "предметы труда и быта"]
+        "tags": [
+          "неживая природа и природные явления",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-014",
       "kind": "draw",
       "title": "Радикал №14: 冖",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -347,13 +424,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-015",
       "kind": "draw",
       "title": "Радикал №15: 冫",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -372,13 +454,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-016",
       "kind": "draw",
       "title": "Радикал №16: 几",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -397,13 +484,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-017",
       "kind": "draw",
       "title": "Радикал №17: 凵",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -422,13 +514,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-018",
       "kind": "draw",
       "title": "Радикал №18: 刀",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -447,13 +544,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-019",
       "kind": "draw",
       "title": "Радикал №19: 力",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -472,13 +574,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-020",
       "kind": "draw",
       "title": "Радикал №20: 勹",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -497,13 +604,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-021",
       "kind": "draw",
       "title": "Радикал №21: 匕",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -522,13 +634,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-022",
       "kind": "draw",
       "title": "Радикал №22: 匚",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -547,13 +664,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-023",
       "kind": "draw",
       "title": "Радикал №23: 匸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -572,13 +694,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-024",
       "kind": "draw",
       "title": "Радикал №24: 十",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -597,13 +724,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-025",
       "kind": "draw",
       "title": "Радикал №25: 卜",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -622,13 +754,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-026",
       "kind": "draw",
       "title": "Радикал №26: 卩",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -647,13 +784,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-027",
       "kind": "draw",
       "title": "Радикал №27: 厂",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -672,13 +814,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-028",
       "kind": "draw",
       "title": "Радикал №28: 厶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -697,13 +844,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-029",
       "kind": "draw",
       "title": "Радикал №29: 又",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -722,13 +874,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-030",
       "kind": "draw",
       "title": "Радикал №30: 口",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -747,13 +904,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-031",
       "kind": "draw",
       "title": "Радикал №31: 囗",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -772,13 +934,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-032",
       "kind": "draw",
       "title": "Радикал №32: 土",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -797,13 +964,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-033",
       "kind": "draw",
       "title": "Радикал №33: 士",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -822,13 +994,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-034",
       "kind": "draw",
       "title": "Радикал №34: 夂",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -847,13 +1024,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-035",
       "kind": "draw",
       "title": "Радикал №35: 夊",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -872,13 +1054,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-036",
       "kind": "draw",
       "title": "Радикал №36: 夕",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -897,13 +1084,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-037",
       "kind": "draw",
       "title": "Радикал №37: 大",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -922,13 +1114,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-038",
       "kind": "draw",
       "title": "Радикал №38: 女",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -947,13 +1144,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-039",
       "kind": "draw",
       "title": "Радикал №39: 子",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -972,13 +1174,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-040",
       "kind": "draw",
       "title": "Радикал №40: 宀",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -997,13 +1204,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-041",
       "kind": "draw",
       "title": "Радикал №41: 寸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1022,13 +1234,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-042",
       "kind": "draw",
       "title": "Радикал №42: 小",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1047,13 +1264,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-043",
       "kind": "draw",
       "title": "Радикал №43: 尢",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1072,13 +1294,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-044",
       "kind": "draw",
       "title": "Радикал №44: 尸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1097,13 +1324,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-045",
       "kind": "draw",
       "title": "Радикал №45: 屮",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1122,13 +1354,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-046",
       "kind": "draw",
       "title": "Радикал №46: 山",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1147,13 +1384,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-047",
       "kind": "draw",
       "title": "Радикал №47: 巛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1172,13 +1414,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-048",
       "kind": "draw",
       "title": "Радикал №48: 工",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1197,13 +1444,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-049",
       "kind": "draw",
       "title": "Радикал №49: 己",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1222,13 +1474,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-050",
       "kind": "draw",
       "title": "Радикал №50: 巾",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1247,13 +1504,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-051",
       "kind": "draw",
       "title": "Радикал №51: 干",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1272,13 +1534,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-052",
       "kind": "draw",
       "title": "Радикал №52: 幺",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1297,13 +1564,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-053",
       "kind": "draw",
       "title": "Радикал №53: 广",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1322,13 +1594,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-054",
       "kind": "draw",
       "title": "Радикал №54: 廴",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1347,13 +1624,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-055",
       "kind": "draw",
       "title": "Радикал №55: 廾",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1372,13 +1654,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-056",
       "kind": "draw",
       "title": "Радикал №56: 弋",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1397,13 +1684,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-057",
       "kind": "draw",
       "title": "Радикал №57: 弓",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1422,13 +1714,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-058",
       "kind": "draw",
       "title": "Радикал №58: 彐",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1447,13 +1744,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-059",
       "kind": "draw",
       "title": "Радикал №59: 彡",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1472,13 +1774,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-060",
       "kind": "draw",
       "title": "Радикал №60: 彳",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1497,13 +1804,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-061",
       "kind": "draw",
       "title": "Радикал №61: 心",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1522,13 +1834,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-062",
       "kind": "draw",
       "title": "Радикал №62: 戈",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1547,13 +1864,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-063",
       "kind": "draw",
       "title": "Радикал №63: 戶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1572,13 +1894,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-064",
       "kind": "draw",
       "title": "Радикал №64: 手",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1597,13 +1924,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-065",
       "kind": "draw",
       "title": "Радикал №65: 支",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1622,13 +1954,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-066",
       "kind": "draw",
       "title": "Радикал №66: 攴",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1647,13 +1984,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-067",
       "kind": "draw",
       "title": "Радикал №67: 文",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1672,13 +2014,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-068",
       "kind": "draw",
       "title": "Радикал №68: 斗",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1697,13 +2044,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-069",
       "kind": "draw",
       "title": "Радикал №69: 斤",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1722,13 +2074,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-070",
       "kind": "draw",
       "title": "Радикал №70: 方",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1747,13 +2104,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-071",
       "kind": "draw",
       "title": "Радикал №71: 无",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1772,13 +2134,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-072",
       "kind": "draw",
       "title": "Радикал №72: 日",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1797,13 +2164,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-073",
       "kind": "draw",
       "title": "Радикал №73: 曰",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1822,13 +2194,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-074",
       "kind": "draw",
       "title": "Радикал №74: 月",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1847,13 +2224,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-075",
       "kind": "draw",
       "title": "Радикал №75: 木",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1872,13 +2254,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-076",
       "kind": "draw",
       "title": "Радикал №76: 欠",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1897,13 +2284,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-077",
       "kind": "draw",
       "title": "Радикал №77: 止",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1922,13 +2314,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-078",
       "kind": "draw",
       "title": "Радикал №78: 歹",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1947,13 +2344,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-079",
       "kind": "draw",
       "title": "Радикал №79: 殳",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1972,13 +2374,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-080",
       "kind": "draw",
       "title": "Радикал №80: 毋",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-04",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1997,13 +2404,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-081",
       "kind": "draw",
       "title": "Радикал №81: 比",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2022,13 +2434,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-082",
       "kind": "draw",
       "title": "Радикал №82: 毛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2047,13 +2464,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-083",
       "kind": "draw",
       "title": "Радикал №83: 氏",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2072,13 +2494,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-084",
       "kind": "draw",
       "title": "Радикал №84: 气",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2097,13 +2524,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-085",
       "kind": "draw",
       "title": "Радикал №85: 水",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2122,13 +2554,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-086",
       "kind": "draw",
       "title": "Радикал №86: 火",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2147,13 +2584,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-087",
       "kind": "draw",
       "title": "Радикал №87: 爪",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2172,13 +2614,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-088",
       "kind": "draw",
       "title": "Радикал №88: 父",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2197,13 +2644,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-089",
       "kind": "draw",
       "title": "Радикал №89: 爻",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2222,13 +2674,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-090",
       "kind": "draw",
       "title": "Радикал №90: 爿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2247,13 +2704,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-091",
       "kind": "draw",
       "title": "Радикал №91: 片",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2272,13 +2734,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-092",
       "kind": "draw",
       "title": "Радикал №92: 牙",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2297,13 +2764,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-093",
       "kind": "draw",
       "title": "Радикал №93: 牛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2322,13 +2794,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-094",
       "kind": "draw",
       "title": "Радикал №94: 犬",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2347,13 +2824,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-095",
       "kind": "draw",
       "title": "Радикал №95: 玄",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2372,13 +2854,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-096",
       "kind": "draw",
       "title": "Радикал №96: 玉",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2397,13 +2884,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-097",
       "kind": "draw",
       "title": "Радикал №97: 瓜",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2422,13 +2914,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-098",
       "kind": "draw",
       "title": "Радикал №98: 瓦",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2447,13 +2944,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-099",
       "kind": "draw",
       "title": "Радикал №99: 甘",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2472,13 +2974,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-100",
       "kind": "draw",
       "title": "Радикал №100: 生",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-05",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2497,13 +3004,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-101",
       "kind": "draw",
       "title": "Радикал №101: 用",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2522,13 +3034,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-102",
       "kind": "draw",
       "title": "Радикал №102: 田",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2547,13 +3064,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-103",
       "kind": "draw",
       "title": "Радикал №103: 疋",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2572,13 +3094,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-104",
       "kind": "draw",
       "title": "Радикал №104: 疒",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2597,13 +3124,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-105",
       "kind": "draw",
       "title": "Радикал №105: 癶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2622,13 +3154,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-106",
       "kind": "draw",
       "title": "Радикал №106: 白",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2647,13 +3184,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["цвет","неживая природа и природные явления"]
+        "tags": [
+          "цвет",
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-107",
       "kind": "draw",
       "title": "Радикал №107: 皮",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2672,13 +3215,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-108",
       "kind": "draw",
       "title": "Радикал №108: 皿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2697,13 +3245,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-109",
       "kind": "draw",
       "title": "Радикал №109: 目",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2722,13 +3275,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-110",
       "kind": "draw",
       "title": "Радикал №110: 矛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2747,13 +3305,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-111",
       "kind": "draw",
       "title": "Радикал №111: 矢",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2772,13 +3335,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-112",
       "kind": "draw",
       "title": "Радикал №112: 石",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2797,13 +3365,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-113",
       "kind": "draw",
       "title": "Радикал №113: 示",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2822,13 +3395,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-114",
       "kind": "draw",
       "title": "Радикал №114: 禸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2847,13 +3425,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-115",
       "kind": "draw",
       "title": "Радикал №115: 禾",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2872,13 +3455,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-116",
       "kind": "draw",
       "title": "Радикал №116: 穴",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2897,13 +3485,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-117",
       "kind": "draw",
       "title": "Радикал №117: 立",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2922,13 +3515,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-118",
       "kind": "draw",
       "title": "Радикал №118: 竹",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2947,13 +3545,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-119",
       "kind": "draw",
       "title": "Радикал №119: 米",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2972,13 +3575,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-120",
       "kind": "draw",
       "title": "Радикал №120: 糸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-06",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2997,13 +3605,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-121",
       "kind": "draw",
       "title": "Радикал №121: 缶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3022,13 +3635,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-122",
       "kind": "draw",
       "title": "Радикал №122: 网",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3047,13 +3665,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-123",
       "kind": "draw",
       "title": "Радикал №123: 羊",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3072,13 +3695,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-124",
       "kind": "draw",
       "title": "Радикал №124: 羽",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3097,13 +3725,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-125",
       "kind": "draw",
       "title": "Радикал №125: 老",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3122,13 +3755,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-126",
       "kind": "draw",
       "title": "Радикал №126: 而",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3147,13 +3785,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-127",
       "kind": "draw",
       "title": "Радикал №127: 耒",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3172,13 +3815,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-128",
       "kind": "draw",
       "title": "Радикал №128: 耳",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3197,13 +3845,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-129",
       "kind": "draw",
       "title": "Радикал №129: 聿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3222,13 +3875,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-130",
       "kind": "draw",
       "title": "Радикал №130: 肉",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3247,13 +3905,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-131",
       "kind": "draw",
       "title": "Радикал №131: 臣",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3272,13 +3935,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-132",
       "kind": "draw",
       "title": "Радикал №132: 自",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3297,13 +3965,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-133",
       "kind": "draw",
       "title": "Радикал №133: 至",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3322,13 +3995,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-134",
       "kind": "draw",
       "title": "Радикал №134: 臼",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3347,13 +4025,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-135",
       "kind": "draw",
       "title": "Радикал №135: 舌",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3372,13 +4055,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-136",
       "kind": "draw",
       "title": "Радикал №136: 舛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3397,13 +4085,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-137",
       "kind": "draw",
       "title": "Радикал №137: 舟",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3422,13 +4115,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-138",
       "kind": "draw",
       "title": "Радикал №138: 艮",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3447,13 +4145,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-139",
       "kind": "draw",
       "title": "Радикал №139: 色",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3472,13 +4175,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-140",
       "kind": "draw",
       "title": "Радикал №140: 艸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-07",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3497,13 +4205,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-141",
       "kind": "draw",
       "title": "Радикал №141: 虍",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3522,13 +4235,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-142",
       "kind": "draw",
       "title": "Радикал №142: 虫",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3547,13 +4265,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-143",
       "kind": "draw",
       "title": "Радикал №143: 血",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3572,13 +4295,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-144",
       "kind": "draw",
       "title": "Радикал №144: 行",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3597,13 +4325,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-145",
       "kind": "draw",
       "title": "Радикал №145: 衣",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3622,13 +4355,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-146",
       "kind": "draw",
       "title": "Радикал №146: 襾",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3647,13 +4385,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир", "предметы труда и быта"]
+        "tags": [
+          "животный мир",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-147",
       "kind": "draw",
       "title": "Радикал №147: 見",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3672,13 +4416,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-148",
       "kind": "draw",
       "title": "Радикал №148: 角",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3697,13 +4446,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-149",
       "kind": "draw",
       "title": "Радикал №149: 言",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3722,13 +4476,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-150",
       "kind": "draw",
       "title": "Радикал №150: 谷",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3747,13 +4506,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-151",
       "kind": "draw",
       "title": "Радикал №151: 豆",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3772,13 +4536,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-152",
       "kind": "draw",
       "title": "Радикал №152: 豕",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3797,13 +4566,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-153",
       "kind": "draw",
       "title": "Радикал №153: 豸",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3822,13 +4596,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-154",
       "kind": "draw",
       "title": "Радикал №154: 貝",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3847,13 +4626,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-155",
       "kind": "draw",
       "title": "Радикал №155: 赤",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3872,13 +4656,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["цвет", "человек и его действия"]
+        "tags": [
+          "цвет",
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-156",
       "kind": "draw",
       "title": "Радикал №156: 走",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3897,13 +4687,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-157",
       "kind": "draw",
       "title": "Радикал №157: 足",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3922,13 +4717,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-158",
       "kind": "draw",
       "title": "Радикал №158: 身",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3947,13 +4747,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-159",
       "kind": "draw",
       "title": "Радикал №159: 車",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3972,13 +4777,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-160",
       "kind": "draw",
       "title": "Радикал №160: 辛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-08",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3997,13 +4807,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-161",
       "kind": "draw",
       "title": "Радикал №161: 辰",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4022,13 +4837,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-162",
       "kind": "draw",
       "title": "Радикал №162: 辵",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4047,13 +4867,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-163",
       "kind": "draw",
       "title": "Радикал №163: 邑",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4072,13 +4897,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-164",
       "kind": "draw",
       "title": "Радикал №164: 酉",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4097,13 +4927,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-165",
       "kind": "draw",
       "title": "Радикал №165: 釆",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4122,13 +4957,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-166",
       "kind": "draw",
       "title": "Радикал №166: 里",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4147,13 +4987,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-167",
       "kind": "draw",
       "title": "Радикал №167: 金",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4172,13 +5017,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-168",
       "kind": "draw",
       "title": "Радикал №168: 長",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4197,13 +5047,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-169",
       "kind": "draw",
       "title": "Радикал №169: 門",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4222,13 +5077,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-170",
       "kind": "draw",
       "title": "Радикал №170: 阜",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4247,13 +5107,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-171",
       "kind": "draw",
       "title": "Радикал №171: 隶",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4272,13 +5137,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-172",
       "kind": "draw",
       "title": "Радикал №172: 隹",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4297,13 +5167,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-173",
       "kind": "draw",
       "title": "Радикал №173: 雨",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4322,13 +5197,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления"]
+        "tags": [
+          "неживая природа и природные явления"
+        ]
       }
     },
     {
       "id": "draw-radical-174",
       "kind": "draw",
       "title": "Радикал №174: 靑",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4347,13 +5227,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["цвета", "предметы труда и быта"]
+        "tags": [
+          "цвета",
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-175",
       "kind": "draw",
       "title": "Радикал №175: 非",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4372,13 +5258,19 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["неживая природа и природные явления", "животный мир"]
+        "tags": [
+          "неживая природа и природные явления",
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-176",
       "kind": "draw",
       "title": "Радикал №176: 面",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4397,13 +5289,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-177",
       "kind": "draw",
       "title": "Радикал №177: 革",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4422,13 +5319,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-178",
       "kind": "draw",
       "title": "Радикал №178: 韋",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4447,13 +5349,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-179",
       "kind": "draw",
       "title": "Радикал №179: 韭",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4472,13 +5379,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-180",
       "kind": "draw",
       "title": "Радикал №180: 音",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-09",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4497,13 +5409,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-181",
       "kind": "draw",
       "title": "Радикал №181: 頁",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4522,13 +5439,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-182",
       "kind": "draw",
       "title": "Радикал №182: 風",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4547,13 +5469,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-183",
       "kind": "draw",
       "title": "Радикал №183: 飛",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4572,13 +5499,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-184",
       "kind": "draw",
       "title": "Радикал №184: 食",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4597,13 +5529,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-185",
       "kind": "draw",
       "title": "Радикал №185: 首",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4622,13 +5559,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-186",
       "kind": "draw",
       "title": "Радикал №186: 香",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4647,13 +5589,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-187",
       "kind": "draw",
       "title": "Радикал №187: 馬",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4672,13 +5619,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-188",
       "kind": "draw",
       "title": "Радикал №188: 骨",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4697,13 +5649,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-189",
       "kind": "draw",
       "title": "Радикал №189: 高",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4722,13 +5679,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-190",
       "kind": "draw",
       "title": "Радикал №190: 髟",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4747,13 +5709,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["человек и его действия"]
+        "tags": [
+          "человек и его действия"
+        ]
       }
     },
     {
       "id": "draw-radical-191",
       "kind": "draw",
       "title": "Радикал №191: 鬥",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4772,13 +5739,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-192",
       "kind": "draw",
       "title": "Радикал №192: 鬯",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4797,13 +5769,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-193",
       "kind": "draw",
       "title": "Радикал №193: 鬲",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4822,13 +5799,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-194",
       "kind": "draw",
       "title": "Радикал №194: 鬼",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4847,13 +5829,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-195",
       "kind": "draw",
       "title": "Радикал №195: 魚",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4872,13 +5859,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-196",
       "kind": "draw",
       "title": "Радикал №196: 鳥",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4897,13 +5889,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-197",
       "kind": "draw",
       "title": "Радикал №197: 鹵",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4922,13 +5919,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-198",
       "kind": "draw",
       "title": "Радикал №198: 鹿",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4947,13 +5949,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-199",
       "kind": "draw",
       "title": "Радикал №199: 麥",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4972,13 +5979,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-200",
       "kind": "draw",
       "title": "Радикал №200: 麻",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-10",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4997,13 +6009,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-201",
       "kind": "draw",
       "title": "Радикал №201: 黃",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5022,13 +6039,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-202",
       "kind": "draw",
       "title": "Радикал №202: 黍",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5047,13 +6069,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-203",
       "kind": "draw",
       "title": "Радикал №203: 黑",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5072,13 +6099,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-204",
       "kind": "draw",
       "title": "Радикал №204: 黹",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5097,13 +6129,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-205",
       "kind": "draw",
       "title": "Радикал №205: 黽",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5122,13 +6159,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-206",
       "kind": "draw",
       "title": "Радикал №206: 鼎",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5147,13 +6189,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-207",
       "kind": "draw",
       "title": "Радикал №207: 鼓",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5172,13 +6219,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     },
     {
       "id": "draw-radical-208",
       "kind": "draw",
       "title": "Радикал №208: 鼠",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5197,13 +6249,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-209",
       "kind": "draw",
       "title": "Радикал №209: 鼻",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5222,13 +6279,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-210",
       "kind": "draw",
       "title": "Радикал №210: 齊",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5247,13 +6309,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["растения"]
+        "tags": [
+          "растения"
+        ]
       }
     },
     {
       "id": "draw-radical-211",
       "kind": "draw",
       "title": "Радикал №211: 齒",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5272,13 +6339,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["части тела"]
+        "tags": [
+          "части тела"
+        ]
       }
     },
     {
       "id": "draw-radical-212",
       "kind": "draw",
       "title": "Радикал №212: 龍",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5297,13 +6369,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-213",
       "kind": "draw",
       "title": "Радикал №213: 龜",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5322,13 +6399,18 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["животный мир"]
+        "tags": [
+          "животный мир"
+        ]
       }
     },
     {
       "id": "draw-radical-214",
       "kind": "draw",
       "title": "Радикал №214: 龠",
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-11",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5347,7 +6429,9 @@
         "knownLanguage": "ru",
         "learningLanguage": "zh",
         "difficulty": "beginner",
-        "tags": ["предметы труда и быта"]
+        "tags": [
+          "предметы труда и быта"
+        ]
       }
     }
   ]

@@ -21,6 +21,11 @@ describe('CardCatalogSearchStore', () => {
     error: () => null,
   });
   courseSearchMock.search.and.resolveTo({ items: [], page: 0, pageSize: 100, totalItems: 0, totalPages: 0 });
+  courseSearchMock.getById.and.resolveTo({
+    id: 'course-1',
+    title: 'Course 1',
+    lessons: [],
+  });
 
   beforeEach(() => {
     searchMock.calls.reset();
