@@ -40,10 +40,10 @@ import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 
-interface TabDefinition {
+type TabDefinition = {
   label: string;
   visible: boolean;
-}
+};
 
 @Component({
   selector: 'app-card-form',
@@ -294,9 +294,7 @@ export class CardFormComponent {
     return this.allAvailableTabs.slice(offset, offset + this.VISIBLE_TABS_COUNT);
   });
 
-  get tabGroupSelectedIndex(): number {
-    return 0; // Всегда показываем первую видимую закладку
-  }
+  readonly tabGroupSelectedIndex = 0;
 
   canPrevTabs(): boolean {
     return this.tabOffset() > 0;
