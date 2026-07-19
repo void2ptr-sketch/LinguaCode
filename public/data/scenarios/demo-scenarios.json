@@ -18,7 +18,8 @@
       "languagePair": {
         "known": "ru",
         "learning": "en"
-      }
+      },
+      "courseId": "demo-course"
     },
     {
       "id": "scenario-zh-greetings",
@@ -31,6 +32,7 @@
         "known": "ru",
         "learning": "zh"
       },
+      "courseId": "course-zh-a1",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -52,6 +54,7 @@
         "known": "ru",
         "learning": "zh"
       },
+      "courseId": "course-zh-a1",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -72,6 +75,7 @@
         "known": "ru",
         "learning": "zh"
       },
+      "courseId": "course-zh-a1",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -96,6 +100,7 @@
         "known": "ru",
         "learning": "zh"
       },
+      "courseId": "course-zh-conversation",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
