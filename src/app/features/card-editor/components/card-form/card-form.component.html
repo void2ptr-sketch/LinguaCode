@@ -76,7 +76,6 @@
           @if (pairsDraft(); as pairs) {
             <app-pairs-card-form
               [draft]="pairs"
-              [isAdvanced]="isAdvanced()"
               [knownLanguage]="knownLanguage()"
               [learningLanguage]="learningLanguage()"
               (draftChange)="updateDraft($event)"
@@ -85,7 +84,6 @@
           @if (mediaDraft(); as media) {
             <app-media-card-form
               [draft]="media"
-              [isAdvanced]="isAdvanced()"
               [knownLanguage]="knownLanguage()"
               [learningLanguage]="learningLanguage()"
               (draftChange)="updateDraft($event)"
@@ -94,7 +92,7 @@
         </div>
       </mat-tab>
 
-      @if (isAdvanced() && choiceDraft(); as choice) {
+      @if (choiceDraft(); as choice) {
         <mat-tab label="Контент">
           <div class="card-form__tab-body">
             <p class="card-form__hint card-form__hint--tab">
@@ -114,11 +112,11 @@
         </mat-tab>
       }
 
-      @if (isAdvanced() && draft().kind !== 'code-select') {
+      @if (draft().kind !== 'code-select') {
         <mat-tab label="Фонетика">
           <div class="card-form__tab-body">
             <p class="card-form__hint card-form__hint--tab">
-              Лексемы, IPA, п��ньинь, URL аудио.
+              Лексемы, IPA, пиньинь, URL аудио.
             </p>
             <app-card-form-phonetics-panel
               [draft]="draft()"
@@ -130,19 +128,17 @@
         </mat-tab>
       }
 
-      @if (isAdvanced()) {
-        <mat-tab label="Метаинфо">
-          <div class="card-form__tab-body">
-            <p class="card-form__hint card-form__hint--tab">
-              Дополнительная информация о карточке.
-            </p>
-            <app-card-meta-fields
-              [meta]="meta()"
-              (metaChange)="metaChange.emit($event)"
-            />
-          </div>
-        </mat-tab>
-      }
+      <mat-tab label="Метаинфо">
+        <div class="card-form__tab-body">
+          <p class="card-form__hint card-form__hint--tab">
+            Дополнительная информация о карточке.
+          </p>
+          <app-card-meta-fields
+            [meta]="meta()"
+            (metaChange)="metaChange.emit($event)"
+          />
+        </div>
+      </mat-tab>
 
       <mat-tab label="Настройки">
         <div class="card-form__tab-body">
@@ -151,7 +147,6 @@
           </p>
           <app-card-form-settings-panel
             [draft]="draft()"
-            [isAdvanced]="isAdvanced()"
             (draftChange)="updateDraft($event)"
           />
         </div>

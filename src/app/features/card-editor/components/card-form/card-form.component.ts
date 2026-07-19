@@ -21,7 +21,6 @@ import {
   type MemoryCardDraft,
   type SoundCardDraft,
 } from '../../types';
-import type { CardEditorUxMode } from '../../utils/card-editor-ux.utils';
 import { cardFormKindGroup } from '../../utils/card-form.registry';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
@@ -66,7 +65,6 @@ import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.co
 export class CardFormComponent {
   readonly draft = input.required<CardDraft>();
   readonly previewId = input('preview-card');
-  readonly editorUxMode = input<CardEditorUxMode>('basic');
   readonly knownLanguage = input<ContentLanguage>('ru');
   readonly learningLanguage = input<ContentLanguage>('en');
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
@@ -77,12 +75,9 @@ export class CardFormComponent {
   readonly learningLanguageChange = output<ContentLanguage>();
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
-  readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
 
-  readonly effectiveAppearance = computed(() =>
-    this.isAdvanced() ? this.draft().appearance : this.defaultAppearance(),
-  );
+  readonly effectiveAppearance = computed(() => this.defaultAppearance());
 
   readonly draftForPreview = computed(() => ({
     ...this.draft(),
