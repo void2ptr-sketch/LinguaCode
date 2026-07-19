@@ -31,7 +31,7 @@ export class CardEditorDialogService {
       panelClass: 'card-editor-dialog',
       width: '960px',
       maxWidth: '96vw',
-      maxHeight: '90vh',
+      maxHeight: '75vh',
       disableClose: true,
       autoFocus: 'first-titled-element',
     });

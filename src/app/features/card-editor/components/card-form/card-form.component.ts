@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -134,7 +134,14 @@ export class CardFormComponent {
 
   // Tabs navigation state
   private readonly VISIBLE_TABS_COUNT = 3;
-  private tabOffset = 0;
+  private readonly tabOffset = signal(0);
+  private readonly selectedTabLabel = signal<string | undefined>(undefined);
+
+  /** Label of the currently active tab */
+  readonly activeTabLabel = computed(() => {
+    // Use explicitly selected tab, or fall back to the first visible tab
+    return this.selectedTabLabel() ?? this.visibleTabs()[0]?.label ?? '';
+  });
 
   updateDraft(nextDraft: CardDraft): void {
     this.draftChange.emit(nextDraft);
@@ -282,33 +289,39 @@ export class CardFormComponent {
     return Math.max(0, this.allAvailableTabs.length - this.VISIBLE_TABS_COUNT);
   }
 
-  get visibleTabs(): TabDefinition[] {
-    // Получаем видимые закладки в зависимости от смещения
-    return this.allAvailableTabs.slice(this.tabOffset, this.tabOffset + this.VISIBLE_TABS_COUNT);
-  }
+  readonly visibleTabs = computed((): TabDefinition[] => {
+    const offset = this.tabOffset();
+    return this.allAvailableTabs.slice(offset, offset + this.VISIBLE_TABS_COUNT);
+  });
 
   get tabGroupSelectedIndex(): number {
     return 0; // Всегда показываем первую видимую закладку
   }
 
   canPrevTabs(): boolean {
-    return this.tabOffset > 0;
+    return this.tabOffset() > 0;
   }
 
   canNextTabs(): boolean {
-    return this.tabOffset < this.MAX_TAB_OFFSET;
+    return this.tabOffset() < this.MAX_TAB_OFFSET;
   }
 
   prevTabs(): void {
     if (this.canPrevTabs()) {
-      this.tabOffset--;
+      this.tabOffset.update(n => n - 1);
+      this.selectedTabLabel.set(undefined);
     }
   }
 
   nextTabs(): void {
     if (this.canNextTabs()) {
-      this.tabOffset++;
+      this.tabOffset.update(n => n + 1);
+      this.selectedTabLabel.set(undefined);
     }
+  }
+
+  onTabChange(tabLabel: string): void {
+    this.selectedTabLabel.set(tabLabel);
   }
 
   handleKeydown(event: KeyboardEvent): void {
