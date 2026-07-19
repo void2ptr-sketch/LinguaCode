@@ -20,4 +20,10 @@ export type CardIndexEntry = {
   /** Нормализованные IPA-транскрипции для поиска в каталоге. */
   ipaReadings: readonly string[];
   updatedAt: string;
+  /** ID курса (Course), к которому привязана карточка. */
+  courseId?: string;
+  /** ID урока (Lesson), к которому привязана карточка. */
+  lessonId?: string;
+  /** ID сценария (Scenario), к которому привязана карточка. */
+  scenarioId?: string;
 };

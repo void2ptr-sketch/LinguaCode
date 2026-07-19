@@ -25,6 +25,12 @@ export type CardBase = {
   appearance: CardAppearance;
   /** Метаданные карточки. Если отсутствуют, используются данные из user-content-overlay. */
   meta?: CardIndexMetaOverride;
+  /** ID курса (Course), к которому привязана карточка. */
+  courseId?: string;
+  /** ID урока (Lesson), к которому привязана карточка. */
+  lessonId?: string;
+  /** ID сценария (Scenario), к которому привязана карточка. */
+  scenarioId?: string;
 };
 
 import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';

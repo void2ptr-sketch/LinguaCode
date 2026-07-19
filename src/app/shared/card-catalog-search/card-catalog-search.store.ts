@@ -11,10 +11,17 @@ import type {
   ContentLanguage,
 } from '../../core/models';
 import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../pagination';
+import {
+  CardCatalogHierarchyService,
+  type CourseOption,
+  type LessonOption,
+  type ScenarioOption,
+} from './card-catalog-hierarchy.service';
 
 @Injectable()
 export class CardCatalogSearchStore {
   private readonly cardSearchService = inject(CardSearchService);
+  private readonly hierarchyService = inject(CardCatalogHierarchyService);
 
   readonly query = signal('');
   readonly knownLanguage = signal<ContentLanguage | null>(null);
@@ -22,6 +29,9 @@ export class CardCatalogSearchStore {
   readonly difficulty = signal<CardDifficulty | null>(null);
   readonly selectedKinds = signal<readonly CardKind[]>([]);
   readonly selectedTags = signal<readonly string[]>([]);
+  readonly selectedCourseId = signal<string | null>(null);
+  readonly selectedLessonId = signal<string | null>(null);
+  readonly selectedScenarioId = signal<string | null>(null);
   readonly pageIndex = signal(0);
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
   readonly pairLocked = signal(false);
@@ -35,6 +45,13 @@ export class CardCatalogSearchStore {
   readonly entries = computed(() => this.result()?.items ?? []);
   readonly facets = computed(() => this.result()?.facets ?? null);
   readonly totalItems = computed(() => this.result()?.totalItems ?? 0);
+
+  readonly availableCourses = signal<readonly CourseOption[]>([]);
+  readonly availableLessons = signal<readonly LessonOption[]>([]);
+  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
+
+  readonly coursesLoading = computed(() => this.hierarchyService.coursesLoading());
+  readonly lessonsLoading = computed(() => this.hierarchyService.lessonsLoading());
 
   readonly lockedPairLabel = computed(() => {
     const known = this.knownLanguage();
@@ -55,6 +72,8 @@ export class CardCatalogSearchStore {
     this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
+    this.hierarchyService.invalidateCache();
+    await this.loadCourses();
     await this.executeSearch();
   }
 
@@ -106,6 +125,42 @@ export class CardCatalogSearchStore {
     this.resetPageAndSearch();
   }
 
+  async setCourse(courseId: string | null): Promise<void> {
+    this.selectedCourseId.set(courseId);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+
+    if (courseId) {
+      const lessons = await this.hierarchyService.loadLessons(courseId);
+      this.availableLessons.set(lessons);
+    }
+
+    this.resetPageAndSearch();
+  }
+
+  async setLesson(lessonId: string | null): Promise<void> {
+    this.selectedLessonId.set(lessonId);
+    this.selectedScenarioId.set(null);
+    this.availableScenarios.set([]);
+
+    if (lessonId) {
+      const courseId = this.selectedCourseId();
+      if (courseId) {
+        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
+        this.availableScenarios.set(scenarios);
+      }
+    }
+
+    this.resetPageAndSearch();
+  }
+
+  setScenario(scenarioId: string | null): void {
+    this.selectedScenarioId.set(scenarioId);
+    this.resetPageAndSearch();
+  }
+
   clearFilters(): void {
     const lockedKnown = this.pairLocked() ? this.knownLanguage() : null;
     const lockedLearning = this.pairLocked() ? this.learningLanguage() : null;
@@ -116,6 +171,11 @@ export class CardCatalogSearchStore {
     this.difficulty.set(null);
     this.selectedKinds.set([]);
     this.selectedTags.set([]);
+    this.selectedCourseId.set(null);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
     this.resetPageAndSearch();
   }
 
@@ -129,7 +189,21 @@ export class CardCatalogSearchStore {
     this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
+    this.hierarchyService.invalidateCache();
+    void this.loadCourses();
     this.resetPageAndSearch();
+  }
+
+  private async loadCourses(): Promise<void> {
+    const known = this.knownLanguage();
+    const learning = this.learningLanguage();
+
+    if (!known || !learning) {
+      return;
+    }
+
+    const courses = await this.hierarchyService.loadCourses(known, learning);
+    this.availableCourses.set(courses);
   }
 
   private resetPageAndSearch(): void {
@@ -154,6 +228,9 @@ export class CardCatalogSearchStore {
       difficulty: this.difficulty() ?? undefined,
       kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
       tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,
+      courseId: this.selectedCourseId() ?? undefined,
+      lessonId: this.selectedLessonId() ?? undefined,
+      scenarioId: this.selectedScenarioId() ?? undefined,
       page: {
         page: this.pageIndex(),
         pageSize: this.pageSize(),

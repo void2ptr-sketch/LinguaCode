@@ -1,6 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
 import { CardSearchService } from '../../core/data';
+import { CourseSearchService } from '../../core/data/courses/course-search.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
 describe('CardCatalogSearchStore', () => {
@@ -15,8 +16,15 @@ describe('CardCatalogSearchStore', () => {
     facets: { kinds: [], tags: [] },
   });
 
+  const courseSearchMock = jasmine.createSpyObj('CourseSearchService', ['search', 'getById'], {
+    loading: () => false,
+    error: () => null,
+  });
+  courseSearchMock.search.and.resolveTo({ items: [], page: 0, pageSize: 100, totalItems: 0, totalPages: 0 });
+
   beforeEach(() => {
     searchMock.calls.reset();
+    courseSearchMock.search.calls.reset();
 
     TestBed.configureTestingModule({
       providers: [
@@ -24,6 +32,10 @@ describe('CardCatalogSearchStore', () => {
         {
           provide: CardSearchService,
           useValue: { search: searchMock, loading: () => false, error: () => null },
+        },
+        {
+          provide: CourseSearchService,
+          useValue: courseSearchMock,
         },
       ],
     });
@@ -66,5 +78,45 @@ describe('CardCatalogSearchStore', () => {
     expect(store.knownLanguage()).toBe('ru');
     expect(store.learningLanguage()).toBe('en');
     expect(searchMock.calls.count()).toBe(callsBefore);
+  });
+
+  it('should include course/lesson/scenario in criteria when set', async () => {
+    await store.initWithActivePair('ru', 'en');
+    searchMock.calls.reset();
+
+    await store.setCourse('course-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    expect(searchMock).toHaveBeenCalledWith(
+      jasmine.objectContaining({
+        courseId: 'course-1',
+        lessonId: 'lesson-1',
+        scenarioId: 'scenario-1',
+      }),
+    );
+  });
+
+  it('should cascade reset lesson and scenario when course changes', async () => {
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    await store.setCourse('course-2');
+
+    expect(store.selectedLessonId()).toBeNull();
+    expect(store.selectedScenarioId()).toBeNull();
+  });
+
+  it('should cascade reset scenario when lesson changes', async () => {
+    await store.initWithActivePair('ru', 'en');
+    await store.setCourse('course-1');
+    await store.setLesson('lesson-1');
+    store.setScenario('scenario-1');
+
+    await store.setLesson('lesson-2');
+
+    expect(store.selectedScenarioId()).toBeNull();
   });
 });

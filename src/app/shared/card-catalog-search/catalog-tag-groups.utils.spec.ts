@@ -2,7 +2,7 @@ import { groupCatalogTagFacets } from './catalog-tag-groups.utils';
 import { tagLabel } from './catalog-labels';
 
 describe('groupCatalogTagFacets', () => {
-  it('should group tags by difficulty, themes and subtopics in course order', () => {
+  it('should group tags by themes, subtopics and other tags in course order', () => {
     const groups = groupCatalogTagFacets([
       { value: 'regex-captures', count: 3 },
       { value: 'basics', count: 10 },
@@ -13,15 +13,13 @@ describe('groupCatalogTagFacets', () => {
     ]);
 
     expect(groups.map((group) => group.label)).toEqual([
-      'Уровень сложности',
       'Темы',
       'Подтемы',
-      'Другие',
+      'Теги',
     ]);
-    expect(groups[0]?.facets.map((facet) => facet.value)).toEqual(['beginner', 'advanced']);
-    expect(groups[1]?.facets.map((facet) => facet.value)).toEqual(['basics', 'oop']);
-    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual(['regex-captures']);
-    expect(groups[3]?.facets.map((facet) => facet.value)).toEqual(['greetings']);
+    expect(groups[0]?.facets.map((facet) => facet.value)).toEqual(['basics', 'oop']);
+    expect(groups[1]?.facets.map((facet) => facet.value)).toEqual(['regex-captures']);
+    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual(['beginner', 'advanced', 'greetings']);
   });
 });
 

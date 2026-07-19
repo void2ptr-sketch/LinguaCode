@@ -10,6 +10,9 @@ export type CardSearchCriteria = {
   difficulty?: CardDifficulty;
   kinds?: readonly CardKind[];
   tags?: readonly string[];
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   page: PageRequest;
 };
 

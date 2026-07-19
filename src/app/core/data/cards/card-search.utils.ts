@@ -15,7 +15,10 @@ export type CardSearchFilterField =
   | 'learningLanguage'
   | 'difficulty'
   | 'kinds'
-  | 'tags';
+  | 'tags'
+  | 'courseId'
+  | 'lessonId'
+  | 'scenarioId';
 
 const CONTENT_LANGUAGES = contentLanguages();
 const DIFFICULTIES: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
@@ -98,6 +101,18 @@ export function matchesCardIndexEntry(
     if (!hasAllTags) {
       return false;
     }
+  }
+
+  if (ignore !== 'courseId' && filters.courseId && entry.courseId !== filters.courseId) {
+    return false;
+  }
+
+  if (ignore !== 'lessonId' && filters.lessonId && entry.lessonId !== filters.lessonId) {
+    return false;
+  }
+
+  if (ignore !== 'scenarioId' && filters.scenarioId && entry.scenarioId !== filters.scenarioId) {
+    return false;
   }
 
   return true;

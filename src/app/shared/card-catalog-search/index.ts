@@ -11,5 +11,6 @@ export {
 export { groupCatalogTagFacets } from './catalog-tag-groups.utils';
 export { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 export { CardCatalogSearchStore } from './card-catalog-search.store';
+export { CardCatalogHierarchyService } from './card-catalog-hierarchy.service';
 export { ScenarioCardPickerComponent } from './scenario-card-picker.component';
 export { ScenarioCardCriteriaEditorComponent } from './scenario-card-criteria-editor.component';
