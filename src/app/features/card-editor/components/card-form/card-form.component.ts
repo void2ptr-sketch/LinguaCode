@@ -1,4 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -39,9 +40,15 @@ import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 
+interface TabDefinition {
+  label: string;
+  visible: boolean;
+}
+
 @Component({
   selector: 'app-card-form',
   imports: [
+    CommonModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -124,6 +131,10 @@ export class CardFormComponent {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;
   });
+
+  // Tabs navigation state
+  private readonly VISIBLE_TABS_COUNT = 3;
+  private tabOffset = 0;
 
   updateDraft(nextDraft: CardDraft): void {
     this.draftChange.emit(nextDraft);
@@ -241,6 +252,72 @@ export class CardFormComponent {
         symbolLexemes: state.lexemes,
         correctIndex: state.correctIndex,
       });
+    }
+  }
+
+  // Tabs navigation methods
+  get allAvailableTabs(): TabDefinition[] {
+    const tabs: TabDefinition[] = [
+      { label: 'Вопрос', visible: true },
+      { label: 'Ответы', visible: true },
+    ];
+
+    // Контент показывается только для choice-карточек
+    if (this.choiceDraft() !== null) {
+      tabs.push({ label: 'Контент', visible: true });
+    }
+
+    // Фонетика не показывается для code-select
+    if (this.draft().kind !== 'code-select') {
+      tabs.push({ label: 'Фонетика', visible: true });
+    }
+
+    tabs.push({ label: 'Метаинфо', visible: true });
+    tabs.push({ label: 'Настройки', visible: true });
+
+    return tabs;
+  }
+
+  get MAX_TAB_OFFSET(): number {
+    return Math.max(0, this.allAvailableTabs.length - this.VISIBLE_TABS_COUNT);
+  }
+
+  get visibleTabs(): TabDefinition[] {
+    // Получаем видимые закладки в зависимости от смещения
+    return this.allAvailableTabs.slice(this.tabOffset, this.tabOffset + this.VISIBLE_TABS_COUNT);
+  }
+
+  get tabGroupSelectedIndex(): number {
+    return 0; // Всегда показываем первую видимую закладку
+  }
+
+  canPrevTabs(): boolean {
+    return this.tabOffset > 0;
+  }
+
+  canNextTabs(): boolean {
+    return this.tabOffset < this.MAX_TAB_OFFSET;
+  }
+
+  prevTabs(): void {
+    if (this.canPrevTabs()) {
+      this.tabOffset--;
+    }
+  }
+
+  nextTabs(): void {
+    if (this.canNextTabs()) {
+      this.tabOffset++;
+    }
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    if (event.ctrlKey && event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prevTabs();
+    } else if (event.ctrlKey && event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.nextTabs();
     }
   }
 

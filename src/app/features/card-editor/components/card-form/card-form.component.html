@@ -1,157 +1,166 @@
-<div class="card-form">
+<div class="card-form" (keydown)="handleKeydown($event)">
   <div class="card-form__main">
-    <mat-tab-group class="card-form__tabs" dynamicHeight>
-      <mat-tab label="Вопрос">
-        <div class="card-form__tab-body">
-          <p class="card-form__hint card-form__hint--tab">
-            <strong>Языковая Пара</strong> - текущего курса, 
-          </p>
+    <div class="card-form__tabs-wrapper">
+      <button
+        class="card-form__nav-btn card-form__nav-btn--left"
+        (click)="prevTabs()"
+        [disabled]="!canPrevTabs()"
+        aria-label="Предыдущие закладки"
+      >
+        ←
+      </button>
+      
+      <div class="card-form__tabs-header">
+        <mat-tab-group class="card-form__tabs" dynamicHeight [selectedIndex]="tabGroupSelectedIndex">
+          @for (tab of visibleTabs; track tab.label) {
+            <mat-tab [label]="tab.label">
+              <div class="card-form__tab-body">
+                @switch (tab.label) {
+                  @case ('Вопрос') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      <strong>Языковая Пара</strong> - текущего курса,
+                    </p>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Известный язык</mat-label>
-            <mat-select
-              [ngModel]="knownLanguage()"
-              (ngModelChange)="onKnownLanguageChange($event)"
-            >
-              @for (language of languages; track language) {
-                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Известный язык</mat-label>
+                      <mat-select
+                        [ngModel]="knownLanguage()"
+                        (ngModelChange)="onKnownLanguageChange($event)"
+                      >
+                        @for (language of languages; track language) {
+                          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Новый язык</mat-label>
-            <mat-select
-              [ngModel]="learningLanguage()"
-              (ngModelChange)="onLearningLanguageChange($event)"
-            >
-              @for (language of languages; track language) {
-                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Новый язык</mat-label>
+                      <mat-select
+                        [ngModel]="learningLanguage()"
+                        (ngModelChange)="onLearningLanguageChange($event)"
+                      >
+                        @for (language of languages; track language) {
+                          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+                        }
+                      </mat-select>
+                    </mat-form-field>
 
-          <mat-divider></mat-divider>
-          <p class="card-form__hint card-form__hint--tab">
-            <strong>Заголовок</strong> - для группировки вопросов.
-          </p>
-          <mat-form-field appearance="outline">
-            <mat-label>Заголовок</mat-label>
-            <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
-          </mat-form-field>
+                    <mat-divider></mat-divider>
+                    <p class="card-form__hint card-form__hint--tab">
+                      <strong>Заголовок</strong> - для группировки вопросов.
+                    </p>
+                    <mat-form-field appearance="outline">
+                      <mat-label>Заголовок</mat-label>
+                      <input matInput [ngModel]="draft().title" (ngModelChange)="updateTitle($event)" />
+                    </mat-form-field>
 
-          @if (choiceDraft(); as choice) {
-            <mat-form-field appearance="outline">
-              <mat-label>{{ choice.kind === 'reading' ? 'Контекст (известный)' : choice.kind === 'tone' ? 'Подсказка' : 'Вопрос' }}</mat-label>
-              <textarea
-                matInput
-                rows="4"
-                [ngModel]="choice.promptKnown"
-                (ngModelChange)="updateChoicePromptKnown($event)"
-              ></textarea>
-            </mat-form-field>
+                    @if (choiceDraft(); as choice) {
+                      <mat-form-field appearance="outline">
+                        <mat-label>{{ choice.kind === 'reading' ? 'Контекст (известный)' : choice.kind === 'tone' ? 'Подсказка' : 'Вопрос' }}</mat-label>
+                        <textarea
+                          matInput
+                          rows="4"
+                          [ngModel]="choice.promptKnown"
+                          (ngModelChange)="updateChoicePromptKnown($event)"
+                        ></textarea>
+                      </mat-form-field>
+                    }
+                  }
+                  @case ('Ответы') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      Варианты ответа и правильный вариант.
+                    </p>
+                    @if (codeSelectDraft(); as codeDraft) {
+                      <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
+                    }
+                    @if (choiceDraft(); as choice) {
+                      <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
+                    }
+                    @if (inputDraft(); as inputDraftValue) {
+                      <app-input-card-form
+                        [draft]="inputDraftValue"
+                        [knownLanguage]="knownLanguage()"
+                        [learningLanguage]="learningLanguage()"
+                        (draftChange)="updateDraft($event)"
+                      />
+                    }
+                    @if (pairsDraft(); as pairs) {
+                      <app-pairs-card-form
+                        [draft]="pairs"
+                        [knownLanguage]="knownLanguage()"
+                        [learningLanguage]="learningLanguage()"
+                        (draftChange)="updateDraft($event)"
+                      />
+                    }
+                    @if (mediaDraft(); as media) {
+                      <app-media-card-form
+                        [draft]="media"
+                        [knownLanguage]="knownLanguage()"
+                        [learningLanguage]="learningLanguage()"
+                        (draftChange)="updateDraft($event)"
+                      />
+                    }
+                  }
+                  @case ('Контент') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      Варианты ответов и правильный ответ.
+                    </p>
+                    <app-card-options-editor
+                      [config]="choiceOptionsConfig()"
+                      [options]="choiceOptionTexts()"
+                      [lexemes]="choiceOptionLexemes()"
+                      [correctIndex]="choiceDraft() ? choiceDraft()!.correctIndex : 0"
+                      [showLexemes]="true"
+                      [knownLanguage]="knownLanguage()"
+                      [learningLanguage]="learningLanguage()"
+                      (stateChange)="onChoiceOptionsStateChange($event)"
+                    />
+                  }
+                  @case ('Фонетика') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      Лексемы, IPA, пиньинь, URL аудио.
+                    </p>
+                    <app-card-form-phonetics-panel
+                      [draft]="draft()"
+                      [knownLanguage]="knownLanguage()"
+                      [learningLanguage]="learningLanguage()"
+                      (draftChange)="updateDraft($event)"
+                    />
+                  }
+                  @case ('Метаинфо') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      Дополнительная информация о карточке.
+                    </p>
+                    <app-card-meta-fields
+                      [meta]="meta()"
+                      (metaChange)="metaChange.emit($event)"
+                    />
+                  }
+                  @case ('Настройки') {
+                    <p class="card-form__hint card-form__hint--tab">
+                      Тема, шрифт, лимит времени и режимы.
+                    </p>
+                    <app-card-form-settings-panel
+                      [draft]="draft()"
+                      (draftChange)="updateDraft($event)"
+                    />
+                  }
+                }
+              </div>
+            </mat-tab>
           }
-        </div>
-      </mat-tab>
-
-      <mat-tab label="Ответы">
-        <div class="card-form__tab-body">
-          <p class="card-form__hint card-form__hint--tab">
-            Варианты ответа и правильный вариант.
-          </p>
-          @if (codeSelectDraft(); as codeDraft) {
-            <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
-          }
-          @if (choiceDraft(); as choice) {
-            <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
-          }
-          @if (inputDraft(); as inputDraftValue) {
-            <app-input-card-form
-              [draft]="inputDraftValue"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
-          @if (pairsDraft(); as pairs) {
-            <app-pairs-card-form
-              [draft]="pairs"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
-          @if (mediaDraft(); as media) {
-            <app-media-card-form
-              [draft]="media"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
-        </div>
-      </mat-tab>
-
-      @if (choiceDraft(); as choice) {
-        <mat-tab label="Контент">
-          <div class="card-form__tab-body">
-            <p class="card-form__hint card-form__hint--tab">
-              Варианты ответов и правильный ответ.
-            </p>
-            <app-card-options-editor
-              [config]="choiceOptionsConfig()"
-              [options]="choiceOptionTexts()"
-              [lexemes]="choiceOptionLexemes()"
-              [correctIndex]="choice.correctIndex"
-              [showLexemes]="true"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (stateChange)="onChoiceOptionsStateChange($event)"
-            />
-          </div>
-        </mat-tab>
-      }
-
-      @if (draft().kind !== 'code-select') {
-        <mat-tab label="Фонетика">
-          <div class="card-form__tab-body">
-            <p class="card-form__hint card-form__hint--tab">
-              Лексемы, IPA, пиньинь, URL аудио.
-            </p>
-            <app-card-form-phonetics-panel
-              [draft]="draft()"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          </div>
-        </mat-tab>
-      }
-
-      <mat-tab label="Метаинфо">
-        <div class="card-form__tab-body">
-          <p class="card-form__hint card-form__hint--tab">
-            Дополнительная информация о карточке.
-          </p>
-          <app-card-meta-fields
-            [meta]="meta()"
-            (metaChange)="metaChange.emit($event)"
-          />
-        </div>
-      </mat-tab>
-
-      <mat-tab label="Настройки">
-        <div class="card-form__tab-body">
-          <p class="card-form__hint card-form__hint--tab">
-            Тема, шрифт, лимит времени и режимы.
-          </p>
-          <app-card-form-settings-panel
-            [draft]="draft()"
-            (draftChange)="updateDraft($event)"
-          />
-        </div>
-      </mat-tab>
-    </mat-tab-group>
+        </mat-tab-group>
+      </div>
+      
+      <button
+        class="card-form__nav-btn card-form__nav-btn--right"
+        (click)="nextTabs()"
+        [disabled]="!canNextTabs()"
+        aria-label="Следующие закладки"
+      >
+        →
+      </button>
+    </div>
   </div>
 
   <app-card-preview [card]="previewCard()" [fontSize]="previewFontSize()" />

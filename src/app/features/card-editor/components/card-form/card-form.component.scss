@@ -39,6 +39,75 @@
   font-weight: 600;
 }
 
+.card-form__tabs-wrapper {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.card-form__nav-btn {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--mat-sys-on-surface);
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.card-form__nav-btn--left {
+  order: 1;
+}
+
+.card-form__nav-btn--right {
+  order: 3;
+}
+
+.card-form__tabs-header {
+  order: 2;
+  flex: 1;
+  
+  // Адаптация для заголовков закладок
+  :host ::ng-deep {
+    .mat-tab-labels {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.card-form__tabs {
+  order: 2;
+  flex: 1;
+}
+
 app-card-preview {
   @media (min-width: 56rem) {
     grid-area: preview;
