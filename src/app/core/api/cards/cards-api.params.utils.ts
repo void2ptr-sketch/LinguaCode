@@ -24,6 +24,18 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
     params = params.set('difficulty', criteria.difficulty);
   }
 
+  if (criteria.courseId) {
+    params = params.set('courseId', criteria.courseId);
+  }
+
+  if (criteria.lessonId) {
+    params = params.set('lessonId', criteria.lessonId);
+  }
+
+  if (criteria.scenarioId) {
+    params = params.set('scenarioId', criteria.scenarioId);
+  }
+
   for (const kind of criteria.kinds ?? []) {
     params = params.append('kinds', kind);
   }
@@ -44,6 +56,9 @@ export function parseCardSearchCriteria(params: HttpParams): CardSearchCriteria 
     knownLanguage: (params.get('knownLanguage') as ContentLanguage | null) ?? undefined,
     learningLanguage: (params.get('learningLanguage') as ContentLanguage | null) ?? undefined,
     difficulty: (params.get('difficulty') as CardDifficulty | null) ?? undefined,
+    courseId: params.get('courseId') ?? undefined,
+    lessonId: params.get('lessonId') ?? undefined,
+    scenarioId: params.get('scenarioId') ?? undefined,
     kinds: kinds.length > 0 ? kinds : undefined,
     tags: tags.length > 0 ? tags : undefined,
     page: {

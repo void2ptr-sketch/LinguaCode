@@ -1,8 +1,5 @@
 import type { FacetCount } from '../../core/models/card-search.types';
 
-/** Порядок тегов сложности в фильтре каталога (id без перевода). */
-export const CATALOG_TAG_DIFFICULTY_ORDER = ['beginner', 'intermediate', 'advanced'] as const;
-
 /** Порядок тем — как в «Идее курса» Perl interview. */
 export const CATALOG_TAG_THEME_ORDER = [
   'intro',
@@ -55,7 +52,6 @@ export const CATALOG_TAG_SUBTOPIC_ORDER = [
 ] as const;
 
 const ORDERED_CATALOG_TAG_IDS = new Set<string>([
-  ...CATALOG_TAG_DIFFICULTY_ORDER,
   ...CATALOG_TAG_THEME_ORDER,
   ...CATALOG_TAG_SUBTOPIC_ORDER,
 ]);
@@ -80,11 +76,6 @@ export function groupCatalogTagFacets(
   const facetsByValue = new Map(tags.map((facet) => [facet.value, facet]));
   const groups: CatalogTagFacetGroup[] = [];
 
-  const difficulty = pickOrderedFacets(facetsByValue, CATALOG_TAG_DIFFICULTY_ORDER);
-  if (difficulty.length > 0) {
-    groups.push({ label: 'Уровень сложности', facets: difficulty });
-  }
-
   const themes = pickOrderedFacets(facetsByValue, CATALOG_TAG_THEME_ORDER);
   if (themes.length > 0) {
     groups.push({ label: 'Темы', facets: themes });
@@ -100,7 +91,7 @@ export function groupCatalogTagFacets(
     .sort((left, right) => left.value.localeCompare(right.value, 'ru'));
 
   if (other.length > 0) {
-    groups.push({ label: 'Другие', facets: other });
+    groups.push({ label: 'Теги', facets: other });
   }
 
   return groups;

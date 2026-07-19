@@ -3,18 +3,18 @@
   gap: 1rem;
   grid-template-areas:
     'query'
-    'language'
-    'difficulty'
+    'hierarchy'
     'actions'
     'kinds'
     'tags';
 
   @media (min-width: 48rem) {
-    grid-template-columns: 1fr repeat(2, minmax(10rem, 12rem)) auto;
+    grid-template-columns: 1fr auto;
     grid-template-areas:
-      'query language difficulty actions'
-      'kinds kinds kinds kinds'
-      'tags tags tags tags';
+      'query query'
+      'hierarchy actions'
+      'kinds kinds'
+      'tags tags';
     align-items: start;
   }
 }
@@ -23,23 +23,24 @@
   grid-area: query;
 }
 
-.card-catalog-filters__known,
-.card-catalog-filters__learning {
-  grid-area: language;
-}
+.card-catalog-filters__hierarchy {
+  grid-area: hierarchy;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
 
-.card-catalog-filters--pair-locked {
-  @media (min-width: 48rem) {
-    grid-template-columns: 1fr minmax(10rem, 12rem) auto;
-    grid-template-areas:
-      'query difficulty actions'
-      'kinds kinds kinds'
-      'tags tags tags';
+  mat-form-field {
+    flex: 1 1 10rem;
+    min-width: 8rem;
   }
 }
 
+.card-catalog-filters__course,
+.card-catalog-filters__lesson,
+.card-catalog-filters__scenario,
 .card-catalog-filters__difficulty {
-  grid-area: difficulty;
+  /* inherits from hierarchy flex layout */
 }
 
 .card-catalog-filters__group {
@@ -65,6 +66,7 @@
 button[mat-button] {
   grid-area: actions;
   justify-self: start;
+  align-self: center;
 }
 
 mat-chip-set {

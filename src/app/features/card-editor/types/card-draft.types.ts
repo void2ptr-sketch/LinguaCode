@@ -33,6 +33,9 @@ export type CodeSelectCardDraft = {
   kind: 'code-select';
   title: string;
   caption: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   prompt: CodeBlockDraft;
   options: readonly CodeBlockDraft[];
   correctIndex: number;
@@ -42,6 +45,9 @@ export type CodeSelectCardDraft = {
 export type SelectCardDraft = LexemeCardDraft & {
   kind: 'select';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   optionsLearning: readonly string[];
@@ -54,6 +60,9 @@ export type SelectCardDraft = LexemeCardDraft & {
 export type MemoryCardDraft = LexemeCardDraft & {
   kind: 'memory';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   promptKnown: string;
   pairs: readonly MemoryPairDraft[];
   appearance: CardAppearanceDraft;
@@ -62,6 +71,9 @@ export type MemoryCardDraft = LexemeCardDraft & {
 export type SymbolCardDraft = LexemeCardDraft & {
   kind: 'symbol';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   symbols: readonly string[];
@@ -73,6 +85,9 @@ export type SymbolCardDraft = LexemeCardDraft & {
 export type SoundCardDraft = LexemeCardDraft & {
   kind: 'sound';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   audioLabelLearning: string;
@@ -86,6 +101,9 @@ export type SoundCardDraft = LexemeCardDraft & {
 export type TimedCardDraft = LexemeCardDraft & {
   kind: 'timed';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   optionsLearning: readonly string[];
@@ -98,6 +116,9 @@ export type TimedCardDraft = LexemeCardDraft & {
 export type KeyboardCardDraft = LexemeCardDraft & {
   kind: 'keyboard';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   acceptedAnswersKnown: readonly string[];
@@ -113,6 +134,9 @@ export type DrawStrokeGuideDraft = {
 export type DrawCardDraft = LexemeCardDraft & {
   kind: 'draw';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   promptKnown: string;
   referenceHintKnown: string;
   meaningKnown?: string;
@@ -127,6 +151,9 @@ export type DrawCardDraft = LexemeCardDraft & {
 export type ToneCardDraft = LexemeCardDraft & {
   kind: 'tone';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   syllableBase: string;
@@ -138,6 +165,9 @@ export type ToneCardDraft = LexemeCardDraft & {
 export type ReadingCardDraft = LexemeCardDraft & {
   kind: 'reading';
   title: string;
+  courseId?: string;
+  lessonId?: string;
+  scenarioId?: string;
   direction: CardDirection;
   promptKnown: string;
   optionsLearning: readonly string[];

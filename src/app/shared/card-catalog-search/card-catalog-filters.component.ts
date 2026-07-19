@@ -7,11 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { CardDifficulty, CardKind, ContentLanguage } from '../../core/models';
+import type { CardDifficulty, CardKind } from '../../core/models';
 import {
   CARD_KIND_LABELS,
-  CONTENT_LANGUAGE_LABELS,
-  CONTENT_LANGUAGES,
   DIFFICULTIES,
   DIFFICULTY_LABELS,
   tagLabel,
@@ -36,9 +34,7 @@ import { CardCatalogSearchStore } from './card-catalog-search.store';
 export class CardCatalogFiltersComponent {
   readonly store = inject(CardCatalogSearchStore);
 
-  readonly languages = CONTENT_LANGUAGES;
   readonly difficulties = DIFFICULTIES;
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly tagLabel = tagLabel;
@@ -56,16 +52,20 @@ export class CardCatalogFiltersComponent {
     this.store.setQuery(value);
   }
 
-  onKnownLanguageChange(value: ContentLanguage | null): void {
-    this.store.setKnownLanguage(value);
-  }
-
-  onLearningLanguageChange(value: ContentLanguage | null): void {
-    this.store.setLearningLanguage(value);
-  }
-
   onDifficultyChange(value: CardDifficulty | null): void {
     this.store.setDifficulty(value);
+  }
+
+  onCourseChange(courseId: string | null): void {
+    void this.store.setCourse(courseId);
+  }
+
+  onLessonChange(lessonId: string | null): void {
+    void this.store.setLesson(lessonId);
+  }
+
+  onScenarioChange(scenarioId: string | null): void {
+    this.store.setScenario(scenarioId);
   }
 
   isKindSelected(kind: CardKind): boolean {

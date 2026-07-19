@@ -1,4 +1,4 @@
-import { Component, computed, input, output, signal } from '@angular/core';
+import { Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -39,6 +39,12 @@ import type { CardOptionsEditorState } from '../../utils/card-options-editor.uti
 import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
+import {
+  CardCatalogHierarchyService,
+  type CourseOption,
+  type LessonOption,
+  type ScenarioOption,
+} from '../../../../shared/card-catalog-search/card-catalog-hierarchy.service';
 
 type TabDefinition = {
   label: string;
@@ -69,7 +75,9 @@ type TabDefinition = {
   templateUrl: './card-form.component.html',
   styleUrl: './card-form.component.scss',
 })
-export class CardFormComponent {
+export class CardFormComponent implements OnInit {
+  private readonly hierarchyService = inject(CardCatalogHierarchyService);
+
   readonly draft = input.required<CardDraft>();
   readonly previewId = input('preview-card');
   readonly knownLanguage = input<ContentLanguage>('ru');
@@ -81,6 +89,10 @@ export class CardFormComponent {
   readonly knownLanguageChange = output<ContentLanguage>();
   readonly learningLanguageChange = output<ContentLanguage>();
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
+
+  readonly availableCourses = signal<readonly CourseOption[]>([]);
+  readonly availableLessons = signal<readonly LessonOption[]>([]);
+  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
 
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
 
@@ -102,6 +114,24 @@ export class CardFormComponent {
 
   readonly languages = contentLanguages();
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+
+  async ngOnInit(): Promise<void> {
+    const known = this.knownLanguage();
+    const learning = this.learningLanguage();
+    const courses = await this.hierarchyService.loadCourses(known, learning);
+    this.availableCourses.set(courses);
+
+    // Если у карточки уже выбран курс — загружаем уроки и сценарии
+    const draft = this.draft();
+    if (draft.courseId) {
+      const lessons = await this.hierarchyService.loadLessons(draft.courseId);
+      this.availableLessons.set(lessons);
+    }
+    if (draft.courseId && draft.lessonId) {
+      const scenarios = this.hierarchyService.getScenariosForLesson(draft.courseId, draft.lessonId);
+      this.availableScenarios.set(scenarios);
+    }
+  }
 
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
@@ -166,6 +196,34 @@ export class CardFormComponent {
   onLearningLanguageChange(learningLanguage: ContentLanguage): void {
     this.learningLanguageChange.emit(learningLanguage);
     this.updateMeta({ ...this.meta(), learningLanguage });
+  }
+
+  async updateCourseId(courseId: string): Promise<void> {
+    this.updateDraft({ ...this.draft(), courseId, lessonId: '', scenarioId: '' });
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+
+    if (courseId) {
+      const lessons = await this.hierarchyService.loadLessons(courseId);
+      this.availableLessons.set(lessons);
+    }
+  }
+
+  async updateLessonId(lessonId: string): Promise<void> {
+    this.updateDraft({ ...this.draft(), lessonId, scenarioId: '' });
+    this.availableScenarios.set([]);
+
+    if (lessonId) {
+      const courseId = this.draft().courseId;
+      if (courseId) {
+        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
+        this.availableScenarios.set(scenarios);
+      }
+    }
+  }
+
+  updateScenarioId(scenarioId: string): void {
+    this.updateDraft({ ...this.draft(), scenarioId });
   }
 
   choiceOptionsConfig() {

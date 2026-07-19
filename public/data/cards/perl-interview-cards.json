@@ -3,6 +3,9 @@
     {
       "id": "card-perl-s01-q01-c1",
       "title": "Что такое scalar context и list context? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -37,6 +40,9 @@
     {
       "id": "card-perl-s01-q01-c2",
       "title": "Что такое scalar context и list context? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -71,6 +77,9 @@
     {
       "id": "card-perl-s01-q01-code",
       "title": "Код: Что такое scalar context и list context?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -114,6 +123,9 @@
     {
       "id": "card-perl-s01-q02-c1",
       "title": "Что вернёт `@array` в scalar context? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -148,6 +160,9 @@
     {
       "id": "card-perl-s01-q02-c2",
       "title": "Что вернёт `@array` в scalar context? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -182,6 +197,9 @@
     {
       "id": "card-perl-s01-q02-c3",
       "title": "Что вернёт `@array` в scalar context? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -216,6 +234,9 @@
     {
       "id": "card-perl-s01-q02-code",
       "title": "Код: Что вернёт `@array` в scalar context?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -259,6 +280,9 @@
     {
       "id": "card-perl-s01-q03-c1",
       "title": "Чем отличаются sigils `$`, `@`, `%`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -293,6 +317,9 @@
     {
       "id": "card-perl-s01-q03-c2",
       "title": "Чем отличаются sigils `$`, `@`, `%`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -327,6 +354,9 @@
     {
       "id": "card-perl-s01-q03-code",
       "title": "Код: Чем отличаются sigils `$`, `@`, `%`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -370,6 +400,9 @@
     {
       "id": "card-perl-s01-q04-c1",
       "title": "Когда используется `undef`? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -404,6 +437,9 @@
     {
       "id": "card-perl-s01-q04-c2",
       "title": "Когда используется `undef`? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -438,6 +474,9 @@
     {
       "id": "card-perl-s01-q04-c3",
       "title": "Когда используется `undef`? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -472,6 +511,9 @@
     {
       "id": "card-perl-s01-q04-code",
       "title": "Код: Когда используется `undef`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-01",
+      "scenarioId": "scenario-perl-s01-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -515,6 +557,9 @@
     {
       "id": "card-perl-s02-q01-c1",
       "title": "Зачем подключать `use strict`? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -549,6 +594,9 @@
     {
       "id": "card-perl-s02-q01-c2",
       "title": "Зачем подключать `use strict`? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -583,6 +631,9 @@
     {
       "id": "card-perl-s02-q01-c3",
       "title": "Зачем подключать `use strict`? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -617,6 +668,9 @@
     {
       "id": "card-perl-s02-q01-code",
       "title": "Код: Зачем подключать `use strict`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -660,6 +714,9 @@
     {
       "id": "card-perl-s02-q02-c1",
       "title": "Что даёт `use warnings`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -694,6 +751,9 @@
     {
       "id": "card-perl-s02-q02-c2",
       "title": "Что даёт `use warnings`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -728,6 +788,9 @@
     {
       "id": "card-perl-s02-q02-code",
       "title": "Код: Что даёт `use warnings`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -771,6 +834,9 @@
     {
       "id": "card-perl-s02-q03-c1",
       "title": "Разница между `my`, `our` и глобальными переменными? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -805,6 +871,9 @@
     {
       "id": "card-perl-s02-q03-c2",
       "title": "Разница между `my`, `our` и глобальными переменными? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -839,6 +908,9 @@
     {
       "id": "card-perl-s02-q03-c3",
       "title": "Разница между `my`, `our` и глобальными переменными? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -873,6 +945,9 @@
     {
       "id": "card-perl-s02-q03-code",
       "title": "Код: Разница между `my`, `our` и глобальными переменными?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -916,6 +991,9 @@
     {
       "id": "card-perl-s02-q04-c1",
       "title": "Что такое `use feature 'say'`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -950,6 +1028,9 @@
     {
       "id": "card-perl-s02-q04-c2",
       "title": "Что такое `use feature 'say'`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -984,6 +1065,9 @@
     {
       "id": "card-perl-s02-q04-code",
       "title": "Код: Что такое `use feature 'say'`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-02",
+      "scenarioId": "scenario-perl-s02-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1027,6 +1111,9 @@
     {
       "id": "card-perl-s03-q01-c1",
       "title": "Как работают захваты `$1`, `$2` в regex? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1061,6 +1148,9 @@
     {
       "id": "card-perl-s03-q01-c2",
       "title": "Как работают захваты `$1`, `$2` в regex? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1095,6 +1185,9 @@
     {
       "id": "card-perl-s03-q01-code",
       "title": "Код: Как работают захваты `$1`, `$2` в regex?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1138,6 +1231,9 @@
     {
       "id": "card-perl-s03-q02-c1",
       "title": "Что делают модификаторы `/g`, `/i`, `/x`? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1172,6 +1268,9 @@
     {
       "id": "card-perl-s03-q02-c2",
       "title": "Что делают модификаторы `/g`, `/i`, `/x`? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1206,6 +1305,9 @@
     {
       "id": "card-perl-s03-q02-c3",
       "title": "Что делают модификаторы `/g`, `/i`, `/x`? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1240,6 +1342,9 @@
     {
       "id": "card-perl-s03-q02-code",
       "title": "Код: Что делают модификаторы `/g`, `/i`, `/x`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1283,6 +1388,9 @@
     {
       "id": "card-perl-s03-q03-c1",
       "title": "Разница между `=~` и `!~`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1317,6 +1425,9 @@
     {
       "id": "card-perl-s03-q03-c2",
       "title": "Разница между `=~` и `!~`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1351,6 +1462,9 @@
     {
       "id": "card-perl-s03-q03-code",
       "title": "Код: Разница между `=~` и `!~`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1394,6 +1508,9 @@
     {
       "id": "card-perl-s03-q04-c1",
       "title": "Зачем использовать `qr//`? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1428,6 +1545,9 @@
     {
       "id": "card-perl-s03-q04-c2",
       "title": "Зачем использовать `qr//`? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1462,6 +1582,9 @@
     {
       "id": "card-perl-s03-q04-c3",
       "title": "Зачем использовать `qr//`? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1496,6 +1619,9 @@
     {
       "id": "card-perl-s03-q04-code",
       "title": "Код: Зачем использовать `qr//`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-03",
+      "scenarioId": "scenario-perl-s03-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1539,6 +1665,9 @@
     {
       "id": "card-perl-s04-q01-c1",
       "title": "Как устроен `@_` в подпрограмме? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1573,6 +1702,9 @@
     {
       "id": "card-perl-s04-q01-c2",
       "title": "Как устроен `@_` в подпрограмме? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1607,6 +1739,9 @@
     {
       "id": "card-perl-s04-q01-c3",
       "title": "Как устроен `@_` в подпрограмме? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1641,6 +1776,9 @@
     {
       "id": "card-perl-s04-q01-code",
       "title": "Код: Как устроен `@_` в подпрограмме?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1684,6 +1822,9 @@
     {
       "id": "card-perl-s04-q02-c1",
       "title": "Когда применять `map` и `grep`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1718,6 +1859,9 @@
     {
       "id": "card-perl-s04-q02-c2",
       "title": "Когда применять `map` и `grep`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1752,6 +1896,9 @@
     {
       "id": "card-perl-s04-q02-code",
       "title": "Код: Когда применять `map` и `grep`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1795,6 +1942,9 @@
     {
       "id": "card-perl-s04-q03-c1",
       "title": "Что делает оператор `<=>` (spaceship)? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1829,6 +1979,9 @@
     {
       "id": "card-perl-s04-q03-c2",
       "title": "Что делает оператор `<=>` (spaceship)? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1863,6 +2016,9 @@
     {
       "id": "card-perl-s04-q03-c3",
       "title": "Что делает оператор `<=>` (spaceship)? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1897,6 +2053,9 @@
     {
       "id": "card-perl-s04-q03-code",
       "title": "Код: Что делает оператор `<=>` (spaceship)?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1940,6 +2099,9 @@
     {
       "id": "card-perl-s04-q04-c1",
       "title": "Разница между `sort` и `sort { ... }`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1974,6 +2136,9 @@
     {
       "id": "card-perl-s04-q04-c2",
       "title": "Разница между `sort` и `sort { ... }`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2008,6 +2173,9 @@
     {
       "id": "card-perl-s04-q04-code",
       "title": "Код: Разница между `sort` и `sort { ... }`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-04",
+      "scenarioId": "scenario-perl-s04-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2051,6 +2219,9 @@
     {
       "id": "card-perl-s05-q01-c1",
       "title": "Как подключить модуль через `use` и `require`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2085,6 +2256,9 @@
     {
       "id": "card-perl-s05-q01-c2",
       "title": "Как подключить модуль через `use` и `require`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2119,6 +2293,9 @@
     {
       "id": "card-perl-s05-q01-code",
       "title": "Код: Как подключить модуль через `use` и `require`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2162,6 +2339,9 @@
     {
       "id": "card-perl-s05-q02-c1",
       "title": "Базовый синтаксис bless для ООП в Perl? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2196,6 +2376,9 @@
     {
       "id": "card-perl-s05-q02-c2",
       "title": "Базовый синтаксис bless для ООП в Perl? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2230,6 +2413,9 @@
     {
       "id": "card-perl-s05-q02-c3",
       "title": "Базовый синтаксис bless для ООП в Perl? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2264,6 +2450,9 @@
     {
       "id": "card-perl-s05-q02-code",
       "title": "Код: Базовый синтаксис bless для ООП в Perl?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2307,6 +2496,9 @@
     {
       "id": "card-perl-s05-q03-c1",
       "title": "Как безопасно открыть файл и обработать ошибки? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2341,6 +2533,9 @@
     {
       "id": "card-perl-s05-q03-c2",
       "title": "Как безопасно открыть файл и обработать ошибки? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2375,6 +2570,9 @@
     {
       "id": "card-perl-s05-q03-code",
       "title": "Код: Как безопасно открыть файл и обработать ошибки?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2418,6 +2616,9 @@
     {
       "id": "card-perl-s05-q04-c1",
       "title": "Типовые red flags в Perl-коде на собеседовании? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2452,6 +2653,9 @@
     {
       "id": "card-perl-s05-q04-c2",
       "title": "Типовые red flags в Perl-коде на собеседовании? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2486,6 +2690,9 @@
     {
       "id": "card-perl-s05-q04-c3",
       "title": "Типовые red flags в Perl-коде на собеседовании? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2520,6 +2727,9 @@
     {
       "id": "card-perl-s05-q04-code",
       "title": "Код: Типовые red flags в Perl-коде на собеседовании?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-05",
+      "scenarioId": "scenario-perl-s05-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2563,6 +2773,9 @@
     {
       "id": "card-perl-s06-q01-c1",
       "title": "Что такое DBI и DBD в Perl? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2597,6 +2810,9 @@
     {
       "id": "card-perl-s06-q01-c2",
       "title": "Что такое DBI и DBD в Perl? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2631,6 +2847,9 @@
     {
       "id": "card-perl-s06-q01-c3",
       "title": "Что такое DBI и DBD в Perl? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2665,6 +2884,9 @@
     {
       "id": "card-perl-s06-q01-code",
       "title": "Код: Что такое DBI и DBD в Perl?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2708,6 +2930,9 @@
     {
       "id": "card-perl-s06-q02-c1",
       "title": "Как безопасно передать параметры в SQL через DBI? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2742,6 +2967,9 @@
     {
       "id": "card-perl-s06-q02-c2",
       "title": "Как безопасно передать параметры в SQL через DBI? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2776,6 +3004,9 @@
     {
       "id": "card-perl-s06-q02-code",
       "title": "Код: Как безопасно передать параметры в SQL через DBI?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2819,6 +3050,9 @@
     {
       "id": "card-perl-s06-q03-c1",
       "title": "Чем `$sth->execute` отличается от `$dbh->do`? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2853,6 +3087,9 @@
     {
       "id": "card-perl-s06-q03-c2",
       "title": "Чем `$sth->execute` отличается от `$dbh->do`? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2887,6 +3124,9 @@
     {
       "id": "card-perl-s06-q03-c3",
       "title": "Чем `$sth->execute` отличается от `$dbh->do`? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2921,6 +3161,9 @@
     {
       "id": "card-perl-s06-q03-code",
       "title": "Код: Чем `$sth->execute` отличается от `$dbh->do`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2964,6 +3207,9 @@
     {
       "id": "card-perl-s06-q04-c1",
       "title": "Как отключить AutoCommit для транзакции в DBI? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2998,6 +3244,9 @@
     {
       "id": "card-perl-s06-q04-c2",
       "title": "Как отключить AutoCommit для транзакции в DBI? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3032,6 +3281,9 @@
     {
       "id": "card-perl-s06-q04-code",
       "title": "Код: Как отключить AutoCommit для транзакции в DBI?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3075,6 +3327,9 @@
     {
       "id": "card-perl-s06-q05-c1",
       "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3109,6 +3364,9 @@
     {
       "id": "card-perl-s06-q05-c2",
       "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3143,6 +3401,9 @@
     {
       "id": "card-perl-s06-q05-c3",
       "title": "Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3177,6 +3438,9 @@
     {
       "id": "card-perl-s06-q05-code",
       "title": "Код: Как обрабатывают ошибки DBI (`RaiseError`, `PrintError`)?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-06",
+      "scenarioId": "scenario-perl-s06-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3220,6 +3484,9 @@
     {
       "id": "card-perl-s07-q01-c1",
       "title": "Для чего использовался модуль CGI в Perl? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3254,6 +3521,9 @@
     {
       "id": "card-perl-s07-q01-c2",
       "title": "Для чего использовался модуль CGI в Perl? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3288,6 +3558,9 @@
     {
       "id": "card-perl-s07-q01-code",
       "title": "Код: Для чего использовался модуль CGI в Perl?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3331,6 +3604,9 @@
     {
       "id": "card-perl-s07-q02-c1",
       "title": "Как получить параметры GET/POST через CGI? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3365,6 +3641,9 @@
     {
       "id": "card-perl-s07-q02-c2",
       "title": "Как получить параметры GET/POST через CGI? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3399,6 +3678,9 @@
     {
       "id": "card-perl-s07-q02-c3",
       "title": "Как получить параметры GET/POST через CGI? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3433,6 +3715,9 @@
     {
       "id": "card-perl-s07-q02-code",
       "title": "Код: Как получить параметры GET/POST через CGI?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3476,6 +3761,9 @@
     {
       "id": "card-perl-s07-q03-c1",
       "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3510,6 +3798,9 @@
     {
       "id": "card-perl-s07-q03-c2",
       "title": "Зачем в CGI-скрипте вызывают `binmode STDOUT`? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3544,6 +3835,9 @@
     {
       "id": "card-perl-s07-q03-code",
       "title": "Код: Зачем в CGI-скрипте вызывают `binmode STDOUT`?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3587,6 +3881,9 @@
     {
       "id": "card-perl-s07-q04-c1",
       "title": "Как отправить заголовок Content-Type перед телом ответа? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3621,6 +3918,9 @@
     {
       "id": "card-perl-s07-q04-c2",
       "title": "Как отправить заголовок Content-Type перед телом ответа? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3655,6 +3955,9 @@
     {
       "id": "card-perl-s07-q04-c3",
       "title": "Как отправить заголовок Content-Type перед телом ответа? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3689,6 +3992,9 @@
     {
       "id": "card-perl-s07-q04-code",
       "title": "Код: Как отправить заголовок Content-Type перед телом ответа?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3732,6 +4038,9 @@
     {
       "id": "card-perl-s07-q05-c1",
       "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3766,6 +4075,9 @@
     {
       "id": "card-perl-s07-q05-c2",
       "title": "Почему CGI-серверный Perl часто заменяют PSGI/Plack? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3800,6 +4112,9 @@
     {
       "id": "card-perl-s07-q05-code",
       "title": "Код: Почему CGI-серверный Perl часто заменяют PSGI/Plack?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-07",
+      "scenarioId": "scenario-perl-s07-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3843,6 +4158,9 @@
     {
       "id": "card-perl-s08-q01-c1",
       "title": "Какой DSN используют для подключения к Oracle через DBI? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3878,6 +4196,9 @@
     {
       "id": "card-perl-s08-q01-c2",
       "title": "Какой DSN используют для подключения к Oracle через DBI? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3913,6 +4234,9 @@
     {
       "id": "card-perl-s08-q01-c3",
       "title": "Какой DSN используют для подключения к Oracle через DBI? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3948,6 +4272,9 @@
     {
       "id": "card-perl-s08-q01-code",
       "title": "Код: Какой DSN используют для подключения к Oracle через DBI?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q01",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3992,6 +4319,9 @@
     {
       "id": "card-perl-s08-q02-c1",
       "title": "Какие placeholders поддерживает DBD::Oracle? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4027,6 +4357,9 @@
     {
       "id": "card-perl-s08-q02-c2",
       "title": "Какие placeholders поддерживает DBD::Oracle? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4062,6 +4395,9 @@
     {
       "id": "card-perl-s08-q02-code",
       "title": "Код: Какие placeholders поддерживает DBD::Oracle?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4106,6 +4442,9 @@
     {
       "id": "card-perl-s08-q03-c1",
       "title": "Как указать SID или service name в DBI DSN? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4141,6 +4480,9 @@
     {
       "id": "card-perl-s08-q03-c2",
       "title": "Как указать SID или service name в DBI DSN? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4176,6 +4518,9 @@
     {
       "id": "card-perl-s08-q03-c3",
       "title": "Как указать SID или service name в DBI DSN? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4211,6 +4556,9 @@
     {
       "id": "card-perl-s08-q03-code",
       "title": "Код: Как указать SID или service name в DBI DSN?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4255,6 +4603,9 @@
     {
       "id": "card-perl-s08-q04-c1",
       "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (1/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4290,6 +4641,9 @@
     {
       "id": "card-perl-s08-q04-c2",
       "title": "Как вызвать хранимую процедуру PL/SQL через DBI? (2/2)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4325,6 +4679,9 @@
     {
       "id": "card-perl-s08-q04-code",
       "title": "Код: Как вызвать хранимую процедуру PL/SQL через DBI?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4369,6 +4726,9 @@
     {
       "id": "card-perl-s08-q05-c1",
       "title": "Как читать CLOB/BLOB через DBD::Oracle? (1/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4404,6 +4764,9 @@
     {
       "id": "card-perl-s08-q05-c2",
       "title": "Как читать CLOB/BLOB через DBD::Oracle? (2/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4439,6 +4802,9 @@
     {
       "id": "card-perl-s08-q05-c3",
       "title": "Как читать CLOB/BLOB через DBD::Oracle? (3/3)",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4474,6 +4840,9 @@
     {
       "id": "card-perl-s08-q05-code",
       "title": "Код: Как читать CLOB/BLOB через DBD::Oracle?",
+      "courseId": "course-ru-perl-interview",
+      "lessonId": "lesson-perl-interview-08",
+      "scenarioId": "scenario-perl-s08-q05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"

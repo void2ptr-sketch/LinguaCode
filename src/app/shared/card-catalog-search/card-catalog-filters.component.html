@@ -14,40 +14,58 @@
     <mat-icon matPrefix>search</mat-icon>
   </mat-form-field>
 
-  @if (!store.pairLocked()) {
-    <mat-form-field class="card-catalog-filters__known" appearance="outline">
-      <mat-label>Известный язык</mat-label>
-      <mat-select [ngModel]="store.knownLanguage()" (ngModelChange)="onKnownLanguageChange($event)">
-        <mat-option [value]="null">Все</mat-option>
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field class="card-catalog-filters__learning" appearance="outline">
-      <mat-label>Новый язык</mat-label>
+  <div class="card-catalog-filters__hierarchy">
+    <mat-form-field class="card-catalog-filters__course" appearance="outline">
+      <mat-label>Курс</mat-label>
       <mat-select
-        [ngModel]="store.learningLanguage()"
-        (ngModelChange)="onLearningLanguageChange($event)"
+        [ngModel]="store.selectedCourseId()"
+        (ngModelChange)="onCourseChange($event)"
       >
-        <mat-option [value]="null">Все</mat-option>
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        <mat-option [value]="null">Вне курса</mat-option>
+        @for (course of store.availableCourses(); track course.id) {
+          <mat-option [value]="course.id">{{ course.title }}</mat-option>
         }
       </mat-select>
     </mat-form-field>
-  }
 
-  <mat-form-field class="card-catalog-filters__difficulty" appearance="outline">
-    <mat-label>Сложность</mat-label>
-    <mat-select [ngModel]="store.difficulty()" (ngModelChange)="onDifficultyChange($event)">
-      <mat-option [value]="null">Все</mat-option>
-      @for (level of difficulties; track level) {
-        <mat-option [value]="level">{{ difficultyLabels[level] }}</mat-option>
-      }
-    </mat-select>
-  </mat-form-field>
+    <mat-form-field class="card-catalog-filters__lesson" appearance="outline">
+      <mat-label>Урок</mat-label>
+      <mat-select
+        [ngModel]="store.selectedLessonId()"
+        (ngModelChange)="onLessonChange($event)"
+        [disabled]="!store.selectedCourseId()"
+      >
+        <mat-option [value]="null">Вне урока</mat-option>
+        @for (lesson of store.availableLessons(); track lesson.id) {
+          <mat-option [value]="lesson.id">{{ lesson.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="card-catalog-filters__scenario" appearance="outline">
+      <mat-label>Сценарий</mat-label>
+      <mat-select
+        [ngModel]="store.selectedScenarioId()"
+        (ngModelChange)="onScenarioChange($event)"
+        [disabled]="!store.selectedLessonId()"
+      >
+        <mat-option [value]="null">Вне сценария</mat-option>
+        @for (scenario of store.availableScenarios(); track scenario.id) {
+          <mat-option [value]="scenario.id">{{ scenario.title }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="card-catalog-filters__difficulty" appearance="outline">
+      <mat-label>Сложность</mat-label>
+      <mat-select [ngModel]="store.difficulty()" (ngModelChange)="onDifficultyChange($event)">
+        <mat-option [value]="null">Все</mat-option>
+        @for (level of difficulties; track level) {
+          <mat-option [value]="level">{{ difficultyLabels[level] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <button mat-button type="button" (click)="clearFilters()">
     <mat-icon>filter_alt_off</mat-icon>
