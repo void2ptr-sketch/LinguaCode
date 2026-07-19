@@ -18,12 +18,6 @@
   }
 }
 
-.card-form__tab-body {
-  display: grid;
-  gap: 1rem;
-  padding-top: 1rem;
-}
-
 .card-form__hint {
   color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
   font-size: 0.8125rem;
@@ -37,6 +31,84 @@
 
 .card-form__hint strong {
   font-weight: 600;
+}
+
+.card-form__tabs-wrapper {
+  position: relative;
+  display: block;
+}
+
+.card-form__tabs-header {
+  position: relative;
+  padding: 0 2.75rem;
+
+  // Адаптация для заголовков закладок
+  :host ::ng-deep {
+    .mat-tab-labels {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+.card-form__nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 500;
+  padding: 0;
+  line-height: 1;
+  transition: all 0.2s ease;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--mat-sys-on-surface);
+
+  &:hover:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.08);
+  }
+
+  &:active:not(:disabled) {
+    background-color: rgba(0, 0, 0, 0.12);
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
+
+.card-form__nav-btn--left {
+  left: 0;
+}
+
+.card-form__nav-btn--right {
+  right: 0;
+}
+
+.card-form__tabs {
+  width: 100%;
+}
+
+.card-form__tab-content {
+  display: grid;
+  gap: 1rem;
+  padding-top: 1rem;
+  width: 100%;
 }
 
 app-card-preview {

@@ -1,4 +1,5 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -21,7 +22,6 @@ import {
   type MemoryCardDraft,
   type SoundCardDraft,
 } from '../../types';
-import type { CardEditorUxMode } from '../../utils/card-editor-ux.utils';
 import { cardFormKindGroup } from '../../utils/card-form.registry';
 import { normalizeCardDraft } from '../../utils/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
@@ -40,9 +40,15 @@ import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 
+type TabDefinition = {
+  label: string;
+  visible: boolean;
+};
+
 @Component({
   selector: 'app-card-form',
   imports: [
+    CommonModule,
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
@@ -66,7 +72,6 @@ import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.co
 export class CardFormComponent {
   readonly draft = input.required<CardDraft>();
   readonly previewId = input('preview-card');
-  readonly editorUxMode = input<CardEditorUxMode>('basic');
   readonly knownLanguage = input<ContentLanguage>('ru');
   readonly learningLanguage = input<ContentLanguage>('en');
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
@@ -77,12 +82,9 @@ export class CardFormComponent {
   readonly learningLanguageChange = output<ContentLanguage>();
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
-  readonly isAdvanced = computed(() => this.editorUxMode() === 'advanced');
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
 
-  readonly effectiveAppearance = computed(() =>
-    this.isAdvanced() ? this.draft().appearance : this.defaultAppearance(),
-  );
+  readonly effectiveAppearance = computed(() => this.defaultAppearance());
 
   readonly draftForPreview = computed(() => ({
     ...this.draft(),
@@ -128,6 +130,17 @@ export class CardFormComponent {
   readonly mediaDraft = computed((): SoundCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;
+  });
+
+  // Tabs navigation state
+  private readonly VISIBLE_TABS_COUNT = 3;
+  private readonly tabOffset = signal(0);
+  private readonly selectedTabLabel = signal<string | undefined>(undefined);
+
+  /** Label of the currently active tab */
+  readonly activeTabLabel = computed(() => {
+    // Use explicitly selected tab, or fall back to the first visible tab
+    return this.selectedTabLabel() ?? this.visibleTabs()[0]?.label ?? '';
   });
 
   updateDraft(nextDraft: CardDraft): void {
@@ -246,6 +259,76 @@ export class CardFormComponent {
         symbolLexemes: state.lexemes,
         correctIndex: state.correctIndex,
       });
+    }
+  }
+
+  // Tabs navigation methods
+  get allAvailableTabs(): TabDefinition[] {
+    const tabs: TabDefinition[] = [
+      { label: 'Вопрос', visible: true },
+      { label: 'Ответы', visible: true },
+    ];
+
+    // Контент показывается только для choice-карточек
+    if (this.choiceDraft() !== null) {
+      tabs.push({ label: 'Контент', visible: true });
+    }
+
+    // Фонетика не показывается для code-select
+    if (this.draft().kind !== 'code-select') {
+      tabs.push({ label: 'Фонетика', visible: true });
+    }
+
+    tabs.push({ label: 'Метаинфо', visible: true });
+    tabs.push({ label: 'Настройки', visible: true });
+
+    return tabs;
+  }
+
+  get MAX_TAB_OFFSET(): number {
+    return Math.max(0, this.allAvailableTabs.length - this.VISIBLE_TABS_COUNT);
+  }
+
+  readonly visibleTabs = computed((): TabDefinition[] => {
+    const offset = this.tabOffset();
+    return this.allAvailableTabs.slice(offset, offset + this.VISIBLE_TABS_COUNT);
+  });
+
+  readonly tabGroupSelectedIndex = 0;
+
+  canPrevTabs(): boolean {
+    return this.tabOffset() > 0;
+  }
+
+  canNextTabs(): boolean {
+    return this.tabOffset() < this.MAX_TAB_OFFSET;
+  }
+
+  prevTabs(): void {
+    if (this.canPrevTabs()) {
+      this.tabOffset.update(n => n - 1);
+      this.selectedTabLabel.set(undefined);
+    }
+  }
+
+  nextTabs(): void {
+    if (this.canNextTabs()) {
+      this.tabOffset.update(n => n + 1);
+      this.selectedTabLabel.set(undefined);
+    }
+  }
+
+  onTabChange(tabLabel: string): void {
+    this.selectedTabLabel.set(tabLabel);
+  }
+
+  handleKeydown(event: KeyboardEvent): void {
+    if (event.ctrlKey && event.key === 'ArrowLeft') {
+      event.preventDefault();
+      this.prevTabs();
+    } else if (event.ctrlKey && event.key === 'ArrowRight') {
+      event.preventDefault();
+      this.nextTabs();
     }
   }
 

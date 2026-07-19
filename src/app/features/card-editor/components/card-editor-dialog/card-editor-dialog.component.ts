@@ -1,7 +1,6 @@
 import { Component, computed, inject, OnInit, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -19,12 +18,7 @@ import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalo
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
-import {
-  loadEditorUxMode,
-  saveEditorUxMode,
-  type CardEditorUxMode,
-} from '../../utils/card-editor-ux.utils';
-import { CardCreateWizardComponent } from '../card-create-wizard/card-create-wizard.component';
+import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
 import { applyLexemeFirstToDraft } from '../../utils/card-draft-lexeme-first.utils';
 import { indexTagsForDraft } from '../../utils/card-kind-index-meta.utils';
@@ -40,13 +34,11 @@ function serializeDraft(draft: CardDraft): string {
   imports: [
     FormsModule,
     MatButtonModule,
-    MatButtonToggleModule,
     MatDialogModule,
     MatProgressSpinnerModule,
     MatFormFieldModule,
     MatSelectModule,
     CardFormComponent,
-    CardCreateWizardComponent,
   ],
   templateUrl: './card-editor-dialog.component.html',
   styleUrl: './card-editor-dialog.component.scss',
@@ -70,7 +62,6 @@ export class CardEditorDialogComponent implements OnInit {
   });
   readonly cardMeta = signal<CardIndexMetaOverride | undefined>(undefined);
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
-  readonly useFullEditor = signal(false);
   private readonly initialSnapshot = signal('');
   private readonly initialMetaSnapshot = signal('');
 
@@ -86,7 +77,7 @@ export class CardEditorDialogComponent implements OnInit {
   );
 
   readonly showWizard = computed(
-    () => this.data.mode === 'create' && this.editorUxMode() === 'basic' && !this.useFullEditor(),
+    () => this.data.mode === 'create' && this.editorUxMode() === 'basic',
   );
 
   readonly title = computed(() => {
@@ -137,14 +128,10 @@ export class CardEditorDialogComponent implements OnInit {
 
   setEditorUxMode(mode: CardEditorUxMode): void {
     this.editorUxMode.set(mode);
-    saveEditorUxMode(mode);
-    if (mode === 'advanced') {
-      this.useFullEditor.set(true);
-    }
   }
 
   expandToFullEditor(): void {
-    this.useFullEditor.set(true);
+    // Этот метод больше не используется, но оставляем для совместимости
   }
 
   updateDraft(nextDraft: CardDraft): void {
@@ -204,15 +191,7 @@ export class CardEditorDialogComponent implements OnInit {
   }
 
   private prepareDraftForSave(draft: CardDraft): CardDraft {
-    let next = applyLexemeFirstToDraft(draft);
-
-    if (this.editorUxMode() === 'basic') {
-      next = {
-        ...next,
-        appearance: { ...this.defaultAppearance() },
-      };
-    }
-
+    const next = applyLexemeFirstToDraft(draft);
     return next;
   }
 

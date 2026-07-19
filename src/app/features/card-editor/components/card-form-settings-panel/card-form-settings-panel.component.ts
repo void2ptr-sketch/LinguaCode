@@ -32,7 +32,6 @@ export class CardFormSettingsPanelComponent {
   private readonly hanziData = inject(HanziDataService);
 
   readonly draft = input.required<CardDraft>();
-  readonly isAdvanced = input(false);
 
   readonly draftChange = output<CardDraft>();
 
