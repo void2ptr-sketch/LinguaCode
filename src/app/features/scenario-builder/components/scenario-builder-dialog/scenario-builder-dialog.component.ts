@@ -93,13 +93,10 @@ export class ScenarioBuilderDialogComponent implements OnInit {
 
   async saveScenario(): Promise<void> {
     const payload = formDraftToScenarioDraft(this.draft());
-    let saved = false;
-
-    if (this.data.mode === 'create') {
-      saved = await this.store.createScenario(payload);
-    } else {
-      saved = await this.store.updateScenario(this.data.scenarioId, payload);
-    }
+    const saved =
+      this.data.mode === 'create'
+        ? await this.store.createScenario(payload)
+        : await this.store.updateScenario(this.data.scenarioId, payload);
 
     if (saved) {
       this.dialogRef.close({ saved: true });

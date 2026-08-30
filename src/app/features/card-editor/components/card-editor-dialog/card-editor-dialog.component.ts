@@ -161,7 +161,6 @@ export class CardEditorDialogComponent implements OnInit {
   }
 
   async saveCard(): Promise<void> {
-    let saved = false;
     const draftToSave = this.prepareDraftForSave(this.draft());
     // Use cardMeta if available, otherwise construct meta from indexMeta and draft tags
     const meta = this.cardMeta() || {
@@ -170,11 +169,10 @@ export class CardEditorDialogComponent implements OnInit {
       tags: [...indexTagsForDraft(draftToSave)],
     };
 
-    if (this.data.mode === 'create') {
-      saved = await this.store.createCard(draftToSave, meta);
-    } else {
-      saved = await this.store.updateCard(this.data.cardId, draftToSave, meta);
-    }
+    const saved =
+      this.data.mode === 'create'
+        ? await this.store.createCard(draftToSave, meta)
+        : await this.store.updateCard(this.data.cardId, draftToSave, meta);
 
     if (saved) {
       this.dialogRef.close({ saved: true });

@@ -127,14 +127,12 @@ export class CardSelectPageComponent implements OnInit {
     const difficulty = this.selectedDifficulty();
     const difficultyMap = this.scenarioDifficultyMap();
 
-    let base: readonly string[] | null = null;
-    if (lessonIds.length > 0) {
-      base = lessonIds;
-    } else if (course && this.isOpenPractice()) {
-      base = collectCourseScenarioIds(course);
-    } else {
-      base = null;
-    }
+    const base: readonly string[] | null =
+      lessonIds.length > 0
+        ? lessonIds
+        : course && this.isOpenPractice()
+          ? collectCourseScenarioIds(course)
+          : null;
 
     if (!base || base.length === 0) {
       return null;

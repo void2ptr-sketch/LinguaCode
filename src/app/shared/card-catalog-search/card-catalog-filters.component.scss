@@ -80,6 +80,6 @@ mat-chip-set {
 }
 
 .card-catalog-filters__chip--active {
-  --mdc-chip-elevated-container-color: var(--mat-sys-primary-container);
-  --mdc-chip-label-text-color: var(--mat-sys-on-primary-container);
+  --mat-chip-elevated-container-color: var(--mat-sys-primary-container);
+  --mat-chip-label-text-color: var(--mat-sys-on-primary-container);
 }
