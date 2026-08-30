@@ -8,7 +8,7 @@
 
 ## Статус
 
-**MVP реализован; активный бэклог G9g–G14.** Angular 19, 10 типов карточек, каталог с поиском, конструктор сценариев, программы/уроки, CJK/IPA-контент, Hanzi Engine для draw-карточек, режим фокуса (fullscreen).
+**MVP реализован; активный бэклог G9g–G14.** Angular 22, 10 типов карточек, каталог с поиском и фильтрами по иерархии, конструктор сценариев, программы/уроки (CourseBundle), CJK/IPA-контент, Hanzi Engine для draw-карточек, режим фокуса (fullscreen).
 
 Актуальный чеклист: [TASKS.md](./TASKS.md).
 
@@ -16,9 +16,9 @@
 
 | Инструмент  | Версия                          |
 | ----------- | ------------------------------- |
-| Node.js     | 20 LTS или новее (см. `.nvmrc`) |
+| Node.js     | 24 LTS (см. `.nvmrc`)           |
 | npm         | 10+                             |
-| Angular CLI | 19+                             |
+| Angular CLI | 22+                             |
 | Git         | 2.x                             |
 
 ## Быстрый старт
@@ -34,27 +34,32 @@ npm start
 
 ## Скрипты
 
-| Команда                       | Описание                                           |
-| ----------------------------- | -------------------------------------------------- |
-| `npm start`                   | Dev-сервер с hot reload                            |
-| `npm run build`               | Production-сборка                                  |
-| `npm run build:prod`          | Production-сборка (alias)                          |
-| `npm test`                    | Unit-тесты                                         |
-| `npm run test:ci`             | Тесты в CI-режиме                                  |
-| `npm run lint`                | ESLint                                             |
-| `npm run format`              | Prettier                                           |
-| `npm run verify`              | lint + sync:hanzi + build + test (полная проверка) |
-| `npm run sync:hanzi`          | Синхронизация stroke-data для draw-карточек        |
-| `npm run export:content-seed` | Экспорт пользовательского overlay → seed JSON      |
+| Команда                         | Описание                                           |
+| ------------------------------- | -------------------------------------------------- |
+| `npm start`                     | Dev-сервер с hot reload                            |
+| `npm run build`                 | Production-сборка                                  |
+| `npm run build:prod`            | Production-сборка (alias)                          |
+| `npm test`                      | Unit-тесты                                         |
+| `npm run test:ci`               | Тесты в CI-режиме                                  |
+| `npm run lint`                  | ESLint                                             |
+| `npm run format`                | Prettier                                           |
+| `npm run verify`                | lint + sync:hanzi + build + test (полная проверка) |
+| `npm run sync:hanzi`            | Синхронизация stroke-data для draw-карточек        |
+| `npm run export:content-seed`   | Экспорт пользовательского overlay → seed JSON      |
+| `npm run import:perl-idea`      | Импорт идеи Perl-интервью из Markdown              |
+| `npm run import:course-bundle`  | Импорт CourseBundle JSON в seed                    |
+| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed        |
+| `npm run export:course-pdf`     | Экспорт курса в PDF                                |
 
 ## Стек
 
-- **Angular 19** — standalone-компоненты, без NgModule
+- **Angular 22** — standalone-компоненты, без NgModule
 - **TypeScript** — строгая типизация (`type`, не `interface`)
 - **Angular Material** — UI-компоненты
 - **SCSS** — стили; layout на CSS Grid (`grid-template-areas`)
 - **Signal API** — управление состоянием (RxJS только для HTTP/WebSocket)
 - **ESLint + Prettier** — линтинг и форматирование
+- **jspdf + pdfkit** — экспорт курсов в PDF (`export:course-pdf`)
 - **@angular/localize** — локализация (бэклог)
 
 ## Структура проекта
@@ -150,7 +155,11 @@ npm run format
 - [Бизнес-идеи](./docs/BUSINESS.md) — продуктовое видение
 - [Домен](./docs/DOMAIN.md) — сущности, модели и терминология
 - [Каталог карточек](./docs/CARD-CATALOG.md) — индекс, поиск, пагинация
+- [Поля карточек](./docs/CARD-FIELD-GUIDE.md) — руководство по полям `Card`
 - [Конструктор сценариев](./docs/SCENARIO-BUILDER.md) — масштабирование сценариев
+- [Программы/уроки](./docs/COURSE-BUNDLE.md) — формат CourseBundle и импорт
+- [Модальные диалоги](./docs/MODAL-DIALOG.md) — архитектура диалогов редактора
+- [Mock-данные](./docs/MOCK-DATA.md) — seed + overlay (localStorage)
 - [CJK-контент](./docs/CJK-CONTENT.md) — иероглифы, пиньинь, тоны, полифония
 - [IPA](./docs/PHONETIC-CONTENT.md) — фонетическая транскрипция
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога

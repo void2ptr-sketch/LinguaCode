@@ -5,9 +5,9 @@
 **LinguaCode** — приложение для изучения языков (от естественных до искусственных). Основная единица обучения — **карточка** (10 типов). Карточки → сценарии → уроки → программы.
 
 - **Репозиторий:** `void2ptr-sketch/LinguaCode`
-- **Стек:** Angular 19, TypeScript, Angular Material, SCSS, Signal API
+- **Стек:** Angular 22, TypeScript, Angular Material, SCSS, Signal API
 - **Статус:** MVP выполнен, активный бэклог G9g–G14
-- **Требования:** Node.js 20+, npm 10+, Angular CLI 19+
+- **Требования:** Node.js 24 LTS (см. `.nvmrc`), npm 10+, Angular CLI 22+
 
 ## Ключевые файлы
 
@@ -51,7 +51,7 @@ src/app/
 
 ### Управление состоянием
 
-- **Signals** — основной механизм (Angular 19 signal-based services)
+- **Signals** — основной механизм (Angular 22 signal-based services)
 - **RxJS** — только для HTTP/WebSocket
 - **Статус задач:** `TASKS.md` — чеклист G1–G14
 
@@ -75,26 +75,34 @@ src/app/
 
 ### Команды
 
-| Команда                        | Описание                         |
-| ------------------------------ | -------------------------------- |
-| `npm start`                    | Dev-сервер                       |
-| `npm run build`                | Production-сборка                |
-| `npm test`                     | Unit-тесты (Karma)               |
-| `npm run lint`                 | ESLint                           |
-| `npm run format`               | Prettier                         |
-| `npm run verify`               | lint + sync:hanzi + build + test |
-| `npm run export:content-seed`  | Экспорт overlay → seed           |
-| `npm run import:course-bundle` | Импорт CourseBundle JSON         |
+| Команда                          | Описание                                        |
+| -------------------------------- | ----------------------------------------------- |
+| `npm start`                      | Dev-сервер                                      |
+| `npm run build`                  | Production-сборка                               |
+| `npm test`                       | Unit-тесты (Karma)                              |
+| `npm run lint`                   | ESLint                                          |
+| `npm run format`                 | Prettier                                        |
+| `npm run verify`                 | lint + sync:hanzi + build + test                |
+| `npm run export:content-seed`    | Экспорт overlay → seed                          |
+| `npm run import:perl-idea`       | Импорт идеи Perl-интервью из Markdown           |
+| `npm run import:course-bundle`   | Импорт CourseBundle JSON                        |
+| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed      |
+| `npm run export:course-pdf`      | Экспорт курса в PDF                             |
 
 ### Скрипты данных
 
-| Скрипт                                 | Назначение                                       |
-| -------------------------------------- | ------------------------------------------------ |
-| `scripts/export-content-seed.mjs`      | Генерация seed из `perl-interview-idea.md`       |
-| `scripts/merge-mock-data.mjs`          | Объединение `*-course.json` → `all-courses.json` |
-| `scripts/import-course-bundle.mjs`     | Импорт CourseBundle в seed                       |
-| `scripts/migrate-authoring.mjs`        | Миграция полей `authoring` между файлами         |
-| `scripts/generate-radicals-course.mjs` | Генерация курса радикалов                        |
+| Скрипт                                  | Назначение                                       |
+| --------------------------------------- | ------------------------------------------------ |
+| `scripts/export-content-seed.mjs`       | Генерация seed из `perl-interview-idea.md`       |
+| `scripts/import-perl-interview-idea.mjs`| Импорт идеи Perl-интервью из Markdown            |
+| `scripts/import-course-bundle.mjs`      | Импорт CourseBundle в seed                       |
+| `scripts/import-course-bundle.test.mjs` | Тесты импорта CourseBundle                       |
+| `scripts/generate-radicals-course.mjs`  | Генерация курса радикалов                        |
+| `scripts/add-card-hierarchy-fields.mjs` | Добавление полей иерархии к карточкам            |
+| `scripts/kangxi-radicals.mjs` / `kangxi-radical-meta.mjs` | Данные радикалов Канси |
+| `scripts/collect-hanzi-chars.mjs`       | Сбор иероглифов для синхронизации Hanzi          |
+| `scripts/sync-hanzi-assets.mjs`         | Синхронизация stroke-data (`npm run sync:hanzi`) |
+| `scripts/export-course-pdf.mjs`         | Экспорт курса в PDF                              |
 
 ## Domain модели
 
