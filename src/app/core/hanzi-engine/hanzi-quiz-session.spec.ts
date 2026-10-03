@@ -42,9 +42,9 @@ describe('HanziQuizSession', () => {
     const canvasPoints = model.strokes[0]!.points.map((point) => positioner.toCanvas(point));
     const result = session.submitCanvasStroke(canvasPoints);
 
-    expect(result.accepted).toBeTrue();
+    expect(result.accepted).toBe(true);
     expect(result.strokeIndex).toBe(1);
-    expect(session.completed()).toBeFalse();
+    expect(session.completed()).toBe(false);
   });
 
   it('should expose summary after completion', () => {
@@ -57,7 +57,7 @@ describe('HanziQuizSession', () => {
       session.submitCanvasStroke(canvasPoints);
     }
 
-    expect(session.completed()).toBeTrue();
+    expect(session.completed()).toBe(true);
     expect(session.summary()).toEqual({
       character: '人',
       totalMistakes: 0,

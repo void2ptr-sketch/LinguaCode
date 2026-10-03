@@ -18,11 +18,11 @@ describe('language-pair.utils', () => {
   });
 
   it('should accept valid content languages', () => {
-    expect(isContentLanguage('zh')).toBeTrue();
-    expect(isContentLanguage('perl')).toBeTrue();
-    expect(isContentLanguage('java')).toBeTrue();
-    expect(isContentLanguage('cpp')).toBeTrue();
-    expect(isContentLanguage('de')).toBeFalse();
+    expect(isContentLanguage('zh')).toBe(true);
+    expect(isContentLanguage('perl')).toBe(true);
+    expect(isContentLanguage('java')).toBe(true);
+    expect(isContentLanguage('cpp')).toBe(true);
+    expect(isContentLanguage('de')).toBe(false);
   });
 
   it('should format programming language pairs', () => {

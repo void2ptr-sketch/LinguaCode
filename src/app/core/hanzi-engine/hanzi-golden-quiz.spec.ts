@@ -33,24 +33,24 @@ describe('hanzi golden quiz fixtures', () => {
 
         expect(
           validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'beginner').passed,
-        ).toBeTrue();
+        ).toBe(true);
         expect(
           validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, strokes, 'professional').passed,
-        ).toBeTrue();
+        ).toBe(true);
       });
 
       it('should reject a corner scribble', () => {
         const scribble = Array.from({ length: model.strokes.length }, () => cornerScribbleStroke());
         expect(
           validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, scribble, 'beginner').passed,
-        ).toBeFalse();
+        ).toBe(false);
       });
 
       it('should reject heavily offset strokes at professional level', () => {
         const offset = offsetDrawStrokes(goldenAlignedStrokes(model), 80, 80);
         expect(
           validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, offset, 'professional').passed,
-        ).toBeFalse();
+        ).toBe(false);
       });
 
       it('should reject incomplete stroke order at intermediate level', () => {
@@ -61,7 +61,7 @@ describe('hanzi golden quiz fixtures', () => {
         const partial = goldenAlignedStrokes(model).slice(0, 1);
         expect(
           validateHanziMemoryStrokes(model, GOLDEN_CANVAS_SIZE, partial, 'intermediate').passed,
-        ).toBeFalse();
+        ).toBe(false);
       });
     });
   }
@@ -82,7 +82,7 @@ describe('hanzi golden quiz fixtures', () => {
         expect(
           validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'beginner')
             .passed,
-        ).toBeTrue();
+        ).toBe(true);
       });
 
       it(`should reject medium drift for professional (${character})`, async () => {
@@ -97,7 +97,7 @@ describe('hanzi golden quiz fixtures', () => {
         expect(
           validateHanziMemoryStrokes(calibrationModel, GOLDEN_CANVAS_SIZE, drifted, 'professional')
             .passed,
-        ).toBeFalse();
+        ).toBe(false);
       });
     }
 
@@ -122,9 +122,9 @@ describe('hanzi golden quiz fixtures', () => {
           proficiencyLevel: level,
         });
         const result = session.submitCanvasStroke(alignedFirstStroke);
-        expect(result.accepted).withContext(level).toBeTrue();
-        expect(session.summary().strokeCount).withContext(level).toBe(2);
-        expect(leniency).withContext(level).toBeGreaterThan(0);
+        expect(result.accepted, level).toBe(true);
+        expect(session.summary().strokeCount, level).toBe(2);
+        expect(leniency, level).toBeGreaterThan(0);
       }
     });
   });

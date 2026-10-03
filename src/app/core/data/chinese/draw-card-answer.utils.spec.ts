@@ -70,8 +70,8 @@ describe('draw-card-answer.utils', () => {
 
   it('should validate memory mode by hanzi-engine grading with proficiency', () => {
     const payload = alignedRenPayload();
-    expect(checkDrawCardAnswer(drawCard, true, payload, 'beginner', getHanziModel)).toBeTrue();
-    expect(checkDrawCardAnswer(drawCard, true, payload, 'professional', getHanziModel)).toBeTrue();
+    expect(checkDrawCardAnswer(drawCard, true, payload, 'beginner', getHanziModel)).toBe(true);
+    expect(checkDrawCardAnswer(drawCard, true, payload, 'professional', getHanziModel)).toBe(true);
   });
 
   it('should accept any non-empty drawing in non-memory modes', () => {
@@ -94,7 +94,7 @@ describe('draw-card-answer.utils', () => {
         'professional',
         getHanziModel,
       ),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('should reject memory mode with wrong stroke count for intermediate level', () => {
@@ -110,10 +110,10 @@ describe('draw-card-answer.utils', () => {
         'intermediate',
         getHanziModel,
       ),
-    ).toBeFalse();
+    ).toBe(false);
   });
 
   it('should reject memory mode when hanzi model is unavailable', () => {
-    expect(checkDrawCardAnswer(drawCard, true, alignedRenPayload(), 'beginner')).toBeFalse();
+    expect(checkDrawCardAnswer(drawCard, true, alignedRenPayload(), 'beginner')).toBe(false);
   });
 });

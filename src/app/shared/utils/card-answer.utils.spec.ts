@@ -16,8 +16,8 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
     expect(getCorrectAnswerLabel(card)).toBe('A');
   });
 
@@ -35,9 +35,9 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBeFalse();
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(false);
     expect(getCorrectAnswerLabel(card)).toBe('1');
   });
 
@@ -52,7 +52,7 @@ describe('card-answer.utils', () => {
       acceptedAnswersKnown: ['Hello', 'hello'],
     };
 
-    expect(checkCardAnswer(card, { ...baseState, answerText: '  HELLO ' })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, answerText: '  HELLO ' })).toBe(true);
   });
 
   it('should match palladius keyboard answer', () => {
@@ -77,7 +77,7 @@ describe('card-answer.utils', () => {
         ...baseState,
         answerText: 'Ни хао',
       }),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('should match ipa keyboard answers', () => {
@@ -102,7 +102,7 @@ describe('card-answer.utils', () => {
         ...baseState,
         answerText: '[həˈləʊ]',
       }),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('should match pinyin keyboard answers with tone marks', () => {
@@ -127,7 +127,7 @@ describe('card-answer.utils', () => {
         ...baseState,
         answerText: 'ni hao',
       }),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('should prefer lexeme primary in correct answer label', () => {
@@ -159,7 +159,7 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
     expect(getCorrectAnswerLabel(card)).toBe('1');
   });
 
@@ -194,7 +194,7 @@ describe('card-answer.utils', () => {
       correctIndex: 0,
     };
 
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeTrue();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
     expect(getCorrectAnswerLabel(card)).toBe('yínháng');
   });
 
@@ -229,7 +229,7 @@ describe('card-answer.utils', () => {
       correctIndex: 1,
     };
 
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBeTrue();
-    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBeFalse();
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(false);
   });
 });

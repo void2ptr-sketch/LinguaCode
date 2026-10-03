@@ -94,10 +94,10 @@ describe('card-search.utils', () => {
   });
 
   it('ignores facet field when counting that facet', () => {
-    expect(
-      matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' }, 'learningLanguage'),
-    ).toBeTrue();
-    expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' })).toBeFalse();
+    expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' }, 'learningLanguage')).toBe(
+      true,
+    );
+    expect(matchesCardIndexEntry(entries[0], { learningLanguage: 'zh' })).toBe(false);
   });
 
   it('refines tag facet counts using other selected tags', () => {
@@ -161,10 +161,10 @@ describe('card-search.utils', () => {
       updatedAt: '2026-01-01T00:00:00.000Z',
     };
 
-    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'practice')).toBeTrue();
-    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'dbi-dbd')).toBeFalse();
-    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'oracle')).toBeTrue();
-    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'basics')).toBeFalse();
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'practice')).toBe(true);
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle'] }, 'dbi-dbd')).toBe(false);
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'oracle')).toBe(true);
+    expect(matchesTagFacetEntry(entry, { tags: ['oracle', 'practice'] }, 'basics')).toBe(false);
   });
 
   it('filters by ipa tag facet', () => {

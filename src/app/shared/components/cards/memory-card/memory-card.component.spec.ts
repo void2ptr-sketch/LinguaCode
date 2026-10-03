@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
@@ -77,7 +79,7 @@ describe('MemoryCardComponent', () => {
       }
     }
 
-    expect(reshuffled).withContext('expected a new shuffle after boardNonce change').toBeTrue();
+    expect(reshuffled, 'expected a new shuffle after boardNonce change').toBe(true);
   });
 
   it('should match pair when opposite column items share pairId', () => {
@@ -91,8 +93,8 @@ describe('MemoryCardComponent', () => {
     component.selectItem(hello!);
 
     expect(component.matchedPairIds()).toEqual(['0']);
-    expect(component.isMatched(privet!)).toBeTrue();
-    expect(component.isMatched(hello!)).toBeTrue();
+    expect(component.isMatched(privet!)).toBe(true);
+    expect(component.isMatched(hello!)).toBe(true);
   });
 
   it('should flash mismatch for unrelated pair and keep board open', () => {
@@ -107,7 +109,7 @@ describe('MemoryCardComponent', () => {
   });
 
   it('should complete when all pairs are matched', () => {
-    const completeSpy = jasmine.createSpy('memoryComplete');
+    const completeSpy = vi.fn().mockName('memoryComplete');
     component.memoryComplete.subscribe(completeSpy);
 
     const hello = component.rightItems().find((item) => item.label === 'Hello')!;

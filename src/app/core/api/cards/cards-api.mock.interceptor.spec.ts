@@ -34,7 +34,7 @@ describe('cards API (mock interceptor)', () => {
 
     expect(page.items.length).toBeGreaterThan(0);
     expect(page.totalItems).toBeGreaterThan(0);
-    expect(page.facets.learningLanguages.some((facet) => facet.value === 'en')).toBeTrue();
+    expect(page.facets.learningLanguages.some((facet) => facet.value === 'en')).toBe(true);
   });
 
   it('loads card by id via GET /api/cards/:id', async () => {
@@ -45,6 +45,6 @@ describe('cards API (mock interceptor)', () => {
   });
 
   it('returns 404 for unknown card id', async () => {
-    await expectAsync(api.getById('missing-card')).toBeRejected();
+    await expect(api.getById('missing-card')).rejects.toThrow();
   });
 });

@@ -32,19 +32,19 @@ describe('CardFocusShellComponent', () => {
     const component = fixture.componentInstance;
     const host = fixture.nativeElement as HTMLElement;
     const initialParent = host.parentElement;
-    expect(component.fullscreen()).toBeFalse();
+    expect(component.fullscreen()).toBe(false);
 
     component.toggleFullscreen();
-    expect(component.fullscreen()).toBeTrue();
+    expect(component.fullscreen()).toBe(true);
     expect(host.parentElement).toBe(document.body);
-    expect(document.body.classList.contains('card-focus-shell-open')).toBeTrue();
-    expect(userStore.preferences().cardFocusFullscreen).toBeTrue();
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(true);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
 
     component.toggleFullscreen();
-    expect(component.fullscreen()).toBeFalse();
+    expect(component.fullscreen()).toBe(false);
     expect(host.parentElement).toBe(initialParent);
-    expect(document.body.classList.contains('card-focus-shell-open')).toBeFalse();
-    expect(userStore.preferences().cardFocusFullscreen).toBeFalse();
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
   });
 
   it('should exit fullscreen on Escape and persist preference', () => {
@@ -53,8 +53,8 @@ describe('CardFocusShellComponent', () => {
 
     component.onEscape();
 
-    expect(component.fullscreen()).toBeFalse();
-    expect(userStore.preferences().cardFocusFullscreen).toBeFalse();
+    expect(component.fullscreen()).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
   });
 
   it('should auto enter fullscreen on learning when preference is enabled', () => {
@@ -62,7 +62,7 @@ describe('CardFocusShellComponent', () => {
     fixture.componentRef.setInput('autoEnterFullscreen', true);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.fullscreen()).toBeTrue();
+    expect(fixture.componentInstance.fullscreen()).toBe(true);
   });
 
   it('should exit fullscreen when auto enter is disabled without clearing preference', () => {
@@ -73,8 +73,8 @@ describe('CardFocusShellComponent', () => {
     fixture.componentRef.setInput('autoEnterFullscreen', false);
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.fullscreen()).toBeFalse();
-    expect(userStore.preferences().cardFocusFullscreen).toBeTrue();
+    expect(fixture.componentInstance.fullscreen()).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
   });
 
   it('should allow manual fullscreen when auto enter is disabled', () => {
@@ -84,7 +84,7 @@ describe('CardFocusShellComponent', () => {
     fixture.componentInstance.toggleFullscreen();
     fixture.detectChanges();
 
-    expect(fixture.componentInstance.fullscreen()).toBeTrue();
-    expect(document.body.classList.contains('card-focus-shell-open')).toBeTrue();
+    expect(fixture.componentInstance.fullscreen()).toBe(true);
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(true);
   });
 });

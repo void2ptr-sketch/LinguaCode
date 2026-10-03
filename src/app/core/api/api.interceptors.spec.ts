@@ -44,7 +44,7 @@ describe('api interceptors', () => {
     http.get('/data/select-cards.json').subscribe();
 
     const request = httpMock.expectOne('/data/select-cards.json');
-    expect(request.request.headers.has('Authorization')).toBeFalse();
+    expect(request.request.headers.has('Authorization')).toBe(false);
     request.flush({});
   });
 
@@ -60,7 +60,7 @@ describe('api interceptors', () => {
     const request = httpMock.expectOne('/api/scenarios/missing');
     request.flush({ message: 'Не найдено' }, { status: 404, statusText: 'Not Found' });
 
-    expect(isHttpApiError(caught)).toBeTrue();
+    expect(isHttpApiError(caught)).toBe(true);
     if (isHttpApiError(caught)) {
       expect(caught.status).toBe(404);
       expect(caught.message).toBe('Не найдено');

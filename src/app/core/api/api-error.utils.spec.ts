@@ -11,7 +11,7 @@ describe('api-error.utils', () => {
 
     const apiError = toHttpApiError(httpError);
 
-    expect(isHttpApiError(apiError)).toBeTrue();
+    expect(isHttpApiError(apiError)).toBe(true);
     expect(apiError.status).toBe(404);
     expect(apiError.message).toBe('Сценарий не найден');
     expect(apiError.body?.message).toBe('Сценарий не найден');

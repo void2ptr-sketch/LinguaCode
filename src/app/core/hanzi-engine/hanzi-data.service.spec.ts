@@ -117,7 +117,7 @@ describe('HanziDataService', () => {
     const model = await promise;
     expect(model?.character).toBe('人');
     expect(model?.strokes.length).toBe(2);
-    expect(service.hasCachedData('人')).toBeTrue();
+    expect(service.hasCachedData('人')).toBe(true);
   });
 
   it('should cache missing characters', async () => {
@@ -206,6 +206,6 @@ describe('HanziDataService offline smoke', () => {
 
     expect(cached?.character).toBe('人');
     expect(service.getCachedModel('人')?.strokes.length).toBe(2);
-    expect(service.hasCachedData('人')).toBeTrue();
+    expect(service.hasCachedData('人')).toBe(true);
   });
 });

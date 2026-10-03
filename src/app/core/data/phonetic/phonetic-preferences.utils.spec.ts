@@ -71,7 +71,7 @@ describe('phonetic-preferences.utils', () => {
   it('should normalize phonetic preferences', () => {
     const prefs = normalizePhoneticPreferences({ showIpa: true, ipaVariantLabel: 'BrE' });
 
-    expect(prefs.showIpa).toBeTrue();
+    expect(prefs.showIpa).toBe(true);
     expect(prefs.ipaVariantLabel).toBe('BrE');
   });
 
@@ -82,9 +82,9 @@ describe('phonetic-preferences.utils', () => {
   });
 
   it('should show palladius only for ru to zh pair', () => {
-    expect(shouldShowPalladius('ru', 'zh')).toBeTrue();
-    expect(shouldShowPalladius('ru', 'en')).toBeFalse();
-    expect(shouldShowPalladius('en', 'zh')).toBeFalse();
+    expect(shouldShowPalladius('ru', 'zh')).toBe(true);
+    expect(shouldShowPalladius('ru', 'en')).toBe(false);
+    expect(shouldShowPalladius('en', 'zh')).toBe(false);
   });
 
   it('should check enabled romanization systems', () => {
@@ -92,8 +92,8 @@ describe('phonetic-preferences.utils', () => {
       displayRomanizations: ['pinyin', 'zhuyin'],
     });
 
-    expect(isRomanizationDisplayEnabled(prefs, 'pinyin')).toBeTrue();
-    expect(isRomanizationDisplayEnabled(prefs, 'palladius')).toBeFalse();
+    expect(isRomanizationDisplayEnabled(prefs, 'pinyin')).toBe(true);
+    expect(isRomanizationDisplayEnabled(prefs, 'palladius')).toBe(false);
   });
 
   it('should resolve prompt romanizations from displayRomanizations', () => {
@@ -147,8 +147,8 @@ describe('phonetic-preferences.utils', () => {
       answerModes: ['orthography', 'ipa'] as const,
     };
 
-    expect(resolveShowIpaForSurface('prompt', phonetic)).toBeTrue();
-    expect(resolveShowIpaForSurface('answer', phonetic)).toBeTrue();
+    expect(resolveShowIpaForSurface('prompt', phonetic)).toBe(true);
+    expect(resolveShowIpaForSurface('answer', phonetic)).toBe(true);
   });
 
   it('should hide answer IPA when answerModes excludes ipa', () => {
@@ -158,6 +158,6 @@ describe('phonetic-preferences.utils', () => {
       answerModes: ['orthography'] as const,
     };
 
-    expect(resolveShowIpaForSurface('answer', phonetic)).toBeFalse();
+    expect(resolveShowIpaForSurface('answer', phonetic)).toBe(false);
   });
 });

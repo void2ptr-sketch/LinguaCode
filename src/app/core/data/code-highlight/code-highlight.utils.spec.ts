@@ -6,7 +6,7 @@ describe('code-highlight.utils', () => {
   });
 
   it('matches equivalent code answers', () => {
-    expect(codeAnswersMatch('print 1;\n', 'print 1;')).toBeTrue();
-    expect(codeAnswersMatch('print 1;', 'print 2;')).toBeFalse();
+    expect(codeAnswersMatch('print 1;\n', 'print 1;')).toBe(true);
+    expect(codeAnswersMatch('print 1;', 'print 2;')).toBe(false);
   });
 });

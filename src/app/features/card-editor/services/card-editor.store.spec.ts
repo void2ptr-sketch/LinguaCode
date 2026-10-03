@@ -82,8 +82,8 @@ describe('CardEditorStore', () => {
       { knownLanguage: 'ru', learningLanguage: 'en' },
     );
 
-    expect(created).toBeTrue();
-    expect(cardRepository.loadStored().some((card) => card.title === 'Новая')).toBeTrue();
+    expect(created).toBe(true);
+    expect(cardRepository.loadStored().some((card) => card.title === 'Новая')).toBe(true);
     expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toContain('Новая');
   });
 
@@ -97,8 +97,8 @@ describe('CardEditorStore', () => {
       ...emptyLexemeCardDraft(),
     });
 
-    expect(created).toBeTrue();
-    expect(cardRepository.loadStored().some((card) => card.kind === 'memory')).toBeTrue();
+    expect(created).toBe(true);
+    expect(cardRepository.loadStored().some((card) => card.kind === 'memory')).toBe(true);
   });
 
   it('should block delete when card is used in scenario', async () => {
@@ -114,7 +114,7 @@ describe('CardEditorStore', () => {
       },
     ];
 
-    expect(await store.deleteCard('select-test')).toBeFalse();
+    expect(await store.deleteCard('select-test')).toBe(false);
     expect(store.error()).toContain('сценариях');
   });
 
@@ -129,7 +129,7 @@ describe('CardEditorStore', () => {
       languagePair: { known: 'ru', learning: 'en' },
     });
 
-    expect(await store.deleteCard('select-test')).toBeFalse();
+    expect(await store.deleteCard('select-test')).toBe(false);
     expect(store.error()).toContain('результаты');
   });
 
@@ -150,6 +150,6 @@ describe('CardEditorStore', () => {
     expect(cardRepository.loadStored().find((card) => card.id === 'select-test')?.title).toBe(
       'Updated',
     );
-    expect(await store.deleteCard('select-test')).toBeTrue();
+    expect(await store.deleteCard('select-test')).toBe(true);
   });
 });

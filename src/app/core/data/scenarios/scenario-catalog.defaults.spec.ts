@@ -14,7 +14,7 @@ describe('scenario-catalog.defaults', () => {
     const zhScenarios = getTestZhScenarios();
 
     expect(zhScenarios.length).toBeGreaterThanOrEqual(4);
-    expect(zhScenarios.every((item) => item.languagePair?.learning === 'zh')).toBeTrue();
+    expect(zhScenarios.every((item) => item.languagePair?.learning === 'zh')).toBe(true);
   });
 
   it('should merge missing default scenarios into stored list', () => {
@@ -34,8 +34,8 @@ describe('scenario-catalog.defaults', () => {
 
     const merged = mergeScenariosWithDefaults(stored);
 
-    expect(merged.some((item) => item.id === 'custom-scenario')).toBeTrue();
-    expect(merged.some((item) => item.id === 'scenario-zh-greetings')).toBeTrue();
+    expect(merged.some((item) => item.id === 'custom-scenario')).toBe(true);
+    expect(merged.some((item) => item.id === 'scenario-zh-greetings')).toBe(true);
     expect(merged.length).toBe(defaults.length + 1);
   });
 

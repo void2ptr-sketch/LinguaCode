@@ -29,7 +29,7 @@ describe('hanzi-hint-animation.utils', () => {
     });
 
     expect(placement.phase).toBe('brush-placement');
-    expect(placement.showStartCircle).toBeTrue();
+    expect(placement.showStartCircle).toBe(true);
     expect(placement.progress).toBe(0);
     expect(placement.tip?.point).toEqual({ x: 0, y: 0 });
   });
@@ -45,7 +45,7 @@ describe('hanzi-hint-animation.utils', () => {
     });
 
     expect(direction.phase).toBe('direction');
-    expect(direction.showStartCircle).toBeFalse();
+    expect(direction.showStartCircle).toBe(false);
     expect(direction.progress).toBeCloseTo(0.5, 1);
     expect(direction.tip).not.toBeNull();
   });

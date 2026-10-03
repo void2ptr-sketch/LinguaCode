@@ -52,9 +52,9 @@ describe('learning-resume.utils', () => {
     const demoCourse = getTestDemoCourseWithLessons();
     const roadmap = buildLessonRoadmap(demoCourse.lessons, () => false);
 
-    expect(roadmap).toHaveSize(2);
-    expect(roadmap[0]?.unlocked).toBeTrue();
-    expect(roadmap[1]?.unlocked).toBeFalse();
+    expect(roadmap).toHaveLength(2);
+    expect(roadmap[0]?.unlocked).toBe(true);
+    expect(roadmap[1]?.unlocked).toBe(false);
   });
 
   it('should detect course language pair mismatch', () => {
@@ -63,12 +63,12 @@ describe('learning-resume.utils', () => {
         { languagePair: { known: 'ru', learning: 'zh' } },
         { known: 'ru', learning: 'en' },
       ),
-    ).toBeFalse();
+    ).toBe(false);
     expect(
       courseMatchesActiveLanguagePair(
         { languagePair: { known: 'ru', learning: 'zh' } },
         { known: 'ru', learning: 'zh' },
       ),
-    ).toBeTrue();
+    ).toBe(true);
   });
 });

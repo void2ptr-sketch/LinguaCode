@@ -147,7 +147,7 @@ describe('course-bundle.utils', () => {
       );
 
       expect(result).not.toBeNull();
-      expect(result!.errors.some((e) => e.includes('criteria'))).toBeTrue();
+      expect(result!.errors.some((e) => e.includes('criteria'))).toBe(true);
     });
 
     it('returns errors when card is missing', () => {
@@ -160,7 +160,7 @@ describe('course-bundle.utils', () => {
       );
 
       expect(result).not.toBeNull();
-      expect(result!.errors.some((e) => e.includes('card-test-1'))).toBeTrue();
+      expect(result!.errors.some((e) => e.includes('card-test-1'))).toBe(true);
     });
 
     it('returns errors when card meta is missing', () => {
@@ -173,7 +173,7 @@ describe('course-bundle.utils', () => {
       );
 
       expect(result).not.toBeNull();
-      expect(result!.errors.some((e) => e.includes('Мета-информация'))).toBeTrue();
+      expect(result!.errors.some((e) => e.includes('Мета-информация'))).toBe(true);
     });
 
     it('handles snapshot card source', () => {
@@ -220,7 +220,7 @@ describe('course-bundle.utils', () => {
 
     it('validates a correct bundle', () => {
       const result = validateCourseBundle(makeValidBundle());
-      expect(result.valid).toBeTrue();
+      expect(result.valid).toBe(true);
       expect(result.errors).toEqual([]);
     });
 
@@ -229,8 +229,8 @@ describe('course-bundle.utils', () => {
       bundle.formatVersion = 999 as 1;
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('версия'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('версия'))).toBe(true);
     });
 
     it('rejects missing exportedAt', () => {
@@ -238,7 +238,7 @@ describe('course-bundle.utils', () => {
       bundle.exportedAt = '';
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
+      expect(result.valid).toBe(false);
     });
 
     it('rejects bundles with more than one course', () => {
@@ -246,8 +246,8 @@ describe('course-bundle.utils', () => {
       bundle.course.courses = [makeBaseCourse(), { ...makeBaseCourse(), id: 'course-2' }];
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('1'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('1'))).toBe(true);
     });
 
     it('rejects bundles with missing lesson', () => {
@@ -255,8 +255,8 @@ describe('course-bundle.utils', () => {
       bundle.course.courses[0].lessonIds = ['lesson-missing'];
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('lesson-missing'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('lesson-missing'))).toBe(true);
     });
 
     it('rejects bundles with missing scenario', () => {
@@ -264,8 +264,8 @@ describe('course-bundle.utils', () => {
       bundle.course.lessons[0].scenarioIds = ['scenario-missing'];
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('scenario-missing'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('scenario-missing'))).toBe(true);
     });
 
     it('rejects bundles with missing card', () => {
@@ -273,8 +273,8 @@ describe('course-bundle.utils', () => {
       bundle.scenarios[0].cardSource = { mode: 'fixed', cardIds: ['card-missing'] };
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('card-missing'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('card-missing'))).toBe(true);
     });
 
     it('rejects bundles with missing card meta', () => {
@@ -282,8 +282,8 @@ describe('course-bundle.utils', () => {
       bundle.cardIndexMeta = {};
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('Мета-информация'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('Мета-информация'))).toBe(true);
     });
 
     it('rejects criteria scenarios in validation', () => {
@@ -295,8 +295,8 @@ describe('course-bundle.utils', () => {
       };
 
       const result = validateCourseBundle(bundle);
-      expect(result.valid).toBeFalse();
-      expect(result.errors.some((e) => e.includes('criteria'))).toBeTrue();
+      expect(result.valid).toBe(false);
+      expect(result.errors.some((e) => e.includes('criteria'))).toBe(true);
     });
   });
 });

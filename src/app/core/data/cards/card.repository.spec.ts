@@ -56,7 +56,7 @@ describe('CardRepository', () => {
   it('should load seed cards when overlay is empty', async () => {
     const cards = await repository.ensureLoaded();
 
-    expect(cards.some((card) => card.id === 'select-zh-1')).toBeTrue();
+    expect(cards.some((card) => card.id === 'select-zh-1')).toBe(true);
     expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toBeNull();
   });
 
@@ -78,8 +78,8 @@ describe('CardRepository', () => {
 
     const cards = await repository.ensureLoaded();
 
-    expect(cards.some((card) => card.id === 'custom-1')).toBeTrue();
-    expect(cards.some((card) => card.id === 'select-zh-1')).toBeTrue();
+    expect(cards.some((card) => card.id === 'custom-1')).toBe(true);
+    expect(cards.some((card) => card.id === 'select-zh-1')).toBe(true);
     expect(localStorage.getItem(USER_CONTENT_OVERLAY_KEY)).toContain('custom-1');
   });
 
@@ -117,6 +117,6 @@ describe('CardRepository', () => {
       [...seedFixture.cards],
     );
 
-    expect(merged.some((card) => card.id === 'draw-jiangenshenfang-1')).toBeFalse();
+    expect(merged.some((card) => card.id === 'draw-jiangenshenfang-1')).toBe(false);
   });
 });
