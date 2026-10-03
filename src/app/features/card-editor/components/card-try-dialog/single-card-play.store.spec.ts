@@ -28,7 +28,7 @@ describe('SingleCardPlayStore', () => {
 
   it('should check correct select answer', () => {
     store.selectOption(0);
-    expect(store.checkAnswer()).toBeTrue();
+    expect(store.checkAnswer()).toBe(true);
     expect(store.feedback()).toBe('correct');
   });
 

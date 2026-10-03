@@ -26,8 +26,8 @@ describe('radicals-course.defaults', () => {
     );
 
     expect(course?.title).toBe('214 китайских радикалов');
-    expect(lessons).toHaveSize(RADICALS_LESSON_COUNT);
-    expect(scenarios).toHaveSize(RADICALS_LESSON_COUNT);
+    expect(lessons).toHaveLength(RADICALS_LESSON_COUNT);
+    expect(scenarios).toHaveLength(RADICALS_LESSON_COUNT);
     expect(RADICALS_LESSON_COUNT).toBe(11);
 
     const cardIds = new Set(
@@ -36,13 +36,13 @@ describe('radicals-course.defaults', () => {
       ),
     );
     expect(cardIds.size).toBe(RADICALS_TOTAL);
-    expect(cardIds.has(radicalCardId(1))).toBeTrue();
-    expect(cardIds.has(radicalCardId(RADICALS_TOTAL))).toBeTrue();
+    expect(cardIds.has(radicalCardId(1))).toBe(true);
+    expect(cardIds.has(radicalCardId(RADICALS_TOTAL))).toBe(true);
   });
 
   it('should put 20 radicals per scenario except the last', () => {
-    expect(radicalLessonCardIds(0)).toHaveSize(RADICALS_PER_SCENARIO);
-    expect(radicalLessonCardIds(9)).toHaveSize(RADICALS_PER_SCENARIO);
-    expect(radicalLessonCardIds(RADICALS_LESSON_COUNT - 1)).toHaveSize(14);
+    expect(radicalLessonCardIds(0)).toHaveLength(RADICALS_PER_SCENARIO);
+    expect(radicalLessonCardIds(9)).toHaveLength(RADICALS_PER_SCENARIO);
+    expect(radicalLessonCardIds(RADICALS_LESSON_COUNT - 1)).toHaveLength(14);
   });
 });

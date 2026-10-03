@@ -13,9 +13,9 @@ describe('card-editor-ux.utils', () => {
   });
 
   it('should detect ru→zh and en learning pairs', () => {
-    expect(isRuZhPair('ru', 'zh')).toBeTrue();
-    expect(isRuZhPair('ru', 'en')).toBeFalse();
-    expect(isEnLearningPair('ru', 'en')).toBeTrue();
+    expect(isRuZhPair('ru', 'zh')).toBe(true);
+    expect(isRuZhPair('ru', 'en')).toBe(false);
+    expect(isEnLearningPair('ru', 'en')).toBe(true);
   });
 
   it('should sync lexeme primary from option text', () => {

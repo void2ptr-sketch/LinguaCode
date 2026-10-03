@@ -75,7 +75,7 @@ describe('user-content-overlay.repair', () => {
 
     const result = bindPerlInterviewCourseLanguagePair(overlay);
 
-    expect(result.changed).toBeTrue();
+    expect(result.changed).toBe(true);
     expect((result.overlay.courses['user-course-1'] as Course).languagePair).toEqual(
       RU_PERL_LANGUAGE_PAIR,
     );
@@ -83,7 +83,7 @@ describe('user-content-overlay.repair', () => {
       RU_PERL_LANGUAGE_PAIR,
     );
     expect(result.overlay.cardIndexMeta['card-1']).toEqual(
-      jasmine.objectContaining({
+      expect.objectContaining({
         knownLanguage: 'ru',
         learningLanguage: 'perl',
       }),
@@ -130,7 +130,7 @@ describe('user-content-overlay.repair', () => {
 
     const result = migratePerlInterviewAuthoringToSeed(overlay);
 
-    expect(result.changed).toBeTrue();
+    expect(result.changed).toBe(true);
     expect(result.overlay.courses['user-course-1']).toBeUndefined();
     expect(result.overlay.lessons['lesson-1']).toBeUndefined();
     expect((result.overlay.courses[PERL_INTERVIEW_COURSE_ID] as Course).authoring?.idea).toContain(

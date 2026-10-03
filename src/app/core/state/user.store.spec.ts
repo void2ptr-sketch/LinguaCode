@@ -22,15 +22,15 @@ describe('UserStore', () => {
     expect(store.displayName()).toBe('Ученик');
     expect(store.preferences().fontSize).toBe('md');
     expect(store.preferences().colorScheme).toBe('light');
-    expect(store.preferences().cardFocusFullscreen).toBeFalse();
+    expect(store.preferences().cardFocusFullscreen).toBe(false);
     expect(store.preferences().learningProficiencyLevel).toBe('beginner');
     expect(store.learningProficiencyLevel()).toBe('beginner');
-    expect(store.languagePairs()).toHaveSize(1);
+    expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
     expect(store.languagePairLabel()).toBe('Русский → English');
-    expect(store.isActiveEntry(store.languagePairs()[0])).toBeTrue();
+    expect(store.isActiveEntry(store.languagePairs()[0])).toBe(true);
     expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
-    expect(store.phonetic().showIpa).toBeFalse();
+    expect(store.phonetic().showIpa).toBe(false);
     expect(store.languagePairs()[0].settings?.phonetic).toBeDefined();
   });
 
@@ -69,10 +69,10 @@ describe('UserStore', () => {
 
   it('should update card focus fullscreen preference', () => {
     store.updatePreferences({ cardFocusFullscreen: true });
-    expect(store.preferences().cardFocusFullscreen).toBeTrue();
+    expect(store.preferences().cardFocusFullscreen).toBe(true);
 
     store.updatePreferences({ cardFocusFullscreen: 'yes' as unknown as boolean });
-    expect(store.preferences().cardFocusFullscreen).toBeFalse();
+    expect(store.preferences().cardFocusFullscreen).toBe(false);
   });
 
   it('should update learning proficiency level', () => {
@@ -93,7 +93,7 @@ describe('UserStore', () => {
   it('should add language pair and make it active', () => {
     store.addLanguagePair({ known: 'ru', learning: 'zh' });
 
-    expect(store.languagePairs()).toHaveSize(2);
+    expect(store.languagePairs()).toHaveLength(2);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'zh' });
 
     const zhEntry = store.languagePairs().find((entry) => entry.pair.learning === 'zh');
@@ -104,7 +104,7 @@ describe('UserStore', () => {
     store.addLanguagePair({ known: 'ru', learning: 'zh' });
     store.addLanguagePair({ known: 'ru', learning: 'en' });
 
-    expect(store.languagePairs()).toHaveSize(2);
+    expect(store.languagePairs()).toHaveLength(2);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
@@ -129,11 +129,11 @@ describe('UserStore', () => {
 
     store.setActiveLanguagePair(zhId);
     expect(store.cjkLearning().displayRomanizations).toEqual(['palladius']);
-    expect(store.phonetic().showIpa).toBeFalse();
+    expect(store.phonetic().showIpa).toBe(false);
 
     store.setActiveLanguagePair(enId);
     expect(store.cjkLearning().displayRomanizations).toEqual(['pinyin']);
-    expect(store.phonetic().showIpa).toBeTrue();
+    expect(store.phonetic().showIpa).toBe(true);
     expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });
 
@@ -143,13 +143,13 @@ describe('UserStore', () => {
 
     store.removeLanguagePair(activeId);
 
-    expect(store.languagePairs()).toHaveSize(1);
+    expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
   it('should not remove the last language pair', () => {
     store.removeLanguagePair(store.activeLanguagePairId());
-    expect(store.languagePairs()).toHaveSize(1);
+    expect(store.languagePairs()).toHaveLength(1);
   });
 
   it('should update and persist active language pair via legacy API', () => {
@@ -163,7 +163,7 @@ describe('UserStore', () => {
 
   it('should reject identical known and learning languages when adding pair', () => {
     store.addLanguagePair({ known: 'en', learning: 'en' });
-    expect(store.languagePairs()).toHaveSize(1);
+    expect(store.languagePairs()).toHaveLength(1);
     expect(store.languagePair()).toEqual({ known: 'ru', learning: 'en' });
   });
 
@@ -172,7 +172,7 @@ describe('UserStore', () => {
       phonetic: { showIpa: true, ipaVariantLabel: 'BrE', answerModes: ['orthography', 'ipa'] },
     });
 
-    expect(store.phonetic().showIpa).toBeTrue();
+    expect(store.phonetic().showIpa).toBe(true);
     expect(store.phonetic().ipaVariantLabel).toBe('BrE');
   });
 });

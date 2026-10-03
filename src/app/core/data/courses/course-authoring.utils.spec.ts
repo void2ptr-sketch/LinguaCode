@@ -44,7 +44,7 @@ describe('course-authoring.utils', () => {
     const left = { idea: 'A', status: 'draft' as const };
     const right = { idea: 'A', status: 'draft' as const };
 
-    expect(sameCourseAuthoring(left, right)).toBeTrue();
-    expect(sameCourseAuthoring(left, { ...right, idea: 'B' })).toBeFalse();
+    expect(sameCourseAuthoring(left, right)).toBe(true);
+    expect(sameCourseAuthoring(left, { ...right, idea: 'B' })).toBe(false);
   });
 });

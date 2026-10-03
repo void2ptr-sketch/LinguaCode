@@ -40,7 +40,7 @@ describe('input-sanitize.utils', () => {
   });
 
   it('should validate font sizes', () => {
-    expect(isAllowedFontSize('md')).toBeTrue();
-    expect(isAllowedFontSize('xl')).toBeFalse();
+    expect(isAllowedFontSize('md')).toBe(true);
+    expect(isAllowedFontSize('xl')).toBe(false);
   });
 });

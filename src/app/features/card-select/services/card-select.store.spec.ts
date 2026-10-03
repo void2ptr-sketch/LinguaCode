@@ -44,7 +44,7 @@ describe('CardSelectStore', () => {
 
   it('should check select answer and move to next card', () => {
     store.selectOption(0);
-    expect(store.checkAnswer()).toBeTrue();
+    expect(store.checkAnswer()).toBe(true);
     expect(store.feedback()).toBe('correct');
 
     store.nextCard();
@@ -57,7 +57,7 @@ describe('CardSelectStore', () => {
     store.checkAnswer();
     store.nextCard();
     store.setAnswerText('hi');
-    expect(store.checkAnswer()).toBeTrue();
+    expect(store.checkAnswer()).toBe(true);
   });
 
   it('should complete scenario on last card', () => {
@@ -66,7 +66,7 @@ describe('CardSelectStore', () => {
     store.checkAnswer();
     store.nextCard();
 
-    expect(store.completed()).toBeTrue();
+    expect(store.completed()).toBe(true);
   });
 
   it('should reset to initial state', () => {
@@ -75,7 +75,7 @@ describe('CardSelectStore', () => {
     store.reset();
 
     expect(store.cards()).toEqual([]);
-    expect(store.loading()).toBeFalse();
-    expect(store.completed()).toBeFalse();
+    expect(store.loading()).toBe(false);
+    expect(store.completed()).toBe(false);
   });
 });

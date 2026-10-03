@@ -1,3 +1,4 @@
+import { vi, type MockedObject } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,11 +8,13 @@ import { CardTryDialogService } from './card-try-dialog.service';
 
 describe('CardTryDialogService', () => {
   let service: CardTryDialogService;
-  let dialog: jasmine.SpyObj<MatDialog>;
+  let dialog: Pick<MockedObject<MatDialog>, 'open'>;
 
   beforeEach(() => {
-    dialog = jasmine.createSpyObj('MatDialog', ['open']);
-    dialog.open.and.returnValue({
+    dialog = {
+      open: vi.fn().mockName('MatDialog.open'),
+    };
+    dialog.open.mockReturnValue({
       afterClosed: () => of(undefined),
     } as ReturnType<MatDialog['open']>);
 
@@ -31,7 +34,7 @@ describe('CardTryDialogService', () => {
 
     expect(dialog.open).toHaveBeenCalledWith(
       CardTryDialogComponent,
-      jasmine.objectContaining({
+      expect.objectContaining({
         panelClass: 'card-try-dialog',
         data: { cardId: 'card-1' },
       }),

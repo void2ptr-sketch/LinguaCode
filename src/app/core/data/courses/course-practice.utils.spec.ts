@@ -12,7 +12,7 @@ import {
 describe('course-practice.utils', () => {
   it('defaults to guided practice', () => {
     expect(resolveCoursePracticeSettings(null).mode).toBe('guided');
-    expect(isOpenPracticeCourse({})).toBeFalse();
+    expect(isOpenPracticeCourse({})).toBe(false);
   });
 
   it('detects open practice course', () => {
@@ -20,7 +20,7 @@ describe('course-practice.utils', () => {
       isOpenPracticeCourse({
         practiceSettings: { mode: 'open', requireLessonForScenarios: false },
       }),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('collects unique scenario ids from lessons', () => {

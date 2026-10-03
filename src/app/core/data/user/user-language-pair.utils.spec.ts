@@ -15,11 +15,11 @@ describe('user-language-pair.utils', () => {
       languagePair: { known: 'ru', learning: 'zh' },
     });
 
-    expect(preferences.languagePairs).toHaveSize(1);
+    expect(preferences.languagePairs).toHaveLength(1);
     expect(preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(preferences.activeLanguagePairId).toBe(preferences.languagePairs[0].id);
     expect(preferences.languagePairs[0].settings?.cjkLearning).toBeDefined();
-    expect(preferences.cardFocusFullscreen).toBeFalse();
+    expect(preferences.cardFocusFullscreen).toBe(false);
     expect(preferences.learningProficiencyLevel).toBe('beginner');
   });
 
@@ -47,7 +47,7 @@ describe('user-language-pair.utils', () => {
       fontSize: 'md',
       cardFocusFullscreen: true,
     });
-    expect(enabled.cardFocusFullscreen).toBeTrue();
+    expect(enabled.cardFocusFullscreen).toBe(true);
   });
 
   it('should dedupe language pair entries', () => {
@@ -61,14 +61,14 @@ describe('user-language-pair.utils', () => {
       activeLanguagePairId: 'pair-2',
     });
 
-    expect(preferences.languagePairs).toHaveSize(1);
+    expect(preferences.languagePairs).toHaveLength(1);
     expect(preferences.activeLanguagePairId).toBe(preferences.languagePairs[0].id);
   });
 
   it('should create default language pair preferences', () => {
     const defaults = createDefaultLanguagePairPreferences();
 
-    expect(defaults.languagePairs).toHaveSize(1);
+    expect(defaults.languagePairs).toHaveLength(1);
     expect(defaults.activeLanguagePairId).toBe(defaults.languagePairs[0].id);
     expect(defaults.languagePairs[0].settings?.phonetic).toBeDefined();
   });
@@ -93,7 +93,7 @@ describe('user-language-pair.utils', () => {
     };
 
     expect(resolveCjkLearningForPair(zhEntry).displayRomanizations).toEqual(['palladius']);
-    expect(resolvePhoneticForPair(zhEntry).showIpa).toBeTrue();
+    expect(resolvePhoneticForPair(zhEntry).showIpa).toBe(true);
   });
 
   it('should migrate legacy phonetic settings into zh pair entries', () => {
@@ -112,7 +112,7 @@ describe('user-language-pair.utils', () => {
     });
 
     const zhEntry = preferences.languagePairs[0];
-    expect(zhEntry.settings?.phonetic?.showIpa).toBeTrue();
+    expect(zhEntry.settings?.phonetic?.showIpa).toBe(true);
     expect(resolvePhoneticForPair(zhEntry).answerModes).toEqual(['orthography', 'ipa']);
   });
 });

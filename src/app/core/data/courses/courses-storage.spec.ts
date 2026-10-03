@@ -13,9 +13,9 @@ describe('courses-storage', () => {
   it('should include ru→zh demo courses and lessons', () => {
     const zhCatalog = getTestZhCourseCatalog();
 
-    expect(zhCatalog.courses).toHaveSize(3);
-    expect(zhCatalog.lessons).toHaveSize(16);
-    expect(zhCatalog.courses.every((course) => course.languagePair.learning === 'zh')).toBeTrue();
+    expect(zhCatalog.courses).toHaveLength(3);
+    expect(zhCatalog.lessons).toHaveLength(16);
+    expect(zhCatalog.courses.every((course) => course.languagePair.learning === 'zh')).toBe(true);
   });
 
   it('should merge missing default courses and lessons into stored catalog', () => {
@@ -49,9 +49,9 @@ describe('courses-storage', () => {
 
     const merged = mergeCourseCatalogWithDefaults(stored);
 
-    expect(merged.courses.some((course) => course.id === 'custom-course')).toBeTrue();
-    expect(merged.courses.some((course) => course.id === 'course-zh-a1')).toBeTrue();
-    expect(merged.lessons.some((lesson) => lesson.id === 'lesson-zh-greetings')).toBeTrue();
+    expect(merged.courses.some((course) => course.id === 'custom-course')).toBe(true);
+    expect(merged.courses.some((course) => course.id === 'course-zh-a1')).toBe(true);
+    expect(merged.lessons.some((lesson) => lesson.id === 'lesson-zh-greetings')).toBe(true);
     expect(merged.courses.length).toBe(defaults.courses.length + 1);
     expect(merged.lessons.length).toBe(defaults.lessons.length + 1);
   });

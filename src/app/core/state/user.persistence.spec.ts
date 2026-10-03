@@ -28,7 +28,7 @@ describe('UserPersistence', () => {
 
     const user = persistence.load();
 
-    expect(user?.preferences.languagePairs).toHaveSize(1);
+    expect(user?.preferences.languagePairs).toHaveLength(1);
     expect(user?.preferences.languagePairs[0].pair).toEqual({ known: 'ru', learning: 'zh' });
     expect(user?.preferences.activeLanguagePairId).toBe(user?.preferences.languagePairs[0].id);
     expect(user?.preferences.languagePairs[0].settings?.cjkLearning?.displayRomanizations).toEqual([
@@ -74,9 +74,9 @@ describe('UserPersistence', () => {
 
     const user = persistence.load();
 
-    expect(user?.preferences.languagePairs).toHaveSize(2);
+    expect(user?.preferences.languagePairs).toHaveLength(2);
     expect(user?.preferences.activeLanguagePairId).toBe('pair-2');
-    expect(user?.preferences.languagePairs[0].settings?.phonetic?.showIpa).toBeTrue();
+    expect(user?.preferences.languagePairs[0].settings?.phonetic?.showIpa).toBe(true);
     expect(user?.preferences.languagePairs[1].settings?.cjkLearning?.displayRomanizations).toEqual([
       'palladius',
     ]);
@@ -119,10 +119,10 @@ describe('UserPersistence', () => {
     const enEntry = user?.preferences.languagePairs.find((entry) => entry.id === 'pair-1');
     const zhEntry = user?.preferences.languagePairs.find((entry) => entry.id === 'pair-2');
 
-    expect(enEntry?.settings?.phonetic?.showIpa).toBeTrue();
+    expect(enEntry?.settings?.phonetic?.showIpa).toBe(true);
     expect(enEntry?.settings?.phonetic?.ipaVariantLabel).toBe('AmE');
     expect(zhEntry?.settings?.cjkLearning?.displayRomanizations).toEqual(['palladius']);
-    expect(zhEntry?.settings?.phonetic?.showIpa).toBeTrue();
+    expect(zhEntry?.settings?.phonetic?.showIpa).toBe(true);
     expect(zhEntry?.settings?.phonetic?.ipaVariantLabel).toBe('AmE');
   });
 });

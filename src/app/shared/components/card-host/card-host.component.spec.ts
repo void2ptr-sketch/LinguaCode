@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
@@ -55,7 +57,7 @@ describe('CardHostComponent', () => {
   });
 
   it('should forward option selection from code-select card', () => {
-    const optionSelectedSpy = jasmine.createSpy('optionSelected');
+    const optionSelectedSpy = vi.fn().mockName('optionSelected');
     fixture.componentInstance.optionSelected.subscribe(optionSelectedSpy);
 
     const firstOption = fixture.nativeElement.querySelector(

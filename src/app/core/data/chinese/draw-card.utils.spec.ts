@@ -114,7 +114,7 @@ describe('draw-card.utils', () => {
 
   it('should derive character targets from primary han string', () => {
     const targets = resolveDrawCharacterTargets(baseDrawCard);
-    expect(targets).toHaveSize(2);
+    expect(targets).toHaveLength(2);
     expect(targets[0].character).toBe('你');
     expect(targets[0].pinyin).toBe('nǐ');
     expect(targets[1].character).toBe('好');

@@ -32,14 +32,14 @@ describe('scenario-card-source.utils', () => {
       mode: 'fixed',
       cardIds: ['select-1', 'select-2'],
     });
-    expect(scenario.published).toBeFalse();
+    expect(scenario.published).toBe(false);
   });
 
   it('detects fixed card usage and labels', () => {
     const source = { mode: 'fixed' as const, cardIds: ['select-1'] };
 
-    expect(scenarioUsesCardId(source, 'select-1')).toBeTrue();
-    expect(scenarioUsesCardId(source, 'select-2')).toBeFalse();
+    expect(scenarioUsesCardId(source, 'select-1')).toBe(true);
+    expect(scenarioUsesCardId(source, 'select-2')).toBe(false);
     expect(scenarioCardsLabel(source)).toBe('1 карточек');
   });
 
@@ -49,7 +49,7 @@ describe('scenario-card-source.utils', () => {
         { mode: 'criteria', criteria: { learningLanguage: 'en' }, limit: 10 },
         entry,
       ),
-    ).toBeTrue();
+    ).toBe(true);
   });
 
   it('labels criteria and snapshot sources', () => {

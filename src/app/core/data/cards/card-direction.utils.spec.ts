@@ -193,7 +193,7 @@ describe('card-direction.utils', () => {
         promptKnown: 'Draw',
         referenceHintKnown: 'hint',
       }),
-    ).toBeFalse();
+    ).toBe(false);
     expect(
       cardSupportsSessionDirection({
         id: 'tone-1',
@@ -206,8 +206,8 @@ describe('card-direction.utils', () => {
         toneOptions: [1, 2, 3, 4],
         correctIndex: 0,
       }),
-    ).toBeFalse();
-    expect(cardSupportsSessionDirection(selectCard)).toBeTrue();
-    expect(cardSupportsSessionDirection(null)).toBeFalse();
+    ).toBe(false);
+    expect(cardSupportsSessionDirection(selectCard)).toBe(true);
+    expect(cardSupportsSessionDirection(null)).toBe(false);
   });
 });

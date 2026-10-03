@@ -79,7 +79,7 @@ src/app/
 | -------------------------------- | ----------------------------------------------- |
 | `npm start`                      | Dev-сервер                                      |
 | `npm run build`                  | Production-сборка                               |
-| `npm test`                       | Unit-тесты (Karma)                              |
+| `npm test`                       | Unit-тесты (Vitest)                             |
 | `npm run lint`                   | ESLint                                          |
 | `npm run format`                 | Prettier                                        |
 | `npm run verify`                 | lint + sync:hanzi + build + test                |

@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import { TestBed } from '@angular/core/testing';
 
 import { CardSearchService } from '../../core/data';
@@ -7,29 +9,40 @@ import { CardCatalogSearchStore } from './card-catalog-search.store';
 describe('CardCatalogSearchStore', () => {
   let store: CardCatalogSearchStore;
 
-  const searchMock = jasmine.createSpy('search').and.resolveTo({
-    items: [],
-    page: 0,
-    pageSize: 10,
-    totalItems: 0,
-    totalPages: 0,
-    facets: { kinds: [], tags: [] },
-  });
+  const searchMock = vi
+    .fn()
+    .mockName('search')
+    .mockResolvedValue({
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalItems: 0,
+      totalPages: 0,
+      facets: { kinds: [], tags: [] },
+    });
 
-  const courseSearchMock = jasmine.createSpyObj('CourseSearchService', ['search', 'getById'], {
+  const courseSearchMock = {
+    search: vi.fn().mockName('CourseSearchService.search'),
+    getById: vi.fn().mockName('CourseSearchService.getById'),
     loading: () => false,
     error: () => null,
+  };
+  courseSearchMock.search.mockResolvedValue({
+    items: [],
+    page: 0,
+    pageSize: 100,
+    totalItems: 0,
+    totalPages: 0,
   });
-  courseSearchMock.search.and.resolveTo({ items: [], page: 0, pageSize: 100, totalItems: 0, totalPages: 0 });
-  courseSearchMock.getById.and.resolveTo({
+  courseSearchMock.getById.mockResolvedValue({
     id: 'course-1',
     title: 'Course 1',
     lessons: [],
   });
 
   beforeEach(() => {
-    searchMock.calls.reset();
-    courseSearchMock.search.calls.reset();
+    searchMock.mockClear();
+    courseSearchMock.search.mockClear();
 
     TestBed.configureTestingModule({
       providers: [
@@ -55,7 +68,7 @@ describe('CardCatalogSearchStore', () => {
     expect(store.knownLanguage()).toBe('ru');
     expect(store.learningLanguage()).toBe('en');
     expect(searchMock).toHaveBeenCalledWith(
-      jasmine.objectContaining({ knownLanguage: 'ru', learningLanguage: 'en' }),
+      expect.objectContaining({ knownLanguage: 'ru', learningLanguage: 'en' }),
     );
   });
 
@@ -75,26 +88,26 @@ describe('CardCatalogSearchStore', () => {
 
   it('should ignore manual language changes when pair is locked', async () => {
     await store.initWithActivePair('ru', 'en');
-    const callsBefore = searchMock.calls.count();
+    const callsBefore = vi.mocked(searchMock).mock.calls.length;
 
     store.setKnownLanguage('zh');
     store.setLearningLanguage('zh');
 
     expect(store.knownLanguage()).toBe('ru');
     expect(store.learningLanguage()).toBe('en');
-    expect(searchMock.calls.count()).toBe(callsBefore);
+    expect(vi.mocked(searchMock).mock.calls.length).toBe(callsBefore);
   });
 
   it('should include course/lesson/scenario in criteria when set', async () => {
     await store.initWithActivePair('ru', 'en');
-    searchMock.calls.reset();
+    searchMock.mockClear();
 
     await store.setCourse('course-1');
     await store.setLesson('lesson-1');
     store.setScenario('scenario-1');
 
     expect(searchMock).toHaveBeenCalledWith(
-      jasmine.objectContaining({
+      expect.objectContaining({
         courseId: 'course-1',
         lessonId: 'lesson-1',
         scenarioId: 'scenario-1',

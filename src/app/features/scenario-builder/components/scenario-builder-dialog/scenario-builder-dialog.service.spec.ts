@@ -1,3 +1,4 @@
+import { vi, type MockedObject } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { MatDialog } from '@angular/material/dialog';
@@ -7,11 +8,13 @@ import { ScenarioBuilderDialogService } from './scenario-builder-dialog.service'
 
 describe('ScenarioBuilderDialogService', () => {
   let service: ScenarioBuilderDialogService;
-  let dialog: jasmine.SpyObj<MatDialog>;
+  let dialog: Pick<MockedObject<MatDialog>, 'open'>;
 
   beforeEach(() => {
-    dialog = jasmine.createSpyObj('MatDialog', ['open']);
-    dialog.open.and.returnValue({
+    dialog = {
+      open: vi.fn().mockName('MatDialog.open'),
+    };
+    dialog.open.mockReturnValue({
       afterClosed: () => of({ saved: true }),
     } as ReturnType<MatDialog['open']>);
 
@@ -32,7 +35,7 @@ describe('ScenarioBuilderDialogService', () => {
     expect(result).toEqual({ saved: true });
     expect(dialog.open).toHaveBeenCalledWith(
       ScenarioBuilderDialogComponent,
-      jasmine.objectContaining({
+      expect.objectContaining({
         panelClass: 'scenario-builder-dialog',
         disableClose: true,
         data: { mode: 'create' },

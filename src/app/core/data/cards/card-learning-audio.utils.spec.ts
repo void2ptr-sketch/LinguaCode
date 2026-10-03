@@ -1,3 +1,5 @@
+import { vi } from 'vitest';
+
 import {
   contentLanguageSpeechLocale,
   playLearningAudio,
@@ -5,6 +7,11 @@ import {
 } from './card-learning-audio.utils';
 
 describe('card-learning-audio.utils', () => {
+  afterEach(() => {
+    vi.restoreAllMocks();
+    vi.unstubAllGlobals();
+  });
+
   it('should map content language to speech locale', () => {
     expect(contentLanguageSpeechLocale('zh')).toBe('zh-CN');
     expect(contentLanguageSpeechLocale('en')).toBe('en-US');
@@ -12,10 +19,14 @@ describe('card-learning-audio.utils', () => {
   });
 
   it('should prefer audio url over speech synthesis', () => {
-    const play = jasmine.createSpy('play');
-    const audioSpy = spyOn(window, 'Audio').and.returnValue({
-      play,
-    } as unknown as HTMLAudioElement);
+    const play = vi.fn().mockName('play');
+    const audioSpy = vi
+      .spyOn(window, 'Audio')
+      .mockImplementation(
+        class MockAudio {
+          play = play;
+        } as unknown as typeof Audio,
+      );
 
     playLearningAudio({
       audioUrl: 'https://example.com/word.mp3',
@@ -28,17 +39,26 @@ describe('card-learning-audio.utils', () => {
   });
 
   it('should speak text when audio url is missing', () => {
-    const speak = spyOn(speechSynthesis, 'speak');
-    spyOn(speechSynthesis, 'cancel');
-    spyOn(speechSynthesis, 'getVoices').and.returnValue([]);
+    const speak = vi.fn().mockName('speak');
+    const cancel = vi.fn().mockName('cancel');
+    const getVoices = vi.fn().mockName('getVoices').mockReturnValue([]);
+    vi.stubGlobal('speechSynthesis', { speak, cancel, getVoices });
+
+    class MockSpeechSynthesisUtterance {
+      lang = '';
+      rate = 1;
+      constructor(readonly text: string) {}
+    }
+    vi.stubGlobal('SpeechSynthesisUtterance', MockSpeechSynthesisUtterance);
 
     playLearningAudio({
       text: 'Hello',
       language: 'en',
     });
 
+    expect(cancel).toHaveBeenCalled();
     expect(speak).toHaveBeenCalled();
-    const utterance = speak.calls.mostRecent().args[0] as SpeechSynthesisUtterance;
+    const utterance = speak.mock.lastCall![0] as MockSpeechSynthesisUtterance;
     expect(utterance.text).toBe('Hello');
     expect(utterance.lang).toBe('en-US');
   });

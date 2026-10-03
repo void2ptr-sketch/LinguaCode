@@ -54,10 +54,10 @@ describe('hanzi-memory-validation.utils', () => {
     const model = buildHanziCharacterModel('人', REN_JSON);
     const strokes = alignedRenStrokes();
 
-    expect(validateHanziMemoryStrokes(model, canvasSize, strokes, 'beginner').passed).toBeTrue();
-    expect(
-      validateHanziMemoryStrokes(model, canvasSize, strokes, 'professional').passed,
-    ).toBeTrue();
+    expect(validateHanziMemoryStrokes(model, canvasSize, strokes, 'beginner').passed).toBe(true);
+    expect(validateHanziMemoryStrokes(model, canvasSize, strokes, 'professional').passed).toBe(
+      true,
+    );
   });
 
   it('should reject wrong stroke count for intermediate level', () => {
@@ -65,7 +65,7 @@ describe('hanzi-memory-validation.utils', () => {
     const strokes = alignedRenStrokes().slice(0, 1);
 
     const result = validateHanziMemoryStrokes(model, canvasSize, strokes, 'intermediate');
-    expect(result.passed).toBeFalse();
+    expect(result.passed).toBe(false);
     expect(result.actualStrokeCount).toBe(1);
     expect(result.expectedStrokeCount).toBe(2);
   });

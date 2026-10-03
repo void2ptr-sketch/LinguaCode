@@ -38,11 +38,11 @@ describe('app-color-scheme.utils', () => {
 
   it('should apply theme classes to documentElement', () => {
     applyColorSchemeToDocument('dark');
-    expect(document.documentElement.classList.contains('theme-dark')).toBeTrue();
+    expect(document.documentElement.classList.contains('theme-dark')).toBe(true);
     expect(document.documentElement.style.colorScheme).toBe('dark');
 
     applyColorSchemeToDocument('light');
-    expect(document.documentElement.classList.contains('theme-light')).toBeTrue();
-    expect(document.documentElement.classList.contains('theme-dark')).toBeFalse();
+    expect(document.documentElement.classList.contains('theme-light')).toBe(true);
+    expect(document.documentElement.classList.contains('theme-dark')).toBe(false);
   });
 });
