@@ -117,7 +117,7 @@ Card (10 типов)
 
 ### Типы карточек
 
-`select`, `code-select`, `keyboard`, `draw`, `memory`, `tone`, `reading`, `symbol`, `sound`, `symbol`
+`select`, `code-select`, `keyboard`, `draw`, `memory`, `tone`, `reading`, `symbol`, `sound`, `timed`
 
 ### Authoring (Course)
 

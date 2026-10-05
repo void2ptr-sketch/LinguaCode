@@ -14,11 +14,17 @@
 | Focus shell     | `shared/components/card-focus-shell`                           | Fullscreen overlay; reparent host → `body`      |
 | Quiz cards      | `shared/components/cards/*`                                    | Select, memory, keyboard, draw, reading…        |
 | Pinyin keyboard | `shared/components/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme          | `shared/components/lexeme-display`, `cjk-ruby`, `phonetic-ipa` | G9/G10 отображение                              |
+| Lexeme          | `shared/components/lexeme-display`                             | G9/G10 отображение лексем                         |
+| CJK ruby        | `shared/components/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
+| IPA             | `shared/components/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
+| Tone colors     | `shared/components/tone-colored-text`                          | Цветовая маркировка тонов                           |
 | Pickers         | `shared/course-picker`, `lesson-picker`, `scenario-picker`     | Выбор программы/урока/сценария                  |
+| Quick switcher  | `shared/components/active-language-pair-switcher`              | Быстрое переключение активной языковой пары     |
+| Display matrix  | `shared/components/course-display-settings-matrix`             | Матрица «задание / ответы» (G9g-e)              |
 | Pagination      | `shared/pagination`                                            | `UiPaginationComponent`, `PageRequest`          |
 | Catalog search  | `shared/card-catalog-search`                                   | Фильтры и store поиска карточек                 |
 | Utils           | `shared/utils/card-answer.utils`                               | Проверка ответов (CJK, IPA, reading fuzzy)      |
+| Markdown        | `shared/components/markdown-field`                             | Поле ввода Markdown                             |
 
 ## CardHost — маршрутизация по kind
 
@@ -66,18 +72,29 @@ flowchart LR
 ```mermaid
 classDiagram
   class CardHostComponent {
-    +card: Card
+    +card: Card (required)
+    +fontSize: 'sm' | 'md' | 'lg'
     +direction: CardDirection
     +feedback: CardFeedback
+    +selectedIndex: number | null
+    +answerText: string
+    +memoryComplete: boolean
     +memoryBoardNonce: number
+    +drawSubmitted: boolean
+    +drawAnswer: DrawAnswerPayload | null
+    +focusControlsEnabled: boolean
+    +autoFocusFullscreen: boolean
   }
   class CardFocusShellComponent {
     +fullscreen: boolean
     +reparentToBody()
   }
   class LexemeDisplayComponent {
-    +lexeme: PhoneticLexeme
-    +surface: prompt | answer
+    +lexeme: PhoneticLexeme | null
+    +surface: LexemeDisplaySurface
+    +romanizations: RomanizationSystem[] | null
+    +showIpa: boolean | null
+    +inline: boolean
   }
   class PinyinKeyboardComponent {
     +value: string

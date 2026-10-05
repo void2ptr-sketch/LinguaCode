@@ -188,6 +188,10 @@ type CardBase = {
   kind: CardKind;
   title: string;
   appearance: CardAppearance;
+  meta?: CardIndexMetaOverride; // метаданные карточки (из overlay)
+  courseId?: string; // ID курса, к которому привязана карточка
+  lessonId?: string; // ID урока, к которому привязана карточка
+  scenarioId?: string; // ID сценария, к которому привязана карточка
 };
 
 type SelectCard = CardBase & {
@@ -205,6 +209,10 @@ type Scenario = {
   description: string;
   authorId: string;
   cardSource: ScenarioCardSource;
+  published: boolean;
+  updatedAt: string; // ISO 8601
+  languagePair?: LanguagePair; // scope контента сценария
+  courseId?: string; // ID курса, к которому привязан сценарий
 };
 
 /** G11 — см. `core/models/lesson.types.ts` */
@@ -216,6 +224,7 @@ type Lesson = {
   scenarioIds: readonly string[];
   prerequisiteLessonIds: readonly string[];
   order: number;
+  updatedAt: string; // ISO 8601
 };
 
 /** G11 — см. `core/models/course.types.ts`. languagePair задаёт scope контента курса */
@@ -227,6 +236,7 @@ type Course = {
   languagePair: LanguagePair;
   lessonIds: readonly string[];
   published: boolean;
+  updatedAt: string; // ISO 8601
   /** Авторская идея программы (G16); не в CourseIndexEntry */
   authoring?: {
     idea: string;
@@ -235,6 +245,8 @@ type Course = {
     materializedAt?: string;
     lastError?: string;
   };
+  /** Настройки вкладки «Практика»; по умолчанию guided (линейный курс). */
+  practiceSettings?: CoursePracticeSettings;
 };
 
 type LearningResult = {
@@ -253,13 +265,7 @@ type LearningResult = {
 type User = {
   id: string;
   displayName: string;
-  preferences: CardAppearance & {
-    colorScheme: 'light' | 'dark';
-    cardFocusFullscreen: boolean;
-    learningProficiencyLevel: LearningProficiencyLevel;
-    languagePairs: readonly UserLanguagePairEntry[];
-    activeLanguagePairId: string;
-  };
+  preferences: UserPreferences; // CardAppearance + colorScheme + cardFocusFullscreen + learningProficiencyLevel + languagePairs + activeLanguagePairId
 };
 ```
 

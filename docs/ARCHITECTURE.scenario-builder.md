@@ -13,10 +13,11 @@ features/scenario-builder/
 ├── components/
 │   ├── scenario-builder-page/
 │   ├── scenario-builder-dialog/
-│   ├── scenario-editor-form/
-│   └── scenario-card-picker/
+│   └── scenario-editor-form/
 ├── services/
-│   └── scenario-builder.store.ts
+│   ├── scenario-builder.store.ts
+│   └── scenario-builder.service.ts
+└── types/
 ```
 
 ## Модель `ScenarioCardSource`
@@ -53,6 +54,11 @@ classDiagram
 - Dialog CRUD (как card-editor).
 - Read-only для чужих опубликованных сценариев (G11e multi-user).
 - Прохождение — [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md).
+
+## Зависимости
+
+- `shared/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
+- `shared/` — course-picker, lesson-picker, scenario-picker
 
 ## Связанные документы
 

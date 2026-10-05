@@ -50,5 +50,6 @@ Thumbs.db
 plans/
 
 .gigacode/
-.continue/
 .codeassistant/
+
+# Continue rules (.continue/) — коммитим правила проекта в репозиторий
