@@ -10,12 +10,11 @@
     (selectedIndexChange)="selectedTabIndex.set($event)"
   >
     <!-- Tab: Курс -->
-    <mat-tab label="Курс">
+    <mat-tab label="Курсы">
       <div class="page-card__tab-panel">
         <section class="page-card__section">
-          <h2 class="page-card__section-title">Языки обучения</h2>
           <p class="page-card__hint">
-            Можно добавить несколько курсов; активный курс используется в обучении и редакторах.
+            Можно добавить несколько курсов. Активный курс используется в обучении и редакторах.
           </p>
 
           <ul class="page-card__pair-list">
@@ -31,14 +30,14 @@
                   }
                 </span>
                 <span class="page-card__pair-actions">
-                  <button mat-stroked-button type="button" (click)="openPairSettings(entry.id)">
-                    Настройки
-                  </button>
                   @if (!isActive(entry)) {
                     <button mat-stroked-button type="button" (click)="setActive(entry.id)">
                       Сделать активным
                     </button>
                   }
+                  <button mat-stroked-button type="button" (click)="openPairSettings(entry.id)">
+                    Программы курса
+                  </button>
                   @if (canRemovePair()) {
                     <button
                       mat-icon-button
@@ -217,8 +216,8 @@
       </div>
     </mat-tab>
 
-    <!-- Tab: Программа -->
-    <mat-tab label="Программа курса">
+    <!-- Tab: Программы курса -->
+    <mat-tab label="Программы курса">
       @if (loading() && items().length === 0) {
         <div class="course-catalog-page__state">
           <mat-spinner diameter="40" />
