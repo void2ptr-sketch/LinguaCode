@@ -1,74 +1,296 @@
 <section class="course-catalog-page">
   <header class="course-catalog-page__header">
     <h1>Каталог курсов</h1>
-    <p>Опубликованные учебные программы для активного курса.</p>
   </header>
 
-  @if (loading() && items().length === 0) {
-    <div class="course-catalog-page__state">
-      <mat-spinner diameter="40" />
-      <p>Загрузка…</p>
-    </div>
-  } @else if (error() && items().length === 0) {
-    <mat-card class="course-catalog-page__message">
-      <mat-card-content>{{ error() }}</mat-card-content>
-      <mat-card-actions align="end">
-        <button mat-flat-button type="button" (click)="load()">Повторить</button>
-      </mat-card-actions>
-    </mat-card>
-  } @else if (items().length === 0) {
-    <mat-card class="course-catalog-page__message">
-      <mat-card-content>
-        Опубликованных программ для активного курса пока нет. Смените курс в
-        <a routerLink="/user">профиле</a> или создайте программу в
-        <a routerLink="/tools/courses">конструкторе</a>.
-      </mat-card-content>
-    </mat-card>
-  } @else {
-    <mat-card class="course-catalog-page__panel">
-      <mat-card-header>
-        <mat-card-title>Курсы</mat-card-title>
-        <mat-card-subtitle>{{ totalItems() }} программ</mat-card-subtitle>
-      </mat-card-header>
+  <mat-tab-group
+    class="course-catalog-page__tabs"
+    dynamicHeight
+    [selectedIndex]="selectedTabIndex()"
+    (selectedIndexChange)="selectedTabIndex.set($event)"
+  >
+    <!-- Tab: Курс -->
+    <mat-tab label="Курс">
+      <div class="page-card__tab-panel">
+        <section class="page-card__section">
+          <h2 class="page-card__section-title">Языки обучения</h2>
+          <p class="page-card__hint">
+            Можно добавить несколько курсов; активный курс используется в обучении и редакторах.
+          </p>
 
-      <mat-card-content class="course-catalog-page__content">
-        <ul class="course-catalog-page__list">
-          @for (course of items(); track course.id) {
-            <li class="course-catalog-page__item">
-              <div class="course-catalog-page__item-body">
-                <div class="course-catalog-page__title-row">
-                  <h2 class="course-catalog-page__title">{{ course.title }}</h2>
-                  @if (isCourseCompleted(course.id)) {
-                    <mat-chip class="course-catalog-page__badge" disabled>
-                      <mat-icon>workspace_premium</mat-icon>
-                      Завершён
-                    </mat-chip>
+          <ul class="page-card__pair-list">
+            @for (entry of languagePairs(); track entry.id) {
+              <li
+                class="page-card__pair-item"
+                [class.page-card__pair-item--active]="isActive(entry)"
+              >
+                <span class="page-card__pair-label">
+                  {{ entryLabel(entry) }}
+                  @if (isActive(entry)) {
+                    <span class="page-card__pair-badge">активный</span>
+                  }
+                </span>
+                <span class="page-card__pair-actions">
+                  <button mat-stroked-button type="button" (click)="openPairSettings(entry.id)">
+                    Настройки
+                  </button>
+                  @if (!isActive(entry)) {
+                    <button mat-stroked-button type="button" (click)="setActive(entry.id)">
+                      Сделать активным
+                    </button>
+                  }
+                  @if (canRemovePair()) {
+                    <button
+                      mat-icon-button
+                      type="button"
+                      aria-label="Удалить курс"
+                      (click)="removePair(entry.id)"
+                    >
+                      <mat-icon>delete_outline</mat-icon>
+                    </button>
+                  }
+                </span>
+              </li>
+            }
+          </ul>
+
+          <h3 class="page-card__subsection-title">Добавить курс</h3>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Известный язык</mat-label>
+            <mat-select
+              [ngModel]="knownLanguageDraft()"
+              (ngModelChange)="knownLanguageDraft.set($event)"
+              name="knownLanguage"
+            >
+              @for (language of languages; track language) {
+                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Новый язык</mat-label>
+            <mat-select
+              [ngModel]="learningLanguageDraft()"
+              (ngModelChange)="learningLanguageDraft.set($event)"
+              name="learningLanguage"
+            >
+              @for (language of languages; track language) {
+                <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          @if (languagePairInvalid()) {
+            <p class="page-card__error">Языки должны отличаться.</p>
+          }
+
+          <button
+            mat-stroked-button
+            type="button"
+            [disabled]="languagePairInvalid()"
+            (click)="addPair()"
+          >
+            Добавить курс
+          </button>
+        </section>
+      </div>
+    </mat-tab>
+
+    <!-- Tab: Настройка курса -->
+    <mat-tab label="Настройка курса">
+      <div class="page-card__tab-panel">
+        <section class="page-card__section">
+          <h2 class="page-card__section-title">Настройка курса</h2>
+          <p class="page-card__hint">
+            Романизация и фонетика для выбранного курса. Сохраняются отдельно для каждого курса.
+          </p>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Курс</mat-label>
+            <mat-select
+              [ngModel]="settingsPairIdDraft()"
+              (ngModelChange)="onSettingsPairChange($event)"
+              name="settingsPair"
+            >
+              @for (entry of languagePairs(); track entry.id) {
+                <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+
+          @if (showDisplaySettings()) {
+            <app-course-display-settings-matrix
+              [showCjk]="showCjkPreferences()"
+              [showPhonetic]="showPhoneticPreferences()"
+              [romanizationOptions]="romanizationOptions()"
+              [courseLabel]="settingsCourseLabel()"
+              [displayRomanizations]="displayRomanizationsDraft()"
+              [answerRomanizations]="answerRomanizationsDraft()"
+              [showIpa]="showIpaDraft()"
+              [ipaVariantLabel]="ipaVariantLabelDraft()"
+              [answerModes]="answerModesDraft()"
+              (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
+              (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
+              (showIpaChange)="showIpaDraft.set($event)"
+              (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
+              (answerModesChange)="answerModesDraft.set($event)"
+            />
+          } @else {
+            <p class="page-card__hint">
+              Для этого курса нет дополнительных настроек романизации или IPA.
+            </p>
+          }
+
+          @if (showCjkPreferences()) {
+            <section class="page-card__tone-colors">
+              <h3 class="page-card__subsection-title">Цветовая маркировка тонов</h3>
+              <p class="page-card__hint">
+                Иероглифы и пиньинь на карточках окрашиваются по тону слога.
+              </p>
+
+              <mat-slide-toggle
+                [checked]="toneColorEnabledDraft()"
+                (change)="toneColorEnabledDraft.set($event.checked)"
+              >
+                Включить цветовую поддержку тонов
+              </mat-slide-toggle>
+
+              @if (toneColorEnabledDraft()) {
+                <mat-form-field appearance="outline">
+                  <mat-label>Цветовая схема</mat-label>
+                  <mat-select
+                    [ngModel]="toneColorSchemeDraft()"
+                    (ngModelChange)="toneColorSchemeDraft.set($event)"
+                    name="toneColorScheme"
+                  >
+                    @for (scheme of toneColorSchemeOptions; track scheme.id) {
+                      <mat-option [value]="scheme.id">{{ scheme.label }}</mat-option>
+                    }
+                  </mat-select>
+                  <mat-hint>{{ toneColorSchemeHint() }}</mat-hint>
+                </mat-form-field>
+
+                <div class="tone-color-preview" aria-hidden="true">
+                  @for (tone of tonePreviewMarks; track tone) {
+                    <span
+                      class="tone-color-preview__swatch"
+                      [style.background-color]="tonePreviewColor(tone)"
+                      [attr.title]="tone + '-й тон'"
+                    ></span>
                   }
                 </div>
-                <p class="course-catalog-page__meta">
-                  {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
-                  @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
-                    · {{ progressPercent(course.id) }}%
-                  }
-                </p>
-              </div>
-
-              <div class="course-catalog-page__actions">
-                <button mat-flat-button type="button" (click)="startCourse(course.id)">
-                  Начать
-                </button>
-              </div>
-            </li>
+              }
+            </section>
           }
-        </ul>
 
-        <app-pagination
-          [length]="totalItems()"
-          [pageIndex]="pageIndex()"
-          [pageSize]="pageSize()"
-          (pageChange)="onPageChange($event)"
-        />
-      </mat-card-content>
-    </mat-card>
-  }
+          @if (showTracingSettings()) {
+            <section class="page-card__tracing-speed">
+              <h3 class="page-card__subsection-title">Трассировка</h3>
+              <p class="page-card__hint">Скорость анимации одной черты в режиме «Трассировка».</p>
+
+              <div class="page-card__tracing-speed-control">
+                <span class="page-card__tracing-speed-bound">0.1 с</span>
+                <mat-slider
+                  class="page-card__tracing-speed-slider"
+                  [min]="tracingDurationMin"
+                  [max]="tracingDurationMax"
+                  [step]="tracingDurationStep"
+                  discrete
+                >
+                  <input
+                    matSliderThumb
+                    [ngModel]="tracingStrokeDurationDraft()"
+                    (ngModelChange)="tracingStrokeDurationDraft.set($event)"
+                    name="tracingStrokeDuration"
+                  />
+                </mat-slider>
+                <span class="page-card__tracing-speed-bound">2.0 с</span>
+              </div>
+              <p class="page-card__tracing-speed-value">
+                {{ formatTracingDurationSec(tracingStrokeDurationDraft()) }}
+              </p>
+            </section>
+          }
+        </section>
+      </div>
+    </mat-tab>
+
+    <!-- Tab: Программа -->
+    <mat-tab label="Программа курса">
+      @if (loading() && items().length === 0) {
+        <div class="course-catalog-page__state">
+          <mat-spinner diameter="40" />
+          <p>Загрузка…</p>
+        </div>
+      } @else if (error() && items().length === 0) {
+        <mat-card class="course-catalog-page__message">
+          <mat-card-content>{{ error() }}</mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-flat-button type="button" (click)="load()">Повторить</button>
+          </mat-card-actions>
+        </mat-card>
+      } @else if (items().length === 0) {
+        <mat-card class="course-catalog-page__message">
+          <mat-card-content>
+            Опубликованных программ для активного курса пока нет. Смените курс в
+            <a routerLink="/courses">каталоге курсов</a> или создайте программу в
+            <a routerLink="/tools/courses">конструкторе</a>.
+          </mat-card-content>
+        </mat-card>
+      } @else {
+        <p>Опубликованные учебные программы для активного курса.</p>
+        <mat-card class="course-catalog-page__panel">
+          <mat-card-header>
+            <mat-card-title>Курсы</mat-card-title>
+            <mat-card-subtitle>{{ totalItems() }} программ</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content class="course-catalog-page__content">
+            <ul class="course-catalog-page__list">
+              @for (course of items(); track course.id) {
+                <li class="course-catalog-page__item">
+                  <div class="course-catalog-page__item-body">
+                    <div class="course-catalog-page__title-row">
+                      <h2 class="course-catalog-page__title">{{ course.title }}</h2>
+                      @if (isCourseCompleted(course.id)) {
+                        <mat-chip class="course-catalog-page__badge" disabled>
+                          <mat-icon>workspace_premium</mat-icon>
+                          Завершён
+                        </mat-chip>
+                      }
+                    </div>
+                    <p class="course-catalog-page__meta">
+                      {{ course.lessonCount }} уроков · {{ course.languagePairSummary }}
+                      @if (progressPercent(course.id) > 0 && !isCourseCompleted(course.id)) {
+                        · {{ progressPercent(course.id) }}%
+                      }
+                    </p>
+                  </div>
+
+                  <div class="course-catalog-page__actions">
+                    <button mat-flat-button type="button" (click)="startCourse(course.id)">
+                      Начать
+                    </button>
+                  </div>
+                </li>
+              }
+            </ul>
+
+            <app-pagination
+              [length]="totalItems()"
+              [pageIndex]="pageIndex()"
+              [pageSize]="pageSize()"
+              (pageChange)="onPageChange($event)"
+            />
+          </mat-card-content>
+        </mat-card>
+      }
+    </mat-tab>
+  </mat-tab-group>
+
+  <div class="course-catalog-page__actions-bar">
+    <button mat-flat-button type="button" (click)="saveProfile()">Сохранить</button>
+  </div>
 </section>
