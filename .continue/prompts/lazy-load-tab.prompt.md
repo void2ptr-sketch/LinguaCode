@@ -1,71 +1,61 @@
 ---
 name: Ленивая загрузка вкладок
-description: Ленивая загрузка вкладок в Angular 22: Использование loadComponent
+description: Рефакторинг вкладок на ленивую загрузку через loadComponent
 invokable: true
 ---
 
 # Цель
 
-Улучшить производительность приложения, снизив нагрузку на первый загрузочный цикл, используя ленивую загрузку вкладок с помощью `loadComponent`.
+Рефакторинг eagerly-импортированных вкладок на `loadComponent` для снижения размера начального бандла.
 
-# Задача
-Реализовать ленивую загрузку вкладок в Angular 22, следуя современным паттернам и избегая устаревших подходов.
+## Контекст проекта
 
-# Действия
+- **Фреймворк:** Angular 22, **standalone**, **signal-based**
+- **Руководство:** `.continue/rules/02.angular.lazy-loading.rule.md` (rule 02)
+- **Паттерн маршрутизации:** `loadComponent` в `app.routes.ts` — never `loadChildren`/NgModule
+- **Кандидаты на рефакторинг:**
+  - `course-catalog-page` — eagerly импортирует `CourseCatalogCoursesComponent`, `CourseCatalogSettingsComponent`, `CourseCatalogProgramsComponent` в `imports: [...]`
+  - `home-learning-tab` — eagerly импортирует `LearningContinueCardComponent`, `LearningProgramProgressComponent`, `LearningLessonRoadmapComponent`
 
-1. **Настройка маршрутов для ленивой загрузки**
-В файле конфигурации маршрутов (app.routes.ts) определите маршруты для каждой вкладки, используя loadComponent.
+## Задача
 
-'''TypeScript
-{
-  path: 'profile',
-  loadComponent: () => import('./profile/profile.component').then(m => m.ProfileComponent)
-},
-{
-  path: 'settings',
-  loadComponent: () => import('./settings/settings.component').then(m => m.SettingsComponent)
-}
-```
+Перенести вкладки из прямого `imports: [...]` Tab-компонентов в ленивую загрузку через `loadComponent` в роутер.
 
-2. **Организация структуры проекта**
-Разместите компоненты, подлежащие ленивой загрузке, в отдельных директориях, например ```src/app/features/```.
+## Алгоритм действий
 
-**Пример структуры**:
-```
-src/
-├── app/
-│   ├── features/
-│   │   ├── profile/
-│   │   │   └── profile.component.ts
-│   │   └── settings/
-│   │       └── settings.component.ts
-│   └── app.routes.ts
-```
-3. Проверка и валидация
-- Убедитесь, что все маршруты корректно загружаются при переходе.
-- Проверьте, что приложение работает без ошибок, используя ng build.
+1. **Найди** eagerly-импортированные вкладки — просканируй `imports: [...]` в Tab-компонентах (`course-catalog-page.component.ts`, `home-learning-tab.component.ts`)
+2. **Перенеси** в `loadComponent` — добавь маршруты в `app.routes.ts` (или вложенные routes) с `loadComponent: () => import('...').then(m => m.XxxComponent)`
+3. **Обнови** родительский компонент — убери компоненты из `imports: [...]`, добавь `<router-outlet>` в шаблон
+4. **Проверь зависимости** — shared-модули должны оставаться eager; Material через `provideAnimations()`; нет circular deps
+5. **Валидация** — прогони чек-лист (см. ниже) и `ng build`
 
-# Чек-лист валидации
-- [ ] Все маршруты используют loadComponent.
-- [ ] Компоненты размещены в отдельных директориях.
-- [ ] Приложение прошло успешную сборку с ng build.
+## Best Practices
 
-# Best Practices
-- Используйте loadComponent для ленивой загрузки отдельных компонентов.
-- Избегайте использования loadChildren или Module Federation.
-- Используйте оптимизации Ivy для улучшения производительности.
+- Используй `loadComponent` (не `loadChildren`/NgModule) для standalone-компонентов
+- Shared UI и утилиты — eager imports (в `app.config.ts` или shared-модулях)
+- Material animations — только через `provideAnimations()` в `app.config.ts`, не прямой import в lazy-компоненты
+- Lazy-вкладки через `<router-outlet>` внутри Tab-компонента
+- Предпочитай route-level lazy loading над eager imports feature-кода
 
-#  Anti-patterns
-- Использование loadChildren или NgModule для ленивой загрузки.
-- Размещение компонентов в одной директории без разделения по функциональности.
+## Anti-patterns
 
-# Обоснование
-- Ленивая загрузка уменьшает размер инициальной загрузки приложения, улучшая производительность и опыт пользователя. Использование `loadComponent` в `Angular 22` с standalone-компонентами обеспечивает гибкую и современную архитектуру.
+- ❌ NgModule / `loadChildren` — проект не использует модули
+- ❌ Прямой `import` компонента в `imports: [...]` родительского компонента — это eager loading
+- ❌ Circular dependencies между lazy-компонентами и их route-definitions
+- ❌ Забытые `redirectTo` в роутах — после рефакторинга проверь дефолтные редиректы
+- ❌ `provideAnimations()` внутри lazy-компонента — только в `app.config.ts`
 
-# Результат
-После внедрения ленивой загрузки вкладок приложение станет быстрее загружаться и реагировать на действия пользователя, что улучшит общий опыт использования.
+## Чек-лист валидации
 
+- [ ] Все целевые вкладки используют `loadComponent` в роутах
+- [ ] Родительские компоненты больше не содержат вкладки в `imports: [...]`
+- [ ] В шаблонах родительских компонентов есть `<router-outlet>`
+- [ ] `provideAnimations()` подключён в `app.config.ts`
+- [ ] Shared-зависимости остаются eager
+- [ ] `ng build` проходит без ошибок
+- [ ] Нет circular dependencies (проверить `ng build --configuration production`)
 
-# Стандарты кодирования:
+## Стандарты кодирования
+
 - `./continue/agents/angular-architecture.agent.md` — Angular Architecture
-- `./continue/rules/*` - правила кодирования
+- `./continue/rules/*` — правила кодирования
