@@ -55,5 +55,5 @@ invokable: true
 После внедрения ленивой загрузки вкладок приложение станет быстрее загружаться и реагировать на действия пользователя. Это улучшит общий опыт использования приложения и сделает его более отзывчивым и эффективным.
 
 # Стандарты кодирования:
-- `./continue/aggents/angular-architecture.agent.md` — Angular Architecture
+- `./continue/agents/angular-architecture.agent.md` — Angular Architecture
 - `./continue/rules/*` - правила кодирования

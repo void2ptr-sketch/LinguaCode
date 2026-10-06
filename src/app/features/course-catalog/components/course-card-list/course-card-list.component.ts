@@ -15,7 +15,6 @@ import {
 } from '../../../../core/data/language-pair/language-pair.utils';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
-import { MatDividerModule } from '@angular/material/divider';
 
 @Component({
   selector: 'app-course-catalog-courses',
@@ -24,8 +23,7 @@ import { MatDividerModule } from '@angular/material/divider';
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSelectModule,
-    MatDividerModule,
+    MatSelectModule,    
   ],
   standalone: true,
   templateUrl: './course-card-list.component.html',

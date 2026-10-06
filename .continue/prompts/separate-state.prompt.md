@@ -190,5 +190,5 @@ changeLanguagePair(pair: string) {
 - ❌ Использование `BehaviorSubject` — в проекте принят signal-based подход
 
 ## Стандарты кодирования:
-- `./continue/aggents/angular-architecture.agent.md` — Angular Architecture
+- `./continue/agents/angular-architecture.agent.md` — Angular Architecture
 - `./continue/rules/*` - правила кодирования
