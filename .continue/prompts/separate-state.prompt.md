@@ -188,3 +188,7 @@ changeLanguagePair(pair: string) {
 - ❌ Передача данных через `@Input` на >1 уровень — «prop drilling»
 - ❌ Хранение данных и загрузка в одном месте — разделяйте store и repository
 - ❌ Использование `BehaviorSubject` — в проекте принят signal-based подход
+
+## Стандарты кодирования:
+- `./continue/aggents/angular-architecture.agent.md` — Angular Architecture
+- `./continue/rules/*` - правила кодирования
