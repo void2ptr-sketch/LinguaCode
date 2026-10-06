@@ -4,13 +4,15 @@ import {
   effect,
   inject,
   OnInit,
+  Type,
+  signal,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
-import { RouterOutlet } from '@angular/router';
+import { NgComponentOutlet } from '@angular/common';
 
 import { CourseSearchService } from '../../../../core/data';
 import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
@@ -42,7 +44,7 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    RouterOutlet,
+    NgComponentOutlet,
   ],
   standalone: true,
   templateUrl: './course-catalog-page.component.html',
@@ -54,6 +56,25 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly userStore = inject(UserStore);
   private readonly router = inject(Router);
   readonly catalogStore = inject(CourseCatalogStore);
+
+  // Deferred (lazy-loaded) tab components
+  readonly coursesComponent = signal<Type<unknown> | null>(null);
+  readonly settingsComponent = signal<Type<unknown> | null>(null);
+  readonly programsComponent = signal<Type<unknown> | null>(null);
+
+  private loadTabComponents(): void {
+    import('../course-card-list/course-card-list.component')
+      .then((m) => this.coursesComponent.set(m.CourseCatalogCoursesComponent as Type<unknown>))
+      .catch(() => this.coursesComponent.set(null));
+
+    import('../course-settings/course-settings.component')
+      .then((m) => this.settingsComponent.set(m.CourseCatalogSettingsComponent as Type<unknown>))
+      .catch(() => this.settingsComponent.set(null));
+
+    import('../program-list/program-list.component')
+      .then((m) => this.programsComponent.set(m.CourseCatalogProgramsComponent as Type<unknown>))
+      .catch(() => this.programsComponent.set(null));
+  }
 
   // --- State from store ---
   readonly items = this.catalogStore.items;
@@ -115,6 +136,7 @@ export class CourseCatalogPageComponent implements OnInit {
     this.catalogStore.setLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
     this.syncPairSettingsDrafts();
     await this.load();
+    this.loadTabComponents();
   }
 
   // ---- Computed ----
