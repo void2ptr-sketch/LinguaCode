@@ -42,6 +42,42 @@ export const routes: Routes = [
         ],
       },
 
+      // ── Home Learning Tab (lazy-loaded sub-routes) ───────────────────────────
+      {
+        path: 'home-learning-tab',
+        loadComponent: () =>
+          import(
+            './features/home/components/home-learning-tab/home-learning-tab.component'
+          ).then((m) => m.HomeLearningTabComponent),
+        children: [
+          // ── Continue Tab (lazy-loaded) ───────────────────────────────────────
+          {
+            path: 'continue',
+            loadComponent: () =>
+              import(
+                './features/home/components/learning-continue-card/learning-continue-card.component'
+              ).then((m) => m.LearningContinueCardComponent),
+          },
+          // ── Progress Tab (lazy-loaded) ────────────────────────────────────────
+          {
+            path: 'progress',
+            loadComponent: () =>
+              import(
+                './features/home/components/learning-program-progress/learning-program-progress.component'
+              ).then((m) => m.LearningProgramProgressComponent),
+          },
+          // ── Roadmap Tab (lazy-loaded) ────────────────────────────────────────
+          {
+            path: 'roadmap',
+            loadComponent: () =>
+              import(
+                './features/home/components/learning-lesson-roadmap/learning-lesson-roadmap.component'
+              ).then((m) => m.LearningLessonRoadmapComponent),
+          },
+          { path: '**', redirectTo: 'continue', pathMatch: 'full' },
+        ],
+      },
+
       // ── Card Select ───────────────────────────────────────
       {
         path: 'cards/select',
@@ -58,6 +94,31 @@ export const routes: Routes = [
           import(
             './features/course-catalog/components/course-catalog-page/course-catalog-page.component'
           ).then((m) => m.CourseCatalogPageComponent),
+        children: [
+          // ── Course Catalog Tabs (lazy-loaded) ───────────────────────────────────
+          {
+            path: 'tabs/courses',
+            loadComponent: () =>
+              import(
+                './features/course-catalog/components/course-card-list/course-card-list.component'
+              ).then((m) => m.CourseCatalogCoursesComponent),
+          },
+          {
+            path: 'tabs/settings',
+            loadComponent: () =>
+              import(
+                './features/course-catalog/components/course-settings/course-settings.component'
+              ).then((m) => m.CourseCatalogSettingsComponent),
+          },
+          {
+            path: 'tabs/programs',
+            loadComponent: () =>
+              import(
+                './features/course-catalog/components/program-list/program-list.component'
+              ).then((m) => m.CourseCatalogProgramsComponent),
+          },
+          { path: '**', redirectTo: 'tabs/courses', pathMatch: 'full' },
+        ],
       },
 
       // ── Course Builder ────────────────────────────────────
@@ -69,7 +130,7 @@ export const routes: Routes = [
           ).then((m) => m.CourseBuilderPageComponent),
       },
 
-      // ── Scenario Builder ──────────────────────────────────
+      // ── Scenario Builder ───────────────────────────────────
       {
         path: 'tools/scenario-builder',
         loadComponent: () =>
@@ -78,7 +139,7 @@ export const routes: Routes = [
           ).then((m) => m.ScenarioBuilderPageComponent),
       },
 
-      // ── Card Editor ───────────────────────────────────────
+      // ── Card Editor ────────────────────────────────────────
       {
         path: 'tools/cards',
         loadComponent: () =>

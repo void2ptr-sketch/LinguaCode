@@ -26,29 +26,15 @@
     </mat-card>
   } @else {
     <div class="home-learning-tab__grid">
-      <app-learning-continue-card
-        class="home-learning-tab__continue"
-        [label]="continueLabel()"
-        [resumeTarget]="resumeTarget()"
-        [continueQueryParams]="continueQueryParams()"
-      />
+      <!-- Вкладка "Продолжить" -->
+      <router-outlet name="continue"></router-outlet>
 
-      @if (course() && courseProgress(); as progress) {
-        <app-learning-program-progress
-          class="home-learning-tab__progress"
-          [courseTitle]="course()!.title"
-          [completed]="progress.completed"
-          [total]="progress.total"
-          [percent]="progress.percent"
-        />
-      }
+      <!-- Вкладка "Прогресс" -->
+      <router-outlet name="progress"></router-outlet>
 
+      <!-- Вкладка "Дорожная карта" -->
       @if (roadmap().length > 0) {
-        <app-learning-lesson-roadmap
-          class="home-learning-tab__roadmap"
-          [items]="roadmap()"
-          [courseId]="course()?.id ?? ''"
-        />
+        <router-outlet name="roadmap"></router-outlet>
       }
 
       <mat-card class="home-learning-tab__stats">

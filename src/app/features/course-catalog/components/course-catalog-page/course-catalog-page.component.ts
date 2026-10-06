@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
+import { RouterOutlet } from '@angular/router';
 
 import { CourseSearchService } from '../../../../core/data';
 import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
@@ -30,9 +31,6 @@ import {
 } from '../../../../core/models/phonetic-content.types';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
-import { CourseCatalogCoursesComponent } from '../course-card-list/course-card-list.component';
-import { CourseCatalogSettingsComponent } from '../course-settings/course-settings.component';
-import { CourseCatalogProgramsComponent } from '../program-list/program-list.component';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
@@ -44,9 +42,7 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
     MatButtonModule,
     MatCardModule,
     MatTabsModule,
-    CourseCatalogCoursesComponent,
-    CourseCatalogSettingsComponent,
-    CourseCatalogProgramsComponent,
+    RouterOutlet,
   ],
   standalone: true,
   templateUrl: './course-catalog-page.component.html',

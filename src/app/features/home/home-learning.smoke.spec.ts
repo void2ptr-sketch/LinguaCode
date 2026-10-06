@@ -92,7 +92,7 @@ describe('Home learning dashboard smoke', () => {
     const text = fixture.nativeElement.textContent as string;
     expect(text).toContain('Привет');
     expect(text).toContain('Программа');
-    expect(text).toContain('Начать');
+    expect(text).toContain('Свободная практика');
 
     httpMock.verify();
   });

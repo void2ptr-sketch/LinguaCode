@@ -13,20 +13,17 @@
     >
       <!-- Tab: Курсы -->
       <mat-tab label="Курсы">
-        <app-course-catalog-courses />
+        <router-outlet name="courses"></router-outlet>
       </mat-tab>
 
       <!-- Tab: Настройка курса -->
       <mat-tab label="Настройка курса">
-        <app-course-catalog-settings />
+        <router-outlet name="settings"></router-outlet>
       </mat-tab>
 
       <!-- Tab: Программы курса -->
       <mat-tab label="Программы курса">
-        <app-course-catalog-programs
-          (loadRequested)="load()"
-          (startCourse)="startCourse($event)"
-        />
+        <router-outlet name="programs"></router-outlet>
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>
