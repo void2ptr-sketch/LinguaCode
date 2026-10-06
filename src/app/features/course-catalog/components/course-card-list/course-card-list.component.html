@@ -1,0 +1,84 @@
+<section class="page-card__tab-panel">
+  <section class="page-card__section">
+    <p class="page-card__hint">
+      Можно добавить несколько курсов. Активный курс используется в обучении и редакторах.
+    </p>
+
+    <ul class="page-card__pair-list">
+      @for (entry of languagePairs(); track entry.id) {
+        <li
+          class="page-card__pair-item"
+          [class.page-card__pair-item--active]="isActive(entry)"
+        >
+          <span class="page-card__pair-label">
+            {{ entryLabel(entry) }}
+            @if (isActive(entry)) {
+              <span class="page-card__pair-badge">активный</span>
+            }
+          </span>
+          <span class="page-card__pair-actions">
+            @if (!isActive(entry)) {
+              <button mat-stroked-button type="button" (click)="setActive.emit(entry.id)">
+                Сделать активным
+              </button>
+            }
+            <button mat-stroked-button type="button" (click)="openPairSettings.emit(entry.id)">
+              Программы курса
+            </button>
+            @if (canRemovePair()) {
+              <button
+                mat-icon-button
+                type="button"
+                aria-label="Удалить курс"
+                (click)="removePair.emit(entry.id)"
+              >
+                <mat-icon>delete_outline</mat-icon>
+              </button>
+            }
+          </span>
+        </li>
+      }
+    </ul>
+
+    <h3 class="page-card__subsection-title">Добавить курс</h3>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Известный язык</mat-label>
+      <mat-select
+        [ngModel]="knownLanguageDraft()"
+        (ngModelChange)="knownLanguageDraft.set($event)"
+        name="knownLanguage"
+      >
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Новый язык</mat-label>
+      <mat-select
+        [ngModel]="learningLanguageDraft()"
+        (ngModelChange)="learningLanguageDraft.set($event)"
+        name="learningLanguage"
+      >
+        @for (language of languages; track language) {
+          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (languagePairInvalid()) {
+      <p class="page-card__error">Языки должны отличаться.</p>
+    }
+
+    <button
+      mat-stroked-button
+      type="button"
+      [disabled]="languagePairInvalid()"
+      (click)="onAddPair()"
+    >
+      Добавить курс
+    </button>
+  </section>
+</section>

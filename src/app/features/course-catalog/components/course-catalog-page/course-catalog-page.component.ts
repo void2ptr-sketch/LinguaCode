@@ -1,8 +1,14 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
@@ -34,7 +40,6 @@ import {
   TRACING_STROKE_DURATION_BOUNDS,
 } from '../../../../core/models/phonetic-content.types';
 import { TONE_COLOR_SCHEMES } from '../../../../core/models/tone-color.types';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../../../core/models/learning-proficiency.types';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
@@ -57,10 +62,8 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
 @Component({
   selector: 'app-course-catalog-page',
   imports: [
-    RouterLink,
     FormsModule,
     MatButtonModule,
-    MatButtonToggleModule,
     MatCardModule,
     MatChipsModule,
     MatIconModule,
@@ -73,6 +76,7 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
     UiPaginationComponent,
     CourseDisplaySettingsMatrixComponent,
   ],
+  standalone: true,
   templateUrl: './course-catalog-page.component.html',
   styleUrl: './course-catalog-page.component.scss',
 })
@@ -136,7 +140,7 @@ export class CourseCatalogPageComponent implements OnInit {
   // Tab control
   readonly selectedTabIndex = signal(0);
 
-  private static readonly pairSettingsTabIndex = 2;
+  static readonly pairSettingsTabIndex = 2;
 
   // Reload catalog on active pair change
   private readonly reloadOnActivePairChange = effect(() => {

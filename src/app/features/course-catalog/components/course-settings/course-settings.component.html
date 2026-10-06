@@ -1,0 +1,115 @@
+<section class="page-card__tab-panel">
+  <section class="page-card__section">
+    <h2 class="page-card__section-title">Настройка курса</h2>
+    <p class="page-card__hint">
+      Романизация и фонетика для выбранного курса. Сохраняются отдельно для каждого курса.
+    </p>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Курс</mat-label>
+      <mat-select
+        [ngModel]="settingsPairIdDraft()"
+        (ngModelChange)="settingsPairIdDraft.set($event)"
+        name="settingsPair"
+      >
+        @for (entry of languagePairs(); track entry.id) {
+          <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+
+    @if (showDisplaySettings()) {
+      <app-course-display-settings-matrix
+        [showCjk]="showCjkPreferences()"
+        [showPhonetic]="showPhoneticPreferences()"
+        [romanizationOptions]="romanizationOptions()"
+        [courseLabel]="settingsCourseLabel()"
+        [displayRomanizations]="displayRomanizationsDraft()"
+        [answerRomanizations]="answerRomanizationsDraft()"
+        [showIpa]="showIpaDraft()"
+        [ipaVariantLabel]="ipaVariantLabelDraft()"
+        [answerModes]="answerModesDraft()"
+        (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
+        (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
+        (showIpaChange)="showIpaDraft.set($event)"
+        (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
+        (answerModesChange)="answerModesDraft.set($event)"
+      />
+    } @else {
+      <p class="page-card__hint">
+        Для этого курса нет дополнительных настроек романизации или IPA.
+      </p>
+    }
+
+    @if (showCjkPreferences()) {
+      <section class="page-card__tone-colors">
+        <h3 class="page-card__subsection-title">Цветовая маркировка тонов</h3>
+        <p class="page-card__hint">
+          Иероглифы и пиньинь на карточках окрашиваются по тону слога.
+        </p>
+
+        <mat-slide-toggle
+          [checked]="toneColorEnabledDraft()"
+          (change)="toneColorEnabledDraft.set($event.checked)"
+        >
+          Включить цветовую поддержку тонов
+        </mat-slide-toggle>
+
+        @if (toneColorEnabledDraft()) {
+          <mat-form-field appearance="outline">
+            <mat-label>Цветовая схема</mat-label>
+            <mat-select
+              [ngModel]="toneColorSchemeDraft()"
+              (ngModelChange)="toneColorSchemeDraft.set($event)"
+              name="toneColorScheme"
+            >
+              @for (scheme of toneColorSchemeOptions; track scheme.id) {
+                <mat-option [value]="scheme.id">{{ scheme.label }}</mat-option>
+              }
+            </mat-select>
+            <mat-hint>{{ toneColorSchemeHint() }}</mat-hint>
+          </mat-form-field>
+
+          <div class="tone-color-preview" aria-hidden="true">
+            @for (tone of tonePreviewMarks; track tone) {
+              <span
+                class="tone-color-preview__swatch"
+                [style.background-color]="tonePreviewColor(tone)"
+                [attr.title]="tone + '-й тон'"
+              ></span>
+            }
+          </div>
+        }
+      </section>
+    }
+
+    @if (showTracingSettings()) {
+      <section class="page-card__tracing-speed">
+        <h3 class="page-card__subsection-title">Трассировка</h3>
+        <p class="page-card__hint">Скорость анимации одной черты в режиме «Трассировка».</p>
+
+        <div class="page-card__tracing-speed-control">
+          <span class="page-card__tracing-speed-bound">0.1 с</span>
+          <mat-slider
+            class="page-card__tracing-speed-slider"
+            [min]="tracingDurationMin"
+            [max]="tracingDurationMax"
+            [step]="tracingDurationStep"
+            discrete
+          >
+            <input
+              matSliderThumb
+              [ngModel]="tracingStrokeDurationDraft()"
+              (ngModelChange)="tracingStrokeDurationDraft.set($event)"
+              name="tracingStrokeDuration"
+            />
+          </mat-slider>
+          <span class="page-card__tracing-speed-bound">2.0 с</span>
+        </div>
+        <p class="page-card__tracing-speed-value">
+          {{ formatTracingDurationSec(tracingStrokeDurationDraft()) }}
+        </p>
+      </section>
+    }
+  </section>
+</section>
