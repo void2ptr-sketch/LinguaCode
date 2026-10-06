@@ -263,6 +263,18 @@
   gap: 0.25rem;
 }
 
+.settings-course-label {
+  background: color-mix(in srgb, var(--mat-sys-primary) 8%, transparent);
+  border-radius: 0.5rem;
+  padding: 0.5rem 0.75rem;
+}
+
+.settings-course-label__text {
+  color: var(--mat-sys-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
 .page-card__color-scheme {
   flex-wrap: wrap;
   width: fit-content;

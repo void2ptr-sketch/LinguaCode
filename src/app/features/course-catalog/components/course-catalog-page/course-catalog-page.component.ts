@@ -140,8 +140,6 @@ export class CourseCatalogPageComponent implements OnInit {
   // Tab control
   readonly selectedTabIndex = signal(0);
 
-  static readonly pairSettingsTabIndex = 2;
-
   // Reload catalog on active pair change
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
@@ -238,17 +236,6 @@ export class CourseCatalogPageComponent implements OnInit {
 
   isActive(entry: UserLanguagePairEntry): boolean {
     return this.userStore.isActiveEntry(entry);
-  }
-
-  onSettingsPairChange(id: string): void {
-    this.settingsPairIdDraft.set(id);
-    this.syncPairSettingsDrafts();
-  }
-
-  openPairSettings(id: string): void {
-    this.settingsPairIdDraft.set(id);
-    this.syncPairSettingsDrafts();
-    this.selectedTabIndex.set(CourseCatalogPageComponent.pairSettingsTabIndex);
   }
 
   setActive(id: string): void {

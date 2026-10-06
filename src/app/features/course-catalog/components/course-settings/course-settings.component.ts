@@ -43,7 +43,6 @@ export class CourseCatalogSettingsComponent {
   readonly languagePairs = input.required<UserLanguagePairEntry[]>();
 
   // Two-way bindings (model)
-  readonly settingsPairIdDraft = model.required<string>();
   readonly displayRomanizationsDraft = model.required<readonly RomanizationSystem[]>();
   readonly answerRomanizationsDraft = model.required<readonly RomanizationSystem[]>();
   readonly showIpaDraft = model.required<boolean>();
@@ -58,7 +57,6 @@ export class CourseCatalogSettingsComponent {
   readonly showTracingSettings = model.required<boolean>();
 
   // Outputs
-  readonly settingsPairIdChange = output<string>();
   readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
   readonly answerRomanizationsChange = output<readonly RomanizationSystem[]>();
   readonly showIpaChange = output<boolean>();
@@ -78,9 +76,8 @@ export class CourseCatalogSettingsComponent {
   // ---- Computed ----
 
   readonly settingsEntry = computed(() => {
-    const id = this.settingsPairIdDraft();
     const pairs = this.languagePairs();
-    return pairs.find((entry) => entry.id === id) ?? pairs[0] ?? null;
+    return pairs[0] ?? null;
   });
 
   readonly settingsCourseLabel = computed(() => {

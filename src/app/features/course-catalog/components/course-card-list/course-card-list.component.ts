@@ -61,7 +61,6 @@ export class CourseCatalogCoursesComponent {
   // Outputs
   readonly addPair = output<void>();
   readonly setActive = output<string>();
-  readonly openPairSettings = output<string>();
   readonly removePair = output<string>();
 
   // Derived data

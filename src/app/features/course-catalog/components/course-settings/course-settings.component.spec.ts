@@ -30,7 +30,6 @@ describe('CourseCatalogSettingsComponent', () => {
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('languagePairs', [makePair('pair-1', 'ru', 'en')]);
-    fixture.componentRef.setInput('settingsPairIdDraft', 'pair-1');
     fixture.componentRef.setInput('displayRomanizationsDraft', ['pinyin']);
     fixture.componentRef.setInput('answerRomanizationsDraft', ['pinyin', 'palladius']);
     fixture.componentRef.setInput('showIpaDraft', false);
@@ -60,9 +59,9 @@ describe('CourseCatalogSettingsComponent', () => {
     expect(title?.textContent?.trim()).toBe('Настройка курса');
   });
 
-  it('should render course selector', () => {
-    const select = fixture.nativeElement.querySelector('mat-select');
-    expect(select).toBeTruthy();
+  it('should render course label', () => {
+    const label = fixture.nativeElement.querySelector('.settings-course-label__text');
+    expect(label?.textContent?.trim()).toContain('Настройки для:');
   });
 
   it('should compute settingsEntry for selected pair', () => {

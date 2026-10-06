@@ -35,9 +35,6 @@
                       Сделать активным
                     </button>
                   }
-                  <button mat-stroked-button type="button" (click)="openPairSettings(entry.id)">
-                    Программы курса
-                  </button>
                   @if (canRemovePair()) {
                     <button
                       mat-icon-button
@@ -106,18 +103,9 @@
             Романизация и фонетика для выбранного курса. Сохраняются отдельно для каждого курса.
           </p>
 
-          <mat-form-field appearance="outline">
-            <mat-label>Курс</mat-label>
-            <mat-select
-              [ngModel]="settingsPairIdDraft()"
-              (ngModelChange)="onSettingsPairChange($event)"
-              name="settingsPair"
-            >
-              @for (entry of languagePairs(); track entry.id) {
-                <mat-option [value]="entry.id">{{ entryLabel(entry) }}</mat-option>
-              }
-            </mat-select>
-          </mat-form-field>
+          <div class="settings-course-label">
+            <span class="settings-course-label__text">Настройки для: {{ settingsCourseLabel() }}</span>
+          </div>
 
           @if (showDisplaySettings()) {
             <app-course-display-settings-matrix
