@@ -39,9 +39,6 @@
   border-radius: 0.5rem;
   display: grid;
   gap: 0.5rem;
-  grid-template-areas:
-    'label actions'
-    'label actions';
   grid-template-columns: 1fr auto;
   padding: 0.5rem 0.75rem;
 }
