@@ -10,6 +10,7 @@ This is an Angular application (Angular 22, TypeScript 6, standalone components,
 *   **`src/app/features/`** — Isolated features (e.g., `card-select/`): pages, feature components, feature services/stores.
 *   **`src/app/shared/`** — Reusable UI components, pipes, directives, and utilities (e.g., `pagination/`, `card-catalog-search/`, `components/`).
 
+
 ### Key Configuration Files
 *   **`src/app/app.config.ts`** — Application configuration (providers, initializers).
 *   **`src/app/app.routes.ts`** — Routing configuration (lazy `loadComponent` only).
