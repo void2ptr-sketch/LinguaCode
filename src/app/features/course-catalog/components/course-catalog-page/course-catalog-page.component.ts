@@ -9,16 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatChipsModule } from '@angular/material/chips';
-import { MatIconModule } from '@angular/material/icon';
-import { MatInputModule } from '@angular/material/input';
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { MatSelectModule } from '@angular/material/select';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { MatSliderModule } from '@angular/material/slider';
 import { MatTabsModule } from '@angular/material/tabs';
-import type { PageEvent } from '@angular/material/paginator';
 
 import { CourseSearchService } from '../../../../core/data';
 import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
@@ -34,28 +25,28 @@ import type {
   UserPreferences,
 } from '../../../../core/models';
 import type { ToneColorSchemeId } from '../../../../core/models/tone-color.types';
-import type { ToneMark } from '../../../../core/models/phonetic-content.types';
 import {
   ROMANIZATION_DISPLAY_ORDER,
   TRACING_STROKE_DURATION_BOUNDS,
 } from '../../../../core/models/phonetic-content.types';
-import { TONE_COLOR_SCHEMES } from '../../../../core/models/tone-color.types';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
 } from '../../../../core/data/user/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import type { PageEvent } from '@angular/material/paginator';
 import {
-  CourseDisplaySettingsMatrixComponent,
-  type RomanizationOption,
-} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+  CourseCatalogCoursesComponent,
+} from '../course-card-list/course-card-list.component';
+import {
+  CourseCatalogSettingsComponent,
+} from '../course-settings/course-settings.component';
+import {
+  CourseCatalogProgramsComponent,
+} from '../program-list/program-list.component';
+import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
 import { type AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
-import {
-  CONTENT_LANGUAGE_LABELS,
-  contentLanguages,
-} from '../../../../core/data/language-pair/language-pair.utils';
 
 let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
 
@@ -64,17 +55,10 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
   imports: [
     FormsModule,
     MatButtonModule,
-    MatCardModule,
-    MatChipsModule,
-    MatIconModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSelectModule,
-    MatSlideToggleModule,
-    MatSliderModule,
     MatTabsModule,
-    UiPaginationComponent,
-    CourseDisplaySettingsMatrixComponent,
+    CourseCatalogCoursesComponent,
+    CourseCatalogSettingsComponent,
+    CourseCatalogProgramsComponent,
   ],
   standalone: true,
   templateUrl: './course-catalog-page.component.html',
@@ -101,17 +85,15 @@ export class CourseCatalogPageComponent implements OnInit {
   readonly preferences = this.userStore.preferences;
   readonly languagePairs = this.userStore.languagePairs;
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
-  readonly languages = contentLanguages();
-  readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
   // Draft signals for profile
   readonly nameDraft = signal(this.displayName());
   readonly learningProficiencyDraft = signal<LearningProficiencyLevel>(
     this.preferences().learningProficiencyLevel,
   );
-  readonly themeDraft = signal(this.preferences().theme);
+  readonly themeDraft = signal<AppColorScheme>(this.preferences().theme as AppColorScheme);
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
-  readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme);
+  readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme as AppColorScheme);
   readonly cardFocusFullscreenDraft = signal(this.preferences().cardFocusFullscreen);
 
   // Course tab signals
@@ -131,11 +113,6 @@ export class CourseCatalogPageComponent implements OnInit {
   readonly toneColorEnabledDraft = signal(false);
   readonly toneColorSchemeDraft = signal<ToneColorSchemeId>('classic');
   readonly tracingStrokeDurationDraft = signal<number>(TRACING_STROKE_DURATION_BOUNDS.defaultSec);
-  readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
-  readonly tonePreviewMarks: readonly ToneMark[] = [1, 2, 3, 4, 5];
-  readonly tracingDurationMin = TRACING_STROKE_DURATION_BOUNDS.minSec;
-  readonly tracingDurationMax = TRACING_STROKE_DURATION_BOUNDS.maxSec;
-  readonly tracingDurationStep = TRACING_STROKE_DURATION_BOUNDS.stepSec;
 
   // Tab control
   readonly selectedTabIndex = signal(0);
@@ -190,10 +167,6 @@ export class CourseCatalogPageComponent implements OnInit {
 
   readonly showTracingSettings = computed(() => this.settingsEntry()?.pair.learning === 'zh');
 
-  readonly showDisplaySettings = computed(
-    () => this.showCjkPreferences() || this.showPhoneticPreferences(),
-  );
-
   readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
     const options: RomanizationOption[] = [
       { value: 'pinyin', label: 'Пиньинь' },
@@ -214,20 +187,6 @@ export class CourseCatalogPageComponent implements OnInit {
 
   entryLabel(entry: UserLanguagePairEntry): string {
     return this.userStore.formatEntryLabel(entry);
-  }
-
-  toneColorSchemeHint(): string {
-    const scheme = this.toneColorSchemeOptions.find(
-      (item) => item.id === this.toneColorSchemeDraft(),
-    );
-    return scheme?.description ?? '';
-  }
-
-  tonePreviewColor(tone: ToneMark): string {
-    const scheme = this.toneColorSchemeOptions.find(
-      (item) => item.id === this.toneColorSchemeDraft(),
-    );
-    return scheme?.colors[tone] ?? '#757575';
   }
 
   formatTracingDurationSec(value: number): string {

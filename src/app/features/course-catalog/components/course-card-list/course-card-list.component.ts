@@ -2,7 +2,6 @@ import {
   Component,
   computed,
   input,
-  model,
   output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -43,20 +42,24 @@ export class CourseCatalogCoursesComponent {
   // Inputs (read-only)
   readonly displayName = input.required<string>();
   readonly preferences = input.required<UserPreferences>();
-  readonly languagePairs = input.required<UserLanguagePairEntry[]>();
+  readonly languagePairs = input.required<readonly UserLanguagePairEntry[]>();
   readonly activeLanguagePairId = input.required<string>();
 
-  // Two-way bindings (model)
-  readonly nameDraft = model.required<string>();
-  readonly learningProficiencyDraft = model.required<LearningProficiencyLevel>();
-  readonly themeDraft = model.required<AppColorScheme>();
-  readonly fontSizeDraft = model.required<UserPreferences['fontSize']>();
-  readonly colorSchemeDraft = model.required<AppColorScheme>();
-  readonly cardFocusFullscreenDraft = model.required<boolean>();
+  // Profile draft inputs
+  readonly nameDraft = input.required<string>();
+  readonly learningProficiencyDraft = input.required<LearningProficiencyLevel>();
+  readonly themeDraft = input.required<AppColorScheme>();
+  readonly fontSizeDraft = input.required<UserPreferences['fontSize']>();
+  readonly colorSchemeDraft = input.required<AppColorScheme>();
+  readonly cardFocusFullscreenDraft = input.required<boolean>();
 
-  // Course tab inputs (two-way)
-  readonly knownLanguageDraft = model.required<ContentLanguage>();
-  readonly learningLanguageDraft = model.required<ContentLanguage>();
+  // Course tab inputs
+  readonly knownLanguageDraft = input.required<ContentLanguage>();
+  readonly learningLanguageDraft = input.required<ContentLanguage>();
+
+  // Outputs for two-way binding
+  readonly knownLanguageChange = output<ContentLanguage>();
+  readonly learningLanguageChange = output<ContentLanguage>();
 
   // Outputs
   readonly addPair = output<void>();

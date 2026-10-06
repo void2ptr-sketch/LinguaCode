@@ -1,9 +1,6 @@
 <section class="page-card__tab-panel">
   <section class="page-card__section">
-    <h2 class="page-card__section-title">Настройка курса</h2>
-    <p class="page-card__hint">
-      Романизация и фонетика для выбранного курса. Сохраняются отдельно для каждого курса.
-    </p>
+    <h2 class="page-card__section-title">Настройка карточек курса</h2>
 
     @if (settingsCourseLabel()) {
       <div class="settings-course-label">
@@ -12,6 +9,10 @@
     }
 
     @if (showDisplaySettings()) {
+      <h2 class="page-card__hint">
+        Романизация и фонетика для выбранного курса:
+      </h2>
+
       <app-course-display-settings-matrix
         [showCjk]="showCjkPreferences()"
         [showPhonetic]="showPhoneticPreferences()"
@@ -22,15 +23,15 @@
         [showIpa]="showIpaDraft()"
         [ipaVariantLabel]="ipaVariantLabelDraft()"
         [answerModes]="answerModesDraft()"
-        (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
-        (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
-        (showIpaChange)="showIpaDraft.set($event)"
-        (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
-        (answerModesChange)="answerModesDraft.set($event)"
+        (displayRomanizationsChange)="displayRomanizationsChange.emit($event)"
+        (answerRomanizationsChange)="answerRomanizationsChange.emit($event)"
+        (showIpaChange)="showIpaChange.emit($event)"
+        (ipaVariantLabelChange)="ipaVariantLabelChange.emit($event)"
+        (answerModesChange)="answerModesChange.emit($event)"
       />
     } @else {
       <p class="page-card__hint">
-        Для этого курса нет дополнительных настроек романизации или IPA.
+        Для этого курса нет дополнительных настроек внешнего вида карточек.
       </p>
     }
 
@@ -43,7 +44,7 @@
 
         <mat-slide-toggle
           [checked]="toneColorEnabledDraft()"
-          (change)="toneColorEnabledDraft.set($event.checked)"
+          (change)="toneColorEnabledChange.emit($event.checked)"
         >
           Включить цветовую поддержку тонов
         </mat-slide-toggle>
@@ -53,7 +54,7 @@
             <mat-label>Цветовая схема</mat-label>
             <mat-select
               [ngModel]="toneColorSchemeDraft()"
-              (ngModelChange)="toneColorSchemeDraft.set($event)"
+              (ngModelChange)="toneColorSchemeChange.emit($event)"
               name="toneColorScheme"
             >
               @for (scheme of toneColorSchemeOptions; track scheme.id) {
@@ -93,7 +94,7 @@
             <input
               matSliderThumb
               [ngModel]="tracingStrokeDurationDraft()"
-              (ngModelChange)="tracingStrokeDurationDraft.set($event)"
+              (ngModelChange)="tracingStrokeDurationChange.emit($event)"
               name="tracingStrokeDuration"
             />
           </mat-slider>

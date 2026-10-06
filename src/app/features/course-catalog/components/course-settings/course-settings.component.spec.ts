@@ -30,6 +30,7 @@ describe('CourseCatalogSettingsComponent', () => {
     component = fixture.componentInstance;
 
     fixture.componentRef.setInput('languagePairs', [makePair('pair-1', 'ru', 'en')]);
+    fixture.componentRef.setInput('activeLanguagePairId', 'pair-1');
     fixture.componentRef.setInput('displayRomanizationsDraft', ['pinyin']);
     fixture.componentRef.setInput('answerRomanizationsDraft', ['pinyin', 'palladius']);
     fixture.componentRef.setInput('showIpaDraft', false);

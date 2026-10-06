@@ -411,41 +411,6 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.formatTracingDurationSec(1.25)).toBe('1.3 с');
   });
 
-  it('should return empty hint for unknown tone color scheme', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    component.toneColorSchemeDraft.set('unknown-scheme' as ToneColorSchemeId);
-    expect(component.toneColorSchemeHint()).toBe('');
-  });
-
-  it('should return default color for unknown tone color scheme', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    component.toneColorSchemeDraft.set('unknown-scheme' as ToneColorSchemeId);
-
-    expect(component.tonePreviewColor(1)).toBe('#757575');
-  });
-
-  it('should have correct tracing duration bounds', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.tracingDurationMin).toBe(0.1);
-    expect(component.tracingDurationMax).toBe(2.0);
-    expect(component.tracingDurationStep).toBe(0.1);
-  });
-
-  it('should have tone preview marks array', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.tonePreviewMarks).toEqual([1, 2, 3, 4, 5]);
-  });
-
   it('should render header with title', () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     fixture.detectChanges();

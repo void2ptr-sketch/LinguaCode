@@ -2,7 +2,6 @@ import {
   Component,
   computed,
   input,
-  model,
   output,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -40,21 +39,22 @@ import type { AnswerDisplayMode } from '../../../../shared/components/course-dis
 })
 export class CourseCatalogSettingsComponent {
   // Inputs (read-only)
-  readonly languagePairs = input.required<UserLanguagePairEntry[]>();
+  readonly languagePairs = input.required<readonly UserLanguagePairEntry[]>();
+  readonly activeLanguagePairId = input.required<string>();
 
-  // Two-way bindings (model)
-  readonly displayRomanizationsDraft = model.required<readonly RomanizationSystem[]>();
-  readonly answerRomanizationsDraft = model.required<readonly RomanizationSystem[]>();
-  readonly showIpaDraft = model.required<boolean>();
-  readonly ipaVariantLabelDraft = model.required<string>();
-  readonly answerModesDraft = model.required<readonly AnswerDisplayMode[]>();
-  readonly toneColorEnabledDraft = model.required<boolean>();
-  readonly toneColorSchemeDraft = model.required<ToneColorSchemeId>();
-  readonly tracingStrokeDurationDraft = model.required<number>();
-  readonly romanizationOptions = model.required<readonly RomanizationOption[]>();
-  readonly showCjkPreferences = model.required<boolean>();
-  readonly showPhoneticPreferences = model.required<boolean>();
-  readonly showTracingSettings = model.required<boolean>();
+  // Settings inputs
+  readonly displayRomanizationsDraft = input.required<readonly RomanizationSystem[]>();
+  readonly answerRomanizationsDraft = input.required<readonly RomanizationSystem[]>();
+  readonly showIpaDraft = input.required<boolean>();
+  readonly ipaVariantLabelDraft = input.required<string>();
+  readonly answerModesDraft = input.required<readonly AnswerDisplayMode[]>();
+  readonly toneColorEnabledDraft = input.required<boolean>();
+  readonly toneColorSchemeDraft = input.required<ToneColorSchemeId>();
+  readonly tracingStrokeDurationDraft = input.required<number>();
+  readonly romanizationOptions = input.required<readonly RomanizationOption[]>();
+  readonly showCjkPreferences = input.required<boolean>();
+  readonly showPhoneticPreferences = input.required<boolean>();
+  readonly showTracingSettings = input.required<boolean>();
 
   // Outputs
   readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
@@ -76,8 +76,9 @@ export class CourseCatalogSettingsComponent {
   // ---- Computed ----
 
   readonly settingsEntry = computed(() => {
+    const id = this.activeLanguagePairId();
     const pairs = this.languagePairs();
-    return pairs[0] ?? null;
+    return pairs.find((entry) => entry.id === id) ?? pairs[0] ?? null;
   });
 
   readonly settingsCourseLabel = computed(() => {
