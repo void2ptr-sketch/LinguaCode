@@ -72,8 +72,9 @@ export class CardCatalogSearchStore {
     this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
-    this.hierarchyService.invalidateCache();
-    await this.loadCourses();
+    const pairKey = this.languagePairKey(known, learning);
+    this.hierarchyService.invalidateCache(pairKey);
+    await this.loadCourses(pairKey);
     await this.executeSearch();
   }
 
@@ -189,12 +190,13 @@ export class CardCatalogSearchStore {
     this.pairLocked.set(true);
     this.knownLanguage.set(known);
     this.learningLanguage.set(learning);
-    this.hierarchyService.invalidateCache();
-    void this.loadCourses();
+    const pairKey = this.languagePairKey(known, learning);
+    this.hierarchyService.invalidateCache(pairKey);
+    void this.loadCourses(pairKey);
     this.resetPageAndSearch();
   }
 
-  private async loadCourses(): Promise<void> {
+  private async loadCourses(languagePairKey: string): Promise<void> {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
 
@@ -202,13 +204,17 @@ export class CardCatalogSearchStore {
       return;
     }
 
-    const courses = await this.hierarchyService.loadCourses(known, learning);
+    const courses = await this.hierarchyService.loadCourses(known, learning, languagePairKey);
     this.availableCourses.set(courses);
   }
 
   private resetPageAndSearch(): void {
     this.pageIndex.set(0);
     void this.executeSearch();
+  }
+
+  private languagePairKey(known: ContentLanguage, learning: ContentLanguage): string {
+    return `${known}_${learning}`;
   }
 
   private async executeSearch(): Promise<void> {
