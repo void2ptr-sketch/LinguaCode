@@ -70,3 +70,9 @@
   display: inline-flex;
   gap: 0.25rem;
 }
+
+.add-course-form {
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: 1fr 1fr;
+}

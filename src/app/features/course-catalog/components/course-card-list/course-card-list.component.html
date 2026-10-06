@@ -37,33 +37,35 @@
       }
     </ul>
 
-    <h3 class="page-card__subsection-title">Добавить курс</h3>
+    <h3 class="page-card__subsection-title">Добавление курса</h3>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Известный язык</mat-label>
-      <mat-select
-        [ngModel]="knownLanguageDraft()"
-        (ngModelChange)="knownLanguageChange.emit($event)"
-        name="knownLanguage"
-      >
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+    <div class="add-course-form">
+      <mat-form-field appearance="outline">
+        <mat-label>Известный язык</mat-label>
+        <mat-select
+          [ngModel]="knownLanguageDraft()"
+          (ngModelChange)="knownLanguageChange.emit($event)"
+          name="knownLanguage"
+        >
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Новый язык</mat-label>
-      <mat-select
-        [ngModel]="learningLanguageDraft()"
-        (ngModelChange)="learningLanguageChange.emit($event)"
-        name="learningLanguage"
-      >
-        @for (language of languages; track language) {
-          <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Новый язык</mat-label>
+        <mat-select
+          [ngModel]="learningLanguageDraft()"
+          (ngModelChange)="learningLanguageChange.emit($event)"
+          name="learningLanguage"
+        >
+          @for (language of languages; track language) {
+            <mat-option [value]="language">{{ languageLabels[language] }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
 
     @if (languagePairInvalid()) {
       <p class="page-card__error">Языки должны отличаться.</p>

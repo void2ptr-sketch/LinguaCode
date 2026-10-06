@@ -57,7 +57,7 @@ describe('CourseCatalogSettingsComponent', () => {
 
   it('should render section title', () => {
     const title = fixture.nativeElement.querySelector('.page-card__section-title');
-    expect(title?.textContent?.trim()).toBe('Настройка курса');
+    expect(title?.textContent?.trim()).toBe('Настройка карточек курса');
   });
 
   it('should render course label', () => {
