@@ -415,8 +415,8 @@ describe('CourseCatalogPageComponent', () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     fixture.detectChanges();
 
-    const header = fixture.nativeElement.querySelector('.course-catalog-page__header h1');
-    expect(header?.textContent?.trim()).toBe('Каталог курсов');
+    const title = fixture.nativeElement.querySelector('mat-card-title');
+    expect(title?.textContent?.trim()).toBe('Каталог курсов');
   });
 
   it('should render tab group', () => {

@@ -9,6 +9,7 @@ import {
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { CourseSearchService } from '../../../../core/data';
@@ -55,6 +56,7 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
   imports: [
     FormsModule,
     MatButtonModule,
+    MatCardModule,
     MatTabsModule,
     CourseCatalogCoursesComponent,
     CourseCatalogSettingsComponent,
