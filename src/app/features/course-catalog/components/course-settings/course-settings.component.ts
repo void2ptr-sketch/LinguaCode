@@ -1,8 +1,7 @@
 import {
   Component,
   computed,
-  input,
-  output,
+  inject,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,11 +15,17 @@ import type { RomanizationSystem, ToneMark } from '../../../../core/models/phone
 import { TRACING_STROKE_DURATION_BOUNDS } from '../../../../core/models/phonetic-content.types';
 import { TONE_COLOR_SCHEMES } from '../../../../core/models/tone-color.types';
 import type { UserLanguagePairEntry } from '../../../../core/models/user-language-pair.types';
-import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
 import {
   CourseDisplaySettingsMatrixComponent,
 } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
 import type { AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
+import {
+  ROMANIZATION_DISPLAY_ORDER,
+} from '../../../../core/models/phonetic-content.types';
+import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+import { UserStore } from '../../../../core/state';
+import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 @Component({
   selector: 'app-course-catalog-settings',
@@ -38,33 +43,22 @@ import type { AnswerDisplayMode } from '../../../../shared/components/course-dis
   styleUrl: './course-settings.component.scss',
 })
 export class CourseCatalogSettingsComponent {
-  // Inputs (read-only)
-  readonly languagePairs = input.required<readonly UserLanguagePairEntry[]>();
-  readonly activeLanguagePairId = input.required<string>();
+  private readonly userStore = inject(UserStore);
+  private readonly catalogStore = inject(CourseCatalogStore);
 
-  // Settings inputs
-  readonly displayRomanizationsDraft = input.required<readonly RomanizationSystem[]>();
-  readonly answerRomanizationsDraft = input.required<readonly RomanizationSystem[]>();
-  readonly showIpaDraft = input.required<boolean>();
-  readonly ipaVariantLabelDraft = input.required<string>();
-  readonly answerModesDraft = input.required<readonly AnswerDisplayMode[]>();
-  readonly toneColorEnabledDraft = input.required<boolean>();
-  readonly toneColorSchemeDraft = input.required<ToneColorSchemeId>();
-  readonly tracingStrokeDurationDraft = input.required<number>();
-  readonly romanizationOptions = input.required<readonly RomanizationOption[]>();
-  readonly showCjkPreferences = input.required<boolean>();
-  readonly showPhoneticPreferences = input.required<boolean>();
-  readonly showTracingSettings = input.required<boolean>();
+  // --- State from stores ---
+  readonly languagePairs = this.userStore.languagePairs;
+  readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Outputs
-  readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
-  readonly answerRomanizationsChange = output<readonly RomanizationSystem[]>();
-  readonly showIpaChange = output<boolean>();
-  readonly ipaVariantLabelChange = output<string>();
-  readonly answerModesChange = output<readonly AnswerDisplayMode[]>();
-  readonly toneColorEnabledChange = output<boolean>();
-  readonly toneColorSchemeChange = output<ToneColorSchemeId>();
-  readonly tracingStrokeDurationChange = output<number>();
+  // Settings from store
+  readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
 
   // Constants
   readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
@@ -86,9 +80,37 @@ export class CourseCatalogSettingsComponent {
     return entry ? this.entryLabel(entry) : '';
   });
 
+  readonly showCjkPreferences = computed(() => {
+    const entry = this.settingsEntry();
+    return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
+  });
+
+  readonly showPhoneticPreferences = computed(() => {
+    const learning = this.settingsEntry()?.pair.learning;
+    return learning === 'en' || learning === 'zh';
+  });
+
+  readonly showTracingSettings = computed(() => this.settingsEntry()?.pair.learning === 'zh');
+
   readonly showDisplaySettings = computed(
     () => this.showCjkPreferences() || this.showPhoneticPreferences(),
   );
+
+  readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
+    const options: RomanizationOption[] = [
+      { value: 'pinyin', label: 'Пиньинь' },
+      { value: 'zhuyin', label: 'Жуинь (Bopomofo)' },
+    ];
+
+    if (this.showCjkPreferences()) {
+      options.push({ value: 'palladius', label: 'Палладица' });
+    }
+
+    return ROMANIZATION_DISPLAY_ORDER.flatMap((system) => {
+      const option = options.find((item) => item.value === system);
+      return option ? [option] : [];
+    });
+  });
 
   // ---- Methods ----
 
@@ -112,5 +134,39 @@ export class CourseCatalogSettingsComponent {
 
   formatTracingDurationSec(value: number): string {
     return `${value.toFixed(1)} с`;
+  }
+
+  // ---- Settings change handlers ----
+
+  onDisplayRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
+    this.catalogStore.setDisplayRomanizationsDraft(romanizations);
+  }
+
+  onAnswerRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
+    this.catalogStore.setAnswerRomanizationsDraft(romanizations);
+  }
+
+  onShowIpaChange(show: boolean): void {
+    this.catalogStore.setShowIpaDraft(show);
+  }
+
+  onIpaVariantLabelChange(label: string): void {
+    this.catalogStore.setIpaVariantLabelDraft(label);
+  }
+
+  onAnswerModesChange(modes: readonly AnswerDisplayMode[]): void {
+    this.catalogStore.setAnswerModesDraft(modes);
+  }
+
+  onToneColorEnabledChange(enabled: boolean): void {
+    this.catalogStore.setToneColorEnabledDraft(enabled);
+  }
+
+  onToneColorSchemeChange(scheme: ToneColorSchemeId): void {
+    this.catalogStore.setToneColorSchemeDraft(scheme);
+  }
+
+  onTracingStrokeDurationChange(duration: number): void {
+    this.catalogStore.setTracingStrokeDurationDraft(duration);
   }
 }

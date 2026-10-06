@@ -1,36 +1,27 @@
-import {
-  Component,
-  computed,
-  input,
-  output,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
 import type {
-  AppColorScheme,
   ContentLanguage,
-  LearningProficiencyLevel,
   UserLanguagePairEntry,
-  UserPreferences,
 } from '../../../../core/models';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
 } from '../../../../core/data/language-pair/language-pair.utils';
-
-export type RomanizationOption = {
-  value: string;
-  label: string;
-};
+import { UserStore } from '../../../../core/state';
+import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 @Component({
   selector: 'app-course-catalog-courses',
   imports: [
     FormsModule,
     MatButtonModule,
+    MatFormFieldModule,
     MatIconModule,
     MatSelectModule,
   ],
@@ -39,32 +30,26 @@ export type RomanizationOption = {
   styleUrl: './course-card-list.component.scss',
 })
 export class CourseCatalogCoursesComponent {
-  // Inputs (read-only)
-  readonly displayName = input.required<string>();
-  readonly preferences = input.required<UserPreferences>();
-  readonly languagePairs = input.required<readonly UserLanguagePairEntry[]>();
-  readonly activeLanguagePairId = input.required<string>();
+  private readonly userStore = inject(UserStore);
+  private readonly catalogStore = inject(CourseCatalogStore);
 
-  // Profile draft inputs
-  readonly nameDraft = input.required<string>();
-  readonly learningProficiencyDraft = input.required<LearningProficiencyLevel>();
-  readonly themeDraft = input.required<AppColorScheme>();
-  readonly fontSizeDraft = input.required<UserPreferences['fontSize']>();
-  readonly colorSchemeDraft = input.required<AppColorScheme>();
-  readonly cardFocusFullscreenDraft = input.required<boolean>();
+  // --- State from stores ---
+  readonly displayName = this.userStore.displayName;
+  readonly preferences = this.userStore.preferences;
+  readonly languagePairs = this.userStore.languagePairs;
+  readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Course tab inputs
-  readonly knownLanguageDraft = input.required<ContentLanguage>();
-  readonly learningLanguageDraft = input.required<ContentLanguage>();
+  // Profile drafts from store
+  readonly nameDraft = this.catalogStore.nameDraft;
+  readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  readonly themeDraft = this.catalogStore.themeDraft;
+  readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
 
-  // Outputs for two-way binding
-  readonly knownLanguageChange = output<ContentLanguage>();
-  readonly learningLanguageChange = output<ContentLanguage>();
-
-  // Outputs
-  readonly addPair = output<void>();
-  readonly setActive = output<string>();
-  readonly removePair = output<string>();
+  // Course tab from store
+  readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
 
   // Derived data
   readonly languages = contentLanguages();
@@ -72,9 +57,7 @@ export class CourseCatalogCoursesComponent {
 
   // ---- Computed ----
 
-  readonly languagePairInvalid = computed(
-    () => this.knownLanguageDraft() === this.learningLanguageDraft(),
-  );
+  readonly languagePairInvalid = this.catalogStore.languagePairInvalid;
 
   readonly canRemovePair = computed(() => this.languagePairs().length > 1);
 
@@ -90,7 +73,44 @@ export class CourseCatalogCoursesComponent {
 
   onAddPair(): void {
     if (!this.languagePairInvalid()) {
-      this.addPair.emit();
+      this.userStore.addLanguagePair({
+        known: this.knownLanguageDraft(),
+        learning: this.learningLanguageDraft(),
+      });
+      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
+  }
+
+  onChangeKnownLanguage(lang: ContentLanguage): void {
+    this.catalogStore.setKnownLanguageDraft(lang);
+  }
+
+  onChangeLearningLanguage(lang: ContentLanguage): void {
+    this.catalogStore.setLearningLanguageDraft(lang);
+  }
+
+  onSetActive(id: string): void {
+    this.userStore.setActiveLanguagePair(id);
+    this.catalogStore.setSettingsPairIdDraft(id);
+  }
+
+  onRemovePair(id: string): void {
+    const wasSettingsTarget = this.catalogStore.settingsPairIdDraft() === id;
+    this.userStore.removeLanguagePair(id);
+
+    if (wasSettingsTarget) {
+      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
+    }
+  }
+
+  onSaveProfile(): void {
+    this.userStore.updateDisplayName(this.nameDraft());
+    this.userStore.updatePreferences({
+      theme: this.themeDraft(),
+      fontSize: this.fontSizeDraft(),
+      colorScheme: this.colorSchemeDraft(),
+      cardFocusFullscreen: this.cardFocusFullscreenDraft(),
+      learningProficiencyLevel: this.learningProficiencyDraft(),
+    });
   }
 }

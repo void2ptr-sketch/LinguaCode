@@ -22,11 +22,11 @@
         [showIpa]="showIpaDraft()"
         [ipaVariantLabel]="ipaVariantLabelDraft()"
         [answerModes]="answerModesDraft()"
-        (displayRomanizationsChange)="displayRomanizationsChange.emit($event)"
-        (answerRomanizationsChange)="answerRomanizationsChange.emit($event)"
-        (showIpaChange)="showIpaChange.emit($event)"
-        (ipaVariantLabelChange)="ipaVariantLabelChange.emit($event)"
-        (answerModesChange)="answerModesChange.emit($event)"
+        (displayRomanizationsChange)="onDisplayRomanizationsChange($event)"
+        (answerRomanizationsChange)="onAnswerRomanizationsChange($event)"
+        (showIpaChange)="onShowIpaChange($event)"
+        (ipaVariantLabelChange)="onIpaVariantLabelChange($event)"
+        (answerModesChange)="onAnswerModesChange($event)"
       />
     } @else {
       <p class="page-card__hint">
@@ -43,7 +43,7 @@
 
         <mat-slide-toggle
           [checked]="toneColorEnabledDraft()"
-          (change)="toneColorEnabledChange.emit($event.checked)"
+          (change)="onToneColorEnabledChange($event.checked)"
         >
           Включить цветовую поддержку тонов
         </mat-slide-toggle>
@@ -53,7 +53,7 @@
             <mat-label>Цветовая схема</mat-label>
             <mat-select
               [ngModel]="toneColorSchemeDraft()"
-              (ngModelChange)="toneColorSchemeChange.emit($event)"
+              (ngModelChange)="onToneColorSchemeChange($event)"
               name="toneColorScheme"
             >
               @for (scheme of toneColorSchemeOptions; track scheme.id) {
@@ -93,7 +93,7 @@
             <input
               matSliderThumb
               [ngModel]="tracingStrokeDurationDraft()"
-              (ngModelChange)="tracingStrokeDurationChange.emit($event)"
+              (ngModelChange)="onTracingStrokeDurationChange($event)"
               name="tracingStrokeDuration"
             />
           </mat-slider>

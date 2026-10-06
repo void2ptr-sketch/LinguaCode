@@ -61,7 +61,7 @@
         [length]="totalItems()"
         [pageIndex]="pageIndex()"
         [pageSize]="pageSize()"
-        (pageChange)="pageChange.emit($event)"
+        (pageChange)="onPageChange($event)"
       />
     </mat-card-content>
   </mat-card>

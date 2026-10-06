@@ -9,72 +9,22 @@
       class="page-card__tabs"
       dynamicHeight
       [selectedIndex]="selectedTabIndex()"
-      (selectedIndexChange)="selectedTabIndex.set($event)"
+      (selectedIndexChange)="catalogStore.setSelectedTabIndex($event)"
     >
       <!-- Tab: Курсы -->
       <mat-tab label="Курсы">
-        <app-course-catalog-courses
-          [displayName]="displayName()"
-          [preferences]="preferences()"
-          [languagePairs]="languagePairs()"
-          [activeLanguagePairId]="activeLanguagePairId()"
-          [nameDraft]="nameDraft()"
-          [learningProficiencyDraft]="learningProficiencyDraft()"
-          [themeDraft]="themeDraft()"
-          [fontSizeDraft]="fontSizeDraft()"
-          [colorSchemeDraft]="colorSchemeDraft()"
-          [cardFocusFullscreenDraft]="cardFocusFullscreenDraft()"
-          [knownLanguageDraft]="knownLanguageDraft()"
-          [learningLanguageDraft]="learningLanguageDraft()"
-          (knownLanguageChange)="knownLanguageDraft.set($event)"
-          (learningLanguageChange)="learningLanguageDraft.set($event)"
-          (addPair)="addPair()"
-          (setActive)="setActive($event)"
-          (removePair)="removePair($event)"
-        />
+        <app-course-catalog-courses />
       </mat-tab>
 
       <!-- Tab: Настройка курса -->
       <mat-tab label="Настройка курса">
-        <app-course-catalog-settings
-          [languagePairs]="languagePairs()"
-          [activeLanguagePairId]="activeLanguagePairId()"
-          [displayRomanizationsDraft]="displayRomanizationsDraft()"
-          [answerRomanizationsDraft]="answerRomanizationsDraft()"
-          [showIpaDraft]="showIpaDraft()"
-          [ipaVariantLabelDraft]="ipaVariantLabelDraft()"
-          [answerModesDraft]="answerModesDraft()"
-          [toneColorEnabledDraft]="toneColorEnabledDraft()"
-          [toneColorSchemeDraft]="toneColorSchemeDraft()"
-          [tracingStrokeDurationDraft]="tracingStrokeDurationDraft()"
-          [romanizationOptions]="romanizationOptions()"
-          [showCjkPreferences]="showCjkPreferences()"
-          [showPhoneticPreferences]="showPhoneticPreferences()"
-          [showTracingSettings]="showTracingSettings()"
-          (displayRomanizationsChange)="displayRomanizationsDraft.set($event)"
-          (answerRomanizationsChange)="answerRomanizationsDraft.set($event)"
-          (showIpaChange)="showIpaDraft.set($event)"
-          (ipaVariantLabelChange)="ipaVariantLabelDraft.set($event)"
-          (answerModesChange)="answerModesDraft.set($event)"
-          (toneColorEnabledChange)="toneColorEnabledDraft.set($event)"
-          (toneColorSchemeChange)="toneColorSchemeDraft.set($event)"
-          (tracingStrokeDurationChange)="tracingStrokeDurationDraft.set($event)"
-        />
+        <app-course-catalog-settings />
       </mat-tab>
 
       <!-- Tab: Программы курса -->
       <mat-tab label="Программы курса">
         <app-course-catalog-programs
-          [loading]="loading()"
-          [error]="error()"
-          [items]="items()"
-          [totalItems]="totalItems()"
-          [pageIndex]="pageIndex()"
-          [pageSize]="pageSize()"
-          [progressByCourseId]="progressByCourseId()"
-          [completedCourseIds]="completedCourseIds()"
           (loadRequested)="load()"
-          (pageChange)="onPageChange($event)"
           (startCourse)="startCourse($event)"
         />
       </mat-tab>

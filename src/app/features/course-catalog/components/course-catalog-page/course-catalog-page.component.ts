@@ -4,7 +4,6 @@ import {
   effect,
   inject,
   OnInit,
-  signal,
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -14,40 +13,27 @@ import { MatTabsModule } from '@angular/material/tabs';
 
 import { CourseSearchService } from '../../../../core/data';
 import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
-import type {
-  AppColorScheme,
-  CjkLearningPreferences,
-  ContentLanguage,
-  CourseIndexEntry,
-  LearningProficiencyLevel,
-  RomanizationSystem,
-  UserLanguagePairEntry,
-  UserLanguagePairSettings,
-  UserPreferences,
-} from '../../../../core/models';
-import type { ToneColorSchemeId } from '../../../../core/models/tone-color.types';
-import {
-  ROMANIZATION_DISPLAY_ORDER,
-  TRACING_STROKE_DURATION_BOUNDS,
-} from '../../../../core/models/phonetic-content.types';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
 } from '../../../../core/data/user/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
+import type {
+  CjkLearningPreferences,
+  CourseIndexEntry,
+  UserLanguagePairEntry,
+  UserLanguagePairSettings,
+} from '../../../../core/models';
+import {
+  ROMANIZATION_DISPLAY_ORDER,  
+} from '../../../../core/models/phonetic-content.types';
 import type { PageEvent } from '@angular/material/paginator';
-import {
-  CourseCatalogCoursesComponent,
-} from '../course-card-list/course-card-list.component';
-import {
-  CourseCatalogSettingsComponent,
-} from '../course-settings/course-settings.component';
-import {
-  CourseCatalogProgramsComponent,
-} from '../program-list/program-list.component';
 import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
-import { type AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+import { CourseCatalogCoursesComponent } from '../course-card-list/course-card-list.component';
+import { CourseCatalogSettingsComponent } from '../course-settings/course-settings.component';
+import { CourseCatalogProgramsComponent } from '../program-list/program-list.component';
+import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
 
@@ -71,16 +57,17 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly router = inject(Router);
+  readonly catalogStore = inject(CourseCatalogStore);
 
-  // Course catalog state
-  readonly items = signal<readonly CourseIndexEntry[]>([]);
-  readonly totalItems = signal(0);
-  readonly pageIndex = signal(0);
-  readonly pageSize = signal(10);
-  readonly loading = signal(false);
-  readonly error = signal<string | null>(null);
-  readonly progressByCourseId = signal<Readonly<Record<string, number>>>({});
-  readonly completedCourseIds = signal<ReadonlySet<string>>(new Set());
+  // --- State from store ---
+  readonly items = this.catalogStore.items;
+  readonly totalItems = this.catalogStore.totalItems;
+  readonly pageIndex = this.catalogStore.pageIndex;
+  readonly pageSize = this.catalogStore.pageSize;
+  readonly loading = this.catalogStore.loading;
+  readonly error = this.catalogStore.error;
+  readonly progressByCourseId = this.catalogStore.progressByCourseId;
+  readonly completedCourseIds = this.catalogStore.completedCourseIds;
 
   // User profile state
   readonly displayName = this.userStore.displayName;
@@ -88,36 +75,31 @@ export class CourseCatalogPageComponent implements OnInit {
   readonly languagePairs = this.userStore.languagePairs;
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Draft signals for profile
-  readonly nameDraft = signal(this.displayName());
-  readonly learningProficiencyDraft = signal<LearningProficiencyLevel>(
-    this.preferences().learningProficiencyLevel,
-  );
-  readonly themeDraft = signal<AppColorScheme>(this.preferences().theme as AppColorScheme);
-  readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
-  readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme as AppColorScheme);
-  readonly cardFocusFullscreenDraft = signal(this.preferences().cardFocusFullscreen);
+  // Store drafts
+  readonly nameDraft = this.catalogStore.nameDraft;
+  readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  readonly themeDraft = this.catalogStore.themeDraft;
+  readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
 
-  // Course tab signals
-  readonly knownLanguageDraft = signal<ContentLanguage>('ru');
-  readonly learningLanguageDraft = signal<ContentLanguage>('en');
+  // Course tab from store
+  readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
 
-  // Course settings tab signals
-  readonly settingsPairIdDraft = signal(this.activeLanguagePairId());
-  readonly displayRomanizationsDraft = signal<readonly RomanizationSystem[]>(['pinyin']);
-  readonly answerRomanizationsDraft = signal<readonly RomanizationSystem[]>([
-    'pinyin',
-    'palladius',
-  ]);
-  readonly showIpaDraft = signal(false);
-  readonly ipaVariantLabelDraft = signal('');
-  readonly answerModesDraft = signal<readonly AnswerDisplayMode[]>(['orthography']);
-  readonly toneColorEnabledDraft = signal(false);
-  readonly toneColorSchemeDraft = signal<ToneColorSchemeId>('classic');
-  readonly tracingStrokeDurationDraft = signal<number>(TRACING_STROKE_DURATION_BOUNDS.defaultSec);
+  // Settings tab from store
+  readonly settingsPairIdDraft = this.catalogStore.settingsPairIdDraft;
+  readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
 
-  // Tab control
-  readonly selectedTabIndex = signal(0);
+  // Tab control from store
+  readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
 
   // Reload catalog on active pair change
   private readonly reloadOnActivePairChange = effect(() => {
@@ -134,16 +116,14 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    this.learningProficiencyDraft.set(this.preferences().learningProficiencyLevel);
+    this.catalogStore.setLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
     this.syncPairSettingsDrafts();
     await this.load();
   }
 
   // ---- Computed ----
 
-  readonly languagePairInvalid = computed(
-    () => this.knownLanguageDraft() === this.learningLanguageDraft(),
-  );
+  readonly languagePairInvalid = this.catalogStore.languagePairInvalid;
 
   readonly canRemovePair = computed(() => this.languagePairs().length > 1);
 
@@ -201,7 +181,7 @@ export class CourseCatalogPageComponent implements OnInit {
 
   setActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
-    this.settingsPairIdDraft.set(id);
+    this.catalogStore.setSettingsPairIdDraft(id);
     this.syncPairSettingsDrafts();
   }
 
@@ -210,7 +190,7 @@ export class CourseCatalogPageComponent implements OnInit {
     this.userStore.removeLanguagePair(id);
 
     if (wasSettingsTarget) {
-      this.settingsPairIdDraft.set(this.activeLanguagePairId());
+      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
 
     this.syncPairSettingsDrafts();
@@ -225,7 +205,7 @@ export class CourseCatalogPageComponent implements OnInit {
       known: this.knownLanguageDraft(),
       learning: this.learningLanguageDraft(),
     });
-    this.settingsPairIdDraft.set(this.activeLanguagePairId());
+    this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
     this.syncPairSettingsDrafts();
   }
 
@@ -284,21 +264,21 @@ export class CourseCatalogPageComponent implements OnInit {
     const cjk = resolveCjkLearningForPair(entry);
     const phonetic = resolvePhoneticForPair(entry);
 
-    this.displayRomanizationsDraft.set([...cjk.displayRomanizations]);
-    this.answerRomanizationsDraft.set([...cjk.answerRomanization]);
-    this.toneColorEnabledDraft.set(cjk.showTones);
-    this.toneColorSchemeDraft.set(cjk.toneColorScheme);
-    this.tracingStrokeDurationDraft.set(cjk.tracingStrokeDurationSec);
-    this.showIpaDraft.set(phonetic.showIpa);
-    this.ipaVariantLabelDraft.set(phonetic.ipaVariantLabel ?? '');
-    this.answerModesDraft.set([...phonetic.answerModes]);
+    this.catalogStore.setDisplayRomanizationsDraft([...cjk.displayRomanizations]);
+    this.catalogStore.setAnswerRomanizationsDraft([...cjk.answerRomanization]);
+    this.catalogStore.setToneColorEnabledDraft(cjk.showTones);
+    this.catalogStore.setToneColorSchemeDraft(cjk.toneColorScheme);
+    this.catalogStore.setTracingStrokeDurationDraft(cjk.tracingStrokeDurationSec);
+    this.catalogStore.setShowIpaDraft(phonetic.showIpa);
+    this.catalogStore.setIpaVariantLabelDraft(phonetic.ipaVariantLabel ?? '');
+    this.catalogStore.setAnswerModesDraft([...phonetic.answerModes]);
   }
 
   // ---- Course catalog methods ----
 
   async load(): Promise<void> {
-    this.loading.set(true);
-    this.error.set(null);
+    this.catalogStore.setLoading(true);
+    this.catalogStore.setError(null);
 
     try {
       const pair = this.userStore.languagePair();
@@ -308,19 +288,19 @@ export class CourseCatalogPageComponent implements OnInit {
         page: { page: this.pageIndex(), pageSize: this.pageSize() },
       });
 
-      this.items.set(page.items);
-      this.totalItems.set(page.totalItems);
+      this.catalogStore.setItems(page.items);
+      this.catalogStore.setTotalItems(page.totalItems);
       await this.loadProgress(page.items);
     } catch {
-      this.error.set('Не удалось загрузить каталог курсов');
+      this.catalogStore.setError('Не удалось загрузить каталог курсов');
     } finally {
-      this.loading.set(false);
+      this.catalogStore.setLoading(false);
     }
   }
 
   async onPageChange(event: PageEvent): Promise<void> {
-    this.pageIndex.set(event.pageIndex);
-    this.pageSize.set(event.pageSize);
+    this.catalogStore.setPageIndex(event.pageIndex);
+    this.catalogStore.setPageSize(event.pageSize);
     await this.load();
   }
 
@@ -362,7 +342,7 @@ export class CourseCatalogPageComponent implements OnInit {
       }),
     );
 
-    this.progressByCourseId.set(progress);
-    this.completedCourseIds.set(completed);
+    this.catalogStore.setProgressByCourseId(progress);
+    this.catalogStore.setCompletedCourseIds(completed);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, output, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -9,6 +9,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { CourseIndexEntry } from '../../../../core/models';
 import { UiPaginationComponent } from '../../../../shared/pagination';
 import type { PageEvent } from '@angular/material/paginator';
+import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 @Component({
   selector: 'app-course-catalog-programs',
@@ -26,20 +27,21 @@ import type { PageEvent } from '@angular/material/paginator';
   styleUrl: './program-list.component.scss',
 })
 export class CourseCatalogProgramsComponent {
-  // Inputs
-  readonly loading = input.required<boolean>();
-  readonly error = input.required<string | null>();
-  readonly items = input.required<readonly CourseIndexEntry[]>();
-  readonly totalItems = input.required<number>();
-  readonly pageIndex = input.required<number>();
-  readonly pageSize = input.required<number>();
-  readonly progressByCourseId = input.required<Readonly<Record<string, number>>>();
-  readonly completedCourseIds = input.required<ReadonlySet<string>>();
-
-  // Outputs
+  // Outputs for actions that involve parent business logic
   readonly loadRequested = output<void>();
-  readonly pageChange = output<PageEvent>();
   readonly startCourse = output<string>();
+
+  readonly catalogStore = inject(CourseCatalogStore);
+
+  // --- State from store ---
+  readonly loading = this.catalogStore.loading;
+  readonly error = this.catalogStore.error;
+  readonly items = this.catalogStore.items;
+  readonly totalItems = this.catalogStore.totalItems;
+  readonly pageIndex = this.catalogStore.pageIndex;
+  readonly pageSize = this.catalogStore.pageSize;
+  readonly progressByCourseId = this.catalogStore.progressByCourseId;
+  readonly completedCourseIds = this.catalogStore.completedCourseIds;
 
   // ---- Methods ----
 
@@ -49,5 +51,10 @@ export class CourseCatalogProgramsComponent {
 
   progressPercent(courseId: string): number {
     return this.progressByCourseId()[courseId] ?? 0;
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.catalogStore.setPageIndex(event.pageIndex);
+    this.catalogStore.setPageSize(event.pageSize);
   }
 }

@@ -18,7 +18,7 @@
           </span>
           <span class="page-card__pair-actions">
             @if (!isActive(entry)) {
-              <button mat-stroked-button type="button" (click)="setActive.emit(entry.id)">
+              <button mat-stroked-button type="button" (click)="onSetActive(entry.id)">
                 Сделать активным
               </button>
             }
@@ -27,7 +27,7 @@
                 mat-icon-button
                 type="button"
                 aria-label="Удалить курс"
-                (click)="removePair.emit(entry.id)"
+                (click)="onRemovePair(entry.id)"
               >
                 <mat-icon>delete_outline</mat-icon>
               </button>
@@ -44,7 +44,7 @@
         <mat-label>Известный язык</mat-label>
         <mat-select
           [ngModel]="knownLanguageDraft()"
-          (ngModelChange)="knownLanguageChange.emit($event)"
+          (ngModelChange)="onChangeKnownLanguage($event)"
           name="knownLanguage"
         >
           @for (language of languages; track language) {
@@ -57,7 +57,7 @@
         <mat-label>Новый язык</mat-label>
         <mat-select
           [ngModel]="learningLanguageDraft()"
-          (ngModelChange)="learningLanguageChange.emit($event)"
+          (ngModelChange)="onChangeLearningLanguage($event)"
           name="learningLanguage"
         >
           @for (language of languages; track language) {
