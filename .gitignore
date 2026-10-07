@@ -59,3 +59,4 @@ plans/
 .continue/agents/
 .continue/mcpServers/
 .continue/prompts/
+.continue/config.json

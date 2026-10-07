@@ -13,29 +13,20 @@
     >
       <!-- Tab: Курсы -->
       <mat-tab label="Курсы">
-        @if (coursesComponent()) {
-          <ng-container *ngComponentOutlet="coursesComponent()"></ng-container>
-        } @else {
-          <p class="page-card__hint">Загрузка...</p>
-        }
+        <app-course-catalog-courses />
       </mat-tab>
 
       <!-- Tab: Настройка курса -->
       <mat-tab label="Настройка курса">
-        @if (settingsComponent()) {
-          <ng-container *ngComponentOutlet="settingsComponent()"></ng-container>
-        } @else {
-          <p class="page-card__hint">Загрузка...</p>
-        }
+        <app-course-catalog-settings />
       </mat-tab>
 
       <!-- Tab: Программы курса -->
       <mat-tab label="Программы курса">
-        @if (programsComponent()) {
-          <ng-container *ngComponentOutlet="programsComponent()"></ng-container>
-        } @else {
-          <p class="page-card__hint">Загрузка...</p>
-        }
+        <app-course-catalog-programs
+          (startCourse)="startCourse($event)"
+          (loadRequested)="load()"
+        />
       </mat-tab>
     </mat-tab-group>
   </mat-card-content>
