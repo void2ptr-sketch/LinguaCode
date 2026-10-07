@@ -1,0 +1,64 @@
+<button
+  class="journey-node"
+  [class.journey-node--selected]="selected()"
+  [class.journey-node--locked]="!isInteractive()"
+  [attr.aria-label]="node().title"
+  [attr.aria-disabled]="!isInteractive()"
+  [attr.aria-pressed]="selected()"
+  (click)="onSelect()"
+  [routerLink]="isInteractive() ? ['/cards/select'] : null"
+  [queryParams]="{ courseId: node().courseId, lessonId: node().lessonId, scenarioId: node().scenarioId }"
+  [queryParamsHandling]="'merge'"
+>
+  <mat-card class="journey-node__card">
+    <div class="journey-node__icon-wrapper">
+      <mat-icon
+        class="journey-node__status-icon"
+        [class.journey-node__status-icon--completed]="node().status === 'completed'"
+        [class.journey-node__status-icon--locked]="node().status === 'locked'"
+        aria-hidden="true"
+      >
+        {{ statusIcon() }}
+      </mat-icon>
+      <mat-icon
+        class="journey-node__content-icon"
+        aria-hidden="true"
+      >
+        {{ contentTypeIcon() }}
+      </mat-icon>
+    </div>
+
+    <div class="journey-node__info">
+      <span class="journey-node__title">{{ node().title }}</span>
+      <span class="journey-node__subtitle">{{ node().lessonTitle }}</span>
+    </div>
+
+    <div class="journey-node__progress">
+      @if (node().status === 'in-progress' || node().status === 'completed') {
+        <mat-progress-spinner
+          class="journey-node__spinner"
+          [diameter]="32"
+          [value]="node().completionPercent"
+          [strokeWidth]="3"
+          mode="determinate"
+          aria-label="Прогресс: {{ node().completionPercent }}%"
+        />
+      } @else {
+        <span class="journey-node__placeholder" aria-hidden="true"></span>
+      }
+    </div>
+
+    <div class="journey-node__actions">
+      <button
+        class="journey-node__fav-btn"
+        mat-icon-button
+        [attr.aria-label]="node().favorite ? 'Убрать из избранного' : 'Добавить в избранное'"
+        (click)="$event.stopPropagation(); onToggleFavorite()"
+      >
+        <mat-icon [attr.aria-hidden]="true">
+          {{ node().favorite ? 'star' : 'star_border' }}
+        </mat-icon>
+      </button>
+    </div>
+  </mat-card>
+</button>

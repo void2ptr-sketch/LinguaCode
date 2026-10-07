@@ -78,6 +78,15 @@ export const routes: Routes = [
         ],
       },
 
+      // ── Journey Map ───────────────────────────────────────
+      {
+        path: 'journey',
+        loadComponent: () =>
+          import(
+            './features/journey/components/journey-page/journey-page.component'
+          ).then((m) => m.JourneyPageComponent),
+      },
+
       // ── Card Select ───────────────────────────────────────
       {
         path: 'cards/select',
