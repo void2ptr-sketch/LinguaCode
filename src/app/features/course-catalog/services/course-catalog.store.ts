@@ -113,7 +113,6 @@ export class CourseCatalogStore {
   );
 
   readonly settingsEntryLabel = computed(() => {
-    const id = this.#state().settingsPairIdDraft;
     // Note: languagePairs should be injected or passed from UserStore
     // This will be resolved by the component
     return '';

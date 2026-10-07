@@ -4,6 +4,7 @@ import { vi } from 'vitest';
 import { CourseCatalogSettingsComponent } from './course-settings.component';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
+import type { ToneColorSchemeId } from '../../../../core/models';
 
 describe('CourseCatalogSettingsComponent', () => {
   let fixture: ComponentFixture<CourseCatalogSettingsComponent>;
@@ -54,7 +55,7 @@ describe('CourseCatalogSettingsComponent', () => {
             ipaVariantLabelDraft: signal(''),
             answerModesDraft: signal([]),
             toneColorEnabledDraft: signal(false),
-            toneColorSchemeDraft: signal('default' as any),
+            toneColorSchemeDraft: signal('default' as ToneColorSchemeId),
             tracingStrokeDurationDraft: signal(0.5),
             setDisplayRomanizationsDraft: vi.fn(),
             setAnswerRomanizationsDraft: vi.fn(),
@@ -115,7 +116,6 @@ describe('CourseCatalogSettingsComponent', () => {
     expect(component).toBeTruthy();
     // The tone-colors section is only shown for CJK languages
     // For ru->en, it should not be shown
-    const toneColors = fixture.nativeElement.querySelector('.page-card__tone-colors');
     // With default ru->en pair, CJK preferences are not enabled
     expect(component.showCjkPreferences()).toBe(false);
   });

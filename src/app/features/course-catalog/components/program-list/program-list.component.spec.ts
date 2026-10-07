@@ -47,7 +47,16 @@ const mockRouter = {
 describe('CourseCatalogProgramsComponent', () => {
   let fixture: ComponentFixture<CourseCatalogProgramsComponent>;
   let component: CourseCatalogProgramsComponent;
-  let mockStoreState: any;
+  let mockStoreState: {
+    loading: boolean;
+    error: string | null;
+    items: readonly CourseIndexEntry[];
+    totalItems: number;
+    pageIndex: number;
+    pageSize: number;
+    progressByCourseId: Record<string, number>;
+    completedCourseIds: ReadonlySet<string>;
+  };
 
   const defaultItems: readonly CourseIndexEntry[] = [
     makeCourse('c-1', 'Course 1', 10, 'Русский → English'),
@@ -77,7 +86,7 @@ describe('CourseCatalogProgramsComponent', () => {
 
     mockStoreState = new Proxy(stateRef, {
       set(target, prop, value) {
-        (target as any)[prop] = value;
+        (target as Record<string, unknown>)[prop as string] = value;
         switch (prop) {
           case 'loading': loadingSignal.set(value as boolean); break;
           case 'error': errorSignal.set(value as string | null); break;

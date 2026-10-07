@@ -91,7 +91,6 @@ describe('CourseCatalogCoursesComponent', () => {
   });
 
   it('should mark active pair with active class', () => {
-    const pairs = fixture.nativeElement.querySelectorAll('.page-card__pair-item');
     const activePairs = fixture.nativeElement.querySelectorAll('.page-card__pair-item--active');
     expect(activePairs.length).toBeGreaterThanOrEqual(0);
   });
