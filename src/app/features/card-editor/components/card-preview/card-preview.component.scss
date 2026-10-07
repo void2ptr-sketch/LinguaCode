@@ -1,10 +1,24 @@
 .card-preview {
   display: grid;
-  gap: 1rem;
+  gap: 1.5rem;
+  padding: 1rem;
 }
 
 .card-preview__title {
   margin: 0;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+  text-align: center;
+}
+
+.card-preview__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  padding: 1rem;
+  background: var(--mat-sys-surface-container-lowest);
+  border-radius: 0.75rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }

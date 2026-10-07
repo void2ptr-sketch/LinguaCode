@@ -1,0 +1,66 @@
+.page-card__section {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.page-card__section-title {
+  font-size: 1rem;
+  margin: 0.5rem 0 0;
+}
+
+.page-card__subsection-title {
+  font-size: 0.9375rem;
+  margin: 0.25rem 0 0;
+}
+
+.page-card__hint {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.875rem;
+  margin: 0;
+}
+
+.page-card__tone-colors {
+  display: grid;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.page-card__tracing-speed {
+  display: grid;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.page-card__tracing-speed-control {
+  align-items: center;
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto 1fr auto;
+}
+
+.page-card__tracing-speed-bound {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 70%, transparent);
+  font-size: 0.8125rem;
+  white-space: nowrap;
+}
+
+.page-card__tracing-speed-slider {
+  width: 100%;
+}
+
+.page-card__tracing-speed-value {
+  font-variant-numeric: tabular-nums;
+  margin: 0;
+}
+
+.tone-color-preview {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tone-color-preview__swatch {
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 45%, transparent);
+  border-radius: 0.25rem;
+  height: 1.25rem;
+  width: 1.25rem;
+}

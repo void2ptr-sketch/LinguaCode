@@ -50,5 +50,13 @@ Thumbs.db
 plans/
 
 .gigacode/
-.continue/
+.gigacode_vsc/
+.gigaide/
+
 .codeassistant/
+
+# Continue rules (.continue/) — коммитим правила проекта в репозиторий
+.continue/agents/
+.continue/mcpServers/
+.continue/prompts/
+.continue/config.json

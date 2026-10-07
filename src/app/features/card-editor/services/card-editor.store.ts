@@ -9,7 +9,7 @@ import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/card-draft.utils';
 import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-validation.utils';
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class CardEditorStore {
   private readonly cardRepository = inject(CardRepository);
   private readonly cardSearchService = inject(CardSearchService);

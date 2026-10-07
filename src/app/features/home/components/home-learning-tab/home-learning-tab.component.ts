@@ -1,5 +1,5 @@
 import { Component, computed, effect, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -7,9 +7,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LearningResultsStore, UserStore } from '../../../../core/state';
-import { LearningContinueCardComponent } from '../learning-continue-card/learning-continue-card.component';
-import { LearningLessonRoadmapComponent } from '../learning-lesson-roadmap/learning-lesson-roadmap.component';
-import { LearningProgramProgressComponent } from '../learning-program-progress/learning-program-progress.component';
 import { LearningDashboardService } from '../../services/learning-dashboard.service';
 import {
   buildContinueLinkQueryParams,
@@ -20,14 +17,12 @@ import {
   selector: 'app-home-learning-tab',
   imports: [
     RouterLink,
+    RouterOutlet,
     MatButtonModule,
     MatCardModule,
     MatIconModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
-    LearningContinueCardComponent,
-    LearningProgramProgressComponent,
-    LearningLessonRoadmapComponent,
   ],
   templateUrl: './home-learning-tab.component.html',
   styleUrl: './home-learning-tab.component.scss',

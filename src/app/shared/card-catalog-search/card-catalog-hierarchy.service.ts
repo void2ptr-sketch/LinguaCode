@@ -26,12 +26,17 @@ export class CardCatalogHierarchyService {
   readonly coursesLoading = signal(false);
   readonly lessonsLoading = signal(false);
 
-  private coursesCache: readonly CourseOption[] | null = null;
+  private coursesCache = new Map<string, readonly CourseOption[]>();
   private courseLessonsCache = new Map<string, CourseWithLessons>();
 
-  async loadCourses(known: ContentLanguage, learning: ContentLanguage): Promise<readonly CourseOption[]> {
-    if (this.coursesCache) {
-      return this.coursesCache;
+  async loadCourses(
+    known: ContentLanguage,
+    learning: ContentLanguage,
+    languagePairKey: string,
+  ): Promise<readonly CourseOption[]> {
+    const cached = this.coursesCache.get(languagePairKey);
+    if (cached) {
+      return cached;
     }
 
     this.coursesLoading.set(true);
@@ -44,8 +49,9 @@ export class CardCatalogHierarchyService {
         page: { page: 0, pageSize: 100 },
       });
 
-      this.coursesCache = page.items.map(toCourseOption);
-      return this.coursesCache;
+      const courses = page.items.map(toCourseOption);
+      this.coursesCache.set(languagePairKey, courses);
+      return courses;
     } finally {
       this.coursesLoading.set(false);
     }
@@ -85,9 +91,13 @@ export class CardCatalogHierarchyService {
     return lesson.scenarioIds.map((id) => ({ id, title: id }));
   }
 
-  invalidateCache(): void {
-    this.coursesCache = null;
-    this.courseLessonsCache.clear();
+  invalidateCache(languagePairKey?: string): void {
+    if (languagePairKey) {
+      this.coursesCache.delete(languagePairKey);
+    } else {
+      this.coursesCache.clear();
+      this.courseLessonsCache.clear();
+    }
   }
 }
 

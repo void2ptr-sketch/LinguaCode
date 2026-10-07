@@ -1,9 +1,12 @@
 .quiz-card {
   display: grid;
   gap: 0;
-  max-width: 36rem;
+  max-width: 42rem;
   overflow: hidden;
   padding: 0;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  background: var(--mat-sys-surface-container);
 }
 
 .quiz-card--font-sm {
@@ -22,7 +25,7 @@
   background: var(--mat-sys-surface-container-low);
   display: grid;
   gap: 0.75rem;
-  padding: 1rem 1rem 1.125rem;
+  padding: 1.25rem 1.5rem 1.5rem;
 
   mat-card-header {
     margin: 0;
@@ -39,8 +42,8 @@
   background: var(--mat-sys-surface);
   border-top: 1px solid color-mix(in srgb, var(--mat-sys-outline) 40%, transparent);
   display: grid;
-  gap: 0.75rem;
-  padding: 1.125rem 1rem 1rem;
+  gap: 1rem;
+  padding: 1.5rem 1.5rem 1.25rem;
 
   mat-card-content {
     margin: 0;
@@ -49,10 +52,10 @@
 }
 
 .quiz-card__section-label {
-  color: color-mix(in srgb, var(--mat-sys-on-surface) 58%, transparent);
-  font-size: 0.6875rem;
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 65%, transparent);
+  font-size: 0.75rem;
   font-weight: 600;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
   line-height: 1.2;
   margin: 0;
   text-transform: uppercase;
@@ -60,13 +63,16 @@
 
 .quiz-card mat-card-title {
   line-height: 1.3;
-  margin-bottom: 0.35rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
 }
 
 .quiz-card mat-card-subtitle {
   line-height: 1.45;
   margin-top: 0;
   white-space: normal;
+  color: var(--mat-sys-on-surface-variant);
 }
 
 .quiz-card__options {
@@ -77,58 +83,63 @@
 .option {
   align-items: flex-start;
   border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 50%, transparent);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   background: var(--mat-sys-surface-container-lowest);
   color: inherit;
   cursor: pointer;
   display: flex;
-  padding: 0.875rem 1rem;
+  padding: 1rem 1.25rem;
   text-align: left;
   transition:
-    border-color 0.15s ease,
-    background-color 0.15s ease;
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
   width: 100%;
 }
 
 .option:hover {
   border-color: var(--mat-sys-primary);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
 .option--selected {
   border-color: var(--mat-sys-primary);
-  background: color-mix(in srgb, var(--mat-sys-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--mat-sys-primary) 10%, transparent);
 }
 
 .option--correct {
   border-color: var(--mat-sys-tertiary);
-  background: color-mix(in srgb, var(--mat-sys-tertiary) 12%, transparent);
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 15%, transparent);
 }
 
 .option--incorrect {
   border-color: var(--mat-sys-error);
-  background: color-mix(in srgb, var(--mat-sys-error) 10%, transparent);
+  background: color-mix(in srgb, var(--mat-sys-error) 12%, transparent);
 }
 
 .quiz-card__feedback {
   align-items: center;
   border-top: 1px solid color-mix(in srgb, var(--mat-sys-outline) 25%, transparent);
   display: flex;
-  gap: 0.5rem;
+  gap: 0.75rem;
   margin: 0;
-  padding: 0.75rem 1rem 0;
+  padding: 1rem 1.5rem 0.5rem;
+  border-radius: 0 0 0.75rem 0.75rem;
 }
 
 .quiz-card__feedback--correct {
   color: var(--mat-sys-tertiary);
+  background: color-mix(in srgb, var(--mat-sys-tertiary) 8%, transparent);
 }
 
 .quiz-card__feedback--incorrect {
   color: var(--mat-sys-error);
+  background: color-mix(in srgb, var(--mat-sys-error) 10%, transparent);
 }
 
 .quiz-card mat-card-actions {
   margin: 0;
-  padding: 0.5rem 1rem 1rem;
+  padding: 0.75rem 1.5rem 1.25rem;
 }
 
 .quiz-card__prompt {
@@ -143,22 +154,23 @@
 
 .memory-grid {
   display: grid;
-  gap: 0.75rem;
+  gap: 1rem;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .memory-tile {
-  min-height: 4rem;
+  min-height: 5rem;
+  border-radius: 0.75rem;
 }
 
 .draw-area {
   align-items: center;
   border: 1px dashed color-mix(in srgb, var(--mat-sys-outline) 60%, transparent);
-  border-radius: 0.5rem;
+  border-radius: 0.75rem;
   display: grid;
   justify-items: center;
-  min-height: 10rem;
-  padding: 1rem;
+  min-height: 12rem;
+  padding: 1.5rem;
 }
 
 .quiz-card__field {

@@ -118,7 +118,8 @@ export class CardFormComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
-    const courses = await this.hierarchyService.loadCourses(known, learning);
+    const pairKey = `${known}_${learning}`;
+    const courses = await this.hierarchyService.loadCourses(known, learning, pairKey);
     this.availableCourses.set(courses);
 
     // Если у карточки уже выбран курс — загружаем уроки и сценарии

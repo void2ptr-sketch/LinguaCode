@@ -45,7 +45,7 @@ let lastKnownActiveLanguagePairId: string | null = null;
     UiPaginationComponent,
     CardCatalogFiltersComponent,
   ],
-  providers: [CardCatalogSearchStore],
+  providers: [CardCatalogSearchStore, CardEditorStore],
   templateUrl: './card-editor-page.component.html',
   styleUrl: './card-editor-page.component.scss',
 })

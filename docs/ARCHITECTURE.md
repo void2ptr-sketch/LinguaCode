@@ -130,18 +130,26 @@ export const routes: Routes = [
     path: '',
     component: MainLayoutComponent,
     children: [
-      { path: '', redirectTo: 'cards/select', pathMatch: 'full' },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: 'home', loadComponent: () => import('./features/home/...') },
       { path: 'cards/select', loadComponent: () => import('./features/card-select/...') },
-      // features/scenario-builder/ — конструктор сценариев
-      // остальные фичи — отдельные lazy routes
+      { path: 'courses', loadComponent: () => import('./features/course-catalog/...') },
+      { path: 'tools/scenario-builder', loadComponent: () => import('./features/scenario-builder/...') },
+      { path: 'tools/courses', loadComponent: () => import('./features/course-builder/...') },
+      { path: 'tools/cards', loadComponent: () => import('./features/card-editor/...') },
+      { path: 'help', loadComponent: () => import('./core/layout/pages/help-page/...') },
+      { path: 'user', loadComponent: () => import('./core/layout/pages/user-page/...') },
+      { path: '**', redirectTo: 'home' },
     ],
   },
 ];
 ```
 
 - Фичи подключаются **lazy** (`loadComponent`).
+- Корневой маршрут `''` редиректит на `/home` (dashboard).
 - `menu-cards` в header ведёт на прохождение карточек (`/cards/select`); в sidebar — пункт **«Обучение»**.
 - `menu-tools` в header ведёт на инструменты; в sidebar — **«Карточки»** (`/tools/cards`) и **«Конструктор сценариев»**.
+- Все маршруты — внутри `MainLayoutComponent` (shell).
 
 ## Модель данных
 
@@ -150,19 +158,19 @@ export const routes: Routes = [
 Кратко:
 
 - `User`, `Card`, `Scenario`, `LearningResult`, `CardAppearance`
-- `Card` — discriminated union по полю `kind`
-- на MVP реализован только `SelectCard` (`kind: 'select'`)
+- `Card` — discriminated union по полю `kind` (10 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`)
+- Все 10 `CardKind` реализованы
 - **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md)
 
-### Рендер карточек (после MVP)
+### Рендер карточек
 
 Общий `CardHostComponent` выбирает компонент по `card.kind`:
 
 ```
-Card (kind) → CardHostComponent → SelectCardComponent | MemoryCardComponent | ...
+Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardComponent | MemoryCardComponent | SymbolCardComponent | SoundCardComponent | TimedCardComponent | KeyboardCardComponent | DrawCardComponent | ToneCardComponent | ReadingCardComponent
 ```
 
-На MVP достаточно прямого рендера `SelectCardComponent` без host.
+Все 10 типов карточек реализованы и рендерятся через `CardHostComponent`.
 
 ## Управление состоянием
 
