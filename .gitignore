@@ -57,5 +57,5 @@ plans/
 
 # Continue rules (.continue/) — коммитим правила проекта в репозиторий
 .continue/agents/
-.continue/mcpServer/
+.continue/mcpServers/
 .continue/prompts/
