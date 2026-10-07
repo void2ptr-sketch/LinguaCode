@@ -51,7 +51,7 @@ plans/
 
 .gigacode/
 .gigacode_vsc/
-.gigaide/
+#.gigaide/
 
 .codeassistant/
 
