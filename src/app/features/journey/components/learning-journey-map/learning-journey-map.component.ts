@@ -8,11 +8,11 @@ import {
   inject,
   OnInit,
   OnDestroy,
+  ViewEncapsulation,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type {
@@ -32,11 +32,11 @@ export type JourneyViewMode = 'map' | 'list';
 
 @Component({
   selector: 'app-learning-journey-map',
+  encapsulation: ViewEncapsulation.None,
   imports: [
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatChipsModule,
     MatProgressSpinnerModule,
     JourneyLocationNodeComponent,
   ],
@@ -60,6 +60,13 @@ export class LearningJourneyMapComponent implements OnInit, OnDestroy {
 
   protected readonly explorerLevel = computed<ExplorerLevelResult | null>(() => {
     return this.analyticsService.explorerLevel();
+  });
+
+  /** Название программы курса. */
+  protected readonly courseTitle = computed(() => {
+    const nodes = this.nodes();
+    if (nodes.length === 0) return '';
+    return nodes[0].courseTitle;
   });
 
   protected readonly filteredNodes = computed(() => {

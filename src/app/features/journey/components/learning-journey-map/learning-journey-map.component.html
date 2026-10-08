@@ -3,6 +3,9 @@
   <header class="journey-map__header">
     <div class="journey-map__title-area">
       <h2 class="journey-map__title">Путь обучения</h2>
+      @if (courseTitle()) {
+        <span class="journey-map__course-title">{{ courseTitle() }}</span>
+      }
       @if (explorerLevel()) {
         <span class="journey-map__level-badge" [class.journey-map__level-badge--novice]="explorerLevel()!.level === 'novice'" [class.journey-map__level-badge--experienced]="explorerLevel()!.level === 'experienced'" [class.journey-map__level-badge--expert]="explorerLevel()!.level === 'expert'">
           <mat-icon aria-hidden="true">explore</mat-icon>
@@ -13,10 +16,10 @@
 
     <div class="journey-map__controls">
       <!-- Фильтры по типу контента -->
-      <mat-chip-set class="journey-map__filters" aria-label="Фильтр по типу контента">
+      <div class="journey-map__filters" role="group" aria-label="Фильтр по типу контента">
         @for (item of contentTypes(); track item.type) {
           <button
-            mat-chip
+            class="journey-map__chip"
             [class.journey-map__chip--active]="filterType() === item.type"
             (click)="onFilterTypeChange(item.type)"
             [attr.aria-pressed]="filterType() === item.type"
@@ -25,7 +28,7 @@
             <span>{{ item.label }}</span>
           </button>
         }
-      </mat-chip-set>
+      </div>
 
       <!-- Переключатель режима отображения -->
       <button

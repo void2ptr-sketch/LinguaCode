@@ -149,7 +149,7 @@ describe('LearningJourneyMapComponent', () => {
   });
 
   it('should render filter chips', () => {
-    const chips = fixture.nativeElement.querySelectorAll('.mat-mdc-chip');
+    const chips = fixture.nativeElement.querySelectorAll('.journey-map__chip');
     expect(chips.length).toBeGreaterThan(0);
   });
 
@@ -181,7 +181,7 @@ describe('LearningJourneyMapComponent', () => {
   });
 
   it('should show all content type filters', () => {
-    const chipLabels = fixture.nativeElement.querySelectorAll('.mat-mdc-chip span');
+    const chipLabels = fixture.nativeElement.querySelectorAll('.journey-map__chip span');
     const labels = [...chipLabels].map((el) => el.textContent.trim());
     expect(labels).toContain('Все');
     expect(labels).toContain('Теория');

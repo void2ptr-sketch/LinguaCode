@@ -4,7 +4,6 @@
   gap: 16px;
   padding: 16px;
   max-width: 960px;
-  margin: 0 auto;
 }
 
 /* ===== Header ===== */
@@ -27,6 +26,12 @@
   font-size: 20px;
   font-weight: 600;
   color: var(--mat-sys-on-surface);
+}
+
+.journey-map__course-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface-variant);
 }
 
 .journey-map__level-badge {
@@ -72,14 +77,46 @@
 }
 
 .journey-map__filters {
-  flex: 1;
-  min-width: 200px;
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+  overflow: visible;
 }
 
-.journey-map__chip--active {
-  background: var(--mat-sys-primary-container);
-  color: var(--mat-sys-on-primary-container);
+.journey-map__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 16px;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--active {
+    background: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+    border-color: var(--mat-sys-primary);
+  }
 }
+
 
 .journey-map__view-btn,
 .journey-map__fav-filter,
@@ -129,7 +166,6 @@
   &--list {
     .journey-map__lesson-group {
       max-width: 480px;
-      margin: 0 auto;
     }
   }
 }
