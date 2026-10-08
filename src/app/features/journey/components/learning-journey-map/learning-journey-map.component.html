@@ -1,0 +1,132 @@
+<nav class="journey-map" aria-label="Карта обучения">
+  <!-- Заголовок и переключатели -->
+  <header class="journey-map__header">
+    <div class="journey-map__title-area">
+      <h2 class="journey-map__title">Путь обучения</h2>
+      @if (courseTitle()) {
+        <span class="journey-map__course-title">{{ courseTitle() }}</span>
+      }
+      @if (explorerLevel()) {
+        <span class="journey-map__level-badge" [class.journey-map__level-badge--novice]="explorerLevel()!.level === 'novice'" [class.journey-map__level-badge--experienced]="explorerLevel()!.level === 'experienced'" [class.journey-map__level-badge--expert]="explorerLevel()!.level === 'expert'">
+          <mat-icon aria-hidden="true">explore</mat-icon>
+          {{ explorerLevel()!.level === 'novice' ? 'Исследователь' : explorerLevel()!.level === 'experienced' ? 'Исследователь +' : 'Эксперт' }}
+        </span>
+      }
+    </div>
+
+    <div class="journey-map__controls">
+      <!-- Фильтры по типу контента -->
+      <div class="journey-map__filters" role="group" aria-label="Фильтр по типу контента">
+        @for (item of contentTypes(); track item.type) {
+          <button
+            class="journey-map__chip"
+            [class.journey-map__chip--active]="filterType() === item.type"
+            [attr.data-tooltip]="item.tooltip"
+            matTooltip="{{ item.tooltip }}"
+            (click)="onFilterTypeChange(item.type)"
+            [attr.aria-pressed]="filterType() === item.type"
+          >
+            <mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
+            <span>{{ item.label }}</span>
+          </button>
+        }
+      </div>
+
+      <!-- Переключатель режима отображения -->
+      <button
+        mat-icon-button
+        matTooltip="Режим карты"
+        [class.journey-map__view-btn--active]="viewMode() === 'map'"
+        (click)="onViewModeChange('map')"
+        aria-label="Режим карты"
+      >
+        <mat-icon aria-hidden="true">map</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        matTooltip="Режим списка"
+        [class.journey-map__view-btn--active]="viewMode() === 'list'"
+        (click)="onViewModeChange('list')"
+        aria-label="Режим списка"
+      >
+        <mat-icon aria-hidden="true">list</mat-icon>
+      </button>
+
+      <!-- Переключатель избранного -->
+      <button
+        mat-icon-button
+        matTooltip="Показать избранное"
+        [class.journey-map__fav-filter--active]="showFavoritesOnly()"
+        (click)="onToggleFavoritesFilter()"
+        aria-label="Показать избранное"
+      >
+        <mat-icon aria-hidden="true">star</mat-icon>
+      </button>
+
+      <!-- Переключатель тумана войны -->
+      <button
+        mat-icon-button
+        matTooltip="Скрыть заблокированные уроки"
+        [class.journey-map__fog-btn--active]="showFogOfWar()"
+        (click)="toggleFogOfWar()"
+        aria-label="Туман войны"
+      >
+        <mat-icon aria-hidden="true">foggy</mat-icon>
+      </button>
+    </div>
+  </header>
+
+  <!-- Основной контент карты -->
+  <main class="journey-map__content">
+    @if (nodes().length === 0) {
+      <div class="journey-map__empty" role="status">
+        <mat-icon aria-hidden="true">info</mat-icon>
+        <p>Нет доступных локаций</p>
+      </div>
+    } @else {
+      <div
+        class="journey-map__nodes"
+        [class.journey-map__nodes--list]="viewMode() === 'list'"
+        role="tree"
+        aria-label="Локации обучения"
+      >
+        @for (lessonGroup of groupedByLesson(); track lessonGroup[0]) {
+          <div
+            class="journey-map__lesson-group"
+            role="treeitem"
+            [attr.aria-label]="lessonGroup[1][0].lessonTitle"
+            [attr.aria-selected]="false"
+          >
+            <h3 class="journey-map__lesson-title">
+              {{ lessonGroup[1][0].lessonTitle }}
+            </h3>
+            <ul class="journey-map__lesson-nodes" role="group">
+              @for (node of lessonGroup[1]; track node.id) {
+                <li role="treeitem" [attr.aria-selected]="selectedNodeId() === node.id">
+                  <app-journey-location-node
+                    [node]="node"
+                    [selected]="selectedNodeId() === node.id"
+                    (nodeSelect)="onLocationSelect($event)"
+                    (toggleFavorite)="onToggleFavorite($event)"
+                  />
+                </li>
+              }
+            </ul>
+          </div>
+        }
+      </div>
+    }
+  </main>
+
+  <!-- Текстовый режим для скринридеров -->
+  <div class="journey-map__sr-only" aria-hidden="false">
+    <h2>Список локаций</h2>
+    <ul>
+      @for (node of nodes(); track node.id) {
+        <li>
+          {{ node.title }} — {{ node.status }} — {{ node.lessonTitle }}
+        </li>
+      }
+    </ul>
+  </div>
+</nav>

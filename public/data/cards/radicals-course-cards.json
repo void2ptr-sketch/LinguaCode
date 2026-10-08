@@ -313,7 +313,7 @@
       "title": "Радикал №11: 入",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -343,7 +343,7 @@
       "title": "Радикал №12: 八",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -374,7 +374,7 @@
       "title": "Радикал №13: 冂",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -405,7 +405,7 @@
       "title": "Радикал №14: 冖",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -435,7 +435,7 @@
       "title": "Радикал №15: 冫",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -465,7 +465,7 @@
       "title": "Радикал №16: 几",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -495,7 +495,7 @@
       "title": "Радикал №17: 凵",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -525,13 +525,13 @@
       "title": "Радикал №18: 刀",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №18 «刀»",
-      "referenceHintKnown": "nож (dāo)",
+      "referenceHintKnown": "нож (dāo)",
       "meaningKnown": "nож",
       "practiceMode": "tracing",
       "targetCharacter": "刀",
@@ -555,7 +555,7 @@
       "title": "Радикал №19: 力",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -585,7 +585,7 @@
       "title": "Радикал №20: 勹",
       "courseId": "course-zh-radicals-214",
       "lessonId": "lesson-radicals-01",
-      "scenarioId": "scenario-radicals-01",
+      "scenarioId": "scenario-radicals-02",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -614,8 +614,8 @@
       "kind": "draw",
       "title": "Радикал №21: 匕",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -644,8 +644,8 @@
       "kind": "draw",
       "title": "Радикал №22: 匚",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -674,8 +674,8 @@
       "kind": "draw",
       "title": "Радикал №23: 匸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -704,8 +704,8 @@
       "kind": "draw",
       "title": "Радикал №24: 十",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -734,8 +734,8 @@
       "kind": "draw",
       "title": "Радикал №25: 卜",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -764,8 +764,8 @@
       "kind": "draw",
       "title": "Радикал №26: 卩",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -794,8 +794,8 @@
       "kind": "draw",
       "title": "Радикал №27: 厂",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -824,8 +824,8 @@
       "kind": "draw",
       "title": "Радикал №28: 厶",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -854,8 +854,8 @@
       "kind": "draw",
       "title": "Радикал №29: 又",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -884,8 +884,8 @@
       "kind": "draw",
       "title": "Радикал №30: 口",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-03",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -914,8 +914,8 @@
       "kind": "draw",
       "title": "Радикал №31: 囗",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -944,8 +944,8 @@
       "kind": "draw",
       "title": "Радикал №32: 土",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -974,8 +974,8 @@
       "kind": "draw",
       "title": "Радикал №33: 士",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1004,8 +1004,8 @@
       "kind": "draw",
       "title": "Радикал №34: 夂",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1034,8 +1034,8 @@
       "kind": "draw",
       "title": "Радикал №35: 夊",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1064,8 +1064,8 @@
       "kind": "draw",
       "title": "Радикал №36: 夕",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1094,8 +1094,8 @@
       "kind": "draw",
       "title": "Радикал №37: 大",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1124,8 +1124,8 @@
       "kind": "draw",
       "title": "Радикал №38: 女",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1154,8 +1154,8 @@
       "kind": "draw",
       "title": "Радикал №39: 子",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1184,8 +1184,8 @@
       "kind": "draw",
       "title": "Радикал №40: 宀",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-02",
-      "scenarioId": "scenario-radicals-02",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-04",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1214,8 +1214,8 @@
       "kind": "draw",
       "title": "Радикал №41: 寸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1244,8 +1244,8 @@
       "kind": "draw",
       "title": "Радикал №42: 小",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1274,8 +1274,8 @@
       "kind": "draw",
       "title": "Радикал №43: 尢",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1304,8 +1304,8 @@
       "kind": "draw",
       "title": "Радикал №44: 尸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1334,8 +1334,8 @@
       "kind": "draw",
       "title": "Радикал №45: 屮",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1364,8 +1364,8 @@
       "kind": "draw",
       "title": "Радикал №46: 山",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1394,8 +1394,8 @@
       "kind": "draw",
       "title": "Радикал №47: 巛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1424,8 +1424,8 @@
       "kind": "draw",
       "title": "Радикал №48: 工",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1454,8 +1454,8 @@
       "kind": "draw",
       "title": "Радикал №49: 己",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1484,8 +1484,8 @@
       "kind": "draw",
       "title": "Радикал №50: 巾",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-05",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1514,8 +1514,8 @@
       "kind": "draw",
       "title": "Радикал №51: 干",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1544,8 +1544,8 @@
       "kind": "draw",
       "title": "Радикал №52: 幺",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1574,8 +1574,8 @@
       "kind": "draw",
       "title": "Радикал №53: 广",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1604,8 +1604,8 @@
       "kind": "draw",
       "title": "Радикал №54: 廴",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1634,8 +1634,8 @@
       "kind": "draw",
       "title": "Радикал №55: 廾",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1664,8 +1664,8 @@
       "kind": "draw",
       "title": "Радикал №56: 弋",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1694,8 +1694,8 @@
       "kind": "draw",
       "title": "Радикал №57: 弓",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1724,8 +1724,8 @@
       "kind": "draw",
       "title": "Радикал №58: 彐",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1754,8 +1754,8 @@
       "kind": "draw",
       "title": "Радикал №59: 彡",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1784,8 +1784,8 @@
       "kind": "draw",
       "title": "Радикал №60: 彳",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-03",
-      "scenarioId": "scenario-radicals-03",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-06",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1814,8 +1814,8 @@
       "kind": "draw",
       "title": "Радикал №61: 心",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1844,8 +1844,8 @@
       "kind": "draw",
       "title": "Радикал №62: 戈",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1874,8 +1874,8 @@
       "kind": "draw",
       "title": "Радикал №63: 戶",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1904,8 +1904,8 @@
       "kind": "draw",
       "title": "Радикал №64: 手",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1934,8 +1934,8 @@
       "kind": "draw",
       "title": "Радикал №65: 支",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1964,8 +1964,8 @@
       "kind": "draw",
       "title": "Радикал №66: 攴",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -1994,8 +1994,8 @@
       "kind": "draw",
       "title": "Радикал №67: 文",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2024,8 +2024,8 @@
       "kind": "draw",
       "title": "Радикал №68: 斗",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2054,8 +2054,8 @@
       "kind": "draw",
       "title": "Радикал №69: 斤",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2084,8 +2084,8 @@
       "kind": "draw",
       "title": "Радикал №70: 方",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-01",
+      "scenarioId": "scenario-radicals-07",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2114,8 +2114,8 @@
       "kind": "draw",
       "title": "Радикал №71: 无",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2144,8 +2144,8 @@
       "kind": "draw",
       "title": "Радикал №72: 日",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2174,8 +2174,8 @@
       "kind": "draw",
       "title": "Радикал №73: 曰",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2204,8 +2204,8 @@
       "kind": "draw",
       "title": "Радикал №74: 月",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2234,8 +2234,8 @@
       "kind": "draw",
       "title": "Радикал №75: 木",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2264,8 +2264,8 @@
       "kind": "draw",
       "title": "Радикал №76: 欠",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2294,8 +2294,8 @@
       "kind": "draw",
       "title": "Радикал №77: 止",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2324,8 +2324,8 @@
       "kind": "draw",
       "title": "Радикал №78: 歹",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2354,8 +2354,8 @@
       "kind": "draw",
       "title": "Радикал №79: 殳",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2384,8 +2384,8 @@
       "kind": "draw",
       "title": "Радикал №80: 毋",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-04",
-      "scenarioId": "scenario-radicals-04",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-08",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2414,8 +2414,8 @@
       "kind": "draw",
       "title": "Радикал №81: 比",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2444,8 +2444,8 @@
       "kind": "draw",
       "title": "Радикал №82: 毛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2474,8 +2474,8 @@
       "kind": "draw",
       "title": "Радикал №83: 氏",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2504,8 +2504,8 @@
       "kind": "draw",
       "title": "Радикал №84: 气",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2534,8 +2534,8 @@
       "kind": "draw",
       "title": "Радикал №85: 水",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2564,8 +2564,8 @@
       "kind": "draw",
       "title": "Радикал №86: 火",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2594,8 +2594,8 @@
       "kind": "draw",
       "title": "Радикал №87: 爪",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2624,8 +2624,8 @@
       "kind": "draw",
       "title": "Радикал №88: 父",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2654,8 +2654,8 @@
       "kind": "draw",
       "title": "Радикал №89: 爻",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2684,8 +2684,8 @@
       "kind": "draw",
       "title": "Радикал №90: 爿",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-09",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2714,8 +2714,8 @@
       "kind": "draw",
       "title": "Радикал №91: 片",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2744,8 +2744,8 @@
       "kind": "draw",
       "title": "Радикал №92: 牙",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2774,8 +2774,8 @@
       "kind": "draw",
       "title": "Радикал №93: 牛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2804,8 +2804,8 @@
       "kind": "draw",
       "title": "Радикал №94: 犬",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2834,8 +2834,8 @@
       "kind": "draw",
       "title": "Радикал №95: 玄",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2864,8 +2864,8 @@
       "kind": "draw",
       "title": "Радикал №96: 玉",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2894,8 +2894,8 @@
       "kind": "draw",
       "title": "Радикал №97: 瓜",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2924,8 +2924,8 @@
       "kind": "draw",
       "title": "Радикал №98: 瓦",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2954,8 +2954,8 @@
       "kind": "draw",
       "title": "Радикал №99: 甘",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -2984,8 +2984,8 @@
       "kind": "draw",
       "title": "Радикал №100: 生",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-05",
-      "scenarioId": "scenario-radicals-05",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3014,8 +3014,8 @@
       "kind": "draw",
       "title": "Радикал №101: 用",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3044,8 +3044,8 @@
       "kind": "draw",
       "title": "Радикал №102: 田",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3074,8 +3074,8 @@
       "kind": "draw",
       "title": "Радикал №103: 疋",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3104,8 +3104,8 @@
       "kind": "draw",
       "title": "Радикал №104: 疒",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3134,8 +3134,8 @@
       "kind": "draw",
       "title": "Радикал №105: 癶",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3164,8 +3164,8 @@
       "kind": "draw",
       "title": "Радикал №106: 白",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3195,8 +3195,8 @@
       "kind": "draw",
       "title": "Радикал №107: 皮",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3225,8 +3225,8 @@
       "kind": "draw",
       "title": "Радикал №108: 皿",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3255,8 +3255,8 @@
       "kind": "draw",
       "title": "Радикал №109: 目",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3285,8 +3285,8 @@
       "kind": "draw",
       "title": "Радикал №110: 矛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3315,8 +3315,8 @@
       "kind": "draw",
       "title": "Радикал №111: 矢",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3345,8 +3345,8 @@
       "kind": "draw",
       "title": "Радикал №112: 石",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3375,8 +3375,8 @@
       "kind": "draw",
       "title": "Радикал №113: 示",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3405,8 +3405,8 @@
       "kind": "draw",
       "title": "Радикал №114: 禸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3435,8 +3435,8 @@
       "kind": "draw",
       "title": "Радикал №115: 禾",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3465,8 +3465,8 @@
       "kind": "draw",
       "title": "Радикал №116: 穴",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3495,8 +3495,8 @@
       "kind": "draw",
       "title": "Радикал №117: 立",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3525,8 +3525,8 @@
       "kind": "draw",
       "title": "Радикал №118: 竹",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3555,8 +3555,8 @@
       "kind": "draw",
       "title": "Радикал №119: 米",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3585,8 +3585,8 @@
       "kind": "draw",
       "title": "Радикал №120: 糸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-06",
-      "scenarioId": "scenario-radicals-06",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3615,8 +3615,8 @@
       "kind": "draw",
       "title": "Радикал №121: 缶",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3645,8 +3645,8 @@
       "kind": "draw",
       "title": "Радикал №122: 网",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3675,8 +3675,8 @@
       "kind": "draw",
       "title": "Радикал №123: 羊",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3705,8 +3705,8 @@
       "kind": "draw",
       "title": "Радикал №124: 羽",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3735,8 +3735,8 @@
       "kind": "draw",
       "title": "Радикал №125: 老",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3765,8 +3765,8 @@
       "kind": "draw",
       "title": "Радикал №126: 而",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3795,8 +3795,8 @@
       "kind": "draw",
       "title": "Радикал №127: 耒",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3825,8 +3825,8 @@
       "kind": "draw",
       "title": "Радикал №128: 耳",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3855,8 +3855,8 @@
       "kind": "draw",
       "title": "Радикал №129: 聿",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3885,8 +3885,8 @@
       "kind": "draw",
       "title": "Радикал №130: 肉",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3915,8 +3915,8 @@
       "kind": "draw",
       "title": "Радикал №131: 臣",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3945,8 +3945,8 @@
       "kind": "draw",
       "title": "Радикал №132: 自",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -3975,8 +3975,8 @@
       "kind": "draw",
       "title": "Радикал №133: 至",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4005,8 +4005,8 @@
       "kind": "draw",
       "title": "Радикал №134: 臼",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4035,8 +4035,8 @@
       "kind": "draw",
       "title": "Радикал №135: 舌",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4065,8 +4065,8 @@
       "kind": "draw",
       "title": "Радикал №136: 舛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4095,8 +4095,8 @@
       "kind": "draw",
       "title": "Радикал №137: 舟",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4125,8 +4125,8 @@
       "kind": "draw",
       "title": "Радикал №138: 艮",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4155,8 +4155,8 @@
       "kind": "draw",
       "title": "Радикал №139: 色",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4185,8 +4185,8 @@
       "kind": "draw",
       "title": "Радикал №140: 艸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-07",
-      "scenarioId": "scenario-radicals-07",
+      "lessonId": "lesson-radicals-02",
+      "scenarioId": "scenario-radicals-14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4215,8 +4215,8 @@
       "kind": "draw",
       "title": "Радикал №141: 虍",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4245,8 +4245,8 @@
       "kind": "draw",
       "title": "Радикал №142: 虫",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4275,8 +4275,8 @@
       "kind": "draw",
       "title": "Радикал №143: 血",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4305,8 +4305,8 @@
       "kind": "draw",
       "title": "Радикал №144: 行",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4335,8 +4335,8 @@
       "kind": "draw",
       "title": "Радикал №145: 衣",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4365,8 +4365,8 @@
       "kind": "draw",
       "title": "Радикал №146: 襾",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4396,8 +4396,8 @@
       "kind": "draw",
       "title": "Радикал №147: 見",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4426,8 +4426,8 @@
       "kind": "draw",
       "title": "Радикал №148: 角",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4456,8 +4456,8 @@
       "kind": "draw",
       "title": "Радикал №149: 言",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4486,8 +4486,8 @@
       "kind": "draw",
       "title": "Радикал №150: 谷",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4516,8 +4516,8 @@
       "kind": "draw",
       "title": "Радикал №151: 豆",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4546,8 +4546,8 @@
       "kind": "draw",
       "title": "Радикал №152: 豕",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4576,8 +4576,8 @@
       "kind": "draw",
       "title": "Радикал №153: 豸",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4606,8 +4606,8 @@
       "kind": "draw",
       "title": "Радикал №154: 貝",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4636,8 +4636,8 @@
       "kind": "draw",
       "title": "Радикал №155: 赤",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4667,8 +4667,8 @@
       "kind": "draw",
       "title": "Радикал №156: 走",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4697,8 +4697,8 @@
       "kind": "draw",
       "title": "Радикал №157: 足",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4727,8 +4727,8 @@
       "kind": "draw",
       "title": "Радикал №158: 身",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4757,8 +4757,8 @@
       "kind": "draw",
       "title": "Радикал №159: 車",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4787,8 +4787,8 @@
       "kind": "draw",
       "title": "Радикал №160: 辛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-08",
-      "scenarioId": "scenario-radicals-08",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4817,8 +4817,8 @@
       "kind": "draw",
       "title": "Радикал №161: 辰",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4847,8 +4847,8 @@
       "kind": "draw",
       "title": "Радикал №162: 辵",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4877,8 +4877,8 @@
       "kind": "draw",
       "title": "Радикал №163: 邑",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4907,8 +4907,8 @@
       "kind": "draw",
       "title": "Радикал №164: 酉",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4937,8 +4937,8 @@
       "kind": "draw",
       "title": "Радикал №165: 釆",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4967,8 +4967,8 @@
       "kind": "draw",
       "title": "Радикал №166: 里",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -4997,8 +4997,8 @@
       "kind": "draw",
       "title": "Радикал №167: 金",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5027,8 +5027,8 @@
       "kind": "draw",
       "title": "Радикал №168: 長",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5057,8 +5057,8 @@
       "kind": "draw",
       "title": "Радикал №169: 門",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5087,8 +5087,8 @@
       "kind": "draw",
       "title": "Радикал №170: 阜",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5117,8 +5117,8 @@
       "kind": "draw",
       "title": "Радикал №171: 隶",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5147,8 +5147,8 @@
       "kind": "draw",
       "title": "Радикал №172: 隹",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5177,8 +5177,8 @@
       "kind": "draw",
       "title": "Радикал №173: 雨",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5207,8 +5207,8 @@
       "kind": "draw",
       "title": "Радикал №174: 靑",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5238,8 +5238,8 @@
       "kind": "draw",
       "title": "Радикал №175: 非",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5269,8 +5269,8 @@
       "kind": "draw",
       "title": "Радикал №176: 面",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5299,8 +5299,8 @@
       "kind": "draw",
       "title": "Радикал №177: 革",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5329,8 +5329,8 @@
       "kind": "draw",
       "title": "Радикал №178: 韋",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5359,8 +5359,8 @@
       "kind": "draw",
       "title": "Радикал №179: 韭",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5389,8 +5389,8 @@
       "kind": "draw",
       "title": "Радикал №180: 音",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-09",
-      "scenarioId": "scenario-radicals-09",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5419,8 +5419,8 @@
       "kind": "draw",
       "title": "Радикал №181: 頁",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5449,8 +5449,8 @@
       "kind": "draw",
       "title": "Радикал №182: 風",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5479,8 +5479,8 @@
       "kind": "draw",
       "title": "Радикал №183: 飛",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5509,8 +5509,8 @@
       "kind": "draw",
       "title": "Радикал №184: 食",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5539,8 +5539,8 @@
       "kind": "draw",
       "title": "Радикал №185: 首",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5569,8 +5569,8 @@
       "kind": "draw",
       "title": "Радикал №186: 香",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5599,8 +5599,8 @@
       "kind": "draw",
       "title": "Радикал №187: 馬",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5629,8 +5629,8 @@
       "kind": "draw",
       "title": "Радикал №188: 骨",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5659,8 +5659,8 @@
       "kind": "draw",
       "title": "Радикал №189: 高",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5689,8 +5689,8 @@
       "kind": "draw",
       "title": "Радикал №190: 髟",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5719,8 +5719,8 @@
       "kind": "draw",
       "title": "Радикал №191: 鬥",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5749,8 +5749,8 @@
       "kind": "draw",
       "title": "Радикал №192: 鬯",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5779,8 +5779,8 @@
       "kind": "draw",
       "title": "Радикал №193: 鬲",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5809,8 +5809,8 @@
       "kind": "draw",
       "title": "Радикал №194: 鬼",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5839,8 +5839,8 @@
       "kind": "draw",
       "title": "Радикал №195: 魚",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5869,8 +5869,8 @@
       "kind": "draw",
       "title": "Радикал №196: 鳥",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5899,8 +5899,8 @@
       "kind": "draw",
       "title": "Радикал №197: 鹵",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5929,8 +5929,8 @@
       "kind": "draw",
       "title": "Радикал №198: 鹿",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5959,8 +5959,8 @@
       "kind": "draw",
       "title": "Радикал №199: 麥",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -5989,8 +5989,8 @@
       "kind": "draw",
       "title": "Радикал №200: 麻",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-10",
-      "scenarioId": "scenario-radicals-10",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6019,8 +6019,8 @@
       "kind": "draw",
       "title": "Радикал №201: 黃",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6049,8 +6049,8 @@
       "kind": "draw",
       "title": "Радикал №202: 黍",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6079,8 +6079,8 @@
       "kind": "draw",
       "title": "Радикал №203: 黑",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6109,8 +6109,8 @@
       "kind": "draw",
       "title": "Радикал №204: 黹",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6139,8 +6139,8 @@
       "kind": "draw",
       "title": "Радикал №205: 黽",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6169,8 +6169,8 @@
       "kind": "draw",
       "title": "Радикал №206: 鼎",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6199,8 +6199,8 @@
       "kind": "draw",
       "title": "Радикал №207: 鼓",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6229,8 +6229,8 @@
       "kind": "draw",
       "title": "Радикал №208: 鼠",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6259,8 +6259,8 @@
       "kind": "draw",
       "title": "Радикал №209: 鼻",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6289,8 +6289,8 @@
       "kind": "draw",
       "title": "Радикал №210: 齊",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6319,8 +6319,8 @@
       "kind": "draw",
       "title": "Радикал №211: 齒",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6349,8 +6349,8 @@
       "kind": "draw",
       "title": "Радикал №212: 龍",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6379,8 +6379,8 @@
       "kind": "draw",
       "title": "Радикал №213: 龜",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
@@ -6409,8 +6409,8 @@
       "kind": "draw",
       "title": "Радикал №214: 龠",
       "courseId": "course-zh-radicals-214",
-      "lessonId": "lesson-radicals-11",
-      "scenarioId": "scenario-radicals-11",
+      "lessonId": "lesson-radicals-03",
+      "scenarioId": "scenario-radicals-21",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"

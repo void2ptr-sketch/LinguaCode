@@ -13,7 +13,7 @@ export const routes: Routes = [
         (m) => m.MainLayoutComponent,
       ),
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'journey', pathMatch: 'full' },
 
       // ── Home ──────────────────────────────────────────────
       {
@@ -76,6 +76,15 @@ export const routes: Routes = [
           },
           { path: '**', redirectTo: 'continue', pathMatch: 'full' },
         ],
+      },
+
+      // ── Journey Map ───────────────────────────────────────
+      {
+        path: 'journey',
+        loadComponent: () =>
+          import(
+            './features/journey/components/journey-page/journey-page.component'
+          ).then((m) => m.JourneyPageComponent),
       },
 
       // ── Card Select ───────────────────────────────────────

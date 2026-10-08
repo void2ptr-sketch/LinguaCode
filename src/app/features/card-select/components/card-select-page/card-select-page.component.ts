@@ -318,8 +318,13 @@ export class CardSelectPageComponent implements OnInit {
       this.activeTabIndex.set(LEARNING_TAB.scenarios);
     } else if (tab === 'lessons' && courseId) {
       this.activeTabIndex.set(LEARNING_TAB.lessons);
-    } else if (tab === 'course') {
+    } else     if (tab === 'course') {
       this.activeTabIndex.set(LEARNING_TAB.course);
+    }
+
+    // Если scenarioId передан из карты обучения — сразу открыть вкладку обучения
+    if (scenarioId) {
+      this.activeTabIndex.set(LEARNING_TAB.learning);
     }
   }
 

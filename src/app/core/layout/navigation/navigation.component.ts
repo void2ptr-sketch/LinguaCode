@@ -26,8 +26,9 @@ export class NavigationComponent {
     {
       id: 'learning',
       items: [
-        { label: 'Обучение', path: '/home', icon: 'school' },
+        { label: 'Карта', path: '/journey', icon: 'map' },
         { label: 'Практика', path: '/cards/select', icon: 'style' },
+        { label: 'Обучение', path: '/home', icon: 'school' },
         { label: 'Каталог курсов', path: '/courses', icon: 'menu_book' },
       ],
     },

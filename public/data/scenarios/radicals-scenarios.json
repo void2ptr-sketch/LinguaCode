@@ -2,8 +2,8 @@
   "scenarios": [
     {
       "id": "scenario-radicals-01",
-      "title": "Радикалы 1–20",
-      "description": "20 карточек: радикалы Канси №1–20. Прописывание черт и порядок написания.",
+      "title": "Радикалы 1–10",
+      "description": "Радикалы Канси №1–10.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -12,6 +12,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -24,7 +25,26 @@
           "draw-radical-007",
           "draw-radical-008",
           "draw-radical-009",
-          "draw-radical-010",
+          "draw-radical-010"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-02",
+      "title": "Радикалы 11–20",
+      "description": "Радикалы Канси №11–20.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-011",
           "draw-radical-012",
           "draw-radical-013",
@@ -39,9 +59,9 @@
       }
     },
     {
-      "id": "scenario-radicals-02",
-      "title": "Радикалы 21–40",
-      "description": "20 карточек: радикалы Канси №21–40. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-03",
+      "title": "Радикалы 21–30",
+      "description": "Радикалы Канси №21–30.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -50,6 +70,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -62,7 +83,26 @@
           "draw-radical-027",
           "draw-radical-028",
           "draw-radical-029",
-          "draw-radical-030",
+          "draw-radical-030"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-04",
+      "title": "Радикалы 31–40",
+      "description": "Радикалы Канси №31–40.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-031",
           "draw-radical-032",
           "draw-radical-033",
@@ -77,9 +117,9 @@
       }
     },
     {
-      "id": "scenario-radicals-03",
-      "title": "Радикалы 41–60",
-      "description": "20 карточек: радикалы Канси №41–60. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-05",
+      "title": "Радикалы 41–50",
+      "description": "Радикалы Канси №41–50.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -88,6 +128,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -100,7 +141,26 @@
           "draw-radical-047",
           "draw-radical-048",
           "draw-radical-049",
-          "draw-radical-050",
+          "draw-radical-050"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-06",
+      "title": "Радикалы 51–60",
+      "description": "Радикалы Канси №51–60.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-051",
           "draw-radical-052",
           "draw-radical-053",
@@ -115,9 +175,9 @@
       }
     },
     {
-      "id": "scenario-radicals-04",
-      "title": "Радикалы 61–80",
-      "description": "20 карточек: радикалы Канси №61–80. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-07",
+      "title": "Радикалы 61–70",
+      "description": "Радикалы Канси №61–70.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -126,6 +186,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-01",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -138,7 +199,26 @@
           "draw-radical-067",
           "draw-radical-068",
           "draw-radical-069",
-          "draw-radical-070",
+          "draw-radical-070"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-08",
+      "title": "Радикалы 71–80",
+      "description": "Радикалы Канси №71–80.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-071",
           "draw-radical-072",
           "draw-radical-073",
@@ -153,9 +233,9 @@
       }
     },
     {
-      "id": "scenario-radicals-05",
-      "title": "Радикалы 81–100",
-      "description": "20 карточек: радикалы Канси №81–100. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-09",
+      "title": "Радикалы 81–90",
+      "description": "Радикалы Канси №81–90.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -164,6 +244,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -176,7 +257,26 @@
           "draw-radical-087",
           "draw-radical-088",
           "draw-radical-089",
-          "draw-radical-090",
+          "draw-radical-090"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-10",
+      "title": "Радикалы 91–100",
+      "description": "Радикалы Канси №91–100.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-091",
           "draw-radical-092",
           "draw-radical-093",
@@ -191,9 +291,9 @@
       }
     },
     {
-      "id": "scenario-radicals-06",
-      "title": "Радикалы 101–120",
-      "description": "20 карточек: радикалы Канси №101–120. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-11",
+      "title": "Радикалы 101–110",
+      "description": "Радикалы Канси №101–110.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -202,6 +302,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -214,7 +315,26 @@
           "draw-radical-107",
           "draw-radical-108",
           "draw-radical-109",
-          "draw-radical-110",
+          "draw-radical-110"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-12",
+      "title": "Радикалы 111–120",
+      "description": "Радикалы Канси №111–120.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-111",
           "draw-radical-112",
           "draw-radical-113",
@@ -229,9 +349,9 @@
       }
     },
     {
-      "id": "scenario-radicals-07",
-      "title": "Радикалы 121–140",
-      "description": "20 карточек: радикалы Канси №121–140. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-13",
+      "title": "Радикалы 121–130",
+      "description": "Радикалы Канси №121–130.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -240,6 +360,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -252,7 +373,26 @@
           "draw-radical-127",
           "draw-radical-128",
           "draw-radical-129",
-          "draw-radical-130",
+          "draw-radical-130"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-14",
+      "title": "Радикалы 131–140",
+      "description": "Радикалы Канси №131–140.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-02",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-131",
           "draw-radical-132",
           "draw-radical-133",
@@ -267,9 +407,9 @@
       }
     },
     {
-      "id": "scenario-radicals-08",
-      "title": "Радикалы 141–160",
-      "description": "20 карточек: радикалы Канси №141–160. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-15",
+      "title": "Радикалы 141–150",
+      "description": "Радикалы Канси №141–150.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -278,6 +418,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -290,7 +431,26 @@
           "draw-radical-147",
           "draw-radical-148",
           "draw-radical-149",
-          "draw-radical-150",
+          "draw-radical-150"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-16",
+      "title": "Радикалы 151–160",
+      "description": "Радикалы Канси №151–160.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-151",
           "draw-radical-152",
           "draw-radical-153",
@@ -305,9 +465,9 @@
       }
     },
     {
-      "id": "scenario-radicals-09",
-      "title": "Радикалы 161–180",
-      "description": "20 карточек: радикалы Канси №161–180. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-17",
+      "title": "Радикалы 161–170",
+      "description": "Радикалы Канси №161–170.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -316,6 +476,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -328,7 +489,26 @@
           "draw-radical-167",
           "draw-radical-168",
           "draw-radical-169",
-          "draw-radical-170",
+          "draw-radical-170"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-18",
+      "title": "Радикалы 171–180",
+      "description": "Радикалы Канси №171–180.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-171",
           "draw-radical-172",
           "draw-radical-173",
@@ -343,9 +523,9 @@
       }
     },
     {
-      "id": "scenario-radicals-10",
-      "title": "Радикалы 181–200",
-      "description": "20 карточек: радикалы Канси №181–200. Прописывание черт и порядок написания.",
+      "id": "scenario-radicals-19",
+      "title": "Радикалы 181–190",
+      "description": "Радикалы Канси №181–190.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -354,6 +534,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [
@@ -366,7 +547,26 @@
           "draw-radical-187",
           "draw-radical-188",
           "draw-radical-189",
-          "draw-radical-190",
+          "draw-radical-190"
+        ]
+      }
+    },
+    {
+      "id": "scenario-radicals-20",
+      "title": "Радикалы 191–200",
+      "description": "Радикалы Канси №191–200.",
+      "authorId": "system",
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "languagePair": {
+        "known": "ru",
+        "learning": "zh"
+      },
+      "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
+      "cardSource": {
+        "mode": "fixed",
+        "cardIds": [
           "draw-radical-191",
           "draw-radical-192",
           "draw-radical-193",
@@ -381,9 +581,9 @@
       }
     },
     {
-      "id": "scenario-radicals-11",
+      "id": "scenario-radicals-21",
       "title": "Радикалы 201–214",
-      "description": "14 карточек: радикалы Канси №201–214. Прописывание черт и порядок написания.",
+      "description": "14 карточек: радикалы Канси №201–214.",
       "authorId": "system",
       "published": true,
       "updatedAt": "2026-06-14T12:00:00.000Z",
@@ -392,6 +592,7 @@
         "learning": "zh"
       },
       "courseId": "course-zh-radicals-214",
+      "lessonId": "lesson-radicals-03",
       "cardSource": {
         "mode": "fixed",
         "cardIds": [

@@ -114,22 +114,51 @@
 
   <mat-card-actions align="end">
     @if (feedback() === null) {
-      <button
-        mat-flat-button
-        type="button"
-        [disabled]="!hasStrokes() || drawSubmitted()"
-        (click)="submitDrawing()"
-      >
-        {{ hasMultipleSyllables() && !allCharsDone() ? 'Готово, следующий' : 'Готово' }}
-      </button>
-      <button
-        mat-flat-button
-        type="button"
-        [disabled]="!drawSubmitted()"
-        (click)="checkAnswer.emit()"
-      >
-        Проверить
-      </button>
+      @if (hasMultipleSyllables() && !allCharsDone()) {
+        <!-- Несколько иероглифов: промежуточный шаг -->
+        <button
+          mat-flat-button
+          type="button"
+          [disabled]="!hasStrokes()"
+          (click)="submitDrawing()"
+        >
+          Готово, следующий
+        </button>
+      } @else if (hasMultipleSyllables() && allCharsDone()) {
+        <!-- Несколько иероглифов: все нарисованы -->
+        @if (!drawSubmitted()) {
+          <button
+            mat-flat-button
+            type="button"
+            [disabled]="!hasStrokes()"
+            (click)="submitDrawing()"
+          >
+            Готово
+          </button>
+          <button
+            mat-flat-button
+            type="button"
+            [disabled]="!drawSubmitted()"
+            (click)="checkAnswer.emit()"
+          >
+            Проверить
+          </button>
+        } @else {
+          <button mat-flat-button type="button" (click)="checkAnswer.emit()">
+            Проверить
+          </button>
+        }
+      } @else {
+        <!-- Один иероглиф: сразу проверка -->
+        <button
+          mat-flat-button
+          type="button"
+          [disabled]="!hasStrokes()"
+          (click)="submitAndCheck()"
+        >
+          Проверить
+        </button>
+      }
     } @else {
       <button mat-flat-button type="button" (click)="nextCard.emit()">Далее</button>
     }

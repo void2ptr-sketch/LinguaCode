@@ -1,0 +1,262 @@
+.journey-map {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+  max-width: 960px;
+}
+
+/* ===== Header ===== */
+
+.journey-map__header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.journey-map__title-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.journey-map__title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface);
+}
+
+.journey-map__course-title {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.journey-map__level-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  background: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--novice {
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+
+  &--experienced {
+    background: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+  }
+
+  &--expert {
+    background: var(--mat-sys-tertiary-container);
+    color: var(--mat-sys-on-tertiary-container);
+  }
+}
+
+/* ===== Controls ===== */
+
+.journey-map__controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.journey-map__filters {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+  overflow: visible;
+}
+
+.journey-map__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 1px solid var(--mat-sys-outline-variant);
+  border-radius: 16px;
+  background: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background: var(--mat-sys-secondary-container);
+    color: var(--mat-sys-on-secondary-container);
+  }
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+
+  &--active {
+    background: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+    border-color: var(--mat-sys-primary);
+  }
+}
+
+
+.journey-map__view-btn,
+.journey-map__fav-filter,
+.journey-map__fog-btn {
+  &--active {
+    color: var(--mat-sys-primary);
+    background: var(--mat-sys-primary-container);
+  }
+}
+
+/* ===== Content ===== */
+
+.journey-map__content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.journey-map__empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px;
+  color: var(--mat-sys-on-surface-variant);
+
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    opacity: 0.5;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
+}
+
+/* ===== Nodes Grid ===== */
+
+.journey-map__nodes {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  &--list {
+    .journey-map__lesson-group {
+      max-width: 480px;
+    }
+  }
+}
+
+.journey-map__lesson-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.journey-map__lesson-title {
+  margin: 0;
+  padding: 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.journey-map__lesson-nodes {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ===== Screen reader only ===== */
+
+.journey-map__sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+
+  /* Включён для скринридеров */
+  &:not(:focus-within) {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+}
+
+/* ===== Адаптивность ===== */
+
+@media (min-width: 640px) {
+  .journey-map {
+    padding: 24px;
+  }
+
+  .journey-map__title {
+    font-size: 24px;
+  }
+
+  .journey-map__lesson-nodes {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .journey-map__lesson-node-item {
+    flex: 1 1 calc(50% - 8px);
+    min-width: 200px;
+  }
+}
+
+@media (min-width: 960px) {
+  .journey-map__lesson-nodes {
+    flex-wrap: nowrap;
+  }
+
+  .journey-map__lesson-node-item {
+    flex: 1 1 calc(33.33% - 8px);
+    min-width: 180px;
+  }
+}
+
+/* ===== prefers-reduced-motion ===== */
+
+@media (prefers-reduced-motion: reduce) {
+  .journey-map {
+    animation: none;
+  }
+}
