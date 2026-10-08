@@ -355,6 +355,15 @@ export class DrawCardComponent {
     }
   }
 
+  submitAndCheck(): void {
+    if (this.feedback() !== null || !this.hasStrokes()) {
+      return;
+    }
+
+    this.submitDrawing();
+    this.checkAnswer.emit();
+  }
+
   playLearningAudio(): void {
     playCardLearningAudio({
       audioUrl: this.learningAudioUrl(),
