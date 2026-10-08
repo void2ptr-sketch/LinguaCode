@@ -1,6 +1,5 @@
 import { Component, inject, signal, OnInit, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs';
 
 import { LearningJourneyMapComponent } from '../learning-journey-map/learning-journey-map.component';
@@ -29,7 +28,7 @@ import type { CourseWithLessons } from '../../../../core/models';
       <app-learning-journey-map
         [courseId]="courseId()"
         [nodes]="nodes()"
-        (locationSelect)="onLocationSelect($event)"
+        (locationSelect)="onLocationSelect()"
       />
     } @else {
       <div class="journey-page__empty" role="status">
@@ -132,7 +131,7 @@ export class JourneyPageComponent implements OnInit {
     this.nodes.set(nodes);
   }
 
-  onLocationSelect(nodeId: string): void {
+  onLocationSelect(): void {
     // TODO: перейти к сценарию или открыть детальную информацию
   }
 }

@@ -35,14 +35,12 @@ export class JourneyAnalyticsService {
 
   /** Количество посещений для конкретного сценария. */
   readonly visitCountForScenario = computed(() => {
-    const userId = this.userStore.user().id;
     return (scenarioId: string) =>
       this.visits().filter((v) => v.scenarioId === scenarioId).length;
   });
 
   /** Общая статистика посещений по курсу. */
   readonly courseVisitStats = computed(() => {
-    const userId = this.userStore.user().id;
     return (courseId: string) => {
       const courseVisits = this.visits().filter((v) => v.courseId === courseId);
       const totalVisits = courseVisits.length;

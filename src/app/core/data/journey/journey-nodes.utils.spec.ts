@@ -4,7 +4,7 @@ import {
   mapScenarioToNode,
   computeContentTypes,
 } from './journey-nodes.utils';
-import type { CourseWithLessons, Lesson, Scenario, CardBase } from '../../models';
+import type { CourseWithLessons, Scenario, CardBase } from '../../models';
 import type { JourneyLocationNode } from '../../models/journey.types';
 
 describe('journey-nodes.utils', () => {

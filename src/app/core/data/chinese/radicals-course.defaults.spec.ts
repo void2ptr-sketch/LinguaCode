@@ -6,11 +6,7 @@ import {
 } from '../content-seed/content-seed.test-utils';
 import {
   RADICALS_COURSE_ID,
-  RADICALS_LESSON_COUNT,
-  RADICALS_PER_SCENARIO,
-  RADICALS_TOTAL,
   radicalCardId,
-  radicalLessonCardIds,
 } from './radicals-course.defaults';
 
 describe('radicals-course.defaults', () => {

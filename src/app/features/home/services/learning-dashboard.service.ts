@@ -1,6 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
 import {
   buildLessonRoadmap,
   collectScenarioIds,

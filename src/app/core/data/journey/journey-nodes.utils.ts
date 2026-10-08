@@ -1,5 +1,5 @@
 import type { CourseWithLessons, Lesson, Scenario } from '../../models';
-import type { Card, CardBase } from '../../models';
+import type { CardBase } from '../../models';
 import type { JourneyLocationNode, JourneyContentType } from '../../models/journey.types';
 import { CARD_KIND_TO_CONTENT_TYPE } from '../../models/journey.types';
 

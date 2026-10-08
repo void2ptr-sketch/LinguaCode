@@ -1,5 +1,3 @@
-import type { Lesson } from './lesson.types';
-
 /** Статус локации на карте путешествия. */
 export type JourneyLocationStatus = 'locked' | 'available' | 'in-progress' | 'visited' | 'completed';
 
