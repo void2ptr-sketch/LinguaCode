@@ -84,6 +84,9 @@ export class JourneyLocationNodeComponent {
     }
   });
 
+  /** Количество карточек в сценарии. */
+  protected readonly cardCount = computed(() => this.node().cardCount);
+
   protected onSelect(): void {
     if (this.isInteractive()) {
       this.nodeSelect.emit(this.node().id);

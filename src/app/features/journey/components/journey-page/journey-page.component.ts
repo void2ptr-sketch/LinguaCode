@@ -7,7 +7,8 @@ import { LearningJourneyMapComponent } from '../learning-journey-map/learning-jo
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../../core/state';
-import { buildJourneyNodes } from '../../../../core/data/journey/journey-nodes.utils';
+import { ContentSeedRepository } from '../../../../core/data/content-seed/content-seed.repository';
+import { buildJourneyNodes, buildScenarioMap } from '../../../../core/data/journey/journey-nodes.utils';
 import type { JourneyLocationNode } from '../../../../core/models/journey.types';
 import type { CourseWithLessons } from '../../../../core/models';
 
@@ -63,6 +64,7 @@ export class JourneyPageComponent implements OnInit {
   private readonly dashboardService = inject(LearningDashboardService);
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
+  private readonly contentSeedRepo = inject(ContentSeedRepository);
   private readonly route = inject(ActivatedRoute);
 
   readonly loading = signal(false);
@@ -105,8 +107,15 @@ export class JourneyPageComponent implements OnInit {
     const hasScenarioVisit = (scenarioId: string) =>
       this.analyticsService.visitCountForScenario()(scenarioId) > 0;
 
+    // Загружаем все сценарии из seed-кэша (напрямую из JSON, без фильтрации)
+    const allScenarios = this.contentSeedRepo.getScenarioSeed();
+    const courseScenarioIds = new Set(course.lessons.flatMap((l) => [...l.scenarioIds]));
+    const courseScenarios = allScenarios.filter((s) => courseScenarioIds.has(s.id));
+    const scenarioMap = buildScenarioMap(courseScenarios);
+
     const nodes = buildJourneyNodes(
       course,
+      scenarioMap,
       hasScenarioResult,
       hasScenarioVisit,
     );

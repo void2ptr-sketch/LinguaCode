@@ -1,12 +1,73 @@
-import type { CourseWithLessons, Lesson } from '../../models';
+import type { CourseWithLessons, Lesson, Scenario } from '../../models';
 import type { JourneyLocationNode, JourneyContentType } from '../../models/journey.types';
+
+/** Маппинг scenarioId → Scenario для быстрого доступа. */
+type ScenarioMap = Map<string, Scenario>;
+
+/**
+ * Создаёт карту scenarioId → Scenario из массива сценариев.
+ */
+export function buildScenarioMap(scenarios: readonly Scenario[]): ScenarioMap {
+  return new Map(scenarios.map((s) => [s.id, s]));
+}
+
+/**
+ * Преобразует одиночный Scenario в JourneyLocationNode.
+ * Используется для прямого маппинга из JSON-файлов сценариев.
+ */
+export function mapScenarioToNode(
+  scenario: Scenario,
+  options: {
+    lessonId: string;
+    lessonTitle: string;
+    courseId: string;
+    courseTitle: string;
+    order: number;
+    status: JourneyLocationNode['status'];
+    contentType: JourneyContentType;
+    completionPercent: number;
+    visited: boolean;
+    favorite: boolean;
+    blockReason: string | null;
+  },
+): JourneyLocationNode {
+  const cardCount = scenario.cardSource.mode === 'fixed'
+    ? scenario.cardSource.cardIds.length
+    : 0;
+
+  return {
+    id: `node-${scenario.id}`,
+    title: scenario.title,
+    description: scenario.description ?? '',
+    cardCount,
+    order: options.order,
+    status: options.status,
+    contentType: options.contentType,
+    lessonId: options.lessonId,
+    lessonTitle: options.lessonTitle,
+    courseId: options.courseId,
+    courseTitle: options.courseTitle,
+    completionPercent: options.completionPercent,
+    visited: options.visited,
+    favorite: options.favorite,
+    blockReason: options.blockReason,
+    scenarioId: scenario.id,
+  };
+}
 
 /**
  * Преобразует CourseWithLessons в массив JourneyLocationNode.
  * Каждый сценарий становится отдельным узлом на карте.
+ *
+ * @param course — курс с загруженными уроками
+ * @param scenarioMap — карта сценариев для получения title/description/cardCount
+ * @param hasScenarioResult — возвращает true, если сценарий завершён
+ * @param hasScenarioVisit — возвращает true, если сценарий посещён
+ * @param getScenarioContentType — возвращает тип контента (по умолчанию 'theory')
  */
 export function buildJourneyNodes(
   course: CourseWithLessons,
+  scenarioMap: ScenarioMap,
   hasScenarioResult: (scenarioId: string) => boolean,
   hasScenarioVisit: (scenarioId: string) => boolean,
   getScenarioContentType: (scenarioId: string) => JourneyContentType = () => 'theory',
@@ -41,9 +102,19 @@ export function buildJourneyNodes(
         ? Math.round((completedScenarios / lesson.scenarioIds.length) * 100)
         : 0;
 
+      // Получаем реальные данные сценария из карты
+      const scenario = scenarioMap.get(scenarioId);
+      const title = scenario?.title ?? `Сценарий ${order + 1}`;
+      const description = scenario?.description ?? '';
+      const cardCount = scenario?.cardSource.mode === 'fixed'
+        ? scenario.cardSource.cardIds.length
+        : 0;
+
       allNodes.push({
         id: `node-${scenarioId}`,
-        title: `Сценарий ${order + 1}`,
+        title,
+        description,
+        cardCount,
         order: lesson.order * 100 + order,
         status,
         contentType,

@@ -30,7 +30,13 @@
 
     <div class="journey-node__info">
       <span class="journey-node__title">{{ node().title }}</span>
-      <span class="journey-node__subtitle">{{ node().lessonTitle }}</span>
+      @if (node().description) {
+        <span class="journey-node__description">{{ node().description }}</span>
+      }
+      <div class="journey-node__meta">
+        <span class="journey-node__subtitle">{{ node().lessonTitle }}</span>
+        <span class="journey-node__badge">{{ cardCount() }} карточек</span>
+      </div>
     </div>
 
     <div class="journey-node__progress">

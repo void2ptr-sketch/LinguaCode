@@ -163,6 +163,8 @@ describe('JourneyAnalyticsService', () => {
     const node: JourneyLocationNode = {
       id: 'n1',
       title: 'Тест',
+      description: 'Описание',
+      cardCount: 2,
       order: 1,
       status: 'available',
       contentType: 'test',

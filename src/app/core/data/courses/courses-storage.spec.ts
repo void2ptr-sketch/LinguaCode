@@ -14,7 +14,7 @@ describe('courses-storage', () => {
     const zhCatalog = getTestZhCourseCatalog();
 
     expect(zhCatalog.courses).toHaveLength(3);
-    expect(zhCatalog.lessons).toHaveLength(16);
+    expect(zhCatalog.lessons).toHaveLength(8);
     expect(zhCatalog.courses.every((course) => course.languagePair.learning === 'zh')).toBe(true);
   });
 

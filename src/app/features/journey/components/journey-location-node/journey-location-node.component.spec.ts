@@ -10,6 +10,8 @@ import { JourneyAnalyticsService } from '../../../../core/services/journey-analy
 const baseNode: JourneyLocationNode = {
   id: 'n1',
   title: 'Тестовая локация',
+  description: 'Описание тестовой локации',
+  cardCount: 5,
   order: 1,
   status: 'available',
   contentType: 'theory',
@@ -190,5 +192,86 @@ describe('JourneyLocationNodeComponent', () => {
 
     const statusIcon = fixture.nativeElement.querySelector('.journey-node__status-icon--completed');
     expect(statusIcon).toBeTruthy();
+  });
+
+  it('should render description when provided', async () => {
+    const { WrapperComponent } = createComponent(baseNode);
+
+    await TestBed.configureTestingModule({
+      imports: [WrapperComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: mockRouter },
+        {
+          provide: JourneyAnalyticsService,
+          useValue: {
+            trackEvent: vi.fn(),
+            toggleFavorite: vi.fn(),
+            isFavorite: vi.fn(() => false),
+          },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(WrapperComponent);
+    fixture.detectChanges();
+
+    const descriptionEl = fixture.nativeElement.querySelector('.journey-node__description');
+    expect(descriptionEl).toBeTruthy();
+    expect(descriptionEl?.textContent).toBe('Описание тестовой локации');
+  });
+
+  it('should render card count badge', async () => {
+    const { WrapperComponent } = createComponent(baseNode);
+
+    await TestBed.configureTestingModule({
+      imports: [WrapperComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: mockRouter },
+        {
+          provide: JourneyAnalyticsService,
+          useValue: {
+            trackEvent: vi.fn(),
+            toggleFavorite: vi.fn(),
+            isFavorite: vi.fn(() => false),
+          },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(WrapperComponent);
+    fixture.detectChanges();
+
+    const badgeEl = fixture.nativeElement.querySelector('.journey-node__badge');
+    expect(badgeEl).toBeTruthy();
+    expect(badgeEl?.textContent).toBe('5 карточек');
+  });
+
+  it('should not render description when empty', async () => {
+    const nodeWithoutDescription: JourneyLocationNode = { ...baseNode, description: '' };
+    const { WrapperComponent } = createComponent(nodeWithoutDescription);
+
+    await TestBed.configureTestingModule({
+      imports: [WrapperComponent],
+      providers: [
+        { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: mockRouter },
+        {
+          provide: JourneyAnalyticsService,
+          useValue: {
+            trackEvent: vi.fn(),
+            toggleFavorite: vi.fn(),
+            isFavorite: vi.fn(() => false),
+          },
+        },
+      ],
+    }).compileComponents();
+
+    const fixture = TestBed.createComponent(WrapperComponent);
+    fixture.detectChanges();
+
+    const descriptionEl = fixture.nativeElement.querySelector('.journey-node__description');
+    expect(descriptionEl).toBeFalsy();
   });
 });

@@ -12,6 +12,8 @@ const mockNodes: JourneyLocationNode[] = [
   {
     id: 'n1',
     title: 'Теория: Введение',
+    description: 'Вводная теория',
+    cardCount: 5,
     order: 1,
     status: 'completed',
     contentType: 'theory',
@@ -28,6 +30,8 @@ const mockNodes: JourneyLocationNode[] = [
   {
     id: 'n2',
     title: 'Практика: Упражнения',
+    description: 'Практические упражнения',
+    cardCount: 10,
     order: 2,
     status: 'available',
     contentType: 'practice',
@@ -44,6 +48,8 @@ const mockNodes: JourneyLocationNode[] = [
   {
     id: 'n3',
     title: 'Тест: Проверка',
+    description: 'Итоговый тест',
+    cardCount: 3,
     order: 3,
     status: 'locked',
     contentType: 'test',

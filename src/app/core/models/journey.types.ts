@@ -12,6 +12,10 @@ export type JourneyLocationNode = {
   id: string;
   /** Заголовок локации. */
   title: string;
+  /** Краткое описание сценария. */
+  description: string;
+  /** Количество карточек в сценарии. */
+  cardCount: number;
   /** Порядок в уроке/курсе. */
   order: number;
   /** Текущий статус локации. */
