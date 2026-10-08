@@ -13,7 +13,7 @@ export const routes: Routes = [
         (m) => m.MainLayoutComponent,
       ),
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
+      { path: '', redirectTo: 'journey', pathMatch: 'full' },
 
       // ── Home ──────────────────────────────────────────────
       {
