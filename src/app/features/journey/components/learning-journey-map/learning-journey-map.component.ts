@@ -13,6 +13,7 @@ import {
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type {
@@ -37,6 +38,7 @@ export type JourneyViewMode = 'map' | 'list';
     CommonModule,
     MatIconModule,
     MatButtonModule,
+    MatTooltipModule,
     MatProgressSpinnerModule,
     JourneyLocationNodeComponent,
   ],
@@ -110,14 +112,14 @@ export class LearningJourneyMapComponent implements OnInit, OnDestroy {
   });
 
   protected readonly contentTypes = computed<
-    { type: JourneyFilterType; label: string; icon: string }[]
+    { type: JourneyFilterType; label: string; icon: string; tooltip: string }[]
   >(() => [
-    { type: 'all', label: 'Все', icon: 'apps' },
-    { type: 'theory', label: 'Теория', icon: 'menu_book' },
-    { type: 'practice', label: 'Практика', icon: 'edit_note' },
-    { type: 'test', label: 'Тесты', icon: 'assignment' },
-    { type: 'video', label: 'Видео', icon: 'play_circle' },
-    { type: 'case', label: 'Кейсы', icon: 'psychology' },
+    { type: 'all', label: 'Все', icon: 'apps', tooltip: 'Показать все типы контента' },
+    { type: 'theory', label: 'Теория', icon: 'menu_book', tooltip: 'Фильтр: теоретические материалы' },
+    { type: 'practice', label: 'Практика', icon: 'edit_note', tooltip: 'Фильтр: практические задания' },
+    { type: 'test', label: 'Тесты', icon: 'assignment', tooltip: 'Фильтр: проверочные тесты' },
+    { type: 'video', label: 'Видео', icon: 'play_circle', tooltip: 'Фильтр: видеоматериалы' },
+    { type: 'case', label: 'Кейсы', icon: 'psychology', tooltip: 'Фильтр: практические кейсы' },
   ]);
 
   private readonly visitStartTimes = new Map<string, number>();

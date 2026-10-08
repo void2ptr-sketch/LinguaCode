@@ -21,6 +21,8 @@
           <button
             class="journey-map__chip"
             [class.journey-map__chip--active]="filterType() === item.type"
+            [attr.data-tooltip]="item.tooltip"
+            matTooltip="{{ item.tooltip }}"
             (click)="onFilterTypeChange(item.type)"
             [attr.aria-pressed]="filterType() === item.type"
           >
@@ -33,6 +35,7 @@
       <!-- Переключатель режима отображения -->
       <button
         mat-icon-button
+        matTooltip="Режим карты"
         [class.journey-map__view-btn--active]="viewMode() === 'map'"
         (click)="onViewModeChange('map')"
         aria-label="Режим карты"
@@ -41,6 +44,7 @@
       </button>
       <button
         mat-icon-button
+        matTooltip="Режим списка"
         [class.journey-map__view-btn--active]="viewMode() === 'list'"
         (click)="onViewModeChange('list')"
         aria-label="Режим списка"
@@ -51,6 +55,7 @@
       <!-- Переключатель избранного -->
       <button
         mat-icon-button
+        matTooltip="Показать избранное"
         [class.journey-map__fav-filter--active]="showFavoritesOnly()"
         (click)="onToggleFavoritesFilter()"
         aria-label="Показать избранное"
@@ -61,6 +66,7 @@
       <!-- Переключатель тумана войны -->
       <button
         mat-icon-button
+        matTooltip="Скрыть заблокированные уроки"
         [class.journey-map__fog-btn--active]="showFogOfWar()"
         (click)="toggleFogOfWar()"
         aria-label="Туман войны"
