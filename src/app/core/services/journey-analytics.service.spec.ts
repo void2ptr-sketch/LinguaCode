@@ -167,7 +167,7 @@ describe('JourneyAnalyticsService', () => {
       cardCount: 2,
       order: 1,
       status: 'available',
-      contentType: 'test',
+      contentTypes: ['test'],
       lessonId: 'l1',
       lessonTitle: 'Урок 1',
       courseId: 'c1',

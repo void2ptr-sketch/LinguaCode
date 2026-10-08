@@ -1,5 +1,7 @@
 import type { CourseWithLessons, Lesson, Scenario } from '../../models';
+import type { Card, CardBase } from '../../models';
 import type { JourneyLocationNode, JourneyContentType } from '../../models/journey.types';
+import { CARD_KIND_TO_CONTENT_TYPE } from '../../models/journey.types';
 
 /** Маппинг scenarioId → Scenario для быстрого доступа. */
 type ScenarioMap = Map<string, Scenario>;
@@ -9,6 +11,36 @@ type ScenarioMap = Map<string, Scenario>;
  */
 export function buildScenarioMap(scenarios: readonly Scenario[]): ScenarioMap {
   return new Map(scenarios.map((s) => [s.id, s]));
+}
+
+/**
+ * Маппит CardKind → JourneyContentType.
+ */
+export function mapCardKindToContentType(kind: string): JourneyContentType | null {
+  return CARD_KIND_TO_CONTENT_TYPE[kind] ?? null;
+}
+
+/**
+ * Вычисляет уникальные типы контента из массива ID карточек.
+ */
+export function computeContentTypes(
+  cardIds: readonly string[],
+  cards: readonly CardBase[],
+): JourneyContentType[] {
+  const cardsById = new Map(cards.map((c) => [c.id, c]));
+  const types = new Set<JourneyContentType>();
+
+  for (const cardId of cardIds) {
+    const card = cardsById.get(cardId);
+    if (card) {
+      const contentType = mapCardKindToContentType(card.kind);
+      if (contentType) {
+        types.add(contentType);
+      }
+    }
+  }
+
+  return [...types];
 }
 
 /**
@@ -24,7 +56,7 @@ export function mapScenarioToNode(
     courseTitle: string;
     order: number;
     status: JourneyLocationNode['status'];
-    contentType: JourneyContentType;
+    contentTypes: JourneyContentType[];
     completionPercent: number;
     visited: boolean;
     favorite: boolean;
@@ -42,7 +74,7 @@ export function mapScenarioToNode(
     cardCount,
     order: options.order,
     status: options.status,
-    contentType: options.contentType,
+    contentTypes: options.contentTypes,
     lessonId: options.lessonId,
     lessonTitle: options.lessonTitle,
     courseId: options.courseId,
@@ -61,16 +93,16 @@ export function mapScenarioToNode(
  *
  * @param course — курс с загруженными уроками
  * @param scenarioMap — карта сценариев для получения title/description/cardCount
+ * @param cards — массив карточек для вычисления contentTypes
  * @param hasScenarioResult — возвращает true, если сценарий завершён
  * @param hasScenarioVisit — возвращает true, если сценарий посещён
- * @param getScenarioContentType — возвращает тип контента (по умолчанию 'theory')
  */
 export function buildJourneyNodes(
   course: CourseWithLessons,
   scenarioMap: ScenarioMap,
+  cards: readonly CardBase[],
   hasScenarioResult: (scenarioId: string) => boolean,
   hasScenarioVisit: (scenarioId: string) => boolean,
-  getScenarioContentType: (scenarioId: string) => JourneyContentType = () => 'theory',
 ): JourneyLocationNode[] {
   const sortedLessons = [...course.lessons].sort((left, right) => left.order - right.order);
   const lessonsById = buildLessonsById(sortedLessons);
@@ -88,7 +120,13 @@ export function buildJourneyNodes(
       const scenarioId = lesson.scenarioIds[order];
       const hasResult = hasScenarioResult(scenarioId);
       const hasVisit = hasScenarioVisit(scenarioId);
-      const contentType = getScenarioContentType(scenarioId);
+
+      // Получаем данные сценария и вычисляем contentTypes
+      const scenario = scenarioMap.get(scenarioId);
+      const cardIds = scenario?.cardSource.mode === 'fixed'
+        ? scenario.cardSource.cardIds
+        : [];
+      const contentTypes = computeContentTypes(cardIds, cards);
 
       const status = computeScenarioStatus(
         isLessonUnlocked,
@@ -102,8 +140,6 @@ export function buildJourneyNodes(
         ? Math.round((completedScenarios / lesson.scenarioIds.length) * 100)
         : 0;
 
-      // Получаем реальные данные сценария из карты
-      const scenario = scenarioMap.get(scenarioId);
       const title = scenario?.title ?? `Сценарий ${order + 1}`;
       const description = scenario?.description ?? '';
       const cardCount = scenario?.cardSource.mode === 'fixed'
@@ -117,7 +153,7 @@ export function buildJourneyNodes(
         cardCount,
         order: lesson.order * 100 + order,
         status,
-        contentType,
+        contentTypes,
         lessonId: lesson.id,
         lessonTitle: lesson.title,
         courseId: course.id,

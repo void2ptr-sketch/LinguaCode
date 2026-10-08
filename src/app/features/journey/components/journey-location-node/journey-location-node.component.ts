@@ -58,7 +58,10 @@ export class JourneyLocationNodeComponent {
   });
 
   protected readonly contentTypeIcon = computed(() => {
-    return CONTENT_TYPE_ICONS[this.node().contentType] ?? 'help';
+    const types = this.node().contentTypes;
+    if (types.length === 0) return 'help';
+    // Показываем первую иконку типа контента
+    return CONTENT_TYPE_ICONS[types[0]] ?? 'help';
   });
 
   protected readonly isInteractive = computed(() => {
@@ -86,6 +89,12 @@ export class JourneyLocationNodeComponent {
 
   /** Количество карточек в сценарии. */
   protected readonly cardCount = computed(() => this.node().cardCount);
+
+  /** Иконки типов контента (может быть несколько). */
+  protected readonly contentTypeIcons = computed(() => {
+    const types = this.node().contentTypes;
+    return types.map((t) => CONTENT_TYPE_ICONS[t] ?? 'help');
+  });
 
   protected onSelect(): void {
     if (this.isInteractive()) {

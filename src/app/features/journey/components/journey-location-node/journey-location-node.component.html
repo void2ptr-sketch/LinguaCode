@@ -20,12 +20,13 @@
       >
         {{ statusIcon() }}
       </mat-icon>
-      <mat-icon
-        class="journey-node__content-icon"
-        aria-hidden="true"
-      >
-        {{ contentTypeIcon() }}
-      </mat-icon>
+      <div class="journey-node__content-icons">
+        @for (icon of contentTypeIcons(); track icon) {
+          <mat-icon class="journey-node__content-icon" aria-hidden="true">
+            {{ icon }}
+          </mat-icon>
+        }
+      </div>
     </div>
 
     <div class="journey-node__info">

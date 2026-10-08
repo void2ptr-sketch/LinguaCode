@@ -2,8 +2,9 @@ import {
   buildScenarioMap,
   buildJourneyNodes,
   mapScenarioToNode,
+  computeContentTypes,
 } from './journey-nodes.utils';
-import type { CourseWithLessons, Lesson, Scenario } from '../../models';
+import type { CourseWithLessons, Lesson, Scenario, CardBase } from '../../models';
 import type { JourneyLocationNode } from '../../models/journey.types';
 
 describe('journey-nodes.utils', () => {
@@ -46,7 +47,7 @@ describe('journey-nodes.utils', () => {
       courseTitle: 'Курс 1',
       order: 0,
       status: 'available' as const,
-      contentType: 'practice' as const,
+      contentTypes: ['practice'] as JourneyLocationNode['contentTypes'],
       completionPercent: 0,
       visited: false,
       favorite: false,
@@ -62,7 +63,7 @@ describe('journey-nodes.utils', () => {
       expect(node.cardCount).toBe(3);
       expect(node.order).toBe(0);
       expect(node.status).toBe('available');
-      expect(node.contentType).toBe('practice');
+      expect(node.contentTypes).toEqual(['practice']);
       expect(node.lessonId).toBe('lesson-1');
       expect(node.lessonTitle).toBe('Урок 1');
       expect(node.courseId).toBe('course-1');
@@ -103,6 +104,37 @@ describe('journey-nodes.utils', () => {
 
       const node = mapScenarioToNode(scenario, baseOptions);
       expect(node.description).toBe('');
+    });
+  });
+
+  describe('computeContentTypes', () => {
+    const mockCards: CardBase[] = [
+      { id: 'draw-001', kind: 'draw', title: 'Draw card', appearance: { theme: '', fontSize: 'md' } },
+      { id: 'select-001', kind: 'select', title: 'Select card', appearance: { theme: '', fontSize: 'md' } },
+      { id: 'timed-001', kind: 'timed', title: 'Timed card', appearance: { theme: '', fontSize: 'md' } },
+      { id: 'memory-001', kind: 'memory', title: 'Memory card', appearance: { theme: '', fontSize: 'md' } },
+    ];
+
+    it('should compute contentTypes from card IDs', () => {
+      const types = computeContentTypes(['draw-001', 'select-001'], mockCards );
+      expect(types).toContain('practice');
+      expect(types).toContain('theory');
+      expect(types).toHaveLength(2);
+    });
+
+    it('should return single type for same-kind cards', () => {
+      const types = computeContentTypes(['draw-001', 'draw-001'], mockCards );
+      expect(types).toEqual(['practice']);
+    });
+
+    it('should return empty array for unknown card IDs', () => {
+      const types = computeContentTypes(['unknown-001'], mockCards );
+      expect(types).toEqual([]);
+    });
+
+    it('should return empty array for empty cardIds', () => {
+      const types = computeContentTypes([], mockCards );
+      expect(types).toEqual([]);
     });
   });
 
@@ -170,10 +202,18 @@ describe('journey-nodes.utils', () => {
       },
     ]);
 
+    // Mock cards with known kinds for content type computation
+    const mockCards: CardBase[] = [
+      { id: 'card-1', kind: 'draw', title: 'Draw', appearance: { theme: '', fontSize: 'md' } },
+      { id: 'card-2', kind: 'select', title: 'Select', appearance: { theme: '', fontSize: 'md' } },
+      { id: 'card-3', kind: 'timed', title: 'Timed', appearance: { theme: '', fontSize: 'md' } },
+    ];
+
     it('should build nodes from course with lessons', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards ,
         () => false,
         () => false,
       );
@@ -190,6 +230,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
@@ -205,6 +246,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
@@ -219,6 +261,8 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
+        
         (scenarioId) => scenarioId === 'scenario-01',
         () => false,
       );
@@ -233,6 +277,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         (scenarioId) => scenarioId === 'scenario-02',
       );
@@ -244,6 +289,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
@@ -257,6 +303,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
@@ -269,6 +316,7 @@ describe('journey-nodes.utils', () => {
       const nodesAllComplete = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+      mockCards,
         () => true,
         () => false,
       );
@@ -281,23 +329,12 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
 
-      expect(nodes[0].contentType).toBe('theory');
-    });
-
-    it('should use custom contentType when provided', () => {
-      const nodes = buildJourneyNodes(
-        baseCourse,
-        scenarioMap,
-        () => false,
-        () => false,
-        () => 'practice',
-      );
-
-      expect(nodes[0].contentType).toBe('practice');
+      expect(nodes[0].contentTypes).toContain('theory');
     });
 
     it('should fallback to placeholder title when scenario not in map', () => {
@@ -320,6 +357,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         courseWithUnknownScenario,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );
@@ -349,6 +387,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         courseWithEmptyLesson,
         scenarioMap,
+        mockCards,
         () => false,
         () => false,
       );

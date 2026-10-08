@@ -69,16 +69,21 @@
 }
 
 .journey-node__content-icon {
-  position: absolute;
-  bottom: -2px;
-  right: -2px;
-  font-size: 18px;
-  width: 18px;
-  height: 18px;
-  color: var(--mat-sys-on-surface-variant);
+  font-size: 16px;
+  width: 16px;
+  height: 16px;
   background: var(--mat-sys-surface);
   border-radius: 50%;
   padding: 2px;
+}
+
+.journey-node__content-icons {
+  position: absolute;
+  bottom: -2px;
+  right: -2px;
+  display: flex;
+  gap: 2px;
+  align-items: center;
 }
 
 .journey-node__info {

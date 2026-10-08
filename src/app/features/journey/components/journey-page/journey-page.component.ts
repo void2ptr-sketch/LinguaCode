@@ -10,6 +10,7 @@ import { LearningResultsStore } from '../../../../core/state';
 import { ContentSeedRepository } from '../../../../core/data/content-seed/content-seed.repository';
 import { buildJourneyNodes, buildScenarioMap } from '../../../../core/data/journey/journey-nodes.utils';
 import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
 
 @Component({
@@ -107,8 +108,13 @@ export class JourneyPageComponent implements OnInit {
     const hasScenarioVisit = (scenarioId: string) =>
       this.analyticsService.visitCountForScenario()(scenarioId) > 0;
 
-    // Загружаем все сценарии из seed-кэша (напрямую из JSON, без фильтрации)
+    // Загружаем все сценарии и карточки из seed-кэша
     const allScenarios = this.contentSeedRepo.getScenarioSeed();
+    const allCards = this.contentSeedRepo.getCardSeed();
+
+    console.log('[JourneyPage] Cards loaded:', allCards.length);
+    console.log('[JourneyPage] Scenarios loaded:', allScenarios.length);
+
     const courseScenarioIds = new Set(course.lessons.flatMap((l) => [...l.scenarioIds]));
     const courseScenarios = allScenarios.filter((s) => courseScenarioIds.has(s.id));
     const scenarioMap = buildScenarioMap(courseScenarios);
@@ -116,9 +122,12 @@ export class JourneyPageComponent implements OnInit {
     const nodes = buildJourneyNodes(
       course,
       scenarioMap,
+      allCards as unknown as CardBase[],
       hasScenarioResult,
       hasScenarioVisit,
     );
+
+    console.log('[JourneyPage] Nodes built:', nodes.length, 'First node contentTypes:', nodes[0]?.contentTypes);
 
     this.nodes.set(nodes);
   }

@@ -6,6 +6,20 @@ export type JourneyLocationStatus = 'locked' | 'available' | 'in-progress' | 'vi
 /** Тип контента сценария — определяет иконку на карте. */
 export type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 
+/** Маппинг типа карточки на тип контента. */
+export const CARD_KIND_TO_CONTENT_TYPE: Record<string, JourneyContentType> = {
+  select: 'theory',
+  'code-select': 'test',
+  symbol: 'theory',
+  reading: 'theory',
+  memory: 'practice',
+  sound: 'practice',
+  timed: 'test',
+  keyboard: 'practice',
+  draw: 'practice',
+  tone: 'practice',
+};
+
 /** Узел локации на карте путешествия. */
 export type JourneyLocationNode = {
   /** Уникальный идентификатор локации. */
@@ -20,8 +34,6 @@ export type JourneyLocationNode = {
   order: number;
   /** Текущий статус локации. */
   status: JourneyLocationStatus;
-  /** Тип контента для отображения иконки. */
-  contentType: JourneyContentType;
   /** Идентификатор урока (страны), к которому относится локация. */
   lessonId: string;
   /** Заголовок урока. */
@@ -40,6 +52,8 @@ export type JourneyLocationNode = {
   blockReason: string | null;
   /** Идентификатор сценария. */
   scenarioId: string;
+  /** Типы контента, вычисленные из карточек сценария. */
+  contentTypes: JourneyContentType[];
 };
 
 /** Событие аналитики для локации. */

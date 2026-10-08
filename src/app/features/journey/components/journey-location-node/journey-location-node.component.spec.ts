@@ -14,7 +14,7 @@ const baseNode: JourneyLocationNode = {
   cardCount: 5,
   order: 1,
   status: 'available',
-  contentType: 'theory',
+  contentTypes: ['theory'],
   lessonId: 'l1',
   lessonTitle: 'Урок 1',
   courseId: 'c1',

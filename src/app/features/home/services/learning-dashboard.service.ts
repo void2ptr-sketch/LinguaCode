@@ -15,6 +15,7 @@ import { resolveLearningSessionForPair } from '../../../core/data/learning/learn
 import { ScenariosApiService } from '../../../core/data/scenarios/scenarios-api.service';
 import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
+import { RADICALS_COURSE_ID } from '../../../core/data/chinese/radicals-course.defaults';
 
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
@@ -72,12 +73,8 @@ export class LearningDashboardService {
       }
 
       if (!courseId) {
-        const page = await this.courseSearchService.search({
-          scope: 'published',
-          ...activeLanguagePairCriteria(pair),
-          page: { page: 0, pageSize: 1 },
-        });
-        courseId = page.items[0]?.id ?? null;
+        // Fallback: курс радикалов по умолчанию
+        courseId = RADICALS_COURSE_ID;
       }
 
       if (!courseId) {

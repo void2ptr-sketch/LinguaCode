@@ -80,7 +80,7 @@ export class LearningJourneyMapComponent implements OnInit, OnDestroy {
     let result = nodes;
 
     if (filterType !== 'all') {
-      result = result.filter((n) => n.contentType === filterType);
+      result = result.filter((n) => n.contentTypes.includes(filterType));
     }
 
     if (showFavoritesOnly) {
