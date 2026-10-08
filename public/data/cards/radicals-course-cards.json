@@ -531,7 +531,7 @@
         "fontSize": "md"
       },
       "promptKnown": "Нарисуйте радикал №18 «刀»",
-      "referenceHintKnown": "nож (dāo)",
+      "referenceHintKnown": "нож (dāo)",
       "meaningKnown": "nож",
       "practiceMode": "tracing",
       "targetCharacter": "刀",
