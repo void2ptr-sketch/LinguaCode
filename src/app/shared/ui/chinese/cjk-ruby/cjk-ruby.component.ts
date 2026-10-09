@@ -2,6 +2,18 @@ import { Component, computed, input } from '@angular/core';
 
 import type { RomanizationSystem } from '../../../../core/models/phonetic-content.types';
 
+/**
+ * Renders CJK text with ruby annotations (furigana/zhuyin readings).
+ *
+ * @remarks
+ * Uses HTML `<ruby>` element to display phonetic readings above or to the right of base characters.
+ * The reading text is tone-colored when the user has tone coloring enabled.
+ *
+ * @example
+ * ```html
+ * <app-cjk-ruby base="你" reading="nǐ" [romanization]="'pinyin'"></app-cjk-ruby>
+ * ```
+ */
 @Component({
   selector: 'app-cjk-ruby',
   templateUrl: './cjk-ruby.component.html',

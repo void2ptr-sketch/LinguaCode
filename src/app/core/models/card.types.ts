@@ -72,7 +72,13 @@ export type LexemeCardFields = {
   audioUrl?: string;
 };
 
-/** Supported syntax-highlighting languages for code-select cards. */
+/**
+ * Supported syntax-highlighting languages for code-select cards.
+ *
+ * @remarks
+ * Used by the code-highlight service to apply correct syntax coloring.
+ * `plain` is a fallback for unrecognized languages.
+ */
 export type CodeHighlightLanguage =
   | 'perl'
   | 'cpp'

@@ -20,6 +20,25 @@ import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text
 
 export type { LexemeDisplaySurface };
 
+/**
+ * Displays a phonetic lexeme with optional romanizations (Pinyin, Zhuyin, Palladius) and IPA transcription.
+ *
+ * @remarks
+ * Resolves romanization systems and IPA visibility from user profile preferences,
+ * with optional overrides via `romanizations` and `showIpa` inputs.
+ * Supports tone coloring for CJK characters and stacked romanization layout.
+ *
+ * @example
+ * ```html
+ * <app-lexeme-display
+ *   [lexeme]="lexeme"
+ *   [romanizations]="['pinyin', 'palladius']"
+ *   [showIpa]="true"
+ *   [toneColorEnabled]="true">
+ * </app-lexeme-display>
+ * ```
+ */
+
 const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
   pinyin: '拼音',
   zhuyin: '注音',

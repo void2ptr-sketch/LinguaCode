@@ -106,10 +106,21 @@ export type HanziUserStrokeInput = {
   points: readonly HanziPoint[];
 };
 
-/** Base path for Hanzi character stroke data assets. */
+/**
+ * Base path for Hanzi character stroke data assets.
+ *
+ * @remarks
+ * Used to load stroke JSON files from Make Me a Hanzi / hanzi-writer-data format.
+ * Characters are fetched as `{char}.json` relative to this path.
+ */
 export const HANZI_ASSETS_BASE_PATH = '/assets/hanzi';
 
-/** Base path for Hanzi radical stroke data assets. */
+/**
+ * Base path for Hanzi radical stroke data assets.
+ *
+ * @remarks
+ * Used to load radical-specific stroke data for stroke-guide hints in draw cards.
+ */
 export const HANZI_RADICAL_ASSETS_BASE_PATH = '/assets/hanzi/radical';
 
 /**

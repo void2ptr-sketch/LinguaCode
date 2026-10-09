@@ -29,6 +29,13 @@ export type ToneColorScheme = {
   colors: ToneColorPalette;
 };
 
+/**
+ * Available tone color scheme presets for visual tone marking.
+ *
+ * @remarks
+ * Each scheme maps Mandarin tone marks (1–5) to distinct CSS colors.
+ * Schemes: `classic` (Nathan Dummit, 2008), `pastel` (soft), `vivid` (high contrast), `warm` (warm palette).
+ */
 export const TONE_COLOR_SCHEMES: readonly ToneColorScheme[] = [
   {
     id: 'classic',
