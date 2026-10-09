@@ -1,6 +1,6 @@
 # ToneCard
 
-> Исходный код: `src/app/shared/components/cards/tone-card/tone-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/tone-card/tone-card.component.ts`
 
 ## Назначение
 
@@ -57,8 +57,8 @@
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
   - `toneMarkLabel()` из `src/app/core/data/chinese/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
-  - `applyToneToPinyinSyllable()` из того же модуля — применяет тоновую марку к базовому слогу.
-  - `buildOptionClass()` из `src/app/shared/components/cards/option-card.utils.ts` — CSS-классы.
+  - `applyToneToPinyinSyllable()` из `src/app/core/data/chinese/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
+  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
 

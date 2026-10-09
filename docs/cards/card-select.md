@@ -1,6 +1,6 @@
 # SelectCard
 
-> Исходный код: `src/app/shared/components/cards/select-card/select-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/select-card/select-card.component.ts`
 
 ## Назначение
 
@@ -61,8 +61,8 @@
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
   - `resolveOptionCard()` из `src/app/core/data/cards/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
-  - `effectiveCardDirection()` из того же модуля — определяет фактическое направление в сессии.
-  - `buildOptionClass()` из `src/app/shared/components/cards/option-card.utils.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
+  - `effectiveCardDirection()` из `src/app/core/data/cards/card-direction.utils.ts` — определяет фактическое направление в сессии.
+  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
 
 ### @Input (входные параметры)
 

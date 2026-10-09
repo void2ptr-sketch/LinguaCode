@@ -1,6 +1,6 @@
 # DrawCard
 
-> Исходный код: `src/app/shared/components/cards/draw-card/draw-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/draw-card/draw-card.component.ts`
 
 ## Назначение
 
@@ -176,7 +176,7 @@ const card: DrawCard = {
 
 | Сигнал | Тип | Описание |
 |--------|-----|----------|
-| `canvasMode` | `Signal<DrawCanvasMode>` | Текущий режим холоста: `memory` \| `stroke-order` \| `radicals` |
+| `panelMode` | `Signal<DrawCanvasMode>` | Текущий режим панели холста: `memory` \| `stroke-order` \| `radicals` |
 | `activeCharIndex` | `Signal<number>` | Индекс активного иероглифа (слага) |
 | `charDone` | `Signal<readonly boolean[]>` | Массив статусов готовности по иероглифам |
 | `charStrokes` | `Signal<readonly (readonly DrawStrokePath[])[]>` | Черты по иероглифам |

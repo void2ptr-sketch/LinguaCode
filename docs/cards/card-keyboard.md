@@ -1,6 +1,6 @@
 # KeyboardCard
 
-> Исходный код: `src/app/shared/components/cards/keyboard-card/keyboard-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/keyboard-card/keyboard-card.component.ts`
 
 ## Назначение
 
@@ -65,15 +65,14 @@
 - **Утилиты:**
   - `resolveKeyboardAnswerMode()` из `src/app/core/data/keyboard-answer-mode/keyboard-answer-mode.utils.ts`.
   - `resolveKeyboardPrompt()` из `src/app/core/data/cards/card-direction.utils.ts`.
-  - `effectiveCardDirection()` из того же модуля.
-  - `getCorrectAnswerLabel()` из `src/app/shared/utils/card-answer.utils.ts`.
+  - `effectiveCardDirection()` из `src/app/core/data/cards/card-direction.utils.ts`.
+  - `getCorrectAnswerLabel()` из `src/app/shared/utils/card-answer/card-answer.util.ts`.
 
 ### @Input (входные параметры)
 
 | Параметр | Тип | По умолчанию | Описание |
 |----------|-----|---------------|----------|
 | `card` | `KeyboardCard` | (required) | Данные карточки — вопрос, допустимые ответы |
-| `direction` | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа |
 | `answerText` | `string` | `''` | Текущий текст ввода |
 | `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
 | `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
