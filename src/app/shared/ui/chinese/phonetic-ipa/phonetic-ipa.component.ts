@@ -6,7 +6,10 @@ import { Component, computed, input } from '@angular/core';
   styleUrl: './phonetic-ipa.component.scss',
 })
 export class PhoneticIpaComponent {
+  /** The IPA transcription string to display (e.g. "/ni hao/"). */
   readonly transcription = input.required<string>();
+
+  /** Render inline (single-line) instead of block (multi-line). */
   readonly inline = input(false);
 
   readonly display = computed(() => {

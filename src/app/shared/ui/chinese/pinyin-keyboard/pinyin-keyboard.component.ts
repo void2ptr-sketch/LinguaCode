@@ -26,9 +26,13 @@ import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-c
   styleUrl: './pinyin-keyboard.component.scss',
 })
 export class PinyinKeyboardComponent {
+  /** The current Pinyin input value. */
   readonly value = input('');
+
+  /** Whether the keyboard is disabled. */
   readonly disabled = input(false);
 
+  /** Emits the current Pinyin value on each key press. */
   readonly valueChange = output<string>();
 
   readonly letterRows = PINYIN_KEYBOARD_LETTER_ROWS;

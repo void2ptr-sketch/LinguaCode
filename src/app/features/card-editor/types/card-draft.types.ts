@@ -9,7 +9,12 @@ import { CardDirection } from '../../../core/models/language-pair.types';
 import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
-/** Draft representation of card appearance settings. Aliased from `CardAppearance`. */
+/**
+ * Draft representation of card appearance settings. Aliased from `CardAppearance`.
+ *
+ * @remarks
+ * Used in card editor forms before the card is normalized into a final `Card` type.
+ */
 export type CardAppearanceDraft = CardAppearance;
 
 /** Default card direction: known language → learning language. */
@@ -49,7 +54,12 @@ export type CodeBlockDraft = {
   language: CodeHighlightLanguage;
 };
 
-/** Draft of a code-select card. */
+/**
+ * Draft of a code-select card.
+ *
+ * @remarks
+ * User selects the correct code block matching the prompt.
+ */
 export type CodeSelectCardDraft = {
   kind: 'code-select';
   title: string;
@@ -63,7 +73,12 @@ export type CodeSelectCardDraft = {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a select card (multiple-choice translation). */
+/**
+ * Draft of a select card (multiple-choice translation).
+ *
+ * @remarks
+ * User chooses the correct translation from multiple options.
+ */
 export type SelectCardDraft = LexemeCardDraft & {
   kind: 'select';
   title: string;
@@ -91,7 +106,12 @@ export type MemoryCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a symbol card (character recognition). */
+/**
+ * Draft of a symbol card (character recognition).
+ *
+ * @remarks
+ * User selects the correct symbol from multiple options.
+ */
 export type SymbolCardDraft = LexemeCardDraft & {
   kind: 'symbol';
   title: string;
@@ -106,7 +126,12 @@ export type SymbolCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a sound card (audio matching). */
+/**
+ * Draft of a sound card (audio matching).
+ *
+ * @remarks
+ * User matches an audio clip with the correct text option.
+ */
 export type SoundCardDraft = LexemeCardDraft & {
   kind: 'sound';
   title: string;
@@ -123,7 +148,12 @@ export type SoundCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a timed card (answer within time limit). */
+/**
+ * Draft of a timed card (answer within time limit).
+ *
+ * @remarks
+ * User selects the correct answer within a configurable time limit.
+ */
 export type TimedCardDraft = LexemeCardDraft & {
   kind: 'timed';
   title: string;
@@ -139,7 +169,12 @@ export type TimedCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a keyboard card (typed answer). */
+/**
+ * Draft of a keyboard card (typed answer).
+ *
+ * @remarks
+ * User types the answer from the keyboard with configurable input modes.
+ */
 export type KeyboardCardDraft = LexemeCardDraft & {
   kind: 'keyboard';
   title: string;
@@ -159,7 +194,12 @@ export type DrawStrokeGuideDraft = {
   path: string;
 };
 
-/** Draft of a draw card (character drawing). */
+/**
+ * Draft of a draw card (character drawing).
+ *
+ * @remarks
+ * User draws a Chinese character on a canvas with configurable practice modes.
+ */
 export type DrawCardDraft = LexemeCardDraft & {
   kind: 'draw';
   title: string;
@@ -177,7 +217,12 @@ export type DrawCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a tone card (tone mark selection). */
+/**
+ * Draft of a tone card (tone mark selection).
+ *
+ * @remarks
+ * User selects the correct tone mark for a given syllable.
+ */
 export type ToneCardDraft = LexemeCardDraft & {
   kind: 'tone';
   title: string;
@@ -192,7 +237,12 @@ export type ToneCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a reading card (passage interpretation). */
+/**
+ * Draft of a reading card (passage interpretation).
+ *
+ * @remarks
+ * User reads a passage and selects the correct interpretation.
+ */
 export type ReadingCardDraft = LexemeCardDraft & {
   kind: 'reading';
   title: string;
@@ -225,10 +275,20 @@ export type CardDraft =
   | ToneCardDraft
   | ReadingCardDraft;
 
-/** Type alias: all card kinds are editable. */
+/**
+ * Type alias: all card kinds are editable.
+ *
+ * @remarks
+ * Convenience alias for use in card editor type guards and switch expressions.
+ */
 export type EditableCardKind = CardKind;
 
-/** Human-readable labels for each card kind (Russian). */
+/**
+ * Human-readable labels for each card kind (Russian).
+ *
+ * @remarks
+ * Used in the card editor UI for kind selector dropdowns and display.
+ */
 export const CARD_KIND_LABELS: Record<CardKind, string> = {
   select: 'Выбор ответа',
   'code-select': 'Код: выбор ответа',
@@ -242,7 +302,12 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   reading: 'Чтение (полифония)',
 };
 
-/** Array of all supported card kinds. */
+/**
+ * Array of all supported card kinds.
+ *
+ * @remarks
+ * Used in the card editor for kind selector and validation.
+ */
 export const CARD_KINDS: readonly CardKind[] = [
   'select',
   'code-select',

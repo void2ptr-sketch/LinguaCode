@@ -1,6 +1,12 @@
 import type { FacetCount } from '../../../../core/models/card-search.types';
 
-/** Порядок тем — как в «Идее курса» Perl interview. */
+/**
+ * Ordered list of catalog tag theme IDs.
+ *
+ * @remarks
+ * Defines the display order for theme facets in the card catalog filter sidebar.
+ * Based on the "Course Idea" structure for Perl interview content.
+ */
 export const CATALOG_TAG_THEME_ORDER = [
   'intro',
   'basics',
@@ -11,7 +17,13 @@ export const CATALOG_TAG_THEME_ORDER = [
   'oop',
 ] as const;
 
-/** Порядок подтем Perl interview (по сценариям курса). */
+/**
+ * Ordered list of catalog tag subtopic IDs.
+ *
+ * @remarks
+ * Defines the display order for subtopic facets in the card catalog filter sidebar.
+ * Derived from course scenario structure for Perl interview content.
+ */
 export const CATALOG_TAG_SUBTOPIC_ORDER = [
   'scalar-context',
   'array-scalar',
@@ -56,8 +68,16 @@ const ORDERED_CATALOG_TAG_IDS = new Set<string>([
   ...CATALOG_TAG_SUBTOPIC_ORDER,
 ]);
 
+/**
+ * A grouped set of catalog tag facets with a display label.
+ *
+ * @remarks
+ * Used to organize tag facets into themed sections (Themes, Subtopics, Other Tags).
+ */
 export type CatalogTagFacetGroup = {
+  /** Display label for the group (e.g. "Темы", "Подтемы", "Теги"). */
   label: string;
+  /** Facet counts belonging to this group. */
   facets: readonly FacetCount<string>[];
 };
 
@@ -70,6 +90,17 @@ function pickOrderedFacets(
     .filter((facet): facet is FacetCount<string> => facet !== undefined && facet.count > 0);
 }
 
+/**
+ * Groups catalog tag facets into themed sections.
+ *
+ * @param tags - Array of tag facet counts from card search results.
+ * @returns An array of `CatalogTagFacetGroup` objects ordered by theme → subtopic → other.
+ *
+ * @remarks
+ * Tags matching `CATALOG_TAG_THEME_ORDER` are grouped as "Темы",
+ * tags matching `CATALOG_TAG_SUBTOPIC_ORDER` as "Подтемы",
+ * and all remaining tags as "Теги" (sorted alphabetically).
+ */
 export function groupCatalogTagFacets(
   tags: readonly FacetCount<string>[],
 ): readonly CatalogTagFacetGroup[] {

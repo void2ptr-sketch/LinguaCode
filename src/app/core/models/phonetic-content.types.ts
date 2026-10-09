@@ -1,24 +1,58 @@
 import type { ToneColorSchemeId } from './tone-color.types';
 
-/** ISO 15924 script code used for CJK and other writing systems. */
+/**
+ * ISO 15924 script code used for CJK and other writing systems.
+ *
+ * @remarks
+ * `latn` — Latin, `hani` — Han characters (Chinese/Japanese), `bopo` — Bopomofo,
+ * `hira` — Hiragana, `kana` — Katakana, `hang` — Hangul, `cyrl` — Cyrillic.
+ */
 export type ScriptCode = 'latn' | 'hani' | 'bopo' | 'hira' | 'kana' | 'hang' | 'cyrl';
 
-/** Mandarin tone mark: 1–4 for standard tones, 5 for neutral. */
+/**
+ * Mandarin tone mark: 1–4 for standard tones, 5 for neutral.
+ *
+ * @remarks
+ * Used in tone coloring, tone recognition exercises, and phonetic metadata.
+ */
 export type ToneMark = 1 | 2 | 3 | 4 | 5;
 
-/** Supported romanization systems for CJK content. */
+/**
+ * Supported romanization systems for CJK content.
+ *
+ * @remarks
+ * `pinyin` — Chinese Pinyin, `zhuyin` — Chinese Bopomofo, `palladius` — Palladius system (Russian→Chinese).
+ */
 export type RomanizationSystem = 'pinyin' | 'zhuyin' | 'palladius';
 
-/** Orthography system: romanization or plain text. */
+/**
+ * Orthography system: romanization or plain text display.
+ *
+ * @remarks
+ * Extends `RomanizationSystem` with `orthographic` for raw text display.
+ */
 export type OrthographySystem = RomanizationSystem | 'orthographic';
 
-/** Supported phonetic notation format. */
+/**
+ * Supported phonetic notation format.
+ *
+ * @remarks
+ * Currently only IPA (International Phonetic Alphabet) is supported.
+ */
 export type PhoneticNotation = 'ipa';
 
-/** An IPA transcription variant with optional label and locale. */
+/**
+ * An IPA transcription variant with optional label and locale.
+ *
+ * @remarks
+ * Used when multiple IPA transcriptions are available for a single lexeme (e.g., regional variants).
+ */
 export type IpaVariant = {
+  /** The IPA transcription string (e.g. "/ni hao/"). */
   transcription: string;
+  /** Optional human-readable label (e.g. "Beijing", "Taipei"). */
   label?: string;
+  /** Optional locale identifier (e.g. "zh-CN"). */
   locale?: string;
 };
 
@@ -41,12 +75,23 @@ export type PhoneticLexeme = {
   acceptedReadings?: readonly string[];
 };
 
-/** CJK-specific lexeme with script enforced to 'hani'. */
+/**
+ * CJK-specific lexeme with script enforced to 'hani'.
+ *
+ * @remarks
+ * Guarantees that the script field is always 'hani' (Chinese characters).
+ */
 export type CjkLexeme = PhoneticLexeme & {
   script: 'hani';
 };
 
-/** Display mode for CJK content: which romanization systems to show alongside Han characters. */
+/**
+ * Display mode for CJK content: which romanization systems to show alongside Han characters.
+ *
+ * @remarks
+ * `han-only` — characters without romanization; `han-pinyin` — characters + Pinyin;
+ * `pinyin-only` — Pinyin without characters. Used in card display preferences.
+ */
 export type CjkDisplayMode =
   | 'han-only'
   | 'han-pinyin'
@@ -74,6 +119,12 @@ export type CjkLearningPreferences = {
   tracingStrokeDurationSec: number;
 };
 
+/**
+ * Bounds for stroke animation duration in tracing mode.
+ *
+ * @remarks
+ * Used by `CjkLearningPreferences.tracingStrokeDurationSec` to validate user input.
+ */
 export const TRACING_STROKE_DURATION_BOUNDS = {
   minSec: 0.1,
   maxSec: 2,
@@ -81,7 +132,13 @@ export const TRACING_STROKE_DURATION_BOUNDS = {
   stepSec: 0.1,
 } as const;
 
-/** Display mode for phonetic content: which IPA/orthography elements to show. */
+/**
+ * Display mode for phonetic content: which IPA/orthography elements to show.
+ *
+ * @remarks
+ * `primary-only` — lexeme text only; `primary-ipa` — lexeme + IPA;
+ * `primary-orthography` — lexeme + romanization; `primary-orthography-ipa` — all three.
+ */
 export type PhoneticDisplayMode =
   | 'primary-only'
   | 'primary-ipa'
@@ -101,12 +158,24 @@ export type PhoneticPreferences = {
   answerModes: readonly ('orthography' | 'ipa')[];
 };
 
+/**
+ * Default display order for romanization systems in the UI.
+ *
+ * @remarks
+ * Used to sort romanization columns in the card catalog and card display.
+ */
 export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = [
   'pinyin',
   'zhuyin',
   'palladius',
 ];
 
+/**
+ * Default CJK learning preferences applied when no user settings exist.
+ *
+ * @remarks
+ * Shows Pinyin romanization, disables tone coloring, and uses classic tone palette.
+ */
 export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
   displayRomanizations: ['pinyin'],
   answerRomanization: ['pinyin', 'palladius'],
@@ -115,6 +184,12 @@ export const DEFAULT_CJK_LEARNING_PREFERENCES: CjkLearningPreferences = {
   tracingStrokeDurationSec: TRACING_STROKE_DURATION_BOUNDS.defaultSec,
 };
 
+/**
+ * Default phonetic preferences applied when no user settings exist.
+ *
+ * @remarks
+ * Hides IPA, accepts orthography (text) answers only.
+ */
 export const DEFAULT_PHONETIC_PREFERENCES: PhoneticPreferences = {
   showIpa: false,
   answerModes: ['orthography'],

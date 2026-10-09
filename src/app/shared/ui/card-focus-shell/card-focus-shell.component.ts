@@ -27,10 +27,21 @@ export class CardFocusShellComponent {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly userStore = inject(UserStore);
 
-  /** Показывать кнопку полноэкранного режима (для preview без chrome — false). */
+  /**
+   * Show fullscreen toggle button.
+   *
+   * @remarks
+   * Set to `false` for previews that already have their own chrome/container.
+   */
   readonly focusControlsEnabled = input(true);
 
-  /** Авто-вход в fullscreen на вкладке «Обучение», если включено в профиле. */
+  /**
+   * Auto-enter fullscreen on the Learning tab if enabled in user profile.
+   *
+   * @remarks
+   * When `true` and `userStore.preferences().cardFocusFullscreen` is also true,
+   * the component enters fullscreen mode on initialization.
+   */
   readonly autoEnterFullscreen = input(false);
 
   readonly fullscreen = signal(false);

@@ -19,7 +19,12 @@ export type LearningProficiencyOption = {
   label: string;
 };
 
-/** Уровень владения изучаемым языком (настройка строгости проверки ответов). */
+/**
+ * All proficiency level options displayed in the UI selector.
+ *
+ * @remarks
+ * Mapped to CEFR-like levels. Affects the strictness of answer checking in `LearningResultsStore`.
+ */
 export const LEARNING_PROFICIENCY_LEVELS: readonly LearningProficiencyOption[] = [
   { id: 'new-to-language', label: 'New to language' },
   { id: 'beginner', label: 'Beginner' },
@@ -30,7 +35,14 @@ export const LEARNING_PROFICIENCY_LEVELS: readonly LearningProficiencyOption[] =
   { id: 'professional', label: 'Professional' },
 ] as const;
 
+/** Default proficiency level applied when no user preference exists. */
 export const DEFAULT_LEARNING_PROFICIENCY_LEVEL: LearningProficiencyLevel = 'beginner';
 
+/**
+ * Array of all proficiency level IDs.
+ *
+ * @remarks
+ * Derived from `LEARNING_PROFICIENCY_LEVELS` for validation and dropdown population.
+ */
 export const LEARNING_PROFICIENCY_LEVEL_IDS: readonly LearningProficiencyLevel[] =
   LEARNING_PROFICIENCY_LEVELS.map((level) => level.id);

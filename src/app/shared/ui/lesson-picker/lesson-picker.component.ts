@@ -36,13 +36,25 @@ export class LessonPickerComponent {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly resultsStore = inject(LearningResultsStore);
 
+  /** ID of the course whose lessons to display. */
   readonly selectedCourseId = input.required<string>();
+
+  /** ID of the currently selected lesson. */
   readonly selectedLessonId = input.required<string>();
+
+  /** Automatically pick the first lesson when the list loads. */
   readonly autoPickFirstLesson = input(false);
+
+  /** Hide the lesson title in the display. */
   readonly hideTitle = input(false);
+
+  /** Enforce lesson prerequisites (locked lessons shown as unavailable). */
   readonly enforcePrerequisites = input(true);
 
+  /** Emits when the selected lesson ID changes. */
   readonly selectedLessonIdChange = output<string>();
+
+  /** Emits when the user picks a lesson. Payload includes lessonId, title, and scenarioIds. */
   readonly lessonPickChange = output<LessonPickPayload>();
 
   readonly lessons = signal<readonly Lesson[]>([]);

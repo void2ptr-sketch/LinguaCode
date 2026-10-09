@@ -40,22 +40,75 @@ const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
 export class LexemeDisplayComponent {
   private readonly userStore = inject(UserStore);
 
+  /** The phonetic lexeme to display (null/undefined shows fallback text). */
   readonly lexeme = input<PhoneticLexeme | null | undefined>(null);
+
+  /** Fallback text displayed when `lexeme` is null/undefined or has no primary text. */
   readonly fallbackText = input('');
+
+  /** Display surface context: determines which romanizations and IPA to show. */
   readonly surface = input<LexemeDisplaySurface>('prompt');
-  /** Переопределяет набор романизаций из профиля (для превью редактора). */
+
+  /**
+   * Overrides the romanization systems from user profile (for editor preview).
+   *
+   * @remarks
+   * When null, uses `userStore.cjkLearning().displayRomanizations` for the given surface.
+   */
   readonly romanizations = input<readonly RomanizationSystem[] | null>(null);
+
+  /**
+   * Overrides the IPA visibility from user profile.
+   *
+   * @remarks
+   * When null, uses `userStore.phonetic().showIpa` for the given surface.
+   */
   readonly showIpa = input<boolean | null>(null);
+
+  /**
+   * IPA variant label filter.
+   *
+   * @remarks
+   * When set, only shows IPA transcriptions matching this label.
+   */
   readonly ipaVariantLabel = input<string | undefined>(undefined);
+
+  /** Render inline (single-line) instead of block (multi-line). */
   readonly inline = input(false);
+
+  /**
+   * Overrides tone coloring from user profile.
+   *
+   * @remarks
+   * When null, uses `userStore.cjkLearning().showTones`.
+   */
   readonly toneColorEnabled = input<boolean | null>(null);
-  /** Скрыть основной текст (иероглиф / слово); оставить романизацию и IPA. */
+
+  /**
+   * Hide the primary text (character/word); show only romanizations and IPA.
+   *
+   * @remarks
+   * Useful for answer zones where only phonetic content is displayed.
+   */
   readonly primaryVisible = input(true);
-  /** Подписи систем (拼音 / IPA …). */
+
+  /** Show labels next to romanization systems (e.g. "拼音", "IPA"). */
   readonly labelsVisible = input(true);
-  /** Каждая система на отдельной строке (без колонки label + text). */
+
+  /**
+   * Each romanization system on a separate line (without label + text columns).
+   *
+   * @remarks
+   * When true, renders each system as a full-width row instead of a two-column layout.
+   */
   readonly stackedReadings = input(false);
-  /** Переопределяет размер строк романизации / IPA (например `1.75em`). */
+
+  /**
+   * Overrides the font size for romanization / IPA lines.
+   *
+   * @remarks
+   * Accepts any CSS font-size value (e.g. "1.75em"). When null, uses default sizing.
+   */
   readonly readingSize = input<string | null>(null);
 
   readonly romanizationLabel = (system: RomanizationSystem): string => ROMANIZATION_LABELS[system];

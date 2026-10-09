@@ -22,6 +22,12 @@ export type CourseAuthoring = {
   lastError?: string;
 };
 
+/**
+ * Ordered array of all course authoring pipeline statuses.
+ *
+ * @remarks
+ * Used for validation and status selector rendering.
+ */
 export const COURSE_AUTHORING_STATUSES: readonly CourseAuthoringStatus[] = [
   'draft',
   'planned',

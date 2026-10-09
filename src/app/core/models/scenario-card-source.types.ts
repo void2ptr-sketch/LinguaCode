@@ -1,6 +1,11 @@
 import type { CardSearchCriteria } from './card-search.types';
 
-/** Sort order for dynamically assembled card sets. */
+/**
+ * Sort order for dynamically assembled card sets.
+ *
+ * @remarks
+ * `updatedAt` — newest first; `difficulty` — by difficulty level; `random` — shuffled.
+ */
 export type ScenarioCardSort = 'updatedAt' | 'difficulty' | 'random';
 
 /**
@@ -26,5 +31,10 @@ export type ScenarioCardSource =
       frozenAt: string;
     };
 
-/** Extracted mode type from ScenarioCardSource union. */
+/**
+ * Extracted mode type from `ScenarioCardSource` union.
+ *
+ * @remarks
+ * Can be `'fixed'`, `'criteria'`, or `'snapshot'`. Used for type narrowing and discriminated unions.
+ */
 export type ScenarioCardSourceMode = ScenarioCardSource['mode'];

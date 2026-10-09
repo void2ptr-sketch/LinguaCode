@@ -9,7 +9,12 @@ import type { CardKind } from './card.types';
  */
 export type ContentLanguage = 'en' | 'zh' | 'ru' | 'perl' | 'java' | 'cpp';
 
-/** Difficulty level of a card. */
+/**
+ * Difficulty level of a card.
+ *
+ * @remarks
+ * Used for filtering and sorting in the card catalog and practice sessions.
+ */
 export type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
 /**

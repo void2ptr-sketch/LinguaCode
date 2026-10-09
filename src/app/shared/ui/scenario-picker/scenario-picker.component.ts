@@ -33,11 +33,24 @@ export class ScenarioPickerComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
 
+  /** ID of the currently selected scenario. */
   readonly selectedScenarioId = input.required<string>();
+
+  /**
+   * Optional filter: only these scenario IDs are selectable.
+   *
+   * @remarks
+   * When null, all scenarios in the selected scope are available.
+   */
   readonly allowedScenarioIds = input<readonly string[] | null>(null);
+
+  /** Automatically select the first scenario when the list loads. */
   readonly autoSelectFirst = input(true);
 
+  /** Emits when the selected scenario ID changes. */
   readonly selectedScenarioIdChange = output<string>();
+
+  /** Emits when the selected scenario label changes. */
   readonly scenarioLabelChange = output<string>();
 
   readonly query = signal('');

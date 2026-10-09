@@ -35,12 +35,22 @@ export class CoursePickerComponent implements OnInit {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly userStore = inject(UserStore);
 
+  /** ID of the currently selected course. */
   readonly selectedCourseId = input.required<string>();
+
+  /** Display label for the currently selected course. */
   readonly selectedCourseLabel = input<string>('');
+
+  /** Default scope for course search (e.g. 'published', 'all'). */
   readonly defaultScope = input<CourseListScope>('published');
+
+  /** Render in compact mode (smaller padding, no search bar). */
   readonly compact = input(false);
 
+  /** Emits when the selected course ID changes. */
   readonly selectedCourseIdChange = output<string>();
+
+  /** Emits when the selected course label changes. */
   readonly courseLabelChange = output<string>();
 
   readonly query = signal('');

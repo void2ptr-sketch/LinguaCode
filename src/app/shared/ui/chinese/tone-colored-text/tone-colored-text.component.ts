@@ -21,12 +21,40 @@ import { UserStore } from '../../../../core/state';
 export class ToneColoredTextComponent {
   private readonly userStore = inject(UserStore);
 
+  /** The text to display with tone coloring applied. */
   readonly text = input.required<string>();
+
+  /** Text mode: 'han' for Chinese characters, 'pinyin' for Pinyin syllables. */
   readonly mode = input<'han' | 'pinyin'>('pinyin');
+
+  /** Optional lexeme with tone metadata (tones, pinyin) for accurate segmentation. */
   readonly lexeme = input<PhoneticLexeme | null | undefined>(null);
+
+  /**
+   * Overrides tone detection with a fixed tone mark.
+   *
+   * @remarks
+   * When set, all characters are colored with this tone instead of auto-detecting.
+   */
   readonly fixedTone = input<ToneMark | null>(null);
+
+  /**
+   * Overrides tone coloring from user profile.
+   *
+   * @remarks
+   * When null, uses `userStore.cjkLearning().showTones`.
+   */
   readonly enabled = input<boolean | null>(null);
+
+  /**
+   * Overrides the tone color palette.
+   *
+   * @remarks
+   * When null, uses the palette from `userStore.cjkLearning().toneColorScheme`.
+   */
   readonly palette = input<ToneColorPalette | null>(null);
+
+  /** Render inline (single-line) instead of block (multi-line). */
   readonly inline = input(false);
 
   readonly toneColorEnabled = computed(() => {

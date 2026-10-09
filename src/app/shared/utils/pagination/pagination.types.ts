@@ -1,3 +1,4 @@
+/** Sort direction for list and catalog ordering. */
 export type SortDirection = 'asc' | 'desc';
 
 /**
@@ -24,7 +25,12 @@ export type PageResponse<T> = {
   totalPages: number;
 };
 
-/** Subset of PageResponse metadata used by UI pagination controls. */
+/**
+ * Subset of `PageResponse` metadata used by UI pagination controls.
+ *
+ * @remarks
+ * Extracted from full `PageResponse` for display in pagination components.
+ */
 export type PaginationMeta = Pick<
   PageResponse<unknown>,
   'page' | 'pageSize' | 'totalItems' | 'totalPages'
@@ -45,6 +51,9 @@ export type PaginationOptions = {
  * In-memory pagination slice (follows MatPaginator convention: `pageIndex`).
  *
  * @typeParam T - The type of items in the slice.
+ *
+ * @remarks
+ * Used for client-side pagination of already-fetched data (e.g., scenario filters).
  */
 export type PaginationSlice<T> = {
   items: readonly T[];

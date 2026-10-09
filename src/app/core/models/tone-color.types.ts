@@ -1,9 +1,19 @@
 import type { ToneMark } from './phonetic-content.types';
 
-/** Available tone color scheme presets. */
+/**
+ * Available tone color scheme presets for visual tone marking.
+ *
+ * @remarks
+ * `classic` — Nathan Dummit (2008); `pastel` — soft colors; `vivid` — high contrast; `warm` — warm palette.
+ */
 export type ToneColorSchemeId = 'classic' | 'pastel' | 'vivid' | 'warm';
 
-/** Mapping of tone marks to hex color values. */
+/**
+ * Mapping of tone marks to hex color values.
+ *
+ * @remarks
+ * Keys are tone marks (1–5); values are CSS hex color strings.
+ */
 export type ToneColorPalette = Record<ToneMark, string>;
 
 /**
@@ -71,8 +81,15 @@ export const TONE_COLOR_SCHEMES: readonly ToneColorScheme[] = [
   },
 ] as const;
 
+/** Default tone color scheme ID applied when no user preference exists. */
 export const DEFAULT_TONE_COLOR_SCHEME_ID: ToneColorSchemeId = 'classic';
 
+/**
+ * Array of all available tone color scheme IDs.
+ *
+ * @remarks
+ * Derived from `TONE_COLOR_SCHEMES` for use in dropdown selectors and validation.
+ */
 export const TONE_COLOR_SCHEME_IDS: readonly ToneColorSchemeId[] = TONE_COLOR_SCHEMES.map(
   (scheme) => scheme.id,
 );

@@ -7,7 +7,13 @@ export type DrawPracticeMode =
   | 'stroke-order'
   | 'radicals';
 
-/** Canvas mode during a session (switchable on a card). */
+/**
+ * Canvas mode during a session (switchable on a card).
+ *
+ * @remarks
+ * `memory` — draw from memory; `tracing` — trace over guide strokes;
+ * `hints` — draw with partial hints; `stroke-order` — practice stroke order; `radicals` — practice radicals.
+ */
 export type DrawCanvasMode = 'memory' | 'tracing' | 'hints' | 'stroke-order' | 'radicals';
 
 /** A single stroke guide for character drawing practice. */
@@ -34,6 +40,12 @@ export type DrawCharacterTarget = {
   audioUrl?: string;
 };
 
+/**
+ * Labels for draw canvas modes, displayed in the UI selector.
+ *
+ * @remarks
+ * Keys are `DrawCanvasMode` values; values are Russian labels shown in the mode switcher.
+ */
 export const DRAW_CANVAS_MODE_LABELS: Record<DrawCanvasMode, string> = {
   memory: 'По памяти',
   tracing: 'Трассировка',
@@ -42,6 +54,12 @@ export const DRAW_CANVAS_MODE_LABELS: Record<DrawCanvasMode, string> = {
   radicals: 'Радикалы',
 };
 
+/**
+ * Ordered array of all draw canvas modes.
+ *
+ * @remarks
+ * Used to render the mode selector in a consistent order.
+ */
 export const DRAW_CANVAS_MODES: readonly DrawCanvasMode[] = [
   'memory',
   'tracing',

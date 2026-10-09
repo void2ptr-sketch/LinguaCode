@@ -26,6 +26,12 @@ export type CardAnswerState = {
   learningProficiencyLevel: LearningProficiencyLevel;
 };
 
+/**
+ * Creates a fresh `CardAnswerState` with default values.
+ *
+ * @param learningProficiencyLevel - The user's current proficiency level.
+ * @returns A new `CardAnswerState` with null/empty defaults.
+ */
 export const createCardAnswerState = (
   learningProficiencyLevel: LearningProficiencyLevel,
 ): CardAnswerState => ({

@@ -7,16 +7,35 @@ import type { CardKind } from '../../../../core/models';
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
 
+/**
+ * Service for opening the card editor dialog.
+ *
+ * @remarks
+ * Ensures only one dialog instance is active at a time. Opens `CardEditorDialogComponent`
+ * in create or edit mode.
+ */
 @Injectable({ providedIn: 'root' })
 export class CardEditorDialogService {
   private readonly dialog = inject(MatDialog);
 
   private activeRef: MatDialogRef<CardEditorDialogComponent, CardEditorDialogResult> | null = null;
 
+  /**
+   * Opens the card editor in create mode for a new card.
+   *
+   * @param kind - The kind of card to create.
+   * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
+   */
   openCreate(kind: CardKind): Promise<CardEditorDialogResult | undefined> {
     return this.open({ mode: 'create', kind });
   }
 
+  /**
+   * Opens the card editor in edit mode for an existing card.
+   *
+   * @param cardId - The ID of the card to edit.
+   * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
+   */
   openEdit(cardId: string): Promise<CardEditorDialogResult | undefined> {
     return this.open({ mode: 'edit', cardId });
   }
