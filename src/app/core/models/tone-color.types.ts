@@ -1,9 +1,17 @@
 import type { ToneMark } from './phonetic-content.types';
 
+/** Available tone color scheme presets. */
 export type ToneColorSchemeId = 'classic' | 'pastel' | 'vivid' | 'warm';
 
+/** Mapping of tone marks to hex color values. */
 export type ToneColorPalette = Record<ToneMark, string>;
 
+/**
+ * A tone color scheme with metadata and color mapping.
+ *
+ * @remarks
+ * Used for visual tone marking on Chinese characters and Pinyin.
+ */
 export type ToneColorScheme = {
   id: ToneColorSchemeId;
   label: string;

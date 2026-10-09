@@ -1,3 +1,9 @@
+/**
+ * User's proficiency level in the learning language.
+ *
+ * @remarks
+ * Affects the strictness of answer checking. Mapped to CEFR-like levels.
+ */
 export type LearningProficiencyLevel =
   | 'new-to-language'
   | 'beginner'
@@ -7,6 +13,7 @@ export type LearningProficiencyLevel =
   | 'advanced'
   | 'professional';
 
+/** A selectable proficiency level option displayed in the UI. */
 export type LearningProficiencyOption = {
   id: LearningProficiencyLevel;
   label: string;

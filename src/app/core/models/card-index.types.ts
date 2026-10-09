@@ -1,13 +1,22 @@
 import type { CardKind } from './card.types';
 
-/** Язык контента карточек и UI приложения — не путать с UiLocale (см. docs/LANGUAGE-PAIR.md). */
+/**
+ * Content language used for cards and UI.
+ *
+ * @remarks
+ * Includes natural languages (en, zh, ru) and programming languages (perl, java, cpp).
+ * Do not confuse with UiLocale (see docs/LANGUAGE-PAIR.md).
+ */
 export type ContentLanguage = 'en' | 'zh' | 'ru' | 'perl' | 'java' | 'cpp';
 
+/** Difficulty level of a card. */
 export type CardDifficulty = 'beginner' | 'intermediate' | 'advanced';
 
 /**
- * Лёгкая запись каталога — без payload карточки.
- * Используется в списках, фильтрах и server-side поиске.
+ * Lightweight catalog entry — without card payload.
+ *
+ * @remarks
+ * Used in lists, filters, and server-side search.
  */
 export type CardIndexEntry = {
   id: string;
@@ -17,7 +26,7 @@ export type CardIndexEntry = {
   learningLanguage: ContentLanguage;
   difficulty: CardDifficulty;
   tags: readonly string[];
-  /** Нормализованные IPA-транскрипции для поиска в каталоге. */
+  /** Normalized IPA transcriptions for catalog search. */
   ipaReadings: readonly string[];
   updatedAt: string;
   /** ID курса (Course), к которому привязана карточка. */

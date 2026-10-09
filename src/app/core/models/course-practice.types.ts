@@ -1,16 +1,28 @@
 import type { CardDifficulty } from './card-index.types';
 
-/** Режим навигации в «Практике» (`/cards/select`). */
+/**
+ * Navigation mode in the Practice tab (`/cards/select`).
+ *
+ * @remarks
+ * `guided` — linear progression: lesson → lesson's scenarios.
+ * `open` — free choice of scenarios within the program.
+ */
 export type CoursePracticeMode = 'guided' | 'open';
 
+/**
+ * Settings for the Practice tab navigation behavior.
+ *
+ * @remarks
+ * Controls lesson prerequisites, scenario access rules, and difficulty filtering.
+ */
 export type CoursePracticeSettings = {
-  /** guided — линейно: урок → сценарии урока; open — свободный выбор в рамках программы. */
+  /** `guided` — linear: lesson → lesson's scenarios; `open` — free choice within the program. */
   mode: CoursePracticeMode;
-  /** false для open: сценарии доступны без выбора урока. */
+  /** When `false` (open mode): scenarios are accessible without selecting a lesson. */
   requireLessonForScenarios?: boolean;
-  /** false для open: уроки не блокируются prerequisite в practice. */
+  /** When `false` (open mode): lessons are not blocked by prerequisites in practice. */
   enforceLessonPrerequisites?: boolean;
-  /** chips beginner / intermediate / advanced на вкладке «Сценарии». */
+  /** Show difficulty chips (beginner / intermediate / advanced) on the Scenarios tab. */
   allowDifficultyFilter?: boolean;
 };
 
@@ -21,4 +33,5 @@ export const DEFAULT_COURSE_PRACTICE_SETTINGS: CoursePracticeSettings = {
   allowDifficultyFilter: false,
 };
 
+/** Difficulty filter value for the Practice tab. `null` means no filter applied. */
 export type CoursePracticeDifficultyFilter = CardDifficulty | null;

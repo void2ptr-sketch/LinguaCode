@@ -1,5 +1,11 @@
 import type { CardDirection, LanguagePair } from './language-pair.types';
 
+/**
+ * A single answer result recorded during a learning session.
+ *
+ * @remarks
+ * Stored in LearningResultsStore and used for progress tracking and analytics.
+ */
 export type LearningResult = {
   id: string;
   userId: string;

@@ -1,3 +1,8 @@
+/**
+ * Generic async state holder for UI loading, data, and error tracking.
+ *
+ * @typeParam T - The type of the loaded data.
+ */
 export type AsyncState<T> = {
   data: T;
   loading: boolean;

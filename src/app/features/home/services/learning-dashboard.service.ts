@@ -16,6 +16,13 @@ import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { RADICALS_COURSE_ID } from '../../../core/data/chinese/radicals-course.defaults';
 
+/**
+ * Service for the learning dashboard (home page).
+ *
+ * @remarks
+ * Loads the active course, builds the lesson roadmap, and determines the resume target
+ * (where to continue learning from). Falls back to the radicals course when no active course exists.
+ */
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
   private readonly courseSearchService = inject(CourseSearchService);
@@ -23,16 +30,32 @@ export class LearningDashboardService {
   private readonly userStore = inject(UserStore);
   private readonly resultsStore = inject(LearningResultsStore);
 
+  /** Loading state for course data. */
   readonly loading = signal(false);
+
+  /** Error message, if any. */
   readonly error = signal<string | null>(null);
+
+  /** The currently loaded course with its lessons. */
   readonly course = signal<CourseWithLessons | null>(null);
+
+  /** The determined resume target (where to continue learning). */
   readonly resumeTarget = signal<LearningResumeTarget | null>(null);
+
+  /** The lesson roadmap for the current course. */
   readonly roadmap = signal<readonly LessonRoadmapItem[]>([]);
 
+  /** Learning session preferences for the active language pair. */
   readonly learningSession = computed(() =>
     resolveLearningSessionForPair(this.userStore.activeLanguagePairEntry()),
   );
 
+  /**
+   * Computed progress for the currently loaded course.
+   *
+   * @remarks
+   * Returns `null` when no course is loaded.
+   */
   readonly courseProgress = computed(() => {
     const course = this.course();
     if (!course) {
@@ -47,6 +70,12 @@ export class LearningDashboardService {
     return this.resultsStore.courseProgress(course.id, lessons);
   });
 
+  /**
+   * Reloads the dashboard data: course, roadmap, and resume target.
+   *
+   * @remarks
+   * Infers the active course from saved state or falls back to the radicals course.
+   */
   async reload(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
@@ -124,6 +153,11 @@ export class LearningDashboardService {
     }
   }
 
+  /**
+   * Sets the active course ID and persists it.
+   *
+   * @param courseId - The ID of the course to set as active.
+   */
   setActiveCourseId(courseId: string): void {
     this.userStore.updateActiveLanguagePairSettings({
       learning: {

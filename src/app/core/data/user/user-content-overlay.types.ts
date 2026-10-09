@@ -14,10 +14,12 @@ export const LEGACY_SCENARIOS_KEY = 'lingua-code.scenarios';
 export const LEGACY_CARDS_KEY = 'lingua-code.cards';
 export const LEGACY_CARD_INDEX_META_KEY = 'lingua-code.card-index-meta';
 
+/** Partial patch for updating a course in the user content overlay. */
 export type CoursePatch = Partial<
   Pick<Course, 'title' | 'description' | 'published' | 'updatedAt' | 'lessonIds' | 'authoring'>
 >;
 
+/** Partial patch for updating a lesson in the user content overlay. */
 export type LessonPatch = Partial<
   Pick<
     Lesson,
@@ -25,10 +27,12 @@ export type LessonPatch = Partial<
   >
 >;
 
+/** Partial patch for updating a scenario in the user content overlay. */
 export type ScenarioPatch = Partial<
   Pick<Scenario, 'title' | 'description' | 'published' | 'updatedAt'>
 >;
 
+/** IDs of deleted entities tracked in the user content overlay. */
 export type UserContentDeletedIds = {
   courses?: readonly string[];
   lessons?: readonly string[];
@@ -36,6 +40,13 @@ export type UserContentDeletedIds = {
   cards?: readonly string[];
 };
 
+/**
+ * User content overlay stored in localStorage.
+ *
+ * @remarks
+ * Merges with or overrides system content (courses, lessons, scenarios, cards).
+ * Supports partial patches for incremental updates.
+ */
 export type UserContentOverlay = {
   version: typeof USER_CONTENT_OVERLAY_VERSION;
   courses: Record<string, Course | CoursePatch>;

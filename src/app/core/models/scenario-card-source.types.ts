@@ -1,7 +1,14 @@
 import type { CardSearchCriteria } from './card-search.types';
 
+/** Sort order for dynamically assembled card sets. */
 export type ScenarioCardSort = 'updatedAt' | 'difficulty' | 'random';
 
+/**
+ * Source of cards for a scenario.
+ *
+ * @remarks
+ * Three modes: `fixed` (static list), `criteria` (dynamic search), `snapshot` (frozen search results).
+ */
 export type ScenarioCardSource =
   | { mode: 'fixed'; cardIds: readonly string[] }
   | {
@@ -19,4 +26,5 @@ export type ScenarioCardSource =
       frozenAt: string;
     };
 
+/** Extracted mode type from ScenarioCardSource union. */
 export type ScenarioCardSourceMode = ScenarioCardSource['mode'];

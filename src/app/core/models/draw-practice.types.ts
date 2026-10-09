@@ -1,3 +1,4 @@
+/** Practice mode for draw cards: different ways to practice character drawing. */
 export type DrawPracticeMode =
   | 'freehand'
   | 'memory'
@@ -6,15 +7,22 @@ export type DrawPracticeMode =
   | 'stroke-order'
   | 'radicals';
 
-/** Режим canvas во время сессии (переключается на карточке). */
+/** Canvas mode during a session (switchable on a card). */
 export type DrawCanvasMode = 'memory' | 'tracing' | 'hints' | 'stroke-order' | 'radicals';
 
+/** A single stroke guide for character drawing practice. */
 export type DrawStrokeGuide = {
   order: number;
-  /** SVG path in viewBox 0 0 100 100 */
+  /** SVG path in viewBox 0 0 100 100. */
   path: string;
 };
 
+/**
+ * A target character for draw cards with associated metadata.
+ *
+ * @remarks
+ * Each tab in a draw card can have a different target character.
+ */
 export type DrawCharacterTarget = {
   character: string;
   pinyin?: string;

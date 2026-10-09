@@ -1,6 +1,12 @@
 import type { CardDirection } from './language-pair.types';
 import type { CardIndexMetaOverride } from '../data/cards/card-index.mapper';
 
+/**
+ * Supported card kinds for language learning exercises.
+ *
+ * @remarks
+ * Each kind determines the interaction pattern and UI component used during practice.
+ */
 export type CardKind =
   | 'select'
   | 'code-select'
@@ -13,40 +19,60 @@ export type CardKind =
   | 'tone'
   | 'reading';
 
+/** User-configurable appearance settings for cards. */
 export type CardAppearance = {
   theme: string;
   fontSize: 'sm' | 'md' | 'lg';
 };
 
+/**
+ * Base type shared by all card kinds.
+ *
+ * @remarks
+ * Each specific card kind extends this type with kind-specific fields.
+ */
 export type CardBase = {
   id: string;
   kind: CardKind;
   title: string;
   appearance: CardAppearance;
-  /** Метаданные карточки. Если отсутствуют, используются данные из user-content-overlay. */
+  /** Card metadata. When absent, data from user-content-overlay is used. */
   meta?: CardIndexMetaOverride;
-  /** ID курса (Course), к которому привязана карточка. */
+  /** ID of the Course this card belongs to. */
   courseId?: string;
-  /** ID урока (Lesson), к которому привязана карточка. */
+  /** ID of the Lesson this card belongs to. */
   lessonId?: string;
-  /** ID сценария (Scenario), к которому привязана карточка. */
+  /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
 };
 
 import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';
 import type { DrawPracticeMode, DrawStrokeGuide, DrawCharacterTarget } from './draw-practice.types';
 
+/**
+ * A pair of known and learning lexemes for memory cards.
+ *
+ * @remarks
+ * Used in memory card exercises where the user matches known words with their learning-language equivalents.
+ */
 export type MemoryPair = {
   known: string;
   learning: string;
   learningLexeme?: PhoneticLexeme;
 };
 
+/**
+ * Fields shared by lexeme-based card types.
+ *
+ * @remarks
+ * Cards that display word-level content (lexemes) use these fields for the prompt and optional audio.
+ */
 export type LexemeCardFields = {
   promptLexeme?: PhoneticLexeme;
   audioUrl?: string;
 };
 
+/** Supported syntax-highlighting languages for code-select cards. */
 export type CodeHighlightLanguage =
   | 'perl'
   | 'cpp'
@@ -60,11 +86,13 @@ export type CodeHighlightLanguage =
   | 'go'
   | 'plain';
 
+/** A code block used in code-select cards. */
 export type CodeBlock = {
   code: string;
   language: CodeHighlightLanguage;
 };
 
+/** Code-select card: user selects the correct code block matching the prompt. */
 export type CodeSelectCard = CardBase & {
   kind: 'code-select';
   caption?: string;
@@ -73,18 +101,30 @@ export type CodeSelectCard = CardBase & {
   correctIndex: number;
 };
 
+/**
+ * Select card: user chooses the correct translation from multiple options.
+ *
+ * @remarks
+ * Supports both directions: known→learning and learning→known.
+ */
 export type SelectCard = CardBase &
   LexemeCardFields & {
     kind: 'select';
     direction: CardDirection;
     promptKnown: string;
     optionsLearning: readonly string[];
-    /** Варианты на известном языке — для режима «новый → известный». */
+    /** Options in the known language — for "new → known" direction. */
     optionsKnown?: readonly string[];
     optionsLexemes?: readonly PhoneticLexeme[];
     correctIndex: number;
   };
 
+/**
+ * Memory card: user matches pairs of known and learning lexemes.
+ *
+ * @remarks
+ * The board layout is randomized on each display via `memoryBoardNonce`.
+ */
 export type MemoryCard = CardBase &
   LexemeCardFields & {
     kind: 'memory';
@@ -92,6 +132,12 @@ export type MemoryCard = CardBase &
     pairs: readonly MemoryPair[];
   };
 
+/**
+ * Symbol card: user selects the correct symbol from multiple options.
+ *
+ * @remarks
+ * Typically used for Chinese character recognition exercises.
+ */
 export type SymbolCard = CardBase &
   LexemeCardFields & {
     kind: 'symbol';
@@ -103,6 +149,12 @@ export type SymbolCard = CardBase &
     correctIndex: number;
   };
 
+/**
+ * Sound card: user matches an audio clip with the correct text option.
+ *
+ * @remarks
+ * Supports both directions: audio→text and text→audio.
+ */
 export type SoundCard = CardBase &
   LexemeCardFields & {
     kind: 'sound';
@@ -114,6 +166,12 @@ export type SoundCard = CardBase &
     correctIndex: number;
   };
 
+/**
+ * Timed card: user selects the correct answer within a time limit.
+ *
+ * @remarks
+ * The `timeLimitSec` field controls the countdown duration in seconds.
+ */
 export type TimedCard = CardBase &
   LexemeCardFields & {
     kind: 'timed';
@@ -126,34 +184,53 @@ export type TimedCard = CardBase &
     timeLimitSec: number;
   };
 
+/** Input mode for keyboard cards: free-text, IPA transcription, Pinyin, or auto-detect. */
 export type KeyboardAnswerMode = 'text' | 'ipa' | 'pinyin' | 'auto';
 
+/**
+ * Keyboard card: user types the answer from the keyboard.
+ *
+ * @remarks
+ * Supports multiple accepted answers and various input modes (text, IPA, Pinyin).
+ */
 export type KeyboardCard = CardBase &
   LexemeCardFields & {
     kind: 'keyboard';
     direction: CardDirection;
     promptKnown: string;
     acceptedAnswersKnown: readonly string[];
-    /** Допустимые ответы на изучаемом языке — для режима «известный → новый». */
+    /** Acceptable answers in the learning language — for "known → new" mode. */
     acceptedAnswersLearning?: readonly string[];
     answerMode?: KeyboardAnswerMode;
   };
 
+/**
+ * Draw card: user draws a Chinese character on a canvas.
+ *
+ * @remarks
+ * Supports stroke guides, radical hints, and multiple characters across tabs.
+ */
 export type DrawCard = CardBase &
   LexemeCardFields & {
     kind: 'draw';
     promptKnown: string;
     referenceHintKnown: string;
-    /** Значение / перевод в зоне вопроса (без иероглифа). */
+    /** Meaning / translation displayed in the question zone (without the character). */
     meaningKnown?: string;
     practiceMode?: DrawPracticeMode;
     targetCharacter?: string;
     strokeGuides?: readonly DrawStrokeGuide[];
     radicalHint?: string;
-    /** По одному иероглифу на вкладку; если нет — из `targetCharacter` / `promptLexeme`. */
+    /** One character per tab; when absent, falls back to `targetCharacter` / `promptLexeme`. */
     characterTargets?: readonly DrawCharacterTarget[];
   };
 
+/**
+ * Tone card: user selects the correct tone mark for a given syllable.
+ *
+ * @remarks
+ * Used for Mandarin Chinese tone recognition exercises.
+ */
 export type ToneCard = CardBase &
   LexemeCardFields & {
     kind: 'tone';
@@ -164,6 +241,12 @@ export type ToneCard = CardBase &
     correctIndex: number;
   };
 
+/**
+ * Reading card: user reads a passage and selects the correct interpretation.
+ *
+ * @remarks
+ * Similar to SelectCard but designed for longer text passages.
+ */
 export type ReadingCard = CardBase &
   LexemeCardFields & {
     kind: 'reading';
@@ -175,6 +258,12 @@ export type ReadingCard = CardBase &
     correctIndex: number;
   };
 
+/**
+ * Union of all card kinds.
+ *
+ * @remarks
+ * This is the primary card type used throughout the application.
+ */
 export type Card =
   | SelectCard
   | CodeSelectCard
@@ -187,6 +276,12 @@ export type Card =
   | ToneCard
   | ReadingCard;
 
+/**
+ * Subset of Card types that present multiple-choice options.
+ *
+ * @remarks
+ * These cards share a common answer-checking pattern via `canCheckCardAnswer` and `checkCardAnswer`.
+ */
 export type OptionCard =
   | SelectCard
   | CodeSelectCard
@@ -195,6 +290,12 @@ export type OptionCard =
   | TimedCard
   | ReadingCard;
 
+/**
+ * Type guard: checks whether a card is an option-based card (multiple choice).
+ *
+ * @param card - The card to check.
+ * @returns `true` if the card is one of: select, code-select, symbol, sound, timed, reading.
+ */
 export const isOptionCard = (card: Card): card is OptionCard => {
   return (
     card.kind === 'select' ||

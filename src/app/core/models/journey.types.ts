@@ -1,10 +1,15 @@
-/** Статус локации на карте путешествия. */
+/** Status of a location node on the learning journey map. */
 export type JourneyLocationStatus = 'locked' | 'available' | 'in-progress' | 'visited' | 'completed';
 
-/** Тип контента сценария — определяет иконку на карте. */
+/** Content type of a scenario — determines the icon displayed on the journey map. */
 export type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 
-/** Маппинг типа карточки на тип контента. */
+/**
+ * Maps card kind values to journey content types.
+ *
+ * @remarks
+ * Used to determine the icon and categorization of scenario nodes on the journey map.
+ */
 export const CARD_KIND_TO_CONTENT_TYPE: Record<string, JourneyContentType> = {
   select: 'theory',
   'code-select': 'test',
@@ -18,7 +23,12 @@ export const CARD_KIND_TO_CONTENT_TYPE: Record<string, JourneyContentType> = {
   tone: 'practice',
 };
 
-/** Узел локации на карте путешествия. */
+/**
+ * A node representing a scenario location on the learning journey map.
+ *
+ * @remarks
+ * Contains progress information, metadata, and user interaction state for each location.
+ */
 export type JourneyLocationNode = {
   /** Уникальный идентификатор локации. */
   id: string;
@@ -54,7 +64,12 @@ export type JourneyLocationNode = {
   contentTypes: JourneyContentType[];
 };
 
-/** Событие аналитики для локации. */
+/**
+ * Analytics event for a journey location.
+ *
+ * @remarks
+ * Three event kinds are tracked: visit, duration, and completion.
+ */
 export type JourneyAnalyticsEvent =
   | {
       kind: 'visit';
@@ -80,10 +95,15 @@ export type JourneyAnalyticsEvent =
       timestamp: string;
     };
 
-/** Уровень исследователя. */
+/** Explorer level badge awarded based on journey activity. */
 export type ExplorerLevel = 'novice' | 'experienced' | 'expert';
 
-/** Результат вычисления уровня исследователя. */
+/**
+ * Result of explorer level computation.
+ *
+ * @remarks
+ * Includes the current level, totals, and the next milestone thresholds.
+ */
 export type ExplorerLevelResult = {
   level: ExplorerLevel;
   totalVisits: number;

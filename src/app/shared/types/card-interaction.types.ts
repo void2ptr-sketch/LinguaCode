@@ -3,8 +3,20 @@ import type { DrawAnswerPayload } from './draw-answer.types';
 
 export type { DrawAnswerPayload } from './draw-answer.types';
 
+/**
+ * Feedback state after checking a card answer.
+ *
+ * @remarks
+ * `null` means the answer has not been checked yet.
+ */
 export type CardFeedback = 'correct' | 'incorrect' | null;
 
+/**
+ * Aggregated answer state for a card interaction session.
+ *
+ * @remarks
+ * Used by `checkCardAnswer` to evaluate the user's response across all card types.
+ */
 export type CardAnswerState = {
   selectedIndex: number | null;
   answerText: string;
