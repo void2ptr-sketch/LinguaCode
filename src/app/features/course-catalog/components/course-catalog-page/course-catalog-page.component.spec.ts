@@ -25,7 +25,7 @@ import type {
 } from '../../../../core/models';
 import type { ToneColorSchemeId } from '../../../../core/models/tone-color.types';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
-import { UiPaginationComponent } from '../../../../shared/ui/pagination';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import {
   CourseDisplaySettingsMatrixComponent,
 } from '../../../../shared/ui/course-display-settings-matrix';

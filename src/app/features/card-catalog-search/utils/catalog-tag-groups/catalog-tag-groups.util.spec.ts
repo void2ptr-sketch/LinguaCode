@@ -1,5 +1,5 @@
 import { groupCatalogTagFacets } from './catalog-tag-groups.util';
-import { tagLabel } from '../../../constants/catalog-labels';
+import { tagLabel } from '../../../../shared/constants/catalog-labels';
 
 describe('groupCatalogTagFacets', () => {
   it('should group tags by themes, subtopics and other tags in course order', () => {

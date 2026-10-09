@@ -5,11 +5,11 @@
     <p class="scenario-card-picker__hint">Загрузка каталога…</p>
   } @else if (store.error()) {
     <p class="scenario-card-picker__error">{{ store.error() }}</p>
-  } @else if (store.entries().length === 0) {
+  } @else if (entries().length === 0) {
     <p class="scenario-card-picker__hint">Ничего не найдено. Измените фильтры.</p>
   } @else {
     <mat-list class="scenario-card-picker__list">
-      @for (entry of store.entries(); track entry.id) {
+      @for (entry of entries(); track entry.id) {
         <mat-list-item>
           <mat-checkbox
             [checked]="isSelected(entry.id)"

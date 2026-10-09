@@ -1,13 +1,14 @@
-import { Component, effect, inject, input, OnInit, output } from '@angular/core';
+import { Component, computed, effect, inject, input, OnInit, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
-import { UiPaginationComponent } from '../../../ui/pagination';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import { formatIndexLanguagePair } from '../../../../core/data/language-pair/language-pair.utils';
 import { UserStore } from '../../../../core/state';
-import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS, DIFFICULTY_LABELS } from '../../../constants/catalog-labels';
+import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS, DIFFICULTY_LABELS } from '../../../../shared/constants/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../';
 import { CardCatalogSearchStore } from '../../';
+import type { CardIndexEntry } from '../../../../core/models';
 
 let lastKnownPickerActiveLanguagePairId: string | null = null;
 
@@ -28,6 +29,8 @@ export class ScenarioCardPickerComponent implements OnInit {
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly formatIndexLanguagePair = formatIndexLanguagePair;
+
+  readonly entries = computed(() => this.store.entries() as CardIndexEntry[]);
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();

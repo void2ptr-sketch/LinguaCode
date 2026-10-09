@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 
-import type { RomanizationSystem } from '../../../core/models/phonetic-content.types';
+import type { RomanizationSystem } from '../../../../core/models/phonetic-content.types';
 
 @Component({
   selector: 'app-cjk-ruby',

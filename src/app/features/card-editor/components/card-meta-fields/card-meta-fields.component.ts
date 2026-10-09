@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
 import type { CardDifficulty } from '../../../../core/models/card-index.types';
-import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../shared/card-catalog-search';
+import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../card-catalog-search';
 
 @Component({
   selector: 'app-card-meta-fields',

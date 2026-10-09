@@ -6,7 +6,7 @@ import type {
   ScenarioSearchCriteria,
 } from '../../models';
 import { isContentLanguage } from '../../data/language-pair/language-pair.utils';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/ui/pagination';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 
 export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): HttpParams {
   let params = new HttpParams()

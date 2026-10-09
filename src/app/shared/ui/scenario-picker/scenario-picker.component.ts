@@ -11,7 +11,7 @@ import { ScenarioSearchService } from '../../../core/data';
 import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
 import type { ScenarioIndexEntry, ScenarioListScope } from '../../../core/models';
 import { UserStore } from '../../../core/state';
-import { UiPaginationComponent } from '../pagination';
+import { UiPaginationComponent } from '../../utils/pagination';
 
 let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
 
@@ -88,18 +88,18 @@ export class ScenarioPickerComponent implements OnInit {
 
       const filtered =
         allowed && allowed.length > 0
-          ? page.items.filter((item) => allowed.includes(item.id))
+          ? page.items.filter((item: ScenarioIndexEntry) => allowed.includes(item.id))
           : page.items;
 
       this.items.set(filtered);
       this.totalItems.set(filtered.length);
 
       const current = this.selectedScenarioId();
-      const hasCurrent = filtered.some((item) => item.id === current);
+      const hasCurrent = filtered.some((item: ScenarioIndexEntry) => item.id === current);
       if (!hasCurrent && filtered.length > 0 && this.autoSelectFirst()) {
         this.pick(filtered[0]);
       } else if (hasCurrent) {
-        const entry = filtered.find((item) => item.id === current);
+        const entry = filtered.find((item: ScenarioIndexEntry) => item.id === current);
         if (entry) {
           this.scenarioLabelChange.emit(this.formatLabel(entry));
         }

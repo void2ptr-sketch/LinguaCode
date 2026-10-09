@@ -10,7 +10,7 @@ import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalo
 import { cardIndexMatchesPair } from '../../../../core/data/language-pair/language-pair.utils';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import { UserStore } from '../../../../core/state';
-import { CARD_KIND_LABELS } from '../../../../shared/card-catalog-search';
+import { CARD_KIND_LABELS } from '../../../card-catalog-search';
 import { CardHostComponent } from '../../../../shared/ui/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';

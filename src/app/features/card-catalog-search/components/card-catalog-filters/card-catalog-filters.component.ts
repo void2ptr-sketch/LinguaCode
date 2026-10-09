@@ -7,13 +7,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { CardDifficulty, CardKind } from '../../../../core/models';
+import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../../core/models';
 import {
   CARD_KIND_LABELS,
   DIFFICULTIES,
   DIFFICULTY_LABELS,
   tagLabel,
-} from '../../../constants/catalog-labels';
+} from '../../../../shared/constants/catalog-labels';
 import { groupCatalogTagFacets } from '../../utils/catalog-tag-groups/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../'
 
@@ -38,6 +38,8 @@ export class CardCatalogFiltersComponent {
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly kindLabels = CARD_KIND_LABELS;
   readonly tagLabel = tagLabel;
+
+  readonly facets = computed(() => this.store.facets() as CardSearchFacets | null);
 
   readonly tagGroups = computed(() => {
     const facets = this.store.facets();

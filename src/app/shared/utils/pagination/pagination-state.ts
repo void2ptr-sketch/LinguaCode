@@ -1,8 +1,8 @@
 import { computed, effect, type Signal, signal, type WritableSignal } from '@angular/core';
 import type { PageEvent } from '@angular/material/paginator';
 
-import { clampPageIndex, paginateItems } from './paginate-items';
-import type { PaginationOptions } from './pagination.types';
+import { clampPageIndex, paginateItems } from '../../utils/pagination/paginate-items';
+import type { PaginationOptions } from '../../utils/pagination/pagination.types';
 
 export type PaginationStateController = {
   pageIndex: WritableSignal<number>;

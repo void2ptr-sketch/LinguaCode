@@ -9,11 +9,11 @@ export type {
 export {
   clampPage,
   createPageResponse,
-  DEFAULT_PAGE_SIZE,
-  PAGE_SIZE_OPTIONS,
   paginateArray,
   toOffsetLimit,
   totalPages,
+  DEFAULT_PAGE_SIZE,
+  PAGE_SIZE_OPTIONS,
 } from './pagination.utils';
 export { clampPageIndex, paginateItems } from './paginate-items';
 export { createPaginationState, type PaginationStateController } from './pagination-state';

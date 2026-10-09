@@ -13,7 +13,7 @@ import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
 import {
   CONTENT_LANGUAGE_LABELS,
-} from '../../../../shared/card-catalog-search';
+} from '../../../card-catalog-search';
 import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
 import {
   CardDraft,
@@ -44,7 +44,7 @@ import {
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
-} from '../../../../shared/card-catalog-search/services/card-catalog-hierarchy/card-catalog-hierarchy.service';
+} from '../../../card-catalog-search/services/card-catalog-hierarchy/card-catalog-hierarchy.service';
 
 type TabDefinition = {
   label: string;

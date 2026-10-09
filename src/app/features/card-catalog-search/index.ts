@@ -7,7 +7,7 @@ export {
   DIFFICULTY_LABELS,
   TAG_LABELS,
   tagLabel,
-} from '../constants/catalog-labels';
+} from '../../shared/constants/catalog-labels';
 export { groupCatalogTagFacets } from './utils/catalog-tag-groups/catalog-tag-groups.util';
 export { CardCatalogFiltersComponent } from './components/card-catalog-filters/card-catalog-filters.component';
 export { CardCatalogSearchStore } from './services/card-catalog-search/card-catalog-search.store';

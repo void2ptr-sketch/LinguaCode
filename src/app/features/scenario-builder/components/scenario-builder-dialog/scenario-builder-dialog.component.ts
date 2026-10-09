@@ -9,7 +9,7 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
-import { CardCatalogSearchStore } from '../../../../shared/card-catalog-search';
+import { CardCatalogSearchStore } from '../../../card-catalog-search';
 import { CardEditorDiscardDialogComponent } from '../../../card-editor/components/card-editor-dialog/card-editor-discard-dialog.component';
 import { UserStore } from '../../../../core/state';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';

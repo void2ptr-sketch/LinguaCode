@@ -17,7 +17,7 @@ import {
 import {
   ScenarioCardCriteriaEditorComponent,
   ScenarioCardPickerComponent,
-} from '../../../../shared/card-catalog-search';
+} from '../../../card-catalog-search';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import type { ScenarioCardSourceMode } from '../../types';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';

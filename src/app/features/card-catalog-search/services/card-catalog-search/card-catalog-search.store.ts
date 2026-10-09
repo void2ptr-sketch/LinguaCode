@@ -10,7 +10,7 @@ import type {
   CardSearchPage,
   ContentLanguage,
 } from '../../../../core/models';
-import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../../ui/pagination';
+import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../../../shared/utils/pagination';
 import {
   CardCatalogHierarchyService,
   type CourseOption,
@@ -42,7 +42,10 @@ export class CardCatalogSearchStore {
   readonly error = computed(() => this.cardSearchService.error());
   readonly result = signal<CardSearchPage | null>(null);
 
-  readonly entries = computed(() => this.result()?.items ?? []);
+  readonly entries = computed(() => {
+    const result = this.result();
+    return result ? result.items : [];
+  });
   readonly facets = computed(() => this.result()?.facets ?? null);
   readonly totalItems = computed(() => this.result()?.totalItems ?? 0);
 

@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,10 +14,10 @@ import {
   CardCatalogFiltersComponent,
   CardCatalogSearchStore,
   CONTENT_LANGUAGE_LABELS,
-  DIFFICULTY_LABELS,
   tagLabel,
-} from '../../../../shared/card-catalog-search';
-import { UiPaginationComponent } from '../../../../shared/ui/pagination';
+} from '../../../card-catalog-search';
+import { DIFFICULTY_LABELS } from '../../../../shared/constants/catalog-labels';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../../core/state';
 import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../card-try-dialog/card-try-dialog.service';
@@ -28,6 +28,7 @@ import {
   CARD_CREATE_GROUPS,
   KINDS_BY_CREATE_GROUP,
 } from '../../utils/card-create-groups.utils';
+import type { CardIndexEntry } from '../../../../core/models';
 
 let lastKnownActiveLanguagePairId: string | null = null;
 
@@ -64,6 +65,8 @@ export class CardEditorPageComponent implements OnInit {
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
   readonly difficultyLabels = DIFFICULTY_LABELS;
   readonly tagLabel = tagLabel;
+
+  readonly entries = computed(() => this.catalogStore.entries() as CardIndexEntry[]);
 
   private readonly reloadOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();

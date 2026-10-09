@@ -1,4 +1,4 @@
-import type { PageRequest, PageResponse } from '../../shared/ui/pagination';
+import type { PageRequest, PageResponse } from '../../shared/utils/pagination';
 
 import type { CardDifficulty, CardIndexEntry, ContentLanguage } from './card-index.types';
 import type { CardKind } from './card.types';

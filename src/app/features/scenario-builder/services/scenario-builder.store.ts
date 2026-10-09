@@ -24,7 +24,7 @@ import type {
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
 import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/ui/pagination';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
