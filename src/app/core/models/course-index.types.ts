@@ -1,4 +1,4 @@
-import type { PageResponse } from '../../shared/pagination';
+import type { PageResponse } from '../../shared/ui/pagination';
 
 import type { ContentLanguage } from './card-index.types';
 
@@ -20,7 +20,7 @@ export type CourseSearchCriteria = {
   scope?: CourseListScope;
   knownLanguage?: ContentLanguage;
   learningLanguage?: ContentLanguage;
-  page: import('../../shared/pagination').PageRequest;
+  page: import('../../shared/ui/pagination').PageRequest;
 };
 
 export type CourseSearchPage = PageResponse<CourseIndexEntry>;

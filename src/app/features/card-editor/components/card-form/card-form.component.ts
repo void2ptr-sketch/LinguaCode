@@ -44,7 +44,7 @@ import {
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
-} from '../../../../shared/card-catalog-search/card-catalog-hierarchy.service';
+} from '../../../../shared/card-catalog-search/services/card-catalog-hierarchy/card-catalog-hierarchy.service';
 
 type TabDefinition = {
   label: string;

@@ -29,7 +29,7 @@ import {
   ROMANIZATION_DISPLAY_ORDER,  
 } from '../../../../core/models/phonetic-content.types';
 import type { PageEvent } from '@angular/material/paginator';
-import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 import { CourseCatalogCoursesComponent } from '../course-card-list/course-card-list.component';
 import { CourseCatalogSettingsComponent } from '../course-settings/course-settings.component';

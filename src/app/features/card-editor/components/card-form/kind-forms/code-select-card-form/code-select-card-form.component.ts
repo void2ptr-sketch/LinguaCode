@@ -12,7 +12,7 @@ import {
 } from '../../../../../../core/data/code-highlight/code-highlight.utils';
 import type { CodeHighlightLanguage } from '../../../../../../core/models';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
-import { CodeHighlightComponent } from '../../../../../../shared/components/code-highlight/code-highlight.component';
+import { CodeHighlightComponent } from '../../../../../../shared/ui/code-highlight';
 
 @Component({
   selector: 'app-code-select-card-form',

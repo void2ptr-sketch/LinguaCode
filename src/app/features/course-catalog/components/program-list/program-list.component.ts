@@ -6,7 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UiPaginationComponent } from '../../../../shared/ui/pagination';
 import type { PageEvent } from '@angular/material/paginator';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

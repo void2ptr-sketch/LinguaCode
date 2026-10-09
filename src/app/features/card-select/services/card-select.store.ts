@@ -4,7 +4,7 @@ import { cardDefaultDirection } from '../../../core/data/cards/card-direction.ut
 import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import { UserStore } from '../../../core/state';
-import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer.utils';
+import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer/card-answer.util';
 import { CardFeedback } from '../../../shared/types';
 import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
 

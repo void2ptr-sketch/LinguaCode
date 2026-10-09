@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { Card } from '../../../../core/models';
-import { CardHostComponent } from '../../../../shared/components/card-host';
+import { CardHostComponent } from '../../../../shared/ui/card-host';
 
 @Component({
   selector: 'app-card-preview',

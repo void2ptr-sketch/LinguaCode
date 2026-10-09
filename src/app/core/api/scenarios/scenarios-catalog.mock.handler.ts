@@ -7,7 +7,7 @@ import type {
   ScenarioSearchCriteria,
   ScenarioSearchPage,
 } from '../../models';
-import { paginateArray } from '../../../shared/pagination';
+import { paginateArray } from '../../../shared/ui/pagination';
 import { UserStore } from '../../state';
 
 import { scenarioToIndexEntry } from '../../data/scenarios/scenario-index.mapper';

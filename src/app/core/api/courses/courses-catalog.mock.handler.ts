@@ -9,7 +9,7 @@ import type {
   CourseWithLessons,
   Lesson,
 } from '../../models';
-import { paginateArray } from '../../../shared/pagination';
+import { paginateArray } from '../../../shared/ui/pagination';
 import { UserStore } from '../../state';
 
 import { normalizeCourseAuthoring } from '../../data/courses/course-authoring.utils';

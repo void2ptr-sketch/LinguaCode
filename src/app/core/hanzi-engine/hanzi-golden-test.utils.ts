@@ -1,4 +1,4 @@
-import type { DrawStrokePath } from '../../shared/components/draw-canvas/draw-canvas.types';
+import type { DrawStrokePath } from '../../shared/ui/draw-canvas/draw-canvas.types';
 import type { HanziCharacterJson } from './hanzi-character.types';
 import type { HanziCharacterModel } from './hanzi-character.model';
 import { buildHanziCharacterModel } from './hanzi-character.model';

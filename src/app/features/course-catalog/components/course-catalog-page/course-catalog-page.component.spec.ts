@@ -25,10 +25,10 @@ import type {
 } from '../../../../core/models';
 import type { ToneColorSchemeId } from '../../../../core/models/tone-color.types';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UiPaginationComponent } from '../../../../shared/ui/pagination';
 import {
   CourseDisplaySettingsMatrixComponent,
-} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+} from '../../../../shared/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
@@ -163,7 +163,7 @@ describe('CourseCatalogPageComponent', () => {
     const mockAnswerRomanizationsDraftSignal = signal([] as readonly import('../../../../core/models').RomanizationSystem[]);
     const mockShowIpaDraftSignal = signal(false);
     const mockIpaVariantLabelDraftSignal = signal('');
-    const mockAnswerModesDraftSignal = signal([] as readonly import('../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils').AnswerDisplayMode[]);
+    const mockAnswerModesDraftSignal = signal([] as readonly import('../../../../shared/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[]);
     const mockToneColorEnabledDraftSignal = signal(false);
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
     const mockTracingStrokeDurationDraftSignal = signal(0.5);
@@ -220,7 +220,7 @@ describe('CourseCatalogPageComponent', () => {
       setAnswerRomanizationsDraft: (romanizations: readonly import('../../../../core/models').RomanizationSystem[]) => mockAnswerRomanizationsDraftSignal.set(romanizations),
       setShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
       setIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
-      setAnswerModesDraft: (modes: readonly import('../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils').AnswerDisplayMode[]) => mockAnswerModesDraftSignal.set(modes),
+      setAnswerModesDraft: (modes: readonly import('../../../../shared/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[]) => mockAnswerModesDraftSignal.set(modes),
       setToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
       setToneColorSchemeDraft: (scheme: ToneColorSchemeId) => mockToneColorSchemeDraftSignal.set(scheme),
       setTracingStrokeDurationDraft: (duration: number) => mockTracingStrokeDurationDraftSignal.set(duration),

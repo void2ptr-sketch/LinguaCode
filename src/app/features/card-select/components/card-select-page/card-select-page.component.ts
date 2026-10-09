@@ -25,12 +25,12 @@ import {
   ScenarioSearchService,
 } from '../../../../core/data';
 
-import { CardHostComponent } from '../../../../shared/components/card-host';
-import { DIFFICULTY_LABELS } from '../../../../shared/card-catalog-search';
+import { CardHostComponent } from '../../../../shared/ui/card-host';
+import { DIFFICULTY_LABELS } from '../../../../shared/constants';
 import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
-import { CoursePickerComponent } from '../../../../shared/course-picker';
-import { LessonPickerComponent, type LessonPickPayload } from '../../../../shared/lesson-picker';
-import { ScenarioPickerComponent } from '../../../../shared/scenario-picker';
+import { CoursePickerComponent } from '../../../../shared/ui/course-picker';
+import { LessonPickerComponent, type LessonPickPayload } from '../../../../shared/ui/lesson-picker';
+import { ScenarioPickerComponent } from '../../../../shared/ui/scenario-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';

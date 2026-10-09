@@ -1,0 +1,246 @@
+import { Injectable, computed, inject, signal } from '@angular/core';
+import type { PageEvent } from '@angular/material/paginator';
+
+import { CardSearchService } from '../../../../core/data';
+import { formatLanguagePair } from '../../../../core/data/language-pair/language-pair.utils';
+import type {
+  CardDifficulty,
+  CardKind,
+  CardSearchCriteria,
+  CardSearchPage,
+  ContentLanguage,
+} from '../../../../core/models';
+import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../../ui/pagination';
+import {
+  CardCatalogHierarchyService,
+  type CourseOption,
+  type LessonOption,
+  type ScenarioOption,
+} from '../../';
+
+@Injectable()
+export class CardCatalogSearchStore {
+  private readonly cardSearchService = inject(CardSearchService);
+  private readonly hierarchyService = inject(CardCatalogHierarchyService);
+
+  readonly query = signal('');
+  readonly knownLanguage = signal<ContentLanguage | null>(null);
+  readonly learningLanguage = signal<ContentLanguage | null>(null);
+  readonly difficulty = signal<CardDifficulty | null>(null);
+  readonly selectedKinds = signal<readonly CardKind[]>([]);
+  readonly selectedTags = signal<readonly string[]>([]);
+  readonly selectedCourseId = signal<string | null>(null);
+  readonly selectedLessonId = signal<string | null>(null);
+  readonly selectedScenarioId = signal<string | null>(null);
+  readonly pageIndex = signal(0);
+  readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  readonly pairLocked = signal(false);
+
+  readonly pageSizeOptions = PAGE_SIZE_OPTIONS;
+
+  readonly loading = computed(() => this.cardSearchService.loading());
+  readonly error = computed(() => this.cardSearchService.error());
+  readonly result = signal<CardSearchPage | null>(null);
+
+  readonly entries = computed(() => this.result()?.items ?? []);
+  readonly facets = computed(() => this.result()?.facets ?? null);
+  readonly totalItems = computed(() => this.result()?.totalItems ?? 0);
+
+  readonly availableCourses = signal<readonly CourseOption[]>([]);
+  readonly availableLessons = signal<readonly LessonOption[]>([]);
+  readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
+
+  readonly coursesLoading = computed(() => this.hierarchyService.coursesLoading());
+  readonly lessonsLoading = computed(() => this.hierarchyService.lessonsLoading());
+
+  readonly lockedPairLabel = computed(() => {
+    const known = this.knownLanguage();
+    const learning = this.learningLanguage();
+
+    if (!known || !learning) {
+      return '';
+    }
+
+    return formatLanguagePair({ known, learning });
+  });
+
+  async init(): Promise<void> {
+    await this.executeSearch();
+  }
+
+  async initWithActivePair(known: ContentLanguage, learning: ContentLanguage): Promise<void> {
+    this.pairLocked.set(true);
+    this.knownLanguage.set(known);
+    this.learningLanguage.set(learning);
+    const pairKey = this.languagePairKey(known, learning);
+    this.hierarchyService.invalidateCache(pairKey);
+    await this.loadCourses(pairKey);
+    await this.executeSearch();
+  }
+
+  reload(): void {
+    void this.init();
+  }
+
+  setQuery(value: string): void {
+    this.query.set(value);
+    this.resetPageAndSearch();
+  }
+
+  setKnownLanguage(value: ContentLanguage | null): void {
+    if (this.pairLocked()) {
+      return;
+    }
+
+    this.knownLanguage.set(value);
+    this.resetPageAndSearch();
+  }
+
+  setLearningLanguage(value: ContentLanguage | null): void {
+    if (this.pairLocked()) {
+      return;
+    }
+
+    this.learningLanguage.set(value);
+    this.resetPageAndSearch();
+  }
+
+  setDifficulty(value: CardDifficulty | null): void {
+    this.difficulty.set(value);
+    this.resetPageAndSearch();
+  }
+
+  toggleKind(kind: CardKind): void {
+    const current = this.selectedKinds();
+    this.selectedKinds.set(
+      current.includes(kind) ? current.filter((item) => item !== kind) : [...current, kind],
+    );
+    this.resetPageAndSearch();
+  }
+
+  toggleTag(tag: string): void {
+    const current = this.selectedTags();
+    this.selectedTags.set(
+      current.includes(tag) ? current.filter((item) => item !== tag) : [...current, tag],
+    );
+    this.resetPageAndSearch();
+  }
+
+  async setCourse(courseId: string | null): Promise<void> {
+    this.selectedCourseId.set(courseId);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+
+    if (courseId) {
+      const lessons = await this.hierarchyService.loadLessons(courseId);
+      this.availableLessons.set(lessons);
+    }
+
+    this.resetPageAndSearch();
+  }
+
+  async setLesson(lessonId: string | null): Promise<void> {
+    this.selectedLessonId.set(lessonId);
+    this.selectedScenarioId.set(null);
+    this.availableScenarios.set([]);
+
+    if (lessonId) {
+      const courseId = this.selectedCourseId();
+      if (courseId) {
+        const scenarios = this.hierarchyService.getScenariosForLesson(courseId, lessonId);
+        this.availableScenarios.set(scenarios);
+      }
+    }
+
+    this.resetPageAndSearch();
+  }
+
+  setScenario(scenarioId: string | null): void {
+    this.selectedScenarioId.set(scenarioId);
+    this.resetPageAndSearch();
+  }
+
+  clearFilters(): void {
+    const lockedKnown = this.pairLocked() ? this.knownLanguage() : null;
+    const lockedLearning = this.pairLocked() ? this.learningLanguage() : null;
+
+    this.query.set('');
+    this.knownLanguage.set(lockedKnown);
+    this.learningLanguage.set(lockedLearning);
+    this.difficulty.set(null);
+    this.selectedKinds.set([]);
+    this.selectedTags.set([]);
+    this.selectedCourseId.set(null);
+    this.selectedLessonId.set(null);
+    this.selectedScenarioId.set(null);
+    this.availableLessons.set([]);
+    this.availableScenarios.set([]);
+    this.resetPageAndSearch();
+  }
+
+  onPageChange(event: PageEvent): void {
+    this.pageIndex.set(event.pageIndex);
+    this.pageSize.set(event.pageSize);
+    void this.executeSearch();
+  }
+
+  applyLanguagePair(known: ContentLanguage, learning: ContentLanguage): void {
+    this.pairLocked.set(true);
+    this.knownLanguage.set(known);
+    this.learningLanguage.set(learning);
+    const pairKey = this.languagePairKey(known, learning);
+    this.hierarchyService.invalidateCache(pairKey);
+    void this.loadCourses(pairKey);
+    this.resetPageAndSearch();
+  }
+
+  private async loadCourses(languagePairKey: string): Promise<void> {
+    const known = this.knownLanguage();
+    const learning = this.learningLanguage();
+
+    if (!known || !learning) {
+      return;
+    }
+
+    const courses = await this.hierarchyService.loadCourses(known, learning, languagePairKey);
+    this.availableCourses.set(courses);
+  }
+
+  private resetPageAndSearch(): void {
+    this.pageIndex.set(0);
+    void this.executeSearch();
+  }
+
+  private languagePairKey(known: ContentLanguage, learning: ContentLanguage): string {
+    return `${known}_${learning}`;
+  }
+
+  private async executeSearch(): Promise<void> {
+    try {
+      const result = await this.cardSearchService.search(this.currentCriteria());
+      this.result.set(result);
+    } catch {
+      this.result.set(null);
+    }
+  }
+
+  currentCriteria(): CardSearchCriteria {
+    return {
+      query: this.query().trim() || undefined,
+      knownLanguage: this.knownLanguage() ?? undefined,
+      learningLanguage: this.learningLanguage() ?? undefined,
+      difficulty: this.difficulty() ?? undefined,
+      kinds: this.selectedKinds().length > 0 ? this.selectedKinds() : undefined,
+      tags: this.selectedTags().length > 0 ? this.selectedTags() : undefined,
+      courseId: this.selectedCourseId() ?? undefined,
+      lessonId: this.selectedLessonId() ?? undefined,
+      scenarioId: this.selectedScenarioId() ?? undefined,
+      page: {
+        page: this.pageIndex(),
+        pageSize: this.pageSize(),
+      },
+    };
+  }
+}

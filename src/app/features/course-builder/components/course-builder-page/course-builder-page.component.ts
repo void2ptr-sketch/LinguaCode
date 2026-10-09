@@ -30,7 +30,7 @@ import type { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import type { CourseListScope } from '../../../../core/models';
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UiPaginationComponent } from '../../../../shared/ui/pagination';
 import { UserStore } from '../../../../core/state';
 import { CourseBuilderDialogService } from '../course-builder-dialog/course-builder-dialog.service';
 import { CourseBuilderStore } from '../../services/course-builder.store';

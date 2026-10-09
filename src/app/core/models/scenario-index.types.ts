@@ -1,4 +1,4 @@
-import type { PageResponse } from '../../shared/pagination';
+import type { PageResponse } from '../../shared/ui/pagination';
 
 import type { ContentLanguage } from './card-index.types';
 import type { ScenarioCardSourceMode } from './scenario-card-source.types';
@@ -25,7 +25,7 @@ export type ScenarioSearchCriteria = {
   knownLanguage?: ContentLanguage;
   learningLanguage?: ContentLanguage;
   courseId?: string;
-  page: import('../../shared/pagination').PageRequest;
+  page: import('../../shared/ui/pagination').PageRequest;
 };
 
 export type ScenarioSearchPage = PageResponse<ScenarioIndexEntry>;

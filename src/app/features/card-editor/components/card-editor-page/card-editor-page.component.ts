@@ -17,7 +17,7 @@ import {
   DIFFICULTY_LABELS,
   tagLabel,
 } from '../../../../shared/card-catalog-search';
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UiPaginationComponent } from '../../../../shared/ui/pagination';
 import { UserStore } from '../../../../core/state';
 import { CardEditorDialogService } from '../card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../card-try-dialog/card-try-dialog.service';

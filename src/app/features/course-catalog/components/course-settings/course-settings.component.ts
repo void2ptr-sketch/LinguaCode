@@ -17,13 +17,13 @@ import { TONE_COLOR_SCHEMES } from '../../../../core/models/tone-color.types';
 import type { UserLanguagePairEntry } from '../../../../core/models/user-language-pair.types';
 import {
   CourseDisplaySettingsMatrixComponent,
-} from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
-import type { AnswerDisplayMode } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.utils';
+} from '../../../../shared/ui/course-display-settings-matrix';
+import type { AnswerDisplayMode } from '../../../../shared/ui/course-display-settings-matrix';
 import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
 import {
   ROMANIZATION_DISPLAY_ORDER,
 } from '../../../../core/models/phonetic-content.types';
-import type { RomanizationOption } from '../../../../shared/components/course-display-settings-matrix/course-display-settings-matrix.component';
+import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

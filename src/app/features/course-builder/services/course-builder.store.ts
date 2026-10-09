@@ -20,7 +20,7 @@ import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security'
 import { COURSE_IDEA_MAX_LENGTH } from '../../../core/data/courses/course-authoring.utils';
 import { UserStore } from '../../../core/state';
 import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/ui/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
 import { collectCourseBundle } from '../../../core/data/courses/course-bundle.utils';
