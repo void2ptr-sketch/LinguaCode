@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { renderMarkdownToHtml  } from  '../index';
+import { renderMarkdownToHtml } from './markdown.util';
 
 type MarkdownFieldMode = 'edit' | 'preview';
 

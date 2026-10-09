@@ -17,7 +17,7 @@ import type { CourseAuthoringStatus } from '../../../../core/models';
 import { COURSE_AUTHORING_STATUSES } from '../../../../core/models';
 import type { ScenarioIndexEntry } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
-import { MarkdownFieldComponent } from '../../../../shared/ui/markdown-field';
+import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft, LessonFormDraft } from '../../types';
 import { emptyLessonFormDraft, lessonDraftKey } from '../../utils/course-form-draft.utils';
 

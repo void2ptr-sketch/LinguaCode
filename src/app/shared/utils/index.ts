@@ -1,4 +1,4 @@
-export { renderMarkdownToHtml } from '../ui/markdown-field/utils/markdown.util';
+export * from './markdown-field';
 export {
   canCheckCardAnswer,
   checkCardAnswer,

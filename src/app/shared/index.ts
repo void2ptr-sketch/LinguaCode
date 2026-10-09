@@ -16,5 +16,4 @@ export * from './ui/card-host';
 export * from './ui/chinese';
 export * from './ui/course-picker';
 export * from './ui/lesson-picker';
-export * from './ui/markdown-field';
 export * from './ui/scenario-picker';
