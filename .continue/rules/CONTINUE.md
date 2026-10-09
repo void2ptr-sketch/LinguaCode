@@ -177,6 +177,9 @@ src/
 
 ### Related Scripts
 - `npm run build:prod` — Production build
+- `npm run lint` — Linter check code
+- `npm run lint:fix`- Linter fix code
 - `npm run test:ci` — CI tests (Vitest)
-- `npm run format` — Code formatting with Prettier
+- `npm run format` — Code formatting check with Prettier
+- `npm run format:fix` — Code formatting write with Prettier
 - `npm run export:content-seed` — Export content seed data
