@@ -13,6 +13,27 @@ import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * Select card: user chooses the correct translation from multiple options.
+ *
+ * @remarks
+ * Renders a SelectCard with directional support (known→learning / learning→known).
+ * Displays the prompt with optional lexeme info and a list of selectable options.
+ *
+ * @example
+ * ```html
+ * <app-select-card
+ *   [card]="mySelectCard"
+ *   [direction]="'known-to-learning'"
+ *   [selectedIndex]="0"
+ *   [feedback]="'correct'"
+ *   [fontSize]="'lg'"
+ *   (optionSelected)="onSelect($event)"
+ *   (checkAnswer)="onCheck()"
+ *   (nextCard)="onNext()">
+ * </app-select-card>
+ * ```
+ */
 @Component({
   selector: 'app-select-card',
   imports: [
@@ -56,19 +77,27 @@ export class SelectCardComponent {
     return resolveOptionCard(card, direction);
   });
 
+  /** Returns the prompt lexeme for the resolved direction, falling back to the card's default. */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;
   }
 
+  /** Returns the lexeme for an option at the given index, if available. */
   optionLexeme(index: number) {
     return this.resolved().optionLexemes?.[index];
   }
 
+  /** Returns the CSS class for an option based on selection and feedback state. */
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
+  /**
+   * Emits the selected option index.
+   *
+   * @param index - The zero-based index of the selected option.
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null) {
       return;

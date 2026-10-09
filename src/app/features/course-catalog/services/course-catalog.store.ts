@@ -27,94 +27,148 @@ export class CourseCatalogStore {
   #state = signal<CourseCatalogState>({ ...initialState });
 
   // --- Селекторы (read-only) ---
+
+  /** Current course catalog items. */
   get items(): Signal<readonly CourseIndexEntry[]> {
     return computed(() => this.#state().items);
   }
+
+  /** Total number of course catalog items. */
   get totalItems(): Signal<number> {
     return computed(() => this.#state().totalItems);
   }
+
+  /** Current zero-based page index. */
   get pageIndex(): Signal<number> {
     return computed(() => this.#state().pageIndex);
   }
+
+  /** Number of items per page. */
   get pageSize(): Signal<number> {
     return computed(() => this.#state().pageSize);
   }
+
+  /** Loading state for catalog data. */
   get loading(): Signal<boolean> {
     return computed(() => this.#state().loading);
   }
+
+  /** Error message, if any. */
   get error(): Signal<string | null> {
     return computed(() => this.#state().error);
   }
+
+  /** Progress percentage by course ID. */
   get progressByCourseId(): Signal<Readonly<Record<string, number>>> {
     return computed(() => this.#state().progressByCourseId);
   }
+
+  /** Set of completed course IDs. */
   get completedCourseIds(): Signal<ReadonlySet<string>> {
     return computed(() => this.#state().completedCourseIds);
   }
 
   // Profile drafts
+
+  /** Draft display name for the user profile. */
   get nameDraft(): Signal<string> {
     return computed(() => this.#state().nameDraft);
   }
+
+  /** Draft learning proficiency level. */
   get learningProficiencyDraft(): Signal<LearningProficiencyLevel> {
     return computed(() => this.#state().learningProficiencyDraft);
   }
+
+  /** Draft theme name. */
   get themeDraft(): Signal<AppColorScheme> {
     return computed(() => this.#state().themeDraft);
   }
+
+  /** Draft font size ('sm', 'md', or 'lg'). */
   get fontSizeDraft(): Signal<UserPreferences['fontSize']> {
     return computed(() => this.#state().fontSizeDraft);
   }
+
+  /** Draft color scheme ('light', 'dark', or 'system'). */
   get colorSchemeDraft(): Signal<AppColorScheme> {
     return computed(() => this.#state().colorSchemeDraft);
   }
+
+  /** Draft card focus fullscreen preference. */
   get cardFocusFullscreenDraft(): Signal<boolean> {
     return computed(() => this.#state().cardFocusFullscreenDraft);
   }
 
   // Course tab
+
+  /** Draft known content language for course creation. */
   get knownLanguageDraft(): Signal<ContentLanguage> {
     return computed(() => this.#state().knownLanguageDraft);
   }
+
+  /** Draft learning content language for course creation. */
   get learningLanguageDraft(): Signal<ContentLanguage> {
     return computed(() => this.#state().learningLanguageDraft);
   }
 
   // Settings tab
+
+  /** Draft ID of the active language pair for settings. */
   get settingsPairIdDraft(): Signal<string> {
     return computed(() => this.#state().settingsPairIdDraft);
   }
+
+  /** Draft display romanization systems. */
   get displayRomanizationsDraft(): Signal<readonly RomanizationSystem[]> {
     return computed(() => this.#state().displayRomanizationsDraft);
   }
+
+  /** Draft answer romanization systems. */
   get answerRomanizationsDraft(): Signal<readonly RomanizationSystem[]> {
     return computed(() => this.#state().answerRomanizationsDraft);
   }
+
+  /** Draft show IPA preference. */
   get showIpaDraft(): Signal<boolean> {
     return computed(() => this.#state().showIpaDraft);
   }
+
+  /** Draft IPA variant label. */
   get ipaVariantLabelDraft(): Signal<string> {
     return computed(() => this.#state().ipaVariantLabelDraft);
   }
+
+  /** Draft answer display modes. */
   get answerModesDraft(): Signal<readonly AnswerDisplayMode[]> {
     return computed(() => this.#state().answerModesDraft);
   }
+
+  /** Draft tone color enabled preference. */
   get toneColorEnabledDraft(): Signal<boolean> {
     return computed(() => this.#state().toneColorEnabledDraft);
   }
+
+  /** Draft tone color scheme ID. */
   get toneColorSchemeDraft(): Signal<ToneColorSchemeId> {
     return computed(() => this.#state().toneColorSchemeDraft);
   }
+
+  /** Draft tracing stroke duration in milliseconds. */
   get tracingStrokeDurationDraft(): Signal<number> {
     return computed(() => this.#state().tracingStrokeDurationDraft);
   }
 
   // Tab control
+
+  /** Currently selected tab index. */
   get selectedTabIndex(): Signal<number> {
     return computed(() => this.#state().selectedTabIndex);
   }
 
   // --- Производные значения ---
+
+  /** Whether the known and learning language drafts are identical (invalid). */
   readonly languagePairInvalid = computed(
     () => this.#state().knownLanguageDraft === this.#state().learningLanguageDraft,
   );
@@ -125,6 +179,7 @@ export class CourseCatalogStore {
     return '';
   });
 
+  /** Available romanization options for display and answer settings. */
   readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
     const options: RomanizationOption[] = [
       { value: 'pinyin', label: 'Пиньинь' },
@@ -332,6 +387,12 @@ export class CourseCatalogStore {
   }
 
   // --- Page events ---
+
+  /**
+   * Handles paginator page changes.
+   *
+   * @param event - The page event from Angular Material paginator.
+   */
   onPageChange(event: PageEvent): void {
     this.#state.update(s => ({
       ...s,

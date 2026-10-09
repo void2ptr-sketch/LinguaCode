@@ -10,9 +10,21 @@ import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
 import type { ScenarioWritePayload } from '../../data/scenarios/scenarios-api.service';
 
+/**
+ * Checks whether the given URL is a scenarios search request.
+ *
+ * @param url - The request URL to check.
+ * @returns `true` if the URL is an API request targeting `/scenarios/search`.
+ */
 const isScenariosSearchRequest = (url: string): boolean =>
   isApiRequest(url) && url.includes('/scenarios/search');
 
+/**
+ * Extracts the scenario ID from an API URL.
+ *
+ * @param url - The request URL.
+ * @returns The scenario ID, or `null` if the URL does not target a specific scenario.
+ */
 const extractScenarioId = (url: string): string | null => {
   const prefix = `${environment.apiUrl}/scenarios/`;
   if (!url.includes(prefix)) {
@@ -31,6 +43,12 @@ const extractScenarioId = (url: string): string | null => {
   return rest;
 };
 
+/**
+ * Extracts the card ID from a "scenarios by card" URL.
+ *
+ * @param url - The request URL.
+ * @returns The card ID, or `null` if the URL does not target a card.
+ */
 const extractCardIdFromScenarioUsage = (url: string): string | null => {
   const marker = `${environment.apiUrl}/scenarios/by-card/`;
   if (!url.includes(marker)) {
@@ -40,6 +58,18 @@ const extractCardIdFromScenarioUsage = (url: string): string | null => {
   return url.slice(url.indexOf(marker) + marker.length).split(/[?#]/)[0] || null;
 };
 
+/**
+ * HTTP interceptor that mocks scenarios API responses for development.
+ *
+ * @remarks
+ * Handles GET (search, getById, by-card), POST (create), PUT (update),
+ * and DELETE requests for the scenarios endpoint. Delegates to
+ * `ScenariosCatalogMockHandler` for data operations.
+ *
+ * @param req - The outgoing HTTP request.
+ * @param next - The next interceptor in the chain.
+ * @returns The mocked response observable.
+ */
 export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   if (!isApiRequest(req.url)) {
     return next(req);

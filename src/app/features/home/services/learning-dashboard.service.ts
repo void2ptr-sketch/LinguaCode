@@ -39,7 +39,7 @@ export class LearningDashboardService {
   /** The currently loaded course with its lessons. */
   readonly course = signal<CourseWithLessons | null>(null);
 
-  /** The determined resume target (where to continue learning). */
+  /** The determined resume target indicating where to continue learning. */
   readonly resumeTarget = signal<LearningResumeTarget | null>(null);
 
   /** The lesson roadmap for the current course. */
