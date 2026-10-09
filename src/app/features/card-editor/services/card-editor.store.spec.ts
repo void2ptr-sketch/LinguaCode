@@ -115,7 +115,7 @@ describe('CardEditorStore', () => {
     ];
 
     expect(await store.deleteCard('select-test')).toBe(false);
-    expect(store.error()).toContain('сценариях');
+    expect(store.error()).toContain('scenarios');
   });
 
   it('should block delete when learning results exist', async () => {
@@ -130,7 +130,7 @@ describe('CardEditorStore', () => {
     });
 
     expect(await store.deleteCard('select-test')).toBe(false);
-    expect(store.error()).toContain('результаты');
+    expect(store.error()).toContain('results');
   });
 
   it('should update and delete unused card', async () => {

@@ -9,6 +9,14 @@ import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/card-draft.utils';
 import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-validation.utils';
 
+/**
+ * Store for the card editor feature.
+ *
+ * @remarks
+ * Manages card creation, editing, and deletion. Validates constraints (card not used in scenarios,
+ * no learning results) before deletion. Persists changes via `CardRepository` and refreshes the
+ * catalog cache.
+ */
 @Injectable()
 export class CardEditorStore {
   private readonly cardRepository = inject(CardRepository);
@@ -18,13 +26,29 @@ export class CardEditorStore {
   private readonly userStore = inject(UserStore);
   private readonly catalogMockHandler = inject(CardsCatalogMockHandler);
 
+  /** The card currently being edited (or null when creating a new card). */
   readonly editingCard = signal<Card | null>(null);
+
+  /** Whether the editor is loading a card for editing. */
   readonly editorLoading = signal(false);
+
+  /** Error message, if any. */
   readonly error = signal<string | null>(null);
+
+  /** Current editor mode ('list', 'create', or 'edit'). */
   readonly editorMode = signal<CardEditorMode>('list');
+
+  /** ID of the card currently being edited (null when creating). */
   readonly editingCardId = signal<string | null>(null);
+
+  /** The kind of card being created. */
   readonly creatingKind = signal<CardKind>('select');
 
+  /**
+   * Enters create mode for a new card.
+   *
+   * @param kind - The kind of card to create.
+   */
   startCreate(kind: CardKind): void {
     this.editorMode.set('create');
     this.editingCardId.set(null);
@@ -33,6 +57,12 @@ export class CardEditorStore {
     this.error.set(null);
   }
 
+  /**
+   * Enters edit mode and loads the card by ID.
+   *
+   * @param cardId - The card ID to edit.
+   * @returns A promise that resolves when the card is loaded.
+   */
   async startEdit(cardId: string): Promise<void> {
     this.editorMode.set('edit');
     this.editingCardId.set(cardId);
@@ -44,13 +74,16 @@ export class CardEditorStore {
       this.editingCard.set(card);
       this.creatingKind.set(card.kind);
     } catch {
-      this.error.set('Не удалось загрузить карточку');
+      this.error.set('Card not found');
       this.cancelEdit();
     } finally {
       this.editorLoading.set(false);
     }
   }
 
+  /**
+   * Exits edit mode and returns to list view.
+   */
   cancelEdit(): void {
     this.editorMode.set('list');
     this.editingCardId.set(null);
@@ -58,6 +91,13 @@ export class CardEditorStore {
     this.error.set(null);
   }
 
+  /**
+   * Creates a new card from a draft.
+   *
+   * @param draft - The card draft.
+   * @param indexMeta - Optional card index metadata override.
+   * @returns `true` if created successfully, `false` on validation error.
+   */
   async createCard(draft: CardDraft, indexMeta?: CardIndexMetaOverride): Promise<boolean> {
     const card = normalizeCardDraft(draft, crypto.randomUUID());
     if (!card) {
@@ -71,6 +111,14 @@ export class CardEditorStore {
     return true;
   }
 
+  /**
+   * Updates an existing card from a draft.
+   *
+   * @param cardId - The card ID to update.
+   * @param draft - The card draft.
+   * @param indexMeta - Optional card index metadata override.
+   * @returns `true` if updated successfully, `false` on validation error.
+   */
   async updateCard(
     cardId: string,
     draft: CardDraft,
@@ -89,6 +137,13 @@ export class CardEditorStore {
     return true;
   }
 
+  /**
+   * Deletes a card by ID.
+   *
+   * @param cardId - The card ID to delete.
+   * @returns `true` if deleted successfully, `false` if the card is in use or has results.
+   * @remarks Fails if the card is referenced by scenarios or has learning results.
+   */
   async deleteCard(cardId: string): Promise<boolean> {
     const cards = await this.cardRepository.ensureLoaded();
     const card = this.cardRepository.getById(cards, cardId);
@@ -99,13 +154,13 @@ export class CardEditorStore {
     const scenariosUsingCard = await this.scenarioSearchService.findUsingCard(cardId);
     if (scenariosUsingCard.length > 0) {
       this.error.set(
-        `Нельзя удалить: карточка используется в сценариях (${scenariosUsingCard.map((item) => item.title).join(', ')})`,
+        `Cannot delete: card is used in scenarios (${scenariosUsingCard.map((item) => item.title).join(', ')})`,
       );
       return false;
     }
 
     if (this.learningResultsStore.hasResultsForCard(cardId)) {
-      this.error.set('Нельзя удалить: есть сохранённые результаты по этой карточке');
+      this.error.set('Cannot delete: there are saved results for this card');
       return false;
     }
 
@@ -120,18 +175,43 @@ export class CardEditorStore {
     return true;
   }
 
+  /**
+   * Returns default appearance settings from user preferences.
+   *
+   * @returns The default appearance settings for new cards.
+   */
   defaultAppearance(): CardDraft['appearance'] {
     return { ...this.userStore.preferences() };
   }
 
+  /**
+   * Creates an empty draft for a given card kind.
+   *
+   * @param kind - The card kind.
+   * @returns An empty card draft with default appearance.
+   */
   emptyDraft(kind: CardKind): CardDraft {
     return emptyCardDraft(kind, this.defaultAppearance());
   }
 
+  /**
+   * Converts a card to a draft for editing.
+   *
+   * @param card - The card to convert.
+   * @returns The card as a draft.
+   */
   cardToDraft(card: Card): CardDraft {
     return cardToDraft(card);
   }
 
+  /**
+   * Persists cards and refreshes the catalog.
+   *
+   * @param cards - The full cards array to save.
+   * @param cardId - Optional card ID for index meta override.
+   * @param indexMeta - Optional card index metadata override.
+   * @private
+   */
   private async persist(
     cards: readonly Card[],
     cardId?: string,

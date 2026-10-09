@@ -24,9 +24,9 @@ export { DEFAULT_APP_COLOR_SCHEME } from '../theme/app-color-scheme.types';
 
 export type UserPreferences = CardAppearance & {
   colorScheme: AppColorScheme;
-  /** Авто-полный экран карточки на вкладке «Обучение»; также сохраняется при ручном переключении. */
+  /** Full-screen card mode on the Practice tab; also persisted when toggled manually. */
   cardFocusFullscreen: boolean;
-  /** Уровень владения изучаемым языком; влияет на строгость проверки ответов. */
+  /** User's proficiency level in the learning language; affects answer checking strictness. */
   learningProficiencyLevel: LearningProficiencyLevel;
   languagePairs: readonly UserLanguagePairEntry[];
   activeLanguagePairId: string;

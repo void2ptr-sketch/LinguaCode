@@ -1,16 +1,24 @@
-/** Статус авторского пайплайна: идея → план → материализация в уроки/сценарии/карточки. */
+/**
+ * Status of the course authoring pipeline: idea → plan → materialization into lessons/scenarios/cards.
+ */
 export type CourseAuthoringStatus = 'draft' | 'planned' | 'generating' | 'materialized' | 'failed';
 
-/** Авторский слой программы (`Course`): большой текст идеи, не для каталога ученика. */
+/**
+ * Authoring layer for a course: contains the author's idea text and pipeline status.
+ *
+ * @remarks
+ * This data is not shown to students in the course catalog. It is used by the course
+ * generator to create lessons, scenarios, and cards from the author's idea.
+ */
 export type CourseAuthoring = {
-  /** Свободное описание идеи программы — основа для генерации структуры. */
+  /** Free-text description of the course idea — the basis for structure generation. */
   idea: string;
   status: CourseAuthoringStatus;
-  /** ISO 8601 — когда идея последний раз менялась. */
+  /** ISO 8601 timestamp of the last idea modification. */
   ideaUpdatedAt?: string;
-  /** ISO 8601 — когда outline/уроки были материализованы (ручно или генератором). */
+  /** ISO 8601 timestamp of the last materialization (manual or automated). */
   materializedAt?: string;
-  /** Последняя ошибка генерации (если status === 'failed'). */
+  /** Last generation error message (present when `status === 'failed'`). */
   lastError?: string;
 };
 

@@ -1,14 +1,16 @@
 /**
- * Хранилище (store) для конструктора курсов.
- * Управляет состоянием списка курсов, редактором курсов и операциями экспорта.
- * Использует Angular signals для реактивного управления состоянием.
+ * Store for the course builder feature.
  *
- * Основные сценарии использования:
- * - Отображение списка курсов с пагинацией, поиском и фильтрацией
- * - Создание и редактирование курсов через диалоговое окно
- * - Удаление курсов (только собственных)
- * - Экспорт курса в JSON (CourseBundle) для передачи maintainer'у
- * - Экспорт курса в PDF с оглавлением
+ * @remarks
+ * Manages course list state (pagination, search, filtering), course editor state,
+ * and export operations (JSON bundle and PDF). Uses Angular signals for reactive state.
+ *
+ * Key use cases:
+ * - Displaying the course list with pagination, search, and filtering
+ * - Creating and editing courses via dialog
+ * - Deleting courses (only own courses)
+ * - Exporting a course to JSON (CourseBundle) for maintainer submission
+ * - Exporting a course to PDF with table of contents
  */
 import { Injectable, computed, inject, signal } from '@angular/core';
 
@@ -30,78 +32,80 @@ import { CardRepository } from '../../../core/data/cards/card.repository';
 import { loadCardIndexMetaOverrides } from '../../../core/data/cards/card-index-meta.storage';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
-/** Санитайзер заголовка курса: макс. 128 символов, очистка от HTML */
+/** Sanitizer for course title: max 128 characters, HTML cleaned */
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
-/** Санитайзер описания курса: макс. 512 символов, очистка от HTML */
+/** Sanitizer for course description: max 512 characters, HTML cleaned */
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
-/** Санитайзер авторской идеи курса: макс. COURSE_IDEA_MAX_LENGTH символов, очистка Markdown */
+/** Sanitizer for course authoring idea: max COURSE_IDEA_MAX_LENGTH characters, Markdown cleaned */
 const sanitizeCourseIdea = (value: string): string =>
   sanitizeMarkdownText(value, COURSE_IDEA_MAX_LENGTH);
 
 /**
- * Хранилище для конструктора курсов.
+ * Store for the course builder feature.
  *
- * Отвечает за:
- * - Загрузку и отображение списка курсов (пагинация, поиск, фильтрация)
- * - Управление редактором курсов (создание, редактирование, отмена)
- * - CRUD-операции над курсами (создание, обновление, удаление)
- * - Экспорт курса в JSON (CourseBundle) и PDF
+ * Responsibilities:
+ * - Loading and displaying the course list (pagination, search, filtering)
+ * - Managing the course editor (create, edit, cancel)
+ * - CRUD operations on courses (create, update, delete)
+ * - Exporting courses to JSON (CourseBundle) and PDF
  *
- * Состояние управляется через Angular signals:
- * - indexItems — список курсов для отображения
- * - editingCourse — курс, редактируемый в данный момент
- * - editorMode — режим редактора ('list' | 'create' | 'edit')
+ * State is managed via Angular signals:
+ * - indexItems — courses to display
+ * - editingCourse — course currently being edited
+ * - editorMode — editor mode ('list' | 'create' | 'edit')
  */
 @Injectable({ providedIn: 'root' })
 export class CourseBuilderStore {
-  /** Сервис для HTTP-запросов к API курсов */
+  /** Service for HTTP requests to the courses API */
   private readonly courseSearchService = inject(CourseSearchService);
-  /** Хранилище пользователя (текущий язык, ID пользователя) */
+  /** User store (current language pair, user ID) */
   private readonly userStore = inject(UserStore);
-  /** Репозиторий карточек для загрузки из localStorage */
+  /** Card repository for loading from localStorage */
   private readonly cardRepository = inject(CardRepository);
-  /** Сервис для экспорта курса в PDF */
+  /** Service for exporting courses to PDF */
   private readonly pdfExport = inject(CoursePdfExportService);
 
   // -------------------------------------------------------------------------
-  // Signals: состояние списка курсов
+  // Signals: course list state
   // -------------------------------------------------------------------------
 
-  /** Список курсов, отображаемых на странице (текущая страница) */
+  /** Courses displayed on the current page */
   readonly indexItems = signal<readonly CourseIndexEntry[]>([]);
-  /** Общее количество курсов (для пагинации) */
+  /** Total number of courses (for pagination) */
   readonly totalItems = signal(0);
-  /** Текущая страница (0-based) */
+  /** Current page (0-based) */
   readonly pageIndex = signal(0);
-  /** Размер страницы (кол-во элементов) */
+  /** Page size (number of items) */
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
-  /** Текст поискового запроса */
+  /** Search query text */
   readonly listQuery = signal('');
-  /** Фильтр области видимости ('mine' | 'published' | 'all') */
+  /** Scope filter ('mine' | 'published' | 'all') */
   readonly listScope = signal<CourseListScope>('mine');
 
   // -------------------------------------------------------------------------
-  // Signals: состояние редактора
+  // Signals: editor state
   // -------------------------------------------------------------------------
 
-  /** Индикатор загрузки списка курсов */
+  /** Loading indicator for the course list */
   readonly loading = signal(false);
-  /** Индикатор загрузки редактора (загрузка курса для редактирования) */
+  /** Loading indicator for the editor (loading a course for editing) */
   readonly editorLoading = signal(false);
-  /** Сообщение об ошибке (или null) */
+  /** Error message (or null) */
   readonly error = signal<string | null>(null);
-  /** Сообщение об ошибке экспорта (или null) */
+  /** Export error message (or null) */
   readonly exportError = signal<string | null>(null);
-  /** Текущий режим редактора */
+  /** Current editor mode */
   readonly editorMode = signal<CourseEditorMode>('list');
-  /** ID курса, который редактируется (null если не редактируем) */
+  /** ID of the course being edited (null when not editing) */
   readonly editingCourseId = signal<string | null>(null);
-  /** Данные редактируемого курса с уроками */
+  /** Data of the course being edited, including lessons */
   readonly editingCourse = signal<CourseWithLessons | null>(null);
 
   /**
-   * Вычисляемый сигнал: true если текущий пользователь не может редактировать курс.
-   * Курс считается редактируемым только если пользователь — автор или системный автор.
+   * Computed signal: `true` if the current user cannot edit the course.
+   *
+   * @remarks
+   * A course is editable only if the user is the author or a system author.
    */
   readonly isReadOnly = computed(() => {
     const course = this.editingCourse();
@@ -113,12 +117,14 @@ export class CourseBuilderStore {
   });
 
   // -------------------------------------------------------------------------
-  // Методы: загрузка списка
+  // Methods: list loading
   // -------------------------------------------------------------------------
 
   /**
-   * Загружает список курсов с учётом текущих фильтров и пагинации.
-   * Запрос идёт к API через CourseSearchService.
+   * Loads the course list considering current filters and pagination.
+   *
+   * @remarks
+   * Requests data from the API via CourseSearchService.
    */
   async loadList(): Promise<void> {
     this.loading.set(true);
@@ -143,16 +149,19 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Загружает список курсов (алиас для loadList).
-   * Вызывается при инициализации компонента.
+   * Loads the course list (alias for loadList).
+   *
+   * @remarks
+   * Called during component initialization.
    */
   async load(): Promise<void> {
     await this.loadList();
   }
 
   /**
-   * Устанавливает поисковый запрос и сбрасывает на первую страницу.
-   * @param query — текст поиска
+   * Sets the search query and resets to the first page.
+   *
+   * @param query - The search query text.
    */
   setListQuery(query: string): void {
     this.listQuery.set(query);
@@ -160,8 +169,9 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Устанавливает область видимости и сбрасывает на первую страницу.
-   * @param scope — 'mine' | 'published' | 'all'
+   * Sets the scope filter and resets to the first page.
+   *
+   * @param scope - The scope ('mine', 'published', or 'all').
    */
   setListScope(scope: CourseListScope): void {
     this.listScope.set(scope);
@@ -169,9 +179,10 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Устанавливает параметры пагинации.
-   * @param pageIndex — номер страницы (0-based)
-   * @param pageSize — размер страницы
+   * Sets pagination parameters.
+   *
+   * @param pageIndex - The page number (0-based).
+   * @param pageSize - The page size.
    */
   setPage(pageIndex: number, pageSize: number): void {
     this.pageIndex.set(pageIndex);
@@ -179,12 +190,14 @@ export class CourseBuilderStore {
   }
 
   // -------------------------------------------------------------------------
-  // Методы: управление редактором
+  // Methods: editor management
   // -------------------------------------------------------------------------
 
   /**
-   * Переключает редактор в режим создания нового курса.
-   * Сбрасывает состояние редактирования.
+   * Switches the editor to create mode for a new course.
+   *
+   * @remarks
+   * Resets the editing state.
    */
   startCreate(): void {
     this.editorMode.set('create');
@@ -194,8 +207,9 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Загружает курс для редактирования и переключает редактор в режим 'edit'.
-   * @param courseId — ID курса для редактирования
+   * Loads a course for editing and switches the editor to 'edit' mode.
+   *
+   * @param courseId - The course ID to edit.
    */
   async startEdit(courseId: string): Promise<void> {
     this.editorLoading.set(true);
@@ -214,8 +228,10 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Отменяет редактирование и возвращает в режим списка.
-   * Сбрасывает все состояния редактора.
+   * Cancels editing and returns to list view.
+   *
+   * @remarks
+   * Resets all editor states.
    */
   cancelEdit(): void {
     this.editorMode.set('list');
@@ -225,14 +241,17 @@ export class CourseBuilderStore {
   }
 
   // -------------------------------------------------------------------------
-  // Методы: CRUD
+  // Methods: CRUD
   // -------------------------------------------------------------------------
 
   /**
-   * Создаёт новый курс на основе черновика (draft).
-   * Валидирует данные, санитайзит, отправляет на сервер.
-   * @param draft — черновик курса
-   * @returns true если успешно, false если ошибка валидации
+   * Creates a new course from a draft.
+   *
+   * @remarks
+   * Validates data, sanitizes fields, and sends to the server.
+   *
+   * @param draft - The course draft.
+   * @returns `true` if successful, `false` if there is a validation error.
    */
   async createCourse(draft: CourseFormDraft): Promise<boolean> {
     const payload = this.normalizeDraft(draft);
@@ -255,11 +274,14 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Обновляет существующий курс на основе черновика (draft).
-   * Проверяет права доступа (только автор может редактировать).
-   * @param courseId — ID курса
-   * @param draft — черновик курса
-   * @returns true если успешно, false если ошибка валидации или прав
+   * Updates an existing course from a draft.
+   *
+   * @remarks
+   * Checks access rights (only the author can edit).
+   *
+   * @param courseId - The course ID.
+   * @param draft - The course draft.
+   * @returns `true` if successful, `false` if there is a validation or access error.
    */
   async updateCourse(courseId: string, draft: CourseFormDraft): Promise<boolean> {
     if (this.isReadOnly()) {
@@ -289,10 +311,13 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Удаляет курс.
-   * Проверяет права доступа (только автор может удалять).
-   * Если удаляется курс, который сейчас редактируется — отменяет редактирование.
-   * @param courseId — ID курса для удаления
+   * Deletes a course.
+   *
+   * @remarks
+   * Checks access rights (only the author can delete). If the deleted course is currently
+   * being edited, cancels the editing state.
+   *
+   * @param courseId - The course ID to delete.
    */
   async deleteCourse(courseId: string): Promise<void> {
     const item = this.indexItems().find((course) => course.id === courseId);
@@ -313,17 +338,18 @@ export class CourseBuilderStore {
   }
 
   // -------------------------------------------------------------------------
-  // Методы: экспорт
+  // Methods: export
   // -------------------------------------------------------------------------
 
   /**
-   * Экспортирует курс в самодостаточный CourseBundle-файл (JSON).
-   * Собирает все данные: курс, уроки, сценарии, карточки, мета-данные.
+   * Exports a course to a self-contained CourseBundle file (JSON).
    *
-   * Используется для передачи курса maintainer'у для добавления в общий каталог.
+   * @remarks
+   * Collects all data: course, lessons, scenarios, cards, and metadata.
+   * Used for transferring the course to a maintainer for inclusion in the public catalog.
    *
-   * @param courseId — ID курса для экспорта
-   * @returns JSON-строка для скачивания или null с описанием ошибки
+   * @param courseId - The course ID to export.
+   * @returns A JSON string for download, or `null` with an error description.
    */
   async exportCourseBundle(courseId: string): Promise<string | null> {
     this.exportError.set(null);
@@ -360,12 +386,14 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Экспортирует курс в PDF с оглавлением.
-   * Генерирует PDF с титульной страницей (оглавление) и страницами для каждой карточки.
+   * Exports a course to PDF with a table of contents.
    *
-   * @param courseId — ID курса для экспорта
-   * @param showHints — если true, показывает правильные ответы (✓)
-   * @returns true при успехе, false при ошибке
+   * @remarks
+   * Generates a PDF with a title page (TOC) and pages for each card.
+   *
+   * @param courseId - The course ID to export.
+   * @param showHints - If `true`, shows correct answers (✓).
+   * @returns `true` on success, `false` on error.
    */
   async exportPdf(courseId: string, showHints: boolean): Promise<boolean> {
     this.exportError.set(null);
@@ -388,11 +416,13 @@ export class CourseBuilderStore {
   }
 
   /**
-   * Скачивает Blob-файл в браузер.
-   * Создаёт временную ссылку, имитирует клик, затем очищает.
+   * Downloads a Blob file in the browser.
    *
-   * @param blob — данные для скачивания
-   * @param filename — имя файла
+   * @remarks
+   * Creates a temporary URL, simulates a click, then cleans up.
+   *
+   * @param blob - The data to download.
+   * @param filename - The file name.
    * @private
    */
   private downloadBlob(blob: Blob, filename: string): void {
@@ -405,15 +435,17 @@ export class CourseBuilderStore {
   }
 
   // -------------------------------------------------------------------------
-  // Вспомогательные методы
+  // Helper methods
   // -------------------------------------------------------------------------
 
   /**
-   * Нормализует и валидирует черновик курса.
-   * Санитайзит все поля, проверяет обязательные данные.
+   * Normalizes and validates a course draft.
    *
-   * @param draft — черновик курса от пользователя
-   * @returns объект для отправки на сервер или null если валидация не пройдена
+   * @remarks
+   * Sanitizes all fields and checks for required data.
+   *
+   * @param draft - The user-provided course draft.
+   * @returns An object for sending to the server, or `null` if validation fails.
    * @private
    */
   private normalizeDraft(draft: CourseFormDraft) {
