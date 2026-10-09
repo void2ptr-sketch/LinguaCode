@@ -63,14 +63,28 @@ export class DrawCardComponent {
   private readonly userStore = inject(UserStore);
   private readonly hanziData = inject(HanziDataService);
 
+  /** The draw card to display (character drawing exercise). */
   readonly card = input.required<DrawCard>();
+
+  /** Whether the user has submitted a draw answer. */
   readonly drawSubmitted = input(false);
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the draw submission state changes. Payload is `true` when submitted. */
   readonly drawSubmittedChange = output<boolean>();
+
+  /** Emits when the draw answer payload changes. Payload is the draw answer or `null`. */
   readonly drawAnswerChange = output<DrawAnswerPayload | null>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
   readonly canvasRef = viewChild(DrawCanvasComponent);

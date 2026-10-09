@@ -31,15 +31,33 @@ export type MemoryColumnItem = {
   styleUrl: './memory-card.component.scss',
 })
 export class MemoryCardComponent {
+  /** The memory card to display (pair matching exercise). */
   readonly card = input.required<MemoryCard>();
+
+  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
   readonly direction = input<CardDirection>('known-to-learning');
-  /** Меняется при каждом повторном открытии карточки в сессии — запускает перемешивание. */
+
+  /**
+   * Nonce incremented each time the card is shown fresh.
+   *
+   * @remarks
+   * Triggers column randomization on memory cards to prevent memorizing column positions.
+   */
   readonly boardNonce = input(0);
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the user completes the memory board. Payload is `true`. */
   readonly memoryComplete = output<boolean>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
   readonly leftItems = signal<readonly MemoryColumnItem[]>([]);

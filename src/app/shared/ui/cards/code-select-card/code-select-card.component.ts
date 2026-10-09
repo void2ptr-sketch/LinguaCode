@@ -14,13 +14,25 @@ import { buildOptionClass } from '../option-card.util';
   styleUrl: './code-select-card.component.scss',
 })
 export class CodeSelectCardComponent {
+  /** The code-select card to display (code block selection exercise). */
   readonly card = input.required<CodeSelectCard>();
+
+  /** Index of the currently selected code block option (null if none). */
   readonly selectedIndex = input<number | null>(null);
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the user selects a code block option. Payload is the zero-based index. */
   readonly optionSelected = output<number>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
   /** Текст вопроса для ученика: caption или title (без дубля в блоке кода). */

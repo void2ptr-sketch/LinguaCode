@@ -35,14 +35,28 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './keyboard-card.component.scss',
 })
 export class KeyboardCardComponent {
+  /** The keyboard card to display (typed answer exercise). */
   readonly card = input.required<KeyboardCard>();
+
+  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
   readonly direction = input<CardDirection>('known-to-learning');
+
+  /** The text entered by the user in the answer field. */
   readonly answerText = input('');
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the user types in the answer field. Payload is the entered text. */
   readonly answerTextChange = output<string>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
   readonly answerMode = computed(() => resolveKeyboardAnswerMode(this.card()));

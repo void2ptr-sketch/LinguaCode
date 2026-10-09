@@ -13,18 +13,33 @@ export type ContentManifest = {
   courseFiles: readonly string[];
 };
 
-/** Fixture for scenarios seed data. */
+/**
+ * Fixture for scenarios seed data.
+ *
+ * @remarks
+ * Used to load scenario JSON files during the content seed initialization process.
+ */
 export type ScenariosSeedFixture = {
   scenarios: readonly Scenario[];
 };
 
-/** Fixture for courses and lessons seed data. */
+/**
+ * Fixture for courses and lessons seed data.
+ *
+ * @remarks
+ * Used to load course and lesson JSON files during the content seed initialization process.
+ */
 export type CoursesSeedFixture = {
   courses: readonly Course[];
   lessons: readonly Lesson[];
 };
 
-/** Fixture for cards seed data. */
+/**
+ * Fixture for cards seed data.
+ *
+ * @remarks
+ * Used to load card JSON files during the content seed initialization process.
+ */
 export type CardsSeedFixture = {
   cards: readonly Card[];
 };

@@ -26,15 +26,31 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './timed-card.component.scss',
 })
 export class TimedCardComponent implements OnInit, OnDestroy {
+  /** The timed card to display (answer within time limit). */
   readonly card = input.required<TimedCard>();
+
+  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
   readonly direction = input<CardDirection>('known-to-learning');
+
+  /** Index of the currently selected option (null if none). */
   readonly selectedIndex = input<number | null>(null);
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the user selects an option. Payload is the zero-based index. */
   readonly optionSelected = output<number>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
+
+  /** Emits when the time limit expires without an answer. */
   readonly timeExpired = output<void>();
 
   readonly secondsLeft = signal(0);

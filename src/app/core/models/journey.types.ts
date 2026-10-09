@@ -1,7 +1,19 @@
-/** Status of a location node on the learning journey map. */
+/**
+ * Status of a location node on the learning journey map.
+ *
+ * @remarks
+ * `locked` — not yet accessible; `available` — ready to start; `in-progress` — partially completed;
+ * `visited` — visited but not completed; `completed` — fully completed.
+ */
 export type JourneyLocationStatus = 'locked' | 'available' | 'in-progress' | 'visited' | 'completed';
 
-/** Content type of a scenario — determines the icon displayed on the journey map. */
+/**
+ * Content type of a scenario — determines the icon displayed on the journey map.
+ *
+ * @remarks
+ * Maps to scenario categories: theory (reading/select cards), practice (memory/sound/draw),
+ * test (code-select/timed), video, and case studies.
+ */
 export type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 
 /**
@@ -30,37 +42,37 @@ export const CARD_KIND_TO_CONTENT_TYPE: Record<string, JourneyContentType> = {
  * Contains progress information, metadata, and user interaction state for each location.
  */
 export type JourneyLocationNode = {
-  /** Уникальный идентификатор локации. */
+  /** Unique identifier for the location node. */
   id: string;
-  /** Заголовок локации. */
+  /** Display title of the scenario/location. */
   title: string;
-  /** Краткое описание сценария. */
+  /** Brief description of the scenario. */
   description: string;
-  /** Количество карточек в сценарии. */
+  /** Number of cards in the scenario. */
   cardCount: number;
-  /** Порядок в уроке/курсе. */
+  /** Display order within the lesson/course. */
   order: number;
-  /** Текущий статус локации. */
+  /** Current status of the location. */
   status: JourneyLocationStatus;
-  /** Идентификатор урока (страны), к которому относится локация. */
+  /** ID of the lesson (country) this location belongs to. */
   lessonId: string;
-  /** Заголовок урока. */
+  /** Display title of the parent lesson. */
   lessonTitle: string;
-  /** Идентификатор курса (пути), к которому относится локация. */
+  /** ID of the course (path) this location belongs to. */
   courseId: string;
-  /** Заголовок курса. */
+  /** Display title of the parent course. */
   courseTitle: string;
-  /** Процент завершения сценария (0–100). */
+  /** Scenario completion percentage (0–100). */
   completionPercent: number;
-  /** Флаг: локация посещена пользователем. */
+  /** Whether the location has been visited by the user. */
   visited: boolean;
-  /** Флаг: локация в избранном. */
+  /** Whether the location is marked as favorite. */
   favorite: boolean;
-  /** Причина блокировки (если status === 'locked'). */
+  /** Reason why the location is locked (only when `status === 'locked'`). */
   blockReason: string | null;
-  /** Идентификатор сценария. */
+  /** ID of the scenario this location represents. */
   scenarioId: string;
-  /** Типы контента, вычисленные из карточек сценария. */
+  /** Content types derived from the scenario's cards. */
   contentTypes: JourneyContentType[];
 };
 
@@ -95,7 +107,13 @@ export type JourneyAnalyticsEvent =
       timestamp: string;
     };
 
-/** Explorer level badge awarded based on journey activity. */
+/**
+ * Explorer level badge awarded based on journey activity.
+ *
+ * @remarks
+ * Levels are computed from total visits and completions:
+ * `novice` — new user; `experienced` — moderate activity; `expert` — high activity.
+ */
 export type ExplorerLevel = 'novice' | 'experienced' | 'expert';
 
 /**

@@ -20,6 +20,7 @@ export type LanguagePair = {
  */
 export type CardDirection = 'known-to-learning' | 'learning-to-known';
 
+/** Default language pair applied when no user preference exists. */
 export const DEFAULT_LANGUAGE_PAIR: LanguagePair = {
   known: 'ru',
   learning: 'en',

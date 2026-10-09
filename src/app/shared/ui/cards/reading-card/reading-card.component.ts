@@ -26,14 +26,28 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './reading-card.component.scss',
 })
 export class ReadingCardComponent {
+  /** The reading card to display (passage interpretation exercise). */
   readonly card = input.required<ReadingCard>();
+
+  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
   readonly direction = input<CardDirection>('known-to-learning');
+
+  /** Index of the currently selected option (null if none). */
   readonly selectedIndex = input<number | null>(null);
+
+  /** Feedback state: 'correct', 'incorrect', or null. */
   readonly feedback = input<CardFeedback>(null);
+
+  /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Emits when the user selects an option. Payload is the zero-based index. */
   readonly optionSelected = output<number>();
+
+  /** Emits when the user requests answer checking. */
   readonly checkAnswer = output<void>();
+
+  /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
   readonly resolved = computed(() => {

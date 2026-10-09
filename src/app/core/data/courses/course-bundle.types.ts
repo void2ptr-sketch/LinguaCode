@@ -4,49 +4,64 @@ import type { Scenario } from '../../models';
 import type { CardIndexMetaOverride } from '../cards/card-index.mapper';
 
 /**
- * Единый самодостаточный JSON-пакет для переноса курса из localStorage
- * в seed-файлы репозитория.
+ * A self-contained JSON package for exporting a course from localStorage to repository seed files.
  *
+ * @remarks
+ * Contains the course, lessons, scenarios, cards, and card index metadata in a single bundle.
+ * Used for backup, migration, and content sharing between projects.
  * @see docs/COURSE-BUNDLE.md
  */
 export type CourseBundle = {
-  /** Всегда 1 для текущего формата. */
+  /** Always `1` for the current format version. */
   formatVersion: 1;
-  /** ISO-дата экспорта. */
+  /** ISO 8601 timestamp of the export. */
   exportedAt: string;
-  /** ID автора из localStorage (local-user). */
+  /** Author ID from localStorage (typically 'local-user'). */
   sourceAuthorId?: string;
-  /** Ровно одна программа с её уроками. */
+  /** The course program with its lessons. */
   course: {
     courses: Course[];
     lessons: Lesson[];
   };
-  /** Все сценарии, на которые ссылаются уроки. */
+  /** All scenarios referenced by the course's lessons. */
   scenarios: Scenario[];
-  /** Все карточки, на которые ссылаются сценарии. */
+  /** All cards referenced by the scenarios. */
   cards: Card[];
-  /** Мета-информация для каждой карточки в пакете. */
+  /** Card index metadata for each card in the bundle. */
   cardIndexMeta: Record<string, CardIndexMetaOverride>;
 };
 
 /**
- * Результат валидации пакета перед экспортом.
+ * Result of validating a course bundle before export.
+ *
+ * @remarks
+ * Used by `CourseBundleValidator` to check for missing references and data integrity issues.
  */
 export type CourseBundleValidation = {
+  /** Whether the bundle passed all validation checks. */
   valid: boolean;
+  /** List of error messages if validation failed. */
   errors: readonly string[];
 };
 
 /**
- * Ошибка, блокирующая экспорт курса.
+ * Error that blocks course bundle export.
+ *
+ * @remarks
+ * Error codes: `criteria-scenario` — criteria-based card source not supported;
+ * `missing-lesson` — lesson not found in bundle; `missing-scenario` — scenario not found;
+ * `missing-card` — card not found; `missing-meta` — card index meta not found.
  */
 export type CourseBundleError = {
+  /** Error code identifying the type of validation failure. */
   code:
     | 'criteria-scenario'
     | 'missing-lesson'
     | 'missing-scenario'
     | 'missing-card'
     | 'missing-meta';
+  /** Human-readable error message. */
   message: string;
+  /** ID of the entity that caused the error. */
   entityId: string;
 };
