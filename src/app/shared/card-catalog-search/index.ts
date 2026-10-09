@@ -9,7 +9,7 @@ export {
   tagLabel,
 } from '../constants/catalog-labels';
 export { groupCatalogTagFacets } from './utils/catalog-tag-groups/catalog-tag-groups.util';
-export { CardCatalogFiltersComponent } from './ui/card-catalog-filters/card-catalog-filters.component';
+export { CardCatalogFiltersComponent } from './components/card-catalog-filters/card-catalog-filters.component';
 export { CardCatalogSearchStore } from './services/card-catalog-search/card-catalog-search.store';
 export { CardCatalogHierarchyService} from './services/card-catalog-hierarchy/card-catalog-hierarchy.service';
 export type { 
@@ -17,5 +17,5 @@ export type {
   LessonOption,
   ScenarioOption
  } from './services/card-catalog-hierarchy/card-catalog-hierarchy.service'; 
-export { ScenarioCardPickerComponent } from './ui/scenario-card-picker/scenario-card-picker.component';
-export { ScenarioCardCriteriaEditorComponent } from './ui/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
+export { ScenarioCardPickerComponent } from './components/scenario-card-picker/scenario-card-picker.component';
+export { ScenarioCardCriteriaEditorComponent } from './components/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
