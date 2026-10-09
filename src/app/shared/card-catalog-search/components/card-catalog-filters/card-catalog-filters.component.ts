@@ -14,7 +14,7 @@ import {
   DIFFICULTY_LABELS,
   tagLabel,
 } from '../../../constants/catalog-labels';
-import { groupCatalogTagFacets } from '../../../utils/catalog-tag-groups/catalog-tag-groups.util';
+import { groupCatalogTagFacets } from '../../utils/catalog-tag-groups/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../'
 
 @Component({

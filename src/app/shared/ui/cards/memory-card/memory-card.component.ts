@@ -6,7 +6,7 @@ import { resolveMemoryPairs } from '../../../../core/data/cards/card-direction.u
 import { MemoryCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';
-import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
+import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 

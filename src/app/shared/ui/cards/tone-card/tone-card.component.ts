@@ -9,7 +9,7 @@ import {
 import { ToneCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';
-import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
+import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';

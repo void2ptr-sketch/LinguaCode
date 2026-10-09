@@ -8,7 +8,7 @@ import {
 } from '../../../../core/data/cards/card-direction.utils';
 import { TimedCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
-import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
+import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';

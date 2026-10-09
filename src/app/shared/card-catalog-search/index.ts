@@ -8,7 +8,7 @@ export {
   TAG_LABELS,
   tagLabel,
 } from '../constants/catalog-labels';
-export { groupCatalogTagFacets } from '../utils/catalog-tag-groups/catalog-tag-groups.util';
+export { groupCatalogTagFacets } from './utils/catalog-tag-groups/catalog-tag-groups.util';
 export { CardCatalogFiltersComponent } from './ui/card-catalog-filters/card-catalog-filters.component';
 export { CardCatalogSearchStore } from './services/card-catalog-search/card-catalog-search.store';
 export { CardCatalogHierarchyService} from './services/card-catalog-hierarchy/card-catalog-hierarchy.service';

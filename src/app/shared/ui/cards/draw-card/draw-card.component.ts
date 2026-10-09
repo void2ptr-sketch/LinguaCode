@@ -40,8 +40,8 @@ import {
 } from '../../../../core/models/draw-practice.types';
 import { DrawCanvasComponent } from '../../draw-canvas/draw-canvas.component';
 import type { DrawStrokePath } from '../../draw-canvas/draw-canvas.types';
-import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
-import { ToneColoredTextComponent } from '../../tone-colored-text/tone-colored-text.component';
+import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
+import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
 

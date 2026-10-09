@@ -1,4 +1,4 @@
-import type { FacetCount } from '../../../core/models/card-search.types';
+import type { FacetCount } from '../../../../core/models/card-search.types';
 
 /** Порядок тем — как в «Идее курса» Perl interview. */
 export const CATALOG_TAG_THEME_ORDER = [

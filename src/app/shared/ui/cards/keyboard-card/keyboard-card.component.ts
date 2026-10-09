@@ -12,8 +12,8 @@ import {
 import { resolveKeyboardAnswerMode } from '../../../../core/data/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
-import { LexemeDisplayComponent } from '../../lexeme-display/lexeme-display.component';
-import { PinyinKeyboardComponent } from '../../pinyin-keyboard/pinyin-keyboard.component';
+import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
+import { PinyinKeyboardComponent } from '../../chinese/pinyin-keyboard/pinyin-keyboard.component';
 import { CardFeedback } from '../../../types';
 import { getCorrectAnswerLabel } from '../../../utils/card-answer/card-answer.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
