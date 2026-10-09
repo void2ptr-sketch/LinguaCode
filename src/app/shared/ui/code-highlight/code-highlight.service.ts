@@ -32,8 +32,22 @@ function registerLanguages(): void {
   registered = true;
 }
 
+/**
+ * Service for syntax-highlighting code blocks using highlight.js.
+ *
+ * @remarks
+ * Registers all supported languages on first use. Falls back to auto-detection
+ * for unknown languages. Returns escaped HTML for 'plain' language.
+ */
 @Injectable({ providedIn: 'root' })
 export class CodeHighlightService {
+  /**
+   * Highlights a code block and returns the HTML string.
+   *
+   * @param code - The source code to highlight.
+   * @param language - The syntax highlighting language.
+   * @returns HTML string with syntax highlighting classes, or escaped text for 'plain'.
+   */
   highlight(code: string, language: CodeHighlightLanguage): string {
     registerLanguages();
     const trimmed = code.trimEnd();

@@ -14,7 +14,14 @@ import type { RomanizationOption } from '../../../shared/ui/course-display-setti
 import type { PageEvent } from '@angular/material/paginator';
 import { CourseCatalogState, initialState } from '../models/course-catalog-store';
 
-
+/**
+ * Store for the course catalog feature.
+ *
+ * @remarks
+ * Manages course catalog search state (pagination, filtering), user profile drafts
+ * (name, proficiency, theme), and course display settings (romanizations, IPA, tone colors).
+ * Uses a single internal signal with computed getters for reactivity.
+ */
 @Injectable({ providedIn: 'root' })
 export class CourseCatalogStore {
   #state = signal<CourseCatalogState>({ ...initialState });
@@ -127,115 +134,166 @@ export class CourseCatalogStore {
   });
 
   // --- Мутации — Course catalog ---
+
+  /** Sets the course catalog items. */
   setItems(items: readonly CourseIndexEntry[]): void {
     this.#state.update(s => ({ ...s, items }));
   }
 
+  /** Sets the total number of course catalog items. */
   setTotalItems(total: number): void {
     this.#state.update(s => ({ ...s, totalItems: total }));
   }
 
+  /** Sets the current page index. */
   setPageIndex(page: number): void {
     this.#state.update(s => ({ ...s, pageIndex: page }));
   }
 
+  /** Sets the page size. */
   setPageSize(size: number): void {
     this.#state.update(s => ({ ...s, pageSize: size }));
   }
 
+  /** Sets the loading state. */
   setLoading(loading: boolean): void {
     this.#state.update(s => ({ ...s, loading }));
   }
 
+  /** Sets the error message. */
   setError(error: string | null): void {
     this.#state.update(s => ({ ...s, error }));
   }
 
+  /** Sets progress by course ID. */
   setProgressByCourseId(progress: Record<string, number>): void {
     this.#state.update(s => ({ ...s, progressByCourseId: progress }));
   }
 
+  /** Sets the set of completed course IDs. */
   setCompletedCourseIds(completed: Set<string>): void {
     this.#state.update(s => ({ ...s, completedCourseIds: completed }));
   }
 
   // --- Мутации — Profile ---
+
+  /** Sets the profile name draft. */
   setNameDraft(name: string): void {
     this.#state.update(s => ({ ...s, nameDraft: name }));
   }
 
+  /** Sets the learning proficiency draft. */
   setLearningProficiencyDraft(level: LearningProficiencyLevel): void {
     this.#state.update(s => ({ ...s, learningProficiencyDraft: level }));
   }
 
+  /** Sets the theme draft. */
   setThemeDraft(theme: AppColorScheme): void {
     this.#state.update(s => ({ ...s, themeDraft: theme }));
   }
 
+  /** Sets the font size draft. */
   setFontSizeDraft(size: UserPreferences['fontSize']): void {
     this.#state.update(s => ({ ...s, fontSizeDraft: size }));
   }
 
+  /** Sets the color scheme draft. */
   setColorSchemeDraft(scheme: AppColorScheme): void {
     this.#state.update(s => ({ ...s, colorSchemeDraft: scheme }));
   }
 
+  /** Sets the card focus fullscreen draft. */
   setCardFocusFullscreenDraft(enabled: boolean): void {
     this.#state.update(s => ({ ...s, cardFocusFullscreenDraft: enabled }));
   }
 
   // --- Мутации — Course tab ---
+
+  /** Sets the known language draft. */
   setKnownLanguageDraft(lang: ContentLanguage): void {
     this.#state.update(s => ({ ...s, knownLanguageDraft: lang }));
   }
 
+  /** Sets the learning language draft. */
   setLearningLanguageDraft(lang: ContentLanguage): void {
     this.#state.update(s => ({ ...s, learningLanguageDraft: lang }));
   }
 
   // --- Мутации — Settings tab ---
+
+  /** Sets the settings language pair ID draft. */
   setSettingsPairIdDraft(id: string): void {
     this.#state.update(s => ({ ...s, settingsPairIdDraft: id }));
   }
 
+  /** Sets the display romanizations draft. */
   setDisplayRomanizationsDraft(romanizations: readonly RomanizationSystem[]): void {
     this.#state.update(s => ({ ...s, displayRomanizationsDraft: romanizations }));
   }
 
+  /** Sets the answer romanizations draft. */
   setAnswerRomanizationsDraft(romanizations: readonly RomanizationSystem[]): void {
     this.#state.update(s => ({ ...s, answerRomanizationsDraft: romanizations }));
   }
 
+  /** Sets the show IPA draft. */
   setShowIpaDraft(show: boolean): void {
     this.#state.update(s => ({ ...s, showIpaDraft: show }));
   }
 
+  /** Sets the IPA variant label draft. */
   setIpaVariantLabelDraft(label: string): void {
     this.#state.update(s => ({ ...s, ipaVariantLabelDraft: label }));
   }
 
+  /** Sets the answer modes draft. */
   setAnswerModesDraft(modes: readonly AnswerDisplayMode[]): void {
     this.#state.update(s => ({ ...s, answerModesDraft: modes }));
   }
 
+  /** Sets the tone color enabled draft. */
   setToneColorEnabledDraft(enabled: boolean): void {
     this.#state.update(s => ({ ...s, toneColorEnabledDraft: enabled }));
   }
 
+  /** Sets the tone color scheme draft. */
   setToneColorSchemeDraft(scheme: ToneColorSchemeId): void {
     this.#state.update(s => ({ ...s, toneColorSchemeDraft: scheme }));
   }
 
+  /** Sets the tracing stroke duration draft. */
   setTracingStrokeDurationDraft(duration: number): void {
     this.#state.update(s => ({ ...s, tracingStrokeDurationDraft: duration }));
   }
 
   // --- Мутации — Tab control ---
+
+  /** Sets the selected tab index. */
   setSelectedTabIndex(index: number): void {
     this.#state.update(s => ({ ...s, selectedTabIndex: index }));
   }
 
   // --- Batch mutations ---
+
+  /**
+   * Initializes all draft preferences from user settings.
+   *
+   * @param name - Display name.
+   * @param proficiency - Learning proficiency level.
+   * @param theme - Theme name.
+   * @param fontSize - Font size ('sm', 'md', or 'lg').
+   * @param colorScheme - Color scheme ('light', 'dark', or 'system').
+   * @param cardFocusFullscreen - Card focus fullscreen preference.
+   * @param settingsPairId - Active language pair ID.
+   * @param displayRomanizations - Display romanization systems.
+   * @param answerRomanizations - Answer romanization systems.
+   * @param showIpaValue - Show IPA preference.
+   * @param ipaVariantLabel - IPA variant label.
+   * @param answerModes - Answer display modes.
+   * @param toneColorEnabled - Tone color enabled preference.
+   * @param toneColorScheme - Tone color scheme ID.
+   * @param tracingStrokeDuration - Tracing stroke duration in ms.
+   */
   initializeFromPreferences(
     name: string,
     proficiency: LearningProficiencyLevel,

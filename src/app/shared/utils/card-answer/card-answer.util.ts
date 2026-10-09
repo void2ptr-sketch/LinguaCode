@@ -24,6 +24,14 @@ import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types
 import type { ResolvedOptionCard } from '../../../core/data/cards/card-direction.utils';
 import { CardAnswerState } from '../../types';
 
+/**
+ * Checks whether the user has provided enough input to check the answer.
+ *
+ * @param card - The card to check.
+ * @param state - The current answer state.
+ * @returns `true` if the answer can be evaluated.
+ */
+
 const normalizeLatinAnswer = (value: string): string => value.trim().toLowerCase();
 
 function readingCandidateTexts(

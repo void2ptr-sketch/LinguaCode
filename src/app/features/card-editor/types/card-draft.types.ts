@@ -9,26 +9,47 @@ import { CardDirection } from '../../../core/models/language-pair.types';
 import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
 
+/** Draft representation of card appearance settings. Aliased from `CardAppearance`. */
 export type CardAppearanceDraft = CardAppearance;
 
+/** Default card direction: known language → learning language. */
 export const DEFAULT_CARD_DIRECTION: CardDirection = 'known-to-learning';
 
+/**
+ * Draft fields for a lexeme-based card (cards with phonetic content).
+ *
+ * @remarks
+ * All lexeme-based card kinds (select, memory, symbol, sound, etc.) extend this type.
+ */
 export type LexemeCardDraft = {
   promptLexeme: LexemeDraftFields;
   audioUrl: string;
 };
 
+/**
+ * A pair of known and learning lexemes for memory card drafts.
+ *
+ * @remarks
+ * Used in the memory card editor to build matching pairs.
+ */
 export type MemoryPairDraft = {
   known: string;
   learning: string;
   learningLexeme: LexemeDraftFields;
 };
 
+/**
+ * A code block used in code-select card drafts.
+ *
+ * @remarks
+ * Contains source code and its syntax-highlighting language.
+ */
 export type CodeBlockDraft = {
   code: string;
   language: CodeHighlightLanguage;
 };
 
+/** Draft of a code-select card. */
 export type CodeSelectCardDraft = {
   kind: 'code-select';
   title: string;
@@ -42,6 +63,7 @@ export type CodeSelectCardDraft = {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a select card (multiple-choice translation). */
 export type SelectCardDraft = LexemeCardDraft & {
   kind: 'select';
   title: string;
@@ -57,6 +79,7 @@ export type SelectCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a memory card (pair matching). */
 export type MemoryCardDraft = LexemeCardDraft & {
   kind: 'memory';
   title: string;
@@ -68,6 +91,7 @@ export type MemoryCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a symbol card (character recognition). */
 export type SymbolCardDraft = LexemeCardDraft & {
   kind: 'symbol';
   title: string;
@@ -82,6 +106,7 @@ export type SymbolCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a sound card (audio matching). */
 export type SoundCardDraft = LexemeCardDraft & {
   kind: 'sound';
   title: string;
@@ -98,6 +123,7 @@ export type SoundCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a timed card (answer within time limit). */
 export type TimedCardDraft = LexemeCardDraft & {
   kind: 'timed';
   title: string;
@@ -113,6 +139,7 @@ export type TimedCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a keyboard card (typed answer). */
 export type KeyboardCardDraft = LexemeCardDraft & {
   kind: 'keyboard';
   title: string;
@@ -126,11 +153,13 @@ export type KeyboardCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a single stroke guide for draw cards. */
 export type DrawStrokeGuideDraft = {
   order: number;
   path: string;
 };
 
+/** Draft of a draw card (character drawing). */
 export type DrawCardDraft = LexemeCardDraft & {
   kind: 'draw';
   title: string;
@@ -148,6 +177,7 @@ export type DrawCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a tone card (tone mark selection). */
 export type ToneCardDraft = LexemeCardDraft & {
   kind: 'tone';
   title: string;
@@ -162,6 +192,7 @@ export type ToneCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/** Draft of a reading card (passage interpretation). */
 export type ReadingCardDraft = LexemeCardDraft & {
   kind: 'reading';
   title: string;
@@ -176,6 +207,12 @@ export type ReadingCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
+/**
+ * Union of all card draft kinds.
+ *
+ * @remarks
+ * Used as the input type for card creation and editing operations.
+ */
 export type CardDraft =
   | SelectCardDraft
   | CodeSelectCardDraft
@@ -188,8 +225,10 @@ export type CardDraft =
   | ToneCardDraft
   | ReadingCardDraft;
 
+/** Type alias: all card kinds are editable. */
 export type EditableCardKind = CardKind;
 
+/** Human-readable labels for each card kind (Russian). */
 export const CARD_KIND_LABELS: Record<CardKind, string> = {
   select: 'Выбор ответа',
   'code-select': 'Код: выбор ответа',
@@ -203,6 +242,7 @@ export const CARD_KIND_LABELS: Record<CardKind, string> = {
   reading: 'Чтение (полифония)',
 };
 
+/** Array of all supported card kinds. */
 export const CARD_KINDS: readonly CardKind[] = [
   'select',
   'code-select',
@@ -216,14 +256,30 @@ export const CARD_KINDS: readonly CardKind[] = [
   'reading',
 ];
 
+/**
+ * Creates an empty lexeme card draft.
+ *
+ * @returns A `LexemeCardDraft` with empty prompt lexeme and empty audio URL.
+ */
 export const emptyLexemeCardDraft = (): LexemeCardDraft => ({
   promptLexeme: emptyLexemeDraftFields(),
   audioUrl: '',
 });
 
+/**
+ * Creates an array of empty lexeme drafts.
+ *
+ * @param count - Number of empty lexeme drafts to create.
+ * @returns Array of `LexemeDraftFields` with empty values.
+ */
 export const emptyOptionLexemes = (count: number): readonly LexemeDraftFields[] =>
   Array.from({ length: count }, () => emptyLexemeDraftFields());
 
+/**
+ * Creates an empty memory pair draft.
+ *
+ * @returns A `MemoryPairDraft` with empty known, learning, and lexeme fields.
+ */
 export const emptyMemoryPairDraft = (): MemoryPairDraft => ({
   known: '',
   learning: '',

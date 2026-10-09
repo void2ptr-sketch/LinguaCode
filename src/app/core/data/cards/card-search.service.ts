@@ -8,6 +8,13 @@ import { CardsCatalogMockHandler } from '../../api/cards/cards-catalog.mock.hand
 
 const INDEX_CACHE_PAGE_SIZE = 1000;
 
+/**
+ * Service for searching and managing card index entries.
+ *
+ * @remarks
+ * Maintains a local cache of card index entries loaded from the API.
+ * Provides search, lookup, and catalog refresh functionality.
+ */
 @Injectable({ providedIn: 'root' })
 export class CardSearchService {
   private readonly cardsApiService = inject(CardsApiService);
@@ -15,13 +22,27 @@ export class CardSearchService {
 
   private readonly indexCache = signal<readonly CardIndexEntry[]>([]);
 
+  /** Whether the index or a search operation is in progress. */
   readonly loading = signal(false);
+
+  /** Error message, if any. */
   readonly error = signal<string | null>(null);
 
+  /**
+   * Returns the current index cache entries.
+   *
+   * @returns Array of card index entries.
+   */
   indexEntries(): readonly CardIndexEntry[] {
     return this.indexCache();
   }
 
+  /**
+   * Loads the full card index from the API if not already cached.
+   *
+   * @remarks
+   * Idempotent — skips loading if the cache already contains entries.
+   */
   async ensureIndexLoaded(): Promise<void> {
     if (this.indexCache().length > 0) {
       return;
@@ -42,6 +63,12 @@ export class CardSearchService {
     }
   }
 
+  /**
+   * Searches cards by criteria and merges results into the index cache.
+   *
+   * @param criteria - The search criteria.
+   * @returns A page of card search results.
+   */
   async search(criteria: CardSearchCriteria): Promise<CardSearchPage> {
     this.loading.set(true);
     this.error.set(null);
@@ -58,6 +85,12 @@ export class CardSearchService {
     }
   }
 
+  /**
+   * Retrieves a single card by its ID.
+   *
+   * @param cardId - The card ID.
+   * @returns The card.
+   */
   async getCardById(cardId: string): Promise<Card> {
     this.loading.set(true);
     this.error.set(null);
@@ -72,6 +105,12 @@ export class CardSearchService {
     }
   }
 
+  /**
+   * Clears the index cache and mock handler cache.
+   *
+   * @remarks
+   * Call after creating, updating, or deleting cards to force a reload.
+   */
   refreshCatalog(): void {
     this.indexCache.set([]);
     this.catalogMockHandler.resetCache();

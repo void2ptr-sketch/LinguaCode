@@ -1,5 +1,11 @@
 import type { LearningResumeTarget } from '../../../core/data/learning/learning-resume.utils';
 
+/**
+ * Query parameters for the "continue learning" link on the home page.
+ *
+ * @remarks
+ * Encodes the resume target into URL query params for deep-linking.
+ */
 export type ContinueLinkQueryParams = {
   courseId: string;
   lessonId: string;
@@ -7,6 +13,12 @@ export type ContinueLinkQueryParams = {
   tab: 'learning';
 };
 
+/**
+ * Builds query parameters for the continue learning link from a resume target.
+ *
+ * @param target - The learning resume target.
+ * @returns Query parameters object, or `null` if no valid target exists.
+ */
 export function buildContinueLinkQueryParams(
   target: LearningResumeTarget | null,
 ): ContinueLinkQueryParams | null {
@@ -22,6 +34,12 @@ export function buildContinueLinkQueryParams(
   };
 }
 
+/**
+ * Returns a human-readable label for the continue button based on the resume target.
+ *
+ * @param target - The learning resume target.
+ * @returns A localized label string such as "Continue: Lesson · Scenario" or "Start: Lesson".
+ */
 export function continueButtonLabel(target: LearningResumeTarget | null): string {
   if (!target || target.kind === 'no-program') {
     return 'Выбрать программу';

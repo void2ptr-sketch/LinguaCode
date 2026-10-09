@@ -4,31 +4,67 @@ import type { CourseIndexEntry, CourseWithLessons, Lesson } from '../../../../co
 import { CourseSearchService } from '../../../../core/data/courses/course-search.service';
 import type { ContentLanguage } from '../../../../core/models/card-index.types';
 
+/**
+ * A course option for dropdown/select UI components.
+ *
+ * @remarks
+ * Contains only `id` and `title` — used in hierarchy selectors.
+ */
 export type CourseOption = {
   id: string;
   title: string;
 };
 
+/**
+ * A lesson option for dropdown/select UI components.
+ *
+ * @remarks
+ * Contains only `id` and `title` — used in hierarchy selectors.
+ */
 export type LessonOption = {
   id: string;
   title: string;
 };
 
+/**
+ * A scenario option for dropdown/select UI components.
+ *
+ * @remarks
+ * Contains only `id` and `title` — used in hierarchy selectors.
+ */
 export type ScenarioOption = {
   id: string;
   title: string;
 };
 
+/**
+ * Service for managing course/lesson/scenario hierarchy in the card catalog.
+ *
+ * @remarks
+ * Loads courses by language pair, lessons by course, and provides scenario
+ * lookup for lessons. Uses internal caches to avoid redundant API calls.
+ */
 @Injectable({ providedIn: 'root' })
 export class CardCatalogHierarchyService {
   private readonly courseSearchService = inject(CourseSearchService);
 
+  /** Whether courses are being loaded. */
   readonly coursesLoading = signal(false);
+
+  /** Whether lessons are being loaded. */
   readonly lessonsLoading = signal(false);
 
   private coursesCache = new Map<string, readonly CourseOption[]>();
   private courseLessonsCache = new Map<string, CourseWithLessons>();
 
+  /**
+   * Loads courses for a given language pair.
+   *
+   * @param known - The known content language.
+   * @param learning - The learning content language.
+   * @param languagePairKey - Cache key for the language pair.
+   * @returns Array of course options.
+   */
   async loadCourses(
     known: ContentLanguage,
     learning: ContentLanguage,
@@ -57,6 +93,12 @@ export class CardCatalogHierarchyService {
     }
   }
 
+  /**
+   * Loads lessons for a given course.
+   *
+   * @param courseId - The course ID.
+   * @returns Array of lesson options.
+   */
   async loadLessons(courseId: string): Promise<readonly LessonOption[]> {
     const cached = this.courseLessonsCache.get(courseId);
     if (cached) {
@@ -74,6 +116,13 @@ export class CardCatalogHierarchyService {
     }
   }
 
+  /**
+   * Returns scenario options for a given lesson within a course.
+   *
+   * @param courseId - The course ID.
+   * @param lessonId - The lesson ID.
+   * @returns Array of scenario options (IDs as titles until full data is loaded).
+   */
   getScenariosForLesson(courseId: string, lessonId: string): readonly ScenarioOption[] {
     const course = this.courseLessonsCache.get(courseId);
     if (!course) {
@@ -85,12 +134,15 @@ export class CardCatalogHierarchyService {
       return [];
     }
 
-    // Сценарии хранятся как массив ID в lesson.scenarioIds.
-    // Возвращаем их как есть — полные данные сценариев будут загружены
-    // при необходимости через ScenarioSearchService.
     return lesson.scenarioIds.map((id) => ({ id, title: id }));
   }
 
+  /**
+   * Invalidates cached data.
+   *
+   * @param languagePairKey - If provided, invalidates only the courses cache for this key.
+   *   Otherwise clears all caches.
+   */
   invalidateCache(languagePairKey?: string): void {
     if (languagePairKey) {
       this.coursesCache.delete(languagePairKey);
