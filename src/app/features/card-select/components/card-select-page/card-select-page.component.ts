@@ -43,6 +43,7 @@ import {
   type PracticeStepState,
 } from '../practice-stepper/practice-stepper.component';
 
+/** Tab indices for the learning flow: course → lessons → scenarios → learning. */
 const LEARNING_TAB = {
   course: 0,
   lessons: 1,
@@ -50,9 +51,28 @@ const LEARNING_TAB = {
   learning: 3,
 } as const;
 
+/** Tracks the last known active language pair to reset state on change. */
 let lastKnownActiveLanguagePairId: string | null = null;
 
+/**
+ * Page component for card-based learning sessions.
+ *
+ * @remarks
+ * Implements a four-step learning flow:
+ * 1. Select a course (program)
+ * 2. Select a lesson within the course
+ * 3. Select a scenario within the lesson
+ * 4. Practice cards from the scenario
+ *
+ * Supports deep linking via query parameters (courseId, lessonId, scenarioId, tab, difficulty).
+ * Tracks learning progress through `LearningResultsStore` and persists session state via `UserStore`.
+ *
+ * @see CardSelectService
+ * @see CardSelectStore
+ * @see PracticeStepperComponent
+ */
 @Component({
+  standalone: true,
   selector: 'app-card-select-page',
   imports: [
     FormsModule,
@@ -76,43 +96,99 @@ let lastKnownActiveLanguagePairId: string | null = null;
   styleUrl: './card-select-page.component.scss',
 })
 export class CardSelectPageComponent implements OnInit {
+  /** Service for loading card selection sessions from scenarios. */
   private readonly cardSelectService = inject(CardSelectService);
+
+  /** Stores learning results and progress. */
   private readonly resultsStore = inject(LearningResultsStore);
+
+  /** User preferences and language pair settings. */
   private readonly userStore = inject(UserStore);
+
+  /** Searches and loads courses. */
   private readonly courseSearchService = inject(CourseSearchService);
+
+  /** Searches and indexes cards. */
   private readonly cardSearchService = inject(CardSearchService);
+
+  /** Searches and loads scenarios. */
   private readonly scenarioSearchService = inject(ScenarioSearchService);
+
+  /** Route query parameters for deep linking. */
   private readonly route = inject(ActivatedRoute);
+
+  /** Local state store for the practice session. */
   readonly store = inject(CardSelectStore);
 
+  /** Labels for difficulty levels (beginner, intermediate, advanced). */
   readonly difficultyLabels = DIFFICULTY_LABELS;
+
+  /** Available difficulty levels. */
   readonly difficultyLevels: readonly CardDifficulty[] = ['beginner', 'intermediate', 'advanced'];
 
+  /** Selected course ID (empty string means none selected). */
   readonly selectedCourseId = signal<string>('');
+
+  /** Selected lesson ID within the current course. */
   readonly selectedLessonId = signal<string>('');
+
+  /** The currently loaded course with its lessons. */
   readonly currentCourse = signal<CourseWithLessons | null>(null);
+
+  /** Selected difficulty filter (null = no filter). */
   readonly selectedDifficulty = signal<CardDifficulty | null>(null);
+
+  /** Map of scenario IDs to their difficulty levels. */
   readonly scenarioDifficultyMap = signal<ReadonlyMap<string, CardDifficulty>>(new Map());
+
+  /** Display title for the selected course. */
   readonly courseTitle = signal<string>('');
+
+  /** Display title for the selected lesson. */
   readonly lessonTitle = signal<string>('');
+
+  /** Scenario IDs belonging to the selected lesson. */
   readonly lessonScenarioIds = signal<readonly string[]>([]);
+
+  /** Lessons with their scenario IDs for the current course. */
   readonly courseLessons = signal<readonly { lessonId: string; scenarioIds: readonly string[] }[]>(
     [],
   );
+
+  /** Selected scenario ID within the current lesson. */
   readonly selectedScenarioId = signal<string>('');
+
+  /** Display title for the selected scenario. */
   readonly scenarioTitle = signal<string>('');
+
+  /** Source label for the scenario (e.g., '10 cards', 'up to 50 by criteria'). */
   readonly scenarioSourceLabel = signal<string>('');
+
+  /** Warning message when some cards are missing from the scenario. */
   readonly missingCardsWarning = signal<string | null>(null);
+
+  /** Currently active tab index in the learning flow. */
   readonly activeTabIndex = signal<number>(LEARNING_TAB.course);
 
+  /**
+   * Computed practice settings derived from the current course configuration.
+   */
   readonly practiceSettings = computed(() => resolveCoursePracticeSettings(this.currentCourse()));
+
+  /** Whether the current course allows open practice (no lesson selection required). */
   readonly isOpenPractice = computed(() => isOpenPracticeCourse(this.currentCourse()));
+
+  /** Whether to show the difficulty filter UI. */
   readonly showDifficultyFilter = computed(
     () => this.practiceSettings().allowDifficultyFilter === true && !!this.selectedCourseId(),
   );
+
+  /** Whether lesson prerequisites must be enforced. */
   readonly enforceLessonPrerequisites = computed(
     () => this.practiceSettings().enforceLessonPrerequisites !== false,
   );
+
+  /** Whether a lesson must be selected before scenarios can be chosen. */
   readonly requiresLessonForScenarios = computed(() => {
     if (!this.selectedCourseId()) {
       return false;
@@ -121,6 +197,13 @@ export class CardSelectPageComponent implements OnInit {
     return this.practiceSettings().requireLessonForScenarios !== false;
   });
 
+  /**
+   * Computed list of scenario IDs available for the picker.
+   *
+   * @remarks
+   * Filters scenarios by selected lesson, course (open practice), and difficulty.
+   * Returns `null` when no scenarios are available.
+   */
   readonly allowedScenarioIdsForPicker = computed(() => {
     const lessonIds = this.lessonScenarioIds();
     const course = this.currentCourse();
@@ -141,6 +224,7 @@ export class CardSelectPageComponent implements OnInit {
     return filterScenarioIdsByDifficulty(base, difficultyMap, difficulty);
   });
 
+  /** Whether all lessons/scenarios in the course are completed. */
   readonly courseCompleted = computed(() => {
     const lessons = this.courseLessons();
     if (lessons.length === 0) {
@@ -152,10 +236,12 @@ export class CardSelectPageComponent implements OnInit {
     );
   });
 
+  /** Whether to show the course certificate badge. */
   readonly showCourseCertificate = computed(
     () => this.store.completed() && this.selectedCourseId() !== '' && this.courseCompleted(),
   );
 
+  /** Whether there is a next scenario in the current lesson. */
   readonly hasNextLessonScenario = computed(() => {
     const ids = this.lessonScenarioIds();
     const current = this.selectedScenarioId();
@@ -163,6 +249,7 @@ export class CardSelectPageComponent implements OnInit {
     return index >= 0 && index < ids.length - 1;
   });
 
+  /** Computed progress percentage through the current card session. */
   readonly cardProgressPercent = computed(() => {
     const total = this.store.cards().length;
     if (total === 0) {
@@ -172,10 +259,17 @@ export class CardSelectPageComponent implements OnInit {
     return Math.round(((this.store.currentIndex() + 1) / total) * 100);
   });
 
+  /** Whether the current card supports direction toggle (known→learning / learning→known). */
   readonly showDirectionToggle = computed(() =>
     cardSupportsSessionDirection(this.store.currentCard()),
   );
 
+  /**
+   * Computed session segments for the practice session bar.
+   *
+   * @remarks
+   * Each segment represents a step in the learning flow: course → lesson → scenario.
+   */
   readonly sessionSegments = computed((): readonly PracticeSessionSegment[] => {
     const courseId = this.selectedCourseId();
     const lessonId = this.selectedLessonId();
@@ -210,6 +304,12 @@ export class CardSelectPageComponent implements OnInit {
     ];
   });
 
+  /**
+   * Computed practice steps for the stepper UI.
+   *
+   * @remarks
+   * Includes the learning tab as the final step (cards practice).
+   */
   readonly practiceSteps = computed((): readonly PracticeStepState[] => {
     const active = this.activeTabIndex();
     const courseId = this.selectedCourseId();
@@ -248,11 +348,24 @@ export class CardSelectPageComponent implements OnInit {
     ];
   });
 
+  /** Whether a course is selected (enables advancement to lessons/scenarios). */
   readonly canAdvanceFromCourse = computed(() => !!this.selectedCourseId());
+
+  /** Whether a lesson is selected (enables advancement to scenarios). */
   readonly canAdvanceFromLessons = computed(() => !!this.selectedLessonId());
+
+  /** Whether a scenario is selected (enables starting practice). */
   readonly canStartPractice = computed(() => !!this.selectedScenarioId());
+
+  /** Whether the learning tab (cards practice) is currently active. */
   readonly isLearningTabActive = computed(() => this.activeTabIndex() === LEARNING_TAB.learning);
 
+  /**
+   * Computed hint text for the current step.
+   *
+   * @remarks
+   * Provides guidance on what the user should do next based on the active tab.
+   */
   readonly nextStepHint = computed(() => {
     switch (this.activeTabIndex()) {
       case LEARNING_TAB.course:
@@ -276,8 +389,15 @@ export class CardSelectPageComponent implements OnInit {
     }
   });
 
+  /** Font size preference from the user store. */
   readonly fontSize = this.userStore.preferences;
 
+  /**
+   * Effect that resets session state when the active language pair changes.
+   *
+   * @remarks
+   * Prevents stale course/lesson/scenario selections when switching language pairs.
+   */
   private readonly resetOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
 
@@ -288,6 +408,17 @@ export class CardSelectPageComponent implements OnInit {
     lastKnownActiveLanguagePairId = activeId;
   });
 
+  /**
+   * Initializes the component from route query parameters.
+   *
+   * @remarks
+   * Supports deep linking via query parameters:
+   * - `courseId` — pre-select a course
+   * - `lessonId` — pre-select a lesson within the course
+   * - `scenarioId` — pre-select a scenario and open learning tab
+   * - `tab` — set initial tab (course, lessons, scenarios, learning)
+   * - `difficulty` — set difficulty filter (beginner, intermediate, advanced)
+   */
   async ngOnInit(): Promise<void> {
     const query = this.route.snapshot.queryParamMap;
     const courseId = query.get('courseId');
@@ -328,6 +459,14 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Applies a lesson from a deep link (lessonId query parameter).
+   *
+   * @param lessonId - The lesson ID to apply.
+   * @remarks
+   * Loads the lesson from the current course and sets title + scenario IDs.
+   * Silently ignores if the course is not loaded or the lesson is not found.
+   */
   private async applyLessonFromCourse(lessonId: string): Promise<void> {
     const courseId = this.selectedCourseId();
     if (!courseId) {
@@ -349,6 +488,13 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Persists learning session state to the user store.
+   *
+   * @param patch - Partial patch of learning session settings.
+   * @remarks
+   * Uses `queueMicrotask` to defer persistence until after change detection.
+   */
   private persistLearningSession(
     patch: Partial<{ activeCourseId: string; lastLessonId: string; lastScenarioId: string }>,
   ): void {
@@ -357,6 +503,12 @@ export class CardSelectPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Resets all session state to initial values.
+   *
+   * @remarks
+   * Called when the language pair changes or when deselecting items.
+   */
   private resetSessionState(): void {
     this.store.reset();
     this.selectedCourseId.set('');
@@ -375,6 +527,13 @@ export class CardSelectPageComponent implements OnInit {
     this.activeTabIndex.set(LEARNING_TAB.course);
   }
 
+  /**
+   * Navigates to the specified tab.
+   *
+   * @param tabIndex - Target tab index (0=course, 1=lessons, 2=scenarios, 3=learning).
+   * @remarks
+   * Prevents navigation to lessons without a course, and to learning without a scenario.
+   */
   goToTab(tabIndex: number): void {
     if (tabIndex === LEARNING_TAB.lessons && !this.selectedCourseId()) {
       return;
@@ -387,6 +546,14 @@ export class CardSelectPageComponent implements OnInit {
     this.activeTabIndex.set(tabIndex);
   }
 
+  /**
+   * Advances to the next step in the learning flow.
+   *
+   * @remarks
+   * From course tab: moves to lessons (or scenarios for open practice).
+   * From lessons tab: moves to scenarios.
+   * From scenarios tab: starts practice.
+   */
   advanceFromCurrentTab(): void {
     const current = this.activeTabIndex();
 
@@ -409,6 +576,12 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Starts the practice session (navigates to the learning tab).
+   *
+   * @remarks
+   * Requires a scenario to be selected.
+   */
   startPractice(): void {
     if (!this.canStartPractice()) {
       return;
@@ -417,6 +590,14 @@ export class CardSelectPageComponent implements OnInit {
     this.activeTabIndex.set(LEARNING_TAB.learning);
   }
 
+  /**
+   * Handles course selection changes.
+   *
+   * @param courseId - The selected course ID (empty string to deselect).
+   * @remarks
+   * Resets lesson, scenario, and card state. Loads course details and difficulty map.
+   * Persists the active course ID to user settings.
+   */
   async onCourseChange(courseId: string): Promise<void> {
     this.selectedCourseId.set(courseId);
     this.selectedLessonId.set('');
@@ -465,10 +646,19 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
+  /** Updates the course title display from the picker label. */
   onCourseLabelChange(label: string): void {
     this.courseTitle.set(label.split(' · ')[0] ?? label);
   }
 
+  /**
+   * Handles lesson selection changes.
+   *
+   * @param lessonId - The selected lesson ID.
+   * @remarks
+   * Resets scenario and card state. Does not load lesson details eagerly —
+   * title and scenario IDs come from `onLessonPick`.
+   */
   async onLessonChange(lessonId: string): Promise<void> {
     this.selectedLessonId.set(lessonId);
     this.selectedScenarioId.set('');
@@ -478,12 +668,26 @@ export class CardSelectPageComponent implements OnInit {
     this.missingCardsWarning.set(null);
   }
 
+  /**
+   * Handles lesson pick from the picker component.
+   *
+   * @param payload - The picked lesson's title and scenario IDs.
+   * @remarks
+   * Persists the last lesson ID to user settings.
+   */
   async onLessonPick(payload: LessonPickPayload): Promise<void> {
     this.lessonTitle.set(payload.title);
     this.lessonScenarioIds.set(payload.scenarioIds);
     this.persistLearningSession({ lastLessonId: payload.lessonId });
   }
 
+  /**
+   * Loads cards for the selected scenario.
+   *
+   * @remarks
+   * Calls `CardSelectService.loadScenario` to resolve the card session.
+   * Shows a warning if some cards are missing.
+   */
   async loadCards(): Promise<void> {
     const scenarioId = this.selectedScenarioId();
     if (!scenarioId) {
@@ -510,6 +714,13 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
+  /**
+   * Handles scenario selection changes.
+   *
+   * @param scenarioId - The selected scenario ID (empty string to deselect).
+   * @remarks
+   * Loads cards if a scenario is selected. Persists last scenario ID to user settings.
+   */
   async onScenarioChange(scenarioId: string): Promise<void> {
     this.selectedScenarioId.set(scenarioId);
 
@@ -530,10 +741,18 @@ export class CardSelectPageComponent implements OnInit {
     });
   }
 
+  /** Updates the scenario source label display from the picker label. */
   onScenarioLabelChange(label: string): void {
     this.scenarioSourceLabel.set(label.split(' · ').slice(1).join(' · ') || label);
   }
 
+  /**
+   * Handles difficulty filter changes.
+   *
+   * @param value - Selected difficulty level (null to clear filter).
+   * @remarks
+   * Resets scenario selection and card state when difficulty changes.
+   */
   onDifficultyChange(value: CardDifficulty | null): void {
     this.selectedDifficulty.set(value);
     this.selectedScenarioId.set('');
@@ -543,6 +762,14 @@ export class CardSelectPageComponent implements OnInit {
     this.missingCardsWarning.set(null);
   }
 
+  /**
+   * Loads the scenario-to-difficulty map for a course.
+   *
+   * @param course - The course to load difficulty data for.
+   * @remarks
+   * Only loads when the course allows difficulty filtering.
+   * Requires the card search index to be loaded first.
+   */
   private async loadScenarioDifficultyMap(course: CourseWithLessons): Promise<void> {
     if (!resolveCoursePracticeSettings(course).allowDifficultyFilter) {
       this.scenarioDifficultyMap.set(new Map());
@@ -559,34 +786,72 @@ export class CardSelectPageComponent implements OnInit {
     );
   }
 
+  /**
+   * Delegates option selection to the store.
+   *
+   * @param index - Zero-based index of the selected option.
+   */
   selectOption(index: number): void {
     this.store.selectOption(index);
   }
 
+  /**
+   * Delegates answer text update to the store.
+   *
+   * @param value - The entered answer text.
+   */
   setAnswerText(value: string): void {
     this.store.setAnswerText(value);
   }
 
+  /**
+   * Delegates memory card completion to the store.
+   *
+   * @param value - Whether the memory exercise is complete.
+   */
   setMemoryComplete(value: boolean): void {
     this.store.setMemoryComplete(value);
   }
 
+  /**
+   * Delegates draw card submission to the store.
+   *
+   * @param value - Whether the draw submission has been triggered.
+   */
   setDrawSubmitted(value: boolean): void {
     this.store.setDrawSubmitted(value);
   }
 
+  /**
+   * Delegates draw answer payload to the store.
+   *
+   * @param payload - The draw answer payload (strokes, timing).
+   */
   setDrawAnswer(payload: DrawAnswerPayload | null): void {
     this.store.setDrawAnswer(payload);
   }
 
+  /** Delegates time expired event to the store. */
   handleTimeExpired(): void {
     this.store.handleTimeExpired();
   }
 
+  /**
+   * Delegates direction change to the store.
+   *
+   * @param direction - The new card direction.
+   */
   onDirectionChange(direction: CardDirection): void {
     this.store.setSessionDirection(direction);
   }
 
+  /**
+   * Checks the current answer and records the result.
+   *
+   * @remarks
+   * Calls `store.checkAnswer()` to validate. On correct/incorrect answer,
+   * records the result in `LearningResultsStore` and persists learning session state.
+   */
   checkAnswer(): void {
     const card = this.store.currentCard();
     const isCorrect = this.store.checkAnswer();
@@ -615,6 +880,13 @@ export class CardSelectPageComponent implements OnInit {
     });
   }
 
+  /**
+   * Advances to the next scenario in the current lesson.
+   *
+   * @remarks
+   * Navigates to the learning tab and loads the next scenario.
+   * No-op if already on the last scenario.
+   */
   async goToNextLessonScenario(): Promise<void> {
     const ids = this.lessonScenarioIds();
     const index = ids.indexOf(this.selectedScenarioId());
@@ -626,6 +898,7 @@ export class CardSelectPageComponent implements OnInit {
     await this.onScenarioChange(ids[index + 1]);
   }
 
+  /** Delegates next card action to the store. */
   nextCard(): void {
     this.store.nextCard();
   }
