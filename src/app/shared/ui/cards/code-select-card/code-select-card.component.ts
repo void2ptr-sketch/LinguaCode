@@ -7,6 +7,26 @@ import { CodeHighlightComponent } from '../../code-highlight/code-highlight.comp
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 
+/**
+ * UI component for code-select card exercises.
+ *
+ * @remarks
+ * Displays a code block prompt and multiple code block options.
+ * The user selects the option that matches the prompt. Uses `CodeHighlightComponent`
+ * for syntax highlighting.
+ *
+ * @example
+ * ```html
+ * <app-code-select-card
+ *   [card]="codeSelectCard"
+ *   [selectedIndex]="null"
+ *   [feedback]="null"
+ *   (optionSelected)="onSelect($event)"
+ *   (checkAnswer)="onCheck()"
+ *   (nextCard)="onNext()">
+ * </app-code-select-card>
+ * ```
+ */
 @Component({
   selector: 'app-code-select-card',
   imports: [MatCardModule, MatButtonModule, MatIconModule, CodeHighlightComponent],

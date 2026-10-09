@@ -94,8 +94,15 @@ export type HanziQuizStrokeResult = {
   forcedCorrect: boolean;
 };
 
-/** User-drawn stroke input for Hanzi quiz evaluation. */
+/**
+ * User-drawn stroke input for Hanzi quiz evaluation.
+ *
+ * @remarks
+ * Contains the sequence of points the user drew, used for stroke comparison
+ * and answer validation in draw cards and Hanzi quizzes.
+ */
 export type HanziUserStrokeInput = {
+  /** Sequence of points forming the drawn stroke. */
   points: readonly HanziPoint[];
 };
 

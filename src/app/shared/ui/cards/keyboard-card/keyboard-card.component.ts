@@ -18,6 +18,26 @@ import { CardFeedback } from '../../../types';
 import { getCorrectAnswerLabel } from '../../../utils/card-answer/card-answer.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * UI component for keyboard card exercises (typed answer).
+ *
+ * @remarks
+ * Renders a text input for the user to type their answer. Supports multiple
+ * input modes: free text, IPA transcription, and Pinyin keyboard.
+ *
+ * @example
+ * ```html
+ * <app-keyboard-card
+ *   [card]="keyboardCard"
+ *   [direction]="'known-to-learning'"
+ *   [answerText]="''"
+ *   [feedback]="null"
+ *   (answerTextChange)="onTextChange($event)"
+ *   (checkAnswer)="onCheck()"
+ *   (nextCard)="onNext()">
+ * </app-keyboard-card>
+ * ```
+ */
 @Component({
   selector: 'app-keyboard-card',
   imports: [

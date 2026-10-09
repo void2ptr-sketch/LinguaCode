@@ -10,6 +10,12 @@ import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-disp
 import { CardFeedback } from '../../../types';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * An item in a memory card column (left or right).
+ *
+ * @remarks
+ * Used for pair-matching exercises where the user connects items from two columns.
+ */
 export type MemoryColumnItem = {
   id: string;
   pairId: string;
@@ -18,6 +24,26 @@ export type MemoryColumnItem = {
   lexeme?: PhoneticLexeme;
 };
 
+/**
+ * UI component for memory card pair-matching exercises.
+ *
+ * @remarks
+ * Renders two columns of items (known and learning). The user clicks items
+ * to match pairs. Columns are randomized on each display via `boardNonce`.
+ *
+ * @example
+ * ```html
+ * <app-memory-card
+ *   [card]="memoryCard"
+ *   [direction]="'known-to-learning'"
+ *   [boardNonce]="0"
+ *   [feedback]="null"
+ *   (memoryComplete)="onComplete($event)"
+ *   (checkAnswer)="onCheck()"
+ *   (nextCard)="onNext()">
+ * </app-memory-card>
+ * ```
+ */
 @Component({
   selector: 'app-memory-card',
   imports: [

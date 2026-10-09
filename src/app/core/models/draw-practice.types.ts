@@ -16,10 +16,17 @@ export type DrawPracticeMode =
  */
 export type DrawCanvasMode = 'memory' | 'tracing' | 'hints' | 'stroke-order' | 'radicals';
 
-/** A single stroke guide for character drawing practice. */
+/**
+ * A single stroke guide for character drawing practice.
+ *
+ * @remarks
+ * Used in draw cards to show the user the correct stroke order and shape.
+ * SVG paths are in the 100x100 viewBox coordinate system.
+ */
 export type DrawStrokeGuide = {
+  /** Zero-based stroke order index. */
   order: number;
-  /** SVG path in viewBox 0 0 100 100. */
+  /** SVG path string in viewBox 0 0 100 100. */
   path: string;
 };
 

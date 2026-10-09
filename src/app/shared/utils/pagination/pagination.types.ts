@@ -1,4 +1,9 @@
-/** Sort direction for list and catalog ordering. */
+/**
+ * Sort direction for list and catalog ordering.
+ *
+ * @remarks
+ * Used in sort configurations for API requests and client-side sorting.
+ */
 export type SortDirection = 'asc' | 'desc';
 
 /**

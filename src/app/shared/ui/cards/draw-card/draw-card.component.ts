@@ -45,6 +45,27 @@ import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-c
 import { CardFeedback } from '../../../types';
 import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
 
+/**
+ * UI component for Chinese character drawing exercises.
+ *
+ * @remarks
+ * Renders a draw card with a canvas for stroke practice. Supports multiple characters
+ * (tabs), stroke-order review, radical hints, and memory mode. Emits draw submission
+ * and answer-check events.
+ *
+ * @example
+ * ```html
+ * <app-draw-card
+ *   [card]="drawCard"
+ *   [drawSubmitted]="false"
+ *   [feedback]="null"
+ *   (drawSubmittedChange)="onDrawSubmitted($event)"
+ *   (drawAnswerChange)="onDrawAnswer($event)"
+ *   (checkAnswer)="onCheckAnswer()"
+ *   (nextCard)="onNext()">
+ * </app-draw-card>
+ * ```
+ */
 @Component({
   selector: 'app-draw-card',
   imports: [

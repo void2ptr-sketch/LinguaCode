@@ -223,6 +223,13 @@ const matchesKeyboardAnswer = (
   return false;
 };
 
+/**
+ * Checks whether the user has provided enough input to evaluate the answer.
+ *
+ * @param card - The card to check.
+ * @param state - The current answer state.
+ * @returns `true` if the answer can be evaluated.
+ */
 export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean => {
   switch (card.kind) {
     case 'select':
@@ -242,6 +249,15 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
   }
 };
 
+/**
+ * Checks whether the user's answer is correct.
+ *
+ * @param card - The card being answered.
+ * @param state - The current answer state (selected index, text, etc.).
+ * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
+ * @param getHanziModel - Optional resolver for Hanzi character models (used for draw cards).
+ * @returns `true` if correct, `false` if incorrect, `null` if the answer cannot be evaluated.
+ */
 export const checkCardAnswer = (
   card: Card,
   state: CardAnswerState,
@@ -277,6 +293,17 @@ export const checkCardAnswer = (
   }
 };
 
+/**
+ * Returns the human-readable label for the correct answer.
+ *
+ * @remarks
+ * Resolves the correct option text, lexeme primary, or accepted answer
+ * based on the card kind and session direction.
+ *
+ * @param card - The card being answered.
+ * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
+ * @returns The correct answer label, or `null` if not applicable.
+ */
 export const getCorrectAnswerLabel = (
   card: Card,
   sessionDirection: CardDirection = 'known-to-learning',

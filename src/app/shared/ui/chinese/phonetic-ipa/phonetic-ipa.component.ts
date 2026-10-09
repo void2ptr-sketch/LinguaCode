@@ -1,5 +1,18 @@
 import { Component, computed, input } from '@angular/core';
 
+/**
+ * UI component for displaying IPA (International Phonetic Alphabet) transcriptions.
+ *
+ * @remarks
+ * Wraps the transcription in square brackets or slashes if not already present.
+ * Supports inline and block rendering modes.
+ *
+ * @example
+ * ```html
+ * <app-phonetic-ipa [transcription]="niHaoIpa"></app-phonetic-ipa>
+ * <app-phonetic-ipa [transcription]="ipa" [inline]="true"></app-phonetic-ipa>
+ * ```
+ */
 @Component({
   selector: 'app-phonetic-ipa',
   templateUrl: './phonetic-ipa.component.html',

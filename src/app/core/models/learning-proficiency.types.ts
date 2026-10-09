@@ -13,9 +13,17 @@ export type LearningProficiencyLevel =
   | 'advanced'
   | 'professional';
 
-/** A selectable proficiency level option displayed in the UI. */
+/**
+ * A selectable proficiency level option displayed in the UI.
+ *
+ * @remarks
+ * Each option maps a `LearningProficiencyLevel` ID to a human-readable label.
+ * Used in the proficiency selector dropdown in user preferences.
+ */
 export type LearningProficiencyOption = {
+  /** The proficiency level identifier. */
   id: LearningProficiencyLevel;
+  /** Human-readable label for display. */
   label: string;
 };
 

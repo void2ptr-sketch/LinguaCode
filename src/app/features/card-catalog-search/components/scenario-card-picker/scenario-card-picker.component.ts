@@ -10,6 +10,22 @@ import { CardCatalogFiltersComponent } from '../../';
 import { CardCatalogSearchStore } from '../../';
 import type { CardIndexEntry } from '../../../../core/models';
 
+/**
+ * Component for picking cards from the card catalog within the scenario builder.
+ *
+ * @remarks
+ * Provides search, filtering (by kind, difficulty, language), and pagination.
+ * The selected card IDs are communicated via `selectedIds` / `selectedIdsChange`.
+ * Automatically reloads when the active language pair changes.
+ *
+ * @example
+ * ```html
+ * <app-scenario-card-picker
+ *   [selectedIds]="selectedCardIds"
+ *   (selectedIdsChange)="onSelectionChange($event)">
+ * </app-scenario-card-picker>
+ * ```
+ */
 let lastKnownPickerActiveLanguagePairId: string | null = null;
 
 @Component({
