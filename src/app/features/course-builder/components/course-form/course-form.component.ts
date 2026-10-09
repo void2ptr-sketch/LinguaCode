@@ -21,6 +21,11 @@ import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field'
 import type { CourseFormDraft, LessonFormDraft } from '../../types';
 import { emptyLessonFormDraft, lessonDraftKey } from '../../utils/course-form-draft.utils';
 
+/**
+ * Course form component. Provides a full form for creating and editing courses,
+ * including title, description, lessons, scenarios, and authoring status.
+ * @remarks Loads available scenarios from the scenario search service on init.
+ */
 @Component({
   selector: 'app-course-form',
   imports: [
@@ -43,17 +48,25 @@ export class CourseFormComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
 
+  /** Required course form draft being edited. */
   readonly draft = input.required<CourseFormDraft>();
+  /** Whether the form is in read-only mode. */
   readonly readOnly = input(false);
 
+  /** Emits the updated course form draft when the user makes changes. */
   readonly draftChange = output<CourseFormDraft>();
+  /** Emits when the user requests PDF export (payload: withHints). */
   readonly exportPdf = output<boolean>();
 
+  /** Utility function for generating lesson draft keys. */
   readonly lessonDraftKey = lessonDraftKey;
 
+  /** Available scenarios for assignment to lessons. */
   readonly scenarioOptions = signal<readonly ScenarioIndexEntry[]>([]);
+  /** Available authoring status options. */
   readonly authoringStatusOptions = COURSE_AUTHORING_STATUSES;
 
+  /** Labels for course authoring statuses. */
   readonly authoringStatusLabels: Record<CourseAuthoringStatus, string> = {
     draft: 'Черновик',
     planned: 'План готов',

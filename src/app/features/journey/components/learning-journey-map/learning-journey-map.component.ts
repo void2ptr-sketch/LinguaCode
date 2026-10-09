@@ -31,6 +31,11 @@ export type JourneyFilterType = 'all' | JourneyContentType;
 /** Режим отображения карты. */
 export type JourneyViewMode = 'map' | 'list';
 
+/**
+ * Learning journey map component. Renders an interactive map of learning nodes organized by lesson,
+ * with filtering by content type, favorites, and fog-of-war mode.
+ * @remarks Tracks visit durations and favorite toggles via `JourneyAnalyticsService`.
+ */
 @Component({
   selector: 'app-learning-journey-map',
   encapsulation: ViewEncapsulation.None,
@@ -46,31 +51,41 @@ export type JourneyViewMode = 'map' | 'list';
   styleUrl: './learning-journey-map.component.scss',
 })
 export class LearningJourneyMapComponent implements OnInit, OnDestroy {
+  /** Required course ID for analytics tracking. */
   readonly courseId = input.required<string>();
+  /** Required list of journey location nodes. */
   readonly nodes = input.required<readonly JourneyLocationNode[]>();
 
+  /** Emits the selected node ID when the user clicks a node. */
   readonly locationSelect = output<string>();
 
   protected readonly analyticsService = inject(JourneyAnalyticsService);
   protected readonly dashboardService = inject(LearningDashboardService);
 
+  /** Currently active content type filter. */
   protected readonly filterType = signal<JourneyFilterType>('all');
+  /** Current view mode ('map' or 'list'). */
   protected readonly viewMode = signal<JourneyViewMode>('map');
+  /** Currently selected node ID (for duration tracking). */
   protected readonly selectedNodeId = signal<string | null>(null);
+  /** Whether to show only favorite nodes. */
   public readonly showFavoritesOnly = signal<boolean>(false);
+  /** Whether to hide locked nodes (fog-of-war mode). */
   public readonly showFogOfWar = signal<boolean>(true);
 
+  /** Computed explorer level from analytics service. */
   protected readonly explorerLevel = computed<ExplorerLevelResult | null>(() => {
     return this.analyticsService.explorerLevel();
   });
 
-  /** Название программы курса. */
+  /** Computed course title from the first node. */
   protected readonly courseTitle = computed(() => {
     const nodes = this.nodes();
     if (nodes.length === 0) return '';
     return nodes[0].courseTitle;
   });
 
+  /** Computed nodes filtered by type, favorites, and fog-of-war mode. */
   protected readonly filteredNodes = computed(() => {
     const nodes = this.nodes();
     const filterType = this.filterType();

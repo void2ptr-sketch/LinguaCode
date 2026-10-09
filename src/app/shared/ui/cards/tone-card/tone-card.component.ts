@@ -14,6 +14,11 @@ import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * Tone card component. Displays a tone mark selection exercise where the user
+ * chooses the correct tone for a given pinyin syllable base.
+ * @remarks Supports tone coloring via `ToneColoredTextComponent`.
+ */
 @Component({
   selector: 'app-tone-card',
   imports: [

@@ -13,6 +13,10 @@ import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * Reading card component. Displays a reading passage exercise with multiple-choice options.
+ * @remarks Supports directional display (known→learning / learning→known) and lexeme display.
+ */
 @Component({
   selector: 'app-reading-card',
   imports: [

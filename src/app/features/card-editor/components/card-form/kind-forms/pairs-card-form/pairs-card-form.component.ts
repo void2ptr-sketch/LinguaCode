@@ -9,6 +9,10 @@ import type { MemoryCardDraft } from '../../../../types';
 import { emptyMemoryPairDraft } from '../../../../types';
 import { syncLexemePrimaryFromText } from '../../../../utils/card-editor-ux.utils';
 
+/**
+ * Form component for memory/pairs cards. Manages known-learning word pairs with lexeme sync.
+ * @remarks Supports up to 12 pairs; auto-syncs lexemes in basic mode.
+ */
 @Component({
   selector: 'app-pairs-card-form',
   imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
@@ -16,11 +20,16 @@ import { syncLexemePrimaryFromText } from '../../../../utils/card-editor-ux.util
   styleUrl: './pairs-card-form.component.scss',
 })
 export class PairsCardFormComponent {
+  /** Required memory card draft. */
   readonly draft = input.required<MemoryCardDraft>();
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
+  /** Whether the editor is in advanced mode (disables auto-lexeme sync). */
   readonly isAdvanced = input(false);
 
+  /** Emits the updated memory card draft when the user makes changes. */
   readonly draftChange = output<MemoryCardDraft>();
 
   updateDraft(next: MemoryCardDraft): void {

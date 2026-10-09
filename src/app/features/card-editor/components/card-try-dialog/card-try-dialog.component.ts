@@ -15,6 +15,10 @@ import { CardHostComponent } from '../../../../shared/ui/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';
 
+/**
+ * Dialog component for trying a single card without a full practice session.
+ * @remarks Loads the card by ID, validates it belongs to the active course, and renders the card host.
+ */
 @Component({
   selector: 'app-card-try-dialog',
   imports: [
@@ -37,7 +41,9 @@ export class CardTryDialogComponent implements OnInit {
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
+  /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+  /** Computed font size from user preferences. */
   readonly fontSize = computed(() => this.userStore.preferences().fontSize);
 
   readonly title = computed(() => {

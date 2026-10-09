@@ -26,6 +26,11 @@ import type {
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
 
+/**
+ * Scenario builder dialog component. Provides a modal interface for creating and editing scenarios,
+ * including card selection (fixed, criteria-based, or snapshot).
+ * @remarks Tracks dirty state to prompt on unsaved changes.
+ */
 @Component({
   selector: 'app-scenario-builder-dialog',
   imports: [
@@ -46,9 +51,12 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly store = inject(ScenarioBuilderStore);
   private readonly userStore = inject(UserStore);
 
+  /** Current scenario form draft being edited or created. */
   readonly draft = signal<ScenarioFormDraft>(emptyScenarioFormDraft());
+  /** Internal snapshot of the initial draft for dirty tracking. */
   private readonly initialSnapshot = signal('');
 
+  /** Whether the draft has unsaved changes compared to the initial snapshot. */
   readonly dirty = computed(
     () => serializeScenarioFormDraft(this.draft()) !== this.initialSnapshot(),
   );

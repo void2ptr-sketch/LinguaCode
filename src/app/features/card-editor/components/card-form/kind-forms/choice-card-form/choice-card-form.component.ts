@@ -22,6 +22,11 @@ export type ChoiceCardDraft =
   | SymbolCardDraft
   | ToneCardDraft;
 
+/**
+ * Form component for choice-type cards (select, reading, timed, symbol, tone).
+ * Manages the prompt, answer options, and correct index selection.
+ * @remarks Delegates option management to `CardOptionsEditorComponent`.
+ */
 @Component({
   selector: 'app-choice-card-form',
   imports: [
@@ -35,11 +40,15 @@ export type ChoiceCardDraft =
   styleUrl: './choice-card-form.component.scss',
 })
 export class ChoiceCardFormComponent {
+  /** Required choice card draft (select, reading, timed, symbol, or tone). */
   readonly draft = input.required<ChoiceCardDraft>();
+  /** Whether to hide the prompt field. */
   readonly hidePrompt = input(false);
 
+  /** Emits the updated choice card draft when the user makes changes. */
   readonly draftChange = output<ChoiceCardDraft>();
 
+  /** Computed tone card draft, or null if the current kind is not 'tone'. */
   readonly toneDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'tone' ? draft : null;

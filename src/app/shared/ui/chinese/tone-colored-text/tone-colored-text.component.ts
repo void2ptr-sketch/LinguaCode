@@ -9,6 +9,12 @@ import type { PhoneticLexeme, ToneMark } from '../../../../core/models/phonetic-
 import type { ToneColorPalette } from '../../../../core/models/tone-color.types';
 import { UserStore } from '../../../../core/state';
 
+/**
+ * Tone-colored text component. Displays text (Chinese characters or Pinyin syllables)
+ * with color coding based on tone marks.
+ * @remarks Supports auto-detection of tones from lexeme metadata, fixed tone override,
+ * and configurable color palettes from user preferences.
+ */
 @Component({
   selector: 'app-tone-colored-text',
   host: {
@@ -30,28 +36,13 @@ export class ToneColoredTextComponent {
   /** Optional lexeme with tone metadata (tones, pinyin) for accurate segmentation. */
   readonly lexeme = input<PhoneticLexeme | null | undefined>(null);
 
-  /**
-   * Overrides tone detection with a fixed tone mark.
-   *
-   * @remarks
-   * When set, all characters are colored with this tone instead of auto-detecting.
-   */
+  /** Overrides tone detection with a fixed tone mark. */
   readonly fixedTone = input<ToneMark | null>(null);
 
-  /**
-   * Overrides tone coloring from user profile.
-   *
-   * @remarks
-   * When null, uses `userStore.cjkLearning().showTones`.
-   */
+  /** Overrides tone coloring from user profile. */
   readonly enabled = input<boolean | null>(null);
 
-  /**
-   * Overrides the tone color palette.
-   *
-   * @remarks
-   * When null, uses the palette from `userStore.cjkLearning().toneColorScheme`.
-   */
+  /** Overrides the tone color palette. */
   readonly palette = input<ToneColorPalette | null>(null);
 
   /** Render inline (single-line) instead of block (multi-line). */

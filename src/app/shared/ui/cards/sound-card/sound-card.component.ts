@@ -19,6 +19,11 @@ import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * Sound card component. Displays an audio-based exercise where the user selects
+ * the correct text option matching the played audio.
+ * @remarks Supports audio playback via `audioUrl` or TTS, with lexeme display.
+ */
 @Component({
   selector: 'app-sound-card',
   imports: [

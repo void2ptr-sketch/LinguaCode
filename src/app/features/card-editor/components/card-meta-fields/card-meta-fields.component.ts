@@ -7,6 +7,10 @@ import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-ind
 import type { CardDifficulty } from '../../../../core/models/card-index.types';
 import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../card-catalog-search';
 
+/**
+ * Form fields component for card metadata (difficulty, tags, last updated date).
+ * @remarks Tags are stored as comma-separated strings and parsed into arrays.
+ */
 @Component({
   selector: 'app-card-meta-fields',
   imports: [
@@ -19,10 +23,14 @@ import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../card-catalog-search';
   styleUrl: './card-meta-fields.component.scss',
 })
 export class CardMetaFieldsComponent {
+  /** Optional card index meta override. */
   readonly meta = input<CardIndexMetaOverride | undefined>();
+  /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride>();
 
+  /** Available difficulty levels. */
   readonly difficultyOptions = DIFFICULTIES;
+  /** Labels for difficulty levels. */
   readonly difficultyLabels = DIFFICULTY_LABELS;
 
   updateDifficulty(difficulty: CardDifficulty): void {

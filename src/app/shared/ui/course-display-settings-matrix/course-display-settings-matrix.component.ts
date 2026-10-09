@@ -15,6 +15,11 @@ export type RomanizationOption = {
   label: string;
 };
 
+/**
+ * Course display settings matrix component. Provides a checkbox matrix for configuring
+ * romanization display and answer modes for CJK and phonetic content.
+ * @remarks Supports prompt and answer romanization toggles, IPA display, and custom IPA labels.
+ */
 @Component({
   selector: 'app-course-display-settings-matrix',
   imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule],
@@ -22,23 +27,38 @@ export type RomanizationOption = {
   styleUrl: './course-display-settings-matrix.component.scss',
 })
 export class CourseDisplaySettingsMatrixComponent {
+  /** Whether to show CJK-specific settings (Palladius, tone colors). */
   readonly showCjk = input(false);
+  /** Whether to show phonetic settings (IPA, answer modes). */
   readonly showPhonetic = input(false);
+  /** Available romanization system options. */
   readonly romanizationOptions = input<readonly RomanizationOption[]>([]);
+  /** Optional course label for aria labels. */
   readonly courseLabel = input('');
 
+  /** Currently enabled display romanization systems. */
   readonly displayRomanizations = input<readonly RomanizationSystem[]>([]);
+  /** Currently enabled answer romanization systems. */
   readonly answerRomanizations = input<readonly RomanizationSystem[]>([]);
+  /** Whether IPA is enabled for display. */
   readonly showIpa = input(false);
+  /** Custom IPA variant label. */
   readonly ipaVariantLabel = input('');
+  /** Currently enabled answer display modes. */
   readonly answerModes = input<readonly AnswerDisplayMode[]>([]);
 
+  /** Emits updated display romanization systems. */
   readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
+  /** Emits updated answer romanization systems. */
   readonly answerRomanizationsChange = output<readonly RomanizationSystem[]>();
+  /** Emits the updated IPA display preference. */
   readonly showIpaChange = output<boolean>();
+  /** Emits the updated custom IPA variant label. */
   readonly ipaVariantLabelChange = output<string>();
+  /** Emits updated answer display modes. */
   readonly answerModesChange = output<readonly AnswerDisplayMode[]>();
 
+  /** Whether the IPA variant text field should be visible. */
   readonly showIpaVariantField = computed(
     () => this.showIpa() || this.answerModes().includes('ipa'),
   );

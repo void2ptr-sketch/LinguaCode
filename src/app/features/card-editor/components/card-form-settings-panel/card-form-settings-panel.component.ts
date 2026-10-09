@@ -14,6 +14,11 @@ import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/mode
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
 
+/**
+ * Settings panel component for card form. Provides kind-specific settings (time limit,
+ * answer mode, draw practice mode, appearance) alongside appearance fields.
+ * @remarks Loads Hanzi stroke count for draw cards via `HanziDataService`.
+ */
 @Component({
   selector: 'app-card-form-settings-panel',
   imports: [
@@ -31,10 +36,13 @@ import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-ap
 export class CardFormSettingsPanelComponent {
   private readonly hanziData = inject(HanziDataService);
 
+  /** Required card draft being edited. */
   readonly draft = input.required<CardDraft>();
 
+  /** Emits the updated card draft when settings change. */
   readonly draftChange = output<CardDraft>();
 
+  /** Stroke count for the draw card's target Hanzi character (null when not applicable). */
   readonly drawHanziStrokeCount = signal<number | null>(null);
 
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [

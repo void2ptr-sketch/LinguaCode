@@ -17,6 +17,11 @@ import {
 import { groupCatalogTagFacets } from '../../utils/catalog-tag-groups/catalog-tag-groups.util';
 import { CardCatalogSearchStore } from '../../'
 
+/**
+ * Card catalog filters component. Provides search, difficulty, kind, and tag filtering
+ * for the card catalog.
+ * @remarks Delegates filter state management to `CardCatalogSearchStore`.
+ */
 @Component({
   selector: 'app-card-catalog-filters',
   imports: [
@@ -34,13 +39,19 @@ import { CardCatalogSearchStore } from '../../'
 export class CardCatalogFiltersComponent {
   readonly store = inject(CardCatalogSearchStore);
 
+  /** Available difficulty levels. */
   readonly difficulties = DIFFICULTIES;
+  /** Labels for difficulty levels. */
   readonly difficultyLabels = DIFFICULTY_LABELS;
+  /** Labels for card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+  /** Utility function to generate tag labels. */
   readonly tagLabel = tagLabel;
 
+  /** Computed search facets from the catalog store. */
   readonly facets = computed(() => this.store.facets() as CardSearchFacets | null);
 
+  /** Computed grouped tag facets for display. */
   readonly tagGroups = computed(() => {
     const facets = this.store.facets();
     if (!facets) {

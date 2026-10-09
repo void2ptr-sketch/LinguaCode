@@ -57,15 +57,24 @@ export class CardEditorPageComponent implements OnInit {
   private readonly cardTryDialog = inject(CardTryDialogService);
   private readonly userStore = inject(UserStore);
 
+  /** Available card creation groups (e.g., 'basic', 'chinese'). */
   readonly createGroups = CARD_CREATE_GROUPS;
+  /** Labels for card creation groups. */
   readonly createGroupLabels = CARD_CREATE_GROUP_LABELS;
+  /** Hint text for each card creation group. */
   readonly createGroupHints = CARD_CREATE_GROUP_HINTS;
+  /** Available card kinds organized by creation group. */
   readonly kindsByGroup = KINDS_BY_CREATE_GROUP;
+  /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+  /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  /** Labels for difficulty levels. */
   readonly difficultyLabels = DIFFICULTY_LABELS;
+  /** Utility function to generate tag labels. */
   readonly tagLabel = tagLabel;
 
+  /** Computed list of card index entries from the catalog store. */
   readonly entries = computed(() => this.catalogStore.entries() as CardIndexEntry[]);
 
   private readonly reloadOnActivePairChange = effect(() => {

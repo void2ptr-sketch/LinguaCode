@@ -16,6 +16,11 @@ import {
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
+/**
+ * Course card list component. Displays the courses tab of the course catalog,
+ * including user profile settings and language pair management.
+ * @remarks Delegates state to `CourseCatalogStore` and `UserStore`.
+ */
 @Component({
   selector: 'app-course-catalog-courses',
   imports: [
@@ -23,7 +28,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
     MatButtonModule,
     MatFormFieldModule,
     MatIconModule,
-    MatSelectModule,    
+    MatSelectModule,
   ],
   standalone: true,
   templateUrl: './course-card-list.component.html',
@@ -33,32 +38,42 @@ export class CourseCatalogCoursesComponent {
   private readonly userStore = inject(UserStore);
   private readonly catalogStore = inject(CourseCatalogStore);
 
-  // --- State from stores ---
+  /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
+  /** User preferences signal from the store. */
   readonly preferences = this.userStore.preferences;
+  /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
+  /** Active language pair ID from the store. */
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Profile drafts from store
+  /** Draft value for the user's display name. */
   readonly nameDraft = this.catalogStore.nameDraft;
+  /** Draft value for the learning proficiency level. */
   readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  /** Draft value for the application theme. */
   readonly themeDraft = this.catalogStore.themeDraft;
+  /** Draft value for the font size preference. */
   readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  /** Draft value for the color scheme. */
   readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  /** Draft value for the card focus fullscreen preference. */
   readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
 
-  // Course tab from store
+  /** Draft value for the known (source) language. */
   readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  /** Draft value for the learning (target) language. */
   readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
 
-  // Derived data
+  /** Available content languages. */
   readonly languages = contentLanguages();
+  /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
-  // ---- Computed ----
-
+  /** Whether the current language pair draft is invalid. */
   readonly languagePairInvalid = this.catalogStore.languagePairInvalid;
 
+  /** Whether there is more than one language pair (enables removal). */
   readonly canRemovePair = computed(() => this.languagePairs().length > 1);
 
   // ---- Methods ----

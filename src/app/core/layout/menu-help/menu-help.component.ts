@@ -6,6 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { filter, map, startWith } from 'rxjs';
 
+/**
+ * Navigation menu component for the help section. Highlights the active state
+ * when the user is on a help-related route.
+ * @remarks Uses `toSignal` to derive reactive active-state from router events.
+ */
 @Component({
   selector: 'app-menu-help',
   imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule, MatMenuModule],
@@ -15,6 +20,7 @@ import { filter, map, startWith } from 'rxjs';
 export class MenuHelpComponent {
   private readonly router = inject(Router);
 
+  /** Signal indicating whether the current route belongs to the help section. */
   readonly isHelpSection = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),

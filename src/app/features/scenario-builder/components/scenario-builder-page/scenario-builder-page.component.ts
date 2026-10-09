@@ -19,6 +19,11 @@ import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 
 let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
 
+/**
+ * Scenario builder page component. Displays a paginated list of scenarios with search,
+ * filtering (my/published/all), and CRUD operations.
+ * @remarks Reloads automatically when the active language pair changes.
+ */
 @Component({
   selector: 'app-scenario-builder-page',
   imports: [
@@ -38,7 +43,9 @@ let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
   styleUrl: './scenario-builder-page.component.scss',
 })
 export class ScenarioBuilderPageComponent implements OnInit {
+  /** Scenario builder state store. */
   readonly store = inject(ScenarioBuilderStore);
+  /** User store for authentication and language pair data. */
   readonly userStore = inject(UserStore);
   private readonly scenarioBuilderDialog = inject(ScenarioBuilderDialogService);
 

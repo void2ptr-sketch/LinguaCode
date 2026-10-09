@@ -23,6 +23,11 @@ const SORT_OPTIONS: readonly { value: ScenarioCardSort; label: string }[] = [
 
 let lastKnownCriteriaEditorActiveLanguagePairId: string | null = null;
 
+/**
+ * Scenario card criteria editor component. Allows users to define search criteria for
+ * automatically populating a scenario with cards from the catalog.
+ * @remarks Supports live preview of matching cards and reloads on language pair change.
+ */
 @Component({
   selector: 'app-scenario-card-criteria-editor',
   imports: [
@@ -40,19 +45,31 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   private readonly userStore = inject(UserStore);
   readonly store = inject(CardCatalogSearchStore);
 
+  /** Required search criteria (without pagination). */
   readonly criteria = input.required<Omit<CardSearchCriteria, 'page'>>();
+  /** Maximum number of cards to include (default: DEFAULT_CRITERIA_LIMIT). */
   readonly limit = input<number>(DEFAULT_CRITERIA_LIMIT);
+  /** Sort order for matching cards. */
   readonly sort = input<ScenarioCardSort>('updatedAt');
+  /** Seed value for random sorting. */
   readonly seed = input<string>('');
 
+  /** Emits updated search criteria when filters change. */
   readonly criteriaChange = output<Omit<CardSearchCriteria, 'page'>>();
+  /** Emits the updated card limit. */
   readonly limitChange = output<number>();
+  /** Emits the updated sort order. */
   readonly sortChange = output<ScenarioCardSort>();
+  /** Emits the updated seed value. */
   readonly seedChange = output<string>();
 
+  /** Available sort options. */
   readonly sortOptions = SORT_OPTIONS;
+  /** Computed total number of matching cards (null if not yet loaded). */
   readonly matchingTotal = signal<number | null>(null);
+  /** Preview card IDs matching the current criteria. */
   readonly previewIds = signal<readonly string[]>([]);
+  /** Whether the preview is currently loading. */
   readonly previewLoading = signal(false);
 
   private readonly initialized = signal(false);

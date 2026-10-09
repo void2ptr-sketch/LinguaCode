@@ -19,6 +19,10 @@ import {
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 
+/**
+ * Pinyin keyboard component. Provides an on-screen keyboard for typing Pinyin with tone marks.
+ * @remarks Supports committed syllables, pending syllables, tone marks, and tone preview.
+ */
 @Component({
   selector: 'app-pinyin-keyboard',
   imports: [MatButtonModule, MatIconModule, ToneColoredTextComponent],

@@ -12,6 +12,11 @@ import type { JourneyLocationNode } from '../../../../core/models/journey.types'
 import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
 
+/**
+ * Journey page component. Renders the learning journey map for the current course,
+ * built from scenario and card seed data.
+ * @remarks Loads journey nodes from `ContentSeedRepository` and tracks analytics events.
+ */
 @Component({
   selector: 'app-journey-page',
   imports: [LearningJourneyMapComponent],

@@ -17,6 +17,11 @@ import { PairsCardFormComponent } from '../card-form/kind-forms/pairs-card-form/
 import type { ChoiceCardDraft } from '../card-form/kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from '../card-form/kind-forms/input-card-form/input-card-form.component';
 
+/**
+ * Card creation wizard component. Guides users through a multi-step form to create a new card,
+ * dynamically rendering the appropriate kind-specific form based on the draft's card kind.
+ * @remarks Supports basic and advanced UX modes; delegates to kind-specific form components.
+ */
 @Component({
   selector: 'app-card-create-wizard',
   imports: [
@@ -35,37 +40,51 @@ import type { InputCardDraft } from '../card-form/kind-forms/input-card-form/inp
   styleUrl: './card-create-wizard.component.scss',
 })
 export class CardCreateWizardComponent {
+  /** Required card draft being created. */
   readonly draft = input.required<CardDraft>();
+  /** Known (source) language for the card content. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for the card content. */
   readonly learningLanguage = input<ContentLanguage>('en');
 
+  /** Emits the updated card draft when the user makes changes. */
   readonly draftChange = output<CardDraft>();
+  /** Emits when the user requests to expand to the full editor. */
   readonly expandToFull = output<void>();
 
+  /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+  /** Computed kind group (e.g., 'choice', 'input', 'code-select') for the current draft. */
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
+  /** Computed hint label for the editor variant. */
   readonly variantHint = computed(() => editorVariantLabel(this.draft().kind));
+  /** Whether the draft has a `promptKnown` field. */
   readonly hasPrompt = computed(() => 'promptKnown' in this.draft());
+  /** Computed value of `promptKnown` for the current draft. */
   readonly promptKnownValue = computed(() => {
     const draft = this.draft();
     return 'promptKnown' in draft ? draft.promptKnown : '';
   });
 
+  /** Computed choice card draft, or null if the current kind is not a choice card. */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
     return this.kindGroup() === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
+  /** Computed input card draft, or null if the current kind is not an input card. */
   readonly inputDraft = computed((): InputCardDraft | null => {
     const draft = this.draft();
     return this.kindGroup() === 'input' ? (draft as InputCardDraft) : null;
   });
 
+  /** Computed memory card draft, or null if the current kind is not 'memory'. */
   readonly pairsDraft = computed((): MemoryCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'memory' ? draft : null;
   });
 
+  /** Computed sound card draft, or null if the current kind is not 'sound'. */
   readonly mediaDraft = computed((): SoundCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;

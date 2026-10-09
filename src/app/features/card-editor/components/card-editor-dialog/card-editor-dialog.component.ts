@@ -52,34 +52,47 @@ export class CardEditorDialogComponent implements OnInit {
   private readonly userStore = inject(UserStore);
   private readonly catalogHandler = inject(CardsCatalogMockHandler);
 
+  /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+  /** Available content languages. */
   readonly languages = contentLanguages();
+  /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  /** Current card draft being edited or created. */
   readonly draft = signal<CardDraft>(this.store.emptyDraft('select'));
+  /** Index metadata draft containing language pair and tags. */
   readonly indexMeta = signal<CardIndexMetaDraft>({
     knownLanguage: this.userStore.languagePair().known,
     learningLanguage: this.userStore.languagePair().learning,
   });
+  /** Card index meta override (tags, hierarchy references). */
   readonly cardMeta = signal<CardIndexMetaOverride | undefined>(undefined);
+  /** Current editor UX mode ('basic' or 'advanced'). */
   readonly editorUxMode = signal<CardEditorUxMode>(loadEditorUxMode());
+  /** Internal snapshot of the initial draft for dirty tracking. */
   private readonly initialSnapshot = signal('');
+  /** Internal snapshot of the initial meta for dirty tracking. */
   private readonly initialMetaSnapshot = signal('');
 
+  /** Computed default appearance from user preferences. */
   readonly defaultAppearance = computed(() => {
     const prefs = this.userStore.preferences();
     return { theme: prefs.theme, fontSize: prefs.fontSize };
   });
 
+  /** Whether the draft has unsaved changes compared to the initial snapshot. */
   readonly dirty = computed(
     () =>
       serializeDraft(this.draft()) !== this.initialSnapshot() ||
       JSON.stringify(this.indexMeta()) !== this.initialMetaSnapshot(),
   );
 
+  /** Whether to show the creation wizard (create mode with basic UX). */
   readonly showWizard = computed(
     () => this.data.mode === 'create' && this.editorUxMode() === 'basic',
   );
 
+  /** Computed dialog title based on mode (create vs edit) and card kind. */
   readonly title = computed(() => {
     if (this.data.mode === 'create') {
       return `Новая карточка · ${this.kindLabels[this.data.kind]}`;

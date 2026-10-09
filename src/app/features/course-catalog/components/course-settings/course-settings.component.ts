@@ -27,6 +27,11 @@ import type { RomanizationOption } from '../../../../shared/ui/course-display-se
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
+/**
+ * Course catalog settings component. Manages language pair settings including
+ * romanization display, IPA, tone coloring, and tracing preferences.
+ * @remarks Settings are scoped to the active language pair and persisted via `UserStore`.
+ */
 @Component({
   selector: 'app-course-catalog-settings',
   imports: [
@@ -46,25 +51,37 @@ export class CourseCatalogSettingsComponent {
   private readonly userStore = inject(UserStore);
   private readonly catalogStore = inject(CourseCatalogStore);
 
-  // --- State from stores ---
+  /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
+  /** Active language pair ID from the store. */
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Settings from store
+  /** Draft display romanization systems. */
   readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  /** Draft answer romanization systems. */
   readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  /** Draft IPA display preference. */
   readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  /** Draft custom IPA variant label. */
   readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  /** Draft answer display modes. */
   readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  /** Draft tone color enabled preference. */
   readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  /** Draft tone color scheme preference. */
   readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  /** Draft tracing stroke duration preference. */
   readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
 
-  // Constants
+  /** Available tone color scheme options. */
   readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
+  /** Tone marks for preview display. */
   readonly tonePreviewMarks: readonly ToneMark[] = [1, 2, 3, 4, 5];
+  /** Minimum tracing stroke duration in seconds. */
   readonly tracingDurationMin = TRACING_STROKE_DURATION_BOUNDS.minSec;
+  /** Maximum tracing stroke duration in seconds. */
   readonly tracingDurationMax = TRACING_STROKE_DURATION_BOUNDS.maxSec;
+  /** Tracing stroke duration step in seconds. */
   readonly tracingDurationStep = TRACING_STROKE_DURATION_BOUNDS.stepSec;
 
   // ---- Computed ----

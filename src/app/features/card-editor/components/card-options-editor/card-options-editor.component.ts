@@ -27,6 +27,11 @@ export type CardOptionsEditorConfig = {
   showCorrectRadio: boolean;
 };
 
+/**
+ * Reusable options editor component for managing choice card options (text, lexemes, correct index).
+ *
+ * @remarks Supports lexeme display, add/remove options, and correct answer selection.
+ */
 @Component({
   selector: 'app-card-options-editor',
   imports: [
@@ -43,19 +48,30 @@ export type CardOptionsEditorConfig = {
   styleUrl: './card-options-editor.component.scss',
 })
 export class CardOptionsEditorComponent {
+  /** Required configuration for the options editor (title, prefix, show correct radio). */
   readonly config = input.required<CardOptionsEditorConfig>();
+  /** Required array of option texts. */
   readonly options = input.required<readonly string[]>();
+  /** Required array of lexeme draft fields for each option. */
   readonly lexemes = input.required<readonly LexemeDraftFields[]>();
+  /** Index of the correct option (default: 0). */
   readonly correctIndex = input(0);
+  /** Whether to show lexeme fields for each option. */
   readonly showLexemes = input(false);
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
 
+  /** Emits the updated editor state when options change. */
   readonly stateChange = output<CardOptionsEditorState>();
 
+  /** Minimum allowed number of options (2). */
   readonly minOptions = MIN_CARD_OPTIONS;
+  /** Maximum allowed number of options (8). */
   readonly maxOptions = MAX_CARD_OPTIONS;
 
+  /** Computed current state of the options editor. */
   readonly editorState = computed(
     (): CardOptionsEditorState => ({
       options: this.options(),

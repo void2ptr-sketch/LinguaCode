@@ -5,6 +5,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { CardAppearanceDraft } from '../../types';
 
+/**
+ * Form fields component for card appearance settings (theme, font size).
+ * @remarks Binds to `CardAppearanceDraft` via two-way binding pattern using `input()` and `output()`.
+ */
 @Component({
   selector: 'app-card-appearance-fields',
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
@@ -12,8 +16,10 @@ import { CardAppearanceDraft } from '../../types';
   styleUrl: './card-appearance-fields.component.scss',
 })
 export class CardAppearanceFieldsComponent {
+  /** Required card appearance draft data (theme, font size). */
   readonly appearance = input.required<CardAppearanceDraft>();
 
+  /** Emits updated appearance data when the user changes theme or font size. */
   readonly appearanceChange = output<CardAppearanceDraft>();
 
   updateTheme(theme: string): void {

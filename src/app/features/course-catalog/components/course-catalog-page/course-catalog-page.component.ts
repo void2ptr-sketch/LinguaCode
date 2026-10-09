@@ -37,6 +37,11 @@ import { CourseCatalogProgramsComponent } from '../program-list/program-list.com
 
 let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
 
+/**
+ * Course catalog page component. Main entry point for browsing courses, managing user profiles,
+ * and configuring language pair settings.
+ * @remarks Composed of three sub-tabs: Courses, Programs, and Settings.
+ */
 @Component({
   selector: 'app-course-catalog-page',
   imports: [
@@ -59,51 +64,75 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly router = inject(Router);
   readonly catalogStore = inject(CourseCatalogStore);
 
-  // Прямые ссылки на компоненты (без lazy-loading)
+  /** Direct references to sub-tab components. */
   readonly coursesComponent = CourseCatalogCoursesComponent;
   readonly settingsComponent = CourseCatalogSettingsComponent;
   readonly programsComponent = CourseCatalogProgramsComponent;
 
-  // --- State from store ---
+  /** Paginated course items from the catalog store. */
   readonly items = this.catalogStore.items;
+  /** Total number of course items. */
   readonly totalItems = this.catalogStore.totalItems;
+  /** Current page index. */
   readonly pageIndex = this.catalogStore.pageIndex;
+  /** Page size for pagination. */
   readonly pageSize = this.catalogStore.pageSize;
+  /** Whether the catalog is currently loading. */
   readonly loading = this.catalogStore.loading;
+  /** Error message if the catalog failed to load. */
   readonly error = this.catalogStore.error;
+  /** Progress percentage by course ID. */
   readonly progressByCourseId = this.catalogStore.progressByCourseId;
+  /** Set of completed course IDs. */
   readonly completedCourseIds = this.catalogStore.completedCourseIds;
 
-  // User profile state
+  /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
+  /** User preferences signal from the store. */
   readonly preferences = this.userStore.preferences;
+  /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
+  /** Active language pair ID from the store. */
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
-  // Store drafts
+  /** Draft value for the user's display name. */
   readonly nameDraft = this.catalogStore.nameDraft;
+  /** Draft value for the learning proficiency level. */
   readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  /** Draft value for the application theme. */
   readonly themeDraft = this.catalogStore.themeDraft;
+  /** Draft value for the font size preference. */
   readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  /** Draft value for the color scheme. */
   readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  /** Draft value for the card focus fullscreen preference. */
   readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
 
-  // Course tab from store
+  /** Draft value for the known (source) language. */
   readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  /** Draft value for the learning (target) language. */
   readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
 
-  // Settings tab from store
+  /** Draft ID for the settings language pair. */
   readonly settingsPairIdDraft = this.catalogStore.settingsPairIdDraft;
+  /** Draft display romanization systems. */
   readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  /** Draft answer romanization systems. */
   readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  /** Draft IPA display preference. */
   readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  /** Draft custom IPA variant label. */
   readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  /** Draft answer display modes. */
   readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  /** Draft tone color enabled preference. */
   readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  /** Draft tone color scheme preference. */
   readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  /** Draft tracing stroke duration preference. */
   readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
 
-  // Tab control from store
+  /** Currently selected tab index. */
   readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
 
   // Reload catalog on active pair change

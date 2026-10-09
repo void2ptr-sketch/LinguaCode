@@ -11,6 +11,11 @@ import type { DrawCardDraft, KeyboardCardDraft } from '../../../../types';
 
 export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;
 
+/**
+ * Form component for input-type cards (keyboard and draw). Manages answer inputs,
+ * reference hints, and Hanzi target character for draw cards.
+ * @remarks Syncs lexeme primary from text for draw cards.
+ */
 @Component({
   selector: 'app-input-card-form',
   imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
@@ -18,18 +23,25 @@ export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;
   styleUrl: './input-card-form.component.scss',
 })
 export class InputCardFormComponent {
+  /** Required input card draft (keyboard or draw). */
   readonly draft = input.required<InputCardDraft>();
+  /** Whether to hide the prompt field. */
   readonly hidePrompt = input(false);
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
 
+  /** Emits the updated input card draft when the user makes changes. */
   readonly draftChange = output<InputCardDraft>();
 
+  /** Computed keyboard card draft, or null if the current kind is not 'keyboard'. */
   readonly keyboardDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'keyboard' ? draft : null;
   });
 
+  /** Computed draw card draft, or null if the current kind is not 'draw'. */
   readonly drawDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;

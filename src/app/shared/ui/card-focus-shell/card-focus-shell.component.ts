@@ -16,6 +16,12 @@ import { UserStore } from '../../../core/state';
 
 export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
 
+/**
+ * Card focus shell component. Provides fullscreen mode for card practice,
+ * detaching the host element from its parent and appending to body.
+ * @remarks Supports keyboard (Escape) exit, auto-enter on learning tab, and
+ * preference persistence via `UserStore`.
+ */
 @Component({
   selector: 'app-card-focus-shell',
   imports: [MatButtonModule, MatIconModule, MatTooltipModule],
@@ -27,23 +33,13 @@ export class CardFocusShellComponent {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly userStore = inject(UserStore);
 
-  /**
-   * Show fullscreen toggle button.
-   *
-   * @remarks
-   * Set to `false` for previews that already have their own chrome/container.
-   */
+  /** Show fullscreen toggle button. */
   readonly focusControlsEnabled = input(true);
 
-  /**
-   * Auto-enter fullscreen on the Learning tab if enabled in user profile.
-   *
-   * @remarks
-   * When `true` and `userStore.preferences().cardFocusFullscreen` is also true,
-   * the component enters fullscreen mode on initialization.
-   */
+  /** Auto-enter fullscreen on the Learning tab if enabled in user profile. */
   readonly autoEnterFullscreen = input(false);
 
+  /** Whether the shell is currently in fullscreen mode. */
   readonly fullscreen = signal(false);
 
   private autoEnterWasActive = false;

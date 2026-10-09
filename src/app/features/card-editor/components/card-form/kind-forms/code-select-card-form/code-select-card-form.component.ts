@@ -14,6 +14,10 @@ import type { CodeHighlightLanguage } from '../../../../../../core/models';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
 import { CodeHighlightComponent } from '../../../../../../shared/ui/code-highlight';
 
+/**
+ * Form component for code-select cards. Manages code prompt, code options, and correct answer selection.
+ * @remarks Supports syntax highlighting preview and up to 8 code options.
+ */
 @Component({
   selector: 'app-code-select-card-form',
   imports: [
@@ -30,11 +34,15 @@ import { CodeHighlightComponent } from '../../../../../../shared/ui/code-highlig
   styleUrl: './code-select-card-form.component.scss',
 })
 export class CodeSelectCardFormComponent {
+  /** Required code-select card draft. */
   readonly draft = input.required<CodeSelectCardDraft>();
 
+  /** Emits the updated code-select card draft when the user makes changes. */
   readonly draftChange = output<CodeSelectCardDraft>();
 
+  /** Available code highlight languages. */
   readonly languages = CODE_HIGHLIGHT_LANGUAGES;
+  /** Labels for code highlight languages. */
   readonly languageLabels = CODE_HIGHLIGHT_LANGUAGE_LABELS;
 
   updateDraft(next: CodeSelectCardDraft): void {

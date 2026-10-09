@@ -8,17 +8,26 @@ import type { CardOptionsEditorState } from '../../../../utils/card-options-edit
 import type { SoundCardDraft } from '../../../../types';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';
 
+/**
+ * Form component for sound/media cards. Manages audio labels, known options, and lexeme sync.
+ * @remarks In basic mode, automatically syncs `audioLabelLexeme` from the audio label text.
+ */
 @Component({
   selector: 'app-media-card-form',
   imports: [FormsModule, MatFormFieldModule, MatInputModule, CardOptionsEditorComponent],
   templateUrl: './media-card-form.component.html',
 })
 export class MediaCardFormComponent {
+  /** Required sound card draft. */
   readonly draft = input.required<SoundCardDraft>();
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
+  /** Whether the editor is in advanced mode (disables auto-lexeme sync). */
   readonly isAdvanced = input(false);
 
+  /** Emits the updated sound card draft when the user makes changes. */
   readonly draftChange = output<SoundCardDraft>();
 
   updateDraft(next: SoundCardDraft): void {

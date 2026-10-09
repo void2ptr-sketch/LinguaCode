@@ -78,31 +78,48 @@ type TabDefinition = {
 export class CardFormComponent implements OnInit {
   private readonly hierarchyService = inject(CardCatalogHierarchyService);
 
+  /** Required card draft being edited. */
   readonly draft = input.required<CardDraft>();
+  /** Unique identifier for the preview card element. */
   readonly previewId = input('preview-card');
+  /** Known (source) language for the card content. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for the card content. */
   readonly learningLanguage = input<ContentLanguage>('en');
+  /** Default appearance settings (theme, font size) for the preview. */
   readonly defaultAppearance = input<CardAppearance>({ theme: 'azure-blue', fontSize: 'md' });
+  /** Optional card index meta override. */
   readonly meta = input<CardIndexMetaOverride | undefined>(undefined);
 
+  /** Emits the updated card draft when the user makes changes. */
   readonly draftChange = output<CardDraft>();
+  /** Emits when the known language changes. */
   readonly knownLanguageChange = output<ContentLanguage>();
+  /** Emits when the learning language changes. */
   readonly learningLanguageChange = output<ContentLanguage>();
+  /** Emits the updated card index meta override. */
   readonly metaChange = output<CardIndexMetaOverride | undefined>();
 
+  /** Available courses for the current language pair. */
   readonly availableCourses = signal<readonly CourseOption[]>([]);
+  /** Available lessons for the selected course. */
   readonly availableLessons = signal<readonly LessonOption[]>([]);
+  /** Available scenarios for the selected lesson. */
   readonly availableScenarios = signal<readonly ScenarioOption[]>([]);
 
+  /** Computed kind group (e.g., 'choice', 'input', 'code-select') for the current draft. */
   readonly kindGroup = computed(() => cardFormKindGroup(this.draft().kind));
 
+  /** Computed effective appearance (defaults from input). */
   readonly effectiveAppearance = computed(() => this.defaultAppearance());
 
+  /** Computed draft merged with effective appearance for preview rendering. */
   readonly draftForPreview = computed(() => ({
     ...this.draft(),
     appearance: this.effectiveAppearance(),
   }));
 
+  /** Computed normalized Card object for the preview. Falls back to a synthetic card. */
   readonly previewCard = computed((): Card => {
     return (
       normalizeCardDraft(this.draftForPreview(), this.previewId()) ??
@@ -110,6 +127,7 @@ export class CardFormComponent implements OnInit {
     );
   });
 
+  /** Computed font size from the effective appearance. */
   readonly previewFontSize = computed(() => this.effectiveAppearance().fontSize);
 
   readonly languages = contentLanguages();

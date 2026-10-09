@@ -10,6 +10,11 @@ import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import type { PageEvent } from '@angular/material/paginator';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
+/**
+ * Course programs list component. Displays paginated course cards with progress indicators
+ * and a "Start" button to launch practice sessions.
+ * @remarks Delegates state to `CourseCatalogStore`.
+ */
 @Component({
   selector: 'app-course-catalog-programs',
   imports: [
@@ -26,20 +31,28 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
   styleUrl: './program-list.component.scss',
 })
 export class CourseCatalogProgramsComponent {
-  // Outputs for actions that involve parent business logic
+  /** Emits when the user requests to reload the course list. */
   readonly loadRequested = output<void>();
+  /** Emits the course ID when the user clicks "Start". */
   readonly startCourse = output<string>();
 
   readonly catalogStore = inject(CourseCatalogStore);
 
-  // --- State from store ---
+  /** Whether the catalog is currently loading. */
   readonly loading = this.catalogStore.loading;
+  /** Error message if the catalog failed to load. */
   readonly error = this.catalogStore.error;
+  /** Paginated course items from the catalog store. */
   readonly items = this.catalogStore.items;
+  /** Total number of course items. */
   readonly totalItems = this.catalogStore.totalItems;
+  /** Current page index. */
   readonly pageIndex = this.catalogStore.pageIndex;
+  /** Page size for pagination. */
   readonly pageSize = this.catalogStore.pageSize;
+  /** Progress percentage by course ID. */
   readonly progressByCourseId = this.catalogStore.progressByCourseId;
+  /** Set of completed course IDs. */
   readonly completedCourseIds = this.catalogStore.completedCourseIds;
 
   // ---- Methods ----

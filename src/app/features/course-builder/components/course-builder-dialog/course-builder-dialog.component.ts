@@ -18,6 +18,10 @@ import type {
 } from './course-builder-dialog.types';
 import type { CourseFormDraft } from '../../types';
 
+/**
+ * Course builder dialog component. Provides a modal interface for creating and editing courses.
+ * @remarks Supports PDF export with or without hints. Tracks dirty state to prompt on unsaved changes.
+ */
 @Component({
   selector: 'app-course-builder-dialog',
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, CourseFormComponent],
@@ -32,9 +36,12 @@ export class CourseBuilderDialogComponent implements OnInit {
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
 
+  /** Current course form draft being edited or created. */
   readonly draft = signal<CourseFormDraft>(emptyCourseFormDraft());
+  /** Internal snapshot of the initial draft for dirty tracking. */
   private readonly initialSnapshot = signal('');
 
+  /** Whether the draft has unsaved changes compared to the initial snapshot. */
   readonly dirty = computed(
     () => serializeCourseFormDraft(this.draft()) !== this.initialSnapshot(),
   );

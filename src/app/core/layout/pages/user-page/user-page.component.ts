@@ -21,6 +21,11 @@ import {
   contentLanguages,
 } from '../../../data/language-pair/language-pair.utils';
 
+/**
+ * User profile page component. Allows users to manage their display name, theme preferences,
+ * language pair, and learning proficiency level.
+ * @remarks Uses draft signals for form fields that are committed to `UserStore` on save.
+ */
 @Component({
   selector: 'app-user-page',
   imports: [
@@ -41,20 +46,32 @@ import {
 export class UserPageComponent implements OnInit {
   private readonly userStore = inject(UserStore);
 
+  /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
+  /** User preferences signal from the store. */
   readonly preferences = this.userStore.preferences;
+  /** Available content languages. */
   readonly languages = contentLanguages();
+  /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
+  /** Draft value for the user's display name. */
   readonly nameDraft = signal(this.displayName());
+  /** Draft value for the learning proficiency level. */
   readonly learningProficiencyDraft = signal<LearningProficiencyLevel>(
     this.preferences().learningProficiencyLevel,
   );
+  /** Available learning proficiency level options. */
   readonly learningProficiencyOptions = LEARNING_PROFICIENCY_LEVELS;
+  /** Draft value for the application theme. */
   readonly themeDraft = signal(this.preferences().theme);
+  /** Draft value for the font size preference. */
   readonly fontSizeDraft = signal<UserPreferences['fontSize']>(this.preferences().fontSize);
+  /** Draft value for the color scheme (light/dark/system). */
   readonly colorSchemeDraft = signal<AppColorScheme>(this.preferences().colorScheme);
+  /** Draft value for the card focus fullscreen preference. */
   readonly cardFocusFullscreenDraft = signal(this.preferences().cardFocusFullscreen);
+  /** Currently selected tab index in the settings tabs. */
   readonly selectedTabIndex = signal(0);
 
   ngOnInit(): void {

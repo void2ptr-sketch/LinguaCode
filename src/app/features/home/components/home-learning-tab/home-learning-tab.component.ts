@@ -13,6 +13,11 @@ import {
   continueButtonLabel,
 } from '../../types/learning-dashboard.types';
 
+/**
+ * Home learning tab component. Displays the learning dashboard with course progress,
+ * roadmap, and a "Continue" button for resuming the last session.
+ * @remarks Reloads automatically when the active language pair or results change.
+ */
 @Component({
   selector: 'app-home-learning-tab',
   imports: [
@@ -32,19 +37,31 @@ export class HomeLearningTabComponent {
   private readonly userStore = inject(UserStore);
   private readonly resultsStore = inject(LearningResultsStore);
 
+  /** Whether the dashboard is currently loading. */
   readonly loading = this.dashboard.loading;
+  /** Error message if the dashboard failed to load. */
   readonly error = this.dashboard.error;
+  /** Currently loaded course. */
   readonly course = this.dashboard.course;
+  /** Resume target for the "Continue" button. */
   readonly resumeTarget = this.dashboard.resumeTarget;
+  /** Learning roadmap for the current course. */
   readonly roadmap = this.dashboard.roadmap;
+  /** Overall course progress data. */
   readonly courseProgress = this.dashboard.courseProgress;
 
+  /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
+  /** Formatted language pair label (e.g., "RU → EN"). */
   readonly languagePairLabel = this.userStore.languagePairLabel;
 
+  /** Computed query parameters for the "Continue" link. */
   readonly continueQueryParams = computed(() => buildContinueLinkQueryParams(this.resumeTarget()));
+  /** Computed label for the "Continue" button. */
   readonly continueLabel = computed(() => continueButtonLabel(this.resumeTarget()));
+  /** Overall accuracy percentage from the results store. */
   readonly accuracyPercent = this.resultsStore.accuracyPercent;
+  /** Total number of learning results. */
   readonly totalResults = this.resultsStore.totalCount;
 
   private readonly reloadOnContextChange = effect(() => {

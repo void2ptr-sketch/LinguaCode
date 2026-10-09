@@ -13,6 +13,11 @@ import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
+/**
+ * Timed card component. Displays a multiple-choice exercise with a countdown timer.
+ * Emits `timeExpired` when the user fails to answer within the time limit.
+ * @remarks Timer starts on `ngOnInit` and is cleared on `ngOnDestroy`.
+ */
 @Component({
   selector: 'app-timed-card',
   imports: [
@@ -53,6 +58,7 @@ export class TimedCardComponent implements OnInit, OnDestroy {
   /** Emits when the time limit expires without an answer. */
   readonly timeExpired = output<void>();
 
+  /** Remaining seconds in the countdown timer. */
   readonly secondsLeft = signal(0);
   private timerId: number | null = null;
 
