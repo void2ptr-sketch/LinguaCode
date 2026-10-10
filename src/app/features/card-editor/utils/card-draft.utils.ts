@@ -9,7 +9,16 @@ import {
   emptyOptionLexemes,
 } from '../types';
 
-/** Иерархические поля карточки: курс, урок, сценарий. */
+/**
+ * Extracts hierarchical fields (course, lesson, scenario) from a card.
+ *
+ * @remarks
+ * Used by `emptyCardDraft` and `cardToDraft` to populate form fields
+ * with course/lesson/scenario references. Returns empty strings when card is undefined.
+ *
+ * @param card - The card to extract fields from (may be undefined for new cards).
+ * @returns An object with courseId, lessonId, and scenarioId.
+ */
 function hierarchyFields(card?: { courseId?: string; lessonId?: string; scenarioId?: string }) {
   return {
     courseId: card?.courseId ?? '',
