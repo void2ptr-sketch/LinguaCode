@@ -35,12 +35,6 @@ export class HanziDataService {
   readonly lastLoadedCharacter = signal<string | null>(null);
 
   /**
-   * Returns the primary asset URL for a character.
-   *
-   * @param character - The Chinese character.
-   * @returns The primary asset URL (main path, falls back to radical path).
-   */
-  /**
    * Builds the full URL for a Hanzi character asset.
    *
    * @param character - The character string.
