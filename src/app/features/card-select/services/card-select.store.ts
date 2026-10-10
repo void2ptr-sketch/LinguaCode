@@ -119,11 +119,14 @@ export class CardSelectStore {
   }
 
   /**
-   * Sets the loading state.
-   *
-   * @param loading - Whether cards are being loaded.
-   */
-  setLoading(loading: boolean): void {
+    * Sets the loading state.
+    *
+    * @remarks
+    * Clears any existing error when loading starts.
+    *
+    * @param loading - Whether cards are being loaded.
+    */
+   setLoading(loading: boolean): void {
     this.loading.set(loading);
     if (loading) {
       this.error.set(null);
@@ -141,11 +144,14 @@ export class CardSelectStore {
   }
 
   /**
-   * Selects an option index for multiple-choice cards.
-   *
-   * @param index - The zero-based index of the selected option.
-   */
-  selectOption(index: number): void {
+    * Selects an option index for multiple-choice cards.
+    *
+    * @remarks
+    * No-op if feedback is already shown or the session is completed.
+    *
+    * @param index - The zero-based index of the selected option.
+    */
+   selectOption(index: number): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -154,11 +160,14 @@ export class CardSelectStore {
   }
 
   /**
-   * Sets the text answer for keyboard cards.
-   *
-   * @param value - The entered text.
-   */
-  setAnswerText(value: string): void {
+    * Sets the text answer for keyboard cards.
+    *
+    * @remarks
+    * No-op if feedback is already shown or the session is completed.
+    *
+    * @param value - The entered text.
+    */
+   setAnswerText(value: string): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -167,11 +176,14 @@ export class CardSelectStore {
   }
 
   /**
-   * Marks the memory board as complete.
-   *
-   * @param value - Whether the memory board is complete.
-   */
-  setMemoryComplete(value: boolean): void {
+    * Marks the memory board as complete.
+    *
+    * @remarks
+    * No-op if feedback is already shown or the session is completed.
+    *
+    * @param value - Whether the memory board is complete.
+    */
+   setMemoryComplete(value: boolean): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -180,11 +192,15 @@ export class CardSelectStore {
   }
 
   /**
-   * Sets the draw submission state.
-   *
-   * @param value - Whether the draw answer has been submitted.
-   */
-  setDrawSubmitted(value: boolean): void {
+    * Sets the draw submission state.
+    *
+    * @remarks
+    * No-op if feedback is already shown or the session is completed.
+    * Clears `drawAnswer` when `value` is `false`.
+    *
+    * @param value - Whether the draw answer has been submitted.
+    */
+   setDrawSubmitted(value: boolean): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -196,11 +212,14 @@ export class CardSelectStore {
   }
 
   /**
-   * Sets the submitted draw answer payload.
-   *
-   * @param payload - The draw answer payload, or null to clear.
-   */
-  setDrawAnswer(payload: DrawAnswerPayload | null): void {
+    * Sets the submitted draw answer payload.
+    *
+    * @remarks
+    * No-op if feedback is already shown or the session is completed.
+    *
+    * @param payload - The draw answer payload, or null to clear.
+    */
+   setDrawAnswer(payload: DrawAnswerPayload | null): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -274,11 +293,15 @@ export class CardSelectStore {
   }
 
   /**
-   * Changes the session direction and resets the current interaction.
-   *
-   * @param direction - The new card direction.
-   */
-  setSessionDirection(direction: CardDirection): void {
+    * Changes the session direction and resets the current interaction.
+    *
+    * @remarks
+    * No-op if the direction is unchanged. Resets all interaction state
+    * (selection, answer, memory, draw, feedback).
+    *
+    * @param direction - The new card direction.
+    */
+   setSessionDirection(direction: CardDirection): void {
     if (direction === this.sessionDirection()) {
       return;
     }
@@ -306,7 +329,13 @@ export class CardSelectStore {
     this.completed.set(false);
   }
 
-  private answerState() {
+  /**
+    * Builds the current answer state object from all interaction signals.
+    *
+    * @returns The answer state with all interaction fields.
+    * @private
+    */
+   private answerState() {
     return {
       selectedIndex: this.selectedIndex(),
       answerText: this.answerText(),
@@ -317,7 +346,16 @@ export class CardSelectStore {
     };
   }
 
-  private resetInteraction(): void {
+  /**
+    * Resets all interaction state (selection, answer, memory, draw, feedback).
+    *
+    * @remarks
+    * Increments `memoryBoardNonce` if the current card is a memory card
+    * to trigger column randomization.
+    *
+    * @private
+    */
+   private resetInteraction(): void {
     this.selectedIndex.set(null);
     this.answerText.set('');
     this.memoryComplete.set(false);
