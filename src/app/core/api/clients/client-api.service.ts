@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import { ApiListResponse, ApiResponse } from './api.types';
-import { buildApiUrl } from './api-url';
+import { ApiListResponse, ApiResponse } from './../api.types';
+import { buildApiUrl } from './../api-url';
 
 /**
  * Generic HTTP API client with Promise-based methods.
@@ -12,7 +12,7 @@ import { buildApiUrl } from './api-url';
  * All methods return Promises for synchronous-style consumption.
  */
 @Injectable({ providedIn: 'root' })
-export class ApiClient {
+export class ClientApi {
   private readonly http = inject(HttpClient);
 
   /**

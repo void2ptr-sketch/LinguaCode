@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { ApiErrorBody, HttpApiError } from './api.types';
+import { ApiErrorBody, HttpApiError } from '../api.types';
 
 const DEFAULT_ERROR_MESSAGE = 'Произошла ошибка при обращении к серверу';
 

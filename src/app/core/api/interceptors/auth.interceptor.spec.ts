@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { AUTH_TOKEN_STORAGE_KEY, authInterceptor } from './auth.interceptor';
 import { errorInterceptor } from './error.interceptor';
-import { isHttpApiError } from './api-error.utils';
+import { isHttpApiError } from '../errors/api-error.utils';
 
 describe('api interceptors', () => {
   let http: HttpClient;

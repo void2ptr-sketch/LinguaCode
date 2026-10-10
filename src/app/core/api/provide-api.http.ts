@@ -1,10 +1,10 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { authInterceptor } from './auth.interceptor';
+import { authInterceptor } from './interceptors';
 import { cardsApiMockInterceptor } from './cards/cards-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from './scenarios/scenarios-api.mock.interceptor';
 import { coursesApiMockInterceptor } from './courses/courses-api.mock.interceptor';
-import { errorInterceptor } from './error.interceptor';
+import { errorInterceptor } from './interceptors';
 
 /**
  * Provides HTTP client configuration for the API layer.

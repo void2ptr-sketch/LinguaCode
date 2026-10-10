@@ -1,5 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
-import { isApiRequest } from './api-url';
+import { isApiRequest } from '../api-url';
 
 /** Storage key for the authentication token in sessionStorage. */
 export const AUTH_TOKEN_STORAGE_KEY = 'lingua-code.auth-token';
