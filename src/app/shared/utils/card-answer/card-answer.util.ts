@@ -21,7 +21,7 @@ import {
   resolveRomanizationReading,
 } from '../../../core/domain/phonetic/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
-import type { ResolvedOptionCard } from '../../../core/repositories/cards/utils/card-direction.utils';
+import type { ResolvedOptionCard } from '../../../core/models';
 import { CardAnswerState } from '../../types';
 
 /**

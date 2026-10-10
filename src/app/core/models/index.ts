@@ -20,7 +20,13 @@ export type {
   ToneCard,
 } from './card.types';
 export { isOptionCard } from './card.types';
-export type { CardDifficulty, CardIndexEntry, ContentLanguage } from './card-index.types';
+export type {
+  CardDifficulty,
+  CardIndexEntry,
+  CardIndexMetaFixture,
+  CardIndexMetaOverride,
+  ContentLanguage,
+} from './card-index.types';
 export type {
   CardSearchCriteria,
   CardSearchFacets,
@@ -60,21 +66,29 @@ export type {
 } from './course-index.types';
 export type { Lesson } from './lesson.types';
 export type { LearningSessionPreferences } from './learning-session.types';
-export type {
-  User,
-  UserPreferences,
-  CjkLearningPreferences,
-  PhoneticPreferences,
-  AppColorScheme,
-  LearningProficiencyLevel,
-} from './user.types';
+export type { User, UserPreferences } from './user.types';
+export type { AppColorScheme } from './app-color-scheme.types';
+export { DEFAULT_APP_COLOR_SCHEME } from './app-color-scheme.types';
+export type { CjkLearningPreferences, PhoneticPreferences } from './phonetic-content.types';
 export {
-  DEFAULT_APP_COLOR_SCHEME,
   DEFAULT_CJK_LEARNING_PREFERENCES,
   DEFAULT_PHONETIC_PREFERENCES,
-  LEARNING_PROFICIENCY_LEVELS,
+  ROMANIZATION_DISPLAY_ORDER,
+  TRACING_STROKE_DURATION_BOUNDS,
+} from './phonetic-content.types';
+export type { LearningProficiencyLevel } from './learning-proficiency.types';
+export {
   DEFAULT_LEARNING_PROFICIENCY_LEVEL,
-} from './user.types';
+  LEARNING_PROFICIENCY_LEVELS,
+} from './learning-proficiency.types';
+export type {
+  PageRequest,
+  PageResponse,
+  PaginationMeta,
+  PaginationOptions,
+  PaginationSlice,
+  SortDirection,
+} from './pagination.types';
 export type {
   CjkDisplayMode,
   CjkLexeme,
@@ -104,3 +118,4 @@ export {
   TONE_COLOR_SCHEME_IDS,
 } from './tone-color.types';
 export type { UserLanguagePairEntry, UserLanguagePairSettings } from './user-language-pair.types';
+export type { ResolvedMemoryPair, ResolvedOptionCard } from './card-resolution.types';

@@ -35,7 +35,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
-import type { CardIndexMetaOverride } from '../../../../core/repositories/cards/mapping/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../../core/models';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,

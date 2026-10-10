@@ -166,7 +166,7 @@ function readLegacyCards(): readonly Card[] {
 
 function readLegacyCardIndexMeta(): Record<
   string,
-  import('../../cards/mapping/card-index.mapper').CardIndexMetaOverride
+  import('../../../models/card-index.types').CardIndexMetaOverride
 > {
   const raw = localStorage.getItem(LEGACY_CARD_INDEX_META_KEY);
   if (!raw) {
@@ -176,7 +176,7 @@ function readLegacyCardIndexMeta(): Record<
   try {
     const parsed = JSON.parse(raw) as Record<
       string,
-      import('../../cards/mapping/card-index.mapper').CardIndexMetaOverride
+      import('../../../models/card-index.types').CardIndexMetaOverride
     >;
     return parsed && typeof parsed === 'object' ? parsed : {};
   } catch {

@@ -1,4 +1,4 @@
-import type { PageResponse } from '../../shared/utils/pagination';
+import type { PageResponse } from './pagination.types';
 
 import type { ContentLanguage } from './card-index.types';
 import type { ScenarioCardSourceMode } from './scenario-card-source.types';

@@ -1,5 +1,5 @@
 import type { CardDirection } from './language-pair.types';
-import type { CardIndexMetaOverride } from '../repositories/cards/mapping/card-index.mapper';
+import type { CardIndexMetaOverride } from './card-index.types';
 
 /**
  * Supported card kinds for language learning exercises.
@@ -310,12 +310,7 @@ export type Card =
  * These cards share a common answer-checking pattern via `canCheckCardAnswer` and `checkCardAnswer`.
  */
 export type OptionCard =
-  | SelectCard
-  | CodeSelectCard
-  | SymbolCard
-  | SoundCard
-  | TimedCard
-  | ReadingCard;
+  SelectCard | CodeSelectCard | SymbolCard | SoundCard | TimedCard | ReadingCard;
 
 /**
  * Type guard: checks whether a card is an option-based card (multiple choice).

@@ -1,18 +1,8 @@
 import type { Card } from '../../../models';
-import type { CardIndexEntry } from '../../../models/card-index.types';
+import type { CardIndexEntry, CardIndexMetaOverride } from '../../../models/card-index.types';
 import { collectCardIpaReadings } from '../utils/card-ipa-index.utils';
 import { isContentLanguage } from '../../../domain/language-pair/language-pair.utils';
 import { DEFAULT_LANGUAGE_PAIR } from '../../../models/language-pair.types';
-
-/** Переопределение метаданных для отдельной карточки в индексе. */
-export type CardIndexMetaOverride = Partial<
-  Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
->;
-
-/** Фикстура метаданных индекса карточек с маппингом по ID. */
-export type CardIndexMetaFixture = {
-  metaById: Record<string, CardIndexMetaOverride>;
-};
 
 /**
  * Преобразует карточку в запись индекса (`CardIndexEntry`) с учётом метаданных.

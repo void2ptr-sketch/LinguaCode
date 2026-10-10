@@ -2,7 +2,7 @@ import { Injectable, inject, signal } from '@angular/core';
 import { Card, CardKind } from '../../../core/models';
 import { CardsCatalogMockHandler } from '../../../core/api/cards/cards-catalog.mock.handler';
 import { CardRepository, CardSearchService, ScenarioSearchService } from '../../../core/repositories';
-import type { CardIndexMetaOverride } from '../../../core/repositories/cards/mapping/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../core/models';
 import { upsertCardIndexMetaOverride } from '../../../core/repositories/cards/storage/card-index-meta.storage';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardDraft, CardEditorMode } from '../types';

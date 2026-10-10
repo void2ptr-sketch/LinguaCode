@@ -1,7 +1,7 @@
 import type { Card } from '../../../models';
 import type { Course, Lesson } from '../../../models';
 import type { Scenario } from '../../../models';
-import type { CardIndexMetaOverride } from '../../cards/mapping/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../models/card-index.types';
 
 /**
  * A self-contained JSON package for exporting a course from localStorage to repository seed files.
@@ -55,11 +55,7 @@ export type CourseBundleValidation = {
 export type CourseBundleError = {
   /** Error code identifying the type of validation failure. */
   code:
-    | 'criteria-scenario'
-    | 'missing-lesson'
-    | 'missing-scenario'
-    | 'missing-card'
-    | 'missing-meta';
+    'criteria-scenario' | 'missing-lesson' | 'missing-scenario' | 'missing-card' | 'missing-meta';
   /** Human-readable error message. */
   message: string;
   /** ID of the entity that caused the error. */

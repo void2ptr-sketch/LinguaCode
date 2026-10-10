@@ -41,3 +41,24 @@ export type CardIndexEntry = {
   /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
 };
+
+/**
+ * Partial override of card index metadata for a single card.
+ *
+ * @remarks
+ * Used to override index metadata (e.g., from user-content-overlay or fixture data)
+ * on top of values derived from the card itself.
+ */
+export type CardIndexMetaOverride = Partial<
+  Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
+>;
+
+/**
+ * Card index metadata fixture with mapping by card ID.
+ *
+ * @remarks
+ * Provides metadata overrides for multiple cards at once, keyed by card ID.
+ */
+export type CardIndexMetaFixture = {
+  metaById: Record<string, CardIndexMetaOverride>;
+};

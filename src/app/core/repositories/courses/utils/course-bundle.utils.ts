@@ -1,7 +1,7 @@
 import type { Card } from '../../../models';
 import type { Lesson } from '../../../models';
 import type { Scenario } from '../../../models';
-import type { CardIndexMetaOverride } from '../../cards/mapping/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../models/card-index.types';
 import type { CourseCatalogState } from './course-catalog-state';
 import type { CourseBundle, CourseBundleValidation } from './course-bundle.types';
 
@@ -114,7 +114,7 @@ export function collectCourseBundle(
     } else {
       // Если нет ни встроенных, ни во внешнем источнике — ошибка
       errors.push(
-        "`Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`",
+        '`Мета-информация для карточки ${cid} не найдена (нет в card.meta и user-content-overlay)`',
       );
     }
   }

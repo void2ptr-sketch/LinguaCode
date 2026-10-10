@@ -1,24 +1,12 @@
-import type { Card, MemoryPair, OptionCard } from '../../../models';
+import type {
+  Card,
+  CardDirection,
+  MemoryPair,
+  OptionCard,
+  ResolvedMemoryPair,
+  ResolvedOptionCard,
+} from '../../../models';
 import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
-import type { CardDirection } from '../../../models/language-pair.types';
-
-/** Результат разрешения option-карточки с учётом направления сессии. */
-export type ResolvedOptionCard = {
-  prompt: string;
-  promptLexeme?: PhoneticLexeme;
-  options: readonly string[];
-  optionLexemes?: readonly (PhoneticLexeme | undefined)[];
-  correctIndex: number;
-};
-
-/** Результат разрешения memory-пары с учётом направления сессии. */
-export type ResolvedMemoryPair = {
-  left: string;
-  right: string;
-  leftLexeme?: PhoneticLexeme;
-  rightLexeme?: PhoneticLexeme;
-  pairId: string;
-};
 
 /** В сессии направление задаёт toggle; `card.direction` — только default при старте. */
 export function effectiveCardDirection(

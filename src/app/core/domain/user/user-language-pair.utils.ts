@@ -3,10 +3,12 @@ import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
 import type {
   CjkLearningPreferences,
   PhoneticPreferences,
+} from '../../models/phonetic-content.types';
+import type {
   UserLanguagePairEntry,
   UserLanguagePairSettings,
-  UserPreferences,
-} from '../../models/user.types';
+} from '../../models/user-language-pair.types';
+import type { UserPreferences } from '../../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../../security';
 import { normalizeColorScheme } from '../../theme/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../../repositories/cards/utils/card-focus-preference.utils';

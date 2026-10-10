@@ -1,15 +1,5 @@
-/**
- * Application color scheme (light or dark mode).
- *
- * @remarks
- * Distinct from card theme slug — this controls the overall UI appearance.
- */
-export type AppColorScheme = 'light' | 'dark';
-
-/**
- * Default color scheme applied when no user preference exists.
- *
- * @remarks
- * `light` — standard light mode UI. Switched to `dark` via `AppThemeService` based on user preference or system setting.
- */
-export const DEFAULT_APP_COLOR_SCHEME: AppColorScheme = 'light';
+// Re-export color scheme types from core/models (single source of truth).
+// The theme layer (AppThemeService) consumes them from there.
+/* eslint-disable no-restricted-imports -- intentional re-export shim */
+export type { AppColorScheme } from '../models/app-color-scheme.types';
+export { DEFAULT_APP_COLOR_SCHEME } from '../models/app-color-scheme.types';
