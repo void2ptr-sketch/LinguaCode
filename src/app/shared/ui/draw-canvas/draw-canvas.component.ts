@@ -137,7 +137,7 @@ export class DrawCanvasComponent {
   /** Reference to the canvas element. */
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
-  /** Whether any strokes have been drawn. */
+  /** Whether any strokes have been drawn on the canvas. */
   readonly hasStrokes = signal(false);
 
   /** Whether undo is available (at least one stroke exists). */
@@ -149,10 +149,10 @@ export class DrawCanvasComponent {
   /** Current canvas surface height in pixels. */
   readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
 
-  /** Loaded Hanzi character model. */
+  /** Loaded Hanzi character model for the ghost overlay and animations. */
   readonly hanziModel = signal<HanziCharacterModel | null>(null);
 
-  /** Current load state of the Hanzi character. */
+  /** Current load state of the Hanzi character ('idle', 'loading', 'ready', 'missing', 'error'). */
   readonly hanziLoadState = signal<HanziLoadState>('idle');
 
   /** Map of radical character → model for radical hints mode. */
@@ -164,16 +164,24 @@ export class DrawCanvasComponent {
   /** Current tracing animation frame state. */
   readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
 
-  /** Current hint animation frame state. */
+  /** Current hint animation frame state (brush guidance animation). */
   readonly hintFrame = signal<HanziHintStrokeFrame>(EMPTY_HINT_FRAME);
 
-  /** Strokes from the loaded Hanzi model. */
+  /**
+   * Strokes from the loaded Hanzi model.
+   * @remarks
+   * Used for stroke order guides, hint animation, and tracing animation.
+   */
   readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
 
-  /** SVG viewBox string for the canvas. */
+  /** SVG viewBox string for the canvas, derived from surface dimensions. */
   readonly svgViewBox = computed(() => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`);
 
-  /** Hanzi positioner for coordinate transformations. */
+  /**
+   * Hanzi positioner for coordinate transformations.
+   * @remarks
+   * Recreated on every surface dimension change to ensure correct scaling.
+   */
   readonly hanziPositioner = computed(
     () =>
       new HanziPositioner({
@@ -183,18 +191,22 @@ export class DrawCanvasComponent {
       }),
   );
 
-  /** SVG transform for the Hanzi group. */
+  /** SVG transform string for positioning the Hanzi group within the canvas. */
   readonly hanziSvgTransform = computed(() =>
     resolveHanziSvgGroupTransform(this.hanziPositioner()),
   );
 
-  /** Whether Hanzi character data is required for the current mode. */
+  /** Whether Hanzi character data is required for the current canvas mode. */
   readonly hanziDataRequired = computed(() => {
     const mode = this.canvasMode();
     return mode !== 'memory' && mode !== 'radicals' && Boolean(this.ghostCharacter()?.trim());
   });
 
-  /** Whether to show the Hanzi ghost character overlay. */
+  /**
+   * Whether to show the Hanzi ghost character overlay.
+   * @remarks
+   * True when Hanzi data is ready, strokes are available, and ghost opacity is non-zero.
+   */
   readonly showHanziGhost = computed(
     () =>
       (this.hanziDataRequired() || this.showMemoryReviewGhost()) &&
@@ -208,7 +220,7 @@ export class DrawCanvasComponent {
     () => this.showMemoryReview() && this.canvasMode() === 'memory',
   );
 
-  /** Whether to show stroke order guides (dashed lines). */
+  /** Whether to show stroke order guides (dashed lines indicating stroke direction). */
   readonly showHanziGuides = computed(() => {
     const mode = this.canvasMode();
     return (
@@ -216,7 +228,7 @@ export class DrawCanvasComponent {
     );
   });
 
-  /** Whether to show the hint animation (brush guidance). */
+  /** Whether to show the hint animation (brush guidance showing stroke order). */
   readonly showHintAnimation = computed(
     () =>
       this.canvasMode() === 'hints' &&
@@ -224,7 +236,7 @@ export class DrawCanvasComponent {
       this.hanziStrokes().length > 0,
   );
 
-  /** Whether to show the tracing animation (follow-the-path). */
+  /** Whether to show the tracing animation (follow-the-path guidance). */
   readonly showTracingAnimation = computed(
     () =>
       this.canvasMode() === 'tracing' &&
@@ -237,12 +249,17 @@ export class DrawCanvasComponent {
     Math.round(this.userStore.cjkLearning().tracingStrokeDurationSec * 1000),
   );
 
-  /** Whether radical data is required for the current mode. */
+  /** Whether radical data is required for the current canvas mode. */
   readonly radicalDataRequired = computed(
     () => this.canvasMode() === 'radicals' && this.radicalHints().length > 0,
   );
 
-  /** Whether to show the radical hints layer. */
+  /**
+   * Whether to show the radical hints layer.
+   * @remarks
+   * True when in radicals mode, radical data is loaded, and at least one radical
+   * has a stroke model available.
+   */
   readonly showRadicalLayer = computed(
     () =>
       this.radicalDataRequired() &&
@@ -250,7 +267,16 @@ export class DrawCanvasComponent {
       this.radicalHints().some((hint) => this.hasRadicalStrokeModel(hint.character)),
   );
 
-  /** Ghost character opacity based on canvas mode. */
+  /**
+   * Ghost character opacity based on canvas mode.
+   * @remarks
+   * Different modes use different opacity levels for the ghost overlay:
+   * - memory review: 0.38
+   * - tracing: 0.38
+   * - hints: 0.14
+   * - stroke-order: 0.1
+   * - other: 0 (hidden)
+   */
   readonly ghostOpacity = computed(() => {
     if (this.showMemoryReviewGhost()) {
       return 0.38;
@@ -291,12 +317,22 @@ export class DrawCanvasComponent {
       this.observeCanvasResize();
     });
 
+    /**
+     * Effect that syncs the Hanzi character model when the ghost character or mode changes.
+     * @remarks
+     * Loads or reloads the Hanzi character model when `ghostCharacter()` or `canvasMode()` changes.
+     */
     effect(() => {
       const character = this.ghostCharacter()?.trim() ?? '';
       this.canvasMode();
       void this.syncHanziCharacter(character);
     });
 
+    /**
+     * Effect that syncs the guidance animation (tracing/hint) when animation parameters change.
+     * @remarks
+     * Triggers on canvas ref, surface dimensions, Hanzi model/state, canvas mode, and duration changes.
+     */
     effect(() => {
       void [
         this.canvasRef()?.nativeElement,
@@ -310,6 +346,12 @@ export class DrawCanvasComponent {
       untracked(() => this.syncGuidanceAnimation());
     });
 
+    /**
+     * Effect that syncs radical character models when in radicals mode.
+     * @remarks
+     * Loads radical character models when `canvasMode()` is 'radicals' and `radicalHints()` changes.
+     * Clears models and resets state when not in radicals mode.
+     */
     effect(() => {
       const mode = this.canvasMode();
       const hints = this.radicalHints();
@@ -324,6 +366,11 @@ export class DrawCanvasComponent {
       void this.syncRadicalCharacters(characters);
     });
 
+    /**
+     * Effect that redraws the canvas when memory review state changes.
+     * @remarks
+     * Triggers when `showMemoryReview()` becomes true or `memoryStrokeGrades()` changes.
+     */
     effect(() => {
       const reviewActive = this.showMemoryReview();
       const grades = this.memoryStrokeGrades();
@@ -384,12 +431,18 @@ export class DrawCanvasComponent {
     });
   }
 
-  /** Returns the current strokes drawn on the canvas. */
+  /**
+   * Returns the current strokes drawn on the canvas.
+   * @returns A readonly array of stroke paths.
+   */
   getStrokes(): readonly DrawStrokePath[] {
     return this.strokes;
   }
 
-  /** Returns the current canvas surface dimensions. */
+  /**
+   * Returns the current canvas surface dimensions.
+   * @returns An object with `width` and `height` in pixels.
+   */
   getCanvasSize(): { width: number; height: number } {
     return {
       width: this.surfaceWidth(),
@@ -401,6 +454,9 @@ export class DrawCanvasComponent {
    * Replaces all strokes on the canvas.
    *
    * @param strokes - The strokes to set.
+   * @remarks
+   * Clears the active stroke, syncs stroke state, and redraws.
+   * Restarts hint animation if active.
    */
   setStrokes(strokes: readonly DrawStrokePath[]): void {
     this.strokes = strokes.map((stroke) => [...stroke]);
@@ -411,7 +467,9 @@ export class DrawCanvasComponent {
   }
 
   /**
-   * Removes the last stroke from the canvas.
+   * Removes the last stroke from the canvas (undo).
+   * @remarks
+   * No-op if no strokes exist. Syncs stroke state and redraws.
    */
   undoLastStroke(): void {
     if (this.strokes.length === 0) {
@@ -426,6 +484,8 @@ export class DrawCanvasComponent {
 
   /**
    * Clears all strokes from the canvas.
+   * @remarks
+   * Resets the stroke array and active stroke, syncs state, and redraws.
    */
   clearStrokes(): void {
     this.strokes = [];
@@ -439,6 +499,9 @@ export class DrawCanvasComponent {
    * Handles pointer down events to begin drawing a stroke.
    *
    * @param event - The pointer event.
+   * @remarks
+   * Captures the pointer, initializes the active stroke with the first point.
+   * Pauses hint animation if in hints mode.
    */
   onPointerDown(event: PointerEvent): void {
     if (this.disabled()) {
@@ -464,6 +527,8 @@ export class DrawCanvasComponent {
    * Handles pointer move events to extend the current stroke.
    *
    * @param event - The pointer event.
+   * @remarks
+   * Appends the current pointer position to the active stroke and redraws.
    */
   onPointerMove(event: PointerEvent): void {
     if (!this.drawing || this.disabled()) {
@@ -483,6 +548,9 @@ export class DrawCanvasComponent {
    * Handles pointer up events to finalize the current stroke.
    *
    * @param event - The pointer event.
+   * @remarks
+   * Releases pointer capture, pushes the active stroke to the strokes array,
+   * and syncs state. Resumes hint animation if in hints mode.
    */
   onPointerUp(event: PointerEvent): void {
     const canvas = this.canvasRef()?.nativeElement;

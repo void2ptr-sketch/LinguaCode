@@ -57,11 +57,21 @@ export type ScenarioPatch = Partial<
   Pick<Scenario, 'title' | 'description' | 'published' | 'updatedAt'>
 >;
 
-/** IDs of deleted entities tracked in the user content overlay. */
+/**
+ * IDs of deleted entities tracked in the user content overlay.
+ *
+ * @remarks
+ * Used to prevent re-showing deleted system content after user-initiated deletions.
+ * Each array contains the IDs of deleted entities of that type.
+ */
 export type UserContentDeletedIds = {
+  /** IDs of deleted courses. */
   courses?: readonly string[];
+  /** IDs of deleted lessons. */
   lessons?: readonly string[];
+  /** IDs of deleted scenarios. */
   scenarios?: readonly string[];
+  /** IDs of deleted cards. */
   cards?: readonly string[];
 };
 

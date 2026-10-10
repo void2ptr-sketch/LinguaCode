@@ -19,9 +19,16 @@ export type CardKind =
   | 'tone'
   | 'reading';
 
-/** User-configurable appearance settings for cards. */
+/**
+ * User-configurable appearance settings for cards.
+ *
+ * @remarks
+ * Applied to card preview and practice components for consistent styling.
+ */
 export type CardAppearance = {
+  /** Theme name for the card (e.g., 'azure-blue', 'dark'). */
   theme: string;
+  /** Font size preset: small, medium, or large. */
   fontSize: 'sm' | 'md' | 'lg';
 };
 
@@ -92,9 +99,17 @@ export type CodeHighlightLanguage =
   | 'go'
   | 'plain';
 
-/** A code block used in code-select cards. */
+/**
+ * A code block used in code-select cards.
+ *
+ * @remarks
+ * Contains source code and its syntax-highlighting language.
+ * Used for both the prompt and options in code-select exercises.
+ */
 export type CodeBlock = {
+  /** The source code text. */
   code: string;
+  /** Syntax-highlighting language for the code block. */
   language: CodeHighlightLanguage;
 };
 

@@ -21,18 +21,40 @@ export type ScenarioIndexEntry = {
   courseId?: string;
 };
 
-/** Scope filter for scenario listing. */
+/**
+ * Scope filter for scenario listing.
+ *
+ * @remarks
+ * Determines which set of scenarios is shown in the catalog:
+ * - 'mine' — only scenarios authored by the current user
+ * - 'all' — all scenarios (including drafts)
+ * - 'published' — only published scenarios
+ */
 export type ScenarioListScope = 'mine' | 'all' | 'published';
 
-/** Criteria for searching scenarios in the catalog. */
+/**
+ * Criteria for searching scenarios in the catalog.
+ *
+ * @remarks
+ * Used by `ScenarioSearchService` to query the scenario catalog with filters
+ * and pagination. All fields are optional except `page`.
+ */
 export type ScenarioSearchCriteria = {
+  /** Free-text search query. */
   query?: string;
+  /** Filter by author ID. */
   authorId?: string;
+  /** Scope filter (mine, all, or published). */
   scope?: ScenarioListScope;
+  /** Filter by card source mode (fixed or criteria-based). */
   cardSourceMode?: ScenarioCardSourceMode;
+  /** Filter by known (source) language. */
   knownLanguage?: ContentLanguage;
+  /** Filter by learning (target) language. */
   learningLanguage?: ContentLanguage;
+  /** Filter by course ID (scenarios within a specific course). */
   courseId?: string;
+  /** Pagination parameters. */
   page: import('../../shared/utils/pagination').PageRequest;
 };
 

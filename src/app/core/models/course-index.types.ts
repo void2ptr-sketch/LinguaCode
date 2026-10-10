@@ -18,16 +18,36 @@ export type CourseIndexEntry = {
   languagePairSummary: string;
 };
 
-/** Scope filter for course listing. */
+/**
+ * Scope filter for course listing.
+ *
+ * @remarks
+ * Determines which set of courses is shown in the catalog:
+ * - 'mine' — only courses authored by the current user
+ * - 'all' — all courses (including drafts)
+ * - 'published' — only published courses
+ */
 export type CourseListScope = 'mine' | 'all' | 'published';
 
-/** Criteria for searching courses in the catalog. */
+/**
+ * Criteria for searching courses in the catalog.
+ *
+ * @remarks
+ * Used by `CourseSearchService` to query the course catalog with filters
+ * and pagination. All fields are optional except `page`.
+ */
 export type CourseSearchCriteria = {
+  /** Free-text search query. */
   query?: string;
+  /** Filter by author ID. */
   authorId?: string;
+  /** Scope filter (mine, all, or published). */
   scope?: CourseListScope;
+  /** Filter by known (source) language. */
   knownLanguage?: ContentLanguage;
+  /** Filter by learning (target) language. */
   learningLanguage?: ContentLanguage;
+  /** Pagination parameters. */
   page: import('../../shared/utils/pagination').PageRequest;
 };
 

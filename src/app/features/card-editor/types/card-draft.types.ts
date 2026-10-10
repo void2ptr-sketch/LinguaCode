@@ -17,7 +17,12 @@ import { emptyLexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.
  */
 export type CardAppearanceDraft = CardAppearance;
 
-/** Default card direction: known language → learning language. */
+/**
+ * Default card direction: known language → learning language.
+ *
+ * @remarks
+ * Used as the initial direction for new cards in the editor.
+ */
 export const DEFAULT_CARD_DIRECTION: CardDirection = 'known-to-learning';
 
 /**
@@ -188,9 +193,17 @@ export type KeyboardCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a single stroke guide for draw cards. */
+/**
+ * Draft of a single stroke guide for draw cards.
+ *
+ * @remarks
+ * Represents one stroke in the stroke order guide, stored as an SVG path
+ * in the 100x100 viewBox coordinate system.
+ */
 export type DrawStrokeGuideDraft = {
+  /** Zero-based stroke order index. */
   order: number;
+  /** SVG path string in viewBox 0 0 100 100. */
   path: string;
 };
 

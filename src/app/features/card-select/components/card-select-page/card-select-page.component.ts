@@ -167,7 +167,7 @@ export class CardSelectPageComponent implements OnInit {
   /** Warning message when some cards are missing from the scenario. */
   readonly missingCardsWarning = signal<string | null>(null);
 
-  /** Currently active tab index in the learning flow. */
+  /** Currently active tab index in the learning flow (0=course, 1=lessons, 2=scenarios, 3=learning). */
   readonly activeTabIndex = signal<number>(LEARNING_TAB.course);
 
   /**
@@ -389,7 +389,11 @@ export class CardSelectPageComponent implements OnInit {
     }
   });
 
-  /** Font size preference from the user store. */
+  /**
+   * Font size preference from the user store.
+   * @remarks
+   * Bound directly to user preferences — no getter needed since it's used as a signal in the template.
+   */
   readonly fontSize = this.userStore.preferences;
 
   /**
@@ -397,6 +401,7 @@ export class CardSelectPageComponent implements OnInit {
    *
    * @remarks
    * Prevents stale course/lesson/scenario selections when switching language pairs.
+   * Compares the current active language pair ID with the last known ID.
    */
   private readonly resetOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();

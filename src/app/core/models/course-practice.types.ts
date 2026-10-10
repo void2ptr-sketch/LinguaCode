@@ -33,5 +33,11 @@ export const DEFAULT_COURSE_PRACTICE_SETTINGS: CoursePracticeSettings = {
   allowDifficultyFilter: false,
 };
 
-/** Difficulty filter value for the Practice tab. `null` means no filter applied. */
+/**
+ * Difficulty filter value for the Practice tab.
+ *
+ * @remarks
+ * `null` means no filter applied (all difficulties shown).
+ * Non-null values restrict the scenario picker to scenarios with matching difficulty.
+ */
 export type CoursePracticeDifficultyFilter = CardDifficulty | null;

@@ -1,4 +1,11 @@
-/** Practice mode for draw cards: different ways to practice character drawing. */
+/**
+ * Practice mode for draw cards: different ways to practice character drawing.
+ *
+ * @remarks
+ * `freehand` — free drawing without guidance; `memory` — draw from memory with grading;
+ * `tracing` — trace over a guide path; `hints` — draw with partial hints;
+ * `stroke-order` — practice correct stroke order; `radicals` — practice radical components.
+ */
 export type DrawPracticeMode =
   | 'freehand'
   | 'memory'
