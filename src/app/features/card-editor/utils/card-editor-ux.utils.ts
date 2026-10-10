@@ -7,7 +7,7 @@ import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.
  */
 export type CardEditorUxMode = 'basic' | 'advanced';
 
-/** localStorage key for persisting the editor UX mode preference. */
+/** sessionStorage key for persisting the editor UX mode preference. */
 export const EDITOR_UX_MODE_STORAGE_KEY = 'lingua-code.card-editor.ux-mode';
 
 /**
