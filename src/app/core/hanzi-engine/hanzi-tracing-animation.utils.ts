@@ -1,6 +1,8 @@
 import type { HanziPoint } from './hanzi-character.types';
 
-/** Configuration options for the tracing animation. */
+/**
+ * Configuration options for the tracing animation.
+ */
 export type HanziTracingAnimationOptions = {
   /** Duration (ms) to animate each stroke. Defaults to `1000`. */
   strokeDurationMs?: number;
@@ -12,7 +14,9 @@ export type HanziTracingAnimationOptions = {
   sampleSpacing?: number;
 };
 
-/** Position and angle of the tracing tip at a given point along a stroke. */
+/**
+ * Position and angle of the tracing tip at a given point along a stroke.
+ */
 export type HanziTracingTip = {
   /** Current tip position. */
   point: HanziPoint;
@@ -20,7 +24,9 @@ export type HanziTracingTip = {
   angleRad: number;
 };
 
-/** A single frame of the stroke tracing animation. */
+/**
+ * A single frame of the stroke tracing animation.
+ */
 export type HanziTracingFrame = {
   /** Number of strokes already completed. */
   completedStrokeCount: number;
@@ -34,7 +40,9 @@ export type HanziTracingFrame = {
   tip: HanziTracingTip | null;
 };
 
-/** A preprocessed sample of a single stroke, containing both the original and a densified version. */
+/**
+ * A preprocessed sample of a single stroke, containing both the original and a densified version.
+ */
 export type HanziTracingStrokeSample = {
   /** The original median points from the MMH data. */
   original: readonly HanziPoint[];
@@ -42,7 +50,9 @@ export type HanziTracingStrokeSample = {
   densified: readonly HanziPoint[];
 };
 
-/** Default options for tracing animations. */
+/**
+ * Default options for tracing animations.
+ */
 export const DEFAULT_HANZI_TRACING_OPTIONS: Required<HanziTracingAnimationOptions> = {
   strokeDurationMs: 1000,
   delayBetweenStrokesMs: 450,
@@ -50,7 +60,13 @@ export const DEFAULT_HANZI_TRACING_OPTIONS: Required<HanziTracingAnimationOption
   sampleSpacing: 8,
 };
 
-/** Preprocesses median arrays into densified samples ready for animation. */
+/**
+ * Preprocesses median arrays into densified samples ready for animation.
+ *
+ * @param medians - The stroke median point arrays from MMH data.
+ * @param sampleSpacing - Spacing in pixels for densifying polylines. Defaults to `8`.
+ * @returns An array of stroke samples with original and densified point arrays.
+ */
 export function prepareHanziTracingSamples(
   medians: readonly (readonly HanziPoint[])[],
   sampleSpacing = DEFAULT_HANZI_TRACING_OPTIONS.sampleSpacing,
@@ -61,6 +77,14 @@ export function prepareHanziTracingSamples(
   }));
 }
 
+/**
+ * Resolves the current animation frame based on elapsed time and stroke samples.
+ *
+ * @param elapsedMs - Elapsed time in milliseconds since animation start.
+ * @param samples - Preprocessed stroke samples.
+ * @param options - Animation options (stroke duration, delays, etc.).
+ * @returns The current tracing frame with tip position and progress.
+ */
 export function resolveHanziTracingFrame(
   elapsedMs: number,
   samples: readonly HanziTracingStrokeSample[],
@@ -125,7 +149,13 @@ export function resolveHanziTracingFrame(
   return emptyHanziTracingFrame();
 }
 
-/** Slices a polyline to the given progress fraction (`0`–`1`), interpolating at the cut point. */
+/**
+ * Slices a polyline to the given progress fraction (`0`–`1`), interpolating at the cut point.
+ *
+ * @param points - The polyline points.
+ * @param progress - The progress fraction between `0` and `1`.
+ * @returns A new array of points representing the sliced polyline.
+ */
 export function sliceHanziPolylineByProgress(
   points: readonly HanziPoint[],
   progress: number,
@@ -169,6 +199,13 @@ export function sliceHanziPolylineByProgress(
   return slice;
 }
 
+/**
+ * Resolves the tracing tip (position and angle) at a given progress along a polyline.
+ *
+ * @param points - The polyline points.
+ * @param progress - The progress fraction between `0` and `1`.
+ * @returns The tip position and angle, or `null` for empty polylines.
+ */
 export function resolveHanziPolylineTip(
   points: readonly HanziPoint[],
   progress: number,
@@ -197,7 +234,13 @@ export function resolveHanziPolylineTip(
   return { point: tail, angleRad };
 }
 
-/** Returns the reveal progress (`0`–`1`) for a specific stroke based on the current animation frame. */
+/**
+ * Returns the reveal progress (`0`–`1`) for a specific stroke based on the current animation frame.
+ *
+ * @param frame - The current tracing animation frame.
+ * @param strokeIndex - The index of the stroke to query.
+ * @returns `1` if completed, `activeProgress` if active, `0` if not yet reached.
+ */
 export function tracingRevealProgress(frame: HanziTracingFrame, strokeIndex: number): number {
   if (strokeIndex < frame.completedStrokeCount) {
     return 1;

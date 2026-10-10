@@ -5,7 +5,9 @@ import {
   type HanziTracingTip,
 } from './hanzi-tracing-animation.utils';
 
-/** Configuration options for the hint stroke brush animation. */
+/**
+ * Configuration options for the hint stroke brush animation.
+ */
 export type HanziHintStrokeAnimationOptions = {
   /** Duration (ms) to pause at the stroke start before drawing. Defaults to `700`. */
   brushPlacementMs?: number;
@@ -15,10 +17,14 @@ export type HanziHintStrokeAnimationOptions = {
   loopPauseMs?: number;
 };
 
-/** Phase of the hint stroke animation cycle. */
+/**
+ * Phase of the hint stroke animation cycle.
+ */
 export type HanziHintStrokePhase = 'brush-placement' | 'direction';
 
-/** A single frame of the hint stroke animation. */
+/**
+ * A single frame of the hint stroke animation.
+ */
 export type HanziHintStrokeFrame = {
   /** Current animation phase. */
   phase: HanziHintStrokePhase;
@@ -30,14 +36,23 @@ export type HanziHintStrokeFrame = {
   tip: HanziTracingTip | null;
 };
 
-/** Default options for hint stroke animations. */
+/**
+ * Default options for hint stroke animations.
+ */
 export const DEFAULT_HANZI_HINT_STROKE_OPTIONS: Required<HanziHintStrokeAnimationOptions> = {
   brushPlacementMs: 700,
   strokeDurationMs: 1000,
   loopPauseMs: 450,
 };
 
-/** Computes the animation frame for a single hint stroke based on elapsed time. */
+/**
+ * Computes the animation frame for a single hint stroke based on elapsed time.
+ *
+ * @param elapsedMs - Elapsed time in milliseconds since animation start.
+ * @param sample - The preprocessed stroke sample.
+ * @param options - Animation options (durations, delays).
+ * @returns The current hint stroke frame with phase, progress, and tip position.
+ */
 export function resolveHanziHintStrokeFrame(
   elapsedMs: number,
   sample: HanziTracingStrokeSample,

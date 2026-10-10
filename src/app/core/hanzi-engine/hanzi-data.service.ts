@@ -40,6 +40,12 @@ export class HanziDataService {
    * @param character - The Chinese character.
    * @returns The primary asset URL (main path, falls back to radical path).
    */
+  /**
+   * Builds the full URL for a Hanzi character asset.
+   *
+   * @param character - The character string.
+   * @returns The absolute URL to the asset.
+   */
   assetUrl(character: string): string {
     return this.assetUrls(character)[0]!;
   }

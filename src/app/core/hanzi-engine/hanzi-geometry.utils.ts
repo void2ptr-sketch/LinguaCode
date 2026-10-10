@@ -14,12 +14,24 @@ export function hanziAverage(values: readonly number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
-/** Euclidean distance between two points. */
+/**
+ * Euclidean distance between two points.
+ *
+ * @param left - The first point.
+ * @param right - The second point.
+ * @returns The Euclidean distance.
+ */
 export function hanziDistance(left: HanziPoint, right: HanziPoint): number {
   return Math.hypot(left.x - right.x, left.y - right.y);
 }
 
-/** Vector subtraction: `left - right`. */
+/**
+ * Vector subtraction: `left - right`.
+ *
+ * @param left - The minuend point.
+ * @param right - The subtrahend point.
+ * @returns A new point representing the vector difference.
+ */
 export function hanziSubtract(left: HanziPoint, right: HanziPoint): HanziPoint {
   return {
     x: left.x - right.x,
@@ -27,7 +39,12 @@ export function hanziSubtract(left: HanziPoint, right: HanziPoint): HanziPoint {
   };
 }
 
-/** Total polyline length: sum of distances between consecutive points. Returns `0` for fewer than 2 points. */
+/**
+ * Total polyline length: sum of distances between consecutive points.
+ *
+ * @param points - The array of points forming the polyline.
+ * @returns The total length, or `0` for fewer than 2 points.
+ */
 export function hanziLength(points: readonly HanziPoint[]): number {
   if (points.length < 2) {
     return 0;
@@ -41,12 +58,24 @@ export function hanziLength(points: readonly HanziPoint[]): number {
   return total;
 }
 
-/** Checks whether two points have identical `x` and `y` coordinates. */
+/**
+ * Checks whether two points have identical `x` and `y` coordinates.
+ *
+ * @param left - The first point.
+ * @param right - The second point.
+ * @returns `true` if both coordinates match.
+ */
 export function hanziPointsEqual(left: HanziPoint, right: HanziPoint): boolean {
   return left.x === right.x && left.y === right.y;
 }
 
-/** Cosine similarity between two vectors (as angles from the origin). Returns `0` when either vector has zero length. */
+/**
+ * Cosine similarity between two vectors (as angles from the origin).
+ *
+ * @param left - The first vector.
+ * @param right - The second vector.
+ * @returns The cosine similarity (`-1` to `1`), or `0` when either vector has zero length.
+ */
 export function hanziCosineSimilarity(left: HanziPoint, right: HanziPoint): number {
   const leftLength = Math.hypot(left.x, left.y);
   const rightLength = Math.hypot(right.x, right.y);
@@ -57,7 +86,13 @@ export function hanziCosineSimilarity(left: HanziPoint, right: HanziPoint): numb
   return (left.x * right.x + left.y * right.y) / (leftLength * rightLength);
 }
 
-/** Rotates a point around the origin by the given angle `theta` (in radians). */
+/**
+ * Rotates a point around the origin by the given angle `theta` (in radians).
+ *
+ * @param point - The point to rotate.
+ * @param theta - The rotation angle in radians.
+ * @returns The rotated point.
+ */
 export function hanziRotate(point: HanziPoint, theta: number): HanziPoint {
   const cos = Math.cos(theta);
   const sin = Math.sin(theta);
@@ -96,7 +131,16 @@ export function hanziNormalizeCurve(points: readonly HanziPoint[]): HanziPoint[]
   }));
 }
 
-/** Discrete Fréchet distance between two polylines. */
+/**
+ * Discrete Fréchet distance between two polylines.
+ *
+ * @param left - The first polyline.
+ * @param right - The second polyline.
+ * @returns The Fréchet distance, or `Infinity` for empty inputs.
+ * @remarks
+ * Uses dynamic programming to compute the minimum leash length
+ * needed for a person and a dog to traverse their respective paths.
+ */
 export function hanziFrechetDistance(
   left: readonly HanziPoint[],
   right: readonly HanziPoint[],

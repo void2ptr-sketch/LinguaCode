@@ -6,10 +6,14 @@ import { HanziPositioner } from './hanzi-positioner';
 import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
 
-/** Grade assigned to a single user stroke after validation in memory mode. */
+/**
+ * Grade assigned to a single user stroke after validation in memory mode.
+ */
 export type HanziMemoryStrokeGrade = 'correct' | 'incorrect';
 
-/** Result of batch validation of all user strokes in memory mode. */
+/**
+ * Result of batch validation of all user strokes in memory mode.
+ */
 export type HanziMemoryValidationResult = {
   /** Whether the user correctly reproduced all strokes. */
   passed: boolean;
@@ -23,7 +27,9 @@ export type HanziMemoryValidationResult = {
   completed: boolean;
 };
 
-/** Optional configuration for memory validation. */
+/**
+ * Optional configuration for memory validation.
+ */
 export type HanziMemoryValidationOptions = {
   /** Padding (in px) around the character. Defaults to `20`. */
   padding?: number;
@@ -39,12 +45,22 @@ const STROKE_COUNT_TOLERANCE: Record<LearningProficiencyLevel, number> = {
   professional: 0,
 };
 
-/** Returns the allowed stroke count tolerance for the given proficiency level. */
+/**
+ * Returns the allowed stroke count tolerance for the given proficiency level.
+ *
+ * @param level - The learning proficiency level.
+ * @returns The maximum allowed difference between expected and actual stroke count.
+ */
 export function resolveHanziMemoryStrokeCountTolerance(level: LearningProficiencyLevel): number {
   return STROKE_COUNT_TOLERANCE[level];
 }
 
-/** Builds quiz options adjusted for the given proficiency level. */
+/**
+ * Builds quiz options adjusted for the given proficiency level.
+ *
+ * @param proficiencyLevel - The learning proficiency level.
+ * @returns Quiz options with leniency adjusted for the proficiency level.
+ */
 export function resolveHanziMemoryQuizOptions(
   proficiencyLevel: LearningProficiencyLevel,
 ): HanziQuizOptions {
@@ -55,7 +71,16 @@ export function resolveHanziMemoryQuizOptions(
   };
 }
 
-/** Оценка каждого штриха пользователя для подсветки после «Проверить». */
+/**
+ * Grades each user stroke for highlight feedback after "Check" in memory mode.
+ *
+ * @param model - The target HanziCharacterModel.
+ * @param canvasSize - Canvas dimensions in pixels.
+ * @param strokes - The user-drawn strokes in canvas coordinates.
+ * @param proficiencyLevel - The learning proficiency level.
+ * @param options - Optional validation configuration.
+ * @returns An array of grades (`'correct'` or `'incorrect'`) for each stroke.
+ */
 export function gradeHanziMemoryStrokes(
   model: HanziCharacterModel,
   canvasSize: { width: number; height: number },
@@ -81,7 +106,16 @@ export function gradeHanziMemoryStrokes(
   });
 }
 
-/** Batch-валидация всех черт пользователя в memory mode (порядок + форма). */
+/**
+ * Batch-validates all user strokes in memory mode (order + shape).
+ *
+ * @param model - The target HanziCharacterModel.
+ * @param canvasSize - Canvas dimensions in pixels.
+ * @param strokes - The user-drawn strokes in canvas coordinates.
+ * @param proficiencyLevel - The learning proficiency level.
+ * @param options - Optional validation configuration.
+ * @returns The validation result including pass/fail, stroke counts, and mistakes.
+ */
 export function validateHanziMemoryStrokes(
   model: HanziCharacterModel,
   canvasSize: { width: number; height: number },

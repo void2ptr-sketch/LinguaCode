@@ -21,13 +21,17 @@ const LENIENCY_BY_LEVEL: Record<LearningProficiencyLevel, number> = {
   professional: 0.7,
 };
 
-/** Configuration options for a quiz session, extending base quiz options with proficiency level. */
+/**
+ * Configuration options for a quiz session, extending base quiz options with proficiency level.
+ */
 export type HanziQuizSessionOptions = HanziQuizOptions & {
   /** Proficiency level used to adjust leniency. When omitted, leniency is not adjusted. */
   proficiencyLevel?: LearningProficiencyLevel;
 };
 
-/** Summary of a completed quiz session. */
+/**
+ * Summary of a completed quiz session.
+ */
 export type HanziQuizSummary = {
   /** The character that was quizzed. */
   character: string;
@@ -37,7 +41,9 @@ export type HanziQuizSummary = {
   strokeCount: number;
 };
 
-/** Сессия quiz для одного иероглифа (порядок черт, hints, leniency). */
+/**
+ * Session for quizzing a single Hanzi character (stroke order, hints, leniency).
+ */
 export class HanziQuizSession {
   private readonly options: {
     leniency: number;
@@ -59,12 +65,16 @@ export class HanziQuizSession {
   /** Result of the most recently submitted stroke. */
   readonly lastResult = signal<HanziQuizStrokeResult | null>(null);
 
-  /** Number of strokes remaining until completion. */
+  /**
+   * Number of strokes remaining until completion.
+   */
   readonly strokesRemaining = computed(() =>
     Math.max(this.character.strokes.length - this.strokeIndex(), 0),
   );
 
-  /** Whether a hint should be displayed based on the current mistake count. */
+  /**
+   * Whether a hint should be displayed based on the current mistake count.
+   */
   readonly shouldShowHint = computed(() => {
     const threshold = this.options.showHintAfterMisses;
     if (threshold === false) {
@@ -107,13 +117,24 @@ export class HanziQuizSession {
     this.lastResult.set(null);
   }
 
-  /** Submits a stroke drawn on the canvas (in pixel coordinates). Converts to character space internally. */
+  /**
+   * Submits a stroke drawn on the canvas (in pixel coordinates).
+   *
+   * @param canvasPoints - The user-drawn points in canvas pixel coordinates.
+   * @returns The stroke evaluation result.
+   * @remarks Converts to character space internally using the positioner.
+   */
   submitCanvasStroke(canvasPoints: readonly HanziPoint[]): HanziQuizStrokeResult {
     const characterPoints = canvasPoints.map((point) => this.positioner.toCharacterSpace(point));
     return this.submitCharacterStroke(characterPoints);
   }
 
-  /** Submits a stroke already in character (MMH) coordinates for evaluation. */
+  /**
+   * Submits a stroke already in character (MMH) coordinates for evaluation.
+   *
+   * @param characterPoints - The user-drawn points in MMH character coordinates.
+   * @returns The stroke evaluation result.
+   */
   submitCharacterStroke(characterPoints: readonly HanziPoint[]): HanziQuizStrokeResult {
     if (this.completed()) {
       return this.buildResult({
@@ -167,7 +188,11 @@ export class HanziQuizSession {
     return result;
   }
 
-  /** Returns a summary of the session state (mistakes and stroke count). */
+  /**
+   * Returns a summary of the session state (mistakes and stroke count).
+   *
+   * @returns A HanziQuizSummary with character, total mistakes, and stroke count.
+   */
   summary(): HanziQuizSummary {
     return {
       character: this.character.character,
@@ -195,7 +220,12 @@ export class HanziQuizSession {
   }
 }
 
-/** Returns the leniency multiplier for the given proficiency level. */
+/**
+ * Returns the leniency multiplier for the given proficiency level.
+ *
+ * @param level - The learning proficiency level.
+ * @returns The leniency multiplier (higher = more forgiving).
+ */
 export function resolveHanziQuizLeniency(level: LearningProficiencyLevel): number {
   return LENIENCY_BY_LEVEL[level];
 }

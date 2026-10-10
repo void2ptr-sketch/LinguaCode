@@ -29,13 +29,17 @@ const SHAPE_FIT_ROTATIONS = [
   (-1 * Math.PI) / 16,
 ];
 
-/** Metadata about the stroke match, including whether it was drawn backwards. */
+/**
+ * Metadata about the stroke match, including whether it was drawn backwards.
+ */
 export type HanziStrokeMatchMeta = {
   /** Whether the user drew the stroke in reverse direction. */
   isStrokeBackwards: boolean;
 };
 
-/** Result of matching a user-drawn stroke against a target character stroke. */
+/**
+ * Result of matching a user-drawn stroke against a target character stroke.
+ */
 export type HanziStrokeMatchResult = {
   /** Whether the user stroke matches the target stroke. */
   isMatch: boolean;
