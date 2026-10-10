@@ -3,6 +3,11 @@ import { courseIndexMatchesLanguageCriteria } from '../language-pair/language-pa
 
 /**
  * Filters course index entries according to the given search criteria and the current user's ID.
+ *
+ * @param entries - The course index entries to filter.
+ * @param criteria - The search criteria (excluding pagination).
+ * @param currentUserId - The ID of the current user (for scope filtering).
+ * @returns The filtered list of course index entries.
  */
 export function filterCourseIndex(
   entries: readonly CourseIndexEntry[],
@@ -15,7 +20,13 @@ export function filterCourseIndex(
 /**
  * Checks whether a single `CourseIndexEntry` matches the given search criteria.
  *
+ * @remarks
  * Applies scope filtering (`mine` / `published`), author ID, text query, and language pair constraints.
+ *
+ * @param entry - The course index entry to check.
+ * @param criteria - The search criteria (excluding pagination).
+ * @param currentUserId - The ID of the current user (for scope filtering).
+ * @returns `true` if the entry matches all criteria, `false` otherwise.
  */
 export function matchesCourseIndexEntry(
   entry: CourseIndexEntry,

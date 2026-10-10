@@ -149,6 +149,16 @@ export function matchesTagFacetEntry(
   return matchesCardIndexEntry(entry, filters, 'tags');
 }
 
+/**
+ * Filters card index entries according to the given search criteria.
+ *
+ * @remarks
+ * Strips pagination from the criteria and delegates to `matchesCardIndexEntry`.
+ *
+ * @param entries - The card index entries to filter.
+ * @param criteria - The search criteria including pagination.
+ * @returns The filtered list of card index entries.
+ */
 export function filterCardIndex(
   entries: readonly CardIndexEntry[],
   criteria: CardSearchCriteria,
@@ -185,6 +195,17 @@ function collectTags(entries: readonly CardIndexEntry[]): readonly string[] {
   return [...tags].sort((left, right) => left.localeCompare(right, 'ru'));
 }
 
+/**
+ * Builds search facets (facet counts) for card index entries.
+ *
+ * @remarks
+ * Computes counts for known languages, learning languages, difficulties, kinds, and tags.
+ * Each facet excludes its own value from the count (to support multi-select filtering).
+ *
+ * @param entries - The card index entries to analyze.
+ * @param criteria - The current search criteria (excluding pagination).
+ * @returns A `CardSearchFacets` object with facet counts for each field.
+ */
 export function buildCardSearchFacets(
   entries: readonly CardIndexEntry[],
   criteria: CardSearchCriteria,
