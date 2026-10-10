@@ -205,7 +205,13 @@ export type TimedCard = CardBase &
     timeLimitSec: number;
   };
 
-/** Input mode for keyboard cards: free-text, IPA transcription, Pinyin, or auto-detect. */
+/**
+ * Input mode for keyboard cards: free-text, IPA transcription, Pinyin, or auto-detect.
+ *
+ * @remarks
+ * `text` — standard keyboard input; `ipa` — International Phonetic Alphabet;
+ * `pinyin` — Pinyin romanization; `auto` — auto-detect based on context.
+ */
 export type KeyboardAnswerMode = 'text' | 'ipa' | 'pinyin' | 'auto';
 
 /**

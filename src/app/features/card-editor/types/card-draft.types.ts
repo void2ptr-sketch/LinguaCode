@@ -99,7 +99,12 @@ export type SelectCardDraft = LexemeCardDraft & {
   appearance: CardAppearanceDraft;
 };
 
-/** Draft of a memory card (pair matching). */
+/**
+ * Draft of a memory card (pair matching).
+ *
+ * @remarks
+ * User matches known words with their learning-language equivalents.
+ */
 export type MemoryCardDraft = LexemeCardDraft & {
   kind: 'memory';
   title: string;

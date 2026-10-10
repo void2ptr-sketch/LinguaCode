@@ -1,6 +1,12 @@
 import type { CardSearchCriteria, LanguagePair, ScenarioCardSource } from '../../../core/models';
 
-/** Type alias for the card source mode field of a scenario. */
+/**
+ * Type alias for the card source mode field of a scenario.
+ *
+ * @remarks
+ * Determines how cards are sourced: `fixed` (static list), `snapshot` (captured criteria),
+ * or `criteria` (dynamic search with limit).
+ */
 export type ScenarioCardSourceMode = ScenarioCardSource['mode'];
 
 /**
