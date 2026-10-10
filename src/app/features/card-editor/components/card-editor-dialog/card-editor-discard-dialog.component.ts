@@ -2,6 +2,10 @@ import { Component } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
+/**
+ * Confirmation dialog for discarding unsaved changes in the card editor.
+ * @remarks Returns `true` to confirm discard, `false` to cancel.
+ */
 @Component({
   selector: 'app-card-editor-discard-dialog',
   imports: [MatButtonModule, MatDialogModule],

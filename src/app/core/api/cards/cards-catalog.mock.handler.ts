@@ -1,13 +1,13 @@
 import { Injectable, inject } from '@angular/core';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../models';
-import type { CardIndexEntry } from '../../models/card-index.types';
-import { paginateArray } from '../../../shared/pagination';
+import type { CardIndexEntry } from '../../models';
+import { paginateArray } from '../../../shared/utils/pagination';
 
-import { buildCardIndex } from '../../data/cards/card-index.mapper';
-import { loadCardIndexMetaOverrides } from '../../data/cards/card-index-meta.storage';
-import { CardRepository } from '../../data/cards/card.repository';
-import { buildCardSearchFacets, filterCardIndex } from '../../data/cards/card-search.utils';
+import { buildCardIndex } from '../../repositories/cards/mapping/card-index.mapper';
+import { loadCardIndexMetaOverrides } from '../../repositories/cards/storage/card-index-meta.storage';
+import { CardRepository } from '../../repositories/cards/repository/card.repository';
+import { buildCardSearchFacets, filterCardIndex } from '../../repositories/cards/search/card-search.utils';
 
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {
@@ -49,6 +49,12 @@ export class CardsCatalogMockHandler {
     await this.ensureData();
   }
 
+  /**
+   * Retrieves the index entry for a card by its ID.
+   *
+   * @param cardId - The unique identifier of the card.
+   * @returns The `CardIndexEntry` for the card, or `null` if not found.
+   */
   async getIndexEntry(cardId: string): Promise<CardIndexEntry | null> {
     await this.ensureData();
     return this.index!.find((item) => item.id === cardId) ?? null;

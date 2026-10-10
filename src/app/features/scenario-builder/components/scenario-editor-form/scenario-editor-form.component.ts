@@ -13,15 +13,21 @@ import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models'
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/data/language-pair/language-pair.utils';
+} from '../../../../core/domain/language-pair/language-pair.utils';
 import {
   ScenarioCardCriteriaEditorComponent,
   ScenarioCardPickerComponent,
-} from '../../../../shared/card-catalog-search';
+} from '../../../card-catalog-search';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import type { ScenarioCardSourceMode } from '../../types';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
 
+/**
+ * Scenario editor form component. Provides a full form for editing scenarios including
+ * title, description, card source mode (fixed/criteria/snapshot), and card ordering.
+ * @remarks Supports two sub-modes for card selection: `ScenarioCardPickerComponent` (fixed)
+ * and `ScenarioCardCriteriaEditorComponent` (criteria-based).
+ */
 @Component({
   selector: 'app-scenario-editor-form',
   imports: [
@@ -41,15 +47,26 @@ import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';
   styleUrl: './scenario-editor-form.component.scss',
 })
 export class ScenarioEditorFormComponent {
+  /** Required scenario form draft being edited. */
   readonly draft = input.required<ScenarioFormDraft>();
+  /** Whether the form is in read-only mode. */
   readonly readOnly = input(false);
 
+  /** Emits the updated scenario form draft when the user makes changes. */
   readonly draftChange = output<ScenarioFormDraft>();
 
   private readonly store = inject(ScenarioBuilderStore);
 
+  /** Available content languages. */
   readonly languages = contentLanguages();
+  /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
+  /**
+   * Card titles indexed by card ID, loaded asynchronously.
+   *
+   * @remarks
+   * Populated by `refreshCardTitles` when `fixedCardIds` changes.
+   */
   readonly cardTitles = signal<Record<string, string>>({});
 
   constructor() {

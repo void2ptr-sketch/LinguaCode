@@ -1,15 +1,12 @@
-import { deriveKnownOptionsFromLexemes } from '../../../core/data/cards/card-direction.utils';
-import { stripPinyinTones } from '../../../core/data/chinese/cjk-romanization.utils';
-import type {
-  DrawCharacterTarget,
-  DrawPracticeMode,
-} from '../../../core/models/draw-practice.types';
-import { normalizeToneOptions } from '../../../core/data/chinese/tone-mark.utils';
-import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import { deriveKnownOptionsFromLexemes } from '../../../core/repositories/cards/utils/card-direction.utils';
+import { stripPinyinTones } from '../../../core/domain/chinese/pinyin/cjk-romanization.utils';
+import type { DrawCharacterTarget, DrawPracticeMode, CardDirection, PhoneticLexeme } from '../../../core/models';
+import { normalizeToneOptions } from '../../../core/domain/chinese/answers/tone-mark.utils';
+import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
-} from '../../../core/data/chinese/lexeme-draft.utils';
+} from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   sanitizeMarkdownText,
   sanitizePlainText,
@@ -17,8 +14,6 @@ import {
   isAllowedFontSize,
 } from '../../../core/security';
 import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../core/models';
-import type { CardDirection } from '../../../core/models/language-pair.types';
-import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import {
   Card,
   CardAppearance,
@@ -213,6 +208,18 @@ const normalizeOptionCardDraftCore = (
   };
 };
 
+/**
+ * Normalizes a SelectCardDraft into a validated SelectCard.
+ *
+ * @remarks
+ * Sanitizes options, derives known-direction options from lexemes,
+ * and applies direction/prompt/answer normalization.
+ * Returns `null` if validation fails (missing title, prompt, or invalid options).
+ *
+ * @param draft - The draft data for a select-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated SelectCard, or `null` if validation fails.
+ */
 export const normalizeSelectCardDraft = (
   draft: SelectCardDraft,
   cardId: string,
@@ -242,6 +249,18 @@ export const normalizeSelectCardDraft = (
   };
 };
 
+/**
+ * Normalizes a MemoryCardDraft into a validated MemoryCard.
+ *
+ * @remarks
+ * Sanitizes title, prompt, and pairs. Filters out empty pairs and
+ * validates pair count (1–12). Extracts lexeme fields for each pair.
+ * Returns `null` if validation fails.
+ *
+ * @param draft - The draft data for a memory-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated MemoryCard, or `null` if validation fails.
+ */
 export const normalizeMemoryCardDraft = (
   draft: MemoryCardDraft,
   cardId: string,
@@ -283,6 +302,18 @@ export const normalizeMemoryCardDraft = (
   };
 };
 
+/**
+ * Normalizes a SymbolCardDraft into a validated SymbolCard.
+ *
+ * @remarks
+ * Sanitizes symbols (2–8 options), derives known-direction symbols
+ * from lexemes, and applies option/answer normalization.
+ * Returns `null` if validation fails.
+ *
+ * @param draft - The draft data for a symbol-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated SymbolCard, or `null` if validation fails.
+ */
 export const normalizeSymbolCardDraft = (
   draft: SymbolCardDraft,
   cardId: string,
@@ -310,6 +341,18 @@ export const normalizeSymbolCardDraft = (
   };
 };
 
+/**
+ * Normalizes a SoundCardDraft into a validated SoundCard.
+ *
+ * @remarks
+ * Sanitizes audio label, derives prompt lexeme from audio label if missing,
+ * and normalizes known-direction options (2–8).
+ * Returns `null` if audio label or options are invalid.
+ *
+ * @param draft - The draft data for a sound-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated SoundCard, or `null` if validation fails.
+ */
 export const normalizeSoundCardDraft = (
   draft: SoundCardDraft,
   cardId: string,
@@ -338,6 +381,18 @@ export const normalizeSoundCardDraft = (
   };
 };
 
+/**
+ * Normalizes a TimedCardDraft into a validated TimedCard.
+ *
+ * @remarks
+ * Sanitizes options, validates time limit (5–600 seconds),
+ * and derives known-direction options from lexemes.
+ * Returns `null` if time limit or options are invalid.
+ *
+ * @param draft - The draft data for a timed-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated TimedCard, or `null` if validation fails.
+ */
 export const normalizeTimedCardDraft = (
   draft: TimedCardDraft,
   cardId: string,
@@ -369,6 +424,18 @@ export const normalizeTimedCardDraft = (
   };
 };
 
+/**
+ * Normalizes a KeyboardCardDraft into a validated KeyboardCard.
+ *
+ * @remarks
+ * Sanitizes title, prompt, and accepted answers (1–8 answers).
+ * Preserves answerMode if explicitly set to non-auto value.
+ * Returns `null` if title, prompt, or answer count is invalid.
+ *
+ * @param draft - The draft data for a keyboard-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated KeyboardCard, or `null` if validation fails.
+ */
 export const normalizeKeyboardCardDraft = (
   draft: KeyboardCardDraft,
   cardId: string,
@@ -457,6 +524,19 @@ const normalizePracticeMode = (mode?: DrawPracticeMode): DrawPracticeMode | unde
   return undefined;
 };
 
+/**
+ * Normalizes a DrawCardDraft into a validated DrawCard.
+ *
+ * @remarks
+ * Sanitizes title, prompt, reference hint, meaning, and character targets.
+ * Normalizes practice mode, target character, and radical hint.
+ * Character targets are filtered for empty characters.
+ * Returns `null` if title, prompt, or reference hint is missing.
+ *
+ * @param draft - The draft data for a draw-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated DrawCard, or `null` if validation fails.
+ */
 export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): DrawCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
@@ -492,6 +572,18 @@ export const normalizeDrawCardDraft = (draft: DrawCardDraft, cardId: string): Dr
   };
 };
 
+/**
+ * Normalizes a ToneCardDraft into a validated ToneCard.
+ *
+ * @remarks
+ * Strips tones from syllable base, normalizes tone options,
+ * and validates correct index. Extracts prompt lexeme from syllable or prompt.
+ * Returns `null` if syllable base, tone options, or correct index is invalid.
+ *
+ * @param draft - The draft data for a tone-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated ToneCard, or `null` if validation fails.
+ */
 export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): ToneCard | null => {
   const title = sanitizeTitle(draft.title);
   const promptKnown = sanitizePrompt(draft.promptKnown);
@@ -529,6 +621,18 @@ export const normalizeToneCardDraft = (draft: ToneCardDraft, cardId: string): To
   };
 };
 
+/**
+ * Normalizes a CodeSelectCardDraft into a validated CodeSelectCard.
+ *
+ * @remarks
+ * Sanitizes title, normalizes code blocks (2–8 blocks),
+ * and validates correct index. Code blocks are filtered for empty code.
+ * Returns `null` if title, prompt, or options are invalid.
+ *
+ * @param draft - The draft data for a code-select-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated CodeSelectCard, or `null` if validation fails.
+ */
 export const normalizeCodeSelectCardDraft = (
   draft: CodeSelectCardDraft,
   cardId: string,
@@ -563,6 +667,18 @@ export const normalizeCodeSelectCardDraft = (
   };
 };
 
+/**
+ * Normalizes a ReadingCardDraft into a validated ReadingCard.
+ *
+ * @remarks
+ * Sanitizes options, derives known-direction options from lexemes,
+ * and applies option/answer normalization.
+ * Returns `null` if validation fails (missing title, prompt, or invalid options).
+ *
+ * @param draft - The draft data for a reading-type card.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated ReadingCard, or `null` if validation fails.
+ */
 export const normalizeReadingCardDraft = (
   draft: ReadingCardDraft,
   cardId: string,
@@ -592,6 +708,17 @@ export const normalizeReadingCardDraft = (
   };
 };
 
+/**
+ * Dispatcher: normalizes any CardDraft into a validated Card.
+ *
+ * @remarks
+ * Routes to the appropriate normalize* function based on `draft.kind`.
+ * Returns `null` if the specific normalizer rejects the draft.
+ *
+ * @param draft - The card draft to normalize.
+ * @param cardId - The unique identifier for the card.
+ * @returns A validated Card, or `null` if validation fails.
+ */
 export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | null => {
   switch (draft.kind) {
     case 'select':
@@ -617,6 +744,16 @@ export const normalizeCardDraft = (draft: CardDraft, cardId: string): Card | nul
   }
 };
 
+/**
+ * Returns a user-friendly validation error message for a given card kind.
+ *
+ * @remarks
+ * Provides Russian-language guidance on which fields to check
+ * when validation fails for a specific card type.
+ *
+ * @param kind - The card kind requiring an error message.
+ * @returns A localized validation error message.
+ */
 export const cardValidationErrorMessage = (kind: CardKind): string => {
   switch (kind) {
     case 'memory':

@@ -135,10 +135,11 @@ type ScenarioCardSource =
 src/app/shared/pagination/                   # PageRequest, PageResponse, utils, UiPaginationComponent
 src/app/shared/card-catalog-search/          # поиск, фильтры, ScenarioCardPickerComponent
 src/app/core/models/                         # card-index.types, card-search.types
-src/app/core/data/user-content-overlay.*     # overlay model, resolver, migration
-src/app/core/data/content-seed.repository.ts # manifest preload
-src/app/core/data/card.repository.ts         # seed + overlay merge
-src/app/core/data/                           # CardSearchService, CardsApiService
+src/app/core/repositories/user/overlay/user-content-overlay.*     # overlay model, resolver, migration
+src/app/core/repositories/content-seed/content-seed.repository.ts # manifest preload
+src/app/core/repositories/cards/repository/card.repository.ts         # seed + overlay merge
+src/app/core/repositories/cards/search/       # CardSearchService
+src/app/core/repositories/cards/api/          # CardsApiService
 src/app/core/api/                            # cardsApiMockInterceptor, CardsCatalogMockHandler
 src/app/features/card-editor/                # UI «Карточки»: каталог + dialog CRUD
 src/app/features/card-editor/components/card-editor-dialog/

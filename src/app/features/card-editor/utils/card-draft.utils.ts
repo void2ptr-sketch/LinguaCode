@@ -1,6 +1,6 @@
 import { Card, CardAppearance, CardKind } from '../../../core/models';
-import { DEFAULT_TONE_OPTIONS } from '../../../core/data/chinese/tone-mark.utils';
-import { lexemeToDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import { DEFAULT_TONE_OPTIONS } from '../../../core/domain/chinese/answers/tone-mark.utils';
+import { lexemeToDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -9,7 +9,16 @@ import {
   emptyOptionLexemes,
 } from '../types';
 
-/** Иерархические поля карточки: курс, урок, сценарий. */
+/**
+ * Extracts hierarchical fields (course, lesson, scenario) from a card.
+ *
+ * @remarks
+ * Used by `emptyCardDraft` and `cardToDraft` to populate form fields
+ * with course/lesson/scenario references. Returns empty strings when card is undefined.
+ *
+ * @param card - The card to extract fields from (may be undefined for new cards).
+ * @returns An object with courseId, lessonId, and scenarioId.
+ */
 function hierarchyFields(card?: { courseId?: string; lessonId?: string; scenarioId?: string }) {
   return {
     courseId: card?.courseId ?? '',
@@ -18,6 +27,13 @@ function hierarchyFields(card?: { courseId?: string; lessonId?: string; scenario
   };
 }
 
+/**
+ * Creates an empty card draft for the specified card kind with default appearance.
+ *
+ * @param kind - The kind of card to create a draft for.
+ * @param appearance - Default appearance settings (theme, font size).
+ * @returns An empty card draft populated with default values for the given kind.
+ */
 export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): CardDraft => {
   const lexemeFields = emptyLexemeCardDraft();
   const h = hierarchyFields();
@@ -156,6 +172,15 @@ export const emptyCardDraft = (kind: CardKind, appearance: CardAppearance): Card
   }
 };
 
+/**
+ * Converts a persisted Card object into a CardDraft for editing.
+ *
+ * Deep-copies all arrays and objects to prevent mutation of the original card.
+ * Extracts lexeme fields, audio URL, and hierarchy references from the card.
+ *
+ * @param card - The card to convert.
+ * @returns A card draft suitable for editing in the card form.
+ */
 export const cardToDraft = (card: Card): CardDraft => {
   const appearance = { ...card.appearance };
   const promptLexeme = lexemeToDraftFields('promptLexeme' in card ? card.promptLexeme : undefined);
@@ -322,6 +347,15 @@ export const cardToDraft = (card: Card): CardDraft => {
   }
 };
 
+/**
+ * Returns a human-readable summary string for displaying a card in lists.
+ *
+ * For code-select cards, returns the caption or the first line of the code prompt.
+ * For all other card kinds, returns the prompt known text.
+ *
+ * @param card - The card to summarize.
+ * @returns A short string representing the card's content.
+ */
 export const cardSummary = (card: Card): string => {
   if (card.kind === 'code-select') {
     return card.caption?.trim() || card.prompt.code.split('\n')[0]?.trim() || card.title;

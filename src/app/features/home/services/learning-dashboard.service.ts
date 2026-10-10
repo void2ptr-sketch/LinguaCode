@@ -8,14 +8,21 @@ import {
   resolveLearningResumeTarget,
   type LearningResumeTarget,
   type LessonRoadmapItem,
-} from '../../../core/data/learning/learning-resume.utils';
-import { CourseSearchService } from '../../../core/data/courses/course-search.service';
-import { resolveLearningSessionForPair } from '../../../core/data/learning/learning-session.utils';
-import { ScenariosApiService } from '../../../core/data/scenarios/scenarios-api.service';
+} from '../../../core/domain/learning/learning-resume.utils';
+import { CourseSearchService } from '../../../core/repositories/courses/search/course-search.service';
+import { resolveLearningSessionForPair } from '../../../core/domain/learning/learning-session.utils';
+import { ScenariosApiService } from '../../../core/repositories/scenarios/api/scenarios-api.service';
 import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
-import { RADICALS_COURSE_ID } from '../../../core/data/chinese/radicals-course.defaults';
+import { RADICALS_COURSE_ID } from '../../../core/domain/chinese/tones/radicals-course.defaults';
 
+/**
+ * Service for the learning dashboard (home page).
+ *
+ * @remarks
+ * Loads the active course, builds the lesson roadmap, and determines the resume target
+ * (where to continue learning from). Falls back to the radicals course when no active course exists.
+ */
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
   private readonly courseSearchService = inject(CourseSearchService);
@@ -23,16 +30,66 @@ export class LearningDashboardService {
   private readonly userStore = inject(UserStore);
   private readonly resultsStore = inject(LearningResultsStore);
 
+  /**
+   * Loading state for course data.
+   *
+   * @remarks
+   * Set to `true` at the start of `reload()` and reset to `false` in the `finally` block.
+   */
   readonly loading = signal(false);
+
+  /**
+   * Error message, if any.
+   *
+   * @remarks
+   * Populated when `reload()` encounters a failure. Reset to `null` at the start of each reload.
+   */
   readonly error = signal<string | null>(null);
+
+  /**
+   * The currently loaded course with its lessons.
+   *
+   * @remarks
+   * Set by `reload()` after fetching course data. `null` when no course is active.
+   */
   readonly course = signal<CourseWithLessons | null>(null);
+
+  /**
+   * The determined resume target indicating where to continue learning.
+   *
+   * @remarks
+   * Computed by `resolveLearningResumeTarget` during `reload()`. Contains the kind
+   * of target (e.g., 'start', 'continue', 'course-complete', 'no-program') and
+   * associated metadata (course/lesson/scenario IDs and titles).
+   */
   readonly resumeTarget = signal<LearningResumeTarget | null>(null);
+
+  /**
+   * The lesson roadmap for the current course.
+   *
+   * @remarks
+   * Built from `course.lessons` via `buildLessonRoadmap`. Each item includes
+   * the lesson title, ID, and completion state for each scenario.
+   */
   readonly roadmap = signal<readonly LessonRoadmapItem[]>([]);
 
+  /**
+   * Learning session preferences for the active language pair.
+   *
+   * @remarks
+   * Computed from `UserStore.activeLanguagePairEntry` via `resolveLearningSessionForPair`.
+   * Includes saved state such as the active course ID, last lesson, and last scenario.
+   */
   readonly learningSession = computed(() =>
     resolveLearningSessionForPair(this.userStore.activeLanguagePairEntry()),
   );
 
+  /**
+   * Computed progress for the currently loaded course.
+   *
+   * @remarks
+   * Returns `null` when no course is loaded.
+   */
   readonly courseProgress = computed(() => {
     const course = this.course();
     if (!course) {
@@ -47,6 +104,12 @@ export class LearningDashboardService {
     return this.resultsStore.courseProgress(course.id, lessons);
   });
 
+  /**
+   * Reloads the dashboard data: course, roadmap, and resume target.
+   *
+   * @remarks
+   * Infers the active course from saved state or falls back to the radicals course.
+   */
   async reload(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
@@ -124,6 +187,15 @@ export class LearningDashboardService {
     }
   }
 
+  /**
+   * Sets the active course ID and persists it.
+   *
+   * @param courseId - The ID of the course to set as active.
+   *
+   * @remarks
+   * Clears the saved last lesson and last scenario IDs, effectively resetting the resume
+   * target so that the next `reload()` will resolve a fresh "Start" target.
+   */
   setActiveCourseId(courseId: string): void {
     this.userStore.updateActiveLanguagePairSettings({
       learning: {

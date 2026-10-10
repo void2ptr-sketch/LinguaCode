@@ -1,6 +1,6 @@
 # TimedCard
 
-> Исходный код: `src/app/shared/components/cards/timed-card/timed-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/timed-card/timed-card.component.ts`
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `TimedCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `TimedCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -60,9 +60,9 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
-  - `resolveOptionCard()` из `src/app/core/data/cards/card-direction.utils.ts`.
-  - `effectiveCardDirection()` из того же модуля.
-  - `buildOptionClass()` из `src/app/shared/components/cards/option-card.utils.ts`.
+  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
+  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
+  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts`.
 
 ### @Input (входные параметры)
 

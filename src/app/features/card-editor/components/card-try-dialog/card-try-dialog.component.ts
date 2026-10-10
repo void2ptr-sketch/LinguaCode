@@ -5,16 +5,20 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { CardsApiService } from '../../../../core/data/cards/cards-api.service';
+import { CardsApiService } from '../../../../core/repositories/cards/api/cards-api.service';
 import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
-import { cardIndexMatchesPair } from '../../../../core/data/language-pair/language-pair.utils';
-import type { CardDirection } from '../../../../core/models/language-pair.types';
+import { cardIndexMatchesPair } from '../../../../core/domain/language-pair/language-pair.utils';
+import type { CardDirection } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
-import { CARD_KIND_LABELS } from '../../../../shared/card-catalog-search';
-import { CardHostComponent } from '../../../../shared/components/card-host';
+import { CARD_KIND_LABELS } from '../../../card-catalog-search';
+import { CardHostComponent } from '../../../../shared/ui/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';
 
+/**
+ * Dialog component for trying a single card without a full practice session.
+ * @remarks Loads the card by ID, validates it belongs to the active course, and renders the card host.
+ */
 @Component({
   selector: 'app-card-try-dialog',
   imports: [
@@ -37,7 +41,14 @@ export class CardTryDialogComponent implements OnInit {
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
+  /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
+
+  /**
+   * Computed font size from user preferences.
+   * @remarks
+   * Used by the card host to scale the preview.
+   */
   readonly fontSize = computed(() => this.userStore.preferences().fontSize);
 
   readonly title = computed(() => {

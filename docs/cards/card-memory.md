@@ -1,7 +1,6 @@
 # MemoryCard
 
-> Исходный код: 
-- `src/app/shared/components/cards/memory-card/memory-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/memory-card/memory-card.component.ts`
 
 ## Назначение
 
@@ -13,7 +12,7 @@
 
 ## Модель данных
 
-Исходный тип: `MemoryCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `MemoryCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -22,16 +21,18 @@
 | `title` | `string` | Заголовок карточки (отображается в `QuizCardQuestionHeaderComponent`) |
 | `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
 | `promptKnown` | `string` | Инструкция к заданию (например, «Сопоставьте переводы») |
-| `promptLexeme` | `PhoneticLexeme \| undefined` | Опциональная фонетическая транскрипция подсказки |
+| `promptLexeme` | `PhoneticLexeme \| undefined` | Опциональная фонетическая транскрипция подсказки (из `LexemeCardFields`) |
+| `audioUrl` | `string \| undefined` | URL аудио (из `LexemeCardFields`) |
 | `pairs` | `readonly MemoryPair[]` | Массив пар для сопоставления |
 
 ### MemoryPair
+
+Определён в `src/app/core/models/cards/card.types.ts`.
 
 | Поле | Тип | Описание |
 |------|-----|----------|
 | `known` | `string` | Слово/фраза на известном языке |
 | `learning` | `string` | Перевод на новом языке |
-| `knownLexeme` | `PhoneticLexeme \| undefined` | Фонетика для «известной» стороны |
 | `learningLexeme` | `PhoneticLexeme \| undefined` | Фонетика для «новой» стороны |
 
 ## Use Cases
@@ -74,7 +75,7 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции рядом с текстом.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
-  - `resolveMemoryPairs()` из `src/app/core/data/cards/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction`.
+  - `resolveMemoryPairs()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction` (результат содержит `left`, `right`, `leftLexeme`, `rightLexeme`).
   - `CardFeedback` из `src/app/shared/types` — состояние обратной связи (`null` | `'correct'` | `'incorrect'`).
 
 ### @Input (входные параметры)

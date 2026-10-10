@@ -6,12 +6,20 @@ import { LearningJourneyMapComponent } from '../learning-journey-map/learning-jo
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../../core/state';
-import { ContentSeedRepository } from '../../../../core/data/content-seed/content-seed.repository';
-import { buildJourneyNodes, buildScenarioMap } from '../../../../core/data/journey/journey-nodes.utils';
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import { ContentSeedRepository } from '../../../../core/repositories/content-seed/content-seed.repository';
+import {
+  buildJourneyNodes,
+  buildScenarioMap,
+} from '../../../../core/domain/journey/journey-nodes.utils';
+import type { JourneyLocationNode } from '../../../../core/models';
 import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
 
+/**
+ * Journey page component. Renders the learning journey map for the current course,
+ * built from scenario and card seed data.
+ * @remarks Loads journey nodes from `ContentSeedRepository` and tracks analytics events.
+ */
 @Component({
   selector: 'app-journey-page',
   imports: [LearningJourneyMapComponent],
@@ -126,11 +134,22 @@ export class JourneyPageComponent implements OnInit {
       hasScenarioVisit,
     );
 
-    console.log('[JourneyPage] Nodes built:', nodes.length, 'First node contentTypes:', nodes[0]?.contentTypes);
+    console.log(
+      '[JourneyPage] Nodes built:',
+      nodes.length,
+      'First node contentTypes:',
+      nodes[0]?.contentTypes,
+    );
 
     this.nodes.set(nodes);
   }
 
+  /**
+   * Handles location node selection from the journey map.
+   *
+   * @remarks
+   * Currently a placeholder — navigates to the selected scenario or opens detail view.
+   */
   onLocationSelect(): void {
     // TODO: перейти к сценарию или открыть детальную информацию
   }

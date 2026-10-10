@@ -1,6 +1,6 @@
 # DrawCard
 
-> Исходный код: `src/app/shared/components/cards/draw-card/draw-card.component.ts`
+> Исходный код: `src/app/shared/ui/cards/draw-card/draw-card.component.ts`
 
 ## Назначение
 
@@ -12,7 +12,7 @@
 
 ## Модель данных
 
-Исходный тип: `DrawCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `DrawCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -33,7 +33,7 @@
 
 ### DrawPracticeMode
 
-Определяется в `src/app/core/models/draw-practice.types.ts`.
+Определяется в `src/app/core/models/phonetics/draw-practice.types.ts`.
 
 ### DrawCharacterTarget
 
@@ -108,7 +108,7 @@ Workflow зависит от количества иероглифов в кар
   - `UserStore` (через `inject()`) — настройки CJK-обучения.
   - `HanziDataService` (через `inject()`) — данные иероглифов.
 - **Утилиты:**
-  - `resolveDrawCharacterTargets()` из `src/app/core/data/chinese/draw-card.utils.ts`.
+  - `resolveDrawCharacterTargets()` из `src/app/core/domain/chinese/drawing/draw-card.utils.ts`.
   - `resolveDrawPromptLexeme()` из того же модуля.
   - `resolveDrawQuestion()` из того же модуля.
   - `resolveDrawAudioUrl()` из того же модуля.
@@ -116,9 +116,9 @@ Workflow зависит от количества иероглифов в кар
   - `resolveInitialDrawCanvasMode()` из того же модуля.
   - `drawCharacterTabPinyinLabel()` из того же модуля.
   - `parseRadicalHintParts()` из того же модуля.
-  - `resolveRadicalComponentPalette()` и `radicalComponentColor()` из `src/app/core/data/chinese/radical-component-color.utils.ts`.
+  - `resolveRadicalComponentPalette()` и `radicalComponentColor()` из `src/app/core/domain/chinese/phonetics/radical-component-color.utils.ts`.
   - `gradeHanziMemoryStrokes()` из `src/app/core/hanzi-engine/hanzi-memory-validation.utils.ts`.
-  - `playLearningAudio()` из `src/app/core/data/cards/card-learning-audio.utils.ts`.
+  - `playLearningAudio()` из `src/app/core/repositories/cards/utils/card-learning-audio.utils.ts`.
 
 ### @Input (входные параметры)
 
@@ -176,7 +176,7 @@ const card: DrawCard = {
 
 | Сигнал | Тип | Описание |
 |--------|-----|----------|
-| `canvasMode` | `Signal<DrawCanvasMode>` | Текущий режим холоста: `memory` \| `stroke-order` \| `radicals` |
+| `panelMode` | `Signal<DrawCanvasMode>` | Текущий режим панели холста: `memory` \| `stroke-order` \| `radicals` |
 | `activeCharIndex` | `Signal<number>` | Индекс активного иероглифа (слага) |
 | `charDone` | `Signal<readonly boolean[]>` | Массив статусов готовности по иероглифам |
 | `charStrokes` | `Signal<readonly (readonly DrawStrokePath[])[]>` | Черты по иероглифам |

@@ -6,13 +6,17 @@ import {
   hasCardSearchFilters,
   resolveScenarioCardIds,
   validateScenarioCardSource,
-} from '../../../core/data/scenarios/scenario-card-source.utils';
+} from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../../core/data/language-pair/language-pair.utils';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
-import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/data';
+} from '../../../core/domain/language-pair/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
+import {
+  CardSearchService,
+  CourseSearchService,
+  ScenarioSearchService,
+} from '../../../core/repositories';
 import { CardsCatalogMockHandler } from '../../../core/api';
 import type {
   CourseIndexEntry,
@@ -23,13 +27,20 @@ import type {
 } from '../../../core/models';
 import { sanitizePlainText } from '../../../core/security';
 import { UserStore } from '../../../core/state';
-import { isEditableContentAuthor } from '../../../core/data/user/system-author.constants';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
+import { isEditableContentAuthor } from '../../../core/domain/user/system-author.constants';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
 
 const sanitizeTitle = (value: string): string => sanitizePlainText(value, 128);
 const sanitizeDescription = (value: string): string => sanitizePlainText(value, 512);
 
+/**
+ * Store for the scenario builder feature.
+ *
+ * @remarks
+ * Manages scenario list state (pagination, filtering, sorting), editor state
+ * (create/edit), and card source validation. Uses Angular Signals for reactive state.
+ */
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderStore {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
@@ -38,22 +49,37 @@ export class ScenarioBuilderStore {
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
 
+  /** Current page of scenario index entries. */
   readonly indexItems = signal<readonly ScenarioIndexEntry[]>([]);
+  /** Total number of scenarios matching the current filter. */
   readonly totalItems = signal(0);
+  /** Current zero-based page index. */
   readonly pageIndex = signal(0);
+  /** Number of items per page. */
   readonly pageSize = signal(DEFAULT_PAGE_SIZE);
+  /** Search query text. */
   readonly listQuery = signal('');
+  /** Current list scope (e.g. 'mine', 'all', 'course'). */
   readonly listScope = signal<ScenarioListScope>('mine');
+  /** Optional course filter ID. */
   readonly listCourseId = signal<string | null>(null);
+  /** Available courses for the current language pair. */
   readonly courses = signal<readonly CourseIndexEntry[]>([]);
 
+  /** Whether the list is being loaded. */
   readonly loading = signal(false);
+  /** Whether the editor is loading a scenario. */
   readonly editorLoading = signal(false);
+  /** Error message, if any. */
   readonly error = signal<string | null>(null);
+  /** Current editor mode ('list', 'create', or 'edit'). */
   readonly editorMode = signal<ScenarioEditorMode>('list');
+  /** ID of the scenario currently being edited. */
   readonly editingScenarioId = signal<string | null>(null);
+  /** The scenario currently being edited (or null). */
   readonly editingScenario = signal<Scenario | null>(null);
 
+  /** Whether the current scenario is read-only (not authored by the current user). */
   readonly isReadOnly = computed(() => {
     const scenario = this.editingScenario();
     if (!scenario) {
@@ -63,6 +89,13 @@ export class ScenarioBuilderStore {
     return !isEditableContentAuthor(scenario.authorId, this.userStore.user().id);
   });
 
+  /**
+   * Loads the scenario list based on current filters and pagination.
+   *
+   * @remarks
+   * Sets `indexItems` and `totalItems` from the API response.
+   * Applies the current query, scope, course filter, and language pair criteria.
+   */
   async loadList(): Promise<void> {
     this.loading.set(true);
     this.error.set(null);
@@ -87,11 +120,25 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Loads both the scenario list and available courses.
+   *
+   * @remarks
+   * Calls `loadList()` and `loadCourses()` sequentially.
+   * Used during component initialization.
+   */
   async load(): Promise<void> {
     await this.loadList();
     await this.loadCourses();
   }
 
+  /**
+   * Loads available courses for the current language pair.
+   *
+   * @remarks
+   * Fetches up to 100 courses matching the current language pair.
+   * On error, sets an empty array (never throws).
+   */
   async loadCourses(): Promise<void> {
     try {
       const pair = this.userStore.languagePair();
@@ -107,27 +154,56 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Sets the search query and resets to page 0.
+   *
+   * @param query - The search query text.
+   */
   setListQuery(query: string): void {
     this.listQuery.set(query);
     this.pageIndex.set(0);
   }
 
+  /**
+   * Sets the list scope and resets to page 0.
+   *
+   * @param scope - The new scope ('mine', 'all', or 'course').
+   * @remarks
+   * Resets `pageIndex` to 0 to show the first page of the new scope.
+   */
   setListScope(scope: ScenarioListScope): void {
     this.listScope.set(scope);
     this.pageIndex.set(0);
   }
 
+  /**
+   * Sets the course filter and reloads the list.
+   *
+   * @param courseId - The course ID to filter by, or `null` to remove the filter.
+   */
   async setListCourseId(courseId: string | null): Promise<void> {
     this.listCourseId.set(courseId);
     this.pageIndex.set(0);
     await this.loadList();
   }
 
+  /**
+   * Sets pagination parameters.
+   *
+   * @param pageIndex - The new zero-based page index.
+   * @param pageSize - The new page size.
+   */
   setPage(pageIndex: number, pageSize: number): void {
     this.pageIndex.set(pageIndex);
     this.pageSize.set(pageSize);
   }
 
+  /**
+   * Enters create mode for a new scenario.
+   *
+   * @remarks
+   * Resets editor state (mode, editingScenarioId, editingScenario, error).
+   */
   startCreate(): void {
     this.editorMode.set('create');
     this.editingScenarioId.set(null);
@@ -135,6 +211,11 @@ export class ScenarioBuilderStore {
     this.error.set(null);
   }
 
+  /**
+   * Enters edit mode and loads the scenario by ID.
+   *
+   * @param scenarioId - The scenario ID to edit.
+   */
   async startEdit(scenarioId: string): Promise<void> {
     this.editorLoading.set(true);
     this.error.set(null);
@@ -151,6 +232,12 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Exits edit mode and returns to list view.
+   *
+   * @remarks
+   * Resets editor state (mode, editingScenarioId, editingScenario, error).
+   */
   cancelEdit(): void {
     this.editorMode.set('list');
     this.editingScenarioId.set(null);
@@ -158,6 +245,12 @@ export class ScenarioBuilderStore {
     this.error.set(null);
   }
 
+  /**
+   * Creates a new scenario from a draft.
+   *
+   * @param draft - The scenario draft.
+   * @returns `true` if created successfully, `false` on validation or API error.
+   */
   async createScenario(draft: ScenarioDraft): Promise<boolean> {
     const payload = await this.normalizeDraft(draft);
     if (!payload) {
@@ -175,6 +268,13 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Updates an existing scenario from a draft.
+   *
+   * @param scenarioId - The scenario ID to update.
+   * @param draft - The scenario draft.
+   * @returns `true` if updated successfully, `false` on validation or API error.
+   */
   async updateScenario(scenarioId: string, draft: ScenarioDraft): Promise<boolean> {
     if (this.isReadOnly()) {
       this.error.set('Нельзя изменять чужой сценарий');
@@ -197,6 +297,15 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Deletes a scenario by ID.
+   *
+   * @remarks
+   * Checks access rights (only the author can delete). If the deleted scenario is currently
+   * being edited, cancels the editing state.
+   *
+   * @param scenarioId - The scenario ID to delete.
+   */
   async deleteScenario(scenarioId: string): Promise<void> {
     const item = this.indexItems().find((scenario) => scenario.id === scenarioId);
     if (item && !isEditableContentAuthor(item.authorId, this.userStore.user().id)) {
@@ -215,6 +324,15 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Retrieves the title of a card by its ID.
+   *
+   * @remarks
+   * Falls back to the card ID if the API call fails.
+   *
+   * @param cardId - The card ID.
+   * @returns The card title, or the card ID as fallback.
+   */
   async cardTitle(cardId: string): Promise<string> {
     try {
       const card = await this.cardSearchService.getCardById(cardId);
@@ -224,6 +342,12 @@ export class ScenarioBuilderStore {
     }
   }
 
+  /**
+   * Validates that all card IDs in a fixed card source exist.
+   *
+   * @param cardIds - Array of card IDs to validate.
+   * @returns Array of valid card IDs (missing cards are filtered out).
+   */
   async validateFixedCardIds(cardIds: readonly string[]): Promise<readonly string[]> {
     const valid: string[] = [];
 
@@ -239,6 +363,15 @@ export class ScenarioBuilderStore {
     return valid;
   }
 
+  /**
+   * Builds a snapshot card source from search criteria.
+   *
+   * @param criteria - The card search criteria.
+   * @param limit - Maximum number of cards to include.
+   * @param sort - Optional sort configuration.
+   * @param seed - Optional seed for deterministic results.
+   * @returns A snapshot card source, or `null` on error.
+   */
   async buildSnapshotFromCriteria(
     criteria: Omit<import('../../../core/models').CardSearchCriteria, 'page'>,
     limit: number,
@@ -263,10 +396,22 @@ export class ScenarioBuilderStore {
     return buildSnapshotCardSource(cardIds, criteria, limit);
   }
 
+  /**
+   * Normalizes and validates a scenario draft.
+   *
+   * @remarks
+   * Sanitizes title, description, and language pair. Normalizes the card source
+   * based on its mode (fixed, snapshot, or criteria). Returns null if validation fails.
+   *
+   * @param draft - The user-provided scenario draft.
+   * @returns A ScenarioWritePayload for the API, or null if validation fails.
+   * @private
+   */
   private async normalizeDraft(
     draft: ScenarioDraft,
   ): Promise<
-    import('../../../core/data/scenarios/scenarios-api.service').ScenarioWritePayload | null
+    | import('../../../core/repositories/scenarios/api/scenarios-api.service').ScenarioWritePayload
+    | null
   > {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
@@ -285,6 +430,19 @@ export class ScenarioBuilderStore {
     return { title, description, cardSource, published: draft.published, languagePair };
   }
 
+  /**
+   * Normalizes the card source based on its mode.
+   *
+   * @remarks
+   * - `fixed`: validates that all card IDs exist and match the language pair.
+   * - `snapshot`: validates that all card IDs exist and match the language pair.
+   * - `criteria`: trims query and returns the criteria as-is.
+   *
+   * @param source - The card source to normalize.
+   * @param languagePair - The current language pair for validation.
+   * @returns A normalized ScenarioCardSource, or null if validation fails.
+   * @private
+   */
   private async normalizeCardSource(
     source: ScenarioCardSource,
     languagePair: import('../../../core/models').LanguagePair,
@@ -357,6 +515,18 @@ export class ScenarioBuilderStore {
     };
   }
 
+  /**
+   * Validates that all card IDs match the given language pair.
+   *
+   * @remarks
+   * Checks each card ID against the cards catalog mock handler.
+   * Returns an error message if any card doesn't match, or null if all match.
+   *
+   * @param cardIds - The card IDs to validate.
+   * @param languagePair - The expected language pair.
+   * @returns An error message if validation fails, or null.
+   * @private
+   */
   private async validateCardIdsMatchPair(
     cardIds: readonly string[],
     languagePair: import('../../../core/models').LanguagePair,

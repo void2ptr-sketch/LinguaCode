@@ -46,7 +46,7 @@ stateDiagram-v2
 ## Зависимости
 
 - `shared/card-catalog-search` — `CardCatalogSearchStore`
-- `core/data` — `CardSearchService`, `CardRepository`
+- `core/repositories/cards` — `CardSearchService`, `CardRepository`
 - `shared/card-host` — preview
 
 ## Связанные документы

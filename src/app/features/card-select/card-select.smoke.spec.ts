@@ -7,7 +7,7 @@ import { AppComponent } from '../../app.component';
 import { routes } from '../../app.routes';
 import { provideApiHttp } from '../../core/api';
 import { environment } from '../../../environments/environment';
-import { resetContentSeedCache } from '../../core/data/content-seed/content-seed.cache';
+import { resetContentSeedCache } from '../../core/repositories/content-seed/content-seed.cache';
 
 describe('Card select smoke', () => {
   beforeEach(async () => {

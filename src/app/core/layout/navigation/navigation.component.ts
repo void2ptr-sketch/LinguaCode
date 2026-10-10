@@ -15,6 +15,11 @@ type NavGroup = {
   items: readonly NavItem[];
 };
 
+/**
+ * Sidebar navigation component. Renders the left-side navigation menu with grouped links
+ * for learning, tools, and account sections.
+ * @remarks The navigation groups are defined inline as readonly class properties.
+ */
 @Component({
   selector: 'app-navigation',
   imports: [RouterLink, RouterLinkActive, MatDividerModule, MatListModule, MatIconModule],
@@ -22,6 +27,7 @@ type NavGroup = {
   styleUrl: './navigation.component.scss',
 })
 export class NavigationComponent {
+  /** Navigation groups defining the sidebar menu structure. */
   readonly groups: readonly NavGroup[] = [
     {
       id: 'learning',

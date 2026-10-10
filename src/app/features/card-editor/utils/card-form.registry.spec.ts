@@ -1,31 +1,73 @@
 import type { CardKind } from '../../../core/models';
-import { CARD_FORM_BY_KIND, CARD_FORM_KIND_GROUP, cardFormKindGroup } from './card-form.registry';
+
+import {
+  cardFormKindGroup,
+  CARD_FORM_KIND_GROUP,
+  CARD_FORM_BY_KIND,
+} from './card-form.registry';
 
 describe('card-form.registry', () => {
-  it('maps every card kind to a form group', () => {
-    const kinds: CardKind[] = [
-      'select',
-      'code-select',
-      'memory',
-      'symbol',
-      'sound',
-      'timed',
-      'keyboard',
-      'draw',
-      'tone',
-      'reading',
-    ];
+  describe('CARD_FORM_KIND_GROUP', () => {
+    it('maps all card kinds to their form groups', () => {
+      const allKinds: CardKind[] = [
+        'select', 'code-select', 'timed', 'reading', 'symbol', 'tone',
+        'keyboard', 'draw', 'memory', 'sound',
+      ];
 
-    for (const kind of kinds) {
-      expect(cardFormKindGroup(kind)).toBe(CARD_FORM_KIND_GROUP[kind]);
-      expect(CARD_FORM_BY_KIND[kind]).toBeDefined();
-    }
+      allKinds.forEach((kind) => {
+        const group = CARD_FORM_KIND_GROUP[kind as keyof typeof CARD_FORM_KIND_GROUP];
+        expect(group).toBeDefined();
+        expect(['choice', 'input', 'pairs', 'media']).toContain(group);
+      });
+    });
+
+    it('maps select, code-select, timed, reading, symbol, tone to choice', () => {
+      expect(CARD_FORM_KIND_GROUP.select).toBe('choice');
+      expect(CARD_FORM_KIND_GROUP['code-select']).toBe('choice');
+      expect(CARD_FORM_KIND_GROUP.timed).toBe('choice');
+      expect(CARD_FORM_KIND_GROUP.reading).toBe('choice');
+      expect(CARD_FORM_KIND_GROUP.symbol).toBe('choice');
+      expect(CARD_FORM_KIND_GROUP.tone).toBe('choice');
+    });
+
+    it('maps keyboard and draw to input', () => {
+      expect(CARD_FORM_KIND_GROUP.keyboard).toBe('input');
+      expect(CARD_FORM_KIND_GROUP.draw).toBe('input');
+    });
+
+    it('maps memory to pairs', () => {
+      expect(CARD_FORM_KIND_GROUP.memory).toBe('pairs');
+    });
+
+    it('maps sound to media', () => {
+      expect(CARD_FORM_KIND_GROUP.sound).toBe('media');
+    });
   });
 
-  it('groups choice kinds together', () => {
-    expect(cardFormKindGroup('select')).toBe('choice');
-    expect(cardFormKindGroup('tone')).toBe('choice');
-    expect(cardFormKindGroup('memory')).toBe('pairs');
-    expect(cardFormKindGroup('sound')).toBe('media');
+  describe('CARD_FORM_BY_KIND', () => {
+    it('is an alias for CARD_FORM_KIND_GROUP', () => {
+      expect(CARD_FORM_BY_KIND).toBe(CARD_FORM_KIND_GROUP);
+    });
+  });
+
+  describe('cardFormKindGroup', () => {
+    it('looks up the form group for a card kind', () => {
+      expect(cardFormKindGroup('select')).toBe('choice');
+      expect(cardFormKindGroup('keyboard')).toBe('input');
+      expect(cardFormKindGroup('memory')).toBe('pairs');
+      expect(cardFormKindGroup('sound')).toBe('media');
+    });
+
+    it('returns the correct group for all kinds', () => {
+      const allKinds: CardKind[] = [
+        'select', 'code-select', 'timed', 'reading', 'symbol', 'tone',
+        'keyboard', 'draw', 'memory', 'sound',
+      ];
+
+      allKinds.forEach((kind) => {
+        const group = CARD_FORM_KIND_GROUP[kind as keyof typeof CARD_FORM_KIND_GROUP];
+        expect(cardFormKindGroup(kind)).toBe(group);
+      });
+    });
   });
 });

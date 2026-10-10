@@ -12,8 +12,8 @@
 ```text
 features/course-builder/     # /tools/courses
 features/course-catalog/     # /courses (published)
-core/data/course-search.service.ts
-core/models/course.types.ts, lesson.types.ts
+core/repositories/courses/search/course-search.service.ts
+core/models/courses/courses/course.types.ts, courses/lesson.types.ts
 ```
 
 ## Иерархия

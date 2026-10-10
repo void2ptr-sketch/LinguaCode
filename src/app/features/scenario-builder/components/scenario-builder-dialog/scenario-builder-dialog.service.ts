@@ -8,6 +8,13 @@ import type {
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
 
+/**
+ * Service for opening the scenario builder dialog.
+ *
+ * @remarks
+ * Ensures only one dialog instance is active at a time. Opens `ScenarioBuilderDialogComponent`
+ * in create or edit mode.
+ */
 @Injectable({ providedIn: 'root' })
 export class ScenarioBuilderDialogService {
   private readonly dialog = inject(MatDialog);
@@ -17,10 +24,21 @@ export class ScenarioBuilderDialogService {
     ScenarioBuilderDialogResult
   > | null = null;
 
+  /**
+   * Opens the scenario builder in create mode.
+   *
+   * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
+   */
   openCreate(): Promise<ScenarioBuilderDialogResult | undefined> {
     return this.open({ mode: 'create' });
   }
 
+  /**
+   * Opens the scenario builder in edit mode for an existing scenario.
+   *
+   * @param scenarioId - The ID of the scenario to edit.
+   * @returns A promise resolving to the dialog result, or `undefined` if another dialog is already open.
+   */
   openEdit(scenarioId: string): Promise<ScenarioBuilderDialogResult | undefined> {
     return this.open({ mode: 'edit', scenarioId });
   }

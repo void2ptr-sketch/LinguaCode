@@ -162,12 +162,12 @@ Scroll — только в `mat-dialog-content`; footer с кнопками фи
 ## Связанные пути в коде
 
 ```
-src/app/core/models/scenario-index.types.ts
-src/app/core/models/scenario-card-source.types.ts
-src/app/core/data/scenarios-api.service.ts
-src/app/core/data/scenario-search.service.ts
-src/app/core/data/scenarios-storage.ts
-src/app/core/data/scenario-card-source.utils.ts
+src/app/core/models/scenarios/scenario-index.types.ts
+src/app/core/models/scenarios/scenario-card-source.types.ts
+src/app/core/repositories/scenarios/api/scenarios-api.service.ts
+src/app/core/repositories/scenarios/search/scenario-search.service.ts
+src/app/core/repositories/scenarios/storage/scenarios-storage.ts
+src/app/core/repositories/scenarios/utils/scenario-card-source.utils.ts
 src/app/core/api/scenarios-catalog.mock.handler.ts
 src/app/core/api/scenarios-api.mock.interceptor.ts
 src/app/features/scenario-builder/

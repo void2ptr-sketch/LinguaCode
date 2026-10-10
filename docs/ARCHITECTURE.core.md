@@ -10,13 +10,18 @@ Singleton-сервисы и инфраструктура, **не зависящ�
 
 ```text
 src/app/core/
-├── api/           # HttpClient, interceptors, mock handlers
-├── data/          # репозитории, search-сервисы, утилиты домена
-├── layout/        # shell, navigation, user/help pages
-├── models/        # типы домена (см. DOMAIN.md)
-├── security/      # санитизация ввода
-├── state/         # UserStore, LearningResultsStore, persistence
-└── theme/         # AppThemeService, colorScheme
+├── api/            # HttpClient, interceptors, mock handlers
+├── domain/         # чистые утилиты домена без DI и Angular
+│                   # (chinese, ipa, phonetic, language-pair, learning, journey, lesson,
+│                   #  code-highlight, keyboard-answer-mode, user)
+├── layout/         # shell, navigation, user/help pages
+├── models/         # типы домена (см. DOMAIN.md)
+│                   # (common, cards, scenarios, courses, learning, phonetics, user — barrel на каждом уровне)
+├── repositories/   # data-access: repository, api, storage, search, content-seed, user-content overlay
+│                   # (cards, courses, scenarios, content-seed, user)
+├── security/       # санитизация ввода
+├── state/          # UserStore, LearningResultsStore, persistence
+└── theme/          # AppThemeService, colorScheme
 ```
 
 ## Компоненты layout
@@ -52,7 +57,7 @@ src/app/core/
 
 - **Экспорт из UI**: кнопка «Экспорт файла» в Конструкторе курсов → скачивание `.linguacode-course.json`.
 - **Импорт в репозиторий**: `npm run import:course-bundle -- --bundle <file> --slug <slug>`.
-- **Модуль сбора**: `src/app/core/data/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
+- **Модуль сбора**: `src/app/core/repositories/courses/utils/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
 - **Документация**: [COURSE-BUNDLE.md](./COURSE-BUNDLE.md).
 
 ```mermaid
@@ -69,7 +74,7 @@ flowchart LR
 ## API (mock + HTTP)
 
 - Interceptors: auth, error, mock для cards/scenarios/courses в dev.
-- Search-сервисы: `CardSearchService`, `ScenarioSearchService`, `CourseSearchService` в `core/data/`.
+- Search-сервисы: `CardSearchService`, `ScenarioSearchService`, `CourseSearchService` в `core/repositories/{cards,courses,scenarios}/search/`.
 
 ## Диаграмма компонентов (UML)
 
@@ -118,14 +123,14 @@ flowchart TB
 ## Связанные пути (overlay + seed + bundle)
 
 ```
-src/app/core/data/content-seed.repository.ts
-src/app/core/data/content-seed.cache.ts
-src/app/core/data/user-content-overlay.types.ts
-src/app/core/data/user-content-overlay.storage.ts
-src/app/core/data/user-content-overlay.resolver.ts
-src/app/core/data/user-content-overlay.migration.ts
-src/app/core/data/course-bundle.types.ts
-src/app/core/data/course-bundle.utils.ts
+src/app/core/repositories/content-seed/content-seed.repository.ts
+src/app/core/repositories/content-seed/content-seed.cache.ts
+src/app/core/repositories/user/overlay/user-content-overlay.types.ts
+src/app/core/repositories/user/overlay/user-content-overlay.storage.ts
+src/app/core/repositories/user/overlay/user-content-overlay.resolver.ts
+src/app/core/repositories/user/overlay/user-content-overlay.migration.ts
+src/app/core/repositories/courses/utils/course-bundle.types.ts
+src/app/core/repositories/courses/utils/course-bundle.utils.ts
 public/data/content-manifest.json
 scripts/export-content-seed.mjs
 scripts/import-course-bundle.mjs

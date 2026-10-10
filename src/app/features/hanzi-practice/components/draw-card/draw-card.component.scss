@@ -1,0 +1,96 @@
+@use '../../../../shared/ui/cards/quiz-card';
+
+.draw-card__prompt {
+  display: grid;
+  gap: 0.35rem;
+  justify-items: center;
+  width: 100%;
+}
+
+.draw-card__meaning-row {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.draw-card__audio-btn {
+  flex: 0 0 auto;
+}
+
+.draw-card__meaning {
+  color: var(--mat-sys-on-surface);
+  flex: 1 1 auto;
+  font-size: 1.75em;
+  font-weight: 600;
+  line-height: 1.35;
+  margin: 0;
+  text-align: center;
+}
+
+.draw-card__prompt-phonetics {
+  margin: 0;
+  width: 100%;
+
+  --lexeme-reading-gap: 0.25rem;
+}
+
+.draw-card__answer {
+  gap: 0.875rem;
+}
+
+.draw-card__mode-toggle {
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.draw-card__stroke-note {
+  color: color-mix(in srgb, var(--mat-sys-on-surface) 65%, transparent);
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.draw-card__content {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+}
+
+.draw-card__panel {
+  width: 100%;
+}
+
+.draw-card__char-tabs {
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(5.5rem, 1fr));
+  margin-top: 0.25rem;
+}
+
+.draw-card__char-tab {
+  background: var(--mat-sys-surface-container-lowest);
+  border: 1px solid color-mix(in srgb, var(--mat-sys-outline) 45%, transparent);
+  border-radius: 0.5rem;
+  color: inherit;
+  cursor: pointer;
+  padding: 0.625rem 0.5rem;
+  text-align: center;
+  transition:
+    border-color 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.draw-card__char-tab--active {
+  border-color: var(--mat-sys-primary);
+  background: color-mix(in srgb, var(--mat-sys-primary) 8%, transparent);
+}
+
+.draw-card__char-tab--done {
+  border-color: var(--mat-sys-tertiary);
+}
+
+.draw-card__char-tab-label {
+  display: block;
+  font-size: calc(0.875rem * 1.5);
+  line-height: 1.3;
+}

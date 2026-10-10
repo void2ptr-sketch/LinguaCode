@@ -5,12 +5,19 @@ import {
   CardsApiService,
   resolveScenarioCardIds,
   ScenarioSearchService,
-} from '../../../core/data';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/data/scenarios/scenario-card-source.utils';
-import { Card } from '../../../core/models';
+} from '../../../core/repositories';
+import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
+import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
+import type { Card, ScenarioSearchPage } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 
+/**
+ * Represents a card selection session loaded from a scenario.
+ *
+ * @remarks
+ * Includes the scenario metadata, assembled cards, and any missing card IDs
+ * that could not be resolved from the card source.
+ */
 export type CardSelectSession = {
   scenarioId: string;
   scenarioTitle: string;
@@ -19,6 +26,13 @@ export type CardSelectSession = {
   missingCardIds: readonly string[];
 };
 
+/**
+ * Service for loading and managing card selection sessions.
+ *
+ * @remarks
+ * Resolves scenario card sources, fetches cards, and assembles session data.
+ * Validates language pair matching and handles missing cards gracefully.
+ */
 @Injectable({ providedIn: 'root' })
 export class CardSelectService {
   private readonly cardsApiService = inject(CardsApiService);
@@ -26,7 +40,18 @@ export class CardSelectService {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
 
-  searchScenarios(query: string, pageIndex: number, pageSize: number) {
+  /**
+   * Searches for published scenarios matching the query and active language pair.
+   *
+   * @param query - Search query string.
+   * @param pageIndex - Zero-based page index.
+   * @param pageSize - Number of items per page.
+   * @returns Promise resolving to the paginated search results containing matching scenarios.
+   * @remarks
+   * Automatically scopes results to the active language pair from `UserStore`.
+   * Empty query strings are treated as undefined (no filter).
+   */
+  searchScenarios(query: string, pageIndex: number, pageSize: number): Promise<ScenarioSearchPage> {
     const pair = this.userStore.languagePair();
 
     return this.scenarioSearchService.search({
@@ -37,6 +62,13 @@ export class CardSelectService {
     });
   }
 
+  /**
+   * Loads a scenario and assembles a card selection session.
+   *
+   * @param scenarioId - The ID of the scenario to load.
+   * @returns A Promise resolving to the card selection session.
+   * @throws Error if the scenario's language pair doesn't match or if no cards are found.
+   */
   async loadScenario(scenarioId: string): Promise<CardSelectSession> {
     const scenario = await this.scenarioSearchService.getById(scenarioId);
     const pair = this.userStore.languagePair();

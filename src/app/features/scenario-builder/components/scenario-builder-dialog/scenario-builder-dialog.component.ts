@@ -9,7 +9,7 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
-import { CardCatalogSearchStore } from '../../../../shared/card-catalog-search';
+import { CardCatalogSearchStore } from '../../../card-catalog-search';
 import { CardEditorDiscardDialogComponent } from '../../../card-editor/components/card-editor-dialog/card-editor-discard-dialog.component';
 import { UserStore } from '../../../../core/state';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
@@ -26,6 +26,11 @@ import type {
   ScenarioBuilderDialogResult,
 } from './scenario-builder-dialog.types';
 
+/**
+ * Scenario builder dialog component. Provides a modal interface for creating and editing scenarios,
+ * including card selection (fixed, criteria-based, or snapshot).
+ * @remarks Tracks dirty state to prompt on unsaved changes.
+ */
 @Component({
   selector: 'app-scenario-builder-dialog',
   imports: [
@@ -46,13 +51,17 @@ export class ScenarioBuilderDialogComponent implements OnInit {
   readonly store = inject(ScenarioBuilderStore);
   private readonly userStore = inject(UserStore);
 
+  /** Current scenario form draft being edited or created. */
   readonly draft = signal<ScenarioFormDraft>(emptyScenarioFormDraft());
+  /** Internal snapshot of the initial draft for dirty tracking. */
   private readonly initialSnapshot = signal('');
 
+  /** Whether the draft has unsaved changes compared to the initial snapshot. */
   readonly dirty = computed(
     () => serializeScenarioFormDraft(this.draft()) !== this.initialSnapshot(),
   );
 
+  /** Dialog title, derived from the current mode and editor state. */
   readonly title = computed(() => {
     if (this.data.mode === 'create') {
       return 'Новый сценарий';
@@ -87,10 +96,22 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     this.initialSnapshot.set(serializeScenarioFormDraft(nextDraft));
   }
 
+  /**
+   * Updates the current form draft with a new draft object.
+   *
+   * @param nextDraft - The updated scenario form draft.
+   */
   updateDraft(nextDraft: ScenarioFormDraft): void {
     this.draft.set(nextDraft);
   }
 
+  /**
+   * Saves the current scenario draft.
+   *
+   * @remarks
+   * Creates a new scenario in `create` mode or updates the existing one in `edit` mode.
+   * Closes the dialog with `{ saved: true }` on success.
+   */
   async saveScenario(): Promise<void> {
     const payload = formDraftToScenarioDraft(this.draft());
     const saved =
@@ -103,6 +124,13 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Cancels the current edit and closes the dialog.
+   *
+   * @remarks
+   * Prompts for confirmation if the draft has unsaved changes.
+   * Closes the dialog with `{ saved: false }` on confirmation.
+   */
   async cancel(): Promise<void> {
     if (!(await this.confirmClose())) {
       return;

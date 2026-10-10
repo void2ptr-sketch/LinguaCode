@@ -1,12 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import {
-  type ExplorerLevel,
-  type ExplorerLevelResult,
-  type JourneyAnalyticsEvent,
-  type JourneyLocationNode,
-} from '../models/journey.types';
-
+import { type ExplorerLevel, type ExplorerLevelResult, type JourneyAnalyticsEvent, type JourneyLocationNode } from '../models';
 import { UserStore } from '../state/user.store';
 
 const JOURNEY_VISITS_STORAGE_KEY = 'journey_visits';
@@ -21,9 +15,11 @@ type JourneyVisitRecord = {
 };
 
 /**
- * Сервис аналитики для карты путешествия.
- * Отслеживает посещения локаций, длительность и прогресс.
- * Данные хранятся в localStorage и синхронизируются с LearningResultsStore.
+ * Analytics service for the learning journey map.
+ *
+ * @remarks
+ * Tracks location visits, duration, and progress. Data is stored in localStorage
+ * and synchronized with `LearningResultsStore`.
  */
 @Injectable({ providedIn: 'root' })
 export class JourneyAnalyticsService {
@@ -31,15 +27,34 @@ export class JourneyAnalyticsService {
 
   private readonly visitsState = signal<readonly JourneyVisitRecord[]>(this.loadVisits());
 
+  /**
+   * Readonly signal of all visit records.
+   *
+   * @remarks
+   * Each record contains scenario ID, lesson ID, course ID, timestamp, duration, and completion percentage.
+   * Persisted to localStorage via `loadVisits` / `saveVisits`.
+   */
   readonly visits = this.visitsState.asReadonly();
 
-  /** Количество посещений для конкретного сценария. */
+  /**
+   * Returns a function that counts visits for a specific scenario.
+   *
+   * @remarks
+   * This is a computed factory — call the returned function with a scenarioId.
+   * The computed re-evaluates whenever `visits` changes.
+   */
   readonly visitCountForScenario = computed(() => {
     return (scenarioId: string) =>
       this.visits().filter((v) => v.scenarioId === scenarioId).length;
   });
 
-  /** Общая статистика посещений по курсу. */
+  /**
+   * Returns a function that computes visit statistics for a specific course.
+   *
+   * @remarks
+   * Includes total visits, total duration, and average completion percentage.
+   * The computed re-evaluates whenever `visits` changes.
+   */
   readonly courseVisitStats = computed(() => {
     return (courseId: string) => {
       const courseVisits = this.visits().filter((v) => v.courseId === courseId);
@@ -54,7 +69,14 @@ export class JourneyAnalyticsService {
     };
   });
 
-  /** Статистика «точек застревания» — локации с аномально долгим временем или низким прогрессом. */
+  /**
+   * "Stuck points" — locations with abnormally long duration or low completion.
+   *
+   * @remarks
+   * Thresholds: >5 minutes total duration OR <50% average completion.
+   * Groups visits by scenario ID and filters out problematic locations.
+   * The computed re-evaluates whenever `visits` changes.
+   */
   readonly stuckPoints = computed(() => {
     const grouped = new Map<
       string,
@@ -87,10 +109,19 @@ export class JourneyAnalyticsService {
     );
   });
 
-  /** Текущий уровень исследователя. */
+  /**
+   * Current explorer level computed from visit data.
+   *
+   * @remarks
+   * Levels: novice → experienced → expert based on visit and completion thresholds.
+   */
   readonly explorerLevel = computed(() => this.computeExplorerLevel());
 
-  /** Обработка события аналитики. */
+  /**
+   * Processes an analytics event and updates visit records.
+   *
+   * @param event - The journey analytics event to process.
+   */
   trackEvent(event: JourneyAnalyticsEvent): void {
     switch (event.kind) {
       case 'visit': {
@@ -144,7 +175,14 @@ export class JourneyAnalyticsService {
     }
   }
 
-  /** Обновление прогресса локации на основе данных из LearningResultsStore. */
+  /**
+   * Updates a location node's progress based on LearningResultsStore data.
+   *
+   * @param node - The journey location node to update.
+   * @param completedCount - Number of completed cards in the scenario.
+   * @param totalCount - Total number of cards in the scenario.
+   * @returns The updated node with status, completion percent, and visited flag.
+   */
   updateLocationProgress(node: JourneyLocationNode, completedCount: number, totalCount: number): JourneyLocationNode {
     const completionPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
     const isVisited = this.visitCountForScenario()(node.scenarioId) > 0;
@@ -159,7 +197,11 @@ export class JourneyAnalyticsService {
     return { ...node, status, completionPercent, visited: isVisited };
   }
 
-  /** Вычисление уровня исследователя. */
+  /**
+   * Computes the current explorer level from visit data.
+   *
+   * @returns The explorer level result with totals and next milestone.
+   */
   private computeExplorerLevel(): ExplorerLevelResult {
     const totalVisits = this.visits().length;
     const completed = this.visits().filter((v) => v.completionPercent >= 100).length;
@@ -189,7 +231,12 @@ export class JourneyAnalyticsService {
     return { level, totalVisits, totalCompleted: completed, nextMilestone };
   }
 
-  /** Переключатель избранного для локации. */
+  /**
+   * Toggles the favorite status of a location node.
+   *
+   * @param nodeId - The ID of the location node.
+   * @param isFavorite - `true` to add to favorites, `false` to remove.
+   */
   toggleFavorite(nodeId: string, isFavorite: boolean): void {
     // Сохраняем флаг в localStorage как отдельный ключ
     const favorites = this.loadFavorites();
@@ -201,6 +248,12 @@ export class JourneyAnalyticsService {
     this.saveFavorites(favorites);
   }
 
+  /**
+   * Checks whether a location node is marked as favorite.
+   *
+   * @param nodeId - The ID of the location node.
+   * @returns `true` if the node is in the favorites list.
+   */
   isFavorite(nodeId: string): boolean {
     return this.loadFavorites().has(nodeId);
   }
@@ -243,7 +296,9 @@ export class JourneyAnalyticsService {
     }
   }
 
-  /** Очистка всех данных аналитики. */
+  /**
+   * Clears all analytics data (visits and favorites) from signals and localStorage.
+   */
   clear(): void {
     this.visitsState.set([]);
     this.saveVisits([]);

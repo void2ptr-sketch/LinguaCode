@@ -1,9 +1,9 @@
 import type { CourseWithLessons } from '../../../core/models';
-import type { CourseWritePayload } from '../../../core/data/courses/courses-api.service';
+import type { CourseWritePayload } from '../../../core/repositories/courses/api/courses-api.service';
 import {
   emptyCourseAuthoring,
   normalizeCourseAuthoring,
-} from '../../../core/data/courses/course-authoring.utils';
+} from '../../../core/repositories/courses/utils/course-authoring.utils';
 import type { CourseFormDraft, LessonFormDraft } from '../types';
 
 export function lessonDraftKey(lesson: Pick<LessonFormDraft, 'id' | 'clientId'>): string {

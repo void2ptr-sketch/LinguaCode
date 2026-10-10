@@ -8,12 +8,17 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   lookupHanRadicalHint,
   primaryHanCharacter,
-} from '../../../../core/data/chinese/draw-stroke-guides.data';
-import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
+} from '../../../../core/domain/chinese/drawing/draw-stroke-guides.data';
+import { HanziDataService } from '../../../hanzi-practice/services/hanzi-data.service';
 import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
 
+/**
+ * Settings panel component for card form. Provides kind-specific settings (time limit,
+ * answer mode, draw practice mode, appearance) alongside appearance fields.
+ * @remarks Loads Hanzi stroke count for draw cards via `HanziDataService`.
+ */
 @Component({
   selector: 'app-card-form-settings-panel',
   imports: [
@@ -31,12 +36,34 @@ import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-ap
 export class CardFormSettingsPanelComponent {
   private readonly hanziData = inject(HanziDataService);
 
+  /**
+   * Required card draft being edited.
+   * @remarks
+   * Bound with two-way binding (`[(draft)]`) in parent templates.
+   */
   readonly draft = input.required<CardDraft>();
 
+  /**
+   * Emits the updated card draft when settings change.
+   * @remarks
+   * Used with two-way binding: `(draftChange)="onDraftChange($event)"`.
+   */
   readonly draftChange = output<CardDraft>();
 
+  /**
+   * Stroke count for the draw card's target Hanzi character (null when not applicable).
+   * @remarks
+   * Loaded asynchronously from `HanziDataService` when the draw draft's target character changes.
+   * Only populated for stroke-order practice mode.
+   */
   readonly drawHanziStrokeCount = signal<number | null>(null);
 
+  /**
+   * Available draw practice mode options for the selector.
+   *
+   * @remarks
+   * Includes memory, tracing, hints, freehand, stroke-order, and radicals modes.
+   */
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
     { value: 'memory', label: 'По памяти (default UI)' },
     { value: 'tracing', label: 'Трассировка' },
@@ -46,6 +73,12 @@ export class CardFormSettingsPanelComponent {
     { value: 'radicals', label: 'Радикалы' },
   ];
 
+  /**
+   * Available keyboard answer mode options for the selector.
+   *
+   * @remarks
+   * Includes auto (IPA/Pinyin/text), text, Pinyin with tones, and IPA modes.
+   */
   readonly keyboardAnswerModeOptions: readonly { value: KeyboardAnswerMode; label: string }[] = [
     { value: 'auto', label: 'Авто (IPA / пиньинь / текст)' },
     { value: 'text', label: 'Текст' },
@@ -53,16 +86,25 @@ export class CardFormSettingsPanelComponent {
     { value: 'ipa', label: 'IPA' },
   ];
 
+  /**
+   * Computed keyboard card draft, or `null` if the current draft is not a keyboard card.
+   */
   readonly keyboardDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'keyboard' ? draft : null;
   });
 
+  /**
+   * Computed timed card draft, or `null` if the current draft is not a timed card.
+   */
   readonly timedDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'timed' ? draft : null;
   });
 
+  /**
+   * Computed draw card draft, or `null` if the current draft is not a draw card.
+   */
   readonly drawDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;
@@ -83,14 +125,31 @@ export class CardFormSettingsPanelComponent {
     });
   }
 
+  /**
+   * Emits the updated card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: CardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the card appearance settings.
+   *
+   * @param appearance - The new appearance configuration.
+   */
   updateAppearance(appearance: CardDraft['appearance']): void {
     this.updateDraft({ ...this.draft(), appearance });
   }
 
+  /**
+   * Updates the time limit for timed cards.
+   *
+   * @param value - The new time limit in seconds.
+   * @remarks
+   * No-op for non-timed cards.
+   */
   updateTimeLimitSec(value: number): void {
     const draft = this.draft();
     if (draft.kind === 'timed') {
@@ -98,6 +157,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the keyboard answer mode for keyboard cards.
+   *
+   * @param value - The new answer mode.
+   * @remarks
+   * No-op for non-keyboard cards.
+   */
   updateKeyboardAnswerMode(value: KeyboardAnswerMode): void {
     const draft = this.draft();
     if (draft.kind === 'keyboard') {
@@ -105,6 +171,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the draw practice mode for draw cards.
+   *
+   * @param value - The new practice mode ('freehand' or 'stroke-order').
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawPracticeMode(value: DrawPracticeMode): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -112,6 +185,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the target Hanzi character for draw cards.
+   *
+   * @param value - The new target character string.
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawTargetCharacter(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -119,6 +199,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the radical hint for draw cards.
+   *
+   * @param value - The new radical hint text.
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawRadicalHint(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -126,6 +213,12 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Auto-fills draw hints (target character and radical hint) from available sources.
+   * @remarks
+   * Derives target character from `targetCharacter`, `promptLexeme.primary`,
+   * or `referenceHintKnown`. Looks up radical hint via `lookupHanRadicalHint()`.
+   */
   autofillDrawHints(): void {
     const draft = this.draft();
     if (draft.kind !== 'draw') {

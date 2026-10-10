@@ -1,28 +1,26 @@
-import { vi, type MockedObject } from 'vitest';
+import { vi } from 'vitest';
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { of } from 'rxjs';
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import { CardEditorDialogService } from './card-editor-dialog.service';
 
 describe('CardEditorDialogService', () => {
   let service: CardEditorDialogService;
-  let dialog: Pick<MockedObject<MatDialog>, 'open'>;
+  let openSpy: ReturnType<typeof vi.fn>;
 
   beforeEach(() => {
-    dialog = {
-      open: vi.fn().mockName('MatDialog.open'),
-    };
-    dialog.open.mockReturnValue({
+    openSpy = vi.fn().mockReturnValue({
       afterClosed: () => of({ saved: true }),
-    } as ReturnType<MatDialog['open']>);
+    });
 
     TestBed.configureTestingModule({
+      imports: [MatDialogModule],
       providers: [
         CardEditorDialogService,
         provideHttpClient(),
-        { provide: MatDialog, useValue: dialog },
+        { provide: MatDialog, useValue: { open: openSpy } },
       ],
     });
 
@@ -33,7 +31,7 @@ describe('CardEditorDialogService', () => {
     const result = await service.openCreate('select');
 
     expect(result).toEqual({ saved: true });
-    expect(dialog.open).toHaveBeenCalledWith(
+    expect(openSpy).toHaveBeenCalledWith(
       CardEditorDialogComponent,
       expect.objectContaining({
         panelClass: 'card-editor-dialog',

@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import type { ContentLanguage } from '../../../../core/models';
-import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   addOption,
   MAX_CARD_OPTIONS,
@@ -21,12 +21,26 @@ import {
 } from '../../utils/card-options-editor.utils';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 
+/**
+ * Configuration for the card options editor.
+ *
+ * @remarks
+ * Controls the display labels and behavior of the options editor component.
+ */
 export type CardOptionsEditorConfig = {
+  /** Display title for the options section. */
   title: string;
+  /** Label prefix for individual options (e.g., "Вариант", "Символ"). */
   optionLabelPrefix: string;
+  /** Whether to show a radio button for selecting the correct option. */
   showCorrectRadio: boolean;
 };
 
+/**
+ * Reusable options editor component for managing choice card options (text, lexemes, correct index).
+ *
+ * @remarks Supports lexeme display, add/remove options, and correct answer selection.
+ */
 @Component({
   selector: 'app-card-options-editor',
   imports: [
@@ -43,26 +57,35 @@ export type CardOptionsEditorConfig = {
   styleUrl: './card-options-editor.component.scss',
 })
 export class CardOptionsEditorComponent {
+  /** Required configuration for the options editor (title, prefix, show correct radio). */
   readonly config = input.required<CardOptionsEditorConfig>();
+  /** Required array of option texts. */
   readonly options = input.required<readonly string[]>();
+  /** Required array of lexeme draft fields for each option. */
   readonly lexemes = input.required<readonly LexemeDraftFields[]>();
+  /** Index of the correct option (default: 0). */
   readonly correctIndex = input(0);
+  /** Whether to show lexeme fields for each option. */
   readonly showLexemes = input(false);
+  /** Known (source) language for lexeme sync. */
   readonly knownLanguage = input<ContentLanguage>('ru');
+  /** Learning (target) language for lexeme sync. */
   readonly learningLanguage = input<ContentLanguage>('en');
 
+  /** Emits the updated editor state when options change. */
   readonly stateChange = output<CardOptionsEditorState>();
 
+  /** Minimum allowed number of options (2). */
   readonly minOptions = MIN_CARD_OPTIONS;
+  /** Maximum allowed number of options (8). */
   readonly maxOptions = MAX_CARD_OPTIONS;
 
-  readonly editorState = computed(
-    (): CardOptionsEditorState => ({
-      options: this.options(),
-      lexemes: this.lexemes(),
-      correctIndex: this.correctIndex(),
-    }),
-  );
+  /** Computed current state of the options editor. */
+  readonly editorState = computed((): CardOptionsEditorState => ({
+    options: this.options(),
+    lexemes: this.lexemes(),
+    correctIndex: this.correctIndex(),
+  }));
 
   isOptionReadonly(lexeme: LexemeDraftFields | undefined): boolean {
     return optionTextReadonly(this.showLexemes(), lexeme ?? emptyLexemeDraftFields());

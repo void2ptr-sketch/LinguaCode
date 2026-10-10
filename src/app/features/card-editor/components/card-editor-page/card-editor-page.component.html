@@ -114,7 +114,7 @@
             </p>
           } @else {
             <ul class="card-editor-page__list">
-              @for (entry of catalogStore.entries(); track entry.id) {
+              @for (entry of entries(); track entry.id) {
                 <li class="card-editor-page__item">
                   <span class="card-editor-page__title">{{ entry.title }}</span>
                   <span class="card-editor-page__meta-text">

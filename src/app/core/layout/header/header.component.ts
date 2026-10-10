@@ -6,6 +6,10 @@ import { MenuToolsComponent } from '../menu-tools/menu-tools.component';
 import { MenuHelpComponent } from '../menu-help/menu-help.component';
 import { MenuUserComponent } from '../menu-user/menu-user.component';
 
+/**
+ * Application header component. Renders the top toolbar containing navigation menus.
+ * @remarks This component is a simple presentational element with no inputs or outputs.
+ */
 @Component({
   selector: 'app-header',
   imports: [

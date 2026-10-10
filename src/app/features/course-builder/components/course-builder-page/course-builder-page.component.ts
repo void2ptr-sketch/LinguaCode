@@ -30,7 +30,7 @@ import type { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import type { CourseListScope } from '../../../../core/models';
-import { UiPaginationComponent } from '../../../../shared/pagination';
+import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import { UserStore } from '../../../../core/state';
 import { CourseBuilderDialogService } from '../course-builder-dialog/course-builder-dialog.service';
 import { CourseBuilderStore } from '../../services/course-builder.store';
@@ -50,6 +50,12 @@ let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
  * - Предоставляет кнопки для CRUD-операций
  * - Обработчики экспорта в JSON и PDF
  * - Кнопка сброса overlay (очистка localStorage)
+ *
+ * @remarks
+ * Данные загружаются через `CourseBuilderStore`, который использует mock-интерсепторы
+ * для работы без бэкенда. При смене активного language pair — автоматически перезагружает список.
+ * @see CourseBuilderStore
+ * @see CourseBuilderDialogService
  */
 @Component({
   selector: 'app-course-builder-page',

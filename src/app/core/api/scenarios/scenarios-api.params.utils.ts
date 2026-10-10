@@ -5,9 +5,18 @@ import type {
   ScenarioListScope,
   ScenarioSearchCriteria,
 } from '../../models';
-import { isContentLanguage } from '../../data/language-pair/language-pair.utils';
-import { DEFAULT_PAGE_SIZE } from '../../../shared/pagination';
+import { isContentLanguage } from '../../domain/language-pair/language-pair.utils';
+import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 
+/**
+ * Builds `HttpParams` from a `ScenarioSearchCriteria` object.
+ *
+ * Serialises all non-empty criteria fields (query, author, scope, card source
+ * mode, languages, course ID, pagination) into query parameters.
+ *
+ * @param criteria - The search criteria to serialise.
+ * @returns An `HttpParams` instance ready for HTTP requests.
+ */
 export function buildScenarioSearchParams(criteria: ScenarioSearchCriteria): HttpParams {
   let params = new HttpParams()
     .set('page', String(criteria.page.page))

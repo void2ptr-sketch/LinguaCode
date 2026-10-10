@@ -1,12 +1,29 @@
 import { Injectable } from '@angular/core';
-import { normalizeLanguagePair } from '../data/language-pair/language-pair.utils';
+import { normalizeLanguagePair } from '../domain/language-pair/language-pair.utils';
 import { LearningResult } from '../models';
-import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
-
+import { DEFAULT_LANGUAGE_PAIR } from '../models';
+/**
+ * LocalStorage key for learning results.
+ */
 export const LEARNING_RESULTS_STORAGE_KEY = 'lingua-code.learning-results';
 
+/**
+ * Persists learning results to and from LocalStorage.
+ *
+ * @remarks
+ * Uses JSON serialization with fallback defaults for missing fields.
+ * Normalizes language pair and generates UUIDs for missing IDs.
+ */
 @Injectable({ providedIn: 'root' })
 export class LearningResultsPersistence {
+  /**
+   * Loads learning results from LocalStorage.
+   *
+   * @returns An array of learning results, or an empty array if no data is stored or parsing fails.
+   * @remarks
+   * Applies fallback defaults: generated UUIDs for missing IDs, `'local-user'` for userId,
+   * `false` for correct, current ISO timestamp for answeredAt.
+   */
   load(): readonly LearningResult[] {
     const raw = localStorage.getItem(LEARNING_RESULTS_STORAGE_KEY);
     if (!raw) {
@@ -36,6 +53,11 @@ export class LearningResultsPersistence {
     }
   }
 
+  /**
+   * Saves learning results to LocalStorage.
+   *
+   * @param results - The array of learning results to persist.
+   */
   save(results: readonly LearningResult[]): void {
     localStorage.setItem(LEARNING_RESULTS_STORAGE_KEY, JSON.stringify(results));
   }

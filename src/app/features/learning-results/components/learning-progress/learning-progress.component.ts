@@ -5,8 +5,13 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LearningResultsStore } from '../../../../core/state';
-import { scenarioDisplayLabel } from '../../../../core/data/scenarios/scenario-display-label.utils';
+import { scenarioDisplayLabel } from '../../../../core/repositories/scenarios/utils/scenario-display-label.utils';
 
+/**
+ * Learning progress component. Displays overall learning statistics including accuracy,
+ * recent results, and per-scenario progress.
+ * @remarks Data is sourced directly from `LearningResultsStore`.
+ */
 @Component({
   selector: 'app-learning-progress',
   imports: [MatCardModule, MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule],
@@ -16,20 +21,43 @@ import { scenarioDisplayLabel } from '../../../../core/data/scenarios/scenario-d
 export class LearningProgressComponent {
   private readonly resultsStore = inject(LearningResultsStore);
 
+  /** Total number of learning results. */
   readonly totalResults = this.resultsStore.totalCount;
+  /** Number of correct answers. */
   readonly correctResults = this.resultsStore.correctCount;
+  /** Overall accuracy percentage. */
   readonly accuracyPercent = this.resultsStore.accuracyPercent;
+  /** Recent learning results for the current language pair. */
   readonly recentResults = this.resultsStore.recentResults;
+  /** Per-scenario progress data. */
   readonly scenarioProgress = this.resultsStore.scenarioProgress;
 
+  /**
+   * Clears all learning results for the current user and persists.
+   *
+   * @remarks
+   * Irreversible — resets accuracy, progress, and recent results.
+   */
   clearResults(): void {
     this.resultsStore.clear();
   }
 
+  /**
+   * Returns a display label for a scenario by its ID.
+   *
+   * @param scenarioId - The scenario identifier.
+   * @returns The human-readable scenario label.
+   */
   scenarioLabel(scenarioId: string): string {
     return scenarioDisplayLabel(scenarioId);
   }
 
+  /**
+   * Formats an ISO date string to a locale-aware date-time string.
+   *
+   * @param isoDate - ISO 8601 date string.
+   * @returns Formatted date-time string in `ru-RU` locale.
+   */
   formatDate(isoDate: string): string {
     return new Date(isoDate).toLocaleString('ru-RU');
   }

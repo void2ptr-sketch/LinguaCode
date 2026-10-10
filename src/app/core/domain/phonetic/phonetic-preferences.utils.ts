@@ -1,0 +1,221 @@
+import type { CjkLearningPreferences, PhoneticPreferences, RomanizationSystem } from '../../models';
+import { DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES, ROMANIZATION_DISPLAY_ORDER, TRACING_STROKE_DURATION_BOUNDS, DEFAULT_TONE_COLOR_SCHEME_ID } from '../../models';
+import { isToneColorSchemeId } from '../chinese/tones/tone-color.utils';
+const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
+
+function isRomanizationSystem(value: unknown): value is RomanizationSystem {
+  return typeof value === 'string' && ROMANIZATION_SYSTEMS.includes(value as RomanizationSystem);
+}
+
+type LegacyCjkLearningPreferences = Partial<CjkLearningPreferences> & {
+  displayRomanization?: RomanizationSystem;
+};
+
+function normalizeRomanizationList(values: readonly unknown[]): readonly RomanizationSystem[] {
+  const selected = values.filter(isRomanizationSystem);
+  return ROMANIZATION_DISPLAY_ORDER.filter((system) => selected.includes(system));
+}
+
+function normalizeDisplayRomanizations(
+  raw?: LegacyCjkLearningPreferences | null,
+): readonly RomanizationSystem[] {
+  if (raw && 'displayRomanizations' in raw && Array.isArray(raw.displayRomanizations)) {
+    return normalizeRomanizationList(raw.displayRomanizations);
+  }
+
+  if (isRomanizationSystem(raw?.displayRomanization)) {
+    return [raw.displayRomanization];
+  }
+
+  return [...DEFAULT_CJK_LEARNING_PREFERENCES.displayRomanizations];
+}
+
+function normalizeAnswerRomanization(
+  raw?: LegacyCjkLearningPreferences | null,
+): readonly RomanizationSystem[] {
+  if (raw && 'answerRomanization' in raw && Array.isArray(raw.answerRomanization)) {
+    return normalizeRomanizationList(raw.answerRomanization);
+  }
+
+  return [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization];
+}
+
+/**
+ * Normalises the tracing stroke duration to a valid value within configured bounds.
+ *
+ * Rounds to one decimal place and clamps between `minSec` and `maxSec` from `TRACING_STROKE_DURATION_BOUNDS`.
+ *
+ * @param value — Raw duration value in seconds.
+ * @returns Normalised duration in seconds, clamped to valid range.
+ */
+export function normalizeTracingStrokeDurationSec(value?: number | null): number {
+  if (typeof value !== 'number' || !Number.isFinite(value)) {
+    return TRACING_STROKE_DURATION_BOUNDS.defaultSec;
+  }
+
+  const rounded = Math.round(value * 10) / 10;
+  return Math.min(
+    TRACING_STROKE_DURATION_BOUNDS.maxSec,
+    Math.max(TRACING_STROKE_DURATION_BOUNDS.minSec, rounded),
+  );
+}
+
+/**
+ * Normalises CJK learning preferences, resolving legacy fields and applying defaults.
+ *
+ * Handles both the new `displayRomanizations` / `answerRomanization` arrays and the legacy
+ * `displayRomanization` single-value field.
+ *
+ * @param raw — Raw or legacy CJK learning preferences.
+ * @returns A fully normalised `CjkLearningPreferences` object.
+ */
+export function normalizeCjkLearningPreferences(
+  raw?: LegacyCjkLearningPreferences | null,
+): CjkLearningPreferences {
+  return {
+    displayRomanizations: normalizeDisplayRomanizations(raw),
+    answerRomanization: normalizeAnswerRomanization(raw),
+    showTones: raw?.showTones ?? DEFAULT_CJK_LEARNING_PREFERENCES.showTones,
+    toneColorScheme: isToneColorSchemeId(raw?.toneColorScheme)
+      ? raw.toneColorScheme
+      : DEFAULT_TONE_COLOR_SCHEME_ID,
+    tracingStrokeDurationSec: normalizeTracingStrokeDurationSec(raw?.tracingStrokeDurationSec),
+  };
+}
+
+const ANSWER_DISPLAY_MODES: readonly ('orthography' | 'ipa')[] = ['orthography', 'ipa'];
+
+function isAnswerDisplayMode(value: unknown): value is 'orthography' | 'ipa' {
+  return value === 'orthography' || value === 'ipa';
+}
+
+function normalizeAnswerModes(
+  raw?: Partial<PhoneticPreferences> | null,
+): readonly PhoneticPreferences['answerModes'][number][] {
+  if (raw && 'answerModes' in raw && Array.isArray(raw.answerModes)) {
+    const selected = raw.answerModes.filter(isAnswerDisplayMode);
+    return ANSWER_DISPLAY_MODES.filter((mode) => selected.includes(mode));
+  }
+
+  return [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
+}
+
+/**
+ * Normalises phonetic preferences, resolving legacy fields and applying defaults.
+ *
+ * Handles the legacy `displayOrthography: 'orthographic'` value alongside the new
+ * romanization system values.
+ *
+ * @param raw — Raw phonetic preferences.
+ * @returns A fully normalised `PhoneticPreferences` object.
+ */
+export function normalizePhoneticPreferences(
+  raw?: Partial<PhoneticPreferences> | null,
+): PhoneticPreferences {
+  return {
+    showIpa: raw?.showIpa ?? DEFAULT_PHONETIC_PREFERENCES.showIpa,
+    ipaVariantLabel:
+      typeof raw?.ipaVariantLabel === 'string' && raw.ipaVariantLabel.trim()
+        ? raw.ipaVariantLabel.trim()
+        : undefined,
+    displayOrthography: isRomanizationSystem(raw?.displayOrthography)
+      ? raw.displayOrthography
+      : raw?.displayOrthography === 'orthographic'
+        ? 'orthographic'
+        : undefined,
+    answerModes: normalizeAnswerModes(raw),
+  };
+}
+
+/**
+ * Determines whether Palladius romanization should be displayed for a given language pair.
+ *
+ * Palladius is shown only for Russian-to-Chinese pairs.
+ *
+ * @param known — Known (source) language code.
+ * @param learning — Target (learning) language code.
+ * @returns `true` when Palladius should be displayed.
+ */
+export function shouldShowPalladius(known: string, learning: string): boolean {
+  return known === 'ru' && learning === 'zh';
+}
+
+/**
+ * Checks whether the target learning language supports phonetic display features.
+ *
+ * Currently supported for English and Chinese.
+ *
+ * @param learning — Target (learning) language code.
+ * @returns `true` if phonetic display is supported for the language.
+ */
+export function pairSupportsPhoneticDisplay(learning: string): boolean {
+  return learning === 'en' || learning === 'zh';
+}
+
+/**
+ * Checks whether a specific romanization system is enabled for display in CJK learning preferences.
+ *
+ * @param prefs — CJK learning preferences to check.
+ * @param system — Romanization system to check.
+ * @returns `true` if the system is included in `displayRomanizations`.
+ */
+export function isRomanizationDisplayEnabled(
+  prefs: CjkLearningPreferences,
+  system: RomanizationSystem,
+): boolean {
+  return prefs.displayRomanizations.includes(system);
+}
+
+/**
+ * Represents the surface where a lexeme is displayed during a learning session.
+ */
+export type LexemeDisplaySurface = 'prompt' | 'answer';
+
+/**
+ * Type alias for a valid answer display mode from phonetic preferences.
+ */
+export type AnswerDisplayMode = PhoneticPreferences['answerModes'][number];
+
+/**
+ * Resolves the romanization systems to display for a given surface.
+ *
+ * For prompts, returns `displayRomanizations`. For answers, returns `answerRomanization`
+ * only when the orthography mode is enabled in `answerModes`.
+ *
+ * @param surface — Display surface (`prompt` or `answer`).
+ * @param cjk — CJK learning preferences.
+ * @param phonetic — Phonetic preferences.
+ * @returns Array of romanization systems to display.
+ */
+export function resolveRomanizationsForSurface(
+  surface: LexemeDisplaySurface,
+  cjk: CjkLearningPreferences,
+  phonetic: PhoneticPreferences,
+): readonly RomanizationSystem[] {
+  if (surface === 'prompt') {
+    return cjk.displayRomanizations;
+  }
+
+  if (!phonetic.answerModes.includes('orthography')) {
+    return [];
+  }
+
+  return cjk.answerRomanization;
+}
+
+/**
+ * Resolves whether IPA should be displayed for a given surface.
+ *
+ * For prompts, uses the `showIpa` preference. For answers, checks whether the `'ipa'` mode
+ * is enabled in `answerModes`.
+ *
+ * @param surface — Display surface (`prompt` or `answer`).
+ * @param phonetic — Phonetic preferences.
+ * @returns `true` if IPA should be displayed on the given surface.
+ */
+export function resolveShowIpaForSurface(
+  surface: LexemeDisplaySurface,
+  phonetic: PhoneticPreferences,
+): boolean {
+  return surface === 'prompt' ? phonetic.showIpa : phonetic.answerModes.includes('ipa');
+}

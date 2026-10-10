@@ -37,12 +37,13 @@ import { firstValueFrom } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
 import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/models';
-import { CardRepository } from '../../../core/data/cards/card.repository';
-import { loadScenariosFromStorage } from '../../../core/data/scenarios/scenarios-storage';
+import { CardRepository } from '../../../core/repositories/cards/repository/card.repository';
+import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/storage/scenarios-storage';
 
 /**
  * Представление карточки в контексте курса.
- * Содержит саму карточку и метаданные о её расположении.
+ *
+ * Содержит саму карточку и метаданные о её расположении в структуре курса.
  */
 type CardEntry = {
   /** Данные карточки */
@@ -54,7 +55,8 @@ type CardEntry = {
 };
 
 /**
- * Этап из authoring.idea курса.
+ * Этап из `authoring.idea` курса.
+ *
  * Соответствует разделу "## Этап N: название" в Markdown.
  */
 type IdeaStage = {

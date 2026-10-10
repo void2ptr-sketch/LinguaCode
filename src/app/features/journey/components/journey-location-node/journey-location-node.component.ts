@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import type { JourneyLocationNode } from '../../../../core/models';
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 
 /** Иконки Material для типов контента. */
@@ -32,6 +32,11 @@ const STATUS_ICONS: Record<string, string> = {
   completed: 'check_circle',
 };
 
+/**
+ * Journey location node component. Renders a single node on the learning journey map
+ * with status indicators, content type icons, and interactive actions.
+ * @remarks Locked nodes are non-interactive; others trigger `nodeSelect` on click.
+ */
 @Component({
   selector: 'app-journey-location-node',
   imports: [
@@ -45,30 +50,37 @@ const STATUS_ICONS: Record<string, string> = {
   styleUrl: './journey-location-node.component.scss',
 })
 export class JourneyLocationNodeComponent {
+  /** Required journey location node data. */
   readonly node = input.required<JourneyLocationNode>();
+  /** Whether this node is currently selected. */
   readonly selected = input<boolean>(false);
 
+  /** Emits the node ID when the user selects this node. */
   readonly nodeSelect = output<string>();
+  /** Emits the node ID when the user toggles the favorite state. */
   readonly toggleFavorite = output<string>();
 
   protected readonly analyticsService = inject(JourneyAnalyticsService);
 
+  /** Computed Material icon for the node's status. */
   protected readonly statusIcon = computed(() => {
     return STATUS_ICONS[this.node().status] ?? 'help';
   });
 
+  /** Computed Material icon for the first content type of this node. */
   protected readonly contentTypeIcon = computed(() => {
     const types = this.node().contentTypes;
     if (types.length === 0) return 'help';
-    // Показываем первую иконку типа контента
     return CONTENT_TYPE_ICONS[types[0]] ?? 'help';
   });
 
+  /** Whether this node is interactive (not locked). */
   protected readonly isInteractive = computed(() => {
     const status = this.node().status;
     return status !== 'locked';
   });
 
+  /** Computed human-readable status label. */
   protected readonly statusLabel = computed(() => {
     const status = this.node().status;
     switch (status) {
@@ -87,10 +99,10 @@ export class JourneyLocationNodeComponent {
     }
   });
 
-  /** Количество карточек в сценарии. */
+  /** Computed number of cards in the scenario. */
   protected readonly cardCount = computed(() => this.node().cardCount);
 
-  /** Иконки типов контента (может быть несколько). */
+  /** Computed Material icons for all content types of this node. */
   protected readonly contentTypeIcons = computed(() => {
     const types = this.node().contentTypes;
     return types.map((t) => CONTENT_TYPE_ICONS[t] ?? 'help');

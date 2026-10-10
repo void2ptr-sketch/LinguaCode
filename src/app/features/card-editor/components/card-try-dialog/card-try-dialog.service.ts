@@ -5,12 +5,24 @@ import { firstValueFrom } from 'rxjs';
 import { CardTryDialogComponent } from './card-try-dialog.component';
 import type { CardTryDialogData } from './card-try-dialog.types';
 
+/**
+ * Service for opening the card preview (try) dialog.
+ *
+ * @remarks
+ * Allows users to preview a card in practice mode. Ensures only one dialog instance is active.
+ */
 @Injectable({ providedIn: 'root' })
 export class CardTryDialogService {
   private readonly dialog = inject(MatDialog);
 
   private activeRef: MatDialogRef<CardTryDialogComponent, void> | null = null;
 
+  /**
+   * Opens the card preview dialog for a given card.
+   *
+   * @param cardId - The ID of the card to preview.
+   * @returns A promise that resolves when the dialog closes.
+   */
   open(cardId: string): Promise<void> {
     if (this.activeRef) {
       return Promise.resolve();

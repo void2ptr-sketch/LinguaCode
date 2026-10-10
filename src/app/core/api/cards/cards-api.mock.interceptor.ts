@@ -1,19 +1,20 @@
 /**
- * Mock-интерсептор для API карточек.
+ * Mock interceptor for the cards API.
  *
- * Перехватывает HTTP-запросы к API карточек и возвращает данные
- * из ContentSeedRepository вместо реального бэкенда.
+ * @remarks
+ * Intercepts HTTP requests to the cards API and returns data from
+ * `ContentSeedRepository` instead of hitting a real backend.
  *
- * Используется когда environment.useCardsApiMock = true.
+ * Active when `environment.useCardsApiMock` is `true`.
  *
- * Поддерживаемые запросы:
- * - POST /cards/search — поиск карточек с фильтрами
- * - GET /cards/{id} — получение карточки по ID
- * - POST /cards/batch — получение нескольких карточек по ID
+ * Supported requests:
+ * - POST /cards/search — search cards with filters
+ * - GET /cards/{id} — fetch a single card by ID
+ * - POST /cards/batch — fetch multiple cards by IDs
  *
- * Пример использования:
+ * @example
  * ```typescript
- * // В environment.ts:
+ * // In environment.ts:
  * export const environment = {
  *   useCardsApiMock: true,
  *   // ...
@@ -31,21 +32,19 @@ import { isApiRequest } from '../api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
 
 /**
- * Проверяет, является ли запрос поиском карточек.
+ * Checks whether the given URL is a cards search request.
  *
- * @param url — URL запроса
- * @returns true если это POST-запрос к /cards/search
+ * @param url - The request URL to check.
+ * @returns `true` if the URL is an API request targeting `/cards/search`.
  */
 const isCardsSearchRequest = (url: string): boolean =>
   isApiRequest(url) && url.includes('/cards/search');
 
 /**
- * Извлекает ID карточки из URL.
+ * Extracts the card ID from an API URL.
  *
- * Формат URL: /api/cards/{id}
- *
- * @param url — URL запроса
- * @returns ID карточки или null если не найден
+ * @param url - The request URL.
+ * @returns The card ID, or `null` if the URL does not target a specific card.
  */
 const extractCardId = (url: string): string | null => {
   const prefix = `${environment.apiUrl}/cards/`;
@@ -58,21 +57,22 @@ const extractCardId = (url: string): string | null => {
 };
 
 /**
- * Mock-интерсептор для API карточек.
+ * HTTP interceptor that mocks cards API responses for development.
  *
- * Перехватывает GET и POST запросы к API карточек и возвращает
- * данные из ContentSeedRepository вместо реального бэкенда.
+ * @remarks
+ * Handles GET (search, getById), POST (search, batch) requests for the
+ * cards endpoint. Delegates to `CardsCatalogMockHandler` for data operations.
  *
- * Алгоритм:
- * 1. Если запрос не GET или не к API — пропускает (next)
- * 2. Если POST /cards/search — ищет карточки по критериям
- * 3. Если GET /cards/{id} — получает карточку по ID
- * 4. Если POST /cards/batch — получает несколько карточек по ID
- * 5. Иначе — пропускает (next)
+ * Algorithm:
+ * 1. If the request is not GET or not an API request — pass through (`next`).
+ * 2. If `POST /cards/search` — search cards by criteria.
+ * 3. If `GET /cards/{id}` — fetch a single card by ID.
+ * 4. If `POST /cards/batch` — fetch multiple cards by IDs.
+ * 5. Otherwise — pass through (`next`).
  *
- * @param req — HTTP-запрос
- * @param next — следующий интерсептор
- * @returns Observable с HTTP-ответом
+ * @param req - The outgoing HTTP request.
+ * @param next - The next interceptor in the chain.
+ * @returns The mocked response observable.
  */
 export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   const handler = inject(CardsCatalogMockHandler);
