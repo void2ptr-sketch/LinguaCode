@@ -4,6 +4,11 @@ import {
   USER_CONTENT_OVERLAY_VERSION,
 } from './user-content-overlay.types';
 
+/**
+ * Создаёт пустой оверлей с версией по умолчанию и пустыми коллекциями.
+ *
+ * @returns Пустой объект UserContentOverlay, готовый к заполнению.
+ */
 export function emptyUserContentOverlay(): UserContentOverlay {
   return {
     version: USER_CONTENT_OVERLAY_VERSION,
@@ -16,6 +21,15 @@ export function emptyUserContentOverlay(): UserContentOverlay {
   };
 }
 
+/**
+ * Читает оверлей из localStorage.
+ *
+ * @remarks
+ * Если ключ отсутствует или данные некорректны — возвращает пустой оверлей.
+ * Не выбрасывает исключения: все ошибки парсинга обрабатываются silently.
+ *
+ * @returns Оверлей из localStorage или пустой оверлей при отсутствии/ошибке.
+ */
 export function readUserContentOverlay(): UserContentOverlay {
   const raw = localStorage.getItem(USER_CONTENT_OVERLAY_KEY);
   if (!raw) {
@@ -30,6 +44,14 @@ export function readUserContentOverlay(): UserContentOverlay {
   }
 }
 
+/**
+ * Сохраняет оверлей в localStorage.
+ *
+ * @remarks
+ * Перед записью нормализует данные через normalizeUserContentOverlay.
+ *
+ * @param overlay — оверлей для сохранения.
+ */
 export function writeUserContentOverlay(overlay: UserContentOverlay): void {
   localStorage.setItem(
     USER_CONTENT_OVERLAY_KEY,
@@ -37,6 +59,16 @@ export function writeUserContentOverlay(overlay: UserContentOverlay): void {
   );
 }
 
+/**
+ * Применяет частичное обновление к оверлею и сохраняет результат.
+ *
+ * @remarks
+ * Считывает текущий оверлей из localStorage, объединяет с патчем,
+ * нормализует и записывает обратно. Версия не может быть изменена через патч.
+ *
+ * @param patch — частичные изменения для применения.
+ * @returns Обновлённый оверлей, сохранённый в localStorage.
+ */
 export function patchUserContentOverlay(
   patch: Partial<Omit<UserContentOverlay, 'version'>>,
 ): UserContentOverlay {

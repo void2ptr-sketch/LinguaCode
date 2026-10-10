@@ -26,6 +26,17 @@ import {
 } from './user-content-overlay.types';
 import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
 
+/**
+ * Выполняет одноразовую миграцию legacy-данных в новый формат оверлея.
+ *
+ * @remarks
+ * Проверяет флаг миграции в localStorage. Если данные уже мигрированы — выход.
+ * Переносит курсы, сценарии, карточки и meta из старых ключей localStorage
+ * в единый ключ USER_CONTENT_OVERLAY_KEY, применяя seed-данные для слияния.
+ * После миграции очищает старые ключи и устанавливает флаг.
+ *
+ * Не выбрасывает исключения: все ошибки парсинга обрабатываются silently.
+ */
 export function migrateUserContentOverlayIfNeeded(): void {
   if (localStorage.getItem(USER_CONTENT_MIGRATED_KEY) === '1') {
     return;

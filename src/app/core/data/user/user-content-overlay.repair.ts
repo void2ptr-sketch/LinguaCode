@@ -8,19 +8,34 @@ import type { UserContentOverlay } from './user-content-overlay.types';
 import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
 import type { CourseAuthoring } from '../../models/course-authoring.types';
 
+/** Заголовок курса «Собеседование на языке Perl» для идентификации в оверлее. */
 export const PERL_INTERVIEW_COURSE_TITLE = 'Собеседование на языке Perl';
 
+/** Системный ID курса «Собеседование на языке Perl» из seed. */
 export const PERL_INTERVIEW_COURSE_ID = 'course-ru-perl-interview';
 
+/** Языковая пара для курса «Собеседование на языке Perl»: русский → Perl. */
 export const RU_PERL_LANGUAGE_PAIR: LanguagePair = {
   known: 'ru',
   learning: 'perl',
 };
 
+/** Ключ localStorage для флага завершения ремонта оверлея. */
 export const USER_CONTENT_OVERLAY_REPAIR_KEY = 'lingua-code.user-content.repair-v1';
 
+/** Версия ремонта: при изменении логики — инкрементировать для принудительного повторного запуска. */
 export const USER_CONTENT_OVERLAY_REPAIR_VERSION = 'perl-interview-ru-perl-v2';
 
+/**
+ * Выполняет одноразовый ремонт оверлея для курса «Собеседование на языке Perl».
+ *
+ * @remarks
+ * Исправляет две проблемы:
+ * 1. Привязывает курс к языковой паре `ru→perl` (courses, lessons, scenarios, cardIndexMeta).
+ * 2. Мигрирует authoring из дубликатов курса в seed-запись, удаляя дубликаты.
+ *
+ * После выполнения устанавливает флаг в localStorage, чтобы не запускаться повторно.
+ */
 export function repairUserContentOverlayIfNeeded(): void {
   if (
     localStorage.getItem(USER_CONTENT_OVERLAY_REPAIR_KEY) === USER_CONTENT_OVERLAY_REPAIR_VERSION
@@ -39,6 +54,18 @@ export function repairUserContentOverlayIfNeeded(): void {
   localStorage.setItem(USER_CONTENT_OVERLAY_REPAIR_KEY, USER_CONTENT_OVERLAY_REPAIR_VERSION);
 }
 
+/**
+ * Привязывает языковую пару `ru→perl` к курсу «Собеседование на языке Perl».
+ *
+ * @remarks
+ * Находит все записи курса с заголовком «Собеседование на языке Perl»
+ * и применяет нормализованную языковую пару RU_PERL_LANGUAGE_PAIR к:
+ * - курсу, урокам, сценариям, cardIndexMeta
+ * - критериям поиска карточек в сценариях с mode='criteria'
+ *
+ * @param overlay — текущий оверлей пользователя.
+ * @returns Обновлённый оверлей и флаг изменений.
+ */
 export function bindPerlInterviewCourseLanguagePair(overlay: UserContentOverlay): {
   overlay: UserContentOverlay;
   changed: boolean;
@@ -192,6 +219,19 @@ function cardIdsFromScenarioSource(source: ScenarioCardSource): readonly string[
   return [];
 }
 
+/**
+ * Мигрирует authoring из дубликатов курса в seed-запись и удаляет дубликаты.
+ *
+ * @remarks
+ * Находит все курсы с заголовком «Собеседование на языке Perl»:
+ * 1. Выбирает запись с наиболее полным authoring (по длине поля `idea`).
+ * 2. Сравнивает с seed-записью и обновляет только при различиях.
+ * 3. Удаляет все дубликаты курсов (кроме PERL_INTERVIEW_COURSE_ID)
+ *    вместе с их уроками.
+ *
+ * @param overlay — текущий оверлей пользователя.
+ * @returns Обновлённый оверлей и флаг изменений.
+ */
 export function migratePerlInterviewAuthoringToSeed(overlay: UserContentOverlay): {
   overlay: UserContentOverlay;
   changed: boolean;
