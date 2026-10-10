@@ -1,4 +1,4 @@
-import { HanziPositioner } from './hanzi-positioner';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 
 describe('HanziPositioner', () => {
   it('should round-trip character space coordinates', () => {

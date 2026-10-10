@@ -1,11 +1,9 @@
-import type { DrawCard } from '../../../core/models';
-import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
-import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
-import {
-  validateHanziMemoryStrokes,
-  type HanziCharacterModel,
-} from '../';
-import { isHanCharacter, resolveDrawCharacterTargets } from '../../../core/repositories/chinese/draw-card.utils';
+import type { DrawCard } from '../../../../core/models';
+import type { LearningProficiencyLevel } from '../../../../core/models/learning-proficiency.types';
+import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
+import { validateHanziMemoryStrokes } from './hanzi-memory-validation.utils';
+import type { HanziCharacterModel } from '../../models/hanzi-character.model';
+import { isHanCharacter, resolveDrawCharacterTargets } from '../../../../core/repositories/chinese/draw-card.utils';
 
 /** Резолвер для получения модели иероглифа по строке. */
 export type HanziModelResolver = (character: string) => HanziCharacterModel | null;

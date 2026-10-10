@@ -1,8 +1,9 @@
-import type { DrawCard } from '../../../core/models';
-import type { HanziCharacterJson } from '../models/hanzi-character.types';
-import { buildHanziCharacterModel, HanziPositioner } from '../';
+import type { DrawCard } from '../../../../core/models';
+import type { HanziCharacterJson, HanziPoint } from '../../models/hanzi-character.types';
+import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
+import { HanziPositioner } from '../../utils/positioning/hanzi-positioner';
 import { checkDrawCardAnswer } from './hanzi-card-answer.util';
-import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
+import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
 
 const REN_JSON: HanziCharacterJson = {
   strokes: [
@@ -55,7 +56,7 @@ describe('draw-card-answer.utils', () => {
       padding: 20,
     });
     const strokes = renModel.strokes.map((stroke) =>
-      stroke.points.map((point) => positioner.toCanvas(point)),
+      stroke.points.map((point: HanziPoint) => positioner.toCanvas(point)),
     );
 
     return {

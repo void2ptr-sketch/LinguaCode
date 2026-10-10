@@ -1,9 +1,9 @@
-import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
-import type { DrawStrokePath } from '../../../core/models/draw-practice.types';
-import type { HanziCharacterModel } from '../models/hanzi-character.model';
-import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from '../models/hanzi-character.types';
-import { HanziPositioner } from './hanzi-positioner';
-import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
+import type { LearningProficiencyLevel } from '../../../../core/models/learning-proficiency.types';
+import type { DrawCanvasPoint, DrawStrokePath } from '../../../../core/models/draw-practice.types';
+import type { HanziCharacterModel } from '../../models/hanzi-character.model';
+import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from '../../models/hanzi-character.types';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
+import { HanziQuizSession, resolveHanziQuizLeniency } from '../quiz/hanzi-quiz-session';
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
 
 /**
@@ -100,7 +100,7 @@ export function gradeHanziMemoryStrokes(
       return 'incorrect';
     }
 
-    const characterPoints = stroke.map((point) => positioner.toCharacterSpace(point));
+    const characterPoints = stroke.map((point: DrawCanvasPoint) => positioner.toCharacterSpace(point));
     const match = matchHanziUserStroke(characterPoints, model, strokeIndex, quizOptions);
     return match.isMatch ? 'correct' : 'incorrect';
   });

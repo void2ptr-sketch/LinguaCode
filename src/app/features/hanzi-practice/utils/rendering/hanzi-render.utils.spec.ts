@@ -1,4 +1,4 @@
-import { HanziPositioner } from './hanzi-positioner';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 import { medianToSvgPath, resolveHanziSvgGroupTransform } from './hanzi-render.utils';
 
 describe('hanzi-render.utils', () => {

@@ -30,7 +30,7 @@ import {
   resolveRadicalComponentPalette,
 } from '../../../../core/repositories/chinese/radical-component-color.utils';
 import { HanziDataService } from '../../services/hanzi-data.service';
-import { gradeHanziMemoryStrokes } from '../../utils/hanzi-memory-validation.utils';
+import { gradeHanziMemoryStrokes } from '../../utils/validation/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {

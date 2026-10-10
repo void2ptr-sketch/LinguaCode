@@ -1,5 +1,5 @@
-import type { HanziPoint } from '../models/hanzi-character.types';
-import type { HanziPositioner } from './hanzi-positioner';
+import type { HanziPoint } from '../../models/hanzi-character.types';
+import type { HanziPositioner } from '../positioning/hanzi-positioner';
 
 /**
  * Generates an SVG transform string for rendering Hanzi paths in MMH coordinates over a canvas.

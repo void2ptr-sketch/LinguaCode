@@ -1,4 +1,4 @@
-import type { HanziPoint, HanziQuizOptions } from '../models/hanzi-character.types';
+import type { HanziPoint, HanziQuizOptions } from '../../models/hanzi-character.types';
 import {
   type HanziCharacterModel,
   type HanziStrokeModel,
@@ -7,7 +7,7 @@ import {
   hanziStrokeEndingPoint,
   hanziStrokeLength,
   hanziStrokeStartingPoint,
-} from '../models/hanzi-character.model';
+} from '../../models/hanzi-character.model';
 import {
   hanziFrechetDistance,
   hanziLength,
@@ -15,7 +15,7 @@ import {
   hanziRotate,
   hanziStripDuplicatePoints,
   hanziDistance,
-} from './hanzi-geometry.utils';
+} from '../rendering/hanzi-geometry.utils';
 
 const COSINE_SIMILARITY_THRESHOLD = 0;
 const START_AND_END_DIST_THRESHOLD = 250;

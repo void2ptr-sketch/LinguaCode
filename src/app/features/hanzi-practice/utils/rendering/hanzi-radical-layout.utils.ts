@@ -1,4 +1,4 @@
-import { HanziPositioner } from './hanzi-positioner';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 import { resolveHanziSvgGroupTransform } from './hanzi-render.utils';
 
 /**

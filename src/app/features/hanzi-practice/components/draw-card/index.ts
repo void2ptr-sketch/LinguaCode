@@ -1,1 +1,1 @@
-export { DrawCardComponentComponent } from './DrawCardComponent.component';
+export { DrawCardComponent } from './draw-card.component';

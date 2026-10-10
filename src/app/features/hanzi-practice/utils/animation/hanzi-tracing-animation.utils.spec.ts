@@ -1,4 +1,4 @@
-import { buildHanziCharacterModel } from '../models/hanzi-character.model';
+import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
 import {
   prepareHanziTracingSamples,
   resolveHanziTracingFrame,

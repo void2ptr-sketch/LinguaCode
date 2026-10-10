@@ -10,8 +10,8 @@ import {
   fetchGoldenHanziJson,
   type GoldenHanziCharacter,
 } from './hanzi-golden-test.utils';
-import type { HanziCharacterJson } from '../models/hanzi-character.types';
-import { buildHanziCharacterModel } from '../models/hanzi-character.model';
+import type { HanziCharacterJson } from '../../models/hanzi-character.types';
+import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
 
 describe('hanzi-golden-test.utils', () => {
   describe('constants', () => {

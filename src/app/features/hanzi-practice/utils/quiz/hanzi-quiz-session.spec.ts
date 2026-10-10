@@ -1,6 +1,6 @@
-import type { HanziCharacterJson } from '../models/hanzi-character.types';
-import { buildHanziCharacterModel } from '../models/hanzi-character.model';
-import { HanziPositioner } from './hanzi-positioner';
+import type { HanziCharacterJson } from '../../models/hanzi-character.types';
+import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 import { HanziQuizSession } from './hanzi-quiz-session';
 
 const REN_JSON: HanziCharacterJson = {

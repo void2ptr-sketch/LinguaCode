@@ -4,7 +4,7 @@ import {
   type HanziCharacterJson,
   type HanziPoint,
   type HanziPositionerOptions,
-} from '../models/hanzi-character.types';
+} from '../../models/hanzi-character.types';
 
 const PRE_SCALED_WIDTH = HANZI_CHARACTER_BOUNDS.maxX - HANZI_CHARACTER_BOUNDS.minX;
 const PRE_SCALED_HEIGHT = HANZI_CHARACTER_BOUNDS.maxY - HANZI_CHARACTER_BOUNDS.minY;

@@ -1,8 +1,8 @@
-import type { DrawStrokePath } from '../../../core/models/draw-practice.types';
-import type { HanziCharacterJson } from '../models/hanzi-character.types';
-import type { HanziCharacterModel } from '../models/hanzi-character.model';
-import { buildHanziCharacterModel } from '../models/hanzi-character.model';
-import { HanziPositioner } from './hanzi-positioner';
+import type { DrawStrokePath } from '../../../../core/models/draw-practice.types';
+import type { HanziCharacterJson } from '../../models/hanzi-character.types';
+import type { HanziCharacterModel } from '../../models/hanzi-character.model';
+import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 
 /**
  * Set of canonical characters used for golden visual regression tests.

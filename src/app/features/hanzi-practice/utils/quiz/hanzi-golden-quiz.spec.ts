@@ -1,5 +1,5 @@
-import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
-import type { HanziCharacterModel } from '../models/hanzi-character.model';
+import type { LearningProficiencyLevel } from '../../../../core/models/learning-proficiency.types';
+import type { HanziCharacterModel } from '../../models/hanzi-character.model';
 import {
   GOLDEN_CANVAS_SIZE,
   GOLDEN_HANZI_CHARACTERS,
@@ -10,9 +10,9 @@ import {
   offsetDrawStrokes,
   type GoldenHanziCharacter,
 } from './hanzi-golden-test.utils';
-import { validateHanziMemoryStrokes } from './hanzi-memory-validation.utils';
+import { validateHanziMemoryStrokes } from '../validation/hanzi-memory-validation.utils';
 import { HanziQuizSession } from './hanzi-quiz-session';
-import { HanziPositioner } from './hanzi-positioner';
+import { HanziPositioner } from '../positioning/hanzi-positioner';
 
 /** Калибровка leniency: beginner принимает лёгкий drift; professional — средний и выше. */
 const LENIENCY_BEGINNER_DRIFT_PX = 10;

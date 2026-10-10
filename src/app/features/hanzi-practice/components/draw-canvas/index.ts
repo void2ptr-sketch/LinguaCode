@@ -1,1 +1,2 @@
-export { DrawCanvasComponentComponent } from './DrawCanvasComponent.component';
+export { DrawCanvasComponent } from './draw-canvas.component';
+export type { DrawRadicalHint } from './draw-canvas.component';
