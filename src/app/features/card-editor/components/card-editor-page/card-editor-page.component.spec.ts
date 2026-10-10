@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
+import { provideHttpClient, withInterceptors, withInterceptorsFromDi } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -8,6 +9,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { describe, expect, it } from 'vitest';
+
+import { cardsApiMockInterceptor } from '../../../../core/api/cards/cards-api.mock.interceptor';
+import { coursesApiMockInterceptor } from '../../../../core/api/courses/courses-api.mock.interceptor';
+import { scenariosApiMockInterceptor } from '../../../../core/api/scenarios/scenarios-api.mock.interceptor';
 
 import { CardEditorPageComponent } from './card-editor-page.component';
 import { CardEditorStore } from '../../services/card-editor.store';
@@ -34,6 +39,14 @@ describe('CardEditorPageComponent', () => {
       ],
       providers: [
         provideRouter([]),
+        provideHttpClient(
+          withInterceptors([
+            coursesApiMockInterceptor,
+            scenariosApiMockInterceptor,
+            cardsApiMockInterceptor,
+          ]),
+          withInterceptorsFromDi(),
+        ),
         CardEditorStore,
         CardCatalogSearchStore,
         UserStore,

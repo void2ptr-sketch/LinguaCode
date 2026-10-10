@@ -8,13 +8,13 @@ import {
   resolveLearningResumeTarget,
   type LearningResumeTarget,
   type LessonRoadmapItem,
-} from '../../../core/data/learning/learning-resume.utils';
-import { CourseSearchService } from '../../../core/data/courses/course-search.service';
-import { resolveLearningSessionForPair } from '../../../core/data/learning/learning-session.utils';
-import { ScenariosApiService } from '../../../core/data/scenarios/scenarios-api.service';
+} from '../../../core/repositories/learning/learning-resume.utils';
+import { CourseSearchService } from '../../../core/repositories/courses/course-search.service';
+import { resolveLearningSessionForPair } from '../../../core/repositories/learning/learning-session.utils';
+import { ScenariosApiService } from '../../../core/repositories/scenarios/scenarios-api.service';
 import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
-import { RADICALS_COURSE_ID } from '../../../core/data/chinese/radicals-course.defaults';
+import { RADICALS_COURSE_ID } from '../../../core/repositories/chinese/radicals-course.defaults';
 
 /**
  * Service for the learning dashboard (home page).

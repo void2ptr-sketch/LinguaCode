@@ -10,9 +10,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
-import { courseAuthoringWithIdea } from '../../../../core/data/courses/course-authoring.utils';
-import { ScenarioSearchService } from '../../../../core/data';
+import { activeLanguagePairCriteria } from '../../../../core/repositories/language-pair/language-pair-scope.utils';
+import { courseAuthoringWithIdea } from '../../../../core/repositories/courses/course-authoring.utils';
+import { ScenarioSearchService } from '../../../../core/repositories';
 import type { CourseAuthoringStatus } from '../../../../core/models';
 import { COURSE_AUTHORING_STATUSES } from '../../../../core/models';
 import type { ScenarioIndexEntry } from '../../../../core/models';

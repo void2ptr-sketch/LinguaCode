@@ -4,11 +4,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { CardSearchService } from '../../../../core/data';
+import { CardSearchService } from '../../../../core/repositories';
 import {
   DEFAULT_CRITERIA_LIMIT,
   resolveScenarioCardIds,
-} from '../../../../core/data/scenarios/scenario-card-source.utils';
+} from '../../../../core/repositories/scenarios/scenario-card-source.utils';
 import type { CardSearchCriteria, ScenarioCardSort } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 

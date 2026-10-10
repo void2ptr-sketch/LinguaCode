@@ -19,7 +19,7 @@ import {
   CourseDisplaySettingsMatrixComponent,
 } from '../../../../shared/ui/course-display-settings-matrix';
 import type { AnswerDisplayMode } from '../../../../shared/ui/course-display-settings-matrix';
-import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
+import { shouldShowPalladius } from '../../../../core/repositories/phonetic/phonetic-preferences.utils';
 import {
   ROMANIZATION_DISPLAY_ORDER,
 } from '../../../../core/models/phonetic-content.types';

@@ -2,8 +2,8 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import { LearningDashboardService } from './learning-dashboard.service';
-import { CourseSearchService } from '../../../core/data/courses/course-search.service';
-import { ScenariosApiService } from '../../../core/data/scenarios/scenarios-api.service';
+import { CourseSearchService } from '../../../core/repositories/courses/course-search.service';
+import { ScenariosApiService } from '../../../core/repositories/scenarios/scenarios-api.service';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import type { CourseWithLessons, LanguagePair } from '../../../core/models';
 import { computed } from '@angular/core';

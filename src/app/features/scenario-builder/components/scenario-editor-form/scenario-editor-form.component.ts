@@ -13,7 +13,7 @@ import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models'
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/data/language-pair/language-pair.utils';
+} from '../../../../core/repositories/language-pair/language-pair.utils';
 import {
   ScenarioCardCriteriaEditorComponent,
   ScenarioCardPickerComponent,

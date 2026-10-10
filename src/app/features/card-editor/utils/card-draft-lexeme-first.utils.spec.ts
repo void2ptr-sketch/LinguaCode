@@ -1,4 +1,4 @@
-import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/repositories/chinese/lexeme-draft.utils';
 
 import { deriveOptionText, deriveOptionTexts } from './card-draft-lexeme-first.utils';
 

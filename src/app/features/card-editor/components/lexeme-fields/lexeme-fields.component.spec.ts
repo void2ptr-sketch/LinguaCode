@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it, vi } from 'vitest';
 
 import { LexemeFieldsComponent } from './lexeme-fields.component';
-import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/repositories/chinese/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
 
 describe('LexemeFieldsComponent', () => {

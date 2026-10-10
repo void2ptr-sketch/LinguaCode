@@ -1,6 +1,6 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { CardsApiService, ScenarioSearchService } from '../../../core/data';
+import { CardsApiService, ScenarioSearchService } from '../../../core/repositories';
 import { CardSelectService } from './card-select.service';
 
 describe('CardSelectService', () => {

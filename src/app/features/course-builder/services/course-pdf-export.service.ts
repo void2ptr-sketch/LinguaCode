@@ -37,8 +37,8 @@ import { firstValueFrom } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
 import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/models';
-import { CardRepository } from '../../../core/data/cards/card.repository';
-import { loadScenariosFromStorage } from '../../../core/data/scenarios/scenarios-storage';
+import { CardRepository } from '../../../core/repositories/cards/card.repository';
+import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/scenarios-storage';
 
 /**
  * Представление карточки в контексте курса.

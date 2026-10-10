@@ -1,5 +1,5 @@
 import type { CardDirection } from './language-pair.types';
-import type { CardIndexMetaOverride } from '../data/cards/card-index.mapper';
+import type { CardIndexMetaOverride } from '../repositories/cards/card-index.mapper';
 
 /**
  * Supported card kinds for language learning exercises.

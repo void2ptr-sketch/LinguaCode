@@ -15,7 +15,7 @@ import type { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { vi } from 'vitest';
 
-import { CourseSearchService } from '../../../../core/data';
+import { CourseSearchService } from '../../../../core/repositories';
 import type {
   ContentLanguage,
   CourseIndexEntry,

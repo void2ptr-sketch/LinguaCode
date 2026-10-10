@@ -1,15 +1,15 @@
-import { deriveKnownOptionsFromLexemes } from '../../../core/data/cards/card-direction.utils';
-import { stripPinyinTones } from '../../../core/data/chinese/cjk-romanization.utils';
+import { deriveKnownOptionsFromLexemes } from '../../../core/repositories/cards/card-direction.utils';
+import { stripPinyinTones } from '../../../core/repositories/chinese/cjk-romanization.utils';
 import type {
   DrawCharacterTarget,
   DrawPracticeMode,
 } from '../../../core/models/draw-practice.types';
-import { normalizeToneOptions } from '../../../core/data/chinese/tone-mark.utils';
-import type { LexemeDraftFields } from '../../../core/data/chinese/lexeme-draft.utils';
+import { normalizeToneOptions } from '../../../core/repositories/chinese/tone-mark.utils';
+import type { LexemeDraftFields } from '../../../core/repositories/chinese/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
-} from '../../../core/data/chinese/lexeme-draft.utils';
+} from '../../../core/repositories/chinese/lexeme-draft.utils';
 import {
   sanitizeMarkdownText,
   sanitizePlainText,

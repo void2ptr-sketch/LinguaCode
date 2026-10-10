@@ -4,7 +4,7 @@ import {
   formatLanguagePair,
   isContentLanguage,
   normalizeLanguagePair,
-} from '../data/language-pair/language-pair.utils';
+} from '../repositories/language-pair/language-pair.utils';
 import {
   createDefaultLanguagePairPreferences,
   createUserLanguagePairEntry,
@@ -14,11 +14,11 @@ import {
   resolveCjkLearningForPair,
   resolveLearningSessionForPair,
   resolvePhoneticForPair,
-} from '../data/user/user-language-pair.utils';
+} from '../repositories/user/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
-import { normalizeCardFocusFullscreen } from '../data/cards/card-focus-preference.utils';
-import { normalizeLearningProficiencyLevel } from '../data/learning/learning-proficiency.utils';
+import { normalizeCardFocusFullscreen } from '../repositories/cards/card-focus-preference.utils';
+import { normalizeLearningProficiencyLevel } from '../repositories/learning/learning-proficiency.utils';
 import type {
   LanguagePair,
   LearningSessionPreferences,

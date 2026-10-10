@@ -1,5 +1,5 @@
 import type { Card, Course, Lesson, Scenario } from '../../../core/models';
-import type { UserContentOverlay } from '../../../core/data/user/user-content-overlay.types';
+import type { UserContentOverlay } from '../../../core/repositories/user/user-content-overlay.types';
 
 import {
   computeCardsOverlay,

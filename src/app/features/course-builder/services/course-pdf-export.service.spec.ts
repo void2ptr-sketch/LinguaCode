@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import { CoursePdfExportService } from './course-pdf-export.service';
-import { CardRepository } from '../../../core/data/cards/card.repository';
+import { CardRepository } from '../../../core/repositories/cards/card.repository';
 
 describe('CoursePdfExportService', () => {
   let service: CoursePdfExportService;

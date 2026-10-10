@@ -6,7 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardMetaFieldsComponent } from './card-meta-fields.component';
-import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../../core/repositories/cards/card-index.mapper';
 
 describe('CardMetaFieldsComponent', () => {
   let fixture: ComponentFixture<CardMetaFieldsComponent>;

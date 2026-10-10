@@ -6,7 +6,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { vi } from 'vitest';
 
 import { LessonPickerComponent } from './lesson-picker.component';
-import { CourseSearchService } from '../../../core/data';
+import { CourseSearchService } from '../../../core/repositories';
 import { LearningResultsStore } from '../../../core/state';
 import type { CourseWithLessons, Lesson } from '../../../core/models';
 

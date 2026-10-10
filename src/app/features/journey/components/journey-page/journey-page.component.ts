@@ -6,8 +6,8 @@ import { LearningJourneyMapComponent } from '../learning-journey-map/learning-jo
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../../core/state';
-import { ContentSeedRepository } from '../../../../core/data/content-seed/content-seed.repository';
-import { buildJourneyNodes, buildScenarioMap } from '../../../../core/data/journey/journey-nodes.utils';
+import { ContentSeedRepository } from '../../../../core/repositories/content-seed/content-seed.repository';
+import { buildJourneyNodes, buildScenarioMap } from '../../../../core/repositories/journey/journey-nodes.utils';
 import type { JourneyLocationNode } from '../../../../core/models/journey.types';
 import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';

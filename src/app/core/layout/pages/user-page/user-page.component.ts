@@ -19,7 +19,7 @@ import { UserStore } from '../../../state';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../data/language-pair/language-pair.utils';
+} from '../../../repositories/language-pair/language-pair.utils';
 
 /**
  * User profile page component. Allows users to manage their display name, theme preferences,

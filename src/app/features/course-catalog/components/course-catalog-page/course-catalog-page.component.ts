@@ -11,13 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { CourseSearchService } from '../../../../core/data';
-import { activeLanguagePairCriteria } from '../../../../core/data/language-pair/language-pair-scope.utils';
+import { CourseSearchService } from '../../../../core/repositories';
+import { activeLanguagePairCriteria } from '../../../../core/repositories/language-pair/language-pair-scope.utils';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
-} from '../../../../core/data/user/user-language-pair.utils';
-import { shouldShowPalladius } from '../../../../core/data/phonetic/phonetic-preferences.utils';
+} from '../../../../core/repositories/user/user-language-pair.utils';
+import { shouldShowPalladius } from '../../../../core/repositories/phonetic/phonetic-preferences.utils';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import type {
   CjkLearningPreferences,

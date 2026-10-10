@@ -10,25 +10,25 @@ import type {
 import { paginateArray } from '../../../shared/utils/pagination';
 import { UserStore } from '../../state';
 
-import { scenarioToIndexEntry } from '../../data/scenarios/scenario-index.mapper';
-import { filterScenarioIndex } from '../../data/scenarios/scenario-search.utils';
+import { scenarioToIndexEntry } from '../../repositories/scenarios/scenario-index.mapper';
+import { filterScenarioIndex } from '../../repositories/scenarios/scenario-search.utils';
 import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
-} from '../../data/scenarios/scenario-card-source.utils';
+} from '../../repositories/scenarios/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../data/language-pair/language-pair.utils';
-import { isEditableContentAuthor, isSystemAuthor } from '../../data/user/system-author.constants';
+} from '../../repositories/language-pair/language-pair.utils';
+import { isEditableContentAuthor, isSystemAuthor } from '../../repositories/user/system-author.constants';
 import { CardsCatalogMockHandler } from '../cards/cards-catalog.mock.handler';
-import { ContentSeedRepository } from '../../data/content-seed/content-seed.repository';
+import { ContentSeedRepository } from '../../repositories/content-seed/content-seed.repository';
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
-} from '../../data/scenarios/scenarios-storage';
+} from '../../repositories/scenarios/scenarios-storage';
 
-import type { ScenarioWritePayload } from '../../data/scenarios/scenarios-api.service';
+import type { ScenarioWritePayload } from '../../repositories/scenarios/scenarios-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ScenariosCatalogMockHandler {

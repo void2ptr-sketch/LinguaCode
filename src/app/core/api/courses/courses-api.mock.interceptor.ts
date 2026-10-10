@@ -8,7 +8,7 @@ import { parseCourseSearchCriteria } from './courses-api.params.utils';
 import { isApiRequest } from '../api-url';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 
-import type { CourseWritePayload } from '../../data/courses/courses-api.service';
+import type { CourseWritePayload } from '../../repositories/courses/courses-api.service';
 
 /**
  * Checks whether the given URL is a courses search request.

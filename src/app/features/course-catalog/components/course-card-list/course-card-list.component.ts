@@ -12,7 +12,7 @@ import type {
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/data/language-pair/language-pair.utils';
+} from '../../../../core/repositories/language-pair/language-pair.utils';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

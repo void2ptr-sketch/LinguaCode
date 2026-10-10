@@ -4,7 +4,7 @@ import { TestBed } from '@angular/core/testing';
 
 import type { Scenario } from '../../../core/models';
 import { CardsCatalogMockHandler } from '../../../core/api';
-import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/data';
+import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/repositories';
 import { UserStore } from '../../../core/state';
 import { ScenarioBuilderStore } from './scenario-builder.store';
 

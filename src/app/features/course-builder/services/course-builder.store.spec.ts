@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 import type { CourseWithLessons } from '../../../core/models';
-import { CourseSearchService } from '../../../core/data';
+import { CourseSearchService } from '../../../core/repositories';
 import { UserStore } from '../../../core/state';
 import { CourseBuilderStore } from './course-builder.store';
 import { CoursePdfExportService } from './course-pdf-export.service';

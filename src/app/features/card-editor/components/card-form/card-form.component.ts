@@ -7,14 +7,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
-import { DEFAULT_TONE_OPTIONS } from '../../../../core/data/chinese/tone-mark.utils';
+import { DEFAULT_TONE_OPTIONS } from '../../../../core/repositories/chinese/tone-mark.utils';
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
 import {
   CONTENT_LANGUAGE_LABELS,
 } from '../../../card-catalog-search';
-import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
+import { contentLanguages } from '../../../../core/repositories/language-pair/language-pair.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -34,10 +34,10 @@ import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
-import type { LexemeDraftFields } from '../../../../core/data/chinese/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/repositories/chinese/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
-import type { CardIndexMetaOverride } from '../../../../core/data/cards/card-index.mapper';
+import type { CardIndexMetaOverride } from '../../../../core/repositories/cards/card-index.mapper';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,

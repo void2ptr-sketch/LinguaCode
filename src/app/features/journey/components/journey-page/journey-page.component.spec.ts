@@ -9,7 +9,7 @@ import { JourneyPageComponent } from './journey-page.component';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningResultsStore } from '../../../../core/state';
-import { ContentSeedRepository } from '../../../../core/data/content-seed/content-seed.repository';
+import { ContentSeedRepository } from '../../../../core/repositories/content-seed/content-seed.repository';
 import type { CourseWithLessons, Lesson, Scenario } from '../../../../core/models';
 import type { JourneyLocationNode } from '../../../../core/models/journey.types';
 

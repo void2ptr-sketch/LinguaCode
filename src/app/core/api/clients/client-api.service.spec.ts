@@ -42,11 +42,11 @@ describe('ApiClient', () => {
     it('should extract data field from response envelope', async () => {
       const expectedData = { id: '1', value: 'hello' };
       const envelope: ApiResponse<typeof expectedData> = { data: expectedData };
-      const path = '/data/endpoint';
+      const path = '/repositories/endpoint';
 
       const promise = service.getData<typeof expectedData>(path);
 
-      const req = httpMock.expectOne('/api/data/endpoint');
+      const req = httpMock.expectOne('/api/repositories/endpoint');
       expect(req.request.method).toBe('GET');
       req.flush(envelope);
 

@@ -3,7 +3,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
-import { formatIndexLanguagePair } from '../../../../core/data/language-pair/language-pair.utils';
+import { formatIndexLanguagePair } from '../../../../core/repositories/language-pair/language-pair.utils';
 import { UserStore } from '../../../../core/state';
 import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS, DIFFICULTY_LABELS } from '../../../../shared/constants/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../';

@@ -5,9 +5,9 @@ import {
   CardsApiService,
   resolveScenarioCardIds,
   ScenarioSearchService,
-} from '../../../core/data';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/data/scenarios/scenario-card-source.utils';
+} from '../../../core/repositories';
+import { activeLanguagePairCriteria } from '../../../core/repositories/language-pair/language-pair-scope.utils';
+import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/scenario-card-source.utils';
 import type { Card, ScenarioSearchPage } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 

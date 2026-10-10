@@ -49,9 +49,9 @@ describe('api interceptors', () => {
   it('should skip auth header for fixture requests', () => {
     sessionStorage.setItem(AUTH_TOKEN_STORAGE_KEY, 'test-token');
 
-    http.get('/data/select-cards.json').subscribe();
+    http.get('/repositories/select-cards.json').subscribe();
 
-    const request = httpMock.expectOne('/data/select-cards.json');
+    const request = httpMock.expectOne('/repositories/select-cards.json');
     expect(request.request.headers.has('Authorization')).toBe(false);
     request.flush({});
   });

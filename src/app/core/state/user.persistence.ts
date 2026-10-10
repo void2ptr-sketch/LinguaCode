@@ -3,7 +3,7 @@ import type { User } from '../models';
 import {
   createDefaultLanguagePairPreferences,
   normalizeUserPreferences,
-} from '../data/user/user-language-pair.utils';
+} from '../repositories/user/user-language-pair.utils';
 
 /**
  * LocalStorage key for user preferences.

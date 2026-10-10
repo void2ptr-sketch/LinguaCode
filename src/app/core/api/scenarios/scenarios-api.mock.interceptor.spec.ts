@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { ScenariosApiService } from '../../data/scenarios/scenarios-api.service';
+import { ScenariosApiService } from '../../repositories/scenarios/scenarios-api.service';
 import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
 
 describe('scenarios API (mock interceptor)', () => {

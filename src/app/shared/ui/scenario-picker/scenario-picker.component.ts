@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
-import { ScenarioSearchService } from '../../../core/data';
-import { activeLanguagePairCriteria } from '../../../core/data/language-pair/language-pair-scope.utils';
+import { ScenarioSearchService } from '../../../core/repositories';
+import { activeLanguagePairCriteria } from '../../../core/repositories/language-pair/language-pair-scope.utils';
 import type { ScenarioIndexEntry, ScenarioListScope } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 import { UiPaginationComponent } from '../../utils/pagination';

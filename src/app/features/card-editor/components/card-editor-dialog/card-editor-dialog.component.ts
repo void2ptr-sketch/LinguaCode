@@ -13,7 +13,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
 import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS } from '../../../card-catalog-search';
-import { contentLanguages } from '../../../../core/data/language-pair/language-pair.utils';
+import { contentLanguages } from '../../../../core/repositories/language-pair/language-pair.utils';
 import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';

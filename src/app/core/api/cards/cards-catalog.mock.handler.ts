@@ -4,10 +4,10 @@ import type { Card, CardSearchCriteria, CardSearchPage } from '../../models';
 import type { CardIndexEntry } from '../../models/card-index.types';
 import { paginateArray } from '../../../shared/utils/pagination';
 
-import { buildCardIndex } from '../../data/cards/card-index.mapper';
-import { loadCardIndexMetaOverrides } from '../../data/cards/card-index-meta.storage';
-import { CardRepository } from '../../data/cards/card.repository';
-import { buildCardSearchFacets, filterCardIndex } from '../../data/cards/card-search.utils';
+import { buildCardIndex } from '../../repositories/cards/card-index.mapper';
+import { loadCardIndexMetaOverrides } from '../../repositories/cards/card-index-meta.storage';
+import { CardRepository } from '../../repositories/cards/card.repository';
+import { buildCardSearchFacets, filterCardIndex } from '../../repositories/cards/card-search.utils';
 
 @Injectable({ providedIn: 'root' })
 export class CardsCatalogMockHandler {

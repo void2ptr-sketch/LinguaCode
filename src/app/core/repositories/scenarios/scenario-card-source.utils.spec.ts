@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 
 import type { CardIndexEntry, LanguagePair } from '../../../core/models';
 import type { LegacyScenario } from '../../../core/models/scenario.types';
-import type { CardSearchService } from '../../../core/data/cards/card-search.service';
+import type { CardSearchService } from '../../../core/repositories/cards/card-search.service';
 import {
   DEFAULT_CRITERIA_LIMIT,
   buildSnapshotCardSource,
