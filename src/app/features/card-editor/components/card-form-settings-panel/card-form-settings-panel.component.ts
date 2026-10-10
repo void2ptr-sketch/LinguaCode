@@ -125,14 +125,31 @@ export class CardFormSettingsPanelComponent {
     });
   }
 
+  /**
+   * Emits the updated card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: CardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the card appearance settings.
+   *
+   * @param appearance - The new appearance configuration.
+   */
   updateAppearance(appearance: CardDraft['appearance']): void {
     this.updateDraft({ ...this.draft(), appearance });
   }
 
+  /**
+   * Updates the time limit for timed cards.
+   *
+   * @param value - The new time limit in seconds.
+   * @remarks
+   * No-op for non-timed cards.
+   */
   updateTimeLimitSec(value: number): void {
     const draft = this.draft();
     if (draft.kind === 'timed') {
@@ -140,6 +157,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the keyboard answer mode for keyboard cards.
+   *
+   * @param value - The new answer mode.
+   * @remarks
+   * No-op for non-keyboard cards.
+   */
   updateKeyboardAnswerMode(value: KeyboardAnswerMode): void {
     const draft = this.draft();
     if (draft.kind === 'keyboard') {
@@ -147,6 +171,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the draw practice mode for draw cards.
+   *
+   * @param value - The new practice mode ('freehand' or 'stroke-order').
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawPracticeMode(value: DrawPracticeMode): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -154,6 +185,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the target Hanzi character for draw cards.
+   *
+   * @param value - The new target character string.
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawTargetCharacter(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -161,6 +199,13 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Updates the radical hint for draw cards.
+   *
+   * @param value - The new radical hint text.
+   * @remarks
+   * No-op for non-draw cards.
+   */
   updateDrawRadicalHint(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'draw') {
@@ -168,6 +213,12 @@ export class CardFormSettingsPanelComponent {
     }
   }
 
+  /**
+   * Auto-fills draw hints (target character and radical hint) from available sources.
+   * @remarks
+   * Derives target character from `targetCharacter`, `promptLexeme.primary`,
+   * or `referenceHintKnown`. Looks up radical hint via `lookupHanRadicalHint()`.
+   */
   autofillDrawHints(): void {
     const draft = this.draft();
     if (draft.kind !== 'draw') {

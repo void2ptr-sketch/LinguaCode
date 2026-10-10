@@ -138,10 +138,24 @@ export class LexemeFieldsComponent {
    */
   readonly showAdvancedPanel = computed(() => this.pairScoped() && !this.showLegacyLayout());
 
+  /**
+   * Updates a single lexeme field and emits the updated fields.
+   *
+   * @param key - The field key to update.
+   * @param value - The new value for the field.
+   */
   updateField<K extends keyof LexemeDraftFields>(key: K, value: LexemeDraftFields[K]): void {
     this.fieldsChange.emit({ ...this.fields(), [key]: value });
   }
 
+  /**
+   * Updates the primary lexeme field and auto-detects the script.
+   *
+   * @param value - The new primary text.
+   * @remarks
+   * Auto-detects the script based on known and learning languages
+   * when the script is not already set.
+   */
   updatePrimary(value: string): void {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
@@ -154,6 +168,11 @@ export class LexemeFieldsComponent {
     this.fieldsChange.emit(next);
   }
 
+  /**
+   * Fills the Palladius field from the Pinyin field.
+   * @remarks
+   * Uses `pinyinToPalladius()` utility. No-op if Pinyin is empty.
+   */
   fillPalladiusFromPinyin(): void {
     const pinyin = this.fields().pinyin.trim();
     if (!pinyin) {
@@ -166,6 +185,11 @@ export class LexemeFieldsComponent {
     });
   }
 
+  /**
+   * Fills the IPA field from the primary field using English IPA lookup.
+   * @remarks
+   * Uses `lookupEnglishIpa()` utility. No-op if primary is empty or not found.
+   */
   fillIpaFromEnglish(): void {
     const word = this.fields().primary.trim();
     if (!word) {
@@ -183,6 +207,11 @@ export class LexemeFieldsComponent {
     });
   }
 
+  /**
+   * Fills the IPA field from the Pinyin field.
+   * @remarks
+   * Uses `pinyinToIpa()` utility. No-op if Pinyin is empty.
+   */
   fillIpaFromPinyin(): void {
     const pinyin = this.fields().pinyin.trim();
     if (!pinyin) {

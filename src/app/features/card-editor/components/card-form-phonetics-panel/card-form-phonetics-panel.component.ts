@@ -61,10 +61,22 @@ export class CardFormPhoneticsPanelComponent {
     return draft.kind === 'memory' ? draft : null;
   });
 
+  /**
+   * Emits the updated card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: CardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the prompt lexeme fields.
+   *
+   * @param fields - The new lexeme draft fields.
+   * @remarks
+   * No-op for code-select cards.
+   */
   updatePromptLexeme(fields: LexemeDraftFields): void {
     const draft = this.draft();
     if (draft.kind === 'code-select') {
@@ -74,6 +86,13 @@ export class CardFormPhoneticsPanelComponent {
     this.updateDraft({ ...draft, promptLexeme: fields });
   }
 
+  /**
+   * Updates the audio URL for the card.
+   *
+   * @param value - The new audio URL.
+   * @remarks
+   * No-op for code-select cards.
+   */
   updateAudioUrl(value: string): void {
     const draft = this.draft();
     if (draft.kind === 'code-select') {
@@ -83,6 +102,13 @@ export class CardFormPhoneticsPanelComponent {
     this.updateDraft({ ...draft, audioUrl: value });
   }
 
+  /**
+   * Updates the audio label lexeme for sound cards.
+   *
+   * @param fields - The new lexeme draft fields.
+   * @remarks
+   * No-op for non-sound cards.
+   */
   updateAudioLabelLexeme(fields: LexemeDraftFields): void {
     const draft = this.draft();
     if (draft.kind === 'sound') {
@@ -90,6 +116,15 @@ export class CardFormPhoneticsPanelComponent {
     }
   }
 
+  /**
+   * Updates the learning lexeme for a memory card pair.
+   *
+   * @param index - The zero-based index of the pair.
+   * @param fields - The new lexeme draft fields.
+   * @remarks
+   * Updates the `learning` text if `fields.primary` is non-empty.
+   * No-op for non-memory cards.
+   */
   updatePairLexeme(index: number, fields: LexemeDraftFields): void {
     const draft = this.draft();
     if (draft.kind !== 'memory') {

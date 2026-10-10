@@ -45,14 +45,29 @@ export class CodeSelectCardFormComponent {
   /** Labels for code highlight languages. */
   readonly languageLabels = CODE_HIGHLIGHT_LANGUAGE_LABELS;
 
+  /**
+   * Emits the updated code-select card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: CodeSelectCardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the caption text.
+   *
+   * @param value - The new caption text.
+   */
   updateCaption(value: string): void {
     this.updateDraft({ ...this.draft(), caption: value });
   }
 
+  /**
+   * Updates the prompt code block.
+   *
+   * @param value - The new code string.
+   */
   updatePromptCode(value: string): void {
     this.updateDraft({
       ...this.draft(),
@@ -60,6 +75,11 @@ export class CodeSelectCardFormComponent {
     });
   }
 
+  /**
+   * Updates the prompt code language.
+   *
+   * @param language - The new syntax highlighting language.
+   */
   updatePromptLanguage(language: CodeHighlightLanguage): void {
     this.updateDraft({
       ...this.draft(),
@@ -67,6 +87,12 @@ export class CodeSelectCardFormComponent {
     });
   }
 
+  /**
+   * Updates the code of an option at the given index.
+   *
+   * @param index - The zero-based index of the option.
+   * @param code - The new code string.
+   */
   updateOptionCode(index: number, code: string): void {
     const options = this.draft().options.map((option, optionIndex) =>
       optionIndex === index ? { ...option, code } : option,
@@ -74,6 +100,12 @@ export class CodeSelectCardFormComponent {
     this.updateDraft({ ...this.draft(), options });
   }
 
+  /**
+   * Updates the language of an option at the given index.
+   *
+   * @param index - The zero-based index of the option.
+   * @param language - The new syntax highlighting language.
+   */
   updateOptionLanguage(index: number, language: CodeHighlightLanguage): void {
     const options = this.draft().options.map((option, optionIndex) =>
       optionIndex === index ? { ...option, language } : option,
@@ -81,10 +113,20 @@ export class CodeSelectCardFormComponent {
     this.updateDraft({ ...this.draft(), options });
   }
 
+  /**
+   * Updates the index of the correct option.
+   *
+   * @param index - The zero-based index of the correct option.
+   */
   updateCorrectIndex(index: number): void {
     this.updateDraft({ ...this.draft(), correctIndex: index });
   }
 
+  /**
+   * Adds a new code option.
+   * @remarks
+   * Respects the maximum of 8 options. Creates an empty `CodeBlockDraft` with the prompt language.
+   */
   addOption(): void {
     const draft = this.draft();
     if (draft.options.length >= 8) {

@@ -32,14 +32,33 @@ export class PairsCardFormComponent {
   /** Emits the updated memory card draft when the user makes changes. */
   readonly draftChange = output<MemoryCardDraft>();
 
+  /**
+   * Emits the updated memory card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: MemoryCardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the known-language prompt.
+   *
+   * @param value - The new prompt text.
+   */
   updatePromptKnown(value: string): void {
     this.updateDraft({ ...this.draft(), promptKnown: value });
   }
 
+  /**
+   * Updates a pair at the given index.
+   *
+   * @param index - The zero-based index of the pair to update.
+   * @param side - The side to update ('known' or 'learning').
+   * @param value - The new value for the pair.
+   * @remarks
+   * In basic mode (not advanced), auto-syncs `learningLexeme` from the learning text.
+   */
   updatePair(index: number, side: 'known' | 'learning', value: string): void {
     const draft = this.draft();
     const pairs = draft.pairs.map((pair, pairIndex) => {

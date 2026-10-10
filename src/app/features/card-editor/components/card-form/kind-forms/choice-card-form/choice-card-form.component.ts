@@ -61,18 +61,40 @@ export class ChoiceCardFormComponent {
     return draft.kind === 'tone' ? draft : null;
   });
 
+  /**
+   * Emits the updated choice card draft.
+   *
+   * @param next - The updated draft.
+   */
   updateDraft(next: ChoiceCardDraft): void {
     this.draftChange.emit(next);
   }
 
+  /**
+   * Updates the known-language prompt.
+   *
+   * @param value - The new prompt text.
+   */
   updatePromptKnown(value: string): void {
     this.updateDraft({ ...this.draft(), promptKnown: value });
   }
 
+  /**
+   * Updates the index of the correct option.
+   *
+   * @param index - The zero-based index of the correct option.
+   */
   updateCorrectIndex(index: number): void {
     this.updateDraft({ ...this.draft(), correctIndex: index });
   }
 
+  /**
+   * Updates the syllable base for tone cards.
+   *
+   * @param value - The new syllable base string.
+   * @remarks
+   * No-op for non-tone cards.
+   */
   updateSyllableBase(value: string): void {
     const draft = this.draft();
     if (draft.kind !== 'tone') {
@@ -82,6 +104,14 @@ export class ChoiceCardFormComponent {
     this.updateDraft({ ...draft, syllableBase: value });
   }
 
+  /**
+   * Handles state changes from the options editor.
+   *
+   * @param state - The updated options editor state.
+   * @remarks
+   * Updates options, lexemes, and correct index based on card kind
+   * (select, reading, timed, symbol).
+   */
   onOptionsStateChange(state: CardOptionsEditorState): void {
     const draft = this.draft();
 
