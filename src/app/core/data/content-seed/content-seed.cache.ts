@@ -68,6 +68,9 @@ export function setCardSeedCache(cards: readonly Card[]): void {
 
 /**
  * Clears all content seed caches, restoring them to their initial empty state.
+ *
+ * @remarks
+ * Resets scenario, course, and card caches to empty arrays.
  */
 export function resetContentSeedCache(): void {
   scenarioSeedCache = [];
@@ -79,6 +82,8 @@ export function resetContentSeedCache(): void {
  * Checks whether all three content seed caches (scenarios, courses, cards) have been populated.
  *
  * @returns `true` if scenarios, courses, and cards arrays are all non-empty; `false` otherwise.
+ * @remarks
+ * Used to verify that the content seed has been fully loaded before proceeding.
  */
 export function isContentSeedCacheReady(): boolean {
   return (

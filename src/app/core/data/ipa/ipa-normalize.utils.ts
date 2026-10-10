@@ -1,5 +1,12 @@
 const IPA_STRESS = new Set(['ˈ', 'ˌ']);
 
+/**
+ * Normalizes an IPA string by stripping brackets, collapsing whitespace, and normalizing Unicode.
+ *
+ * @param value - The IPA string to normalize.
+ * @param stripBrackets - Whether to strip surrounding `[...]` or `/.../` brackets. Defaults to `true`.
+ * @returns The normalized IPA string.
+ */
 export function normalizeIpa(value: string, stripBrackets = true): string {
   let normalized = value.normalize('NFKC').trim();
 
@@ -13,6 +20,12 @@ export function normalizeIpa(value: string, stripBrackets = true): string {
   return normalized.replace(/\s+/g, ' ');
 }
 
+/**
+ * Checks whether a string likely contains IPA (International Phonetic Alphabet) characters.
+ *
+ * @param value - The string to check.
+ * @returns `true` if the string contains characters from IPA Unicode blocks.
+ */
 export function isLikelyIpa(value: string): boolean {
   const sample = normalizeIpa(value);
   if (!sample) {
@@ -36,10 +49,25 @@ export function isLikelyIpa(value: string): boolean {
   return false;
 }
 
+/**
+ * Compares two IPA strings for equality after normalization.
+ *
+ * @param actual - The actual IPA string.
+ * @param expected - The expected IPA string.
+ * @returns `true` if the normalized strings are equal.
+ */
 export function answersMatchIpa(actual: string, expected: string): boolean {
   return normalizeIpa(actual) === normalizeIpa(expected);
 }
 
+/**
+ * Validates an IPA input string.
+ *
+ * @param value - The IPA string to validate.
+ * @returns `true` if the input is valid (empty, stress mark, or contains IPA characters).
+ * @remarks
+ * Returns `true` for empty strings. Rejects strings containing apostrophes (`'`).
+ */
 export function validateIpaInput(value: string): boolean {
   const normalized = normalizeIpa(value);
   if (!normalized) {

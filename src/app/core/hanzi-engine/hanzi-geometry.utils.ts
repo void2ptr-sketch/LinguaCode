@@ -1,6 +1,11 @@
 import type { HanziPoint } from './hanzi-character.types';
 
-/** Calculates the arithmetic mean of the given numeric values. Returns `0` for empty arrays. */
+/**
+ * Calculates the arithmetic mean of the given numeric values.
+ *
+ * @param values - The array of numeric values.
+ * @returns The arithmetic mean, or `0` for empty arrays.
+ */
 export function hanziAverage(values: readonly number[]): number {
   if (values.length === 0) {
     return 0;
@@ -62,6 +67,14 @@ export function hanziRotate(point: HanziPoint, theta: number): HanziPoint {
   };
 }
 
+/**
+ * Normalizes a curve to a 0–1 coordinate space by scaling and translating.
+ *
+ * @param points - The array of points to normalize.
+ * @returns A new array of normalized points.
+ * @remarks
+ * Scales the curve so that its largest dimension (width or height) fits within `[0, 1]`.
+ */
 export function hanziNormalizeCurve(points: readonly HanziPoint[]): HanziPoint[] {
   if (points.length === 0) {
     return [];
@@ -123,6 +136,12 @@ export function hanziFrechetDistance(
   return matrix[left.length - 1]![right.length - 1]!;
 }
 
+/**
+ * Removes consecutive duplicate points from a polyline.
+ *
+ * @param points - The array of points.
+ * @returns A new array with consecutive duplicates removed.
+ */
 export function hanziStripDuplicatePoints(points: readonly HanziPoint[]): HanziPoint[] {
   if (points.length < 2) {
     return [...points];
@@ -140,6 +159,12 @@ export function hanziStripDuplicatePoints(points: readonly HanziPoint[]): HanziP
   return deduped;
 }
 
+/**
+ * Computes edge vectors between consecutive points in a polyline.
+ *
+ * @param points - The array of points.
+ * @returns An array of vectors representing the direction and magnitude between consecutive points.
+ */
 export function hanziEdgeVectors(points: readonly HanziPoint[]): HanziPoint[] {
   const vectors: HanziPoint[] = [];
   let lastPoint = points[0];

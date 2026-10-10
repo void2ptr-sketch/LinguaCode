@@ -9,7 +9,14 @@ import {
 const PRE_SCALED_WIDTH = HANZI_CHARACTER_BOUNDS.maxX - HANZI_CHARACTER_BOUNDS.minX;
 const PRE_SCALED_HEIGHT = HANZI_CHARACTER_BOUNDS.maxY - HANZI_CHARACTER_BOUNDS.minY;
 
-/** Преобразует координаты MMH → canvas px (единый transform для ghost, guides, quiz). */
+/**
+ * Transforms Hanzi character coordinates (MMH space) to canvas pixel coordinates.
+ *
+ * @remarks
+ * Computes scale, padding, and centering offsets to map the MMH character bounding box
+ * onto a canvas while preserving aspect ratio. Used for rendering ghost characters,
+ * stroke guides, and quiz strokes consistently.
+ */
 export class HanziPositioner {
   /** Padding (in px) applied around the character. */
   readonly padding: number;
@@ -42,6 +49,12 @@ export class HanziPositioner {
     this.yOffset = -1 * HANZI_CHARACTER_BOUNDS.minY * this.scale + yCenteringBuffer;
   }
 
+  /**
+   * Transforms a point from MMH character space to canvas pixel coordinates.
+   *
+   * @param point - The point in MMH character space.
+   * @returns The point in canvas pixel coordinates.
+   */
   toCanvas(point: HanziPoint): HanziPoint {
     return {
       x: point.x * this.scale + this.xOffset,
@@ -49,6 +62,12 @@ export class HanziPositioner {
     };
   }
 
+  /**
+   * Transforms a point from canvas pixel coordinates back to MMH character space.
+   *
+   * @param point - The point in canvas pixel coordinates.
+   * @returns The point in MMH character space.
+   */
   toCharacterSpace(point: HanziPoint): HanziPoint {
     return {
       x: (point.x - this.xOffset) / this.scale,
@@ -75,6 +94,14 @@ export class HanziPositioner {
   }
 }
 
+/**
+ * Parses MMH median data into an array of stroke point arrays.
+ *
+ * @param medians - The median data from a HanziCharacterJson.
+ * @returns An array of stroke point arrays, each containing HanziPoint objects.
+ * @remarks
+ * Converts both object-style `{x, y}` and tuple-style `[x, y]` point representations.
+ */
 export function parseHanziMedianPoints(
   medians: HanziCharacterJson['medians'],
 ): readonly (readonly HanziPoint[])[] {

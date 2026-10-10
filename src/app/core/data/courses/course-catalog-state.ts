@@ -36,6 +36,9 @@ export function normalizeStoredCourse(course: Course): Course {
 
 /**
  * Normalises a stored lesson by cloning its array fields.
+ *
+ * @param lesson - The lesson to normalise.
+ * @returns A new lesson object with cloned `scenarioIds` and `prerequisiteLessonIds` arrays.
  */
 export function normalizeStoredLesson(lesson: Lesson): Lesson {
   return {
@@ -106,6 +109,9 @@ export function normalizeStoredCourseCatalog(
 
 /**
  * Creates a deep clone of the course catalog by normalising every course and lesson.
+ *
+ * @param catalog - The catalog to clone.
+ * @returns A new catalog with all courses and lessons normalised and arrays cloned.
  */
 export function cloneCourseCatalog(catalog: CourseCatalogState): CourseCatalogState {
   return {

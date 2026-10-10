@@ -2,8 +2,23 @@ import type { KeyboardCard } from '../../models';
 import { isLikelyIpa } from '../ipa/ipa-normalize.utils';
 import { resolveIpaString } from '../phonetic/phonetic-lexeme.utils';
 
+/**
+ * Resolved keyboard answer mode after auto-detection.
+ *
+ * @remarks
+ * `'text'` — standard text input; `'ipa'` — IPA transcription; `'pinyin'` — Pinyin input.
+ */
 export type ResolvedKeyboardAnswerMode = 'text' | 'ipa' | 'pinyin';
 
+/**
+ * Resolves the keyboard answer mode for a keyboard card.
+ *
+ * @param card - The keyboard card (partial, only mode-related fields).
+ * @returns The resolved input mode: `'text'`, `'ipa'`, or `'pinyin'`.
+ * @remarks
+ * When `answerMode` is `'auto'` (default), the function infers the mode
+ * from the prompt lexeme (IPA, Pinyin) and accepted answers.
+ */
 export function resolveKeyboardAnswerMode(
   card: Pick<KeyboardCard, 'answerMode' | 'acceptedAnswersKnown' | 'promptLexeme'>,
 ): ResolvedKeyboardAnswerMode {

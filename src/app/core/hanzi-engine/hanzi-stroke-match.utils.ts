@@ -45,7 +45,19 @@ export type HanziStrokeMatchResult = {
   meta: HanziStrokeMatchMeta;
 };
 
-/** Evaluates whether the user-drawn points match the expected stroke at the given index. Accounts for later-stroke confusion and leniency adjustments. */
+/**
+ * Evaluates whether the user-drawn points match the expected stroke at the given index.
+ *
+ * @param userPoints - The points drawn by the user.
+ * @param character - The target Hanzi character model.
+ * @param strokeNum - The index of the target stroke.
+ * @param options - Matching options (leniency, outline visibility, etc.).
+ * @returns The match result including whether it matches, average distance, and metadata.
+ * @remarks
+ * Accounts for later-stroke confusion (the user may have drawn a subsequent stroke by mistake)
+ * and applies leniency adjustments. Checks direction, shape (via Fréchet distance), length,
+ * and start/end point proximity.
+ */
 export function matchHanziUserStroke(
   userPoints: readonly HanziPoint[],
   character: HanziCharacterModel,
