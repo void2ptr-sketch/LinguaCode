@@ -255,6 +255,7 @@ export type ToneCardDraft = LexemeCardDraft & {
  *
  * @remarks
  * User reads a passage and selects the correct interpretation.
+ * Supports multiple reading options with lexeme data.
  */
 export type ReadingCardDraft = LexemeCardDraft & {
   kind: 'reading';

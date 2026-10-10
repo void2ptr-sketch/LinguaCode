@@ -78,6 +78,13 @@ export class UserPageComponent implements OnInit {
     this.learningProficiencyDraft.set(this.preferences().learningProficiencyLevel);
   }
 
+  /**
+   * Commits all draft form values to the `UserStore`.
+   *
+   * @remarks
+   * Updates both the display name and all preferences (theme, font size, color scheme,
+   * card focus fullscreen, learning proficiency level) in a single call.
+   */
   saveProfile(): void {
     this.userStore.updateDisplayName(this.nameDraft());
     this.userStore.updatePreferences({

@@ -97,6 +97,13 @@ export class CodeSelectCardFormComponent {
     });
   }
 
+  /**
+   * Removes an option at the given index.
+   *
+   * @param index - The zero-based index of the option to remove.
+   * @remarks
+   * Respects the minimum of 2 options. Adjusts `correctIndex` if needed to stay in bounds.
+   */
   removeOption(index: number): void {
     const draft = this.draft();
     if (draft.options.length <= 2) {

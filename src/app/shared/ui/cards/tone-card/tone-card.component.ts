@@ -32,28 +32,58 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './tone-card.component.scss',
 })
 export class ToneCardComponent {
-  /** The tone card to display (tone mark selection exercise). */
+  /**
+   * The tone card to display (tone mark selection exercise).
+   * @remarks
+   * Contains a pinyin syllable base with tone mark options for the user to select.
+   */
   readonly card = input.required<ToneCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Overrides the card's default direction for display resolution.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
-  /** Index of the currently selected tone option (null if none). */
+  /**
+   * Index of the currently selected tone option (null if none).
+   * @remarks
+   * Updated via `optionSelected` output when the user selects a tone option.
+   */
   readonly selectedIndex = input<number | null>(null);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further option selection and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and option sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user selects a tone option. Payload is the zero-based index. */
+  /**
+   * Emits when the user selects a tone option.
+   * @remarks Payload is the zero-based index of the selected option.
+   */
   readonly optionSelected = output<number>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
   /**

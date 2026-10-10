@@ -33,15 +33,32 @@ export class CardMetaFieldsComponent {
   /** Labels for difficulty levels. */
   readonly difficultyLabels = DIFFICULTY_LABELS;
 
+  /**
+   * Updates the difficulty and emits the change.
+   *
+   * @param difficulty - The new difficulty level.
+   */
   updateDifficulty(difficulty: CardDifficulty): void {
     this.updateMeta({ ...this.meta(), difficulty });
   }
 
+  /**
+   * Updates the tags from a comma-separated string.
+   *
+   * @param tags - Comma-separated tag string.
+   * @remarks
+   * Parses the string into an array, trimming whitespace and filtering empty tags.
+   */
   updateTags(tags: string): void {
     const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag.length > 0);
     this.updateMeta({ ...this.meta(), tags: tagsArray });
   }
 
+  /**
+   * Updates the last-updated timestamp.
+   *
+   * @param updatedAt - ISO date string.
+   */
   updateUpdatedAt(updatedAt: string): void {
     this.updateMeta({ ...this.meta(), updatedAt });
   }
@@ -50,6 +67,10 @@ export class CardMetaFieldsComponent {
     this.metaChange.emit(next);
   }
 
+  /**
+   * Returns tags as a comma-separated string for display.
+   * @returns Comma-separated tag string, or empty string if no tags.
+   */
   tagsString(): string {
     return this.meta()?.tags?.join(', ') ?? '';
   }

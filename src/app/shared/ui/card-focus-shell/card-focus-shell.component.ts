@@ -33,13 +33,25 @@ export class CardFocusShellComponent {
   private readonly elementRef = inject(ElementRef<HTMLElement>);
   private readonly userStore = inject(UserStore);
 
-  /** Show fullscreen toggle button. */
+  /**
+   * Show fullscreen toggle button.
+   * @remarks When false, hides the fullscreen control UI while preserving state.
+   */
   readonly focusControlsEnabled = input(true);
 
-  /** Auto-enter fullscreen on the Learning tab if enabled in user profile. */
+  /**
+   * Auto-enter fullscreen on the Learning tab if enabled in user profile.
+   * @remarks
+   * When true and the user is on the Learning tab, automatically enters
+   * fullscreen mode if the user has `cardFocusFullscreen` preference enabled.
+   */
   readonly autoEnterFullscreen = input(false);
 
-  /** Whether the shell is currently in fullscreen mode. */
+  /**
+   * Whether the shell is currently in fullscreen mode.
+   * @remarks
+   * When true, the host element is detached from its parent and appended to `<body>`.
+   */
   readonly fullscreen = signal(false);
 
   private autoEnterWasActive = false;

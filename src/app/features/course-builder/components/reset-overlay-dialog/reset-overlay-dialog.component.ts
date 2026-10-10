@@ -1,16 +1,20 @@
 /**
- * Диалоговое окно сброса пользовательских данных (overlay).
+ * Диалоговое окно подтверждения сброса пользовательских данных (overlay).
  *
  * Используется при добавлении новых карточек/сценариев из файлов,
  * если они не отображаются в интерфейсе из-за конфликта с localStorage.
  *
  * Сценарий использования:
- * 1. Пользователь добавляет новые карточки в public/data/*.json
+ * 1. Пользователь добавляет новые карточки в `public/data/*.json`
  * 2. Открывает курс в конструкторе
  * 3. Нажимает "Сбросить overlay"
  * 4. Подтверждает действие
- * 5. localStorage очищается, страница перезагружается
+ * 5. `localStorage` очищается, страница перезагружается
  * 6. Данные загружаются из файлов (seed)
+ *
+ * @remarks
+ * Закрытие диалога с `true` (кнопка "Сбросить") приводит к удалению
+ * пользовательского overlay из localStorage и перезагрузке страницы.
  */
 import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
@@ -22,7 +26,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
  * Отображает предупреждение о том, что все пользовательские данные
  * будут удалены, а seed-данные из файлов будут загружены заново.
  *
- * Пример использования:
+ * @example
  * ```typescript
  * const dialogRef = this.dialog.open(ResetOverlayDialogComponent);
  * dialogRef.afterClosed().subscribe((confirmed) => {

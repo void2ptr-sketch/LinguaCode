@@ -42,7 +42,8 @@ import { loadScenariosFromStorage } from '../../../core/data/scenarios/scenarios
 
 /**
  * Представление карточки в контексте курса.
- * Содержит саму карточку и метаданные о её расположении.
+ *
+ * Содержит саму карточку и метаданные о её расположении в структуре курса.
  */
 type CardEntry = {
   /** Данные карточки */
@@ -54,7 +55,8 @@ type CardEntry = {
 };
 
 /**
- * Этап из authoring.idea курса.
+ * Этап из `authoring.idea` курса.
+ *
  * Соответствует разделу "## Этап N: название" в Markdown.
  */
 type IdeaStage = {

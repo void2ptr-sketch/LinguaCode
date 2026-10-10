@@ -59,8 +59,9 @@ export class PracticeSessionBarComponent {
    *
    * @param tabIndex - The tab index to navigate to.
    * @param locked - Whether the segment is locked.
+   * @returns `true` if the segment was selected and emitted; `false` if locked.
    * @remarks
-   * No-op if the segment is locked.
+   * No-op if the segment is locked. Emits the tab index via `segmentSelect`.
    */
   selectSegment(tabIndex: number, locked: boolean): void {
     if (locked) {

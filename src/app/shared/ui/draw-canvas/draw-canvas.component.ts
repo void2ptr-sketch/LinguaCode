@@ -51,9 +51,12 @@ import type { DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from './d
  *
  * @remarks
  * Used to display radical components with their assigned colors.
+ * Each hint contains a character string and a CSS color value.
  */
 export type DrawRadicalHint = {
+  /** The radical character to display. */
   readonly character: string;
+  /** The CSS color value for this radical component. */
   readonly color: string;
 };
 
@@ -107,86 +110,189 @@ export class DrawCanvasComponent {
   private readonly hanziData = inject(HanziDataService);
   private readonly userStore = inject(UserStore);
 
-  /** The ghost character to display as a guide. */
+  /**
+   * The ghost character to display as a guide.
+   * @remarks
+   * A Chinese character rendered as a semi-transparent overlay on the canvas.
+   * Used in stroke-order, hints, and tracing modes.
+   */
   readonly ghostCharacter = input<string | null>(null);
 
-  /** Radical hints for the radicals mode — each with a character and color. */
+  /**
+   * Radical hints for the radicals mode.
+   * @remarks
+   * Each hint contains a character and a CSS color. Used to display radical
+   * components with their assigned colors in the radicals canvas mode.
+   */
   readonly radicalHints = input<readonly DrawRadicalHint[]>([]);
 
-  /** ARIA label for the radical hints layer. */
+  /**
+   * ARIA label for the radical hints layer.
+   * @remarks
+   * Used for accessibility when radical hints are displayed.
+   */
   readonly radicalAriaLabel = input<string | null>(null);
 
-  /** Drawing mode: 'memory', 'stroke-order', 'hints', 'tracing', or 'radicals'. */
+  /**
+   * Drawing mode.
+   * @remarks
+   * Determines the canvas behavior: 'memory' (free drawing), 'stroke-order' (guided strokes),
+   * 'hints' (brush guidance animation), 'tracing' (follow-the-path), or 'radicals' (radical components).
+   */
   readonly canvasMode = input<DrawCanvasMode>('memory');
 
-  /** Whether the canvas is disabled for drawing. */
+  /**
+   * Whether the canvas is disabled for drawing.
+   * @remarks
+   * When true, pointer events are ignored and no strokes can be drawn.
+   */
   readonly disabled = input(false);
 
-  /** Whether to show memory review with stroke grades. */
+  /**
+   * Whether to show memory review with stroke grades.
+   * @remarks
+   * When true, displays the ghost character and applies stroke grades
+   * based on `memoryStrokeGrades`.
+   */
   readonly showMemoryReview = input(false);
 
-  /** Stroke grades for memory review: 'correct' or 'incorrect' per stroke. */
+  /**
+   * Stroke grades for memory review.
+   * @remarks
+   * Each entry corresponds to a stroke and is either 'correct' or 'incorrect'.
+   * Used to color-code strokes in memory review mode.
+   */
   readonly memoryStrokeGrades = input<readonly DrawMemoryStrokeGrade[]>([]);
 
-  /** Whether to show the clear-all button. */
+  /**
+   * Whether to show the clear-all button.
+   * @remarks
+   * When true, displays a button that clears all strokes from the canvas.
+   */
   readonly showClearAll = input(false);
 
-  /** Whether the clear-all button is disabled. */
+  /**
+   * Whether the clear-all button is disabled.
+   * @remarks
+   * When true, the clear-all button is shown but non-interactive.
+   */
   readonly clearAllDisabled = input(true);
 
-  /** Emits when the stroke count changes (true = has strokes). */
+  /**
+   * Emits when the stroke count changes.
+   * @remarks
+   * Payload is `true` when at least one stroke exists, `false` when the canvas is empty.
+   */
   readonly strokesChange = output<boolean>();
 
-  /** Emits when the user requests clearing all strokes. */
+  /**
+   * Emits when the user requests clearing all strokes.
+   * @remarks
+   * Triggered when the user clicks the clear-all button.
+   */
   readonly clearAllRequested = output<void>();
 
-  /** Reference to the canvas element. */
+  /**
+   * Reference to the canvas element.
+   * @remarks
+   * Used for resize observation and 2D context access.
+   */
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
-  /** Whether any strokes have been drawn on the canvas. */
+  /**
+   * Whether any strokes have been drawn on the canvas.
+   * @remarks
+   * Updated when strokes are added or removed.
+   */
   readonly hasStrokes = signal(false);
 
-  /** Whether undo is available (at least one stroke exists). */
+  /**
+   * Whether undo is available.
+   * @remarks
+   * True when at least one stroke exists on the canvas.
+   */
   readonly canUndo = signal(false);
 
-  /** Current canvas surface width in pixels. */
+  /**
+   * Current canvas surface width in pixels.
+   * @remarks
+   * Dynamically updated on canvas resize via `ResizeObserver`.
+   */
   readonly surfaceWidth = signal(DEFAULT_SURFACE_SIZE);
 
-  /** Current canvas surface height in pixels. */
+  /**
+   * Current canvas surface height in pixels.
+   * @remarks
+   * Dynamically updated on canvas resize via `ResizeObserver`.
+   */
   readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
 
-  /** Loaded Hanzi character model for the ghost overlay and animations. */
+  /**
+   * Loaded Hanzi character model for the ghost overlay and animations.
+   * @remarks
+   * Contains stroke data, character info, and rendering metadata.
+   * Loaded asynchronously from `HanziDataService`.
+   */
   readonly hanziModel = signal<HanziCharacterModel | null>(null);
 
-  /** Current load state of the Hanzi character ('idle', 'loading', 'ready', 'missing', 'error'). */
+  /**
+   * Current load state of the Hanzi character.
+   * @remarks
+   * Values: 'idle', 'loading', 'ready', 'missing', 'error'.
+   * Drives the visibility of ghost overlay and animation controls.
+   */
   readonly hanziLoadState = signal<HanziLoadState>('idle');
 
-  /** Map of radical character → model for radical hints mode. */
+  /**
+   * Map of radical character to model for radical hints mode.
+   * @remarks
+   * Populated when `canvasMode` is 'radicals' and `radicalHints` are provided.
+   */
   readonly radicalModels = signal<ReadonlyMap<string, HanziCharacterModel>>(new Map());
 
-  /** Current load state of radical characters. */
+  /**
+   * Current load state of radical characters.
+   * @remarks
+   * Values: 'idle', 'loading', 'ready', 'missing', 'error'.
+   */
   readonly radicalLoadState = signal<HanziLoadState>('idle');
 
-  /** Current tracing animation frame state. */
+  /**
+   * Current tracing animation frame state.
+   * @remarks
+   * Contains the active stroke index, progress, and tip position for the tracing animation.
+   */
   readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
 
-  /** Current hint animation frame state (brush guidance animation). */
+  /**
+   * Current hint animation frame state.
+   * @remarks
+   * Contains the brush guidance animation state including start circle, direction, and tip position.
+   */
   readonly hintFrame = signal<HanziHintStrokeFrame>(EMPTY_HINT_FRAME);
 
   /**
    * Strokes from the loaded Hanzi model.
+   *
    * @remarks
    * Used for stroke order guides, hint animation, and tracing animation.
+   * Returns an empty array when no model is loaded.
    */
   readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
 
-  /** SVG viewBox string for the canvas, derived from surface dimensions. */
+  /**
+   * SVG viewBox string for the canvas, derived from surface dimensions.
+   * @remarks
+   * Format: `"0 0 {width} {height}"`. Used for SVG element viewBox attribute.
+   */
   readonly svgViewBox = computed(() => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`);
 
   /**
    * Hanzi positioner for coordinate transformations.
+   *
    * @remarks
-   * Recreated on every surface dimension change to ensure correct scaling.
+   * Recreated on every surface dimension change to ensure correct scaling
+   * between canvas pixel coordinates and Hanzi model coordinates.
    */
   readonly hanziPositioner = computed(
     () =>
@@ -197,12 +303,20 @@ export class DrawCanvasComponent {
       }),
   );
 
-  /** SVG transform string for positioning the Hanzi group within the canvas. */
+  /**
+   * SVG transform string for positioning the Hanzi group within the canvas.
+   * @remarks
+   * Computed from the hanzi positioner to correctly scale and center the character.
+   */
   readonly hanziSvgTransform = computed(() =>
     resolveHanziSvgGroupTransform(this.hanziPositioner()),
   );
 
-  /** Whether Hanzi character data is required for the current canvas mode. */
+  /**
+   * Whether Hanzi character data is required for the current canvas mode.
+   * @remarks
+   * True when the mode is not 'memory' or 'radicals' and a ghost character is provided.
+   */
   readonly hanziDataRequired = computed(() => {
     const mode = this.canvasMode();
     return mode !== 'memory' && mode !== 'radicals' && Boolean(this.ghostCharacter()?.trim());
@@ -210,8 +324,10 @@ export class DrawCanvasComponent {
 
   /**
    * Whether to show the Hanzi ghost character overlay.
+   *
    * @remarks
    * True when Hanzi data is ready, strokes are available, and ghost opacity is non-zero.
+   * Combines requirements from both regular mode and memory review mode.
    */
   readonly showHanziGhost = computed(
     () =>
@@ -221,12 +337,21 @@ export class DrawCanvasComponent {
       this.ghostOpacity() > 0,
   );
 
-  /** Whether to show the ghost character in memory review mode. */
+  /**
+   * Whether to show the ghost character in memory review mode.
+   * @remarks
+   * True when memory review is active and the current mode is 'memory'.
+   */
   readonly showMemoryReviewGhost = computed(
     () => this.showMemoryReview() && this.canvasMode() === 'memory',
   );
 
-  /** Whether to show stroke order guides (dashed lines indicating stroke direction). */
+  /**
+   * Whether to show stroke order guides.
+   * @remarks
+   * True when the mode is 'stroke-order', Hanzi data is ready, and strokes are available.
+   * Guides are dashed lines indicating stroke direction.
+   */
   readonly showHanziGuides = computed(() => {
     const mode = this.canvasMode();
     return (
@@ -234,7 +359,12 @@ export class DrawCanvasComponent {
     );
   });
 
-  /** Whether to show the hint animation (brush guidance showing stroke order). */
+  /**
+   * Whether to show the hint animation.
+   * @remarks
+   * True when the mode is 'hints', Hanzi data is ready, and strokes are available.
+   * The hint animation shows a brush guidance for the next stroke.
+   */
   readonly showHintAnimation = computed(
     () =>
       this.canvasMode() === 'hints' &&
@@ -242,7 +372,12 @@ export class DrawCanvasComponent {
       this.hanziStrokes().length > 0,
   );
 
-  /** Whether to show the tracing animation (follow-the-path guidance). */
+  /**
+   * Whether to show the tracing animation.
+   * @remarks
+   * True when the mode is 'tracing', Hanzi data is ready, and strokes are available.
+   * The tracing animation shows a follow-the-path guidance.
+   */
   readonly showTracingAnimation = computed(
     () =>
       this.canvasMode() === 'tracing' &&
@@ -250,18 +385,27 @@ export class DrawCanvasComponent {
       this.hanziStrokes().length > 0,
   );
 
-  /** Tracing stroke duration in milliseconds, derived from user preferences. */
+  /**
+   * Tracing stroke duration in milliseconds.
+   * @remarks
+   * Derived from `userStore.cjkLearning().tracingStrokeDurationSec` user preference.
+   */
   readonly tracingStrokeDurationMs = computed(() =>
     Math.round(this.userStore.cjkLearning().tracingStrokeDurationSec * 1000),
   );
 
-  /** Whether radical data is required for the current canvas mode. */
+  /**
+   * Whether radical data is required for the current canvas mode.
+   * @remarks
+   * True when the mode is 'radicals' and at least one radical hint is provided.
+   */
   readonly radicalDataRequired = computed(
     () => this.canvasMode() === 'radicals' && this.radicalHints().length > 0,
   );
 
   /**
    * Whether to show the radical hints layer.
+   *
    * @remarks
    * True when in radicals mode, radical data is loaded, and at least one radical
    * has a stroke model available.
@@ -275,6 +419,7 @@ export class DrawCanvasComponent {
 
   /**
    * Ghost character opacity based on canvas mode.
+   *
    * @remarks
    * Different modes use different opacity levels for the ghost overlay:
    * - memory review: 0.38

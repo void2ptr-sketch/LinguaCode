@@ -55,43 +55,87 @@ export class LexemeFieldsComponent {
   /** Whether the advanced lexeme panel is expanded. */
   readonly advancedExpanded = signal(false);
 
-  /** Available script options for lexeme display. */
+  /**
+   * Available script options for lexeme display.
+   * @remarks
+   * Used in the script selector dropdown: Latin (latn) and Han (hani) characters.
+   */
   readonly scriptOptions: readonly { value: ScriptCode; label: string }[] = [
     { value: 'latn', label: 'Латиница' },
     { value: 'hani', label: 'Иероглифы (Han)' },
   ];
 
-  /** Whether both known and learning languages are set (enables pair-scoped layout). */
+  /**
+   * Whether both known and learning languages are set (enables pair-scoped layout).
+   * @remarks
+   * When true, shows the advanced panel with language-pair-aware fields.
+   */
   readonly pairScoped = computed(
     () => this.knownLanguage() !== null && this.learningLanguage() !== null,
   );
 
-  /** Whether the language pair is Russian-Chinese. */
+  /**
+   * Whether the language pair is Russian-Chinese.
+   * @remarks
+   * When true, shows Pinyin and Palladius fields.
+   */
   readonly ruZhPair = computed(() => {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
     return known !== null && learning !== null && isRuZhPair(known, learning);
   });
 
-  /** Whether the learning language is English. */
+  /**
+   * Whether the learning language is English.
+   * @remarks
+   * When true, shows the IPA field (English IPA lookup).
+   */
   readonly enLearningPair = computed(() => {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
     return known !== null && learning !== null && isEnLearningPair(known, learning);
   });
 
-  /** Whether to show the legacy (non-pair-scoped) layout. */
+  /**
+   * Whether to show the legacy (non-pair-scoped) layout.
+   * @remarks
+   * When true, shows all fields unconditionally regardless of language pair.
+   */
   readonly showLegacyLayout = computed(() => !this.pairScoped());
 
-  /** Whether to show the pinyin field. */
+  /**
+   * Whether to show the Pinyin field.
+   * @remarks
+   * Shown in legacy layout or for Russian-Chinese pairs.
+   */
   readonly showPinyin = computed(() => this.showLegacyLayout() || this.ruZhPair());
-  /** Whether to show the Palladius field. */
+
+  /**
+   * Whether to show the Palladius field.
+   * @remarks
+   * Shown in legacy layout or for Russian-Chinese pairs.
+   */
   readonly showPalladius = computed(() => this.showLegacyLayout() || this.ruZhPair());
-  /** Whether to show the IPA field. */
+
+  /**
+   * Whether to show the IPA field.
+   * @remarks
+   * Shown in legacy layout or for English-learning pairs.
+   */
   readonly showIpa = computed(() => this.showLegacyLayout() || this.enLearningPair());
-  /** Whether to show the script selector. */
+
+  /**
+   * Whether to show the script selector.
+   * @remarks
+   * Only shown in legacy layout (not in pair-scoped mode).
+   */
   readonly showScript = computed(() => this.showLegacyLayout());
-  /** Whether to show the advanced panel (pair-scoped and not legacy). */
+
+  /**
+   * Whether to show the advanced panel (pair-scoped and not legacy).
+   * @remarks
+   * The advanced panel contains Pinyin, IPA, Palladius, and Script fields.
+   */
   readonly showAdvancedPanel = computed(() => this.pairScoped() && !this.showLegacyLayout());
 
   updateField<K extends keyof LexemeDraftFields>(key: K, value: LexemeDraftFields[K]): void {

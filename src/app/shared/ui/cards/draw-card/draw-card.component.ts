@@ -84,64 +84,148 @@ export class DrawCardComponent {
   private readonly userStore = inject(UserStore);
   private readonly hanziData = inject(HanziDataService);
 
-  /** The draw card to display (character drawing exercise). */
+  /**
+   * The draw card to display (character drawing exercise).
+   * @remarks
+   * Contains character targets, question, and audio data for the drawing exercise.
+   */
   readonly card = input.required<DrawCard>();
 
-  /** Whether the user has submitted a draw answer. */
+  /**
+   * Whether the user has submitted a draw answer.
+   * @remarks
+   * Set to true when all character tabs have been completed and the drawing is submitted.
+   */
   readonly drawSubmitted = input(false);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further drawing and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and canvas sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the draw submission state changes. Payload is `true` when submitted. */
+  /**
+   * Emits when the draw submission state changes.
+   * @remarks Payload is `true` when the drawing is submitted.
+   */
   readonly drawSubmittedChange = output<boolean>();
 
-  /** Emits when the draw answer payload changes. Payload is the draw answer or `null`. */
+  /**
+   * Emits when the draw answer payload changes.
+   * @remarks
+   * Payload contains canvas mode, size, and strokes by character.
+   * Emits `null` when strokes are cleared.
+   */
   readonly drawAnswerChange = output<DrawAnswerPayload | null>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
+  /**
+   * Reference to the child `DrawCanvasComponent` instance.
+   * @remarks
+   * Used to access canvas methods like `getStrokes()`, `setStrokes()`, and `getCanvasSize()`.
+   */
   readonly canvasRef = viewChild(DrawCanvasComponent);
 
+  /**
+   * Available canvas panel modes.
+   * @remarks
+   * Defined as `DRAW_CANVAS_MODES`: 'memory', 'stroke-order', 'hints', 'tracing', 'radicals'.
+   */
   readonly canvasModes = DRAW_CANVAS_MODES;
+
+  /**
+   * Display labels for each canvas panel mode.
+   * @remarks
+   * Mapped from `DRAW_CANVAS_MODE_LABELS` for UI display.
+   */
   readonly canvasModeLabels = DRAW_CANVAS_MODE_LABELS;
 
-  /** Whether any strokes have been drawn on the current character tab. */
+  /**
+   * Whether any strokes have been drawn on the current character tab.
+   * @remarks
+   * Updated when strokes change on the canvas.
+   */
   readonly hasStrokes = signal(false);
 
-  /** Current canvas panel mode ('memory', 'stroke-order', 'hints', 'tracing', 'radicals'). */
+  /**
+   * Current canvas panel mode.
+   * @remarks
+   * Determines the drawing behavior: 'memory', 'stroke-order', 'hints', 'tracing', or 'radicals'.
+   */
   readonly panelMode = signal<DrawCanvasMode>('memory');
 
-  /** Size of the review canvas for memory mode grading. */
+  /**
+   * Size of the review canvas for memory mode grading.
+   * @remarks
+   * Captured from the canvas when feedback is displayed.
+   */
   readonly reviewCanvasSize = signal({ width: 280, height: 280 });
 
-  /** Index of the currently active character tab (for multi-character cards). */
+  /**
+   * Index of the currently active character tab (for multi-character cards).
+   * @remarks
+   * Used to switch between character tabs when the card has multiple targets.
+   */
   readonly activeCharIndex = signal(0);
 
-  /** Completion status per character tab (true = done drawing). */
+  /**
+   * Completion status per character tab (true = done drawing).
+   * @remarks
+   * Array length matches `characterTargets().length`. Each entry is true when that tab is complete.
+   */
   readonly charDone = signal<readonly boolean[]>([]);
 
-  /** Strokes drawn per character tab. */
+  /**
+   * Strokes drawn per character tab.
+   * @remarks
+   * Array length matches `characterTargets().length`. Each entry is an array of stroke paths.
+   */
   readonly charStrokes = signal<readonly (readonly DrawStrokePath[])[]>([]);
 
-  /** Computed question label for the draw card. */
+  /**
+   * Computed question label for the draw card.
+   * @remarks
+   * Resolved from the card data using `resolveDrawQuestion`.
+   */
   readonly questionLabel = computed(() => resolveDrawQuestion(this.card()));
 
-  /** Computed prompt lexeme from the card data. */
+  /**
+   * Computed prompt lexeme from the card data.
+   * @remarks
+   * Resolved from the card using `resolveDrawPromptLexeme`.
+   */
   readonly promptLexeme = computed(() => resolveDrawPromptLexeme(this.card()));
 
-  /** Computed character targets for the card (supports multiple characters). */
+  /**
+   * Computed character targets for the card (supports multiple characters).
+   * @remarks
+   * Each target contains a character, optional radical hint, and syllable info.
+   */
   readonly characterTargets = computed(() => resolveDrawCharacterTargets(this.card()));
 
   /**
    * Computed active character target.
+   *
    * @remarks
    * Returns the target at the active character index, or the first target as fallback.
    */
@@ -150,60 +234,104 @@ export class DrawCardComponent {
     return targets[this.activeCharIndex()] ?? targets[0];
   });
 
-  /** Computed audio URL for learning speech. */
+  /**
+   * Computed audio URL for learning speech.
+   * @remarks
+   * Resolved from the card and active target using `resolveDrawAudioUrl`.
+   */
   readonly learningAudioUrl = computed(() => resolveDrawAudioUrl(this.card(), this.activeTarget()));
 
-  /** Computed speech text for learning audio. */
+  /**
+   * Computed speech text for learning audio.
+   * @remarks
+   * Resolved from the card and active target using `resolveDrawLearningSpeechText`.
+   */
   readonly learningSpeechText = computed(() =>
     resolveDrawLearningSpeechText(this.card(), this.activeTarget()),
   );
 
-  /** Whether learning audio can be played (has URL or speech text). */
+  /**
+   * Whether learning audio can be played.
+   * @remarks
+   * True when either `learningAudioUrl` or `learningSpeechText` is non-empty.
+   */
   readonly canPlayLearningAudio = computed(() =>
     Boolean(this.learningAudioUrl() || this.learningSpeechText()),
   );
 
-  /** Whether to show syllable tabs (multiple character targets). */
+  /**
+   * Whether to show syllable tabs.
+   * @remarks
+   * True when the card has more than zero character targets.
+   */
   readonly showSyllableTabs = computed(() => this.characterTargets().length > 0);
 
-  /** Whether the card has multiple syllables/characters. */
+  /**
+   * Whether the card has multiple syllables/characters.
+   * @remarks
+   * True when `characterTargets().length` exceeds 1.
+   */
   readonly hasMultipleSyllables = computed(() => this.characterTargets().length > 1);
 
-  /** Whether any character tab has strokes drawn. */
+  /**
+   * Whether any character tab has strokes drawn.
+   * @remarks
+   * True when at least one entry in `charStrokes()` has a non-empty stroke array.
+   */
   readonly hasStrokesOnAnyTab = computed(() =>
     this.charStrokes().some((strokes) => strokes.length > 0),
   );
 
-  /** Whether tone coloring is enabled for the current user. */
+  /**
+   * Whether tone coloring is enabled for the current user.
+   * @remarks
+   * Reads from `userStore.cjkLearning().showTones` user preference.
+   */
   readonly toneColorEnabled = computed(() => this.userStore.cjkLearning().showTones);
 
-  /** Available canvas panel modes (all modes, not filtered). */
+  /**
+   * Available canvas panel modes (all modes, not filtered).
+   * @remarks
+   * Returns the full `DRAW_CANVAS_MODES` array regardless of card configuration.
+   */
   readonly visiblePanelModes = computed((): readonly DrawCanvasMode[] => DRAW_CANVAS_MODES);
 
   /**
    * Computed ghost character for the active tab.
+   *
    * @remarks
-   * Returns the trimmed character of the active target, or null.
+   * Returns the trimmed character of the active target, or null if empty.
+   * Used as the guide overlay on the drawing canvas.
    */
   readonly ghostCharacter = computed(() => {
     const character = this.activeTarget()?.character?.trim();
     return character || null;
   });
 
-  /** Whether to show the stroke order note (ghost character visible in stroke-order mode). */
+  /**
+   * Whether to show the stroke order note.
+   * @remarks
+   * True when the current panel mode is 'stroke-order' and a ghost character is available.
+   */
   readonly showStrokeOrderNote = computed(
     () => this.panelMode() === 'stroke-order' && Boolean(this.ghostCharacter()),
   );
 
-  /** Whether to show the hints note (ghost character visible in hints mode). */
+  /**
+   * Whether to show the hints note.
+   * @remarks
+   * True when the current panel mode is 'hints' and a ghost character is available.
+   */
   readonly showHintsNote = computed(
     () => this.panelMode() === 'hints' && Boolean(this.ghostCharacter()),
   );
 
   /**
    * Computed radical hint for the radicals mode.
+   *
    * @remarks
    * Returns null if not in radicals mode or if no radical hint is available.
+   * The hint text is parsed into components for the radical canvas layer.
    */
   readonly radicalHint = computed(() => {
     if (this.panelMode() !== 'radicals') {
@@ -215,9 +343,10 @@ export class DrawCardComponent {
 
   /**
    * Computed radical canvas hints with colors.
+   *
    * @remarks
    * Parses the radical hint and maps each component to a character and color
-   * based on the user's tone color scheme.
+   * based on the user's tone color scheme. Returns an empty array if no hint is available.
    */
   readonly radicalCanvasHints = computed(() => {
     const hint = this.radicalHint();
@@ -237,8 +366,10 @@ export class DrawCardComponent {
 
   /**
    * Computed ARIA label for the radical canvas hints.
+   *
    * @remarks
    * Returns a comma-separated list of radical characters for accessibility.
+   * Returns null when no radical hint is available.
    */
   readonly radicalCanvasAriaLabel = computed(() => {
     const hint = this.radicalHint();
@@ -254,23 +385,33 @@ export class DrawCardComponent {
     return `Состав: ${parts.map((part) => part.character).join(', ')}`;
   });
 
-  /** Whether all character tabs have been completed (done drawing). */
+  /**
+   * Whether all character tabs have been completed.
+   * @remarks
+   * True when every entry in `charDone()` is true and the count matches `characterTargets().length`.
+   */
   readonly allCharsDone = computed(() => {
     const done = this.charDone();
     const targets = this.characterTargets();
     return targets.length > 0 && done.length === targets.length && done.every(Boolean);
   });
 
-  /** Whether to show memory review (feedback displayed in memory mode). */
+  /**
+   * Whether to show memory review.
+   * @remarks
+   * True when feedback is displayed and the current panel mode is 'memory'.
+   */
   readonly showMemoryReview = computed(
     () => this.feedback() !== null && this.panelMode() === 'memory',
   );
 
   /**
    * Computed stroke grades for memory review.
+   *
    * @remarks
    * Grades each stroke using the Hanzi memory validation algorithm.
-   * Returns an empty array if review is not active or data is unavailable.
+   * Returns an empty array if review is not active, the ghost character is missing,
+   * or the Hanzi model is not cached.
    */
   readonly memoryStrokeGrades = computed(() => {
     if (!this.showMemoryReview()) {

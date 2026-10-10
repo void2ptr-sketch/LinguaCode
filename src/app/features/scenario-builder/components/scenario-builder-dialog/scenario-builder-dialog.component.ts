@@ -61,6 +61,7 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     () => serializeScenarioFormDraft(this.draft()) !== this.initialSnapshot(),
   );
 
+  /** Dialog title, derived from the current mode and editor state. */
   readonly title = computed(() => {
     if (this.data.mode === 'create') {
       return 'Новый сценарий';

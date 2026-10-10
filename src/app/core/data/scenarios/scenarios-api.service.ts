@@ -20,10 +20,15 @@ import { buildScenarioSearchParams } from '../../api/scenarios/scenarios-api.par
  * Used in `ScenariosApiService` methods to send scenario data to the backend.
  */
 export type ScenarioWritePayload = {
+  /** Display title of the scenario. */
   title: string;
+  /** Detailed description of the scenario content. */
   description: string;
+  /** How cards are sourced for this scenario (manual list or automatic filtering). */
   cardSource: Scenario['cardSource'];
+  /** Whether the scenario is published and visible to learners. */
   published: boolean;
+  /** Optional language pair for the scenario (e.g., { source: 'zh', target: 'en' }). */
   languagePair?: LanguagePair;
 };
 
@@ -42,6 +47,14 @@ export class ScenariosApiService {
    *
    * @param criteria - The search criteria.
    * @returns A page of scenario index entries.
+   *
+   * @example
+   * ```ts
+   * const results = await scenariosApi.search({
+   *   filters: { tags: ['hsk1'] },
+   *   page: { page: 0, pageSize: 20 },
+   * });
+   * ```
    */
   search(criteria: ScenarioSearchCriteria): Promise<ScenarioSearchPage> {
     return firstValueFrom(
@@ -56,6 +69,11 @@ export class ScenariosApiService {
    *
    * @param scenarioId - The scenario ID.
    * @returns The scenario.
+   *
+   * @example
+   * ```ts
+   * const scenario = await scenariosApi.getById('scenario-123');
+   * ```
    */
   getById(scenarioId: string): Promise<Scenario> {
     return firstValueFrom(
@@ -68,6 +86,16 @@ export class ScenariosApiService {
    *
    * @param payload - The scenario write payload.
    * @returns The created scenario.
+   *
+   * @example
+   * ```ts
+   * const scenario = await scenariosApi.create({
+   *   title: 'Daily Greetings',
+   *   description: 'Common phrases for everyday use',
+   *   published: false,
+   *   cardSource: { type: 'manual', cardIds: ['card-1', 'card-2'] },
+   * });
+   * ```
    */
   create(payload: ScenarioWritePayload): Promise<Scenario> {
     return firstValueFrom(
@@ -81,6 +109,16 @@ export class ScenariosApiService {
    * @param scenarioId - The scenario ID.
    * @param payload - The scenario write payload.
    * @returns The updated scenario.
+   *
+   * @example
+   * ```ts
+   * const updated = await scenariosApi.update('scenario-123', {
+   *   title: 'Updated Title',
+   *   description: 'New description',
+   *   published: true,
+   *   cardSource: { type: 'manual', cardIds: ['card-1'] },
+   * });
+   * ```
    */
   update(scenarioId: string, payload: ScenarioWritePayload): Promise<Scenario> {
     return firstValueFrom(
@@ -92,6 +130,11 @@ export class ScenariosApiService {
    * Deletes a scenario by ID.
    *
    * @param scenarioId - The scenario ID.
+   *
+   * @example
+   * ```ts
+   * await scenariosApi.delete('scenario-123');
+   * ```
    */
   delete(scenarioId: string): Promise<void> {
     return firstValueFrom(
@@ -104,6 +147,11 @@ export class ScenariosApiService {
    *
    * @param cardId - The card ID.
    * @returns Array of scenario index entries that use this card.
+   *
+   * @example
+   * ```ts
+   * const scenarios = await scenariosApi.findUsingCard('card-456');
+   * ```
    */
   findUsingCard(cardId: string): Promise<readonly ScenarioIndexEntry[]> {
     return firstValueFrom(

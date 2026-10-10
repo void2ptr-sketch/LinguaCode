@@ -33,7 +33,13 @@ export class JourneyAnalyticsService {
 
   private readonly visitsState = signal<readonly JourneyVisitRecord[]>(this.loadVisits());
 
-  /** Readonly signal of all visit records. */
+  /**
+   * Readonly signal of all visit records.
+   *
+   * @remarks
+   * Each record contains scenario ID, lesson ID, course ID, timestamp, duration, and completion percentage.
+   * Persisted to localStorage via `loadVisits` / `saveVisits`.
+   */
   readonly visits = this.visitsState.asReadonly();
 
   /**
@@ -41,6 +47,7 @@ export class JourneyAnalyticsService {
    *
    * @remarks
    * This is a computed factory — call the returned function with a scenarioId.
+   * The computed re-evaluates whenever `visits` changes.
    */
   readonly visitCountForScenario = computed(() => {
     return (scenarioId: string) =>
@@ -52,6 +59,7 @@ export class JourneyAnalyticsService {
    *
    * @remarks
    * Includes total visits, total duration, and average completion percentage.
+   * The computed re-evaluates whenever `visits` changes.
    */
   readonly courseVisitStats = computed(() => {
     return (courseId: string) => {
@@ -72,6 +80,8 @@ export class JourneyAnalyticsService {
    *
    * @remarks
    * Thresholds: >5 minutes total duration OR <50% average completion.
+   * Groups visits by scenario ID and filters out problematic locations.
+   * The computed re-evaluates whenever `visits` changes.
    */
   readonly stuckPoints = computed(() => {
     const grouped = new Map<

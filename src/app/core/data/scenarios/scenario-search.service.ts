@@ -30,6 +30,20 @@ export class ScenarioSearchService {
    *
    * @param criteria - The search criteria.
    * @returns A page of scenario index entries.
+   *
+   * @example
+   * ```ts
+   * const results = await scenarioSearchService.search({
+   *   filters: { tags: ['grammar'] },
+   * });
+   * ```
+   */
+
+  /**
+   * Searches scenarios by criteria.
+   *
+   * @param criteria - The search criteria.
+   * @returns A page of scenario index entries.
    */
   search(criteria: ScenarioSearchCriteria): Promise<ScenarioSearchPage> {
     return this.run(() => this.scenariosApi.search(criteria));

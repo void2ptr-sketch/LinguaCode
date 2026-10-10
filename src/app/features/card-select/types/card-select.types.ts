@@ -12,5 +12,12 @@ export type CardSelectFixture = {
   cards: readonly Card[];
 };
 
-/** Re-export of CardFeedback with a feature-specific name. */
+/**
+ * Re-export of `CardFeedback` with a feature-specific name.
+ *
+ * @remarks
+ * Represents the feedback state after checking a card answer:
+ * `null` (not yet checked), `'correct'`, or `'incorrect'`.
+ * Provided under an alias to clarify its scope within card selection.
+ */
 export type { CardFeedback as CardSelectFeedback };

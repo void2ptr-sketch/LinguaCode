@@ -31,37 +31,82 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './timed-card.component.scss',
 })
 export class TimedCardComponent implements OnInit, OnDestroy {
-  /** The timed card to display (answer within time limit). */
+  /**
+   * The timed card to display (answer within time limit).
+   * @remarks
+   * Contains a multiple-choice question with a countdown timer. Emits `timeExpired`
+   * when the user fails to answer within the time limit.
+   */
   readonly card = input.required<TimedCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Overrides the card's default direction for display resolution.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
-  /** Index of the currently selected option (null if none). */
+  /**
+   * Index of the currently selected option (null if none).
+   * @remarks
+   * Updated via `optionSelected` output when the user selects an option.
+   */
   readonly selectedIndex = input<number | null>(null);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further option selection and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and option sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user selects an option. Payload is the zero-based index. */
+  /**
+   * Emits when the user selects an option.
+   * @remarks Payload is the zero-based index of the selected option.
+   */
   readonly optionSelected = output<number>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
-  /** Emits when the time limit expires without an answer. */
+  /**
+   * Emits when the time limit expires without an answer.
+   * @remarks
+   * Triggered when `secondsLeft` reaches 0 and no feedback is displayed.
+   */
   readonly timeExpired = output<void>();
 
-  /** Remaining seconds in the countdown timer. */
+  /**
+   * Remaining seconds in the countdown timer.
+   * @remarks
+   * Initialized from `card.timeLimitSec` on component initialization.
+   * Decrements every second until zero.
+   */
   readonly secondsLeft = signal(0);
   private timerId: number | null = null;
 
+  /**
+   * Computed resolved card data with direction applied.
+   * @remarks
+   * Uses `effectiveCardDirection` and `resolveOptionCard` to determine the effective prompt and options.
+   */
   readonly resolved = computed(() => {
     const card = this.card();
     const direction = effectiveCardDirection(card.direction, this.direction());
@@ -70,6 +115,10 @@ export class TimedCardComponent implements OnInit, OnDestroy {
 
   /**
    * Returns the prompt lexeme for the resolved direction, falling back to the card's default.
+   *
+   * @remarks
+   * Prefers the resolved prompt lexeme from `resolved().promptLexeme`,
+   * falls back to `card.promptLexeme` if not available.
    */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;

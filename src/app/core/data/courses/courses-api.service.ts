@@ -109,6 +109,11 @@ export class CoursesApiService {
    * Deletes a course by ID.
    *
    * @param courseId - The course ID.
+   *
+   * @example
+   * ```ts
+   * await coursesApi.delete('course-123');
+   * ```
    */
   delete(courseId: string): Promise<void> {
     return firstValueFrom(

@@ -86,17 +86,38 @@ export class CourseCatalogSettingsComponent {
 
   // ---- Computed ----
 
+  /**
+   * The settings language pair entry.
+   *
+   * @remarks
+   * Resolves the entry matching the active language pair ID, falling back to the first
+   * available pair or `null` if none exist.
+   */
   readonly settingsEntry = computed(() => {
     const id = this.activeLanguagePairId();
     const pairs = this.languagePairs();
     return pairs.find((entry) => entry.id === id) ?? pairs[0] ?? null;
   });
 
+  /**
+   * Label for the settings course entry (known → learning).
+   *
+   * @remarks
+   * Derived from `settingsEntry` via `entryLabel`. Returns an empty string when
+   * no settings entry is available.
+   */
   readonly settingsCourseLabel = computed(() => {
     const entry = this.settingsEntry();
     return entry ? this.entryLabel(entry) : '';
   });
 
+  /**
+   * Whether CJK-specific preferences (romanization, tone coloring) should be shown.
+   *
+   * @remarks
+   * Returns `true` when the known language supports Palladius romanization
+   * (e.g., Russian) and the learning language is CJK (e.g., Chinese).
+   */
   readonly showCjkPreferences = computed(() => {
     const entry = this.settingsEntry();
     return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
@@ -108,12 +129,32 @@ export class CourseCatalogSettingsComponent {
     return learning === 'en' || learning === 'zh';
   });
 
+  /**
+   * Whether tracing stroke duration settings should be shown.
+   *
+   * @remarks
+   * Returns `true` only when the learning language is Chinese ('zh').
+   */
   readonly showTracingSettings = computed(() => this.settingsEntry()?.pair.learning === 'zh');
 
+  /**
+   * Whether any display settings should be shown.
+   *
+   * @remarks
+   * Returns `true` when either CJK preferences or phonetic preferences are visible.
+   * Used to conditionally render the `CourseDisplaySettingsMatrixComponent`.
+   */
   readonly showDisplaySettings = computed(
     () => this.showCjkPreferences() || this.showPhoneticPreferences(),
   );
 
+  /**
+   * Available romanization options for display and answer settings.
+   *
+   * @remarks
+   * Always includes Pinyin and Zhuyin. Palladius is added when `showCjkPreferences` is `true`.
+   * Options are ordered by `ROMANIZATION_DISPLAY_ORDER`.
+   */
   readonly romanizationOptions = computed((): readonly RomanizationOption[] => {
     const options: RomanizationOption[] = [
       { value: 'pinyin', label: 'Пиньинь' },
@@ -132,10 +173,21 @@ export class CourseCatalogSettingsComponent {
 
   // ---- Methods ----
 
+  /**
+   * Formats a language pair entry as a human-readable label.
+   *
+   * @param entry - The language pair entry to format.
+   * @returns A string in the format "KnownLanguage → LearningLanguage".
+   */
   entryLabel(entry: UserLanguagePairEntry): string {
     return `${entry.pair.known} → ${entry.pair.learning}`;
   }
 
+  /**
+   * Returns a human-readable hint for the current tone color scheme.
+   *
+   * @returns The description of the currently selected tone color scheme, or an empty string.
+   */
   toneColorSchemeHint(): string {
     const scheme = this.toneColorSchemeOptions.find(
       (item) => item.id === this.toneColorSchemeDraft(),
@@ -143,6 +195,12 @@ export class CourseCatalogSettingsComponent {
     return scheme?.description ?? '';
   }
 
+  /**
+   * Returns the color for a given tone mark under the current scheme.
+   *
+   * @param tone - The tone mark (1-5).
+   * @returns The hex color string for the tone, or a gray placeholder if not found.
+   */
   tonePreviewColor(tone: ToneMark): string {
     const scheme = this.toneColorSchemeOptions.find(
       (item) => item.id === this.toneColorSchemeDraft(),
@@ -150,40 +208,86 @@ export class CourseCatalogSettingsComponent {
     return scheme?.colors[tone] ?? '#757575';
   }
 
+  /**
+   * Formats a tracing duration value in seconds with one decimal place.
+   *
+   * @param value - The duration in seconds.
+   * @returns A formatted string with one decimal place and a Cyrillic 'с' suffix.
+   */
   formatTracingDurationSec(value: number): string {
     return `${value.toFixed(1)} с`;
   }
 
   // ---- Settings change handlers ----
 
+  /**
+   * Handles changes to the display romanizations setting.
+   *
+   * @param romanizations - The updated display romanization systems.
+   */
   onDisplayRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
     this.catalogStore.setDisplayRomanizationsDraft(romanizations);
   }
 
+  /**
+   * Handles changes to the answer romanizations setting.
+   *
+   * @param romanizations - The updated answer romanization systems.
+   */
   onAnswerRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
     this.catalogStore.setAnswerRomanizationsDraft(romanizations);
   }
 
+  /**
+   * Handles changes to the show IPA setting.
+   *
+   * @param show - Whether IPA notation should be displayed.
+   */
   onShowIpaChange(show: boolean): void {
     this.catalogStore.setShowIpaDraft(show);
   }
 
+  /**
+   * Handles changes to the IPA variant label.
+   *
+   * @param label - The custom IPA variant label.
+   */
   onIpaVariantLabelChange(label: string): void {
     this.catalogStore.setIpaVariantLabelDraft(label);
   }
 
+  /**
+   * Handles changes to the answer display modes setting.
+   *
+   * @param modes - The updated answer display modes.
+   */
   onAnswerModesChange(modes: readonly AnswerDisplayMode[]): void {
     this.catalogStore.setAnswerModesDraft(modes);
   }
 
+  /**
+   * Handles changes to the tone color enabled setting.
+   *
+   * @param enabled - Whether tone coloring is enabled.
+   */
   onToneColorEnabledChange(enabled: boolean): void {
     this.catalogStore.setToneColorEnabledDraft(enabled);
   }
 
+  /**
+   * Handles changes to the tone color scheme setting.
+   *
+   * @param scheme - The selected tone color scheme ID.
+   */
   onToneColorSchemeChange(scheme: ToneColorSchemeId): void {
     this.catalogStore.setToneColorSchemeDraft(scheme);
   }
 
+  /**
+   * Handles changes to the tracing stroke duration setting.
+   *
+   * @param duration - The tracing stroke duration in milliseconds.
+   */
   onTracingStrokeDurationChange(duration: number): void {
     this.catalogStore.setTracingStrokeDurationDraft(duration);
   }

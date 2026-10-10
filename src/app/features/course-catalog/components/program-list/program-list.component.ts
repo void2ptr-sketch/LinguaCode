@@ -31,9 +31,20 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
   styleUrl: './program-list.component.scss',
 })
 export class CourseCatalogProgramsComponent {
-  /** Emits when the user requests to reload the course list. */
+  /**
+   * Emits when the user requests to reload the course list.
+   *
+   * @remarks
+   * Currently unused; reserved for future refresh functionality.
+   */
   readonly loadRequested = output<void>();
-  /** Emits the course ID when the user clicks "Start". */
+  /**
+   * Emits the course ID when the user clicks "Start".
+   *
+   * @remarks
+   * The parent component should listen for this output to initiate
+   * navigation to the card select page for the given course.
+   */
   readonly startCourse = output<string>();
 
   readonly catalogStore = inject(CourseCatalogStore);
@@ -57,14 +68,35 @@ export class CourseCatalogProgramsComponent {
 
   // ---- Methods ----
 
+  /**
+   * Checks whether a course has been fully completed.
+   *
+   * @param courseId - The ID of the course to check.
+   * @returns `true` if the course ID is in the completed set.
+   */
   isCourseCompleted(courseId: string): boolean {
     return this.completedCourseIds().has(courseId);
   }
 
+  /**
+   * Returns the progress percentage for a given course.
+   *
+   * @param courseId - The ID of the course.
+   * @returns The completion percentage (0-100), or `0` if no progress data exists.
+   */
   progressPercent(courseId: string): number {
     return this.progressByCourseId()[courseId] ?? 0;
   }
 
+  /**
+   * Handles paginator page changes.
+   *
+   * @param event - The page event from Angular Material paginator.
+   *
+   * @remarks
+   * Updates the catalog store's page index and page size. Does not trigger a reload;
+   * the parent component must call `load()` separately.
+   */
   onPageChange(event: PageEvent): void {
     this.catalogStore.setPageIndex(event.pageIndex);
     this.catalogStore.setPageSize(event.pageSize);

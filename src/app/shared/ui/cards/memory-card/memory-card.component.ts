@@ -15,12 +15,18 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  *
  * @remarks
  * Used for pair-matching exercises where the user connects items from two columns.
+ * Items are matched by `pairId` across columns.
  */
 export type MemoryColumnItem = {
+  /** Unique identifier for this item instance (includes column suffix). */
   id: string;
+  /** The pair identifier used to match items across columns. */
   pairId: string;
+  /** Which column this item belongs to. */
   column: 'left' | 'right';
+  /** Display label for the item. */
   label: string;
+  /** Optional lexeme data for CJK phonetic display. */
   lexeme?: PhoneticLexeme;
 };
 
@@ -57,10 +63,18 @@ export type MemoryColumnItem = {
   styleUrl: './memory-card.component.scss',
 })
 export class MemoryCardComponent {
-  /** The memory card to display (pair matching exercise). */
+  /**
+   * The memory card to display (pair matching exercise).
+   * @remarks
+   * Contains pairs of items to match between left and right columns.
+   */
   readonly card = input.required<MemoryCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Determines which side shows known items and which shows learning items.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
   /**
@@ -68,30 +82,84 @@ export class MemoryCardComponent {
    *
    * @remarks
    * Triggers column randomization on memory cards to prevent memorizing column positions.
+   * Changing this value resets the board.
    */
   readonly boardNonce = input(0);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further item selection and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and item sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user completes the memory board. Payload is `true`. */
+  /**
+   * Emits when the user completes the memory board.
+   * @remarks Payload is `true` when all pairs have been matched.
+   */
   readonly memoryComplete = output<boolean>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
+  /**
+   * Left column items (shuffled).
+   * @remarks
+   * Populated from `card.pairs` on board reset. Each item has a unique ID and pair reference.
+   */
   readonly leftItems = signal<readonly MemoryColumnItem[]>([]);
+
+  /**
+   * Right column items (shuffled).
+   * @remarks
+   * Populated from `card.pairs` on board reset. Each item has a unique ID and pair reference.
+   */
   readonly rightItems = signal<readonly MemoryColumnItem[]>([]);
+
+  /**
+   * ID of the currently selected item.
+   * @remarks
+   * Null when no item is selected. Set when the user clicks an item.
+   */
   readonly selectedItemId = signal<string | null>(null);
+
+  /**
+   * IDs of matched pairs.
+   * @remarks
+   * Grows as the user correctly matches items. When length equals `card.pairs.length`, the board is complete.
+   */
   readonly matchedPairIds = signal<readonly string[]>([]);
+
+  /**
+   * IDs of items in mismatch state.
+   * @remarks
+   * Contains two item IDs when a mismatch is detected. Cleared after 700ms.
+   */
   readonly mismatchItemIds = signal<readonly string[]>([]);
 
+  /**
+   * Labels for the left and right columns based on direction.
+   * @remarks
+   * In 'known-to-learning': left = "Известный", right = "Новый".
+   * In 'learning-to-known': left = "Новый", right = "Известный".
+   */
   readonly columnLabels = computed(() => {
     if (this.direction() === 'known-to-learning') {
       return { left: 'Известный', right: 'Новый' };
@@ -111,6 +179,14 @@ export class MemoryCardComponent {
     });
   }
 
+  /**
+   * Resets the memory board to its initial state.
+   *
+   * @remarks
+   * Clears mismatch timers, resolves pairs from the card, shuffles both columns,
+   * and resets selection, matched pairs, and mismatch state signals.
+   * Triggered whenever `card`, `direction`, or `boardNonce` changes.
+   */
   resetBoard(): void {
     this.clearMismatchTimer();
     const pairs = resolveMemoryPairs(this.card().pairs, this.direction());

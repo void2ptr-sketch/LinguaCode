@@ -13,8 +13,16 @@ import { CardHostComponent } from '../../../../shared/ui/card-host';
   styleUrl: './card-preview.component.scss',
 })
 export class CardPreviewComponent {
-  /** Required card to preview. */
+  /**
+   * Required card to preview.
+   * @remarks
+   * Renders a read-only view using `CardHostComponent`.
+   */
   readonly card = input.required<Card>();
-  /** Font size for the preview ('sm', 'md', or 'lg'). */
+
+  /**
+   * Font size for the preview.
+   * @defaultValue 'md'
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 }

@@ -168,6 +168,9 @@ export class CardEditorPageComponent implements OnInit {
    * Opens the card try dialog for preview/testing.
    *
    * @param cardId - The ID of the card to try.
+   * @remarks
+   * Opens a non-blocking dialog that lets the user practice the card
+   * without creating a full practice session.
    */
   tryCard(cardId: string): void {
     void this.cardTryDialog.open(cardId);

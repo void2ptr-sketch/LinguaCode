@@ -41,7 +41,11 @@ export class ScenarioPickerComponent implements OnInit {
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly userStore = inject(UserStore);
 
-  /** ID of the currently selected scenario. */
+  /**
+   * ID of the currently selected scenario.
+   * @remarks
+   * Required input that drives the scenario search and selection state.
+   */
   readonly selectedScenarioId = input.required<string>();
 
   /**
@@ -49,24 +53,77 @@ export class ScenarioPickerComponent implements OnInit {
    *
    * @remarks
    * When null, all scenarios in the selected scope are available.
+   * When set, limits results to only the specified IDs and resets pagination.
    */
   readonly allowedScenarioIds = input<readonly string[] | null>(null);
 
-  /** Automatically select the first scenario when the list loads. */
+  /**
+   * Automatically select the first scenario when the list loads.
+   * @remarks
+   * When true and no scenario is currently selected, picks the first available scenario.
+   */
   readonly autoSelectFirst = input(true);
 
-  /** Emits when the selected scenario ID changes. */
+  /**
+   * Emits when the selected scenario ID changes.
+   * @remarks Payload is the new scenario ID string.
+   */
   readonly selectedScenarioIdChange = output<string>();
 
-  /** Emits when the selected scenario label changes. */
+  /**
+   * Emits when the selected scenario label changes.
+   * @remarks Payload is the formatted label string.
+   */
   readonly scenarioLabelChange = output<string>();
 
+  /**
+   * Current search query text.
+   * @remarks
+   * Updates trigger a reload of the scenario list with the new filter.
+   */
   readonly query = signal('');
+
+  /**
+   * Current search scope.
+   * @remarks
+   * Defaults to 'published'. Updates trigger a reload of the scenario list.
+   */
   readonly scope = signal<ScenarioListScope>('published');
+
+  /**
+   * Paginated list of matching scenario entries.
+   * @remarks
+   * Populated by `load()` after a successful search request.
+   * Filtered by `allowedScenarioIds` when set.
+   */
   readonly items = signal<readonly ScenarioIndexEntry[]>([]);
+
+  /**
+   * Total number of matching scenarios (for pagination).
+   * @remarks
+   * Used to calculate the total number of pages. Reflects the filtered count.
+   */
   readonly totalItems = signal(0);
+
+  /**
+   * Current zero-based page index.
+   * @remarks
+   * Resets to 0 on query or scope changes.
+   */
   readonly pageIndex = signal(0);
+
+  /**
+   * Number of items per page.
+   * @remarks
+   * Defaults to 10. When `allowedScenarioIds` is set, uses 100.
+   */
   readonly pageSize = signal(10);
+
+  /**
+   * Whether a scenario search request is in progress.
+   * @remarks
+   * Set to true at the start of `load()` and reset in the finally block.
+   */
   readonly loading = signal(false);
 
   private readonly reloadOnActivePairChange = effect(() => {
@@ -91,6 +148,14 @@ export class ScenarioPickerComponent implements OnInit {
     void this.load();
   }
 
+  /**
+   * Loads scenarios from `ScenarioSearchService` based on current signals.
+   *
+   * @remarks
+   * Applies the current query, scope, active language pair criteria, and pagination
+   * parameters. Filters results by `allowedScenarioIds` when set. Updates `items`,
+   * `totalItems`, and `loading` signals. Auto-selects the first scenario if enabled.
+   */
   async load(): Promise<void> {
     this.loading.set(true);
 

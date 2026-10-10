@@ -66,6 +66,11 @@ export class PairsCardFormComponent {
     this.updateDraft({ ...draft, pairs });
   }
 
+  /**
+   * Adds a new memory pair.
+   * @remarks
+   * Respects the maximum of 12 pairs. Creates an empty `MemoryPairDraft`.
+   */
   addPair(): void {
     const draft = this.draft();
     if (draft.pairs.length >= 12) {
@@ -75,6 +80,13 @@ export class PairsCardFormComponent {
     this.updateDraft({ ...draft, pairs: [...draft.pairs, emptyMemoryPairDraft()] });
   }
 
+  /**
+   * Removes a pair at the given index.
+   *
+   * @param index - The zero-based index of the pair to remove.
+   * @remarks
+   * Respects the minimum of 1 pair.
+   */
   removePair(index: number): void {
     const draft = this.draft();
     if (draft.pairs.length <= 1) {

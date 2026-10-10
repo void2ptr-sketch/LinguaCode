@@ -30,7 +30,9 @@ export type ScenariosSeedFixture = {
  * Used to load course and lesson JSON files during the content seed initialization process.
  */
 export type CoursesSeedFixture = {
+  /** Array of course objects to seed. */
   courses: readonly Course[];
+  /** Array of lesson objects to seed. */
   lessons: readonly Lesson[];
 };
 
@@ -41,5 +43,6 @@ export type CoursesSeedFixture = {
  * Used to load card JSON files during the content seed initialization process.
  */
 export type CardsSeedFixture = {
+  /** Array of card objects to seed. */
   cards: readonly Card[];
 };

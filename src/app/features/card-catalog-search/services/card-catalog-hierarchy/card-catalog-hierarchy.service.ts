@@ -48,10 +48,22 @@ export type ScenarioOption = {
 export class CardCatalogHierarchyService {
   private readonly courseSearchService = inject(CourseSearchService);
 
-  /** Whether courses are being loaded. */
+  /**
+   * Whether courses are currently being loaded from the server.
+   *
+   * @remarks
+   * Set to `true` at the start of `loadCourses` and reset to `false` when
+   * the operation completes (success or error).
+   */
   readonly coursesLoading = signal(false);
 
-  /** Whether lessons are being loaded. */
+  /**
+   * Whether lessons are currently being loaded from the server.
+   *
+   * @remarks
+   * Set to `true` at the start of `loadLessons` and reset to `false` when
+   * the operation completes (success or error).
+   */
   readonly lessonsLoading = signal(false);
 
   private coursesCache = new Map<string, readonly CourseOption[]>();

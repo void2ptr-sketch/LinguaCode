@@ -47,30 +47,65 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './select-card.component.scss',
 })
 export class SelectCardComponent {
-  /** The select card to display. */
+  /**
+   * The select card to display.
+   * @remarks
+   * Contains a prompt with multiple-choice options for translation selection.
+   */
   readonly card = input.required<SelectCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Overrides the card's default direction for display resolution.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
-  /** Index of the currently selected option (null if none). */
+  /**
+   * Index of the currently selected option (null if none).
+   * @remarks
+   * Updated via `optionSelected` output when the user selects an option.
+   */
   readonly selectedIndex = input<number | null>(null);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further option selection and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and option sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user selects an option. Payload is the zero-based index. */
+  /**
+   * Emits when the user selects an option.
+   * @remarks Payload is the zero-based index of the selected option.
+   */
   readonly optionSelected = output<number>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
+  /**
+   * Computed resolved card data with direction applied.
+   * @remarks
+   * Uses `effectiveCardDirection` and `resolveOptionCard` to determine the effective prompt and options.
+   */
   readonly resolved = computed(() => {
     const card = this.card();
     const direction = effectiveCardDirection(card.direction, this.direction());
@@ -79,6 +114,10 @@ export class SelectCardComponent {
 
   /**
    * Returns the prompt lexeme for the resolved direction, falling back to the card's default.
+   *
+   * @remarks
+   * Prefers the resolved prompt lexeme from `resolved().promptLexeme`,
+   * falls back to `card.promptLexeme` if not available.
    */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;
@@ -94,7 +133,12 @@ export class SelectCardComponent {
     return this.resolved().optionLexemes?.[index];
   }
 
-  /** Returns the CSS class for an option based on selection and feedback state. */
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
@@ -104,6 +148,7 @@ export class SelectCardComponent {
    * Emits the selected option index.
    *
    * @param index - The zero-based index of the selected option.
+   * @remarks No-op if feedback is already displayed.
    */
   selectOption(index: number): void {
     if (this.feedback() !== null) {

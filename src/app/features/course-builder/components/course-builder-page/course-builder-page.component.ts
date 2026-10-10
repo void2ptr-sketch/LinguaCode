@@ -50,6 +50,12 @@ let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
  * - Предоставляет кнопки для CRUD-операций
  * - Обработчики экспорта в JSON и PDF
  * - Кнопка сброса overlay (очистка localStorage)
+ *
+ * @remarks
+ * Данные загружаются через `CourseBuilderStore`, который использует mock-интерсепторы
+ * для работы без бэкенда. При смене активного language pair — автоматически перезагружает список.
+ * @see CourseBuilderStore
+ * @see CourseBuilderDialogService
  */
 @Component({
   selector: 'app-course-builder-page',

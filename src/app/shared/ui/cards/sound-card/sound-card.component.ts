@@ -39,37 +39,77 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
 export class SoundCardComponent {
   private readonly userStore = inject(UserStore);
 
-  /** The sound card to display (audio matching exercise). */
+  /**
+   * The sound card to display (audio matching exercise).
+   * @remarks
+   * Contains an audio URL or TTS label with multiple-choice text options.
+   */
   readonly card = input.required<SoundCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Overrides the card's default direction for display resolution.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
-  /** Index of the currently selected option (null if none). */
+  /**
+   * Index of the currently selected option (null if none).
+   * @remarks
+   * Updated via `optionSelected` output when the user selects an option.
+   */
   readonly selectedIndex = input<number | null>(null);
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further option selection and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and option sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user selects an option. Payload is the zero-based index. */
+  /**
+   * Emits when the user selects an option.
+   * @remarks Payload is the zero-based index of the selected option.
+   */
   readonly optionSelected = output<number>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
+  /**
+   * Computed resolved card data with direction applied.
+   * @remarks
+   * Uses `effectiveCardDirection` and `resolveOptionCard` to determine the effective prompt and options.
+   */
   readonly resolved = computed(() => {
     const card = this.card();
     const direction = effectiveCardDirection(card.direction, this.direction());
     return resolveOptionCard(card, direction);
   });
 
-  /** Computed stimulus lexeme for audio playback. */
+  /**
+   * Computed stimulus lexeme for audio playback.
+   * @remarks
+   * Uses `card.promptLexeme` if it has primary text, otherwise constructs a lexeme
+   * from `card.audioLabelLearning`.
+   */
   readonly stimulusLexeme = computed((): PhoneticLexeme => {
     const card = this.card();
     const label = card.audioLabelLearning.trim();
@@ -81,6 +121,11 @@ export class SoundCardComponent {
     return { primary: label, script: 'latn' };
   });
 
+  /**
+   * Whether the card has an audio file URL.
+   * @remarks
+   * True when `card.audioUrl` is non-empty. Determines if an audio file or TTS is used.
+   */
   readonly hasAudioFile = computed(() => Boolean(this.card().audioUrl?.trim()));
 
   /**

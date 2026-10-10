@@ -45,29 +45,82 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   private readonly userStore = inject(UserStore);
   readonly store = inject(CardCatalogSearchStore);
 
-  /** Required search criteria (without pagination). */
+  /**
+   * Required search criteria for filtering cards (without pagination).
+   *
+   * @remarks
+   * Set by the parent scenario builder to define which cards are eligible.
+   * Changes to this input are not propagated to the store automatically;
+   * use the emitted `criteriaChange` output to keep the parent in sync.
+   */
   readonly criteria = input.required<Omit<CardSearchCriteria, 'page'>>();
-  /** Maximum number of cards to include (default: DEFAULT_CRITERIA_LIMIT). */
+  /**
+   * Maximum number of cards to include in the result set.
+   *
+   * @remarks
+   * Defaults to `DEFAULT_CRITERIA_LIMIT`. Changes trigger a preview refresh.
+   */
   readonly limit = input<number>(DEFAULT_CRITERIA_LIMIT);
-  /** Sort order for matching cards. */
+  /**
+   * Sort order for matching cards.
+   *
+   * @remarks
+   * Affects how cards are ranked when selecting them for a scenario.
+   */
   readonly sort = input<ScenarioCardSort>('updatedAt');
-  /** Seed value for random sorting. */
+  /**
+   * Seed value for random sorting.
+   *
+   * @remarks
+   * Used when `sort` is set to `'random'` to produce reproducible results.
+   */
   readonly seed = input<string>('');
 
-  /** Emits updated search criteria when filters change. */
+  /**
+   * Emits updated search criteria whenever internal filters change.
+   *
+   * @remarks
+   * The parent component should bind this output to keep its own criteria
+   * model in sync with the filter state.
+   */
   readonly criteriaChange = output<Omit<CardSearchCriteria, 'page'>>();
-  /** Emits the updated card limit. */
+  /**
+   * Emits the updated card limit value.
+   *
+   * @remarks
+   * Triggered when the user modifies the limit input field.
+   */
   readonly limitChange = output<number>();
-  /** Emits the updated sort order. */
+  /**
+   * Emits the updated sort order.
+   *
+   * @remarks
+   * Triggered when the user selects a different sort option.
+   */
   readonly sortChange = output<ScenarioCardSort>();
-  /** Emits the updated seed value. */
+  /**
+   * Emits the updated seed value.
+   *
+   * @remarks
+   * Triggered when the user modifies the seed input field.
+   */
   readonly seedChange = output<string>();
 
-  /** Available sort options. */
+  /** Available sort options for card selection. */
   readonly sortOptions = SORT_OPTIONS;
-  /** Computed total number of matching cards (null if not yet loaded). */
+  /**
+   * Total number of cards matching the current search criteria.
+   *
+   * @remarks
+   * `null` while the preview is loading or has not yet been fetched.
+   */
   readonly matchingTotal = signal<number | null>(null);
-  /** Preview card IDs matching the current criteria. */
+  /**
+   * Preview card IDs matching the current criteria.
+   *
+   * @remarks
+   * Populated asynchronously after each criteria change.
+   */
   readonly previewIds = signal<readonly string[]>([]);
   /** Whether the preview is currently loading. */
   readonly previewLoading = signal(false);

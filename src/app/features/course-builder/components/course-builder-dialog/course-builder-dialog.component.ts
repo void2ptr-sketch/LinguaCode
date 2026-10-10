@@ -19,8 +19,16 @@ import type {
 import type { CourseFormDraft } from '../../types';
 
 /**
- * Course builder dialog component. Provides a modal interface for creating and editing courses.
- * @remarks Supports PDF export with or without hints. Tracks dirty state to prompt on unsaved changes.
+ * Modal dialog component for creating and editing courses.
+ *
+ * Provides a full interface for course form management, including PDF export
+ * with or without answer hints. Tracks dirty state to detect unsaved changes.
+ *
+ * @remarks
+ * Receives mode and optional courseId via `MAT_DIALOG_DATA` injection.
+ * Uses `CourseBuilderStore` for state management and `CoursePdfExportService` for PDF generation.
+ * @see CourseBuilderDialogData
+ * @see CourseBuilderDialogResult
  */
 @Component({
   selector: 'app-course-builder-dialog',
@@ -36,16 +44,32 @@ export class CourseBuilderDialogComponent implements OnInit {
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
 
-  /** Current course form draft being edited or created. */
+  /**
+   * Current course form draft being edited or created.
+   *
+   * Updated by `CourseFormComponent` through the `draftChange` event.
+   */
   readonly draft = signal<CourseFormDraft>(emptyCourseFormDraft());
-  /** Internal snapshot of the initial draft for dirty tracking. */
+  /** Internal snapshot of the initial draft for dirty state tracking. */
   private readonly initialSnapshot = signal('');
 
-  /** Whether the draft has unsaved changes compared to the initial snapshot. */
+  /**
+   * Whether the draft has unsaved changes compared to the initial snapshot.
+   *
+   * @remarks
+   * Used to prompt users before closing the dialog with unsaved changes.
+   */
   readonly dirty = computed(
     () => serializeCourseFormDraft(this.draft()) !== this.initialSnapshot(),
   );
 
+  /**
+   * Dynamic dialog title based on the current mode.
+   *
+   * @remarks
+   * Returns "Новый курс" for create mode, "Просмотр курса" for read-only edit,
+   * and "Редактирование курса" for writable edit mode.
+   */
   readonly title = computed(() => {
     if (this.data.mode === 'create') {
       return 'Новый курс';
@@ -75,10 +99,25 @@ export class CourseBuilderDialogComponent implements OnInit {
     this.initialSnapshot.set(serializeCourseFormDraft(nextDraft));
   }
 
+  /**
+   * Updates the current draft with the provided form data.
+   *
+   * Called by `CourseFormComponent` when the user makes changes to the form.
+   *
+   * @param nextDraft — The updated course form draft.
+   */
   updateDraft(nextDraft: CourseFormDraft): void {
     this.draft.set(nextDraft);
   }
 
+  /**
+   * Saves the current course — creates a new one or updates an existing one.
+   *
+   * @remarks
+   * In create mode, calls `CourseBuilderStore.createCourse()`.
+   * In edit mode, calls `CourseBuilderStore.updateCourse()`.
+   * Closes the dialog with `{ saved: true }` on success.
+   */
   async saveCourse(): Promise<void> {
     const saved =
       this.data.mode === 'create'
@@ -90,6 +129,14 @@ export class CourseBuilderDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Exports the current course to a PDF file.
+   *
+   * @param withHints — If `true`, includes correct answers marked with ✓.
+   * @remarks
+   * Downloads the generated PDF as a file. Shows a snackbar notification
+   * on success or error. Requires a course to be loaded in the store.
+   */
   async exportPdf(withHints: boolean): Promise<void> {
     const course = this.store.editingCourse();
     if (!course) {
@@ -107,6 +154,12 @@ export class CourseBuilderDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Closes the dialog without saving.
+   *
+   * @remarks
+   * Returns `undefined` to indicate no changes were saved.
+   */
   close(): void {
     this.dialogRef.close(undefined);
   }

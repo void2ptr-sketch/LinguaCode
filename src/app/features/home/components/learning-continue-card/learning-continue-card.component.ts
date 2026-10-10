@@ -19,10 +19,26 @@ import type { ContinueLinkQueryParams } from '../../types/learning-dashboard.typ
   styleUrl: './learning-continue-card.component.scss',
 })
 export class LearningContinueCardComponent {
-  /** Display label for the continue card (e.g., course or lesson title). */
+  /**
+   * Display label for the continue card (e.g., course or lesson title).
+   *
+   * @remarks
+   * Required input. Rendered prominently in the card header.
+   */
   readonly label = input.required<string>();
-  /** Resume target data for determining the continue link destination. */
+  /**
+   * Resume target data for determining the continue link destination.
+   *
+   * @remarks
+   * Used to compute navigation targets and button labels. Defaults to `null`.
+   */
   readonly resumeTarget = input<LearningResumeTarget | null>(null);
-  /** Pre-computed query parameters for the continue link. */
+  /**
+   * Pre-computed query parameters for the continue link.
+   *
+   * @remarks
+   * When provided, these params are used directly in the `routerLink` directive
+   * instead of being computed from `resumeTarget`. Defaults to `null`.
+   */
   readonly continueQueryParams = input<ContinueLinkQueryParams | null>(null);
 }

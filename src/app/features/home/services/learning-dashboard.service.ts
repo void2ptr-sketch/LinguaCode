@@ -30,22 +30,56 @@ export class LearningDashboardService {
   private readonly userStore = inject(UserStore);
   private readonly resultsStore = inject(LearningResultsStore);
 
-  /** Loading state for course data. */
+  /**
+   * Loading state for course data.
+   *
+   * @remarks
+   * Set to `true` at the start of `reload()` and reset to `false` in the `finally` block.
+   */
   readonly loading = signal(false);
 
-  /** Error message, if any. */
+  /**
+   * Error message, if any.
+   *
+   * @remarks
+   * Populated when `reload()` encounters a failure. Reset to `null` at the start of each reload.
+   */
   readonly error = signal<string | null>(null);
 
-  /** The currently loaded course with its lessons. */
+  /**
+   * The currently loaded course with its lessons.
+   *
+   * @remarks
+   * Set by `reload()` after fetching course data. `null` when no course is active.
+   */
   readonly course = signal<CourseWithLessons | null>(null);
 
-  /** The determined resume target indicating where to continue learning. */
+  /**
+   * The determined resume target indicating where to continue learning.
+   *
+   * @remarks
+   * Computed by `resolveLearningResumeTarget` during `reload()`. Contains the kind
+   * of target (e.g., 'start', 'continue', 'course-complete', 'no-program') and
+   * associated metadata (course/lesson/scenario IDs and titles).
+   */
   readonly resumeTarget = signal<LearningResumeTarget | null>(null);
 
-  /** The lesson roadmap for the current course. */
+  /**
+   * The lesson roadmap for the current course.
+   *
+   * @remarks
+   * Built from `course.lessons` via `buildLessonRoadmap`. Each item includes
+   * the lesson title, ID, and completion state for each scenario.
+   */
   readonly roadmap = signal<readonly LessonRoadmapItem[]>([]);
 
-  /** Learning session preferences for the active language pair. */
+  /**
+   * Learning session preferences for the active language pair.
+   *
+   * @remarks
+   * Computed from `UserStore.activeLanguagePairEntry` via `resolveLearningSessionForPair`.
+   * Includes saved state such as the active course ID, last lesson, and last scenario.
+   */
   readonly learningSession = computed(() =>
     resolveLearningSessionForPair(this.userStore.activeLanguagePairEntry()),
   );
@@ -157,6 +191,10 @@ export class LearningDashboardService {
    * Sets the active course ID and persists it.
    *
    * @param courseId - The ID of the course to set as active.
+   *
+   * @remarks
+   * Clears the saved last lesson and last scenario IDs, effectively resetting the resume
+   * target so that the next `reload()` will resolve a fresh "Start" target.
    */
   setActiveCourseId(courseId: string): void {
     this.userStore.updateActiveLanguagePairSettings({

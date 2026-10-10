@@ -34,10 +34,10 @@ export type CardIndexEntry = {
   /** Normalized IPA transcriptions for catalog search. */
   ipaReadings: readonly string[];
   updatedAt: string;
-  /** ID курса (Course), к которому привязана карточка. */
+  /** ID of the Course this card belongs to. */
   courseId?: string;
-  /** ID урока (Lesson), к которому привязана карточка. */
+  /** ID of the Lesson this card belongs to. */
   lessonId?: string;
-  /** ID сценария (Scenario), к которому привязана карточка. */
+  /** ID of the Scenario this card belongs to. */
   scenarioId?: string;
 };

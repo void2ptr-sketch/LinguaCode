@@ -19,10 +19,22 @@ export class LearningResultsStore {
   private readonly userStore = inject(UserStore);
   private readonly resultsState = signal<readonly LearningResult[]>(this.persistence.load());
 
-  /** Readonly signal of all learning results. */
+  /**
+   * Readonly signal of all learning results.
+   *
+   * @remarks
+   * Contains every recorded learning result across all users and language pairs.
+   * Persisted to localStorage via `LearningResultsPersistence`.
+   */
   readonly results = this.resultsState.asReadonly();
 
-  /** Results filtered to the current user. */
+  /**
+   * Results filtered to the current user.
+   *
+   * @remarks
+   * Derived from `results` by matching `userId` against the active user from `UserStore`.
+   * Re-evaluates whenever `results` or `userStore.user` changes.
+   */
   readonly userResults = computed(() => {
     const userId = this.userStore.user().id;
     return this.results().filter((item) => item.userId === userId);
@@ -33,6 +45,7 @@ export class LearningResultsStore {
    *
    * @remarks
    * This is the primary signal used for progress calculations.
+   * Re-evaluates whenever `userResults` or `userStore.languagePair` changes.
    */
   readonly pairResults = computed(() => {
     const pair = this.userStore.languagePair();

@@ -10,6 +10,12 @@ import {
   toggleRomanizations,
 } from './course-display-settings-matrix.util';
 
+/**
+ * A romanization system option for the display settings matrix.
+ *
+ * @property value - The romanization system identifier (e.g. 'pinyin', 'zhuyin', 'palladius').
+ * @property label - Human-readable label displayed in the UI.
+ */
 export type RomanizationOption = {
   value: RomanizationSystem;
   label: string;
@@ -18,7 +24,10 @@ export type RomanizationOption = {
 /**
  * Course display settings matrix component. Provides a checkbox matrix for configuring
  * romanization display and answer modes for CJK and phonetic content.
- * @remarks Supports prompt and answer romanization toggles, IPA display, and custom IPA labels.
+ *
+ * @remarks
+ * Supports prompt and answer romanization toggles, IPA display, custom IPA labels,
+ * and answer mode selection (orthography/IPA). Toggles update via change output signals.
  */
 @Component({
   selector: 'app-course-display-settings-matrix',
@@ -27,38 +36,99 @@ export type RomanizationOption = {
   styleUrl: './course-display-settings-matrix.component.scss',
 })
 export class CourseDisplaySettingsMatrixComponent {
-  /** Whether to show CJK-specific settings (Palladius, tone colors). */
+  /**
+   * Whether to show CJK-specific settings (Palladius, tone colors).
+   * @remarks When false, CJK-related checkboxes are hidden from the matrix.
+   */
   readonly showCjk = input(false);
-  /** Whether to show phonetic settings (IPA, answer modes). */
+
+  /**
+   * Whether to show phonetic settings (IPA, answer modes).
+   * @remarks When false, IPA and answer mode checkboxes are hidden.
+   */
   readonly showPhonetic = input(false);
-  /** Available romanization system options. */
+
+  /**
+   * Available romanization system options.
+   * @remarks Each option provides a value (system ID) and a display label.
+   */
   readonly romanizationOptions = input<readonly RomanizationOption[]>([]);
-  /** Optional course label for aria labels. */
+
+  /**
+   * Optional course label for aria labels.
+   * @remarks Appended to ARIA labels for accessibility context.
+   */
   readonly courseLabel = input('');
 
-  /** Currently enabled display romanization systems. */
+  /**
+   * Currently enabled display romanization systems.
+   * @remarks Used for prompt/display romanization toggles.
+   */
   readonly displayRomanizations = input<readonly RomanizationSystem[]>([]);
-  /** Currently enabled answer romanization systems. */
+
+  /**
+   * Currently enabled answer romanization systems.
+   * @remarks Used for answer romanization toggles.
+   */
   readonly answerRomanizations = input<readonly RomanizationSystem[]>([]);
-  /** Whether IPA is enabled for display. */
+
+  /**
+   * Whether IPA is enabled for display.
+   * @remarks Controls the IPA checkbox in the phonetic settings section.
+   */
   readonly showIpa = input(false);
-  /** Custom IPA variant label. */
+
+  /**
+   * Custom IPA variant label.
+   * @remarks
+   * When set, filters IPA transcriptions to show only those matching this label.
+   */
   readonly ipaVariantLabel = input('');
-  /** Currently enabled answer display modes. */
+
+  /**
+   * Currently enabled answer display modes.
+   * @remarks Each mode controls whether a specific answer format is shown (e.g. orthography, IPA).
+   */
   readonly answerModes = input<readonly AnswerDisplayMode[]>([]);
 
-  /** Emits updated display romanization systems. */
+  /**
+   * Emits updated display romanization systems.
+   * @remarks
+   * Emits the new list of enabled romanization systems for prompts/display.
+   */
   readonly displayRomanizationsChange = output<readonly RomanizationSystem[]>();
-  /** Emits updated answer romanization systems. */
+
+  /**
+   * Emits updated answer romanization systems.
+   * @remarks
+   * Emits the new list of enabled romanization systems for answers.
+   */
   readonly answerRomanizationsChange = output<readonly RomanizationSystem[]>();
-  /** Emits the updated IPA display preference. */
+
+  /**
+   * Emits the updated IPA display preference.
+   * @remarks Payload is `true` when IPA is enabled, `false` when disabled.
+   */
   readonly showIpaChange = output<boolean>();
-  /** Emits the updated custom IPA variant label. */
+
+  /**
+   * Emits the updated custom IPA variant label.
+   * @remarks Payload is the new label string.
+   */
   readonly ipaVariantLabelChange = output<string>();
-  /** Emits updated answer display modes. */
+
+  /**
+   * Emits updated answer display modes.
+   * @remarks
+   * Emits the new list of enabled answer display modes.
+   */
   readonly answerModesChange = output<readonly AnswerDisplayMode[]>();
 
-  /** Whether the IPA variant text field should be visible. */
+  /**
+   * Whether the IPA variant text field should be visible.
+   * @remarks
+   * True when IPA display is enabled or when the 'ipa' answer mode is selected.
+   */
   readonly showIpaVariantField = computed(
     () => this.showIpa() || this.answerModes().includes('ipa'),
   );

@@ -46,7 +46,10 @@ export class CardSelectService {
    * @param query - Search query string.
    * @param pageIndex - Zero-based page index.
    * @param pageSize - Number of items per page.
-   * @returns Promise resolving to the paginated search results.
+   * @returns Promise resolving to the paginated search results containing matching scenarios.
+   * @remarks
+   * Automatically scopes results to the active language pair from `UserStore`.
+   * Empty query strings are treated as undefined (no filter).
    */
   searchScenarios(query: string, pageIndex: number, pageSize: number) {
     const pair = this.userStore.languagePair();

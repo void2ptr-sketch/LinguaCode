@@ -55,40 +55,99 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
   styleUrl: './keyboard-card.component.scss',
 })
 export class KeyboardCardComponent {
-  /** The keyboard card to display (typed answer exercise). */
+  /**
+   * The keyboard card to display (typed answer exercise).
+   * @remarks
+   * Contains a prompt and expected answer for the user to type.
+   */
   readonly card = input.required<KeyboardCard>();
 
-  /** Card direction: 'known-to-learning' or 'learning-to-known'. */
+  /**
+   * Card direction: 'known-to-learning' or 'learning-to-known'.
+   * @remarks
+   * Overrides the card's default direction for display resolution.
+   */
   readonly direction = input<CardDirection>('known-to-learning');
 
-  /** The text entered by the user in the answer field. */
+  /**
+   * The text entered by the user in the answer field.
+   * @remarks
+   * Updated via `answerTextChange` output as the user types.
+   */
   readonly answerText = input('');
 
-  /** Feedback state: 'correct', 'incorrect', or null. */
+  /**
+   * Feedback state: 'correct', 'incorrect', or null.
+   * @remarks
+   * When set, disables further input and shows visual feedback.
+   */
   readonly feedback = input<CardFeedback>(null);
 
-  /** Font size for card content: 'sm', 'md', or 'lg'. */
+  /**
+   * Font size for card content: 'sm', 'md', or 'lg'.
+   * @remarks Defaults to 'md'. Affects text and input sizing.
+   */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
-  /** Emits when the user types in the answer field. Payload is the entered text. */
+  /**
+   * Emits when the user types in the answer field.
+   * @remarks Payload is the current text value.
+   */
   readonly answerTextChange = output<string>();
 
-  /** Emits when the user requests answer checking. */
+  /**
+   * Emits when the user requests answer checking.
+   * @remarks
+   * Triggered when the user clicks the check answer button.
+   */
   readonly checkAnswer = output<void>();
 
-  /** Emits when the user advances to the next card. */
+  /**
+   * Emits when the user advances to the next card.
+   * @remarks
+   * Triggered when the user clicks the next card button.
+   */
   readonly nextCard = output<void>();
 
+  /**
+   * Computed answer mode for the card.
+   * @remarks
+   * Resolved from the card using `resolveKeyboardAnswerMode`.
+   * Determines whether the input accepts free text, IPA, or Pinyin.
+   */
   readonly answerMode = computed(() => resolveKeyboardAnswerMode(this.card()));
+
+  /**
+   * Whether the answer mode uses IPA transcription input.
+   * @remarks
+   * True when `answerMode()` is 'ipa'.
+   */
   readonly usesIpaInput = computed(() => this.answerMode() === 'ipa');
+
+  /**
+   * Whether the answer mode uses the Pinyin keyboard.
+   * @remarks
+   * True when `answerMode()` is 'pinyin'.
+   */
   readonly usesPinyinKeyboard = computed(() => this.answerMode() === 'pinyin');
 
+  /**
+   * Computed resolved prompt text for the effective direction.
+   * @remarks
+   * Uses `effectiveCardDirection` and `resolveKeyboardPrompt` to determine the display text.
+   */
   readonly resolvedPrompt = computed(() => {
     const card = this.card();
     const direction = effectiveCardDirection(card.direction, this.direction());
     return resolveKeyboardPrompt(card, direction);
   });
 
+  /**
+   * Computed prompt lexeme for the effective direction.
+   * @remarks
+   * In 'learning-to-known' direction, returns the card's `promptLexeme` as-is.
+   * In 'known-to-learning' direction, overrides the primary text with the resolved prompt.
+   */
   readonly promptLexeme = computed(() => {
     const card = this.card();
     const direction = effectiveCardDirection(card.direction, this.direction());

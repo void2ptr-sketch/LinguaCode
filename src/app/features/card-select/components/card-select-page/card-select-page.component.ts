@@ -651,7 +651,13 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
-  /** Updates the course title display from the picker label. */
+  /**
+   * Updates the course title display from the picker label.
+   *
+   * @param label - The raw label string from the picker (may contain " · " separators).
+   * @remarks
+   * Strips the second part after " · " to show only the course title.
+   */
   onCourseLabelChange(label: string): void {
     this.courseTitle.set(label.split(' · ')[0] ?? label);
   }
@@ -746,7 +752,13 @@ export class CardSelectPageComponent implements OnInit {
     });
   }
 
-  /** Updates the scenario source label display from the picker label. */
+  /**
+   * Updates the scenario source label display from the picker label.
+   *
+   * @param label - The raw label string from the picker (may contain " · " separators).
+   * @remarks
+   * Extracts the second part after " · " to show the source description (e.g., "10 cards").
+   */
   onScenarioLabelChange(label: string): void {
     this.scenarioSourceLabel.set(label.split(' · ').slice(1).join(' · ') || label);
   }
@@ -836,7 +848,13 @@ export class CardSelectPageComponent implements OnInit {
     this.store.setDrawAnswer(payload);
   }
 
-  /** Delegates time expired event to the store. */
+  /**
+   * Delegates the time-expired event to the store.
+   *
+   * @remarks
+   * Marks the current card as incorrect when time runs out.
+   * Only applies to timed cards; no-op for other card types.
+   */
   handleTimeExpired(): void {
     this.store.handleTimeExpired();
   }
@@ -903,7 +921,13 @@ export class CardSelectPageComponent implements OnInit {
     await this.onScenarioChange(ids[index + 1]);
   }
 
-  /** Delegates next card action to the store. */
+  /**
+   * Delegates the next-card action to the store.
+   *
+   * @remarks
+   * Advances to the next card in the session. No-op if feedback has not been provided yet.
+   * Marks the session as completed when the last card is reached.
+   */
   nextCard(): void {
     this.store.nextCard();
   }

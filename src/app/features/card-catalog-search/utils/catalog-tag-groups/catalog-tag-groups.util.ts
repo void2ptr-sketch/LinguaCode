@@ -73,11 +73,31 @@ const ORDERED_CATALOG_TAG_IDS = new Set<string>([
  *
  * @remarks
  * Used to organize tag facets into themed sections (Themes, Subtopics, Other Tags).
+ *
+ * @example
+ * ```ts
+ * // Result from groupCatalogTagFacets:
+ * // [
+ * //   { label: 'Темы', facets: [...] },
+ * //   { label: 'Подтемы', facets: [...] },
+ * //   { label: 'Теги', facets: [...] }
+ * // ]
+ * ```
  */
 export type CatalogTagFacetGroup = {
-  /** Display label for the group (e.g. "Темы", "Подтемы", "Теги"). */
+  /**
+   * Display label for the group.
+   *
+   * @remarks
+   * Common values are "Темы" (Themes), "Подтемы" (Subtopics), and "Теги" (Tags).
+   */
   label: string;
-  /** Facet counts belonging to this group. */
+  /**
+   * Facet counts belonging to this group.
+   *
+   * @remarks
+   * Each facet contains a tag value and its count in the current search results.
+   */
   facets: readonly FacetCount<string>[];
 };
 

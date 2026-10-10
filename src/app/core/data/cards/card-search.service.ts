@@ -42,6 +42,12 @@ export class CardSearchService {
    *
    * @remarks
    * Idempotent — skips loading if the cache already contains entries.
+   *
+   * @example
+   * ```ts
+   * await cardSearchService.ensureIndexLoaded();
+   * const entries = cardSearchService.indexEntries();
+   * ```
    */
   async ensureIndexLoaded(): Promise<void> {
     if (this.indexCache().length > 0) {

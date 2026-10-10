@@ -80,6 +80,11 @@ export class CourseSearchService {
    *
    * @param scenarioId - The scenario ID.
    * @returns Array of course index entries that use this scenario.
+   *
+   * @example
+   * ```ts
+   * const courses = await courseSearchService.findUsingScenario('scenario-456');
+   * ```
    */
   findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     return this.run(() => this.coursesApi.findUsingScenario(scenarioId));

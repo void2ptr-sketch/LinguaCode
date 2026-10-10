@@ -15,6 +15,11 @@ import { UserStore } from '../../state';
   styleUrl: './menu-user.component.scss',
 })
 export class MenuUserComponent {
-  /** Signal containing the current user's display name. */
+  /**
+   * Signal containing the current user's display name.
+   *
+   * @remarks
+   * Read directly from `UserStore`; updates reactively when the user profile changes.
+   */
   readonly displayName = inject(UserStore).displayName;
 }

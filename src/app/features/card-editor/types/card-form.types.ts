@@ -10,8 +10,12 @@ import type { CardEditorUxMode } from '../utils/card-editor-ux.utils';
  * that the form uses to render card-specific fields.
  */
 export type CardFormContext = {
+  /** The editor UX mode ('basic' or 'advanced'). */
   editorUxMode: CardEditorUxMode;
+  /** Known (source) language. */
   knownLanguage: ContentLanguage;
+  /** Learning (target) language. */
   learningLanguage: ContentLanguage;
+  /** Default appearance settings for the preview. */
   defaultAppearance: CardAppearance;
 };

@@ -12,6 +12,13 @@ import { CourseSearchService } from '../../../core/data';
 import type { Lesson } from '../../../core/models';
 import { LearningResultsStore } from '../../../core/state';
 
+/**
+ * Payload emitted when a lesson is picked.
+ *
+ * @property lessonId - The unique identifier of the selected lesson.
+ * @property title - The display title of the selected lesson.
+ * @property scenarioIds - Array of scenario IDs contained in the selected lesson.
+ */
 export type LessonPickPayload = {
   lessonId: string;
   title: string;
@@ -44,31 +51,82 @@ export class LessonPickerComponent {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly resultsStore = inject(LearningResultsStore);
 
-  /** ID of the course whose lessons to display. */
+  /**
+   * ID of the course whose lessons to display.
+   * @remarks
+   * Required input that triggers lesson loading when changed.
+   */
   readonly selectedCourseId = input.required<string>();
 
-  /** ID of the currently selected lesson. */
+  /**
+   * ID of the currently selected lesson.
+   * @remarks
+   * Required input. Updated via `selectedLessonIdChange` output when the user picks a lesson.
+   */
   readonly selectedLessonId = input.required<string>();
 
-  /** Automatically pick the first lesson when the list loads. */
+  /**
+   * Automatically pick the first unlocked lesson when the list loads.
+   * @remarks
+   * When true and the current selection is locked or empty, selects the first available lesson.
+   */
   readonly autoPickFirstLesson = input(false);
 
-  /** Hide the lesson title in the display. */
+  /**
+   * Hide the lesson title in the display.
+   * @remarks
+   * When true, the lesson title is omitted from the rendered list items.
+   */
   readonly hideTitle = input(false);
 
-  /** Enforce lesson prerequisites (locked lessons shown as unavailable). */
+  /**
+   * Enforce lesson prerequisites (locked lessons shown as unavailable).
+   * @remarks
+   * When true (default), lessons with unmet prerequisites are shown as locked.
+   * When false, all lessons are displayed as available.
+   */
   readonly enforcePrerequisites = input(true);
 
-  /** Emits when the selected lesson ID changes. */
+  /**
+   * Emits when the selected lesson ID changes.
+   * @remarks Payload is the new lesson ID string.
+   */
   readonly selectedLessonIdChange = output<string>();
 
-  /** Emits when the user picks a lesson. Payload includes lessonId, title, and scenarioIds. */
+  /**
+   * Emits when the user picks a lesson.
+   * @remarks
+   * Payload includes the lesson ID, title, and the array of scenario IDs for that lesson.
+   */
   readonly lessonPickChange = output<LessonPickPayload>();
 
+  /**
+   * List of lessons for the selected course.
+   * @remarks
+   * Populated by `loadLessons()` after a successful course fetch.
+   */
   readonly lessons = signal<readonly Lesson[]>([]);
+
+  /**
+   * Whether lesson data is currently being loaded.
+   * @remarks
+   * Set to true at the start of `loadLessons()` and reset in the finally block.
+   */
   readonly loading = signal(false);
+
+  /**
+   * Error message from a failed lesson load, or null.
+   * @remarks
+   * Set to an error string when the course fetch fails.
+   */
   readonly error = signal<string | null>(null);
 
+  /**
+   * Computed list of lessons with unlock status and completion data.
+   * @remarks
+   * Each item includes the lesson, unlocked status, completion state,
+   * completed scenario count, and optional block reason.
+   */
   readonly lessonItems = computed<readonly LessonListItem[]>(() => {
     const lessons = this.lessons();
     const lessonsById = buildLessonsById(lessons);
@@ -119,6 +177,14 @@ export class LessonPickerComponent {
     }
   });
 
+  /**
+   * Loads lessons for the specified course from `CourseSearchService`.
+   *
+   * @param courseId - The ID of the course to load lessons for.
+   * @remarks
+   * Clears existing lessons and errors, sets loading to true, fetches the course,
+   * sorts lessons by order, and updates the lessons signal. Sets error on failure.
+   */
   async loadLessons(courseId: string): Promise<void> {
     this.lessons.set([]);
     this.error.set(null);

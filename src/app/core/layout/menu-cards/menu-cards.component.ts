@@ -24,7 +24,13 @@ function isLearningRoute(url: string): boolean {
 export class MenuCardsComponent {
   private readonly router = inject(Router);
 
-  /** Signal indicating whether the current route belongs to the learning section. */
+  /**
+   * Reactive signal indicating whether the current route belongs to the learning section.
+   *
+   * @remarks
+   * Derived from router events; tracks active state for the cards/learning navigation menu.
+   * Matches routes starting with `/home`, `/cards/select`, or `/courses`.
+   */
   readonly isLearningSection = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),

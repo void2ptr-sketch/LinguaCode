@@ -26,22 +26,46 @@ export class CardEditorStore {
   private readonly userStore = inject(UserStore);
   private readonly catalogMockHandler = inject(CardsCatalogMockHandler);
 
-  /** The card currently being edited (or null when creating a new card). */
+  /**
+   * The card currently being edited (or null when creating a new card).
+   * @remarks
+   * Set by `startEdit()` after loading from the API; cleared by `cancelEdit()`.
+   */
   readonly editingCard = signal<Card | null>(null);
 
-  /** Whether the editor is loading a card for editing. */
+  /**
+   * Whether the editor is loading a card for editing.
+   * @remarks
+   * Used to show a loading spinner while `startEdit()` fetches the card.
+   */
   readonly editorLoading = signal(false);
 
-  /** Error message, if any. */
+  /**
+   * Error message, if any.
+   * @remarks
+   * Set on failures (card not found, validation errors, deletion blocked).
+   */
   readonly error = signal<string | null>(null);
 
-  /** Current editor mode ('list', 'create', or 'edit'). */
+  /**
+   * Current editor mode ('list', 'create', or 'edit').
+   * @remarks
+   * Controls which UI is shown: catalog list, creation form, or editing form.
+   */
   readonly editorMode = signal<CardEditorMode>('list');
 
-  /** ID of the card currently being edited (null when creating). */
+  /**
+   * ID of the card currently being edited (null when creating).
+   * @remarks
+   * Used to track which card is being edited for cancellation and UI state.
+   */
   readonly editingCardId = signal<string | null>(null);
 
-  /** The kind of card being created. */
+  /**
+   * The kind of card being created.
+   * @remarks
+   * Set by `startCreate()`; used to initialize the draft.
+   */
   readonly creatingKind = signal<CardKind>('select');
 
   /**

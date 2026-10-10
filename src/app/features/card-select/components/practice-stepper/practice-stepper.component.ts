@@ -33,6 +33,15 @@ export class PracticeStepperComponent {
   /** Emits when the user selects a step. Payload is the zero-based step index. */
   readonly stepSelect = output<number>();
 
+  /**
+   * Handles step selection.
+   *
+   * @param index - The zero-based index of the selected step.
+   * @param locked - Whether the step is locked.
+   * @returns `true` if the step was selected and emitted; `false` if locked.
+   * @remarks
+   * No-op if the step is locked. Emits the step index via `stepSelect`.
+   */
   selectStep(index: number, locked: boolean): void {
     if (locked) {
       return;

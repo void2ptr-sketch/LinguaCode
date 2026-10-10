@@ -21,6 +21,14 @@ export class CardsApiService {
    *
    * @param criteria - Search criteria including filters, pagination, and language scope.
    * @returns Promise resolving to the paginated search results with facets.
+   *
+   * @example
+   * ```ts
+   * const results = await cardsApi.search({
+   *   filters: { tags: ['hsk1'] },
+   *   page: { page: 0, pageSize: 20 },
+   * });
+   * ```
    */
   search(criteria: CardSearchCriteria): Promise<CardSearchPage> {
     return firstValueFrom(
@@ -35,6 +43,11 @@ export class CardsApiService {
    *
    * @param cardId - The card's unique identifier.
    * @returns Promise resolving to the card.
+   *
+   * @example
+   * ```ts
+   * const card = await cardsApi.getById('card-123');
+   * ```
    */
   getById(cardId: string): Promise<Card> {
     return firstValueFrom(this.http.get<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`))).then(
@@ -47,6 +60,11 @@ export class CardsApiService {
    *
    * @param cardIds - Array of card IDs.
    * @returns Promise resolving to the array of cards (empty if `cardIds` is empty).
+   *
+   * @example
+   * ```ts
+   * const cards = await cardsApi.getByIds(['card-1', 'card-2']);
+   * ```
    */
   getByIds(cardIds: readonly string[]): Promise<readonly Card[]> {
     if (cardIds.length === 0) {

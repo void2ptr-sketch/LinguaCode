@@ -20,7 +20,13 @@ import { filter, map, startWith } from 'rxjs';
 export class MenuHelpComponent {
   private readonly router = inject(Router);
 
-  /** Signal indicating whether the current route belongs to the help section. */
+  /**
+   * Reactive signal indicating whether the current route belongs to the help section.
+   *
+   * @remarks
+   * Derived from router events; tracks active state for the help navigation menu.
+   * Matches routes starting with `/help`.
+   */
   readonly isHelpSection = toSignal(
     this.router.events.pipe(
       filter((event) => event instanceof NavigationEnd),

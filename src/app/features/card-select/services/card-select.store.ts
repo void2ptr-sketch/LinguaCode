@@ -223,9 +223,13 @@ export class CardSelectStore {
   }
 
   /**
-   * Checks the current answer and sets feedback.
+   * Checks the current answer against the card's expected solution and sets feedback.
    *
-   * @returns `true` if correct, `false` if incorrect, `null` if answer cannot be evaluated.
+   * @returns `true` if correct, `false` if incorrect, `null` if the answer cannot be evaluated.
+   * @remarks
+   * Evaluates the answer using `checkCardAnswer` utility with the current answer state
+   * and session direction. Sets `feedback` signal to `'correct'` or `'incorrect'` on success.
+   * Returns `null` when no current card exists or evaluation fails.
    */
   checkAnswer(): boolean | null {
     const card = this.currentCard();
@@ -249,6 +253,11 @@ export class CardSelectStore {
 
   /**
    * Advances to the next card or marks the session as completed.
+   *
+   * @remarks
+   * No-op if feedback has not been provided yet.
+   * If the current card is the last one, sets `completed` to `true`.
+   * Otherwise, increments `currentIndex` and resets the interaction state.
    */
   nextCard(): void {
     if (this.feedback() === null) {
@@ -280,6 +289,11 @@ export class CardSelectStore {
 
   /**
    * Resets the store to its initial state.
+   *
+   * @remarks
+   * Clears all cards, resets index to 0, clears interaction state (answer, feedback, selection),
+   * and sets `completed` to `false`. The scenario ID reverts to `'demo-scenario'`
+   * and session direction resets to `'known-to-learning'`.
    */
   reset(): void {
     this.cards.set([]);

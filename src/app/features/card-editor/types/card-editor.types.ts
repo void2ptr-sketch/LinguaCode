@@ -15,6 +15,7 @@ export type CardEditorMode = 'list' | 'create' | 'edit';
  *
  * @remarks
  * Used when creating a card to set the initial index metadata values.
+ * Contains the language pair (known and learning languages).
  */
 export type CardIndexMetaDraft = {
   knownLanguage: ContentLanguage;
@@ -26,6 +27,7 @@ export type CardIndexMetaDraft = {
  *
  * @remarks
  * Used to update specific index fields without replacing the entire metadata object.
+ * Can include difficulty, tags, updatedAt timestamp, and language pair overrides.
  */
 export type CardIndexMetaOverride = Partial<{
   knownLanguage: ContentLanguage;

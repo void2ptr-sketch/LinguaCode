@@ -43,31 +43,98 @@ export class CoursePickerComponent implements OnInit {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly userStore = inject(UserStore);
 
-  /** ID of the currently selected course. */
+  /**
+   * ID of the currently selected course.
+   * @remarks This is a required input that drives the course search query.
+   */
   readonly selectedCourseId = input.required<string>();
 
-  /** Display label for the currently selected course. */
+  /**
+   * Display label for the currently selected course.
+   * @remarks Updated via `courseLabelChange` output when the user picks a course.
+   */
   readonly selectedCourseLabel = input<string>('');
 
-  /** Default scope for course search (e.g. 'published', 'all'). */
+  /**
+   * Default scope for course search (e.g. 'published', 'all').
+   * @remarks
+   * Applied on initialization via `ngOnInit`. Can be changed dynamically.
+   */
   readonly defaultScope = input<CourseListScope>('published');
 
-  /** Render in compact mode (smaller padding, no search bar). */
+  /**
+   * Render in compact mode (smaller padding, no search bar).
+   * @remarks
+   * When true, hides the search input and collapses the full list on selection.
+   */
   readonly compact = input(false);
 
-  /** Emits when the selected course ID changes. */
+  /**
+   * Emits when the selected course ID changes.
+   * @remarks Payload is the new course ID string.
+   */
   readonly selectedCourseIdChange = output<string>();
 
-  /** Emits when the selected course label changes. */
+  /**
+   * Emits when the selected course label changes.
+   * @remarks Payload is the formatted label string.
+   */
   readonly courseLabelChange = output<string>();
 
+  /**
+   * Current search query text.
+   * @remarks
+   * Updates trigger a reload of the course list with the new filter.
+   */
   readonly query = signal('');
+
+  /**
+   * Current search scope.
+   * @remarks
+   * Defaults to 'published'. Updates trigger a reload of the course list.
+   */
   readonly scope = signal<CourseListScope>('published');
+
+  /**
+   * Paginated list of matching course entries.
+   * @remarks
+   * Populated by `load()` after a successful search request.
+   */
   readonly items = signal<readonly CourseIndexEntry[]>([]);
+
+  /**
+   * Total number of matching courses (for pagination).
+   * @remarks
+   * Used to calculate the total number of pages.
+   */
   readonly totalItems = signal(0);
+
+  /**
+   * Current zero-based page index.
+   * @remarks
+   * Resets to 0 on query or scope changes.
+   */
   readonly pageIndex = signal(0);
+
+  /**
+   * Number of items per page.
+   * @remarks
+   * Defaults to 10. Can be adjusted via pagination controls.
+   */
   readonly pageSize = signal(10);
+
+  /**
+   * Whether a course search request is in progress.
+   * @remarks
+   * Set to true at the start of `load()` and reset in the finally block.
+   */
   readonly loading = signal(false);
+
+  /**
+   * Whether the full (unpaginated) course list is displayed.
+   * @remarks
+   * When true, overrides pagination and shows all matching results.
+   */
   readonly showFullList = signal(false);
 
   private readonly reloadOnActivePairChange = effect(() => {
@@ -88,6 +155,13 @@ export class CoursePickerComponent implements OnInit {
     void this.load();
   }
 
+  /**
+   * Loads courses from `CourseSearchService` based on current signals.
+   *
+   * @remarks
+   * Applies the current query, scope, active language pair criteria, and pagination
+   * parameters. Updates `items`, `totalItems`, and `loading` signals.
+   */
   async load(): Promise<void> {
     this.loading.set(true);
 

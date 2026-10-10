@@ -36,13 +36,26 @@ import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-ap
 export class CardFormSettingsPanelComponent {
   private readonly hanziData = inject(HanziDataService);
 
-  /** Required card draft being edited. */
+  /**
+   * Required card draft being edited.
+   * @remarks
+   * Bound with two-way binding (`[(draft)]`) in parent templates.
+   */
   readonly draft = input.required<CardDraft>();
 
-  /** Emits the updated card draft when settings change. */
+  /**
+   * Emits the updated card draft when settings change.
+   * @remarks
+   * Used with two-way binding: `(draftChange)="onDraftChange($event)"`.
+   */
   readonly draftChange = output<CardDraft>();
 
-  /** Stroke count for the draw card's target Hanzi character (null when not applicable). */
+  /**
+   * Stroke count for the draw card's target Hanzi character (null when not applicable).
+   * @remarks
+   * Loaded asynchronously from `HanziDataService` when the draw draft's target character changes.
+   * Only populated for stroke-order practice mode.
+   */
   readonly drawHanziStrokeCount = signal<number | null>(null);
 
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [

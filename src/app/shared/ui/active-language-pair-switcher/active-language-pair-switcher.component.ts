@@ -20,12 +20,22 @@ import { UserLanguagePairEntry } from '../../../core/models';
 export class ActiveLanguagePairSwitcherComponent {
   private readonly userStore = inject(UserStore);
 
-  /** Render in compact mode for the header. */
+  /**
+   * Render in compact mode for the header.
+   * @remarks When true, reduces padding and simplifies the dropdown appearance.
+   */
   readonly compact = input(false);
 
-  /** Available language pairs from the user store. */
+  /**
+   * Available language pairs from the user store.
+   * @remarks Read-only signal derived from `UserStore.languagePairs`.
+   */
   readonly languagePairs = this.userStore.languagePairs;
-  /** Active language pair ID from the user store. */
+
+  /**
+   * Active language pair ID from the user store.
+   * @remarks Read-only signal derived from `UserStore.activeLanguagePairId`.
+   */
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
   /**

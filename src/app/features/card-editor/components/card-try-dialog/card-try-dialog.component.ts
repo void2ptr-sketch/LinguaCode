@@ -43,7 +43,12 @@ export class CardTryDialogComponent implements OnInit {
 
   /** Labels for all card kinds. */
   readonly kindLabels = CARD_KIND_LABELS;
-  /** Computed font size from user preferences. */
+
+  /**
+   * Computed font size from user preferences.
+   * @remarks
+   * Used by the card host to scale the preview.
+   */
   readonly fontSize = computed(() => this.userStore.preferences().fontSize);
 
   readonly title = computed(() => {
