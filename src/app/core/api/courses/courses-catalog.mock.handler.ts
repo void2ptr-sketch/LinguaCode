@@ -16,8 +16,8 @@ import { normalizeCourseAuthoring } from '../../repositories/courses/utils/cours
 import { courseToIndexEntry } from '../../repositories/courses/mapping/course-index.mapper';
 import { filterCourseIndex } from '../../repositories/courses/search/course-search.utils';
 import { ContentSeedRepository } from '../../repositories/content-seed/content-seed.repository';
-import { normalizeLanguagePair } from '../../repositories/language-pair/language-pair.utils';
-import { isEditableContentAuthor, isSystemAuthor } from '../../repositories/user/system-author.constants';
+import { normalizeLanguagePair } from '../../domain/language-pair/language-pair.utils';
+import { isEditableContentAuthor, isSystemAuthor } from '../../domain/user/system-author.constants';
 import {
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,

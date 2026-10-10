@@ -7,14 +7,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardAppearance } from '../../../../core/models/card.types';
-import { DEFAULT_TONE_OPTIONS } from '../../../../core/repositories/chinese/answers/tone-mark.utils';
+import { DEFAULT_TONE_OPTIONS } from '../../../../core/domain/chinese/answers/tone-mark.utils';
 import { Card } from '../../../../core/models';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
-import {
-  CONTENT_LANGUAGE_LABELS,
-} from '../../../card-catalog-search';
-import { contentLanguages } from '../../../../core/repositories/language-pair/language-pair.utils';
+import { CONTENT_LANGUAGE_LABELS } from '../../../card-catalog-search';
+import { contentLanguages } from '../../../../core/domain/language-pair/language-pair.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -34,7 +32,7 @@ import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/repositories/cards/mapping/card-index.mapper';
@@ -281,7 +279,12 @@ export class CardFormComponent implements OnInit {
    */
   updateChoicePromptKnown(promptKnown: string): void {
     const draft = this.draft();
-    if (draft.kind === 'select' || draft.kind === 'reading' || draft.kind === 'timed' || draft.kind === 'symbol') {
+    if (
+      draft.kind === 'select' ||
+      draft.kind === 'reading' ||
+      draft.kind === 'timed' ||
+      draft.kind === 'symbol'
+    ) {
       this.updateDraft({ ...draft, promptKnown });
     }
   }
@@ -370,7 +373,11 @@ export class CardFormComponent implements OnInit {
       case 'symbol':
         return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
       case 'select':
-        return { title: 'Варианты (известный)', optionLabelPrefix: 'Ответ', showCorrectRadio: true };
+        return {
+          title: 'Варианты (известный)',
+          optionLabelPrefix: 'Ответ',
+          showCorrectRadio: true,
+        };
       case 'timed':
         return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
       default:
@@ -540,7 +547,7 @@ export class CardFormComponent implements OnInit {
   /** Scrolls the tab window one step to the left. */
   prevTabs(): void {
     if (this.canPrevTabs()) {
-      this.tabOffset.update(n => n - 1);
+      this.tabOffset.update((n) => n - 1);
       this.selectedTabLabel.set(undefined);
     }
   }
@@ -548,7 +555,7 @@ export class CardFormComponent implements OnInit {
   /** Scrolls the tab window one step to the right. */
   nextTabs(): void {
     if (this.canNextTabs()) {
-      this.tabOffset.update(n => n + 1);
+      this.tabOffset.update((n) => n + 1);
       this.selectedTabLabel.set(undefined);
     }
   }

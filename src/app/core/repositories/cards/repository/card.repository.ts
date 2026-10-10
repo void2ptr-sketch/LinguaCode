@@ -30,9 +30,12 @@ import { Card } from '../../../models';
 import { getCardSeedCache } from '../../content-seed/content-seed.cache';
 import { ContentSeedRepository } from '../../content-seed/content-seed.repository';
 import { normalizeLegacyCards } from '../mapping/card-legacy.mapper';
-import { mergeDrawCardQuestionFields } from '../../chinese/drawing/draw-card.utils';
+import { mergeDrawCardQuestionFields } from '../../../domain/chinese/drawing/draw-card.utils';
 import { migrateUserContentOverlayIfNeeded } from '../../user/overlay/user-content-overlay.migration';
-import { computeCardsOverlay, resolveCards } from '../../user/overlay/user-content-overlay.resolver';
+import {
+  computeCardsOverlay,
+  resolveCards,
+} from '../../user/overlay/user-content-overlay.resolver';
 import {
   patchUserContentOverlay,
   readUserContentOverlay,

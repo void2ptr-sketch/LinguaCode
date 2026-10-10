@@ -75,7 +75,7 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции рядом с текстом.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
-  - `resolveMemoryPairs()` из `src/app/core/data/cards/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction` (результат содержит `left`, `right`, `leftLexeme`, `rightLexeme`).
+  - `resolveMemoryPairs()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction` (результат содержит `left`, `right`, `leftLexeme`, `rightLexeme`).
   - `CardFeedback` из `src/app/shared/types` — состояние обратной связи (`null` | `'correct'` | `'incorrect'`).
 
 ### @Input (входные параметры)

@@ -6,8 +6,8 @@ import type {
   CardSearchFacets,
   FacetCount,
 } from '../../../models';
-import { normalizeIpa } from '../../ipa/ipa-normalize.utils';
-import { contentLanguages } from '../../language-pair/language-pair.utils';
+import { normalizeIpa } from '../../../domain/ipa/ipa-normalize.utils';
+import { contentLanguages } from '../../../domain/language-pair/language-pair.utils';
 
 export type CardSearchFilterField =
   | 'query'

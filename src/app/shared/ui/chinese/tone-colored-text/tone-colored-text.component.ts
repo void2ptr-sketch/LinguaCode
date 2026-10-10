@@ -4,7 +4,7 @@ import {
   resolveToneColorPalette,
   segmentToneText,
   type ToneTextSegment,
-} from '../../../../core/repositories/chinese/tones/tone-color.utils';
+} from '../../../../core/domain/chinese/tones/tone-color.utils';
 import type { PhoneticLexeme, ToneMark } from '../../../../core/models/phonetic-content.types';
 import type { ToneColorPalette } from '../../../../core/models/tone-color.types';
 import { UserStore } from '../../../../core/state';

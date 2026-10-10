@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import type { LexemeDraftFields } from '../../../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../../../utils/card-options-editor.utils';
 import type {
   ReadingCardDraft,
@@ -23,11 +23,7 @@ import { CardOptionsEditorComponent } from '../../../card-options-editor/card-op
  * Used as the input type for `ChoiceCardFormComponent`.
  */
 export type ChoiceCardDraft =
-  | SelectCardDraft
-  | ReadingCardDraft
-  | TimedCardDraft
-  | SymbolCardDraft
-  | ToneCardDraft;
+  SelectCardDraft | ReadingCardDraft | TimedCardDraft | SymbolCardDraft | ToneCardDraft;
 
 /**
  * Form component for choice-type cards (select, reading, timed, symbol, tone).

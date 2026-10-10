@@ -63,9 +63,9 @@
   - `PinyinKeyboardComponent` — виртуальная клавиатура пиньинь.
   - `MatCardModule`, `MatButtonModule`, `MatFormFieldModule`, `MatIconModule`, `MatInputModule` — Angular Material.
 - **Утилиты:**
-  - `resolveKeyboardAnswerMode()` из `src/app/core/data/keyboard-answer-mode/keyboard-answer-mode.utils.ts`.
-  - `resolveKeyboardPrompt()` из `src/app/core/data/cards/card-direction.utils.ts`.
-  - `effectiveCardDirection()` из `src/app/core/data/cards/card-direction.utils.ts`.
+  - `resolveKeyboardAnswerMode()` из `src/app/core/domain/keyboard-answer-mode/keyboard-answer-mode.utils.ts`.
+  - `resolveKeyboardPrompt()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
+  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
   - `getCorrectAnswerLabel()` из `src/app/shared/utils/card-answer/card-answer.util.ts`.
 
 ### @Input (входные параметры)

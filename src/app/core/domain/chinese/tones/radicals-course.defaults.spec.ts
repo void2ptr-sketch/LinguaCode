@@ -3,7 +3,7 @@ import {
   getTestDefaultCourseCatalog,
   getTestDefaultScenarios,
   seedTestContentCache,
-} from '../../content-seed/content-seed.test-utils';
+} from '../../../repositories/content-seed/content-seed.test-utils';
 import {
   RADICALS_COURSE_ID,
   radicalCardId,

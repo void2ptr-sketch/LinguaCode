@@ -19,8 +19,8 @@ import {
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
-} from '../../repositories/language-pair/language-pair.utils';
-import { isEditableContentAuthor, isSystemAuthor } from '../../repositories/user/system-author.constants';
+} from '../../domain/language-pair/language-pair.utils';
+import { isEditableContentAuthor, isSystemAuthor } from '../../domain/user/system-author.constants';
 import { CardsCatalogMockHandler } from '../cards/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../repositories/content-seed/content-seed.repository';
 import {

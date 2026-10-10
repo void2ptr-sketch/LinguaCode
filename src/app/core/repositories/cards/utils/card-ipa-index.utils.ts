@@ -1,6 +1,6 @@
 import type { Card } from '../../../models';
 import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
-import { isLikelyIpa } from '../../ipa/ipa-normalize.utils';
+import { isLikelyIpa } from '../../../domain/ipa/ipa-normalize.utils';
 
 /**
  * Извлекает все транскрипции МФА (IPA) из фонетической лексемы.

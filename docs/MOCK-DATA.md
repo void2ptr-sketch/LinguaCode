@@ -314,7 +314,7 @@ inject(ScenariosMockHandler).resetCache();
 inject(CoursesMockHandler).resetCache();
 
 // Сброс кеша seed-данных
-import { resetContentSeedCache } from 'app/core/data/content-seed.cache';
+import { resetContentSeedCache } from 'app/core/repositories/content-seed/content-seed.cache';
 resetContentSeedCache();
 ```
 
@@ -373,13 +373,13 @@ public/data/courses/my-courses.json
 
 | Компонент                     | Расположение                                 | Роль                                |
 | ----------------------------- | -------------------------------------------- | ----------------------------------- |
-| `ContentSeedRepository`       | `core/data/content-seed.repository.ts`       | Загрузка fixture-файлов из `/data/` |
-| `content-seed.cache.ts`       | `core/data/content-seed.cache.ts`            | Глобальный кеш seed-данных          |
+| `ContentSeedRepository`       | `core/repositories/content-seed/content-seed.repository.ts`       | Загрузка fixture-файлов из `/data/` |
+| `content-seed.cache.ts`       | `core/repositories/content-seed/content-seed.cache.ts`            | Глобальный кеш seed-данных          |
 | `CardsCatalogMockHandler`     | `core/api/cards-catalog.mock.handler.ts`     | Обработка запросов карточек         |
 | `ScenariosCatalogMockHandler` | `core/api/scenarios-catalog.mock.handler.ts` | Обработка запросов сценариев        |
 | `CoursesCatalogMockHandler`   | `core/api/courses-catalog.mock.handler.ts`   | Обработка запросов курсов           |
 | `cardsApiMockInterceptor`     | `core/api/cards-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
 | `scenariosApiMockInterceptor` | `core/api/scenarios-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
 | `coursesApiMockInterceptor`   | `core/api/courses-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
-| `user-content-overlay.*`      | `core/data/user-content-overlay.*`           | Слияние seed + overlay              |
+| `user-content-overlay.*`      | `core/repositories/user/overlay/user-content-overlay.*`           | Слияние seed + overlay              |
 | `provide-api.http.ts`         | `core/api/provide-api.http.ts`               | Регистрация интерсепторов           |

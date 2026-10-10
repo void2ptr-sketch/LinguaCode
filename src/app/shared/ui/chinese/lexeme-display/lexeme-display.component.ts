@@ -4,12 +4,12 @@ import {
   resolveRomanizationsForSurface,
   resolveShowIpaForSurface,
   type LexemeDisplaySurface,
-} from '../../../../core/repositories/phonetic/phonetic-preferences.utils';
+} from '../../../../core/domain/phonetic/phonetic-preferences.utils';
 import {
   resolveIpaString,
   resolveVisibleRomanizationReadings,
   hasLexemePhoneticLayers,
-} from '../../../../core/repositories/phonetic/phonetic-lexeme.utils';
+} from '../../../../core/domain/phonetic/phonetic-lexeme.utils';
 import type {
   PhoneticLexeme,
   RomanizationSystem,

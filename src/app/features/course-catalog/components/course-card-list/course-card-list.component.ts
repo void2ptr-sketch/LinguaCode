@@ -5,14 +5,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
-import type {
-  ContentLanguage,
-  UserLanguagePairEntry,
-} from '../../../../core/models';
+import type { ContentLanguage, UserLanguagePairEntry } from '../../../../core/models';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/repositories/language-pair/language-pair.utils';
+} from '../../../../core/domain/language-pair/language-pair.utils';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
@@ -23,13 +20,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
  */
 @Component({
   selector: 'app-course-catalog-courses',
-  imports: [
-    FormsModule,
-    MatButtonModule,
-    MatFormFieldModule,
-    MatIconModule,
-    MatSelectModule,
-  ],
+  imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatSelectModule],
   standalone: true,
   templateUrl: './course-card-list.component.html',
   styleUrl: './course-card-list.component.scss',

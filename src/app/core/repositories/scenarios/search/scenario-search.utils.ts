@@ -1,5 +1,5 @@
 import type { ScenarioIndexEntry, ScenarioSearchCriteria } from '../../../models';
-import { scenarioIndexMatchesLanguageCriteria } from '../../language-pair/language-pair-scope.utils';
+import { scenarioIndexMatchesLanguageCriteria } from '../../../domain/language-pair/language-pair-scope.utils';
 
 export function filterScenarioIndex(
   entries: readonly ScenarioIndexEntry[],

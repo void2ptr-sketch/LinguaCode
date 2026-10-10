@@ -7,7 +7,10 @@ import { JourneyAnalyticsService } from '../../../../core/services/journey-analy
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../../core/state';
 import { ContentSeedRepository } from '../../../../core/repositories/content-seed/content-seed.repository';
-import { buildJourneyNodes, buildScenarioMap } from '../../../../core/repositories/journey/journey-nodes.utils';
+import {
+  buildJourneyNodes,
+  buildScenarioMap,
+} from '../../../../core/domain/journey/journey-nodes.utils';
 import type { JourneyLocationNode } from '../../../../core/models/journey.types';
 import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
@@ -131,7 +134,12 @@ export class JourneyPageComponent implements OnInit {
       hasScenarioVisit,
     );
 
-    console.log('[JourneyPage] Nodes built:', nodes.length, 'First node contentTypes:', nodes[0]?.contentTypes);
+    console.log(
+      '[JourneyPage] Nodes built:',
+      nodes.length,
+      'First node contentTypes:',
+      nodes[0]?.contentTypes,
+    );
 
     this.nodes.set(nodes);
   }

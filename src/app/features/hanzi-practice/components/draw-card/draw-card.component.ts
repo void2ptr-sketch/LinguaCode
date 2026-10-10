@@ -24,11 +24,11 @@ import {
   resolveDrawPromptLexeme,
   resolveDrawQuestion,
   resolveInitialDrawCanvasMode,
-} from '../../../../core/repositories/chinese/drawing/draw-card.utils';
+} from '../../../../core/domain/chinese/drawing/draw-card.utils';
 import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
-} from '../../../../core/repositories/chinese/phonetics/radical-component-color.utils';
+} from '../../../../core/domain/chinese/phonetics/radical-component-color.utils';
 import { HanziDataService } from '../../services/hanzi-data.service';
 import { gradeHanziMemoryStrokes } from '../../utils/validation/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';

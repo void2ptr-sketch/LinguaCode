@@ -62,9 +62,9 @@
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
   - `UserStore` (через `inject()`) — получение пары языков пользователя.
 - **Утилиты:**
-  - `resolveOptionCard()` из `src/app/core/data/cards/card-direction.utils.ts` — формирует варианты ответа.
-  - `effectiveCardDirection()` из `src/app/core/data/cards/card-direction.utils.ts` — определяет фактическое направление.
-  - `playLearningAudio()` из `src/app/core/data/cards/card-learning-audio.utils.ts` — воспроизведение аудио/TTS.
+  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует варианты ответа.
+  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — определяет фактическое направление.
+  - `playLearningAudio()` из `src/app/core/repositories/cards/utils/card-learning-audio.utils.ts` — воспроизведение аудио/TTS.
   - `resolveLearningSpeech()` из того же модуля — определение текста и локали для TTS.
   - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — CSS-классы.
 

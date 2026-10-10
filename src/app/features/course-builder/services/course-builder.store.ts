@@ -14,14 +14,14 @@
  */
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { activeLanguagePairCriteria } from '../../../core/repositories/language-pair/language-pair-scope.utils';
-import { normalizeLanguagePair } from '../../../core/repositories/language-pair/language-pair.utils';
+import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
+import { normalizeLanguagePair } from '../../../core/domain/language-pair/language-pair.utils';
 import { CourseSearchService } from '../../../core/repositories';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../core/repositories/courses/utils/course-authoring.utils';
 import { UserStore } from '../../../core/state';
-import { isEditableContentAuthor } from '../../../core/repositories/user/system-author.constants';
+import { isEditableContentAuthor } from '../../../core/domain/user/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';

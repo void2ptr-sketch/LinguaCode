@@ -2,7 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
 import type { CardDraft, LexemeCardDraft } from '../../types';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
@@ -13,12 +13,7 @@ import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component'
  */
 @Component({
   selector: 'app-card-form-phonetics-panel',
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    LexemeFieldsComponent,
-  ],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, LexemeFieldsComponent],
   templateUrl: './card-form-phonetics-panel.component.html',
   styleUrl: './card-form-phonetics-panel.component.scss',
 })

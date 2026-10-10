@@ -5,7 +5,7 @@ import type {
   ScenarioListScope,
   ScenarioSearchCriteria,
 } from '../../models';
-import { isContentLanguage } from '../../repositories/language-pair/language-pair.utils';
+import { isContentLanguage } from '../../domain/language-pair/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 
 /**

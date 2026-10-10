@@ -8,18 +8,18 @@ import {
   answersMatchRomanization,
   normalizeHanAnswer,
   normalizeZhuyinAnswer,
-} from '../../../core/repositories/chinese/answers/cjk-answer-normalize.utils';
+} from '../../../core/domain/chinese/answers/cjk-answer-normalize.utils';
 import {
   effectiveCardDirection,
   resolveKeyboardAcceptedAnswers,
   resolveOptionCard,
 } from '../../../core/repositories/cards/utils/card-direction.utils';
-import { answersMatchIpa } from '../../../core/repositories/ipa/ipa-normalize.utils';
-import { collectLexemeAcceptedAnswers } from '../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import { answersMatchIpa } from '../../../core/domain/ipa/ipa-normalize.utils';
+import { collectLexemeAcceptedAnswers } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   resolveIpaString,
   resolveRomanizationReading,
-} from '../../../core/repositories/phonetic/phonetic-lexeme.utils';
+} from '../../../core/domain/phonetic/phonetic-lexeme.utils';
 import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import type { ResolvedOptionCard } from '../../../core/repositories/cards/utils/card-direction.utils';
 import { CardAnswerState } from '../../types';

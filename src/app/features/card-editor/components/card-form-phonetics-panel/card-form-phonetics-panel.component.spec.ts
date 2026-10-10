@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardFormPhoneticsPanelComponent } from './card-form-phonetics-panel.component';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardDraft, LexemeCardDraft } from '../../types';
 
 describe('CardFormPhoneticsPanelComponent', () => {
@@ -16,7 +16,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
     ({
       kind: 'select',
       appearance: { theme: 'azure-blue', fontSize: 'md' },
-      promptLexeme: { primary: '你好', pinyin: 'nǐ hǎo', palladius: '', ipa: '', zhuyin: '', script: 'hani', audioUrl: '', acceptedReadings: '' },
+      promptLexeme: {
+        primary: '你好',
+        pinyin: 'nǐ hǎo',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'hani',
+        audioUrl: '',
+        acceptedReadings: '',
+      },
       audioUrl: '',
       ...overrides,
     }) as unknown as CardDraft;
@@ -39,9 +48,27 @@ describe('CardFormPhoneticsPanelComponent', () => {
     ({
       kind: 'sound',
       appearance: { theme: 'azure-blue', fontSize: 'md' },
-      promptLexeme: { primary: '', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' },
+      promptLexeme: {
+        primary: '',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      },
       audioUrl: 'http://example.com',
-      audioLabelLexeme: { primary: 'hello', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' },
+      audioLabelLexeme: {
+        primary: 'hello',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      },
       ...overrides,
     }) as unknown as CardDraft;
 
@@ -49,19 +76,38 @@ describe('CardFormPhoneticsPanelComponent', () => {
     ({
       kind: 'memory',
       appearance: { theme: 'azure-blue', fontSize: 'md' },
-      promptLexeme: { primary: 'hello', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' },
-      pairs: [{ known: 'hello', learning: 'привет', learningLexeme: { primary: 'привет', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' } }],
+      promptLexeme: {
+        primary: 'hello',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      },
+      pairs: [
+        {
+          known: 'hello',
+          learning: 'привет',
+          learningLexeme: {
+            primary: 'привет',
+            pinyin: '',
+            palladius: '',
+            ipa: '',
+            zhuyin: '',
+            script: 'latn',
+            audioUrl: '',
+            acceptedReadings: '',
+          },
+        },
+      ],
       ...overrides,
     }) as unknown as CardDraft;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CardFormPhoneticsPanelComponent,
-        FormsModule,
-        MatFormFieldModule,
-        MatInputModule,
-      ],
+      imports: [CardFormPhoneticsPanelComponent, FormsModule, MatFormFieldModule, MatInputModule],
     });
     fixture = TestBed.createComponent(CardFormPhoneticsPanelComponent);
     component = fixture.componentInstance;
@@ -168,7 +214,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: '世界', pinyin: 'shìjiè', palladius: '', ipa: '', zhuyin: '', script: 'hani', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: '世界',
+        pinyin: 'shìjiè',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'hani',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updatePromptLexeme(fields);
 
       expect(spy).toHaveBeenCalled();
@@ -182,7 +237,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: '世界', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'hani', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: '世界',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'hani',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updatePromptLexeme(fields);
 
       expect(spy).not.toHaveBeenCalled();
@@ -222,7 +286,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: 'hello-en', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: 'hello-en',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updateAudioLabelLexeme(fields);
 
       expect(spy).toHaveBeenCalled();
@@ -237,7 +310,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: 'hello', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: 'hello',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updateAudioLabelLexeme(fields);
 
       expect(spy).not.toHaveBeenCalled();
@@ -251,7 +333,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: 'привет-new', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: 'привет-new',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updatePairLexeme(0, fields);
 
       expect(spy).toHaveBeenCalled();
@@ -266,7 +357,16 @@ describe('CardFormPhoneticsPanelComponent', () => {
       const spy = vi.fn();
       component.draftChange.subscribe(spy);
 
-      const fields: LexemeDraftFields = { primary: 'hello', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' };
+      const fields: LexemeDraftFields = {
+        primary: 'hello',
+        pinyin: '',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'latn',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.updatePairLexeme(0, fields);
 
       expect(spy).not.toHaveBeenCalled();

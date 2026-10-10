@@ -1,4 +1,4 @@
-import type { LexemeDraftFields } from '../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardDraft } from '../types';
 
 /**

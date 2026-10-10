@@ -44,9 +44,12 @@ import {
   normalizeStoredLesson,
   type CourseCatalogState,
 } from '../../courses/utils/course-catalog-state';
-import { normalizeCourseAuthoring, sameCourseAuthoring } from '../../courses/utils/course-authoring.utils';
-import { mergeDrawCardQuestionFields } from '../../chinese/drawing/draw-card.utils';
-import { isObsoleteRadicalsCatalogItem } from '../../chinese/tones/radicals-course.defaults';
+import {
+  normalizeCourseAuthoring,
+  sameCourseAuthoring,
+} from '../../courses/utils/course-authoring.utils';
+import { mergeDrawCardQuestionFields } from '../../../domain/chinese/drawing/draw-card.utils';
+import { isObsoleteRadicalsCatalogItem } from '../../../domain/chinese/tones/radicals-course.defaults';
 import { mergeScenariosWithDefaults } from '../../scenarios/utils/scenario-catalog.defaults';
 import type {
   CoursePatch,

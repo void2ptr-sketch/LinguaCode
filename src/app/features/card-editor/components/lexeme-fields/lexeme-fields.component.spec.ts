@@ -9,7 +9,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it, vi } from 'vitest';
 
 import { LexemeFieldsComponent } from './lexeme-fields.component';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
 
 describe('LexemeFieldsComponent', () => {
@@ -231,7 +231,11 @@ describe('LexemeFieldsComponent', () => {
   });
 
   it('should updatePrimary emit change with auto-detected script', () => {
-    fixture.componentRef.setInput('fields', { ...defaultFields, primary: '', script: undefined as unknown as 'latn' });
+    fixture.componentRef.setInput('fields', {
+      ...defaultFields,
+      primary: '',
+      script: undefined as unknown as 'latn',
+    });
     fixture.componentRef.setInput('knownLanguage', 'ru' as ContentLanguage);
     fixture.componentRef.setInput('learningLanguage', 'zh' as ContentLanguage);
     fixture.detectChanges();

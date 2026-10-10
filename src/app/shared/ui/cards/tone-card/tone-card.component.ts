@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import {
   applyToneToPinyinSyllable,
   toneMarkLabel,
-} from '../../../../core/repositories/chinese/answers/tone-mark.utils';
+} from '../../../../core/domain/chinese/answers/tone-mark.utils';
 import { ToneCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';

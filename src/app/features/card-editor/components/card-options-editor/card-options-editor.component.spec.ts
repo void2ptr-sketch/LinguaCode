@@ -8,8 +8,11 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { describe, expect, it, vi } from 'vitest';
 
-import { CardOptionsEditorComponent, CardOptionsEditorConfig } from './card-options-editor.component';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import {
+  CardOptionsEditorComponent,
+  CardOptionsEditorConfig,
+} from './card-options-editor.component';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 
 describe('CardOptionsEditorComponent', () => {
@@ -23,8 +26,26 @@ describe('CardOptionsEditorComponent', () => {
   };
 
   const defaultLexemes: LexemeDraftFields[] = [
-    { primary: '你好', pinyin: 'nǐ hǎo', palladius: '', ipa: '', zhuyin: '', script: 'hani', audioUrl: '', acceptedReadings: '' },
-    { primary: 'hello', pinyin: '', palladius: '', ipa: '', zhuyin: '', script: 'latn', audioUrl: '', acceptedReadings: '' },
+    {
+      primary: '你好',
+      pinyin: 'nǐ hǎo',
+      palladius: '',
+      ipa: '',
+      zhuyin: '',
+      script: 'hani',
+      audioUrl: '',
+      acceptedReadings: '',
+    },
+    {
+      primary: 'hello',
+      pinyin: '',
+      palladius: '',
+      ipa: '',
+      zhuyin: '',
+      script: 'latn',
+      audioUrl: '',
+      acceptedReadings: '',
+    },
   ];
 
   beforeEach(() => {
@@ -184,7 +205,16 @@ describe('CardOptionsEditorComponent', () => {
       const spy = vi.fn();
       component.stateChange.subscribe(spy);
 
-      const newLexeme: LexemeDraftFields = { primary: '世界', pinyin: 'shìjiè', palladius: '', ipa: '', zhuyin: '', script: 'hani', audioUrl: '', acceptedReadings: '' };
+      const newLexeme: LexemeDraftFields = {
+        primary: '世界',
+        pinyin: 'shìjiè',
+        palladius: '',
+        ipa: '',
+        zhuyin: '',
+        script: 'hani',
+        audioUrl: '',
+        acceptedReadings: '',
+      };
       component.onOptionLexemeChange(0, newLexeme);
 
       expect(spy).toHaveBeenCalled();

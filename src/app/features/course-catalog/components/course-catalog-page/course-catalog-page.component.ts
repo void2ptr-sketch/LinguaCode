@@ -1,10 +1,4 @@
-import {
-  Component,
-  computed,
-  effect,
-  inject,
-  OnInit,
-} from '@angular/core';
+import { Component, computed, effect, inject, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -12,12 +6,12 @@ import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { CourseSearchService } from '../../../../core/repositories';
-import { activeLanguagePairCriteria } from '../../../../core/repositories/language-pair/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../../core/domain/language-pair/language-pair-scope.utils';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
-} from '../../../../core/repositories/user/user-language-pair.utils';
-import { shouldShowPalladius } from '../../../../core/repositories/phonetic/phonetic-preferences.utils';
+} from '../../../../core/domain/user/user-language-pair.utils';
+import { shouldShowPalladius } from '../../../../core/domain/phonetic/phonetic-preferences.utils';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import type {
   CjkLearningPreferences,
@@ -25,9 +19,7 @@ import type {
   UserLanguagePairEntry,
   UserLanguagePairSettings,
 } from '../../../../core/models';
-import {
-  ROMANIZATION_DISPLAY_ORDER,  
-} from '../../../../core/models/phonetic-content.types';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models/phonetic-content.types';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../services/course-catalog.store';

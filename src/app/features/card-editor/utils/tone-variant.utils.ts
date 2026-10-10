@@ -1,4 +1,4 @@
-import { applyToneToPinyinSyllable } from '../../../core/repositories/chinese/answers/tone-mark.utils';
+import { applyToneToPinyinSyllable } from '../../../core/domain/chinese/answers/tone-mark.utils';
 import type { ToneMark } from '../../../core/models/phonetic-content.types';
 
 /**

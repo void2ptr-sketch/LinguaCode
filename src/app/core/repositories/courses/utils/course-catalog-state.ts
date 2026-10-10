@@ -1,6 +1,6 @@
 import type { Course, Lesson } from '../../../models';
 
-import { normalizeLanguagePair } from '../../language-pair/language-pair.utils';
+import { normalizeLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';
 import type { CoursesSeedFixture } from '../../content-seed/content-seed.types';
 

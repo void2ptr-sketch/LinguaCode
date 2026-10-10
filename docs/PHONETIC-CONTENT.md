@@ -198,11 +198,11 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 
 ```
 src/app/core/models/phonetic-content.types.ts   # PhoneticLexeme, IpaVariant
-src/app/core/data/ipa-normalize.utils.ts        # normalizeIpa, validation
-src/app/core/data/ipa-en-lookup.utils.ts        # lookupEnglishIpa (editor autofill)
-src/app/core/data/pinyin-to-ipa.utils.ts        # pinyinToIpa, Chao tone contours
-src/app/core/data/card-ipa-index.utils.ts        # collectCardIpaReadings для каталога
-src/app/core/data/card-search.utils.ts          # matchesSearchQuery по IPA
+src/app/core/domain/ipa/ipa-normalize.utils.ts        # normalizeIpa, validation
+src/app/core/domain/ipa/ipa-en-lookup.utils.ts        # lookupEnglishIpa (editor autofill)
+src/app/core/domain/chinese/pinyin/pinyin-to-ipa.utils.ts        # pinyinToIpa, Chao tone contours
+src/app/core/repositories/cards/utils/card-ipa-index.utils.ts        # collectCardIpaReadings для каталога
+src/app/core/repositories/cards/search/card-search.utils.ts          # matchesSearchQuery по IPA
 src/app/shared/components/phonetic-ipa/         # app-phonetic-ipa
 src/app/features/card-editor/                   # поле IPA, preview, autofill
 public/fonts/                                   # Charis SIL / Doulos SIL

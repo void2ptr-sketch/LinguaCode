@@ -1,7 +1,7 @@
 import {
   getTestDemoCourseWithLessons,
   seedTestContentCache,
-} from '../content-seed/content-seed.test-utils';
+} from '../../repositories/content-seed/content-seed.test-utils';
 import {
   buildLessonRoadmap,
   courseMatchesActiveLanguagePair,

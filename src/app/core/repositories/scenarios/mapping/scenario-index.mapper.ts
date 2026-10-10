@@ -1,5 +1,5 @@
 import type { Scenario, ScenarioIndexEntry } from '../../../models';
-import { formatLanguagePair } from '../../language-pair/language-pair.utils';
+import { formatLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 import { scenarioCardsLabel } from '../utils/scenario-card-source.utils';
 
 export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {

@@ -7,8 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import type { ContentLanguage } from '../../../../core/models';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   addOption,
   MAX_CARD_OPTIONS,
@@ -81,13 +81,11 @@ export class CardOptionsEditorComponent {
   readonly maxOptions = MAX_CARD_OPTIONS;
 
   /** Computed current state of the options editor. */
-  readonly editorState = computed(
-    (): CardOptionsEditorState => ({
-      options: this.options(),
-      lexemes: this.lexemes(),
-      correctIndex: this.correctIndex(),
-    }),
-  );
+  readonly editorState = computed((): CardOptionsEditorState => ({
+    options: this.options(),
+    lexemes: this.lexemes(),
+    correctIndex: this.correctIndex(),
+  }));
 
   isOptionReadonly(lexeme: LexemeDraftFields | undefined): boolean {
     return optionTextReadonly(this.showLexemes(), lexeme ?? emptyLexemeDraftFields());

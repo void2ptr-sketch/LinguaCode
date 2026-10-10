@@ -9,17 +9,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
-import type {
-  AppColorScheme,
-  LearningProficiencyLevel,
-  UserPreferences,
-} from '../../../models';
+import type { AppColorScheme, LearningProficiencyLevel, UserPreferences } from '../../../models';
 import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
 import { UserStore } from '../../../state';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../repositories/language-pair/language-pair.utils';
+} from '../../../domain/language-pair/language-pair.utils';
 
 /**
  * User profile page component. Allows users to manage their display name, theme preferences,

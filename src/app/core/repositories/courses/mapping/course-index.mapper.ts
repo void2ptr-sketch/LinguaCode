@@ -1,5 +1,5 @@
 import type { Course, CourseIndexEntry } from '../../../models';
-import { formatLanguagePair } from '../../language-pair/language-pair.utils';
+import { formatLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 
 /**
  * Maps a `Course` object to a `CourseIndexEntry` for catalog display and search.

@@ -1,7 +1,7 @@
 import type { Card } from '../../../models';
 import type { CardIndexEntry } from '../../../models/card-index.types';
 import { collectCardIpaReadings } from '../utils/card-ipa-index.utils';
-import { isContentLanguage } from '../../language-pair/language-pair.utils';
+import { isContentLanguage } from '../../../domain/language-pair/language-pair.utils';
 import { DEFAULT_LANGUAGE_PAIR } from '../../../models/language-pair.types';
 
 /** Переопределение метаданных для отдельной карточки в индексе. */

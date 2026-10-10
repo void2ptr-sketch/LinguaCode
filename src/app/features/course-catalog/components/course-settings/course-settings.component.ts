@@ -1,8 +1,4 @@
-import {
-  Component,
-  computed,
-  inject,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,14 +11,10 @@ import type { RomanizationSystem, ToneMark } from '../../../../core/models/phone
 import { TRACING_STROKE_DURATION_BOUNDS } from '../../../../core/models/phonetic-content.types';
 import { TONE_COLOR_SCHEMES } from '../../../../core/models/tone-color.types';
 import type { UserLanguagePairEntry } from '../../../../core/models/user-language-pair.types';
-import {
-  CourseDisplaySettingsMatrixComponent,
-} from '../../../../shared/ui/course-display-settings-matrix';
+import { CourseDisplaySettingsMatrixComponent } from '../../../../shared/ui/course-display-settings-matrix';
 import type { AnswerDisplayMode } from '../../../../shared/ui/course-display-settings-matrix';
-import { shouldShowPalladius } from '../../../../core/repositories/phonetic/phonetic-preferences.utils';
-import {
-  ROMANIZATION_DISPLAY_ORDER,
-} from '../../../../core/models/phonetic-content.types';
+import { shouldShowPalladius } from '../../../../core/domain/phonetic/phonetic-preferences.utils';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models/phonetic-content.types';
 import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';

@@ -1,4 +1,4 @@
-import type { LexemeDraftFields } from '../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 
 import { deriveOptionText, deriveOptionTexts } from './card-draft-lexeme-first.utils';
 
@@ -53,11 +53,7 @@ describe('deriveOptionText', () => {
 
 describe('deriveOptionTexts', () => {
   it('derives texts for all options', () => {
-    const lexemes = [
-      makeLexeme('a'),
-      makeLexeme('b'),
-      makeLexeme(''),
-    ];
+    const lexemes = [makeLexeme('a'), makeLexeme('b'), makeLexeme('')];
     const fallbacks = ['fa', 'fb', 'fc'];
     const result = deriveOptionTexts(lexemes, fallbacks);
 

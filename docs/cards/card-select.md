@@ -60,8 +60,8 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
-  - `resolveOptionCard()` из `src/app/core/data/cards/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
-  - `effectiveCardDirection()` из `src/app/core/data/cards/card-direction.utils.ts` — определяет фактическое направление в сессии.
+  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
+  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — определяет фактическое направление в сессии.
   - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
 
 ### @Input (входные параметры)

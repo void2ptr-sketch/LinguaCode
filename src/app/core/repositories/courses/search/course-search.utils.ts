@@ -1,5 +1,5 @@
 import type { CourseIndexEntry, CourseSearchCriteria } from '../../../models';
-import { courseIndexMatchesLanguageCriteria } from '../../language-pair/language-pair-scope.utils';
+import { courseIndexMatchesLanguageCriteria } from '../../../domain/language-pair/language-pair-scope.utils';
 
 /**
  * Filters course index entries according to the given search criteria and the current user's ID.

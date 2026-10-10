@@ -9,7 +9,7 @@ import type {
 } from '../../models/user.types';
 import { isAllowedFontSize, sanitizeTheme } from '../../security';
 import { normalizeColorScheme } from '../../theme/app-color-scheme.utils';
-import { normalizeCardFocusFullscreen } from '../cards/utils/card-focus-preference.utils';
+import { normalizeCardFocusFullscreen } from '../../repositories/cards/utils/card-focus-preference.utils';
 import { normalizeLearningProficiencyLevel } from '../learning/learning-proficiency.utils';
 import {
   isContentLanguage,

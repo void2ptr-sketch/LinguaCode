@@ -6,7 +6,7 @@ import {
   resolveScenarioCardIds,
   ScenarioSearchService,
 } from '../../../core/repositories';
-import { activeLanguagePairCriteria } from '../../../core/repositories/language-pair/language-pair-scope.utils';
+import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
 import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
 import type { Card, ScenarioSearchPage } from '../../../core/models';
 import { UserStore } from '../../../core/state';
@@ -51,11 +51,7 @@ export class CardSelectService {
    * Automatically scopes results to the active language pair from `UserStore`.
    * Empty query strings are treated as undefined (no filter).
    */
-   searchScenarios(
-     query: string,
-     pageIndex: number,
-     pageSize: number,
-   ): Promise<ScenarioSearchPage> {
+  searchScenarios(query: string, pageIndex: number, pageSize: number): Promise<ScenarioSearchPage> {
     const pair = this.userStore.languagePair();
 
     return this.scenarioSearchService.search({

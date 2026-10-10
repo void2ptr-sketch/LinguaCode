@@ -2,7 +2,7 @@ import type { LanguagePair } from '../../../models/language-pair.types';
 import type { Scenario } from '../../../models';
 
 import { getScenarioSeedCache } from '../../content-seed/content-seed.cache';
-import { isObsoleteRadicalsCatalogItem } from '../../chinese/tones/radicals-course.defaults';
+import { isObsoleteRadicalsCatalogItem } from '../../../domain/chinese/tones/radicals-course.defaults';
 import { migrateUserContentOverlayIfNeeded } from '../../user/overlay/user-content-overlay.migration';
 import { resolveScenarios } from '../../user/overlay/user-content-overlay.resolver';
 import { readUserContentOverlay } from '../../user/overlay/user-content-overlay.storage';

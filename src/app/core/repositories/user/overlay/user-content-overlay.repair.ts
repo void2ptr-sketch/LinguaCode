@@ -3,7 +3,7 @@ import type { LanguagePair } from '../../../models/language-pair.types';
 import type { ScenarioCardSource } from '../../../models/scenario-card-source.types';
 
 import { normalizeCourseAuthoring } from '../../courses/utils/course-authoring.utils';
-import { normalizeLanguagePair } from '../../language-pair/language-pair.utils';
+import { normalizeLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 import type { UserContentOverlay } from './user-content-overlay.types';
 import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
 import type { CourseAuthoring } from '../../../models/course-authoring.types';

@@ -56,7 +56,7 @@ flowchart LR
 
 ## Pinyin keyboard
 
-Компонент `app-pinyin-keyboard` + утилиты `core/data/pinyin-keyboard.utils.ts`:
+Компонент `app-pinyin-keyboard` + утилиты `core/domain/chinese/pinyin/pinyin-keyboard.utils.ts`:
 
 - динамический ряд тонов над буквами (placeholder `—`, фиксированная высота);
 - состояние: `committed` + `pendingSyllable` + `toneRowOpen`;

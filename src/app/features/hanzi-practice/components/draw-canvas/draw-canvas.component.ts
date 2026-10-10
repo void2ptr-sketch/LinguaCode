@@ -15,7 +15,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { paintCalligraphyPolyline } from '../../../../core/repositories/chinese/drawing/draw-calligraphy-paint.utils';
+import { paintCalligraphyPolyline } from '../../../../core/domain/chinese/drawing/draw-calligraphy-paint.utils';
 import { UserStore } from '../../../../core/state';
 import {
   applyHanziCanvasPathTransform,

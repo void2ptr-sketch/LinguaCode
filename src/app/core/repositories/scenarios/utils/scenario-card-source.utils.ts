@@ -7,7 +7,7 @@ import type {
   ScenarioCardSort,
 } from '../../../models';
 import type { LegacyScenario } from '../../../models/scenario.types';
-import { normalizeLanguagePair } from '../../language-pair/language-pair.utils';
+import { normalizeLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 
 import { matchesCardIndexEntry } from '../../cards/search/card-search.utils';
 import type { CardSearchService } from '../../cards/search/card-search.service';

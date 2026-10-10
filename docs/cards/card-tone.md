@@ -56,8 +56,8 @@
   - `ToneColoredTextComponent` — цветовой рендеринг пиньинь с тонами.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
-  - `toneMarkLabel()` из `src/app/core/data/chinese/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
-  - `applyToneToPinyinSyllable()` из `src/app/core/data/chinese/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
+  - `toneMarkLabel()` из `src/app/core/domain/chinese/answers/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
+  - `applyToneToPinyinSyllable()` из `src/app/core/domain/chinese/answers/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
   - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
