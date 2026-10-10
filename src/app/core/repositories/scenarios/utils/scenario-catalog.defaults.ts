@@ -1,4 +1,4 @@
-import type { LanguagePair } from '../../../models/language-pair.types';
+import type { LanguagePair } from '../../../models';
 import type { Scenario } from '../../../models';
 
 import { getScenarioSeedCache } from '../../content-seed/content-seed.cache';

@@ -9,7 +9,7 @@ import type {
   CourseWithLessons,
   LanguagePair,
 } from '../../../models';
-import type { CourseAuthoring } from '../../../models/course-authoring.types';
+import type { CourseAuthoring } from '../../../models';
 import type { ApiResponse } from '../../../api/api.types';
 import { buildApiUrl } from '../../../api/api-url';
 import { buildCourseSearchParams } from '../../../api/courses/courses-api.params.utils';

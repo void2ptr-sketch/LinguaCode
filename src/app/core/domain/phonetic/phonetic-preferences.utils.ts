@@ -1,17 +1,6 @@
-import type {
-  CjkLearningPreferences,
-  PhoneticPreferences,
-  RomanizationSystem,
-} from '../../models/phonetic-content.types';
-import {
-  DEFAULT_CJK_LEARNING_PREFERENCES,
-  DEFAULT_PHONETIC_PREFERENCES,
-  ROMANIZATION_DISPLAY_ORDER,
-  TRACING_STROKE_DURATION_BOUNDS,
-} from '../../models/phonetic-content.types';
+import type { CjkLearningPreferences, PhoneticPreferences, RomanizationSystem } from '../../models';
+import { DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES, ROMANIZATION_DISPLAY_ORDER, TRACING_STROKE_DURATION_BOUNDS, DEFAULT_TONE_COLOR_SCHEME_ID } from '../../models';
 import { isToneColorSchemeId } from '../chinese/tones/tone-color.utils';
-import { DEFAULT_TONE_COLOR_SCHEME_ID } from '../../models/tone-color.types';
-
 const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
 
 function isRomanizationSystem(value: unknown): value is RomanizationSystem {

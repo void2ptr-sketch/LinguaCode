@@ -1,4 +1,4 @@
-import type { ToneColorSchemeId } from '../../../models/tone-color.types';
+import type { ToneColorSchemeId } from '../../../models';
 import { resolveToneColorPalette } from '../tones/tone-color.utils';
 
 /** Максимум компонентов в типичном разложении (女+子, 日+月, …). */

@@ -1,8 +1,6 @@
 import { parsePinyinSyllable } from '../pinyin/pinyin-to-ipa.utils';
-import type { ToneMark } from '../../../models/phonetic-content.types';
-import type { ToneColorPalette, ToneColorSchemeId } from '../../../models/tone-color.types';
-import { DEFAULT_TONE_COLOR_SCHEME_ID, TONE_COLOR_SCHEMES } from '../../../models/tone-color.types';
-
+import type { ToneMark, ToneColorPalette, ToneColorSchemeId } from '../../../models';
+import { DEFAULT_TONE_COLOR_SCHEME_ID, TONE_COLOR_SCHEMES } from '../../../models';
 export type ToneTextSegment = {
   text: string;
   tone: ToneMark;

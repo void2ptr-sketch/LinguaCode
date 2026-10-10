@@ -1,4 +1,4 @@
-import type { HanziCharacterJson } from '../../models/hanzi-character.types';
+import type { HanziCharacterJson } from '../../models';
 import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
 import { HanziPositioner } from '../positioning/hanzi-positioner';
 import {

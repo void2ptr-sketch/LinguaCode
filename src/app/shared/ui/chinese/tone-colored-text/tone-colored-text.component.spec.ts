@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { ToneColoredTextComponent } from './tone-colored-text.component';
-import type { ToneMark } from '../../../../core/models/phonetic-content.types';
+import type { ToneMark } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 
 // Mock UserStore factory for TestBed

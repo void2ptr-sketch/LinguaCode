@@ -1,6 +1,5 @@
 import { stripPinyinTones } from '../pinyin/cjk-romanization.utils';
-import type { ToneMark } from '../../../models/phonetic-content.types';
-
+import type { ToneMark } from '../../../models';
 /** Тоны по умолчанию для выбора: 1–4 (лёгкий тон исключён). */
 export const DEFAULT_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4];
 

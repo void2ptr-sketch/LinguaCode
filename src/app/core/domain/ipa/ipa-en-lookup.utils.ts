@@ -1,4 +1,4 @@
-import type { IpaVariant } from '../../models/phonetic-content.types';
+import type { IpaVariant } from '../../models';
 import { formatIpaForEditor } from '../phonetic/phonetic-lexeme.utils';
 
 type EnglishIpaEntry = string | readonly IpaVariant[];

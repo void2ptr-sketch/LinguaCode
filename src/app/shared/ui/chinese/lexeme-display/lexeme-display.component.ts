@@ -10,10 +10,7 @@ import {
   resolveVisibleRomanizationReadings,
   hasLexemePhoneticLayers,
 } from '../../../../core/domain/phonetic/phonetic-lexeme.utils';
-import type {
-  PhoneticLexeme,
-  RomanizationSystem,
-} from '../../../../core/models/phonetic-content.types';
+import type { PhoneticLexeme, RomanizationSystem } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import { PhoneticIpaComponent } from '../phonetic-ipa/phonetic-ipa.component';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';

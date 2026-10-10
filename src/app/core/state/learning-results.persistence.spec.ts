@@ -1,5 +1,5 @@
 import { LearningResultsPersistence, LEARNING_RESULTS_STORAGE_KEY } from './learning-results.persistence';
-import { DEFAULT_LANGUAGE_PAIR } from '../models/language-pair.types';
+import { DEFAULT_LANGUAGE_PAIR } from '../models';
 import type { LearningResult } from '../models';
 
 describe('LearningResultsPersistence', () => {

@@ -7,7 +7,7 @@ import type {
   ToneColorSchemeId,
   UserPreferences,
 } from '../../../core/models';
-import { TRACING_STROKE_DURATION_BOUNDS } from '../../../core/models/phonetic-content.types';
+import { TRACING_STROKE_DURATION_BOUNDS } from '../../../core/models';
 import type { AnswerDisplayMode } from '../../../shared/ui/course-display-settings-matrix/course-display-settings-matrix.util';
 
 export type CourseCatalogState = {

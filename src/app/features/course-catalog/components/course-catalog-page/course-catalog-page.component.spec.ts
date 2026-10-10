@@ -23,7 +23,7 @@ import type {
   CourseWithLessons,
   UserLanguagePairEntry,
 } from '../../../../core/models';
-import type { ToneColorSchemeId } from '../../../../core/models/tone-color.types';
+import type { ToneColorSchemeId } from '../../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { UiPaginationComponent } from '../../../../shared/utils/pagination';
 import {

@@ -1,9 +1,6 @@
 import { deriveKnownOptionsFromLexemes } from '../../../core/repositories/cards/utils/card-direction.utils';
 import { stripPinyinTones } from '../../../core/domain/chinese/pinyin/cjk-romanization.utils';
-import type {
-  DrawCharacterTarget,
-  DrawPracticeMode,
-} from '../../../core/models/draw-practice.types';
+import type { DrawCharacterTarget, DrawPracticeMode, CardDirection, PhoneticLexeme } from '../../../core/models';
 import { normalizeToneOptions } from '../../../core/domain/chinese/answers/tone-mark.utils';
 import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
@@ -17,8 +14,6 @@ import {
   isAllowedFontSize,
 } from '../../../core/security';
 import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../core/models';
-import type { CardDirection } from '../../../core/models/language-pair.types';
-import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import {
   Card,
   CardAppearance,

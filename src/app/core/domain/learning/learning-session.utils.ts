@@ -1,5 +1,4 @@
-import type { LearningSessionPreferences } from '../../models/learning-session.types';
-import type { UserLanguagePairEntry } from '../../models/user-language-pair.types';
+import type { LearningSessionPreferences, UserLanguagePairEntry } from '../../models';
 
 function optionalId(value: unknown): string | undefined {
   if (typeof value !== 'string') {

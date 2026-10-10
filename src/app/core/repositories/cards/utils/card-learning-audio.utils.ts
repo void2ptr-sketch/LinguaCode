@@ -1,6 +1,5 @@
 import type { ContentLanguage } from '../../../models';
-import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
-
+import type { PhoneticLexeme } from '../../../models';
 const SPEECH_LOCALE: Record<ContentLanguage, string> = {
   en: 'en-US',
   zh: 'zh-CN',

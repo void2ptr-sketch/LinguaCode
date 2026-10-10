@@ -1,5 +1,5 @@
 import type { DrawCard } from '../../../../core/models';
-import type { HanziCharacterJson, HanziPoint } from '../../models/hanzi-character.types';
+import type { HanziCharacterJson, HanziPoint } from '../../models';
 import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
 import { HanziPositioner } from '../../utils/positioning/hanzi-positioner';
 import { checkDrawCardAnswer } from './hanzi-card-answer.util';

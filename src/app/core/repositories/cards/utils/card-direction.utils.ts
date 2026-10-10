@@ -6,8 +6,7 @@ import type {
   ResolvedMemoryPair,
   ResolvedOptionCard,
 } from '../../../models';
-import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
-
+import type { PhoneticLexeme } from '../../../models';
 /** В сессии направление задаёт toggle; `card.direction` — только default при старте. */
 export function effectiveCardDirection(
   _cardDirection: CardDirection | undefined,

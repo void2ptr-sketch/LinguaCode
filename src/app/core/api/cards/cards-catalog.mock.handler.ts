@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../models';
-import type { CardIndexEntry } from '../../models/card-index.types';
+import type { CardIndexEntry } from '../../models';
 import { paginateArray } from '../../../shared/utils/pagination';
 
 import { buildCardIndex } from '../../repositories/cards/mapping/card-index.mapper';

@@ -10,7 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { AppColorScheme, LearningProficiencyLevel, UserPreferences } from '../../../models';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../../models/learning-proficiency.types';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../../models';
 import { UserStore } from '../../../state';
 import {
   CONTENT_LANGUAGE_LABELS,

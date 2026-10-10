@@ -11,8 +11,7 @@ import {
   resolveOptionCard,
 } from '../../../../core/repositories/cards/utils/card-direction.utils';
 import { SoundCard } from '../../../../core/models';
-import type { CardDirection } from '../../../../core/models/language-pair.types';
-import type { PhoneticLexeme } from '../../../../core/models/phonetic-content.types';
+import type { CardDirection, PhoneticLexeme } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';

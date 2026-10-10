@@ -66,6 +66,15 @@ export type {
 } from './course-index.types';
 export type { Lesson } from './lesson.types';
 export type { LearningSessionPreferences } from './learning-session.types';
+export type {
+  ExplorerLevel,
+  ExplorerLevelResult,
+  JourneyAnalyticsEvent,
+  JourneyContentType,
+  JourneyLocationNode,
+  JourneyLocationStatus,
+} from './journey.types';
+export { CARD_KIND_TO_CONTENT_TYPE } from './journey.types';
 export type { User, UserPreferences } from './user.types';
 export type { AppColorScheme } from './app-color-scheme.types';
 export { DEFAULT_APP_COLOR_SCHEME } from './app-color-scheme.types';
@@ -79,6 +88,7 @@ export {
 export type { LearningProficiencyLevel } from './learning-proficiency.types';
 export {
   DEFAULT_LEARNING_PROFICIENCY_LEVEL,
+  LEARNING_PROFICIENCY_LEVEL_IDS,
   LEARNING_PROFICIENCY_LEVELS,
 } from './learning-proficiency.types';
 export type {

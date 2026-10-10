@@ -7,8 +7,7 @@ import {
   toneMarkLabel,
 } from '../../../../core/domain/chinese/answers/tone-mark.utils';
 import { ToneCard } from '../../../../core/models';
-import type { CardDirection } from '../../../../core/models/language-pair.types';
-import type { ToneMark } from '../../../../core/models/phonetic-content.types';
+import type { CardDirection, ToneMark } from '../../../../core/models';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';

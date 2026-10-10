@@ -3,8 +3,7 @@ import {
   isContentLanguage,
   normalizeLanguagePair,
 } from './language-pair.utils';
-import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
-
+import { DEFAULT_LANGUAGE_PAIR } from '../../models';
 describe('language-pair.utils', () => {
   it('should format language pair label', () => {
     expect(formatLanguagePair({ known: 'ru', learning: 'en' })).toBe('Русский → English');

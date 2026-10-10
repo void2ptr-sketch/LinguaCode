@@ -1,5 +1,5 @@
 import type { Card } from '../../../models';
-import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
+import type { PhoneticLexeme } from '../../../models';
 import { isLikelyIpa } from '../../../domain/ipa/ipa-normalize.utils';
 
 /**

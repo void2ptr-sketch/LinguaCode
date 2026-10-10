@@ -1,7 +1,5 @@
 import type { DrawCard } from '../../../models';
-import type { DrawCanvasMode, DrawCharacterTarget } from '../../../models/draw-practice.types';
-import type { PhoneticLexeme } from '../../../models/phonetic-content.types';
-
+import type { DrawCanvasMode, DrawCharacterTarget, PhoneticLexeme } from '../../../models';
 /** Часть подсказки радикала: иероглиф и его порядковый номер в разложении для раскраски. */
 export type RadicalHintPart = {
   readonly character: string;

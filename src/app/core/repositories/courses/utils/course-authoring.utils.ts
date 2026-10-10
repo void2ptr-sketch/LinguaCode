@@ -1,6 +1,5 @@
-import type { CourseAuthoring, CourseAuthoringStatus } from '../../../models/course-authoring.types';
-import { COURSE_AUTHORING_STATUSES } from '../../../models/course-authoring.types';
-
+import type { CourseAuthoring, CourseAuthoringStatus } from '../../../models';
+import { COURSE_AUTHORING_STATUSES } from '../../../models';
 /** Maximum allowed length (in characters) for a course idea string. */
 export const COURSE_IDEA_MAX_LENGTH = 16_000;
 

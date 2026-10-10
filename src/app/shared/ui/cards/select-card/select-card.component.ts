@@ -7,7 +7,7 @@ import {
   resolveOptionCard,
 } from '../../../../core/repositories/cards/utils/card-direction.utils';
 import { SelectCard } from '../../../../core/models';
-import type { CardDirection } from '../../../../core/models/language-pair.types';
+import type { CardDirection } from '../../../../core/models';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../types';
 import { buildOptionClass } from '../option-card.util';

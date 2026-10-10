@@ -1,4 +1,4 @@
-import type { HanziPoint, HanziQuizOptions } from '../../models/hanzi-character.types';
+import type { HanziPoint, HanziQuizOptions } from '../../models';
 import {
   type HanziCharacterModel,
   type HanziStrokeModel,

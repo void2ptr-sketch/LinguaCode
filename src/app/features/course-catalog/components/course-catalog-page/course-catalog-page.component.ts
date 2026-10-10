@@ -19,7 +19,7 @@ import type {
   UserLanguagePairEntry,
   UserLanguagePairSettings,
 } from '../../../../core/models';
-import { ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models/phonetic-content.types';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../services/course-catalog.store';

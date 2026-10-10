@@ -27,7 +27,7 @@ import type {
   UserLanguagePairSettings,
   UserPreferences,
 } from '../models';
-import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../models/learning-proficiency.types';
+import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../models';
 import { UserPersistence } from './user.persistence';
 
 /** Default user object used when no persisted data exists. */

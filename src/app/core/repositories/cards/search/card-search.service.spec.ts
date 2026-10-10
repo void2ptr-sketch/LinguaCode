@@ -6,8 +6,7 @@ import { CardSearchService } from './card-search.service';
 import { CardsApiService } from '../api/cards-api.service';
 import { CardsCatalogMockHandler } from '../../../api/cards/cards-catalog.mock.handler';
 import type { CardSearchCriteria, CardSearchPage } from '../../../models';
-import type { CardIndexEntry } from '../../../models/card-index.types';
-
+import type { CardIndexEntry } from '../../../models';
 describe('CardSearchService', () => {
   let service: CardSearchService;
   let cardsApiService: { search: ReturnType<typeof vi.fn>; getById: ReturnType<typeof vi.fn> };

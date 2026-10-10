@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import type { LanguagePair, Scenario, ScenarioCardSource } from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models/language-pair.types';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models';
 import {
   emptyScenarioFormDraft,
   scenarioToFormDraft,

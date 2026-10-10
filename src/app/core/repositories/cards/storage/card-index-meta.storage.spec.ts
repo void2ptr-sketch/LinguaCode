@@ -1,4 +1,4 @@
-import type { CardIndexMetaOverride } from '../../../models/card-index.types';
+import type { CardIndexMetaOverride } from '../../../models';
 import {
   CARD_INDEX_META_STORAGE_KEY,
   loadCardIndexMetaOverrides,

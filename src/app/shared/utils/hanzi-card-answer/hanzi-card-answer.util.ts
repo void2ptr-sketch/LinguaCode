@@ -1,5 +1,5 @@
 import type { DrawCard } from '../../../core/models';
-import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../../../core/models';
 import type { DrawAnswerPayload } from '../../types/draw-answer.types';
 import {
   validateHanziMemoryStrokes,

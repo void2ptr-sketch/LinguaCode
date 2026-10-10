@@ -1,7 +1,4 @@
-import {
-  ROMANIZATION_DISPLAY_ORDER,
-  type RomanizationSystem,
-} from '../../../core/models/phonetic-content.types';
+import { ROMANIZATION_DISPLAY_ORDER, type RomanizationSystem } from '../../../core/models';
 
 /**
  * Display mode for answers: orthography (text) or IPA transcription.

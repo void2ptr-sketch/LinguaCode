@@ -11,7 +11,7 @@ import {
 } from '../../../../core/repositories/cards/utils/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../../core/domain/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../../core/models';
-import type { CardDirection } from '../../../../core/models/language-pair.types';
+import type { CardDirection } from '../../../../core/models';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { PinyinKeyboardComponent } from '../../chinese/pinyin-keyboard/pinyin-keyboard.component';
 import { CardFeedback } from '../../../types';

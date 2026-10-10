@@ -2,12 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import {
-  HANZI_ASSETS_BASE_PATH,
-  HANZI_RADICAL_ASSETS_BASE_PATH,
-  type HanziCharacterJson,
-  type HanziLoadState,
-} from '../models/hanzi-character.types';
+import { HANZI_ASSETS_BASE_PATH, HANZI_RADICAL_ASSETS_BASE_PATH, type HanziCharacterJson, type HanziLoadState } from '../models';
 import { buildHanziCharacterModel, type HanziCharacterModel } from '../models/hanzi-character.model';
 
 type HanziCacheEntry = {

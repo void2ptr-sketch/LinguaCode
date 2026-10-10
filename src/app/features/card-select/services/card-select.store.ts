@@ -2,7 +2,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Card } from '../../../core/models';
 import { cardDefaultDirection } from '../../../core/repositories/cards/utils/card-direction.utils';
 import { HanziDataService } from '../../hanzi-practice/services/hanzi-data.service';
-import type { CardDirection } from '../../../core/models/language-pair.types';
+import type { CardDirection } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer/card-answer.util';
 import { CardFeedback } from '../../../shared/types';

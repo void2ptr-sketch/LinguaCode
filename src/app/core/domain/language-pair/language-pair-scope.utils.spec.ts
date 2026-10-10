@@ -1,4 +1,4 @@
-import type { ScenarioIndexEntry } from '../../models/scenario-index.types';
+import type { ScenarioIndexEntry } from '../../models';
 import {
   activeLanguagePairCriteria,
   scenarioIndexMatchesLanguageCriteria,

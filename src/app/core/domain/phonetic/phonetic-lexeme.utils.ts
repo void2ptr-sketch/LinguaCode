@@ -1,11 +1,5 @@
-import type {
-  IpaVariant,
-  PhoneticLexeme,
-  RomanizationSystem,
-  ScriptCode,
-} from '../../models/phonetic-content.types';
-import { ROMANIZATION_DISPLAY_ORDER } from '../../models/phonetic-content.types';
-
+import type { IpaVariant, PhoneticLexeme, RomanizationSystem, ScriptCode } from '../../models';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../models';
 /**
  * A romanization reading that is eligible for display in the UI.
  */

@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import type { RomanizationSystem } from '../../../core/models/phonetic-content.types';
+import type { RomanizationSystem } from '../../../core/models';
 import {
   type AnswerDisplayMode,
   toggleAnswerModes,

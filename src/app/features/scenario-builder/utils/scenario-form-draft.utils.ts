@@ -8,7 +8,7 @@ import type {
   ScenarioCardSource,
   ScenarioCardSort,
 } from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models/language-pair.types';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models';
 import type { ScenarioCardSourceMode, ScenarioCriteriaDraft, ScenarioDraft } from '../types';
 
 export type ScenarioFormDraft = {

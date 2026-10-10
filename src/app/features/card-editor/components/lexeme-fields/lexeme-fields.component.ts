@@ -12,7 +12,7 @@ import { lookupEnglishIpa } from '../../../../core/domain/ipa/ipa-en-lookup.util
 import { pinyinToIpa } from '../../../../core/domain/chinese/pinyin/pinyin-to-ipa.utils';
 import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import type { ContentLanguage } from '../../../../core/models';
-import type { ScriptCode } from '../../../../core/models/phonetic-content.types';
+import type { ScriptCode } from '../../../../core/models';
 import {
   defaultScriptForLanguages,
   isEnLearningPair,

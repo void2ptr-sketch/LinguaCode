@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 
 import type { CardIndexEntry, LanguagePair } from '../../../../core/models';
-import type { LegacyScenario } from '../../../models/scenario.types';
+import type { LegacyScenario } from '../../../models';
 import type { CardSearchService } from '../../cards/search/card-search.service';
 import {
   DEFAULT_CRITERIA_LIMIT,

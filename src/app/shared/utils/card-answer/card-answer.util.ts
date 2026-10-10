@@ -1,5 +1,5 @@
 import { Card, DrawCard, isOptionCard, OptionCard, ReadingCard } from '../../../core/models';
-import type { CardDirection } from '../../../core/models/language-pair.types';
+import type { CardDirection, PhoneticLexeme } from '../../../core/models';
 import {
   checkDrawCardAnswer,
   type HanziModelResolver,
@@ -20,7 +20,6 @@ import {
   resolveIpaString,
   resolveRomanizationReading,
 } from '../../../core/domain/phonetic/phonetic-lexeme.utils';
-import type { PhoneticLexeme } from '../../../core/models/phonetic-content.types';
 import type { ResolvedOptionCard } from '../../../core/models';
 import { CardAnswerState } from '../../types';
 

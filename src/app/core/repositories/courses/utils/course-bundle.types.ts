@@ -1,8 +1,7 @@
 import type { Card } from '../../../models';
 import type { Course, Lesson } from '../../../models';
 import type { Scenario } from '../../../models';
-import type { CardIndexMetaOverride } from '../../../models/card-index.types';
-
+import type { CardIndexMetaOverride } from '../../../models';
 /**
  * A self-contained JSON package for exporting a course from localStorage to repository seed files.
  *

@@ -1,11 +1,7 @@
 import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../core/models';
 import type { CodeHighlightLanguage } from '../../../core/models';
-import type {
-  DrawPracticeMode,
-  DrawCharacterTarget,
-} from '../../../core/models/draw-practice.types';
-import type { ToneMark } from '../../../core/models/phonetic-content.types';
-import { CardDirection } from '../../../core/models/language-pair.types';
+import type { DrawPracticeMode, DrawCharacterTarget, ToneMark } from '../../../core/models';
+import { CardDirection } from '../../../core/models';
 import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 

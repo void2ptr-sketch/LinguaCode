@@ -1,8 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 
 import type { Card, CardSearchCriteria, CardSearchPage } from '../../../models';
-import type { CardIndexEntry } from '../../../models/card-index.types';
-
+import type { CardIndexEntry } from '../../../models';
 import { CardsApiService } from '../api/cards-api.service';
 import { CardsCatalogMockHandler } from '../../../api/cards/cards-catalog.mock.handler';
 

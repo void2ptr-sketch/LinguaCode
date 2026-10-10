@@ -1,14 +1,6 @@
 import type { LanguagePair } from '../../models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
-import type {
-  CjkLearningPreferences,
-  PhoneticPreferences,
-} from '../../models/phonetic-content.types';
-import type {
-  UserLanguagePairEntry,
-  UserLanguagePairSettings,
-} from '../../models/user-language-pair.types';
-import type { UserPreferences } from '../../models/user.types';
+import { DEFAULT_LANGUAGE_PAIR, DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES } from '../../models';
+import type { CjkLearningPreferences, PhoneticPreferences, UserLanguagePairEntry, UserLanguagePairSettings, UserPreferences } from '../../models';
 import { isAllowedFontSize, sanitizeTheme } from '../../security';
 import { normalizeColorScheme } from '../../theme/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../../repositories/cards/utils/card-focus-preference.utils';
@@ -25,11 +17,6 @@ import {
   shouldShowPalladius,
 } from '../phonetic/phonetic-preferences.utils';
 import { normalizeLearningSessionPreferences } from '../learning/learning-session.utils';
-import {
-  DEFAULT_CJK_LEARNING_PREFERENCES,
-  DEFAULT_PHONETIC_PREFERENCES,
-} from '../../models/phonetic-content.types';
-
 type LegacyUserPreferences = Partial<UserPreferences> & {
   languagePair?: Partial<LanguagePair>;
   cjkLearning?: Partial<CjkLearningPreferences>;

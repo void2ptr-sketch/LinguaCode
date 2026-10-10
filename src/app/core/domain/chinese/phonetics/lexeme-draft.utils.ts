@@ -6,7 +6,7 @@ import {
   mergeLexeme,
   parseIpaVariants,
 } from '../../phonetic/phonetic-lexeme.utils';
-import type { PhoneticLexeme, ScriptCode } from '../../../models/phonetic-content.types';
+import type { PhoneticLexeme, ScriptCode } from '../../../models';
 import { sanitizePlainText } from '../../../security';
 
 export type LexemeDraftFields = {

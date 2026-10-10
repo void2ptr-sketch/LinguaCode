@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import type { HanziCharacterJson } from '../models/hanzi-character.types';
+import type { HanziCharacterJson } from '../models';
 import { HanziDataService } from './hanzi-data.service';
 
 const REN_JSON: HanziCharacterJson = {

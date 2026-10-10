@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
-import type { HanziPoint, HanziQuizOptions } from '../../models/hanzi-character.types';
+import type { HanziPoint, HanziQuizOptions } from '../../models';
 import type { HanziCharacterModel, HanziStrokeModel } from '../../models/hanzi-character.model';
 
 describe('hanzi-stroke-match.utils', () => {

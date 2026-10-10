@@ -16,11 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import type {
-  JourneyLocationNode,
-  JourneyContentType,
-  ExplorerLevelResult,
-} from '../../../../core/models/journey.types';
+import type { JourneyLocationNode, JourneyContentType, ExplorerLevelResult } from '../../../../core/models';
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';

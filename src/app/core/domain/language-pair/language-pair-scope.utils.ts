@@ -1,7 +1,5 @@
 import type { LanguagePair } from '../../models';
-import type { CourseIndexEntry } from '../../models/course-index.types';
-import type { ScenarioIndexEntry } from '../../models/scenario-index.types';
-import type { ScenarioSearchCriteria } from '../../models/scenario-index.types';
+import type { CourseIndexEntry, ScenarioIndexEntry, ScenarioSearchCriteria } from '../../models';
 import { formatLanguagePair } from './language-pair.utils';
 
 /**

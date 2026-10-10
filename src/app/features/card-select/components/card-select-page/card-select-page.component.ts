@@ -10,8 +10,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import type { CardDirection } from '../../../../core/models/language-pair.types';
-import type { CardDifficulty } from '../../../../core/models/card-index.types';
+import type { CardDirection, CardDifficulty } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
 import { cardSupportsSessionDirection } from '../../../../core/repositories/cards/utils/card-direction.utils';
 import {

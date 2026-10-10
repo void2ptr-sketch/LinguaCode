@@ -1,6 +1,5 @@
 import type { Card } from '../../../models';
-import type { LegacyScenario } from '../../../models/scenario.types';
-
+import type { LegacyScenario } from '../../../models';
 import {
   getCardSeedCache,
   getCourseSeedCache,

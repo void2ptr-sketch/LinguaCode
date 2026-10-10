@@ -1,4 +1,4 @@
-import type { LearningProficiencyLevel } from '../../core/models/learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../../core/models';
 import type { DrawAnswerPayload } from './draw-answer.types';
 
 export type { DrawAnswerPayload } from './draw-answer.types';

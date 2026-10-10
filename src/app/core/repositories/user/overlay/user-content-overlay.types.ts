@@ -2,8 +2,7 @@ import type { Card } from '../../../models';
 import type { Course, Lesson } from '../../../models';
 import type { Scenario } from '../../../models';
 
-import type { CardIndexMetaOverride } from '../../../models/card-index.types';
-
+import type { CardIndexMetaOverride } from '../../../models';
 /** Current version of the user content overlay schema. */
 export const USER_CONTENT_OVERLAY_VERSION = 1 as const;
 

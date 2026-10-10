@@ -1,4 +1,4 @@
-import type { FacetCount } from '../../../../core/models/card-search.types';
+import type { FacetCount } from '../../../../core/models';
 
 /**
  * Ordered list of catalog tag theme IDs.

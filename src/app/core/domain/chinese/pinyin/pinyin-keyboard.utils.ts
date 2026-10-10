@@ -1,4 +1,4 @@
-import type { ToneMark } from '../../../models/phonetic-content.types';
+import type { ToneMark } from '../../../models';
 import { applyToneMarkToVowel, applyToneToLastVowelInSyllable } from '../answers/tone-mark.utils';
 import { stripPinyinTones } from './cjk-romanization.utils';
 

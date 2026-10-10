@@ -1,10 +1,6 @@
-import {
-  HANZI_CHARACTER_BOUNDS,
-  type HanziCanvasTransform,
-  type HanziCharacterJson,
-  type HanziPoint,
-  type HanziPositionerOptions,
-} from '../../models/hanzi-character.types';
+import type { HanziCanvasTransform, HanziPositionerOptions } from '../../models';
+import type { HanziCharacterJson, HanziPoint } from '../../models/hanzi-character.types';
+import { HANZI_CHARACTER_BOUNDS } from '../../models/hanzi-character.types';
 
 const PRE_SCALED_WIDTH = HANZI_CHARACTER_BOUNDS.maxX - HANZI_CHARACTER_BOUNDS.minX;
 const PRE_SCALED_HEIGHT = HANZI_CHARACTER_BOUNDS.maxY - HANZI_CHARACTER_BOUNDS.minY;

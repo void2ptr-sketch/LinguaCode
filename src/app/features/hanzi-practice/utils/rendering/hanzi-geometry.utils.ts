@@ -1,4 +1,4 @@
-import type { HanziPoint } from '../../models/hanzi-character.types';
+import type { HanziPoint } from '../../models';
 
 /**
  * Calculates the arithmetic mean of the given numeric values.

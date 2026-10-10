@@ -40,13 +40,7 @@ import {
   type HanziTracingFrame,
   type HanziTracingStrokeSample,
 } from '../../';
-import type {
-  DrawCanvasMode,
-  DrawCanvasPoint,
-  DrawMemoryStrokeGrade,
-  DrawStrokePath,
-} from '../../../../core/models/draw-practice.types';
-
+import type { DrawCanvasMode, DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from '../../../../core/models';
 /**
  * A radical hint for the radicals canvas mode.
  *

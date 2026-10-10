@@ -1,12 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import {
-  type ExplorerLevel,
-  type ExplorerLevelResult,
-  type JourneyAnalyticsEvent,
-  type JourneyLocationNode,
-} from '../models/journey.types';
-
+import { type ExplorerLevel, type ExplorerLevelResult, type JourneyAnalyticsEvent, type JourneyLocationNode } from '../models';
 import { UserStore } from '../state/user.store';
 
 const JOURNEY_VISITS_STORAGE_KEY = 'journey_visits';

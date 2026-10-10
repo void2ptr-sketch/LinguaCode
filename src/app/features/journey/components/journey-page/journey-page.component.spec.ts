@@ -11,8 +11,7 @@ import { JourneyAnalyticsService } from '../../../../core/services/journey-analy
 import { LearningResultsStore } from '../../../../core/state';
 import { ContentSeedRepository } from '../../../../core/repositories/content-seed/content-seed.repository';
 import type { CourseWithLessons, Lesson, Scenario } from '../../../../core/models';
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
-
+import type { JourneyLocationNode } from '../../../../core/models';
 function makeLesson(
   id: string,
   title: string,

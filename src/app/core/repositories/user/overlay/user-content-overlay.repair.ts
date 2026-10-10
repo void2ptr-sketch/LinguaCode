@@ -1,13 +1,9 @@
 import type { Course, Scenario } from '../../../models';
-import type { LanguagePair } from '../../../models/language-pair.types';
-import type { ScenarioCardSource } from '../../../models/scenario-card-source.types';
-
+import type { LanguagePair, ScenarioCardSource, CourseAuthoring } from '../../../models';
 import { normalizeCourseAuthoring } from '../../courses/utils/course-authoring.utils';
 import { normalizeLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 import type { UserContentOverlay } from './user-content-overlay.types';
 import { readUserContentOverlay, writeUserContentOverlay } from './user-content-overlay.storage';
-import type { CourseAuthoring } from '../../../models/course-authoring.types';
-
 /** Заголовок курса «Собеседование на языке Perl» для идентификации в оверлее. */
 export const PERL_INTERVIEW_COURSE_TITLE = 'Собеседование на языке Perl';
 

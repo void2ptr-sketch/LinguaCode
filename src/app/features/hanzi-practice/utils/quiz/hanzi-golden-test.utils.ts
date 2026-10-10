@@ -1,5 +1,5 @@
-import type { DrawStrokePath } from '../../../../core/models/draw-practice.types';
-import type { HanziCharacterJson } from '../../models/hanzi-character.types';
+import type { DrawStrokePath } from '../../../../core/models';
+import type { HanziCharacterJson } from '../../models';
 import type { HanziCharacterModel } from '../../models/hanzi-character.model';
 import { buildHanziCharacterModel } from '../../models/hanzi-character.model';
 import { HanziPositioner } from '../positioning/hanzi-positioner';

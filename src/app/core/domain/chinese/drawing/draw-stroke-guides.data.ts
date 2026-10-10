@@ -1,4 +1,4 @@
-import type { DrawStrokeGuide } from '../../../models/draw-practice.types';
+import type { DrawStrokeGuide } from '../../../models';
 
 export const HAN_RADICAL_HINTS: Readonly<Record<string, string>> = {
   好: '女 + 子',

@@ -1,8 +1,4 @@
-import {
-  DEFAULT_LEARNING_PROFICIENCY_LEVEL,
-  LEARNING_PROFICIENCY_LEVEL_IDS,
-  type LearningProficiencyLevel,
-} from '../../models/learning-proficiency.types';
+import { DEFAULT_LEARNING_PROFICIENCY_LEVEL, LEARNING_PROFICIENCY_LEVEL_IDS, type LearningProficiencyLevel } from '../../models';
 
 const LEGACY_PROFICIENCY_LEVEL_ALIASES: Readonly<Record<string, LearningProficiencyLevel>> = {
   'new-to-chinese': 'new-to-language',

@@ -6,7 +6,7 @@ import type {
   ScenarioCardSource,
   ScenarioCardSort,
 } from '../../../models';
-import type { LegacyScenario } from '../../../models/scenario.types';
+import type { LegacyScenario } from '../../../models';
 import { normalizeLanguagePair } from '../../../domain/language-pair/language-pair.utils';
 
 import { matchesCardIndexEntry } from '../../cards/search/card-search.utils';

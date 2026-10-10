@@ -5,8 +5,7 @@ import {
   computeContentTypes,
 } from './journey-nodes.utils';
 import type { CourseWithLessons, Scenario, CardBase } from '../../models';
-import type { JourneyLocationNode } from '../../models/journey.types';
-
+import type { JourneyLocationNode } from '../../models';
 describe('journey-nodes.utils', () => {
   describe('buildScenarioMap', () => {
     it('should create a map from scenario array', () => {

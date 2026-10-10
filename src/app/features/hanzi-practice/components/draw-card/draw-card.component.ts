@@ -33,12 +33,7 @@ import { HanziDataService } from '../../services/hanzi-data.service';
 import { gradeHanziMemoryStrokes } from '../../utils/validation/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
-import {
-  DRAW_CANVAS_MODE_LABELS,
-  DRAW_CANVAS_MODES,
-  type DrawCanvasMode,
-  type DrawStrokePath,
-} from '../../../../core/models/draw-practice.types';
+import { DRAW_CANVAS_MODE_LABELS, DRAW_CANVAS_MODES, type DrawCanvasMode, type DrawStrokePath } from '../../../../core/models';
 import { DrawCanvasComponent } from '../draw-canvas/draw-canvas.component';
 import { LexemeDisplayComponent } from '../../../../shared/ui/chinese/lexeme-display/lexeme-display.component';
 import { ToneColoredTextComponent } from '../../../../shared/ui/chinese/tone-colored-text/tone-colored-text.component';

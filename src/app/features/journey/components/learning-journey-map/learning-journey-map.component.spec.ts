@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 import { LearningJourneyMapComponent } from './learning-journey-map.component';
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import type { JourneyLocationNode } from '../../../../core/models';
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 

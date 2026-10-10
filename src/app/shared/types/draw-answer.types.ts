@@ -1,6 +1,4 @@
-import type { DrawCanvasMode } from '../../core/models/draw-practice.types';
-import type { DrawStrokePath } from '../../core/models/draw-practice.types';
-
+import type { DrawCanvasMode, DrawStrokePath } from '../../core/models';
 /**
  * Payload submitted by the user when answering a draw card.
  *

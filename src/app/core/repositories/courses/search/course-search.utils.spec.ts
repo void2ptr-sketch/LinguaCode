@@ -1,4 +1,4 @@
-import type { CourseIndexEntry } from '../../../models/course-index.types';
+import type { CourseIndexEntry } from '../../../models';
 import { matchesCourseIndexEntry } from './course-search.utils';
 
 const baseEntry: CourseIndexEntry = {

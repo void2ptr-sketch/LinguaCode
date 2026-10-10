@@ -1,7 +1,6 @@
 import type { CardSearchCriteria, ContentLanguage, LanguagePair } from '../../models';
-import type { CardIndexEntry } from '../../models/card-index.types';
-import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
-
+import type { CardIndexEntry } from '../../models';
+import { DEFAULT_LANGUAGE_PAIR } from '../../models';
 const CONTENT_LANGUAGES: readonly ContentLanguage[] = ['en', 'zh', 'ru', 'perl', 'java', 'cpp'];
 
 /**

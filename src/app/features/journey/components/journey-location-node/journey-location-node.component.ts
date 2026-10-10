@@ -11,7 +11,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import type { JourneyLocationNode } from '../../../../core/models';
 import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
 
 /** Иконки Material для типов контента. */

@@ -11,7 +11,7 @@ import {
   buildJourneyNodes,
   buildScenarioMap,
 } from '../../../../core/domain/journey/journey-nodes.utils';
-import type { JourneyLocationNode } from '../../../../core/models/journey.types';
+import type { JourneyLocationNode } from '../../../../core/models';
 import type { CardBase } from '../../../../core/models';
 import type { CourseWithLessons } from '../../../../core/models';
 

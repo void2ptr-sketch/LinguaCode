@@ -9,8 +9,7 @@ import type {
   SymbolCard,
   TimedCard,
 } from '../../../models';
-import type { CardDirection } from '../../../models/language-pair.types';
-
+import type { CardDirection } from '../../../models';
 type LegacyMemoryPair = {
   front?: string;
   back?: string;
