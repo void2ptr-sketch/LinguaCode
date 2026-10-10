@@ -29,8 +29,8 @@ import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
 } from '../../../../core/repositories/chinese/radical-component-color.utils';
-import { HanziDataService } from '../../../../core/hanzi-engine/hanzi-data.service';
-import { gradeHanziMemoryStrokes } from '../../../../core/hanzi-engine/hanzi-memory-validation.utils';
+import { HanziDataService } from '../../../../features/hanzi-practice/hanzi-data.service';
+import { gradeHanziMemoryStrokes } from '../../../../features/hanzi-practice/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {

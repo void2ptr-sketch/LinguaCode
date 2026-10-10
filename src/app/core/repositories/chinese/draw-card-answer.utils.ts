@@ -1,8 +1,8 @@
 import type { DrawCard } from '../../models';
 import type { LearningProficiencyLevel } from '../../models/learning-proficiency.types';
 import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
-import type { HanziCharacterModel } from '../../hanzi-engine/hanzi-character.model';
-import { validateHanziMemoryStrokes } from '../../hanzi-engine/hanzi-memory-validation.utils';
+import type { HanziCharacterModel } from '../../../features/hanzi-practice/hanzi-character.model';
+import { validateHanziMemoryStrokes } from '../../../features/hanzi-practice/hanzi-memory-validation.utils';
 import { isHanCharacter, resolveDrawCharacterTargets } from './draw-card.utils';
 
 /** Резолвер для получения модели иероглифа по строке. */

@@ -1,4 +1,4 @@
-import type { LearningProficiencyLevel } from '../models/learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../../core/models/learning-proficiency.types';
 import type { DrawStrokePath } from '../../shared/ui/draw-canvas/draw-canvas.types';
 import type { HanziCharacterModel } from './hanzi-character.model';
 import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from './hanzi-character.types';

@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core';
 
-import type { LearningProficiencyLevel } from '../models/learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../../core/models/learning-proficiency.types';
 import {
   DEFAULT_HANZI_QUIZ_OPTIONS,
   type HanziPoint,

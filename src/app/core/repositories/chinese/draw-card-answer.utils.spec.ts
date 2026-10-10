@@ -1,7 +1,7 @@
 import type { DrawCard } from '../../models';
-import type { HanziCharacterJson } from '../../hanzi-engine/hanzi-character.types';
-import { buildHanziCharacterModel } from '../../hanzi-engine/hanzi-character.model';
-import { HanziPositioner } from '../../hanzi-engine/hanzi-positioner';
+import type { HanziCharacterJson } from '../../../features/hanzi-practice/hanzi-character.types';
+import { buildHanziCharacterModel } from '../../../features/hanzi-practice/hanzi-character.model';
+import { HanziPositioner } from '../../../features/hanzi-practice/hanzi-positioner';
 import { checkDrawCardAnswer } from './draw-card-answer.utils';
 import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
 
@@ -68,7 +68,7 @@ describe('draw-card-answer.utils', () => {
 
   const getHanziModel = (character: string) => (character === '人' ? renModel : null);
 
-  it('should validate memory mode by hanzi-engine grading with proficiency', () => {
+  it('should validate memory mode by hanzi-practice grading with proficiency', () => {
     const payload = alignedRenPayload();
     expect(checkDrawCardAnswer(drawCard, true, payload, 'beginner', getHanziModel)).toBe(true);
     expect(checkDrawCardAnswer(drawCard, true, payload, 'professional', getHanziModel)).toBe(true);

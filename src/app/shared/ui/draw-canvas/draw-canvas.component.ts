@@ -16,21 +16,21 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { paintCalligraphyPolyline } from '../../../core/repositories/chinese/draw-calligraphy-paint.utils';
-import { HanziDataService } from '../../../core/hanzi-engine/hanzi-data.service';
+import { HanziDataService } from '../../../features/hanzi-practice/hanzi-data.service';
 import { UserStore } from '../../../core/state';
-import type { HanziCharacterModel } from '../../../core/hanzi-engine/hanzi-character.model';
-import type { HanziLoadState, HanziPoint } from '../../../core/hanzi-engine/hanzi-character.types';
-import { HanziPositioner } from '../../../core/hanzi-engine/hanzi-positioner';
+import type { HanziCharacterModel } from '../../../features/hanzi-practice/hanzi-character.model';
+import type { HanziLoadState, HanziPoint } from '../../../features/hanzi-practice/hanzi-character.types';
+import { HanziPositioner } from '../../../features/hanzi-practice/hanzi-positioner';
 import {
   resolveRadicalComponentCellCenter,
   resolveRadicalComponentSvgTransform,
-} from '../../../core/hanzi-engine/hanzi-radical-layout.utils';
+} from '../../../features/hanzi-practice/hanzi-radical-layout.utils';
 import {
   applyHanziCanvasPathTransform,
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
-} from '../../../core/hanzi-engine/hanzi-render.utils';
+} from '../../../features/hanzi-practice/hanzi-render.utils';
 import {
   prepareHanziTracingSamples,
   resolveHanziTracingFrame,
@@ -38,11 +38,11 @@ import {
   tracingRevealProgress,
   type HanziTracingFrame,
   type HanziTracingStrokeSample,
-} from '../../../core/hanzi-engine/hanzi-tracing-animation.utils';
+} from '../../../features/hanzi-practice/hanzi-tracing-animation.utils';
 import {
   resolveHanziHintStrokeFrame,
   type HanziHintStrokeFrame,
-} from '../../../core/hanzi-engine/hanzi-hint-animation.utils';
+} from '../../../features/hanzi-practice/hanzi-hint-animation.utils';
 import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from './draw-canvas.types';
 
