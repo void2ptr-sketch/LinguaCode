@@ -126,7 +126,7 @@ erDiagram
     }
 ```
 
-> `Lesson` и `Course` — **реализовано** (G11). Полная union `Card` — см. `card.types.ts` (9 kind).
+> `Lesson` и `Course` — **реализовано** (G11). Полная union `Card` — см. `card.types.ts` (10 kind).
 
 ### Сущности
 

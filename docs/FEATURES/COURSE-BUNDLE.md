@@ -46,8 +46,7 @@ npm run import:course-bundle -- --bundle ./path/to/course.linguacode-course.json
    - `public/data/courses/{slug}-course.json`
    - `public/data/scenarios/{slug}-scenarios.json`
    - `public/data/{slug}-cards.json`
-5. Обновляет `public/data/card-index-meta.json` (добавляет meta для новых карточек).
-6. Обновляет `public/data/content-manifest.json` (добавляет пути к новым файлам).
+5. Обновляет `public/data/content-manifest.json` (добавляет пути к новым файлам).
 
 ### Проверка после импорта
 
@@ -66,7 +65,6 @@ npm run test:ci
 - [ ] `public/data/courses/{slug}-course.json`
 - [ ] `public/data/scenarios/{slug}-scenarios.json`
 - [ ] `public/data/{slug}-cards.json`
-- [ ] `public/data/card-index-meta.json` (изменения)
 - [ ] `public/data/content-manifest.json` (изменения)
 
 ## Формат CourseBundle

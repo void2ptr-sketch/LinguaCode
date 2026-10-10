@@ -133,7 +133,7 @@ type ScenarioCardSource =
 
 ```
 src/app/shared/pagination/                   # PageRequest, PageResponse, utils, UiPaginationComponent
-src/app/shared/card-catalog-search/          # поиск, фильтры, ScenarioCardPickerComponent
+src/app/features/card-catalog-search/        # поиск, фильтры, ScenarioCardPickerComponent
 src/app/core/models/                         # card-index.types, card-search.types
 src/app/core/repositories/user/overlay/user-content-overlay.*     # overlay model, resolver, migration
 src/app/core/repositories/content-seed/content-seed.repository.ts # manifest preload

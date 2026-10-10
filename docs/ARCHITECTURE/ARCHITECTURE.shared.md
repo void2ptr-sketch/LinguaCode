@@ -10,21 +10,21 @@
 
 | Область         | Путь                                                           | Назначение                                      |
 | --------------- | -------------------------------------------------------------- | ----------------------------------------------- |
-| Card host       | `shared/components/card-host`                                  | Рендер `Card` по `kind`; `memoryBoardNonce`     |
-| Focus shell     | `shared/components/card-focus-shell`                           | Fullscreen overlay; reparent host → `body`      |
-| Quiz cards      | `shared/components/cards/*`                                    | Select, memory, keyboard, draw, reading…        |
-| Pinyin keyboard | `shared/components/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme          | `shared/components/lexeme-display`                             | G9/G10 отображение лексем                         |
-| CJK ruby        | `shared/components/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
-| IPA             | `shared/components/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
-| Tone colors     | `shared/components/tone-colored-text`                          | Цветовая маркировка тонов                           |
-| Pickers         | `shared/course-picker`, `lesson-picker`, `scenario-picker`     | Выбор программы/урока/сценария                  |
-| Quick switcher  | `shared/components/active-language-pair-switcher`              | Быстрое переключение активной языковой пары     |
-| Display matrix  | `shared/components/course-display-settings-matrix`             | Матрица «задание / ответы» (G9g-e)              |
-| Pagination      | `shared/pagination`                                            | `UiPaginationComponent`, `PageRequest`          |
-| Catalog search  | `shared/card-catalog-search`                                   | Фильтры и store поиска карточек                 |
-| Utils           | `shared/utils/card-answer.utils`                               | Проверка ответов (CJK, IPA, reading fuzzy)      |
-| Markdown        | `shared/components/markdown-field`                             | Поле ввода Markdown                             |
+| Card host       | `shared/ui/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
+| Focus shell     | `shared/ui/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
+| Quiz cards      | `shared/ui/cards/`                                             | Select, memory, keyboard, draw, reading…        |
+| Pinyin keyboard | `shared/ui/chinese/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
+| Lexeme          | `shared/ui/chinese/lexeme-display`                             | G9/G10 отображение лексем                         |
+| CJK ruby        | `shared/ui/chinese/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
+| IPA             | `shared/ui/chinese/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
+| Tone colors     | `shared/ui/chinese/tone-colored-text`                          | Цветовая маркировка тонов                           |
+| Pickers         | `shared/ui/course-picker`, `shared/ui/lesson-picker`, `shared/ui/scenario-picker` | Выбор программы/урока/сценария                  |
+| Quick switcher  | `shared/ui/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
+| Display matrix  | `shared/ui/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
+| Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
+| Catalog search  | `features/card-catalog-search`                                 | Фильтры и store поиска карточек                 |
+| Utils           | `shared/utils/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
+| Markdown        | `shared/utils/markdown-field`                                  | Поле ввода Markdown                             |
 
 ## CardHost — маршрутизация по kind
 
@@ -52,7 +52,7 @@ flowchart LR
 | `reading`                           | `matchesReadingCardSelection` — fuzzy match по pinyin / palladius / primary (`readingCandidateTexts`) |
 | `keyboard`                          | `answerMode`: plain / pinyin / palladius / ipa / han — отдельные normalizers                          |
 | `memory`                            | все пары найдены                                                                                      |
-| `draw`                              | `draw-card-answer.utils` + Hanzi Engine grading                                                       |
+| `draw`                              | `hanzi-card-answer/` + Hanzi Engine grading                                                           |
 
 ## Pinyin keyboard
 
@@ -72,33 +72,46 @@ flowchart LR
 ```mermaid
 classDiagram
   class CardHostComponent {
-    +card: Card (required)
-    +fontSize: 'sm' | 'md' | 'lg'
-    +direction: CardDirection
-    +feedback: CardFeedback
-    +selectedIndex: number | null
-    +answerText: string
-    +memoryComplete: boolean
-    +memoryBoardNonce: number
-    +drawSubmitted: boolean
-    +drawAnswer: DrawAnswerPayload | null
-    +focusControlsEnabled: boolean
-    +autoFocusFullscreen: boolean
+    +card: input.required~Card~
+    +fontSize: input~'sm' | 'md' | 'lg'~
+    +direction: input~CardDirection~
+    +feedback: input~CardFeedback~
+    +selectedIndex: input~number | null~
+    +answerText: input~string~
+    +memoryComplete: input~boolean~
+    +memoryBoardNonce: input~number~
+    +drawSubmitted: input~boolean~
+    +drawAnswer: input~DrawAnswerPayload | null~
+    +focusControlsEnabled: input~boolean~
+    +autoFocusFullscreen: input~boolean~
+    +optionSelected: output~number~
+    +answerTextChange: output~string~
+    +memoryCompleteChange: output~boolean~
+    +drawSubmittedChange: output~boolean~
+    +drawAnswerChange: output~DrawAnswerPayload | null~
+    +timeExpired: output~void~
+    +checkAnswer: output~void~
+    +nextCard: output~void~
   }
   class CardFocusShellComponent {
-    +fullscreen: boolean
+    +focusControlsEnabled: input~boolean~
+    +autoEnterFullscreen: input~boolean~
+    +fullscreen: signal~boolean~
     +reparentToBody()
   }
   class LexemeDisplayComponent {
-    +lexeme: PhoneticLexeme | null
-    +surface: LexemeDisplaySurface
-    +romanizations: RomanizationSystem[] | null
-    +showIpa: boolean | null
-    +inline: boolean
+    +lexeme: input~PhoneticLexeme | null~
+    +fallbackText: input~string~
+    +surface: input~LexemeDisplaySurface~
+    +romanizations: input~RomanizationSystem[] | null~
+    +showIpa: input~boolean | null~
+    +inline: input~boolean~
+    +toneColorEnabled: input~boolean | null~
   }
   class PinyinKeyboardComponent {
-    +value: string
-    +valueChange
+    +value: input~string~
+    +disabled: input~boolean~
+    +valueChange: output~string~
   }
   CardHostComponent --> CardFocusShellComponent
   CardHostComponent --> LexemeDisplayComponent : в дочерних card components

@@ -18,6 +18,9 @@ features/home/
 │   └── learning-lesson-roadmap/
 ├── services/
 │   └── learning-dashboard.service.ts
+├── types/
+│   ├── home-tab.types.ts
+│   └── learning-dashboard.types.ts
 └── home-learning.smoke.spec.ts
 ```
 

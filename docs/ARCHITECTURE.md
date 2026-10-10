@@ -25,9 +25,13 @@ src/app/
 ### `core`
 
 - **layout/** — shell-приложение (header, navigation, main-layout, footer).
-- **models/** — доменные типы (`User`, `Card`, `Scenario`, `LearningResult`, `CardIndexEntry`).
+- **models/** — доменные типы, разбитые по подпапкам: `cards/`, `scenarios/`, `courses/`, `learning/`, `user/`, `common/`.
 - **state/** — глобальные signal-сервисы (пользователь, сессия, настройки).
 - **api/** — HttpClient, interceptors, базовые типы ответов API.
+- **repositories/** — data-access: repository, api, storage, search, content-seed, user-content overlay.
+- **security/** — санитизация ввода.
+- **theme/** — AppThemeService, colorScheme.
+- **hanzi-engine/** — offline stroke-data + TypeScript-движок для draw-карточек.
 
 Не импортировать `features/` из `core/`.
 
@@ -128,17 +132,17 @@ Shell-приложение. Контент фич — через `<router-outlet
 export const routes: Routes = [
   {
     path: '',
-    component: MainLayoutComponent,
+    loadComponent: () => import('./core/layout/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
-      { path: '', redirectTo: 'home', pathMatch: 'full' },
-      { path: 'home', loadComponent: () => import('./features/home/...') },
-      { path: 'cards/select', loadComponent: () => import('./features/card-select/...') },
-      { path: 'courses', loadComponent: () => import('./features/course-catalog/...') },
-      { path: 'tools/scenario-builder', loadComponent: () => import('./features/scenario-builder/...') },
-      { path: 'tools/courses', loadComponent: () => import('./features/course-builder/...') },
-      { path: 'tools/cards', loadComponent: () => import('./features/card-editor/...') },
-      { path: 'help', loadComponent: () => import('./core/layout/pages/help-page/...') },
-      { path: 'user', loadComponent: () => import('./core/layout/pages/user-page/...') },
+      { path: '', redirectTo: 'journey', pathMatch: 'full' },
+      { path: 'home', loadComponent: () => import('./features/home/components/home-page/home-page.component').then(m => m.HomePageComponent) },
+      { path: 'cards/select', loadComponent: () => import('./features/card-select/components/card-select-page/card-select-page.component').then(m => m.CardSelectPageComponent) },
+      { path: 'courses', loadComponent: () => import('./features/course-catalog/components/course-catalog-page/course-catalog-page.component').then(m => m.CourseCatalogPageComponent) },
+      { path: 'tools/scenario-builder', loadComponent: () => import('./features/scenario-builder/components/scenario-builder-page/scenario-builder-page.component').then(m => m.ScenarioBuilderPageComponent) },
+      { path: 'tools/courses', loadComponent: () => import('./features/course-builder/components/course-builder-page/course-builder-page.component').then(m => m.CourseBuilderPageComponent) },
+      { path: 'tools/cards', loadComponent: () => import('./features/card-editor/components/card-editor-page/card-editor-page.component').then(m => m.CardEditorPageComponent) },
+      { path: 'help', loadComponent: () => import('./core/layout/pages/help-page/help-page.component').then(m => m.HelpPageComponent) },
+      { path: 'user', loadComponent: () => import('./core/layout/pages/user-page/user-page.component').then(m => m.UserPageComponent) },
       { path: '**', redirectTo: 'home' },
     ],
   },
@@ -146,7 +150,7 @@ export const routes: Routes = [
 ```
 
 - Фичи подключаются **lazy** (`loadComponent`).
-- Корневой маршрут `''` редиректит на `/home` (dashboard).
+- Корневой маршрут `''` редиректит на `/journey` (Journey Map); fallback `**` → `/home` (dashboard).
 - `menu-cards` в header ведёт на прохождение карточек (`/cards/select`); в sidebar — пункт **«Обучение»**.
 - `menu-tools` в header ведёт на инструменты; в sidebar — **«Карточки»** (`/tools/cards`) и **«Конструктор сценариев»**.
 - Все маршруты — внутри `MainLayoutComponent` (shell).

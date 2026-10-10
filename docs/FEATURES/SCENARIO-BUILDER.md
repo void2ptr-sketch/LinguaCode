@@ -162,8 +162,9 @@ Scroll — только в `mat-dialog-content`; footer с кнопками фи
 ## Связанные пути в коде
 
 ```
-src/app/core/models/scenarios/scenario-index.types.ts
+src/app/core/models/scenarios/scenario.types.ts
 src/app/core/models/scenarios/scenario-card-source.types.ts
+src/app/core/models/scenarios/scenario-index.types.ts
 src/app/core/repositories/scenarios/api/scenarios-api.service.ts
 src/app/core/repositories/scenarios/search/scenario-search.service.ts
 src/app/core/repositories/scenarios/storage/scenarios-storage.ts
@@ -174,7 +175,7 @@ src/app/features/scenario-builder/
 src/app/features/scenario-builder/components/scenario-builder-dialog/
 src/app/features/scenario-builder/components/scenario-editor-form/
 src/app/features/scenario-builder/utils/scenario-form-draft.utils.ts
-src/app/shared/scenario-picker/
+src/app/shared/ui/scenario-picker/
 src/app/features/card-select/
 src/app/features/card-editor/components/card-editor-dialog/             # образец
 ```

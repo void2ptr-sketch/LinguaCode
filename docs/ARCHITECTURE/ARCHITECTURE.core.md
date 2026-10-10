@@ -14,9 +14,10 @@ src/app/core/
 ├── domain/         # чистые утилиты домена без DI и Angular
 │                   # (chinese, ipa, phonetic, language-pair, learning, journey, lesson,
 │                   #  code-highlight, keyboard-answer-mode, user)
+├── hanzi-engine/   # offline stroke-data + TypeScript-движок для draw-карточек
 ├── layout/         # shell, navigation, user/help pages
 ├── models/         # типы домена (см. DOMAIN.md)
-│                   # (common, cards, scenarios, courses, learning, phonetics, user — barrel на каждом уровне)
+│                   # cards/, scenarios/, courses/, learning/, user/, common/ — barrel на каждом уровне
 ├── repositories/   # data-access: repository, api, storage, search, content-seed, user-content overlay
 │                   # (cards, courses, scenarios, content-seed, user)
 ├── security/       # санитизация ввода
@@ -26,12 +27,19 @@ src/app/core/
 
 ## Компоненты layout
 
-| Компонент             | Путь                     | Роль                                                |
-| --------------------- | ------------------------ | --------------------------------------------------- |
-| `MainLayoutComponent` | `layout/main-layout`     | Grid shell + `router-outlet`                        |
-| `HeaderComponent`     | `layout/header`          | Шапка, menu-\*                                      |
-| `NavigationComponent` | `layout/navigation`      | Боковое меню                                        |
-| `UserPageComponent`   | `layout/pages/user-page` | Профиль: имя, уровень подготовки, пары языков, тема |
+| Компонент             | Путь                              | Роль                                                |
+| --------------------- | --------------------------------- | --------------------------------------------------- |
+| `MainLayoutComponent` | `layout/main-layout`              | Grid shell + `router-outlet`                        |
+| `HeaderComponent`     | `layout/header`                   | Шапка, menu-\*                                      |
+| `FooterComponent`     | `layout/footer`                   | Подвал                                              |
+| `NavigationComponent` | `layout/navigation`               | Боковое меню                                        |
+| `MenuCardsComponent`  | `layout/menu-cards`               | Навигация к карточкам и режимам обучения            |
+| `MenuToolsComponent`  | `layout/menu-tools`               | Инструменты                                         |
+| `MenuHelpComponent`   | `layout/menu-help`                | Справка                                             |
+| `MenuUserComponent`   | `layout/menu-user`                | Профиль пользователя                                |
+| `UserPageComponent`   | `layout/pages/user-page`          | Профиль: имя, уровень подготовки, пары языков, тема |
+| `HelpPageComponent`   | `layout/pages/help-page`          | Страница справки                                    |
+| `HelpUsageScenariosPageComponent` | `layout/pages/help-usage-scenarios-page` | Страница сценариев использования |
 
 ## Состояние
 
@@ -58,7 +66,7 @@ src/app/core/
 - **Экспорт из UI**: кнопка «Экспорт файла» в Конструкторе курсов → скачивание `.linguacode-course.json`.
 - **Импорт в репозиторий**: `npm run import:course-bundle -- --bundle <file> --slug <slug>`.
 - **Модуль сбора**: `src/app/core/repositories/courses/utils/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
-- **Документация**: [COURSE-BUNDLE.md](./COURSE-BUNDLE.md).
+- **Документация**: [COURSE-BUNDLE.md](./FEATURES/COURSE-BUNDLE.md).
 
 ```mermaid
 flowchart LR

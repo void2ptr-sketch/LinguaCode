@@ -402,20 +402,20 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 ```
 src/app/core/models/common/language-pair.types.ts
 src/app/core/models/courses/course.types.ts                 # G11: Course (не путать с LanguagePair)
-src/app/core/models/user/user.types.ts                # UserPreferences (G7: languagePairs)
+src/app/core/models/user/user.types.ts                    # UserPreferences (G7: languagePairs)
 src/app/core/models/cards/card-index.types.ts
 src/app/core/domain/language-pair/language-pair.utils.ts
 src/app/core/state/user.store.ts
-src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
+src/app/core/state/user.persistence.ts                    # G7: migration legacy languagePair
 src/app/core/layout/pages/user-page/
-src/app/shared/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
-src/app/features/card-editor/components/card-editor-page/  # «Курс: …» + hint (G8a)
+src/app/features/card-catalog-search/services/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
+src/app/features/card-editor/components/card-editor-page/   # «Курс: …» + hint (G8a)
 src/app/features/card-editor/components/card-editor-page/
-src/app/features/course-builder/                 # G11: конструктор Course
+src/app/features/course-builder/                              # G11: конструктор Course
 src/app/features/scenario-builder/services/scenario-builder.store.ts
-src/app/shared/scenario-picker/scenario-picker.component.ts
-src/app/shared/course-picker/                    # G11: выбор Course на обучении
-src/app/shared/lesson-picker/
+src/app/shared/ui/scenario-picker/scenario-picker.component.ts
+src/app/shared/ui/course-picker/                              # G11: выбор Course на обучении
+src/app/shared/ui/lesson-picker/
 src/app/features/card-select/components/card-select-page/
 public/data/select-cards.json
 ```

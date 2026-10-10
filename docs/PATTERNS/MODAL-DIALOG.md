@@ -302,7 +302,7 @@ this.initialSnapshot.set(serializeDraft(this.draft()));
 | ---------------- | ------------------------- | -------------- |
 | Card Editor      | `card-editor-dialog`      | `960px`        |
 | Scenario Builder | `scenario-builder-dialog` | `1100px`       |
-| Course Builder   | `course-builder-dialog`   | `1100px`       |
+| Course Builder   | `course-builder-dialog`   | `48rem`        |
 | Card Try         | `card-try-dialog`         | `720px`        |
 
 ---
@@ -416,8 +416,8 @@ await this.dialogService.open(cardId);
 | Scenario Builder | `scenario-builder-dialog/`    | Создание/редактирование сценария      |
 | Course Builder   | `course-builder-dialog/`      | Создание/редактирование курса         |
 | Card Try         | `card-try-dialog/`            | Тестовый прогон карточки              |
-| Discard          | `card-editor-discard-dialog/` | Подтверждение закрытия без сохранения |
-| Reset Overlay    | `reset-overlay-dialog/`       | Сброс пользовательских данных         |
+| Discard          | `card-editor/components/card-editor-dialog/` | Подтверждение закрытия без сохранения |
+| Reset Overlay    | `course-builder/components/reset-overlay-dialog/` | Сброс пользовательских данных |
 
 ---
 

@@ -11,16 +11,21 @@
 ```text
 features/card-editor/
 ├── components/
-│   ├── card-editor-page/          # список + фильтры
-│   ├── card-editor-dialog/        # create/edit shell
-│   ├── card-form/                 # shell + kind-forms (G12)
+│   ├── card-editor-page/              # список + фильтры
+│   ├── card-editor-dialog/            # create/edit shell
+│   ├── card-form/                     # shell + kind-forms (G12)
+│   ├── card-form-phonetics-panel/     # фонетические поля формы
+│   ├── card-form-settings-panel/      # настройки формы
+│   ├── card-appearance-fields/        # поля appearance
+│   ├── card-meta-fields/              # поля index meta
+│   ├── card-create-wizard/            # wizard создания (G12)
 │   ├── card-options-editor/
 │   ├── lexeme-fields/
 │   ├── card-preview/
 │   └── card-try-dialog/
 ├── services/
 │   └── card-editor.store.ts
-└── utils/                         # validation, draft, migration
+└── utils/                             # validation, draft, migration
 ```
 
 ## Поток CRUD

@@ -165,7 +165,7 @@ public/data/
 │  │ ensureData():                                        │        │
 │  │   1. CardRepository.ensureLoaded() → merge seed     │        │
 │  │      + user-content overlay (localStorage)           │        │
-│  │   2. GET /data/scenarios/card-index-meta.json        │        │
+│  │   2. card-index-meta загружается из localStorage      │        │
 │  │   3. buildCardIndex() → индекс для поиска            │        │
 │  └──────────────────────────────────────────────────────┘        │
 │                                                                    │
@@ -223,7 +223,7 @@ Seed (файлы на диске)  +  Overlay (localStorage)  =  Итоговы�
 
 ### Overlay в localStorage
 
-Ключ: `lingua-code.user-content-overlay`
+Ключ: `lingua-code.user-content.v1` (`USER_CONTENT_OVERLAY_KEY`)
 
 ```json
 {
@@ -322,7 +322,7 @@ resetContentSeedCache();
 
 ### В браузере
 
-1. Очистить localStorage: `localStorage.removeItem('lingua-code.user-content-overlay')`
+1. Очистить localStorage: `localStorage.removeItem('lingua-code.user-content.v1')`
 2. Перезагрузить страницу — seed загрузится из файлов заново.
 
 ## Добавление новых данных
