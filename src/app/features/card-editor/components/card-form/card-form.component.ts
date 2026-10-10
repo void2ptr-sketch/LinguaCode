@@ -191,6 +191,12 @@ export class CardFormComponent implements OnInit {
     }
   }
 
+  /**
+   * Computed choice card draft (select, reading, timed, symbol, tone).
+   *
+   * @remarks
+   * Returns `null` for code-select cards and non-choice kinds.
+   */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
     if (draft.kind === 'code-select') {
@@ -200,21 +206,36 @@ export class CardFormComponent implements OnInit {
     return cardFormKindGroup(draft.kind) === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
+  /**
+   * Computed code-select card draft, or `null` if the current draft is not a code-select card.
+   */
   readonly codeSelectDraft = computed((): CodeSelectCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'code-select' ? draft : null;
   });
 
+  /**
+   * Computed input card draft (keyboard).
+   *
+   * @remarks
+   * Returns `null` for non-input kinds.
+   */
   readonly inputDraft = computed((): InputCardDraft | null => {
     const draft = this.draft();
     return cardFormKindGroup(draft.kind) === 'input' ? (draft as InputCardDraft) : null;
   });
 
+  /**
+   * Computed memory card draft, or `null` if the current draft is not a memory card.
+   */
   readonly pairsDraft = computed((): MemoryCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'memory' ? draft : null;
   });
 
+  /**
+   * Computed sound card draft, or `null` if the current draft is not a sound card.
+   */
   readonly mediaDraft = computed((): SoundCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;
@@ -493,15 +514,25 @@ export class CardFormComponent implements OnInit {
     return this.allAvailableTabs.slice(offset, offset + this.VISIBLE_TABS_COUNT);
   });
 
-  /** Currently selected tab index (always 0 — tabs scroll, don't switch by index). */
+  /**
+   * Currently selected tab index (always 0 — tabs scroll, don't switch by index).
+   */
   readonly tabGroupSelectedIndex = 0;
 
-  /** Whether there are tabs to the left (scrollable). */
+  /**
+   * Checks whether there are tabs to the left (scrollable).
+   *
+   * @returns `true` if the tab offset is greater than zero.
+   */
   canPrevTabs(): boolean {
     return this.tabOffset() > 0;
   }
 
-  /** Whether there are tabs to the right (scrollable). */
+  /**
+   * Checks whether there are tabs to the right (scrollable).
+   *
+   * @returns `true` if the tab offset is less than the maximum.
+   */
   canNextTabs(): boolean {
     return this.tabOffset() < this.MAX_TAB_OFFSET;
   }

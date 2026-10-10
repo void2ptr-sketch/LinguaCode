@@ -198,6 +198,12 @@ export class LearningJourneyMapComponent implements OnInit, OnDestroy {
     this.viewMode.set(mode);
   }
 
+  /**
+   * Toggles the favorites filter to show only favorite nodes.
+   *
+   * @remarks
+   * When enabled, `filteredNodes` excludes non-favorite nodes.
+   */
   public onToggleFavoritesFilter(): void {
     this.showFavoritesOnly.update((v) => !v);
   }

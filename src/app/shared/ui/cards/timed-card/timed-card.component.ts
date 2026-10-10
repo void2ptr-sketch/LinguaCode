@@ -142,11 +142,24 @@ export class TimedCardComponent implements OnInit, OnDestroy {
     this.clearTimer();
   }
 
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
+  /**
+   * Handles option selection.
+   *
+   * @param index - Zero-based index of the selected option.
+   * @remarks
+   * No-op if feedback is already displayed or time has expired.
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null || this.secondsLeft() <= 0) {
       return;

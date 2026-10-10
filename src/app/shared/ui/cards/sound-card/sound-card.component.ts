@@ -169,6 +169,13 @@ export class SoundCardComponent {
     });
   }
 
+  /**
+   * Handles option selection.
+   *
+   * @param index - Zero-based index of the selected option.
+   * @remarks
+   * No-op if feedback is already displayed (correct/incorrect).
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null) {
       return;

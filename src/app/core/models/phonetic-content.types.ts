@@ -163,6 +163,7 @@ export type PhoneticPreferences = {
  *
  * @remarks
  * Used to sort romanization columns in the card catalog and card display.
+ * Pinyin is shown first, followed by Zhuyin and Palladius.
  */
 export const ROMANIZATION_DISPLAY_ORDER: readonly RomanizationSystem[] = [
   'pinyin',

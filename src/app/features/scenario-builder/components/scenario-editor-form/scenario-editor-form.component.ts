@@ -61,7 +61,12 @@ export class ScenarioEditorFormComponent {
   readonly languages = contentLanguages();
   /** Labels for content languages. */
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
-  /** Card titles indexed by card ID, loaded asynchronously. */
+  /**
+   * Card titles indexed by card ID, loaded asynchronously.
+   *
+   * @remarks
+   * Populated by `refreshCardTitles` when `fixedCardIds` changes.
+   */
   readonly cardTitles = signal<Record<string, string>>({});
 
   constructor() {

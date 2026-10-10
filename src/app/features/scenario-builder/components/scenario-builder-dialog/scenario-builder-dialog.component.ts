@@ -96,10 +96,22 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     this.initialSnapshot.set(serializeScenarioFormDraft(nextDraft));
   }
 
+  /**
+   * Updates the current form draft with a new draft object.
+   *
+   * @param nextDraft - The updated scenario form draft.
+   */
   updateDraft(nextDraft: ScenarioFormDraft): void {
     this.draft.set(nextDraft);
   }
 
+  /**
+   * Saves the current scenario draft.
+   *
+   * @remarks
+   * Creates a new scenario in `create` mode or updates the existing one in `edit` mode.
+   * Closes the dialog with `{ saved: true }` on success.
+   */
   async saveScenario(): Promise<void> {
     const payload = formDraftToScenarioDraft(this.draft());
     const saved =
@@ -112,6 +124,13 @@ export class ScenarioBuilderDialogComponent implements OnInit {
     }
   }
 
+  /**
+   * Cancels the current edit and closes the dialog.
+   *
+   * @remarks
+   * Prompts for confirmation if the draft has unsaved changes.
+   * Closes the dialog with `{ saved: false }` on confirmation.
+   */
   async cancel(): Promise<void> {
     if (!(await this.confirmClose())) {
       return;

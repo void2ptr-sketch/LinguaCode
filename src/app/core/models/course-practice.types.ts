@@ -26,6 +26,12 @@ export type CoursePracticeSettings = {
   allowDifficultyFilter?: boolean;
 };
 
+/**
+ * Default course practice settings applied when no user preferences exist.
+ *
+ * @remarks
+ * Uses `guided` mode with lesson prerequisites enforced; difficulty filter is disabled.
+ */
 export const DEFAULT_COURSE_PRACTICE_SETTINGS: CoursePracticeSettings = {
   mode: 'guided',
   requireLessonForScenarios: true,

@@ -32,14 +32,32 @@ export class LearningProgressComponent {
   /** Per-scenario progress data. */
   readonly scenarioProgress = this.resultsStore.scenarioProgress;
 
+  /**
+   * Clears all learning results for the current user and persists.
+   *
+   * @remarks
+   * Irreversible — resets accuracy, progress, and recent results.
+   */
   clearResults(): void {
     this.resultsStore.clear();
   }
 
+  /**
+   * Returns a display label for a scenario by its ID.
+   *
+   * @param scenarioId - The scenario identifier.
+   * @returns The human-readable scenario label.
+   */
   scenarioLabel(scenarioId: string): string {
     return scenarioDisplayLabel(scenarioId);
   }
 
+  /**
+   * Formats an ISO date string to a locale-aware date-time string.
+   *
+   * @param isoDate - ISO 8601 date string.
+   * @returns Formatted date-time string in `ru-RU` locale.
+   */
   formatDate(isoDate: string): string {
     return new Date(isoDate).toLocaleString('ru-RU');
   }

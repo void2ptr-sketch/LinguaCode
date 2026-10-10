@@ -6,5 +6,10 @@
  */
 export type AppColorScheme = 'light' | 'dark';
 
-/** Default color scheme applied when no user preference exists. */
+/**
+ * Default color scheme applied when no user preference exists.
+ *
+ * @remarks
+ * `light` — standard light mode UI. Switched to `dark` via `AppThemeService` based on user preference or system setting.
+ */
 export const DEFAULT_APP_COLOR_SCHEME: AppColorScheme = 'light';

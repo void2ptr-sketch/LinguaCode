@@ -174,6 +174,13 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
     void this.refreshPreview(this.readCriteriaFromStore());
   }
 
+  /**
+   * Handles limit input changes from the user.
+   *
+   * @param value - The new limit value as a string.
+   * @remarks
+   * Parses the value as a number and emits via `limitChange`. Refreshes the preview.
+   */
   onLimitInput(value: string): void {
     const parsed = Number(value);
     if (!Number.isFinite(parsed)) {
@@ -184,11 +191,25 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
     void this.refreshPreview(this.readCriteriaFromStore());
   }
 
+  /**
+   * Handles sort order changes from the selector.
+   *
+   * @param value - The new sort order.
+   * @remarks
+   * Emits via `sortChange` and refreshes the preview.
+   */
   onSortChange(value: ScenarioCardSort): void {
     this.sortChange.emit(value);
     void this.refreshPreview(this.readCriteriaFromStore());
   }
 
+  /**
+   * Handles seed input changes for random sorting.
+   *
+   * @param value - The new seed string.
+   * @remarks
+   * Emits via `seedChange` and refreshes the preview.
+   */
   onSeedInput(value: string): void {
     this.seedChange.emit(value);
     void this.refreshPreview(this.readCriteriaFromStore());

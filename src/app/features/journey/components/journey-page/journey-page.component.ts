@@ -136,6 +136,12 @@ export class JourneyPageComponent implements OnInit {
     this.nodes.set(nodes);
   }
 
+  /**
+   * Handles location node selection from the journey map.
+   *
+   * @remarks
+   * Currently a placeholder — navigates to the selected scenario or opens detail view.
+   */
   onLocationSelect(): void {
     // TODO: перейти к сценарию или открыть детальную информацию
   }

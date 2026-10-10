@@ -88,7 +88,12 @@ export const TONE_COLOR_SCHEMES: readonly ToneColorScheme[] = [
   },
 ] as const;
 
-/** Default tone color scheme ID applied when no user preference exists. */
+/**
+ * Default tone color scheme ID applied when no user preference exists.
+ *
+ * @remarks
+ * `classic` — Nathan Dummit (2008) palette: red/orange/green/blue/black for tones 1–5.
+ */
 export const DEFAULT_TONE_COLOR_SCHEME_ID: ToneColorSchemeId = 'classic';
 
 /**

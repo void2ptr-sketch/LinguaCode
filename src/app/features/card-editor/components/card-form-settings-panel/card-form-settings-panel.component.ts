@@ -58,6 +58,12 @@ export class CardFormSettingsPanelComponent {
    */
   readonly drawHanziStrokeCount = signal<number | null>(null);
 
+  /**
+   * Available draw practice mode options for the selector.
+   *
+   * @remarks
+   * Includes memory, tracing, hints, freehand, stroke-order, and radicals modes.
+   */
   readonly drawPracticeModeOptions: readonly { value: DrawPracticeMode; label: string }[] = [
     { value: 'memory', label: 'По памяти (default UI)' },
     { value: 'tracing', label: 'Трассировка' },
@@ -67,6 +73,12 @@ export class CardFormSettingsPanelComponent {
     { value: 'radicals', label: 'Радикалы' },
   ];
 
+  /**
+   * Available keyboard answer mode options for the selector.
+   *
+   * @remarks
+   * Includes auto (IPA/Pinyin/text), text, Pinyin with tones, and IPA modes.
+   */
   readonly keyboardAnswerModeOptions: readonly { value: KeyboardAnswerMode; label: string }[] = [
     { value: 'auto', label: 'Авто (IPA / пиньинь / текст)' },
     { value: 'text', label: 'Текст' },
@@ -74,16 +86,25 @@ export class CardFormSettingsPanelComponent {
     { value: 'ipa', label: 'IPA' },
   ];
 
+  /**
+   * Computed keyboard card draft, or `null` if the current draft is not a keyboard card.
+   */
   readonly keyboardDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'keyboard' ? draft : null;
   });
 
+  /**
+   * Computed timed card draft, or `null` if the current draft is not a timed card.
+   */
   readonly timedDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'timed' ? draft : null;
   });
 
+  /**
+   * Computed draw card draft, or `null` if the current draft is not a draw card.
+   */
   readonly drawDraft = computed(() => {
     const draft = this.draft();
     return draft.kind === 'draw' ? draft : null;

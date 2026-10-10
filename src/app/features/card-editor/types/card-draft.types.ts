@@ -21,7 +21,7 @@ export type CardAppearanceDraft = CardAppearance;
  * Default card direction: known language → learning language.
  *
  * @remarks
- * Used as the initial direction for new cards in the editor.
+ * Used as the initial direction for new cards in the editor. Reversible via the card form's direction toggle.
  */
 export const DEFAULT_CARD_DIRECTION: CardDirection = 'known-to-learning';
 

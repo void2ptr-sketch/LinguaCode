@@ -130,8 +130,21 @@ export class LexemeDisplayComponent {
    */
   readonly readingSize = input<string | null>(null);
 
+  /**
+   * Returns the display label for a romanization system.
+   *
+   * @param system - The romanization system identifier.
+   * @returns The localized label (e.g. '拼音', '注音', 'Pal.').
+   */
   readonly romanizationLabel = (system: RomanizationSystem): string => ROMANIZATION_LABELS[system];
 
+  /**
+   * Computed romanization systems to display.
+   *
+   * @remarks
+   * Uses the `romanizations` input override when set; otherwise resolves from
+   * user profile preferences via `resolveRomanizationsForSurface`.
+   */
   readonly effectiveRomanizations = computed<readonly RomanizationSystem[]>(() => {
     const override = this.romanizations();
     if (override) {
@@ -145,6 +158,13 @@ export class LexemeDisplayComponent {
     );
   });
 
+  /**
+   * Computed flag for whether IPA should be displayed.
+   *
+   * @remarks
+   * Uses the `showIpa` input override when set; otherwise resolves from
+   * user profile preferences via `resolveShowIpaForSurface`.
+   */
   readonly effectiveShowIpa = computed(() => {
     const override = this.showIpa();
     if (override !== null) {
@@ -154,6 +174,13 @@ export class LexemeDisplayComponent {
     return resolveShowIpaForSurface(this.surface(), this.userStore.phonetic());
   });
 
+  /**
+   * Computed lexeme to display, falling back to `fallbackText` when lexeme is empty.
+   *
+   * @remarks
+   * Returns the input `lexeme` if it has primary text or phonetic layers;
+   * otherwise constructs a lexeme from `fallbackText` with Latin script.
+   */
   readonly displayLexeme = computed(() => {
     const lexeme = this.lexeme();
     if (lexeme && (lexeme.primary.trim() || hasLexemePhoneticLayers(lexeme))) {
@@ -168,6 +195,12 @@ export class LexemeDisplayComponent {
     return { primary: fallback, script: 'latn' as const };
   });
 
+  /**
+   * Computed visible romanization readings for the current lexeme.
+   *
+   * @remarks
+   * Resolves actual reading strings from `displayLexeme` and `effectiveRomanizations`.
+   */
   readonly visibleRomanizations = computed(() => {
     const lexeme = this.displayLexeme();
     if (!lexeme) {
@@ -177,6 +210,13 @@ export class LexemeDisplayComponent {
     return resolveVisibleRomanizationReadings(lexeme, this.effectiveRomanizations());
   });
 
+  /**
+   * Computed flag for whether tone coloring is enabled.
+   *
+   * @remarks
+   * Uses the `toneColorEnabled` input override when set; otherwise uses
+   * `userStore.cjkLearning().showTones`.
+   */
   readonly effectiveToneColorEnabled = computed(() => {
     const override = this.toneColorEnabled();
     if (override !== null) {
@@ -186,6 +226,13 @@ export class LexemeDisplayComponent {
     return this.userStore.cjkLearning().showTones;
   });
 
+  /**
+   * Computed IPA text for the current lexeme.
+   *
+   * @remarks
+   * Returns `null` when IPA is disabled or the lexeme has no IPA data.
+   * Applies `ipaVariantLabel` filter when set.
+   */
   readonly ipaText = computed(() => {
     const lexeme = this.displayLexeme();
     if (!lexeme || !this.effectiveShowIpa()) {

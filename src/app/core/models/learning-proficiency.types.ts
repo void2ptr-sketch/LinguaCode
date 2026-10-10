@@ -43,7 +43,12 @@ export const LEARNING_PROFICIENCY_LEVELS: readonly LearningProficiencyOption[] =
   { id: 'professional', label: 'Professional' },
 ] as const;
 
-/** Default proficiency level applied when no user preference exists. */
+/**
+ * Default proficiency level applied when no user preference exists.
+ *
+ * @remarks
+ * `beginner` — affects the strictness of answer checking in `LearningResultsStore`.
+ */
 export const DEFAULT_LEARNING_PROFICIENCY_LEVEL: LearningProficiencyLevel = 'beginner';
 
 /**
