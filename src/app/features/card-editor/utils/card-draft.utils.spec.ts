@@ -4,7 +4,6 @@ import { CardAppearance } from '../../../core/models';
 import type { Card } from '../../../core/models';
 import { cardToDraft, cardSummary, emptyCardDraft } from './card-draft.utils';
 import type {
-  CardDraft,
   CodeSelectCardDraft,
   DrawCardDraft,
   KeyboardCardDraft,

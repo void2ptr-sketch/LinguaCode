@@ -6,12 +6,12 @@ import {
   paintCalligraphyPolyline,
 } from './draw-calligraphy-paint.utils';
 
-interface MockCall {
+type MockCall = {
   method: string;
   args: unknown[];
 }
 
-interface MockCanvasContext {
+type MockCanvasContext = {
   ctx: CanvasRenderingContext2D;
   calls: MockCall[];
 }
@@ -52,14 +52,14 @@ describe('draw-calligraphy-paint', () => {
 
   describe('paintCalligraphyPolyline', () => {
     it('should return early without drawing for empty points array', () => {
-      const { ctx, calls } = createMockContext();
+      const { ctx } = createMockContext();
       paintCalligraphyPolyline(ctx, [], makeOptions());
       expect(ctx.save).not.toHaveBeenCalled();
       expect(ctx.beginPath).not.toHaveBeenCalled();
     });
 
     it('should draw a single dot for one-point array', () => {
-      const { ctx, calls } = createMockContext();
+      const { ctx } = createMockContext();
       const point: CanvasPoint = { x: 50, y: 50 };
       paintCalligraphyPolyline(ctx, [point], makeOptions());
       expect(ctx.beginPath).toHaveBeenCalled();

@@ -1,5 +1,3 @@
-import { vi } from 'vitest';
-
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
