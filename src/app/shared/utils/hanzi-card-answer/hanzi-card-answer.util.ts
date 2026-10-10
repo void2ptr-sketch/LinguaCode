@@ -5,7 +5,7 @@ import {
   validateHanziMemoryStrokes,
   type HanziCharacterModel,
 } from '../../../features/hanzi-practice';
-import { isHanCharacter, resolveDrawCharacterTargets } from '../../../core/repositories/chinese/draw-card.utils';
+import { isHanCharacter, resolveDrawCharacterTargets } from '../../../core/repositories/chinese/drawing/draw-card.utils';
 
 /** Резолвер для получения модели иероглифа по строке. */
 export type HanziModelResolver = (character: string) => HanziCharacterModel | null;

@@ -5,7 +5,7 @@ import {
   prerequisiteBlockReason,
 } from '../lesson/lesson-prerequisites.utils';
 import { languagePairsEqual } from '../language-pair/language-pair.utils';
-import { scenarioDisplayLabel } from '../scenarios/scenario-display-label.utils';
+import { scenarioDisplayLabel } from '../scenarios/utils/scenario-display-label.utils';
 import type { LearningSessionPreferences } from '../../models/learning-session.types';
 import type { Course, CourseWithLessons, LanguagePair, LearningResult, Lesson } from '../../models';
 

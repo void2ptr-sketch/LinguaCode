@@ -6,7 +6,7 @@ import {
   hasCardSearchFilters,
   resolveScenarioCardIds,
   validateScenarioCardSource,
-} from '../../../core/repositories/scenarios/scenario-card-source.utils';
+} from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
@@ -406,7 +406,7 @@ export class ScenarioBuilderStore {
    private async normalizeDraft(
     draft: ScenarioDraft,
   ): Promise<
-    import('../../../core/repositories/scenarios/scenarios-api.service').ScenarioWritePayload | null
+    import('../../../core/repositories/scenarios/api/scenarios-api.service').ScenarioWritePayload | null
   > {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);

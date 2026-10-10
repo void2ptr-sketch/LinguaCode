@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LearningResultsStore } from '../../../../core/state';
-import { scenarioDisplayLabel } from '../../../../core/repositories/scenarios/scenario-display-label.utils';
+import { scenarioDisplayLabel } from '../../../../core/repositories/scenarios/utils/scenario-display-label.utils';
 
 /**
  * Learning progress component. Displays overall learning statistics including accuracy,

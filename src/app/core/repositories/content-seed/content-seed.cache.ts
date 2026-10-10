@@ -1,7 +1,7 @@
 import type { Scenario } from '../../models';
 import type { Card } from '../../models';
 
-import type { CourseCatalogState } from '../courses/course-catalog-state';
+import type { CourseCatalogState } from '../courses/utils/course-catalog-state';
 
 const EMPTY_COURSE_CATALOG: CourseCatalogState = { courses: [], lessons: [] };
 

@@ -3,7 +3,7 @@ import type { LearningProficiencyLevel } from '../../../../core/models/learning-
 import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
 import { validateHanziMemoryStrokes } from './hanzi-memory-validation.utils';
 import type { HanziCharacterModel } from '../../models/hanzi-character.model';
-import { isHanCharacter, resolveDrawCharacterTargets } from '../../../../core/repositories/chinese/draw-card.utils';
+import { isHanCharacter, resolveDrawCharacterTargets } from '../../../../core/repositories/chinese/drawing/draw-card.utils';
 
 /** Резолвер для получения модели иероглифа по строке. */
 export type HanziModelResolver = (character: string) => HanziCharacterModel | null;

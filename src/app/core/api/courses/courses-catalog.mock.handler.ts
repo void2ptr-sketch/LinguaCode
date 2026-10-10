@@ -12,9 +12,9 @@ import type {
 import { paginateArray } from '../../../shared/utils/pagination';
 import { UserStore } from '../../state';
 
-import { normalizeCourseAuthoring } from '../../repositories/courses/course-authoring.utils';
-import { courseToIndexEntry } from '../../repositories/courses/course-index.mapper';
-import { filterCourseIndex } from '../../repositories/courses/course-search.utils';
+import { normalizeCourseAuthoring } from '../../repositories/courses/utils/course-authoring.utils';
+import { courseToIndexEntry } from '../../repositories/courses/mapping/course-index.mapper';
+import { filterCourseIndex } from '../../repositories/courses/search/course-search.utils';
 import { ContentSeedRepository } from '../../repositories/content-seed/content-seed.repository';
 import { normalizeLanguagePair } from '../../repositories/language-pair/language-pair.utils';
 import { isEditableContentAuthor, isSystemAuthor } from '../../repositories/user/system-author.constants';
@@ -22,9 +22,9 @@ import {
   loadCourseCatalogFromStorage,
   saveCourseCatalogToStorage,
   type CourseCatalogState,
-} from '../../repositories/courses/courses-storage';
+} from '../../repositories/courses/storage/courses-storage';
 
-import type { CourseWritePayload } from '../../repositories/courses/courses-api.service';
+import type { CourseWritePayload } from '../../repositories/courses/api/courses-api.service';
 
 /**
  * Mock handler for course catalog operations.

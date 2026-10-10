@@ -30,8 +30,8 @@ import { firstValueFrom } from 'rxjs';
 
 import { buildFixtureUrl } from '../../api';
 import type { Card, Scenario } from '../../models';
-import { normalizeLegacyCards } from '../cards/card-legacy.mapper';
-import { normalizeScenario } from '../scenarios/scenario-card-source.utils';
+import { normalizeLegacyCards } from '../cards/mapping/card-legacy.mapper';
+import { normalizeScenario } from '../scenarios/utils/scenario-card-source.utils';
 
 import {
   getCardSeedCache,
@@ -48,8 +48,8 @@ import type {
   CoursesSeedFixture,
   ScenariosSeedFixture,
 } from './content-seed.types';
-import type { CourseCatalogState } from '../courses/course-catalog-state';
-import { normalizeStoredCourseCatalog } from '../courses/course-catalog-state';
+import type { CourseCatalogState } from '../courses/utils/course-catalog-state';
+import { normalizeStoredCourseCatalog } from '../courses/utils/course-catalog-state';
 
 /**
  * Репозиторий seed-данных (начальных данных).

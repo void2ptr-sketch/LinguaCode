@@ -17,7 +17,7 @@ import {
 } from '../repositories/user/user-language-pair.utils';
 import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../security';
 import { normalizeColorScheme } from '../theme/app-color-scheme.utils';
-import { normalizeCardFocusFullscreen } from '../repositories/cards/card-focus-preference.utils';
+import { normalizeCardFocusFullscreen } from '../repositories/cards/utils/card-focus-preference.utils';
 import { normalizeLearningProficiencyLevel } from '../repositories/learning/learning-proficiency.utils';
 import type {
   LanguagePair,

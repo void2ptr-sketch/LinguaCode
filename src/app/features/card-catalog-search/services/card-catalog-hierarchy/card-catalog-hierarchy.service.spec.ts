@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import { CardCatalogHierarchyService } from './card-catalog-hierarchy.service';
-import { CourseSearchService } from '../../../../core/repositories/courses/course-search.service';
+import { CourseSearchService } from '../../../../core/repositories/courses/search/course-search.service';
 
 describe('CardCatalogHierarchyService', () => {
   let service: CardCatalogHierarchyService;

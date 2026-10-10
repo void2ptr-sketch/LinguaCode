@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import { CoursesApiService } from '../../repositories/courses/courses-api.service';
+import { CoursesApiService } from '../../repositories/courses/api/courses-api.service';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 
 describe('courses API (mock interceptor)', () => {

@@ -1,7 +1,7 @@
 import {
   DEFAULT_CRITERIA_LIMIT,
   emptyCardSearchCriteria,
-} from '../../../core/repositories/scenarios/scenario-card-source.utils';
+} from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
 import type {
   LanguagePair,
   Scenario,

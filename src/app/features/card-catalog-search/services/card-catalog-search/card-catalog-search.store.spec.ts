@@ -2,8 +2,8 @@ import { vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
-import { CardSearchService } from '../../../../core/repositories/cards/card-search.service';
-import { CourseSearchService } from '../../../../core/repositories/courses/course-search.service';
+import { CardSearchService } from '../../../../core/repositories/cards/search/card-search.service';
+import { CourseSearchService } from '../../../../core/repositories/courses/search/course-search.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 
 describe('CardCatalogSearchStore', () => {

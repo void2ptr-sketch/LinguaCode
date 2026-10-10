@@ -15,7 +15,7 @@ import {
   shouldShowPinyinToneRow,
   type PinyinKeyboardKey,
   type PinyinKeyboardState,
-} from '../../../../core/repositories/chinese/pinyin-keyboard.utils';
+} from '../../../../core/repositories/chinese/pinyin/pinyin-keyboard.utils';
 import type { ToneMark } from '../../../../core/models/phonetic-content.types';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 

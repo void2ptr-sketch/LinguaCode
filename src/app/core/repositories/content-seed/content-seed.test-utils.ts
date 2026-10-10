@@ -1,18 +1,18 @@
 import type { CourseWithLessons, Scenario } from '../../models';
 
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
-import type { CourseCatalogState } from '../courses/course-catalog-state';
-import { normalizeStoredCourseCatalog } from '../courses/course-catalog-state';
+import type { CourseCatalogState } from '../courses/utils/course-catalog-state';
+import { normalizeStoredCourseCatalog } from '../courses/utils/course-catalog-state';
 import type {
   CardsSeedFixture,
   CoursesSeedFixture,
   ScenariosSeedFixture,
 } from './content-seed.types';
-import { normalizeLegacyCards } from '../cards/card-legacy.mapper';
-import { getDefaultCourseCatalog } from '../courses/courses-storage';
-import { getDefaultScenarios } from '../scenarios/scenario-catalog.defaults';
-import { normalizeScenario } from '../scenarios/scenario-card-source.utils';
-import { USER_CONTENT_MIGRATED_KEY } from '../user/user-content-overlay.types';
+import { normalizeLegacyCards } from '../cards/mapping/card-legacy.mapper';
+import { getDefaultCourseCatalog } from '../courses/storage/courses-storage';
+import { getDefaultScenarios } from '../scenarios/utils/scenario-catalog.defaults';
+import { normalizeScenario } from '../scenarios/utils/scenario-card-source.utils';
+import { USER_CONTENT_MIGRATED_KEY } from '../user/overlay/user-content-overlay.types';
 
 import demoCoursesFixture from '../../../../../public/data/courses/demo-courses.json';
 import perlInterviewCourseFixture from '../../../../../public/data/courses/perl-interview-course.json';

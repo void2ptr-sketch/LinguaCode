@@ -8,7 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import {
   effectiveCardDirection,
   resolveKeyboardPrompt,
-} from '../../../../core/repositories/cards/card-direction.utils';
+} from '../../../../core/repositories/cards/utils/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../../core/repositories/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../../core/models';
 import type { CardDirection } from '../../../../core/models/language-pair.types';

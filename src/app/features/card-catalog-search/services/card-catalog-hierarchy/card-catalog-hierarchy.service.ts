@@ -1,7 +1,7 @@
 import { Injectable, inject, signal } from '@angular/core';
 
 import type { CourseIndexEntry, CourseWithLessons, Lesson } from '../../../../core/models';
-import { CourseSearchService } from '../../../../core/repositories/courses/course-search.service';
+import { CourseSearchService } from '../../../../core/repositories/courses/search/course-search.service';
 import type { ContentLanguage } from '../../../../core/models/card-index.types';
 
 /**

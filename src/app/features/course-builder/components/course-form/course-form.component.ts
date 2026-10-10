@@ -11,7 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 
 import { activeLanguagePairCriteria } from '../../../../core/repositories/language-pair/language-pair-scope.utils';
-import { courseAuthoringWithIdea } from '../../../../core/repositories/courses/course-authoring.utils';
+import { courseAuthoringWithIdea } from '../../../../core/repositories/courses/utils/course-authoring.utils';
 import { ScenarioSearchService } from '../../../../core/repositories';
 import type { CourseAuthoringStatus } from '../../../../core/models';
 import { COURSE_AUTHORING_STATUSES } from '../../../../core/models';

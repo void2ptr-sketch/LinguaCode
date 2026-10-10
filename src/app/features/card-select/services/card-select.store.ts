@@ -1,6 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Card } from '../../../core/models';
-import { cardDefaultDirection } from '../../../core/repositories/cards/card-direction.utils';
+import { cardDefaultDirection } from '../../../core/repositories/cards/utils/card-direction.utils';
 import { HanziDataService } from '../../hanzi-practice/services/hanzi-data.service';
 import type { CardDirection } from '../../../core/models/language-pair.types';
 import { UserStore } from '../../../core/state';

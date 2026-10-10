@@ -9,12 +9,12 @@ import {
   type LearningResumeTarget,
   type LessonRoadmapItem,
 } from '../../../core/repositories/learning/learning-resume.utils';
-import { CourseSearchService } from '../../../core/repositories/courses/course-search.service';
+import { CourseSearchService } from '../../../core/repositories/courses/search/course-search.service';
 import { resolveLearningSessionForPair } from '../../../core/repositories/learning/learning-session.utils';
-import { ScenariosApiService } from '../../../core/repositories/scenarios/scenarios-api.service';
+import { ScenariosApiService } from '../../../core/repositories/scenarios/api/scenarios-api.service';
 import type { CourseWithLessons } from '../../../core/models';
 import { LearningResultsStore, UserStore } from '../../../core/state';
-import { RADICALS_COURSE_ID } from '../../../core/repositories/chinese/radicals-course.defaults';
+import { RADICALS_COURSE_ID } from '../../../core/repositories/chinese/tones/radicals-course.defaults';
 
 /**
  * Service for the learning dashboard (home page).

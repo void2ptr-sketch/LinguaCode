@@ -10,12 +10,12 @@ import type {
 import { paginateArray } from '../../../shared/utils/pagination';
 import { UserStore } from '../../state';
 
-import { scenarioToIndexEntry } from '../../repositories/scenarios/scenario-index.mapper';
-import { filterScenarioIndex } from '../../repositories/scenarios/scenario-search.utils';
+import { scenarioToIndexEntry } from '../../repositories/scenarios/mapping/scenario-index.mapper';
+import { filterScenarioIndex } from '../../repositories/scenarios/search/scenario-search.utils';
 import {
   scenarioUsesCardEntry,
   validateScenarioCardSource,
-} from '../../repositories/scenarios/scenario-card-source.utils';
+} from '../../repositories/scenarios/utils/scenario-card-source.utils';
 import {
   cardIndexMatchesPair,
   normalizeLanguagePair,
@@ -26,9 +26,9 @@ import { ContentSeedRepository } from '../../repositories/content-seed/content-s
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
-} from '../../repositories/scenarios/scenarios-storage';
+} from '../../repositories/scenarios/storage/scenarios-storage';
 
-import type { ScenarioWritePayload } from '../../repositories/scenarios/scenarios-api.service';
+import type { ScenarioWritePayload } from '../../repositories/scenarios/api/scenarios-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class ScenariosCatalogMockHandler {

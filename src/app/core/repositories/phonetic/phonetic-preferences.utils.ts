@@ -9,7 +9,7 @@ import {
   ROMANIZATION_DISPLAY_ORDER,
   TRACING_STROKE_DURATION_BOUNDS,
 } from '../../models/phonetic-content.types';
-import { isToneColorSchemeId } from '../chinese/tone-color.utils';
+import { isToneColorSchemeId } from '../chinese/tones/tone-color.utils';
 import { DEFAULT_TONE_COLOR_SCHEME_ID } from '../../models/tone-color.types';
 
 const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];

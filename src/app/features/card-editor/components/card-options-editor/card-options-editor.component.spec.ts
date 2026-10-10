@@ -9,7 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardOptionsEditorComponent, CardOptionsEditorConfig } from './card-options-editor.component';
-import type { LexemeDraftFields } from '../../../../core/repositories/chinese/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/repositories/chinese/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
 
 describe('CardOptionsEditorComponent', () => {

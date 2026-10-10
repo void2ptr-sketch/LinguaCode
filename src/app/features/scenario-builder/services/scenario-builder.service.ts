@@ -4,9 +4,9 @@ import type { Scenario } from '../../../core/models';
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,
-} from '../../../core/repositories/scenarios/scenarios-storage';
+} from '../../../core/repositories/scenarios/storage/scenarios-storage';
 
-export { SCENARIOS_STORAGE_KEY } from '../../../core/repositories/scenarios/scenarios-storage';
+export { SCENARIOS_STORAGE_KEY } from '../../../core/repositories/scenarios/storage/scenarios-storage';
 
 /**
  * @deprecated Use `ScenarioSearchService` (HTTP-based). Kept for test compatibility.

@@ -8,7 +8,7 @@ import { parseScenarioSearchCriteria } from './scenarios-api.params.utils';
 import { isApiRequest } from '../api-url';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
-import type { ScenarioWritePayload } from '../../repositories/scenarios/scenarios-api.service';
+import type { ScenarioWritePayload } from '../../repositories/scenarios/api/scenarios-api.service';
 
 /**
  * Checks whether the given URL is a scenarios search request.

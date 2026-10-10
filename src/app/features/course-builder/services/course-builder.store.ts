@@ -19,17 +19,17 @@ import { normalizeLanguagePair } from '../../../core/repositories/language-pair/
 import { CourseSearchService } from '../../../core/repositories';
 import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
-import { COURSE_IDEA_MAX_LENGTH } from '../../../core/repositories/courses/course-authoring.utils';
+import { COURSE_IDEA_MAX_LENGTH } from '../../../core/repositories/courses/utils/course-authoring.utils';
 import { UserStore } from '../../../core/state';
 import { isEditableContentAuthor } from '../../../core/repositories/user/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
-import { collectCourseBundle } from '../../../core/repositories/courses/course-bundle.utils';
-import { loadCourseCatalogFromStorage } from '../../../core/repositories/courses/courses-storage';
-import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/scenarios-storage';
-import { CardRepository } from '../../../core/repositories/cards/card.repository';
-import { loadCardIndexMetaOverrides } from '../../../core/repositories/cards/card-index-meta.storage';
+import { collectCourseBundle } from '../../../core/repositories/courses/utils/course-bundle.utils';
+import { loadCourseCatalogFromStorage } from '../../../core/repositories/courses/storage/courses-storage';
+import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/storage/scenarios-storage';
+import { CardRepository } from '../../../core/repositories/cards/repository/card.repository';
+import { loadCardIndexMetaOverrides } from '../../../core/repositories/cards/storage/card-index-meta.storage';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
 /** Sanitizer for course title: max 128 characters, HTML cleaned */

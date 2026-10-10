@@ -7,7 +7,7 @@ import {
   ScenarioSearchService,
 } from '../../../core/repositories';
 import { activeLanguagePairCriteria } from '../../../core/repositories/language-pair/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/scenario-card-source.utils';
+import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
 import type { Card, ScenarioSearchPage } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 
