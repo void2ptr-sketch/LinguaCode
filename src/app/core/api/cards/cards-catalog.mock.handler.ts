@@ -49,6 +49,12 @@ export class CardsCatalogMockHandler {
     await this.ensureData();
   }
 
+  /**
+   * Retrieves the index entry for a card by its ID.
+   *
+   * @param cardId - The unique identifier of the card.
+   * @returns The `CardIndexEntry` for the card, or `null` if not found.
+   */
   async getIndexEntry(cardId: string): Promise<CardIndexEntry | null> {
     await this.ensureData();
     return this.index!.find((item) => item.id === cardId) ?? null;

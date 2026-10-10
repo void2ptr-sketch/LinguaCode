@@ -4,14 +4,20 @@ import { collectCardIpaReadings } from './card-ipa-index.utils';
 import { isContentLanguage } from '../language-pair/language-pair.utils';
 import { DEFAULT_LANGUAGE_PAIR } from '../../models/language-pair.types';
 
+/** Переопределение метаданных для отдельной карточки в индексе. */
 export type CardIndexMetaOverride = Partial<
   Pick<CardIndexEntry, 'knownLanguage' | 'learningLanguage' | 'difficulty' | 'tags' | 'updatedAt'>
 >;
 
+/** Фикстура метаданных индекса карточек с маппингом по ID. */
 export type CardIndexMetaFixture = {
   metaById: Record<string, CardIndexMetaOverride>;
 };
 
+/**
+ * Преобразует карточку в запись индекса (`CardIndexEntry`) с учётом метаданных.
+ * Приоритет метаданных: `card.meta` → `meta` (из overlay) → значения по умолчанию.
+ */
 export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): CardIndexEntry {
   // Приоритет метаданных:
   // 1. card.meta (встроенные в карточку)
@@ -50,6 +56,10 @@ export function cardToIndexEntry(card: Card, meta?: CardIndexMetaOverride): Card
   };
 }
 
+/**
+ * Строит полный индекс карточек из массива с заданными переопределениями метаданных.
+ * Каждый карточка преобразуется через `cardToIndexEntry` с метаданными из `metaById`.
+ */
 export function buildCardIndex(
   cards: readonly Card[],
   metaById: Record<string, CardIndexMetaOverride> = {},
@@ -57,6 +67,10 @@ export function buildCardIndex(
   return cards.map((card) => cardToIndexEntry(card, metaById[card.id]));
 }
 
+/**
+ * Объединяет метаданные из фикстуры и хранилища с приоритетом хранилища.
+ * Переопределения из `storedMeta` перекрывают значения из `fixtureMeta`.
+ */
 export function mergeCardIndexMeta(
   fixtureMeta: Record<string, CardIndexMetaOverride>,
   storedMeta: Record<string, CardIndexMetaOverride>,

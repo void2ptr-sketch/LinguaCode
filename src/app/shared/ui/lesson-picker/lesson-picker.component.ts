@@ -26,6 +26,14 @@ type LessonListItem = {
   blockReason: string | null;
 };
 
+/**
+ * Lesson picker component. Displays a list of lessons for a given course,
+ * with unlock status, completion indicators, and prerequisite enforcement.
+ *
+ * @remarks
+ * Loads lessons from `CourseSearchService`, computes unlock state based on
+ * scenario results, and supports auto-picking the first unlocked lesson.
+ */
 @Component({
   selector: 'app-lesson-picker',
   imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
@@ -132,6 +140,12 @@ export class LessonPickerComponent {
     }
   }
 
+  /**
+   * Picks a lesson and emits selection events.
+   *
+   * @param lesson - The lesson to pick.
+   * @remarks No-op if the lesson is locked due to prerequisites.
+   */
   pick(lesson: Lesson): void {
     const lessonsById = buildLessonsById(this.lessons());
     const hasScenarioResult = (scenarioId: string) =>

@@ -18,6 +18,10 @@ export function scenarioToIndexEntry(scenario: Scenario): ScenarioIndexEntry {
   };
 }
 
+/**
+ * Returns a new array of scenario index entries sorted by update date in descending order.
+ * The most recently updated entries appear first.
+ */
 export function sortScenariosByUpdatedAt(
   entries: readonly ScenarioIndexEntry[],
 ): readonly ScenarioIndexEntry[] {

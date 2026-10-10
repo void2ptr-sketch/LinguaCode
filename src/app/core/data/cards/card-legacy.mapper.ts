@@ -41,6 +41,10 @@ function normalizeMemoryPair(pair: LegacyMemoryPair): MemoryPair {
   };
 }
 
+/**
+ * Нормализует карточку устаревшего формата в современный тип `Card`.
+ * Заполняет отсутствующие поля (`promptKnown`, `direction`, `optionsLearning` и др.) значениями по умолчанию.
+ */
 export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
   switch (raw.kind) {
     case 'select': {
@@ -118,6 +122,7 @@ export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
   }
 }
 
+/** Нормализует массив карточек устаревшего формата в массив современных `Card`. */
 export function normalizeLegacyCards(cards: readonly (LegacyCard | Card)[]): readonly Card[] {
   return cards.map(normalizeLegacyCard);
 }

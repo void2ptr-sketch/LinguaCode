@@ -77,12 +77,19 @@ export class SelectCardComponent {
     return resolveOptionCard(card, direction);
   });
 
-  /** Returns the prompt lexeme for the resolved direction, falling back to the card's default. */
+  /**
+   * Returns the prompt lexeme for the resolved direction, falling back to the card's default.
+   */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;
   }
 
-  /** Returns the lexeme for an option at the given index, if available. */
+  /**
+   * Returns the lexeme for an option at the given index, if available.
+   *
+   * @param index - Zero-based option index.
+   * @returns The option lexeme, or undefined if not available.
+   */
   optionLexeme(index: number) {
     return this.resolved().optionLexemes?.[index];
   }

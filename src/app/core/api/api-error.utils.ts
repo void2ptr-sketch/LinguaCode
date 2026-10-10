@@ -20,6 +20,16 @@ export const parseApiErrorBody = (error: HttpErrorResponse): ApiErrorBody | null
   return null;
 };
 
+/**
+ * Normalises any error value into a structured `HttpApiError`.
+ *
+ * If the error is already an `HttpApiError` it is returned as-is. For
+ * `HttpErrorResponse` the HTTP status and parsed body are attached; for
+ * plain `Error` objects the status defaults to `0` and body to `null`.
+ *
+ * @param error - The error value to normalise.
+ * @returns An `HttpApiError` with `status`, `body`, and `message` properties.
+ */
 export const toHttpApiError = (error: unknown): HttpApiError => {
   if (isHttpApiError(error)) {
     return error;

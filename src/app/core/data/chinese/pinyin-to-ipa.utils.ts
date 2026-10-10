@@ -20,6 +20,7 @@ const PINYIN_SYLLABLE_IPA: Readonly<Record<string, string>> = {
   zhong: 'ʈʂʊŋ',
 };
 
+/** Разбирает слог пиньинь на базовую форму и тон; поддерживает как числовые, так и тоновые марки. */
 export function parsePinyinSyllable(raw: string): { base: string; tone: PinyinTone } {
   let tone: PinyinTone = 5;
   let base = '';

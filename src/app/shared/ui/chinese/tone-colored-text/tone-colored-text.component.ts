@@ -74,6 +74,12 @@ export class ToneColoredTextComponent {
     });
   });
 
+  /**
+   * Returns the color for a given tone mark.
+   *
+   * @param tone - The tone mark.
+   * @returns The color string from the effective palette.
+   */
   segmentColor(tone: ToneMark): string {
     return this.effectivePalette()[tone];
   }

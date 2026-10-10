@@ -130,6 +130,12 @@ export class ScenariosCatalogMockHandler {
     this.persist();
   }
 
+  /**
+   * Finds all scenarios that use the given card as a source.
+   *
+   * @param cardId - The unique identifier of the card.
+   * @returns An array of `ScenarioIndexEntry` for matching scenarios.
+   */
   async findUsingCard(cardId: string): Promise<readonly ScenarioIndexEntry[]> {
     await this.ensureData();
     await this.cardsHandler.ensureIndexForCardLookup();

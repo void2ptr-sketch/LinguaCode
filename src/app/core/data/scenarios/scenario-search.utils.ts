@@ -9,6 +9,10 @@ export function filterScenarioIndex(
   return entries.filter((entry) => matchesScenarioIndexEntry(entry, criteria, currentUserId));
 }
 
+/**
+ * Checks whether a single scenario index entry matches the given search criteria.
+ * Evaluates scope (mine/published), author, card source mode, course, text query, and language pair.
+ */
 export function matchesScenarioIndexEntry(
   entry: ScenarioIndexEntry,
   criteria: Omit<ScenarioSearchCriteria, 'page'>,

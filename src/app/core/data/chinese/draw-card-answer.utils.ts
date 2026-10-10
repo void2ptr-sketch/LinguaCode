@@ -5,8 +5,10 @@ import type { HanziCharacterModel } from '../../hanzi-engine/hanzi-character.mod
 import { validateHanziMemoryStrokes } from '../../hanzi-engine/hanzi-memory-validation.utils';
 import { isHanCharacter, resolveDrawCharacterTargets } from './draw-card.utils';
 
+/** Резолвер для получения модели иероглифа по строке. */
 export type HanziModelResolver = (character: string) => HanziCharacterModel | null;
 
+/** Проверяет ответ пользователя на карточке практики письма: наличие штрихов, валидацию по памяти. */
 export function checkDrawCardAnswer(
   card: DrawCard,
   drawSubmitted: boolean,

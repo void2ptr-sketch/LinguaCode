@@ -85,6 +85,9 @@ export class SymbolCardComponent {
    * @remarks
    * Prefers the resolved prompt lexeme, falls back to the card's prompt lexeme.
    */
+  /**
+   * Returns the prompt lexeme for the resolved direction, falling back to the card's default.
+   */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;
   }

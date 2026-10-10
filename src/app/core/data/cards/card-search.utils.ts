@@ -35,6 +35,10 @@ const CARD_KINDS: readonly CardKind[] = [
   'reading',
 ];
 
+/**
+ * Извлекает фильтры из критериев поиска, отбрасывая пагинацию (`page`).
+ * Возвращает объект без поля `page`, готовый для фильтрации.
+ */
 export function toSearchFilters(criteria: CardSearchCriteria): Omit<CardSearchCriteria, 'page'> {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { page, ...filters } = criteria;
@@ -61,6 +65,10 @@ function matchesSearchQuery(entry: CardIndexEntry, rawQuery: string): boolean {
   return entry.ipaReadings.some((reading) => normalizeIpa(reading).includes(queryIpa));
 }
 
+/**
+ * Проверяет, соответствует ли запись индекса заданным фильтрам поиска.
+ * Поддерживает игнорирование одного поля (для расчёта фасетов) через параметр `ignore`.
+ */
 export function matchesCardIndexEntry(
   entry: CardIndexEntry,
   filters: Omit<CardSearchCriteria, 'page'>,

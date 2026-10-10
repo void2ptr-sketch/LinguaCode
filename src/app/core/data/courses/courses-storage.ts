@@ -16,6 +16,11 @@ export type { CourseCatalogState } from './course-catalog-state';
 /** @deprecated Legacy monolithic storage key; migrated into user-content overlay. */
 export const COURSE_CATALOG_STORAGE_KEY = 'lingua-code.course-catalog';
 
+/**
+ * Loads the default course catalog by applying the user-content overlay on top of the content seed.
+ *
+ * Runs the legacy migration if needed before resolving the catalog.
+ */
 export function getDefaultCourseCatalog(): CourseCatalogState {
   migrateUserContentOverlayIfNeeded();
   return cloneCourseCatalog(resolveCourseCatalog(getCourseSeedCache(), readUserContentOverlay()));
@@ -24,6 +29,11 @@ export function getDefaultCourseCatalog(): CourseCatalogState {
 /** @deprecated Use getDefaultCourseCatalog() after content seed preload. */
 export const DEFAULT_COURSE_CATALOG: CourseCatalogState = { courses: [], lessons: [] };
 
+/**
+ * Merges a stored (user-modified) course catalog with the seed catalog.
+ *
+ * Delegates to the overlay resolver to produce a unified catalog with user edits applied on top of the seed.
+ */
 export function mergeCourseCatalogWithDefaults(
   stored: CourseCatalogState,
   seed: CourseCatalogState = getCourseSeedCache(),
@@ -31,11 +41,22 @@ export function mergeCourseCatalogWithDefaults(
   return mergeLegacyCourseCatalogWithSeed(stored, seed);
 }
 
+/**
+ * Loads the current course catalog from storage (overlay + seed).
+ *
+ * Runs the legacy migration if needed. This is a thin wrapper around `getDefaultCourseCatalog`.
+ */
 export function loadCourseCatalogFromStorage(): CourseCatalogState {
   migrateUserContentOverlayIfNeeded();
   return getDefaultCourseCatalog();
 }
 
+/**
+ * Persists a course catalog to user-content overlay storage.
+ *
+ * Computes the overlay delta relative to the seed and previous state, then patches the overlay with
+ * the new courses, lessons, and deleted system IDs.
+ */
 export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
   migrateUserContentOverlayIfNeeded();
   const seed = getCourseSeedCache();
@@ -53,6 +74,11 @@ export function saveCourseCatalogToStorage(catalog: CourseCatalogState): void {
   });
 }
 
+/**
+ * Reads the stored course catalog from overlay storage, returning `null` when no user data exists.
+ *
+ * Checks whether the overlay contains any courses, lessons, or deleted-system IDs before attempting to load.
+ */
 export function readStoredCourseCatalog(): CourseCatalogState | null {
   const overlay = readUserContentOverlay();
   const hasStored =

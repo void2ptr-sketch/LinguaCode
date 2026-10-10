@@ -20,6 +20,7 @@ export const MAX_PENDING_SYLLABLE_LENGTH = 6;
 
 const LETTER_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as const;
 
+/** Доступные тоны для клавиатуры пиньинь: 1–4 тона + лёгкий тон (5). */
 export const PINYIN_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
 
 export const PINYIN_KEYBOARD_LETTER_ROWS: readonly (readonly PinyinKeyboardKey[])[] = [
@@ -291,6 +292,7 @@ export function pinyinKeyboardKeyAriaLabel(key: PinyinKeyboardKey): string {
   }
 }
 
+/** Возвращает ARIA-метку тональной клавиши с превью слога для доступности. */
 export function pinyinKeyboardToneKeyAriaLabel(state: PinyinKeyboardState, tone: ToneMark): string {
   const preview = pendingSyllableTonePreview(state, tone);
   const toneLabel = tone === 5 ? 'Лёгкий тон' : `${tone}-й тон`;

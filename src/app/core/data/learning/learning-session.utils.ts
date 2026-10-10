@@ -10,6 +10,15 @@ function optionalId(value: unknown): string | undefined {
   return trimmed.length > 0 ? trimmed : undefined;
 }
 
+/**
+ * Normalises raw learning session preferences, returning `undefined` for empty or invalid input.
+ *
+ * Strips empty or whitespace-only ID fields. Returns a partial `LearningSessionPreferences`
+ * object only when at least one meaningful field is present.
+ *
+ * @param raw — Raw preferences to normalise.
+ * @returns Normalised preferences, or `undefined` if no valid fields are present.
+ */
 export function normalizeLearningSessionPreferences(
   raw?: Partial<LearningSessionPreferences> | null,
 ): LearningSessionPreferences | undefined {
@@ -32,6 +41,14 @@ export function normalizeLearningSessionPreferences(
   };
 }
 
+/**
+ * Extracts and normalises learning session preferences from a user language pair entry.
+ *
+ * Returns an empty object when the entry or its learning settings are missing.
+ *
+ * @param entry — User language pair entry, possibly `null` or `undefined`.
+ * @returns Normalised learning session preferences.
+ */
 export function resolveLearningSessionForPair(
   entry: UserLanguagePairEntry | null | undefined,
 ): LearningSessionPreferences {

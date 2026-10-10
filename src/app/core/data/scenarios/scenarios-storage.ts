@@ -17,6 +17,10 @@ export {
 /** @deprecated Legacy monolithic storage key; migrated into user-content overlay. */
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 
+/**
+ * Reads stored (user-modified) scenarios from the user content overlay.
+ * Returns `null` when no user modifications exist; otherwise returns a copy of the stored scenarios.
+ */
 export function readStoredScenarios(): readonly Scenario[] | null {
   const overlay = readUserContentOverlay();
   const hasStored =

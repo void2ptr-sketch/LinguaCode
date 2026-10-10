@@ -1,8 +1,10 @@
+/** Точка на холсте для рисования каллиграфии. */
 export type CanvasPoint = {
   x: number;
   y: number;
 };
 
+/** Параметры отрисовки каллиграфического штриха. */
 export type CalligraphyPaintOptions = {
   baseWidth: number;
   color: string;

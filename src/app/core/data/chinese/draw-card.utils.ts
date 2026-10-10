@@ -2,12 +2,14 @@ import type { DrawCard } from '../../models';
 import type { DrawCanvasMode, DrawCharacterTarget } from '../../models/draw-practice.types';
 import type { PhoneticLexeme } from '../../models/phonetic-content.types';
 
+/** Часть подсказки радикала: иероглиф и его порядковый номер в разложении для раскраски. */
 export type RadicalHintPart = {
   readonly character: string;
   /** Порядковый номер компонента в разложении (0…3) — для цвета, не тон слога. */
   readonly componentIndex: number;
 };
 
+/** Разбивает строку пиньинь на указанное количество частей для отдельных символов. */
 export function splitPinyinSyllables(
   pinyin: string | undefined,
   count: number,
@@ -35,6 +37,7 @@ export function splitPinyinSyllables(
 const HAN_SCRIPT_RE = /[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]/gu;
 const HAN_CHARACTER_RE = /^[\u4e00-\u9fff\u3400-\u4dbf\uf900-\ufaff]$/u;
 
+/** Проверяет, является ли строка единственным китайским иероглифом. */
 export function isHanCharacter(char: string): boolean {
   return HAN_CHARACTER_RE.test(char);
 }
@@ -68,6 +71,7 @@ export function parseRadicalHintParts(hint: string): readonly RadicalHintPart[] 
     }));
 }
 
+/** Проверяет, содержит ли строка хотя бы один китайский иероглиф. */
 export function containsHanScript(text: string): boolean {
   return HAN_SCRIPT_RE.test(text);
 }
@@ -118,10 +122,12 @@ export function resolveDrawQuestion(card: DrawCard): string {
   return '';
 }
 
+/** Резолвит значение (перевод) для карточки практики письма — псевдоним для `resolveDrawQuestion`. */
 export function resolveDrawMeaning(card: DrawCard): string {
   return resolveDrawQuestion(card);
 }
 
+/** Копирует текстовые поля вопроса из seed в stored, только если stored пустой. */
 export function mergeDrawCardQuestionFields(stored: DrawCard, seed: DrawCard): DrawCard {
   if (resolveDrawQuestion(stored)) {
     return stored;
@@ -143,6 +149,7 @@ export function mergeDrawCardQuestionFields(stored: DrawCard, seed: DrawCard): D
   };
 }
 
+/** Резолвит URL аудио для карточки практики письма: приоритет — target, затем card, затем promptLexeme. */
 export function resolveDrawAudioUrl(card: DrawCard, target?: DrawCharacterTarget): string | null {
   const fromTarget = target?.audioUrl?.trim();
   if (fromTarget) {
@@ -170,6 +177,7 @@ export function resolveDrawLearningSpeechText(
   return card.targetCharacter?.trim() || card.promptLexeme?.primary?.trim() || '';
 }
 
+/** Разбирает карточку на цели для отрисовки символов, заполняя pinyin/zhuyin/palladius по символам. */
 export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharacterTarget[] {
   if (card.characterTargets?.length) {
     return card.characterTargets;
@@ -207,11 +215,13 @@ export function resolveDrawCharacterTargets(card: DrawCard): readonly DrawCharac
   }));
 }
 
+/** Возвращает метку вкладки для символа: пиньинь или номер по порядку. */
 export function drawCharacterTabPinyinLabel(target: DrawCharacterTarget, index = 0): string {
   const pinyin = target.pinyin?.trim();
   return pinyin || String(index + 1);
 }
 
+/** Возвращает метку вкладки для символа: пиньинь → чжуинь → Палладий → номер по порядку. */
 export function drawCharacterTabLabel(target: DrawCharacterTarget, index = 0): string {
   const pinyin = target.pinyin?.trim();
   if (pinyin) {
@@ -231,6 +241,7 @@ export function drawCharacterTabLabel(target: DrawCharacterTarget, index = 0): s
   return String(index + 1);
 }
 
+/** Создаёт `PhoneticLexeme` для практики письма, копируя транскрипции из источника. */
 export function buildDrawPhoneticsLexeme(
   source: PhoneticLexeme,
   options?: { ipa?: PhoneticLexeme['ipa'] },
@@ -245,6 +256,7 @@ export function buildDrawPhoneticsLexeme(
   };
 }
 
+/** Создаёт `PhoneticLexeme` для вкладки отрисовки из цели символа и карточки. */
 export function buildDrawTabLexeme(
   target: DrawCharacterTarget,
   card: DrawCard,
@@ -262,6 +274,7 @@ export function buildDrawTabLexeme(
   );
 }
 
+/** Резолвит фонетический лексем для карточки практики письма; возвращает `null`, если нет транскрипций. */
 export function resolveDrawPromptLexeme(card: DrawCard): PhoneticLexeme | null {
   const lexeme = card.promptLexeme;
   if (!lexeme) {

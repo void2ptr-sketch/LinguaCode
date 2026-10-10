@@ -61,10 +61,22 @@ export class CodeSelectCardComponent {
     return caption || this.card().title;
   });
 
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
   }
 
+  /**
+   * Emits the selected option index.
+   *
+   * @param index - The zero-based index of the selected option.
+   * @remarks No-op if feedback is already displayed.
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null) {
       return;

@@ -31,6 +31,10 @@ export type CardAnswerState = {
  *
  * @param learningProficiencyLevel - The user's current proficiency level.
  * @returns A new `CardAnswerState` with null/empty defaults.
+ *
+ * @remarks
+ * Call this function whenever a new card interaction session begins
+ * to reset the answer state.
  */
 export const createCardAnswerState = (
   learningProficiencyLevel: LearningProficiencyLevel,

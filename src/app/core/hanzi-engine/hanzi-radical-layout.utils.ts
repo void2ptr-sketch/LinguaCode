@@ -1,6 +1,7 @@
 import { HanziPositioner } from './hanzi-positioner';
 import { resolveHanziSvgGroupTransform } from './hanzi-render.utils';
 
+/** Dimensions of a single radical component cell. */
 export type HanziRadicalLayoutSize = {
   readonly width: number;
   readonly height: number;

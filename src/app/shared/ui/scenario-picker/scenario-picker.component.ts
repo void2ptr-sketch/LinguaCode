@@ -15,6 +15,14 @@ import { UiPaginationComponent } from '../../utils/pagination';
 
 let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
 
+/**
+ * Scenario picker component. Provides a searchable, paginated list of scenarios
+ * with scope filtering and optional ID-based allowlisting.
+ *
+ * @remarks
+ * Loads scenarios from `ScenarioSearchService`, filtered by the active language pair.
+ * Supports auto-selecting the first scenario and limiting results via `allowedScenarioIds`.
+ */
 @Component({
   selector: 'app-scenario-picker',
   imports: [
@@ -125,29 +133,58 @@ export class ScenarioPickerComponent implements OnInit {
     }
   }
 
+  /**
+   * Picks a scenario and emits selection events.
+   *
+   * @param entry - The scenario index entry to pick.
+   */
   pick(entry: ScenarioIndexEntry): void {
     this.selectedScenarioIdChange.emit(entry.id);
     this.scenarioLabelChange.emit(this.formatLabel(entry));
   }
 
+  /**
+   * Handles query text changes.
+   *
+   * @param value - The new query string.
+   * @remarks Resets page index and reloads the list.
+   */
   onQueryChange(value: string): void {
     this.query.set(value);
     this.pageIndex.set(0);
     void this.load();
   }
 
+  /**
+   * Handles scope changes.
+   *
+   * @param scope - The new scope value.
+   * @remarks Resets page index and reloads the list.
+   */
   onScopeChange(scope: ScenarioListScope): void {
     this.scope.set(scope);
     this.pageIndex.set(0);
     void this.load();
   }
 
+  /**
+   * Handles pagination changes.
+   *
+   * @param event - The page event containing the new page index and page size.
+   * @remarks Updates the page index and page size signals, then reloads the list.
+   */
   onPageChange(event: PageEvent): void {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
     void this.load();
   }
 
+  /**
+   * Formats a scenario entry into a display label.
+   *
+   * @param entry - The scenario index entry.
+   * @returns A formatted string with title, card source summary, and language pair.
+   */
   formatLabel(entry: ScenarioIndexEntry): string {
     const pairBadge = entry.languagePairSummary ? ` · ${entry.languagePairSummary}` : '';
     return `${entry.title} · ${entry.cardSourceSummary}${pairBadge}`;

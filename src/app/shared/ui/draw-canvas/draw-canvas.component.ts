@@ -46,6 +46,12 @@ import {
 import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
 import type { DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from './draw-canvas.types';
 
+/**
+ * A radical hint for the radicals canvas mode.
+ *
+ * @remarks
+ * Used to display radical components with their assigned colors.
+ */
 export type DrawRadicalHint = {
   readonly character: string;
   readonly color: string;

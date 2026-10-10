@@ -5,27 +5,39 @@ import {
   type HanziTracingTip,
 } from './hanzi-tracing-animation.utils';
 
+/** Configuration options for the hint stroke brush animation. */
 export type HanziHintStrokeAnimationOptions = {
+  /** Duration (ms) to pause at the stroke start before drawing. Defaults to `700`. */
   brushPlacementMs?: number;
+  /** Duration (ms) to animate the stroke drawing. Defaults to `1000`. */
   strokeDurationMs?: number;
+  /** Pause (ms) after the stroke completes before restarting. Defaults to `450`. */
   loopPauseMs?: number;
 };
 
+/** Phase of the hint stroke animation cycle. */
 export type HanziHintStrokePhase = 'brush-placement' | 'direction';
 
+/** A single frame of the hint stroke animation. */
 export type HanziHintStrokeFrame = {
+  /** Current animation phase. */
   phase: HanziHintStrokePhase;
+  /** Progress within the `direction` phase (`0`–`1`). Zero during `brush-placement`. */
   progress: number;
+  /** Whether the start-circle indicator should be visible. */
   showStartCircle: boolean;
+  /** Current tip position and angle, or `null` when no tip is available. */
   tip: HanziTracingTip | null;
 };
 
+/** Default options for hint stroke animations. */
 export const DEFAULT_HANZI_HINT_STROKE_OPTIONS: Required<HanziHintStrokeAnimationOptions> = {
   brushPlacementMs: 700,
   strokeDurationMs: 1000,
   loopPauseMs: 450,
 };
 
+/** Computes the animation frame for a single hint stroke based on elapsed time. */
 export function resolveHanziHintStrokeFrame(
   elapsedMs: number,
   sample: HanziTracingStrokeSample,

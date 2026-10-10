@@ -102,6 +102,7 @@ export class CourseCatalogSettingsComponent {
     return entry ? shouldShowPalladius(entry.pair.known, entry.pair.learning) : false;
   });
 
+  /** Whether phonetic preferences (IPA, answer modes) should be shown. */
   readonly showPhoneticPreferences = computed(() => {
     const learning = this.settingsEntry()?.pair.learning;
     return learning === 'en' || learning === 'zh';

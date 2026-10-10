@@ -67,6 +67,10 @@ export class CardFocusShellComponent {
     });
   }
 
+  /**
+   * Exits fullscreen mode when Escape is pressed.
+   * @remarks Triggered by the `@HostListener` on `document:keydown.escape`.
+   */
   @HostListener('document:keydown.escape')
   onEscape(): void {
     if (this.fullscreen()) {
@@ -74,6 +78,12 @@ export class CardFocusShellComponent {
     }
   }
 
+  /**
+   * Toggles fullscreen mode.
+   * @remarks
+   * Enters fullscreen if not already active, exits otherwise.
+   * Persists the preference to the user store.
+   */
   toggleFullscreen(): void {
     if (this.fullscreen()) {
       this.exitFullscreen(true);

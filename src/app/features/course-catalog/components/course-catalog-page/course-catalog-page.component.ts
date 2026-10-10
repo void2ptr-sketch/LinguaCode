@@ -166,6 +166,7 @@ export class CourseCatalogPageComponent implements OnInit {
     return this.languagePairs().find((entry) => entry.id === id) ?? this.languagePairs()[0] ?? null;
   });
 
+  /** Label for the settings course entry (known → learning). */
   readonly settingsCourseLabel = computed(() => {
     const entry = this.settingsEntry();
     return entry ? this.entryLabel(entry) : '';

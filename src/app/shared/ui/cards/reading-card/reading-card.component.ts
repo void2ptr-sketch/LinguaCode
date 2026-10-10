@@ -60,19 +60,40 @@ export class ReadingCardComponent {
     return resolveOptionCard(card, direction);
   });
 
+  /**
+   * Returns the prompt lexeme for the resolved direction, falling back to the card's default.
+   */
   promptLexeme() {
     return this.resolved().promptLexeme ?? this.card().promptLexeme;
   }
 
+  /**
+   * Returns the lexeme for an option at the given index.
+   *
+   * @param index - Zero-based option index.
+   * @returns The option lexeme, or undefined if not available.
+   */
   optionLexeme(index: number) {
     return this.resolved().optionLexemes?.[index];
   }
 
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
+  /**
+   * Emits the selected option index.
+   *
+   * @param index - The zero-based index of the selected option.
+   * @remarks No-op if feedback is already displayed.
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null) {
       return;

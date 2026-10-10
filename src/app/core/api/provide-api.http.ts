@@ -6,6 +6,15 @@ import { scenariosApiMockInterceptor } from './scenarios/scenarios-api.mock.inte
 import { coursesApiMockInterceptor } from './courses/courses-api.mock.interceptor';
 import { errorInterceptor } from './error.interceptor';
 
+/**
+ * Provides HTTP client configuration for the API layer.
+ *
+ * Registers `provideHttpClient` with fetch strategy and composes the
+ * interceptor pipeline. Mock interceptors are included conditionally based
+ * on environment flags; `authInterceptor` and `errorInterceptor` are always present.
+ *
+ * @returns An `EnvironmentProviders` configuration for Angular's HTTP client.
+ */
 export const provideApiHttp = () => {
   const interceptors = [
     ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),

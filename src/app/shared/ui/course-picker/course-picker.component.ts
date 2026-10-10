@@ -16,6 +16,14 @@ import { UiPaginationComponent } from '../../utils/pagination';
 
 let lastKnownCoursePickerActiveLanguagePairId: string | null = null;
 
+/**
+ * Course picker component. Provides a searchable, paginated list of courses
+ * with scope filtering and compact display mode.
+ *
+ * @remarks
+ * Loads courses from `CourseSearchService`, filtered by the active language pair.
+ * Supports expanding to a full list and clearing selection.
+ */
 @Component({
   selector: 'app-course-picker',
   imports: [
@@ -99,6 +107,12 @@ export class CoursePickerComponent implements OnInit {
     }
   }
 
+  /**
+   * Picks a course and emits selection events.
+   *
+   * @param entry - The course index entry to pick.
+   * @remarks Collapses the full list if in compact mode.
+   */
   pick(entry: CourseIndexEntry): void {
     this.selectedCourseIdChange.emit(entry.id);
     this.courseLabelChange.emit(this.formatLabel(entry));
@@ -108,38 +122,72 @@ export class CoursePickerComponent implements OnInit {
     }
   }
 
+  /**
+   * Clears the current course selection.
+   * @remarks Emits empty values and collapses the full list.
+   */
   clearSelection(): void {
     this.selectedCourseIdChange.emit('');
     this.courseLabelChange.emit('');
     this.showFullList.set(false);
   }
 
+  /**
+   * Expands the course list to show all results.
+   */
   expandList(): void {
     this.showFullList.set(true);
   }
 
+  /**
+   * Collapses the course list to paginated view.
+   */
   collapseList(): void {
     this.showFullList.set(false);
   }
 
+  /**
+   * Handles query text changes.
+   *
+   * @param value - The new query string.
+   * @remarks Resets page index and reloads the list.
+   */
   onQueryChange(value: string): void {
     this.query.set(value);
     this.pageIndex.set(0);
     void this.load();
   }
 
+  /**
+   * Handles scope changes.
+   *
+   * @param scope - The new scope value.
+   * @remarks Resets page index and reloads the list.
+   */
   onScopeChange(scope: CourseListScope): void {
     this.scope.set(scope);
     this.pageIndex.set(0);
     void this.load();
   }
 
+  /**
+   * Handles pagination changes.
+   *
+   * @param event - The page event containing the new page index and page size.
+   * @remarks Updates the page index and page size signals, then reloads the list.
+   */
   onPageChange(event: PageEvent): void {
     this.pageIndex.set(event.pageIndex);
     this.pageSize.set(event.pageSize);
     void this.load();
   }
 
+  /**
+   * Formats a course entry into a display label.
+   *
+   * @param entry - The course index entry.
+   * @returns A formatted string with title, lesson count, and language pair.
+   */
   formatLabel(entry: CourseIndexEntry): string {
     return `${entry.title} · ${entry.lessonCount} уроков · ${entry.languagePairSummary}`;
   }

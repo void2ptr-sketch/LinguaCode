@@ -101,6 +101,11 @@ export class KeyboardCardComponent {
       : card.promptLexeme;
   });
 
+  /**
+   * Returns the label for the correct answer.
+   *
+   * @returns The correct answer label, or null if not applicable.
+   */
   correctLabel(): string | null {
     return getCorrectAnswerLabel(this.card(), this.direction());
   }

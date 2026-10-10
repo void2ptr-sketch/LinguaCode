@@ -2,6 +2,10 @@ import type { Card } from '../../models';
 import type { PhoneticLexeme } from '../../models/phonetic-content.types';
 import { isLikelyIpa } from '../ipa/ipa-normalize.utils';
 
+/**
+ * Извлекает все транскрипции МФА (IPA) из фонетической лексемы.
+ * Поддерживает строковое и массивовое представление вариантов произношения.
+ */
 export function collectLexemeIpaReadings(lexeme?: PhoneticLexeme): readonly string[] {
   if (!lexeme?.ipa) {
     return [];
@@ -17,6 +21,10 @@ export function collectLexemeIpaReadings(lexeme?: PhoneticLexeme): readonly stri
     .filter((value) => value.length > 0);
 }
 
+/**
+ * Собирает все уникальные транскрипции МФА (IPA) из карточки.
+ * Извлекает данные из лексем опций, пар памяти и известных ответов клавиатурной карточки.
+ */
 export function collectCardIpaReadings(card: Card): readonly string[] {
   const readings = new Set<string>();
 
@@ -62,6 +70,7 @@ export function collectCardIpaReadings(card: Card): readonly string[] {
   return [...readings];
 }
 
+/** Проверяет, содержит ли карточку какие-либо транскрипции МФА (IPA). */
 export function cardHasIpaContent(card: Card): boolean {
   return collectCardIpaReadings(card).length > 0;
 }

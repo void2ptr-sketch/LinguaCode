@@ -16,6 +16,7 @@ export function applyHanziCanvasPathTransform(
   context.transform(positioner.scale, 0, 0, -positioner.scale, positioner.xOffset, translateY);
 }
 
+/** Converts a polyline of points into an SVG `d` path string (`M` + `L` segments). Returns an empty string for empty input. */
 export function medianToSvgPath(points: readonly HanziPoint[]): string {
   if (points.length === 0) {
     return '';
@@ -26,6 +27,7 @@ export function medianToSvgPath(points: readonly HanziPoint[]): string {
   return `M ${first!.x} ${first!.y} ${segments}`.trim();
 }
 
+/** Determines a label position for a stroke's median: the midpoint point, or the single point for one-point strokes. Returns a fallback for empty input. */
 export function medianLabelPoint(points: readonly HanziPoint[]): HanziPoint {
   if (points.length === 0) {
     return { x: 512, y: 388 };

@@ -1,5 +1,6 @@
 import type { HanziPoint } from './hanzi-character.types';
 
+/** Calculates the arithmetic mean of the given numeric values. Returns `0` for empty arrays. */
 export function hanziAverage(values: readonly number[]): number {
   if (values.length === 0) {
     return 0;
@@ -8,10 +9,12 @@ export function hanziAverage(values: readonly number[]): number {
   return values.reduce((sum, value) => sum + value, 0) / values.length;
 }
 
+/** Euclidean distance between two points. */
 export function hanziDistance(left: HanziPoint, right: HanziPoint): number {
   return Math.hypot(left.x - right.x, left.y - right.y);
 }
 
+/** Vector subtraction: `left - right`. */
 export function hanziSubtract(left: HanziPoint, right: HanziPoint): HanziPoint {
   return {
     x: left.x - right.x,
@@ -19,6 +22,7 @@ export function hanziSubtract(left: HanziPoint, right: HanziPoint): HanziPoint {
   };
 }
 
+/** Total polyline length: sum of distances between consecutive points. Returns `0` for fewer than 2 points. */
 export function hanziLength(points: readonly HanziPoint[]): number {
   if (points.length < 2) {
     return 0;
@@ -32,10 +36,12 @@ export function hanziLength(points: readonly HanziPoint[]): number {
   return total;
 }
 
+/** Checks whether two points have identical `x` and `y` coordinates. */
 export function hanziPointsEqual(left: HanziPoint, right: HanziPoint): boolean {
   return left.x === right.x && left.y === right.y;
 }
 
+/** Cosine similarity between two vectors (as angles from the origin). Returns `0` when either vector has zero length. */
 export function hanziCosineSimilarity(left: HanziPoint, right: HanziPoint): number {
   const leftLength = Math.hypot(left.x, left.y);
   const rightLength = Math.hypot(right.x, right.y);
@@ -46,6 +52,7 @@ export function hanziCosineSimilarity(left: HanziPoint, right: HanziPoint): numb
   return (left.x * right.x + left.y * right.y) / (leftLength * rightLength);
 }
 
+/** Rotates a point around the origin by the given angle `theta` (in radians). */
 export function hanziRotate(point: HanziPoint, theta: number): HanziPoint {
   const cos = Math.cos(theta);
   const sin = Math.sin(theta);

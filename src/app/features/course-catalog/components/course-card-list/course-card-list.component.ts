@@ -104,6 +104,11 @@ export class CourseCatalogCoursesComponent {
     this.catalogStore.setLearningLanguageDraft(lang);
   }
 
+  /**
+   * Sets the active language pair and updates the settings target.
+   *
+   * @param id - The ID of the language pair to activate.
+   */
   onSetActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
     this.catalogStore.setSettingsPairIdDraft(id);

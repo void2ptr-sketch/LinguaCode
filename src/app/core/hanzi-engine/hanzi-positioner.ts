@@ -11,11 +11,17 @@ const PRE_SCALED_HEIGHT = HANZI_CHARACTER_BOUNDS.maxY - HANZI_CHARACTER_BOUNDS.m
 
 /** Преобразует координаты MMH → canvas px (единый transform для ghost, guides, quiz). */
 export class HanziPositioner {
+  /** Padding (in px) applied around the character. */
   readonly padding: number;
+  /** Canvas width in px. */
   readonly width: number;
+  /** Canvas height in px. */
   readonly height: number;
+  /** Horizontal offset applied when transforming to canvas coordinates. */
   readonly xOffset: number;
+  /** Vertical offset applied when transforming to canvas coordinates. */
   readonly yOffset: number;
+  /** Scale factor from MMH character space to canvas pixels. */
   readonly scale: number;
 
   constructor(options: HanziPositionerOptions) {
@@ -50,6 +56,7 @@ export class HanziPositioner {
     };
   }
 
+  /** Returns the scale and offsets as a plain transform object. */
   toCanvasTransform(): HanziCanvasTransform {
     return {
       offsetX: this.xOffset,
@@ -82,6 +89,7 @@ function toHanziPoint(point: HanziPoint | readonly [number, number]): HanziPoint
   return { x: point[0] ?? 0, y: point[1] ?? 0 };
 }
 
+/** Maps an array of character-space points to canvas pixel coordinates using the given positioner. */
 export function mapPointsToCanvas(
   points: readonly HanziPoint[],
   positioner: HanziPositioner,

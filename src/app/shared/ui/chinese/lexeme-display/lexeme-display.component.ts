@@ -196,6 +196,13 @@ export class LexemeDisplayComponent {
     return resolveIpaString(lexeme.ipa, label);
   });
 
+  /**
+   * Creates a phonetic lexeme for tone coloring from a reading string.
+   *
+   * @param lexeme - The source lexeme.
+   * @param reading - The reading text (e.g. Pinyin syllable).
+   * @returns A new lexeme with empty primary text and the given reading as Pinyin.
+   */
   phoneticToneLexeme(lexeme: PhoneticLexeme, reading: string): PhoneticLexeme {
     return {
       ...lexeme,

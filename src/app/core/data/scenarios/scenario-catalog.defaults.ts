@@ -7,11 +7,18 @@ import { migrateUserContentOverlayIfNeeded } from '../user/user-content-overlay.
 import { resolveScenarios } from '../user/user-content-overlay.resolver';
 import { readUserContentOverlay } from '../user/user-content-overlay.storage';
 
+/**
+ * Default Russian-to-Chinese language pair used across the scenarios catalog.
+ */
 export const RU_ZH_LANGUAGE_PAIR: LanguagePair = {
   known: 'ru',
   learning: 'zh',
 };
 
+/**
+ * Returns the full set of default scenarios, including seeded and user-overridden scenarios.
+ * Applies content overlay migration before resolving the final list.
+ */
 export function getDefaultScenarios(): readonly Scenario[] {
   migrateUserContentOverlayIfNeeded();
   return resolveScenarios(getScenarioSeedCache(), readUserContentOverlay());

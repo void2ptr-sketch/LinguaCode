@@ -4,6 +4,15 @@ import type { CourseListScope, CourseSearchCriteria } from '../../models';
 import { isContentLanguage } from '../../data/language-pair/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 
+/**
+ * Builds `HttpParams` from a `CourseSearchCriteria` object.
+ *
+ * Serialises all non-empty criteria fields (query, author, scope, languages,
+ * pagination) into query parameters.
+ *
+ * @param criteria - The search criteria to serialise.
+ * @returns An `HttpParams` instance ready for HTTP requests.
+ */
 export function buildCourseSearchParams(criteria: CourseSearchCriteria): HttpParams {
   let params = new HttpParams()
     .set('page', String(criteria.page.page))

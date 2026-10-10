@@ -382,6 +382,7 @@ const PALLADIUS_SYLLABLES: Record<string, string> = {
   zuo: 'цзо',
 };
 
+/** Удаляет тоновые марки из строки пиньинь, возвращая базовые латинские символы (ü → v). */
 export function stripPinyinTones(value: string): string {
   let result = '';
   for (const char of value.normalize('NFD')) {
@@ -400,6 +401,7 @@ export function stripPinyinTones(value: string): string {
   return result.replace(/ü/g, 'v').toLowerCase();
 }
 
+/** Преобразует отдельный слог пиньинь (без тона) в запись по системе Палладия. Возвращает `null`, если слог не найден. */
 export function pinyinSyllableToPalladius(syllable: string): string | null {
   const normalized = stripPinyinTones(syllable.trim());
   if (!normalized) {
@@ -409,6 +411,7 @@ export function pinyinSyllableToPalladius(syllable: string): string | null {
   return PALLADIUS_SYLLABLES[normalized] ?? null;
 }
 
+/** Преобразует строку пиньинь (один или несколько слогов через пробел) в запись по системе Палладия. */
 export function pinyinToPalladius(pinyin: string): string {
   const syllables = pinyin.trim().split(/\s+/).filter(Boolean);
   if (syllables.length === 0) {

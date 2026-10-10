@@ -56,18 +56,42 @@ export class ToneCardComponent {
   /** Emits when the user advances to the next card. */
   readonly nextCard = output<void>();
 
+  /**
+   * Returns the display label for a tone mark.
+   *
+   * @param tone - The tone mark to label.
+   * @returns The human-readable tone label.
+   */
   toneLabel(tone: ToneMark): string {
     return toneMarkLabel(tone);
   }
 
+  /**
+   * Applies a tone mark to the syllable base.
+   *
+   * @param tone - The tone mark to apply.
+   * @returns The syllable with the tone mark applied.
+   */
   tonedSyllable(tone: ToneMark): string {
     return applyToneToPinyinSyllable(this.card().syllableBase, tone);
   }
 
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
   }
 
+  /**
+   * Emits the selected tone option index.
+   *
+   * @param index - The zero-based index of the selected option.
+   * @remarks No-op if feedback is already displayed.
+   */
   selectOption(index: number): void {
     if (this.feedback() !== null) {
       return;

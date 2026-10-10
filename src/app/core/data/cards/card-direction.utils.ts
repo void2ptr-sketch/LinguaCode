@@ -2,6 +2,7 @@ import type { Card, MemoryPair, OptionCard } from '../../models';
 import type { PhoneticLexeme } from '../../models/phonetic-content.types';
 import type { CardDirection } from '../../models/language-pair.types';
 
+/** Результат разрешения option-карточки с учётом направления сессии. */
 export type ResolvedOptionCard = {
   prompt: string;
   promptLexeme?: PhoneticLexeme;
@@ -10,6 +11,7 @@ export type ResolvedOptionCard = {
   correctIndex: number;
 };
 
+/** Результат разрешения memory-пары с учётом направления сессии. */
 export type ResolvedMemoryPair = {
   left: string;
   right: string;
@@ -26,6 +28,7 @@ export function effectiveCardDirection(
   return sessionDirection;
 }
 
+/** Возвращает направление по умолчанию для карточки (`card.direction` или `'known-to-learning'`). */
 export function cardDefaultDirection(card: Card): CardDirection {
   if ('direction' in card && card.direction) {
     return card.direction;
@@ -34,11 +37,16 @@ export function cardDefaultDirection(card: Card): CardDirection {
   return 'known-to-learning';
 }
 
+/** Извлекает лемму из первых кавычек («, ", '») в строке. Возвращает `null`, если кавычек нет. */
 export function extractQuotedLemma(text: string): string | null {
   const match = text.match(/[«"']([^»"']+)[»"']/);
   return match?.[1]?.trim() || null;
 }
 
+/**
+ * Разрешает option-карточку в `ResolvedOptionCard` с учётом направления сессии.
+ * Перенаправляет на `resolveKnownToLearningOptionCard` или `resolveLearningToKnownOptionCard`.
+ */
 export function resolveOptionCard(card: OptionCard, direction: CardDirection): ResolvedOptionCard {
   if (direction === 'known-to-learning') {
     return resolveKnownToLearningOptionCard(card);
@@ -47,6 +55,10 @@ export function resolveOptionCard(card: OptionCard, direction: CardDirection): R
   return resolveLearningToKnownOptionCard(card);
 }
 
+/**
+ * Разрешает массив memory-пар в `ResolvedMemoryPair[]` с учётом направления сессии.
+ * Меняет местами `known`/`learning` поля в зависимости от направления.
+ */
 export function resolveMemoryPairs(
   pairs: readonly MemoryPair[],
   direction: CardDirection,
@@ -60,6 +72,10 @@ export function resolveMemoryPairs(
   }));
 }
 
+/**
+ * Возвращает текст подсказки (prompt) для карточки с учётом направления сессии.
+ * Для `memory`/`draw`/`tone` — всегда `promptKnown`; для `keyboard` и option-карточек — зависит от направления.
+ */
 export function resolveCardPrompt(card: Card, direction: CardDirection): string {
   if (card.kind === 'memory' || card.kind === 'draw') {
     return card.promptKnown;
@@ -80,6 +96,10 @@ export function resolveCardPrompt(card: Card, direction: CardDirection): string 
   return '';
 }
 
+/**
+ * Возвращает текст подсказки для keyboard-карточки с учётом направления сессии.
+ * В направлении `known-to-learning` приоритет у первого известного ответа, в обратном — у леммы.
+ */
 export function resolveKeyboardPrompt(
   card: Extract<Card, { kind: 'keyboard' }>,
   direction: CardDirection,
@@ -98,6 +118,10 @@ export function resolveKeyboardPrompt(
   );
 }
 
+/**
+ * Возвращает список допустимых ответов для keyboard-карточки с учётом направления сессии.
+ * В направлении `known-to-learning` пытается вывести ответ на изучаемом языке из известной части.
+ */
 export function resolveKeyboardAcceptedAnswers(
   card: Extract<Card, { kind: 'keyboard' }>,
   direction: CardDirection,
@@ -193,6 +217,10 @@ function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard 
   };
 }
 
+/**
+ * Выводит варианты на известном языке из лексем и известных опций.
+ * Возвращает `undefined`, если данные для слияния отсутствуют.
+ */
 export function deriveKnownOptionsFromLexemes(
   learningOptions: readonly string[],
   learningLexemes: readonly PhoneticLexeme[] | undefined,

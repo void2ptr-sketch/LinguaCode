@@ -1,6 +1,9 @@
 import type { CourseIndexEntry, CourseSearchCriteria } from '../../models';
 import { courseIndexMatchesLanguageCriteria } from '../language-pair/language-pair-scope.utils';
 
+/**
+ * Filters course index entries according to the given search criteria and the current user's ID.
+ */
 export function filterCourseIndex(
   entries: readonly CourseIndexEntry[],
   criteria: Omit<CourseSearchCriteria, 'page'>,
@@ -9,6 +12,11 @@ export function filterCourseIndex(
   return entries.filter((entry) => matchesCourseIndexEntry(entry, criteria, currentUserId));
 }
 
+/**
+ * Checks whether a single `CourseIndexEntry` matches the given search criteria.
+ *
+ * Applies scope filtering (`mine` / `published`), author ID, text query, and language pair constraints.
+ */
 export function matchesCourseIndexEntry(
   entry: CourseIndexEntry,
   criteria: Omit<CourseSearchCriteria, 'page'>,

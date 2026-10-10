@@ -3,6 +3,15 @@ import { HttpParams } from '@angular/common/http';
 import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../../models';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 
+/**
+ * Builds `HttpParams` from a `CardSearchCriteria` object.
+ *
+ * Serialises all non-empty criteria fields (query, languages, difficulty,
+ * course/lesson/scenario IDs, kinds, tags, pagination) into query parameters.
+ *
+ * @param criteria - The search criteria to serialise.
+ * @returns An `HttpParams` instance ready for HTTP requests.
+ */
 export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams {
   let params = new HttpParams()
     .set('page', String(criteria.page.page))
@@ -47,6 +56,15 @@ export function buildCardSearchParams(criteria: CardSearchCriteria): HttpParams 
   return params;
 }
 
+/**
+ * Parses `HttpParams` back into a `CardSearchCriteria` object.
+ *
+ * Extracts and type-coerces query parameters (kinds, tags, languages,
+ * difficulty, IDs, pagination) into a structured criteria object.
+ *
+ * @param params - The HTTP parameters to parse.
+ * @returns A `CardSearchCriteria` object populated from the parameters.
+ */
 export function parseCardSearchCriteria(params: HttpParams): CardSearchCriteria {
   const kinds = (params.getAll('kinds') ?? []) as CardKind[];
   const tags = params.getAll('tags') ?? [];

@@ -69,6 +69,7 @@ export class SoundCardComponent {
     return resolveOptionCard(card, direction);
   });
 
+  /** Computed stimulus lexeme for audio playback. */
   readonly stimulusLexeme = computed((): PhoneticLexeme => {
     const card = this.card();
     const label = card.audioLabelLearning.trim();
@@ -82,15 +83,31 @@ export class SoundCardComponent {
 
   readonly hasAudioFile = computed(() => Boolean(this.card().audioUrl?.trim()));
 
+  /**
+   * Returns the lexeme for an option at the given index.
+   *
+   * @param index - Zero-based option index.
+   * @returns The option lexeme, or undefined if not available.
+   */
   optionLexeme(index: number) {
     return this.resolved().optionLexemes?.[index];
   }
 
+  /**
+   * Returns the CSS class for an option based on selection and feedback state.
+   *
+   * @param index - Zero-based option index.
+   * @returns CSS class string for styling the option card.
+   */
   optionClass(index: number): string {
     const resolved = this.resolved();
     return buildOptionClass(index, this.selectedIndex(), this.feedback(), resolved.correctIndex);
   }
 
+  /**
+   * Plays the learning audio for the current card.
+   * @remarks Uses the resolved audio URL or TTS speech for the stimulus lexeme.
+   */
   playAudio(): void {
     const learningLanguage = this.userStore.languagePair().learning;
     const speech = resolveLearningSpeech(

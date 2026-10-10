@@ -74,6 +74,16 @@ export function updateOptionText(
   };
 }
 
+/**
+ * Updates a lexeme draft and optionally syncs the option text.
+ *
+ * If the lexeme primary is non-empty, the corresponding option text is updated to match.
+ *
+ * @param state - The current options editor state.
+ * @param index - The index of the lexeme to update.
+ * @param fields - The new lexeme draft fields.
+ * @returns The updated options editor state.
+ */
 export function updateOptionLexeme(
   state: CardOptionsEditorState,
   index: number,

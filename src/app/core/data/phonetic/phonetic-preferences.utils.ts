@@ -51,6 +51,14 @@ function normalizeAnswerRomanization(
   return [...DEFAULT_CJK_LEARNING_PREFERENCES.answerRomanization];
 }
 
+/**
+ * Normalises the tracing stroke duration to a valid value within configured bounds.
+ *
+ * Rounds to one decimal place and clamps between `minSec` and `maxSec` from `TRACING_STROKE_DURATION_BOUNDS`.
+ *
+ * @param value — Raw duration value in seconds.
+ * @returns Normalised duration in seconds, clamped to valid range.
+ */
 export function normalizeTracingStrokeDurationSec(value?: number | null): number {
   if (typeof value !== 'number' || !Number.isFinite(value)) {
     return TRACING_STROKE_DURATION_BOUNDS.defaultSec;
@@ -63,6 +71,15 @@ export function normalizeTracingStrokeDurationSec(value?: number | null): number
   );
 }
 
+/**
+ * Normalises CJK learning preferences, resolving legacy fields and applying defaults.
+ *
+ * Handles both the new `displayRomanizations` / `answerRomanization` arrays and the legacy
+ * `displayRomanization` single-value field.
+ *
+ * @param raw — Raw or legacy CJK learning preferences.
+ * @returns A fully normalised `CjkLearningPreferences` object.
+ */
 export function normalizeCjkLearningPreferences(
   raw?: LegacyCjkLearningPreferences | null,
 ): CjkLearningPreferences {
@@ -94,6 +111,15 @@ function normalizeAnswerModes(
   return [...DEFAULT_PHONETIC_PREFERENCES.answerModes];
 }
 
+/**
+ * Normalises phonetic preferences, resolving legacy fields and applying defaults.
+ *
+ * Handles the legacy `displayOrthography: 'orthographic'` value alongside the new
+ * romanization system values.
+ *
+ * @param raw — Raw phonetic preferences.
+ * @returns A fully normalised `PhoneticPreferences` object.
+ */
 export function normalizePhoneticPreferences(
   raw?: Partial<PhoneticPreferences> | null,
 ): PhoneticPreferences {
@@ -112,14 +138,38 @@ export function normalizePhoneticPreferences(
   };
 }
 
+/**
+ * Determines whether Palladius romanization should be displayed for a given language pair.
+ *
+ * Palladius is shown only for Russian-to-Chinese pairs.
+ *
+ * @param known — Known (source) language code.
+ * @param learning — Target (learning) language code.
+ * @returns `true` when Palladius should be displayed.
+ */
 export function shouldShowPalladius(known: string, learning: string): boolean {
   return known === 'ru' && learning === 'zh';
 }
 
+/**
+ * Checks whether the target learning language supports phonetic display features.
+ *
+ * Currently supported for English and Chinese.
+ *
+ * @param learning — Target (learning) language code.
+ * @returns `true` if phonetic display is supported for the language.
+ */
 export function pairSupportsPhoneticDisplay(learning: string): boolean {
   return learning === 'en' || learning === 'zh';
 }
 
+/**
+ * Checks whether a specific romanization system is enabled for display in CJK learning preferences.
+ *
+ * @param prefs — CJK learning preferences to check.
+ * @param system — Romanization system to check.
+ * @returns `true` if the system is included in `displayRomanizations`.
+ */
 export function isRomanizationDisplayEnabled(
   prefs: CjkLearningPreferences,
   system: RomanizationSystem,
@@ -127,10 +177,27 @@ export function isRomanizationDisplayEnabled(
   return prefs.displayRomanizations.includes(system);
 }
 
+/**
+ * Represents the surface where a lexeme is displayed during a learning session.
+ */
 export type LexemeDisplaySurface = 'prompt' | 'answer';
 
+/**
+ * Type alias for a valid answer display mode from phonetic preferences.
+ */
 export type AnswerDisplayMode = PhoneticPreferences['answerModes'][number];
 
+/**
+ * Resolves the romanization systems to display for a given surface.
+ *
+ * For prompts, returns `displayRomanizations`. For answers, returns `answerRomanization`
+ * only when the orthography mode is enabled in `answerModes`.
+ *
+ * @param surface — Display surface (`prompt` or `answer`).
+ * @param cjk — CJK learning preferences.
+ * @param phonetic — Phonetic preferences.
+ * @returns Array of romanization systems to display.
+ */
 export function resolveRomanizationsForSurface(
   surface: LexemeDisplaySurface,
   cjk: CjkLearningPreferences,
@@ -147,6 +214,16 @@ export function resolveRomanizationsForSurface(
   return cjk.answerRomanization;
 }
 
+/**
+ * Resolves whether IPA should be displayed for a given surface.
+ *
+ * For prompts, uses the `showIpa` preference. For answers, checks whether the `'ipa'` mode
+ * is enabled in `answerModes`.
+ *
+ * @param surface — Display surface (`prompt` or `answer`).
+ * @param phonetic — Phonetic preferences.
+ * @returns `true` if IPA should be displayed on the given surface.
+ */
 export function resolveShowIpaForSurface(
   surface: LexemeDisplaySurface,
   phonetic: PhoneticPreferences,

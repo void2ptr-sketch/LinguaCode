@@ -83,6 +83,7 @@ export function normalizePhoneticLexemeDraft(
   return hasLexemeContent(lexeme) ? lexeme : undefined;
 }
 
+/** Собирает все принятые варианты чтения лексемы в уникальный набор строк. */
 export function collectLexemeAcceptedAnswers(lexeme?: PhoneticLexeme): readonly string[] {
   if (!lexeme) {
     return [];

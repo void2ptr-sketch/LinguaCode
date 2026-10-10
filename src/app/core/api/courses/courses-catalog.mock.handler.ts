@@ -26,6 +26,13 @@ import {
 
 import type { CourseWritePayload } from '../../data/courses/courses-api.service';
 
+/**
+ * Mock handler for course catalog operations.
+ *
+ * Provides in-memory search, CRUD, and retrieval for courses using
+ * `ContentSeedRepository` as the data source. Used by
+ * `coursesApiMockInterceptor` to simulate API responses during development.
+ */
 @Injectable({ providedIn: 'root' })
 export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
@@ -33,6 +40,12 @@ export class CoursesCatalogMockHandler {
 
   private catalog: CourseCatalogState | null = null;
 
+  /**
+   * Searches the course index by the given criteria and returns a paginated result.
+   *
+   * @param criteria - The search criteria to filter courses.
+   * @returns A `CourseSearchPage` containing the filtered courses.
+   */
   async search(criteria: CourseSearchCriteria): Promise<CourseSearchPage> {
     await this.ensureData();
 
@@ -50,6 +63,13 @@ export class CoursesCatalogMockHandler {
     return paginateArray(filtered, criteria.page);
   }
 
+  /**
+   * Retrieves a single course with its lessons by ID.
+   *
+   * @param courseId - The unique identifier of the course.
+   * @returns The matching `CourseWithLessons` object with lessons sorted by order.
+   * @throws `HttpErrorResponse` with status 404 if no course is found.
+   */
   async getById(courseId: string): Promise<CourseWithLessons> {
     await this.ensureData();
 
@@ -62,6 +82,14 @@ export class CoursesCatalogMockHandler {
     return { ...course, lessons };
   }
 
+  /**
+   * Creates a new course with the given lessons.
+   *
+   * Assigns a new UUID, normalises the language pair, and persists the catalog.
+   *
+   * @param payload - The course creation payload including title, lessons, and metadata.
+   * @returns The created `CourseWithLessons` object.
+   */
   async create(payload: CourseWritePayload): Promise<CourseWithLessons> {
     await this.ensureData();
 
@@ -89,6 +117,17 @@ export class CoursesCatalogMockHandler {
     return { ...course, lessons };
   }
 
+  /**
+   * Updates an existing course with the given payload.
+   *
+   * Verifies edit permissions and distinguishes between system-authored and
+   * user-authored courses to apply the appropriate update logic.
+   *
+   * @param courseId - The unique identifier of the course to update.
+   * @param payload - The updated course data.
+   * @returns The updated `CourseWithLessons` object.
+   * @throws `HttpErrorResponse` with status 404 if not found, 403 if not authorised.
+   */
   async update(courseId: string, payload: CourseWritePayload): Promise<CourseWithLessons> {
     await this.ensureData();
 
@@ -145,6 +184,14 @@ export class CoursesCatalogMockHandler {
     return { ...updated, lessons };
   }
 
+  /**
+   * Deletes a course and its associated lessons.
+   *
+   * Verifies edit permissions before removing the course from the catalog.
+   *
+   * @param courseId - The unique identifier of the course to delete.
+   * @throws `HttpErrorResponse` with status 404 if not found, 403 if not authorised.
+   */
   async delete(courseId: string): Promise<void> {
     await this.ensureData();
 
@@ -161,6 +208,12 @@ export class CoursesCatalogMockHandler {
     this.persist();
   }
 
+  /**
+   * Finds all courses that use the given scenario in any of their lessons.
+   *
+   * @param scenarioId - The unique identifier of the scenario.
+   * @returns An array of `CourseIndexEntry` for matching courses.
+   */
   async findUsingScenario(scenarioId: string): Promise<readonly CourseIndexEntry[]> {
     await this.ensureData();
 
@@ -176,6 +229,9 @@ export class CoursesCatalogMockHandler {
     );
   }
 
+  /**
+   * Clears the cached catalog data, forcing a reload on the next operation.
+   */
   resetCache(): void {
     this.catalog = null;
   }

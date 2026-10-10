@@ -144,6 +144,16 @@ export class MemoryCardComponent {
     this.mismatchItemIds.set([]);
   }
 
+  /**
+   * Handles selection of a memory column item.
+   *
+   * @param item - The memory column item to select.
+   * @remarks
+   * If no item is selected, marks this as the first selection.
+   * If the same item is tapped again, deselects it.
+   * If items from different columns are selected, checks for a matching pair.
+   * Emits `memoryComplete` when all pairs are matched.
+   */
   selectItem(item: MemoryColumnItem): void {
     if (this.feedback() !== null || this.isMatched(item)) {
       return;
@@ -192,18 +202,42 @@ export class MemoryCardComponent {
     }, 700);
   }
 
+  /**
+   * Checks if an item has been matched.
+   *
+   * @param item - The memory column item to check.
+   * @returns `true` if the item's pair has been matched.
+   */
   isMatched(item: MemoryColumnItem): boolean {
     return this.matchedPairIds().includes(item.pairId);
   }
 
+  /**
+   * Checks if an item is currently selected.
+   *
+   * @param item - The memory column item to check.
+   * @returns `true` if the item is the currently selected one.
+   */
   isSelected(item: MemoryColumnItem): boolean {
     return this.selectedItemId() === item.id;
   }
 
+  /**
+   * Checks if an item is in a mismatch state.
+   *
+   * @param item - The memory column item to check.
+   * @returns `true` if the item is highlighted as a mismatch.
+   */
   isMismatch(item: MemoryColumnItem): boolean {
     return this.mismatchItemIds().includes(item.id);
   }
 
+  /**
+   * Returns the CSS class string for an item based on its state.
+   *
+   * @param item - The memory column item.
+   * @returns Space-separated CSS class string.
+   */
   itemClass(item: MemoryColumnItem): string {
     const classes = ['memory-item'];
     if (this.isMatched(item)) {

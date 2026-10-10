@@ -56,6 +56,7 @@ export function inferTonesFromPinyin(
   );
 }
 
+/** Разбивает строку иероглифов на сегменты с тонами; извлекает тоны из пиньинь при необходимости. */
 export function segmentHanText(
   primary: string,
   pinyin?: string,
@@ -103,6 +104,7 @@ export function segmentPinyinText(pinyin: string): readonly ToneTextSegment[] {
   return segments;
 }
 
+/** Разбивает текст на сегменты с тонами в режиме иероглифов или пиньинь; поддерживает фиксированный тон. */
 export function segmentToneText(
   text: string,
   mode: 'han' | 'pinyin',

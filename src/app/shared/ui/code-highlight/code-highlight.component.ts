@@ -25,14 +25,21 @@ export class CodeHighlightComponent {
   private readonly sanitizer = inject(DomSanitizer);
   private readonly highlightService = inject(CodeHighlightService);
 
+  /** The source code string to highlight. Defaults to an empty string. */
   readonly code = input('');
+
+  /** Syntax highlighting language. Defaults to `'plain'`. */
   readonly language = input<CodeHighlightLanguage>('plain');
+
+  /** When `true`, renders the code inline rather than as a block. Defaults to `false`. */
   readonly inline = input(false);
 
+  /** Sanitized HTML string with syntax highlighting classes applied. */
   readonly highlightedHtml = computed(() => {
     const html = this.highlightService.highlight(this.code(), this.language());
     return this.sanitizer.bypassSecurityTrustHtml(html);
   });
 
+  /** CSS class string for highlight.js (e.g. `'language-typescript'`). */
   readonly languageClass = computed(() => `language-${this.language()}`);
 }

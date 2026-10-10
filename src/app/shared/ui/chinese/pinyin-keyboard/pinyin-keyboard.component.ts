@@ -94,10 +94,21 @@ export class PinyinKeyboardComponent {
     return false;
   }
 
+  /**
+   * Presses a tone key.
+   *
+   * @param tone - The tone mark to apply.
+   */
   pressTone(tone: ToneMark): void {
     this.pressKey({ kind: 'tone', tone });
   }
 
+  /**
+   * Presses a keyboard key and emits the updated value.
+   *
+   * @param key - The keyboard key to press.
+   * @remarks No-op if the key is disabled. Emits the formatted Pinyin value.
+   */
   pressKey(key: PinyinKeyboardKey): void {
     if (this.isKeyDisabled(key)) {
       return;

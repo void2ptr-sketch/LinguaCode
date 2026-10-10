@@ -66,6 +66,11 @@ export class ScenarioBuilderPageComponent implements OnInit {
     await this.store.load();
   }
 
+  /**
+   * Opens the scenario creation dialog.
+   *
+   * Reloads the scenario list if the scenario was successfully saved.
+   */
   async startCreate(): Promise<void> {
     const result = await this.scenarioBuilderDialog.openCreate();
     if (result?.saved) {

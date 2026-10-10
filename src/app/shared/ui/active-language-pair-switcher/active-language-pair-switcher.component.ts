@@ -28,10 +28,21 @@ export class ActiveLanguagePairSwitcherComponent {
   /** Active language pair ID from the user store. */
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
+  /**
+   * Returns the formatted label for a language pair entry.
+   *
+   * @param entry - The language pair entry.
+   * @returns The formatted label string.
+   */
   entryLabel(entry: UserLanguagePairEntry): string {
     return this.userStore.formatEntryLabel(entry);
   }
 
+  /**
+   * Sets the active language pair.
+   *
+   * @param id - The ID of the language pair to activate.
+   */
   onActiveChange(id: string): void {
     this.userStore.setActiveLanguagePair(id);
   }

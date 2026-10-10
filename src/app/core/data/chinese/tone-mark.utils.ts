@@ -1,6 +1,7 @@
 import { stripPinyinTones } from './cjk-romanization.utils';
 import type { ToneMark } from '../../models/phonetic-content.types';
 
+/** Тоны по умолчанию для выбора: 1–4 (лёгкий тон исключён). */
 export const DEFAULT_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4];
 
 const VALID_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
@@ -92,6 +93,7 @@ export function applyToneToLastVowelInSyllable(rawBase: string, tone: ToneMark):
   return displayBase;
 }
 
+/** Применяет тон к слогу пиньинь по правилам приоритета гласных (a → e → o в 'ou' → последняя из i/o/u/v). */
 export function applyToneToPinyinSyllable(rawBase: string, tone: ToneMark): string {
   const base = stripPinyinTones(rawBase);
   if (!base) {

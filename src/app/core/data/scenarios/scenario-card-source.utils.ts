@@ -209,6 +209,10 @@ export async function validateScenarioCardSource(
   return null;
 }
 
+/**
+ * Creates a snapshot card source from a set of card IDs and search criteria.
+ * The snapshot captures the current card set along with the criteria and limit used to obtain it.
+ */
 export function buildSnapshotCardSource(
   cardIds: readonly string[],
   criteria: Omit<CardSearchCriteria, 'page'>,

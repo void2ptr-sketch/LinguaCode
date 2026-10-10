@@ -31,6 +31,7 @@ export function lookupHanComponentPinyin(character: string): string | null {
   return HAN_COMPONENT_PINYIN[key] ?? null;
 }
 
+/** Ищет подсказку радикала (разложение на компоненты) по иероглифу. */
 export function lookupHanRadicalHint(character: string): string | null {
   const key = character.trim();
   if (!key) {

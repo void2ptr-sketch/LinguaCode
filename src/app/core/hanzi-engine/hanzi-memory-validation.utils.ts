@@ -6,17 +6,26 @@ import { HanziPositioner } from './hanzi-positioner';
 import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
 
+/** Grade assigned to a single user stroke after validation in memory mode. */
 export type HanziMemoryStrokeGrade = 'correct' | 'incorrect';
 
+/** Result of batch validation of all user strokes in memory mode. */
 export type HanziMemoryValidationResult = {
+  /** Whether the user correctly reproduced all strokes. */
   passed: boolean;
+  /** Expected number of strokes in the target character. */
   expectedStrokeCount: number;
+  /** Number of strokes drawn by the user. */
   actualStrokeCount: number;
+  /** Total number of stroke-level mistakes detected. */
   totalMistakes: number;
+  /** Whether the validation session is complete (all strokes submitted). */
   completed: boolean;
 };
 
+/** Optional configuration for memory validation. */
 export type HanziMemoryValidationOptions = {
+  /** Padding (in px) around the character. Defaults to `20`. */
   padding?: number;
 };
 
@@ -30,10 +39,12 @@ const STROKE_COUNT_TOLERANCE: Record<LearningProficiencyLevel, number> = {
   professional: 0,
 };
 
+/** Returns the allowed stroke count tolerance for the given proficiency level. */
 export function resolveHanziMemoryStrokeCountTolerance(level: LearningProficiencyLevel): number {
   return STROKE_COUNT_TOLERANCE[level];
 }
 
+/** Builds quiz options adjusted for the given proficiency level. */
 export function resolveHanziMemoryQuizOptions(
   proficiencyLevel: LearningProficiencyLevel,
 ): HanziQuizOptions {

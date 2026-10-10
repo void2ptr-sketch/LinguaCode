@@ -22,6 +22,7 @@ export type LearningSpeech = {
   locale: string;
 };
 
+/** Возвращает locale для синтеза речи (Web Speech API) по языку контента. */
 export function contentLanguageSpeechLocale(language: ContentLanguage): string {
   return SPEECH_LOCALE[language];
 }

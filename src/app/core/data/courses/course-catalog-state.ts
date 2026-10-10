@@ -4,11 +4,23 @@ import { normalizeLanguagePair } from '../language-pair/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';
 import type { CoursesSeedFixture } from '../content-seed/content-seed.types';
 
+/**
+ * Resolved course catalog containing the normalised list of courses and lessons.
+ *
+ * The catalog is built from the content seed and any user-provided overlay (edits / deletions).
+ */
 export type CourseCatalogState = {
   courses: Course[];
   lessons: Lesson[];
 };
 
+/**
+ * Normalises a stored course by ensuring all fields have sensible defaults.
+ *
+ * Sets empty `description` to `''`, missing `authorId` to `'local-user'`, clones arrays,
+ * defaults `published` to `false`, sets `updatedAt` to epoch if missing, and normalises
+ * `languagePair` and `authoring`.
+ */
 export function normalizeStoredCourse(course: Course): Course {
   return {
     ...course,
@@ -22,6 +34,9 @@ export function normalizeStoredCourse(course: Course): Course {
   };
 }
 
+/**
+ * Normalises a stored lesson by cloning its array fields.
+ */
 export function normalizeStoredLesson(lesson: Lesson): Lesson {
   return {
     ...lesson,
@@ -30,6 +45,12 @@ export function normalizeStoredLesson(lesson: Lesson): Lesson {
   };
 }
 
+/**
+ * Merges a stored course with a default course, giving priority to stored values.
+ *
+ * The `languagePair` always comes from the default course. Array fields (`lessonIds`) are taken
+ * from the stored course when non-empty; otherwise the defaults are used.
+ */
 export function mergeStoredCourse(stored: Course, defaultCourse?: Course): Course {
   if (!defaultCourse) {
     return normalizeStoredCourse(stored);
@@ -43,6 +64,12 @@ export function mergeStoredCourse(stored: Course, defaultCourse?: Course): Cours
   });
 }
 
+/**
+ * Merges a stored lesson with a default lesson, giving priority to stored values.
+ *
+ * Array fields (`scenarioIds`, `prerequisiteLessonIds`) are taken from the stored lesson when
+ * non-empty; otherwise the defaults are used.
+ */
 export function mergeStoredLesson(stored: Lesson, defaultLesson?: Lesson): Lesson {
   if (!defaultLesson) {
     return normalizeStoredLesson(stored);
@@ -59,6 +86,11 @@ export function mergeStoredLesson(stored: Lesson, defaultLesson?: Lesson): Lesso
   });
 }
 
+/**
+ * Normalises a partial seed fixture into a `CourseCatalogState`.
+ *
+ * Filters out invalid entries using type guards and applies normalisation to every course and lesson.
+ */
 export function normalizeStoredCourseCatalog(
   catalog: Partial<CoursesSeedFixture>,
 ): CourseCatalogState {
@@ -72,6 +104,9 @@ export function normalizeStoredCourseCatalog(
   };
 }
 
+/**
+ * Creates a deep clone of the course catalog by normalising every course and lesson.
+ */
 export function cloneCourseCatalog(catalog: CourseCatalogState): CourseCatalogState {
   return {
     courses: catalog.courses.map((course) => normalizeStoredCourse(course)),
