@@ -38,6 +38,14 @@ describe('api interceptors', () => {
     request.flush({ data: [] });
   });
 
+  it('should not attach auth header for api requests when token is missing', () => {
+    http.get('/api/scenarios/demo').subscribe();
+
+    const request = httpMock.expectOne('/api/scenarios/demo');
+    expect(request.request.headers.has('Authorization')).toBe(false);
+    request.flush({ data: [] });
+  });
+
   it('should skip auth header for fixture requests', () => {
     sessionStorage.setItem(AUTH_TOKEN_STORAGE_KEY, 'test-token');
 
