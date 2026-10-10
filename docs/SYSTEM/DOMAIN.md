@@ -75,9 +75,9 @@ type LearningSessionPreferences = {
 - задать набор по критериям каталога (`cardSource.mode: 'criteria'`);
 - сохранить сценарий для прохождения в «Обучении».
 
-**Масштабирование (бэклог):** HTTP API сценариев, пагинация списка, snapshot criteria, точечная загрузка карточек — см. [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md).
+**Масштабирование (бэклог):** HTTP API сценариев, пагинация списка, snapshot criteria, точечная загрузка карточек — см. [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md).
 
-**Связь с UI:** точка входа — `menu-tools` в header и sidebar «Конструктор сценариев»; фича — `features/scenario-builder/`. Масштабирование: [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md).
+**Связь с UI:** точка входа — `menu-tools` в header и sidebar «Конструктор сценариев»; фича — `features/scenario-builder/`. Масштабирование: [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md).
 
 ## Модели
 
@@ -150,7 +150,7 @@ erDiagram
 
 Реэкспорт: `src/app/core/models/index.ts`.
 
-Подробнее о масштабировании каталога: [CARD-CATALOG.md](./CARD-CATALOG.md).
+Подробнее о масштабировании каталога: [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md).
 
 ### Типы карточек (`CardKind`)
 
@@ -269,7 +269,7 @@ type User = {
 };
 ```
 
-Подробнее о паре языков: [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md).
+Подробнее о паре языков: [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md).
 
 ### Каталог карточек (масштаб)
 
@@ -321,11 +321,11 @@ type ScenarioCardSource =
 - [INDEX.md](./INDEX.md) — оглавление документации
 - [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
-- [ARCHITECTURE.core.md](./ARCHITECTURE.core.md) — … · полный список в [INDEX.md](./INDEX.md#техническая-документация)
-- [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс, поиск, пагинация каталога
-- [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
-- [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — пара языков known → learning (scope контента; не путать с `Course`)
-- [CJK-CONTENT.md](./CJK-CONTENT.md) — иероглифы, романизация (пиньинь, жуинь, Палладия), тоны (G9)
-- [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) — IPA, фонетическая транскрипция (G10)
+- [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md) — … · полный список в [INDEX.md](./INDEX.md#техническая-документация)
+- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) — индекс, поиск, пагинация каталога
+- [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
+- [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — пара языков known → learning (scope контента; не путать с `Course`)
+- [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) — иероглифы, романизация (пиньинь, жуинь, Палладия), тоны (G9)
+- [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) — IPA, фонетическая транскрипция (G10)
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор проекта

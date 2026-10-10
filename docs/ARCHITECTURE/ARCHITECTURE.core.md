@@ -139,4 +139,4 @@ docs/COURSE-BUNDLE.md
 
 ## Связанные документы
 
-- [DOMAIN.md](./DOMAIN.md#модели) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md)
+- [DOMAIN.md](./SYSTEM/DOMAIN.md#модели) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)

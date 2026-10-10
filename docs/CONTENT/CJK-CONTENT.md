@@ -2,7 +2,7 @@
 
 План поддержки **азиатских языков** в карточках LinguaCode: иероглифы (Han), пиньинь, жуинь (注音), **система Палладия** (кириллическая транскрипция для ru→zh), произношение и тоны.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 > **Статус:** MVP реализован · см. [TASKS.md](../TASKS.md) (G9a–G9f).
 
@@ -259,5 +259,5 @@ public/data/select-cards.json                 # demo: reading-xing-1, select-zh-
 
 - [Транскрипционная система Палладия (Википедия)](https://ru.wikipedia.org/wiki/Транскрипционная_система_Палладия)
 - [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) — IPA (G10), дополняет орфографию G9
-- [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — known / learning, G2 structured content
+- [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — known / learning, G2 structured content
 - [TASKS.md](../TASKS.md) — чеклист G9

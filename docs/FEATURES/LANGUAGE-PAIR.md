@@ -2,7 +2,7 @@
 
 Обучение в LinguaCode опирается на **два языка контента**: известный пользователю (known) и изучаемый (learning). Это отдельно от **UiLocale** — языка интерфейса приложения (`@angular/localize`, бэклог).
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./CARD-CATALOG.md) · [CJK-CONTENT.md](./CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
 ## Терминология: «Курс» (scope) и «Программа» (`Course`) — G11e
 
@@ -242,7 +242,7 @@ applyLanguagePair(activePair.known, activePair.learning);
 
 ## G11 — учебные курсы (Course)
 
-> **Статус:** готово (G11). См. [DOMAIN.md](./DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
+> **Статус:** готово (G11). См. [DOMAIN.md](./SYSTEM/DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
 
 `Course` — программа из уроков (`Lesson`), каждый урок ссылается на упорядоченные `scenarioIds`. Курс привязан к `Course.languagePair` и фильтруется так же, как сценарии (G8).
 
@@ -372,7 +372,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ### G9 — CJK content layer
 
-> Детали: [CJK-CONTENT.md](./CJK-CONTENT.md).
+> Детали: [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md).
 
 Для пары **ru→zh** контент карточки выходит за рамки плоских `string`: иероглифы, пиньинь, жуинь, **транскрипционная система Палладия** (кириллица), произношение, тоны. G9 добавляет `CjkLexeme` и рендер ruby без смены контракта `LanguagePair`.
 
@@ -386,7 +386,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ### G10 — IPA (phonetic layer)
 
-> Детали: [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md). Дополняет G9; приоритет **ru→en**.
+> Детали: [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md). Дополняет G9; приоритет **ru→en**.
 
 | Шаг   | Содержание                                 |
 | ----- | ------------------------------------------ |

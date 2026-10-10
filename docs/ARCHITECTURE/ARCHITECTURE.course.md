@@ -48,4 +48,4 @@ classDiagram
 
 ## Связанные документы
 
-- [DOMAIN.md](./DOMAIN.md#иерархия-контента) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)
+- [DOMAIN.md](./SYSTEM/DOMAIN.md#иерархия-контента) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)

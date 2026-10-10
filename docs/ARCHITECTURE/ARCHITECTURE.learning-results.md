@@ -56,4 +56,4 @@ flowchart LR
 
 ## Связанные документы
 
-- [DOMAIN.md](./DOMAIN.md#модели) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)
+- [DOMAIN.md](./SYSTEM/DOMAIN.md#модели) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)

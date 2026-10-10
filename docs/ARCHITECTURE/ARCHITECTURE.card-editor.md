@@ -51,4 +51,4 @@ stateDiagram-v2
 
 ## Связанные документы
 
-- [CARD-CATALOG.md](./CARD-CATALOG.md) · [EDITOR-UX.md](./EDITOR-UX.md) · [CJK-CONTENT.md](./CJK-CONTENT.md)
+- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [EDITOR-UX.md](./FEATURES/EDITOR-UX.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md)

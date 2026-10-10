@@ -1,6 +1,6 @@
 # Архитектура LinguaCode
 
-Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
+Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./SYSTEM/DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
 
 ## Принципы
 
@@ -59,14 +59,14 @@ features/card-select/
 
 | Подсистема               | Документ                                                               |
 | ------------------------ | ---------------------------------------------------------------------- |
-| `core`                   | [ARCHITECTURE.core.md](./ARCHITECTURE.core.md)                         |
-| `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE.shared.md)                     |
-| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)           |
-| Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)                         |
-| Редактор карточек        | [ARCHITECTURE.card-editor.md](./ARCHITECTURE.card-editor.md)           |
-| Конструктор сценариев    | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE.scenario-builder.md) |
-| Программы (course)       | [ARCHITECTURE.course.md](./ARCHITECTURE.course.md)                     |
-| Результаты обучения      | [ARCHITECTURE.learning-results.md](./ARCHITECTURE.learning-results.md) |
+| `core`                   | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         |
+| `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     |
+| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           |
+| Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
+| Редактор карточек        | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           |
+| Конструктор сценариев    | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
+| Программы (course)       | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     |
+| Результаты обучения      | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) |
 
 ## Layout
 
@@ -153,14 +153,14 @@ export const routes: Routes = [
 
 ## Модель данных
 
-Сущности и типы домена — в [DOMAIN.md](./DOMAIN.md#модели).
+Сущности и типы домена — в [DOMAIN.md](./SYSTEM/DOMAIN.md#модели).
 
 Кратко:
 
 - `User`, `Card`, `Scenario`, `LearningResult`, `CardAppearance`
 - `Card` — discriminated union по полю `kind` (10 типов: `select`, `code-select`, `memory`, `symbol`, `sound`, `timed`, `keyboard`, `draw`, `tone`, `reading`)
 - Все 10 `CardKind` реализованы
-- **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md)
+- **Конструктор сценариев** — инструмент для создания и редактирования `Scenario` (`features/scenario-builder/`); масштабирование — [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
 
 ### Рендер карточек
 
@@ -193,7 +193,7 @@ export class CardSelectStore {
 | ---------------------------------- | --------------------------------------------------------------------------- |
 | UI-состояние фичи                  | signal-сервис внутри `features/*/`                                          |
 | Глобальные настройки, пользователь | `core/state/`                                                               |
-| Сценарии (конструктор)             | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md) |
+| Сценарии (конструктор)             | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) |
 | Ответ API                          | signal; конвертация из Observable через `toSignal()` или `rxResource`       |
 
 RxJS — **только** на границе HTTP/WebSocket, не в шаблонах и не в компонентах напрямую.
@@ -245,8 +245,8 @@ export class CardApiService {
 | Путь            | `features/scenario-builder/`                                             |
 | Список          | `ScenarioBuilderStore` + `ScenarioSearchService`                         |
 | Редактор        | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent`         |
-| Пара языков     | [LANGUAGE-PAIR.md](./LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
-| Масштабирование | [SCENARIO-BUILDER.md](./SCENARIO-BUILDER.md)                             |
+| Пара языков     | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
+| Масштабирование | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                             |
 
 ### `card-management` (`features/card-editor/`)
 
@@ -292,7 +292,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 ## Content seed + overlay
 
-Системный контент — `ContentSeedRepository` + `public/data/content-manifest.json`. Пользовательские правки — `UserContentOverlay` (`lingua-code.user-content.v1`). Merge в `user-content-overlay.resolver.ts`. Подробности: [ARCHITECTURE.core.md](./ARCHITECTURE.core.md#content-seed--overlay), [TASKS.md](../TASKS.md) (G15).
+Системный контент — `ContentSeedRepository` + `public/data/content-manifest.json`. Пользовательские правки — `UserContentOverlay` (`lingua-code.user-content.v1`). Merge в `user-content-overlay.resolver.ts`. Подробности: [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md#content-seed--overlay), [TASKS.md](../TASKS.md) (G15).
 
 ## Локализация (бэклог)
 
@@ -304,8 +304,8 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 - [INDEX.md](./INDEX.md) — оглавление документации
 - [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
-- [DOMAIN.md](./DOMAIN.md) — доменная модель, типы, конструктор сценариев
-- [CARD-CATALOG.md](./CARD-CATALOG.md) — индекс карточек, поиск, пагинация
+- [DOMAIN.md](./SYSTEM/DOMAIN.md) — доменная модель, типы, конструктор сценариев
+- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт
-- [.gitrules.md](./.gitrules.md) — Git-процесс
+- [GIT-RULES.md](./SYSTEM/GIT-RULES.md) — Git-процесс
