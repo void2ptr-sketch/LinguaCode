@@ -8,7 +8,7 @@ import type { CardIndexMetaOverride } from '../../../models';
  * @remarks
  * Contains the course, lessons, scenarios, cards, and card index metadata in a single bundle.
  * Used for backup, migration, and content sharing between projects.
- * @see docs/COURSE-BUNDLE.md
+ * @see docs/FEATURES/COURSE-BUNDLE.md
  */
 export type CourseBundle = {
   /** Always `1` for the current format version. */

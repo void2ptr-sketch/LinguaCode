@@ -4,7 +4,7 @@
 
 Приложение для исследования и изучения языков — от естественных до искусственных. Основная единица обучения — **карточка** (выбор ответа, запоминание, символы, звук, таймер, ввод с клавиатуры, рисование и др.). Карточки объединяются в **сценарии**, сценарии — в **уроки** и **программы**. Пользователь настраивает внешний вид и языковую пару; результаты обучения сохраняются локально.
 
-Документация: [docs/INDEX.md](./docs/INDEX.md) · бизнес-идеи: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/DOMAIN.md](./docs/DOMAIN.md).
+Документация: [docs/INDEX.md](./docs/INDEX.md) · бизнес-идеи: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md).
 
 ## Статус
 
@@ -110,13 +110,13 @@ docs/                        # документация (оглавление: d
 
 Боковое меню: **Главная** (`/home`) · **Обучение** (`/cards/select`) · **Карточки** (`/tools/cards`) · **Конструктор сценариев** · **Справка** · **Профиль**.
 
-Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/DOMAIN.md](./docs/DOMAIN.md#модели)
+Детали: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md) · [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md#модели)
 
 ## Разработка
 
 ### Git workflow
 
-Полные правила: [docs/.gitrules.md](./docs/.gitrules.md).
+Полные правила: [docs/SYSTEM/GIT-RULES.md](./docs/SYSTEM/GIT-RULES.md).
 
 1. От актуальной `main` создать ветку `NUMBER_description` (например, `3_init-angular`).
 2. Коммиты: `[NUMBER_description] краткое описание` — префикс совпадает с именем ветки.
@@ -153,15 +153,15 @@ npm run format
 
 - [Документация](./docs/INDEX.md) — оглавление
 - [Бизнес-идеи](./docs/BUSINESS.md) — продуктовое видение
-- [Домен](./docs/DOMAIN.md) — сущности, модели и терминология
-- [Каталог карточек](./docs/CARD-CATALOG.md) — индекс, поиск, пагинация
-- [Поля карточек](./docs/CARD-FIELD-GUIDE.md) — руководство по полям `Card`
-- [Конструктор сценариев](./docs/SCENARIO-BUILDER.md) — масштабирование сценариев
-- [Программы/уроки](./docs/COURSE-BUNDLE.md) — формат CourseBundle и импорт
-- [Модальные диалоги](./docs/MODAL-DIALOG.md) — архитектура диалогов редактора
-- [Mock-данные](./docs/MOCK-DATA.md) — seed + overlay (localStorage)
-- [CJK-контент](./docs/CJK-CONTENT.md) — иероглифы, пиньинь, тоны, полифония
-- [IPA](./docs/PHONETIC-CONTENT.md) — фонетическая транскрипция
+- [Домен](./docs/SYSTEM/DOMAIN.md) — сущности, модели и терминология
+- [Каталог карточек](./docs/SYSTEM/CARD-CATALOG.md) — индекс, поиск, пагинация
+- [Поля карточек](./docs/SYSTEM/CARD-FIELD-GUIDE.md) — руководство по полям `Card`
+- [Конструктор сценариев](./docs/FEATURES/SCENARIO-BUILDER.md) — масштабирование сценариев
+- [Программы/уроки](./docs/FEATURES/COURSE-BUNDLE.md) — формат CourseBundle и импорт
+- [Модальные диалоги](./docs/PATTERNS/MODAL-DIALOG.md) — архитектура диалогов редактора
+- [Mock-данные](./docs/SYSTEM/MOCK-DATA.md) — seed + overlay (localStorage)
+- [CJK-контент](./docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны, полифония
+- [IPA](./docs/CONTENT/PHONETIC-CONTENT.md) — фонетическая транскрипция
 - [Задачи](./TASKS.md) — чеклист MVP и бэклога
 - [Архитектура](./docs/ARCHITECTURE.md) — технические решения
-- [Git rules](./docs/.gitrules.md) — ветки, коммиты, merge
+- [Git rules](./docs/SYSTEM/GIT-RULES.md) — ветки, коммиты, merge

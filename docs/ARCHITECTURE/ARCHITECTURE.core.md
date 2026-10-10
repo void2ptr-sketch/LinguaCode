@@ -134,7 +134,7 @@ src/app/core/repositories/courses/utils/course-bundle.utils.ts
 public/data/content-manifest.json
 scripts/export-content-seed.mjs
 scripts/import-course-bundle.mjs
-docs/COURSE-BUNDLE.md
+docs/FEATURES/COURSE-BUNDLE.md
 ```
 
 ## Связанные документы

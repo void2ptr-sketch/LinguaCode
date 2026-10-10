@@ -16,9 +16,9 @@
 | `README.md`            | Обзор, быстрый старт, стек     |
 | `TASKS.md`             | Чеклист задач и бэклога        |
 | `docs/INDEX.md`        | Оглавление документации        |
-| `docs/DOMAIN.md`       | Сущности, модели, терминология |
+| `docs/SYSTEM/DOMAIN.md`       | Сущности, модели, терминология |
 | `docs/ARCHITECTURE.md` | Технические решения            |
-| `docs/.gitrules.md`    | Правила веток и коммитов       |
+| `docs/SYSTEM/GIT-RULES.md`    | Правила веток и коммитов       |
 | `.cursorrules`         | Базовые правила стиля          |
 
 ## Архитектура
@@ -71,7 +71,7 @@ src/app/
 1. От `main` → ветка `NUMBER_description` (напр. `14_authoring-migration`)
 2. Коммиты: `[NUMBER_description] краткое описание`
 3. Merge в `main`, ветку не удалять
-4. Полные правила: `docs/.gitrules.md`
+4. Полные правила: `docs/SYSTEM/GIT-RULES.md`
 
 ### Команды
 
@@ -145,9 +145,9 @@ type CourseAuthoring = {
 
 - Документация: `docs/INDEX.md`
 - Задачи: `TASKS.md`
-- Git-правила: `docs/.gitrules.md`
+- Git-правила: `docs/SYSTEM/GIT-RULES.md`
 - Архитектура: `docs/ARCHITECTURE.md`
-- Домен: `docs/DOMAIN.md`
+- Домен: `docs/SYSTEM/DOMAIN.md`
 - Бизнес: `docs/BUSINESS.md`
 
 ## Миграции данных

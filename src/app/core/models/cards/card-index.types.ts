@@ -5,7 +5,7 @@ import type { CardKind } from './card.types';
  *
  * @remarks
  * Includes natural languages (en, zh, ru) and programming languages (perl, java, cpp).
- * Do not confuse with UiLocale (see docs/LANGUAGE-PAIR.md).
+ * Do not confuse with UiLocale (see docs/FEATURES/LANGUAGE-PAIR.md).
  */
 export type ContentLanguage = 'en' | 'zh' | 'ru' | 'perl' | 'java' | 'cpp';
 
