@@ -15,36 +15,37 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { paintCalligraphyPolyline } from '../../../core/repositories/chinese/draw-calligraphy-paint.utils';
-import { HanziDataService } from '../../../features/hanzi-practice/hanzi-data.service';
-import { UserStore } from '../../../core/state';
-import type { HanziCharacterModel } from '../../../features/hanzi-practice/hanzi-character.model';
-import type { HanziLoadState, HanziPoint } from '../../../features/hanzi-practice/hanzi-character.types';
-import { HanziPositioner } from '../../../features/hanzi-practice/hanzi-positioner';
-import {
-  resolveRadicalComponentCellCenter,
-  resolveRadicalComponentSvgTransform,
-} from '../../../features/hanzi-practice/hanzi-radical-layout.utils';
+import { paintCalligraphyPolyline } from '../../../../core/repositories/chinese/draw-calligraphy-paint.utils';
+import { UserStore } from '../../../../core/state';
 import {
   applyHanziCanvasPathTransform,
+  HanziDataService,
+  HanziPositioner,
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
-} from '../../../features/hanzi-practice/hanzi-render.utils';
+  resolveRadicalComponentCellCenter,
+  resolveRadicalComponentSvgTransform,
+  type HanziCharacterModel,
+  type HanziLoadState,
+  type HanziPoint,
+} from '../../';
 import {
   prepareHanziTracingSamples,
+  resolveHanziHintStrokeFrame,
   resolveHanziTracingFrame,
   sliceHanziPolylineByProgress,
   tracingRevealProgress,
+  type HanziHintStrokeFrame,
   type HanziTracingFrame,
   type HanziTracingStrokeSample,
-} from '../../../features/hanzi-practice/hanzi-tracing-animation.utils';
-import {
-  resolveHanziHintStrokeFrame,
-  type HanziHintStrokeFrame,
-} from '../../../features/hanzi-practice/hanzi-hint-animation.utils';
-import type { DrawCanvasMode } from '../../../core/models/draw-practice.types';
-import type { DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from './draw-canvas.types';
+} from '../../';
+import type {
+  DrawCanvasMode,
+  DrawCanvasPoint,
+  DrawMemoryStrokeGrade,
+  DrawStrokePath,
+} from '../../../../core/models/draw-practice.types';
 
 /**
  * A radical hint for the radicals canvas mode.

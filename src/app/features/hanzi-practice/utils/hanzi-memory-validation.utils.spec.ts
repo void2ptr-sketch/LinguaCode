@@ -1,5 +1,5 @@
-import type { HanziCharacterJson } from './hanzi-character.types';
-import { buildHanziCharacterModel } from './hanzi-character.model';
+import type { HanziCharacterJson } from '../models/hanzi-character.types';
+import { buildHanziCharacterModel } from '../models/hanzi-character.model';
 import { HanziPositioner } from './hanzi-positioner';
 import {
   gradeHanziMemoryStrokes,

@@ -1,12 +1,12 @@
 import type { HanziCharacterJson, HanziPoint } from './hanzi-character.types';
-import { parseHanziMedianPoints } from './hanzi-positioner';
+import { parseHanziMedianPoints } from '../utils/hanzi-positioner';
 import {
   hanziAverage,
   hanziCosineSimilarity,
   hanziDistance,
   hanziEdgeVectors,
   hanziLength,
-} from './hanzi-geometry.utils';
+} from '../utils/hanzi-geometry.utils';
 
 /**
  * A single stroke model for a Hanzi character.

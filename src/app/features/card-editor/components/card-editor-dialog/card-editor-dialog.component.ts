@@ -52,6 +52,7 @@ function serializeDraft(draft: CardDraft): string {
     MatSelectModule,
     CardFormComponent,
   ],
+  providers: [CardEditorStore],
   templateUrl: './card-editor-dialog.component.html',
   styleUrl: './card-editor-dialog.component.scss',
 })

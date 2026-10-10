@@ -7,8 +7,8 @@ import {
   HANZI_RADICAL_ASSETS_BASE_PATH,
   type HanziCharacterJson,
   type HanziLoadState,
-} from './hanzi-character.types';
-import { buildHanziCharacterModel, type HanziCharacterModel } from './hanzi-character.model';
+} from '../models/hanzi-character.types';
+import { buildHanziCharacterModel, type HanziCharacterModel } from '../models/hanzi-character.model';
 
 type HanziCacheEntry = {
   state: HanziLoadState;

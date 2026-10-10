@@ -14,8 +14,6 @@ export {
 } from './cjk-romanization.utils';
 export type { CanvasPoint, CalligraphyPaintOptions } from './draw-calligraphy-paint.utils';
 export { paintCalligraphyPolyline } from './draw-calligraphy-paint.utils';
-export type { HanziModelResolver } from './draw-card-answer.utils';
-export { checkDrawCardAnswer } from './draw-card-answer.utils';
 export type { RadicalHintPart } from './draw-card.utils';
 export {
   splitPinyinSyllables,

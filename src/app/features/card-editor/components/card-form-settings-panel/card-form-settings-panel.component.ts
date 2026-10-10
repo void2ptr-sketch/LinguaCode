@@ -9,7 +9,7 @@ import {
   lookupHanRadicalHint,
   primaryHanCharacter,
 } from '../../../../core/repositories/chinese/draw-stroke-guides.data';
-import { HanziDataService } from '../../../hanzi-practice/hanzi-data.service';
+import { HanziDataService } from '../../../hanzi-practice/services/hanzi-data.service';
 import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';

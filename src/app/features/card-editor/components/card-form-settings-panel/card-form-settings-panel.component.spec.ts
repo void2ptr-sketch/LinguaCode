@@ -8,7 +8,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardFormSettingsPanelComponent } from './card-form-settings-panel.component';
-import { HanziDataService } from '../../../hanzi-practice/hanzi-data.service';
+import { HanziDataService } from '../../../hanzi-practice/services/hanzi-data.service';
 import type { CardDraft } from '../../types';
 
 describe('CardFormSettingsPanelComponent', () => {

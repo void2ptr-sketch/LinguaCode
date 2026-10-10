@@ -89,9 +89,12 @@ export type {
 } from './phonetic-content.types';
 export type {
   DrawCanvasMode,
+  DrawCanvasPoint,
   DrawCharacterTarget,
+  DrawMemoryStrokeGrade,
   DrawPracticeMode,
   DrawStrokeGuide,
+  DrawStrokePath,
 } from './draw-practice.types';
 export { DRAW_CANVAS_MODE_LABELS, DRAW_CANVAS_MODES } from './draw-practice.types';
 export type { ToneColorPalette, ToneColorScheme, ToneColorSchemeId } from './tone-color.types';

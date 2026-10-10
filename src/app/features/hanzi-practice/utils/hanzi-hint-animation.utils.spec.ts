@@ -1,4 +1,4 @@
-import { buildHanziCharacterModel } from './hanzi-character.model';
+import { buildHanziCharacterModel } from '../models/hanzi-character.model';
 import { prepareHanziTracingSamples } from './hanzi-tracing-animation.utils';
 import { resolveHanziHintStrokeFrame } from './hanzi-hint-animation.utils';
 

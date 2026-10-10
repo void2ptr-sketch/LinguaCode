@@ -1,7 +1,7 @@
-import type { DrawStrokePath } from '../../shared/ui/draw-canvas/draw-canvas.types';
-import type { HanziCharacterJson } from './hanzi-character.types';
-import type { HanziCharacterModel } from './hanzi-character.model';
-import { buildHanziCharacterModel } from './hanzi-character.model';
+import type { DrawStrokePath } from '../../../core/models/draw-practice.types';
+import type { HanziCharacterJson } from '../models/hanzi-character.types';
+import type { HanziCharacterModel } from '../models/hanzi-character.model';
+import { buildHanziCharacterModel } from '../models/hanzi-character.model';
 import { HanziPositioner } from './hanzi-positioner';
 
 /**

@@ -1,7 +1,7 @@
-import type { LearningProficiencyLevel } from '../../core/models/learning-proficiency.types';
-import type { DrawStrokePath } from '../../shared/ui/draw-canvas/draw-canvas.types';
-import type { HanziCharacterModel } from './hanzi-character.model';
-import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from './hanzi-character.types';
+import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
+import type { DrawStrokePath } from '../../../core/models/draw-practice.types';
+import type { HanziCharacterModel } from '../models/hanzi-character.model';
+import { DEFAULT_HANZI_QUIZ_OPTIONS, type HanziQuizOptions } from '../models/hanzi-character.types';
 import { HanziPositioner } from './hanzi-positioner';
 import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';

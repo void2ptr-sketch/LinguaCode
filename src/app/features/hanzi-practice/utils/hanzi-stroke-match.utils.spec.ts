@@ -1,8 +1,8 @@
 import { describe, it, expect } from 'vitest';
 
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
-import type { HanziPoint, HanziQuizOptions } from './hanzi-character.types';
-import type { HanziCharacterModel, HanziStrokeModel } from './hanzi-character.model';
+import type { HanziPoint, HanziQuizOptions } from '../models/hanzi-character.types';
+import type { HanziCharacterModel, HanziStrokeModel } from '../models/hanzi-character.model';
 
 describe('hanzi-stroke-match.utils', () => {
   const createMockStroke = (points: HanziPoint[], strokeNum = 0, isRadical = false): HanziStrokeModel => ({

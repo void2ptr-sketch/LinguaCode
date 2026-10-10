@@ -29,21 +29,21 @@ import {
   radicalComponentColor,
   resolveRadicalComponentPalette,
 } from '../../../../core/repositories/chinese/radical-component-color.utils';
-import { HanziDataService } from '../../../../features/hanzi-practice/hanzi-data.service';
-import { gradeHanziMemoryStrokes } from '../../../../features/hanzi-practice/hanzi-memory-validation.utils';
+import { HanziDataService } from '../../services/hanzi-data.service';
+import { gradeHanziMemoryStrokes } from '../../utils/hanzi-memory-validation.utils';
 import { DrawCard } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
 import {
   DRAW_CANVAS_MODE_LABELS,
   DRAW_CANVAS_MODES,
   type DrawCanvasMode,
+  type DrawStrokePath,
 } from '../../../../core/models/draw-practice.types';
-import { DrawCanvasComponent } from '../../draw-canvas/draw-canvas.component';
-import type { DrawStrokePath } from '../../draw-canvas/draw-canvas.types';
-import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
-import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
-import { CardFeedback } from '../../../types';
-import type { DrawAnswerPayload } from '../../../types/draw-answer.types';
+import { DrawCanvasComponent } from '../draw-canvas/draw-canvas.component';
+import { LexemeDisplayComponent } from '../../../../shared/ui/chinese/lexeme-display/lexeme-display.component';
+import { ToneColoredTextComponent } from '../../../../shared/ui/chinese/tone-colored-text/tone-colored-text.component';
+import { CardFeedback } from '../../../../shared/types';
+import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
 
 /**
  * UI component for Chinese character drawing exercises.

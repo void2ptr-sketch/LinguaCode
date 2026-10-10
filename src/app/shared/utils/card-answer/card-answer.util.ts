@@ -3,7 +3,7 @@ import type { CardDirection } from '../../../core/models/language-pair.types';
 import {
   checkDrawCardAnswer,
   type HanziModelResolver,
-} from '../../../core/repositories/chinese/draw-card-answer.utils';
+} from '../hanzi-card-answer/hanzi-card-answer.util';
 import {
   answersMatchRomanization,
   normalizeHanAnswer,

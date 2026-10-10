@@ -1,13 +1,13 @@
 import { computed, signal } from '@angular/core';
 
-import type { LearningProficiencyLevel } from '../../core/models/learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../../../core/models/learning-proficiency.types';
 import {
   DEFAULT_HANZI_QUIZ_OPTIONS,
   type HanziPoint,
   type HanziQuizOptions,
   type HanziQuizStrokeResult,
-} from './hanzi-character.types';
-import type { HanziCharacterModel } from './hanzi-character.model';
+} from '../models/hanzi-character.types';
+import type { HanziCharacterModel } from '../models/hanzi-character.model';
 import type { HanziPositioner } from './hanzi-positioner';
 import { matchHanziUserStroke } from './hanzi-stroke-match.utils';
 

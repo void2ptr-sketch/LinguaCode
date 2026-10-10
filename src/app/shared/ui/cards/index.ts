@@ -1,5 +1,4 @@
 export { CodeSelectCardComponent } from './code-select-card';
-export { DrawCardComponent } from './draw-card';
 export { KeyboardCardComponent } from './keyboard-card';
 export { MemoryCardComponent } from './memory-card';
 export { QuizCardQuestionHeaderComponent } from './quiz-card-question-header';

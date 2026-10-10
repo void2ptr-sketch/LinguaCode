@@ -1,4 +1,4 @@
-import type { HanziPoint, HanziQuizOptions } from './hanzi-character.types';
+import type { HanziPoint, HanziQuizOptions } from '../models/hanzi-character.types';
 import {
   type HanziCharacterModel,
   type HanziStrokeModel,
@@ -7,7 +7,7 @@ import {
   hanziStrokeEndingPoint,
   hanziStrokeLength,
   hanziStrokeStartingPoint,
-} from './hanzi-character.model';
+} from '../models/hanzi-character.model';
 import {
   hanziFrechetDistance,
   hanziLength,

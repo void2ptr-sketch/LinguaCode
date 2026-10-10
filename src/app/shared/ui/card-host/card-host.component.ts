@@ -5,7 +5,7 @@ import type { DrawAnswerPayload } from '../../types/draw-answer.types';
 import { CardFeedback } from '../../types';
 import { CardFocusShellComponent } from '../card-focus-shell/card-focus-shell.component';
 import { CodeSelectCardComponent } from '../cards/code-select-card/code-select-card.component';
-import { DrawCardComponent } from '../cards/draw-card/draw-card.component';
+import { DrawCardComponent } from '../../../features/hanzi-practice/components/draw-card/draw-card.component';
 import { KeyboardCardComponent } from '../cards/keyboard-card/keyboard-card.component';
 import { MemoryCardComponent } from '../cards/memory-card/memory-card.component';
 import { ReadingCardComponent } from '../cards/reading-card/reading-card.component';

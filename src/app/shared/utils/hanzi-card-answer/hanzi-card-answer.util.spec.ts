@@ -1,9 +1,8 @@
-import type { DrawCard } from '../../models';
-import type { HanziCharacterJson } from '../../../features/hanzi-practice/hanzi-character.types';
-import { buildHanziCharacterModel } from '../../../features/hanzi-practice/hanzi-character.model';
-import { HanziPositioner } from '../../../features/hanzi-practice/hanzi-positioner';
-import { checkDrawCardAnswer } from './draw-card-answer.utils';
-import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
+import type { DrawCard } from '../../../core/models';
+import type { HanziCharacterJson } from '../../../features/hanzi-practice/models/hanzi-character.types';
+import { buildHanziCharacterModel, HanziPositioner } from '../../../features/hanzi-practice';
+import { checkDrawCardAnswer } from './hanzi-card-answer.util';
+import type { DrawAnswerPayload } from '../../types/draw-answer.types';
 
 const REN_JSON: HanziCharacterJson = {
   strokes: [
