@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `TimedCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `TimedCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|

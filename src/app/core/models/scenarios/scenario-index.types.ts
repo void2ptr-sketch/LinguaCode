@@ -1,6 +1,6 @@
-import type { PageResponse } from './pagination.types';
+import type { PageResponse } from '../common/pagination.types';
 
-import type { ContentLanguage } from './card-index.types';
+import type { ContentLanguage } from '../cards/card-index.types';
 import type { ScenarioCardSourceMode } from './scenario-card-source.types';
 
 /**
@@ -55,7 +55,7 @@ export type ScenarioSearchCriteria = {
   /** Filter by course ID (scenarios within a specific course). */
   courseId?: string;
   /** Pagination parameters. */
-  page: import('../../shared/utils/pagination').PageRequest;
+  page: import('../../../shared/utils/pagination').PageRequest;
 };
 
 /** Paginated search results for scenario catalog. */

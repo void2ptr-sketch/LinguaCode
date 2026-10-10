@@ -1,4 +1,4 @@
-import type { PageRequest, PageResponse } from './pagination.types';
+import type { PageRequest, PageResponse } from '../common/pagination.types';
 
 import type { CardDifficulty, CardIndexEntry, ContentLanguage } from './card-index.types';
 import type { CardKind } from './card.types';
@@ -85,4 +85,4 @@ export type {
   ScenarioCardSort,
   ScenarioCardSource,
   ScenarioCardSourceMode,
-} from './scenario-card-source.types';
+} from '../scenarios/scenario-card-source.types';

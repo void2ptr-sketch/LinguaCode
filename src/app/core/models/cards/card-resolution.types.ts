@@ -1,4 +1,4 @@
-import type { PhoneticLexeme } from './phonetic-content.types';
+import type { PhoneticLexeme } from '../phonetics/phonetic-content.types';
 
 /**
  * Result of resolving an option card for the active session direction.

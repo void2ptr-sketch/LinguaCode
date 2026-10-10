@@ -215,7 +215,7 @@ type Scenario = {
   courseId?: string; // ID курса, к которому привязан сценарий
 };
 
-/** G11 — см. `core/models/lesson.types.ts` */
+/** G11 — см. `core/models/courses/lesson.types.ts` */
 type Lesson = {
   id: string;
   courseId: string;
@@ -227,7 +227,7 @@ type Lesson = {
   updatedAt: string; // ISO 8601
 };
 
-/** G11 — см. `core/models/course.types.ts`. languagePair задаёт scope контента курса */
+/** G11 — см. `core/models/courses/course.types.ts`. languagePair задаёт scope контента курса */
 type Course = {
   id: string;
   title: string;

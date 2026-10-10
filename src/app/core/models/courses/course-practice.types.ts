@@ -1,4 +1,4 @@
-import type { CardDifficulty } from './card-index.types';
+import type { CardDifficulty } from '../cards/card-index.types';
 
 /**
  * Navigation mode in the Practice tab (`/cards/select`).

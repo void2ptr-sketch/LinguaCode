@@ -1,6 +1,6 @@
-import type { PageResponse } from './pagination.types';
+import type { PageResponse } from '../common/pagination.types';
 
-import type { ContentLanguage } from './card-index.types';
+import type { ContentLanguage } from '../cards/card-index.types';
 
 /**
  * Lightweight catalog entry for a course.
@@ -48,7 +48,7 @@ export type CourseSearchCriteria = {
   /** Filter by learning (target) language. */
   learningLanguage?: ContentLanguage;
   /** Pagination parameters. */
-  page: import('../../shared/utils/pagination').PageRequest;
+  page: import('../../../shared/utils/pagination').PageRequest;
 };
 
 /** Paginated search results for course catalog. */

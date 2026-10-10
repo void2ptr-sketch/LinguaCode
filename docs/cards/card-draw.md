@@ -12,7 +12,7 @@
 
 ## Модель данных
 
-Исходный тип: `DrawCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `DrawCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -33,7 +33,7 @@
 
 ### DrawPracticeMode
 
-Определяется в `src/app/core/models/draw-practice.types.ts`.
+Определяется в `src/app/core/models/phonetics/draw-practice.types.ts`.
 
 ### DrawCharacterTarget
 

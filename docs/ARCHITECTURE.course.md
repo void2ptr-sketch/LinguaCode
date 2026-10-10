@@ -13,7 +13,7 @@
 features/course-builder/     # /tools/courses
 features/course-catalog/     # /courses (published)
 core/repositories/courses/search/course-search.service.ts
-core/models/course.types.ts, lesson.types.ts
+core/models/courses/courses/course.types.ts, courses/lesson.types.ts
 ```
 
 ## Иерархия

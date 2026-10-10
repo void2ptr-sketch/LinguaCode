@@ -1,6 +1,9 @@
-import type { LanguagePair } from './language-pair.types';
-import type { CjkLearningPreferences, PhoneticPreferences } from './phonetic-content.types';
-import type { LearningSessionPreferences } from './learning-session.types';
+import type { LanguagePair } from '../common/language-pair.types';
+import type {
+  CjkLearningPreferences,
+  PhoneticPreferences,
+} from '../phonetics/phonetic-content.types';
+import type { LearningSessionPreferences } from '../learning/learning-session.types';
 
 /**
  * Settings specific to a single language pair.

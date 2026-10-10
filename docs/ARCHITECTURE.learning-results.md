@@ -10,7 +10,7 @@
 
 ```text
 core/state/learning-results.store.ts
-core/models/learning-result.types.ts
+core/models/learning/learning-result.types.ts
 features/learning-results/components/learning-progress/
 ```
 

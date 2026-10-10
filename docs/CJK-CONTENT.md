@@ -232,7 +232,7 @@ Kind `reading` — выбор чтения **в контексте слова**,
 ## Связанные пути в коде
 
 ```
-src/app/core/models/cjk-content.types.ts      # CjkLexeme, RomanizationSystem
+src/app/core/models/phonetics/phonetic-content.types.ts   # CjkLexeme, RomanizationSystem
 src/app/core/domain/chinese/pinyin/cjk-romanization.utils.ts   # pinyin ↔ palladius, normalizers
 src/app/core/domain/chinese/pinyin/pinyin-keyboard.utils.ts    # виртуальная клавиатура пиньинь
 src/app/core/domain/chinese/answers/tone-mark.utils.ts          # applyToneToLastVowelInSyllable

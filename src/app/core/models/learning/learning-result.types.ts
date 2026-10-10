@@ -1,4 +1,4 @@
-import type { CardDirection, LanguagePair } from './language-pair.types';
+import type { CardDirection, LanguagePair } from '../common/language-pair.types';
 
 /**
  * A single answer result recorded during a learning session.

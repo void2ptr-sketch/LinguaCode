@@ -1,4 +1,4 @@
-import type { CardDirection } from './language-pair.types';
+import type { CardDirection } from '../common/language-pair.types';
 import type { CardIndexMetaOverride } from './card-index.types';
 
 /**
@@ -53,8 +53,12 @@ export type CardBase = {
   scenarioId?: string;
 };
 
-import type { PhoneticLexeme, ToneMark } from './phonetic-content.types';
-import type { DrawPracticeMode, DrawStrokeGuide, DrawCharacterTarget } from './draw-practice.types';
+import type { PhoneticLexeme, ToneMark } from '../phonetics/phonetic-content.types';
+import type {
+  DrawPracticeMode,
+  DrawStrokeGuide,
+  DrawCharacterTarget,
+} from '../phonetics/draw-practice.types';
 
 /**
  * A pair of known and learning lexemes for memory cards.

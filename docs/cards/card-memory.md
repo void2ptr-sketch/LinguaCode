@@ -12,7 +12,7 @@
 
 ## Модель данных
 
-Исходный тип: `MemoryCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `MemoryCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -27,7 +27,7 @@
 
 ### MemoryPair
 
-Определён в `src/app/core/models/card.types.ts`.
+Определён в `src/app/core/models/cards/card.types.ts`.
 
 | Поле | Тип | Описание |
 |------|-----|----------|

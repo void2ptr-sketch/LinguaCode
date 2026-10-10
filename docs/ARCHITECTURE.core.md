@@ -16,6 +16,7 @@ src/app/core/
 │                   #  code-highlight, keyboard-answer-mode, user)
 ├── layout/         # shell, navigation, user/help pages
 ├── models/         # типы домена (см. DOMAIN.md)
+│                   # (common, cards, scenarios, courses, learning, phonetics, user — barrel на каждом уровне)
 ├── repositories/   # data-access: repository, api, storage, search, content-seed, user-content overlay
 │                   # (cards, courses, scenarios, content-seed, user)
 ├── security/       # санитизация ввода

@@ -9,7 +9,7 @@
 
 ## Модель данных
 
-Исходный тип: `ReadingCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `ReadingCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|

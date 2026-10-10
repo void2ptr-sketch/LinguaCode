@@ -1,4 +1,4 @@
-import type { LanguagePair } from './language-pair.types';
+import type { LanguagePair } from '../common/language-pair.types';
 import type { CourseAuthoring } from './course-authoring.types';
 import type { CoursePracticeSettings } from './course-practice.types';
 

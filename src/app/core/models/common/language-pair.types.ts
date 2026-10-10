@@ -1,4 +1,4 @@
-import type { ContentLanguage } from './card-index.types';
+import type { ContentLanguage } from '../cards/card-index.types';
 
 /**
  * A language pair for learning: the user's known language → the target learning language.

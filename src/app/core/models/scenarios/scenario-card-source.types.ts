@@ -1,4 +1,4 @@
-import type { CardSearchCriteria } from './card-search.types';
+import type { CardSearchCriteria } from '../cards/card-search.types';
 
 /**
  * Sort order for dynamically assembled card sets.

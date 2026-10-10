@@ -1,6 +1,6 @@
-import type { CardAppearance } from './card.types';
+import type { CardAppearance } from '../cards/card.types';
 import type { AppColorScheme } from './app-color-scheme.types';
-import type { LearningProficiencyLevel } from './learning-proficiency.types';
+import type { LearningProficiencyLevel } from '../learning/learning-proficiency.types';
 import type { UserLanguagePairEntry } from './user-language-pair.types';
 
 /**

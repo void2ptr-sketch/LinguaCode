@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `ToneCard` (определён в `src/app/core/models/card.types.ts`).
+Исходный тип: `ToneCard` (определён в `src/app/core/models/cards/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -26,7 +26,7 @@
 
 ### ToneMark
 
-Определяется в `src/app/core/models/phonetic-content.types.ts` — тоновая марка китайского слога.
+Определяется в `src/app/core/models/phonetics/phonetic-content.types.ts` — тоновая марка китайского слога.
 
 ## Use Cases
 

@@ -197,7 +197,7 @@ IPA использует Unicode вне Basic Latin (U+0250–02AF, U+1D00–1D7
 ## Связанные пути в коде (план)
 
 ```
-src/app/core/models/phonetic-content.types.ts   # PhoneticLexeme, IpaVariant
+src/app/core/models/phonetics/phonetic-content.types.ts   # PhoneticLexeme, IpaVariant
 src/app/core/domain/ipa/ipa-normalize.utils.ts        # normalizeIpa, validation
 src/app/core/domain/ipa/ipa-en-lookup.utils.ts        # lookupEnglishIpa (editor autofill)
 src/app/core/domain/chinese/pinyin/pinyin-to-ipa.utils.ts        # pinyinToIpa, Chao tone contours

@@ -400,10 +400,10 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 ## Связанные пути в коде
 
 ```
-src/app/core/models/language-pair.types.ts
-src/app/core/models/course.types.ts                 # G11: Course (не путать с LanguagePair)
-src/app/core/models/user.types.ts                # UserPreferences (G7: languagePairs)
-src/app/core/models/card-index.types.ts
+src/app/core/models/common/language-pair.types.ts
+src/app/core/models/courses/course.types.ts                 # G11: Course (не путать с LanguagePair)
+src/app/core/models/user/user.types.ts                # UserPreferences (G7: languagePairs)
+src/app/core/models/cards/card-index.types.ts
 src/app/core/domain/language-pair/language-pair.utils.ts
 src/app/core/state/user.store.ts
 src/app/core/state/user.persistence.ts           # G7: migration legacy languagePair
