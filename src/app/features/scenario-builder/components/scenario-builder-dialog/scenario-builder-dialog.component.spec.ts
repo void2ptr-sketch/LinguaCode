@@ -1,12 +1,23 @@
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { provideHttpClient } from '@angular/common/http';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { ScenarioBuilderDialogComponent } from './scenario-builder-dialog.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import { UserStore } from '../../../../core/state';
 import { CardCatalogSearchStore } from '../../../card-catalog-search';
 import { seedTestContentCache } from '../../../../core/repositories/content-seed/content-seed.test-utils';
-import { provideHttpClient } from '@angular/common/http';
+
+/** Mock for ScenarioEditorFormComponent to avoid deep dependency chain. */
+@Component({
+  selector: 'app-scenario-editor-form',
+  template: '',
+  standalone: true,
+})
+class MockScenarioEditorFormComponent {
+  draft = { sourceMode: 'fixed' as const, title: '' };
+}
 
 describe('ScenarioBuilderDialogComponent', () => {
   let component: ScenarioBuilderDialogComponent;
@@ -34,7 +45,7 @@ describe('ScenarioBuilderDialogComponent', () => {
     seedTestContentCache();
 
     await TestBed.configureTestingModule({
-      imports: [ScenarioBuilderDialogComponent],
+      imports: [ScenarioBuilderDialogComponent, MockScenarioEditorFormComponent],
       providers: [
         ScenarioBuilderStore,
         UserStore,
@@ -47,7 +58,11 @@ describe('ScenarioBuilderDialogComponent', () => {
     }).compileComponents();
 
     store = TestBed.inject(ScenarioBuilderStore);
-    component = TestBed.createComponent(ScenarioBuilderDialogComponent).componentInstance;
+    const ref = TestBed.createComponent(ScenarioBuilderDialogComponent);
+    component = ref.componentInstance;
+
+    // Wait for async ngOnInit to complete
+    await ref.whenStable();
   });
 
   afterEach(() => {
