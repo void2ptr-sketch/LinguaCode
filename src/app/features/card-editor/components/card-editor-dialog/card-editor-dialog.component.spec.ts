@@ -11,7 +11,6 @@ import type { CardEditorDialogData } from './card-editor-dialog.types';
 
 describe('CardEditorDialogComponent', () => {
   let component: CardEditorDialogComponent;
-  let store: CardEditorStore;
 
   const mockDialogRef = {
     close: vi.fn(),
@@ -47,7 +46,6 @@ describe('CardEditorDialogComponent', () => {
       ],
     }).compileComponents();
 
-    store = TestBed.inject(CardEditorStore);
     component = TestBed.createComponent(CardEditorDialogComponent).componentInstance;
   });
 

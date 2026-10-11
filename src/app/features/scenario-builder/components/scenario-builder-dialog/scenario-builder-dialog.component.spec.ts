@@ -19,7 +19,7 @@ describe('ScenarioBuilderDialogComponent', () => {
   const mockAfterClosed = {
     subscribe: function(cb: (value: boolean) => void) {
       cb(false);
-      return { unsubscribe: function() {} };
+      return { unsubscribe: vi.fn() };
     },
   };
 

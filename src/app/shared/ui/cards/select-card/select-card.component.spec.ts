@@ -13,7 +13,7 @@ import type { SelectCard } from '../../../../core/models';
 @Component({
   standalone: true,
   imports: [SelectCardComponent],
-  template: `<app-select-card [card]="card" [direction]="direction" [selectedIndex]="selectedIndex" [feedback]="feedback" [fontSize]="fontSize" (optionSelected)="onSelect($event)" (checkAnswer)="onCheck()" (nextCard)="onNext()" />`,
+  template: `<app-select-card [card]="card" [direction]="direction" [selectedIndex]="selectedIndex" [feedback]="feedback" [fontSize]="fontSize" (checkAnswer)="onCheck()" (nextCard)="onNext()" />`,
 })
 class TestHostComponent {
   card: SelectCard = {
@@ -32,9 +32,15 @@ class TestHostComponent {
   feedback: 'correct' | 'incorrect' | null = null;
   fontSize: 'sm' | 'md' | 'lg' = 'md';
 
-  onSelect(_index: number): void {}
-  onCheck(): void {}
-  onNext(): void {}
+  onSelect(): void {
+    /* placeholder */
+  }
+  onCheck(): void {
+    /* placeholder */
+  }
+  onNext(): void {
+    /* placeholder */
+  }
 }
 
 describe('SelectCardComponent', () => {

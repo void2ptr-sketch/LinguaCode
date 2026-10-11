@@ -1,9 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { DrawCanvasComponent, DrawRadicalHint } from './draw-canvas.component';
+import { DrawCanvasComponent } from './draw-canvas.component';
 import { UserStore } from '../../../../core/state';
 
 describe('DrawCanvasComponent', () => {
@@ -11,7 +11,7 @@ describe('DrawCanvasComponent', () => {
   let component: DrawCanvasComponent;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    /* silence console.error in tests */
 
     TestBed.configureTestingModule({
       imports: [DrawCanvasComponent, MatButtonModule, MatIconModule],

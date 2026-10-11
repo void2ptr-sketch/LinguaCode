@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { LearningProgressComponent } from './learning-progress.component';
 import { LearningResultsStore } from '../../../../core/state';
 

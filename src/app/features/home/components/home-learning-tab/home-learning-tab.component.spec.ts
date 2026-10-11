@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
-import { vi, describe, it, expect, beforeEach } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import { HomeLearningTabComponent } from './home-learning-tab.component';
 import { LearningDashboardService } from '../../services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../../core/state';
@@ -9,7 +9,6 @@ describe('HomeLearningTabComponent', () => {
   let component: HomeLearningTabComponent;
   let fixture: ComponentFixture<HomeLearningTabComponent>;
   let dashboard: LearningDashboardService;
-  let resultsStore: LearningResultsStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -22,7 +21,6 @@ describe('HomeLearningTabComponent', () => {
     }).compileComponents();
 
     dashboard = TestBed.inject(LearningDashboardService);
-    resultsStore = TestBed.inject(LearningResultsStore);
     fixture = TestBed.createComponent(HomeLearningTabComponent);
     component = fixture.componentInstance;
   });

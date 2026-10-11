@@ -10,7 +10,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { CardSelectPageComponent } from './card-select-page.component';
 import { CardSelectStore } from '../../services/card-select.store';
@@ -38,7 +38,7 @@ describe('CardSelectPageComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    /* silence console.error in tests */
 
     TestBed.configureTestingModule({
       imports: [

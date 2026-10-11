@@ -29,7 +29,9 @@ describe('DrawCardComponent', () => {
   let component: DrawCardComponent;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {});
+    vi.spyOn(console, 'error').mockImplementation(() => {
+      /* silence console.error in tests */
+    });
 
     TestBed.configureTestingModule({
       imports: [

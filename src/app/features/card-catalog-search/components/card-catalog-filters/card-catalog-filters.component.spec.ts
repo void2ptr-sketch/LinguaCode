@@ -1,8 +1,8 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../services/card-catalog-search/card-catalog-search.store';
-import { DIFFICULTIES, DIFFICULTY_LABELS, CARD_KIND_LABELS, tagLabel } from '../../../../shared/constants/catalog-labels';
+import { DIFFICULTIES, DIFFICULTY_LABELS, CARD_KIND_LABELS } from '../../../../shared/constants/catalog-labels';
 
 describe('CardCatalogFiltersComponent', () => {
   let component: CardCatalogFiltersComponent;

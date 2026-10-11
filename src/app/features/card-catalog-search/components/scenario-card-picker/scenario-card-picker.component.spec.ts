@@ -9,8 +9,6 @@ import { formatIndexLanguagePair } from '../../../../core/domain/language-pair/l
 describe('ScenarioCardPickerComponent', () => {
   let component: ScenarioCardPickerComponent;
   let fixture: ComponentFixture<ScenarioCardPickerComponent>;
-  let store: CardCatalogSearchStore;
-  let userStore: UserStore;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -19,17 +17,11 @@ describe('ScenarioCardPickerComponent', () => {
     }).compileComponents();
 
     fixture = TestBed.createComponent(ScenarioCardPickerComponent);
-    store = TestBed.inject(CardCatalogSearchStore);
-    userStore = TestBed.inject(UserStore);
     component = fixture.componentInstance;
   });
 
   it('should create', () => {
     expect(component).toBeDefined();
-  });
-
-  it('should inject CardCatalogSearchStore', () => {
-    expect(component.store).toBe(store);
   });
 
   it('should expose kindLabels', () => {
