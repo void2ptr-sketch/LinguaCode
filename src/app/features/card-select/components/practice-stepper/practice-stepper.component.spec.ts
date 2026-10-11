@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { PracticeStepperComponent, PracticeStepState } from './practice-stepper.component';
 
@@ -27,6 +27,7 @@ class TestHostComponent {
 describe('PracticeStepperComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let component: TestHostComponent;
+  let stepperComponent: PracticeStepperComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -36,6 +37,7 @@ describe('PracticeStepperComponent', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    stepperComponent = fixture.debugElement.children[0].componentInstance as PracticeStepperComponent;
   });
 
   it('should create', () => {
@@ -74,5 +76,25 @@ describe('PracticeStepperComponent', () => {
     component.steps.forEach((step, index) => {
       expect(step.index).toBe(index);
     });
+  });
+
+  // ─── selectStep ───────────────────────────────────────────────────────
+
+  it('should emit stepSelect when clicking unlocked step', () => {
+    const spy = vi.spyOn(stepperComponent.stepSelect, 'emit');
+    stepperComponent.selectStep(0, false);
+    expect(spy).toHaveBeenCalledWith(0);
+  });
+
+  it('should not emit stepSelect when step is locked', () => {
+    const spy = vi.spyOn(stepperComponent.stepSelect, 'emit');
+    stepperComponent.selectStep(3, true);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should emit correct index for each step', () => {
+    const spy = vi.spyOn(stepperComponent.stepSelect, 'emit');
+    stepperComponent.selectStep(2, false);
+    expect(spy).toHaveBeenCalledWith(2);
   });
 });

@@ -35,6 +35,7 @@ class WrapperComponent {
 describe('LessonPickerSectionComponent', () => {
   let wrapper: WrapperComponent;
   let fixture: ComponentFixture<WrapperComponent>;
+  let component: LessonPickerSectionComponent;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -44,34 +45,67 @@ describe('LessonPickerSectionComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
+    component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
   });
 
   it('should create', () => {
-    const component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
     expect(component).toBeTruthy();
   });
 
+  it('should have required inputs', () => {
+    expect(component.selectedCourseId()).toBe('test-course-id');
+    expect(component.selectedLessonId()).toBe('');
+    expect(component.enforcePrerequisites()).toBe(false);
+    expect(component.nextStepHint()).toBe('Select a lesson');
+    expect(component.canAdvanceFromLessons()).toBe(false);
+  });
+
+  it('should have all outputs defined', () => {
+    expect(component.selectedLessonIdChange).toBeDefined();
+    expect(component.lessonPickChange).toBeDefined();
+    expect(component.goToCourse).toBeDefined();
+    expect(component.nextClick).toBeDefined();
+  });
+
   it('should emit event when onSelectedLessonIdChange is called', () => {
-    const component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
     component.selectedLessonIdChange.emit('test-lesson-id');
     expect(wrapper.onSelectedLessonIdChange).toHaveBeenCalledWith('test-lesson-id');
   });
 
   it('should emit event when onLessonPickChange is called', () => {
-    const component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
     component.lessonPickChange.emit({ lessonId: '1', title: 'Test Lesson', scenarioIds: ['s1', 's2'] });
     expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({ lessonId: '1', title: 'Test Lesson', scenarioIds: ['s1', 's2'] });
   });
 
   it('should emit event when onGoToCourse is called', () => {
-    const component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
     component.goToCourse.emit();
     expect(wrapper.onGoToCourse).toHaveBeenCalled();
   });
 
   it('should emit event when onNextClick is called', () => {
-    const component = fixture.debugElement.children[0].componentInstance as LessonPickerSectionComponent;
     component.nextClick.emit();
+    expect(wrapper.onNextClick).toHaveBeenCalled();
+  });
+
+  // ─── Handler tests ────────────────────────────────────────────────────
+
+  it('should emit selectedLessonIdChange when onSelectedLessonIdChange is called', () => {
+    component.onSelectedLessonIdChange('new-lesson-id');
+    expect(wrapper.onSelectedLessonIdChange).toHaveBeenCalledWith('new-lesson-id');
+  });
+
+  it('should emit lessonPickChange when onLessonPickChange is called', () => {
+    component.onLessonPickChange({ lessonId: 'l2', title: 'Another Lesson', scenarioIds: ['s3'] });
+    expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({ lessonId: 'l2', title: 'Another Lesson', scenarioIds: ['s3'] });
+  });
+
+  it('should emit goToCourse when onGoToCourse is called', () => {
+    component.onGoToCourse();
+    expect(wrapper.onGoToCourse).toHaveBeenCalled();
+  });
+
+  it('should emit nextClick when onNextClick is called', () => {
+    component.onNextClick();
     expect(wrapper.onNextClick).toHaveBeenCalled();
   });
 });

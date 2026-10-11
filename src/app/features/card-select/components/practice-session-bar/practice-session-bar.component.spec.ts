@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { PracticeSessionBarComponent, PracticeSessionSegment } from './practice-session-bar.component';
 
@@ -49,6 +49,7 @@ class TestHostComponent {
 describe('PracticeSessionBarComponent', () => {
   let fixture: ComponentFixture<TestHostComponent>;
   let component: TestHostComponent;
+  let barComponent: PracticeSessionBarComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -58,6 +59,7 @@ describe('PracticeSessionBarComponent', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    barComponent = fixture.debugElement.children[0].componentInstance as PracticeSessionBarComponent;
   });
 
   it('should create', () => {
@@ -93,5 +95,25 @@ describe('PracticeSessionBarComponent', () => {
   it('should mark third segment as locked', () => {
     expect(component.segments[2].locked).toBe(true);
     expect(component.segments[2].completed).toBe(false);
+  });
+
+  // ─── selectSegment ────────────────────────────────────────────────────
+
+  it('should emit segmentSelect when clicking unlocked segment', () => {
+    const spy = vi.spyOn(barComponent.segmentSelect, 'emit');
+    barComponent.selectSegment(0, false);
+    expect(spy).toHaveBeenCalledWith(0);
+  });
+
+  it('should not emit segmentSelect when segment is locked', () => {
+    const spy = vi.spyOn(barComponent.segmentSelect, 'emit');
+    barComponent.selectSegment(2, true);
+    expect(spy).not.toHaveBeenCalled();
+  });
+
+  it('should emit correct tab index for each segment', () => {
+    const spy = vi.spyOn(barComponent.segmentSelect, 'emit');
+    barComponent.selectSegment(1, false);
+    expect(spy).toHaveBeenCalledWith(1);
   });
 });
