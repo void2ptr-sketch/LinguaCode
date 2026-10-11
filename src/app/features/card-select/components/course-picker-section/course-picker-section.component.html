@@ -1,0 +1,24 @@
+<div class="card-select-page__tab">
+  <app-course-picker
+    [compact]="true"
+    [selectedCourseId]="selectedCourseId()"
+    [selectedCourseLabel]="courseTitle()"
+    (selectedCourseIdChange)="onSelectedCourseIdChange($event)"
+    (courseLabelChange)="onCourseLabelChange($event)"
+  >
+    <a coursePickerLink routerLink="/courses">Каталог программ</a>
+    <a coursePickerEmptyAction mat-stroked-button routerLink="/courses">Открыть каталог</a>
+  </app-course-picker>
+
+  <footer class="card-select-page__tab-footer">
+    <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
+    <button
+      mat-flat-button
+      type="button"
+      [disabled]="!canAdvanceFromCourse()"
+      (click)="nextClick.emit()"
+    >
+      Далее
+    </button>
+  </footer>
+</div>

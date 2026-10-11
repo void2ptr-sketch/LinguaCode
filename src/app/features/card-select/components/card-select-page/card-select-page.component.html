@@ -11,7 +11,6 @@
   </header>
 
   <app-practice-session-bar [segments]="sessionSegments()" (segmentSelect)="goToTab($event)" />
-
   <app-practice-stepper [steps]="practiceSteps()" (stepSelect)="goToTab($event)" />
 
   <mat-tab-group
@@ -20,246 +19,92 @@
     (selectedIndexChange)="goToTab($event)"
     dynamicHeight
   >
+    <!-- Course selection tab -->
     <mat-tab label="Программа">
-      <div class="card-select-page__tab">
-        <app-course-picker
-          [compact]="true"
-          [selectedCourseId]="selectedCourseId()"
-          [selectedCourseLabel]="courseTitle()"
-          (selectedCourseIdChange)="onCourseChange($event)"
-          (courseLabelChange)="onCourseLabelChange($event)"
-        >
-          <a coursePickerLink routerLink="/courses">Каталог программ</a>
-          <a coursePickerEmptyAction mat-stroked-button routerLink="/courses">Открыть каталог</a>
-        </app-course-picker>
-
-        <footer class="card-select-page__tab-footer">
-          <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
-          <button
-            mat-flat-button
-            type="button"
-            [disabled]="!canAdvanceFromCourse()"
-            (click)="advanceFromCurrentTab()"
-          >
-            Далее
-          </button>
-        </footer>
-      </div>
+      <app-course-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [courseTitle]="courseTitle()"
+        [nextStepHint]="nextStepHint()"
+        [canAdvanceFromCourse]="canAdvanceFromCourse()"
+        (selectedCourseIdChange)="onCourseChange($event)"
+        (courseLabelChange)="onCourseLabelChange($event)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
     </mat-tab>
 
+    <!-- Lessons selection tab -->
     <mat-tab label="Уроки" [disabled]="!selectedCourseId()">
-      <div class="card-select-page__tab card-select-page__tab--lessons">
-        @if (selectedCourseId()) {
-          <app-lesson-picker
-            [hideTitle]="true"
-            [selectedCourseId]="selectedCourseId()"
-            [selectedLessonId]="selectedLessonId()"
-            [enforcePrerequisites]="enforceLessonPrerequisites()"
-            (selectedLessonIdChange)="onLessonChange($event)"
-            (lessonPickChange)="onLessonPick($event)"
-          />
-        } @else {
-          <div class="card-select-page__empty-state">
-            <mat-icon aria-hidden="true">menu_book</mat-icon>
-            <p class="card-select-page__tab-hint">Выберите программу на вкладке «Программа».</p>
-            <button mat-stroked-button type="button" (click)="goToTab(0)">К программе</button>
-          </div>
-        }
-
-        <footer class="card-select-page__tab-footer">
-          <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
-          <button
-            mat-flat-button
-            type="button"
-            [disabled]="!canAdvanceFromLessons()"
-            (click)="advanceFromCurrentTab()"
-          >
-            Далее
-          </button>
-        </footer>
-      </div>
+      <app-lesson-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [selectedLessonId]="selectedLessonId()"
+        [enforcePrerequisites]="enforceLessonPrerequisites()"
+        [nextStepHint]="nextStepHint()"
+        [canAdvanceFromLessons]="canAdvanceFromLessons()"
+        (selectedLessonIdChange)="onLessonChange($event)"
+        (lessonPickChange)="onLessonPick($event)"
+        (goToCourse)="goToTab(0)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
     </mat-tab>
 
+    <!-- Scenarios selection tab -->
     <mat-tab label="Сценарии">
-      <div class="card-select-page__tab">
-        @if (selectedCourseId() && !selectedLessonId() && requiresLessonForScenarios()) {
-          <div class="card-select-page__empty-state">
-            <mat-icon aria-hidden="true">view_list</mat-icon>
-            <p class="card-select-page__tab-hint">
-              Сначала выберите урок — сценарии будут отфильтрованы по программе.
-            </p>
-            <button mat-stroked-button type="button" (click)="goToTab(1)">Перейти к урокам</button>
-          </div>
-        } @else {
-          @if (selectedCourseId() && selectedLessonId()) {
-            <p class="card-select-page__tab-note">Показаны сценарии урока «{{ lessonTitle() }}».</p>
-          } @else if (isOpenPractice() && selectedCourseId()) {
-            <p class="card-select-page__tab-note">
-              Свободная практика: все сценарии программы «{{ courseTitle() }}».
-            </p>
-          }
-
-          @if (showDifficultyFilter()) {
-            <mat-button-toggle-group
-              class="card-select-page__difficulty"
-              [ngModel]="selectedDifficulty()"
-              (ngModelChange)="onDifficultyChange($event)"
-              aria-label="Уровень сложности"
-            >
-              <mat-button-toggle [value]="null">Все уровни</mat-button-toggle>
-              @for (level of difficultyLevels; track level) {
-                <mat-button-toggle [value]="level">{{ difficultyLabels[level] }}</mat-button-toggle>
-              }
-            </mat-button-toggle-group>
-          }
-
-          <app-scenario-picker
-            [selectedScenarioId]="selectedScenarioId()"
-            [allowedScenarioIds]="allowedScenarioIdsForPicker()"
-            [autoSelectFirst]="false"
-            (selectedScenarioIdChange)="onScenarioChange($event)"
-            (scenarioLabelChange)="onScenarioLabelChange($event)"
-          />
-        }
-
-        <footer class="card-select-page__tab-footer">
-          <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
-          <button
-            mat-flat-button
-            type="button"
-            [disabled]="!canStartPractice()"
-            (click)="advanceFromCurrentTab()"
-          >
-            Начать практику
-          </button>
-        </footer>
-      </div>
+      <app-scenario-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [selectedLessonId]="selectedLessonId()"
+        [lessonTitle]="lessonTitle()"
+        [courseTitle]="courseTitle()"
+        [requiresLessonForScenarios]="requiresLessonForScenarios()"
+        [isOpenPractice]="isOpenPractice()"
+        [showDifficultyFilter]="showDifficultyFilter()"
+        [difficultyLevels]="difficultyLevels"
+        [difficultyLabels]="difficultyLabels"
+        [selectedDifficulty]="selectedDifficulty()"
+        [allowedScenarioIds]="allowedScenarioIdsForPicker()"
+        [selectedScenarioId]="selectedScenarioId()"
+        [nextStepHint]="nextStepHint()"
+        [canStartPractice]="canStartPractice()"
+        (difficultyChange)="onDifficultyChange($event)"
+        (selectedScenarioIdChange)="onScenarioChange($event)"
+        (scenarioLabelChange)="onScenarioLabelChange($event)"
+        (goToLessons)="goToTab(1)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
     </mat-tab>
 
+    <!-- Learning zone tab -->
     <mat-tab label="Обучение" [disabled]="!selectedScenarioId()">
-      <div class="card-select-page__tab card-select-page__tab--learning">
-        @if (!selectedScenarioId()) {
-          <div class="card-select-page__empty-state">
-            <mat-icon aria-hidden="true">school</mat-icon>
-            <p class="card-select-page__tab-hint">Выберите сценарий на вкладке «Сценарии».</p>
-            <button mat-stroked-button type="button" (click)="goToTab(2)">К сценариям</button>
-          </div>
-        } @else {
-          <div class="card-select-page__learning-shell">
-            <div class="card-select-page__learning-toolbar">
-              @if (showDirectionToggle()) {
-                <mat-button-toggle-group
-                  class="card-select-page__direction"
-                  [ngModel]="store.sessionDirection()"
-                  (ngModelChange)="onDirectionChange($event)"
-                >
-                  <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
-                  <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
-                </mat-button-toggle-group>
-              }
-            </div>
-
-            @if (scenarioTitle()) {
-              <div class="card-select-page__context">
-                @if (courseTitle()) {
-                  <mat-chip>{{ courseTitle() }}</mat-chip>
-                }
-                @if (lessonTitle()) {
-                  <mat-chip>{{ lessonTitle() }}</mat-chip>
-                }
-                <mat-chip>{{ scenarioTitle() }}</mat-chip>
-                @if (scenarioSourceLabel()) {
-                  <mat-chip>{{ scenarioSourceLabel() }}</mat-chip>
-                }
-              </div>
-
-              <div class="card-select-page__card-progress">
-                <span class="card-select-page__card-progress-label">
-                  Карточка {{ store.progressLabel() }}
-                </span>
-                <mat-progress-bar mode="determinate" [value]="cardProgressPercent()" />
-              </div>
-            }
-
-            @if (missingCardsWarning(); as warning) {
-              <p class="card-select-page__warning">{{ warning }}</p>
-            }
-
-            @if (store.loading()) {
-              <div class="card-select-page__state">
-                <mat-spinner diameter="40" />
-                <p>Загрузка карточек…</p>
-              </div>
-            } @else if (store.error()) {
-              <mat-card class="card-select-page__message">
-                <mat-card-content>{{ store.error() }}</mat-card-content>
-                <mat-card-actions align="end">
-                  <button mat-flat-button type="button" (click)="loadCards()">Повторить</button>
-                </mat-card-actions>
-              </mat-card>
-            } @else if (store.completed()) {
-              <mat-card class="card-select-page__message">
-                <mat-card-header>
-                  <mat-card-title>
-                    @if (showCourseCertificate()) {
-                      Программа завершена
-                    } @else {
-                      Сценарий завершён
-                    }
-                  </mat-card-title>
-                </mat-card-header>
-                <mat-card-content>
-                  @if (showCourseCertificate()) {
-                    <mat-chip class="card-select-page__certificate" disabled>
-                      <mat-icon>workspace_premium</mat-icon>
-                      Сертификат: {{ courseTitle() }}
-                    </mat-chip>
-                    <p>Вы прошли все уроки программы. Результаты сохранены.</p>
-                  } @else {
-                    <p>Вы прошли все карточки. Результаты сохранены.</p>
-                  }
-                </mat-card-content>
-                <mat-card-actions align="end">
-                  @if (hasNextLessonScenario()) {
-                    <button mat-flat-button type="button" (click)="goToNextLessonScenario()">
-                      Следующий сценарий урока
-                    </button>
-                  }
-                  <button mat-stroked-button type="button" (click)="loadCards()">
-                    Начать заново
-                  </button>
-                </mat-card-actions>
-              </mat-card>
-            } @else {
-              <div class="card-select-page__card-zone">
-                @if (store.currentCard(); as card) {
-                  <app-card-host
-                    [card]="card"
-                    [direction]="store.sessionDirection()"
-                    [selectedIndex]="store.selectedIndex()"
-                    [answerText]="store.answerText()"
-                    [memoryComplete]="store.memoryComplete()"
-                    [memoryBoardNonce]="store.memoryBoardNonce()"
-                    [drawSubmitted]="store.drawSubmitted()"
-                    [drawAnswer]="store.drawAnswer()"
-                    [feedback]="store.feedback()"
-                    [fontSize]="fontSize().fontSize"
-                    [autoFocusFullscreen]="isLearningTabActive()"
-                    (optionSelected)="selectOption($event)"
-                    (answerTextChange)="setAnswerText($event)"
-                    (memoryCompleteChange)="setMemoryComplete($event)"
-                    (drawSubmittedChange)="setDrawSubmitted($event)"
-                    (drawAnswerChange)="setDrawAnswer($event)"
-                    (timeExpired)="handleTimeExpired()"
-                    (checkAnswer)="checkAnswer()"
-                    (nextCard)="nextCard()"
-                  />
-                }
-              </div>
-            }
-          </div>
-        }
-      </div>
+      <app-learning-zone
+        [selectedScenarioId]="selectedScenarioId()"
+        [courseTitle]="courseTitle()"
+        [lessonTitle]="lessonTitle()"
+        [scenarioTitle]="scenarioTitle()"
+        [scenarioSourceLabel]="scenarioSourceLabel()"
+        [showDirectionToggle]="showDirectionToggle()"
+        [sessionDirection]="store.sessionDirection()"
+        [progressLabel]="store.progressLabel()"
+        [cardProgressPercent]="cardProgressPercent()"
+        [missingCardsWarning]="missingCardsWarning()"
+        [loading]="store.loading()"
+        [error]="store.error()"
+        [completed]="store.completed()"
+        [showCourseCertificate]="showCourseCertificate()"
+        [hasNextLessonScenario]="hasNextLessonScenario()"
+        [fontSize]="fontSize().fontSize"
+        [isLearningTabActive]="activeTabIndex() === LEARNING_TAB.learning"
+        (directionChange)="onDirectionChange($event)"
+        (retry)="loadCards()"
+        (goToNextLessonScenario)="goToNextLessonScenario()"
+        (restart)="loadCards()"
+        (optionSelected)="selectOption($event)"
+        (answerTextChange)="setAnswerText($event)"
+        (memoryCompleteChange)="setMemoryComplete($event)"
+        (drawSubmittedChange)="setDrawSubmitted($event)"
+        (drawAnswerChange)="setDrawAnswer($event)"
+        (timeExpired)="handleTimeExpired()"
+        (checkAnswer)="checkAnswer()"
+        (nextCard)="nextCard()"
+      />
     </mat-tab>
   </mat-tab-group>
 </section>

@@ -24,12 +24,9 @@ import {
   ScenarioSearchService,
 } from '../../../../core/repositories';
 
-import { CardHostComponent } from '../../../../shared/ui/card-host';
 import { DIFFICULTY_LABELS } from '../../../../shared/constants';
 import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
-import { CoursePickerComponent } from '../../../../shared/ui/course-picker';
-import { LessonPickerComponent, type LessonPickPayload } from '../../../../shared/ui/lesson-picker';
-import { ScenarioPickerComponent } from '../../../../shared/ui/scenario-picker';
+import type { LessonPickPayload } from '../../../../shared/ui/lesson-picker';
 import { LearningResultsStore, UserStore } from '../../../../core/state';
 import { CardSelectService } from '../../services/card-select.service';
 import { CardSelectStore } from '../../services/card-select.store';
@@ -41,6 +38,10 @@ import {
   PracticeStepperComponent,
   type PracticeStepState,
 } from '../practice-stepper/practice-stepper.component';
+import { CoursePickerSectionComponent } from './../course-picker-section/course-picker-section.component';
+import { LessonPickerSectionComponent } from './../lesson-picker-section/lesson-picker-section.component';
+import { ScenarioPickerSectionComponent } from './../scenario-picker-section/scenario-picker-section.component';
+import { LearningZoneComponent } from './../learning-zone/learning-zone.component';
 
 /** Tab indices for the learning flow: course → lessons → scenarios → learning. */
 const LEARNING_TAB = {
@@ -84,17 +85,20 @@ let lastKnownActiveLanguagePairId: string | null = null;
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatTabsModule,
-    CardHostComponent,
-    CoursePickerComponent,
-    LessonPickerComponent,
-    ScenarioPickerComponent,
     PracticeSessionBarComponent,
     PracticeStepperComponent,
+    CoursePickerSectionComponent,
+    LessonPickerSectionComponent,
+    ScenarioPickerSectionComponent,
+    LearningZoneComponent,
   ],
   templateUrl: './card-select-page.component.html',
   styleUrl: './card-select-page.component.scss',
 })
 export class CardSelectPageComponent implements OnInit {
+  /** Tab indices for the learning flow, exposed for template access. */
+  readonly LEARNING_TAB = LEARNING_TAB;
+
   /** Service for loading card selection sessions from scenarios. */
   private readonly cardSelectService = inject(CardSelectService);
 
