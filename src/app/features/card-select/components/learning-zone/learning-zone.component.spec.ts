@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import type { DrawCanvasMode } from '../../core/models/phonetics/draw-practice.types'; // TODO: fix import path
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LearningZoneComponent } from './learning-zone.component';
 
@@ -197,7 +198,7 @@ describe('LearningZoneComponent', () => {
   });
 
   it('should emit drawAnswerChange when onDrawAnswerChange is called', () => {
-    const payload = { canvasMode: 'write' as any, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
     component.onDrawAnswerChange(payload);
     expect(wrapper.onDrawAnswerChange).toHaveBeenCalledWith(payload);
   });

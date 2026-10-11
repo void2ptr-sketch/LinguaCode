@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
+import { ApiErrorBody } from '../api.types';
 import {
   getApiErrorMessage,
   isHttpApiError,
   parseApiErrorBody,
   toHttpApiError,
 } from './api-error.utils';
-import type { ApiErrorBody, HttpApiError } from '../api.types';
 
 describe('api-error.utils', () => {
   describe('parseApiErrorBody', () => {
@@ -347,10 +347,10 @@ describe('api-error.utils', () => {
     });
 
     it('should narrow type correctly', () => {
-      const unknown: unknown = Object.assign(new Error('test'), { status: 404 });
-      if (isHttpApiError(unknown)) {
-        expect(unknown.status).toBe(404);
-        expect(typeof unknown.status).toBe('number');
+      const errorObject: unknown = Object.assign(new Error('test'), { status: 404 });
+      if (isHttpApiError(errorObject)) {
+        expect(errorObject.status).toBe(404);
+        expect(typeof errorObject.status).toBe('number');
       }
     });
   });

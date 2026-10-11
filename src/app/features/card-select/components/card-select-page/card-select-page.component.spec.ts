@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+// import type { DrawCanvasMode } from '../../core/models/phonetics/draw-practice.types'; // TODO: fix import path
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -234,6 +235,8 @@ describe('CardSelectPageComponent', () => {
       id: 'test',
       title: 'Test',
       lessons: [],
+      lessonIds: ['lesson-1'],
+      description: 'Test course',
       authorId: 'u1',
       published: true,
       updatedAt: '2026-01-01T00:00:00.000Z',
@@ -244,7 +247,7 @@ describe('CardSelectPageComponent', () => {
         enforceLessonPrerequisites: true,
         requireLessonForScenarios: false,
       },
-    } as any);
+    });
     component.advanceFromCurrentTab();
     expect(component.activeTabIndex()).toBe(2);
   });
@@ -395,7 +398,7 @@ describe('CardSelectPageComponent', () => {
 
   it('should delegate setDrawAnswer to store', () => {
     const spy = vi.spyOn(component.store, 'setDrawAnswer');
-    const payload = { canvasMode: 'write' as any, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
     component.setDrawAnswer(payload);
     expect(spy).toHaveBeenCalledWith(payload);
   });
