@@ -3,11 +3,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CourseBuilderDialogComponent } from './course-builder-dialog.component';
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
+import { scenariosApiMockInterceptor } from '../../../../core/api/scenarios/scenarios-api.mock.interceptor';
 
 describe('CourseBuilderDialogComponent', () => {
   let fixture: ComponentFixture<CourseBuilderDialogComponent>;
@@ -31,6 +33,7 @@ describe('CourseBuilderDialogComponent', () => {
         { provide: MatSnackBar, useValue: { open: vi.fn() } },
         { provide: MatDialogRef, useValue: { close: vi.fn() } },
         { provide: MAT_DIALOG_DATA, useValue: mockData },
+        provideHttpClient(withInterceptors([scenariosApiMockInterceptor])),
       ],
     });
 

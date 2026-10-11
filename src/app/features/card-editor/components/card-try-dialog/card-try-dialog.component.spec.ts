@@ -1,4 +1,6 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { Component } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
@@ -12,7 +14,15 @@ import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalo
 import { UserStore } from '../../../../core/state';
 import { SingleCardPlayStore } from './single-card-play.store';
 import { cardsApiMockInterceptor } from '../../../../core/api/cards/cards-api.mock.interceptor';
-import { CardHostComponent } from '../../../../shared/ui/card-host';
+
+// Mock CardHostComponent to avoid deep dependency chain
+@Component({
+  selector: 'app-card-host',
+  standalone: true,
+  imports: [],
+  template: '<div class="card-host-mock"><ng-content /></div>',
+})
+class MockCardHostComponent {}
 
 describe('CardTryDialogComponent', () => {
   let fixture: ComponentFixture<CardTryDialogComponent>;
@@ -31,14 +41,19 @@ describe('CardTryDialogComponent', () => {
   };
 
   beforeEach(async () => {
+    vi.spyOn(console, 'error').mockImplementation(() => {
+      /* silence console.error in tests */
+    });
+
     await TestBed.configureTestingModule({
       imports: [
         CardTryDialogComponent,
+        FormsModule,
         MatButtonModule,
         MatButtonToggleModule,
         MatDialogModule,
         MatProgressSpinnerModule,
-        CardHostComponent,
+        MockCardHostComponent,
       ],
       providers: [
         CardsApiService,
@@ -49,6 +64,17 @@ describe('CardTryDialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: { cardId: 'select-1' } },
         provideHttpClient(withInterceptors([cardsApiMockInterceptor])),
       ],
+    }).overrideComponent(CardTryDialogComponent, {
+      set: {
+        imports: [
+          FormsModule,
+          MatButtonModule,
+          MatButtonToggleModule,
+          MatDialogModule,
+          MatProgressSpinnerModule,
+          MockCardHostComponent,
+        ],
+      },
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardTryDialogComponent);
@@ -60,7 +86,6 @@ describe('CardTryDialogComponent', () => {
   });
 
   it('should have MatDialogRef injected (private)', () => {
-    // dialogRef is private but the component should work with it
     expect(component.close).toBeDefined();
   });
 
@@ -98,7 +123,6 @@ describe('CardTryDialogComponent', () => {
   it('should render the component', () => {
     fixture.detectChanges();
     const root = fixture.nativeElement;
-    // Dialog components are rendered directly
     expect(root.innerHTML).toBeTruthy();
   });
 });

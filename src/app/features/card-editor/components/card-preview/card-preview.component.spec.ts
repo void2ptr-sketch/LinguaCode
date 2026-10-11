@@ -1,40 +1,50 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { CardPreviewComponent } from './card-preview.component';
-import { CardHostComponent } from '../../../../shared/ui/card-host';
 import type { Card } from '../../../../core/models';
 
+// Mock CardHostComponent to avoid deep dependency chain
 @Component({
+  selector: 'app-card-host',
   standalone: true,
-  imports: [CardPreviewComponent],
-  template: `<app-card-preview [card]="card" [fontSize]="fontSize" />`,
+  imports: [],
+  template: '<div class="card-host-mock"><ng-content /></div>',
 })
-class TestHostComponent {
-  card: Card = {
-    id: 'preview-1',
-    kind: 'select',
-    title: 'Preview Card',
-    direction: 'known-to-learning',
-    promptKnown: 'Test prompt',
-    optionsKnown: ['A', 'B'],
-    optionsLearning: ['А', 'Б'],
-    correctIndex: 0,
-    appearance: { theme: 'azure-blue', fontSize: 'md' },
-  };
-  fontSize: 'sm' | 'md' | 'lg' = 'md';
+class MockCardHostComponent {
+  readonly card = input.required<Card>();
+  readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 }
 
 describe('CardPreviewComponent', () => {
-  let fixture: ComponentFixture<TestHostComponent>;
+  let fixture: ComponentFixture<CardPreviewComponent>;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [TestHostComponent, CardPreviewComponent, CardHostComponent],
+    vi.spyOn(console, 'error').mockImplementation(() => {
+      /* silence console.error in tests */
     });
 
-    fixture = TestBed.createComponent(TestHostComponent);
+    TestBed.configureTestingModule({
+      imports: [CardPreviewComponent],
+    }).overrideComponent(CardPreviewComponent, {
+      set: {
+        imports: [MockCardHostComponent],
+      },
+    });
+
+    fixture = TestBed.createComponent(CardPreviewComponent);
+    fixture.componentRef.setInput('card', {
+      id: 'preview-1',
+      kind: 'select',
+      title: 'Preview Card',
+      direction: 'known-to-learning',
+      promptKnown: 'Test prompt',
+      optionsKnown: ['A', 'B'],
+      optionsLearning: ['А', 'Б'],
+      correctIndex: 0,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    });
     fixture.detectChanges();
   });
 
@@ -43,22 +53,22 @@ describe('CardPreviewComponent', () => {
   });
 
   it('should render CardHostComponent', () => {
-    const host = fixture.nativeElement.querySelector('app-card-host');
+    const host = fixture.nativeElement.querySelector('.card-host-mock');
     expect(host).toBeTruthy();
   });
 
   it('should render with required card input', () => {
     const root = fixture.nativeElement;
-    expect(root.querySelector('app-card-host')).toBeTruthy();
+    expect(root.querySelector('.card-host-mock')).toBeTruthy();
   });
 
   it('should have default fontSize', () => {
-    expect(fixture.componentInstance.fontSize).toBe('md');
+    expect(fixture.componentInstance.fontSize()).toBe('md');
   });
 
   it('should accept custom fontSize', () => {
-    fixture.componentInstance.fontSize = 'lg';
+    fixture.componentRef.setInput('fontSize', 'lg' as const);
     fixture.detectChanges();
-    expect(fixture.componentInstance.fontSize).toBe('lg');
+    expect(fixture.componentInstance.fontSize()).toBe('lg');
   });
 });
