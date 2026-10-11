@@ -81,6 +81,9 @@ export class LearningZoneComponent {
   /** Font size: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Currently displayed card data. */
+  readonly currentCard = input.required<Card | null>();
+
   /** Whether the learning tab is currently active. */
   readonly isLearningTabActive = input.required<boolean>();
 
@@ -126,9 +129,6 @@ export class LearningZoneComponent {
   @Output() readonly nextCard = new EventEmitter<void>();
 
   // ─── Internal state ───────────────────────────────────────────────────────
-
-  /** Currently displayed card data. */
-  readonly currentCard = signal<Card | null>(null);
 
   /** Index of the currently selected option. */
   readonly selectedIndex = signal(0);

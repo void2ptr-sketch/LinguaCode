@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScenarioPickerSectionComponent } from './scenario-picker-section.component';
+import { ScenarioSearchService } from '../../../../core/repositories';
 
 @Component({
   standalone: true,
@@ -59,6 +60,15 @@ describe('ScenarioPickerSectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [WrapperComponent],
+      providers: [
+        {
+          provide: ScenarioSearchService,
+          useValue: {
+            search: () => Promise.resolve({ items: [], total: 0, page: 0, pageSize: 10 }),
+            getById: () => Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WrapperComponent);

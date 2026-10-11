@@ -54,7 +54,7 @@ describe('CardTryDialogComponent', () => {
 
   afterEach(() => {
     localStorage.clear();
-    mockHandlerSpy.mockRestore();
+    mockHandlerSpy?.mockRestore();
   });
 
   it('should create', () => {

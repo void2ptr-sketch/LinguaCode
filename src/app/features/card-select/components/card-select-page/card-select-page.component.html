@@ -91,6 +91,7 @@
         [showCourseCertificate]="showCourseCertificate()"
         [hasNextLessonScenario]="hasNextLessonScenario()"
         [fontSize]="fontSize().fontSize"
+        [currentCard]="store.currentCard()"
         [isLearningTabActive]="activeTabIndex() === LEARNING_TAB.learning"
         (directionChange)="onDirectionChange($event)"
         (retry)="loadCards()"
