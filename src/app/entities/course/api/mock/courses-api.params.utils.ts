@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { CourseListScope, CourseSearchCriteria } from '../../../../core/models';
+import type { CourseListScope, CourseSearchCriteria } from '../../model';
 import { isContentLanguage } from '../../../language-pair/lib/language-pair.utils';
 import { DEFAULT_PAGE_SIZE } from '../../../../shared/utils/pagination';
 

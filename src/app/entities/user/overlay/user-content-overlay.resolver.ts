@@ -33,9 +33,9 @@
  * location.reload();
  * ```
  */
-import type { Card } from '../../../core/models';
-import type { Course, Lesson } from '../../../core/models';
-import type { Scenario } from '../../../core/models';
+import type { Card } from '../../card/model';
+import type { Course, Lesson } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
 
 import {
   mergeStoredCourse,

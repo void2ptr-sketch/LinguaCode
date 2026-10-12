@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { TimedCard } from '../../../core/models';
+import type { TimedCard } from '../../../entities/card/model';
 import { TimedCardComponent } from './timed-card.component';
 
 describe('TimedCardComponent', () => {

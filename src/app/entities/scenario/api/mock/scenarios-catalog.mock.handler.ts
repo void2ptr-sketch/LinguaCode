@@ -6,9 +6,9 @@ import type {
   ScenarioIndexEntry,
   ScenarioSearchCriteria,
   ScenarioSearchPage,
-} from '../../../../core/models';
+} from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../user/model/user.store';
 
 import { scenarioToIndexEntry } from '../../mapping/scenario-index.mapper';
 import { filterScenarioIndex } from '../../search/scenario-search.utils';
@@ -23,10 +23,7 @@ import {
 import { isEditableContentAuthor, isSystemAuthor } from '../../../user/lib/system-author.constants';
 import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mock.handler';
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
-import {
-  loadScenariosFromStorage,
-  saveScenariosToStorage,
-} from '../../storage/scenarios-storage';
+import { loadScenariosFromStorage, saveScenariosToStorage } from '../../storage/scenarios-storage';
 
 import type { ScenarioWritePayload } from '../scenarios-api.service';
 
@@ -172,7 +169,7 @@ export class ScenariosCatalogMockHandler {
 
   private async assertValidCardSource(
     source: Scenario['cardSource'],
-    languagePair?: import('../../../../core/models').LanguagePair,
+    languagePair?: import('../../../language-pair/model/language-pair.types').LanguagePair,
   ): Promise<void> {
     const error = await validateScenarioCardSource(source, async (cardId) => {
       try {

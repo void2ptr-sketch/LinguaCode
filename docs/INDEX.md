@@ -22,7 +22,7 @@
 | Документ                                                               | Описание                                    |
 | ---------------------------------------------------------------------- | ------------------------------------------- |
 | [ARCHITECTURE.md](./ARCHITECTURE.md)                                   | Обзор: слои, layout, роутинг, signals       |
-| [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Ядро: layout, state, api, theme             |
+| [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Бывший `core`: карта переноса в entities/shared/widgets |
 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     | CardHost, pickers, lexeme, pagination       |
 | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           | Практика `/cards/select`                    |
 | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         | Dashboard `/home`                           |

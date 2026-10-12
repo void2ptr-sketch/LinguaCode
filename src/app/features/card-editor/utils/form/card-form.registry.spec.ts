@@ -1,17 +1,21 @@
-import type { CardKind } from '../../../../core/models';
+import type { CardKind } from '../../../../entities/card/model';
 
-import {
-  cardFormKindGroup,
-  CARD_FORM_KIND_GROUP,
-  CARD_FORM_BY_KIND,
-} from './card-form.registry';
+import { cardFormKindGroup, CARD_FORM_KIND_GROUP, CARD_FORM_BY_KIND } from './card-form.registry';
 
 describe('card-form.registry', () => {
   describe('CARD_FORM_KIND_GROUP', () => {
     it('maps all card kinds to their form groups', () => {
       const allKinds: CardKind[] = [
-        'select', 'code-select', 'timed', 'reading', 'symbol', 'tone',
-        'keyboard', 'draw', 'memory', 'sound',
+        'select',
+        'code-select',
+        'timed',
+        'reading',
+        'symbol',
+        'tone',
+        'keyboard',
+        'draw',
+        'memory',
+        'sound',
       ];
 
       allKinds.forEach((kind) => {
@@ -60,8 +64,16 @@ describe('card-form.registry', () => {
 
     it('returns the correct group for all kinds', () => {
       const allKinds: CardKind[] = [
-        'select', 'code-select', 'timed', 'reading', 'symbol', 'tone',
-        'keyboard', 'draw', 'memory', 'sound',
+        'select',
+        'code-select',
+        'timed',
+        'reading',
+        'symbol',
+        'tone',
+        'keyboard',
+        'draw',
+        'memory',
+        'sound',
       ];
 
       allKinds.forEach((kind) => {

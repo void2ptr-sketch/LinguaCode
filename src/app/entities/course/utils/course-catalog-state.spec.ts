@@ -6,7 +6,7 @@ import {
   normalizeStoredCourseCatalog,
   cloneCourseCatalog,
 } from './course-catalog-state';
-import type { Course, Lesson } from '../../../core/models';
+import type { Course, Lesson } from '../model';
 
 function makeCourse(overrides?: Partial<Course>): Course {
   return {
@@ -194,10 +194,7 @@ describe('course-catalog-state', () => {
           'not-an-object' as unknown as Course,
           null as unknown as Course,
         ],
-        lessons: [
-          makeLesson({ title: 'Valid Lesson' }),
-          { id: 'invalid' } as unknown as Lesson,
-        ],
+        lessons: [makeLesson({ title: 'Valid Lesson' }), { id: 'invalid' } as unknown as Lesson],
       });
       expect(catalog.courses).toHaveLength(1);
       expect(catalog.lessons).toHaveLength(1);

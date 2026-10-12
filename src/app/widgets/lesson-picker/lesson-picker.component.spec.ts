@@ -6,9 +6,9 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { vi } from 'vitest';
 
 import { LessonPickerComponent } from './lesson-picker.component';
-import { CourseSearchService } from '../../core/repositories';
-import { LearningResultsStore } from '../../core/state';
-import type { CourseWithLessons, Lesson } from '../../core/models';
+import { CourseSearchService } from '../../entities/course';
+import { LearningResultsStore } from '../../entities/learning/model/learning-results.store';
+import type { CourseWithLessons, Lesson } from '../../entities/course/model';
 
 function makeLesson(
   id: string,
@@ -29,11 +29,7 @@ function makeLesson(
   };
 }
 
-function makeCourse(
-  id: string,
-  title: string,
-  lessons: Lesson[],
-): CourseWithLessons {
+function makeCourse(id: string, title: string, lessons: Lesson[]): CourseWithLessons {
   return {
     id,
     title,
@@ -70,12 +66,7 @@ describe('LessonPickerComponent', () => {
     };
 
     await TestBed.configureTestingModule({
-      imports: [
-        LessonPickerComponent,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatTooltipModule,
-      ],
+      imports: [LessonPickerComponent, MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
       providers: [
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
@@ -124,7 +115,9 @@ describe('LessonPickerComponent', () => {
   });
 
   it('should set error on load failure', async () => {
-    (mockCourseSearchService.getById as ReturnType<typeof vi.fn>).mockRejectedValueOnce(new Error('Network error'));
+    (mockCourseSearchService.getById as ReturnType<typeof vi.fn>).mockRejectedValueOnce(
+      new Error('Network error'),
+    );
 
     // Re-create fixture to trigger effect with the new mock
     fixture = TestBed.createComponent(LessonPickerComponent);

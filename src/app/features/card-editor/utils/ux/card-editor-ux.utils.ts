@@ -1,5 +1,5 @@
-import type { ContentLanguage } from '../../../../core/models';
-import type { ScriptCode } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { ScriptCode } from '../../../../entities/phonetic/model';
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 
 /**

@@ -1,6 +1,6 @@
 # ToneCard
 
-> Исходный код: `src/app/shared/ui/cards/tone-card/tone-card.component.ts`
+> Исходный код: `src/app/widgets/cards/tone-card/tone-card.component.ts`
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `ToneCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `ToneCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -26,7 +26,7 @@
 
 ### ToneMark
 
-Определяется в `src/app/core/models/phonetics/phonetic-content.types.ts` — тоновая марка китайского слога.
+Определяется в `src/app/entities/phonetic/model/phonetic-content.types.ts` — тоновая марка китайского слога.
 
 ## Use Cases
 
@@ -56,9 +56,9 @@
   - `ToneColoredTextComponent` — цветовой рендеринг пиньинь с тонами.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
-  - `toneMarkLabel()` из `src/app/core/domain/chinese/answers/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
-  - `applyToneToPinyinSyllable()` из `src/app/core/domain/chinese/answers/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
-  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — CSS-классы.
+  - `toneMarkLabel()` из `src/app/entities/chinese/lib/answers/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
+  - `applyToneToPinyinSyllable()` из `src/app/entities/chinese/lib/answers/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
+  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
 

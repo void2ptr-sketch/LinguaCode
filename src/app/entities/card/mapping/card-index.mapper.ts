@@ -1,6 +1,6 @@
-import type { Card } from '../../../core/models';
-import type { CardIndexEntry, CardIndexMetaOverride } from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models';
+import type { Card } from '../model';
+import type { CardIndexEntry, CardIndexMetaOverride } from '../model';
+import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
 import { collectCardIpaReadings } from '../utils/card-ipa-index.utils';
 import { isContentLanguage } from '../../language-pair/lib/language-pair.utils';
 /**

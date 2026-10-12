@@ -2,7 +2,7 @@ import { Component, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { CodeSelectCard } from '../../../core/models';
+import { CodeSelectCard } from '../../../entities/card/model';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import { buildOptionClass } from '../option-card.util';

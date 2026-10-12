@@ -10,7 +10,7 @@ export {
   deriveKnownOptionsFromLexemes,
   cardSupportsSessionDirection,
 } from './card-direction.utils';
-export type { ResolvedOptionCard, ResolvedMemoryPair } from '../../../core/models';
+export type { ResolvedOptionCard, ResolvedMemoryPair } from '../model';
 export {
   collectCardIpaReadings,
   cardHasIpaContent,

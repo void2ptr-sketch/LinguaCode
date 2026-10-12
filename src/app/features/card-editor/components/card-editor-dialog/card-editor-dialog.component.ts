@@ -12,10 +12,13 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
-import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import {
+  CARD_KIND_LABELS,
+  CONTENT_LANGUAGE_LABELS,
+} from '../../../../entities/card/lib/catalog-labels';
 import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardEditorStore } from '../../services/card-editor.store';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
 import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';

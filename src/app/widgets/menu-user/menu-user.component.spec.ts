@@ -6,7 +6,7 @@ import { signal } from '@angular/core';
 import { describe, expect, it } from 'vitest';
 
 import { MenuUserComponent } from './menu-user.component';
-import { UserStore } from '../../core/state';
+import { UserStore } from '../../entities/user/model/user.store';
 
 describe('MenuUserComponent', () => {
   let fixture: ComponentFixture<MenuUserComponent>;

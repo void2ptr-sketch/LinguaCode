@@ -1,12 +1,12 @@
 import type {
   Card,
-  CardDirection,
   MemoryPair,
   OptionCard,
   ResolvedMemoryPair,
   ResolvedOptionCard,
-} from '../../../core/models';
-import type { PhoneticLexeme } from '../../../core/models';
+} from '../model';
+import type { CardDirection } from '../../language-pair/model/language-pair.types';
+import type { PhoneticLexeme } from '../../phonetic/model';
 /** В сессии направление задаёт toggle; `card.direction` — только default при старте. */
 export function effectiveCardDirection(
   _cardDirection: CardDirection | undefined,

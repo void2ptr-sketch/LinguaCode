@@ -7,10 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
-import { ScenarioSearchService } from '../../core/repositories';
+import { ScenarioSearchService } from '../../entities/scenario';
 import { activeLanguagePairCriteria } from '../../entities/language-pair/lib/language-pair-scope.utils';
-import type { ScenarioIndexEntry, ScenarioListScope } from '../../core/models';
-import { UserStore } from '../../core/state';
+import type { ScenarioIndexEntry, ScenarioListScope } from '../../entities/scenario/model';
+import { UserStore } from '../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../shared/utils/pagination';
 
 let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;

@@ -6,13 +6,22 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSliderModule } from '@angular/material/slider';
 
-import type { ToneColorSchemeId, RomanizationSystem, ToneMark, UserLanguagePairEntry } from '../../../../core/models';
-import { TRACING_STROKE_DURATION_BOUNDS, TONE_COLOR_SCHEMES, ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models';
+import type {
+  ToneColorSchemeId,
+  RomanizationSystem,
+  ToneMark,
+} from '../../../../entities/phonetic/model';
+import type { UserLanguagePairEntry } from '../../../../entities/user/model';
+import {
+  TRACING_STROKE_DURATION_BOUNDS,
+  TONE_COLOR_SCHEMES,
+  ROMANIZATION_DISPLAY_ORDER,
+} from '../../../../entities/phonetic/model';
 import { CourseDisplaySettingsMatrixComponent } from '../../../../widgets/course-display-settings-matrix';
 import type { AnswerDisplayMode } from '../../../../widgets/course-display-settings-matrix';
 import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
 import type { RomanizationOption } from '../../../../widgets/course-display-settings-matrix';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 /**

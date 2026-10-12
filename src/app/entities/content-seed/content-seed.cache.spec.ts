@@ -8,7 +8,9 @@ import {
   resetContentSeedCache,
   isContentSeedCacheReady,
 } from './content-seed.cache';
-import type { Scenario, Card, Course, Lesson } from '../../core/models';
+import type { Scenario } from '../scenario/model';
+import type { Card } from '../card/model';
+import type { Course, Lesson } from '../course/model';
 
 function makeScenario(overrides?: Partial<Scenario>): Scenario {
   return {

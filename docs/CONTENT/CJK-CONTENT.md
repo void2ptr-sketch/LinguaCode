@@ -232,16 +232,16 @@ Kind `reading` — выбор чтения **в контексте слова**,
 ## Связанные пути в коде
 
 ```
-src/app/core/models/phonetics/phonetic-content.types.ts   # CjkLexeme, RomanizationSystem
-src/app/core/domain/chinese/pinyin/cjk-romanization.utils.ts   # pinyin ↔ palladius, normalizers
-src/app/core/domain/chinese/pinyin/pinyin-keyboard.utils.ts    # виртуальная клавиатура пиньинь
-src/app/core/domain/chinese/answers/tone-mark.utils.ts          # applyToneToLastVowelInSyllable
-src/app/core/repositories/cards/utils/card-learning-audio.utils.ts # audioUrl + TTS fallback
+src/app/entities/phonetic/model/phonetic-content.types.ts   # CjkLexeme, RomanizationSystem
+src/app/entities/chinese/lib/pinyin/cjk-romanization.utils.ts   # pinyin ↔ palladius, normalizers
+src/app/entities/chinese/lib/pinyin/pinyin-keyboard.utils.ts    # виртуальная клавиатура пиньинь
+src/app/entities/chinese/lib/answers/tone-mark.utils.ts          # applyToneToLastVowelInSyllable
+src/app/entities/card/utils/card-learning-audio.utils.ts # audioUrl + TTS fallback
 src/app/shared/components/cjk-ruby/           # app-cjk-ruby
 src/app/shared/components/pinyin-keyboard/    # app-pinyin-keyboard
 src/app/shared/components/cards/reading-card/ # kind reading
 src/app/features/card-editor/                 # поля лексемы, preview
-src/app/shared/utils/card-answer.utils.ts     # CJK-aware check, reading fuzzy match
+src/app/entities/card/lib/card-answer.utils.ts     # CJK-aware check, reading fuzzy match
 public/data/select-cards.json                 # demo: reading-xing-1, select-zh-1, …
 ```
 

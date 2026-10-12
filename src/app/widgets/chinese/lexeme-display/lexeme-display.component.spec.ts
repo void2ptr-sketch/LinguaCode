@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { LexemeDisplayComponent } from './lexeme-display.component';
-import type { PhoneticLexeme, RomanizationSystem } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import type { PhoneticLexeme, RomanizationSystem } from '../../../entities/phonetic/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 // Mock UserStore factory for TestBed
 function createUserStoreMock() {

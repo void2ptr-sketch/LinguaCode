@@ -1,4 +1,4 @@
-import type { CourseIndexEntry, CourseSearchCriteria } from '../../../core/models';
+import type { CourseIndexEntry, CourseSearchCriteria } from '../model';
 import { courseIndexMatchesLanguageCriteria } from '../../language-pair/lib/language-pair-scope.utils';
 
 /**

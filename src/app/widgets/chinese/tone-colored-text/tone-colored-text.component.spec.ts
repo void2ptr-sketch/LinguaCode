@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
 
 import { ToneColoredTextComponent } from './tone-colored-text.component';
-import type { ToneMark } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import type { ToneMark } from '../../../entities/phonetic/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 // Mock UserStore factory for TestBed
 function createUserStoreMock() {
@@ -228,7 +228,9 @@ describe('ToneColoredTextComponent', () => {
       fixture.detectChanges();
       const container = fixture.nativeElement as HTMLElement;
       const spans = container.querySelectorAll('span');
-      const totalText = Array.from(spans).map((s: HTMLElement) => s.textContent).join('');
+      const totalText = Array.from(spans)
+        .map((s: HTMLElement) => s.textContent)
+        .join('');
       expect(totalText).toContain('nǐ');
       expect(totalText).toContain('hǎo');
     });
@@ -238,9 +240,7 @@ describe('ToneColoredTextComponent', () => {
       fixture.detectChanges();
       const container = fixture.nativeElement as HTMLElement;
       const spans = container.querySelectorAll('span');
-      const coloredSpans = Array.from(spans).filter(
-        (s: HTMLElement) => s.style.color,
-      );
+      const coloredSpans = Array.from(spans).filter((s: HTMLElement) => s.style.color);
       expect(coloredSpans.length).toBeGreaterThan(0);
     });
 
@@ -249,9 +249,7 @@ describe('ToneColoredTextComponent', () => {
       fixture.detectChanges();
       const container = fixture.nativeElement as HTMLElement;
       const spans = container.querySelectorAll('span');
-      const coloredSpans = Array.from(spans).filter(
-        (s: HTMLElement) => s.style.color,
-      );
+      const coloredSpans = Array.from(spans).filter((s: HTMLElement) => s.style.color);
       expect(coloredSpans.length).toBe(0);
     });
 

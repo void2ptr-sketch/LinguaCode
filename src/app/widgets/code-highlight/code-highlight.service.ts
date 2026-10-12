@@ -10,7 +10,7 @@ import python from 'highlight.js/lib/languages/python';
 import rust from 'highlight.js/lib/languages/rust';
 import sql from 'highlight.js/lib/languages/sql';
 import typescript from 'highlight.js/lib/languages/typescript';
-import type { CodeHighlightLanguage } from '../../core/models';
+import type { CodeHighlightLanguage } from '../../entities/card/model';
 
 let registered = false;
 

@@ -1,4 +1,6 @@
-import type { Card, Course, Lesson, Scenario } from '../../../core/models';
+import type { Card } from '../../card/model';
+import type { Course, Lesson } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
 import type { UserContentOverlay } from './user-content-overlay.types';
 
 import {

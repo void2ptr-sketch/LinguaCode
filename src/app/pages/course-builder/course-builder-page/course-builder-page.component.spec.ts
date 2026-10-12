@@ -17,7 +17,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { CourseBuilderPageComponent } from './course-builder-page.component';
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { coursesApiMockInterceptor } from '../../../entities/course/api/mock/courses-api.mock.interceptor';
 
 describe('CourseBuilderPageComponent', () => {

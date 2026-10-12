@@ -2,10 +2,12 @@ import { vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
-import type { Scenario } from '../../../core/models';
-import { CardsCatalogMockHandler } from '../../../core/api';
-import { CardSearchService, CourseSearchService, ScenarioSearchService } from '../../../core/repositories';
-import { UserStore } from '../../../core/state';
+import type { Scenario } from '../../../entities/scenario/model';
+import { CardsCatalogMockHandler } from '../../../entities/card/api/mock';
+import { CardSearchService } from '../../../entities/card';
+import { CourseSearchService } from '../../../entities/course';
+import { ScenarioSearchService } from '../../../entities/scenario';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { ScenarioBuilderStore } from './scenario-builder.store';
 
 describe('ScenarioBuilderStore', () => {
@@ -96,7 +98,9 @@ describe('ScenarioBuilderStore', () => {
 
   it('should set loading to true while loading', async () => {
     let resolveFn: () => void;
-    const promise = new Promise<void>((resolve) => { resolveFn = resolve; });
+    const promise = new Promise<void>((resolve) => {
+      resolveFn = resolve;
+    });
 
     mockScenarioSearchService.search.mockReturnValue(promise);
 
@@ -136,15 +140,17 @@ describe('ScenarioBuilderStore', () => {
   });
 
   it('should set empty courses array when loading fails', async () => {
-    store.courses.set([{
-      id: 'existing',
-      title: 'X',
-      authorId: 'u',
-      lessonCount: 0,
-      published: false,
-      updatedAt: '',
-      languagePairSummary: 'RU → EN',
-    }]);
+    store.courses.set([
+      {
+        id: 'existing',
+        title: 'X',
+        authorId: 'u',
+        lessonCount: 0,
+        published: false,
+        updatedAt: '',
+        languagePairSummary: 'RU → EN',
+      },
+    ]);
 
     mockCourseSearchService.search.mockRejectedValue(new Error('Error'));
 

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// import type { DrawCanvasMode } from '../../../features/card-select/core/models/phonetics/draw-practice.types'; // TODO: fix import path
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,8 +15,11 @@ import { describe, expect, it, vi } from 'vitest';
 import { CardSelectPageComponent } from './card-select-page.component';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
-import { CourseSearchService, CardSearchService, ScenarioSearchService } from '../../../core/repositories';
-import { LearningResultsStore, UserStore } from '../../../core/state';
+import { CourseSearchService } from '../../../entities/course';
+import { CardSearchService } from '../../../entities/card';
+import { ScenarioSearchService } from '../../../entities/scenario';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../../entities/course/api/mock/courses-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from '../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
@@ -61,7 +63,13 @@ describe('CardSelectPageComponent', () => {
       ],
       providers: [
         provideRouter([]),
-        provideHttpClient(withInterceptors([cardsApiMockInterceptor, coursesApiMockInterceptor, scenariosApiMockInterceptor])),
+        provideHttpClient(
+          withInterceptors([
+            cardsApiMockInterceptor,
+            coursesApiMockInterceptor,
+            scenariosApiMockInterceptor,
+          ]),
+        ),
         CardSelectStore,
         CardSelectService,
         CourseSearchService,
@@ -313,7 +321,11 @@ describe('CardSelectPageComponent', () => {
   // ─── onLessonPick ─────────────────────────────────────────────────────
 
   it('should set lesson title and scenario IDs on pick', async () => {
-    await component.onLessonPick({ lessonId: 'l1', title: 'Test Lesson', scenarioIds: ['s1', 's2'] });
+    await component.onLessonPick({
+      lessonId: 'l1',
+      title: 'Test Lesson',
+      scenarioIds: ['s1', 's2'],
+    });
     expect(component.lessonTitle()).toBe('Test Lesson');
     expect(component.lessonScenarioIds()).toEqual(['s1', 's2']);
   });
@@ -398,7 +410,11 @@ describe('CardSelectPageComponent', () => {
 
   it('should delegate setDrawAnswer to store', () => {
     const spy = vi.spyOn(component.store, 'setDrawAnswer');
-    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = {
+      canvasMode: 'memory' as const,
+      canvasSize: { width: 100, height: 100 },
+      strokesByCharacter: [],
+    };
     component.setDrawAnswer(payload);
     expect(spy).toHaveBeenCalledWith(payload);
   });

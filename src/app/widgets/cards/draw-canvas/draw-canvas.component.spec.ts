@@ -4,7 +4,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { describe, expect, it } from 'vitest';
 
 import { DrawCanvasComponent } from './draw-canvas.component';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 describe('DrawCanvasComponent', () => {
   let fixture: ComponentFixture<DrawCanvasComponent>;

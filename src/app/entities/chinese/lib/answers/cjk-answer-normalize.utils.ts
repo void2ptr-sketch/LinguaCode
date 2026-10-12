@@ -1,4 +1,4 @@
-import type { RomanizationSystem } from '../../../../core/models';
+import type { RomanizationSystem } from '../../../phonetic/model';
 import { stripPinyinTones } from '../pinyin/cjk-romanization.utils';
 
 /** Нормализует ответ пользователя для системы Палладий: убирает пробелы, заменяет ё на е, приводит к нижнему регистру. */

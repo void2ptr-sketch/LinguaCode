@@ -1,5 +1,5 @@
-import type { Card } from '../../../core/models';
-import type { LegacyScenario } from '../../../core/models';
+import type { Card } from '../../card/model';
+import type { LegacyScenario } from '../../scenario/model';
 import {
   getCardSeedCache,
   getCourseSeedCache,
@@ -135,7 +135,7 @@ function readLegacyCourseCatalog(): CourseCatalogState {
   }
 }
 
-function readLegacyScenarios(): readonly import('../../../core/models').Scenario[] {
+function readLegacyScenarios(): readonly import('../../scenario/model').Scenario[] {
   const raw = localStorage.getItem(LEGACY_SCENARIOS_KEY);
   if (!raw) {
     return [];
@@ -165,7 +165,7 @@ function readLegacyCards(): readonly Card[] {
 
 function readLegacyCardIndexMeta(): Record<
   string,
-  import('../../../core/models').CardIndexMetaOverride
+  import('../../card/model').CardIndexMetaOverride
 > {
   const raw = localStorage.getItem(LEGACY_CARD_INDEX_META_KEY);
   if (!raw) {
@@ -175,7 +175,7 @@ function readLegacyCardIndexMeta(): Record<
   try {
     const parsed = JSON.parse(raw) as Record<
       string,
-      import('../../../core/models').CardIndexMetaOverride
+      import('../../card/model').CardIndexMetaOverride
     >;
     return parsed && typeof parsed === 'object' ? parsed : {};
   } catch {

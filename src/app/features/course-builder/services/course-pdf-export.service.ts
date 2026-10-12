@@ -36,7 +36,9 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
-import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/models';
+import type { Card } from '../../../entities/card/model';
+import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { Scenario } from '../../../entities/scenario/model';
 import { CardRepository } from '../../../entities/card/repository/card.repository';
 import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
 

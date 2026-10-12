@@ -1,4 +1,4 @@
-import type { DrawStrokeGuide } from '../../../../core/models';
+import type { DrawStrokeGuide } from '../../../phonetic/model';
 
 export const HAN_RADICAL_HINTS: Readonly<Record<string, string>> = {
   好: '女 + 子',

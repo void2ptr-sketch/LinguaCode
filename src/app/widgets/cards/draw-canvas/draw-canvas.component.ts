@@ -16,7 +16,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 import { paintCalligraphyPolyline } from '../../../entities/chinese/lib/drawing/draw-calligraphy-paint.utils';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import {
   applyHanziCanvasPathTransform,
   medianLabelPoint,
@@ -42,7 +42,12 @@ import type {
   HanziLoadState,
   HanziPoint,
 } from '../../../entities/chinese/model';
-import type { DrawCanvasMode, DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from '../../../core/models';
+import type {
+  DrawCanvasMode,
+  DrawCanvasPoint,
+  DrawMemoryStrokeGrade,
+  DrawStrokePath,
+} from '../../../entities/phonetic/model';
 /**
  * A radical hint for the radicals canvas mode.
  *

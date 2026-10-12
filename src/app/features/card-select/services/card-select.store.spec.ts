@@ -1,7 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import type { Card } from '../../../core/models';
+import type { Card } from '../../../entities/card/model';
 import { CardSelectStore } from './card-select.store';
 
 const CARDS: readonly Card[] = [
@@ -178,7 +178,11 @@ describe('CardSelectStore', () => {
 
   it('should clear draw answer when drawSubmitted is false', () => {
     store.setDrawSubmitted(true);
-    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = {
+      canvasMode: 'memory' as const,
+      canvasSize: { width: 100, height: 100 },
+      strokesByCharacter: [],
+    };
     store.setDrawAnswer(payload);
     store.setDrawSubmitted(false);
     expect(store.drawSubmitted()).toBe(false);
@@ -195,13 +199,21 @@ describe('CardSelectStore', () => {
   // ─── setDrawAnswer ────────────────────────────────────────────────────
 
   it('should set draw answer when no feedback', () => {
-    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = {
+      canvasMode: 'memory' as const,
+      canvasSize: { width: 100, height: 100 },
+      strokesByCharacter: [],
+    };
     store.setDrawAnswer(payload);
     expect(store.drawAnswer()).toEqual(payload);
   });
 
   it('should clear draw answer when null is passed', () => {
-    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = {
+      canvasMode: 'memory' as const,
+      canvasSize: { width: 100, height: 100 },
+      strokesByCharacter: [],
+    };
     store.setDrawAnswer(payload);
     store.setDrawAnswer(null);
     expect(store.drawAnswer()).toBeNull();
@@ -210,7 +222,11 @@ describe('CardSelectStore', () => {
   it('should not set draw answer when feedback already shown', () => {
     store.selectOption(0);
     store.checkAnswer();
-    const payload = { canvasMode: 'memory' as const, canvasSize: { width: 100, height: 100 }, strokesByCharacter: [] };
+    const payload = {
+      canvasMode: 'memory' as const,
+      canvasSize: { width: 100, height: 100 },
+      strokesByCharacter: [],
+    };
     store.setDrawAnswer(payload);
     expect(store.drawAnswer()).toBeNull();
   });

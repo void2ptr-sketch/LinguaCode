@@ -10,7 +10,8 @@ import {
   primaryHanCharacter,
 } from '../../../../entities/chinese/lib/drawing/draw-stroke-guides.data';
 import { HanziDataService } from '../../../../entities/chinese/lib/services/hanzi-data.service';
-import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
+import type { DrawPracticeMode } from '../../../../entities/phonetic/model';
+import type { KeyboardAnswerMode } from '../../../../entities/card/model';
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';
 

@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 
 import { CoursesApiService, CourseWritePayload } from './courses-api.service';
-import type { CourseIndexEntry, CourseWithLessons } from '../../../core/models';
+import type { CourseIndexEntry, CourseWithLessons } from '../model';
 
 describe('CoursesApiService', () => {
   let service: CoursesApiService;

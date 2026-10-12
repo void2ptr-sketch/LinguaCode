@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
-import type { ContentLanguage } from '../../../../../../core/models';
+import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { CardOptionsEditorState } from '../../../../utils/options/card-options-editor.utils';
 import type { SoundCardDraft } from '../../../../types';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';

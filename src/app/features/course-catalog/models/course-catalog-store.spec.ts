@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
 import { initialState } from './course-catalog-store';
 import type { CourseCatalogState } from './course-catalog-store';
-import { TRACING_STROKE_DURATION_BOUNDS } from '../../../core/models';
+import { TRACING_STROKE_DURATION_BOUNDS } from '../../../entities/phonetic/model';
 
 describe('course-catalog-store model', () => {
   describe('initialState', () => {
@@ -103,7 +103,9 @@ describe('course-catalog-store model', () => {
     });
 
     it('should have default tracingStrokeDurationDraft', () => {
-      expect(initialState.tracingStrokeDurationDraft).toBe(TRACING_STROKE_DURATION_BOUNDS.defaultSec);
+      expect(initialState.tracingStrokeDurationDraft).toBe(
+        TRACING_STROKE_DURATION_BOUNDS.defaultSec,
+      );
     });
 
     it('should have zero selectedTabIndex', () => {

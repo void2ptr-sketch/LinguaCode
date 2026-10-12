@@ -1,4 +1,4 @@
-import type { CodeHighlightLanguage } from '../../../../core/models';
+import type { CodeHighlightLanguage } from '../../model';
 
 /**
  * List of supported code-highlighting languages.

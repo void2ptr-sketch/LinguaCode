@@ -1,13 +1,9 @@
 import { Injectable, computed, signal, Signal } from '@angular/core';
-import type {
-  AppColorScheme,
-  ContentLanguage,
-  CourseIndexEntry,
-  LearningProficiencyLevel,
-  RomanizationSystem,
-  ToneColorSchemeId,
-  UserPreferences,
-} from '../../../core/models';
+import type { AppColorScheme, UserPreferences } from '../../../entities/user/model';
+import type { ContentLanguage } from '../../../entities/card/model';
+import type { CourseIndexEntry } from '../../../entities/course/model';
+import type { LearningProficiencyLevel } from '../../../entities/learning/model';
+import type { RomanizationSystem, ToneColorSchemeId } from '../../../entities/phonetic/model';
 
 import type { AnswerDisplayMode } from '../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util';
 import type { RomanizationOption } from '../../../widgets/course-display-settings-matrix/course-display-settings-matrix.component';
@@ -343,7 +339,7 @@ export class CourseCatalogStore {
    * @param items - The paginated course items from the search service.
    */
   setItems(items: readonly CourseIndexEntry[]): void {
-    this.#state.update(s => ({ ...s, items }));
+    this.#state.update((s) => ({ ...s, items }));
   }
 
   /**
@@ -352,7 +348,7 @@ export class CourseCatalogStore {
    * @param total - The total count across all pages.
    */
   setTotalItems(total: number): void {
-    this.#state.update(s => ({ ...s, totalItems: total }));
+    this.#state.update((s) => ({ ...s, totalItems: total }));
   }
 
   /**
@@ -361,7 +357,7 @@ export class CourseCatalogStore {
    * @param page - The zero-based page index.
    */
   setPageIndex(page: number): void {
-    this.#state.update(s => ({ ...s, pageIndex: page }));
+    this.#state.update((s) => ({ ...s, pageIndex: page }));
   }
 
   /**
@@ -370,7 +366,7 @@ export class CourseCatalogStore {
    * @param size - The number of items per page.
    */
   setPageSize(size: number): void {
-    this.#state.update(s => ({ ...s, pageSize: size }));
+    this.#state.update((s) => ({ ...s, pageSize: size }));
   }
 
   /**
@@ -379,7 +375,7 @@ export class CourseCatalogStore {
    * @param loading - Whether the catalog is currently loading data.
    */
   setLoading(loading: boolean): void {
-    this.#state.update(s => ({ ...s, loading }));
+    this.#state.update((s) => ({ ...s, loading }));
   }
 
   /**
@@ -388,7 +384,7 @@ export class CourseCatalogStore {
    * @param error - The error message, or `null` to clear errors.
    */
   setError(error: string | null): void {
-    this.#state.update(s => ({ ...s, error }));
+    this.#state.update((s) => ({ ...s, error }));
   }
 
   /**
@@ -397,7 +393,7 @@ export class CourseCatalogStore {
    * @param progress - A record mapping course IDs to their completion percentages (0-100).
    */
   setProgressByCourseId(progress: Record<string, number>): void {
-    this.#state.update(s => ({ ...s, progressByCourseId: progress }));
+    this.#state.update((s) => ({ ...s, progressByCourseId: progress }));
   }
 
   /**
@@ -406,7 +402,7 @@ export class CourseCatalogStore {
    * @param completed - A set of course IDs that have been fully completed.
    */
   setCompletedCourseIds(completed: Set<string>): void {
-    this.#state.update(s => ({ ...s, completedCourseIds: completed }));
+    this.#state.update((s) => ({ ...s, completedCourseIds: completed }));
   }
 
   // --- Мутации — Profile ---
@@ -417,7 +413,7 @@ export class CourseCatalogStore {
    * @param name - The display name to set.
    */
   setNameDraft(name: string): void {
-    this.#state.update(s => ({ ...s, nameDraft: name }));
+    this.#state.update((s) => ({ ...s, nameDraft: name }));
   }
 
   /**
@@ -426,7 +422,7 @@ export class CourseCatalogStore {
    * @param level - The proficiency level to set.
    */
   setLearningProficiencyDraft(level: LearningProficiencyLevel): void {
-    this.#state.update(s => ({ ...s, learningProficiencyDraft: level }));
+    this.#state.update((s) => ({ ...s, learningProficiencyDraft: level }));
   }
 
   /**
@@ -435,7 +431,7 @@ export class CourseCatalogStore {
    * @param theme - The theme name to set.
    */
   setThemeDraft(theme: AppColorScheme): void {
-    this.#state.update(s => ({ ...s, themeDraft: theme }));
+    this.#state.update((s) => ({ ...s, themeDraft: theme }));
   }
 
   /**
@@ -444,7 +440,7 @@ export class CourseCatalogStore {
    * @param size - The font size to set ('sm', 'md', or 'lg').
    */
   setFontSizeDraft(size: UserPreferences['fontSize']): void {
-    this.#state.update(s => ({ ...s, fontSizeDraft: size }));
+    this.#state.update((s) => ({ ...s, fontSizeDraft: size }));
   }
 
   /**
@@ -453,7 +449,7 @@ export class CourseCatalogStore {
    * @param scheme - The color scheme to set ('light', 'dark', or 'system').
    */
   setColorSchemeDraft(scheme: AppColorScheme): void {
-    this.#state.update(s => ({ ...s, colorSchemeDraft: scheme }));
+    this.#state.update((s) => ({ ...s, colorSchemeDraft: scheme }));
   }
 
   /**
@@ -462,7 +458,7 @@ export class CourseCatalogStore {
    * @param enabled - Whether card focus should use fullscreen mode.
    */
   setCardFocusFullscreenDraft(enabled: boolean): void {
-    this.#state.update(s => ({ ...s, cardFocusFullscreenDraft: enabled }));
+    this.#state.update((s) => ({ ...s, cardFocusFullscreenDraft: enabled }));
   }
 
   // --- Мутации — Course tab ---
@@ -473,7 +469,7 @@ export class CourseCatalogStore {
    * @param lang - The known content language to set.
    */
   setKnownLanguageDraft(lang: ContentLanguage): void {
-    this.#state.update(s => ({ ...s, knownLanguageDraft: lang }));
+    this.#state.update((s) => ({ ...s, knownLanguageDraft: lang }));
   }
 
   /**
@@ -482,7 +478,7 @@ export class CourseCatalogStore {
    * @param lang - The learning content language to set.
    */
   setLearningLanguageDraft(lang: ContentLanguage): void {
-    this.#state.update(s => ({ ...s, learningLanguageDraft: lang }));
+    this.#state.update((s) => ({ ...s, learningLanguageDraft: lang }));
   }
 
   // --- Мутации — Settings tab ---
@@ -493,7 +489,7 @@ export class CourseCatalogStore {
    * @param id - The language pair ID to use for settings.
    */
   setSettingsPairIdDraft(id: string): void {
-    this.#state.update(s => ({ ...s, settingsPairIdDraft: id }));
+    this.#state.update((s) => ({ ...s, settingsPairIdDraft: id }));
   }
 
   /**
@@ -502,7 +498,7 @@ export class CourseCatalogStore {
    * @param romanizations - The display romanization systems to set.
    */
   setDisplayRomanizationsDraft(romanizations: readonly RomanizationSystem[]): void {
-    this.#state.update(s => ({ ...s, displayRomanizationsDraft: romanizations }));
+    this.#state.update((s) => ({ ...s, displayRomanizationsDraft: romanizations }));
   }
 
   /**
@@ -511,7 +507,7 @@ export class CourseCatalogStore {
    * @param romanizations - The answer romanization systems to set.
    */
   setAnswerRomanizationsDraft(romanizations: readonly RomanizationSystem[]): void {
-    this.#state.update(s => ({ ...s, answerRomanizationsDraft: romanizations }));
+    this.#state.update((s) => ({ ...s, answerRomanizationsDraft: romanizations }));
   }
 
   /**
@@ -520,7 +516,7 @@ export class CourseCatalogStore {
    * @param show - Whether to display IPA notation.
    */
   setShowIpaDraft(show: boolean): void {
-    this.#state.update(s => ({ ...s, showIpaDraft: show }));
+    this.#state.update((s) => ({ ...s, showIpaDraft: show }));
   }
 
   /**
@@ -529,7 +525,7 @@ export class CourseCatalogStore {
    * @param label - The custom IPA variant label.
    */
   setIpaVariantLabelDraft(label: string): void {
-    this.#state.update(s => ({ ...s, ipaVariantLabelDraft: label }));
+    this.#state.update((s) => ({ ...s, ipaVariantLabelDraft: label }));
   }
 
   /**
@@ -538,7 +534,7 @@ export class CourseCatalogStore {
    * @param modes - The answer display modes to set.
    */
   setAnswerModesDraft(modes: readonly AnswerDisplayMode[]): void {
-    this.#state.update(s => ({ ...s, answerModesDraft: modes }));
+    this.#state.update((s) => ({ ...s, answerModesDraft: modes }));
   }
 
   /**
@@ -547,7 +543,7 @@ export class CourseCatalogStore {
    * @param enabled - Whether tone coloring is enabled.
    */
   setToneColorEnabledDraft(enabled: boolean): void {
-    this.#state.update(s => ({ ...s, toneColorEnabledDraft: enabled }));
+    this.#state.update((s) => ({ ...s, toneColorEnabledDraft: enabled }));
   }
 
   /**
@@ -556,7 +552,7 @@ export class CourseCatalogStore {
    * @param scheme - The tone color scheme ID to set.
    */
   setToneColorSchemeDraft(scheme: ToneColorSchemeId): void {
-    this.#state.update(s => ({ ...s, toneColorSchemeDraft: scheme }));
+    this.#state.update((s) => ({ ...s, toneColorSchemeDraft: scheme }));
   }
 
   /**
@@ -565,7 +561,7 @@ export class CourseCatalogStore {
    * @param duration - The tracing stroke duration in milliseconds.
    */
   setTracingStrokeDurationDraft(duration: number): void {
-    this.#state.update(s => ({ ...s, tracingStrokeDurationDraft: duration }));
+    this.#state.update((s) => ({ ...s, tracingStrokeDurationDraft: duration }));
   }
 
   // --- Мутации — Tab control ---
@@ -576,7 +572,7 @@ export class CourseCatalogStore {
    * @param index - The zero-based index of the selected tab.
    */
   setSelectedTabIndex(index: number): void {
-    this.#state.update(s => ({ ...s, selectedTabIndex: index }));
+    this.#state.update((s) => ({ ...s, selectedTabIndex: index }));
   }
 
   // --- Batch mutations ---
@@ -617,7 +613,7 @@ export class CourseCatalogStore {
     toneColorScheme: ToneColorSchemeId,
     tracingStrokeDuration: number,
   ): void {
-    this.#state.update(s => ({
+    this.#state.update((s) => ({
       ...s,
       nameDraft: name,
       learningProficiencyDraft: proficiency,
@@ -645,7 +641,7 @@ export class CourseCatalogStore {
    * @param event - The page event from Angular Material paginator.
    */
   onPageChange(event: PageEvent): void {
-    this.#state.update(s => ({
+    this.#state.update((s) => ({
       ...s,
       pageIndex: event.pageIndex,
       pageSize: event.pageSize,

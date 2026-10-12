@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { CoursePickerSectionComponent } from './course-picker-section.component';
-import { CourseSearchService, ScenarioSearchService } from '../../../../core/repositories';
+import { CourseSearchService } from '../../../../entities/course';
+import { ScenarioSearchService } from '../../../../entities/scenario';
 
 @Component({
   standalone: true,
@@ -46,14 +47,16 @@ describe('CoursePickerSectionComponent', () => {
           provide: ScenarioSearchService,
           useValue: {
             search: () => Promise.resolve({ items: [], total: 0, page: 0, pageSize: 10 }),
-            getById: () => Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
+            getById: () =>
+              Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
           },
         },
         {
           provide: CourseSearchService,
           useValue: {
             search: () => Promise.resolve({ items: [], total: 0, page: 0, pageSize: 10 }),
-            getById: () => Promise.resolve(null as unknown as Parameters<CourseSearchService['getById']>[0]),
+            getById: () =>
+              Promise.resolve(null as unknown as Parameters<CourseSearchService['getById']>[0]),
           },
         },
       ],

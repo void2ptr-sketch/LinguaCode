@@ -15,24 +15,27 @@ import type { PageEvent } from '@angular/material/paginator';
 import { Router } from '@angular/router';
 import { vi } from 'vitest';
 
-import { CourseSearchService } from '../../../core/repositories';
+import { CourseSearchService } from '../../../entities/course';
+import type { ContentLanguage } from '../../../entities/card/model';
 import type {
-  ContentLanguage,
   CourseIndexEntry,
   CourseSearchPage,
   CourseWithLessons,
-  UserLanguagePairEntry,
-} from '../../../core/models';
-import type { ToneColorSchemeId } from '../../../core/models';
-import { LearningResultsStore, UserStore } from '../../../core/state';
+} from '../../../entities/course/model';
+import type { UserLanguagePairEntry } from '../../../entities/user/model';
+import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import {
-  CourseDisplaySettingsMatrixComponent,
-} from '../../../widgets/course-display-settings-matrix';
+import { CourseDisplaySettingsMatrixComponent } from '../../../widgets/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
-function makePair(id: string, known: ContentLanguage, learning: ContentLanguage): UserLanguagePairEntry {
+function makePair(
+  id: string,
+  known: ContentLanguage,
+  learning: ContentLanguage,
+): UserLanguagePairEntry {
   return {
     id,
     pair: { known, learning },
@@ -122,7 +125,9 @@ describe('CourseCatalogPageComponent', () => {
       languagePairs: signal(mockPairs),
       activeLanguagePairId: signal('pair-1'),
       languagePair: signal({ known: 'ru', learning: 'en' }),
-      formatEntryLabel: vi.fn((entry: UserLanguagePairEntry) => `${entry.pair.known} → ${entry.pair.learning}`),
+      formatEntryLabel: vi.fn(
+        (entry: UserLanguagePairEntry) => `${entry.pair.known} → ${entry.pair.learning}`,
+      ),
       isActiveEntry: vi.fn((entry: UserLanguagePairEntry) => entry.id === 'pair-1'),
       setActiveLanguagePair: vi.fn(),
       removeLanguagePair: vi.fn(),
@@ -151,19 +156,33 @@ describe('CourseCatalogPageComponent', () => {
     const mockProgressByCourseIdSignal = signal({} as Readonly<Record<string, number>>);
     const mockCompletedCourseIdsSignal = signal(new Set() as ReadonlySet<string>);
     const mockNameDraftSignal = signal('Ученик');
-    const mockLearningProficiencyDraftSignal = signal('beginner' as import('../../../core/models').LearningProficiencyLevel);
-    const mockThemeDraftSignal = signal('light' as import('../../../core/models').AppColorScheme);
-    const mockFontSizeDraftSignal = signal('md' as import('../../../core/models').UserPreferences['fontSize']);
-    const mockColorSchemeDraftSignal = signal('light' as import('../../../core/models').AppColorScheme);
+    const mockLearningProficiencyDraftSignal = signal(
+      'beginner' as import('../../../entities/learning/model').LearningProficiencyLevel,
+    );
+    const mockThemeDraftSignal = signal(
+      'light' as import('../../../entities/user/model').AppColorScheme,
+    );
+    const mockFontSizeDraftSignal = signal(
+      'md' as import('../../../entities/user/model').UserPreferences['fontSize'],
+    );
+    const mockColorSchemeDraftSignal = signal(
+      'light' as import('../../../entities/user/model').AppColorScheme,
+    );
     const mockCardFocusFullscreenDraftSignal = signal(false);
     const mockKnownLanguageDraftSignal = signal('ru' as ContentLanguage);
     const mockLearningLanguageDraftSignal = signal('en' as ContentLanguage);
     const mockSettingsPairIdDraftSignal = signal('pair-1');
-    const mockDisplayRomanizationsDraftSignal = signal([] as readonly import('../../../core/models').RomanizationSystem[]);
-    const mockAnswerRomanizationsDraftSignal = signal([] as readonly import('../../../core/models').RomanizationSystem[]);
+    const mockDisplayRomanizationsDraftSignal = signal(
+      [] as readonly import('../../../entities/phonetic/model').RomanizationSystem[],
+    );
+    const mockAnswerRomanizationsDraftSignal = signal(
+      [] as readonly import('../../../entities/phonetic/model').RomanizationSystem[],
+    );
     const mockShowIpaDraftSignal = signal(false);
     const mockIpaVariantLabelDraftSignal = signal('');
-    const mockAnswerModesDraftSignal = signal([] as readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[]);
+    const mockAnswerModesDraftSignal = signal(
+      [] as readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
+    );
     const mockToneColorEnabledDraftSignal = signal(false);
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
     const mockTracingStrokeDurationDraftSignal = signal(0.5);
@@ -205,25 +224,43 @@ describe('CourseCatalogPageComponent', () => {
       setPageSize: (size: number) => mockPageSizeSignal.set(size),
       setLoading: (loading: boolean) => mockLoadingSignal.set(loading),
       setError: (error: string | null) => mockErrorSignal.set(error),
-      setProgressByCourseId: (progress: Record<string, number>) => mockProgressByCourseIdSignal.set(progress as Readonly<Record<string, number>>),
-      setCompletedCourseIds: (completed: Set<string>) => mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
+      setProgressByCourseId: (progress: Record<string, number>) =>
+        mockProgressByCourseIdSignal.set(progress as Readonly<Record<string, number>>),
+      setCompletedCourseIds: (completed: Set<string>) =>
+        mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
       setNameDraft: (name: string) => mockNameDraftSignal.set(name),
-      setLearningProficiencyDraft: (level: import('../../../core/models').LearningProficiencyLevel) => mockLearningProficiencyDraftSignal.set(level),
-      setThemeDraft: (theme: import('../../../core/models').AppColorScheme) => mockThemeDraftSignal.set(theme),
-      setFontSizeDraft: (size: import('../../../core/models').UserPreferences['fontSize']) => mockFontSizeDraftSignal.set(size),
-      setColorSchemeDraft: (scheme: import('../../../core/models').AppColorScheme) => mockColorSchemeDraftSignal.set(scheme),
-      setCardFocusFullscreenDraft: (enabled: boolean) => mockCardFocusFullscreenDraftSignal.set(enabled),
+      setLearningProficiencyDraft: (
+        level: import('../../../entities/learning/model').LearningProficiencyLevel,
+      ) => mockLearningProficiencyDraftSignal.set(level),
+      setThemeDraft: (theme: import('../../../entities/user/model').AppColorScheme) =>
+        mockThemeDraftSignal.set(theme),
+      setFontSizeDraft: (
+        size: import('../../../entities/user/model').UserPreferences['fontSize'],
+      ) => mockFontSizeDraftSignal.set(size),
+      setColorSchemeDraft: (scheme: import('../../../entities/user/model').AppColorScheme) =>
+        mockColorSchemeDraftSignal.set(scheme),
+      setCardFocusFullscreenDraft: (enabled: boolean) =>
+        mockCardFocusFullscreenDraftSignal.set(enabled),
       setKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
-      setLearningLanguageDraft: (lang: ContentLanguage) => mockLearningLanguageDraftSignal.set(lang),
+      setLearningLanguageDraft: (lang: ContentLanguage) =>
+        mockLearningLanguageDraftSignal.set(lang),
       setSettingsPairIdDraft: (id: string) => mockSettingsPairIdDraftSignal.set(id),
-      setDisplayRomanizationsDraft: (romanizations: readonly import('../../../core/models').RomanizationSystem[]) => mockDisplayRomanizationsDraftSignal.set(romanizations),
-      setAnswerRomanizationsDraft: (romanizations: readonly import('../../../core/models').RomanizationSystem[]) => mockAnswerRomanizationsDraftSignal.set(romanizations),
+      setDisplayRomanizationsDraft: (
+        romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
+      ) => mockDisplayRomanizationsDraftSignal.set(romanizations),
+      setAnswerRomanizationsDraft: (
+        romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
+      ) => mockAnswerRomanizationsDraftSignal.set(romanizations),
       setShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
       setIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
-      setAnswerModesDraft: (modes: readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[]) => mockAnswerModesDraftSignal.set(modes),
+      setAnswerModesDraft: (
+        modes: readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
+      ) => mockAnswerModesDraftSignal.set(modes),
       setToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
-      setToneColorSchemeDraft: (scheme: ToneColorSchemeId) => mockToneColorSchemeDraftSignal.set(scheme),
-      setTracingStrokeDurationDraft: (duration: number) => mockTracingStrokeDurationDraftSignal.set(duration),
+      setToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
+        mockToneColorSchemeDraftSignal.set(scheme),
+      setTracingStrokeDurationDraft: (duration: number) =>
+        mockTracingStrokeDurationDraftSignal.set(duration),
       setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
     };
 
@@ -307,7 +344,9 @@ describe('CourseCatalogPageComponent', () => {
   });
 
   it('should set error on load failure', async () => {
-    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockRejectedValueOnce(new Error('Network error'));
+    (mockCourseSearchService.search as ReturnType<typeof vi.fn>).mockRejectedValueOnce(
+      new Error('Network error'),
+    );
 
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
@@ -347,8 +386,12 @@ describe('CourseCatalogPageComponent', () => {
 
     expect(component.languagePairInvalid()).toBe(false);
 
-    (mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
-    (mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
+    (
+      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
+    (
+      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
     fixture.detectChanges();
 
     expect(component.languagePairInvalid()).toBe(true);
@@ -361,10 +404,9 @@ describe('CourseCatalogPageComponent', () => {
 
     expect(component.canRemovePair()).toBe(false);
 
-    (mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>).set([
-      makePair('pair-1', 'ru', 'en'),
-      makePair('pair-2', 'en', 'zh'),
-    ]);
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([makePair('pair-1', 'ru', 'en'), makePair('pair-2', 'en', 'zh')]);
     fixture.detectChanges();
 
     expect(component.canRemovePair()).toBe(true);
@@ -400,8 +442,12 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
-    (mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
+    (
+      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
+    (
+      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
     component.addPair();
     await fixture.whenStable();
 
@@ -456,7 +502,11 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockCatalogStore.progressByCourseId as import('@angular/core').WritableSignal<Readonly<Record<string, number>>>).set({ 'c-1': 75 } as Readonly<Record<string, number>>);
+    (
+      mockCatalogStore.progressByCourseId as import('@angular/core').WritableSignal<
+        Readonly<Record<string, number>>
+      >
+    ).set({ 'c-1': 75 } as Readonly<Record<string, number>>);
     expect(component.progressPercent('c-1')).toBe(75);
     expect(component.progressPercent('unknown')).toBe(0);
   });
@@ -467,7 +517,11 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockCatalogStore.completedCourseIds as import('@angular/core').WritableSignal<ReadonlySet<string>>).set(new Set(['c-1']) as ReadonlySet<string>);
+    (
+      mockCatalogStore.completedCourseIds as import('@angular/core').WritableSignal<
+        ReadonlySet<string>
+      >
+    ).set(new Set(['c-1']) as ReadonlySet<string>);
     expect(component.isCourseCompleted('c-1')).toBe(true);
     expect(component.isCourseCompleted('c-2')).toBe(false);
   });

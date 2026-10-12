@@ -1,7 +1,8 @@
 import { describe, expect, it, vi } from 'vitest';
 
-import type { CardIndexEntry, LanguagePair } from '../../../core/models';
-import type { LegacyScenario } from '../../../core/models';
+import type { CardIndexEntry } from '../../card/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { LegacyScenario } from '../model';
 import type { CardSearchService } from '../../card/search/card-search.service';
 import {
   DEFAULT_CRITERIA_LIMIT,
@@ -17,7 +18,8 @@ import {
   sortCardIndexEntries,
   validateScenarioCardSource,
 } from './scenario-card-source.utils';
-import type { Scenario, ScenarioCardSource } from '../../../core/models';
+import type { Scenario } from '../model';
+import type { ScenarioCardSource } from '../../card/model';
 
 describe('scenario-card-source.utils', () => {
   describe('DEFAULT_CRITERIA_LIMIT', () => {
@@ -320,12 +322,35 @@ describe('scenario-card-source.utils', () => {
       const mockService = {
         search: vi.fn().mockResolvedValue({
           items: [
-            { id: 'card-a', title: '', kind: 'select', knownLanguage: 'en', learningLanguage: 'zh', tags: [], ipaReadings: [], difficulty: 'beginner', updatedAt: '2024-01-01' },
-            { id: 'card-b', title: '', kind: 'select', knownLanguage: 'en', learningLanguage: 'zh', tags: [], ipaReadings: [], difficulty: 'beginner', updatedAt: '2024-01-02' },
+            {
+              id: 'card-a',
+              title: '',
+              kind: 'select',
+              knownLanguage: 'en',
+              learningLanguage: 'zh',
+              tags: [],
+              ipaReadings: [],
+              difficulty: 'beginner',
+              updatedAt: '2024-01-01',
+            },
+            {
+              id: 'card-b',
+              title: '',
+              kind: 'select',
+              knownLanguage: 'en',
+              learningLanguage: 'zh',
+              tags: [],
+              ipaReadings: [],
+              difficulty: 'beginner',
+              updatedAt: '2024-01-02',
+            },
           ],
         }),
       };
-      const result = await resolveScenarioCardIds(source, mockService as unknown as CardSearchService);
+      const result = await resolveScenarioCardIds(
+        source,
+        mockService as unknown as CardSearchService,
+      );
       expect(result).toEqual(['card-b', 'card-a']);
       expect(mockService.search).toHaveBeenCalledWith({
         kinds: ['select'],

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { MemoryCard } from '../../../core/models';
+import type { MemoryCard } from '../../../entities/card/model';
 import { MemoryCardComponent } from './memory-card.component';
 
 describe('MemoryCardComponent', () => {

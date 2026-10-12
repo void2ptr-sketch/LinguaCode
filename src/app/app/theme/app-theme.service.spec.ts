@@ -2,8 +2,8 @@ import { Component, signal, computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { AppThemeService } from './app-theme.service';
-import { UserStore } from '../../core/state';
-import type { UserPreferences } from '../../core/models';
+import { UserStore } from '../../entities/user/model/user.store';
+import type { UserPreferences } from '../../entities/user/model';
 
 @Component({
   standalone: true,
@@ -17,9 +17,7 @@ describe('AppThemeService', () => {
 
   let preferencesSignal: ReturnType<typeof signal<UserPreferences>>;
 
-  const createMockPreferences = (
-    overrides: Partial<UserPreferences> = {},
-  ): UserPreferences => ({
+  const createMockPreferences = (overrides: Partial<UserPreferences> = {}): UserPreferences => ({
     theme: 'azure-blue',
     fontSize: 'md',
     colorScheme: 'light',
@@ -40,10 +38,7 @@ describe('AppThemeService', () => {
 
     TestBed.configureTestingModule({
       imports: [TestHostComponent],
-      providers: [
-        AppThemeService,
-        { provide: UserStore, useValue: userStoreMock },
-      ],
+      providers: [AppThemeService, { provide: UserStore, useValue: userStoreMock }],
     });
 
     service = TestBed.inject(AppThemeService);

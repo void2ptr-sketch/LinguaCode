@@ -1,47 +1,23 @@
-# Архитектура: `core` (переходный слой)
+# Архитектура: бывший `core` (миграция завершена)
 
-> **Статус: переходный.** После FSD-миграции `core/` содержит только **shim-баррели** для обратной совместимости (~470 импортов). Реальный код перенесён: `core/models` → `entities/*/model`, `core/domain` → `entities/*/lib`, `core/repositories` → `entities/*/`, `core/state` → `entities/*/model`, `core/api` → `entities/*/api` + `app/api`, `core/layout` → `widgets/` + `pages/`, `core/security` → `shared/security`, `core/theme` → `app/theme` + `shared/theme` + `entities/user/lib`. Удаление `core/` — отдельная задача (обновить потребителей на прямые импорты из `entities/*/`).
+> **Статус: удалён.** Слой `src/app/core/` **полностью удалён** — shim-баррели больше не нужны, потребители импортируют напрямую из `entities/*/`, `shared/`, `widgets/`, `app/`. Этот документ описывает, куда переехала бывшая функциональность `core/`.
 
 Оглавление: [INDEX.md](./INDEX.md) · обзор: [ARCHITECTURE.md](./ARCHITECTURE.md).
 
-## Назначение (историческое)
+## Куда переехал `core/`
 
-Singleton-сервисы и инфраструктура, **не зависящие** от конкретных фич. Фичи импортируют `core/`, но не наоборот.
-
-## Структура
-
-```text
-src/app/core/
-├── api/            # HttpClient, interceptors, mock handlers
-├── domain/         # чистые утилиты домена без DI и Angular
-│                   # (chinese, ipa, phonetic, language-pair, learning, journey, lesson,
-│                   #  code-highlight, keyboard-answer-mode, user)
-├── hanzi-engine/   # offline stroke-data + TypeScript-движок для draw-карточек
-├── layout/         # shell, navigation, user/help pages
-├── models/         # типы домена (см. DOMAIN.md)
-│                   # cards/, scenarios/, courses/, learning/, user/, common/ — barrel на каждом уровне
-├── repositories/   # data-access: repository, api, storage, search, content-seed, user-content overlay
-│                   # (cards, courses, scenarios, content-seed, user)
-├── security/       # санитизация ввода
-├── state/          # UserStore, LearningResultsStore, persistence
-└── theme/          # AppThemeService, colorScheme
-```
-
-## Компоненты layout
-
-| Компонент             | Путь                              | Роль                                                |
-| --------------------- | --------------------------------- | --------------------------------------------------- |
-| `MainLayoutComponent` | `layout/main-layout`              | Grid shell + `router-outlet`                        |
-| `HeaderComponent`     | `layout/header`                   | Шапка, menu-\*                                      |
-| `FooterComponent`     | `layout/footer`                   | Подвал                                              |
-| `NavigationComponent` | `layout/navigation`               | Боковое меню                                        |
-| `MenuCardsComponent`  | `layout/menu-cards`               | Навигация к карточкам и режимам обучения            |
-| `MenuToolsComponent`  | `layout/menu-tools`               | Инструменты                                         |
-| `MenuHelpComponent`   | `layout/menu-help`                | Справка                                             |
-| `MenuUserComponent`   | `layout/menu-user`                | Профиль пользователя                                |
-| `UserPageComponent`   | `layout/pages/user-page`          | Профиль: имя, уровень подготовки, пары языков, тема |
-| `HelpPageComponent`   | `layout/pages/help-page`          | Страница справки                                    |
-| `HelpUsageScenariosPageComponent` | `layout/pages/help-usage-scenarios-page` | Страница сценариев использования |
+| Бывший путь (`core/`)            | Новое расположение                                        |
+| -------------------------------- | --------------------------------------------------------- |
+| `core/models`                    | `entities/*/model` (card, scenario, course, learning, phonetic, user, language-pair) |
+| `core/domain`                    | `entities/*/lib` (chinese, ipa, phonetic, language-pair, learning, journey, lesson, code-highlight, keyboard-answer-mode, user) |
+| `core/repositories`              | `entities/*/` (card, course, scenario, user, content-seed) |
+| `core/state`                     | `entities/*/model` (`user.store`, `user.persistence`, `learning-results.store`, `learning-results.persistence`) + `shared/types/async-state.types` |
+| `core/api`                       | `entities/*/api` + `app/api` (clients, interceptors, errors, `provide-api.http`) |
+| `core/layout`                    | `widgets/` (header, footer, main-layout, navigation, menu-\*) + `pages/` (user, help, help-usage-scenarios) |
+| `core/security`                  | `shared/security`                                          |
+| `core/theme`                     | `app/theme` + `shared/theme` + `entities/user/lib`         |
+| `core/hanzi-engine`              | `entities/chinese/lib` (drawing, validation, quiz, rendering) |
+| `core/services`                  | `entities/journey/lib/journey-analytics.service`           |
 
 ## Состояние
 
@@ -67,7 +43,7 @@ src/app/core/
 
 - **Экспорт из UI**: кнопка «Экспорт файла» в Конструкторе курсов → скачивание `.linguacode-course.json`.
 - **Импорт в репозиторий**: `npm run import:course-bundle -- --bundle <file> --slug <slug>`.
-- **Модуль сбора**: `src/app/core/repositories/courses/utils/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
+- **Модуль сбора**: `src/app/entities/course/utils/course-bundle.utils.ts` — `collectCourseBundle()` обходит граф Course → Lesson → Scenario → Card.
 - **Документация**: [COURSE-BUNDLE.md](./FEATURES/COURSE-BUNDLE.md).
 
 ```mermaid
@@ -83,8 +59,8 @@ flowchart LR
 
 ## API (mock + HTTP)
 
-- Interceptors: auth, error, mock для cards/scenarios/courses в dev.
-- Search-сервисы: `CardSearchService`, `ScenarioSearchService`, `CourseSearchService` в `core/repositories/{cards,courses,scenarios}/search/`.
+- Interceptors: auth, error, mock для cards/scenarios/courses в dev (`app/api/interceptors`, `entities/*/api/mock`).
+- Search-сервисы: `CardSearchService`, `ScenarioSearchService`, `CourseSearchService` в `entities/{card,course,scenario}/search/`.
 
 ## Диаграмма компонентов (UML)
 
@@ -127,20 +103,20 @@ flowchart TB
 
 - **Signals** — основной API состояния; RxJS только на границе HTTP.
 - **Standalone** — без NgModule.
-- **Lazy routes** — фичи не загружаются в `core`.
+- **Lazy routes** — фичи не загружаются в общий слой.
 - **Theme** — `colorScheme` из `UserStore` → классы `theme-light` / `theme-dark` на `<html>`.
 
 ## Связанные пути (overlay + seed + bundle)
 
 ```
-src/app/core/repositories/content-seed/content-seed.repository.ts
-src/app/core/repositories/content-seed/content-seed.cache.ts
-src/app/core/repositories/user/overlay/user-content-overlay.types.ts
-src/app/core/repositories/user/overlay/user-content-overlay.storage.ts
-src/app/core/repositories/user/overlay/user-content-overlay.resolver.ts
-src/app/core/repositories/user/overlay/user-content-overlay.migration.ts
-src/app/core/repositories/courses/utils/course-bundle.types.ts
-src/app/core/repositories/courses/utils/course-bundle.utils.ts
+src/app/entities/content-seed/content-seed.repository.ts
+src/app/entities/content-seed/content-seed.cache.ts
+src/app/entities/user/overlay/user-content-overlay.types.ts
+src/app/entities/user/overlay/user-content-overlay.storage.ts
+src/app/entities/user/overlay/user-content-overlay.resolver.ts
+src/app/entities/user/overlay/user-content-overlay.migration.ts
+src/app/entities/course/utils/course-bundle.types.ts
+src/app/entities/course/utils/course-bundle.utils.ts
 public/data/content-manifest.json
 scripts/export-content-seed.mjs
 scripts/import-course-bundle.mjs

@@ -7,7 +7,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardHostComponent } from '../../../../widgets/card-host/card-host.component';
-import type { Card, CardDirection } from '../../../../core/models';
+import type { Card } from '../../../../entities/card/model';
+import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import type { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
 

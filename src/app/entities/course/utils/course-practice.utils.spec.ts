@@ -1,4 +1,5 @@
-import type { CardIndexEntry, Scenario } from '../../../core/models';
+import type { CardIndexEntry } from '../../card/model';
+import type { Scenario } from '../../scenario/model';
 import {
   buildScenarioDifficultyMap,
   collectCourseScenarioIds,

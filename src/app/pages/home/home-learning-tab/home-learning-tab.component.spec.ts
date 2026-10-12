@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HomeLearningTabComponent } from './home-learning-tab.component';
 import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
-import { LearningResultsStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 
 describe('HomeLearningTabComponent', () => {
   let component: HomeLearningTabComponent;
@@ -13,11 +13,7 @@ describe('HomeLearningTabComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [HomeLearningTabComponent],
-      providers: [
-        LearningDashboardService,
-        LearningResultsStore,
-        provideRouter([]),
-      ],
+      providers: [LearningDashboardService, LearningResultsStore, provideRouter([])],
     }).compileComponents();
 
     dashboard = TestBed.inject(LearningDashboardService);

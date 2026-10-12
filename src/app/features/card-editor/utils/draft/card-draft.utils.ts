@@ -1,4 +1,4 @@
-import { Card, CardAppearance, CardKind } from '../../../../core/models';
+import { Card, CardAppearance, CardKind } from '../../../../entities/card/model';
 import { DEFAULT_TONE_OPTIONS } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
 import { lexemeToDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {

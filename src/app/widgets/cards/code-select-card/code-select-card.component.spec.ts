@@ -6,7 +6,7 @@ import { describe, expect, it } from 'vitest';
 
 import { CodeSelectCardComponent } from './code-select-card.component';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
-import type { CodeSelectCard } from '../../../core/models';
+import type { CodeSelectCard } from '../../../entities/card/model';
 
 describe('CodeSelectCardComponent', () => {
   let fixture: ComponentFixture<CodeSelectCardComponent>;
@@ -28,7 +28,13 @@ describe('CodeSelectCardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [CodeSelectCardComponent, MatButtonModule, MatCardModule, MatIconModule, CodeHighlightComponent],
+      imports: [
+        CodeSelectCardComponent,
+        MatButtonModule,
+        MatCardModule,
+        MatIconModule,
+        CodeHighlightComponent,
+      ],
     });
 
     fixture = TestBed.createComponent(CodeSelectCardComponent);

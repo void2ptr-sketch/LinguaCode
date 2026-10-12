@@ -6,8 +6,9 @@ import {
   applyToneToPinyinSyllable,
   toneMarkLabel,
 } from '../../../entities/chinese/lib/answers/tone-mark.utils';
-import { ToneCard } from '../../../core/models';
-import type { CardDirection, ToneMark } from '../../../core/models';
+import { ToneCard } from '../../../entities/card/model';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+import type { ToneMark } from '../../../entities/phonetic/model';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import { buildOptionClass } from '../option-card.util';

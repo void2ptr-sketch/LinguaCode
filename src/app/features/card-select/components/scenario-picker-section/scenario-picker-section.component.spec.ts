@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ScenarioPickerSectionComponent } from './scenario-picker-section.component';
-import { ScenarioSearchService } from '../../../../core/repositories';
+import { ScenarioSearchService } from '../../../../entities/scenario';
 
 @Component({
   standalone: true,
@@ -66,7 +66,8 @@ describe('ScenarioPickerSectionComponent', () => {
           provide: ScenarioSearchService,
           useValue: {
             search: () => Promise.resolve({ items: [], total: 0, page: 0, pageSize: 10 }),
-            getById: () => Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
+            getById: () =>
+              Promise.resolve(null as unknown as Parameters<ScenarioSearchService['getById']>[0]),
           },
         },
       ],
@@ -75,7 +76,8 @@ describe('ScenarioPickerSectionComponent', () => {
     fixture = TestBed.createComponent(WrapperComponent);
     wrapper = fixture.componentInstance;
     fixture.detectChanges();
-    component = fixture.debugElement.children[0].componentInstance as ScenarioPickerSectionComponent;
+    component = fixture.debugElement.children[0]
+      .componentInstance as ScenarioPickerSectionComponent;
   });
 
   it('should create', () => {
@@ -90,7 +92,11 @@ describe('ScenarioPickerSectionComponent', () => {
     expect(component.isOpenPractice()).toBe(false);
     expect(component.showDifficultyFilter()).toBe(true);
     expect(component.difficultyLevels()).toEqual(['beginner', 'intermediate', 'advanced']);
-    expect(component.difficultyLabels()).toEqual({ beginner: 'Начальный', intermediate: 'Средний', advanced: 'Продвинутый' });
+    expect(component.difficultyLabels()).toEqual({
+      beginner: 'Начальный',
+      intermediate: 'Средний',
+      advanced: 'Продвинутый',
+    });
     expect(component.selectedScenarioId()).toBe('test-scenario-id');
     expect(component.nextStepHint()).toBe('Select a scenario');
     expect(component.canStartPractice()).toBe(false);

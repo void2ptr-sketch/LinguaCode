@@ -2,7 +2,7 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
-import type { CourseIndexEntry, CourseWithLessons } from '../../../core/models';
+import type { CourseIndexEntry, CourseWithLessons } from '../model';
 import type { PageResponse } from '../../../shared/utils/pagination';
 import { CourseSearchService } from './course-search.service';
 import { CoursesApiService } from '../api/courses-api.service';
@@ -49,7 +49,9 @@ describe('CourseSearchService', () => {
     it('sets loading state during search', async () => {
       let resolveAction: () => void;
       const searchPromise = new Promise<void>((r) => (resolveAction = r));
-      vi.spyOn(apiService, 'search').mockReturnValue(searchPromise as unknown as Promise<PageResponse<CourseIndexEntry>>);
+      vi.spyOn(apiService, 'search').mockReturnValue(
+        searchPromise as unknown as Promise<PageResponse<CourseIndexEntry>>,
+      );
 
       void service.search({ page: { page: 0, pageSize: 10 } });
 
@@ -84,7 +86,9 @@ describe('CourseSearchService', () => {
         updatedAt: new Date().toISOString(),
         lessons: [],
       };
-      const spy = vi.spyOn(apiService, 'getById').mockResolvedValue(mockCourse as CourseWithLessons);
+      const spy = vi
+        .spyOn(apiService, 'getById')
+        .mockResolvedValue(mockCourse as CourseWithLessons);
 
       await service.getById('course-1');
 

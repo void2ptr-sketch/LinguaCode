@@ -10,9 +10,10 @@ import {
   effectiveCardDirection,
   resolveOptionCard,
 } from '../../../entities/card/utils/card-direction.utils';
-import { SoundCard } from '../../../core/models';
-import type { CardDirection, PhoneticLexeme } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import { SoundCard } from '../../../entities/card/model';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+import type { PhoneticLexeme } from '../../../entities/phonetic/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import { buildOptionClass } from '../option-card.util';

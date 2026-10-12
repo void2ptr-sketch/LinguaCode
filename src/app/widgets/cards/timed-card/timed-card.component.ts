@@ -6,8 +6,8 @@ import {
   effectiveCardDirection,
   resolveOptionCard,
 } from '../../../entities/card/utils/card-direction.utils';
-import { TimedCard } from '../../../core/models';
-import type { CardDirection } from '../../../core/models';
+import { TimedCard } from '../../../entities/card/model';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 import { buildOptionClass } from '../option-card.util';

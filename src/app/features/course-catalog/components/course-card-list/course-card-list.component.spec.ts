@@ -2,7 +2,7 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogCoursesComponent } from './course-card-list.component';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 describe('CourseCatalogCoursesComponent', () => {
@@ -106,12 +106,16 @@ describe('CourseCatalogCoursesComponent', () => {
   });
 
   it('should hide remove button when only one pair exists', () => {
-    const removeButtons = fixture.nativeElement.querySelectorAll('.page-card__pair-actions button[aria-label="Удалить курс"]');
+    const removeButtons = fixture.nativeElement.querySelectorAll(
+      '.page-card__pair-actions button[aria-label="Удалить курс"]',
+    );
     expect(removeButtons.length).toBeGreaterThanOrEqual(0);
   });
 
   it('should show remove button when multiple pairs exist', () => {
-    const removeButtons = fixture.nativeElement.querySelectorAll('.page-card__pair-actions button[aria-label="Удалить курс"]');
+    const removeButtons = fixture.nativeElement.querySelectorAll(
+      '.page-card__pair-actions button[aria-label="Удалить курс"]',
+    );
     expect(removeButtons.length).toBeGreaterThanOrEqual(0);
   });
 });

@@ -1,6 +1,6 @@
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import { emptyLexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
-import type { ContentLanguage } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
 import { defaultScriptForLanguages, syncLexemePrimaryFromText } from '../ux/card-editor-ux.utils';
 
 export const MIN_CARD_OPTIONS = 2;

@@ -1,9 +1,10 @@
 import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
-import { JourneyAnalyticsService } from '../../entities/journey/lib/journey-analytics.service';
-import { UserStore } from '../../entities/user/model/user.store';
-import type { JourneyAnalyticsEvent, JourneyLocationNode, UserPreferences } from '../models';
+import { JourneyAnalyticsService } from './journey-analytics.service';
+import { UserStore } from '../../user/model/user.store';
+import type { JourneyAnalyticsEvent, JourneyLocationNode } from '../../learning/model';
+import type { UserPreferences } from '../../user/model';
 describe('JourneyAnalyticsService', () => {
   let service: JourneyAnalyticsService;
 
@@ -33,15 +34,27 @@ describe('JourneyAnalyticsService', () => {
 
     switch (kind) {
       case 'visit':
-        return { ...base, kind: 'visit', timestamp: '2024-01-01T00:00:00.000Z', ...extra } as JourneyAnalyticsEvent;
+        return {
+          ...base,
+          kind: 'visit',
+          timestamp: '2024-01-01T00:00:00.000Z',
+          ...extra,
+        } as JourneyAnalyticsEvent;
       case 'duration':
         return { ...base, kind: 'duration', durationMs: 120000, ...extra } as JourneyAnalyticsEvent;
       case 'complete':
-        return { ...base, kind: 'complete', completionPercent: 100, ...extra } as JourneyAnalyticsEvent;
+        return {
+          ...base,
+          kind: 'complete',
+          completionPercent: 100,
+          ...extra,
+        } as JourneyAnalyticsEvent;
     }
   };
 
-  const createLocationNode = (overrides: Partial<JourneyLocationNode> = {}): JourneyLocationNode => ({
+  const createLocationNode = (
+    overrides: Partial<JourneyLocationNode> = {},
+  ): JourneyLocationNode => ({
     id: 'node-1',
     title: 'Test Scenario',
     description: 'Test description',
@@ -65,10 +78,7 @@ describe('JourneyAnalyticsService', () => {
     localStorage.clear();
 
     TestBed.configureTestingModule({
-      providers: [
-        JourneyAnalyticsService,
-        { provide: UserStore, useValue: mockUserStore },
-      ],
+      providers: [JourneyAnalyticsService, { provide: UserStore, useValue: mockUserStore }],
     });
 
     service = TestBed.inject(JourneyAnalyticsService);
@@ -166,7 +176,10 @@ describe('JourneyAnalyticsService', () => {
 
     it('should not affect visits for different scenarios', () => {
       service.trackEvent(createVisitEvent('visit'));
-      const differentEvent = { ...createVisitEvent('visit'), scenarioId: 'scenario-2' } as JourneyAnalyticsEvent;
+      const differentEvent = {
+        ...createVisitEvent('visit'),
+        scenarioId: 'scenario-2',
+      } as JourneyAnalyticsEvent;
       service.trackEvent(differentEvent as JourneyAnalyticsEvent);
       service.trackEvent(createVisitEvent('duration'));
 
@@ -186,7 +199,11 @@ describe('JourneyAnalyticsService', () => {
     });
 
     it('should update completion for partial completion', () => {
-      const partialEvent = { ...createVisitEvent('visit'), kind: 'complete', completionPercent: 75 } as JourneyAnalyticsEvent;
+      const partialEvent = {
+        ...createVisitEvent('visit'),
+        kind: 'complete',
+        completionPercent: 75,
+      } as JourneyAnalyticsEvent;
       service.trackEvent(createVisitEvent('visit'));
       service.trackEvent(partialEvent);
 
@@ -198,8 +215,16 @@ describe('JourneyAnalyticsService', () => {
   describe('visitCountForScenario', () => {
     it('should count visits correctly', () => {
       const event1 = createVisitEvent('visit');
-      const event2 = { ...event1, scenarioId: 'scenario-1', courseId: 'course-2' } as JourneyAnalyticsEvent;
-      const event3 = { ...event1, scenarioId: 'scenario-1', courseId: 'course-3' } as JourneyAnalyticsEvent;
+      const event2 = {
+        ...event1,
+        scenarioId: 'scenario-1',
+        courseId: 'course-2',
+      } as JourneyAnalyticsEvent;
+      const event3 = {
+        ...event1,
+        scenarioId: 'scenario-1',
+        courseId: 'course-3',
+      } as JourneyAnalyticsEvent;
 
       service.trackEvent(event1);
       service.trackEvent(event2);
@@ -226,7 +251,10 @@ describe('JourneyAnalyticsService', () => {
       service.trackEvent(createVisitEvent('visit'));
       service.trackEvent(createVisitEvent('duration'));
 
-      const secondEvent = { ...createVisitEvent('visit'), scenarioId: 'scenario-2' } as JourneyAnalyticsEvent;
+      const secondEvent = {
+        ...createVisitEvent('visit'),
+        scenarioId: 'scenario-2',
+      } as JourneyAnalyticsEvent;
       service.trackEvent(secondEvent);
       service.trackEvent(createVisitEvent('duration'));
 
@@ -240,7 +268,11 @@ describe('JourneyAnalyticsService', () => {
   describe('stuckPoints', () => {
     it('should identify stuck points with low completion', () => {
       service.trackEvent(createVisitEvent('visit'));
-      const partialEvent = { ...createVisitEvent('visit'), kind: 'complete', completionPercent: 30 } as JourneyAnalyticsEvent;
+      const partialEvent = {
+        ...createVisitEvent('visit'),
+        kind: 'complete',
+        completionPercent: 30,
+      } as JourneyAnalyticsEvent;
       service.trackEvent(partialEvent);
 
       const stuck = service.stuckPoints();
@@ -250,7 +282,13 @@ describe('JourneyAnalyticsService', () => {
 
     it('should identify stuck points with high duration', () => {
       service.trackEvent(createVisitEvent('visit'));
-      const longDurationEvent = { scenarioId: 'scenario-1', lessonId: 'lesson-1', courseId: 'course-1', kind: 'duration', durationMs: 400000 } as JourneyAnalyticsEvent;
+      const longDurationEvent = {
+        scenarioId: 'scenario-1',
+        lessonId: 'lesson-1',
+        courseId: 'course-1',
+        kind: 'duration',
+        durationMs: 400000,
+      } as JourneyAnalyticsEvent;
       service.trackEvent(longDurationEvent);
 
       const stuck = service.stuckPoints();
@@ -261,7 +299,11 @@ describe('JourneyAnalyticsService', () => {
     it('should not flag normal visits', () => {
       service.trackEvent(createVisitEvent('visit'));
       service.trackEvent(createVisitEvent('duration'));
-      const completeEvent = { ...createVisitEvent('visit'), kind: 'complete', completionPercent: 100 } as JourneyAnalyticsEvent;
+      const completeEvent = {
+        ...createVisitEvent('visit'),
+        kind: 'complete',
+        completionPercent: 100,
+      } as JourneyAnalyticsEvent;
       service.trackEvent(completeEvent);
 
       const stuck = service.stuckPoints();
@@ -277,9 +319,16 @@ describe('JourneyAnalyticsService', () => {
 
     it('should advance to experienced with sufficient visits and completions', () => {
       for (let i = 0; i < 5; i++) {
-        const visitEvent = { ...createVisitEvent('visit'), scenarioId: `scenario-${i}` } as JourneyAnalyticsEvent;
+        const visitEvent = {
+          ...createVisitEvent('visit'),
+          scenarioId: `scenario-${i}`,
+        } as JourneyAnalyticsEvent;
         service.trackEvent(visitEvent);
-        const completeEvent = { ...visitEvent, kind: 'complete', completionPercent: 100 } as JourneyAnalyticsEvent;
+        const completeEvent = {
+          ...visitEvent,
+          kind: 'complete',
+          completionPercent: 100,
+        } as JourneyAnalyticsEvent;
         service.trackEvent(completeEvent);
       }
 
@@ -288,9 +337,16 @@ describe('JourneyAnalyticsService', () => {
 
     it('should advance to expert with high activity', () => {
       for (let i = 0; i < 20; i++) {
-        const visitEvent = { ...createVisitEvent('visit'), scenarioId: `scenario-${i}` } as JourneyAnalyticsEvent;
+        const visitEvent = {
+          ...createVisitEvent('visit'),
+          scenarioId: `scenario-${i}`,
+        } as JourneyAnalyticsEvent;
         service.trackEvent(visitEvent);
-        const completeEvent = { ...visitEvent, kind: 'complete', completionPercent: 100 } as JourneyAnalyticsEvent;
+        const completeEvent = {
+          ...visitEvent,
+          kind: 'complete',
+          completionPercent: 100,
+        } as JourneyAnalyticsEvent;
         service.trackEvent(completeEvent);
       }
 

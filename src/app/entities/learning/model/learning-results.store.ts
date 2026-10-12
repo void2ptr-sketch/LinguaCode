@@ -1,5 +1,5 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { LearningResult } from '../../../core/models';
+import { LearningResult } from './index';
 import { LearningResultsPersistence } from './learning-results.persistence';
 import { UserStore } from '../../user/model/user.store';
 

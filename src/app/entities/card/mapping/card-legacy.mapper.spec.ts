@@ -1,5 +1,14 @@
 import { normalizeLegacyCard, normalizeLegacyCards } from './card-legacy.mapper';
-import type { Card, SelectCard, MemoryCard, SymbolCard, SoundCard, TimedCard, KeyboardCard, DrawCard } from '../../../core/models';
+import type {
+  Card,
+  SelectCard,
+  MemoryCard,
+  SymbolCard,
+  SoundCard,
+  TimedCard,
+  KeyboardCard,
+  DrawCard,
+} from '../model';
 
 describe('card-legacy.mapper', () => {
   describe('normalizeLegacyCard', () => {

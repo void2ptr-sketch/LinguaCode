@@ -1,4 +1,4 @@
-import type { FacetCount } from '../../../../core/models';
+import type { FacetCount } from '../../model';
 
 /**
  * Ordered list of catalog tag theme IDs.

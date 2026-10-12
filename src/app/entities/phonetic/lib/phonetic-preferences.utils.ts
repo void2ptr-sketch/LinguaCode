@@ -1,5 +1,11 @@
-import type { CjkLearningPreferences, PhoneticPreferences, RomanizationSystem } from '../../../core/models';
-import { DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES, ROMANIZATION_DISPLAY_ORDER, TRACING_STROKE_DURATION_BOUNDS, DEFAULT_TONE_COLOR_SCHEME_ID } from '../../../core/models';
+import type { CjkLearningPreferences, PhoneticPreferences, RomanizationSystem } from '../model';
+import {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+  ROMANIZATION_DISPLAY_ORDER,
+  TRACING_STROKE_DURATION_BOUNDS,
+  DEFAULT_TONE_COLOR_SCHEME_ID,
+} from '../model';
 import { isToneColorSchemeId } from '../../chinese/lib/tones/tone-color.utils';
 const ROMANIZATION_SYSTEMS: readonly RomanizationSystem[] = ['pinyin', 'zhuyin', 'palladius'];
 

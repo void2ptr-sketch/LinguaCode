@@ -1,6 +1,11 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { type ExplorerLevel, type ExplorerLevelResult, type JourneyAnalyticsEvent, type JourneyLocationNode } from '../../../core/models';
+import type {
+  ExplorerLevel,
+  ExplorerLevelResult,
+  JourneyAnalyticsEvent,
+  JourneyLocationNode,
+} from '../../learning/model';
 import { UserStore } from '../../user/model/user.store';
 
 const JOURNEY_VISITS_STORAGE_KEY = 'journey_visits';
@@ -44,8 +49,7 @@ export class JourneyAnalyticsService {
    * The computed re-evaluates whenever `visits` changes.
    */
   readonly visitCountForScenario = computed(() => {
-    return (scenarioId: string) =>
-      this.visits().filter((v) => v.scenarioId === scenarioId).length;
+    return (scenarioId: string) => this.visits().filter((v) => v.scenarioId === scenarioId).length;
   });
 
   /**
@@ -80,7 +84,14 @@ export class JourneyAnalyticsService {
   readonly stuckPoints = computed(() => {
     const grouped = new Map<
       string,
-      { scenarioId: string; lessonId: string; courseId: string; count: number; totalDuration: number; avgCompletion: number }
+      {
+        scenarioId: string;
+        lessonId: string;
+        courseId: string;
+        count: number;
+        totalDuration: number;
+        avgCompletion: number;
+      }
     >();
 
     for (const visit of this.visits()) {
@@ -88,7 +99,8 @@ export class JourneyAnalyticsService {
       if (current) {
         current.count += 1;
         current.totalDuration += visit.durationMs;
-        current.avgCompletion = (current.avgCompletion * (current.count - 1) + visit.completionPercent) / current.count;
+        current.avgCompletion =
+          (current.avgCompletion * (current.count - 1) + visit.completionPercent) / current.count;
       } else {
         grouped.set(visit.scenarioId, {
           scenarioId: visit.scenarioId,
@@ -183,7 +195,11 @@ export class JourneyAnalyticsService {
    * @param totalCount - Total number of cards in the scenario.
    * @returns The updated node with status, completion percent, and visited flag.
    */
-  updateLocationProgress(node: JourneyLocationNode, completedCount: number, totalCount: number): JourneyLocationNode {
+  updateLocationProgress(
+    node: JourneyLocationNode,
+    completedCount: number,
+    totalCount: number,
+  ): JourneyLocationNode {
     const completionPercent = totalCount > 0 ? Math.round((completedCount / totalCount) * 100) : 0;
     const isVisited = this.visitCountForScenario()(node.scenarioId) > 0;
 

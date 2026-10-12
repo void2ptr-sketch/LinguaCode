@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { LearningProgressComponent } from './learning-progress.component';
-import { LearningResultsStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 
 describe('LearningProgressComponent', () => {
   let component: LearningProgressComponent;

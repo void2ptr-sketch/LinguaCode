@@ -1,6 +1,6 @@
 import { Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import type { CodeHighlightLanguage } from '../../core/models';
+import type { CodeHighlightLanguage } from '../../entities/card/model';
 import { CodeHighlightService } from './code-highlight.service';
 
 /**

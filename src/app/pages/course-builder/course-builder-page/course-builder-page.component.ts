@@ -29,9 +29,9 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import type { PageEvent } from '@angular/material/paginator';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
-import type { CourseListScope } from '../../../core/models';
+import type { CourseListScope } from '../../../entities/course/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CourseBuilderDialogService } from '../../../features/course-builder/components/course-builder-dialog/course-builder-dialog.service';
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
 

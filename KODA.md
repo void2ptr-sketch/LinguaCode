@@ -29,7 +29,7 @@
 
 ```
 src/app/
-├── app/        # композиция: app.config, app.routes, provide-api, interceptors, theme
+├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme
 ├── pages/      # страницы-маршруты (*-page)
 ├── widgets/    # переиспользуемые UI: card-host, cards/*, pickers, layout (header/nav/main-layout/footer)
 ├── features/   # изолированные фичи (card-select, card-editor, scenario-builder, …)

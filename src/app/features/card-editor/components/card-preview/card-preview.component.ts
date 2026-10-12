@@ -1,5 +1,5 @@
 import { Component, input } from '@angular/core';
-import { Card } from '../../../../core/models';
+import { Card } from '../../../../entities/card/model';
 import { CardHostComponent } from '../../../../widgets/card-host';
 
 /**

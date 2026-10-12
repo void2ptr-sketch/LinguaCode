@@ -15,7 +15,7 @@ import { MediaCardFormComponent } from '../card-form/kind-forms/media-card-form/
 import { PairsCardFormComponent } from '../card-form/kind-forms/pairs-card-form/pairs-card-form.component';
 import type { ChoiceCardDraft } from '../card-form/kind-forms/choice-card-form/choice-card-form.component';
 import type { CardAppearanceDraft } from '../../types';
-import type { CardDirection } from '../../../../core/models';
+import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 
 @Component({
   standalone: true,

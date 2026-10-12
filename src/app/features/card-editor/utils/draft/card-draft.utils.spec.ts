@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { CardAppearance } from '../../../../core/models';
-import type { Card } from '../../../../core/models';
+import { CardAppearance } from '../../../../entities/card/model';
+import type { Card } from '../../../../entities/card/model';
 import { cardToDraft, cardSummary, emptyCardDraft } from './card-draft.utils';
 import type {
   CodeSelectCardDraft,
@@ -153,9 +153,7 @@ describe('card-draft.utils', () => {
         kind: 'memory',
         title: 'Test Memory',
         promptKnown: 'Memory prompt',
-        pairs: [
-          { known: 'A', learning: 'B', learningLexeme: { primary: 'B', script: 'latn' } },
-        ],
+        pairs: [{ known: 'A', learning: 'B', learningLexeme: { primary: 'B', script: 'latn' } }],
         appearance: { ...defaultAppearance },
         promptLexeme: { primary: 'Test', script: 'latn' },
         audioUrl: '',

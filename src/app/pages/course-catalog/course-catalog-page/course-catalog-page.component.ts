@@ -5,21 +5,19 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import { CourseSearchService } from '../../../core/repositories';
+import { CourseSearchService } from '../../../entities/course';
 import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
 import {
   resolveCjkLearningForPair,
   resolvePhoneticForPair,
 } from '../../../entities/user/lib/user-language-pair.utils';
 import { shouldShowPalladius } from '../../../entities/phonetic/lib/phonetic-preferences.utils';
-import { LearningResultsStore, UserStore } from '../../../core/state';
-import type {
-  CjkLearningPreferences,
-  CourseIndexEntry,
-  UserLanguagePairEntry,
-  UserLanguagePairSettings,
-} from '../../../core/models';
-import { ROMANIZATION_DISPLAY_ORDER } from '../../../core/models';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
+import type { CjkLearningPreferences } from '../../../entities/phonetic/model';
+import type { CourseIndexEntry } from '../../../entities/course/model';
+import type { UserLanguagePairEntry, UserLanguagePairSettings } from '../../../entities/user/model';
+import { ROMANIZATION_DISPLAY_ORDER } from '../../../entities/phonetic/model';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../widgets/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';

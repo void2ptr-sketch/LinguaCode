@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardPreviewComponent } from './card-preview.component';
-import type { Card } from '../../../../core/models';
+import type { Card } from '../../../../entities/card/model';
 
 // Mock CardHostComponent to avoid deep dependency chain
 @Component({

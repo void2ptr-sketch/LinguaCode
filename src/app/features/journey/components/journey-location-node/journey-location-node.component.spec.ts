@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 import { JourneyLocationNodeComponent } from './journey-location-node.component';
-import type { JourneyLocationNode } from '../../../../core/models';
+import type { JourneyLocationNode } from '../../../../entities/learning/model';
 import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
 
 const baseNode: JourneyLocationNode = {
@@ -141,7 +141,11 @@ describe('JourneyLocationNodeComponent', () => {
   });
 
   it('should show progress spinner for in-progress status', async () => {
-    const inProgressNode: JourneyLocationNode = { ...baseNode, status: 'in-progress', completionPercent: 50 };
+    const inProgressNode: JourneyLocationNode = {
+      ...baseNode,
+      status: 'in-progress',
+      completionPercent: 50,
+    };
     const { WrapperComponent } = createComponent(inProgressNode);
 
     await TestBed.configureTestingModule({

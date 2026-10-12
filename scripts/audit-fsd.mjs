@@ -7,8 +7,6 @@
  *     (a module may only import from its own layer or layers below it)
  *  2. No cross-slice imports within the same layer
  *     (e.g. features/card-editor must not import features/card-select)
- *  3. No imports from the transitional core/ shim barrels
- *     (core/ should be fully dissolved into entities/shared/app)
  *
  * Usage: node scripts/audit-fsd.mjs
  * Exit code 0 = clean, 1 = violations found.
@@ -65,14 +63,6 @@ function checkFile(file) {
 
     const toLayer = relTarget.split('/')[0];
 
-    // 3. core/ shim barrels (transitional)
-    if (toLayer === 'core') {
-      violations.push(
-        `CORE SHIM: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (transitional core/ barrel)`
-      );
-      return;
-    }
-
     if (!LAYER_INDEX[toLayer]) return; // not a known layer
 
     // 1. Layer direction
@@ -92,12 +82,6 @@ function checkFile(file) {
       }
     }
 
-    // 3. core/ shim barrels (transitional)
-    if (toLayer === 'core') {
-      violations.push(
-        `CORE SHIM: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (transitional core/ barrel)`
-      );
-    }
   });
 }
 

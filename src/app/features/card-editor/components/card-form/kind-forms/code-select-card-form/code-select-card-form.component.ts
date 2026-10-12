@@ -10,7 +10,7 @@ import {
   CODE_HIGHLIGHT_LANGUAGE_LABELS,
   CODE_HIGHLIGHT_LANGUAGES,
 } from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
-import type { CodeHighlightLanguage } from '../../../../../../core/models';
+import type { CodeHighlightLanguage } from '../../../../../../entities/card/model';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
 import { CodeHighlightComponent } from '../../../../../../widgets/code-highlight';
 

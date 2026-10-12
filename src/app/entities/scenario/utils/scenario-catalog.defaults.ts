@@ -1,5 +1,5 @@
-import type { LanguagePair } from '../../../core/models';
-import type { Scenario } from '../../../core/models';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { Scenario } from '../model';
 
 import { getScenarioSeedCache } from '../../content-seed/content-seed.cache';
 import { isObsoleteRadicalsCatalogItem } from '../../chinese/lib/tones/radicals-course.defaults';

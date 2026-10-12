@@ -8,9 +8,9 @@ import {
   isLessonUnlocked,
   prerequisiteBlockReason,
 } from '../../entities/lesson/lib/lesson-prerequisites.utils';
-import { CourseSearchService } from '../../core/repositories';
-import type { Lesson } from '../../core/models';
-import { LearningResultsStore } from '../../core/state';
+import { CourseSearchService } from '../../entities/course';
+import type { Lesson } from '../../entities/course/model';
+import { LearningResultsStore } from '../../entities/learning/model/learning-results.store';
 
 /**
  * Payload emitted when a lesson is picked.

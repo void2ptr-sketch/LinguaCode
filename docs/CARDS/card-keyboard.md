@@ -1,6 +1,6 @@
 # KeyboardCard
 
-> Исходный код: `src/app/shared/ui/cards/keyboard-card/keyboard-card.component.ts`
+> Исходный код: `src/app/widgets/cards/keyboard-card/keyboard-card.component.ts`
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `KeyboardCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `KeyboardCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -63,10 +63,10 @@
   - `PinyinKeyboardComponent` — виртуальная клавиатура пиньинь.
   - `MatCardModule`, `MatButtonModule`, `MatFormFieldModule`, `MatIconModule`, `MatInputModule` — Angular Material.
 - **Утилиты:**
-  - `resolveKeyboardAnswerMode()` из `src/app/core/domain/keyboard-answer-mode/keyboard-answer-mode.utils.ts`.
-  - `resolveKeyboardPrompt()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
-  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
-  - `getCorrectAnswerLabel()` из `src/app/shared/utils/card-answer/card-answer.util.ts`.
+  - `resolveKeyboardAnswerMode()` из `src/app/entities/card/lib/keyboard-answer-mode/keyboard-answer-mode.utils.ts`.
+  - `resolveKeyboardPrompt()` из `src/app/entities/card/utils/card-direction.utils.ts`.
+  - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts`.
+  - `getCorrectAnswerLabel()` из `src/app/entities/card/lib/card-answer/card-answer.util.ts`.
 
 ### @Input (входные параметры)
 

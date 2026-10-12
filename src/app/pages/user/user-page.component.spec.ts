@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { UserPageComponent } from './user-page.component';
-import { UserStore } from '../../core/state';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../core/models';
+import { UserStore } from '../../entities/user/model/user.store';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
 
 describe('UserPageComponent', () => {
   let component: UserPageComponent;

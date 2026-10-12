@@ -1,4 +1,4 @@
-import { buildApiUrl, buildFixtureUrl, isApiRequest } from '../../shared/api/api-url';
+import { buildApiUrl, buildFixtureUrl, isApiRequest } from './api-url';
 import { environment } from '../../../environments/environment';
 
 describe('api-url', () => {

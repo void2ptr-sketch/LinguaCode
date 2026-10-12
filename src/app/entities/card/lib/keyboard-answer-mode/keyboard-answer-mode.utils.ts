@@ -1,4 +1,4 @@
-import type { KeyboardCard } from '../../../../core/models';
+import type { KeyboardCard } from '../../model';
 import { isLikelyIpa } from '../../../phonetic/lib/ipa/ipa-normalize.utils';
 import { resolveIpaString } from '../../../phonetic/lib/phonetic-lexeme.utils';
 

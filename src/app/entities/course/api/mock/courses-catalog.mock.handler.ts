@@ -8,9 +8,9 @@ import type {
   CourseSearchPage,
   CourseWithLessons,
   Lesson,
-} from '../../../../core/models';
+} from '../../model';
 import { paginateArray } from '../../../../shared/utils/pagination';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../user/model/user.store';
 
 import { normalizeCourseAuthoring } from '../../utils/course-authoring.utils';
 import { courseToIndexEntry } from '../../mapping/course-index.mapper';

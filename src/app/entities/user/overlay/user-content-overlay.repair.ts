@@ -1,5 +1,8 @@
-import type { Course, Scenario } from '../../../core/models';
-import type { LanguagePair, ScenarioCardSource, CourseAuthoring } from '../../../core/models';
+import type { Course } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { ScenarioCardSource } from '../../card/model';
+import type { CourseAuthoring } from '../../course/model';
 import { normalizeCourseAuthoring } from '../../course/utils/course-authoring.utils';
 import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
 import type { UserContentOverlay } from './user-content-overlay.types';
@@ -182,12 +185,12 @@ function isOverlayCourse(value: Course | Partial<Course>): value is Course {
 
 function isOverlayLesson(
   value: UserContentOverlay['lessons'][string],
-): value is import('../../../core/models').Lesson {
+): value is import('../../course/model').Lesson {
   return (
     typeof value === 'object' &&
     value !== null &&
-    typeof (value as import('../../../core/models').Lesson).courseId === 'string' &&
-    Array.isArray((value as import('../../../core/models').Lesson).scenarioIds)
+    typeof (value as import('../../course/model').Lesson).courseId === 'string' &&
+    Array.isArray((value as import('../../course/model').Lesson).scenarioIds)
   );
 }
 

@@ -1,6 +1,11 @@
-import type { LanguagePair } from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR, DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES } from '../../../core/models';
-import type { CjkLearningPreferences, PhoneticPreferences, UserLanguagePairEntry, UserLanguagePairSettings, UserPreferences } from '../../../core/models';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
+import {
+  DEFAULT_CJK_LEARNING_PREFERENCES,
+  DEFAULT_PHONETIC_PREFERENCES,
+} from '../../phonetic/model';
+import type { CjkLearningPreferences, PhoneticPreferences } from '../../phonetic/model';
+import type { UserLanguagePairEntry, UserLanguagePairSettings, UserPreferences } from '../model';
 import { isAllowedFontSize, sanitizeTheme } from '../../../shared/security';
 import { normalizeColorScheme } from './app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../../card/utils/card-focus-preference.utils';

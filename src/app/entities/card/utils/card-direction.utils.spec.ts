@@ -1,4 +1,4 @@
-import type { OptionCard } from '../../../core/models';
+import type { OptionCard } from '../model';
 import {
   cardDefaultDirection,
   cardSupportsSessionDirection,

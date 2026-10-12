@@ -14,16 +14,16 @@
 ## 2. Базовая архитектура
 
 - [x] Домен описан — см. [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md)
-- [x] Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
+- [x] Настроить маршрутизацию (`app/app/app.routes.ts`, lazy `loadComponent`)
 - [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
-  - шапка — `/src/app/core/layout/header`
-    - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
-    - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
-    - menu-help — `/src/app/core/layout/menu-help` (встроено в шапку)
-    - menu-user — `/src/app/core/layout/menu-user` (встроено в шапку)
-  - подвал — `/src/app/core/layout/footer`
-  - контент — `/src/app/core/layout/main-layout`
-  - навигация — `/src/app/core/layout/navigation`
+  - шапка — `/src/app/widgets/header`
+    - menu-cards — `/src/app/widgets/menu-cards` (встроено в шапку)
+    - menu-tools — `/src/app/widgets/menu-tools` (встроено в шапку)
+    - menu-help — `/src/app/widgets/menu-help` (встроено в шапку)
+    - menu-user — `/src/app/widgets/menu-user` (встроено в шапку)
+  - подвал — `/src/app/widgets/footer`
+  - контент — `/src/app/widgets/main-layout`
+  - навигация — `/src/app/widgets/navigation`
 - [x] Создать `core/models/` — типы из DOMAIN (`User`, `Card`, `Scenario`, `LearningResult`)
 - [x] Вынести конфигурацию окружения (`environment.ts`)
 
@@ -55,7 +55,7 @@
 ## 6. Безопасность
 
 - [x] Не хранить секреты в репозитории (`.env` в `.gitignore`, шаблон `.env.example`)
-- [x] Санитизация пользовательского ввода (`core/security/`, `UserStore`)
+- [x] Санитизация пользовательского ввода (`shared/security/`, `UserStore`)
 - [x] Проверить зависимости на уязвимости (`npm audit`; скрипт `npm run audit`)
 
 ## 7. Качество и релиз
@@ -109,7 +109,7 @@
 
 #### H15. Hanzi Engine (`public/assets/hanzi/` + свой движок)
 
-Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/core/hanzi-engine/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
+Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/entities/chinese/lib/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
 
 **H15a — Sprint 1: foundation (API + data)** ✅ старт
 
@@ -632,7 +632,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G14 — UX страницы «Практика» (`/cards/select`)**
 
-Контекст: после G13 dashboard на `/home` закрывает «куда идти»; `/cards/select` — **студия сессии** (программа → урок → сценарий → карточки). Сейчас: 4 вкладки без sticky-контекста, длинная строка прогресса, карточка теряется среди toolbar. Терминология: **Программа** = `Course`; **Курс** в профиле = `LanguagePair`. Файлы: `features/card-select/components/card-select-page/`, `shared/course-picker`, `lesson-picker`, `scenario-picker`.
+Контекст: после G13 dashboard на `/home` закрывает «куда идти»; `/cards/select` — **студия сессии** (программа → урок → сценарий → карточки). Сейчас: 4 вкладки без sticky-контекста, длинная строка прогресса, карточка теряется среди toolbar. Терминология: **Программа** = `Course`; **Курс** в профиле = `LanguagePair`. Файлы: `pages/card-select/card-select-page/`, `shared/course-picker`, `lesson-picker`, `scenario-picker`.
 
 **G14a — sticky session bar (P0)**
 

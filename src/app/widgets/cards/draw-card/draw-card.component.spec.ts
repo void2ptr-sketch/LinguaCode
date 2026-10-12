@@ -7,13 +7,13 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { describe, expect, it, vi } from 'vitest';
 
 import { DrawCardComponent } from './draw-card.component';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { HanziDataService } from '../../../entities/chinese/lib/services/hanzi-data.service';
 import { DrawCanvasComponent } from '../draw-canvas/draw-canvas.component';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';
 import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
-import type { DrawCard } from '../../../core/models';
+import type { DrawCard } from '../../../entities/card/model';
 
 const mockCard: DrawCard = {
   id: 'draw-card-1',

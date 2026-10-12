@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { UserStore } from '../../core/state';
+import { UserStore } from '../../entities/user/model/user.store';
 
 /**
  * Navigation menu component for the user section. Displays the current user's display name.

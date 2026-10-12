@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CardKind } from '../../../core/models';
+import { CardKind } from '../../../entities/card/model';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
 import {
   CARD_KIND_LABELS,
@@ -18,7 +18,7 @@ import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../../../widgets/card-catalog/card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
@@ -28,7 +28,7 @@ import {
   CARD_CREATE_GROUPS,
   KINDS_BY_CREATE_GROUP,
 } from '../../../features/card-editor/utils/form/card-create-groups.utils';
-import type { CardIndexEntry } from '../../../core/models';
+import type { CardIndexEntry } from '../../../entities/card/model';
 
 let lastKnownActiveLanguagePairId: string | null = null;
 

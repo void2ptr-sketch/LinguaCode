@@ -5,7 +5,7 @@ import type {
   ScenarioIndexEntry,
   ScenarioSearchCriteria,
   ScenarioSearchPage,
-} from '../../../core/models';
+} from '../model';
 
 import { ScenariosApiService, type ScenarioWritePayload } from '../api/scenarios-api.service';
 

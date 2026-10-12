@@ -9,9 +9,9 @@
 ## Структура
 
 ```text
-core/state/learning-results.store.ts
-core/models/learning/learning-result.types.ts
-features/learning-results/components/learning-progress/
+entities/learning/model/learning-results.store.ts
+entities/learning/model/learning-result.types.ts
+pages/learning-results/learning-progress/
 ```
 
 ## Модель

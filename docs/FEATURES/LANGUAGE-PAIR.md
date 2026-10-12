@@ -74,7 +74,7 @@ Deep link с dashboard:
 /cards/select?courseId=…&lessonId=…&scenarioId=…&tab=learning
 ```
 
-Файлы: `features/home/` · `core/domain/learning/learning-resume.utils.ts` · `core/domain/learning/learning-session.utils.ts`.
+Файлы: `features/home/` · `entities/learning/lib/learning-resume.utils.ts` · `entities/learning/lib/learning-session.utils.ts`.
 
 ## G7 — несколько пар, одна активная
 
@@ -301,7 +301,7 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 | Этап | Содержание                                                                                   | Статус |
 | ---- | -------------------------------------------------------------------------------------------- | ------ |
-| G0   | `LanguagePair` в DOMAIN и `core/models`; `CardIndexEntry.knownLanguage` / `learningLanguage` | готово |
+| G0   | `LanguagePair` в DOMAIN и `entities/*/model`; `CardIndexEntry.knownLanguage` / `learningLanguage` | готово |
 | G1   | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении                     | готово |
 | G2   | Structured content в `Card` (known/learning поля); миграция demo                             | готово |
 | G3   | Index/search по паре; редактор — поля языка                                                  | готово |
@@ -400,22 +400,22 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 ## Связанные пути в коде
 
 ```
-src/app/core/models/common/language-pair.types.ts
-src/app/core/models/courses/course.types.ts                 # G11: Course (не путать с LanguagePair)
-src/app/core/models/user/user.types.ts                    # UserPreferences (G7: languagePairs)
-src/app/core/models/cards/card-index.types.ts
-src/app/core/domain/language-pair/language-pair.utils.ts
-src/app/core/state/user.store.ts
-src/app/core/state/user.persistence.ts                    # G7: migration legacy languagePair
-src/app/core/layout/pages/user-page/
-src/app/features/card-catalog-search/services/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
-src/app/features/card-editor/components/card-editor-page/   # «Курс: …» + hint (G8a)
-src/app/features/card-editor/components/card-editor-page/
+src/app/entities/language-pair/model/language-pair.types.ts
+src/app/entities/course/model/course.types.ts                 # G11: Course (не путать с LanguagePair)
+src/app/entities/user/model/user.types.ts                    # UserPreferences (G7: languagePairs)
+src/app/entities/card/model/card-index.types.ts
+src/app/entities/language-pair/lib/language-pair.utils.ts
+src/app/entities/user/model/user.store.ts
+src/app/entities/user/model/user.persistence.ts                    # G7: migration legacy languagePair
+src/app/pages/user/
+src/app/entities/card/lib/card-catalog-search/card-catalog-search.store.ts  # applyLanguagePair (G8)
+src/app/pages/card-editor/card-editor-page/   # «Курс: …» + hint (G8a)
+src/app/pages/card-editor/card-editor-page/
 src/app/features/course-builder/                              # G11: конструктор Course
 src/app/features/scenario-builder/services/scenario-builder.store.ts
-src/app/shared/ui/scenario-picker/scenario-picker.component.ts
-src/app/shared/ui/course-picker/                              # G11: выбор Course на обучении
-src/app/shared/ui/lesson-picker/
-src/app/features/card-select/components/card-select-page/
+src/app/widgets/scenario-picker/scenario-picker.component.ts
+src/app/widgets/course-picker/                              # G11: выбор Course на обучении
+src/app/widgets/lesson-picker/
+src/app/pages/card-select/card-select-page/
 public/data/select-cards.json
 ```

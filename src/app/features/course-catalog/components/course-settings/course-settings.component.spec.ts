@@ -2,9 +2,9 @@ import { signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogSettingsComponent } from './course-settings.component';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
-import type { ToneColorSchemeId } from '../../../../core/models';
+import type { ToneColorSchemeId } from '../../../../entities/phonetic/model';
 
 describe('CourseCatalogSettingsComponent', () => {
   let fixture: ComponentFixture<CourseCatalogSettingsComponent>;

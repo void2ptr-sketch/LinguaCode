@@ -1,13 +1,10 @@
-import type { Scenario } from '../../../../core/models';
+import type { Scenario } from '../../../scenario/model';
 import {
   getTestDefaultCourseCatalog,
   getTestDefaultScenarios,
   seedTestContentCache,
 } from '../../../content-seed/content-seed.test-utils';
-import {
-  RADICALS_COURSE_ID,
-  radicalCardId,
-} from './radicals-course.defaults';
+import { RADICALS_COURSE_ID, radicalCardId } from './radicals-course.defaults';
 
 describe('radicals-course.defaults', () => {
   beforeEach(() => {

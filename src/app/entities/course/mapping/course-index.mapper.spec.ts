@@ -1,5 +1,5 @@
 import { courseToIndexEntry } from './course-index.mapper';
-import type { Course } from '../../../core/models';
+import type { Course } from '../model';
 
 function makeCourse(overrides?: Partial<Course>): Course {
   return {
@@ -44,7 +44,9 @@ describe('course-index.mapper', () => {
     });
 
     it('should generate language pair summary for different pairs', () => {
-      const course = makeCourse({ languagePair: { known: 'en', learning: 'zh' } as Course['languagePair'] });
+      const course = makeCourse({
+        languagePair: { known: 'en', learning: 'zh' } as Course['languagePair'],
+      });
       const entry = courseToIndexEntry(course, 1);
       expect(entry.languagePairSummary).toBeTruthy();
       expect(entry.languagePairSummary.length).toBeGreaterThan(0);

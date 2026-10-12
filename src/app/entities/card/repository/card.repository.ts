@@ -26,7 +26,7 @@
  */
 import { Injectable, inject } from '@angular/core';
 
-import { Card } from '../../../core/models';
+import { Card } from '../model';
 import { getCardSeedCache } from '../../content-seed/content-seed.cache';
 import { ContentSeedRepository } from '../../content-seed/content-seed.repository';
 import { normalizeLegacyCards } from '../mapping/card-legacy.mapper';

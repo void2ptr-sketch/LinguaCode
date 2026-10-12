@@ -1,11 +1,8 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 
 import { scenarioDisplayLabel } from './scenario-display-label.utils';
-import {
-  setScenarioSeedCache,
-  resetContentSeedCache,
-} from '../../content-seed/content-seed.cache';
-import type { Scenario } from '../../../core/models';
+import { setScenarioSeedCache, resetContentSeedCache } from '../../content-seed/content-seed.cache';
+import type { Scenario } from '../model';
 
 describe('scenario-display-label.utils', () => {
   const testScenarios: Scenario[] = [

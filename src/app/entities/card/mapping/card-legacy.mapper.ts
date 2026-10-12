@@ -8,8 +8,8 @@ import type {
   SoundCard,
   SymbolCard,
   TimedCard,
-} from '../../../core/models';
-import type { CardDirection } from '../../../core/models';
+} from '../model';
+import type { CardDirection } from '../../language-pair/model/language-pair.types';
 type LegacyMemoryPair = {
   front?: string;
   back?: string;

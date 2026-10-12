@@ -1,4 +1,4 @@
-import type { CardKind } from '../../../../core/models';
+import type { CardKind } from '../../../../entities/card/model';
 import type { CardFormKindGroup } from './card-form.registry';
 
 /**

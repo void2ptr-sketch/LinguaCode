@@ -1,7 +1,7 @@
-import type { Card } from '../../../core/models';
-import type { Lesson } from '../../../core/models';
-import type { Scenario } from '../../../core/models';
-import type { CardIndexMetaOverride } from '../../../core/models';
+import type { Card } from '../../card/model';
+import type { Lesson } from '../model';
+import type { Scenario } from '../../scenario/model';
+import type { CardIndexMetaOverride } from '../../card/model';
 import type { CourseCatalogState } from './course-catalog-state';
 import type { CourseBundle, CourseBundleValidation } from './course-bundle.types';
 

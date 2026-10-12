@@ -1,6 +1,6 @@
 # SelectCard
 
-> Исходный код: `src/app/shared/ui/cards/select-card/select-card.component.ts`
+> Исходный код: `src/app/widgets/cards/select-card/select-card.component.ts`
 
 ## Назначение
 
@@ -11,7 +11,7 @@
 
 ## Модель данных
 
-Исходный тип: `SelectCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `SelectCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -60,9 +60,9 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
-  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
-  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — определяет фактическое направление в сессии.
-  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
+  - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
+  - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts` — определяет фактическое направление в сессии.
+  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
 
 ### @Input (входные параметры)
 

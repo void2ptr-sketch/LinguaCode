@@ -1,5 +1,5 @@
 import { scenarioToIndexEntry, sortScenariosByUpdatedAt } from './scenario-index.mapper';
-import type { Scenario } from '../../../core/models';
+import type { Scenario } from '../model';
 
 function makeScenario(overrides?: Partial<Scenario>): Scenario {
   return {

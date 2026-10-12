@@ -64,7 +64,8 @@ describe('courses-storage', () => {
           title: 'Пользовательское название',
           description: '',
           authorId: 'local-user',
-          languagePair: undefined as unknown as import('../../../core/models').LanguagePair,
+          languagePair:
+            undefined as unknown as import('../../language-pair/model/language-pair.types').LanguagePair,
           lessonIds: [],
           published: true,
           updatedAt: '2026-06-14T10:00:00.000Z',

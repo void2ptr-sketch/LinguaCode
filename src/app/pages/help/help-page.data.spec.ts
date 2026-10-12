@@ -5,7 +5,7 @@ import {
   HELP_PAGE_FEATURES,
   HELP_PAGE_HIERARCHY,
   HELP_PAGE_HIGHLIGHTS,
-} from '../../../pages/help/help-page.data';
+} from './help-page.data';
 
 describe('help-page.data', () => {
   it('should export HELP_PAGE_HERO', () => {

@@ -1,4 +1,4 @@
-import type { Lesson } from '../../../core/models';
+import type { Lesson } from '../../course/model';
 import {
   buildLessonsById,
   isLessonCompleted,

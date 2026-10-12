@@ -1,10 +1,15 @@
 import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
-import { CardsApiService, CardSearchService, ScenarioSearchService } from '../../../core/repositories';
-import { UserStore } from '../../../core/state';
+import { CardsApiService, CardSearchService } from '../../../entities/card';
+import { ScenarioSearchService } from '../../../entities/scenario';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardSelectService } from './card-select.service';
 
-const createMockScenario = (cardSource: { mode: 'fixed' | 'snapshot' | 'criteria'; cardIds?: string[]; limit?: number }) => ({
+const createMockScenario = (cardSource: {
+  mode: 'fixed' | 'snapshot' | 'criteria';
+  cardIds?: string[];
+  limit?: number;
+}) => ({
   id: 'demo-scenario',
   title: 'Demo',
   description: '',
@@ -74,7 +79,8 @@ describe('CardSelectService', () => {
           {
             provide: ScenarioSearchService,
             useValue: {
-              getById: async () => createMockScenario({ mode: 'fixed', cardIds: ['c1', 'c2', 'c3'] }),
+              getById: async () =>
+                createMockScenario({ mode: 'fixed', cardIds: ['c1', 'c2', 'c3'] }),
             },
           },
           {
@@ -140,7 +146,12 @@ describe('CardSelectService', () => {
           {
             provide: CardSearchService,
             useValue: {
-              search: async () => ({ items: [{ id: 'select-1', updatedAt: '2026-01-01T00:00:00.000Z' }], total: 1, page: 0, pageSize: 30 }),
+              search: async () => ({
+                items: [{ id: 'select-1', updatedAt: '2026-01-01T00:00:00.000Z' }],
+                total: 1,
+                page: 0,
+                pageSize: 30,
+              }),
             },
           },
           provideHttpClient(),
@@ -171,7 +182,12 @@ describe('CardSelectService', () => {
           {
             provide: CardSearchService,
             useValue: {
-              search: async () => ({ items: [{ id: 'select-1', updatedAt: '2026-01-01T00:00:00.000Z' }], total: 1, page: 0, pageSize: 50 }),
+              search: async () => ({
+                items: [{ id: 'select-1', updatedAt: '2026-01-01T00:00:00.000Z' }],
+                total: 1,
+                page: 0,
+                pageSize: 50,
+              }),
             },
           },
           provideHttpClient(),
@@ -190,7 +206,8 @@ describe('CardSelectService', () => {
           {
             provide: ScenarioSearchService,
             useValue: {
-              getById: async () => createMockScenario({ mode: 'fixed', cardIds: ['select-1', 'missing-1'] }),
+              getById: async () =>
+                createMockScenario({ mode: 'fixed', cardIds: ['select-1', 'missing-1'] }),
             },
           },
           {

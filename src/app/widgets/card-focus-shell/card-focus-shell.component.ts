@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { UserStore } from '../../core/state';
+import { UserStore } from '../../entities/user/model/user.store';
 
 export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
 

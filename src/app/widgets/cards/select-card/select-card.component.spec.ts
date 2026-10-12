@@ -8,12 +8,20 @@ import { describe, expect, it } from 'vitest';
 import { SelectCardComponent } from './select-card.component';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
-import type { SelectCard } from '../../../core/models';
+import type { SelectCard } from '../../../entities/card/model';
 
 @Component({
   standalone: true,
   imports: [SelectCardComponent],
-  template: `<app-select-card [card]="card" [direction]="direction" [selectedIndex]="selectedIndex" [feedback]="feedback" [fontSize]="fontSize" (checkAnswer)="onCheck()" (nextCard)="onNext()" />`,
+  template: `<app-select-card
+    [card]="card"
+    [direction]="direction"
+    [selectedIndex]="selectedIndex"
+    [feedback]="feedback"
+    [fontSize]="fontSize"
+    (checkAnswer)="onCheck()"
+    (nextCard)="onNext()"
+  />`,
 })
 class TestHostComponent {
   card: SelectCard = {

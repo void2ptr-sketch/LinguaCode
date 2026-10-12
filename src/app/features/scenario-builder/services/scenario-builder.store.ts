@@ -12,21 +12,19 @@ import {
   normalizeLanguagePair,
 } from '../../../entities/language-pair/lib/language-pair.utils';
 import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
-import {
-  CardSearchService,
-  CourseSearchService,
-  ScenarioSearchService,
-} from '../../../core/repositories';
-import { CardsCatalogMockHandler } from '../../../core/api';
+import { CardSearchService } from '../../../entities/card';
+import { CourseSearchService } from '../../../entities/course';
+import { ScenarioSearchService } from '../../../entities/scenario';
+import { CardsCatalogMockHandler } from '../../../entities/card/api/mock';
+import type { CourseIndexEntry } from '../../../entities/course/model';
 import type {
-  CourseIndexEntry,
   Scenario,
-  ScenarioCardSource,
   ScenarioIndexEntry,
   ScenarioListScope,
-} from '../../../core/models';
+} from '../../../entities/scenario/model';
+import type { ScenarioCardSource } from '../../../entities/card/model';
 import { sanitizePlainText } from '../../../shared/security';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import { ScenarioDraft, ScenarioEditorMode } from '../types';
@@ -373,9 +371,9 @@ export class ScenarioBuilderStore {
    * @returns A snapshot card source, or `null` on error.
    */
   async buildSnapshotFromCriteria(
-    criteria: Omit<import('../../../core/models').CardSearchCriteria, 'page'>,
+    criteria: Omit<import('../../../entities/card/model').CardSearchCriteria, 'page'>,
     limit: number,
-    sort?: import('../../../core/models').ScenarioCardSort,
+    sort?: import('../../../entities/scenario/model').ScenarioCardSort,
     seed?: string,
   ): Promise<ScenarioCardSource | null> {
     if (!hasCardSearchFilters(criteria)) {
@@ -410,8 +408,7 @@ export class ScenarioBuilderStore {
   private async normalizeDraft(
     draft: ScenarioDraft,
   ): Promise<
-    | import('../../../entities/scenario/api/scenarios-api.service').ScenarioWritePayload
-    | null
+    import('../../../entities/scenario/api/scenarios-api.service').ScenarioWritePayload | null
   > {
     const title = sanitizeTitle(draft.title);
     const description = sanitizeDescription(draft.description);
@@ -445,7 +442,7 @@ export class ScenarioBuilderStore {
    */
   private async normalizeCardSource(
     source: ScenarioCardSource,
-    languagePair: import('../../../core/models').LanguagePair,
+    languagePair: import('../../../entities/language-pair/model/language-pair.types').LanguagePair,
   ): Promise<ScenarioCardSource | null> {
     const cardExists = async (cardId: string): Promise<boolean> => {
       try {
@@ -529,7 +526,7 @@ export class ScenarioBuilderStore {
    */
   private async validateCardIdsMatchPair(
     cardIds: readonly string[],
-    languagePair: import('../../../core/models').LanguagePair,
+    languagePair: import('../../../entities/language-pair/model/language-pair.types').LanguagePair,
   ): Promise<string | null> {
     for (const cardId of cardIds) {
       const entry = await this.cardsCatalogHandler.getIndexEntry(cardId);

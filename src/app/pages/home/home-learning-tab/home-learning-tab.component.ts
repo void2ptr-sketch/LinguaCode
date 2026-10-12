@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { LearningResultsStore, UserStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
 import {
   buildContinueLinkQueryParams,

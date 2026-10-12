@@ -1,4 +1,4 @@
-import type { DrawCard } from '../../../../core/models';
+import type { DrawCard } from '../../../card/model';
 import type { HanziCharacterJson, HanziPoint } from '../../model';
 import { buildHanziCharacterModel } from '../../model/hanzi-character.model';
 import { HanziPositioner } from '../positioning/hanzi-positioner';

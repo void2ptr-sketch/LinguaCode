@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 
-import type { RomanizationSystem } from '../../../core/models';
+import type { RomanizationSystem } from '../../../entities/phonetic/model';
 /**
  * Renders CJK text with ruby annotations (furigana/zhuyin readings).
  *

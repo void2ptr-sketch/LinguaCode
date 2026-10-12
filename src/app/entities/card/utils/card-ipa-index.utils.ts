@@ -1,5 +1,5 @@
-import type { Card } from '../../../core/models';
-import type { PhoneticLexeme } from '../../../core/models';
+import type { Card } from '../model';
+import type { PhoneticLexeme } from '../../phonetic/model';
 import { isLikelyIpa } from '../../phonetic/lib/ipa/ipa-normalize.utils';
 
 /**

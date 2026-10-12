@@ -6,7 +6,7 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CardTryDialogComponent } from './card-try-dialog.component';
 import { SingleCardPlayStore } from './single-card-play.store';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import type { CardTryDialogData } from './card-try-dialog.types';
 

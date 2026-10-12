@@ -2,7 +2,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
-import type { DrawCard } from '../../../core/models';
+import type { DrawCard } from '../model';
 import { CardRepository } from './card.repository';
 import { seedTestContentCache } from '../../content-seed/content-seed.test-utils';
 import { USER_CONTENT_OVERLAY_KEY } from '../../user/overlay/user-content-overlay.types';

@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
-import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../../../../core/models';
+import type { CardSearchCriteria, CardKind, ContentLanguage, CardDifficulty } from '../../model';
 import { DEFAULT_PAGE_SIZE } from '../../../../shared/utils/pagination';
 
 /**

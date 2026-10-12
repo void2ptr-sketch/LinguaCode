@@ -1,6 +1,6 @@
 # SymbolCard
 
-> Исходный код: `src/app/shared/ui/cards/symbol-card/symbol-card.component.ts`
+> Исходный код: `src/app/widgets/cards/symbol-card/symbol-card.component.ts`
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `SymbolCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `SymbolCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -53,9 +53,9 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
-  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
-  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts`.
-  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts`.
+  - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts`.
+  - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts`.
+  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts`.
 
 ### @Input (входные параметры)
 

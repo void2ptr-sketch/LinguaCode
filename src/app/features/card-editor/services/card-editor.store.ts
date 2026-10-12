@@ -1,13 +1,18 @@
 import { Injectable, inject, signal } from '@angular/core';
-import { Card, CardKind } from '../../../core/models';
+import { Card, CardKind } from '../../../entities/card/model';
 import { CardsCatalogMockHandler } from '../../../entities/card/api/mock/cards-catalog.mock.handler';
-import { CardRepository, CardSearchService, ScenarioSearchService } from '../../../core/repositories';
-import type { CardIndexMetaOverride } from '../../../core/models';
+import { CardRepository, CardSearchService } from '../../../entities/card';
+import { ScenarioSearchService } from '../../../entities/scenario';
+import type { CardIndexMetaOverride } from '../../../entities/card/model';
 import { upsertCardIndexMetaOverride } from '../../../entities/card/storage/card-index-meta.storage';
-import { LearningResultsStore, UserStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/draft/card-draft.utils';
-import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/validation/card-validation.utils';
+import {
+  cardValidationErrorMessage,
+  normalizeCardDraft,
+} from '../utils/validation/card-validation.utils';
 
 /**
  * Store for the card editor feature.

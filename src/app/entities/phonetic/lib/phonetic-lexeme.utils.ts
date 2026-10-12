@@ -1,5 +1,5 @@
-import type { IpaVariant, PhoneticLexeme, RomanizationSystem, ScriptCode } from '../../../core/models';
-import { ROMANIZATION_DISPLAY_ORDER } from '../../../core/models';
+import type { IpaVariant, PhoneticLexeme, RomanizationSystem, ScriptCode } from '../model';
+import { ROMANIZATION_DISPLAY_ORDER } from '../model';
 /**
  * A romanization reading that is eligible for display in the UI.
  */

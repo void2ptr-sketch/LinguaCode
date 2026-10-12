@@ -1,4 +1,4 @@
-import type { Course, Lesson } from '../../../core/models';
+import type { Course, Lesson } from '../model';
 
 import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
 import { normalizeCourseAuthoring } from './course-authoring.utils';

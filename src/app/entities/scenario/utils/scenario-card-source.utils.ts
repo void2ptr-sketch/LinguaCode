@@ -1,12 +1,12 @@
 import type {
   CardIndexEntry,
   CardSearchCriteria,
-  LanguagePair,
-  Scenario,
   ScenarioCardSource,
   ScenarioCardSort,
-} from '../../../core/models';
-import type { LegacyScenario } from '../../../core/models';
+} from '../../card/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { Scenario } from '../model';
+import type { LegacyScenario } from '../model';
 import { normalizeLanguagePair } from '../../language-pair/lib/language-pair.utils';
 
 import { matchesCardIndexEntry } from '../../card/search/card-search.utils';

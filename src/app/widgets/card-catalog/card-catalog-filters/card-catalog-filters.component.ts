@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../core/models';
+import type { CardDifficulty, CardKind, CardSearchFacets } from '../../../entities/card/model';
 import {
   CARD_KIND_LABELS,
   DIFFICULTIES,

@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 
-import { UserStore } from '../../core/state';
-import { UserLanguagePairEntry } from '../../core/models';
+import { UserStore } from '../../entities/user/model/user.store';
+import { UserLanguagePairEntry } from '../../entities/user/model';
 
 /**
  * Active language pair switcher component. Provides a dropdown to select the active

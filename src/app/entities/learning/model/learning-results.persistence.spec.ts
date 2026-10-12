@@ -1,6 +1,9 @@
-import { LearningResultsPersistence, LEARNING_RESULTS_STORAGE_KEY } from '../../entities/learning/model/learning-results.persistence';
-import { DEFAULT_LANGUAGE_PAIR } from '../models';
-import type { LearningResult } from '../models';
+import {
+  LearningResultsPersistence,
+  LEARNING_RESULTS_STORAGE_KEY,
+} from './learning-results.persistence';
+import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
+import type { LearningResult } from './index';
 
 describe('LearningResultsPersistence', () => {
   let persistence: LearningResultsPersistence;
@@ -47,10 +50,7 @@ describe('LearningResultsPersistence', () => {
     });
 
     it('should apply fallbacks for missing fields', () => {
-      localStorage.setItem(
-        LEARNING_RESULTS_STORAGE_KEY,
-        JSON.stringify([{ correct: true }]),
-      );
+      localStorage.setItem(LEARNING_RESULTS_STORAGE_KEY, JSON.stringify([{ correct: true }]));
 
       const results = persistence.load();
 
@@ -83,7 +83,14 @@ describe('LearningResultsPersistence', () => {
       localStorage.setItem(
         LEARNING_RESULTS_STORAGE_KEY,
         JSON.stringify([
-          { id: 'r1', cardId: 'c', scenarioId: 's', lessonId: 'l1', courseId: 'course-1', correct: true },
+          {
+            id: 'r1',
+            cardId: 'c',
+            scenarioId: 's',
+            lessonId: 'l1',
+            courseId: 'course-1',
+            correct: true,
+          },
         ]),
       );
 

@@ -1,5 +1,5 @@
-import type { ContentLanguage } from '../../../core/models';
-import type { CardAppearance } from '../../../core/models';
+import type { ContentLanguage } from '../../../entities/card/model';
+import type { CardAppearance } from '../../../entities/card/model';
 import type { CardEditorUxMode } from '../utils/ux/card-editor-ux.utils';
 
 /**

@@ -1,4 +1,4 @@
-import type { CardIndexMetaOverride } from '../../../core/models';
+import type { CardIndexMetaOverride } from '../model';
 import { migrateUserContentOverlayIfNeeded } from '../../user/overlay/user-content-overlay.migration';
 import {
   patchUserContentOverlay,

@@ -2,7 +2,7 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { TestBed } from '@angular/core/testing';
 
 import { ScenariosApiService, ScenarioWritePayload } from './scenarios-api.service';
-import type { Scenario, ScenarioIndexEntry, ScenarioSearchPage } from '../../../core/models';
+import type { Scenario, ScenarioIndexEntry, ScenarioSearchPage } from '../model';
 
 describe('ScenariosApiService', () => {
   let service: ScenariosApiService;

@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { SymbolCard } from '../../../core/models';
+import type { SymbolCard } from '../../../entities/card/model';
 import { SymbolCardComponent } from './symbol-card.component';
 
 describe('SymbolCardComponent', () => {

@@ -12,8 +12,9 @@ import {
 import { CourseSearchService } from '../../course/search/course-search.service';
 import { resolveLearningSessionForPair } from './learning-session.utils';
 import { ScenariosApiService } from '../../scenario/api/scenarios-api.service';
-import type { CourseWithLessons } from '../../../core/models';
-import { LearningResultsStore, UserStore } from '../../../core/state';
+import type { CourseWithLessons } from '../../course/model';
+import { LearningResultsStore } from '../model/learning-results.store';
+import { UserStore } from '../../user/model/user.store';
 import { RADICALS_COURSE_ID } from '../../chinese/lib/tones/radicals-course.defaults';
 
 /**

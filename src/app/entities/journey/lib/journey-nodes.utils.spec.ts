@@ -4,14 +4,32 @@ import {
   mapScenarioToNode,
   computeContentTypes,
 } from './journey-nodes.utils';
-import type { CourseWithLessons, Scenario, CardBase } from '../../../core/models';
-import type { JourneyLocationNode } from '../../../core/models';
+import type { CourseWithLessons } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
+import type { CardBase } from '../../card/model';
+import type { JourneyLocationNode } from '../../learning/model';
 describe('journey-nodes.utils', () => {
   describe('buildScenarioMap', () => {
     it('should create a map from scenario array', () => {
       const scenarios: Scenario[] = [
-        { id: 's1', title: 'First', description: 'Desc 1', authorId: 'u1', cardSource: { mode: 'fixed', cardIds: ['c1'] }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' },
-        { id: 's2', title: 'Second', description: 'Desc 2', authorId: 'u1', cardSource: { mode: 'fixed', cardIds: ['c1', 'c2'] }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' },
+        {
+          id: 's1',
+          title: 'First',
+          description: 'Desc 1',
+          authorId: 'u1',
+          cardSource: { mode: 'fixed', cardIds: ['c1'] },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        {
+          id: 's2',
+          title: 'Second',
+          description: 'Desc 2',
+          authorId: 'u1',
+          cardSource: { mode: 'fixed', cardIds: ['c1', 'c2'] },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
       ];
 
       const map = buildScenarioMap(scenarios);
@@ -108,31 +126,51 @@ describe('journey-nodes.utils', () => {
 
   describe('computeContentTypes', () => {
     const mockCards: CardBase[] = [
-      { id: 'draw-001', kind: 'draw', title: 'Draw card', appearance: { theme: '', fontSize: 'md' } },
-      { id: 'select-001', kind: 'select', title: 'Select card', appearance: { theme: '', fontSize: 'md' } },
-      { id: 'timed-001', kind: 'timed', title: 'Timed card', appearance: { theme: '', fontSize: 'md' } },
-      { id: 'memory-001', kind: 'memory', title: 'Memory card', appearance: { theme: '', fontSize: 'md' } },
+      {
+        id: 'draw-001',
+        kind: 'draw',
+        title: 'Draw card',
+        appearance: { theme: '', fontSize: 'md' },
+      },
+      {
+        id: 'select-001',
+        kind: 'select',
+        title: 'Select card',
+        appearance: { theme: '', fontSize: 'md' },
+      },
+      {
+        id: 'timed-001',
+        kind: 'timed',
+        title: 'Timed card',
+        appearance: { theme: '', fontSize: 'md' },
+      },
+      {
+        id: 'memory-001',
+        kind: 'memory',
+        title: 'Memory card',
+        appearance: { theme: '', fontSize: 'md' },
+      },
     ];
 
     it('should compute contentTypes from card IDs', () => {
-      const types = computeContentTypes(['draw-001', 'select-001'], mockCards );
+      const types = computeContentTypes(['draw-001', 'select-001'], mockCards);
       expect(types).toContain('practice');
       expect(types).toContain('theory');
       expect(types).toHaveLength(2);
     });
 
     it('should return single type for same-kind cards', () => {
-      const types = computeContentTypes(['draw-001', 'draw-001'], mockCards );
+      const types = computeContentTypes(['draw-001', 'draw-001'], mockCards);
       expect(types).toEqual(['practice']);
     });
 
     it('should return empty array for unknown card IDs', () => {
-      const types = computeContentTypes(['unknown-001'], mockCards );
+      const types = computeContentTypes(['unknown-001'], mockCards);
       expect(types).toEqual([]);
     });
 
     it('should return empty array for empty cardIds', () => {
-      const types = computeContentTypes([], mockCards );
+      const types = computeContentTypes([], mockCards);
       expect(types).toEqual([]);
     });
   });
@@ -177,7 +215,10 @@ describe('journey-nodes.utils', () => {
         title: 'Радикалы 1–10',
         description: '10 карточек: радикалы Канси №1–10',
         authorId: 'system',
-        cardSource: { mode: 'fixed', cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 1}`) },
+        cardSource: {
+          mode: 'fixed',
+          cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 1}`),
+        },
         published: true,
         updatedAt: '2026-01-01T00:00:00.000Z',
       },
@@ -186,7 +227,10 @@ describe('journey-nodes.utils', () => {
         title: 'Радикалы 11–20',
         description: '10 карточек: радикалы Канси №11–20',
         authorId: 'system',
-        cardSource: { mode: 'fixed', cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 11}`) },
+        cardSource: {
+          mode: 'fixed',
+          cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 11}`),
+        },
         published: true,
         updatedAt: '2026-01-01T00:00:00.000Z',
       },
@@ -195,7 +239,10 @@ describe('journey-nodes.utils', () => {
         title: 'Радикалы 21–30',
         description: '10 карточек: радикалы Канси №21–30',
         authorId: 'system',
-        cardSource: { mode: 'fixed', cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 21}`) },
+        cardSource: {
+          mode: 'fixed',
+          cardIds: Array.from({ length: 10 }, (_, i) => `card-${i + 21}`),
+        },
         published: true,
         updatedAt: '2026-01-01T00:00:00.000Z',
       },
@@ -212,7 +259,7 @@ describe('journey-nodes.utils', () => {
       const nodes = buildJourneyNodes(
         baseCourse,
         scenarioMap,
-        mockCards ,
+        mockCards,
         () => false,
         () => false,
       );
@@ -261,7 +308,7 @@ describe('journey-nodes.utils', () => {
         baseCourse,
         scenarioMap,
         mockCards,
-        
+
         (scenarioId) => scenarioId === 'scenario-01',
         () => false,
       );
@@ -315,7 +362,7 @@ describe('journey-nodes.utils', () => {
       const nodesAllComplete = buildJourneyNodes(
         baseCourse,
         scenarioMap,
-      mockCards,
+        mockCards,
         () => true,
         () => false,
       );

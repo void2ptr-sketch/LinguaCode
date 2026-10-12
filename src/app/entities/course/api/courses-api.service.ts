@@ -7,9 +7,9 @@ import type {
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithLessons,
-  LanguagePair,
-} from '../../../core/models';
-import type { CourseAuthoring } from '../../../core/models';
+} from '../model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { CourseAuthoring } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCourseSearchParams } from './mock/courses-api.params.utils';

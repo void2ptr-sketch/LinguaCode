@@ -1,8 +1,5 @@
-import type { Scenario } from '../../../core/models';
-import {
-  resetContentSeedCache,
-  setScenarioSeedCache,
-} from '../../content-seed/content-seed.cache';
+import type { Scenario } from '../model';
+import { resetContentSeedCache, setScenarioSeedCache } from '../../content-seed/content-seed.cache';
 import {
   patchUserContentOverlay,
   readUserContentOverlay,

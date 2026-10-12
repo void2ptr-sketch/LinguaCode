@@ -6,7 +6,9 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
-import type { Card, Course, Lesson, Scenario } from '../../core/models';
+import type { Card } from '../card/model';
+import type { Course, Lesson } from '../course/model';
+import type { Scenario } from '../scenario/model';
 
 import {
   getCardSeedCache,

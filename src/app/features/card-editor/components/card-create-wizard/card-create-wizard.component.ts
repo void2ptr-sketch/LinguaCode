@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatStepperModule } from '@angular/material/stepper';
-import type { ContentLanguage } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
 import { CARD_KIND_LABELS } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { editorVariantLabel } from '../../utils/index-meta/card-kind-index-meta.utils';

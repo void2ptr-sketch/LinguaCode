@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import type { PageEvent } from '@angular/material/paginator';
 
-import { CardSearchService } from '../../../../core/repositories';
+import { CardSearchService } from '../..';
 import { formatLanguagePair } from '../../../language-pair/lib/language-pair.utils';
 import type {
   CardDifficulty,
@@ -9,7 +9,7 @@ import type {
   CardSearchCriteria,
   CardSearchPage,
   ContentLanguage,
-} from '../../../../core/models';
+} from '../../model';
 import { DEFAULT_PAGE_SIZE, PAGE_SIZE_OPTIONS } from '../../../../shared/utils/pagination';
 import {
   CardCatalogHierarchyService,

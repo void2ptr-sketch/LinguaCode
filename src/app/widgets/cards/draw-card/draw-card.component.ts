@@ -31,9 +31,14 @@ import {
 } from '../../../entities/chinese/lib/phonetics/radical-component-color.utils';
 import { HanziDataService } from '../../../entities/chinese/lib/services/hanzi-data.service';
 import { gradeHanziMemoryStrokes } from '../../../entities/chinese/lib/validation/hanzi-memory-validation.utils';
-import { DrawCard } from '../../../core/models';
-import { UserStore } from '../../../core/state';
-import { DRAW_CANVAS_MODE_LABELS, DRAW_CANVAS_MODES, type DrawCanvasMode, type DrawStrokePath } from '../../../core/models';
+import { DrawCard } from '../../../entities/card/model';
+import { UserStore } from '../../../entities/user/model/user.store';
+import {
+  DRAW_CANVAS_MODE_LABELS,
+  DRAW_CANVAS_MODES,
+  type DrawCanvasMode,
+  type DrawStrokePath,
+} from '../../../entities/phonetic/model';
 import { DrawCanvasComponent } from '../draw-canvas/draw-canvas.component';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { ToneColoredTextComponent } from '../../chinese/tone-colored-text/tone-colored-text.component';

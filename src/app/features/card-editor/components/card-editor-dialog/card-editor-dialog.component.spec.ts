@@ -3,7 +3,7 @@ import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dial
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import { CardEditorStore } from '../../services/card-editor.store';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import { provideHttpClient } from '@angular/common/http';
@@ -17,7 +17,7 @@ describe('CardEditorDialogComponent', () => {
   };
 
   const mockAfterClosed = {
-    subscribe: function(cb: (value: boolean) => void) {
+    subscribe: function (cb: (value: boolean) => void) {
       cb(false);
       return { unsubscribe: vi.fn() };
     },

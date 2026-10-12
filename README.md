@@ -66,7 +66,7 @@ npm start
 
 ```
 src/app/
-├── app/        # композиция: app.config, app.routes, provide-api, interceptors, theme
+├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme
 ├── pages/      # страницы-маршруты (*-page)
 ├── widgets/    # переиспользуемые UI: card-host, cards/*, pickers, layout (header/nav/main-layout/footer)
 ├── features/   # изолированные фичи (card-select, card-editor, scenario-builder, home, …)
@@ -85,7 +85,7 @@ docs/                        # документация (оглавление: d
 - **Layout** — shell-приложение в `widgets/` (header, navigation, main-layout, footer).
 - **Состояние** — сервисы на signals; загрузка и ошибки API — тоже через signals.
 - **Контент** — системный seed (`ContentSeedRepository` + manifest) + пользовательский overlay (`UserContentOverlay` в `localStorage`).
-- **Роутинг** — `app.routes.ts`; страницы в `pages/`, подключаются из меню в **header** и боковой **navigation**.
+- **Роутинг** — `app/app/app.routes.ts`; страницы в `pages/`, подключаются из меню в **header** и боковой **navigation**.
 
 ```
 ┌──────────────────────────────────────────────────────┐

@@ -10,24 +10,26 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTabsModule } from '@angular/material/tabs';
 
-import type { CardDirection, CardDifficulty } from '../../../core/models';
-import type { CourseWithLessons } from '../../../core/models';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+import type { CardDifficulty } from '../../../entities/card/model';
+import type { CourseWithLessons } from '../../../entities/course/model';
 import { cardSupportsSessionDirection } from '../../../entities/card/utils/card-direction.utils';
+import { CardSearchService } from '../../../entities/card';
 import {
-  CardSearchService,
   collectCourseScenarioIds,
   filterScenarioIdsByDifficulty,
   buildScenarioDifficultyMap,
   resolveCoursePracticeSettings,
   isOpenPracticeCourse,
   CourseSearchService,
-  ScenarioSearchService,
-} from '../../../core/repositories';
+} from '../../../entities/course';
+import { ScenarioSearchService } from '../../../entities/scenario';
 
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
 import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 import type { LessonPickPayload } from '../../../widgets/lesson-picker';
-import { LearningResultsStore, UserStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import {
@@ -457,7 +459,7 @@ export class CardSelectPageComponent implements OnInit {
       this.activeTabIndex.set(LEARNING_TAB.scenarios);
     } else if (tab === 'lessons' && courseId) {
       this.activeTabIndex.set(LEARNING_TAB.lessons);
-    } else     if (tab === 'course') {
+    } else if (tab === 'course') {
       this.activeTabIndex.set(LEARNING_TAB.course);
     }
 

@@ -1,10 +1,13 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { Card } from '../../../../core/models';
+import { Card } from '../../../../entities/card/model';
 import { cardDefaultDirection } from '../../../../entities/card/utils/card-direction.utils';
 import { HanziDataService } from '../../../../entities/chinese/lib/services/hanzi-data.service';
-import type { CardDirection } from '../../../../core/models';
-import { UserStore } from '../../../../core/state';
-import { canCheckCardAnswer, checkCardAnswer } from '../../../../entities/card/lib/card-answer/card-answer.util';
+import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
+import { UserStore } from '../../../../entities/user/model/user.store';
+import {
+  canCheckCardAnswer,
+  checkCardAnswer,
+} from '../../../../entities/card/lib/card-answer/card-answer.util';
 import { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
 

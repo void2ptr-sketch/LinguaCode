@@ -5,7 +5,8 @@ import {
   LEGACY_SCENARIOS_KEY,
   USER_CONTENT_MIGRATED_KEY,
 } from './user-content-overlay.types';
-import type { Course, Scenario } from '../../../core/models';
+import type { Course } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
 import { migrateUserContentOverlayIfNeeded } from './user-content-overlay.migration';
 import { setCourseSeedCache, setScenarioSeedCache } from '../../content-seed/content-seed.cache';
 import { emptyUserContentOverlay } from './user-content-overlay.storage';
@@ -56,10 +57,31 @@ describe('migrateUserContentOverlayIfNeeded', () => {
 
     // Provide seed data so the early-return guard doesn't trigger
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 
@@ -68,17 +90,48 @@ describe('migrateUserContentOverlayIfNeeded', () => {
 
   it('migrates legacy course catalog when present', () => {
     const legacyCatalog = JSON.stringify({
-      courses: [{ id: 'legacy-course', title: 'Legacy', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'legacy-course',
+          title: 'Legacy',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
     localStorage.setItem(LEGACY_COURSE_CATALOG_KEY, legacyCatalog);
 
     // Provide minimal seed to pass the early-return check
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 
@@ -88,15 +141,43 @@ describe('migrateUserContentOverlayIfNeeded', () => {
 
   it('migrates legacy scenarios when present', () => {
     const legacyScenarios = JSON.stringify([
-      { id: 'legacy-scenario', title: 'Legacy', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed', cardIds: [] } },
+      {
+        id: 'legacy-scenario',
+        title: 'Legacy',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed', cardIds: [] },
+      },
     ]);
     localStorage.setItem(LEGACY_SCENARIOS_KEY, legacyScenarios);
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 
@@ -106,15 +187,43 @@ describe('migrateUserContentOverlayIfNeeded', () => {
 
   it('migrates legacy cards when present', () => {
     const legacyCards = JSON.stringify([
-      { id: 'legacy-card', kind: 'select', promptKnown: 'Hello', optionsLearning: ['Привет'], correctIndex: 0, direction: 'known-to-learning' },
+      {
+        id: 'legacy-card',
+        kind: 'select',
+        promptKnown: 'Hello',
+        optionsLearning: ['Привет'],
+        correctIndex: 0,
+        direction: 'known-to-learning',
+      },
     ]);
     localStorage.setItem(LEGACY_CARDS_KEY, legacyCards);
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 
@@ -127,10 +236,31 @@ describe('migrateUserContentOverlayIfNeeded', () => {
     localStorage.setItem(LEGACY_CARD_INDEX_META_KEY, legacyMeta);
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 
@@ -142,10 +272,31 @@ describe('migrateUserContentOverlayIfNeeded', () => {
     localStorage.setItem(LEGACY_COURSE_CATALOG_KEY, 'not-valid-json');
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     expect(() => migrateUserContentOverlayIfNeeded()).not.toThrow();
     expect(localStorage.getItem(USER_CONTENT_MIGRATED_KEY)).toBe('1');
@@ -155,10 +306,31 @@ describe('migrateUserContentOverlayIfNeeded', () => {
     localStorage.setItem(LEGACY_SCENARIOS_KEY, 'not-valid-json');
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     expect(() => migrateUserContentOverlayIfNeeded()).not.toThrow();
     expect(localStorage.getItem(USER_CONTENT_MIGRATED_KEY)).toBe('1');
@@ -171,10 +343,31 @@ describe('migrateUserContentOverlayIfNeeded', () => {
     localStorage.setItem(LEGACY_CARD_INDEX_META_KEY, '{}');
 
     setCourseSeedCache({
-      courses: [{ id: 'seed-course', title: 'Seed', description: 'Seed desc', lessonIds: [], authorId: 'user-1', languagePair: { known: 'en', learning: 'zh' }, published: true, updatedAt: '2026-01-01T00:00:00.000Z' }],
+      courses: [
+        {
+          id: 'seed-course',
+          title: 'Seed',
+          description: 'Seed desc',
+          lessonIds: [],
+          authorId: 'user-1',
+          languagePair: { known: 'en', learning: 'zh' },
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
       lessons: [],
     });
-    setScenarioSeedCache([{ id: 'seed-scenario', title: 'Seed', description: '', authorId: 'user-1', published: true, updatedAt: '2026-01-01T00:00:00.000Z', cardSource: { mode: 'fixed' as const, cardIds: [] } }] as Scenario[]);
+    setScenarioSeedCache([
+      {
+        id: 'seed-scenario',
+        title: 'Seed',
+        description: '',
+        authorId: 'user-1',
+        published: true,
+        updatedAt: '2026-01-01T00:00:00.000Z',
+        cardSource: { mode: 'fixed' as const, cardIds: [] },
+      },
+    ] as Scenario[]);
 
     migrateUserContentOverlayIfNeeded();
 

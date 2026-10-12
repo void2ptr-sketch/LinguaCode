@@ -11,9 +11,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import type { PageEvent } from '@angular/material/paginator';
 
-import type { ScenarioListScope } from '../../../core/models';
+import type { ScenarioListScope } from '../../../entities/scenario/model';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import { ScenarioBuilderStore } from '../../../features/scenario-builder/services/scenario-builder.store';
 

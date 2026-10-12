@@ -1,7 +1,8 @@
-import type { CourseWithLessons, Lesson, Scenario } from '../../../core/models';
-import type { CardBase } from '../../../core/models';
-import type { JourneyLocationNode, JourneyContentType } from '../../../core/models';
-import { CARD_KIND_TO_CONTENT_TYPE } from '../../../core/models';
+import type { CourseWithLessons, Lesson } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
+import type { CardBase } from '../../card/model';
+import type { JourneyLocationNode, JourneyContentType } from '../../learning/model';
+import { CARD_KIND_TO_CONTENT_TYPE } from '../../learning/model';
 /** Маппинг scenarioId → Scenario для быстрого доступа. */
 type ScenarioMap = Map<string, Scenario>;
 
@@ -62,9 +63,7 @@ export function mapScenarioToNode(
     blockReason: string | null;
   },
 ): JourneyLocationNode {
-  const cardCount = scenario.cardSource.mode === 'fixed'
-    ? scenario.cardSource.cardIds.length
-    : 0;
+  const cardCount = scenario.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds.length : 0;
 
   return {
     id: `node-${scenario.id}`,
@@ -108,11 +107,7 @@ export function buildJourneyNodes(
   const allNodes: JourneyLocationNode[] = [];
 
   for (const lesson of sortedLessons) {
-    const isLessonUnlocked = isLessonUnlockedInternal(
-      lesson,
-      lessonsById,
-      hasScenarioResult,
-    );
+    const isLessonUnlocked = isLessonUnlockedInternal(lesson, lessonsById, hasScenarioResult);
     const isLessonCompleted = isLessonCompletedInternal(lesson, hasScenarioResult);
 
     for (let order = 0; order < lesson.scenarioIds.length; order++) {
@@ -122,9 +117,7 @@ export function buildJourneyNodes(
 
       // Получаем данные сценария и вычисляем contentTypes
       const scenario = scenarioMap.get(scenarioId);
-      const cardIds = scenario?.cardSource.mode === 'fixed'
-        ? scenario.cardSource.cardIds
-        : [];
+      const cardIds = scenario?.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds : [];
       const contentTypes = computeContentTypes(cardIds, cards);
 
       const status = computeScenarioStatus(
@@ -135,15 +128,15 @@ export function buildJourneyNodes(
       );
 
       const completedScenarios = lesson.scenarioIds.filter((id) => hasScenarioResult(id)).length;
-      const completionPercent = lesson.scenarioIds.length > 0
-        ? Math.round((completedScenarios / lesson.scenarioIds.length) * 100)
-        : 0;
+      const completionPercent =
+        lesson.scenarioIds.length > 0
+          ? Math.round((completedScenarios / lesson.scenarioIds.length) * 100)
+          : 0;
 
       const title = scenario?.title ?? `Сценарий ${order + 1}`;
       const description = scenario?.description ?? '';
-      const cardCount = scenario?.cardSource.mode === 'fixed'
-        ? scenario.cardSource.cardIds.length
-        : 0;
+      const cardCount =
+        scenario?.cardSource.mode === 'fixed' ? scenario.cardSource.cardIds.length : 0;
 
       allNodes.push({
         id: `node-${scenarioId}`,
@@ -160,7 +153,9 @@ export function buildJourneyNodes(
         completionPercent,
         visited: hasVisit,
         favorite: false,
-        blockReason: isLessonUnlocked ? null : getBlockReason(lesson, sortedLessons, hasScenarioResult),
+        blockReason: isLessonUnlocked
+          ? null
+          : getBlockReason(lesson, sortedLessons, hasScenarioResult),
         scenarioId,
       });
     }

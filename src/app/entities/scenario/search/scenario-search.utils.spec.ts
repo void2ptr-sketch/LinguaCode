@@ -1,4 +1,4 @@
-import type { ScenarioIndexEntry } from '../../../core/models';
+import type { ScenarioIndexEntry } from '../model';
 import { matchesScenarioIndexEntry } from './scenario-search.utils';
 
 const baseEntry: ScenarioIndexEntry = {

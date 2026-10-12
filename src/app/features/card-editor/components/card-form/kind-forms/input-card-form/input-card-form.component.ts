@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { primaryHanCharacter } from '../../../../../../entities/chinese/lib/drawing/draw-stroke-guides.data';
 import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
-import type { ContentLanguage } from '../../../../../../core/models';
+import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { DrawCardDraft, KeyboardCardDraft } from '../../../../types';
 
 export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;

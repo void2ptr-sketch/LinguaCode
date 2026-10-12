@@ -1,6 +1,6 @@
 # MemoryCard
 
-> Исходный код: `src/app/shared/ui/cards/memory-card/memory-card.component.ts`
+> Исходный код: `src/app/widgets/cards/memory-card/memory-card.component.ts`
 
 ## Назначение
 
@@ -12,7 +12,7 @@
 
 ## Модель данных
 
-Исходный тип: `MemoryCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `MemoryCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -27,7 +27,7 @@
 
 ### MemoryPair
 
-Определён в `src/app/core/models/cards/card.types.ts`.
+Определён в `src/app/entities/card/model/card.types.ts`.
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -75,7 +75,7 @@
   - `LexemeDisplayComponent` — рендеринг фонетической транскриипции рядом с текстом.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Сервисы/утилиты:**
-  - `resolveMemoryPairs()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction` (результат содержит `left`, `right`, `leftLexeme`, `rightLexeme`).
+  - `resolveMemoryPairs()` из `src/app/entities/card/utils/card-direction.utils.ts` — формирует пары для левого и правого столбца с учётом `direction` (результат содержит `left`, `right`, `leftLexeme`, `rightLexeme`).
   - `CardFeedback` из `src/app/shared/types` — состояние обратной связи (`null` | `'correct'` | `'incorrect'`).
 
 ### @Input (входные параметры)

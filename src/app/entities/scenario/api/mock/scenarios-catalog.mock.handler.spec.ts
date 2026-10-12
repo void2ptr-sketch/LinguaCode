@@ -1,8 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models';
+import type { ContentLanguage, ScenarioCardSort } from '../../../card/model';
 
-const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({ known, learning });
+const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({
+  known,
+  learning,
+});
 
 import { ScenariosApiService } from '../scenarios-api.service';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
@@ -40,7 +43,11 @@ describe('ScenariosCatalogMockHandler', () => {
     handler.resetCache();
 
     // Next access should reload data
-    const page = await api.search({ scope: 'all', learningLanguage: 'en', page: { page: 0, pageSize: 10 } });
+    const page = await api.search({
+      scope: 'all',
+      learningLanguage: 'en',
+      page: { page: 0, pageSize: 10 },
+    });
     expect(page.items).toBeDefined();
   });
 
@@ -53,7 +60,11 @@ describe('ScenariosCatalogMockHandler', () => {
 
   describe('search', () => {
     it('returns paginated results', async () => {
-      const page = await api.search({ scope: 'all', learningLanguage: 'en', page: { page: 0, pageSize: 10 } });
+      const page = await api.search({
+        scope: 'all',
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 10 },
+      });
 
       expect(page.items).toBeDefined();
       expect(Array.isArray(page.items)).toBe(true);
@@ -63,7 +74,11 @@ describe('ScenariosCatalogMockHandler', () => {
     });
 
     it('returns paginated results with scope filter', async () => {
-      const page = await api.search({ scope: 'published', learningLanguage: 'en' as ContentLanguage, page: { page: 0, pageSize: 10 } });
+      const page = await api.search({
+        scope: 'published',
+        learningLanguage: 'en' as ContentLanguage,
+        page: { page: 0, pageSize: 10 },
+      });
 
       expect(page.items).toBeDefined();
       expect(page.totalItems).toBeGreaterThan(0);
@@ -93,7 +108,10 @@ describe('ScenariosCatalogMockHandler', () => {
         languagePair: makeLanguagePair('en', 'zh'),
         cardSource: {
           mode: 'criteria' as const,
-          criteria: { knownLanguage: 'en' as ContentLanguage, learningLanguage: 'zh' as ContentLanguage },
+          criteria: {
+            knownLanguage: 'en' as ContentLanguage,
+            learningLanguage: 'zh' as ContentLanguage,
+          },
           limit: 10,
           sort: 'updatedAt' as ScenarioCardSort,
         },
@@ -116,7 +134,10 @@ describe('ScenariosCatalogMockHandler', () => {
         languagePair: makeLanguagePair('en', 'zh'),
         cardSource: {
           mode: 'criteria' as const,
-          criteria: { knownLanguage: 'en' as ContentLanguage, learningLanguage: 'zh' as ContentLanguage },
+          criteria: {
+            knownLanguage: 'en' as ContentLanguage,
+            learningLanguage: 'zh' as ContentLanguage,
+          },
         },
       };
 
@@ -133,7 +154,10 @@ describe('ScenariosCatalogMockHandler', () => {
         description: '',
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
-        cardSource: { mode: 'criteria' as const, criteria: { knownLanguage: 'en' as ContentLanguage } },
+        cardSource: {
+          mode: 'criteria' as const,
+          criteria: { knownLanguage: 'en' as ContentLanguage },
+        },
       };
 
       await expect(api.update('non-existent-id', payload)).rejects.toThrow();

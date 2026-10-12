@@ -17,10 +17,10 @@ import { scenariosApiMockInterceptor } from '../../../entities/scenario/api/mock
 import { CardEditorPageComponent } from './card-editor-page.component';
 import { CardEditorStore } from '../../../features/card-editor/services/card-editor.store';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';
-import type { ContentLanguage } from '../../../core/models';
+import type { ContentLanguage } from '../../../entities/card/model';
 
 describe('CardEditorPageComponent', () => {
   let fixture: ComponentFixture<CardEditorPageComponent>;

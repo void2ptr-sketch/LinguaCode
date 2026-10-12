@@ -4,13 +4,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { CardSearchService } from '../../../core/repositories';
+import { CardSearchService } from '../../../entities/card';
 import {
   DEFAULT_CRITERIA_LIMIT,
   resolveScenarioCardIds,
 } from '../../../entities/scenario/utils/scenario-card-source.utils';
-import type { CardSearchCriteria, ScenarioCardSort } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import type { CardSearchCriteria, ScenarioCardSort } from '../../../entities/card/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
@@ -216,8 +216,8 @@ export class ScenarioCardCriteriaEditorComponent implements OnInit {
   }
 
   private applyActivePairCriteria(
-    known: import('../../../core/models').ContentLanguage,
-    learning: import('../../../core/models').ContentLanguage,
+    known: import('../../../entities/card/model').ContentLanguage,
+    learning: import('../../../entities/card/model').ContentLanguage,
     base?: Omit<CardSearchCriteria, 'page'>,
   ): void {
     const initial = base ?? this.criteria();

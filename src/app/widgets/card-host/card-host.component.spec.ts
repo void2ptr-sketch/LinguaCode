@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { CodeSelectCard } from '../../core/models';
+import type { CodeSelectCard } from '../../entities/card/model';
 import { UserPersistence } from '../../entities/user/model/user.persistence';
 import { UserStore } from '../../entities/user/model/user.store';
 import { CardHostComponent } from './card-host.component';

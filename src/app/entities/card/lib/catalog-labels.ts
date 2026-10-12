@@ -1,4 +1,4 @@
-import type { CardDifficulty, CardKind } from '../../../core/models';
+import type { CardDifficulty, CardKind } from '../model';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,

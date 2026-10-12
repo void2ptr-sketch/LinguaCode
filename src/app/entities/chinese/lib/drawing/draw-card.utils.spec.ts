@@ -1,4 +1,4 @@
-import type { DrawCard } from '../../../../core/models';
+import type { DrawCard } from '../../../card/model';
 import {
   buildDrawTabLexeme,
   containsHanScript,

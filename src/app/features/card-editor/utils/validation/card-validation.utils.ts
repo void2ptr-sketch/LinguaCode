@@ -1,6 +1,11 @@
 import { deriveKnownOptionsFromLexemes } from '../../../../entities/card/utils/card-direction.utils';
 import { stripPinyinTones } from '../../../../entities/chinese/lib/pinyin/cjk-romanization.utils';
-import type { DrawCharacterTarget, DrawPracticeMode, CardDirection, PhoneticLexeme } from '../../../../core/models';
+import type {
+  DrawCharacterTarget,
+  DrawPracticeMode,
+  PhoneticLexeme,
+} from '../../../../entities/phonetic/model';
+import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import { normalizeToneOptions } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {
@@ -13,7 +18,11 @@ import {
   sanitizeTheme,
   isAllowedFontSize,
 } from '../../../../shared/security';
-import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../../core/models';
+import type {
+  CodeBlock,
+  CodeHighlightLanguage,
+  CodeSelectCard,
+} from '../../../../entities/card/model';
 import {
   Card,
   CardAppearance,
@@ -27,7 +36,7 @@ import {
   SymbolCard,
   TimedCard,
   ToneCard,
-} from '../../../../core/models';
+} from '../../../../entities/card/model';
 import {
   CardDraft,
   CodeBlockDraft,

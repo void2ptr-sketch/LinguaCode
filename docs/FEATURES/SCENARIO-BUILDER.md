@@ -162,20 +162,20 @@ Scroll — только в `mat-dialog-content`; footer с кнопками фи
 ## Связанные пути в коде
 
 ```
-src/app/core/models/scenarios/scenario.types.ts
-src/app/core/models/scenarios/scenario-card-source.types.ts
-src/app/core/models/scenarios/scenario-index.types.ts
-src/app/core/repositories/scenarios/api/scenarios-api.service.ts
-src/app/core/repositories/scenarios/search/scenario-search.service.ts
-src/app/core/repositories/scenarios/storage/scenarios-storage.ts
-src/app/core/repositories/scenarios/utils/scenario-card-source.utils.ts
-src/app/core/api/scenarios-catalog.mock.handler.ts
-src/app/core/api/scenarios-api.mock.interceptor.ts
+src/app/entities/scenario/model/scenario.types.ts
+src/app/entities/scenario/model/scenario-card-source.types.ts
+src/app/entities/scenario/model/scenario-index.types.ts
+src/app/entities/scenario/api/scenarios-api.service.ts
+src/app/entities/scenario/search/scenario-search.service.ts
+src/app/entities/scenario/storage/scenarios-storage.ts
+src/app/entities/scenario/utils/scenario-card-source.utils.ts
+src/app/entities/scenario/api/mock-catalog.mock.handler.ts
+src/app/entities/scenario/api/mock-api.mock.interceptor.ts
 src/app/features/scenario-builder/
 src/app/features/scenario-builder/components/scenario-builder-dialog/
 src/app/features/scenario-builder/components/scenario-editor-form/
 src/app/features/scenario-builder/utils/scenario-form-draft.utils.ts
-src/app/shared/ui/scenario-picker/
+src/app/widgets/scenario-picker/
 src/app/features/card-select/
 src/app/features/card-editor/components/card-editor-dialog/             # образец
 ```

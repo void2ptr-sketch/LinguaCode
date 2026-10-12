@@ -1,4 +1,4 @@
-import type { CardKind } from '../../../../core/models';
+import type { CardKind } from '../../../../entities/card/model';
 import type { CardDraft } from '../../types';
 
 const READING_ALIASES = ['reading', 'polyphony'] as const;

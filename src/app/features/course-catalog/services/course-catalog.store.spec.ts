@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CourseCatalogStore } from './course-catalog.store';
 import { initialState } from '../models/course-catalog-store';
-import type { CourseIndexEntry } from '../../../core/models';
+import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { PageEvent } from '@angular/material/paginator';
 
 describe('CourseCatalogStore', () => {
@@ -154,7 +154,15 @@ describe('CourseCatalogStore', () => {
   describe('course catalog mutations', () => {
     it('should set items', () => {
       const items: CourseIndexEntry[] = [
-        { id: 'c1', title: 'Course 1', authorId: 'user1', lessonCount: 5, published: true, updatedAt: '2024-01-01T00:00:00.000Z', languagePairSummary: 'Русский → English' },
+        {
+          id: 'c1',
+          title: 'Course 1',
+          authorId: 'user1',
+          lessonCount: 5,
+          published: true,
+          updatedAt: '2024-01-01T00:00:00.000Z',
+          languagePairSummary: 'Русский → English',
+        },
       ];
       store.setItems(items);
       expect(store.items()).toEqual(items);

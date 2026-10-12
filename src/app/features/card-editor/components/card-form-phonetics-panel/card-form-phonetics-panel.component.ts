@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
-import type { ContentLanguage } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
 import type { CardDraft, LexemeCardDraft } from '../../types';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 

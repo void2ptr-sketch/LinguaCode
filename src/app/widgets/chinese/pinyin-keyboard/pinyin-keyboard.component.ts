@@ -16,7 +16,7 @@ import {
   type PinyinKeyboardKey,
   type PinyinKeyboardState,
 } from '../../../entities/chinese/lib/pinyin/pinyin-keyboard.utils';
-import type { ToneMark } from '../../../core/models';
+import type { ToneMark } from '../../../entities/phonetic/model';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
 /**

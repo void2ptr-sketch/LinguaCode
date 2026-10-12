@@ -5,7 +5,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it } from 'vitest';
 
 import { ActiveLanguagePairSwitcherComponent } from './active-language-pair-switcher.component';
-import { UserStore } from '../../core/state';
+import { UserStore } from '../../entities/user/model/user.store';
 
 describe('ActiveLanguagePairSwitcherComponent', () => {
   let fixture: ComponentFixture<ActiveLanguagePairSwitcherComponent>;

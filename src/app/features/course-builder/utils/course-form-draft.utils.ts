@@ -1,4 +1,4 @@
-import type { CourseWithLessons } from '../../../core/models';
+import type { CourseWithLessons } from '../../../entities/course/model';
 import type { CourseWritePayload } from '../../../entities/course/api/courses-api.service';
 import {
   emptyCourseAuthoring,

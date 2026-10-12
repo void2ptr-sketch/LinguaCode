@@ -3,7 +3,7 @@ import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioCardCriteriaEditorComponent } from './scenario-card-criteria-editor.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { CardSearchService } from '../../../entities/card/search/card-search.service';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { DEFAULT_CRITERIA_LIMIT } from '../../../entities/scenario/utils/scenario-card-source.utils';
 
 describe('ScenarioCardCriteriaEditorComponent', () => {
@@ -12,7 +12,14 @@ describe('ScenarioCardCriteriaEditorComponent', () => {
   let userStore: UserStore;
 
   const mockCardSearchService = {
-    search: async () => ({ totalItems: 0, items: [], page: 0, pageSize: 10, totalPages: 0, facets: { kinds: [], tags: [] } }),
+    search: async () => ({
+      totalItems: 0,
+      items: [],
+      page: 0,
+      pageSize: 10,
+      totalPages: 0,
+      facets: { kinds: [], tags: [] },
+    }),
   };
 
   beforeEach(async () => {

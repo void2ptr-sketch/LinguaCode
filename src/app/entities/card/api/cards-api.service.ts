@@ -2,9 +2,10 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { Card, CardSearchCriteria, CardSearchPage } from '../../../core/models';
+import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
-import { buildApiUrl, buildCardSearchParams } from '../../../core/api';
+import { buildApiUrl } from '../../../shared/api/api-url';
+import { buildCardSearchParams } from './mock/cards-api.params.utils';
 
 /**
  * API service for card catalog operations.

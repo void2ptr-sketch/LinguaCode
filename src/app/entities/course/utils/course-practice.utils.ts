@@ -1,5 +1,7 @@
-import type { CardDifficulty, CardIndexEntry, Course, CourseWithLessons, Scenario } from '../../../core/models';
-import { DEFAULT_COURSE_PRACTICE_SETTINGS, type CoursePracticeSettings } from '../../../core/models';
+import type { CardDifficulty, CardIndexEntry } from '../../card/model';
+import type { Course, CourseWithLessons } from '../model';
+import type { Scenario } from '../../scenario/model';
+import { DEFAULT_COURSE_PRACTICE_SETTINGS, type CoursePracticeSettings } from '../model';
 /**
  * Resolves practice settings for a course, falling back to defaults when the course or its settings are missing.
  */

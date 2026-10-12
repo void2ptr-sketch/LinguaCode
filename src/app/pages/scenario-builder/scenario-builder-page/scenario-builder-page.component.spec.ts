@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioBuilderPageComponent } from './scenario-builder-page.component';
 import { ScenarioBuilderStore } from '../../../features/scenario-builder/services/scenario-builder.store';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { ScenarioBuilderDialogService } from '../../../features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service';
 import type { PageEvent } from '@angular/material/paginator';
 
@@ -140,7 +140,15 @@ describe('ScenarioBuilderPageComponent', () => {
 
     it('should return course title when found', () => {
       store.courses.set([
-        { id: 'course-1', title: 'My Course', authorId: 'u', lessonCount: 0, published: false, updatedAt: '', languagePairSummary: '' },
+        {
+          id: 'course-1',
+          title: 'My Course',
+          authorId: 'u',
+          lessonCount: 0,
+          published: false,
+          updatedAt: '',
+          languagePairSummary: '',
+        },
       ]);
       expect(component.courseTitle('course-1')).toBe('My Course');
     });

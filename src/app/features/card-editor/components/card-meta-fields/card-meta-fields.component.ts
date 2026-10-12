@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import type { CardIndexMetaOverride } from '../../../../core/models';
-import type { CardDifficulty } from '../../../../core/models';
+import type { CardIndexMetaOverride } from '../../../../entities/card/model';
+import type { CardDifficulty } from '../../../../entities/card/model';
 import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/catalog-labels';
 
 /**
@@ -13,12 +13,7 @@ import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/c
  */
 @Component({
   selector: 'app-card-meta-fields',
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-  ],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './card-meta-fields.component.html',
   styleUrl: './card-meta-fields.component.scss',
 })
@@ -50,7 +45,10 @@ export class CardMetaFieldsComponent {
    * Parses the string into an array, trimming whitespace and filtering empty tags.
    */
   updateTags(tags: string): void {
-    const tagsArray = tags.split(',').map((tag) => tag.trim()).filter((tag) => tag.length > 0);
+    const tagsArray = tags
+      .split(',')
+      .map((tag) => tag.trim())
+      .filter((tag) => tag.length > 0);
     this.updateMeta({ ...this.meta(), tags: tagsArray });
   }
 

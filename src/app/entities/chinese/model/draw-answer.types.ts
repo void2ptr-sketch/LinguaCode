@@ -1,4 +1,4 @@
-import type { DrawCanvasMode, DrawStrokePath } from '../../../core/models';
+import type { DrawCanvasMode, DrawStrokePath } from '../../phonetic/model';
 /**
  * Payload submitted by the user when answering a draw card.
  *

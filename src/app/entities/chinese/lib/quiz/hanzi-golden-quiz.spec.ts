@@ -1,4 +1,4 @@
-import type { LearningProficiencyLevel } from '../../../../core/models';
+import type { LearningProficiencyLevel } from '../../../learning/model';
 import type { HanziCharacterModel } from '../../model/hanzi-character.model';
 import {
   GOLDEN_CANVAS_SIZE,

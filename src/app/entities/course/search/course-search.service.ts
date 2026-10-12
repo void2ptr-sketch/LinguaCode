@@ -5,7 +5,7 @@ import type {
   CourseSearchCriteria,
   CourseSearchPage,
   CourseWithLessons,
-} from '../../../core/models';
+} from '../model';
 
 import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.service';
 

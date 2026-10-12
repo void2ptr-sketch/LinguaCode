@@ -5,8 +5,8 @@ import {
   segmentToneText,
   type ToneTextSegment,
 } from '../../../entities/chinese/lib/tones/tone-color.utils';
-import type { PhoneticLexeme, ToneMark, ToneColorPalette } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import type { PhoneticLexeme, ToneMark, ToneColorPalette } from '../../../entities/phonetic/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 /**
  * Tone-colored text component. Displays text (Chinese characters or Pinyin syllables)

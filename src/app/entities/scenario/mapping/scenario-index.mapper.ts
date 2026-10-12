@@ -1,4 +1,4 @@
-import type { Scenario, ScenarioIndexEntry } from '../../../core/models';
+import type { Scenario, ScenarioIndexEntry } from '../model';
 import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
 import { scenarioCardsLabel } from '../utils/scenario-card-source.utils';
 

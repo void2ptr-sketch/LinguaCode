@@ -1,7 +1,8 @@
 import { TestBed } from '@angular/core/testing';
 import { BrowserModule } from '@angular/platform-browser';
 
-import type { Course, Scenario } from '../../../core/models';
+import type { Course } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
 import type { UserContentOverlay } from './user-content-overlay.types';
 import {
   bindPerlInterviewCourseLanguagePair,

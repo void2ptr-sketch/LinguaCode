@@ -9,9 +9,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTabsModule } from '@angular/material/tabs';
-import type { AppColorScheme, LearningProficiencyLevel, UserPreferences } from '../../core/models';
-import { LEARNING_PROFICIENCY_LEVELS } from '../../core/models';
-import { UserStore } from '../../core/state';
+import type { AppColorScheme, UserPreferences } from '../../entities/user/model';
+import type { LearningProficiencyLevel } from '../../entities/learning/model';
+import { LEARNING_PROFICIENCY_LEVELS } from '../../entities/learning/model';
+import { UserStore } from '../../entities/user/model/user.store';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,

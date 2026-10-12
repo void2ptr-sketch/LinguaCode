@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import type { Scenario } from '../../../core/models';
+import type { Scenario } from '../../../entities/scenario/model';
 import {
   loadScenariosFromStorage,
   saveScenariosToStorage,

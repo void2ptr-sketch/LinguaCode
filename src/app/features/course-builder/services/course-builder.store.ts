@@ -16,11 +16,15 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 
 import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
 import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
-import { CourseSearchService } from '../../../core/repositories';
-import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
+import { CourseSearchService } from '../../../entities/course';
+import type {
+  CourseIndexEntry,
+  CourseListScope,
+  CourseWithLessons,
+} from '../../../entities/course/model';
 import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
 import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';

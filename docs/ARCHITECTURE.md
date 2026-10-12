@@ -19,7 +19,7 @@ Feature-Sliced Design: **6 слоёв**, импорты направлены **�
 
 ```
 src/app/
-├── app/        # композиция: app.config, app.routes, provide-api, interceptors, theme-сервис
+├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme-сервис
 ├── pages/      # страницы-маршруты (*-page компоненты)
 ├── widgets/    # переиспользуемые UI-компоненты (card-host, cards/*, pickers, layout-оболочки)
 ├── features/   # изолированные фичи (по одной на сценарий использования)
@@ -70,9 +70,9 @@ features/card-select/
 - Публичный API фичи — через `index.ts` (компоненты, сервисы, типы).
 - Сегменты (`components/`, `services/`, `types/`, `utils/`, `models/`) — принятая в проекте конвенция; FSD допускает произвольные имена сегментов.
 
-### `core/` (переходный слой)
+### `core/` (удалён)
 
-`core/` оставлен как **shim-баррели** для обратной совместимости (~470 импортов). Реальный код перенесён в `entities/`, `shared/`, `app/`, `widgets/`. Удаление `core/` — отдельная задача: обновить потребителей на прямые импорты из `entities/*/`.
+Слой `src/app/core/` **удалён** — shim-баррели больше не нужны. Потребители импортируют напрямую из `entities/*/`, `shared/`, `widgets/`, `app/`. Карта переноса: [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md#куда-переехал-core).
 
 ## Архитектура подсистем
 
@@ -80,7 +80,7 @@ features/card-select/
 
 | Подсистема               | Документ                                                               |
 | ------------------------ | ---------------------------------------------------------------------- |
-| `core`                   | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         |
+| Бывший `core`            | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         |
 | `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     |
 | Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           |
 | Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
@@ -142,10 +142,10 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 ## Роутинг
 
-Центральный файл — `app.routes.ts`. Layout — родительский route с дочерними маршрутами фич.
+Центральный файл — `app/app/app.routes.ts`. Layout — родительский route с дочерними маршрутами фич.
 
 ```typescript
-// app.routes.ts (схема)
+// app/app/app.routes.ts (схема)
 export const routes: Routes = [
   {
     path: '',

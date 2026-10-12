@@ -148,7 +148,7 @@ erDiagram
 | `CardIndexEntry`             | Запись каталога                                                                                   | `card-index.types.ts`           |
 | `CardSearchCriteria`         | Критерии поиска                                                                                   | `card-search.types.ts`          |
 
-Реэкспорт: `src/app/core/models/index.ts`.
+Реэкспорт: barrel-файлы `src/app/entities/*/model/index.ts`.
 
 Подробнее о масштабировании каталога: [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md).
 
@@ -215,7 +215,7 @@ type Scenario = {
   courseId?: string; // ID курса, к которому привязан сценарий
 };
 
-/** G11 — см. `core/models/courses/lesson.types.ts` */
+/** G11 — см. `entities/course/model/lesson.types.ts` */
 type Lesson = {
   id: string;
   courseId: string;
@@ -227,7 +227,7 @@ type Lesson = {
   updatedAt: string; // ISO 8601
 };
 
-/** G11 — см. `core/models/courses/course.types.ts`. languagePair задаёт scope контента курса */
+/** G11 — см. `entities/course/model/course.types.ts`. languagePair задаёт scope контента курса */
 type Course = {
   id: string;
   title: string;
@@ -314,7 +314,7 @@ type ScenarioCardSource =
     };
 ```
 
-Расположение в коде: `src/app/core/models/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).
+Расположение в коде: `src/app/entities/*/model/` (общие типы), `src/app/shared/pagination/` (`PageRequest`, `PageResponse`), `src/app/features/*/types/` (типы фичи).
 
 ## Связанные документы
 

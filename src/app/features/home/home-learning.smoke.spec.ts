@@ -5,7 +5,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from '../../app/app.component';
 import { routes } from '../../app/app.routes';
-import { provideApiHttp } from '../../core/api';
+import { provideApiHttp } from '../../app/api/provide-api.http';
 import {
   getTestDefaultScenarios,
   getTestDemoCourseWithLessons,

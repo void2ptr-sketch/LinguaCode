@@ -5,7 +5,7 @@ import type {
   CardSearchCriteria,
   CardSearchFacets,
   FacetCount,
-} from '../../../core/models';
+} from '../model';
 import { normalizeIpa } from '../../phonetic/lib/ipa/ipa-normalize.utils';
 import { contentLanguages } from '../../language-pair/lib/language-pair.utils';
 

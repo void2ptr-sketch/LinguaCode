@@ -1,4 +1,5 @@
-import type { CourseWithLessons, Scenario } from '../../core/models';
+import type { CourseWithLessons } from '../course/model';
+import type { Scenario } from '../scenario/model';
 
 import { setCardSeedCache, setCourseSeedCache, setScenarioSeedCache } from './content-seed.cache';
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';

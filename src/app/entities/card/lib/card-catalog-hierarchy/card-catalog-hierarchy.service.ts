@@ -1,8 +1,8 @@
 import { Injectable, inject, signal } from '@angular/core';
 
-import type { CourseIndexEntry, CourseWithLessons, Lesson } from '../../../../core/models';
+import type { CourseIndexEntry, CourseWithLessons, Lesson } from '../../../course/model';
 import { CourseSearchService } from '../../../course/search/course-search.service';
-import type { ContentLanguage } from '../../../../core/models';
+import type { ContentLanguage } from '../../model';
 /**
  * A course option for dropdown/select UI components.
  *

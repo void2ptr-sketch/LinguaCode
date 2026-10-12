@@ -1,4 +1,4 @@
-import type { DrawStrokePath } from '../../../../core/models';
+import type { DrawStrokePath } from '../../../phonetic/model';
 import type { HanziCharacterJson } from '../../model';
 import type { HanziCharacterModel } from '../../model/hanzi-character.model';
 import { buildHanziCharacterModel } from '../../model/hanzi-character.model';

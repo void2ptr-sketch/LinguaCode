@@ -5,15 +5,15 @@ import { map } from 'rxjs';
 import { LearningJourneyMapComponent } from '../../../features/journey/components/learning-journey-map/learning-journey-map.component';
 import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
 import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
-import { LearningResultsStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import {
   buildJourneyNodes,
   buildScenarioMap,
 } from '../../../entities/journey/lib/journey-nodes.utils';
-import type { JourneyLocationNode } from '../../../core/models';
-import type { CardBase } from '../../../core/models';
-import type { CourseWithLessons } from '../../../core/models';
+import type { JourneyLocationNode } from '../../../entities/learning/model';
+import type { CardBase } from '../../../entities/card/model';
+import type { CourseWithLessons } from '../../../entities/course/model';
 
 /**
  * Journey page component. Renders the learning journey map for the current course,

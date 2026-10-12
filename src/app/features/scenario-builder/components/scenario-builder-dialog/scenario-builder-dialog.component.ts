@@ -11,7 +11,7 @@ import { firstValueFrom } from 'rxjs';
 
 import { CardCatalogSearchStore } from '../../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { CardEditorDiscardDialogComponent } from '../../../../widgets/card-editor-discard-dialog/card-editor-discard-dialog.component';
-import { UserStore } from '../../../../core/state';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
   emptyScenarioFormDraft,

@@ -1,8 +1,8 @@
-import type { Card } from '../../../core/models';
-import type { Course, Lesson } from '../../../core/models';
-import type { Scenario } from '../../../core/models';
+import type { Card } from '../../card/model';
+import type { Course, Lesson } from '../../course/model';
+import type { Scenario } from '../../scenario/model';
 
-import type { CardIndexMetaOverride } from '../../../core/models';
+import type { CardIndexMetaOverride } from '../../card/model';
 /** Current version of the user content overlay schema. */
 export const USER_CONTENT_OVERLAY_VERSION = 1 as const;
 

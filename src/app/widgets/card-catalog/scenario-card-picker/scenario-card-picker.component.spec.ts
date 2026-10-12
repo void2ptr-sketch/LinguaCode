@@ -2,8 +2,12 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { ScenarioCardPickerComponent } from './scenario-card-picker.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
-import { UserStore } from '../../../core/state';
-import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS, DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
+import { UserStore } from '../../../entities/user/model/user.store';
+import {
+  CARD_KIND_LABELS,
+  CONTENT_LANGUAGE_LABELS,
+  DIFFICULTY_LABELS,
+} from '../../../entities/card/lib/catalog-labels';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
 
 describe('ScenarioCardPickerComponent', () => {

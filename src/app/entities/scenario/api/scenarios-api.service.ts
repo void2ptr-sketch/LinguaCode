@@ -2,13 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type {
-  LanguagePair,
   Scenario,
   ScenarioIndexEntry,
   ScenarioSearchCriteria,
   ScenarioSearchPage,
-} from '../../../core/models';
+} from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildScenarioSearchParams } from './mock/scenarios-api.params.utils';

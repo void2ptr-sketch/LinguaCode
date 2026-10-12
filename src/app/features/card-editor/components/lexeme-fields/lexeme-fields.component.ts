@@ -11,8 +11,8 @@ import { pinyinToPalladius } from '../../../../entities/chinese/lib/pinyin/cjk-r
 import { lookupEnglishIpa } from '../../../../entities/phonetic/lib/ipa/ipa-en-lookup.utils';
 import { pinyinToIpa } from '../../../../entities/chinese/lib/pinyin/pinyin-to-ipa.utils';
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
-import type { ContentLanguage } from '../../../../core/models';
-import type { ScriptCode } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { ScriptCode } from '../../../../entities/phonetic/model';
 import {
   defaultScriptForLanguages,
   isEnLearningPair,

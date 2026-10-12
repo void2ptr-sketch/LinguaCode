@@ -1,6 +1,6 @@
 import { Component, input, output } from '@angular/core';
-import { Card } from '../../core/models';
-import type { CardDirection } from '../../core/models';
+import { Card } from '../../entities/card/model';
+import type { CardDirection } from '../../entities/language-pair/model/language-pair.types';
 import type { DrawAnswerPayload } from '../../entities/chinese/model/draw-answer.types';
 import { CardFeedback } from '../../entities/card/model/card-interaction.types';
 import { CardFocusShellComponent } from '../card-focus-shell/card-focus-shell.component';

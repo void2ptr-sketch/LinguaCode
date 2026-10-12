@@ -1,13 +1,16 @@
 import { TestBed } from '@angular/core/testing';
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
-import type { ContentLanguage } from '../../../../core/models';
+import type { ContentLanguage } from '../../../card/model';
 
 import { CoursesApiService } from '../courses-api.service';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 
-const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({ known, learning });
+const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({
+  known,
+  learning,
+});
 
 describe('CoursesCatalogMockHandler', () => {
   let api: CoursesApiService;
@@ -53,7 +56,11 @@ describe('CoursesCatalogMockHandler', () => {
     handler.resetCache();
 
     // Next access should reload data
-    const page = await api.search({ scope: 'all', learningLanguage: 'en', page: { page: 0, pageSize: 10 } });
+    const page = await api.search({
+      scope: 'all',
+      learningLanguage: 'en',
+      page: { page: 0, pageSize: 10 },
+    });
     expect(page.items).toBeDefined();
   });
 
@@ -71,7 +78,11 @@ describe('CoursesCatalogMockHandler', () => {
 
   describe('search', () => {
     it('returns paginated results', async () => {
-      const page = await api.search({ scope: 'all', learningLanguage: 'en', page: { page: 0, pageSize: 10 } });
+      const page = await api.search({
+        scope: 'all',
+        learningLanguage: 'en',
+        page: { page: 0, pageSize: 10 },
+      });
 
       expect(page.items).toBeDefined();
       expect(Array.isArray(page.items)).toBe(true);
@@ -81,7 +92,11 @@ describe('CoursesCatalogMockHandler', () => {
     });
 
     it('returns paginated results with scope filter', async () => {
-      const page = await api.search({ scope: 'published', learningLanguage: 'en' as ContentLanguage, page: { page: 0, pageSize: 10 } });
+      const page = await api.search({
+        scope: 'published',
+        learningLanguage: 'en' as ContentLanguage,
+        page: { page: 0, pageSize: 10 },
+      });
 
       expect(page.items).toBeDefined();
       expect(page.totalItems).toBeGreaterThan(0);
@@ -109,7 +124,13 @@ describe('CoursesCatalogMockHandler', () => {
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
         lessons: [
-          { id: 'lesson-1', title: 'Lesson 1', description: 'First lesson', scenarioIds: [], order: 0 },
+          {
+            id: 'lesson-1',
+            title: 'Lesson 1',
+            description: 'First lesson',
+            scenarioIds: [],
+            order: 0,
+          },
         ],
       };
 
@@ -174,7 +195,9 @@ describe('CoursesCatalogMockHandler', () => {
         description: 'Will be deleted',
         published: false,
         languagePair: makeLanguagePair('en', 'zh'),
-        lessons: [{ id: 'del-lesson', title: 'Lesson', description: '', scenarioIds: [], order: 0 }],
+        lessons: [
+          { id: 'del-lesson', title: 'Lesson', description: '', scenarioIds: [], order: 0 },
+        ],
       };
 
       const created = await api.create(newPayload);

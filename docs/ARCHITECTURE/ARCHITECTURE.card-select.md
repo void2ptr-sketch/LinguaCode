@@ -66,7 +66,7 @@ Demo/radicals без `practiceSettings` — поведение без измен
 ## Зависимости
 
 - `shared/`: course-picker, lesson-picker, scenario-picker, card-host
-- `core/`: UserStore, LearningResultsStore, CourseSearchService, CardSelectService
+- `entities/`: UserStore, LearningResultsStore, CourseSearchService, CardSelectService
 
 ## Связанные документы
 

@@ -1,4 +1,4 @@
-import { Card } from '../../../core/models';
+import { Card } from '../../../entities/card/model';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 
 /**

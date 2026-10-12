@@ -1,4 +1,4 @@
-import type { CardIndexEntry } from '../../../core/models';
+import type { CardIndexEntry } from '../model';
 
 import {
   buildCardSearchFacets,

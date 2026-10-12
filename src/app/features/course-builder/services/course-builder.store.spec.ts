@@ -2,9 +2,9 @@ import { vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
-import type { CourseWithLessons } from '../../../core/models';
-import { CourseSearchService } from '../../../core/repositories';
-import { UserStore } from '../../../core/state';
+import type { CourseWithLessons } from '../../../entities/course/model';
+import { CourseSearchService } from '../../../entities/course';
+import { UserStore } from '../../../entities/user/model/user.store';
 import { CourseBuilderStore } from './course-builder.store';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
@@ -81,7 +81,9 @@ describe('CourseBuilderStore', () => {
 
   it('should set loading to true while loading', async () => {
     let resolveFn: () => void;
-    const promise = new Promise<void>((resolve) => { resolveFn = resolve; });
+    const promise = new Promise<void>((resolve) => {
+      resolveFn = resolve;
+    });
 
     mockCourseSearchService.search.mockReturnValue(promise);
 

@@ -1,9 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import {
-  HELP_USAGE_SCENARIOS,
-  type HelpUsageScenario,
-} from '../../../pages/help-usage-scenarios/help-usage-scenarios.data';
+import { HELP_USAGE_SCENARIOS, type HelpUsageScenario } from './help-usage-scenarios.data';
 
 describe('help-usage-scenarios.data', () => {
   it('should export HELP_USAGE_SCENARIOS', () => {

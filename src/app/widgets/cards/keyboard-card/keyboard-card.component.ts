@@ -10,8 +10,8 @@ import {
   resolveKeyboardPrompt,
 } from '../../../entities/card/utils/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../entities/card/lib/keyboard-answer-mode/keyboard-answer-mode.utils';
-import { KeyboardCard } from '../../../core/models';
-import type { CardDirection } from '../../../core/models';
+import { KeyboardCard } from '../../../entities/card/model';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { PinyinKeyboardComponent } from '../../chinese/pinyin-keyboard/pinyin-keyboard.component';
 import { CardFeedback } from '../../../entities/card/model/card-interaction.types';

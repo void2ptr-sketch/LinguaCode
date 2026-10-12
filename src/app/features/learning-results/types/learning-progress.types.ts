@@ -1,4 +1,4 @@
-import { LearningResult } from '../../../core/models';
+import { LearningResult } from '../../../entities/learning/model';
 
 /**
  * Progress statistics for a single scenario.

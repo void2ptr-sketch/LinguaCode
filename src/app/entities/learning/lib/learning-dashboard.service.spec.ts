@@ -4,8 +4,10 @@ import { vi } from 'vitest';
 import { LearningDashboardService } from './learning-dashboard.service';
 import { CourseSearchService } from '../../course/search/course-search.service';
 import { ScenariosApiService } from '../../scenario/api/scenarios-api.service';
-import { LearningResultsStore, UserStore } from '../../../core/state';
-import type { CourseWithLessons, LanguagePair } from '../../../core/models';
+import { LearningResultsStore } from '../model/learning-results.store';
+import { UserStore } from '../../user/model/user.store';
+import type { CourseWithLessons } from '../../course/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import { computed } from '@angular/core';
 
 describe('LearningDashboardService', () => {
@@ -38,7 +40,9 @@ describe('LearningDashboardService', () => {
     ],
   };
 
-  const createMockUserStore = (activeCourseId: string | undefined = 'course-1'): Partial<UserStore> => ({
+  const createMockUserStore = (
+    activeCourseId: string | undefined = 'course-1',
+  ): Partial<UserStore> => ({
     languagePair: computed(() => mockLanguagePair),
     activeLanguagePairEntry: computed(() => ({
       id: 'entry-1',

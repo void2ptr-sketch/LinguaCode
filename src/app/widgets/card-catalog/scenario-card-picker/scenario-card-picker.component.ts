@@ -4,7 +4,7 @@ import { MatListModule } from '@angular/material/list';
 
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { formatIndexLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
-import { UserStore } from '../../../core/state';
+import { UserStore } from '../../../entities/user/model/user.store';
 import {
   CARD_KIND_LABELS,
   CONTENT_LANGUAGE_LABELS,
@@ -12,7 +12,7 @@ import {
 } from '../../../entities/card/lib/catalog-labels';
 import { CardCatalogFiltersComponent } from '../card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
-import type { CardIndexEntry } from '../../../core/models';
+import type { CardIndexEntry } from '../../../entities/card/model';
 
 /**
  * Component for picking cards from the card catalog within the scenario builder.

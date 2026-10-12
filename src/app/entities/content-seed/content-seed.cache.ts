@@ -1,5 +1,5 @@
-import type { Scenario } from '../../core/models';
-import type { Card } from '../../core/models';
+import type { Scenario } from '../scenario/model';
+import type { Card } from '../card/model';
 
 import type { CourseCatalogState } from '../course/utils/course-catalog-state';
 

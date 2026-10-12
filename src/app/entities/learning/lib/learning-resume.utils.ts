@@ -6,8 +6,10 @@ import {
 } from '../../lesson/lib/lesson-prerequisites.utils';
 import { languagePairsEqual } from '../../language-pair/lib/language-pair.utils';
 import { scenarioDisplayLabel } from '../../scenario/utils/scenario-display-label.utils';
-import type { LearningSessionPreferences } from '../../../core/models';
-import type { Course, CourseWithLessons, LanguagePair, LearningResult, Lesson } from '../../../core/models';
+import type { LearningSessionPreferences } from '../model';
+import type { Course, CourseWithLessons, Lesson } from '../../course/model';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { LearningResult } from '../model';
 
 /**
  * Describes the kind of learning resume action available to the user.

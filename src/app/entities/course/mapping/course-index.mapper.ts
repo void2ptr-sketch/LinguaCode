@@ -1,4 +1,4 @@
-import type { Course, CourseIndexEntry } from '../../../core/models';
+import type { Course, CourseIndexEntry } from '../model';
 import { formatLanguagePair } from '../../language-pair/lib/language-pair.utils';
 
 /**

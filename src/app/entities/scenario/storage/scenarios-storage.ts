@@ -1,8 +1,11 @@
-import type { Scenario } from '../../../core/models';
+import type { Scenario } from '../model';
 
 import { getScenarioSeedCache } from '../../content-seed/content-seed.cache';
 import { migrateUserContentOverlayIfNeeded } from '../../user/overlay/user-content-overlay.migration';
-import { computeScenariosOverlay, resolveScenarios } from '../../user/overlay/user-content-overlay.resolver';
+import {
+  computeScenariosOverlay,
+  resolveScenarios,
+} from '../../user/overlay/user-content-overlay.resolver';
 import {
   patchUserContentOverlay,
   readUserContentOverlay,

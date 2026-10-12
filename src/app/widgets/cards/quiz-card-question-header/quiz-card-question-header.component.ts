@@ -1,6 +1,6 @@
 import { Component, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import type { PhoneticLexeme } from '../../../core/models';
+import type { PhoneticLexeme } from '../../../entities/phonetic/model';
 import { LexemeDisplayComponent } from '../../chinese/lexeme-display/lexeme-display.component';
 import { resolveQuizQuestionHeaderDisplay } from '../quiz-card-question.util';
 

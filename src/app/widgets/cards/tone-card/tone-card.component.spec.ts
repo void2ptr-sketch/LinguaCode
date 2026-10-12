@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { ToneCard } from '../../../core/models';
+import type { ToneCard } from '../../../entities/card/model';
 import { ToneCardComponent } from './tone-card.component';
 
 describe('ToneCardComponent', () => {

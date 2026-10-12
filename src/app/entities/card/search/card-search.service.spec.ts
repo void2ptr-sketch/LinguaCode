@@ -5,8 +5,8 @@ import { TestBed } from '@angular/core/testing';
 import { CardSearchService } from './card-search.service';
 import { CardsApiService } from '../api/cards-api.service';
 import { CardsCatalogMockHandler } from '../api/mock/cards-catalog.mock.handler';
-import type { CardSearchCriteria, CardSearchPage } from '../../../core/models';
-import type { CardIndexEntry } from '../../../core/models';
+import type { CardSearchCriteria, CardSearchPage } from '../model';
+import type { CardIndexEntry } from '../model';
 describe('CardSearchService', () => {
   let service: CardSearchService;
   let cardsApiService: { search: ReturnType<typeof vi.fn>; getById: ReturnType<typeof vi.fn> };

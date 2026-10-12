@@ -1,6 +1,8 @@
 import { describe, it, expect } from 'vitest';
-import type { LanguagePair, Scenario, ScenarioCardSource } from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
+import type { Scenario } from '../../../entities/scenario/model';
+import type { ScenarioCardSource } from '../../../entities/card/model';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../entities/language-pair/model/language-pair.types';
 import {
   emptyScenarioFormDraft,
   scenarioToFormDraft,
@@ -18,10 +20,9 @@ const EN_TO_RU: LanguagePair = { known: 'en', learning: 'ru' };
 /*  Fixtures                                                           */
 /* ------------------------------------------------------------------ */
 
-function buildFixedSource(cardIds: string[] = ['card-1', 'card-2']): Extract<
-  ScenarioCardSource,
-  { mode: 'fixed' }
-> {
+function buildFixedSource(
+  cardIds: string[] = ['card-1', 'card-2'],
+): Extract<ScenarioCardSource, { mode: 'fixed' }> {
   return { mode: 'fixed', cardIds };
 }
 
@@ -260,8 +261,9 @@ describe('formDraftToScenarioDraft', () => {
 
     const result = formDraftToScenarioDraft(draft);
 
-    expect((result.cardSource as Extract<ScenarioCardSource, { mode: 'criteria' }>).seed)
-      .toBeUndefined();
+    expect(
+      (result.cardSource as Extract<ScenarioCardSource, { mode: 'criteria' }>).seed,
+    ).toBeUndefined();
   });
 });
 

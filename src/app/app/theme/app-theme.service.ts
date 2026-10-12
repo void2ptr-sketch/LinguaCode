@@ -1,7 +1,10 @@
 import { effect, inject, Injectable } from '@angular/core';
 
-import { UserStore } from '../../core/state';
-import { applyColorSchemeToDocument, normalizeColorScheme } from '../../entities/user/lib/app-color-scheme.utils';
+import { UserStore } from '../../entities/user/model/user.store';
+import {
+  applyColorSchemeToDocument,
+  normalizeColorScheme,
+} from '../../entities/user/lib/app-color-scheme.utils';
 
 /**
  * Service that syncs the application color scheme with user preferences.

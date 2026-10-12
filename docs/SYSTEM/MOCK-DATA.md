@@ -24,7 +24,7 @@ export const environment: Environment = {
 | `useScenariosApiMock: true` | `/api/scenarios/search`, `/api/scenarios/:id`, CRUD       | `scenariosApiMockInterceptor` |
 | `useCoursesApiMock: true`   | `/api/courses/search`, `/api/courses/:id`, CRUD           | `coursesApiMockInterceptor`   |
 
-Все три интерсептора подключаются через `provideApiHttp()` в `app.config.ts` и перехватывают только запросы к `environment.apiUrl` (`/api`). Запросы к `environment.fixturesUrl` (`/data`) идут напрямую через `HttpClient`.
+Все три интерсептора подключаются через `provideApiHttp()` в `app/app/app.config.ts` и перехватывают только запросы к `environment.apiUrl` (`/api`). Запросы к `environment.fixturesUrl` (`/data`) идут напрямую через `HttpClient`.
 
 ## Структура данных
 
@@ -314,7 +314,7 @@ inject(ScenariosMockHandler).resetCache();
 inject(CoursesMockHandler).resetCache();
 
 // Сброс кеша seed-данных
-import { resetContentSeedCache } from 'app/core/repositories/content-seed/content-seed.cache';
+import { resetContentSeedCache } from 'app/entities/content-seed/content-seed.cache';
 resetContentSeedCache();
 ```
 
@@ -373,13 +373,13 @@ public/data/courses/my-courses.json
 
 | Компонент                     | Расположение                                 | Роль                                |
 | ----------------------------- | -------------------------------------------- | ----------------------------------- |
-| `ContentSeedRepository`       | `core/repositories/content-seed/content-seed.repository.ts`       | Загрузка fixture-файлов из `/data/` |
-| `content-seed.cache.ts`       | `core/repositories/content-seed/content-seed.cache.ts`            | Глобальный кеш seed-данных          |
-| `CardsCatalogMockHandler`     | `core/api/cards-catalog.mock.handler.ts`     | Обработка запросов карточек         |
-| `ScenariosCatalogMockHandler` | `core/api/scenarios-catalog.mock.handler.ts` | Обработка запросов сценариев        |
-| `CoursesCatalogMockHandler`   | `core/api/courses-catalog.mock.handler.ts`   | Обработка запросов курсов           |
-| `cardsApiMockInterceptor`     | `core/api/cards-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
-| `scenariosApiMockInterceptor` | `core/api/scenarios-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
-| `coursesApiMockInterceptor`   | `core/api/courses-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
-| `user-content-overlay.*`      | `core/repositories/user/overlay/user-content-overlay.*`           | Слияние seed + overlay              |
-| `provide-api.http.ts`         | `core/api/provide-api.http.ts`               | Регистрация интерсепторов           |
+| `ContentSeedRepository`       | `entities/content-seed/content-seed.repository.ts`       | Загрузка fixture-файлов из `/data/` |
+| `content-seed.cache.ts`       | `entities/content-seed/content-seed.cache.ts`            | Глобальный кеш seed-данных          |
+| `CardsCatalogMockHandler`     | `entities/card/api/mock-catalog.mock.handler.ts`     | Обработка запросов карточек         |
+| `ScenariosCatalogMockHandler` | `entities/scenario/api/mock-catalog.mock.handler.ts` | Обработка запросов сценариев        |
+| `CoursesCatalogMockHandler`   | `entities/course/api/mock-catalog.mock.handler.ts`   | Обработка запросов курсов           |
+| `cardsApiMockInterceptor`     | `entities/card/api/mock-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
+| `scenariosApiMockInterceptor` | `entities/scenario/api/mock-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
+| `coursesApiMockInterceptor`   | `entities/course/api/mock-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
+| `user-content-overlay.*`      | `entities/user/overlay/user-content-overlay.*`           | Слияние seed + overlay              |
+| `provide-api.http.ts`         | `app/api/provide-api.http.ts`               | Регистрация интерсепторов           |

@@ -1,6 +1,6 @@
 # SoundCard
 
-> Исходный код: `src/app/shared/ui/cards/sound-card/sound-card.component.ts`
+> Исходный код: `src/app/widgets/cards/sound-card/sound-card.component.ts`
 
 ## Назначение
 
@@ -10,7 +10,7 @@
 
 ## Модель данных
 
-Исходный тип: `SoundCard` (определён в `src/app/core/models/cards/card.types.ts`).
+Исходный тип: `SoundCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
 | Поле | Тип | Описание |
 |------|-----|----------|
@@ -62,11 +62,11 @@
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
   - `UserStore` (через `inject()`) — получение пары языков пользователя.
 - **Утилиты:**
-  - `resolveOptionCard()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — формирует варианты ответа.
-  - `effectiveCardDirection()` из `src/app/core/repositories/cards/utils/card-direction.utils.ts` — определяет фактическое направление.
-  - `playLearningAudio()` из `src/app/core/repositories/cards/utils/card-learning-audio.utils.ts` — воспроизведение аудио/TTS.
+  - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts` — формирует варианты ответа.
+  - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts` — определяет фактическое направление.
+  - `playLearningAudio()` из `src/app/entities/card/utils/card-learning-audio.utils.ts` — воспроизведение аудио/TTS.
   - `resolveLearningSpeech()` из того же модуля — определение текста и локали для TTS.
-  - `buildOptionClass()` из `src/app/shared/ui/cards/option-card.util.ts` — CSS-классы.
+  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
 

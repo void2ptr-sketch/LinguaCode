@@ -8,10 +8,11 @@ import { of } from 'rxjs';
 import { JourneyPageComponent } from './journey-page.component';
 import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
 import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
-import { LearningResultsStore } from '../../../core/state';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
-import type { CourseWithLessons, Lesson, Scenario } from '../../../core/models';
-import type { JourneyLocationNode } from '../../../core/models';
+import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { Scenario } from '../../../entities/scenario/model';
+import type { JourneyLocationNode } from '../../../entities/learning/model';
 function makeLesson(
   id: string,
   title: string,
@@ -31,11 +32,7 @@ function makeLesson(
   };
 }
 
-function makeCourse(
-  id: string,
-  title: string,
-  lessons: Lesson[],
-): CourseWithLessons {
+function makeCourse(id: string, title: string, lessons: Lesson[]): CourseWithLessons {
   return {
     id,
     title,
@@ -110,7 +107,11 @@ describe('JourneyPageComponent', () => {
       toggleFavorite: vi.fn(),
       isFavorite: vi.fn().mockReturnValue(false),
       stuckPoints: computed(() => []),
-      courseVisitStats: computed(() => () => ({ totalVisits: 0, totalDurationMs: 0, avgCompletionPercent: 0 })),
+      courseVisitStats: computed(() => () => ({
+        totalVisits: 0,
+        totalDurationMs: 0,
+        avgCompletionPercent: 0,
+      })),
       visits: signal([]),
       clear: vi.fn(),
     };
@@ -194,7 +195,9 @@ describe('JourneyPageComponent', () => {
       const firstNode = nodes[0] as JourneyLocationNode;
       expect(firstNode.id).toContain('node-');
       expect(typeof firstNode.title).toBe('string');
-      expect(['locked', 'available', 'in-progress', 'visited', 'completed']).toContain(firstNode.status);
+      expect(['locked', 'available', 'in-progress', 'visited', 'completed']).toContain(
+        firstNode.status,
+      );
       expect(Array.isArray(firstNode.contentTypes)).toBe(true);
       expect(typeof firstNode.cardCount).toBe('number');
       expect(typeof firstNode.completionPercent).toBe('number');

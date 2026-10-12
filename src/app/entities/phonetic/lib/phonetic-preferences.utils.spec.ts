@@ -7,7 +7,7 @@ import {
   resolveShowIpaForSurface,
   shouldShowPalladius,
 } from './phonetic-preferences.utils';
-import { DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES } from '../../../core/models';
+import { DEFAULT_CJK_LEARNING_PREFERENCES, DEFAULT_PHONETIC_PREFERENCES } from '../model';
 describe('phonetic-preferences.utils', () => {
   it('should default cjk learning preferences', () => {
     const prefs = normalizeCjkLearningPreferences();

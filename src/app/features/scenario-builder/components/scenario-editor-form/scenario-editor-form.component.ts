@@ -9,7 +9,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
-import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models';
+import type { ContentLanguage, ScenarioCardSort } from '../../../../entities/card/model';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,

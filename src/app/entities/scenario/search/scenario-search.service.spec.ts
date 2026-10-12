@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import type { PageResponse } from '../../../shared/utils/pagination';
-import type { Scenario, ScenarioIndexEntry } from '../../../core/models';
+import type { Scenario, ScenarioIndexEntry } from '../model';
 import { ScenarioSearchService } from './scenario-search.service';
 import { ScenariosApiService } from '../api/scenarios-api.service';
 import { scenariosApiMockInterceptor } from '../api/mock/scenarios-api.mock.interceptor';
@@ -49,7 +49,9 @@ describe('ScenarioSearchService', () => {
     it('sets loading state during search', async () => {
       let resolveAction: () => void;
       const searchPromise = new Promise<void>((r) => (resolveAction = r));
-      vi.spyOn(apiService, 'search').mockReturnValue(searchPromise as unknown as Promise<PageResponse<ScenarioIndexEntry>>);
+      vi.spyOn(apiService, 'search').mockReturnValue(
+        searchPromise as unknown as Promise<PageResponse<ScenarioIndexEntry>>,
+      );
 
       void service.search({ page: { page: 0, pageSize: 10 } });
 

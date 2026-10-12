@@ -5,7 +5,7 @@ import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { AppComponent } from '../../app/app.component';
 import { routes } from '../../app/app.routes';
-import { provideApiHttp } from '../../core/api';
+import { provideApiHttp } from '../../app/api/provide-api.http';
 import { environment } from '../../../environments/environment';
 import { resetContentSeedCache } from '../../entities/content-seed/content-seed.cache';
 
@@ -86,124 +86,134 @@ describe('Card select smoke', () => {
 
     // ── 2nd round: ContentSeedRepository loads all seed files ──
     // Scenario files
+    httpMock.expectOne(`${environment.fixturesUrl}/scenarios/demo-scenarios.json`).flush({
+      scenarios: [
+        {
+          id: 'demo-scenario',
+          title: 'Демо-сценарий',
+          description: '3 карточки для начала обучения (ru→en): выбор ответа.',
+          authorId: 'system',
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+          cardSource: { mode: 'fixed', cardIds: ['select-1', 'select-2', 'select-3'] },
+          languagePair: { known: 'ru', learning: 'en' },
+          courseId: 'demo-course',
+        },
+      ],
+    });
     httpMock
-      .expectOne(`${environment.fixturesUrl}/scenarios/demo-scenarios.json`)
-      .flush({
-        scenarios: [
-          {
-            id: 'demo-scenario',
-            title: 'Демо-сценарий',
-            description: '3 карточки для начала обучения (ru→en): выбор ответа.',
-            authorId: 'system',
-            published: true,
-            updatedAt: '2026-01-01T00:00:00.000Z',
-            cardSource: { mode: 'fixed', cardIds: ['select-1', 'select-2', 'select-3'] },
-            languagePair: { known: 'ru', learning: 'en' },
-            courseId: 'demo-course',
-          },
-        ],
-      });
-    httpMock.expectOne(`${environment.fixturesUrl}/scenarios/radicals-scenarios.json`).flush({ scenarios: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/scenarios/perl-interview-scenarios.json`).flush({ scenarios: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/scenarios/perl-db-scenarios.json`).flush({ scenarios: [] });
+      .expectOne(`${environment.fixturesUrl}/scenarios/radicals-scenarios.json`)
+      .flush({ scenarios: [] });
+    httpMock
+      .expectOne(`${environment.fixturesUrl}/scenarios/perl-interview-scenarios.json`)
+      .flush({ scenarios: [] });
+    httpMock
+      .expectOne(`${environment.fixturesUrl}/scenarios/perl-db-scenarios.json`)
+      .flush({ scenarios: [] });
 
     // Course files
+    httpMock.expectOne(`${environment.fixturesUrl}/courses/demo-courses.json`).flush({
+      courses: [
+        {
+          id: 'demo-course',
+          title: 'Демо: базовый English',
+          description: 'Вводная учебная программа для курса ru→en.',
+          authorId: 'system',
+          languagePair: { known: 'ru', learning: 'en' },
+          lessonIds: ['demo-lesson-1', 'demo-lesson-2'],
+          published: true,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
+      lessons: [
+        {
+          id: 'demo-lesson-1',
+          courseId: 'demo-course',
+          title: 'Приветствия',
+          description: 'Первые сценарии приветствия.',
+          scenarioIds: ['demo-scenario'],
+          prerequisiteLessonIds: [],
+          order: 0,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+        {
+          id: 'demo-lesson-2',
+          courseId: 'demo-course',
+          title: 'Повторение',
+          description: 'Закрепление после первого урока.',
+          scenarioIds: ['demo-scenario'],
+          prerequisiteLessonIds: ['demo-lesson-1'],
+          order: 1,
+          updatedAt: '2026-01-01T00:00:00.000Z',
+        },
+      ],
+    });
     httpMock
-      .expectOne(`${environment.fixturesUrl}/courses/demo-courses.json`)
-      .flush({
-        courses: [
-          {
-            id: 'demo-course',
-            title: 'Демо: базовый English',
-            description: 'Вводная учебная программа для курса ru→en.',
-            authorId: 'system',
-            languagePair: { known: 'ru', learning: 'en' },
-            lessonIds: ['demo-lesson-1', 'demo-lesson-2'],
-            published: true,
-            updatedAt: '2026-01-01T00:00:00.000Z',
-          },
-        ],
-        lessons: [
-          {
-            id: 'demo-lesson-1',
-            courseId: 'demo-course',
-            title: 'Приветствия',
-            description: 'Первые сценарии приветствия.',
-            scenarioIds: ['demo-scenario'],
-            prerequisiteLessonIds: [],
-            order: 0,
-            updatedAt: '2026-01-01T00:00:00.000Z',
-          },
-          {
-            id: 'demo-lesson-2',
-            courseId: 'demo-course',
-            title: 'Повторение',
-            description: 'Закрепление после первого урока.',
-            scenarioIds: ['demo-scenario'],
-            prerequisiteLessonIds: ['demo-lesson-1'],
-            order: 1,
-            updatedAt: '2026-01-01T00:00:00.000Z',
-          },
-        ],
-      });
-    httpMock.expectOne(`${environment.fixturesUrl}/courses/radicals-214-course.json`).flush({ courses: [], lessons: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/courses/perl-interview-course.json`).flush({ courses: [], lessons: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/courses/perl-db-course.json`).flush({ courses: [], lessons: [] });
+      .expectOne(`${environment.fixturesUrl}/courses/radicals-214-course.json`)
+      .flush({ courses: [], lessons: [] });
+    httpMock
+      .expectOne(`${environment.fixturesUrl}/courses/perl-interview-course.json`)
+      .flush({ courses: [], lessons: [] });
+    httpMock
+      .expectOne(`${environment.fixturesUrl}/courses/perl-db-course.json`)
+      .flush({ courses: [], lessons: [] });
 
     // Card files
+    httpMock.expectOne(`${environment.fixturesUrl}/cards/demo-cards.json`).flush({
+      cards: [
+        {
+          id: 'select-1',
+          kind: 'select',
+          title: 'Приветствие',
+          courseId: 'demo-course',
+          lessonId: 'demo-lesson-2',
+          scenarioId: 'demo-scenario',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          direction: 'known-to-learning',
+          promptKnown: 'Как сказать «Привет» по-английски?',
+          optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
+          optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
+          correctIndex: 0,
+          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
+        },
+        {
+          id: 'select-2',
+          kind: 'select',
+          title: 'Числа',
+          courseId: 'demo-course',
+          lessonId: 'demo-lesson-2',
+          scenarioId: 'demo-scenario',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          direction: 'known-to-learning',
+          promptKnown: 'Как будет «один» по-английски?',
+          optionsLearning: ['One', 'Two', 'Three', 'Four'],
+          optionsKnown: ['один', 'два', 'три', 'четыре'],
+          correctIndex: 0,
+          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
+        },
+        {
+          id: 'select-3',
+          kind: 'select',
+          title: 'Прощание',
+          courseId: 'demo-course',
+          lessonId: 'demo-lesson-2',
+          scenarioId: 'demo-scenario',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          direction: 'known-to-learning',
+          promptKnown: 'Как сказать «До свидания» по-английски?',
+          optionsLearning: ['Goodbye', 'Hello', 'Thanks', 'Please'],
+          optionsKnown: ['До свидания', 'Привет', 'Спасибо', 'Пожалуйста'],
+          correctIndex: 0,
+          meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
+        },
+      ],
+    });
     httpMock
-      .expectOne(`${environment.fixturesUrl}/cards/demo-cards.json`)
-      .flush({
-        cards: [
-          {
-            id: 'select-1',
-            kind: 'select',
-            title: 'Приветствие',
-            courseId: 'demo-course',
-            lessonId: 'demo-lesson-2',
-            scenarioId: 'demo-scenario',
-            appearance: { theme: 'azure-blue', fontSize: 'md' },
-            direction: 'known-to-learning',
-            promptKnown: 'Как сказать «Привет» по-английски?',
-            optionsLearning: ['Hello', 'Goodbye', 'Thanks', 'Please'],
-            optionsKnown: ['Привет', 'Пока', 'Спасибо', 'Пожалуйста'],
-            correctIndex: 0,
-            meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-          },
-          {
-            id: 'select-2',
-            kind: 'select',
-            title: 'Числа',
-            courseId: 'demo-course',
-            lessonId: 'demo-lesson-2',
-            scenarioId: 'demo-scenario',
-            appearance: { theme: 'azure-blue', fontSize: 'md' },
-            direction: 'known-to-learning',
-            promptKnown: 'Как будет «один» по-английски?',
-            optionsLearning: ['One', 'Two', 'Three', 'Four'],
-            optionsKnown: ['один', 'два', 'три', 'четыре'],
-            correctIndex: 0,
-            meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-          },
-          {
-            id: 'select-3',
-            kind: 'select',
-            title: 'Прощание',
-            courseId: 'demo-course',
-            lessonId: 'demo-lesson-2',
-            scenarioId: 'demo-scenario',
-            appearance: { theme: 'azure-blue', fontSize: 'md' },
-            direction: 'known-to-learning',
-            promptKnown: 'Как сказать «До свидания» по-английски?',
-            optionsLearning: ['Goodbye', 'Hello', 'Thanks', 'Please'],
-            optionsKnown: ['До свидания', 'Привет', 'Спасибо', 'Пожалуйста'],
-            correctIndex: 0,
-            meta: { knownLanguage: 'ru', learningLanguage: 'en', difficulty: 'beginner', tags: [] },
-          },
-        ],
-      });
-    httpMock.expectOne(`${environment.fixturesUrl}/cards/radicals-course-cards.json`).flush({ cards: [] });
-    httpMock.expectOne(`${environment.fixturesUrl}/cards/perl-interview-cards.json`).flush({ cards: [] });
+      .expectOne(`${environment.fixturesUrl}/cards/radicals-course-cards.json`)
+      .flush({ cards: [] });
+    httpMock
+      .expectOne(`${environment.fixturesUrl}/cards/perl-interview-cards.json`)
+      .flush({ cards: [] });
     httpMock.expectOne(`${environment.fixturesUrl}/cards/perl-db-cards.json`).flush({ cards: [] });
 
     // After all seed files are loaded, the ContentSeedRepository cache is populated.

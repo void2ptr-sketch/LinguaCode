@@ -19,15 +19,15 @@ import { isAllowedFontSize, sanitizePlainText, sanitizeTheme } from '../../../sh
 import { normalizeColorScheme } from '../lib/app-color-scheme.utils';
 import { normalizeCardFocusFullscreen } from '../../card/utils/card-focus-preference.utils';
 import { normalizeLearningProficiencyLevel } from '../../learning/lib/learning-proficiency.utils';
+import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import type { LearningSessionPreferences } from '../../learning/model';
 import type {
-  LanguagePair,
-  LearningSessionPreferences,
   User,
   UserLanguagePairEntry,
   UserLanguagePairSettings,
   UserPreferences,
-} from '../../../core/models';
-import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../../../core/models';
+} from './index';
+import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../../learning/model';
 import { UserPersistence } from './user.persistence';
 
 /** Default user object used when no persisted data exists. */

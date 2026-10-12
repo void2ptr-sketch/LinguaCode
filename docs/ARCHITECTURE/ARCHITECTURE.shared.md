@@ -4,26 +4,26 @@
 
 ## Назначение
 
-Общие building blocks для `features/` и `core/layout/`. Без маршрутов и без store фичи.
+Общие building blocks для `features/`, `widgets/` и `pages/`. Без маршрутов и без store фичи.
 
 ## Основные модули
 
 | Область         | Путь                                                           | Назначение                                      |
 | --------------- | -------------------------------------------------------------- | ----------------------------------------------- |
-| Card host       | `shared/ui/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
-| Focus shell     | `shared/ui/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
-| Quiz cards      | `shared/ui/cards/`                                             | Select, memory, keyboard, draw, reading…        |
-| Pinyin keyboard | `shared/ui/chinese/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme          | `shared/ui/chinese/lexeme-display`                             | G9/G10 отображение лексем                         |
-| CJK ruby        | `shared/ui/chinese/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
-| IPA             | `shared/ui/chinese/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
-| Tone colors     | `shared/ui/chinese/tone-colored-text`                          | Цветовая маркировка тонов                           |
-| Pickers         | `shared/ui/course-picker`, `shared/ui/lesson-picker`, `shared/ui/scenario-picker` | Выбор программы/урока/сценария                  |
-| Quick switcher  | `shared/ui/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
-| Display matrix  | `shared/ui/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
+| Card host       | `widgets/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
+| Focus shell     | `widgets/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
+| Quiz cards      | `widgets/cards/`                                             | Select, memory, keyboard, draw, reading…        |
+| Pinyin keyboard | `widgets/chinese/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
+| Lexeme          | `widgets/chinese/lexeme-display`                             | G9/G10 отображение лексем                         |
+| CJK ruby        | `widgets/chinese/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
+| IPA             | `widgets/chinese/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
+| Tone colors     | `widgets/chinese/tone-colored-text`                          | Цветовая маркировка тонов                           |
+| Pickers         | `widgets/course-picker`, `widgets/lesson-picker`, `widgets/scenario-picker` | Выбор программы/урока/сценария                  |
+| Quick switcher  | `widgets/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
+| Display matrix  | `widgets/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
 | Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
 | Catalog search  | `features/card-catalog-search`                                 | Фильтры и store поиска карточек                 |
-| Utils           | `shared/utils/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
+| Utils           | `entities/card/lib/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
 | Markdown        | `shared/utils/markdown-field`                                  | Поле ввода Markdown                             |
 
 ## CardHost — маршрутизация по kind
@@ -56,7 +56,7 @@ flowchart LR
 
 ## Pinyin keyboard
 
-Компонент `app-pinyin-keyboard` + утилиты `core/domain/chinese/pinyin/pinyin-keyboard.utils.ts`:
+Компонент `app-pinyin-keyboard` + утилиты `entities/chinese/lib/pinyin/pinyin-keyboard.utils.ts`:
 
 - динамический ряд тонов над буквами (placeholder `—`, фиксированная высота);
 - состояние: `committed` + `pendingSyllable` + `toneRowOpen`;

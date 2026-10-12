@@ -1,4 +1,5 @@
-import type { CardSearchCriteria, LanguagePair, ScenarioCardSource } from '../../../core/models';
+import type { CardSearchCriteria, ScenarioCardSource } from '../../../entities/card/model';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 
 /**
  * Type alias for the card source mode field of a scenario.
@@ -39,7 +40,7 @@ export type ScenarioEditorMode = 'list' | 'create' | 'edit';
  * Managed by `ScenarioBuilderStore`; consumed by page and dialog components.
  */
 export type ScenarioBuilderState = {
-  scenarios: readonly import('../../../core/models').Scenario[];
+  scenarios: readonly import('../../../entities/scenario/model').Scenario[];
   loading: boolean;
   error: string | null;
   editorMode: ScenarioEditorMode;

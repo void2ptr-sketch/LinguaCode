@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
-import type { KeyboardCard } from '../../../core/models';
+import type { KeyboardCard } from '../../../entities/card/model';
 import { KeyboardCardComponent } from './keyboard-card.component';
 
 describe('KeyboardCardComponent', () => {

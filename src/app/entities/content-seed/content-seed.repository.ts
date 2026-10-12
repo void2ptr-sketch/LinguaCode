@@ -28,8 +28,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import { buildFixtureUrl } from '../../core/api';
-import type { Card, Scenario } from '../../core/models';
+import { buildFixtureUrl } from '../../shared/api/api-url';
+import type { Card } from '../card/model';
+import type { Scenario } from '../scenario/model';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { normalizeScenario } from '../scenario/utils/scenario-card-source.utils';
 

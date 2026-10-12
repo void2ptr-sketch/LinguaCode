@@ -1,7 +1,7 @@
 import { provideHttpClient, withFetch } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 
-import type { CodeHighlightLanguage } from '../../core/models';
+import type { CodeHighlightLanguage } from '../../entities/card/model';
 import { CodeHighlightService } from './code-highlight.service';
 
 describe('CodeHighlightService', () => {
