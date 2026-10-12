@@ -21,10 +21,10 @@ Feature-Sliced Design: **6 слоёв**, импорты направлены **�
 src/app/
 ├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme-сервис
 ├── pages/      # страницы-маршруты (*-page компоненты)
-├── widgets/    # переиспользуемые UI-компоненты (card-host, cards/*, pickers, layout-оболочки)
+├── widgets/    # layout-оболочки и навигация (header, navigation, main-layout, footer, menu-*)
 ├── features/   # изолированные фичи (по одной на сценарий использования)
 ├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning, language-pair, phonetic, chinese, content-seed, journey
-└── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы
+└── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы, ui
 ```
 
 Правила направлений (проверяются скриптом `node scripts/audit-fsd.mjs`):
@@ -51,6 +51,7 @@ entities/card/
 ├── storage/      # localStorage-персистентность
 ├── search/       # поиск
 ├── mapping/      # мапперы
+├── ui/           # доменный UI (card-host, cards/*, card-catalog, pickers, code-highlight)
 └── utils/        # утилиты слайса
 ```
 

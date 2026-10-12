@@ -1,6 +1,6 @@
 # DrawCard
 
-> Исходный код: `src/app/widgets/cards/draw-card/draw-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/draw-card/draw-card.component.ts`
 
 ## Назначение
 

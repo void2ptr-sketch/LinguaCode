@@ -1,8 +1,8 @@
 import { Component, EventEmitter, Output, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { LessonPickerComponent } from '../../../../widgets/lesson-picker/lesson-picker.component';
-import type { LessonPickPayload } from '../../../../widgets/lesson-picker/lesson-picker.component';
+import { LessonPickerComponent } from '../../../../entities/lesson/ui/lesson-picker/lesson-picker.component';
+import type { LessonPickPayload } from '../../../../entities/lesson/ui/lesson-picker/lesson-picker.component';
 
 /**
  * Section component for lesson selection in the card select page.

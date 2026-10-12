@@ -1,6 +1,6 @@
-# Архитектура: `shared`
+# Архитектура: `shared` и доменный UI
 
-Переиспользуемые UI-компоненты, pickers, рендер карточек. [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](./ARCHITECTURE.md).
+Переиспользуемые building blocks: `shared/` (доменно-агностичный код) и `entities/*/ui/` (доменный UI: рендер карточек, pickers). [INDEX.md](./INDEX.md) · [ARCHITECTURE.md](./ARCHITECTURE.md).
 
 ## Назначение
 
@@ -10,17 +10,17 @@
 
 | Область         | Путь                                                           | Назначение                                      |
 | --------------- | -------------------------------------------------------------- | ----------------------------------------------- |
-| Card host       | `widgets/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
-| Focus shell     | `widgets/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
-| Quiz cards      | `widgets/cards/`                                             | Select, memory, keyboard, draw, reading…        |
-| Pinyin keyboard | `widgets/chinese/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme          | `widgets/chinese/lexeme-display`                             | G9/G10 отображение лексем                         |
-| CJK ruby        | `widgets/chinese/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
-| IPA             | `widgets/chinese/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
-| Tone colors     | `widgets/chinese/tone-colored-text`                          | Цветовая маркировка тонов                           |
-| Pickers         | `widgets/course-picker`, `widgets/lesson-picker`, `widgets/scenario-picker` | Выбор программы/урока/сценария                  |
+| Card host       | `entities/card/ui/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
+| Focus shell     | `entities/card/ui/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
+| Quiz cards      | `entities/card/ui/cards/`                                             | Select, memory, keyboard, draw, reading…        |
+| Pinyin keyboard | `entities/chinese/ui/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
+| Lexeme          | `entities/chinese/ui/lexeme-display`                             | G9/G10 отображение лексем                         |
+| CJK ruby        | `entities/chinese/ui/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
+| IPA             | `entities/chinese/ui/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
+| Tone colors     | `entities/chinese/ui/tone-colored-text`                          | Цветовая маркировка тонов                           |
+| Pickers         | `entities/course/ui/course-picker`, `entities/lesson/ui/lesson-picker`, `entities/scenario/ui/scenario-picker` | Выбор программы/урока/сценария                  |
 | Quick switcher  | `widgets/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
-| Display matrix  | `widgets/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
+| Display matrix  | `entities/course/ui/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
 | Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
 | Catalog search  | `features/card-catalog-search`                                 | Фильтры и store поиска карточек                 |
 | Utils           | `entities/card/lib/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |

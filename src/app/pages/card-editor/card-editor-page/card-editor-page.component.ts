@@ -15,7 +15,7 @@ import {
   tagLabel,
 } from '../../../entities/card/lib/catalog-labels';
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
-import { CardCatalogFiltersComponent } from '../../../widgets/card-catalog/card-catalog-filters/card-catalog-filters.component';
+import { CardCatalogFiltersComponent } from '../../../entities/card/ui/card-catalog/card-catalog-filters/card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { UserStore } from '../../../entities/user/model/user.store';

@@ -1,6 +1,6 @@
 # TimedCard
 
-> Исходный код: `src/app/widgets/cards/timed-card/timed-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/timed-card/timed-card.component.ts`
 
 ## Назначение
 
@@ -62,7 +62,7 @@
 - **Утилиты:**
   - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts`.
   - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts`.
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts`.
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts`.
 
 ### @Input (входные параметры)
 

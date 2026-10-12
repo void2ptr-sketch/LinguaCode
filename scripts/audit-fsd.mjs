@@ -5,8 +5,10 @@
  * Checks:
  *  1. Layer direction: app -> pages -> widgets -> features -> entities -> shared
  *     (a module may only import from its own layer or layers below it)
- *  2. No cross-slice imports within the same layer
- *     (e.g. features/card-editor must not import features/card-select)
+ *  2. Cross-slice imports between features (forbidden by project convention,
+ *     see docs/ARCHITECTURE.md: "Фичи не импортируют друг друга напрямую").
+ *     Layer barrels (e.g. features/index.ts) are the layer's public API and
+ *     are excluded.
  *
  * Usage: node scripts/audit-fsd.mjs
  * Exit code 0 = clean, 1 = violations found.
@@ -46,6 +48,11 @@ function sliceOf(file) {
   return parts.length >= 2 ? parts[1] : null;
 }
 
+/** True when the file sits directly in the layer root (e.g. features/index.ts). */
+function isLayerRootFile(file) {
+  return relative(ROOT, file).split('/').length === 2;
+}
+
 function checkFile(file) {
   const content = readFileSync(file, 'utf8');
   const lines = content.split('\n');
@@ -65,23 +72,23 @@ function checkFile(file) {
 
     if (!LAYER_INDEX[toLayer]) return; // not a known layer
 
-    // 1. Layer direction
+    // 1. Layer direction (hard FSD rule)
     if (LAYER_INDEX[toLayer] > LAYER_INDEX[fromLayer]) {
       violations.push(
-        `LAYER UP: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (${fromLayer} -> ${toLayer})`
+        `LAYER UP: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (${fromLayer} -> ${toLayer})`,
       );
     }
 
-    // 2. Cross-slice within same layer
-    if (toLayer === fromLayer && toLayer !== 'app' && toLayer !== 'shared') {
+    // 2. Cross-slice between features (project convention).
+    //    Layer barrels (features/index.ts) are the public API of the layer.
+    if (toLayer === fromLayer && fromLayer === 'features' && !isLayerRootFile(file)) {
       const toSlice = relTarget.split('/')[1];
       if (toSlice && toSlice !== fromSlice) {
         violations.push(
-          `CROSS-SLICE: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (${fromLayer}/${fromSlice} -> ${toLayer}/${toSlice})`
+          `CROSS-SLICE: ${relative(ROOT, file)}:${idx + 1} imports '${spec}' (${fromLayer}/${fromSlice} -> ${toLayer}/${toSlice})`,
         );
       }
     }
-
   });
 }
 

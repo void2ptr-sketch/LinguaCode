@@ -413,9 +413,9 @@ src/app/pages/card-editor/card-editor-page/   # «Курс: …» + hint (G8a)
 src/app/pages/card-editor/card-editor-page/
 src/app/features/course-builder/                              # G11: конструктор Course
 src/app/features/scenario-builder/services/scenario-builder.store.ts
-src/app/widgets/scenario-picker/scenario-picker.component.ts
-src/app/widgets/course-picker/                              # G11: выбор Course на обучении
-src/app/widgets/lesson-picker/
+src/app/entities/scenario/ui/scenario-picker/scenario-picker.component.ts
+src/app/entities/course/ui/course-picker/                              # G11: выбор Course на обучении
+src/app/entities/lesson/ui/lesson-picker/
 src/app/pages/card-select/card-select-page/
 public/data/select-cards.json
 ```

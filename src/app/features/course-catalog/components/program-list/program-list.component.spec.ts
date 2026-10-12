@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { vi } from 'vitest';
 
 import type { CourseIndexEntry } from '../../../../entities/course/model';
-import { UiPaginationComponent } from '../../../../shared/';
+import { UiPaginationComponent } from '../../../../shared';
 import { CourseCatalogProgramsComponent } from './program-list.component';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

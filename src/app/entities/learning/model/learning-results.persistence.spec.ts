@@ -3,7 +3,7 @@ import {
   LEARNING_RESULTS_STORAGE_KEY,
 } from './learning-results.persistence';
 import { DEFAULT_LANGUAGE_PAIR } from '../../language-pair/model/language-pair.types';
-import type { LearningResult } from './index';
+import type { LearningResult } from './';
 
 describe('LearningResultsPersistence', () => {
   let persistence: LearningResultsPersistence;

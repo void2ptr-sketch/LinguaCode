@@ -1,6 +1,6 @@
 # SoundCard
 
-> Исходный код: `src/app/widgets/cards/sound-card/sound-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/sound-card/sound-card.component.ts`
 
 ## Назначение
 
@@ -66,7 +66,7 @@
   - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts` — определяет фактическое направление.
   - `playLearningAudio()` из `src/app/entities/card/utils/card-learning-audio.utils.ts` — воспроизведение аудио/TTS.
   - `resolveLearningSpeech()` из того же модуля — определение текста и локали для TTS.
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — CSS-классы.
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
 

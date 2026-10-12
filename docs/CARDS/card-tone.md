@@ -1,6 +1,6 @@
 # ToneCard
 
-> Исходный код: `src/app/widgets/cards/tone-card/tone-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/tone-card/tone-card.component.ts`
 
 ## Назначение
 
@@ -58,7 +58,7 @@
 - **Утилиты:**
   - `toneMarkLabel()` из `src/app/entities/chinese/lib/answers/tone-mark.utils.ts` — текстовая метка тона (например, «1-й тон»).
   - `applyToneToPinyinSyllable()` из `src/app/entities/chinese/lib/answers/tone-mark.utils.ts` — применяет тоновую марку к базовому слогу.
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — CSS-классы.
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts` — CSS-классы.
 
 ### @Input (входные параметры)
 

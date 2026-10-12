@@ -27,7 +27,7 @@ import type { ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
-import { CourseDisplaySettingsMatrixComponent } from '../../../widgets/course-display-settings-matrix';
+import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
@@ -181,7 +181,7 @@ describe('CourseCatalogPageComponent', () => {
     const mockShowIpaDraftSignal = signal(false);
     const mockIpaVariantLabelDraftSignal = signal('');
     const mockAnswerModesDraftSignal = signal(
-      [] as readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
+      [] as readonly import('../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
     );
     const mockToneColorEnabledDraftSignal = signal(false);
     const mockToneColorSchemeDraftSignal = signal('default' as ToneColorSchemeId);
@@ -254,7 +254,7 @@ describe('CourseCatalogPageComponent', () => {
       setShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
       setIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
       setAnswerModesDraft: (
-        modes: readonly import('../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
+        modes: readonly import('../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
       ) => mockAnswerModesDraftSignal.set(modes),
       setToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
       setToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>

@@ -1,0 +1,90 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
+
+import { UserPersistence } from '../../../user/model/user.persistence';
+import { UserStore } from '../../../user/model/user.store';
+import { CardFocusShellComponent } from './card-focus-shell.component';
+
+describe('CardFocusShellComponent', () => {
+  let fixture: ComponentFixture<CardFocusShellComponent>;
+  let userStore: UserStore;
+
+  beforeEach(async () => {
+    localStorage.clear();
+    document.body.classList.remove('card-focus-shell-open');
+
+    await TestBed.configureTestingModule({
+      imports: [CardFocusShellComponent],
+      providers: [provideNoopAnimations(), UserStore, UserPersistence],
+    }).compileComponents();
+
+    userStore = TestBed.inject(UserStore);
+    fixture = TestBed.createComponent(CardFocusShellComponent);
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    document.body.classList.remove('card-focus-shell-open');
+    localStorage.clear();
+  });
+
+  it('should toggle fullscreen and lock body scroll', () => {
+    const component = fixture.componentInstance;
+    const host = fixture.nativeElement as HTMLElement;
+    const initialParent = host.parentElement;
+    expect(component.fullscreen()).toBe(false);
+
+    component.toggleFullscreen();
+    expect(component.fullscreen()).toBe(true);
+    expect(host.parentElement).toBe(document.body);
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(true);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
+
+    component.toggleFullscreen();
+    expect(component.fullscreen()).toBe(false);
+    expect(host.parentElement).toBe(initialParent);
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
+  });
+
+  it('should exit fullscreen on Escape and persist preference', () => {
+    const component = fixture.componentInstance;
+    component.toggleFullscreen();
+
+    component.onEscape();
+
+    expect(component.fullscreen()).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
+  });
+
+  it('should auto enter fullscreen on learning when preference is enabled', () => {
+    userStore.updatePreferences({ cardFocusFullscreen: true });
+    fixture.componentRef.setInput('autoEnterFullscreen', true);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.fullscreen()).toBe(true);
+  });
+
+  it('should exit fullscreen when auto enter is disabled without clearing preference', () => {
+    userStore.updatePreferences({ cardFocusFullscreen: true });
+    fixture.componentRef.setInput('autoEnterFullscreen', true);
+    fixture.detectChanges();
+
+    fixture.componentRef.setInput('autoEnterFullscreen', false);
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.fullscreen()).toBe(false);
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
+  });
+
+  it('should allow manual fullscreen when auto enter is disabled', () => {
+    fixture.componentRef.setInput('autoEnterFullscreen', false);
+    fixture.detectChanges();
+
+    fixture.componentInstance.toggleFullscreen();
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.fullscreen()).toBe(true);
+    expect(document.body.classList.contains('card-focus-shell-open')).toBe(true);
+  });
+});

@@ -26,7 +26,7 @@ import type {
   UserLanguagePairEntry,
   UserLanguagePairSettings,
   UserPreferences,
-} from './index';
+} from './';
 import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../../learning/model';
 import { UserPersistence } from './user.persistence';
 

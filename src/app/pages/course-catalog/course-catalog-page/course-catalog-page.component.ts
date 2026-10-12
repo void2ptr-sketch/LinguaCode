@@ -19,7 +19,7 @@ import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { UserLanguagePairEntry, UserLanguagePairSettings } from '../../../entities/user/model';
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../entities/phonetic/model';
 import type { PageEvent } from '@angular/material/paginator';
-import type { RomanizationOption } from '../../../widgets/course-display-settings-matrix';
+import type { RomanizationOption } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
 import { CourseCatalogCoursesComponent } from '../../../features/course-catalog/components/course-card-list/course-card-list.component';
 import { CourseCatalogSettingsComponent } from '../../../features/course-catalog/components/course-settings/course-settings.component';

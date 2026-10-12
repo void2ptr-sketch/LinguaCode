@@ -23,10 +23,10 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../../entities/course/api/mock/courses-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from '../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
-import { CardHostComponent } from '../../../widgets/card-host';
-import { CoursePickerComponent } from '../../../widgets/course-picker';
-import { LessonPickerComponent } from '../../../widgets/lesson-picker';
-import { ScenarioPickerComponent } from '../../../widgets/scenario-picker';
+import { CardHostComponent } from '../../../entities/card/ui/card-host';
+import { CoursePickerComponent } from '../../../entities/course/ui/course-picker';
+import { LessonPickerComponent } from '../../../entities/lesson/ui/lesson-picker';
+import { ScenarioPickerComponent } from '../../../entities/scenario/ui/scenario-picker';
 import { PracticeSessionBarComponent } from '../../../features/card-select/components/practice-session-bar/practice-session-bar.component';
 import { PracticeStepperComponent } from '../../../features/card-select/components/practice-stepper/practice-stepper.component';
 

@@ -1,6 +1,6 @@
 # MemoryCard
 
-> Исходный код: `src/app/widgets/cards/memory-card/memory-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/memory-card/memory-card.component.ts`
 
 ## Назначение
 

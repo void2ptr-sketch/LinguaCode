@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import type { User } from './index';
+import type { User } from './';
 import {
   createDefaultLanguagePairPreferences,
   normalizeUserPreferences,

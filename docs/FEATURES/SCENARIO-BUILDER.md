@@ -175,7 +175,7 @@ src/app/features/scenario-builder/
 src/app/features/scenario-builder/components/scenario-builder-dialog/
 src/app/features/scenario-builder/components/scenario-editor-form/
 src/app/features/scenario-builder/utils/scenario-form-draft.utils.ts
-src/app/widgets/scenario-picker/
+src/app/entities/scenario/ui/scenario-picker/
 src/app/features/card-select/
 src/app/features/card-editor/components/card-editor-dialog/             # образец
 ```

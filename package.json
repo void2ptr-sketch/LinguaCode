@@ -10,7 +10,7 @@
     "test": "ng test",
     "test:coverage": "npx ng test --no-watch --no-progress --coverage",
     "test:ci": "ng test --no-watch --no-progress",
-    "verify": "npm run lint && npm run sync:hanzi && npm run build:prod && npm run test:ci",
+    "verify": "npm run lint && npm run audit:fsd && npm run check:imports && npm run sync:hanzi && npm run build:prod && npm run test:ci",
     "audit": "npm audit --audit-level=high",
     "audit:fsd": "node scripts/audit-fsd.mjs",
     "check:imports": "node scripts/check-imports.mjs",

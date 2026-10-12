@@ -6,7 +6,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CardHostComponent } from '../../../../widgets/card-host/card-host.component';
+import { CardHostComponent } from '../../../../entities/card/ui/card-host/card-host.component';
 import type { Card } from '../../../../entities/card/model';
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import type { CardFeedback } from '../../../../entities/card/model/card-interaction.types';

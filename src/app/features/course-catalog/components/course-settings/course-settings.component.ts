@@ -17,10 +17,10 @@ import {
   TONE_COLOR_SCHEMES,
   ROMANIZATION_DISPLAY_ORDER,
 } from '../../../../entities/phonetic/model';
-import { CourseDisplaySettingsMatrixComponent } from '../../../../widgets/course-display-settings-matrix';
-import type { AnswerDisplayMode } from '../../../../widgets/course-display-settings-matrix';
+import { CourseDisplaySettingsMatrixComponent } from '../../../../entities/course/ui/course-display-settings-matrix';
+import type { AnswerDisplayMode } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
-import type { RomanizationOption } from '../../../../widgets/course-display-settings-matrix';
+import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
