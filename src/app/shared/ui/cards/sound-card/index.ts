@@ -1,1 +1,1 @@
-export { SoundCardComponentComponent } from './SoundCardComponent.component';
+export { SoundCardComponent } from './sound-card.component';

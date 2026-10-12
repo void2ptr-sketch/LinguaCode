@@ -1,1 +1,1 @@
-export { CjkRubyComponentComponent } from './CjkRubyComponent.component';
+export { CjkRubyComponent } from './cjk-ruby.component';

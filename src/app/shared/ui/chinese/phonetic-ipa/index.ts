@@ -1,1 +1,1 @@
-export { PhoneticIpaComponentComponent } from './PhoneticIpaComponent.component';
+export { PhoneticIpaComponent } from './phonetic-ipa.component';

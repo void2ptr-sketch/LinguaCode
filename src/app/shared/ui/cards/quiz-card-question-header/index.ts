@@ -1,1 +1,1 @@
-export { QuizCardQuestionHeaderComponentComponent } from './QuizCardQuestionHeaderComponent.component';
+export { QuizCardQuestionHeaderComponent } from './quiz-card-question-header.component';

@@ -1,1 +1,1 @@
-export { TimedCardComponentComponent } from './TimedCardComponent.component';
+export { TimedCardComponent } from './timed-card.component';

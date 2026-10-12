@@ -1,7 +1,6 @@
 // ===== Public API =====
 // Компоненты
 export { DrawCanvasComponent } from './components/draw-canvas';
-export type { DrawRadicalHint } from './components/draw-canvas';
 export { DrawCardComponent } from './components/draw-card';
 
 // Сервисы

@@ -10,6 +10,7 @@ export { TimedCardComponent } from './timed-card';
 export { ToneCardComponent } from './tone-card';
 export { buildOptionClass } from './option-card.util';
 export {
-  resolveQuestionDisplayMode,
-  type QuestionDisplayMode,
+  quizQuestionPromptText,
+  resolveQuizQuestionHeaderDisplay,
+  type QuizQuestionHeaderMode,
 } from './quiz-card-question.util';

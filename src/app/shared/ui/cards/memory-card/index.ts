@@ -1,1 +1,1 @@
-export { MemoryCardComponentComponent } from './MemoryCardComponent.component';
+export { MemoryCardComponent } from './memory-card.component';

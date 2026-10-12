@@ -1,1 +1,1 @@
-export { KeyboardCardComponentComponent } from './KeyboardCardComponent.component';
+export { KeyboardCardComponent } from './keyboard-card.component';

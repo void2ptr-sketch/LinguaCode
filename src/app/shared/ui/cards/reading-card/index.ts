@@ -1,1 +1,1 @@
-export { ReadingCardComponentComponent } from './ReadingCardComponent.component';
+export { ReadingCardComponent } from './reading-card.component';

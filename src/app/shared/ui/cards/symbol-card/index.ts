@@ -1,1 +1,1 @@
-export { SymbolCardComponentComponent } from './SymbolCardComponent.component';
+export { SymbolCardComponent } from './symbol-card.component';

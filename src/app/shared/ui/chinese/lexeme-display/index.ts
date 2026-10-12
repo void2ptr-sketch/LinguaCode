@@ -1,1 +1,1 @@
-export { LexemeDisplayComponentComponent } from './LexemeDisplayComponent.component';
+export { LexemeDisplayComponent } from './lexeme-display.component';

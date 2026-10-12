@@ -1,1 +1,1 @@
-export { CardFocusShellComponentComponent } from './CardFocusShellComponent.component';
+export { CardFocusShellComponent } from './card-focus-shell.component';

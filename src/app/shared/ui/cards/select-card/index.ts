@@ -1,1 +1,1 @@
-export { SelectCardComponentComponent } from './SelectCardComponent.component';
+export { SelectCardComponent } from './select-card.component';

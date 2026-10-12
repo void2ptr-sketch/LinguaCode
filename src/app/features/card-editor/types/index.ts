@@ -1,4 +1,5 @@
 export type { CardEditorMode, CardIndexMetaDraft, CardIndexMetaOverride } from './card-editor.types';
+export type { CardFormContext } from './card-form.types';
 export type {
   CardAppearanceDraft,
   CardDraft,
