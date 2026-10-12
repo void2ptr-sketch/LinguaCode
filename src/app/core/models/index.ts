@@ -2,19 +2,19 @@
 export * from './common';
 
 // ===== Cards =====
-export * from './cards';
+export * from '../../entities/card/model';
 
 // ===== Scenarios =====
-export * from './scenarios';
+export * from '../../entities/scenario/model';
 
 // ===== Courses & lessons =====
-export * from './courses';
+export * from '../../entities/course/model';
 
 // ===== Learning (results, sessions, journey) =====
-export * from './learning';
+export * from '../../entities/learning/model';
 
 // ===== Phonetics (lexemes, tones, drawing) =====
-export * from './phonetics';
+export * from '../../entities/phonetic/model';
 
 // ===== User =====
-export * from './user';
+export * from '../../entities/user/model';

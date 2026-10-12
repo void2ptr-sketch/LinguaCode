@@ -1,4 +1,4 @@
-import { USER_STORAGE_KEY, UserPersistence } from './user.persistence';
+import { USER_STORAGE_KEY, UserPersistence } from '../../entities/user/model/user.persistence';
 
 describe('UserPersistence', () => {
   let persistence: UserPersistence;

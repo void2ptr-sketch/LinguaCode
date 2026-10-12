@@ -1,2 +1,2 @@
 // ===== Services =====
-export { JourneyAnalyticsService } from './journey-analytics.service';
+export { JourneyAnalyticsService } from '../../entities/journey/lib/journey-analytics.service';

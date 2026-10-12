@@ -17,8 +17,8 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type { JourneyLocationNode, JourneyContentType, ExplorerLevelResult } from '../../../../core/models';
-import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
-import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
+import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
+import { LearningDashboardService } from '../../../../entities/learning/lib/learning-dashboard.service';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';
 
 /** Фильтр по типу контента. */

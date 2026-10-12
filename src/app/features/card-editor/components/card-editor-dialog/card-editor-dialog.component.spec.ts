@@ -4,8 +4,8 @@ import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import { CardEditorStore } from '../../services/card-editor.store';
 import { UserStore } from '../../../../core/state';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
-import { seedTestContentCache } from '../../../../core/repositories/content-seed/content-seed.test-utils';
+import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
+import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import { provideHttpClient } from '@angular/common/http';
 import type { CardEditorDialogData } from './card-editor-dialog.types';
 

@@ -1,4 +1,4 @@
-import { LearningResultsPersistence, LEARNING_RESULTS_STORAGE_KEY } from './learning-results.persistence';
+import { LearningResultsPersistence, LEARNING_RESULTS_STORAGE_KEY } from '../../entities/learning/model/learning-results.persistence';
 import { DEFAULT_LANGUAGE_PAIR } from '../models';
 import type { LearningResult } from '../models';
 

@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardFormPhoneticsPanelComponent } from './card-form-phonetics-panel.component';
-import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import type { CardDraft, LexemeCardDraft } from '../../types';
 
 describe('CardFormPhoneticsPanelComponent', () => {

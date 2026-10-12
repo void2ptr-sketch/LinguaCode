@@ -12,9 +12,9 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from '@angular/material/select';
 import { firstValueFrom } from 'rxjs';
 
-import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS } from '../../../card-catalog-search';
-import { contentLanguages } from '../../../../core/domain/language-pair/language-pair.utils';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
+import { CARD_KIND_LABELS, CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
+import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
@@ -22,7 +22,7 @@ import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-edi
 import { CardFormComponent } from '../card-form/card-form.component';
 import { applyLexemeFirstToDraft } from '../../utils/draft/card-draft-lexeme-first.utils';
 import { indexTagsForDraft } from '../../utils/index-meta/card-kind-index-meta.utils';
-import { CardEditorDiscardDialogComponent } from './card-editor-discard-dialog.component';
+import { CardEditorDiscardDialogComponent } from '../../../../widgets/card-editor-discard-dialog/card-editor-discard-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
 
 function serializeDraft(draft: CardDraft): string {

@@ -6,10 +6,10 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { CardHostComponent } from '../../../../shared/ui/card-host/card-host.component';
+import { CardHostComponent } from '../../../../widgets/card-host/card-host.component';
 import type { Card, CardDirection } from '../../../../core/models';
-import type { CardFeedback } from '../../../../shared/types';
-import type { DrawAnswerPayload } from '../../../../shared/types';
+import type { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
+import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
 
 /**
  * Zone component for displaying learning results.

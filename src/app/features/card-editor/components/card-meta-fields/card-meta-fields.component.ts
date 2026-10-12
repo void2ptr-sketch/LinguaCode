@@ -5,7 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import type { CardIndexMetaOverride } from '../../../../core/models';
 import type { CardDifficulty } from '../../../../core/models';
-import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../card-catalog-search';
+import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/catalog-labels';
 
 /**
  * Form fields component for card metadata (difficulty, tags, last updated date).

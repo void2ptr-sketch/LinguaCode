@@ -62,24 +62,16 @@ npm start
 - **jspdf + pdfkit** — экспорт курсов в PDF (`export:course-pdf`)
 - **@angular/localize** — локализация (бэклог)
 
-## Структура проекта
+## Структура проекта (FSD)
 
 ```
 src/app/
-├── core/
-│   ├── layout/              # shell (header, navigation, main-layout, footer)
-│   ├── models/              # User, Card, Scenario, Course, Lesson, …
-│   ├── state/               # UserStore, LearningResultsStore
-│   ├── data/                # repositories, overlay, content seed, hanzi-engine
-│   └── api/                 # HttpClient, interceptors, mock handlers
-├── shared/                  # переиспользуемые UI и утилиты
-│   ├── pagination/          # PageRequest, PageResponse, UiPaginationComponent
-│   ├── card-catalog-search/ # фильтры каталога, ScenarioCardPickerComponent
-│   └── components/          # CardHost, cards/*, pinyin-keyboard, card-focus-shell
-├── features/                # card-select, card-editor, scenario-builder, home, …
-├── app.component.ts
-├── app.config.ts
-└── app.routes.ts
+├── app/        # композиция: app.config, app.routes, provide-api, interceptors, theme
+├── pages/      # страницы-маршруты (*-page)
+├── widgets/    # переиспользуемые UI: card-host, cards/*, pickers, layout (header/nav/main-layout/footer)
+├── features/   # изолированные фичи (card-select, card-editor, scenario-builder, home, …)
+├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning, …
+└── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы
 
 public/data/                 # seed JSON + content-manifest.json
 src/environments/            # конфигурация окружения
@@ -88,11 +80,12 @@ docs/                        # документация (оглавление: d
 
 ## Архитектура
 
-- **Фичи** — изолированные модули в `features/` (компонент, сервис, типы в отдельных подпапках).
-- **Layout** — shell-приложение с шапкой, навигацией, контентом и подвалом.
+- **FSD (Feature-Sliced Design)** — 6 слоёв; импорты строго вниз (app → pages → widgets → features → entities → shared). Проверка: `node scripts/audit-fsd.mjs`.
+- **Фичи** — изолированные модули в `features/`; фичи не импортируют друг друга; публичный API через `index.ts`.
+- **Layout** — shell-приложение в `widgets/` (header, navigation, main-layout, footer).
 - **Состояние** — сервисы на signals; загрузка и ошибки API — тоже через signals.
 - **Контент** — системный seed (`ContentSeedRepository` + manifest) + пользовательский overlay (`UserContentOverlay` в `localStorage`).
-- **Роутинг** — `app.routes.ts`; фичи подключаются из меню в **header** и боковой **navigation**.
+- **Роутинг** — `app.routes.ts`; страницы в `pages/`, подключаются из меню в **header** и боковой **navigation**.
 
 ```
 ┌──────────────────────────────────────────────────────┐

@@ -1,0 +1,21 @@
+{
+  "features/hanzi-practice/models": "entities/chinese/model",
+  "features/hanzi-practice/services": "entities/chinese/lib/services",
+  "features/hanzi-practice/utils/animation": "entities/chinese/lib/animation",
+  "features/hanzi-practice/utils/positioning": "entities/chinese/lib/positioning",
+  "features/hanzi-practice/utils/quiz": "entities/chinese/lib/quiz",
+  "features/hanzi-practice/utils/rendering": "entities/chinese/lib/rendering",
+  "features/hanzi-practice/utils/validation": "entities/chinese/lib/validation",
+  "features/hanzi-practice/components/draw-card": "widgets/cards/draw-card",
+  "features/hanzi-practice/components/draw-canvas": "widgets/cards/draw-canvas",
+
+  "features/home/services/learning-dashboard.service.ts": "entities/learning/lib/learning-dashboard.service.ts",
+  "features/home/services/learning-dashboard.service": "entities/learning/lib/learning-dashboard.service",
+  "features/home/services/learning-dashboard.service.spec.ts": "entities/learning/lib/learning-dashboard.service.spec.ts",
+
+  "features/card-catalog-search/services/card-catalog-hierarchy": "entities/card/lib/card-catalog-hierarchy",
+  "features/card-catalog-search/services/card-catalog-search": "entities/card/lib/card-catalog-search",
+
+  "features/card-editor/components/card-editor-dialog/card-editor-discard-dialog.component.ts": "widgets/card-editor-discard-dialog/card-editor-discard-dialog.component.ts",
+  "features/card-editor/components/card-editor-dialog/card-editor-discard-dialog.component.spec.ts": "widgets/card-editor-discard-dialog/card-editor-discard-dialog.component.spec.ts"
+}

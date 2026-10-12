@@ -8,10 +8,10 @@ import { MatSliderModule } from '@angular/material/slider';
 
 import type { ToneColorSchemeId, RomanizationSystem, ToneMark, UserLanguagePairEntry } from '../../../../core/models';
 import { TRACING_STROKE_DURATION_BOUNDS, TONE_COLOR_SCHEMES, ROMANIZATION_DISPLAY_ORDER } from '../../../../core/models';
-import { CourseDisplaySettingsMatrixComponent } from '../../../../shared/ui/course-display-settings-matrix';
-import type { AnswerDisplayMode } from '../../../../shared/ui/course-display-settings-matrix';
-import { shouldShowPalladius } from '../../../../core/domain/phonetic/phonetic-preferences.utils';
-import type { RomanizationOption } from '../../../../shared/ui/course-display-settings-matrix';
+import { CourseDisplaySettingsMatrixComponent } from '../../../../widgets/course-display-settings-matrix';
+import type { AnswerDisplayMode } from '../../../../widgets/course-display-settings-matrix';
+import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
+import type { RomanizationOption } from '../../../../widgets/course-display-settings-matrix';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

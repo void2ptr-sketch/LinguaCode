@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { vi } from 'vitest';
 import { JourneyLocationNodeComponent } from './journey-location-node.component';
 import type { JourneyLocationNode } from '../../../../core/models';
-import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
+import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
 
 const baseNode: JourneyLocationNode = {
   id: 'n1',

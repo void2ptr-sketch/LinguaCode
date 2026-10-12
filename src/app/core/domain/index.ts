@@ -1,17 +1,17 @@
 // ===== Chinese language domain =====
-export * from './chinese';
+export * from '../../entities/chinese/lib';
 
 // ===== Phonetic / romanization domains =====
-export * from './ipa';
-export * from './phonetic';
-export * from './language-pair';
+export * from '../../entities/phonetic/lib/ipa';
+export * from '../../entities/phonetic/lib';
+export * from '../../entities/language-pair/lib';
 
 // ===== Learning domain =====
-export * from './learning';
-export * from './journey';
-export * from './lesson';
+export * from '../../entities/learning/lib';
+export * from '../../entities/journey/lib';
+export * from '../../entities/lesson/lib';
 
 // ===== Standalone utils =====
-export * from './code-highlight';
-export * from './keyboard-answer-mode';
-export * from './user';
+export * from '../../entities/card/lib/code-highlight';
+export * from '../../entities/card/lib/keyboard-answer-mode';
+export * from '../../entities/user/lib';

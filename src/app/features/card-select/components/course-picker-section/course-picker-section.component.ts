@@ -3,7 +3,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { CoursePickerComponent } from '../../../../shared/ui/course-picker/course-picker.component';
+import { CoursePickerComponent } from '../../../../widgets/course-picker/course-picker.component';
 
 /**
  * Section component for course selection in the card select page.

@@ -9,7 +9,7 @@ import type { ContentLanguage, UserLanguagePairEntry } from '../../../../core/mo
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/domain/language-pair/language-pair.utils';
+} from '../../../../entities/language-pair/lib/language-pair.utils';
 import { UserStore } from '../../../../core/state';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 

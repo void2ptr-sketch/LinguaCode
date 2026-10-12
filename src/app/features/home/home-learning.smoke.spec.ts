@@ -3,14 +3,14 @@ import { provideHttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
-import { AppComponent } from '../../app.component';
-import { routes } from '../../app.routes';
+import { AppComponent } from '../../app/app.component';
+import { routes } from '../../app/app.routes';
 import { provideApiHttp } from '../../core/api';
 import {
   getTestDefaultScenarios,
   getTestDemoCourseWithLessons,
   seedTestContentCache,
-} from '../../core/repositories/content-seed/content-seed.test-utils';
+} from '../../entities/content-seed/content-seed.test-utils';
 
 describe('Home learning dashboard smoke', () => {
   beforeEach(async () => {

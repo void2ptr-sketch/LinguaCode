@@ -9,10 +9,10 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   CODE_HIGHLIGHT_LANGUAGE_LABELS,
   CODE_HIGHLIGHT_LANGUAGES,
-} from '../../../../../../core/domain/code-highlight/code-highlight.utils';
+} from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
 import type { CodeHighlightLanguage } from '../../../../../../core/models';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
-import { CodeHighlightComponent } from '../../../../../../shared/ui/code-highlight';
+import { CodeHighlightComponent } from '../../../../../../widgets/code-highlight';
 
 /**
  * Form component for code-select cards. Manages code prompt, code options, and correct answer selection.

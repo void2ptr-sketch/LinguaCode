@@ -1,14 +1,14 @@
-export type { AsyncState } from './async-state.types';
+export type { AsyncState } from '../../shared/types/async-state.types';
 export {
   createAsyncState,
   setAsyncError,
   setAsyncLoading,
   setAsyncSuccess,
-} from './async-state.types';
+} from '../../shared/types/async-state.types';
 export {
   LearningResultsPersistence,
   LEARNING_RESULTS_STORAGE_KEY,
-} from './learning-results.persistence';
-export { LearningResultsStore } from './learning-results.store';
-export { UserPersistence, USER_STORAGE_KEY } from './user.persistence';
-export { UserStore } from './user.store';
+} from '../../entities/learning/model/learning-results.persistence';
+export { LearningResultsStore } from '../../entities/learning/model/learning-results.store';
+export { UserPersistence, USER_STORAGE_KEY } from '../../entities/user/model/user.persistence';
+export { UserStore } from '../../entities/user/model/user.store';

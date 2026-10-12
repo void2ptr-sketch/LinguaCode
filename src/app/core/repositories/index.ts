@@ -1,8 +1,8 @@
 // ===== Domain repositories (data-access) =====
-export * from './cards';
-export * from './courses';
-export * from './scenarios';
-export * from './user';
+export * from '../../entities/card';
+export * from '../../entities/course';
+export * from '../../entities/scenario';
+export * from '../../entities/user';
 
 // ===== Standalone domains =====
-export * from './content-seed';
+export * from '../../entities/content-seed';

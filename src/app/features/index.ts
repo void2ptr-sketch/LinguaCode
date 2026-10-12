@@ -1,7 +1,6 @@
 // ===== Feature Barrel =====
 // Exports all feature modules for namespace imports via `export * as` in parent.
 
-export * as CardCatalogSearch from './card-catalog-search';
 export * as CardEditor from './card-editor';
 export * as CardSelect from './card-select';
 export * as CourseBuilder from './course-builder';

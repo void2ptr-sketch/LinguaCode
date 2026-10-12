@@ -1,6 +1,6 @@
 import { Card, CardAppearance, CardKind } from '../../../../core/models';
-import { DEFAULT_TONE_OPTIONS } from '../../../../core/domain/chinese/answers/tone-mark.utils';
-import { lexemeToDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { DEFAULT_TONE_OPTIONS } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
+import { lexemeToDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,

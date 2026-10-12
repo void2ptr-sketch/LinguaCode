@@ -3,7 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { ScenarioPickerComponent } from '../../../../shared/ui/scenario-picker/scenario-picker.component';
+import { ScenarioPickerComponent } from '../../../../widgets/scenario-picker/scenario-picker.component';
 import type { CardDifficulty } from '../../../../core/models';
 
 /**

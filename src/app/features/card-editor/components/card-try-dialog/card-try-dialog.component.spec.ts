@@ -5,9 +5,9 @@ import { provideHttpClient } from '@angular/common/http';
 import { vi, describe, it, expect, beforeEach, afterEach } from 'vitest';
 import { CardTryDialogComponent } from './card-try-dialog.component';
 import { SingleCardPlayStore } from './single-card-play.store';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
+import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
 import { UserStore } from '../../../../core/state';
-import { seedTestContentCache } from '../../../../core/repositories/content-seed/content-seed.test-utils';
+import { seedTestContentCache } from '../../../../entities/content-seed/content-seed.test-utils';
 import type { CardTryDialogData } from './card-try-dialog.types';
 
 /** Mock for CardHostComponent to avoid deep dependency chain. */

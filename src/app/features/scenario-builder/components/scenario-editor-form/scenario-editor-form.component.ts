@@ -13,11 +13,9 @@ import type { ContentLanguage, ScenarioCardSort } from '../../../../core/models'
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/domain/language-pair/language-pair.utils';
-import {
-  ScenarioCardCriteriaEditorComponent,
-  ScenarioCardPickerComponent,
-} from '../../../card-catalog-search';
+} from '../../../../entities/language-pair/lib/language-pair.utils';
+import { ScenarioCardCriteriaEditorComponent } from '../../../../widgets/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
+import { ScenarioCardPickerComponent } from '../../../../widgets/card-catalog/scenario-card-picker/scenario-card-picker.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import type { ScenarioCardSourceMode } from '../../types';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';

@@ -2,8 +2,6 @@
 export { CardAppearanceFieldsComponent } from './components/card-appearance-fields/card-appearance-fields.component';
 export { CardCreateWizardComponent } from './components/card-create-wizard/card-create-wizard.component';
 export { CardEditorDialogComponent } from './components/card-editor-dialog/card-editor-dialog.component';
-export { CardEditorDiscardDialogComponent } from './components/card-editor-dialog/card-editor-discard-dialog.component';
-export { CardEditorPageComponent } from './components/card-editor-page/card-editor-page.component';
 export { CardFormComponent } from './components/card-form/card-form.component';
 export { CardFormPhoneticsPanelComponent } from './components/card-form-phonetics-panel/card-form-phonetics-panel.component';
 export { CardFormSettingsPanelComponent } from './components/card-form-settings-panel/card-form-settings-panel.component';

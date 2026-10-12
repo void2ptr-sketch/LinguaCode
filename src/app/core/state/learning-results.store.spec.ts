@@ -2,9 +2,9 @@ import { TestBed } from '@angular/core/testing';
 import {
   LEARNING_RESULTS_STORAGE_KEY,
   LearningResultsPersistence,
-} from './learning-results.persistence';
-import { LearningResultsStore } from './learning-results.store';
-import { UserStore } from './user.store';
+} from '../../entities/learning/model/learning-results.persistence';
+import { LearningResultsStore } from '../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../entities/user/model/user.store';
 
 describe('LearningResultsStore', () => {
   let store: LearningResultsStore;

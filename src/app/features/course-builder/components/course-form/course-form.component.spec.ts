@@ -16,7 +16,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { CourseFormComponent } from './course-form.component';
 import { ScenarioSearchService } from '../../../../core/repositories';
 import { UserStore } from '../../../../core/state';
-import { scenariosApiMockInterceptor } from '../../../../core/api/scenarios/scenarios-api.mock.interceptor';
+import { scenariosApiMockInterceptor } from '../../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 import { MarkdownFieldComponent } from '../../../../shared/utils/markdown-field';
 import type { CourseFormDraft } from '../../types';
 import { emptyCourseFormDraft } from '../../utils/course-form-draft.utils';

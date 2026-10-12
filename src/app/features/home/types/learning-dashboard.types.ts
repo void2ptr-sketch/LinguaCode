@@ -1,4 +1,4 @@
-import type { LearningResumeTarget } from '../../../core/domain/learning/learning-resume.utils';
+import type { LearningResumeTarget } from '../../../entities/learning/lib/learning-resume.utils';
 
 /**
  * Query parameters for the "continue learning" link on the home page.

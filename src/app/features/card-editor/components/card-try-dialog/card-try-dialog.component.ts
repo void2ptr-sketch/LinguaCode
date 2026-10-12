@@ -5,13 +5,13 @@ import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import { CardsApiService } from '../../../../core/repositories/cards/api/cards-api.service';
-import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalog.mock.handler';
-import { cardIndexMatchesPair } from '../../../../core/domain/language-pair/language-pair.utils';
+import { CardsApiService } from '../../../../entities/card/api/cards-api.service';
+import { CardsCatalogMockHandler } from '../../../../entities/card/api/mock/cards-catalog.mock.handler';
+import { cardIndexMatchesPair } from '../../../../entities/language-pair/lib/language-pair.utils';
 import type { CardDirection } from '../../../../core/models';
 import { UserStore } from '../../../../core/state';
-import { CARD_KIND_LABELS } from '../../../card-catalog-search';
-import { CardHostComponent } from '../../../../shared/ui/card-host';
+import { CARD_KIND_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import { CardHostComponent } from '../../../../widgets/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';
 

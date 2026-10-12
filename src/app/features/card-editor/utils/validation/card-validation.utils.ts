@@ -1,18 +1,18 @@
-import { deriveKnownOptionsFromLexemes } from '../../../../core/repositories/cards/utils/card-direction.utils';
-import { stripPinyinTones } from '../../../../core/domain/chinese/pinyin/cjk-romanization.utils';
+import { deriveKnownOptionsFromLexemes } from '../../../../entities/card/utils/card-direction.utils';
+import { stripPinyinTones } from '../../../../entities/chinese/lib/pinyin/cjk-romanization.utils';
 import type { DrawCharacterTarget, DrawPracticeMode, CardDirection, PhoneticLexeme } from '../../../../core/models';
-import { normalizeToneOptions } from '../../../../core/domain/chinese/answers/tone-mark.utils';
-import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { normalizeToneOptions } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
+import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {
   emptyLexemeDraftFields,
   normalizePhoneticLexemeDraft,
-} from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+} from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {
   sanitizeMarkdownText,
   sanitizePlainText,
   sanitizeTheme,
   isAllowedFontSize,
-} from '../../../../core/security';
+} from '../../../../shared/security';
 import type { CodeBlock, CodeHighlightLanguage, CodeSelectCard } from '../../../../core/models';
 import {
   Card,

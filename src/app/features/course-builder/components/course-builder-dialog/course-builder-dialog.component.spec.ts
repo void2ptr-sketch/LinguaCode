@@ -9,7 +9,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { CourseBuilderDialogComponent } from './course-builder-dialog.component';
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
-import { scenariosApiMockInterceptor } from '../../../../core/api/scenarios/scenarios-api.mock.interceptor';
+import { scenariosApiMockInterceptor } from '../../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 
 describe('CourseBuilderDialogComponent', () => {
   let fixture: ComponentFixture<CourseBuilderDialogComponent>;

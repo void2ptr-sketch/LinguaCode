@@ -8,8 +8,8 @@ import { MatSelectModule } from '@angular/material/select';
 import {
   lookupHanRadicalHint,
   primaryHanCharacter,
-} from '../../../../core/domain/chinese/drawing/draw-stroke-guides.data';
-import { HanziDataService } from '../../../hanzi-practice/services/hanzi-data.service';
+} from '../../../../entities/chinese/lib/drawing/draw-stroke-guides.data';
+import { HanziDataService } from '../../../../entities/chinese/lib/services/hanzi-data.service';
 import type { DrawPracticeMode, KeyboardAnswerMode } from '../../../../core/models';
 import type { CardDraft } from '../../types';
 import { CardAppearanceFieldsComponent } from '../card-appearance-fields/card-appearance-fields.component';

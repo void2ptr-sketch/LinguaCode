@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CodeSelectCardFormComponent } from './code-select-card-form.component';
-import { CODE_HIGHLIGHT_LANGUAGES, CODE_HIGHLIGHT_LANGUAGE_LABELS } from '../../../../../../core/domain/code-highlight/code-highlight.utils';
+import { CODE_HIGHLIGHT_LANGUAGES, CODE_HIGHLIGHT_LANGUAGE_LABELS } from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
 import type { CodeSelectCardDraft, CodeBlockDraft } from '../../../../types';
 import { emptyLexemeCardDraft } from '../../../../types';
 

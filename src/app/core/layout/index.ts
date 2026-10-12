@@ -1,9 +1,9 @@
 // ===== Components =====
-export { FooterComponent } from './footer/footer.component';
-export { HeaderComponent } from './header/header.component';
-export { MainLayoutComponent } from './main-layout/main-layout.component';
-export { MenuCardsComponent } from './menu-cards/menu-cards.component';
-export { MenuHelpComponent } from './menu-help/menu-help.component';
-export { MenuToolsComponent } from './menu-tools/menu-tools.component';
-export { MenuUserComponent } from './menu-user/menu-user.component';
-export { NavigationComponent } from './navigation/navigation.component';
+export { FooterComponent } from '../../widgets/footer/footer.component';
+export { HeaderComponent } from '../../widgets/header/header.component';
+export { MainLayoutComponent } from '../../widgets/main-layout/main-layout.component';
+export { MenuCardsComponent } from '../../widgets/menu-cards/menu-cards.component';
+export { MenuHelpComponent } from '../../widgets/menu-help/menu-help.component';
+export { MenuToolsComponent } from '../../widgets/menu-tools/menu-tools.component';
+export { MenuUserComponent } from '../../widgets/menu-user/menu-user.component';
+export { NavigationComponent } from '../../widgets/navigation/navigation.component';

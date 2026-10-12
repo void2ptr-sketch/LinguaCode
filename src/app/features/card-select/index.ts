@@ -1,7 +1,6 @@
 // Barrel exports for card-select feature
 
 // ===== Components =====
-export { CardSelectPageComponent } from './components/card-select-page/card-select-page.component';
 export { CoursePickerSectionComponent } from './components/course-picker-section/course-picker-section.component';
 export { LessonPickerSectionComponent } from './components/lesson-picker-section/lesson-picker-section.component';
 export { ScenarioPickerSectionComponent } from './components/scenario-picker-section/scenario-picker-section.component';
@@ -10,4 +9,4 @@ export { PracticeSessionBarComponent, type PracticeSessionSegment } from './comp
 export { PracticeStepperComponent, type PracticeStepState } from './components/practice-stepper/practice-stepper.component';
 
 // ===== Types =====
-export type { DrawAnswerPayload } from '../../shared/types/draw-answer.types';
+export type { DrawAnswerPayload } from '../../entities/chinese/model/draw-answer.types';

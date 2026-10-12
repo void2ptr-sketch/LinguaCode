@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { CardAppearance } from '../models';
-import { USER_STORAGE_KEY, UserPersistence } from './user.persistence';
-import { UserStore } from './user.store';
+import { USER_STORAGE_KEY, UserPersistence } from '../../entities/user/model/user.persistence';
+import { UserStore } from '../../entities/user/model/user.store';
 
 describe('UserStore', () => {
   let store: UserStore;

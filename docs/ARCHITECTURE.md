@@ -11,38 +11,48 @@
 | Состояние        | **Signal API**; RxJS — только HTTP/WebSocket        |
 | UI               | **Angular Material** + SCSS                         |
 | Layout           | CSS **Grid**, предпочтительно `grid-template-areas` |
-| Организация кода | `core` / `shared` / `features`                      |
+| Организация кода | **FSD** (Feature-Sliced Design): 6 слоёв, слайсы по доменам |
 
-## Слои приложения
+## Слои приложения (FSD)
+
+Feature-Sliced Design: **6 слоёв**, импорты направлены **строго вниз** (слой может использовать только себя и слои ниже).
 
 ```
 src/app/
-├── core/           # singleton-сервисы, layout, models, глобальное состояние
-├── shared/         # переиспользуемые UI-компоненты и утилиты
-└── features/       # изолированные фичи (по одной на сценарий использования)
+├── app/        # композиция: app.config, app.routes, provide-api, interceptors, theme-сервис
+├── pages/      # страницы-маршруты (*-page компоненты)
+├── widgets/    # переиспользуемые UI-компоненты (card-host, cards/*, pickers, layout-оболочки)
+├── features/   # изолированные фичи (по одной на сценарий использования)
+├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning, language-pair, phonetic, chinese, content-seed, journey
+└── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы
 ```
 
-### `core`
+Правила направлений (проверяются скриптом `node scripts/audit-fsd.mjs`):
 
-- **layout/** — shell-приложение (header, navigation, main-layout, footer).
-- **models/** — доменные типы, разбитые по подпапкам: `cards/`, `scenarios/`, `courses/`, `learning/`, `user/`, `common/`.
-- **state/** — глобальные signal-сервисы (пользователь, сессия, настройки).
-- **api/** — HttpClient, interceptors, базовые типы ответов API.
-- **repositories/** — data-access: repository, api, storage, search, content-seed, user-content overlay.
-- **security/** — санитизация ввода.
-- **theme/** — AppThemeService, colorScheme.
-- **hanzi-engine/** — offline stroke-data + TypeScript-движок для draw-карточек.
+| Слой       | Может импортировать                                        |
+| ---------- | --------------------------------------------------------- |
+| `app`      | всё ниже                                                   |
+| `pages`    | widgets, features, entities, shared                       |
+| `widgets`  | features, entities, shared                                 |
+| `features` | entities, shared                                           |
+| `entities` | shared                                                     |
+| `shared`   | ничего (только внешние пакеты)                             |
 
-Не импортировать `features/` из `core/`.
+### `entities`
 
-### `shared`
+Доменные слайсы. Каждый слайс — папка с сегментами:
 
-- UI-обёртки над Material (кнопки, карточки, индикаторы загрузки).
-- **pagination/** — `PageRequest`, `PageResponse`, утилиты, `UiPaginationComponent`, `createPaginationState`.
-- **card-catalog-search/** — `CardCatalogSearchStore`, фильтры, `ScenarioCardPickerComponent`.
-- Pipes, директивы, утилиты без бизнес-логики.
-
-Может использоваться из `core/` и `features/`.
+```
+entities/card/
+├── model/        # типы и signal-сервисы (store)
+├── lib/          # доменная логика, утилиты
+├── api/          # API-сервисы и mock-интерцепторы
+├── repository/   # data-access
+├── storage/      # localStorage-персистентность
+├── search/       # поиск
+├── mapping/      # мапперы
+└── utils/        # утилиты слайса
+```
 
 ### `features`
 
@@ -52,10 +62,17 @@ src/app/
 features/card-select/
 ├── components/     # UI фичи
 ├── services/       # логика и работа с данными
-└── types/          # типы, специфичные для фичи
+├── types/          # типы, специфичные для фичи
+└── utils/          # утилиты фичи
 ```
 
-Фичи **не импортируют** друг друга напрямую. Общие типы — в `core/models/`, специфичные — в `features/*/types/`.
+- Фичи **не импортируют** друг друга напрямую (запрещены cross-slice импорты).
+- Публичный API фичи — через `index.ts` (компоненты, сервисы, типы).
+- Сегменты (`components/`, `services/`, `types/`, `utils/`, `models/`) — принятая в проекте конвенция; FSD допускает произвольные имена сегментов.
+
+### `core/` (переходный слой)
+
+`core/` оставлен как **shim-баррели** для обратной совместимости (~470 импортов). Реальный код перенесён в `entities/`, `shared/`, `app/`, `widgets/`. Удаление `core/` — отдельная задача: обновить потребителей на прямые импорты из `entities/*/`.
 
 ## Архитектура подсистем
 
@@ -91,14 +108,14 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 | Компонент  | Путь                      | Назначение                                                                       |
 | ---------- | ------------------------- | -------------------------------------------------------------------------------- |
-| Header     | `core/layout/header`      | Шапка, контейнер для menu-\*                                                     |
-| MenuCards  | `core/layout/menu-cards`  | Навигация к карточкам и режимам обучения                                         |
-| MenuTools  | `core/layout/menu-tools`  | Инструменты (конструктор сценариев и др.)                                        |
-| MenuHelp   | `core/layout/menu-help`   | Справка                                                                          |
-| MenuUser   | `core/layout/menu-user`   | Профиль пользователя                                                             |
-| Navigation | `core/layout/navigation`  | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
-| MainLayout | `core/layout/main-layout` | Область контента                                                                 |
-| Footer     | `core/layout/footer`      | Подвал                                                                           |
+| Header     | `widgets/header`          | Шапка, контейнер для menu-\*                                                     |
+| MenuCards  | `widgets/menu-cards`      | Навигация к карточкам и режимам обучения                                         |
+| MenuTools  | `widgets/menu-tools`      | Инструменты (конструктор сценариев и др.)                                        |
+| MenuHelp   | `widgets/menu-help`       | Справка                                                                          |
+| MenuUser   | `widgets/menu-user`       | Профиль пользователя                                                             |
+| Navigation | `widgets/navigation`      | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
+| MainLayout | `widgets/main-layout`     | Область контента                                                                 |
+| Footer     | `widgets/footer`          | Подвал                                                                           |
 
 Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
 
@@ -132,17 +149,17 @@ Shell-приложение. Контент фич — через `<router-outlet
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./core/layout/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+    loadComponent: () => import('./widgets/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
     children: [
       { path: '', redirectTo: 'journey', pathMatch: 'full' },
-      { path: 'home', loadComponent: () => import('./features/home/components/home-page/home-page.component').then(m => m.HomePageComponent) },
-      { path: 'cards/select', loadComponent: () => import('./features/card-select/components/card-select-page/card-select-page.component').then(m => m.CardSelectPageComponent) },
-      { path: 'courses', loadComponent: () => import('./features/course-catalog/components/course-catalog-page/course-catalog-page.component').then(m => m.CourseCatalogPageComponent) },
-      { path: 'tools/scenario-builder', loadComponent: () => import('./features/scenario-builder/components/scenario-builder-page/scenario-builder-page.component').then(m => m.ScenarioBuilderPageComponent) },
-      { path: 'tools/courses', loadComponent: () => import('./features/course-builder/components/course-builder-page/course-builder-page.component').then(m => m.CourseBuilderPageComponent) },
-      { path: 'tools/cards', loadComponent: () => import('./features/card-editor/components/card-editor-page/card-editor-page.component').then(m => m.CardEditorPageComponent) },
-      { path: 'help', loadComponent: () => import('./core/layout/pages/help-page/help-page.component').then(m => m.HelpPageComponent) },
-      { path: 'user', loadComponent: () => import('./core/layout/pages/user-page/user-page.component').then(m => m.UserPageComponent) },
+      { path: 'home', loadComponent: () => import('./pages/home/home-page/home-page.component').then(m => m.HomePageComponent) },
+      { path: 'cards/select', loadComponent: () => import('./pages/card-select/card-select-page/card-select-page.component').then(m => m.CardSelectPageComponent) },
+      { path: 'courses', loadComponent: () => import('./pages/course-catalog/course-catalog-page/course-catalog-page.component').then(m => m.CourseCatalogPageComponent) },
+      { path: 'tools/scenario-builder', loadComponent: () => import('./pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(m => m.ScenarioBuilderPageComponent) },
+      { path: 'tools/courses', loadComponent: () => import('./pages/course-builder/course-builder-page/course-builder-page.component').then(m => m.CourseBuilderPageComponent) },
+      { path: 'tools/cards', loadComponent: () => import('./pages/card-editor/card-editor-page/card-editor-page.component').then(m => m.CardEditorPageComponent) },
+      { path: 'help', loadComponent: () => import('./pages/help/help-page.component').then(m => m.HelpPageComponent) },
+      { path: 'user', loadComponent: () => import('./pages/user/user-page.component').then(m => m.UserPageComponent) },
       { path: '**', redirectTo: 'home' },
     ],
   },
@@ -196,7 +213,8 @@ export class CardSelectStore {
 | Данные                             | Где хранить                                                                 |
 | ---------------------------------- | --------------------------------------------------------------------------- |
 | UI-состояние фичи                  | signal-сервис внутри `features/*/`                                          |
-| Глобальные настройки, пользователь | `core/state/`                                                               |
+| Глобальные настройки, пользователь | `entities/user/model/` (`UserStore`, `UserPersistence`)                     |
+| Результаты обучения                | `entities/learning/model/` (`LearningResultsStore`)                         |
 | Сценарии (конструктор)             | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) |
 | Ответ API                          | signal; конвертация из Observable через `toSignal()` или `rxResource`       |
 
@@ -218,9 +236,10 @@ export class CardApiService {
 
 ### После MVP
 
-- `HttpClient` + interceptors (`core/api/`):
+- `HttpClient` + interceptors (`app/api/`):
   - **auth** — токен в заголовке (когда появится авторизация);
   - **error** — централизованная обработка HTTP-ошибок.
+- Базовые типы ответов API и `buildApiUrl` — `shared/api/` (используются `entities/*/api/`).
 - Конфигурация — `src/environments/environment.ts`.
 - Состояния загрузки и ошибок — signals в store-сервисах.
 
@@ -272,7 +291,7 @@ export class CardApiService {
 
 ## Hanzi Engine (draw-карточки)
 
-Offline stroke-data + TypeScript-движок в `src/app/core/hanzi-engine/`. Данные: `public/assets/hanzi/` (Make Me a Hanzi). Sync: `npm run sync:hanzi`.
+Offline stroke-data + TypeScript-движок в `src/app/entities/chinese/` (модель, positioning, rendering, animation, validation, quiz). Данные: `public/assets/hanzi/` (Make Me a Hanzi). Sync: `npm run sync:hanzi`.
 
 ```typescript
 // Data

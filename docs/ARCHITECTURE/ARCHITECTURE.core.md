@@ -1,8 +1,10 @@
-# Архитектура: `core`
+# Архитектура: `core` (переходный слой)
 
-Ядро приложения: layout, модели, состояние, API, данные, тема, безопасность. Оглавление: [INDEX.md](./INDEX.md) · обзор: [ARCHITECTURE.md](./ARCHITECTURE.md).
+> **Статус: переходный.** После FSD-миграции `core/` содержит только **shim-баррели** для обратной совместимости (~470 импортов). Реальный код перенесён: `core/models` → `entities/*/model`, `core/domain` → `entities/*/lib`, `core/repositories` → `entities/*/`, `core/state` → `entities/*/model`, `core/api` → `entities/*/api` + `app/api`, `core/layout` → `widgets/` + `pages/`, `core/security` → `shared/security`, `core/theme` → `app/theme` + `shared/theme` + `entities/user/lib`. Удаление `core/` — отдельная задача (обновить потребителей на прямые импорты из `entities/*/`).
 
-## Назначение
+Оглавление: [INDEX.md](./INDEX.md) · обзор: [ARCHITECTURE.md](./ARCHITECTURE.md).
+
+## Назначение (историческое)
 
 Singleton-сервисы и инфраструктура, **не зависящие** от конкретных фич. Фичи импортируют `core/`, но не наоборот.
 

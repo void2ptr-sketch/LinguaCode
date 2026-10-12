@@ -1,0 +1,14 @@
+{
+  "features/home/components/home-page": "pages/home/home-page",
+  "features/home/components/home-learning-tab": "pages/home/home-learning-tab",
+  "features/home/components/learning-continue-card": "pages/home/learning-continue-card",
+  "features/home/components/learning-program-progress": "pages/home/learning-program-progress",
+  "features/home/components/learning-lesson-roadmap": "pages/home/learning-lesson-roadmap",
+  "features/journey/components/journey-page": "pages/journey/journey-page",
+  "features/card-select/components/card-select-page": "pages/card-select/card-select-page",
+  "features/course-catalog/components/course-catalog-page": "pages/course-catalog/course-catalog-page",
+  "features/course-builder/components/course-builder-page": "pages/course-builder/course-builder-page",
+  "features/scenario-builder/components/scenario-builder-page": "pages/scenario-builder/scenario-builder-page",
+  "features/card-editor/components/card-editor-page": "pages/card-editor/card-editor-page",
+  "features/learning-results/components/learning-progress": "pages/learning-results/learning-progress"
+}

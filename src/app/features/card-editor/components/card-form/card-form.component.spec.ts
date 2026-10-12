@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormComponent } from './card-form.component';
-import { CardCatalogHierarchyService } from '../../../card-catalog-search/services/card-catalog-hierarchy/card-catalog-hierarchy.service';
+import { CardCatalogHierarchyService } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
 import type { CardDraft } from '../../types';
 
 describe('CardFormComponent', () => {

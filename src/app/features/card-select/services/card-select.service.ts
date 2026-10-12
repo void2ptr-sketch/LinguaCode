@@ -6,8 +6,8 @@ import {
   resolveScenarioCardIds,
   ScenarioSearchService,
 } from '../../../core/repositories';
-import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { scenarioMatchesLanguagePair } from '../../../entities/scenario/utils/scenario-card-source.utils';
 import type { Card, ScenarioSearchPage } from '../../../core/models';
 import { UserStore } from '../../../core/state';
 

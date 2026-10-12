@@ -1,12 +1,12 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { Card } from '../../../core/models';
-import { cardDefaultDirection } from '../../../core/repositories/cards/utils/card-direction.utils';
-import { HanziDataService } from '../../hanzi-practice/services/hanzi-data.service';
+import { cardDefaultDirection } from '../../../entities/card/utils/card-direction.utils';
+import { HanziDataService } from '../../../entities/chinese/lib/services/hanzi-data.service';
 import type { CardDirection } from '../../../core/models';
 import { UserStore } from '../../../core/state';
-import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer/card-answer.util';
-import { CardFeedback } from '../../../shared/types';
-import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
+import { canCheckCardAnswer, checkCardAnswer } from '../../../entities/card/lib/card-answer/card-answer.util';
+import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
+import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 
 /**
  * Store for card selection and practice session state.

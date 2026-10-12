@@ -1,0 +1,17 @@
+{
+  "core/layout/main-layout": "widgets/main-layout",
+  "core/layout/header": "widgets/header",
+  "core/layout/footer": "widgets/footer",
+  "core/layout/navigation": "widgets/navigation",
+  "core/layout/menu-cards": "widgets/menu-cards",
+  "core/layout/menu-help": "widgets/menu-help",
+  "core/layout/menu-tools": "widgets/menu-tools",
+  "core/layout/menu-user": "widgets/menu-user",
+  "core/layout/pages/help-page": "pages/help",
+  "core/layout/pages/help-usage-scenarios-page": "pages/help-usage-scenarios",
+  "core/layout/pages/user-page": "pages/user",
+  "core/layout/data/help-page.data.ts": "pages/help/help-page.data.ts",
+  "core/layout/data/help-page.data": "pages/help/help-page.data",
+  "core/layout/data/help-usage-scenarios.data.ts": "pages/help-usage-scenarios/help-usage-scenarios.data.ts",
+  "core/layout/data/help-usage-scenarios.data": "pages/help-usage-scenarios/help-usage-scenarios.data"
+}
