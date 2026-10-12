@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import type { CourseWithLessons } from '../../../core/models';
-import type { CourseAuthoring } from '../../../core/models';
+import type { CourseWithLessons } from '../../../entities/course/model';
+import type { CourseAuthoring } from '../../../entities/course/model';
 import {
   courseToFormDraft,
   emptyCourseFormDraft,

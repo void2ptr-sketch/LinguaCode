@@ -5,12 +5,13 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 
-import type { ContentLanguage, UserLanguagePairEntry } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { UserLanguagePairEntry } from '../../../../entities/user/model';
 import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
-} from '../../../../core/domain/language-pair/language-pair.utils';
-import { UserStore } from '../../../../core/state';
+} from '../../../../entities/language-pair/lib/language-pair.utils';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
 
 /**

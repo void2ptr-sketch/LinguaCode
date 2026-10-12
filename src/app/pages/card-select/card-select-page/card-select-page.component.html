@@ -1,0 +1,111 @@
+<section class="card-select-page">
+  <header class="card-select-page__header">
+    <div class="card-select-page__header-copy">
+      <a class="card-select-page__back" routerLink="/home">
+        <mat-icon aria-hidden="true">arrow_back</mat-icon>
+        Обучение
+      </a>
+      <h1 class="card-select-page__title">Практика</h1>
+      <p class="card-select-page__subtitle">Настройка сессии и прохождение карточек</p>
+    </div>
+  </header>
+
+  <app-practice-session-bar [segments]="sessionSegments()" (segmentSelect)="goToTab($event)" />
+  <app-practice-stepper [steps]="practiceSteps()" (stepSelect)="goToTab($event)" />
+
+  <mat-tab-group
+    class="card-select-page__tabs"
+    [selectedIndex]="activeTabIndex()"
+    (selectedIndexChange)="goToTab($event)"
+    dynamicHeight
+  >
+    <!-- Course selection tab -->
+    <mat-tab label="Программа">
+      <app-course-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [courseTitle]="courseTitle()"
+        [nextStepHint]="nextStepHint()"
+        [canAdvanceFromCourse]="canAdvanceFromCourse()"
+        (selectedCourseIdChange)="onCourseChange($event)"
+        (courseLabelChange)="onCourseLabelChange($event)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
+    </mat-tab>
+
+    <!-- Lessons selection tab -->
+    <mat-tab label="Уроки" [disabled]="!selectedCourseId()">
+      <app-lesson-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [selectedLessonId]="selectedLessonId()"
+        [enforcePrerequisites]="enforceLessonPrerequisites()"
+        [nextStepHint]="nextStepHint()"
+        [canAdvanceFromLessons]="canAdvanceFromLessons()"
+        (selectedLessonIdChange)="onLessonChange($event)"
+        (lessonPickChange)="onLessonPick($event)"
+        (goToCourse)="goToTab(0)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
+    </mat-tab>
+
+    <!-- Scenarios selection tab -->
+    <mat-tab label="Сценарии">
+      <app-scenario-picker-section
+        [selectedCourseId]="selectedCourseId()"
+        [selectedLessonId]="selectedLessonId()"
+        [lessonTitle]="lessonTitle()"
+        [courseTitle]="courseTitle()"
+        [requiresLessonForScenarios]="requiresLessonForScenarios()"
+        [isOpenPractice]="isOpenPractice()"
+        [showDifficultyFilter]="showDifficultyFilter()"
+        [difficultyLevels]="difficultyLevels"
+        [difficultyLabels]="difficultyLabels"
+        [selectedDifficulty]="selectedDifficulty()"
+        [allowedScenarioIds]="allowedScenarioIdsForPicker()"
+        [selectedScenarioId]="selectedScenarioId()"
+        [nextStepHint]="nextStepHint()"
+        [canStartPractice]="canStartPractice()"
+        (difficultyChange)="onDifficultyChange($event)"
+        (selectedScenarioIdChange)="onScenarioChange($event)"
+        (scenarioLabelChange)="onScenarioLabelChange($event)"
+        (goToLessons)="goToTab(1)"
+        (nextClick)="advanceFromCurrentTab()"
+      />
+    </mat-tab>
+
+    <!-- Learning zone tab -->
+    <mat-tab label="Обучение" [disabled]="!selectedScenarioId()">
+      <app-learning-zone
+        [selectedScenarioId]="selectedScenarioId()"
+        [courseTitle]="courseTitle()"
+        [lessonTitle]="lessonTitle()"
+        [scenarioTitle]="scenarioTitle()"
+        [scenarioSourceLabel]="scenarioSourceLabel()"
+        [showDirectionToggle]="showDirectionToggle()"
+        [sessionDirection]="store.sessionDirection()"
+        [progressLabel]="store.progressLabel()"
+        [cardProgressPercent]="cardProgressPercent()"
+        [missingCardsWarning]="missingCardsWarning()"
+        [loading]="store.loading()"
+        [error]="store.error()"
+        [completed]="store.completed()"
+        [showCourseCertificate]="showCourseCertificate()"
+        [hasNextLessonScenario]="hasNextLessonScenario()"
+        [fontSize]="fontSize().fontSize"
+        [currentCard]="store.currentCard()"
+        [isLearningTabActive]="activeTabIndex() === LEARNING_TAB.learning"
+        (directionChange)="onDirectionChange($event)"
+        (retry)="loadCards()"
+        (goToNextLessonScenario)="goToNextLessonScenario()"
+        (restart)="loadCards()"
+        (optionSelected)="selectOption($event)"
+        (answerTextChange)="setAnswerText($event)"
+        (memoryCompleteChange)="setMemoryComplete($event)"
+        (drawSubmittedChange)="setDrawSubmitted($event)"
+        (drawAnswerChange)="setDrawAnswer($event)"
+        (timeExpired)="handleTimeExpired()"
+        (checkAnswer)="checkAnswer()"
+        (nextCard)="nextCard()"
+      />
+    </mat-tab>
+  </mat-tab-group>
+</section>

@@ -1,12 +1,15 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { Card } from '../../../../core/models';
-import { cardDefaultDirection } from '../../../../core/repositories/cards/utils/card-direction.utils';
-import { HanziDataService } from '../../../hanzi-practice/services/hanzi-data.service';
-import type { CardDirection } from '../../../../core/models';
-import { UserStore } from '../../../../core/state';
-import { canCheckCardAnswer, checkCardAnswer } from '../../../../shared/utils/card-answer/card-answer.util';
-import { CardFeedback } from '../../../../shared/types';
-import type { DrawAnswerPayload } from '../../../../shared/types/draw-answer.types';
+import { Card } from '../../../../entities/card/model';
+import { cardDefaultDirection } from '../../../../entities/card/utils/card-direction.utils';
+import { HanziDataService } from '../../../../entities/chinese/lib/services/hanzi-data.service';
+import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
+import { UserStore } from '../../../../entities/user/model/user.store';
+import {
+  canCheckCardAnswer,
+  checkCardAnswer,
+} from '../../../../entities/card/lib/card-answer/card-answer.util';
+import { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
+import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
 
 /**
  * Store for single-card practice sessions in the "try" dialog.

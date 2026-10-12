@@ -2,7 +2,7 @@ import { Injectable, inject } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { firstValueFrom } from 'rxjs';
 
-import type { CardKind } from '../../../../core/models';
+import type { CardKind } from '../../../../entities/card/model';
 
 import { CardEditorDialogComponent } from './card-editor-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';

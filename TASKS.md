@@ -1,6 +1,6 @@
 # `LinguaCode` — приложение для исследования и изучения языков
 
-Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/DOMAIN.md](./docs/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
+Чеклист MVP и бэклога. Оглавление: [docs/INDEX.md](./docs/INDEX.md) · бизнес: [docs/BUSINESS.md](./docs/BUSINESS.md) · домен: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md) · архитектура: [docs/ARCHITECTURE.md](./docs/ARCHITECTURE.md).
 
 ## 1. Инициализация проекта
 
@@ -13,17 +13,17 @@
 
 ## 2. Базовая архитектура
 
-- [x] Домен описан — см. [docs/DOMAIN.md](./docs/DOMAIN.md)
-- [x] Настроить маршрутизацию (`app.routes.ts`, lazy `loadComponent`)
+- [x] Домен описан — см. [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md)
+- [x] Настроить маршрутизацию (`app/app/app.routes.ts`, lazy `loadComponent`)
 - [x] Добавить layout (шапка, подвал, навигация, контент, menu-\*)
-  - шапка — `/src/app/core/layout/header`
-    - menu-cards — `/src/app/core/layout/menu-cards` (встроено в шапку)
-    - menu-tools — `/src/app/core/layout/menu-tools` (встроено в шапку)
-    - menu-help — `/src/app/core/layout/menu-help` (встроено в шапку)
-    - menu-user — `/src/app/core/layout/menu-user` (встроено в шапку)
-  - подвал — `/src/app/core/layout/footer`
-  - контент — `/src/app/core/layout/main-layout`
-  - навигация — `/src/app/core/layout/navigation`
+  - шапка — `/src/app/widgets/header`
+    - menu-cards — `/src/app/widgets/menu-cards` (встроено в шапку)
+    - menu-tools — `/src/app/widgets/menu-tools` (встроено в шапку)
+    - menu-help — `/src/app/widgets/menu-help` (встроено в шапку)
+    - menu-user — `/src/app/widgets/menu-user` (встроено в шапку)
+  - подвал — `/src/app/widgets/footer`
+  - контент — `/src/app/widgets/main-layout`
+  - навигация — `/src/app/widgets/navigation`
 - [x] Создать `core/models/` — типы из DOMAIN (`User`, `Card`, `Scenario`, `LearningResult`)
 - [x] Вынести конфигурацию окружения (`environment.ts`)
 
@@ -55,7 +55,7 @@
 ## 6. Безопасность
 
 - [x] Не хранить секреты в репозитории (`.env` в `.gitignore`, шаблон `.env.example`)
-- [x] Санитизация пользовательского ввода (`core/security/`, `UserStore`)
+- [x] Санитизация пользовательского ввода (`shared/security/`, `UserStore`)
 - [x] Проверить зависимости на уязвимости (`npm audit`; скрипт `npm run audit`)
 
 ## 7. Качество и релиз
@@ -109,7 +109,7 @@
 
 #### H15. Hanzi Engine (`public/assets/hanzi/` + свой движок)
 
-Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/core/hanzi-engine/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
+Контекст: offline JSON (Make Me a Hanzi / hanzi-writer-data) + TypeScript-движок в `src/app/entities/chinese/lib/` без npm Hanzi Writer и без CDN в runtime. Лицензия данных: `public/licenses/ARPHICPL.TXT`. Sync: `npm run sync:hanzi`.
 
 **H15a — Sprint 1: foundation (API + data)** ✅ старт
 
@@ -213,7 +213,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 ### Каталог карточек (масштаб)
 
-Документация: [docs/CARD-CATALOG.md](./docs/CARD-CATALOG.md)
+Документация: [docs/SYSTEM/CARD-CATALOG.md](./docs/SYSTEM/CARD-CATALOG.md)
 
 - [x] `shared/pagination/` — `PageRequest`, `PageResponse`, утилиты, UI
 - [x] Типы `CardIndexEntry`, `CardSearchCriteria`, `ScenarioCardSource` в `core/models/`
@@ -229,7 +229,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 ### Конструктор сценариев (масштаб)
 
-Документация: [docs/SCENARIO-BUILDER.md](./docs/SCENARIO-BUILDER.md)
+Документация: [docs/FEATURES/SCENARIO-BUILDER.md](./docs/FEATURES/SCENARIO-BUILDER.md)
 
 Уже сделано (MVP + интеграция с каталогом карточек):
 
@@ -239,7 +239,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 #### Этап A — модель и API
 
-- [x] Черновик `docs/SCENARIO-BUILDER.md`
+- [x] Черновик `docs/FEATURES/SCENARIO-BUILDER.md`
 - [x] Синхронизация DOMAIN / ARCHITECTURE / README со ссылкой на SCENARIO-BUILDER
 - [x] Типы `ScenarioIndexEntry`, `ScenarioSearchCriteria` в `core/models/`
 - [x] `ScenariosApiService`: `GET /scenarios/search`, `GET /scenarios/:id`, CRUD
@@ -299,7 +299,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 ### Пара языков (known → learning)
 
-План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md). Обучение — два языка контента; отдельно от UiLocale (`@angular/localize`). CJK-слой: [docs/CJK-CONTENT.md](./docs/CJK-CONTENT.md) (G9). IPA: [docs/PHONETIC-CONTENT.md](./docs/PHONETIC-CONTENT.md) (G10).
+План: [docs/FEATURES/LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md). Обучение — два языка контента; отдельно от UiLocale (`@angular/localize`). CJK-слой: [docs/CONTENT/CJK-CONTENT.md](./docs/CONTENT/CJK-CONTENT.md) (G9). IPA: [docs/CONTENT/PHONETIC-CONTENT.md](./docs/CONTENT/PHONETIC-CONTENT.md) (G10).
 
 **G0 — домен**
 
@@ -364,7 +364,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G7 — несколько пар, одна активная**
 
-План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g7--несколько-пар-одна-активная). Пользователь ведёт несколько курсов (ru→en, ru→zh…), в сессии участвует только **активная** пара.
+План: [docs/FEATURES/LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#g7--несколько-пар-одна-активная). Пользователь ведёт несколько курсов (ru→en, ru→zh…), в сессии участвует только **активная** пара.
 
 **G7a — модель и store**
 
@@ -395,7 +395,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G8 — scope UI по активной паре**
 
-План: [docs/LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#g8--scope-ui-по-активной-паре-черновик). После выбора активной пары каталоги, списки и pickers показывают **только** контент этой пары (курс).
+План: [docs/FEATURES/LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#g8--scope-ui-по-активной-паре-черновик). После выбора активной пары каталоги, списки и pickers показывают **только** контент этой пары (курс).
 
 **G8a — каталог карточек**
 
@@ -426,7 +426,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G9 — CJK-контент в карточках (иероглифы, романизация, тоны)**
 
-План: [docs/CJK-CONTENT.md](./docs/CJK-CONTENT.md). Слой структурированного контента для zh (и перспектива ja/ko): Han, пиньинь, жуинь, **система Палладия** (ru→zh), произношение, тоны. Отдельно от UiLocale (G6).
+План: [docs/CONTENT/CJK-CONTENT.md](./docs/CONTENT/CJK-CONTENT.md). Слой структурированного контента для zh (и перспектива ja/ko): Han, пиньинь, жуинь, **система Палладия** (ru→zh), произношение, тоны. Отдельно от UiLocale (G6).
 
 **G9a — домен и типы**
 
@@ -530,7 +530,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G10 — фонетический контент: IPA (International Phonetic Alphabet)**
 
-План: [docs/PHONETIC-CONTENT.md](./docs/PHONETIC-CONTENT.md). Универсальная фонетическая транскрипция для любого `ContentLanguage`; дополняет орфографию G9 (пиньинь, Палладия). Отдельно от UiLocale (G6). MVP: показ + select, не keyboard.
+План: [docs/CONTENT/PHONETIC-CONTENT.md](./docs/CONTENT/PHONETIC-CONTENT.md). Универсальная фонетическая транскрипция для любого `ContentLanguage`; дополняет орфографию G9 (пиньинь, Палладия). Отдельно от UiLocale (G6). MVP: показ + select, не keyboard.
 
 **G10a — домен и типы**
 
@@ -575,7 +575,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G11 — уроки и курсы (Lesson, Course)**
 
-План: [docs/DOMAIN.md](./docs/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
+План: [docs/SYSTEM/DOMAIN.md](./docs/SYSTEM/DOMAIN.md#иерархия-контента). Над `Scenario` — тематические **уроки** и учебные **курсы**. `LanguagePair` остаётся scope контента (G7/G8); `Course` — программа из уроков в рамках пары.
 
 **G11a — домен и типы**
 
@@ -622,7 +622,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G13 — Learning Home (dashboard обучения)**
 
-Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/LANGUAGE-PAIR.md#learning-home-g13).
+Контекст: `/home` — точка входа «куда учиться дальше»; `/cards/select` — сессия (курс / уроки / сценарии / карточки). См. [DOMAIN.md](./docs/SYSTEM/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./docs/FEATURES/LANGUAGE-PAIR.md#learning-home-g13).
 
 - [x] **G13a** — `LearningSessionPreferences` в `UserLanguagePairSettings` + persistence
 - [x] **G13b** — `learning-resume.utils` + `LearningDashboardService` (следующий шаг, roadmap)
@@ -632,7 +632,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 **G14 — UX страницы «Практика» (`/cards/select`)**
 
-Контекст: после G13 dashboard на `/home` закрывает «куда идти»; `/cards/select` — **студия сессии** (программа → урок → сценарий → карточки). Сейчас: 4 вкладки без sticky-контекста, длинная строка прогресса, карточка теряется среди toolbar. Терминология: **Программа** = `Course`; **Курс** в профиле = `LanguagePair`. Файлы: `features/card-select/components/card-select-page/`, `shared/course-picker`, `lesson-picker`, `scenario-picker`.
+Контекст: после G13 dashboard на `/home` закрывает «куда идти»; `/cards/select` — **студия сессии** (программа → урок → сценарий → карточки). Сейчас: 4 вкладки без sticky-контекста, длинная строка прогресса, карточка теряется среди toolbar. Терминология: **Программа** = `Course`; **Курс** в профиле = `LanguagePair`. Файлы: `pages/card-select/card-select-page/`, `shared/course-picker`, `lesson-picker`, `scenario-picker`.
 
 **G14a — sticky session bar (P0)**
 
@@ -793,7 +793,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - [x] `reading` → select + тег / meta; `tone` → select с автогенерацией вариантов из `syllableBase`
 - [x] **Lexeme-first:** вариант = только `PhoneticLexeme`; `optionsLearning[i]` — derived при save (migration legacy JSON)
 - [x] Wizard create: тип → слово → варианты → (опц.) расширить
-- [x] Документ **`docs/EDITOR-UX.md`**: целевой UX, метрики (время создания demo-карточки, число полей)
+- [x] Документ **`docs/FEATURES/EDITOR-UX.md`**: целевой UX, метрики (время создания demo-карточки, число полей)
 
 **G12d — метрики и приёмка**
 
@@ -835,7 +835,7 @@ session.summary(): { character, totalMistakes, strokeCount }
   - Сводная информация об особенностях
   - UML-диаграммы (Mermaid) в каждом файле
 - [x] Файл `/docs/BUSINESS.md` содержит бизнес-идеи и use case проекта
-- [x] Файл `/docs/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
+- [x] Файл `/docs/SYSTEM/DOMAIN.md` содержит модели проекта (таблица сущностей + схемы типов)
 - [x] Документацию вести на русском языке
 - [x] Формат документации UTF-8 (см. [INDEX.md § Формат](./docs/INDEX.md))
 

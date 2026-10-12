@@ -1,4 +1,4 @@
-import type { CardKind } from '../../../../core/models';
+import type { CardKind } from '../../../../entities/card/model';
 
 /**
  * Data passed to the card editor dialog.
@@ -8,8 +8,7 @@ import type { CardKind } from '../../../../core/models';
  * `mode: 'edit'` includes the card ID to edit.
  */
 export type CardEditorDialogData =
-  | { mode: 'create'; kind: CardKind }
-  | { mode: 'edit'; cardId: string };
+  { mode: 'create'; kind: CardKind } | { mode: 'edit'; cardId: string };
 
 /**
  * Result returned from the card editor dialog.

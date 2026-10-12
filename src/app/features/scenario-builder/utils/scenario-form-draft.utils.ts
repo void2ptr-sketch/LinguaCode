@@ -1,14 +1,11 @@
 import {
   DEFAULT_CRITERIA_LIMIT,
   emptyCardSearchCriteria,
-} from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
-import type {
-  LanguagePair,
-  Scenario,
-  ScenarioCardSource,
-  ScenarioCardSort,
-} from '../../../core/models';
-import { DEFAULT_LANGUAGE_PAIR } from '../../../core/models';
+} from '../../../entities/scenario/utils/scenario-card-source.utils';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
+import type { Scenario } from '../../../entities/scenario/model';
+import type { ScenarioCardSource, ScenarioCardSort } from '../../../entities/card/model';
+import { DEFAULT_LANGUAGE_PAIR } from '../../../entities/language-pair/model/language-pair.types';
 import type { ScenarioCardSourceMode, ScenarioCriteriaDraft, ScenarioDraft } from '../types';
 
 export type ScenarioFormDraft = {

@@ -4,10 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import type { ContentLanguage } from '../../../../../../core/models';
+import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { MemoryCardDraft } from '../../../../types';
 import { emptyMemoryPairDraft } from '../../../../types';
-import { syncLexemePrimaryFromText } from '../../../../utils/card-editor-ux.utils';
+import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
 
 /**
  * Form component for memory/pairs cards. Manages known-learning word pairs with lexeme sync.

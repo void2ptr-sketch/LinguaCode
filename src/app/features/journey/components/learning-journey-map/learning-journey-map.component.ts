@@ -16,9 +16,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
-import type { JourneyLocationNode, JourneyContentType, ExplorerLevelResult } from '../../../../core/models';
-import { JourneyAnalyticsService } from '../../../../core/services/journey-analytics.service';
-import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
+import type {
+  JourneyLocationNode,
+  JourneyContentType,
+  ExplorerLevelResult,
+} from '../../../../entities/learning/model';
+import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
+import { LearningDashboardService } from '../../../../entities/learning/lib/learning-dashboard.service';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';
 
 /** Фильтр по типу контента. */
@@ -126,8 +130,18 @@ export class LearningJourneyMapComponent implements OnInit, OnDestroy {
     { type: JourneyFilterType; label: string; icon: string; tooltip: string }[]
   >(() => [
     { type: 'all', label: 'Все', icon: 'apps', tooltip: 'Показать все типы контента' },
-    { type: 'theory', label: 'Теория', icon: 'menu_book', tooltip: 'Фильтр: теоретические материалы' },
-    { type: 'practice', label: 'Практика', icon: 'edit_note', tooltip: 'Фильтр: практические задания' },
+    {
+      type: 'theory',
+      label: 'Теория',
+      icon: 'menu_book',
+      tooltip: 'Фильтр: теоретические материалы',
+    },
+    {
+      type: 'practice',
+      label: 'Практика',
+      icon: 'edit_note',
+      tooltip: 'Фильтр: практические задания',
+    },
     { type: 'test', label: 'Тесты', icon: 'assignment', tooltip: 'Фильтр: проверочные тесты' },
     { type: 'video', label: 'Видео', icon: 'play_circle', tooltip: 'Фильтр: видеоматериалы' },
     { type: 'case', label: 'Кейсы', icon: 'psychology', tooltip: 'Фильтр: практические кейсы' },

@@ -6,9 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import type { ContentLanguage } from '../../../../core/models';
-import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import {
   addOption,
   MAX_CARD_OPTIONS,
@@ -18,7 +18,7 @@ import {
   type CardOptionsEditorState,
   updateOptionLexeme,
   updateOptionText,
-} from '../../utils/card-options-editor.utils';
+} from '../../utils/options/card-options-editor.utils';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 
 /**

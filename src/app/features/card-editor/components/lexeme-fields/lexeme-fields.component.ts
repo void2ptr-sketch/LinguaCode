@@ -7,17 +7,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 
-import { pinyinToPalladius } from '../../../../core/domain/chinese/pinyin/cjk-romanization.utils';
-import { lookupEnglishIpa } from '../../../../core/domain/ipa/ipa-en-lookup.utils';
-import { pinyinToIpa } from '../../../../core/domain/chinese/pinyin/pinyin-to-ipa.utils';
-import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { ContentLanguage } from '../../../../core/models';
-import type { ScriptCode } from '../../../../core/models';
+import { pinyinToPalladius } from '../../../../entities/chinese/lib/pinyin/cjk-romanization.utils';
+import { lookupEnglishIpa } from '../../../../entities/phonetic/lib/ipa/ipa-en-lookup.utils';
+import { pinyinToIpa } from '../../../../entities/chinese/lib/pinyin/pinyin-to-ipa.utils';
+import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { ScriptCode } from '../../../../entities/phonetic/model';
 import {
   defaultScriptForLanguages,
   isEnLearningPair,
   isRuZhPair,
-} from '../../utils/card-editor-ux.utils';
+} from '../../utils/ux/card-editor-ux.utils';
 
 /**
  * Lexeme fields component. Provides editable fields for lexeme data (primary, pinyin, IPA, palladius, script).

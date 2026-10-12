@@ -3,8 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
-import type { LexemeDraftFields } from '../../../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { CardOptionsEditorState } from '../../../../utils/card-options-editor.utils';
+import type { LexemeDraftFields } from '../../../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
+import type { CardOptionsEditorState } from '../../../../utils/options/card-options-editor.utils';
 import type {
   ReadingCardDraft,
   SelectCardDraft,
@@ -12,7 +12,7 @@ import type {
   TimedCardDraft,
   ToneCardDraft,
 } from '../../../../types';
-import { toneVariantPreview } from '../../../../utils/tone-variant.utils';
+import { toneVariantPreview } from '../../../../utils/tone/tone-variant.utils';
 import { CardOptionsEditorComponent } from '../../../card-options-editor/card-options-editor.component';
 
 /**

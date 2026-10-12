@@ -1,9 +1,13 @@
-import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../core/models';
-import type { CodeHighlightLanguage } from '../../../core/models';
-import type { DrawPracticeMode, DrawCharacterTarget, ToneMark } from '../../../core/models';
-import { CardDirection } from '../../../core/models';
-import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { CardAppearance, CardKind, KeyboardAnswerMode } from '../../../entities/card/model';
+import type { CodeHighlightLanguage } from '../../../entities/card/model';
+import type {
+  DrawPracticeMode,
+  DrawCharacterTarget,
+  ToneMark,
+} from '../../../entities/phonetic/model';
+import { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+import type { LexemeDraftFields } from '../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 
 /**
  * Draft representation of card appearance settings. Aliased from `CardAppearance`.

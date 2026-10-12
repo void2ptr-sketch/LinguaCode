@@ -1,12 +1,15 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { Card } from '../../../core/models';
-import { cardDefaultDirection } from '../../../core/repositories/cards/utils/card-direction.utils';
-import { HanziDataService } from '../../hanzi-practice/services/hanzi-data.service';
-import type { CardDirection } from '../../../core/models';
-import { UserStore } from '../../../core/state';
-import { canCheckCardAnswer, checkCardAnswer } from '../../../shared/utils/card-answer/card-answer.util';
-import { CardFeedback } from '../../../shared/types';
-import type { DrawAnswerPayload } from '../../../shared/types/draw-answer.types';
+import { Card } from '../../../entities/card/model';
+import { cardDefaultDirection } from '../../../entities/card/utils/card-direction.utils';
+import { HanziDataService } from '../../../entities/chinese/lib/services/hanzi-data.service';
+import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+import { UserStore } from '../../../entities/user/model/user.store';
+import {
+  canCheckCardAnswer,
+  checkCardAnswer,
+} from '../../../entities/card/lib/card-answer/card-answer.util';
+import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
+import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 
 /**
  * Store for card selection and practice session state.
@@ -119,14 +122,14 @@ export class CardSelectStore {
   }
 
   /**
-    * Sets the loading state.
-    *
-    * @remarks
-    * Clears any existing error when loading starts.
-    *
-    * @param loading - Whether cards are being loaded.
-    */
-   setLoading(loading: boolean): void {
+   * Sets the loading state.
+   *
+   * @remarks
+   * Clears any existing error when loading starts.
+   *
+   * @param loading - Whether cards are being loaded.
+   */
+  setLoading(loading: boolean): void {
     this.loading.set(loading);
     if (loading) {
       this.error.set(null);
@@ -144,14 +147,14 @@ export class CardSelectStore {
   }
 
   /**
-    * Selects an option index for multiple-choice cards.
-    *
-    * @remarks
-    * No-op if feedback is already shown or the session is completed.
-    *
-    * @param index - The zero-based index of the selected option.
-    */
-   selectOption(index: number): void {
+   * Selects an option index for multiple-choice cards.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   *
+   * @param index - The zero-based index of the selected option.
+   */
+  selectOption(index: number): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -160,14 +163,14 @@ export class CardSelectStore {
   }
 
   /**
-    * Sets the text answer for keyboard cards.
-    *
-    * @remarks
-    * No-op if feedback is already shown or the session is completed.
-    *
-    * @param value - The entered text.
-    */
-   setAnswerText(value: string): void {
+   * Sets the text answer for keyboard cards.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   *
+   * @param value - The entered text.
+   */
+  setAnswerText(value: string): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -176,14 +179,14 @@ export class CardSelectStore {
   }
 
   /**
-    * Marks the memory board as complete.
-    *
-    * @remarks
-    * No-op if feedback is already shown or the session is completed.
-    *
-    * @param value - Whether the memory board is complete.
-    */
-   setMemoryComplete(value: boolean): void {
+   * Marks the memory board as complete.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   *
+   * @param value - Whether the memory board is complete.
+   */
+  setMemoryComplete(value: boolean): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -192,15 +195,15 @@ export class CardSelectStore {
   }
 
   /**
-    * Sets the draw submission state.
-    *
-    * @remarks
-    * No-op if feedback is already shown or the session is completed.
-    * Clears `drawAnswer` when `value` is `false`.
-    *
-    * @param value - Whether the draw answer has been submitted.
-    */
-   setDrawSubmitted(value: boolean): void {
+   * Sets the draw submission state.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   * Clears `drawAnswer` when `value` is `false`.
+   *
+   * @param value - Whether the draw answer has been submitted.
+   */
+  setDrawSubmitted(value: boolean): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -212,14 +215,14 @@ export class CardSelectStore {
   }
 
   /**
-    * Sets the submitted draw answer payload.
-    *
-    * @remarks
-    * No-op if feedback is already shown or the session is completed.
-    *
-    * @param payload - The draw answer payload, or null to clear.
-    */
-   setDrawAnswer(payload: DrawAnswerPayload | null): void {
+   * Sets the submitted draw answer payload.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   *
+   * @param payload - The draw answer payload, or null to clear.
+   */
+  setDrawAnswer(payload: DrawAnswerPayload | null): void {
     if (this.feedback() !== null || this.completed()) {
       return;
     }
@@ -293,15 +296,15 @@ export class CardSelectStore {
   }
 
   /**
-    * Changes the session direction and resets the current interaction.
-    *
-    * @remarks
-    * No-op if the direction is unchanged. Resets all interaction state
-    * (selection, answer, memory, draw, feedback).
-    *
-    * @param direction - The new card direction.
-    */
-   setSessionDirection(direction: CardDirection): void {
+   * Changes the session direction and resets the current interaction.
+   *
+   * @remarks
+   * No-op if the direction is unchanged. Resets all interaction state
+   * (selection, answer, memory, draw, feedback).
+   *
+   * @param direction - The new card direction.
+   */
+  setSessionDirection(direction: CardDirection): void {
     if (direction === this.sessionDirection()) {
       return;
     }
@@ -330,12 +333,12 @@ export class CardSelectStore {
   }
 
   /**
-    * Builds the current answer state object from all interaction signals.
-    *
-    * @returns The answer state with all interaction fields.
-    * @private
-    */
-   private answerState() {
+   * Builds the current answer state object from all interaction signals.
+   *
+   * @returns The answer state with all interaction fields.
+   * @private
+   */
+  private answerState() {
     return {
       selectedIndex: this.selectedIndex(),
       answerText: this.answerText(),
@@ -347,15 +350,15 @@ export class CardSelectStore {
   }
 
   /**
-    * Resets all interaction state (selection, answer, memory, draw, feedback).
-    *
-    * @remarks
-    * Increments `memoryBoardNonce` if the current card is a memory card
-    * to trigger column randomization.
-    *
-    * @private
-    */
-   private resetInteraction(): void {
+   * Resets all interaction state (selection, answer, memory, draw, feedback).
+   *
+   * @remarks
+   * Increments `memoryBoardNonce` if the current card is a memory card
+   * to trigger column randomization.
+   *
+   * @private
+   */
+  private resetInteraction(): void {
     this.selectedIndex.set(null);
     this.answerText.set('');
     this.memoryComplete.set(false);

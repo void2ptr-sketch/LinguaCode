@@ -1,0 +1,21 @@
+{
+  "shared/ui/chinese": "widgets/chinese",
+  "shared/ui/cards": "widgets/cards",
+  "shared/ui/card-host": "widgets/card-host",
+  "shared/ui/card-focus-shell": "widgets/card-focus-shell",
+  "shared/ui/scenario-picker": "widgets/scenario-picker",
+  "shared/ui/lesson-picker": "widgets/lesson-picker",
+  "shared/ui/course-picker": "widgets/course-picker",
+  "shared/ui/active-language-pair-switcher": "widgets/active-language-pair-switcher",
+  "shared/ui/course-display-settings-matrix": "widgets/course-display-settings-matrix",
+  "shared/ui/code-highlight": "widgets/code-highlight",
+  "shared/constants/catalog-labels.ts": "entities/card/lib/catalog-labels.ts",
+  "shared/constants/catalog-labels": "entities/card/lib/catalog-labels",
+  "shared/types/draw-answer.types.ts": "entities/chinese/model/draw-answer.types.ts",
+  "shared/types/draw-answer.types": "entities/chinese/model/draw-answer.types",
+  "shared/types/card-interaction.types.ts": "entities/card/model/card-interaction.types.ts",
+  "shared/types/card-interaction.types": "entities/card/model/card-interaction.types",
+  "shared/utils/card-answer": "entities/card/lib/card-answer",
+  "shared/utils/hanzi-card-answer": "entities/chinese/lib/hanzi-card-answer",
+  "shared/utils/cards": "entities/card/lib/cards"
+}

@@ -36,9 +36,11 @@ import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { jsPDF } from 'jspdf';
 
-import type { Card, CourseWithLessons, Scenario, Lesson } from '../../../core/models';
-import { CardRepository } from '../../../core/repositories/cards/repository/card.repository';
-import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/storage/scenarios-storage';
+import type { Card } from '../../../entities/card/model';
+import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { Scenario } from '../../../entities/scenario/model';
+import { CardRepository } from '../../../entities/card/repository/card.repository';
+import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
 
 /**
  * Представление карточки в контексте курса.

@@ -5,14 +5,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-import type { ContentLanguage } from '../../../../core/models';
-import type { CardAppearance } from '../../../../core/models';
-import { DEFAULT_TONE_OPTIONS } from '../../../../core/domain/chinese/answers/tone-mark.utils';
-import { Card } from '../../../../core/models';
+import type { ContentLanguage } from '../../../../entities/card/model';
+import type { CardAppearance } from '../../../../entities/card/model';
+import { DEFAULT_TONE_OPTIONS } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
+import { Card } from '../../../../entities/card/model';
 import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
-import { CONTENT_LANGUAGE_LABELS } from '../../../card-catalog-search';
-import { contentLanguages } from '../../../../core/domain/language-pair/language-pair.utils';
+import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
+import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
@@ -20,8 +20,8 @@ import {
   type MemoryCardDraft,
   type SoundCardDraft,
 } from '../../types';
-import { cardFormKindGroup } from '../../utils/card-form.registry';
-import { normalizeCardDraft } from '../../utils/card-validation.utils';
+import { cardFormKindGroup } from '../../utils/form/card-form.registry';
+import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
@@ -32,17 +32,17 @@ import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
-import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
+import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
+import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
-import type { CardIndexMetaOverride } from '../../../../core/models';
+import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,
   type CourseOption,
   type LessonOption,
   type ScenarioOption,
-} from '../../../card-catalog-search/services/card-catalog-hierarchy/card-catalog-hierarchy.service';
+} from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
 
 /**
  * Tab definition for the card form navigation.

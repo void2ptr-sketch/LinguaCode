@@ -4,9 +4,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { primaryHanCharacter } from '../../../../../../core/domain/chinese/drawing/draw-stroke-guides.data';
-import { syncLexemePrimaryFromText } from '../../../../utils/card-editor-ux.utils';
-import type { ContentLanguage } from '../../../../../../core/models';
+import { primaryHanCharacter } from '../../../../../../entities/chinese/lib/drawing/draw-stroke-guides.data';
+import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
+import type { ContentLanguage } from '../../../../../../entities/card/model';
 import type { DrawCardDraft, KeyboardCardDraft } from '../../../../types';
 
 export type InputCardDraft = KeyboardCardDraft | DrawCardDraft;

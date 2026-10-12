@@ -1,0 +1,30 @@
+<div class="card-select-page__tab card-select-page__tab--lessons">
+  @if (selectedCourseId()) {
+    <app-lesson-picker
+      [hideTitle]="true"
+      [selectedCourseId]="selectedCourseId()"
+      [selectedLessonId]="selectedLessonId()"
+      [enforcePrerequisites]="enforcePrerequisites()"
+      (selectedLessonIdChange)="onSelectedLessonIdChange($event)"
+      (lessonPickChange)="onLessonPickChange($event)"
+    />
+  } @else {
+    <div class="card-select-page__empty-state">
+      <mat-icon aria-hidden="true">menu_book</mat-icon>
+      <p class="card-select-page__tab-hint">Выберите программу на вкладке «Программа».</p>
+      <button mat-stroked-button type="button" (click)="onGoToCourse()">К программе</button>
+    </div>
+  }
+
+  <footer class="card-select-page__tab-footer">
+    <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
+    <button
+      mat-flat-button
+      type="button"
+      [disabled]="!canAdvanceFromLessons()"
+      (click)="onNextClick()"
+    >
+      Далее
+    </button>
+  </footer>
+</div>

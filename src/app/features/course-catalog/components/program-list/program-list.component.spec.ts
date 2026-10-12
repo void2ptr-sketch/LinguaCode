@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 import { vi } from 'vitest';
 
-import type { CourseIndexEntry } from '../../../../core/models';
+import type { CourseIndexEntry } from '../../../../entities/course/model';
 import { UiPaginationComponent } from '../../../../shared/';
 import { CourseCatalogProgramsComponent } from './program-list.component';
 import { CourseCatalogStore } from '../../services/course-catalog.store';
@@ -88,14 +88,30 @@ describe('CourseCatalogProgramsComponent', () => {
       set(target, prop, value) {
         (target as Record<string, unknown>)[prop as string] = value;
         switch (prop) {
-          case 'loading': loadingSignal.set(value as boolean); break;
-          case 'error': errorSignal.set(value as string | null); break;
-          case 'items': itemsSignal.set(value as readonly CourseIndexEntry[]); break;
-          case 'totalItems': totalItemsSignal.set(value as number); break;
-          case 'pageIndex': pageIndexSignal.set(value as number); break;
-          case 'pageSize': pageSizeSignal.set(value as number); break;
-          case 'progressByCourseId': progressByCourseIdSignal.set(value as Record<string, number>); break;
-          case 'completedCourseIds': completedCourseIdsSignal.set(value as ReadonlySet<string>); break;
+          case 'loading':
+            loadingSignal.set(value as boolean);
+            break;
+          case 'error':
+            errorSignal.set(value as string | null);
+            break;
+          case 'items':
+            itemsSignal.set(value as readonly CourseIndexEntry[]);
+            break;
+          case 'totalItems':
+            totalItemsSignal.set(value as number);
+            break;
+          case 'pageIndex':
+            pageIndexSignal.set(value as number);
+            break;
+          case 'pageSize':
+            pageSizeSignal.set(value as number);
+            break;
+          case 'progressByCourseId':
+            progressByCourseIdSignal.set(value as Record<string, number>);
+            break;
+          case 'completedCourseIds':
+            completedCourseIdsSignal.set(value as ReadonlySet<string>);
+            break;
         }
         return true;
       },
@@ -110,14 +126,30 @@ describe('CourseCatalogProgramsComponent', () => {
       pageSize: pageSizeSignal,
       progressByCourseId: progressByCourseIdSignal,
       completedCourseIds: completedCourseIdsSignal,
-      setLoading: vi.fn((value: boolean) => { mockStoreState.loading = value; }),
-      setError: vi.fn((value: string | null) => { mockStoreState.error = value; }),
-      setItems: vi.fn((value: readonly CourseIndexEntry[]) => { mockStoreState.items = value; }),
-      setTotalItems: vi.fn((value: number) => { mockStoreState.totalItems = value; }),
-      setPageIndex: vi.fn((value: number) => { mockStoreState.pageIndex = value; }),
-      setPageSize: vi.fn((value: number) => { mockStoreState.pageSize = value; }),
-      setProgressByCourseId: vi.fn((value: Record<string, number>) => { mockStoreState.progressByCourseId = value; }),
-      setCompletedCourseIds: vi.fn((value: Set<string>) => { mockStoreState.completedCourseIds = value; }),
+      setLoading: vi.fn((value: boolean) => {
+        mockStoreState.loading = value;
+      }),
+      setError: vi.fn((value: string | null) => {
+        mockStoreState.error = value;
+      }),
+      setItems: vi.fn((value: readonly CourseIndexEntry[]) => {
+        mockStoreState.items = value;
+      }),
+      setTotalItems: vi.fn((value: number) => {
+        mockStoreState.totalItems = value;
+      }),
+      setPageIndex: vi.fn((value: number) => {
+        mockStoreState.pageIndex = value;
+      }),
+      setPageSize: vi.fn((value: number) => {
+        mockStoreState.pageSize = value;
+      }),
+      setProgressByCourseId: vi.fn((value: Record<string, number>) => {
+        mockStoreState.progressByCourseId = value;
+      }),
+      setCompletedCourseIds: vi.fn((value: Set<string>) => {
+        mockStoreState.completedCourseIds = value;
+      }),
     };
 
     await TestBed.configureTestingModule({
@@ -197,7 +229,9 @@ describe('CourseCatalogProgramsComponent', () => {
 
       const retryButton = fixture.nativeElement.querySelector('button[mat-flat-button]');
       let emitted = false;
-      component.loadRequested.subscribe(() => { emitted = true; });
+      component.loadRequested.subscribe(() => {
+        emitted = true;
+      });
       retryButton.click();
 
       expect(emitted).toBe(true);
@@ -299,7 +333,9 @@ describe('CourseCatalogProgramsComponent', () => {
       fixture.detectChanges();
 
       let emitted: string | undefined;
-      component.startCourse.subscribe((id) => { emitted = id; });
+      component.startCourse.subscribe((id) => {
+        emitted = id;
+      });
 
       const buttons = fixture.nativeElement.querySelectorAll('button');
       const startButtons: HTMLElement[] = [];

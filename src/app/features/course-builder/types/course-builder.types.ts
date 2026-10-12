@@ -1,4 +1,4 @@
-import type { CourseAuthoring } from '../../../core/models';
+import type { CourseAuthoring } from '../../../entities/course/model';
 
 /**
  * Draft representation of a lesson for the course editor form.

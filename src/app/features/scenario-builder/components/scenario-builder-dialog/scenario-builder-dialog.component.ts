@@ -9,9 +9,9 @@ import {
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
-import { CardCatalogSearchStore } from '../../../card-catalog-search';
-import { CardEditorDiscardDialogComponent } from '../../../card-editor/components/card-editor-dialog/card-editor-discard-dialog.component';
-import { UserStore } from '../../../../core/state';
+import { CardCatalogSearchStore } from '../../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
+import { CardEditorDiscardDialogComponent } from '../../../../widgets/card-editor-discard-dialog/card-editor-discard-dialog.component';
+import { UserStore } from '../../../../entities/user/model/user.store';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
   emptyScenarioFormDraft,

@@ -1,5 +1,5 @@
-import { Card } from '../../../core/models';
-import { CardFeedback } from '../../../shared/types';
+import { Card } from '../../../entities/card/model';
+import { CardFeedback } from '../../../entities/card/model/card-interaction.types';
 
 /**
  * A fixture for card selection testing.

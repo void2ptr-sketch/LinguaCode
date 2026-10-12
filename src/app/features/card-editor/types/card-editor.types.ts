@@ -1,5 +1,5 @@
-import type { ContentLanguage } from '../../../core/models';
-import type { CardDifficulty } from '../../../core/models';
+import type { ContentLanguage } from '../../../entities/card/model';
+import type { CardDifficulty } from '../../../entities/card/model';
 /**
  * Mode of the card editor UI.
  *

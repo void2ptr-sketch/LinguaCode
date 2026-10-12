@@ -6,7 +6,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { describe, expect, it, vi } from 'vitest';
 
 import { CardMetaFieldsComponent } from './card-meta-fields.component';
-import type { CardIndexMetaOverride } from '../../../../core/models';
+import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 
 describe('CardMetaFieldsComponent', () => {
   let fixture: ComponentFixture<CardMetaFieldsComponent>;
@@ -131,7 +131,10 @@ describe('CardMetaFieldsComponent', () => {
   });
 
   it('should tagsString return comma-separated tags', () => {
-    fixture.componentRef.setInput('meta', { difficulty: 'beginner', tags: ['tag1', 'tag2', 'tag3'] });
+    fixture.componentRef.setInput('meta', {
+      difficulty: 'beginner',
+      tags: ['tag1', 'tag2', 'tag3'],
+    });
     fixture.detectChanges();
     expect(component.tagsString()).toBe('tag1, tag2, tag3');
   });
@@ -143,7 +146,11 @@ describe('CardMetaFieldsComponent', () => {
   });
 
   it('should preserve existing fields when updating difficulty', () => {
-    fixture.componentRef.setInput('meta', { difficulty: 'beginner', tags: ['a'], updatedAt: '2024-01-01' });
+    fixture.componentRef.setInput('meta', {
+      difficulty: 'beginner',
+      tags: ['a'],
+      updatedAt: '2024-01-01',
+    });
     fixture.detectChanges();
     const spy = vi.fn();
     component.metaChange.subscribe(spy);

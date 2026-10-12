@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
-import { Card } from '../../../../core/models';
-import { CardHostComponent } from '../../../../shared/ui/card-host';
+import { Card } from '../../../../entities/card/model';
+import { CardHostComponent } from '../../../../widgets/card-host';
 
 /**
  * Card preview component. Renders a read-only preview of a card using the `CardHostComponent`.

@@ -1,7 +1,7 @@
 import { provideHttpClient } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { Card } from '../../../../core/models';
+import { Card } from '../../../../entities/card/model';
 import { SingleCardPlayStore } from './single-card-play.store';
 
 const SELECT_CARD: Card = {

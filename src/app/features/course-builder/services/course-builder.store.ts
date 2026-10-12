@@ -14,22 +14,26 @@
  */
 import { Injectable, computed, inject, signal } from '@angular/core';
 
-import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
-import { normalizeLanguagePair } from '../../../core/domain/language-pair/language-pair.utils';
-import { CourseSearchService } from '../../../core/repositories';
-import type { CourseIndexEntry, CourseListScope, CourseWithLessons } from '../../../core/models';
-import { sanitizeMarkdownText, sanitizePlainText } from '../../../core/security';
-import { COURSE_IDEA_MAX_LENGTH } from '../../../core/repositories/courses/utils/course-authoring.utils';
-import { UserStore } from '../../../core/state';
-import { isEditableContentAuthor } from '../../../core/domain/user/system-author.constants';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
+import { CourseSearchService } from '../../../entities/course';
+import type {
+  CourseIndexEntry,
+  CourseListScope,
+  CourseWithLessons,
+} from '../../../entities/course/model';
+import { sanitizeMarkdownText, sanitizePlainText } from '../../../shared/security';
+import { COURSE_IDEA_MAX_LENGTH } from '../../../entities/course/utils/course-authoring.utils';
+import { UserStore } from '../../../entities/user/model/user.store';
+import { isEditableContentAuthor } from '../../../entities/user/lib/system-author.constants';
 import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
-import { collectCourseBundle } from '../../../core/repositories/courses/utils/course-bundle.utils';
-import { loadCourseCatalogFromStorage } from '../../../core/repositories/courses/storage/courses-storage';
-import { loadScenariosFromStorage } from '../../../core/repositories/scenarios/storage/scenarios-storage';
-import { CardRepository } from '../../../core/repositories/cards/repository/card.repository';
-import { loadCardIndexMetaOverrides } from '../../../core/repositories/cards/storage/card-index-meta.storage';
+import { collectCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
+import { loadCourseCatalogFromStorage } from '../../../entities/course/storage/courses-storage';
+import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
+import { CardRepository } from '../../../entities/card/repository/card.repository';
+import { loadCardIndexMetaOverrides } from '../../../entities/card/storage/card-index-meta.storage';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
 /** Sanitizer for course title: max 128 characters, HTML cleaned */

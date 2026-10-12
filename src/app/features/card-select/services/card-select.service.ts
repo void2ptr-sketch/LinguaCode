@@ -1,15 +1,12 @@
 import { Injectable, inject } from '@angular/core';
 
-import {
-  CardSearchService,
-  CardsApiService,
-  resolveScenarioCardIds,
-  ScenarioSearchService,
-} from '../../../core/repositories';
-import { activeLanguagePairCriteria } from '../../../core/domain/language-pair/language-pair-scope.utils';
-import { scenarioMatchesLanguagePair } from '../../../core/repositories/scenarios/utils/scenario-card-source.utils';
-import type { Card, ScenarioSearchPage } from '../../../core/models';
-import { UserStore } from '../../../core/state';
+import { CardSearchService, CardsApiService } from '../../../entities/card';
+import { resolveScenarioCardIds, ScenarioSearchService } from '../../../entities/scenario';
+import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
+import { scenarioMatchesLanguagePair } from '../../../entities/scenario/utils/scenario-card-source.utils';
+import type { Card } from '../../../entities/card/model';
+import type { ScenarioSearchPage } from '../../../entities/scenario/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 /**
  * Represents a card selection session loaded from a scenario.
@@ -104,7 +101,9 @@ export class CardSelectService {
     };
   }
 
-  private formatSourceLabel(source: import('../../../core/models').ScenarioCardSource): string {
+  private formatSourceLabel(
+    source: import('../../../entities/scenario/model').ScenarioCardSource,
+  ): string {
     if (source.mode === 'fixed') {
       return `${source.cardIds.length} карточек`;
     }

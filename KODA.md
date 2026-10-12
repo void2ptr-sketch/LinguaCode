@@ -16,32 +16,42 @@
 | `README.md`            | Обзор, быстрый старт, стек     |
 | `TASKS.md`             | Чеклист задач и бэклога        |
 | `docs/INDEX.md`        | Оглавление документации        |
-| `docs/DOMAIN.md`       | Сущности, модели, терминология |
+| `docs/SYSTEM/DOMAIN.md`       | Сущности, модели, терминология |
 | `docs/ARCHITECTURE.md` | Технические решения            |
-| `docs/.gitrules.md`    | Правила веток и коммитов       |
+| `docs/SYSTEM/GIT-RULES.md`    | Правила веток и коммитов       |
 | `.cursorrules`         | Базовые правила стиля          |
 
 ## Архитектура
 
-### Структура `src/app/`
+### Структура `src/app/` (FSD — Feature-Sliced Design)
+
+6 слоёв, импорты строго вниз. Проверка: `node scripts/audit-fsd.mjs`.
 
 ```
 src/app/
-├── core/
-│   ├── layout/          # shell (header, nav, main-layout, footer)
-│   ├── models/          # типы: Card, Scenario, Course, Lesson, …
-│   ├── state/           # UserStore, LearningResultsStore
-│   ├── data/            # repositories, overlay, content seed, hanzi-engine
-│   └── api/             # HttpClient, interceptors, mock handlers
-├── shared/              # переиспользуемые UI и утилиты
-│   ├── pagination/      # PageRequest, PageResponse, UiPaginationComponent
-│   ├── card-catalog-search/ # фильтры, ScenarioCardPickerComponent
-│   └── components/      # CardHost, cards/*, pinyin-keyboard
-├── features/            # изолированные фичи (card-select, card-editor, …)
-├── app.component.ts
-├── app.config.ts
-└── app.routes.ts
+├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme
+├── pages/      # страницы-маршруты (*-page)
+├── widgets/    # переиспользуемые UI: card-host, cards/*, pickers, layout (header/nav/main-layout/footer)
+├── features/   # изолированные фичи (card-select, card-editor, scenario-builder, …)
+├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning,
+│               #   language-pair, phonetic, chinese, content-seed, journey
+└── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы
 ```
+
+Правила направлений:
+
+| Слой       | Может импортировать                                        |
+| ---------- | --------------------------------------------------------- |
+| `app`      | всё ниже                                                   |
+| `pages`    | widgets, features, entities, shared                       |
+| `widgets`  | features, entities, shared                                 |
+| `features` | entities, shared                                           |
+| `entities` | shared                                                     |
+| `shared`   | ничего (только внешние пакеты)                             |
+
+- Фичи **не импортируют** друг друга (запрещены cross-slice импорты).
+- Публичный API фичи — через `index.ts`.
+- `core/` — переходные shim-баррели (реальный код в entities/shared/app/widgets); удаление — отдельная задача.
 
 ### Контент
 
@@ -71,7 +81,7 @@ src/app/
 1. От `main` → ветка `NUMBER_description` (напр. `14_authoring-migration`)
 2. Коммиты: `[NUMBER_description] краткое описание`
 3. Merge в `main`, ветку не удалять
-4. Полные правила: `docs/.gitrules.md`
+4. Полные правила: `docs/SYSTEM/GIT-RULES.md`
 
 ### Команды
 
@@ -145,9 +155,9 @@ type CourseAuthoring = {
 
 - Документация: `docs/INDEX.md`
 - Задачи: `TASKS.md`
-- Git-правила: `docs/.gitrules.md`
+- Git-правила: `docs/SYSTEM/GIT-RULES.md`
 - Архитектура: `docs/ARCHITECTURE.md`
-- Домен: `docs/DOMAIN.md`
+- Домен: `docs/SYSTEM/DOMAIN.md`
 - Бизнес: `docs/BUSINESS.md`
 
 ## Миграции данных

@@ -1,0 +1,65 @@
+# Архитектура: конструктор сценариев (`scenario-builder`)
+
+CRUD сценариев, `ScenarioCardSource`, публикация. Маршрут `/tools/scenario-builder`.
+
+## Назначение
+
+Сборка сценариев из fixed / criteria / snapshot карточек; scope по `LanguagePair`.
+
+## Структура
+
+```text
+features/scenario-builder/
+├── components/
+│   ├── scenario-builder-page/
+│   ├── scenario-builder-dialog/
+│   └── scenario-editor-form/
+├── services/
+│   ├── scenario-builder.store.ts
+│   └── scenario-builder.service.ts
+└── types/
+```
+
+## Модель `ScenarioCardSource`
+
+```mermaid
+classDiagram
+  class ScenarioCardSource {
+    <<union>>
+  }
+  class Fixed {
+    mode: fixed
+    cardIds: string[]
+  }
+  class Criteria {
+    mode: criteria
+    criteria: CardSearchCriteria
+    limit?: number
+    sort?: ScenarioCardSort
+  }
+  class Snapshot {
+    mode: snapshot
+    cardIds: string[]
+    criteria: CardSearchCriteria
+    frozenAt: ISO8601
+  }
+  ScenarioCardSource <|-- Fixed
+  ScenarioCardSource <|-- Criteria
+  ScenarioCardSource <|-- Snapshot
+```
+
+## Особенности
+
+- Список через `ScenarioSearchService` + pagination.
+- Dialog CRUD (как card-editor).
+- Read-only для чужих опубликованных сценариев (G11e multi-user).
+- Прохождение — [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md).
+
+## Зависимости
+
+- `shared/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
+- `shared/` — course-picker, lesson-picker, scenario-picker
+
+## Связанные документы
+
+- [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md)

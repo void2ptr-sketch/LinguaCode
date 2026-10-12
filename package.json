@@ -12,6 +12,8 @@
     "test:ci": "ng test --no-watch --no-progress",
     "verify": "npm run lint && npm run sync:hanzi && npm run build:prod && npm run test:ci",
     "audit": "npm audit --audit-level=high",
+    "audit:fsd": "node scripts/audit-fsd.mjs",
+    "check:imports": "node scripts/check-imports.mjs",
     "lint": "ng lint",
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier     --check \"src/**/*.{ts,html,scss,css,json}\" \"*.{json,md,js}\" \"docs/**/*.md\"",

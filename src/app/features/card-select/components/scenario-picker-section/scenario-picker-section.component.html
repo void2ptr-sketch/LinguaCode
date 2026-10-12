@@ -1,0 +1,53 @@
+<div class="card-select-page__tab">
+  @if (selectedCourseId() && !selectedLessonId() && requiresLessonForScenarios()) {
+    <div class="card-select-page__empty-state">
+      <mat-icon aria-hidden="true">view_list</mat-icon>
+      <p class="card-select-page__tab-hint">
+        Сначала выберите урок — сценарии будут отфильтрованы по программе.
+      </p>
+      <button mat-stroked-button type="button" (click)="onGoToLessons()">Перейти к урокам</button>
+    </div>
+  } @else {
+    @if (selectedCourseId() && selectedLessonId()) {
+      <p class="card-select-page__tab-note">Показаны сценарии урока «{{ lessonTitle() }}».</p>
+    } @else if (isOpenPractice() && selectedCourseId()) {
+      <p class="card-select-page__tab-note">
+        Свободная практика: все сценарии программы «{{ courseTitle() }}».
+      </p>
+    }
+
+    @if (showDifficultyFilter()) {
+      <mat-button-toggle-group
+        class="card-select-page__difficulty"
+        [ngModel]="selectedDifficulty()"
+        (ngModelChange)="onDifficultyChange($event)"
+        aria-label="Уровень сложности"
+      >
+        <mat-button-toggle [value]="null">Все уровни</mat-button-toggle>
+        @for (level of difficultyLevels(); track level) {
+          <mat-button-toggle [value]="level">{{ difficultyLabels()[level] }}</mat-button-toggle>
+        }
+      </mat-button-toggle-group>
+    }
+
+    <app-scenario-picker
+      [selectedScenarioId]="selectedScenarioId()"
+      [allowedScenarioIds]="allowedScenarioIds()"
+      [autoSelectFirst]="false"
+      (selectedScenarioIdChange)="onSelectedScenarioIdChange($event)"
+      (scenarioLabelChange)="onScenarioLabelChange($event)"
+    />
+  }
+
+  <footer class="card-select-page__tab-footer">
+    <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
+    <button
+      mat-flat-button
+      type="button"
+      [disabled]="!canStartPractice()"
+      (click)="onNextClick()"
+    >
+      Начать практику
+    </button>
+  </footer>
+</div>

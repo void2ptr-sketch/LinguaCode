@@ -1,0 +1,123 @@
+<div class="card-select-page__tab card-select-page__tab--learning">
+  @if (!selectedScenarioId()) {
+    <div class="card-select-page__empty-state">
+      <mat-icon aria-hidden="true">school</mat-icon>
+      <p class="card-select-page__tab-hint">Выберите сценарий на вкладке «Сценарии».</p>
+      <button mat-stroked-button type="button" (click)="onGoToScenarios()">К сценариям</button>
+    </div>
+  } @else {
+    <div class="card-select-page__learning-shell">
+      <div class="card-select-page__learning-toolbar">
+        @if (showDirectionToggle()) {
+          <mat-button-toggle-group
+            class="card-select-page__direction"
+            [ngModel]="sessionDirection()"
+            (ngModelChange)="onDirectionChange($event)"
+          >
+            <mat-button-toggle value="known-to-learning">Известный → новый</mat-button-toggle>
+            <mat-button-toggle value="learning-to-known">Новый → известный</mat-button-toggle>
+          </mat-button-toggle-group>
+        }
+      </div>
+
+      @if (scenarioTitle()) {
+        <div class="card-select-page__context">
+          @if (courseTitle()) {
+            <mat-chip>{{ courseTitle() }}</mat-chip>
+          }
+          @if (lessonTitle()) {
+            <mat-chip>{{ lessonTitle() }}</mat-chip>
+          }
+          <mat-chip>{{ scenarioTitle() }}</mat-chip>
+          @if (scenarioSourceLabel()) {
+            <mat-chip>{{ scenarioSourceLabel() }}</mat-chip>
+          }
+        </div>
+
+        <div class="card-select-page__card-progress">
+          <span class="card-select-page__card-progress-label">
+            Карточка {{ progressLabel() }}
+          </span>
+          <mat-progress-bar mode="determinate" [value]="cardProgressPercent()" />
+        </div>
+      }
+
+      @if (missingCardsWarning(); as warning) {
+        <p class="card-select-page__warning">{{ warning }}</p>
+      }
+
+      @if (loading()) {
+        <div class="card-select-page__state">
+          <mat-spinner diameter="40" />
+          <p>Загрузка карточек…</p>
+        </div>
+      } @else if (error()) {
+        <mat-card class="card-select-page__message">
+          <mat-card-content>{{ error() }}</mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-flat-button type="button" (click)="onRetry()">Повторить</button>
+          </mat-card-actions>
+        </mat-card>
+      } @else if (completed()) {
+        <mat-card class="card-select-page__message">
+          <mat-card-header>
+            <mat-card-title>
+              @if (showCourseCertificate()) {
+                Программа завершена
+              } @else {
+                Сценарий завершён
+              }
+            </mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            @if (showCourseCertificate()) {
+              <mat-chip class="card-select-page__certificate" disabled>
+                <mat-icon>workspace_premium</mat-icon>
+                Сертификат: {{ courseTitle() }}
+              </mat-chip>
+              <p>Вы прошли все уроки программы. Результаты сохранены.</p>
+            } @else {
+              <p>Вы прошли все карточки. Результаты сохранены.</p>
+            }
+          </mat-card-content>
+          <mat-card-actions align="end">
+            @if (hasNextLessonScenario()) {
+              <button mat-flat-button type="button" (click)="onGoToNextLessonScenario()">
+                Следующий сценарий урока
+              </button>
+            }
+            <button mat-stroked-button type="button" (click)="onRestart()">
+              Начать заново
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      } @else {
+        <div class="card-select-page__card-zone">
+          @if (currentCard(); as card) {
+            <app-card-host
+              [card]="card"
+              [direction]="sessionDirection()"
+              [selectedIndex]="selectedIndex()"
+              [answerText]="answerText()"
+              [memoryComplete]="memoryComplete()"
+              [memoryBoardNonce]="memoryBoardNonce()"
+              [drawSubmitted]="drawSubmitted()"
+              [drawAnswer]="drawAnswer()"
+              [feedback]="feedback()"
+              [fontSize]="fontSize()"
+              [autoFocusFullscreen]="isLearningTabActive()"
+              (optionSelected)="onOptionSelected($event)"
+              (answerTextChange)="onAnswerTextChange($event)"
+              (memoryCompleteChange)="onMemoryCompleteChange($event)"
+              (drawSubmittedChange)="onDrawSubmittedChange($event)"
+              (drawAnswerChange)="onDrawAnswerChange($event)"
+              (timeExpired)="onTimeExpired()"
+              (checkAnswer)="onCheckAnswer()"
+              (nextCard)="onNextCard()"
+            />
+          }
+        </div>
+      }
+    </div>
+  }
+</div>
