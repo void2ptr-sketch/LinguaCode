@@ -22,7 +22,7 @@ import {
   resolveRomanizationReading,
 } from '../../../phonetic/lib/phonetic-lexeme.utils';
 import type { ResolvedOptionCard } from '../../model';
-import { CardAnswerState } from '../../../../entities/card/model/card-interaction.types';
+import { CardAnswerState } from '../../model/card-interaction.types';
 
 /**
  * Checks whether the user has provided enough input to check the answer.

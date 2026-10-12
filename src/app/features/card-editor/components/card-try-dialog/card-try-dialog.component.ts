@@ -11,7 +11,7 @@ import { cardIndexMatchesPair } from '../../../../entities/language-pair/lib/lan
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { CARD_KIND_LABELS } from '../../../../entities/card/lib/catalog-labels';
-import { CardHostComponent } from '../../../../widgets/card-host';
+import { CardHostComponent } from '../../../../entities/card/ui/card-host';
 import type { CardTryDialogData } from './card-try-dialog.types';
 import { SingleCardPlayStore } from './single-card-play.store';
 

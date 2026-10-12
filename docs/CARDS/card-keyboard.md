@@ -1,6 +1,6 @@
 # KeyboardCard
 
-> Исходный код: `src/app/widgets/cards/keyboard-card/keyboard-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/keyboard-card/keyboard-card.component.ts`
 
 ## Назначение
 

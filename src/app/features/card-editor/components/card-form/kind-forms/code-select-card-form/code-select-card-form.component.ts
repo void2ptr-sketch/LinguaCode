@@ -12,7 +12,7 @@ import {
 } from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
 import type { CodeHighlightLanguage } from '../../../../../../entities/card/model';
 import type { CodeBlockDraft, CodeSelectCardDraft } from '../../../../types';
-import { CodeHighlightComponent } from '../../../../../../widgets/code-highlight';
+import { CodeHighlightComponent } from '../../../../../../entities/card/ui/code-highlight';
 
 /**
  * Form component for code-select cards. Manages code prompt, code options, and correct answer selection.

@@ -1,6 +1,6 @@
 # SelectCard
 
-> Исходный код: `src/app/widgets/cards/select-card/select-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/select-card/select-card.component.ts`
 
 ## Назначение
 
@@ -62,7 +62,7 @@
 - **Сервисы/утилиты:**
   - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts` — формирует `prompt`, `options`, `optionLexemes`, `correctIndex` с учётом направления.
   - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts` — определяет фактическое направление в сессии.
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts` — генерирует CSS-классы (`option`, `option--selected`, `option--correct`, `option--incorrect`).
 
 ### @Input (входные параметры)
 

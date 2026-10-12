@@ -1,6 +1,6 @@
 # SymbolCard
 
-> Исходный код: `src/app/widgets/cards/symbol-card/symbol-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/symbol-card/symbol-card.component.ts`
 
 ## Назначение
 
@@ -55,7 +55,7 @@
 - **Утилиты:**
   - `resolveOptionCard()` из `src/app/entities/card/utils/card-direction.utils.ts`.
   - `effectiveCardDirection()` из `src/app/entities/card/utils/card-direction.utils.ts`.
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts`.
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts`.
 
 ### @Input (входные параметры)
 

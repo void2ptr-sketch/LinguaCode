@@ -27,7 +27,7 @@ import { ScenarioSearchService } from '../../../entities/scenario';
 
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
 import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
-import type { LessonPickPayload } from '../../../widgets/lesson-picker';
+import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';

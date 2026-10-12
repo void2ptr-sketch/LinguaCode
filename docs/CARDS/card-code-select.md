@@ -1,6 +1,6 @@
 # CodeSelectCard
 
-> Исходный код: `src/app/widgets/cards/code-select-card/code-select-card.component.ts`
+> Исходный код: `src/app/entities/card/ui/cards/code-select-card/code-select-card.component.ts`
 
 ## Назначение
 
@@ -61,7 +61,7 @@
   - `CodeHighlightComponent` — подсветка синтаксиса для вопроса и вариантов.
   - `MatCardModule`, `MatButtonModule`, `MatIconModule` — Angular Material.
 - **Утилиты:**
-  - `buildOptionClass()` из `src/app/widgets/cards/option-card.util.ts` — CSS-классы для вариантов.
+  - `buildOptionClass()` из `src/app/entities/card/ui/cards/option-card.util.ts` — CSS-классы для вариантов.
 
 ### @Input (входные параметры)
 

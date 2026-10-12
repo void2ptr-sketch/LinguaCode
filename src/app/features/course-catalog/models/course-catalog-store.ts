@@ -4,7 +4,7 @@ import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { LearningProficiencyLevel } from '../../../entities/learning/model';
 import type { RomanizationSystem, ToneColorSchemeId } from '../../../entities/phonetic/model';
 import { TRACING_STROKE_DURATION_BOUNDS } from '../../../entities/phonetic/model';
-import type { AnswerDisplayMode } from '../../../widgets/course-display-settings-matrix/course-display-settings-matrix.util';
+import type { AnswerDisplayMode } from '../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util';
 
 export type CourseCatalogState = {
   // Course catalog data

@@ -14,8 +14,8 @@ import {
   CONTENT_LANGUAGE_LABELS,
   contentLanguages,
 } from '../../../../entities/language-pair/lib/language-pair.utils';
-import { ScenarioCardCriteriaEditorComponent } from '../../../../widgets/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
-import { ScenarioCardPickerComponent } from '../../../../widgets/card-catalog/scenario-card-picker/scenario-card-picker.component';
+import { ScenarioCardCriteriaEditorComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component';
+import { ScenarioCardPickerComponent } from '../../../../entities/card/ui/card-catalog/scenario-card-picker/scenario-card-picker.component';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import type { ScenarioCardSourceMode } from '../../types';
 import type { ScenarioFormDraft } from '../../utils/scenario-form-draft.utils';

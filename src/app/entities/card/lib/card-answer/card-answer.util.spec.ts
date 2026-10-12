@@ -1,5 +1,5 @@
 import { checkCardAnswer, canCheckCardAnswer, getCorrectAnswerLabel } from './card-answer.util';
-import { createCardAnswerState } from '../../../../entities/card/model/card-interaction.types';
+import { createCardAnswerState } from '../../model/card-interaction.types';
 
 const baseState = createCardAnswerState('beginner');
 
