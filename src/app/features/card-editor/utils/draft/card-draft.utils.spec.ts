@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 
-import { CardAppearance } from '../../../core/models';
-import type { Card } from '../../../core/models';
+import { CardAppearance } from '../../../../core/models';
+import type { Card } from '../../../../core/models';
 import { cardToDraft, cardSummary, emptyCardDraft } from './card-draft.utils';
 import type {
   CodeSelectCardDraft,
@@ -15,7 +15,7 @@ import type {
   SymbolCardDraft,
   TimedCardDraft,
   ToneCardDraft,
-} from '../types/card-draft.types';
+} from '../../types/card-draft.types';
 
 describe('card-draft.utils', () => {
   const defaultAppearance: CardAppearance = {

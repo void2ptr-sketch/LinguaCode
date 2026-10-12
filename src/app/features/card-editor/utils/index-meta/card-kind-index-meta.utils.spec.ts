@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import type { CardDraft } from '../types';
+import type { CardDraft } from '../../types';
 import { editorVariantLabel, indexTagsForDraft } from './card-kind-index-meta.utils';
 
 describe('indexTagsForDraft', () => {

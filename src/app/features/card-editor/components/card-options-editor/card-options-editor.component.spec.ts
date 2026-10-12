@@ -13,7 +13,7 @@ import {
   CardOptionsEditorConfig,
 } from './card-options-editor.component';
 import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
+import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 
 describe('CardOptionsEditorComponent', () => {
   let fixture: ComponentFixture<CardOptionsEditorComponent>;

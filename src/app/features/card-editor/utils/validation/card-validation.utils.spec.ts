@@ -5,8 +5,8 @@ import {
   normalizeSelectCardDraft,
   normalizeTimedCardDraft,
 } from './card-validation.utils';
-import { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from '../types';
-import { emptyLexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { emptyLexemeCardDraft, emptyMemoryPairDraft, emptyOptionLexemes } from '../../types';
+import { emptyLexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 
 describe('card-validation.utils', () => {
   const appearance = { theme: 'azure-blue', fontSize: 'md' as const };

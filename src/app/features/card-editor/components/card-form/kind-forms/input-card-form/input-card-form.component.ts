@@ -5,7 +5,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { primaryHanCharacter } from '../../../../../../core/domain/chinese/drawing/draw-stroke-guides.data';
-import { syncLexemePrimaryFromText } from '../../../../utils/card-editor-ux.utils';
+import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.utils';
 import type { ContentLanguage } from '../../../../../../core/models';
 import type { DrawCardDraft, KeyboardCardDraft } from '../../../../types';
 

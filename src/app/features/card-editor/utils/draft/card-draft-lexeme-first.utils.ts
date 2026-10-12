@@ -1,5 +1,5 @@
-import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { CardDraft } from '../types';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { CardDraft } from '../../types';
 
 /**
  * Derives the display text for an option, preferring the lexeme primary over the fallback.

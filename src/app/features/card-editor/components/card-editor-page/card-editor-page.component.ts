@@ -27,7 +27,7 @@ import {
   CARD_CREATE_GROUP_LABELS,
   CARD_CREATE_GROUPS,
   KINDS_BY_CREATE_GROUP,
-} from '../../utils/card-create-groups.utils';
+} from '../../utils/form/card-create-groups.utils';
 import type { CardIndexEntry } from '../../../../core/models';
 
 let lastKnownActiveLanguagePairId: string | null = null;

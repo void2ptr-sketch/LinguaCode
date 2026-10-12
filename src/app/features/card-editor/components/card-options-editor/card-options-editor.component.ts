@@ -18,7 +18,7 @@ import {
   type CardOptionsEditorState,
   updateOptionLexeme,
   updateOptionText,
-} from '../../utils/card-options-editor.utils';
+} from '../../utils/options/card-options-editor.utils';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
 
 /**

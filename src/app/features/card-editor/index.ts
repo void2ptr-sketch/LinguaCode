@@ -22,6 +22,6 @@ export { CardTryDialogService } from './components/card-try-dialog/card-try-dial
 export type { CardEditorMode } from './types/card-editor.types';
 export type { CardDraft } from './types/card-draft.types';
 export type { CardFormContext } from './types/card-form.types';
-export { emptyCardDraft } from './utils/card-draft.utils';
-export { cardFormKindGroup, CARD_FORM_KIND_GROUP } from './utils/card-form.registry';
-export { normalizeCardDraft, cardValidationErrorMessage } from './utils/card-validation.utils';
+export { emptyCardDraft } from './utils/draft/card-draft.utils';
+export { cardFormKindGroup, CARD_FORM_KIND_GROUP } from './utils/form/card-form.registry';
+export { normalizeCardDraft, cardValidationErrorMessage } from './utils/validation/card-validation.utils';

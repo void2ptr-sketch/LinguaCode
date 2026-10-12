@@ -17,7 +17,7 @@ import {
   defaultScriptForLanguages,
   isEnLearningPair,
   isRuZhPair,
-} from '../../utils/card-editor-ux.utils';
+} from '../../utils/ux/card-editor-ux.utils';
 
 /**
  * Lexeme fields component. Provides editable fields for lexeme data (primary, pinyin, IPA, palladius, script).

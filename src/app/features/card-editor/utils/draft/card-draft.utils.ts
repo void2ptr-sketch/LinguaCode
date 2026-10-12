@@ -1,13 +1,13 @@
-import { Card, CardAppearance, CardKind } from '../../../core/models';
-import { DEFAULT_TONE_OPTIONS } from '../../../core/domain/chinese/answers/tone-mark.utils';
-import { lexemeToDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { Card, CardAppearance, CardKind } from '../../../../core/models';
+import { DEFAULT_TONE_OPTIONS } from '../../../../core/domain/chinese/answers/tone-mark.utils';
+import { lexemeToDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 import {
   CardDraft,
   DEFAULT_CARD_DIRECTION,
   emptyLexemeCardDraft,
   emptyMemoryPairDraft,
   emptyOptionLexemes,
-} from '../types';
+} from '../../types';
 
 /**
  * Extracts hierarchical fields (course, lesson, scenario) from a card.

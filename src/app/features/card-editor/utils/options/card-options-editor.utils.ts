@@ -1,7 +1,7 @@
-import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import { emptyLexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { ContentLanguage } from '../../../core/models';
-import { defaultScriptForLanguages, syncLexemePrimaryFromText } from './card-editor-ux.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import { emptyLexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { ContentLanguage } from '../../../../core/models';
+import { defaultScriptForLanguages, syncLexemePrimaryFromText } from '../ux/card-editor-ux.utils';
 
 export const MIN_CARD_OPTIONS = 2;
 export const MAX_CARD_OPTIONS = 8;

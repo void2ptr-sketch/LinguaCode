@@ -1,4 +1,4 @@
-import type { CardKind } from '../../../core/models';
+import type { CardKind } from '../../../../core/models';
 import {
   CARD_CREATE_GROUPS,
   createGroupForKind,

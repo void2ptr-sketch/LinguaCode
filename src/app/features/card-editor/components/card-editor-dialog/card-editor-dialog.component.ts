@@ -18,10 +18,10 @@ import { CardsCatalogMockHandler } from '../../../../core/api/cards/cards-catalo
 import { UserStore } from '../../../../core/state';
 import { CardEditorStore } from '../../services/card-editor.store';
 import type { CardDraft, CardIndexMetaDraft, CardIndexMetaOverride } from '../../types';
-import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/card-editor-ux.utils';
+import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-editor-ux.utils';
 import { CardFormComponent } from '../card-form/card-form.component';
-import { applyLexemeFirstToDraft } from '../../utils/card-draft-lexeme-first.utils';
-import { indexTagsForDraft } from '../../utils/card-kind-index-meta.utils';
+import { applyLexemeFirstToDraft } from '../../utils/draft/card-draft-lexeme-first.utils';
+import { indexTagsForDraft } from '../../utils/index-meta/card-kind-index-meta.utils';
 import { CardEditorDiscardDialogComponent } from './card-editor-discard-dialog.component';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
 

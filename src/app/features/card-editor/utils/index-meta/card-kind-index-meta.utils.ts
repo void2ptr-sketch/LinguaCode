@@ -1,5 +1,5 @@
-import type { CardKind } from '../../../core/models';
-import type { CardDraft } from '../types';
+import type { CardKind } from '../../../../core/models';
+import type { CardDraft } from '../../types';
 
 const READING_ALIASES = ['reading', 'polyphony'] as const;
 const TONE_ALIASES = ['tone', 'pinyin-tone'] as const;

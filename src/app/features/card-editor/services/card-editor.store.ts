@@ -6,8 +6,8 @@ import type { CardIndexMetaOverride } from '../../../core/models';
 import { upsertCardIndexMetaOverride } from '../../../core/repositories/cards/storage/card-index-meta.storage';
 import { LearningResultsStore, UserStore } from '../../../core/state';
 import { CardDraft, CardEditorMode } from '../types';
-import { cardToDraft, emptyCardDraft } from '../utils/card-draft.utils';
-import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/card-validation.utils';
+import { cardToDraft, emptyCardDraft } from '../utils/draft/card-draft.utils';
+import { cardValidationErrorMessage, normalizeCardDraft } from '../utils/validation/card-validation.utils';
 
 /**
  * Store for the card editor feature.

@@ -1,6 +1,6 @@
-import type { ContentLanguage } from '../../../core/models';
-import type { ScriptCode } from '../../../core/models';
-import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { ContentLanguage } from '../../../../core/models';
+import type { ScriptCode } from '../../../../core/models';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 
 /**
  * UX mode for the card editor: basic (simplified) or advanced (full feature set).

@@ -20,8 +20,8 @@ import {
   type MemoryCardDraft,
   type SoundCardDraft,
 } from '../../types';
-import { cardFormKindGroup } from '../../utils/card-form.registry';
-import { normalizeCardDraft } from '../../utils/card-validation.utils';
+import { cardFormKindGroup } from '../../utils/form/card-form.registry';
+import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
@@ -33,7 +33,7 @@ import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
 import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
-import type { CardOptionsEditorState } from '../../utils/card-options-editor.utils';
+import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../core/models';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';

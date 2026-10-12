@@ -1,7 +1,7 @@
-import type { LexemeDraftFields } from '../../../core/domain/chinese/phonetics/lexeme-draft.utils';
+import type { LexemeDraftFields } from '../../../../core/domain/chinese/phonetics/lexeme-draft.utils';
 
 import { deriveOptionText, deriveOptionTexts, applyLexemeFirstToDraft } from './card-draft-lexeme-first.utils';
-import type { SelectCardDraft, SymbolCardDraft, SoundCardDraft, MemoryCardDraft, KeyboardCardDraft } from '../types';
+import type { SelectCardDraft, SymbolCardDraft, SoundCardDraft, MemoryCardDraft, KeyboardCardDraft } from '../../types';
 
 // ---------------------------------------------------------------------------
 // Helpers

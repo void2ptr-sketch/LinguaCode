@@ -1,4 +1,4 @@
-import type { CardKind } from '../../../core/models';
+import type { CardKind } from '../../../../core/models';
 
 /**
  * Groups card kinds by the structure of their editor form.

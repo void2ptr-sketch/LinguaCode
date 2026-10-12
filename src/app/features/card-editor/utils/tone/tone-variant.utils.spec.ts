@@ -2,7 +2,7 @@ import {
   toneVariantLabels,
   toneVariantPreview,
 } from './tone-variant.utils';
-import type { ToneMark } from '../../../core/models';
+import type { ToneMark } from '../../../../core/models';
 describe('toneVariantLabels', () => {
   it('generates tone variants for a syllable', () => {
     const toneOptions: ToneMark[] = [1, 2, 3, 4, 5];
