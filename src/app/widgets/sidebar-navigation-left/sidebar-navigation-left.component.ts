@@ -21,12 +21,12 @@ type NavGroup = {
  * @remarks The navigation groups are defined inline as readonly class properties.
  */
 @Component({
-  selector: 'app-navigation',
+  selector: 'app-sidebar-navigation-left',
   imports: [RouterLink, RouterLinkActive, MatDividerModule, MatListModule, MatIconModule],
-  templateUrl: './navigation.component.html',
-  styleUrl: './navigation.component.scss',
+  templateUrl: './sidebar-navigation-left.component.html',
+  styleUrl: './sidebar-navigation-left.component.scss',
 })
-export class NavigationComponent {
+export class SidebarNavigationLeftComponent {
   /** Navigation groups defining the sidebar menu structure. */
   readonly groups: readonly NavGroup[] = [
     {

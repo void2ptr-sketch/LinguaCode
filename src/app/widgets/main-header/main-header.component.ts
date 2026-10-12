@@ -11,7 +11,7 @@ import { MenuUserComponent } from '../menu-user/menu-user.component';
  * @remarks This component is a simple presentational element with no inputs or outputs.
  */
 @Component({
-  selector: 'app-header',
+  selector: 'app-main-header',
   imports: [
     RouterLink,
     MatToolbarModule,
@@ -20,7 +20,7 @@ import { MenuUserComponent } from '../menu-user/menu-user.component';
     MenuHelpComponent,
     MenuUserComponent,
   ],
-  templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
+  templateUrl: './main-header.component.html',
+  styleUrl: './main-header.component.scss',
 })
-export class HeaderComponent {}
+export class MainHeaderComponent {}

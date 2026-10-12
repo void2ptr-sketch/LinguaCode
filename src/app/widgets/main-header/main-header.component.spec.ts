@@ -3,19 +3,19 @@ import { provideRouter } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { describe, expect, it } from 'vitest';
 
-import { HeaderComponent } from './header.component';
+import { MainHeaderComponent } from './main-header.component';
 import { MenuCardsComponent } from '../menu-cards/menu-cards.component';
 import { MenuToolsComponent } from '../menu-tools/menu-tools.component';
 import { MenuHelpComponent } from '../menu-help/menu-help.component';
 import { MenuUserComponent } from '../menu-user/menu-user.component';
 
-describe('HeaderComponent', () => {
-  let fixture: ComponentFixture<HeaderComponent>;
+describe('MainHeaderComponent', () => {
+  let fixture: ComponentFixture<MainHeaderComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HeaderComponent,
+        MainHeaderComponent,
         MatToolbarModule,
         MenuCardsComponent,
         MenuToolsComponent,
@@ -25,7 +25,7 @@ describe('HeaderComponent', () => {
       providers: [provideRouter([])],
     });
 
-    fixture = TestBed.createComponent(HeaderComponent);
+    fixture = TestBed.createComponent(MainHeaderComponent);
     fixture.detectChanges();
   });
 
