@@ -15,6 +15,7 @@ import type { Card } from '../../../../entities/card/model';
 class MockCardHostComponent {
   readonly card = input.required<Card>();
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
+  readonly portalTarget = input<string | null>(null);
 }
 
 describe('CardPreviewComponent', () => {

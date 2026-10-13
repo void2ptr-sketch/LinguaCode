@@ -90,6 +90,9 @@ export class CardHostComponent {
   /** Whether to auto-focus the card in fullscreen mode on mount. */
   readonly autoFocusFullscreen = input(false);
 
+  /** CSS class of the parent dialog/overlay for portal positioning. */
+  readonly portalTarget = input<string | null>(null);
+
   /** Emits when the user selects an option (by index). */
   readonly optionSelected = output<number>();
 

@@ -18,7 +18,7 @@ export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
 
 /**
  * Card focus shell component. Provides fullscreen mode for card practice,
- * detaching the host element from its parent and appending to body.
+ * detaching the host element from its parent and appending after the dialog overlay.
  * @remarks Supports keyboard (Escape) exit, auto-enter on learning tab, and
  * preference persistence via `UserStore`.
  */
@@ -48,15 +48,26 @@ export class CardFocusShellComponent {
   readonly autoEnterFullscreen = input(false);
 
   /**
+   * CSS class of the parent dialog/overlay to portal the shell next to.
+   * @remarks
+   * When set (e.g. `'card-try-dialog'`), the shell is inserted as a sibling
+   * right after the matching element so it shares the dialog's stacking context.
+   * When `null` or `undefined`, the shell is appended to `<body>`.
+   */
+  readonly portalTarget = input<string | null>(null);
+
+  /**
    * Whether the shell is currently in fullscreen mode.
    * @remarks
-   * When true, the host element is detached from its parent and appended to `<body>`.
+   * When true, the host element is detached from its parent and placed next to
+   * the target dialog element (or `<body>` when no target is specified).
    */
   readonly fullscreen = signal(false);
 
   private autoEnterWasActive = false;
   private originalParent: HTMLElement | null = null;
   private originalNextSibling: Node | null = null;
+  private portalSibling: Node | null = null;
 
   constructor() {
     effect(() => {
@@ -111,7 +122,7 @@ export class CardFocusShellComponent {
     }
 
     this.fullscreen.set(true);
-    this.attachShellToBody();
+    this.attachShellToPortal();
     document.body.classList.add(CARD_FOCUS_BODY_LOCK_CLASS);
 
     if (persistPreference) {
@@ -133,7 +144,7 @@ export class CardFocusShellComponent {
     }
   }
 
-  private attachShellToBody(): void {
+  private attachShellToPortal(): void {
     const host = this.elementRef.nativeElement;
     const parent = host.parentElement;
 
@@ -143,19 +154,59 @@ export class CardFocusShellComponent {
 
     this.originalParent = parent;
     this.originalNextSibling = host.nextSibling;
+
+    const targetClass = this.portalTarget();
+    if (targetClass) {
+      const target = this.findPortalTarget(targetClass);
+      if (target) {
+        target.after(host);
+        this.portalSibling = target;
+        return;
+      }
+    }
+
     document.body.appendChild(host);
+    this.portalSibling = null;
   }
 
   private restoreShellParent(): void {
     const host = this.elementRef.nativeElement;
     const parent = this.originalParent;
 
-    if (!parent || host.parentElement !== document.body) {
+    if (!parent) {
       return;
+    }
+
+    // If portaled, restore to original parent/sibling
+    if (host.parentElement !== parent) {
+      if (this.portalSibling) {
+        this.portalSibling.parentNode?.removeChild(this.portalSibling);
+      } else if (host.parentElement === document.body) {
+        document.body.removeChild(host);
+      }
     }
 
     parent.insertBefore(host, this.originalNextSibling);
     this.originalParent = null;
     this.originalNextSibling = null;
+    this.portalSibling = null;
+  }
+
+  /**
+   * Finds the dialog/overlay element matching the given panel class.
+   * Searches up from the host element through the DOM tree.
+   */
+  private findPortalTarget(className: string): HTMLElement | null {
+    const host = this.elementRef.nativeElement;
+    let current: Node | null = host.parentElement;
+
+    while (current) {
+      if (current instanceof HTMLElement && current.classList.contains(className)) {
+        return current;
+      }
+      current = current.parentElement;
+    }
+
+    return null;
   }
 }

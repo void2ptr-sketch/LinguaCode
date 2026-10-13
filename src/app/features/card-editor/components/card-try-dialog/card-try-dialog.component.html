@@ -29,6 +29,7 @@
         [drawAnswer]="playStore.drawAnswer()"
         [feedback]="playStore.feedback()"
         [fontSize]="fontSize()"
+        [portalTarget]="'card-try-dialog'"
         (optionSelected)="playStore.selectOption($event)"
         (answerTextChange)="playStore.setAnswerText($event)"
         (memoryCompleteChange)="playStore.setMemoryComplete($event)"

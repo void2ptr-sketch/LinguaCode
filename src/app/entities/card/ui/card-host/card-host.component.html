@@ -1,6 +1,7 @@
 <app-card-focus-shell
   [focusControlsEnabled]="focusControlsEnabled()"
   [autoEnterFullscreen]="autoFocusFullscreen()"
+  [portalTarget]="portalTarget()"
 >
   @if (card(); as current) {
     @switch (current.kind) {
