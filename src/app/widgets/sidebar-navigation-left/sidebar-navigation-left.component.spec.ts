@@ -5,18 +5,18 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { describe, expect, it } from 'vitest';
 
-import { NavigationComponent } from './navigation.component';
+import { SidebarNavigationLeftComponent } from './sidebar-navigation-left.component';
 
-describe('NavigationComponent', () => {
-  let fixture: ComponentFixture<NavigationComponent>;
-  let component: NavigationComponent;
+describe('SidebarNavigationLeftComponent', () => {
+  let fixture: ComponentFixture<SidebarNavigationLeftComponent>;
+  let component: SidebarNavigationLeftComponent;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [NavigationComponent, MatDividerModule, MatListModule, MatIconModule],
+      imports: [SidebarNavigationLeftComponent, MatDividerModule, MatListModule, MatIconModule],
       providers: [provideRouter([])],
     });
-    fixture = TestBed.createComponent(NavigationComponent);
+    fixture = TestBed.createComponent(SidebarNavigationLeftComponent);
     component = fixture.componentInstance;
   });
 

@@ -6,9 +6,9 @@ import { MatToolbarModule } from '@angular/material/toolbar';
  * @remarks This component is a simple presentational element with no inputs or outputs.
  */
 @Component({
-  selector: 'app-footer',
+  selector: 'app-main-footer',
   imports: [MatToolbarModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.scss',
+  templateUrl: './main-footer.component.html',
+  styleUrl: './main-footer.component.scss',
 })
-export class FooterComponent {}
+export class MainFooterComponent {}

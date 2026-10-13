@@ -2,16 +2,16 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { describe, expect, it } from 'vitest';
 
-import { FooterComponent } from './footer.component';
+import { MainFooterComponent } from './main-footer.component';
 
-describe('FooterComponent', () => {
-  let fixture: ComponentFixture<FooterComponent>;
+describe('MainFooterComponent', () => {
+  let fixture: ComponentFixture<MainFooterComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [FooterComponent, MatToolbarModule],
+      imports: [MainFooterComponent, MatToolbarModule],
     });
-    fixture = TestBed.createComponent(FooterComponent);
+    fixture = TestBed.createComponent(MainFooterComponent);
   });
 
   it('should create', () => {
