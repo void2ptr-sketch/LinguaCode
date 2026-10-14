@@ -1,9 +1,8 @@
+import { ALL_TONE_MARKS } from '../../../phonetic/model';
 import type { ToneMark } from '../../../phonetic/model';
 
 /** Тоны по умолчанию для выбора: 1–4 (лёгкий тон исключён). */
 export const DEFAULT_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4];
-
-const VALID_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
 
 export const TONE_LABELS_RU: Record<ToneMark, string> = {
   1: '1-й тон',
@@ -14,7 +13,7 @@ export const TONE_LABELS_RU: Record<ToneMark, string> = {
 };
 
 export function isToneMark(value: number): value is ToneMark {
-  return VALID_TONE_MARKS.includes(value as ToneMark);
+  return ALL_TONE_MARKS.includes(value as ToneMark);
 }
 
 export function normalizeToneOptions(options: readonly ToneMark[]): readonly ToneMark[] | null {

@@ -1,27 +1,9 @@
 import type { ToneMark } from '../../../../phonetic/model';
 import { PINYIN_TONE_MAP, toneFromMarkedVowel } from '../../tone-marks/vowel-tone-maps';
+import { CHAO_TONE_CONTOURS, PINYIN_SYLLABLE_IPA } from './ipa-mapping';
 
 /** Число тона пиньинь (1–4 + лёгкий 5). */
 export type PinyinTone = ToneMark;
-
-/** Базовый слог (без тона) → IPA-ядро/начало (Mandarin, simplified). */
-export const PINYIN_SYLLABLE_IPA: Readonly<Record<string, string>> = {
-  guo: 'kuɔ',
-  hao: 'xaʊ',
-  ma: 'ma',
-  ni: 'ni',
-  xie: 'ɕjɛ',
-  zhong: 'ʈʂʊŋ',
-};
-
-/** Число тона пиньинь → контурная маркировка Чао. */
-const CHAO_TONE_CONTOURS: Record<number, string> = {
-  1: '˥',
-  2: '˧˥',
-  3: '˨˩˦',
-  4: '˥˩',
-  5: '',
-};
 
 /**
  * Разбирает слог пиньинь на базовую форму и тон;
@@ -50,6 +32,12 @@ export function parsePinyinSyllable(raw: string): { base: string; tone: PinyinTo
   }
 
   return { base, tone };
+}
+
+/** Проверяет, есть ли IPA-запись для слога (без учёта тона). */
+export function isPinyinSyllableCovered(syllable: string): boolean {
+  const { base } = parsePinyinSyllable(syllable);
+  return base.length > 0 && PINYIN_SYLLABLE_IPA[base] !== undefined;
 }
 
 /**

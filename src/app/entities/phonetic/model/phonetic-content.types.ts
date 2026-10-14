@@ -18,6 +18,14 @@ export type ScriptCode = 'latn' | 'hani' | 'bopo' | 'hira' | 'kana' | 'hang' | '
 export type ToneMark = 1 | 2 | 3 | 4 | 5;
 
 /**
+ * All valid Mandarin tone marks: 1–4 standard tones + neutral (5).
+ *
+ * @remarks
+ * Canonical list of `ToneMark` values; single source for tone option sets.
+ */
+export const ALL_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
+
+/**
  * Supported romanization systems for CJK content.
  *
  * @remarks
@@ -140,10 +148,7 @@ export const TRACING_STROKE_DURATION_BOUNDS = {
  * `primary-orthography` — lexeme + romanization; `primary-orthography-ipa` — all three.
  */
 export type PhoneticDisplayMode =
-  | 'primary-only'
-  | 'primary-ipa'
-  | 'primary-orthography'
-  | 'primary-orthography-ipa';
+  'primary-only' | 'primary-ipa' | 'primary-orthography' | 'primary-orthography-ipa';
 
 /**
  * Phonetic display and answer mode preferences.

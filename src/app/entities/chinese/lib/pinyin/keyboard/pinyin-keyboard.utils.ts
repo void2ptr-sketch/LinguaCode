@@ -1,3 +1,4 @@
+import { ALL_TONE_MARKS } from '../../../../phonetic/model';
 import type { ToneMark } from '../../../../phonetic/model';
 import {
   applyToneMarkToVowel,
@@ -8,7 +9,7 @@ import { stripPinyinTones } from '../../tone-marks/tone-stripping';
 import type { PinyinKeyboardKey, PinyinKeyboardState } from './pinyin-keyboard.types';
 
 /** Доступные тоны для клавиатуры пиньинь: 1–4 тона + лёгкий тон (5). */
-export const PINYIN_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4, 5];
+export const PINYIN_TONE_OPTIONS: readonly ToneMark[] = ALL_TONE_MARKS;
 
 const LETTER_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as const;
 

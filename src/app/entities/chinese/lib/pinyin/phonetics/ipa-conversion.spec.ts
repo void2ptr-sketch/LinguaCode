@@ -1,21 +1,10 @@
 import {
-  PINYIN_SYLLABLE_IPA,
   convertPinyinToIpa,
+  isPinyinSyllableCovered,
   parsePinyinSyllable,
   pinyinSyllableToIpa,
   pinyinToIpa,
 } from './ipa-conversion';
-
-describe('PINYIN_SYLLABLE_IPA', () => {
-  it('should contain known syllable mappings', () => {
-    expect(PINYIN_SYLLABLE_IPA['guo']).toBe('kuɔ');
-    expect(PINYIN_SYLLABLE_IPA['hao']).toBe('xaʊ');
-    expect(PINYIN_SYLLABLE_IPA['ma']).toBe('ma');
-    expect(PINYIN_SYLLABLE_IPA['ni']).toBe('ni');
-    expect(PINYIN_SYLLABLE_IPA['xie']).toBe('ɕjɛ');
-    expect(PINYIN_SYLLABLE_IPA['zhong']).toBe('ʈʂʊŋ');
-  });
-});
 
 describe('parsePinyinSyllable', () => {
   it('should parse base syllable with default tone 5', () => {
@@ -70,6 +59,19 @@ describe('parsePinyinSyllable', () => {
   it('should be case insensitive', () => {
     expect(parsePinyinSyllable('MA').base).toBe('ma');
     expect(parsePinyinSyllable('Ma').base).toBe('ma');
+  });
+});
+
+describe('isPinyinSyllableCovered', () => {
+  it('should return true for known syllables', () => {
+    expect(isPinyinSyllableCovered('ma')).toBe(true);
+    expect(isPinyinSyllableCovered('mā')).toBe(true);
+    expect(isPinyinSyllableCovered('zhong')).toBe(true);
+  });
+
+  it('should return false for unknown or empty syllables', () => {
+    expect(isPinyinSyllableCovered('xyz')).toBe(false);
+    expect(isPinyinSyllableCovered('')).toBe(false);
   });
 });
 
