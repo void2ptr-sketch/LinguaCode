@@ -1,6 +1,25 @@
-import { stripPinyinTones } from '../pinyin/romanization/tone-stripping';
 import type { ToneMark } from '../../../phonetic/model';
-import { VOWEL_TONE_MARKS } from './vowel-tone-maps';
+import { stripPinyinTones } from './tone-stripping';
+import { VOWEL_TONE_MARKS, type MarkedTone } from './vowel-tone-maps';
+
+/** Гласные пиньинь во внутреннем представлении (ü → 'v'). */
+export const PINYIN_VOWELS: ReadonlySet<string> = new Set(['a', 'e', 'i', 'o', 'u', 'v']);
+
+/**
+ * Находит последнюю гласную слога (внутреннее представление, ü → 'v').
+ * Возвращает `null`, если гласных нет.
+ */
+export function findLastVowelIndex(syllable: string): { index: number; vowelKey: string } | null {
+  const base = stripPinyinTones(syllable).toLowerCase();
+  for (let index = base.length - 1; index >= 0; index -= 1) {
+    const char = base[index];
+    if (PINYIN_VOWELS.has(char)) {
+      return { index, vowelKey: char === 'v' ? 'ü' : char };
+    }
+  }
+
+  return null;
+}
 
 /** Применяет тоновую марку к одной гласной. */
 export function applyToneMarkToVowel(vowel: string, tone: ToneMark): string {
@@ -42,13 +61,10 @@ export function applyToneToPinyinSyllable(rawBase: string, tone: ToneMark): stri
     vowelIndex = lower.indexOf('o');
     vowelKey = 'o';
   } else {
-    for (let index = lower.length - 1; index >= 0; index -= 1) {
-      const char = lower[index];
-      if (char === 'i' || char === 'o' || char === 'u' || char === 'v') {
-        vowelIndex = index;
-        vowelKey = char === 'v' ? 'ü' : char;
-        break;
-      }
+    const last = findLastVowelIndex(base);
+    if (last) {
+      vowelIndex = last.index;
+      vowelKey = last.vowelKey;
     }
   }
 
@@ -74,32 +90,21 @@ export function applyToneToLastVowelInSyllable(rawBase: string, tone: ToneMark):
     return displayBase;
   }
 
-  const lower = base.toLowerCase();
-  for (let index = lower.length - 1; index >= 0; index -= 1) {
-    const char = lower[index];
-    if (
-      char === 'a' ||
-      char === 'e' ||
-      char === 'i' ||
-      char === 'o' ||
-      char === 'u' ||
-      char === 'v'
-    ) {
-      const vowelKey = char === 'v' ? 'ü' : char;
-      return applyToneMarkAtIndex(displayBase, index, vowelKey, tone);
-    }
+  const last = findLastVowelIndex(base);
+  if (!last) {
+    return displayBase;
   }
 
-  return displayBase;
+  return applyToneMarkAtIndex(displayBase, last.index, last.vowelKey, tone);
 }
 
 function applyToneMarkAtIndex(
   displayBase: string,
   vowelIndex: number,
   vowelKey: string,
-  tone: 1 | 2 | 3 | 4,
+  tone: MarkedTone,
 ): string {
-  const chars = displayBase.split('');
+  const chars = Array.from(displayBase);
   const marks = VOWEL_TONE_MARKS[vowelKey];
   chars[vowelIndex] = marks?.[tone] ?? chars[vowelIndex];
   return chars.join('');

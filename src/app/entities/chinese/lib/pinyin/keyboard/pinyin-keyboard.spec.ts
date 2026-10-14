@@ -1,8 +1,6 @@
 import {
   applyPinyinKeyboardKey,
-  canApplyPinyinTone,
   createPinyinKeyboardState,
-  formatPinyinKeyboardValue,
   isPinyinKeyboardVowel,
   pendingSyllableTonePreview,
   shouldShowPinyinToneRow,
@@ -18,7 +16,6 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
 
     expect(state.value).toBe('nǐ');
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ');
   });
 
   it('should build multi-syllable pinyin with manual spaces', () => {
@@ -33,14 +30,14 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'o' });
 
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ hǎo');
+    expect(state.value).toBe('nǐ hǎo');
   });
 
   it('should not auto-insert spaces between syllables', () => {
     let state = createPinyinKeyboardState('nǐ');
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'h' });
 
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐh');
+    expect(state.value).toBe('nǐh');
   });
 
   it('should continue an unfinished toned syllable without extra spaces', () => {
@@ -49,10 +46,10 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'a' });
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
 
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ hǎ');
+    expect(state.value).toBe('nǐ hǎ');
 
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'o' });
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ hǎo');
+    expect(state.value).toBe('nǐ hǎo');
   });
 
   it('should keep earlier tone marks when applying a tone without spaces', () => {
@@ -64,7 +61,7 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'a' });
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
 
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐhǎ');
+    expect(state.value).toBe('nǐhǎ');
   });
 
   it('should tone the last typed vowel of a compound final', () => {
@@ -73,10 +70,10 @@ describe('pinyin-keyboard.utils', () => {
       state = applyPinyinKeyboardKey(state, { kind: 'letter', char });
     }
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
-    expect(formatPinyinKeyboardValue(state)).toBe('haǒ');
+    expect(state.value).toBe('haǒ');
 
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 2 });
-    expect(formatPinyinKeyboardValue(state)).toBe('haó');
+    expect(state.value).toBe('haó');
   });
 
   it('should support ü via v key and tone marks', () => {
@@ -85,7 +82,7 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'v' });
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 2 });
 
-    expect(formatPinyinKeyboardValue(state)).toBe('lǘ');
+    expect(state.value).toBe('lǘ');
   });
 
   it('should handle backspace on the free-input value', () => {
@@ -94,13 +91,13 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'i' });
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'h' });
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐh');
+    expect(state.value).toBe('nǐh');
 
     state = applyPinyinKeyboardKey(state, { kind: 'backspace' });
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ');
+    expect(state.value).toBe('nǐ');
 
     state = applyPinyinKeyboardKey(state, { kind: 'backspace' });
-    expect(formatPinyinKeyboardValue(state)).toBe('n');
+    expect(state.value).toBe('n');
   });
 
   it('should expose tone previews for keyboard labels', () => {
@@ -144,10 +141,10 @@ describe('pinyin-keyboard.utils', () => {
   it('should allow tone selection only while tone row is open', () => {
     let state = createPinyinKeyboardState();
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'n' });
-    expect(canApplyPinyinTone(state)).toBe(false);
+    expect(shouldShowPinyinToneRow(state)).toBe(false);
 
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'i' });
-    expect(canApplyPinyinTone(state)).toBe(true);
+    expect(shouldShowPinyinToneRow(state)).toBe(true);
   });
 
   it('should preview the last typed vowel in the tone row', () => {
@@ -178,10 +175,10 @@ describe('pinyin-keyboard.utils', () => {
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'a' });
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
     state = applyPinyinKeyboardKey(state, { kind: 'letter', char: 'o' });
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ hǎo');
+    expect(state.value).toBe('nǐ hǎo');
 
     state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 4 });
-    expect(formatPinyinKeyboardValue(state)).toBe('nǐ hǎò');
+    expect(state.value).toBe('nǐ hǎò');
   });
 
   it('should restore value from external string with closed tone row', () => {
@@ -207,5 +204,71 @@ describe('pinyin-keyboard.utils', () => {
     expect(isPinyinKeyboardVowel('a')).toBe(true);
     expect(isPinyinKeyboardVowel('v')).toBe(true);
     expect(isPinyinKeyboardVowel('h')).toBe(false);
+  });
+
+  it('should tone the vowel as it is typed: n i t3 SP h a t3 o', () => {
+    let state = createPinyinKeyboardState();
+    for (const key of ['n', 'i', 't3', ' ', 'h', 'a', 't3', 'o']) {
+      if (key === 't3') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
+      } else if (key === ' ') {
+        state = applyPinyinKeyboardKey(state, { kind: 'space' });
+      } else {
+        state = applyPinyinKeyboardKey(state, { kind: 'letter', char: key });
+      }
+    }
+    expect(state.value).toBe('nǐ hǎo');
+  });
+
+  it('should not insert extra spaces for manual input', () => {
+    let state = createPinyinKeyboardState();
+    for (const key of ['n', 'i', 't3', 'h', 'a', 't3', 'o']) {
+      if (key === 't3') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
+      } else {
+        state = applyPinyinKeyboardKey(state, { kind: 'letter', char: key });
+      }
+    }
+    expect(state.value).toBe('nǐhǎo');
+  });
+
+  it('should tone the last typed vowel of a compound final (repro)', () => {
+    let state = createPinyinKeyboardState();
+    for (const key of ['h', 'a', 'o', 't3']) {
+      if (key === 't3') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
+      } else {
+        state = applyPinyinKeyboardKey(state, { kind: 'letter', char: key });
+      }
+    }
+    expect(state.value).toBe('haǒ');
+
+    state = createPinyinKeyboardState();
+    for (const key of ['n', 'i', 't3', ' ', 'a', 'i', 't4']) {
+      if (key === 't3') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
+      } else if (key === 't4') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 4 });
+      } else if (key === ' ') {
+        state = applyPinyinKeyboardKey(state, { kind: 'space' });
+      } else {
+        state = applyPinyinKeyboardKey(state, { kind: 'letter', char: key });
+      }
+    }
+    expect(state.value).toBe('nǐ aì');
+  });
+
+  it('should edit the same (last) vowel on repeated tone presses', () => {
+    let state = createPinyinKeyboardState();
+    for (const key of ['h', 'a', 'o', 't3', 't4']) {
+      if (key === 't3') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 3 });
+      } else if (key === 't4') {
+        state = applyPinyinKeyboardKey(state, { kind: 'tone', tone: 4 });
+      } else {
+        state = applyPinyinKeyboardKey(state, { kind: 'letter', char: key });
+      }
+    }
+    expect(state.value).toBe('haò');
   });
 });

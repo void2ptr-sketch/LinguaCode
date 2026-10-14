@@ -1,10 +1,4 @@
 import type { ToneMark } from '../../../phonetic/model';
-import {
-  applyToneMarkToVowel as _applyToneMarkToVowel,
-  applyToneToLastVowelInSyllable as _applyToneToLastVowelInSyllable,
-  applyToneToPinyinSyllable as _applyToneToPinyinSyllable,
-} from '../tone-marks/apply-tone';
-import { TONE_MARK_TO_BASE } from '../tone-marks/vowel-tone-maps';
 
 /** Тоны по умолчанию для выбора: 1–4 (лёгкий тон исключён). */
 export const DEFAULT_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4];
@@ -35,27 +29,4 @@ export function normalizeToneOptions(options: readonly ToneMark[]): readonly Ton
 
 export function toneMarkLabel(tone: ToneMark): string {
   return TONE_LABELS_RU[tone];
-}
-
-/** @deprecated Используйте `applyToneMarkToVowel` из `../tone-marks/apply-tone`. */
-export function applyToneMarkToVowel(vowel: string, tone: ToneMark): string {
-  return _applyToneMarkToVowel(vowel, tone);
-}
-
-/** @deprecated Используйте `applyToneToLastVowelInSyllable` из `../tone-marks/apply-tone`. */
-export function applyToneToLastVowelInSyllable(rawBase: string, tone: ToneMark): string {
-  return _applyToneToLastVowelInSyllable(rawBase, tone);
-}
-
-/** @deprecated Используйте `applyToneToPinyinSyllable` из `../tone-marks/apply-tone`. */
-export function applyToneToPinyinSyllable(rawBase: string, tone: ToneMark): string {
-  return _applyToneToPinyinSyllable(rawBase, tone);
-}
-
-/**
- * Преобразует тоновую гласную в базовую букву.
- * @deprecated Используйте `TONE_MARK_TO_BASE` из `../tone-marks/vowel-tone-maps`.
- */
-export function toneMarkToBase(char: string): string | undefined {
-  return TONE_MARK_TO_BASE[char];
 }

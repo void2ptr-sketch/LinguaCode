@@ -9,7 +9,6 @@ import {
   answersMatchRomanization,
 } from './cjk-answer-normalize.utils';
 
-
 describe('cjk-answer-normalize.utils', () => {
   describe('normalizePalladiusAnswer', () => {
     it('should trim whitespace and convert to lowercase', () => {

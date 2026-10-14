@@ -1,12 +1,14 @@
 import type { ToneMark } from '../../../../phonetic/model';
-import { applyToneMarkToVowel } from '../../tone-marks/apply-tone';
-import { stripPinyinTones } from '../romanization/tone-stripping';
+import {
+  applyToneMarkToVowel,
+  findLastVowelIndex,
+  PINYIN_VOWELS,
+} from '../../tone-marks/apply-tone';
+import { stripPinyinTones } from '../../tone-marks/tone-stripping';
 import type { PinyinKeyboardKey, PinyinKeyboardState } from './pinyin-keyboard.types';
 
 /** Доступные тоны для клавиатуры пиньинь: 1–4 тона + лёгкий тон (5). */
-export const PINYIN_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
-
-const PINYIN_VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'v']);
+export const PINYIN_TONE_OPTIONS: readonly ToneMark[] = [1, 2, 3, 4, 5];
 
 const LETTER_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as const;
 
@@ -33,15 +35,7 @@ export function isPinyinKeyboardVowel(char: string): boolean {
 }
 
 export function lastPendingVowel(syllable: string): string {
-  const base = stripPinyinTones(syllable).toLowerCase();
-  for (let index = base.length - 1; index >= 0; index -= 1) {
-    const char = base[index];
-    if (isPinyinKeyboardVowel(char)) {
-      return char === 'v' ? 'ü' : char;
-    }
-  }
-
-  return '';
+  return findLastVowelIndex(syllable)?.vowelKey ?? '';
 }
 
 function lastSyllable(value: string): string {
@@ -54,19 +48,6 @@ function endsWithVowel(value: string): boolean {
   return last.length > 0 && isPinyinKeyboardVowel(stripPinyinTones(last));
 }
 
-/** Возвращает последнюю введённую гласную слога — для предпросмотра ряда тонов. */
-function lastRawVowel(syllable: string): { index: number; vowelKey: string } | null {
-  const base = stripPinyinTones(syllable).toLowerCase();
-  for (let index = base.length - 1; index >= 0; index -= 1) {
-    const char = base[index];
-    if (isPinyinKeyboardVowel(char)) {
-      return { index, vowelKey: char === 'v' ? 'ü' : char };
-    }
-  }
-
-  return null;
-}
-
 /**
  * Применяет тон к последней введённой гласной последнего слога строки
  * (сегмент после последнего пробела), сохраняя остальные тоны нетронутыми.
@@ -75,22 +56,18 @@ function lastRawVowel(syllable: string): { index: number; vowelKey: string } | n
 function applyToneToLastSyllable(value: string, tone: ToneMark): string {
   const spaceIndex = value.lastIndexOf(' ');
   const syllable = value.slice(spaceIndex + 1);
-  const placement = lastRawVowel(syllable);
+  const placement = findLastVowelIndex(syllable);
   if (!syllable || !placement) {
     return value;
   }
 
-  const chars = value.split('');
+  const chars = Array.from(value);
   chars[spaceIndex + 1 + placement.index] = applyToneMarkToVowel(placement.vowelKey, tone);
   return chars.join('');
 }
 
-export function formatPinyinKeyboardValue(state: PinyinKeyboardState): string {
-  return state.value;
-}
-
 export function toneKeyPreview(tone: ToneMark, syllable = 'a'): string {
-  const placement = lastRawVowel(syllable);
+  const placement = findLastVowelIndex(syllable);
   const vowel = placement?.vowelKey ?? (lastPendingVowel(syllable) || syllable);
   return applyToneMarkToVowel(vowel, tone);
 }
@@ -104,16 +81,12 @@ export function shouldShowPinyinToneRow(state: PinyinKeyboardState): boolean {
 }
 
 export function pendingSyllableTonePreview(state: PinyinKeyboardState, tone: ToneMark): string {
-  const placement = lastRawVowel(lastSyllable(state.value));
+  const placement = findLastVowelIndex(lastSyllable(state.value));
   if (!placement) {
     return '';
   }
 
   return applyToneMarkToVowel(placement.vowelKey, tone);
-}
-
-export function canApplyPinyinTone(state: PinyinKeyboardState): boolean {
-  return shouldShowPinyinToneRow(state);
 }
 
 export function applyPinyinKeyboardKey(
@@ -127,7 +100,7 @@ export function applyPinyinKeyboardKey(
         toneRowOpen: isPinyinKeyboardVowel(key.char),
       };
     case 'tone': {
-      if (!canApplyPinyinTone(state)) {
+      if (!shouldShowPinyinToneRow(state)) {
         return state;
       }
 

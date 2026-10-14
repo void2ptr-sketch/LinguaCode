@@ -1,4 +1,21 @@
-import { parsePinyinSyllable, pinyinSyllableToIpa, pinyinToIpa } from './ipa-conversion';
+import {
+  PINYIN_SYLLABLE_IPA,
+  convertPinyinToIpa,
+  parsePinyinSyllable,
+  pinyinSyllableToIpa,
+  pinyinToIpa,
+} from './ipa-conversion';
+
+describe('PINYIN_SYLLABLE_IPA', () => {
+  it('should contain known syllable mappings', () => {
+    expect(PINYIN_SYLLABLE_IPA['guo']).toBe('kuɔ');
+    expect(PINYIN_SYLLABLE_IPA['hao']).toBe('xaʊ');
+    expect(PINYIN_SYLLABLE_IPA['ma']).toBe('ma');
+    expect(PINYIN_SYLLABLE_IPA['ni']).toBe('ni');
+    expect(PINYIN_SYLLABLE_IPA['xie']).toBe('ɕjɛ');
+    expect(PINYIN_SYLLABLE_IPA['zhong']).toBe('ʈʂʊŋ');
+  });
+});
 
 describe('parsePinyinSyllable', () => {
   it('should parse base syllable with default tone 5', () => {
@@ -56,6 +73,23 @@ describe('parsePinyinSyllable', () => {
   });
 });
 
+describe('convertPinyinToIpa', () => {
+  it('should convert syllable with base mapping and tone', () => {
+    expect(convertPinyinToIpa('mā')).toBe('ma˥');
+    expect(convertPinyinToIpa('má')).toBe('ma˧˥');
+    expect(convertPinyinToIpa('mǎ')).toBe('ma˨˩˦');
+    expect(convertPinyinToIpa('mà')).toBe('ma˥˩');
+  });
+
+  it('should return null when mapping is not found', () => {
+    expect(convertPinyinToIpa('xyz')).toBeNull();
+  });
+
+  it('should return null for empty base', () => {
+    expect(convertPinyinToIpa('')).toBeNull();
+  });
+});
+
 describe('pinyinSyllableToIpa', () => {
   it('should convert known syllables to IPA', () => {
     expect(pinyinSyllableToIpa('hao')).toBe('xaʊ');
@@ -79,12 +113,12 @@ describe('pinyinSyllableToIpa', () => {
     expect(pinyinSyllableToIpa('ma')).toBe('ma');
   });
 
-  it('should return base syllable when IPA mapping is not found', () => {
-    expect(pinyinSyllableToIpa('xyz')).toBe('xyz');
+  it('should return null when IPA mapping is not found', () => {
+    expect(pinyinSyllableToIpa('xyz')).toBeNull();
   });
 
-  it('should return empty string for empty input', () => {
-    expect(pinyinSyllableToIpa('')).toBe('');
+  it('should return null for empty input', () => {
+    expect(pinyinSyllableToIpa('')).toBeNull();
   });
 });
 
@@ -96,6 +130,10 @@ describe('pinyinToIpa', () => {
 
   it('should handle tones in multi-syllable input', () => {
     expect(pinyinToIpa('nǐ hǎo')).toBe('ni˨˩˦ xaʊ˨˩˦');
+  });
+
+  it('should fall back to the original syllable for unknown mappings', () => {
+    expect(pinyinToIpa('ni xyz')).toBe('ni xyz');
   });
 
   it('should handle multiple spaces between syllables', () => {

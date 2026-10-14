@@ -1,4 +1,4 @@
-import { applyToneToPinyinSyllable } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
+import { applyToneToPinyinSyllable } from '../../../../entities/chinese/lib/tone-marks/apply-tone';
 import type { ToneMark } from '../../../../entities/phonetic/model';
 /**
  * Generates tone-variant labels for a Pinyin syllable base.

@@ -1,4 +1,4 @@
-import { stripPinyinTones } from './tone-stripping';
+import { stripPinyinTones } from '../../tone-marks/tone-stripping';
 
 /**
  * Таблица соответствия слогов пиньинь (без тона) записи по системе Палладия.
@@ -219,7 +219,7 @@ const PALLADIUS_SYLLABLES: Record<string, string> = {
   qie: 'це',
   qin: 'цинь',
   qing: 'цин',
-  qiong: 'цун',
+  qiong: 'цюн',
   qiu: 'цю',
   qu: 'цюй',
   quan: 'цюань',

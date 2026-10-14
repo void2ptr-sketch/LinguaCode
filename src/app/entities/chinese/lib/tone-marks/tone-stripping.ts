@@ -1,4 +1,4 @@
-import { PINYIN_TONE_MAP } from './pinyin-tone-map';
+import { PINYIN_TONE_MAP } from './vowel-tone-maps';
 
 /**
  * Удаляет тоновые марки из строки пиньинь, возвращая базовые латинские символы (ü → v).

@@ -4,17 +4,19 @@ import { MatIconModule } from '@angular/material/icon';
 import {
   applyPinyinKeyboardKey,
   createPinyinKeyboardState,
-  formatPinyinKeyboardValue,
   PINYIN_KEYBOARD_LETTER_ROWS,
   PINYIN_KEYBOARD_UTILITY_KEYS,
-  PINYIN_TONE_MARKS,
+  PINYIN_TONE_OPTIONS,
   pendingSyllableTonePreview,
   pinyinKeyboardKeyAriaLabel,
   pinyinKeyboardKeyLabel,
   pinyinKeyboardToneKeyAriaLabel,
   shouldShowPinyinToneRow,
 } from '../../lib/pinyin/keyboard/pinyin-keyboard.utils';
-import type { PinyinKeyboardKey, PinyinKeyboardState } from '../../lib/pinyin/keyboard/pinyin-keyboard.types';
+import type {
+  PinyinKeyboardKey,
+  PinyinKeyboardState,
+} from '../../lib/pinyin/keyboard/pinyin-keyboard.types';
 import type { ToneMark } from '../../../phonetic/model';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
@@ -69,7 +71,7 @@ export class PinyinKeyboardComponent {
    * @remarks
    * Imported from `pinyin-keyboard.utils` as a constant.
    */
-  readonly toneMarks = PINYIN_TONE_MARKS;
+  readonly toneMarks = PINYIN_TONE_OPTIONS;
 
   /**
    * Key label resolver function.
@@ -192,7 +194,7 @@ export class PinyinKeyboardComponent {
     }
 
     const nextState = applyPinyinKeyboardKey(this.state(), key);
-    const nextValue = formatPinyinKeyboardValue(nextState);
+    const nextValue = nextState.value;
     this.state.set(nextState);
     this.lastEmitted = nextValue;
     this.valueChange.emit(nextValue);

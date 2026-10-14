@@ -12,8 +12,4 @@ export {
   isToneMark,
   normalizeToneOptions,
   toneMarkLabel,
-  applyToneMarkToVowel,
-  applyToneToLastVowelInSyllable,
-  applyToneToPinyinSyllable,
-  toneMarkToBase,
 } from './tone-mark.utils';

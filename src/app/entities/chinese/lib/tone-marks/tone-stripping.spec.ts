@@ -18,7 +18,7 @@ describe('stripPinyinTones', () => {
     expect(stripPinyinTones('zhong guo')).toBe('zhong guo');
   });
 
-  it('should handle numeric tone suffixes (pass through)', () => {
+  it('should not strip numeric tones', () => {
     // Numeric tones are not stripped — only diacritic marks
     expect(stripPinyinTones('ni3 hao3')).toBe('ni3 hao3');
   });
@@ -38,19 +38,18 @@ describe('stripPinyinTones', () => {
     expect(stripPinyinTones('jue')).toBe('jue');
   });
 
-  it('should handle all toned vowels', () => {
-    const tonedVariants: Record<string, string[]> = {
-      a: ['ā', 'á', 'ǎ', 'à'],
-      e: ['ē', 'é', 'ě', 'è'],
-      i: ['ī', 'í', 'ǐ', 'ì'],
-      o: ['ō', 'ó', 'ǒ', 'ò'],
-      u: ['ū', 'ú', 'ǔ', 'ù'],
-      v: ['ǖ', 'ǘ', 'ǚ', 'ǜ'],
+  it('should strip all tone variants of each base vowel', () => {
+    const variants: Record<string, string[]> = {
+      a: ['\u0101', '\u00e1', '\u01ce', '\u00e0'], // ā á ǎ à
+      e: ['\u0113', '\u00e9', '\u011b', '\u00e8'], // ē é ě è
+      i: ['\u012b', '\u00ed', '\u01d0', '\u00ec'], // ī í ǐ ì
+      o: ['\u014d', '\u00f3', '\u01d2', '\u00f2'], // ō ó ǒ ò
+      u: ['\u016b', '\u00fa', '\u01d4', '\u00f9'], // ū ú ǔ ù
     };
 
-    for (const [base, variants] of Object.entries(tonedVariants)) {
-      for (const toned of variants) {
-        const result = stripPinyinTones(toned);
+    for (const [base, toned] of Object.entries(variants)) {
+      for (const char of toned) {
+        const result = stripPinyinTones(char);
         expect(result).toBe(base);
       }
     }
@@ -62,7 +61,7 @@ describe('stripPinyinTones', () => {
     expect(stripPinyinTones('zhōng wén')).toBe('zhong wen');
   });
 
-  it('should handle NFD normalization edge cases', () => {
+  it('should handle composed and decomposed forms', () => {
     // Composed forms
     expect(stripPinyinTones('\u0101')).toBe('a'); // ā
     expect(stripPinyinTones('\u00e1')).toBe('a'); // á

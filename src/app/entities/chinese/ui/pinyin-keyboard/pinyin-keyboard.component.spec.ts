@@ -7,7 +7,7 @@ import type { PinyinKeyboardKey } from '../../lib/pinyin/keyboard/pinyin-keyboar
 import {
   PINYIN_KEYBOARD_UTILITY_KEYS,
   PINYIN_KEYBOARD_LETTER_ROWS,
-  PINYIN_TONE_MARKS,
+  PINYIN_TONE_OPTIONS,
 } from '../../lib/pinyin/keyboard/pinyin-keyboard.utils';
 
 describe('PinyinKeyboardComponent', () => {
@@ -55,7 +55,7 @@ describe('PinyinKeyboardComponent', () => {
     });
 
     it('should expose toneMarks constant', () => {
-      expect(component.toneMarks).toEqual(PINYIN_TONE_MARKS);
+      expect(component.toneMarks).toEqual(PINYIN_TONE_OPTIONS);
     });
   });
 
