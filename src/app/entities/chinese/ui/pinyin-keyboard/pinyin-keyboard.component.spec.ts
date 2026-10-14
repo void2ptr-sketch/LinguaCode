@@ -3,12 +3,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { describe, expect, it, vi } from 'vitest';
 
 import { PinyinKeyboardComponent } from './pinyin-keyboard.component';
-import type { PinyinKeyboardKey } from '../../lib/pinyin/pinyin-keyboard.utils';
+import type { PinyinKeyboardKey } from '../../lib/pinyin/keyboard/pinyin-keyboard.types';
 import {
   PINYIN_KEYBOARD_UTILITY_KEYS,
   PINYIN_KEYBOARD_LETTER_ROWS,
   PINYIN_TONE_MARKS,
-} from '../../lib/pinyin/pinyin-keyboard.utils';
+} from '../../lib/pinyin/keyboard/pinyin-keyboard.utils';
 
 describe('PinyinKeyboardComponent', () => {
   let fixture: ComponentFixture<PinyinKeyboardComponent>;

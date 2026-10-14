@@ -1,28 +1,14 @@
-import type { ToneMark } from '../../../phonetic/model';
-import { applyToneMarkToVowel } from '../answers/tone-mark.utils';
-import { stripPinyinTones } from './cjk-romanization.utils';
+import type { ToneMark } from '../../../../phonetic/model';
+import { applyToneMarkToVowel } from '../../answers/tone-mark.utils';
+import { stripPinyinTones } from '../romanization/tone-stripping';
+import type { PinyinKeyboardKey, PinyinKeyboardState } from './pinyin-keyboard.types';
 
-export type PinyinKeyboardKey =
-  | { kind: 'letter'; char: string; label?: string }
-  | { kind: 'tone'; tone: ToneMark }
-  | { kind: 'space' }
-  | { kind: 'backspace' };
-
-/**
- * Состояние клавиатуры пиньинь при свободном вводе.
- * Вся строка хранится в `value`; пробелы вставляет только пользователь.
- */
-export type PinyinKeyboardState = {
-  value: string;
-  toneRowOpen: boolean;
-};
+/** Доступные тоны для клавиатуры пиньинь: 1–4 тона + лёгкий тон (5). */
+export const PINYIN_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
 
 const PINYIN_VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'v']);
 
 const LETTER_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as const;
-
-/** Доступные тоны для клавиатуры пиньинь: 1–4 тона + лёгкий тон (5). */
-export const PINYIN_TONE_MARKS: readonly ToneMark[] = [1, 2, 3, 4, 5];
 
 export const PINYIN_KEYBOARD_LETTER_ROWS: readonly (readonly PinyinKeyboardKey[])[] = [
   LETTER_ROWS[0].split('').map((char) => ({ kind: 'letter' as const, char })),

@@ -1,31 +1,8 @@
-export const PINYIN_TONE_MAP: Record<string, string> = {
-  ā: 'a',
-  á: 'a',
-  ǎ: 'a',
-  à: 'a',
-  ē: 'e',
-  é: 'e',
-  ě: 'e',
-  è: 'e',
-  ī: 'i',
-  í: 'i',
-  ǐ: 'i',
-  ì: 'i',
-  ō: 'o',
-  ó: 'o',
-  ǒ: 'o',
-  ò: 'o',
-  ū: 'u',
-  ú: 'u',
-  ǔ: 'u',
-  ù: 'u',
-  ǖ: 'v',
-  ǘ: 'v',
-  ǚ: 'v',
-  ǜ: 'v',
-  ü: 'v',
-};
+import { stripPinyinTones } from './tone-stripping';
 
+/**
+ * Таблица соответствия слогов пиньинь (без тона) записи по системе Палладия.
+ */
 const PALLADIUS_SYLLABLES: Record<string, string> = {
   ba: 'ба',
   bai: 'бай',
@@ -381,25 +358,6 @@ const PALLADIUS_SYLLABLES: Record<string, string> = {
   zun: 'цзунь',
   zuo: 'цзо',
 };
-
-/** Удаляет тоновые марки из строки пиньинь, возвращая базовые латинские символы (ü → v). */
-export function stripPinyinTones(value: string): string {
-  let result = '';
-  for (const char of value.normalize('NFD')) {
-    if (PINYIN_TONE_MAP[char]) {
-      result += PINYIN_TONE_MAP[char];
-      continue;
-    }
-
-    if (/\p{M}/u.test(char)) {
-      continue;
-    }
-
-    result += char;
-  }
-
-  return result.replace(/ü/g, 'v').toLowerCase();
-}
 
 /** Преобразует отдельный слог пиньинь (без тона) в запись по системе Палладия. Возвращает `null`, если слог не найден. */
 export function pinyinSyllableToPalladius(syllable: string): string | null {

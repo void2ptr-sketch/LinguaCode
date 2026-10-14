@@ -1,5 +1,5 @@
 import { deriveKnownOptionsFromLexemes } from '../../../../entities/card/utils/card-direction.utils';
-import { stripPinyinTones } from '../../../../entities/chinese/lib/pinyin/cjk-romanization.utils';
+import { stripPinyinTones } from '../../../../entities/chinese/lib/pinyin/romanization/tone-stripping';
 import type {
   DrawCharacterTarget,
   DrawPracticeMode,

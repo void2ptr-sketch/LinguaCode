@@ -1,5 +1,5 @@
 import type { RomanizationSystem } from '../../../phonetic/model';
-import { stripPinyinTones } from '../pinyin/cjk-romanization.utils';
+import { stripPinyinTones } from '../pinyin/romanization/tone-stripping';
 
 /** Нормализует ответ пользователя для системы Палладий: убирает пробелы, заменяет ё на е, приводит к нижнему регистру. */
 export function normalizePalladiusAnswer(value: string): string {

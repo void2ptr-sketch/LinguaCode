@@ -1,26 +1,13 @@
-import { PINYIN_TONE_MAP } from './cjk-romanization.utils';
+import { PINYIN_TONE_MAP } from '../romanization/pinyin-tone-map';
+import { convertPinyinToIpa } from './ipa-mapping';
 
+/** Число тона пиньинь (1–4 + лёгкий 5). */
 export type PinyinTone = 1 | 2 | 3 | 4 | 5;
 
-const CHAO_TONE_CONTOURS: Record<PinyinTone, string> = {
-  1: '˥',
-  2: '˧˥',
-  3: '˨˩˦',
-  4: '˥˩',
-  5: '',
-};
-
-/** Base syllable (tone-stripped) → IPA nucleus/onset (Mandarin, simplified). */
-const PINYIN_SYLLABLE_IPA: Readonly<Record<string, string>> = {
-  guo: 'kuɔ',
-  hao: 'xaʊ',
-  ma: 'ma',
-  ni: 'ni',
-  xie: 'ɕjɛ',
-  zhong: 'ʈʂʊŋ',
-};
-
-/** Разбирает слог пиньинь на базовую форму и тон; поддерживает как числовые, так и тоновые марки. */
+/**
+ * Разбирает слог пиньинь на базовую форму и тон;
+ * поддерживает как числовые, так и тоновые марки.
+ */
 export function parsePinyinSyllable(raw: string): { base: string; tone: PinyinTone } {
   let tone: PinyinTone = 5;
   let base = '';
@@ -46,16 +33,12 @@ export function parsePinyinSyllable(raw: string): { base: string; tone: PinyinTo
   return { base, tone };
 }
 
+/** Преобразует отдельный слог пиньинь в IPA (МФА). */
 export function pinyinSyllableToIpa(syllable: string): string {
-  const { base, tone } = parsePinyinSyllable(syllable);
-  if (!base) {
-    return '';
-  }
-
-  const ipaBase = PINYIN_SYLLABLE_IPA[base] ?? base;
-  return `${ipaBase}${CHAO_TONE_CONTOURS[tone]}`;
+  return convertPinyinToIpa(syllable, parsePinyinSyllable);
 }
 
+/** Преобразует строку пиньинь (один или несколько слогов через пробел) в IPA (МФА). */
 export function pinyinToIpa(pinyin: string): string {
   return pinyin
     .trim()

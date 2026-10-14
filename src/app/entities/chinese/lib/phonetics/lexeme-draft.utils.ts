@@ -1,4 +1,4 @@
-import { pinyinToPalladius } from '../pinyin/cjk-romanization.utils';
+import { pinyinToPalladius } from '../pinyin/romanization/palladius';
 import { validateIpaInput } from '../../../phonetic/lib/ipa/ipa-normalize.utils';
 import {
   formatIpaForEditor,

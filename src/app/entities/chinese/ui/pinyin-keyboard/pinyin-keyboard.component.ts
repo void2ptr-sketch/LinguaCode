@@ -13,9 +13,8 @@ import {
   pinyinKeyboardKeyLabel,
   pinyinKeyboardToneKeyAriaLabel,
   shouldShowPinyinToneRow,
-  type PinyinKeyboardKey,
-  type PinyinKeyboardState,
-} from '../../lib/pinyin/pinyin-keyboard.utils';
+} from '../../lib/pinyin/keyboard/pinyin-keyboard.utils';
+import type { PinyinKeyboardKey, PinyinKeyboardState } from '../../lib/pinyin/keyboard/pinyin-keyboard.types';
 import type { ToneMark } from '../../../phonetic/model';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
