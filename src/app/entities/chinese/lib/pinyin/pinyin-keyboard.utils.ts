@@ -1,5 +1,5 @@
 import type { ToneMark } from '../../../phonetic/model';
-import { applyToneMarkToVowel, applyToneToLastVowelInSyllable } from '../answers/tone-mark.utils';
+import { applyToneMarkToVowel } from '../answers/tone-mark.utils';
 import { stripPinyinTones } from './cjk-romanization.utils';
 
 export type PinyinKeyboardKey =
@@ -8,15 +8,16 @@ export type PinyinKeyboardKey =
   | { kind: 'space' }
   | { kind: 'backspace' };
 
+/**
+ * Состояние клавиатуры пиньинь при свободном вводе.
+ * Вся строка хранится в `value`; пробелы вставляет только пользователь.
+ */
 export type PinyinKeyboardState = {
-  committed: string;
-  pendingSyllable: string;
+  value: string;
   toneRowOpen: boolean;
 };
 
 const PINYIN_VOWELS = new Set(['a', 'e', 'i', 'o', 'u', 'v']);
-
-export const MAX_PENDING_SYLLABLE_LENGTH = 6;
 
 const LETTER_ROWS = ['qwertyuiop', 'asdfghjkl', 'zxcvbnm'] as const;
 
@@ -47,41 +48,7 @@ export const PINYIN_KEYBOARD_LAYOUT: readonly (readonly PinyinKeyboardKey[])[] =
 ];
 
 export function createPinyinKeyboardState(value = ''): PinyinKeyboardState {
-  const trimmed = value.trimEnd();
-  if (!trimmed) {
-    return {
-      committed: '',
-      pendingSyllable: '',
-      toneRowOpen: false,
-    };
-  }
-
-  const lastSpaceIndex = trimmed.lastIndexOf(' ');
-  if (lastSpaceIndex >= 0) {
-    return {
-      committed: trimmed.slice(0, lastSpaceIndex + 1),
-      pendingSyllable: trimmed.slice(lastSpaceIndex + 1),
-      toneRowOpen: false,
-    };
-  }
-
-  if (hasPinyinToneMarks(trimmed)) {
-    return {
-      committed: trimmed,
-      pendingSyllable: '',
-      toneRowOpen: false,
-    };
-  }
-
-  return {
-    committed: '',
-    pendingSyllable: trimmed,
-    toneRowOpen: false,
-  };
-}
-
-function hasPinyinToneMarks(text: string): boolean {
-  return stripPinyinTones(text) !== text;
+  return { value, toneRowOpen: false };
 }
 
 export function isPinyinKeyboardVowel(char: string): boolean {
@@ -100,27 +67,54 @@ export function lastPendingVowel(syllable: string): string {
   return '';
 }
 
-function resolveToneRowOpen(pendingSyllable: string): boolean {
-  return lastPendingVowel(pendingSyllable).length > 0;
+function lastSyllable(value: string): string {
+  return value.slice(value.lastIndexOf(' ') + 1);
+}
+
+/** Последний символ непустой и является гласной (с тоном или без). */
+function endsWithVowel(value: string): boolean {
+  const last = lastSyllable(value).slice(-1);
+  return last.length > 0 && isPinyinKeyboardVowel(stripPinyinTones(last));
+}
+
+/** Возвращает последнюю введённую гласную слога — для предпросмотра ряда тонов. */
+function lastRawVowel(syllable: string): { index: number; vowelKey: string } | null {
+  const base = stripPinyinTones(syllable).toLowerCase();
+  for (let index = base.length - 1; index >= 0; index -= 1) {
+    const char = base[index];
+    if (isPinyinKeyboardVowel(char)) {
+      return { index, vowelKey: char === 'v' ? 'ü' : char };
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Применяет тон к последней введённой гласной последнего слога строки
+ * (сегмент после последнего пробела), сохраняя остальные тоны нетронутыми.
+ * Тон всегда попадает ровно на ту гласную, которую показывает ряд тонов.
+ */
+function applyToneToLastSyllable(value: string, tone: ToneMark): string {
+  const spaceIndex = value.lastIndexOf(' ');
+  const syllable = value.slice(spaceIndex + 1);
+  const placement = lastRawVowel(syllable);
+  if (!syllable || !placement) {
+    return value;
+  }
+
+  const chars = value.split('');
+  chars[spaceIndex + 1 + placement.index] = applyToneMarkToVowel(placement.vowelKey, tone);
+  return chars.join('');
 }
 
 export function formatPinyinKeyboardValue(state: PinyinKeyboardState): string {
-  const { committed, pendingSyllable } = state;
-  if (!pendingSyllable) {
-    return committed;
-  }
-
-  if (!committed) {
-    return pendingSyllable;
-  }
-
-  return committed.endsWith(' ')
-    ? `${committed}${pendingSyllable}`
-    : `${committed} ${pendingSyllable}`;
+  return state.value;
 }
 
 export function toneKeyPreview(tone: ToneMark, syllable = 'a'): string {
-  const vowel = lastPendingVowel(syllable) || syllable;
+  const placement = lastRawVowel(syllable);
+  const vowel = placement?.vowelKey ?? (lastPendingVowel(syllable) || syllable);
   return applyToneMarkToVowel(vowel, tone);
 }
 
@@ -129,53 +123,20 @@ export function syllableSupportsToneMarking(syllable: string): boolean {
 }
 
 export function shouldShowPinyinToneRow(state: PinyinKeyboardState): boolean {
-  return state.toneRowOpen && syllableSupportsToneMarking(state.pendingSyllable);
+  return state.toneRowOpen && syllableSupportsToneMarking(lastSyllable(state.value));
 }
 
 export function pendingSyllableTonePreview(state: PinyinKeyboardState, tone: ToneMark): string {
-  const vowel = lastPendingVowel(state.pendingSyllable);
-  if (!vowel) {
+  const placement = lastRawVowel(lastSyllable(state.value));
+  if (!placement) {
     return '';
   }
 
-  return applyToneMarkToVowel(vowel, tone);
+  return applyToneMarkToVowel(placement.vowelKey, tone);
 }
 
 export function canApplyPinyinTone(state: PinyinKeyboardState): boolean {
   return shouldShowPinyinToneRow(state);
-}
-
-function appendTonedSyllable(committed: string, syllable: string, tone: ToneMark): string {
-  const toned = applyToneToLastVowelInSyllable(syllable, tone);
-  if (!committed) {
-    return toned;
-  }
-
-  if (committed.endsWith(' ')) {
-    return `${committed}${toned}`;
-  }
-
-  return `${committed} ${toned}`;
-}
-
-function commitPendingNeutral(state: PinyinKeyboardState): PinyinKeyboardState {
-  if (!state.pendingSyllable) {
-    return state;
-  }
-
-  return {
-    committed: appendTonedSyllable(state.committed, state.pendingSyllable, 5),
-    pendingSyllable: '',
-    toneRowOpen: false,
-  };
-}
-
-function ensurePendingCapacity(state: PinyinKeyboardState): PinyinKeyboardState {
-  if (state.pendingSyllable.length < MAX_PENDING_SYLLABLE_LENGTH) {
-    return state;
-  }
-
-  return commitPendingNeutral(state);
 }
 
 export function applyPinyinKeyboardKey(
@@ -183,86 +144,38 @@ export function applyPinyinKeyboardKey(
   key: PinyinKeyboardKey,
 ): PinyinKeyboardState {
   switch (key.kind) {
-    case 'letter': {
-      const baseState = ensurePendingCapacity(state);
-
-      if (isPinyinKeyboardVowel(key.char)) {
-        const lastChar = baseState.pendingSyllable.slice(-1);
-        if (lastChar === key.char) {
-          return {
-            ...baseState,
-            toneRowOpen: resolveToneRowOpen(baseState.pendingSyllable),
-          };
-        }
-
-        const nextSyllable = `${baseState.pendingSyllable}${key.char}`;
-        if (nextSyllable.length > MAX_PENDING_SYLLABLE_LENGTH) {
-          return state;
-        }
-
-        return {
-          ...baseState,
-          pendingSyllable: nextSyllable,
-          toneRowOpen: resolveToneRowOpen(nextSyllable),
-        };
-      }
-
-      const nextSyllable = `${baseState.pendingSyllable}${key.char}`;
-      if (nextSyllable.length > MAX_PENDING_SYLLABLE_LENGTH) {
-        return state;
-      }
-
+    case 'letter':
       return {
-        ...baseState,
-        pendingSyllable: nextSyllable,
-        toneRowOpen: false,
+        value: `${state.value}${key.char}`,
+        toneRowOpen: isPinyinKeyboardVowel(key.char),
       };
-    }
     case 'tone': {
       if (!canApplyPinyinTone(state)) {
         return state;
       }
 
+      // Ряд тонов остаётся активным: после выбора тона можно сразу выбрать другой
+      // тон для того же слога. Закроется он при вводе согласной или пробела.
       return {
-        committed: appendTonedSyllable(state.committed, state.pendingSyllable, key.tone),
-        pendingSyllable: '',
-        toneRowOpen: false,
+        value: applyToneToLastSyllable(state.value, key.tone),
+        toneRowOpen: true,
       };
     }
     case 'space': {
-      if (state.pendingSyllable) {
-        return {
-          committed: appendTonedSyllable(state.committed, state.pendingSyllable, 5),
-          pendingSyllable: '',
-          toneRowOpen: false,
-        };
-      }
-
-      if (!state.committed || state.committed.endsWith(' ')) {
+      if (!state.value || state.value.endsWith(' ')) {
         return state;
       }
 
       return {
-        ...state,
-        committed: `${state.committed} `,
-      };
-    }
-    case 'backspace': {
-      if (state.pendingSyllable) {
-        const nextPending = state.pendingSyllable.slice(0, -1);
-        return {
-          ...state,
-          pendingSyllable: nextPending,
-          toneRowOpen: resolveToneRowOpen(nextPending),
-        };
-      }
-
-      return {
-        ...state,
-        committed: state.committed.slice(0, -1),
+        value: `${state.value} `,
         toneRowOpen: false,
       };
     }
+    case 'backspace':
+      return {
+        value: state.value.slice(0, -1),
+        toneRowOpen: endsWithVowel(state.value.slice(0, -1)),
+      };
   }
 }
 

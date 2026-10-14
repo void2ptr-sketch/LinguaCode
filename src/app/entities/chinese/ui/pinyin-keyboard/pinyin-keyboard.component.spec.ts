@@ -83,7 +83,7 @@ describe('PinyinKeyboardComponent', () => {
       expect(component.showToneRow()).toBe(false);
     });
 
-    it('should be false when value has pending syllable but toneRowOpen is false', () => {
+    it('should be false when value is set externally (toneRowOpen defaults to false)', () => {
       fixture.componentRef.setInput('value', 'ni');
       fixture.detectChanges();
       // toneRowOpen is always false on initialization via value input
@@ -128,7 +128,7 @@ describe('PinyinKeyboardComponent', () => {
       expect(preview).toBeDefined();
     });
 
-    it('should return empty string when no pending syllable', () => {
+    it('should return empty string when the input is empty', () => {
       fixture.detectChanges();
       const preview = component.tonePreview(1);
       expect(preview).toBe('');
@@ -179,16 +179,23 @@ describe('PinyinKeyboardComponent', () => {
       expect(component.isKeyDisabled(letterKey)).toBe(false);
     });
 
-    it('should disable space key when no pending syllable and committed is empty', () => {
+    it('should disable space key when value is empty', () => {
       fixture.detectChanges();
       const spaceKey: PinyinKeyboardKey = { kind: 'space' };
       expect(component.isKeyDisabled(spaceKey)).toBe(true);
     });
 
-    it('should disable backspace key when no pending syllable and no committed', () => {
+    it('should disable backspace key when value is empty', () => {
       fixture.detectChanges();
       const backspaceKey: PinyinKeyboardKey = { kind: 'backspace' };
       expect(component.isKeyDisabled(backspaceKey)).toBe(true);
+    });
+
+    it('should disable space key when value already ends with a space', () => {
+      fixture.componentRef.setInput('value', 'nǐ ');
+      fixture.detectChanges();
+      const spaceKey: PinyinKeyboardKey = { kind: 'space' };
+      expect(component.isKeyDisabled(spaceKey)).toBe(true);
     });
   });
 
@@ -205,7 +212,7 @@ describe('PinyinKeyboardComponent', () => {
       expect(spy.mock.lastCall?.[0]).toContain('n');
     });
 
-    it('should emit valueChange on space key press when pending syllable exists', () => {
+    it('should emit valueChange on space key press when value does not end with a space', () => {
       fixture.componentRef.setInput('value', 'ni');
       fixture.detectChanges();
       const spy = vi.fn();
@@ -217,7 +224,7 @@ describe('PinyinKeyboardComponent', () => {
       expect(spy).toHaveBeenCalled();
     });
 
-    it('should emit valueChange on backspace key press when pending syllable exists', () => {
+    it('should emit valueChange on backspace key press when value is not empty', () => {
       fixture.componentRef.setInput('value', 'n');
       fixture.detectChanges();
       const spy = vi.fn();
@@ -275,6 +282,97 @@ describe('PinyinKeyboardComponent', () => {
       component.pressTone(1);
 
       expect(spy).not.toHaveBeenCalled();
+    });
+  });
+
+  describe('tone row lifecycle (free input)', () => {
+    /** Simulates the two-way echo performed by the parent card. */
+    function echo(value: string): void {
+      fixture.componentRef.setInput('value', value);
+      fixture.detectChanges();
+    }
+
+    it('should open the tone row after a vowel and keep it armed after selecting a tone', () => {
+      fixture.detectChanges();
+      component.pressKey({ kind: 'letter', char: 'n' });
+      component.pressKey({ kind: 'letter', char: 'i' });
+      echo('ni');
+
+      expect(component.showToneRow()).toBe(true);
+      expect(component.tonePreview(1)).toBe('ī');
+      expect(component.tonePreview(3)).toBe('ǐ');
+
+      component.pressTone(3);
+      echo('nǐ');
+
+      expect(component.value()).toBe('nǐ');
+      // Ряд тонов остаётся активным, чтобы можно было сменить тон
+      expect(component.showToneRow()).toBe(true);
+      expect(component.isToneKeyDisabled()).toBe(false);
+
+      // Смена уже выбранного тона
+      component.pressTone(4);
+      echo('nì');
+      expect(component.value()).toBe('nì');
+      expect(component.showToneRow()).toBe(true);
+
+      // Согласная закрывает ряд тонов
+      component.pressKey({ kind: 'letter', char: 'h' });
+      echo('nìh');
+      expect(component.showToneRow()).toBe(false);
+    });
+
+    it('should switch the tone row to the newly typed vowel (a → e)', () => {
+      fixture.detectChanges();
+      component.pressKey({ kind: 'letter', char: 'a' });
+      expect(component.showToneRow()).toBe(true);
+      expect(component.tonePreview(1)).toBe('ā');
+
+      component.pressKey({ kind: 'letter', char: 'e' });
+      expect(component.showToneRow()).toBe(true);
+      expect(component.tonePreview(1)).toBe('ē');
+      expect(component.tonePreview(3)).toBe('ě');
+      expect(component.tonePreview(5)).toBe('e');
+    });
+
+    it('should reopen the row with previews for the next syllable after a space', () => {
+      fixture.detectChanges();
+      component.pressKey({ kind: 'letter', char: 'n' });
+      component.pressKey({ kind: 'letter', char: 'i' });
+      component.pressTone(3);
+      echo('nǐ');
+      component.pressKey({ kind: 'space' });
+      echo('nǐ ');
+      component.pressKey({ kind: 'letter', char: 'h' });
+      component.pressKey({ kind: 'letter', char: 'a' });
+      echo('nǐ ha');
+
+      expect(component.showToneRow()).toBe(true);
+      expect(component.tonePreview(1)).toBe('ā');
+      expect(component.tonePreview(3)).toBe('ǎ');
+      expect(component.tonePreview(5)).toBe('a');
+
+      component.pressTone(3);
+      echo('nǐ hǎ');
+      expect(component.value()).toBe('nǐ hǎ');
+      expect(component.showToneRow()).toBe(true);
+
+      component.pressKey({ kind: 'letter', char: 'o' });
+      echo('nǐ hǎo');
+      expect(component.value()).toBe('nǐ hǎo');
+    });
+
+    it('should continue the unfinished toned syllable without inserting a space', () => {
+      fixture.detectChanges();
+      component.pressKey({ kind: 'letter', char: 'h' });
+      component.pressKey({ kind: 'letter', char: 'a' });
+      component.pressTone(3);
+      echo('hǎ');
+      expect(component.value()).toBe('hǎ');
+
+      component.pressKey({ kind: 'letter', char: 'o' });
+      echo('hǎo');
+      expect(component.value()).toBe('hǎo');
     });
   });
 

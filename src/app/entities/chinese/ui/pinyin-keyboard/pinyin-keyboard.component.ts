@@ -151,8 +151,8 @@ export class PinyinKeyboardComponent {
    * @param key - The keyboard key to check.
    * @returns `true` if the key should be non-interactive.
    * @remarks
-   * Space key is disabled when there is no pending syllable or the committed text ends with a space.
-   * Backspace key is disabled when there is no pending syllable and no committed text.
+   * Space key is disabled when the input is empty or already ends with a space.
+   * Backspace key is disabled when the input is empty.
    */
   isKeyDisabled(key: PinyinKeyboardKey): boolean {
     if (this.disabled()) {
@@ -161,12 +161,12 @@ export class PinyinKeyboardComponent {
 
     if (key.kind === 'space') {
       const current = this.state();
-      return !current.pendingSyllable && (!current.committed || current.committed.endsWith(' '));
+      return !current.value || current.value.endsWith(' ');
     }
 
     if (key.kind === 'backspace') {
       const current = this.state();
-      return !current.pendingSyllable && !current.committed;
+      return !current.value;
     }
 
     return false;
