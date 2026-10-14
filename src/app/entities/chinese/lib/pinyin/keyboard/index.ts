@@ -2,7 +2,6 @@ export {
   PINYIN_TONE_MARKS,
   PINYIN_KEYBOARD_LETTER_ROWS,
   PINYIN_KEYBOARD_UTILITY_KEYS,
-  PINYIN_KEYBOARD_LAYOUT,
   createPinyinKeyboardState,
   isPinyinKeyboardVowel,
   lastPendingVowel,

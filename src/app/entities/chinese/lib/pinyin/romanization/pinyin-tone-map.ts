@@ -27,5 +27,7 @@ export const PINYIN_TONE_MAP: Record<string, string> = {
   ǘ: 'v',
   ǚ: 'v',
   ǜ: 'v',
+  // Нетонированный ü тоже маппим на v, т.к. NFD-нормализация разлагает ü на u + combining diaeresis
+  // и combining diaeresis stripping оставляет u — нужно явно мапить ü → v
   ü: 'v',
 };

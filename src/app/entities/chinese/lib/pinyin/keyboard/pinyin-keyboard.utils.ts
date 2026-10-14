@@ -1,5 +1,5 @@
 import type { ToneMark } from '../../../../phonetic/model';
-import { applyToneMarkToVowel } from '../../answers/tone-mark.utils';
+import { applyToneMarkToVowel } from '../../tone-marks/apply-tone';
 import { stripPinyinTones } from '../romanization/tone-stripping';
 import type { PinyinKeyboardKey, PinyinKeyboardState } from './pinyin-keyboard.types';
 
@@ -22,15 +22,6 @@ export const PINYIN_KEYBOARD_LETTER_ROWS: readonly (readonly PinyinKeyboardKey[]
 export const PINYIN_KEYBOARD_UTILITY_KEYS: readonly PinyinKeyboardKey[] = [
   { kind: 'space' },
   { kind: 'backspace' },
-];
-
-/** @deprecated Используйте PINYIN_KEYBOARD_LETTER_ROWS + динамический ряд тонов. */
-export const PINYIN_KEYBOARD_LAYOUT: readonly (readonly PinyinKeyboardKey[])[] = [
-  ...PINYIN_KEYBOARD_LETTER_ROWS,
-  [
-    ...PINYIN_TONE_MARKS.map((tone) => ({ kind: 'tone' as const, tone })),
-    ...PINYIN_KEYBOARD_UTILITY_KEYS,
-  ],
 ];
 
 export function createPinyinKeyboardState(value = ''): PinyinKeyboardState {

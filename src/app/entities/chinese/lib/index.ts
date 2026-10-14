@@ -10,5 +10,8 @@ export * from './phonetics';
 // ===== Pinyin =====
 export * from './pinyin';
 
+// ===== Tone Marks =====
+export * from './tone-marks';
+
 // ===== Tones =====
 export * from './tones';
