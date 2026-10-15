@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, effect, inject, input, output, signal } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
@@ -43,6 +43,7 @@ type LessonListItem = {
  * scenario results, and supports auto-picking the first unlocked lesson.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-lesson-picker',
   imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
   templateUrl: './lesson-picker.component.html',

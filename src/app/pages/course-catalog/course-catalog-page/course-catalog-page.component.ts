@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, effect, inject, OnInit } from '@angular/core';
 
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { Router } from '@angular/router';
@@ -40,6 +40,7 @@ let lastKnownCourseCatalogActiveLanguagePairId: string | null = null;
  * @remarks Composed of three sub-tabs: Courses, Programs, and Settings.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-catalog-page',
   imports: [
     FormsModule,

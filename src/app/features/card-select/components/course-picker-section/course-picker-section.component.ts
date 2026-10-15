@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,7 @@ import { CoursePickerComponent } from '../../../../entities/course/ui/course-pic
  * Section component for course selection in the card select page.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   selector: 'app-course-picker-section',
   imports: [CoursePickerComponent, MatButtonModule, MatCardModule, MatIconModule, RouterLink],

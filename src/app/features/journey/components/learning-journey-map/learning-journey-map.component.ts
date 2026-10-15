@@ -9,6 +9,7 @@ import {
   OnInit,
   OnDestroy,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -37,6 +38,7 @@ export type JourneyViewMode = 'map' | 'list';
  * @remarks Tracks visit durations and favorite toggles via `JourneyAnalyticsService`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-journey-map',
   encapsulation: ViewEncapsulation.None,
   imports: [

@@ -1,4 +1,4 @@
-import { Component, computed, input, OnDestroy, OnInit, output, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, OnDestroy, OnInit, output, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -19,6 +19,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Timer starts on `ngOnInit` and is cleared on `ngOnDestroy`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-timed-card',
   imports: [
     MatCardModule,

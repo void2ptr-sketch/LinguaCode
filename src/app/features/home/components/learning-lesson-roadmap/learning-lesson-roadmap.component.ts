@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -12,6 +12,7 @@ import type { LessonRoadmapItem } from '../../../../entities/learning/lib/learni
  * @remarks Items are derived from the learning dashboard service.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-lesson-roadmap',
   imports: [RouterLink, MatCardModule, MatIconModule, MatListModule],
   templateUrl: './learning-lesson-roadmap.component.html',

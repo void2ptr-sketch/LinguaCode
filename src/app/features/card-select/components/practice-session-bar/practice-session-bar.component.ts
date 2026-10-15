@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
@@ -42,6 +42,7 @@ export type PracticeSessionSegment = {
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-practice-session-bar',
   imports: [MatIconModule, MatTooltipModule],
   templateUrl: './practice-session-bar.component.html',

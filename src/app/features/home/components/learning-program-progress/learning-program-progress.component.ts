@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 
@@ -8,6 +8,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
  * @remarks Purely presentational; receives all data via inputs.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-program-progress',
   imports: [MatCardModule, MatProgressBarModule],
   templateUrl: './learning-program-progress.component.html',

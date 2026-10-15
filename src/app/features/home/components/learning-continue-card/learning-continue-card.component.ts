@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -13,6 +13,7 @@ import type { ContinueLinkQueryParams } from '../../types/learning-dashboard.typ
  * @remarks Supports deep linking via `continueQueryParams` and dynamic labels.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-continue-card',
   imports: [RouterLink, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './learning-continue-card.component.html',

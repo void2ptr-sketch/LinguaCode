@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,6 +13,7 @@ import { scenarioDisplayLabel } from '../../../../entities/scenario/utils/scenar
  * @remarks Data is sourced directly from `LearningResultsStore`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-progress',
   imports: [MatCardModule, MatButtonModule, MatIconModule, MatListModule, MatProgressBarModule],
   templateUrl: './learning-progress.component.html',

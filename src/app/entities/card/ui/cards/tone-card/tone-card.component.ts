@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Supports tone coloring via `ToneColoredTextComponent`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tone-card',
   imports: [
     MatCardModule,

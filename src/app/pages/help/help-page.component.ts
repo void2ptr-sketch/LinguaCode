@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +15,7 @@ import {
  * @remarks Data is loaded from static constants in `help-page.data.ts`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-help-page',
   imports: [RouterLink, MatButtonModule, MatCardModule, MatIconModule],
   templateUrl: './help-page.component.html',

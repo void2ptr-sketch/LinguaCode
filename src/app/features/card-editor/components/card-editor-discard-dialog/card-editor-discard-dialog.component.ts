@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 
@@ -7,9 +7,11 @@ import { MatDialogModule } from '@angular/material/dialog';
  * @remarks Returns `true` to confirm discard, `false` to cancel.
  */
 @Component({
+  standalone: true,
   selector: 'app-card-editor-discard-dialog',
   imports: [MatButtonModule, MatDialogModule],
   template: `
+  changeDetection: ChangeDetectionStrategy.OnPush,
     <h2 mat-dialog-title>Закрыть без сохранения?</h2>
     <mat-dialog-content>Несохранённые изменения будут потеряны.</mat-dialog-content>
     <mat-dialog-actions align="end">

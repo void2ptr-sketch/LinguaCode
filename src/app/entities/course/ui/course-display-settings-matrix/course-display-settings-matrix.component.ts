@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatCheckboxChange, MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,6 +30,7 @@ export type RomanizationOption = {
  * and answer mode selection (orthography/IPA). Toggles update via change output signals.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-display-settings-matrix',
   imports: [FormsModule, MatCheckboxModule, MatFormFieldModule, MatInputModule],
   templateUrl: './course-display-settings-matrix.component.html',

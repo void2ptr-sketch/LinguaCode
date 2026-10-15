@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 
 /**
@@ -21,6 +21,7 @@ export type PracticeStepState = {
 };
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-practice-stepper',
   imports: [MatIconModule],
   templateUrl: './practice-stepper.component.html',

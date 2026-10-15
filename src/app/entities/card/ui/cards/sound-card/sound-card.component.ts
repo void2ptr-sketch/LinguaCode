@@ -1,4 +1,4 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -25,6 +25,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Supports audio playback via `audioUrl` or TTS, with lexeme display.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sound-card',
   imports: [
     MatCardModule,

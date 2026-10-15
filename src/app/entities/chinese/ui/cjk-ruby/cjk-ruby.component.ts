@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input } from '@angular/core';
 
 import type { RomanizationSystem } from '../../../phonetic/model';
 /**
@@ -14,6 +14,7 @@ import type { RomanizationSystem } from '../../../phonetic/model';
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-cjk-ruby',
   templateUrl: './cjk-ruby.component.html',
   styleUrl: './cjk-ruby.component.scss',

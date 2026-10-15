@@ -1,4 +1,4 @@
-import { Component, inject, signal, effect } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
@@ -23,6 +23,7 @@ import type { CourseWithLessons } from '../../../entities/course/model';
  * @remarks Loads journey nodes from `ContentSeedRepository` and tracks analytics events.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-journey-page',
   imports: [LearningJourneyMapComponent],
   template: `

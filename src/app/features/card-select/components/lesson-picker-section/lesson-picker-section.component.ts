@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { LessonPickerComponent } from '../../../../entities/lesson/ui/lesson-picker/lesson-picker.component';
@@ -8,6 +8,7 @@ import type { LessonPickPayload } from '../../../../entities/lesson/ui/lesson-pi
  * Section component for lesson selection in the card select page.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   selector: 'app-lesson-picker-section',
   imports: [MatCardModule, MatIconModule, LessonPickerComponent],

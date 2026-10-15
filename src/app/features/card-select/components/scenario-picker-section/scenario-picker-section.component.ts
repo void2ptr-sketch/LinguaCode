@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -10,6 +10,7 @@ import type { CardDifficulty } from '../../../../entities/card/model';
  * Section component for scenario selection in the card select page.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   selector: 'app-scenario-picker-section',
   imports: [

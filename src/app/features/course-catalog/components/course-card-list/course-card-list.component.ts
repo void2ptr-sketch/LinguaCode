@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +24,7 @@ import {
  * @remarks Delegates state to `CourseCatalogStore` and `UserStore`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-catalog-courses',
   imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatSelectModule],
   standalone: true,

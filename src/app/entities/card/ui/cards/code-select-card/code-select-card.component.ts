@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -28,6 +28,7 @@ import { buildOptionClass } from '../../../lib/cards/option-card.util';
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-code-select-card',
   imports: [MatCardModule, MatButtonModule, MatIconModule, CodeHighlightComponent],
   templateUrl: './code-select-card.component.html',

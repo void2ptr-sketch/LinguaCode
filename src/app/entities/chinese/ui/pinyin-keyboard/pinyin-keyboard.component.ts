@@ -1,4 +1,4 @@
-import { Component, computed, effect, input, output, signal, untracked } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, effect, input, output, signal, untracked } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
@@ -25,6 +25,7 @@ import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text
  * @remarks Supports committed syllables, pending syllables, tone marks, and tone preview.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-pinyin-keyboard',
   imports: [MatButtonModule, MatIconModule, ToneColoredTextComponent],
   templateUrl: './pinyin-keyboard.component.html',

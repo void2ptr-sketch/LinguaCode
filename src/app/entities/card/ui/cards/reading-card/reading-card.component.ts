@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Supports directional display (known→learning / learning→known) and lexeme display.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-reading-card',
   imports: [
     MatCardModule,

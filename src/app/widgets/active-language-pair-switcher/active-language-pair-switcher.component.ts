@@ -1,4 +1,4 @@
-import { Component, inject, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -12,6 +12,7 @@ import { UserLanguagePairEntry } from '../../entities/user/model';
  * @remarks Used in the header and various feature pages for language pair switching.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-active-language-pair-switcher',
   imports: [FormsModule, MatFormFieldModule, MatSelectModule],
   templateUrl: './active-language-pair-switcher.component.html',

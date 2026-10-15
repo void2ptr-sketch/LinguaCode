@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, computed, effect, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -17,6 +17,7 @@ import { CardSelectStore } from '../../../card-select/services/card-select.store
  * Zone component for displaying learning results.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   selector: 'app-learning-zone',
   imports: [
