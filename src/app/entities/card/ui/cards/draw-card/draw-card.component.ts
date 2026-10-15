@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   computed,
   effect,
@@ -68,6 +69,7 @@ import type { DrawAnswerPayload } from '../../../../chinese/model/draw-answer.ty
  */
 @Component({
   selector: 'app-draw-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatCardModule,
     MatButtonModule,

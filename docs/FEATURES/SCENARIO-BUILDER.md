@@ -2,7 +2,7 @@
 
 Переход от legacy `localStorage`-ключей к каталогу сценариев (seed + overlay) и точечной загрузке карточек при прохождении.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](../COMMON/DOMAIN.md) · [ARCHITECTURE.md](../ARCHITECTURE.md) · [CARD-CATALOG.md](../COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 ## Решение: индекс сценария + полный Scenario
 
@@ -86,7 +86,7 @@ Mock в dev: `useScenariosApiMock: true`, `scenariosApiMockInterceptor` + `Scena
 
 ## Dialog редактора
 
-Create / edit / view в modal (аналог [CARD-CATALOG.md — Dialog](./CARD-CATALOG.md#dialog-редактора)).
+Create / edit / view в modal (аналог [CARD-CATALOG.md — Dialog](../COMMON/CARD-CATALOG.md#dialog-редактора)).
 
 | Элемент         | Путь                                                            |
 | --------------- | --------------------------------------------------------------- |
@@ -179,3 +179,9 @@ src/app/entities/scenario/ui/scenario-picker/
 src/app/features/card-select/
 src/app/features/card-editor/components/card-editor-dialog/             # образец
 ```
+
+## Зависимости
+
+- `entities/chinese/ui/`: pinyin-keyboard, phonetic-ipa (для preview карточек в dialog)
+- `features/card-catalog-search/`: `CardCatalogSearchStore`, `ScenarioCardPicker`
+- `entities/scenario/`: `ScenarioSearchService`, `ScenariosApiService`

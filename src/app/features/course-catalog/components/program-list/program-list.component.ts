@@ -17,6 +17,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
  */
 @Component({
   selector: 'app-course-catalog-programs',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatButtonModule,
     MatCardModule,

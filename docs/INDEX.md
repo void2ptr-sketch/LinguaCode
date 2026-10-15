@@ -14,7 +14,7 @@
 | Документ                               | Описание                                           |
 | -------------------------------------- | -------------------------------------------------- |
 | [BUSINESS.md](./BUSINESS.md)           | Бизнес-идеи, миссия, ценность для пользователя     |
-| [DOMAIN.md](./SYSTEM/DOMAIN.md)               | Доменная модель: сущности, типы, иерархия контента |
+| [DOMAIN.md](./COMMON/DOMAIN.md)               | Доменная модель: сущности, типы, иерархия контента |
 | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home |
 
 ## Техническая документация
@@ -30,7 +30,7 @@
 | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                       |
 | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                         |
 | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                 |
-| [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md)                                   | Индекс карточек, поиск, пагинация, API      |
+| [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                   | Индекс карточек, поиск, пагинация, API      |
 | [API-CONTRACT.md](./API-CONTRACT.md)                                         | HTTP API: эндпоинты, обёртки, ошибки        |
 | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                           | Конструктор сценариев, `ScenarioCardSource` |
 | [EDITOR-UX.md](./FEATURES/EDITOR-UX.md)                                         | UX редактора карточек (G12)                 |
@@ -63,10 +63,10 @@
 ## Быстрая навигация по темам
 
 - **Объект изучения vs карточка (компоненты, затенение известного)** — [BUSINESS.md § Объект и карточка](./BUSINESS.md#объект-изучения-и-карточка)
-- **Иерархия Card → Scenario → Lesson → Course** — [DOMAIN.md § Иерархия](./SYSTEM/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./BUSINESS.md#иерархия-учебного-контента)
-- **«Курс» vs программа (`Course`)** — [DOMAIN.md § Термины](./SYSTEM/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
-- **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./SYSTEM/DOMAIN.md#learning-home-g13)
-- **Модели TypeScript** — [DOMAIN.md § Модели](./SYSTEM/DOMAIN.md#модели)
-- **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./SYSTEM/DOMAIN.md#сущности) · `learning-proficiency.types.ts`
+- **Иерархия Card → Scenario → Lesson → Course** — [DOMAIN.md § Иерархия](./COMMON/DOMAIN.md#иерархия-контента) · [BUSINESS.md § Иерархия](./BUSINESS.md#иерархия-учебного-контента)
+- **«Курс» vs программа (`Course`)** — [DOMAIN.md § Термины](./COMMON/DOMAIN.md#термины-не-путать-курс-и-languagepair) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md)
+- **Dashboard `/home` и практика `/cards/select`** — [DOMAIN.md § Learning Home](./COMMON/DOMAIN.md#learning-home-g13)
+- **Модели TypeScript** — [DOMAIN.md § Модели](./COMMON/DOMAIN.md#модели)
+- **Уровень подготовки в профиле** — [DOMAIN.md § UserPreferences](./COMMON/DOMAIN.md#сущности) · `learning-proficiency.types.ts`
 - **Цвета тонов (Dummit 2008)** — [CONTENT/CJK-CONTENT.md § Цветовая маркировка](./CONTENT/CJK-CONTENT.md#цветовая-маркировка-тонов)
 - **Структура `src/app`** — [ARCHITECTURE.md § Структура](./ARCHITECTURE.md)

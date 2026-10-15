@@ -9,10 +9,23 @@
 ## Структура
 
 ```text
-entities/learning/model/learning-results.store.ts
-entities/learning/model/learning-result.types.ts
-pages/learning-results/learning-progress/
+entities/learning/model/
+├── learning-result.types.ts    # типы результатов обучения
+├── learning-results.store.ts   # стор результатов (signal-based)
+├── learning-results.persistence.ts  # персистентность в localStorage
+├── journey.types.ts            # типы джорнея
+├── learning-proficiency.types.ts  # типы профайшенса
+├── learning-session.types.ts   # типы сессии обучения
+└── index.ts                    # barrel-экспорт
+
+entities/learning/lib/
+├── learning-proficiency.utils.ts  # утилиты профайшенса
+├── learning-resume.utils.ts       # утилиты продолжения обучения
+├── learning-session.utils.ts      # утилиты сессии
+└── index.ts                       # barrel-экспорт
 ```
+
+> **Примечание:** Страница прогресса находится в `pages/home/` (вкладка `/home/progress`) или в `pages/journey/journey-page/`, а не в отдельной папке `learning-results`.
 
 ## Модель
 
@@ -56,4 +69,4 @@ flowchart LR
 
 ## Связанные документы
 
-- [DOMAIN.md](./SYSTEM/DOMAIN.md#модели) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)
+- [DOMAIN.md](./COMMON/DOMAIN.md#модели) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)

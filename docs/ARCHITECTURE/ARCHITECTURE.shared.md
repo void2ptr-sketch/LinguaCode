@@ -13,6 +13,8 @@
 | Card host       | `entities/card/ui/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
 | Focus shell     | `entities/card/ui/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
 | Quiz cards      | `entities/card/ui/cards/`                                             | Select, memory, keyboard, draw, reading…        |
+| Code highlight  | `entities/card/ui/code-highlight`                                   | Подсветка кода в карточках                      |
+| Card catalog    | `entities/card/ui/card-catalog`                                     | UI каталога карточек                            |
 | Pinyin keyboard | `entities/chinese/ui/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
 | Lexeme          | `entities/chinese/ui/lexeme-display`                             | G9/G10 отображение лексем                         |
 | CJK ruby        | `entities/chinese/ui/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
@@ -20,7 +22,6 @@
 | Tone colors     | `entities/chinese/ui/tone-colored-text`                          | Цветовая маркировка тонов                           |
 | Pickers         | `entities/course/ui/course-picker`, `entities/lesson/ui/lesson-picker`, `entities/scenario/ui/scenario-picker` | Выбор программы/урока/сценария                  |
 | Quick switcher  | `widgets/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
-| Display matrix  | `entities/course/ui/course-display-settings-matrix`                     | Матрица «задание / ответы» (G9g-e)              |
 | Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
 | Catalog search  | `features/card-catalog-search`                                 | Фильтры и store поиска карточек                 |
 | Utils           | `entities/card/lib/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
@@ -56,7 +57,7 @@ flowchart LR
 
 ## Pinyin keyboard
 
-Компонент `app-pinyin-keyboard` + утилиты `entities/chinese/lib/pinyin/pinyin-keyboard.utils.ts`:
+Компонент `app-pinyin-keyboard` в `entities/chinese/ui/pinyin-keyboard/`:
 
 - динамический ряд тонов над буквами (placeholder `—`, фиксированная высота);
 - состояние: `committed` + `pendingSyllable` + `toneRowOpen`;
@@ -127,4 +128,4 @@ classDiagram
 
 ## Связанные документы
 
-- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md)
+- [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md)

@@ -1,4 +1,4 @@
 // Barrel exports for home services
 
 // ===== Services =====
-export { LearningDashboardService } from '../../entities/learning/lib/learning-dashboard.service';
+export { LearningDashboardService } from './learning-dashboard.service';

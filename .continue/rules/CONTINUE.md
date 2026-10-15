@@ -1,185 +1,333 @@
 ---
-name: Angular.LinguaCode Project Guide
-description: Angular.LinguaCode Project Guide
+description: LinguaCode Project Guide
 ---
 
-# Angular.LinguaCode Project Guide
+## 1. Project Overview
 
-## Project Overview
+**LinguaCode** — это Angular-приложение для изучения языков с акцентом на карточный и курсовой подходы к обучению. Приложение поддерживает ввод Pinyin с тоновыми маркировками, рисование иероглифов (hanzi), фонетическую транскрипцию (IPA) и интерактивные сценарии обучения.
 
-This is an Angular application designed for language learning with a focus on card-based and course-based learning experiences. The application implements modern Angular architecture patterns including standalone components, signals for state management, and lazy-loaded standalone routes.
+### Ключевые технологии
+- **Angular 22+** — standalone components, signals, lazy `loadComponent` routes
+- **TypeScript 6+** — strict mode, `type` aliases вместо `interface` для данных
+- **RxJS 7+** — внешние потоки; локальное состояние управляется через Signals
+- **Angular Material** — UI-компоненты
+- **Vitest** — unit-тесты (`types: ["vitest/globals"]`, runner `vitest`)
+- **Prettier & ESLint** — форматирование и линтинг
 
-### Key Technologies
-- Angular 22+ (standalone components, signals, lazy `loadComponent` routes)
-- TypeScript 6+ (strict mode)
-- RxJS 7+ (внешние потоки; локальное состояние — на Signals)
-- Angular Material
-- Vitest (тесты, `types: ["vitest/globals"]`)
-- Prettier & ESLint
+### Высокоуровневая архитектура (FEEDS / FSD-подобная)
+- **`src/app/entities/`** — доменные сущности: карточки, курсы, сценарии, китайский язык (hanzi, pinyin, phonetics), пользователь, аутентификация. Содержит модели, репозитории, утилиты и UI-компоненты сущностей.
+- **`src/app/features/`** — изолированные фичи (редактор карточек, выбор карточек, каталог курсов, домашняя страница, путь обучения, builder сценариев). Каждая фича содержит компоненты, сервисы, типы и утилиты.
+- **`src/app/pages/`** — страницы приложения (layout shell, home, journey, card-select, course-catalog, help, user). Страницы загружаются лениво через `loadComponent`.
+- **`src/app/widgets/`** — переиспользуемые виджеты: main-layout, header, footer, sidebar-навигация, меню (карточки, помощь, инструменты, пользователь).
+- **`src/app/shared/`** — общие сервисы и утилиты: API, логирование, безопасность (санитизация), хранилище (IndexedDB), синхронизация (sync queue), темы, типы, UI-компоненты, утилиты (pagination, markdown-field).
 
-### High-Level Architecture
-- **core/** — инфраструктура: layout (shell), hanzi-engine, security, доменные модели и утилиты
-- **features/** — изолированные фичи (страницы и их компоненты), лениво загружаются через `loadComponent`
-- **shared/** — переиспользуемые UI-компоненты, пайпы, директивы и утилиты
+---
 
-## Getting Started
+## 2. Getting Started
 
-### Prerequisites
-- Node.js 24 LTS (см. `.nvmrc`)
-- npm 10+
-- Angular CLI 22+
-- TypeScript 6+
+### Требования
+- **Node.js** 24 LTS (см. `.nvmrc`)
+- **npm** 10+
+- **Angular CLI** 22+
+- **TypeScript** 6+
 
-### Installation
+### Установка
 ```bash
 npm install
 ```
 
-### Basic Usage
+### Базовое использование
 ```bash
-# Development server
+# Dev-сервер
 ng serve
 
-# Build for production
+# Production build
 ng build --configuration production
 
-# Run tests (Vitest)
+# Unit-тесты (Vitest)
 ng test
+
+# CI-режим тестов
+npm run test:ci
 ```
 
-## Project Structure
+### Дополнительные скрипты
+| Скрипт | Описание |
+|--------|----------|
+| `npm run lint` | Проверка линтером |
+| `npm run lint:fix` | Автофикс линтера |
+| `npm run format` | Проверка форматирования Prettier |
+| `npm run format:fix` | Запись форматирования Prettier |
+| `npm run verify` | Полный пайплайн: lint + audit FSD + проверка импортов + barrel-экспорты + sync hanzi + build + тесты |
+| `npm run export:content-seed` | Экспорт seed-данных контента |
+| `npm run generate:radicals-course` | Генерация курса радикалов |
+
+---
+
+## 3. Project Structure
 
 ```
 src/
 ├── app/
-│   ├── core/                 # Инфраструктура: layout shell, hanzi-engine, security
-│   │   ├── layout/           # header, navigation, main-layout, footer, страницы help/user
-│   │   ├── hanzi-engine/     # иероглифика: модели, утилиты, quiz-сессии
-│   │   └── security/         # санитизация пользовательского ввода
-│   ├── features/             # Изолированные фичи (лениво через loadComponent)
-│   │   ├── card-select/      # выбор карточек и тренировка
-│   │   └── …                 # home, course-catalog, scenario-builder и др.
-│   ├── shared/               # Переиспользуемые UI, пайпы, утилиты
-│   │   ├── components/       # CardHost, lexeme-display, phonetic-ipa, …
-│   │   ├── card-catalog-search/  # фильтры каталога, ScenarioCardPicker
-│   │   └── pagination/       # UiPaginationComponent, PageRequest/PageResponse
+│   ├── entities/             # Доменные сущности
+│   │   ├── auth/             # Аутентификация, store
+│   │   ├── card/             # Карточки: модели, репозиторий, поиск, UI-компоненты
+│   │   ├── chinese/          # Китайский язык: hanzi, pinyin, phonetics, tone-marks
+│   │   ├── content-seed/     # Seed-данные контента
+│   │   ├── course/           # Курсы
+│   │   ├── journey/          # Путь обучения
+│   │   ├── language-pair/    # Языковые пары
+│   │   ├── learning/         # Обучение, dashboard
+│   │   ├── lesson/           # Уроки
+│   │   ├── phonetic/         # Фонетика (IPA)
+│   │   ├── scenario/         # Сценарии обучения
+│   │   └── user/             # Пользователь, overlay-миграции
+│   ├── features/             # Изолированные фичи
+│   │   ├── card-editor/      # Редактор карточек
+│   │   ├── card-select/      # Выбор карточек и тренировка
+│   │   ├── course-builder/   # Конструктор курсов
+│   │   ├── course-catalog/   # Каталог курсов
+│   │   ├── home/             # Домашняя страница
+│   │   ├── journey/          # Путь обучения
+│   │   ├── learning-results/# Результаты обучения
+│   │   └── scenario-builder/# Конструктор сценариев
+│   ├── pages/                # Страницы (layout shell, routing)
+│   │   ├── card-editor/      # CardEditorPageComponent
+│   │   ├── card-select/      # CardSelectPageComponent
+│   │   ├── course-builder/   # CourseBuilderPageComponent
+│   │   ├── course-catalog/   # CourseCatalogPageComponent
+│   │   ├── help/             # HelpPageComponent
+│   │   ├── home/             # HomePageComponent
+│   │   ├── journey/          # JourneyPageComponent
+│   │   ├── scenario-builder/# ScenarioBuilderPageComponent
+│   │   └── user/             # UserPageComponent
+│   ├── shared/               # Общие сервисы и утилиты
+│   │   ├── api/              # API-утилиты, network status
+│   │   ├── logger/           # Логирование
+│   │   ├── security/         # Санитизация ввода
+│   │   ├── storage/          # IndexedDB сервис
+│   │   ├── sync/             # Sync queue (offline mutations)
+│   │   ├── theme/            # Типы тем
+│   │   ├── types/            # Общие типы (async-state)
+│   │   ├── ui/               # UI-компоненты (error-toast)
+│   │   └── utils/            # Утилиты (pagination, markdown-field)
+│   ├── widgets/              # Переиспользуемые виджеты
+│   │   ├── active-language-pair-switcher/ # Переключатель языковой пары
+│   │   ├── main-footer/      # Footer
+│   │   ├── main-header/      # Header
+│   │   ├── main-layout/      # Shell layout
+│   │   ├── menu-cards/       # Меню карточек
+│   │   ├── menu-help/        # Меню помощи
+│   │   ├── menu-tools/       # Меню инструментов
+│   │   ├── menu-user/        # Меню пользователя
+│   │   └── sidebar-navigation-left/ # Боковая навигация
 │   ├── app.component.ts      # Root component
-│   └── app.config.ts         # Application configuration
+│   ├── app.config.ts         # Application configuration
+│   ├── app.routes.ts         # Routing (только loadComponent)
+│   └── errors/               # Global error handler
 ├── assets/                   # Статические ресурсы
 └── environments/             # Environment configurations
 ```
 
-### Key Files and Their Roles
-
-- **`src/main.ts`** — Application entry point
-- **`src/app/app.config.ts`** — Application configuration (providers, initializers)
-- **`src/app/app.routes.ts`** — Routing configuration (только `loadComponent`)
+### Ключевые файлы и их роли
+- **`src/main.ts`** — Точка входа приложения
+- **`src/app/app.config.ts`** — Конфигурация приложения (providers, initializers, preloading content seed, auth session restore)
+- **`src/app/app.routes.ts`** — Маршрутизация (все фичи загружаются лениво через `loadComponent`)
 - **`angular.json`** — Build/test targets (`@angular/build:unit-test`, Vitest runner)
+- **`tsconfig.json`** — TypeScript strict mode, Vitest globals
 
-## Development Workflow
+---
 
-### Coding Standards and Conventions
+## 4. Development Workflow
 
-1. **Standalone Components Only**: All new components must be standalone; never use NgModule
-2. **TypeScript Strict Mode**: strict typing; prefer `type` over `interface` для данных
-3. **Signals for State Management**: локальное состояние — Signals; RxJS — для внешних потоков
-4. **Naming Conventions**: полные правила — в `11.angular.naming.rules.md`; кратко: файлы kebab-case с суффиксом типа (`user-profile.component.ts`), классы UpperCamelCase с суффиксом (`UserProfileComponent`), константы UPPER_CASE (`MAX_RETRY_COUNT`)
+### Стандарты кодирования
 
-### Testing Approach
+1. **Только standalone components** — никогда не используйте NgModules
+2. **TypeScript Strict Mode** — строгая типизация, предпочитайте `type` над `interface` для данных
+3. **Signals для локального состояния** — RxJS только для внешних потоков (см. `05.angular.Reactive.rule.md`)
+4. **Названия файлов** — kebab-case с суффиксом типа (`user-profile.component.ts`, `user.service.ts`)
+5. **Названия классов** — UpperCamelCase с суффиксом (`UserProfileComponent`, `UserService`)
+6. **Константы** — UPPER_CASE (`MAX_RETRY_COUNT`)
+7. **Переменные и методы** — camelCase (`userId`, `calculateTotal()`)
 
-- Unit tests using **Vitest** (`*.spec.ts`, runner `vitest` в `angular.json`, `types: ["vitest/globals"]`)
-- Mock external dependencies instead of calling real endpoints
-- Test component initialization, input/output bindings, reactive streams, and error handling
-- Aim for comprehensive test coverage
+### Подход к тестированию
+- **Unit-тесты** через **Vitest** (`*.spec.ts`, runner `vitest` в `angular.json`)
+- Мокайте внешние зависимости вместо вызова реальных эндпоинтов
+- Тестируйте: инициализацию компонентов, input/output bindings, реактивные потоки (observables, signals), обработку ошибок
+- Целевые пороги покрытия: statements 70%, branches 65%, functions 70%, lines 70%
 
-### Build and Deployment Process
+### Процесс сборки и деплоя
+- Production builds с tree-shaking и оптимизацией
+- Автоматическое тестирование в CI/CD пайплайне
+- Проверка качества кода и безопасности
+- Конфигурации, специфичные для окружения (development / production)
 
-- Production builds with tree-shaking and optimization enabled
-- Automated testing in CI/CD pipeline
-- Code quality checks and security scanning
-- Environment-specific configurations
+---
 
-## Key Concepts
+## 5. Key Concepts
 
-### Domain-Specific Terminology
+### Терминология домена
+- **Card** — единица обучения, содержащая языковой контент
+- **Course** — коллекция карточек, организованных для прогрессивного обучения
+- **Scenario** — интерактивный контекст обучения с несколькими карточками
+- **Learning Session** — активная учебная деятельность пользователя
+- **Content Seed** — начальные данные, загружаемые в приложение
 
-- **Card**: Individual learning unit containing language content
-- **Course**: Collection of cards organized for learning progression
-- **Scenario**: Interactive learning context with multiple cards
-- **Learning Session**: User's active learning activity
-- **Content Seed**: Initial data loaded into the application
+### Основные абстракции
+1. **Signals** — для локального управления состоянием вместо RxJS subjects
+2. **Lazy Loading** — страницы фич загружаются по требованию через `loadComponent`
+3. **Standalone Components** — без NgModules, зависимости через `imports` array
+4. **Repository Pattern** — абстракция доступа к данным через репозитории
 
-### Core Abstractions
+### Используемые паттерны проектирования
+- **Repository Pattern** — для персистентности и доступа к данным
+- **Signal-based State Management** — локальное управление состоянием компонентов
+- **Lazy Loading** — загрузка компонентов на уровне маршрутов
+- **Component Composition** — переиспользуемые UI-компоненты с чёткими интерфейсами
 
-1. **Signals**: For local state management instead of RxJS subjects
-2. **Lazy Loading**: Feature pages loaded on-demand via `loadComponent`
-3. **Standalone Components**: No NgModules, using imports array for dependencies
-4. **Repository Pattern**: Data access abstraction through repositories
+---
 
-### Design Patterns Used
+## 6. Common Tasks
 
-- **Repository Pattern**: For data persistence and access
-- **Signal-based State Management**: Local component state management
-- **Lazy Loading**: Route-based component loading
-- **Component Composition**: Reusable UI components with clear interfaces
+### Добавление новой фичи
+1. Создайте папку фичи в `src/app/features/<feature-name>/`
+2. Реализуйте standalone компоненты с правильными `imports`
+3. Добавьте конфигурацию маршрута в `app.routes.ts` через `loadComponent`
+4. Используйте signals для локального состояния
+5. Напишите тесты (Vitest)
 
-## Common Tasks
+### Работа с моделями данных
+1. Определите типы в папке фичи или в `src/app/entities/` (для глобальных моделей)
+2. Создайте репозитории/сервисы для доступа к данным
+3. Используйте DI Angular (`providedIn: 'root'`)
+4. Реализуйте обработку ошибок и валидацию
 
-### Adding a New Feature
+### Модификация UI-компонентов
+1. Создайте или измените standalone компоненты в соответствующих папках
+2. Используйте component-scoped стили (SCSS файлы)
+3. Реализуйте правильные input/output bindings
+4. Следуйте существующим паттернам дизайна и стилям
 
-1. Create feature folder in `src/app/features/<feature-name>/`
-2. Implement standalone components with proper imports
-3. Add route configuration in `app.routes.ts` using `loadComponent`
-4. Use signals for local state management
-5. Test the new functionality (Vitest)
+### Работа с Pinyin клавиатурой
+Компонент `PinyinKeyboardComponent` (`src/app/entities/chinese/ui/pinyin-keyboard/`) предоставляет экранную клавиатуру для ввода Pinyin с тоновыми маркировками:
+- Поддерживает committed syllables, pending syllables, tone marks и tone preview
+- Тональные кнопки динамически меняются в зависимости от нажатых клавиш
+- Интегрируется через `[(value)]` двухстороннее связывание
+- Использует `ChangeDetectionStrategy.OnPush` для производительности
 
-### Working with Data Models
+### Работа с Hanzi (иероглифы)
+- **Hanzi Character Model** (`src/app/entities/chinese/model/hanzi-character.model.ts`) — модель иероглифа с штрихами
+- **Drawing Engine** — рисование иероглифов с поддержкой tracing, hints, calligraphy paint
+- **Quiz Session** (`src/app/entities/chinese/lib/quiz/hanzi-quiz-session.ts`) — сессии тестирования иероглифов
+- **Tone Marks** (`src/app/entities/chinese/lib/tone-marks/`) — применение тоновых маркировок к Pinyin
 
-1. Define types in the feature folder or in `src/app/core/` (для глобальных моделей)
-2. Create repositories/services for data access
-3. Use Angular's dependency injection system (`providedIn: 'root'`)
-4. Implement proper error handling and validation
+---
 
-### Modifying UI Components
+## 7. Troubleshooting
 
-1. Create or modify standalone components in appropriate folders
-2. Use component-scoped styles (SCSS files)
-3. Implement proper input/output bindings
-4. Follow existing design patterns and styling conventions
+### Частые проблемы
+- **Ошибки сборки**: проверьте конфигурацию TypeScript и зависимости
+- **Runtime ошибки**: проверьте импорты компонентов и lifecycle hooks
+- **Проблемы производительности**: профилируйте change detection и оптимизируйте вычисления
+- **Проблемы lazy loading**: убедитесь в правильной конфигурации маршрутов
 
-## Troubleshooting
+### Советы по отладке
+1. Используйте Angular DevTools для инспекции компонентов
+2. Используйте инструменты разработчика браузера для сетевых запросов
+3. Реализуйте правильное логирование в репозиториях и сервисах
+4. Тестируйте с минимальными воспроизводимыми примерами
 
-### Common Issues
+---
 
-- **Build Errors**: Check TypeScript configuration and dependencies
-- **Runtime Errors**: Verify component imports and lifecycle hooks
-- **Performance Issues**: Profile change detection and optimize computations
-- **Lazy Loading Problems**: Ensure correct route configurations
+## 8. References
 
-### Debugging Tips
-
-1. Use Angular DevTools for component inspection
-2. Leverage browser developer tools for network requests
-3. Implement proper logging in repositories and services
-4. Test with minimal reproduction cases
-
-## References
-
-### Documentation
+### Документация
 - [Angular Documentation](https://angular.dev/docs)
 - [Angular Material Documentation](https://material.angular.io/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [Vitest Documentation](https://vitest.dev/)
 
-### Important Resources
-- ESLint configuration for code quality
-- Prettier configuration for code formatting
-- Vitest test suite documentation
+### Важные ресурсы
+- ESLint конфигурация для качества кода
+- Prettier конфигурация для форматирования
+- Vitest suite documentation
 
-### Related Scripts
-- `npm run build:prod` — Production build
-- `npm run lint` — Linter check code
-- `npm run lint:fix`- Linter fix code
-- `npm run test:ci` — CI tests (Vitest)
-- `npm run format` — Code formatting check with Prettier
-- `npm run format:fix` — Code formatting write with Prettier
-- `npm run export:content-seed` — Export content seed data
+### Ссылки на правила проекта
+- `.continue/rules/00.project.md` — границы доступа к файлам
+- `.continue/rules/04.angular.DI-PS.rule.md` — DI и provider rules
+- `.continue/rules/05.angular.Reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
+- `.continue/rules/11.angular.naming.rules.md` — соглашения о названиях, когезивные модули
+
+---
+
+## 9. Barrel Exports (`index.ts`)
+
+### Правила для `index.ts`
+
+| Сценарий | Нужен `index.ts`? |
+|----------|-------------------|
+| Когезивный модуль (component + utils + types + tests) | **Да** |
+| Корень фичи (`src/app/features/<name>/`) | **Да** |
+| Папка с несколькими экспортами разных типов | **Да** |
+| Один экспорт + используется в `export * as` в родительском `index.ts` | **Да** |
+| Один экспорт + нет namespace-потребителей | **Нет** |
+
+### Порядок экспортов внутри `index.ts`
+1. **Components** — компоненты
+2. **Services / Stores / Directives / Pipes** — сервисы и stores
+3. **Utils / Types / Constants** — утилиты, типы, константы
+
+### Пример шаблона `index.ts`
+```ts
+// ===== Components =====
+export { FirstComponent } from './first.component';
+export { SecondComponent } from './second.component';
+
+// ===== Services =====
+export { FirstService } from './first.service';
+export { SecondService } from './second.service';
+
+// ===== Utils / Types =====
+export type { FirstType } from './first.types';
+export { formatLabel } from './format.util';
+```
+
+### Когезивные модули (нельзя разделять)
+Следующие папки представляют когезивные логические единицы — все файлы внутри должны перемещаться целиком:
+- `src/app/shared/utils/markdown-field/` — component, utils, tests, `index.ts`
+- `src/app/shared/utils/pagination/` — component, utils, types, state, tests, `index.ts`
+
+---
+
+## 10. Security Rules
+
+- Санитизируйте пользовательский ввод при рендеринге HTML; никогда не привязывайте напрямую к `[innerHTML]` без санитизации
+- Валидируйте и санитизируйте URL перед использованием в редиректах или динамических импортах
+- Избегайте хранения чувствительных данных в localStorage без шифрования
+- Используйте встроенные механизмы безопасности Angular (DOM sanitization, XSS protection)
+
+---
+
+## 11. Testing Rules
+
+- Генерируйте unit-тесты с помощью **Vitest** со значимыми ассершинами
+- Мокайте внешние зависимости (сервисы, API) вместо вызова реальных эндпоинтов
+- Включайте тесты для:
+  - Инициализации компонентов и input/output bindings
+  - Реактивных потоков (observables, signals)
+  - Обработки ошибок и edge cases
+- Избегайте написания тестов, зависящих от глобального состояния или неконтролируемого асинхронного поведения
+
+---
+
+## 12. Migration Notes
+
+### Миграция с NgModule на standalone
+- Используйте официальные migration schematics: `ng generate @angular/core:standalone`
+- Конвертируйте маршруты из NgModule lazy loading (`loadChildren` + `NgModule`) в standalone `loadComponent`
+- Замените `BrowserModule`/`CommonModule` imports в migrated классах на `imports` array standalone компонента
+- Переместите root providers в `app.config.ts` (`provideHttpClient()`, interceptors, etc.) вместо `AppModule`
+- Удалите пустые NgModules после миграции; проверьте с `ng build` и Vitest suite
+
+### Ссылки
+- [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone)

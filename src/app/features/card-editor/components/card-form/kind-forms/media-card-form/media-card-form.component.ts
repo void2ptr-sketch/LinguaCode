@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -14,6 +14,7 @@ import { CardOptionsEditorComponent } from '../../../card-options-editor/card-op
  */
 @Component({
   selector: 'app-media-card-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, CardOptionsEditorComponent],
   templateUrl: './media-card-form.component.html',
 })

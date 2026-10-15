@@ -11,14 +11,19 @@ CRUD сценариев, `ScenarioCardSource`, публикация. Маршр�
 ```text
 features/scenario-builder/
 ├── components/
-│   ├── scenario-builder-page/
-│   ├── scenario-builder-dialog/
-│   └── scenario-editor-form/
+│   ├── scenario-builder-dialog/     # dialog CRUD сценария
+│   └── scenario-editor-form/        # форма редактора сценария
 ├── services/
-│   ├── scenario-builder.store.ts
-│   └── scenario-builder.service.ts
-└── types/
+│   ├── scenario-builder.store.ts    # стор сценариев
+│   └── scenario-builder.service.ts  # сервис сценариев
+├── types/                           # типы фичи
+├── utils/
+│   └── scenario-form-draft.utils.ts # утилиты черновиков формы
+├── models/                          # модели (пустой barrel)
+└── index.ts                         # barrel-экспорт
 ```
+
+> **Примечание:** `scenario-builder-page` — это страница (page), а не компонент фичи. Она расположена в `pages/scenario-builder/scenario-builder-page/` и является точкой входа маршрута `/tools/scenario-builder`. Компоненты фичи (`features/scenario-builder/components/`) импортируются страницей.
 
 ## Модель `ScenarioCardSource`
 
@@ -57,9 +62,9 @@ classDiagram
 
 ## Зависимости
 
-- `shared/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
-- `shared/` — course-picker, lesson-picker, scenario-picker
+- `features/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
+- `entities/chinese/ui/` — course-picker, lesson-picker, scenario-picker, card-host, pinyin-keyboard
 
 ## Связанные документы
 
-- [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md)
+- [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) · [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)

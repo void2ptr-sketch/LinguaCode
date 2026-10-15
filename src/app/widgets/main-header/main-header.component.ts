@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MenuCardsComponent } from '../menu-cards/menu-cards.component';
@@ -12,6 +12,7 @@ import { MenuUserComponent } from '../menu-user/menu-user.component';
  */
 @Component({
   selector: 'app-main-header',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     RouterLink,
     MatToolbarModule,

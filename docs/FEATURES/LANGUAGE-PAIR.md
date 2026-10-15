@@ -2,7 +2,7 @@
 
 Обучение в LinguaCode опирается на **два языка контента**: известный пользователю (known) и изучаемый (learning). Это отдельно от **UiLocale** — языка интерфейса приложения (`@angular/localize`, бэклог).
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./COMMON/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
 ## Терминология: «Курс» (scope) и «Программа» (`Course`) — G11e
 
@@ -242,7 +242,7 @@ applyLanguagePair(activePair.known, activePair.learning);
 
 ## G11 — учебные курсы (Course)
 
-> **Статус:** готово (G11). См. [DOMAIN.md](./SYSTEM/DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
+> **Статус:** готово (G11). См. [DOMAIN.md](./COMMON/DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
 
 `Course` — программа из уроков (`Lesson`), каждый урок ссылается на упорядоченные `scenarioIds`. Курс привязан к `Course.languagePair` и фильтруется так же, как сценарии (G8).
 

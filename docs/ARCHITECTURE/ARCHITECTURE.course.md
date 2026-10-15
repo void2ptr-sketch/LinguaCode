@@ -11,10 +11,31 @@
 
 ```text
 features/course-builder/     # /tools/courses
+├── components/
+│   ├── course-builder-dialog/    # dialog создания/редактирования программы
+│   ├── course-form/              # форма программы
+│   └── reset-overlay-dialog/     # диалог сброса оверлея
+├── services/
+├── types/
+├── utils/
+├── models/
+└── index.ts
+
 features/course-catalog/     # /courses (published)
-entities/course/search/course-search.service.ts
-entities/course/model/course.types.ts, lesson.types.ts
+├── components/
+│   ├── course-card-list/       # список карточек программ
+│   ├── course-settings/        # настройки программы
+│   └── program-list/           # список программ
+├── services/
+├── utils/
+├── models/
+└── index.ts
+
+entities/course/search/          # поиск по курсам
+entities/course/model/           # типы курсов и уроков
 ```
+
+> **Примечание:** `course-builder-page` и `course-catalog-page` — это страницы (pages), а не компоненты фичй. Они расположены в `pages/course-builder/` и `pages/course-catalog/` соответственно и являются точками входа маршрутов `/tools/courses` и `/courses`.
 
 ## Иерархия
 
@@ -48,4 +69,4 @@ classDiagram
 
 ## Связанные документы
 
-- [DOMAIN.md](./SYSTEM/DOMAIN.md#иерархия-контента) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)
+- [DOMAIN.md](./COMMON/DOMAIN.md#иерархия-контента) · [ARCHITECTURE.home.md](./ARCHITECTURE.home.md)

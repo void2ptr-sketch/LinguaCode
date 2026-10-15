@@ -16,7 +16,7 @@
  * Закрытие диалога с `true` (кнопка "Сбросить") приводит к удалению
  * пользовательского overlay из localStorage и перезагрузке страницы.
  */
-import { Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 
@@ -39,6 +39,7 @@ import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
  */
 @Component({
   selector: 'app-reset-overlay-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <h2 mat-dialog-title>Сбросить пользовательские данные?</h2>
     <mat-dialog-content>

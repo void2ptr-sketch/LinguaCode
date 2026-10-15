@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
@@ -103,6 +104,7 @@ const EMPTY_HINT_FRAME: HanziHintStrokeFrame = {
  */
 @Component({
   selector: 'app-draw-canvas',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './draw-canvas.component.html',
   styleUrl: './draw-canvas.component.scss',

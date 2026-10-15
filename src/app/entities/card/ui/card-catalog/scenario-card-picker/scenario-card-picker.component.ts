@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, input, OnInit, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, effect, inject, input, OnInit, output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatListModule } from '@angular/material/list';
 
@@ -34,6 +34,7 @@ let lastKnownPickerActiveLanguagePairId: string | null = null;
 
 @Component({
   selector: 'app-scenario-card-picker',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatCheckboxModule, MatListModule, UiPaginationComponent, CardCatalogFiltersComponent],
   templateUrl: './scenario-card-picker.component.html',
   styleUrl: './scenario-card-picker.component.scss',

@@ -1,4 +1,4 @@
-import { Component, inject, input, output, signal, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, input, output, signal, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -35,6 +35,7 @@ import { emptyLessonFormDraft, lessonDraftKey } from '../../utils/course-form-dr
  */
 @Component({
   selector: 'app-course-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     MatButtonModule,

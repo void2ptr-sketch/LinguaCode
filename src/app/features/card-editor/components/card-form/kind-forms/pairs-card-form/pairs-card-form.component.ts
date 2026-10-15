@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,6 +15,7 @@ import { syncLexemePrimaryFromText } from '../../../../utils/ux/card-editor-ux.u
  */
 @Component({
   selector: 'app-pairs-card-form',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatInputModule],
   templateUrl: './pairs-card-form.component.html',
   styleUrl: './pairs-card-form.component.scss',

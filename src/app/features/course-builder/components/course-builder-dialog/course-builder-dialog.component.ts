@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, OnInit, signal } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -33,6 +33,7 @@ import type { CourseFormDraft } from '../../types';
  */
 @Component({
   selector: 'app-course-builder-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatDialogModule, MatProgressSpinnerModule, CourseFormComponent],
   templateUrl: './course-builder-dialog.component.html',
   styleUrl: './course-builder-dialog.component.scss',

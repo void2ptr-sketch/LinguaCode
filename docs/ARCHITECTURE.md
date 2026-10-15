@@ -1,6 +1,6 @@
 # Архитектура LinguaCode
 
-Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./SYSTEM/DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
+Техническое описание frontend-приложения. Бизнес-контекст — в [BUSINESS.md](./BUSINESS.md); доменная модель — в [DOMAIN.md](./COMMON/DOMAIN.md). Оглавление: [INDEX.md](./INDEX.md).
 
 ## Принципы
 
@@ -21,7 +21,7 @@ Feature-Sliced Design: **6 слоёв**, импорты направлены **�
 src/app/
 ├── app/        # композиция: app/app.config, app/app.routes, provide-api, interceptors, theme-сервис
 ├── pages/      # страницы-маршруты (*-page компоненты)
-├── widgets/    # layout-оболочки и навигация (header, navigation, main-layout, footer, menu-*)
+├── widgets/    # layout-оболочки и навигация (header, navigation, main-layout, footer, menu-\*)
 ├── features/   # изолированные фичи (по одной на сценарий использования)
 ├── entities/   # доменные слайсы: card, course, lesson, scenario, user, learning, language-pair, phonetic, chinese, content-seed, journey
 └── shared/     # доменно-агностичный код: utils, security, api-инфраструктура, theme-типы, ui
@@ -143,10 +143,10 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 ## Роутинг
 
-Центральный файл — `app/app/app.routes.ts`. Layout — родительский route с дочерними маршрутами фич.
+Центральный файл — `src/app/app/app.routes.ts`. Layout — родительский route с дочерними маршрутами фич.
 
 ```typescript
-// app/app/app.routes.ts (схема)
+// src/app/app/app.routes.ts (схема)
 export const routes: Routes = [
   {
     path: '',
@@ -175,7 +175,7 @@ export const routes: Routes = [
 
 ## Модель данных
 
-Сущности и типы домена — в [DOMAIN.md](./SYSTEM/DOMAIN.md#модели).
+Сущности и типы домена — в [DOMAIN.md](./COMMON/DOMAIN.md#модели).
 
 Кратко:
 
@@ -278,7 +278,7 @@ export class CardApiService {
 
 |             |                                                                        |
 | ----------- | ---------------------------------------------------------------------- |
-| Маршрут     | `/tools/cards` (redirect: `/tools/card-editor`, `/tools/card-catalog`) |
+| Маршрут     | `/tools/cards`                                                         |
 | Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar           |
 | Путь        | `features/card-editor/`                                                |
 | Список      | `CardCatalogSearchStore` + `CardSearchService`                         |
@@ -438,8 +438,8 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 - [INDEX.md](./INDEX.md) — оглавление документации
 - [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
-- [DOMAIN.md](./SYSTEM/DOMAIN.md) — доменная модель, типы, конструктор сценариев
-- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) — индекс карточек, поиск, пагинация
+- [DOMAIN.md](./COMMON/DOMAIN.md) — доменная модель, типы, конструктор сценариев
+- [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) — индекс карточек, поиск, пагинация
 - [TASKS.md](../TASKS.md) — чеклист реализации
 - [README.md](../README.md) — обзор и быстрый старт
 - [GIT-RULES.md](./SYSTEM/GIT-RULES.md) — Git-процесс

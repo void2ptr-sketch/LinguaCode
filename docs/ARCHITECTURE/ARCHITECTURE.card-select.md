@@ -11,14 +11,21 @@
 ```text
 features/card-select/
 ├── components/
-│   ├── card-select-page/      # вкладки, session bar, stepper
-│   ├── practice-session-bar/
-│   └── practice-stepper/
+│   ├── course-picker-section/       # выбор программы (course picker)
+│   ├── lesson-picker-section/       # выбор урока (lesson picker)
+│   ├── scenario-picker-section/     # выбор сценария (scenario picker)
+│   ├── learning-zone/               # зона обучения: карточка + ответ
+│   ├── practice-session-bar/        # sticky контекст сессии
+│   └── practice-stepper/            # визуализация прогресса по шагам
 ├── services/
-│   ├── card-select.service.ts # загрузка сценария, batch cards
-│   └── card-select.store.ts   # сессия: index, feedback, direction
-└── card-select.smoke.spec.ts
+│   ├── card-select.service.ts       # загрузка сценария, batch cards
+│   └── card-select.store.ts         # сессия: index, feedback, direction
+├── types/                           # типы фичи
+├── utils/                           # утилиты фичи
+└── index.ts                         # barrel-экспорт
 ```
+
+> **Примечание:** `card-select-page` — это страница (page), а не компонент фичи. Она расположена в `pages/card-select/card-select-page/` и является точкой входа маршрута `/cards/select`. Компоненты фичи (`features/card-select/components/`) импортируются страницей.
 
 ## Поток данных
 
@@ -65,9 +72,10 @@ Demo/radicals без `practiceSettings` — поведение без измен
 
 ## Зависимости
 
-- `shared/`: course-picker, lesson-picker, scenario-picker, card-host
+- `entities/chinese/ui/`: course-picker, lesson-picker, scenario-picker, card-host, pinyin-keyboard
+- `entities/chinese/lib/pinyin/`: утилиты клавиатуры, IPA, romanization
 - `entities/`: UserStore, LearningResultsStore, CourseSearchService, CardSelectService
 
 ## Связанные документы
 
-- [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md#learning-home-g13) · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)
+- [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./COMMON/DOMAIN.md#learning-home-g13) · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)

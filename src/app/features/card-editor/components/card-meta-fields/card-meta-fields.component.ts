@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,7 @@ import { DIFFICULTIES, DIFFICULTY_LABELS } from '../../../../entities/card/lib/c
  */
 @Component({
   selector: 'app-card-meta-fields',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule],
   templateUrl: './card-meta-fields.component.html',
   styleUrl: './card-meta-fields.component.scss',

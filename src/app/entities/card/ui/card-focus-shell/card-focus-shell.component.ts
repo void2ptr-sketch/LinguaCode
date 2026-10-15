@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   effect,
@@ -29,6 +30,7 @@ export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
  */
 @Component({
   selector: 'app-card-focus-shell',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatIconModule, MatTooltipModule],
   templateUrl: './card-focus-shell.component.html',
   styleUrl: './card-focus-shell.component.scss',
