@@ -2,12 +2,12 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import { LearningDashboardService } from './learning-dashboard.service';
-import { CourseSearchService } from '../../course/search/course-search.service';
-import { ScenariosApiService } from '../../scenario/api/scenarios-api.service';
-import { LearningResultsStore } from '../model/learning-results.store';
-import { UserStore } from '../../user/model/user.store';
-import type { CourseWithLessons } from '../../course/model';
-import type { LanguagePair } from '../../language-pair/model/language-pair.types';
+import { CourseSearchService } from '../../../entities/course/search/course-search.service';
+import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
+import type { CourseWithLessons } from '../../../entities/course/model';
+import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import { computed } from '@angular/core';
 
 describe('LearningDashboardService', () => {

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, computed, input, signal } from '@angular/core';
+import { Component, EventEmitter, Output, computed, effect, inject, input, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -11,6 +11,7 @@ import type { Card } from '../../../../entities/card/model';
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
 import type { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
+import { CardSelectStore } from '../../../card-select/services/card-select.store';
 
 /**
  * Zone component for displaying learning results.
@@ -32,6 +33,8 @@ import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-
   styleUrl: './learning-zone.component.scss',
 })
 export class LearningZoneComponent {
+  private readonly store = inject(CardSelectStore);
+
   // ─── Inputs ───────────────────────────────────────────────────────────────
 
   /** Selected scenario ID. */
@@ -151,6 +154,17 @@ export class LearningZoneComponent {
 
   /** Current feedback message. */
   readonly feedback = signal<CardFeedback>(null);
+
+  /**
+   * Effect that syncs the store feedback to the local feedback signal.
+   * Ensures the UI always reflects the latest feedback state from the store.
+   */
+  private readonly syncFeedback = effect(() => {
+    const storeFeedback = this.store.feedback();
+    if (this.feedback() !== storeFeedback) {
+      this.feedback.set(storeFeedback);
+    }
+  });
 
   // ─── Computed ─────────────────────────────────────────────────────────────
 

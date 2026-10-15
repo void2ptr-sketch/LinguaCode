@@ -2,7 +2,7 @@ import { vi } from 'vitest';
 
 import { TestBed } from '@angular/core/testing';
 
-import { CardSearchService } from '../../search/card-search.service';
+import { CardSearchService } from '../..';
 import { CourseSearchService } from '../../../course/search/course-search.service';
 import { CardCatalogSearchStore } from './card-catalog-search.store';
 

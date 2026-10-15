@@ -9,14 +9,14 @@ import {
   resolveLearningResumeTarget,
   type LearningResumeTarget,
   type LessonRoadmapItem,
-} from './learning-resume.utils';
-import { CourseSearchService } from '../../course/search/course-search.service';
-import { resolveLearningSessionForPair } from './learning-session.utils';
-import { ScenariosApiService } from '../../scenario/api/scenarios-api.service';
-import type { CourseWithLessons } from '../../course/model';
-import { LearningResultsStore } from '../model/learning-results.store';
-import { UserStore } from '../../user/model/user.store';
-import { RADICALS_COURSE_ID } from '../../chinese/lib/tones/radicals-course.defaults';
+} from '../../../entities/learning/lib/learning-resume.utils';
+import { CourseSearchService } from '../../../entities/course/search/course-search.service';
+import { resolveLearningSessionForPair } from '../../../entities/learning/lib/learning-session.utils';
+import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
+import type { CourseWithLessons } from '../../../entities/course/model';
+import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { UserStore } from '../../../entities/user/model/user.store';
+import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals-course.defaults';
 
 /**
  * Service for the learning dashboard (home page).
@@ -27,11 +27,11 @@ import { RADICALS_COURSE_ID } from '../../chinese/lib/tones/radicals-course.defa
  */
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
-  private readonly courseSearchService = inject(CourseSearchService);
-  private readonly scenariosApiService = inject(ScenariosApiService);
-  private readonly userStore = inject(UserStore);
-  private readonly resultsStore = inject(LearningResultsStore);
-  private readonly logger = inject(AppLoggerService);
+  private readonly courseSearchService = inject<CourseSearchService>(CourseSearchService);
+  private readonly scenariosApiService = inject<ScenariosApiService>(ScenariosApiService);
+  private readonly userStore = inject<UserStore>(UserStore);
+  private readonly resultsStore = inject<LearningResultsStore>(LearningResultsStore);
+  private readonly logger = inject<AppLoggerService>(AppLoggerService);
 
   /**
    * Loading state for course data.

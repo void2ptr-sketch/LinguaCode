@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type { JourneyLocationNode } from '../../../../entities/learning/model';
-import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
+import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
 
 /** Иконки Material для типов контента. */
 const CONTENT_TYPE_ICONS: Record<string, string> = {

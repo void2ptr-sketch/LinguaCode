@@ -4,8 +4,8 @@ import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
 import { LearningJourneyMapComponent } from '../../../features/journey/components/learning-journey-map/learning-journey-map.component';
-import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
-import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
+import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
+import { LearningDashboardService } from '../../../features/home/services/learning-dashboard.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
@@ -46,32 +46,10 @@ import type { CourseWithLessons } from '../../../entities/course/model';
       </div>
     }
   `,
-  styles: [
-    `
-      :host {
-        display: block;
-        padding: 16px;
-      }
-
-      .journey-page__loading,
-      .journey-page__error,
-      .journey-page__empty {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 200px;
-        font-size: 16px;
-        color: var(--mat-sys-on-surface-variant);
-      }
-
-      .journey-page__error {
-        color: var(--mat-sys-error);
-      }
-    `,
-  ],
+  styleUrl: './journey-page.component.scss',
 })
 export class JourneyPageComponent {
-  private readonly dashboardService = inject(LearningDashboardService);
+  private readonly dashboardService = inject<LearningDashboardService>(LearningDashboardService);
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly contentSeedRepo = inject(ContentSeedRepository);

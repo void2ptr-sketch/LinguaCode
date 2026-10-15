@@ -21,8 +21,8 @@ import type {
   JourneyContentType,
   ExplorerLevelResult,
 } from '../../../../entities/learning/model';
-import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
-import { LearningDashboardService } from '../../../../entities/learning/lib/learning-dashboard.service';
+import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
+import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';
 
 /** Фильтр по типу контента. */

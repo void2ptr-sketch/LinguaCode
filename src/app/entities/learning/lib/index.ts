@@ -15,5 +15,3 @@ export {
   resolveLearningSessionForPair,
 } from './learning-session.utils';
 
-// ===== Services =====
-export { LearningDashboardService } from './learning-dashboard.service';

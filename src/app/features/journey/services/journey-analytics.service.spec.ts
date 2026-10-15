@@ -2,9 +2,9 @@ import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 
 import { JourneyAnalyticsService } from './journey-analytics.service';
-import { UserStore } from '../../user/model/user.store';
-import type { JourneyAnalyticsEvent, JourneyLocationNode } from '../../learning/model';
-import type { UserPreferences } from '../../user/model';
+import { UserStore } from '../../../entities/user/model/user.store';
+import type { JourneyAnalyticsEvent, JourneyLocationNode } from '../../../entities/learning/model';
+import type { UserPreferences } from '../../../entities/user/model';
 describe('JourneyAnalyticsService', () => {
   let service: JourneyAnalyticsService;
 

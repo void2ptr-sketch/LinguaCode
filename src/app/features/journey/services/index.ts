@@ -1,2 +1,2 @@
 // Barrel exports for journey services
-// NOTE: Services not yet implemented
+export { JourneyAnalyticsService } from './journey-analytics.service';

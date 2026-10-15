@@ -1,4 +1,4 @@
-import { Component, computed, effect, inject, OnInit, signal } from '@angular/core';
+import { Component, computed, effect, inject, OnInit, signal, untracked } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -420,6 +420,26 @@ export class CardSelectPageComponent implements OnInit {
     }
 
     lastKnownActiveLanguagePairId = activeId;
+  });
+
+  /**
+   * Effect that auto-checks draw card answers when the store receives them.
+   *
+   * @remarks
+   * DrawCardComponent emits drawSubmittedChange and drawAnswerChange events,
+   * which update store.drawSubmitted and store.drawAnswer. This effect detects
+   * when both are set (drawSubmitted=true + drawAnswer payload) and automatically
+   * calls checkAnswer() so the user doesn't need to manually click "Проверить".
+   */
+  private readonly autoCheckDrawAnswer = effect(() => {
+    const drawSubmitted = this.store.drawSubmitted();
+    const drawAnswer = this.store.drawAnswer();
+
+    if (drawSubmitted && drawAnswer !== null) {
+      untracked(() => {
+        this.checkAnswer();
+      });
+    }
   });
 
   /**

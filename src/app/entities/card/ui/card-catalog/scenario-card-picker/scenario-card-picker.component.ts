@@ -39,7 +39,7 @@ let lastKnownPickerActiveLanguagePairId: string | null = null;
   styleUrl: './scenario-card-picker.component.scss',
 })
 export class ScenarioCardPickerComponent implements OnInit {
-  readonly store = inject(CardCatalogSearchStore);
+  readonly store = inject<CardCatalogSearchStore>(CardCatalogSearchStore);
   private readonly userStore = inject(UserStore);
 
   /**

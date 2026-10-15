@@ -6,8 +6,8 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { JourneyPageComponent } from './journey-page.component';
-import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
-import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
+import { LearningDashboardService } from '../../../features/home/services/learning-dashboard.service';
+import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';

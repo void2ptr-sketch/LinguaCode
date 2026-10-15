@@ -5,8 +5,8 @@ import type {
   ExplorerLevelResult,
   JourneyAnalyticsEvent,
   JourneyLocationNode,
-} from '../../learning/model';
-import { UserStore } from '../../user/model/user.store';
+} from '../../../entities/learning/model';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 const JOURNEY_VISITS_STORAGE_KEY = 'journey_visits';
 
