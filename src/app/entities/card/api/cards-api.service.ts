@@ -6,15 +6,17 @@ import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCardSearchParams } from './mock/cards-api.params.utils';
+import type { CardCatalogPort } from '../repository/card-catalog.port';
 
 /**
  * API service for card catalog operations.
  *
  * @remarks
  * Provides search, single-item, and batch retrieval of cards via HTTP.
+ * Implements the `CardCatalogPort` data-access contract.
  */
 @Injectable({ providedIn: 'root' })
-export class CardsApiService {
+export class CardsApiService implements CardCatalogPort {
   private readonly http = inject(HttpClient);
 
   /**
@@ -77,5 +79,56 @@ export class CardsApiService {
         ids: cardIds,
       }),
     ).then((response) => response.data);
+  }
+
+  /**
+   * Creates a new card.
+   *
+   * @param card - The card to create.
+   * @returns Promise resolving to the created card.
+   *
+   * @example
+   * ```ts
+   * const created = await cardsApi.create({ ...card, id: crypto.randomUUID() });
+   * ```
+   */
+  create(card: Card): Promise<Card> {
+    return firstValueFrom(
+      this.http.post<ApiResponse<Card>>(buildApiUrl('/cards'), card),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Updates an existing card.
+   *
+   * @param cardId - The card ID.
+   * @param card - The updated card.
+   * @returns Promise resolving to the updated card.
+   *
+   * @example
+   * ```ts
+   * const updated = await cardsApi.update('card-123', { ...card, title: 'New title' });
+   * ```
+   */
+  update(cardId: string, card: Card): Promise<Card> {
+    return firstValueFrom(
+      this.http.put<ApiResponse<Card>>(buildApiUrl(`/cards/${cardId}`), card),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Deletes a card by ID.
+   *
+   * @param cardId - The card ID.
+   *
+   * @example
+   * ```ts
+   * await cardsApi.delete('card-123');
+   * ```
+   */
+  delete(cardId: string): Promise<void> {
+    return firstValueFrom(
+      this.http.delete<ApiResponse<null>>(buildApiUrl(`/cards/${cardId}`)),
+    ).then(() => undefined);
   }
 }

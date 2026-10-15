@@ -16,7 +16,7 @@ import type { PhoneticLexeme } from '../../../../phonetic/model';
 import { UserStore } from '../../../../user/model/user.store';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**

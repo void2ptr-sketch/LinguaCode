@@ -1,0 +1,56 @@
+{
+  "$schema": "./node_modules/@angular/service-worker/config/schema.json",
+  "index": "/index.html",
+  "assetGroups": [
+    {
+      "name": "app-shell",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": [
+          "/favicon.ico",
+          "/favicon.svg",
+          "/favicon-32.png",
+          "/favicon-16.png",
+          "/manifest.webmanifest",
+          "/index.html",
+          "/*.css",
+          "/*.js",
+          "/assets/fonts/**/*.ttf"
+        ],
+        "urls": [
+          "https://fonts.googleapis.com/**",
+          "https://fonts.gstatic.com/**"
+        ]
+      }
+    },
+    {
+      "name": "content-seed",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "resources": {
+        "files": ["/data/**/*.json"]
+      }
+    },
+    {
+      "name": "hanzi-stroke-data",
+      "installMode": "lazy",
+      "updateMode": "lazy",
+      "resources": {
+        "files": ["/assets/hanzi/**/*.json"]
+      }
+    }
+  ],
+  "dataGroups": [
+    {
+      "name": "api",
+      "urls": ["/api/**"],
+      "cacheConfig": {
+        "strategy": "freshness",
+        "maxSize": 100,
+        "maxAge": "6h",
+        "timeout": "10s"
+      }
+    }
+  ]
+}

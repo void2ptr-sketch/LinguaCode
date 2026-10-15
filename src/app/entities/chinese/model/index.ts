@@ -18,3 +18,4 @@ export {
   type HanziQuizStrokeResult,
   type HanziUserStrokeInput,
 } from './hanzi-character.types';
+export type { DrawAnswerPayload } from './draw-answer.types';

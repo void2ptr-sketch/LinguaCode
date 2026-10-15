@@ -28,14 +28,14 @@ export const routes: Routes = [
             pathMatch: 'full',
             loadComponent: () =>
               import(
-                '../pages/home/home-learning-tab/home-learning-tab.component'
+                '../features/home/components/home-learning-tab/home-learning-tab.component'
               ).then((m) => m.HomeLearningTabComponent),
           },
           {
             path: 'progress',
             loadComponent: () =>
               import(
-                '../pages/learning-results/learning-progress/learning-progress.component'
+                '../features/learning-results/components/learning-progress/learning-progress.component'
               ).then((m) => m.LearningProgressComponent),
           },
           { path: '**', redirectTo: '', pathMatch: 'full' },
@@ -47,7 +47,7 @@ export const routes: Routes = [
         path: 'home-learning-tab',
         loadComponent: () =>
           import(
-            '../pages/home/home-learning-tab/home-learning-tab.component'
+            '../features/home/components/home-learning-tab/home-learning-tab.component'
           ).then((m) => m.HomeLearningTabComponent),
         children: [
           // ── Continue Tab (lazy-loaded) ───────────────────────────────────────
@@ -55,7 +55,7 @@ export const routes: Routes = [
             path: 'continue',
             loadComponent: () =>
               import(
-                '../pages/home/learning-continue-card/learning-continue-card.component'
+                '../features/home/components/learning-continue-card/learning-continue-card.component'
               ).then((m) => m.LearningContinueCardComponent),
           },
           // ── Progress Tab (lazy-loaded) ────────────────────────────────────────
@@ -63,7 +63,7 @@ export const routes: Routes = [
             path: 'progress',
             loadComponent: () =>
               import(
-                '../pages/home/learning-program-progress/learning-program-progress.component'
+                '../features/home/components/learning-program-progress/learning-program-progress.component'
               ).then((m) => m.LearningProgramProgressComponent),
           },
           // ── Roadmap Tab (lazy-loaded) ────────────────────────────────────────
@@ -71,7 +71,7 @@ export const routes: Routes = [
             path: 'roadmap',
             loadComponent: () =>
               import(
-                '../pages/home/learning-lesson-roadmap/learning-lesson-roadmap.component'
+                '../features/home/components/learning-lesson-roadmap/learning-lesson-roadmap.component'
               ).then((m) => m.LearningLessonRoadmapComponent),
           },
           { path: '**', redirectTo: 'continue', pathMatch: 'full' },

@@ -1,6 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { buildApiUrl } from '../../../shared/api/api-url';
 import { ScenariosApiService, ScenarioWritePayload } from './scenarios-api.service';
 import type { Scenario, ScenarioIndexEntry, ScenarioSearchPage } from '../model';
 
@@ -68,7 +69,7 @@ describe('ScenariosApiService', () => {
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((req) => req.url === '/api/scenarios/search');
+      const req = httpMock.expectOne((req) => req.url === buildApiUrl('/scenarios/search'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: mockSearchPage });
 
@@ -81,7 +82,7 @@ describe('ScenariosApiService', () => {
     it('should retrieve a scenario by ID', async () => {
       const promise = service.getById('scenario-1');
 
-      const req = httpMock.expectOne('/api/scenarios/scenario-1');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/scenario-1'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: mockScenario });
 
@@ -92,7 +93,7 @@ describe('ScenariosApiService', () => {
     it('should throw when scenario is not found', async () => {
       const promise = service.getById('nonexistent');
 
-      const req = httpMock.expectOne('/api/scenarios/nonexistent');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/nonexistent'));
       req.flush({ message: 'Not found' }, { status: 404, statusText: 'Not Found' });
 
       await expect(promise).rejects.toThrow();
@@ -103,7 +104,7 @@ describe('ScenariosApiService', () => {
     it('should create a new scenario', async () => {
       const promise = service.create(mockPayload);
 
-      const req = httpMock.expectOne('/api/scenarios');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockPayload);
       req.flush({ data: mockScenario });
@@ -117,7 +118,7 @@ describe('ScenariosApiService', () => {
     it('should update an existing scenario', async () => {
       const promise = service.update('scenario-1', mockPayload);
 
-      const req = httpMock.expectOne('/api/scenarios/scenario-1');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/scenario-1'));
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(mockPayload);
       req.flush({ data: mockScenario });
@@ -131,7 +132,7 @@ describe('ScenariosApiService', () => {
     it('should delete a scenario', async () => {
       const promise = service.delete('scenario-1');
 
-      const req = httpMock.expectOne('/api/scenarios/scenario-1');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/scenario-1'));
       expect(req.request.method).toBe('DELETE');
       req.flush({ data: null });
 
@@ -144,7 +145,7 @@ describe('ScenariosApiService', () => {
     it('should find scenarios using a specific card', async () => {
       const promise = service.findUsingCard('card-1');
 
-      const req = httpMock.expectOne('/api/scenarios/by-card/card-1');
+      const req = httpMock.expectOne(buildApiUrl('/scenarios/by-card/card-1'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: [mockScenarioIndexEntry] });
 

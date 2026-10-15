@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 import type { CourseWithLessons } from '../../../entities/course/model';
-import { CourseSearchService } from '../../../entities/course';
+import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { CourseBuilderStore } from './course-builder.store';
 import { CoursePdfExportService } from './course-pdf-export.service';
@@ -23,6 +23,10 @@ describe('CourseBuilderStore', () => {
     export: vi.fn(),
   };
 
+  const mockCoursesApi = {
+    getBundle: vi.fn(),
+  };
+
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
@@ -32,6 +36,7 @@ describe('CourseBuilderStore', () => {
         CourseBuilderStore,
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CoursePdfExportService, useValue: mockPdfExport },
+        { provide: CoursesApiService, useValue: mockCoursesApi },
         UserStore,
       ],
     });
@@ -358,11 +363,12 @@ describe('CourseBuilderStore', () => {
 
   it('should return null when course not found in bundle export', async () => {
     store.indexItems.set([]);
+    mockCoursesApi.getBundle.mockRejectedValue(new Error('Курс не найден'));
 
     const result = await store.exportCourseBundle('nonexistent');
 
     expect(result).toBeNull();
-    expect(store.exportError()).toContain('курс не найден');
+    expect(store.exportError()).toContain('не найден');
   });
 
   it('should export PDF for own course', async () => {

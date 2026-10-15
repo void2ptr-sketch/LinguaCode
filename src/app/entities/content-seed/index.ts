@@ -1,6 +1,14 @@
 // ===== Repositories =====
 export { ContentSeedRepository } from './content-seed.repository';
 
+// ===== Persistence (IndexedDB) =====
+export {
+  loadContentSeedSnapshot,
+  saveContentSeedSnapshot,
+  clearContentSeedSnapshot,
+  type ContentSeedSnapshot,
+} from './content-seed.idb';
+
 // ===== Types =====
 export type { ContentManifest, ScenariosSeedFixture, CoursesSeedFixture, CardsSeedFixture } from './content-seed.types';
 

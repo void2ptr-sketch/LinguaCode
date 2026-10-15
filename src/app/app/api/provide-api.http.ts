@@ -1,10 +1,16 @@
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { authInterceptor } from './interceptors';
+import {
+  authInterceptor,
+  authRefreshInterceptor,
+  errorInterceptor,
+  offlineInterceptor,
+  retryInterceptor,
+  timeoutInterceptor,
+} from './interceptors';
 import { cardsApiMockInterceptor } from '../../entities/card/api/mock/cards-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from '../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../entities/course/api/mock/courses-api.mock.interceptor';
-import { errorInterceptor } from './interceptors';
 
 /**
  * Provides HTTP client configuration for the API layer.
@@ -20,7 +26,11 @@ export const provideApiHttp = () => {
     ...(environment.useCardsApiMock ? [cardsApiMockInterceptor] : []),
     ...(environment.useScenariosApiMock ? [scenariosApiMockInterceptor] : []),
     ...(environment.useCoursesApiMock ? [coursesApiMockInterceptor] : []),
+    offlineInterceptor,
+    authRefreshInterceptor,
     authInterceptor,
+    retryInterceptor,
+    timeoutInterceptor,
     errorInterceptor,
   ];
 

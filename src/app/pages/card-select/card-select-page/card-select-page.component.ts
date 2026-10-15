@@ -25,6 +25,7 @@ import {
 } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
 import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
@@ -121,6 +122,9 @@ export class CardSelectPageComponent implements OnInit {
 
   /** Route query parameters for deep linking. */
   private readonly route = inject(ActivatedRoute);
+
+  /** Central logging service. */
+  private readonly logger = inject(AppLoggerService);
 
   /** Local state store for the practice session. */
   readonly store = inject(CardSelectStore);
@@ -493,7 +497,8 @@ export class CardSelectPageComponent implements OnInit {
       this.selectedLessonId.set(lesson.id);
       this.lessonTitle.set(lesson.title);
       this.lessonScenarioIds.set(lesson.scenarioIds);
-    } catch {
+    } catch (error) {
+      this.logger.debug('CardSelect: invalid deep link lesson', error);
       // ignore invalid deep link
     }
   }
@@ -641,7 +646,8 @@ export class CardSelectPageComponent implements OnInit {
           })),
         );
         await this.loadScenarioDifficultyMap(course);
-      } catch {
+      } catch (error) {
+        this.logger.warn('CardSelect: failed to load course from deep link', error);
         this.courseTitle.set('');
         this.currentCourse.set(null);
       }
@@ -725,7 +731,8 @@ export class CardSelectPageComponent implements OnInit {
           `В сценарии отсутствуют карточки: ${session.missingCardIds.join(', ')}`,
         );
       }
-    } catch {
+    } catch (error) {
+      this.logger.error('CardSelect: failed to load scenario cards', error);
       this.store.setError('Не удалось загрузить карточки сценария');
     }
   }

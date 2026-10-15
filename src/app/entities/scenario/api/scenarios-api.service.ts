@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type {
   Scenario,
   ScenarioIndexEntry,
@@ -12,34 +11,19 @@ import type {
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildScenarioSearchParams } from './mock/scenarios-api.params.utils';
+import type { ScenarioCatalogPort, ScenarioWritePayload } from '../repository/scenario-catalog.port';
 
-/**
- * Payload for creating or updating a scenario via the scenarios API.
- *
- * @remarks
- * Used in `ScenariosApiService` methods to send scenario data to the backend.
- */
-export type ScenarioWritePayload = {
-  /** Display title of the scenario. */
-  title: string;
-  /** Detailed description of the scenario content. */
-  description: string;
-  /** How cards are sourced for this scenario (manual list or automatic filtering). */
-  cardSource: Scenario['cardSource'];
-  /** Whether the scenario is published and visible to learners. */
-  published: boolean;
-  /** Optional language pair for the scenario (e.g., { source: 'zh', target: 'en' }). */
-  languagePair?: LanguagePair;
-};
+export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 
 /**
  * HTTP API service for scenario operations.
  *
  * @remarks
- * Wraps the backend scenarios API with Promise-based methods.
+ * Wraps the backend scenarios API with Promise-based methods. Implements the
+ * `ScenarioCatalogPort` data-access contract.
  */
 @Injectable({ providedIn: 'root' })
-export class ScenariosApiService {
+export class ScenariosApiService implements ScenarioCatalogPort {
   private readonly http = inject(HttpClient);
 
   /**

@@ -1,4 +1,5 @@
 // ===== Components =====
+export * from './components';
 
 // ===== Utils / Types =====
 export type {

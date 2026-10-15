@@ -3,9 +3,8 @@ import { inject } from '@angular/core';
 import { defer } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { environment } from '../../../../../environments/environment';
 import { parseCourseSearchCriteria } from './courses-api.params.utils';
-import { isApiRequest } from '../../../../shared/api/api-url';
+import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 
 import type { CourseWritePayload } from '../courses-api.service';
@@ -26,7 +25,7 @@ const isCoursesSearchRequest = (url: string): boolean =>
  * @returns The course ID, or `null` if the URL does not target a specific course.
  */
 const extractCourseId = (url: string): string | null => {
-  const prefix = `${environment.apiUrl}/courses/`;
+  const prefix = `${buildApiUrl('/courses/')}`;
   if (!url.includes(prefix)) {
     return null;
   }
@@ -50,12 +49,29 @@ const extractCourseId = (url: string): string | null => {
  * @returns The scenario ID, or `null` if the URL does not target a scenario.
  */
 const extractScenarioIdFromCourseUsage = (url: string): string | null => {
-  const marker = `${environment.apiUrl}/courses/by-scenario/`;
+  const marker = `${buildApiUrl('/courses/by-scenario/')}`;
   if (!url.includes(marker)) {
     return null;
   }
 
   return url.slice(url.indexOf(marker) + marker.length).split(/[?#]/)[0] || null;
+};
+
+/**
+ * Extracts the course ID from a "courses/{id}/bundle" export URL.
+ *
+ * @param url - The request URL.
+ * @returns The course ID, or `null` if the URL does not target a course bundle.
+ */
+const extractBundleCourseId = (url: string): string | null => {
+  const marker = `${buildApiUrl('/courses/')}`;
+  const suffix = '/bundle';
+  if (!url.includes(marker) || !url.endsWith(suffix)) {
+    return null;
+  }
+
+  const rest = url.slice(url.indexOf(marker) + marker.length, -suffix.length);
+  return rest || null;
 };
 
 /**
@@ -85,6 +101,13 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
+  const bundleCourseId = extractBundleCourseId(req.url);
+  if (req.method === 'GET' && bundleCourseId) {
+    return defer(() => handler.getBundle(bundleCourseId)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
   const usageScenarioId = extractScenarioIdFromCourseUsage(req.url);
   if (req.method === 'GET' && usageScenarioId) {
     return defer(() => handler.findUsingScenario(usageScenarioId)).pipe(
@@ -99,7 +122,7 @@ export const coursesApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
-  if (req.method === 'POST' && req.url.endsWith(`${environment.apiUrl}/courses`)) {
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/courses'))) {
     const payload = req.body as CourseWritePayload;
 
     return defer(() => handler.create(payload)).pipe(

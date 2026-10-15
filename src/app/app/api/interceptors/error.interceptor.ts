@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { catchError, throwError } from 'rxjs';
 import { isApiRequest } from '../../../shared/api/api-url';
-import { toHttpApiError } from '../errors/api-error.utils';
+import { toHttpApiError } from '../../../shared/api/api-error.utils';
 
 /**
  * HTTP interceptor that transforms errors into structured `HttpApiError` objects.

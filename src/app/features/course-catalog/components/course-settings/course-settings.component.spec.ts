@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogSettingsComponent } from './course-settings.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { SettingsDraftsStore } from '../../services';
 import type { ToneColorSchemeId } from '../../../../entities/phonetic/model';
 
 describe('CourseCatalogSettingsComponent', () => {
@@ -47,7 +47,7 @@ describe('CourseCatalogSettingsComponent', () => {
           },
         },
         {
-          provide: CourseCatalogStore,
+          provide: SettingsDraftsStore,
           useValue: {
             displayRomanizationsDraft: signal([]),
             answerRomanizationsDraft: signal([]),

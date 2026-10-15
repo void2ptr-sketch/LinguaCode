@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CodeSelectCard } from '../../../model';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 
 /**
  * UI component for code-select card exercises.

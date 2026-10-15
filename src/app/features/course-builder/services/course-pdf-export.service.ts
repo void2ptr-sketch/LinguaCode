@@ -39,8 +39,7 @@ import { jsPDF } from 'jspdf';
 import type { Card } from '../../../entities/card/model';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
-import { CardRepository } from '../../../entities/card/repository/card.repository';
-import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
+import { CoursesApiService } from '../../../entities/course';
 
 /**
  * Представление карточки в контексте курса.
@@ -107,8 +106,8 @@ const FONT_PATH = 'assets/fonts/DejaVuSansCondensed.ttf';
 export class CoursePdfExportService {
   /** HTTP-клиент для загрузки шрифта */
   private readonly http = inject(HttpClient);
-  /** Репозиторий карточек */
-  private readonly cardRepository = inject(CardRepository);
+  /** API-сервис для загрузки данных курса */
+  private readonly coursesApi = inject(CoursesApiService);
 
   /** Кэш base64-данных шрифта (загружается один раз) */
   private fontData: string | null = null;
@@ -137,9 +136,10 @@ export class CoursePdfExportService {
       this.fontData = await this.loadFont();
     }
 
-    // 2. Загружаем сценарии и карточки
-    const allScenarios = loadScenariosFromStorage();
-    const allCards = this.cardRepository.loadStored() as readonly Card[];
+    // 2. Загружаем сценарии и карточки через bundle-эндпоинт API
+    const bundle = await this.coursesApi.getBundle(course.id);
+    const allScenarios = bundle.scenarios;
+    const allCards = bundle.cards;
 
     // 3. Собираем карточки в порядке курса
     const lessons = [...course.lessons].sort((a, b) => a.order - b.order);

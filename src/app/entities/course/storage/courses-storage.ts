@@ -17,6 +17,17 @@ export type { CourseCatalogState } from '../utils/course-catalog-state';
 export const COURSE_CATALOG_STORAGE_KEY = 'lingua-code.course-catalog';
 
 /**
+ * @deprecated Mock-backend data-access layer.
+ *
+ * These helpers read/write the resolved catalog (content seed + user-content
+ * overlay) directly from `localStorage`. They are consumed ONLY by the mock
+ * API handlers (`CoursesCatalogMockHandler`) which simulate the backend during
+ * development. Frontend code must use the API services (`CoursesApiService`,
+ * `CourseCatalogPort`) instead — the data source can then be swapped to a real
+ * backend without touching callers.
+ */
+
+/**
  * Loads the default course catalog by applying the user-content overlay on top of the content seed.
  *
  * Runs the legacy migration if needed before resolving the catalog.

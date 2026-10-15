@@ -22,7 +22,7 @@ import type { AnswerDisplayMode } from '../../../../entities/course/ui/course-di
 import { shouldShowPalladius } from '../../../../entities/phonetic/lib/phonetic-preferences.utils';
 import type { RomanizationOption } from '../../../../entities/course/ui/course-display-settings-matrix';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { SettingsDraftsStore } from '../../services';
 
 /**
  * Course catalog settings component. Manages language pair settings including
@@ -46,7 +46,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
 })
 export class CourseCatalogSettingsComponent {
   private readonly userStore = inject(UserStore);
-  private readonly catalogStore = inject(CourseCatalogStore);
+  private readonly settingsDrafts = inject(SettingsDraftsStore);
 
   /** Available language pairs from the store. */
   readonly languagePairs = this.userStore.languagePairs;
@@ -54,21 +54,21 @@ export class CourseCatalogSettingsComponent {
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
   /** Draft display romanization systems. */
-  readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  readonly displayRomanizationsDraft = this.settingsDrafts.displayRomanizationsDraft;
   /** Draft answer romanization systems. */
-  readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  readonly answerRomanizationsDraft = this.settingsDrafts.answerRomanizationsDraft;
   /** Draft IPA display preference. */
-  readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  readonly showIpaDraft = this.settingsDrafts.showIpaDraft;
   /** Draft custom IPA variant label. */
-  readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  readonly ipaVariantLabelDraft = this.settingsDrafts.ipaVariantLabelDraft;
   /** Draft answer display modes. */
-  readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  readonly answerModesDraft = this.settingsDrafts.answerModesDraft;
   /** Draft tone color enabled preference. */
-  readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  readonly toneColorEnabledDraft = this.settingsDrafts.toneColorEnabledDraft;
   /** Draft tone color scheme preference. */
-  readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  readonly toneColorSchemeDraft = this.settingsDrafts.toneColorSchemeDraft;
   /** Draft tracing stroke duration preference. */
-  readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
+  readonly tracingStrokeDurationDraft = this.settingsDrafts.tracingStrokeDurationDraft;
 
   /** Available tone color scheme options. */
   readonly toneColorSchemeOptions = TONE_COLOR_SCHEMES;
@@ -223,7 +223,7 @@ export class CourseCatalogSettingsComponent {
    * @param romanizations - The updated display romanization systems.
    */
   onDisplayRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
-    this.catalogStore.setDisplayRomanizationsDraft(romanizations);
+    this.settingsDrafts.setDisplayRomanizationsDraft(romanizations);
   }
 
   /**
@@ -232,7 +232,7 @@ export class CourseCatalogSettingsComponent {
    * @param romanizations - The updated answer romanization systems.
    */
   onAnswerRomanizationsChange(romanizations: readonly RomanizationSystem[]): void {
-    this.catalogStore.setAnswerRomanizationsDraft(romanizations);
+    this.settingsDrafts.setAnswerRomanizationsDraft(romanizations);
   }
 
   /**
@@ -241,7 +241,7 @@ export class CourseCatalogSettingsComponent {
    * @param show - Whether IPA notation should be displayed.
    */
   onShowIpaChange(show: boolean): void {
-    this.catalogStore.setShowIpaDraft(show);
+    this.settingsDrafts.setShowIpaDraft(show);
   }
 
   /**
@@ -250,7 +250,7 @@ export class CourseCatalogSettingsComponent {
    * @param label - The custom IPA variant label.
    */
   onIpaVariantLabelChange(label: string): void {
-    this.catalogStore.setIpaVariantLabelDraft(label);
+    this.settingsDrafts.setIpaVariantLabelDraft(label);
   }
 
   /**
@@ -259,7 +259,7 @@ export class CourseCatalogSettingsComponent {
    * @param modes - The updated answer display modes.
    */
   onAnswerModesChange(modes: readonly AnswerDisplayMode[]): void {
-    this.catalogStore.setAnswerModesDraft(modes);
+    this.settingsDrafts.setAnswerModesDraft(modes);
   }
 
   /**
@@ -268,7 +268,7 @@ export class CourseCatalogSettingsComponent {
    * @param enabled - Whether tone coloring is enabled.
    */
   onToneColorEnabledChange(enabled: boolean): void {
-    this.catalogStore.setToneColorEnabledDraft(enabled);
+    this.settingsDrafts.setToneColorEnabledDraft(enabled);
   }
 
   /**
@@ -277,7 +277,7 @@ export class CourseCatalogSettingsComponent {
    * @param scheme - The selected tone color scheme ID.
    */
   onToneColorSchemeChange(scheme: ToneColorSchemeId): void {
-    this.catalogStore.setToneColorSchemeDraft(scheme);
+    this.settingsDrafts.setToneColorSchemeDraft(scheme);
   }
 
   /**
@@ -286,6 +286,6 @@ export class CourseCatalogSettingsComponent {
    * @param duration - The tracing stroke duration in milliseconds.
    */
   onTracingStrokeDurationChange(duration: number): void {
-    this.catalogStore.setTracingStrokeDurationDraft(duration);
+    this.settingsDrafts.setTracingStrokeDurationDraft(duration);
   }
 }

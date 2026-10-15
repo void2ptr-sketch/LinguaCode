@@ -2,23 +2,23 @@ import { TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 
 import { CoursePdfExportService } from './course-pdf-export.service';
-import { CardRepository } from '../../../entities/card/repository/card.repository';
+import { CoursesApiService } from '../../../entities/course';
 
 describe('CoursePdfExportService', () => {
   let service: CoursePdfExportService;
-  let cardRepositoryMock: Partial<CardRepository>;
+  let coursesApiMock: { getBundle: ReturnType<typeof vi.fn> };
 
   beforeEach(() => {
     localStorage.clear();
 
-    cardRepositoryMock = {
-      loadStored: vi.fn().mockReturnValue([]),
+    coursesApiMock = {
+      getBundle: vi.fn().mockResolvedValue({ scenarios: [], cards: [] }),
     };
 
     TestBed.configureTestingModule({
       providers: [
         CoursePdfExportService,
-        { provide: CardRepository, useValue: cardRepositoryMock },
+        { provide: CoursesApiService, useValue: coursesApiMock },
       ],
     });
 

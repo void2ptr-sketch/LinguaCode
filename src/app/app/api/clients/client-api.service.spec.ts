@@ -1,6 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { buildApiUrl } from '../../../shared/api/api-url';
 import { ClientApi } from './client-api.service';
 import { ApiListResponse, ApiResponse } from '../../../shared/api/api.types';
 
@@ -29,7 +30,7 @@ describe('ApiClient', () => {
 
       const promise = service.get<typeof expectedData>(path);
 
-      const req = httpMock.expectOne('/api/test/resource');
+      const req = httpMock.expectOne(buildApiUrl('/test/resource'));
       expect(req.request.method).toBe('GET');
       req.flush(expectedData);
 
@@ -46,7 +47,7 @@ describe('ApiClient', () => {
 
       const promise = service.getData<typeof expectedData>(path);
 
-      const req = httpMock.expectOne('/api/repositories/endpoint');
+      const req = httpMock.expectOne(buildApiUrl('/repositories/endpoint'));
       expect(req.request.method).toBe('GET');
       req.flush(envelope);
 
@@ -59,7 +60,7 @@ describe('ApiClient', () => {
 
       const promise = service.getData(path);
 
-      const req = httpMock.expectOne('/api/error/endpoint');
+      const req = httpMock.expectOne(buildApiUrl('/error/endpoint'));
       req.flush({ message: 'Not found' }, { status: 404, statusText: 'Not Found' });
 
       await expect(promise).rejects.toThrow();
@@ -74,7 +75,7 @@ describe('ApiClient', () => {
 
       const promise = service.getList(path);
 
-      const req = httpMock.expectOne('/api/list/endpoint');
+      const req = httpMock.expectOne(buildApiUrl('/list/endpoint'));
       expect(req.request.method).toBe('GET');
       req.flush(envelope);
 
@@ -88,7 +89,7 @@ describe('ApiClient', () => {
 
       const promise = service.getList(path);
 
-      const req = httpMock.expectOne('/api/empty/list');
+      const req = httpMock.expectOne(buildApiUrl('/empty/list'));
       req.flush(envelope);
 
       const result = await promise;
@@ -104,7 +105,7 @@ describe('ApiClient', () => {
 
       const promise = service.post<typeof expectedData, typeof body>(path, body);
 
-      const req = httpMock.expectOne('/api/create/resource');
+      const req = httpMock.expectOne(buildApiUrl('/create/resource'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(body);
       req.flush(expectedData);
@@ -119,7 +120,7 @@ describe('ApiClient', () => {
 
       const promise = service.post(path, body);
 
-      const req = httpMock.expectOne('/api/fail/endpoint');
+      const req = httpMock.expectOne(buildApiUrl('/fail/endpoint'));
       req.flush({ message: 'Validation error' }, { status: 400, statusText: 'Bad Request' });
 
       await expect(promise).rejects.toThrow();
@@ -135,7 +136,7 @@ describe('ApiClient', () => {
 
       const promise = service.postData<typeof extractedData, typeof body>(path, body);
 
-      const req = httpMock.expectOne('/api/update/resource');
+      const req = httpMock.expectOne(buildApiUrl('/update/resource'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(body);
       req.flush(envelope);
@@ -150,7 +151,7 @@ describe('ApiClient', () => {
 
       const promise = service.postData(path, body);
 
-      const req = httpMock.expectOne('/api/delete/resource');
+      const req = httpMock.expectOne(buildApiUrl('/delete/resource'));
       req.flush({ message: 'Forbidden' }, { status: 403, statusText: 'Forbidden' });
 
       await expect(promise).rejects.toThrow();

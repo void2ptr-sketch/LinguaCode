@@ -1,12 +1,14 @@
 import { Injectable, inject, signal } from '@angular/core';
 import { Card, CardKind } from '../../../entities/card/model';
-import { CardsCatalogMockHandler } from '../../../entities/card/api/mock/cards-catalog.mock.handler';
-import { CardRepository, CardSearchService } from '../../../entities/card';
+import { CardsApiService, CardSearchService } from '../../../entities/card';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import type { CardIndexMetaOverride } from '../../../entities/card/model';
 import { upsertCardIndexMetaOverride } from '../../../entities/card/storage/card-index-meta.storage';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { isNetworkError, isOfflineError } from '../../../shared/api/api-error.utils';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { SyncQueueService } from '../../../shared/sync';
 import { CardDraft, CardEditorMode } from '../types';
 import { cardToDraft, emptyCardDraft } from '../utils/draft/card-draft.utils';
 import {
@@ -24,12 +26,13 @@ import {
  */
 @Injectable()
 export class CardEditorStore {
-  private readonly cardRepository = inject(CardRepository);
+  private readonly cardsApi = inject(CardsApiService);
   private readonly cardSearchService = inject(CardSearchService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly learningResultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
-  private readonly catalogMockHandler = inject(CardsCatalogMockHandler);
+  private readonly syncQueue = inject(SyncQueueService);
+  private readonly logger = inject(AppLoggerService);
 
   /**
    * The card currently being edited (or null when creating a new card).
@@ -102,7 +105,8 @@ export class CardEditorStore {
       const card = await this.cardSearchService.getCardById(cardId);
       this.editingCard.set(card);
       this.creatingKind.set(card.kind);
-    } catch {
+    } catch (error) {
+      this.logger.error('CardEditor: failed to load card for edit', error);
       this.error.set('Card not found');
       this.cancelEdit();
     } finally {
@@ -134,8 +138,25 @@ export class CardEditorStore {
       return false;
     }
 
-    const cards = await this.cardRepository.ensureLoaded();
-    await this.persist([...cards, card], card.id, indexMeta);
+    try {
+      await this.cardsApi.create(card);
+    } catch (error) {
+      if (isOfflineError(error) || isNetworkError(error)) {
+        // Офлайн: сохраняем операцию в очередь и применяем локально.
+        await this.syncQueue.enqueue('card.create', { card });
+        if (indexMeta) {
+          upsertCardIndexMetaOverride(card.id, indexMeta);
+        }
+        this.refreshCatalog();
+        this.cancelEdit();
+        return true;
+      }
+      throw error;
+    }
+    if (indexMeta) {
+      upsertCardIndexMetaOverride(card.id, indexMeta);
+    }
+    this.refreshCatalog();
     this.cancelEdit();
     return true;
   }
@@ -159,9 +180,25 @@ export class CardEditorStore {
       return false;
     }
 
-    const cards = await this.cardRepository.ensureLoaded();
-    const nextCards = cards.map((item) => (item.id === cardId ? card : item));
-    await this.persist(nextCards, cardId, indexMeta);
+    try {
+      await this.cardsApi.update(cardId, card);
+    } catch (error) {
+      if (isOfflineError(error) || isNetworkError(error)) {
+        // Офлайн: сохраняем операцию в очередь и применяем локально.
+        await this.syncQueue.enqueue('card.update', { cardId, card });
+        if (indexMeta) {
+          upsertCardIndexMetaOverride(cardId, indexMeta);
+        }
+        this.refreshCatalog();
+        this.cancelEdit();
+        return true;
+      }
+      throw error;
+    }
+    if (indexMeta) {
+      upsertCardIndexMetaOverride(cardId, indexMeta);
+    }
+    this.refreshCatalog();
     this.cancelEdit();
     return true;
   }
@@ -174,9 +211,10 @@ export class CardEditorStore {
    * @remarks Fails if the card is referenced by scenarios or has learning results.
    */
   async deleteCard(cardId: string): Promise<boolean> {
-    const cards = await this.cardRepository.ensureLoaded();
-    const card = this.cardRepository.getById(cards, cardId);
-    if (!card) {
+    try {
+      await this.cardsApi.getById(cardId);
+    } catch (error) {
+      this.logger.warn('CardEditor: card not found for delete', error);
       return false;
     }
 
@@ -193,8 +231,24 @@ export class CardEditorStore {
       return false;
     }
 
-    const nextCards = cards.filter((item) => item.id !== cardId);
-    await this.persist(nextCards);
+    try {
+      await this.cardsApi.delete(cardId);
+    } catch (error) {
+      if (isOfflineError(error) || isNetworkError(error)) {
+        // Офлайн: сохраняем операцию в очередь и применяем локально.
+        await this.syncQueue.enqueue('card.delete', { cardId });
+        this.refreshCatalog();
+        this.error.set(null);
+
+        if (this.editingCardId() === cardId) {
+          this.cancelEdit();
+        }
+
+        return true;
+      }
+      throw error;
+    }
+    this.refreshCatalog();
     this.error.set(null);
 
     if (this.editingCardId() === cardId) {
@@ -234,25 +288,11 @@ export class CardEditorStore {
   }
 
   /**
-   * Persists cards and refreshes the catalog.
+   * Refreshes the catalog cache after a card mutation.
    *
-   * @param cards - The full cards array to save.
-   * @param cardId - Optional card ID for index meta override.
-   * @param indexMeta - Optional card index metadata override.
    * @private
    */
-  private async persist(
-    cards: readonly Card[],
-    cardId?: string,
-    indexMeta?: CardIndexMetaOverride,
-  ): Promise<void> {
-    this.cardRepository.save(cards);
-
-    if (cardId && indexMeta) {
-      upsertCardIndexMetaOverride(cardId, indexMeta);
-    }
-
-    this.catalogMockHandler.resetCache();
+  private refreshCatalog(): void {
     this.cardSearchService.refreshCatalog();
   }
 }

@@ -1,5 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import {
   buildLessonRoadmap,
   collectScenarioIds,
@@ -30,6 +31,7 @@ export class LearningDashboardService {
   private readonly scenariosApiService = inject(ScenariosApiService);
   private readonly userStore = inject(UserStore);
   private readonly resultsStore = inject(LearningResultsStore);
+  private readonly logger = inject(AppLoggerService);
 
   /**
    * Loading state for course data.
@@ -130,7 +132,8 @@ export class LearningDashboardService {
           if (!courseMatchesActiveLanguagePair(candidate, pair)) {
             courseId = null;
           }
-        } catch {
+        } catch (error) {
+          this.logger.warn('LearningDashboard: failed to validate active course', error);
           courseId = null;
         }
       }
@@ -178,7 +181,8 @@ export class LearningDashboardService {
 
       this.resumeTarget.set(target);
       this.roadmap.set(buildLessonRoadmap(course.lessons, hasScenarioResult));
-    } catch {
+    } catch (error) {
+      this.logger.error('LearningDashboard: failed to load learning program', error);
       this.error.set('Не удалось загрузить программу обучения');
       this.course.set(null);
       this.resumeTarget.set(null);
@@ -217,7 +221,8 @@ export class LearningDashboardService {
         try {
           const scenario = await this.scenariosApiService.getById(scenarioId);
           titles[scenarioId] = scenario.title;
-        } catch {
+        } catch (error) {
+          this.logger.debug('LearningDashboard: scenario title fallback', error);
           // fallback labels resolve in utils
         }
       }),

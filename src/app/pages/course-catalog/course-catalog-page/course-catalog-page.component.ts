@@ -1,4 +1,6 @@
 import { Component, computed, effect, inject, OnInit } from '@angular/core';
+
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -20,7 +22,12 @@ import type { UserLanguagePairEntry, UserLanguagePairSettings } from '../../../e
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../entities/phonetic/model';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../entities/course/ui/course-display-settings-matrix';
-import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
+import {
+  CourseCatalogStore,
+  CourseTabDraftsStore,
+  ProfileDraftsStore,
+  SettingsDraftsStore,
+} from '../../../features/course-catalog/services';
 import { CourseCatalogCoursesComponent } from '../../../features/course-catalog/components/course-card-list/course-card-list.component';
 import { CourseCatalogSettingsComponent } from '../../../features/course-catalog/components/course-settings/course-settings.component';
 import { CourseCatalogProgramsComponent } from '../../../features/course-catalog/components/program-list/program-list.component';
@@ -52,7 +59,11 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly router = inject(Router);
+  private readonly logger = inject(AppLoggerService);
   readonly catalogStore = inject(CourseCatalogStore);
+  readonly profileDrafts = inject(ProfileDraftsStore);
+  readonly courseTabDrafts = inject(CourseTabDraftsStore);
+  readonly settingsDrafts = inject(SettingsDraftsStore);
 
   /** Direct references to sub-tab components. */
   readonly coursesComponent = CourseCatalogCoursesComponent;
@@ -126,41 +137,41 @@ export class CourseCatalogPageComponent implements OnInit {
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
   /** Draft value for the user's display name. */
-  readonly nameDraft = this.catalogStore.nameDraft;
+  readonly nameDraft = this.profileDrafts.nameDraft;
   /** Draft value for the learning proficiency level. */
-  readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  readonly learningProficiencyDraft = this.profileDrafts.learningProficiencyDraft;
   /** Draft value for the application theme. */
-  readonly themeDraft = this.catalogStore.themeDraft;
+  readonly themeDraft = this.profileDrafts.themeDraft;
   /** Draft value for the font size preference. */
-  readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  readonly fontSizeDraft = this.profileDrafts.fontSizeDraft;
   /** Draft value for the color scheme. */
-  readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  readonly colorSchemeDraft = this.profileDrafts.colorSchemeDraft;
   /** Draft value for the card focus fullscreen preference. */
-  readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
+  readonly cardFocusFullscreenDraft = this.profileDrafts.cardFocusFullscreenDraft;
 
   /** Draft value for the known (source) language. */
-  readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  readonly knownLanguageDraft = this.courseTabDrafts.knownLanguageDraft;
   /** Draft value for the learning (target) language. */
-  readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
+  readonly learningLanguageDraft = this.courseTabDrafts.learningLanguageDraft;
 
   /** Draft ID for the settings language pair. */
-  readonly settingsPairIdDraft = this.catalogStore.settingsPairIdDraft;
+  readonly settingsPairIdDraft = this.settingsDrafts.settingsPairIdDraft;
   /** Draft display romanization systems. */
-  readonly displayRomanizationsDraft = this.catalogStore.displayRomanizationsDraft;
+  readonly displayRomanizationsDraft = this.settingsDrafts.displayRomanizationsDraft;
   /** Draft answer romanization systems. */
-  readonly answerRomanizationsDraft = this.catalogStore.answerRomanizationsDraft;
+  readonly answerRomanizationsDraft = this.settingsDrafts.answerRomanizationsDraft;
   /** Draft IPA display preference. */
-  readonly showIpaDraft = this.catalogStore.showIpaDraft;
+  readonly showIpaDraft = this.settingsDrafts.showIpaDraft;
   /** Draft custom IPA variant label. */
-  readonly ipaVariantLabelDraft = this.catalogStore.ipaVariantLabelDraft;
+  readonly ipaVariantLabelDraft = this.settingsDrafts.ipaVariantLabelDraft;
   /** Draft answer display modes. */
-  readonly answerModesDraft = this.catalogStore.answerModesDraft;
+  readonly answerModesDraft = this.settingsDrafts.answerModesDraft;
   /** Draft tone color enabled preference. */
-  readonly toneColorEnabledDraft = this.catalogStore.toneColorEnabledDraft;
+  readonly toneColorEnabledDraft = this.settingsDrafts.toneColorEnabledDraft;
   /** Draft tone color scheme preference. */
-  readonly toneColorSchemeDraft = this.catalogStore.toneColorSchemeDraft;
+  readonly toneColorSchemeDraft = this.settingsDrafts.toneColorSchemeDraft;
   /** Draft tracing stroke duration preference. */
-  readonly tracingStrokeDurationDraft = this.catalogStore.tracingStrokeDurationDraft;
+  readonly tracingStrokeDurationDraft = this.settingsDrafts.tracingStrokeDurationDraft;
 
   /** Currently selected tab index. */
   readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
@@ -187,7 +198,7 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    this.catalogStore.setLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
+    this.profileDrafts.setLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
     this.syncPairSettingsDrafts();
     await this.load();
   }
@@ -201,7 +212,7 @@ export class CourseCatalogPageComponent implements OnInit {
    * Tied directly to `CourseCatalogStore.languagePairInvalid`. Used to disable
    * the "Add Pair" button when both languages are the same.
    */
-  readonly languagePairInvalid = this.catalogStore.languagePairInvalid;
+  readonly languagePairInvalid = this.courseTabDrafts.languagePairInvalid;
 
   /**
    * Whether there is more than one language pair (enables removal).
@@ -332,7 +343,7 @@ export class CourseCatalogPageComponent implements OnInit {
    */
   setActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
-    this.catalogStore.setSettingsPairIdDraft(id);
+    this.settingsDrafts.setSettingsPairIdDraft(id);
     this.syncPairSettingsDrafts();
   }
 
@@ -350,7 +361,7 @@ export class CourseCatalogPageComponent implements OnInit {
     this.userStore.removeLanguagePair(id);
 
     if (wasSettingsTarget) {
-      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
+      this.settingsDrafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
 
     this.syncPairSettingsDrafts();
@@ -373,7 +384,7 @@ export class CourseCatalogPageComponent implements OnInit {
       known: this.knownLanguageDraft(),
       learning: this.learningLanguageDraft(),
     });
-    this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
+    this.settingsDrafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     this.syncPairSettingsDrafts();
   }
 
@@ -447,14 +458,14 @@ export class CourseCatalogPageComponent implements OnInit {
     const cjk = resolveCjkLearningForPair(entry);
     const phonetic = resolvePhoneticForPair(entry);
 
-    this.catalogStore.setDisplayRomanizationsDraft([...cjk.displayRomanizations]);
-    this.catalogStore.setAnswerRomanizationsDraft([...cjk.answerRomanization]);
-    this.catalogStore.setToneColorEnabledDraft(cjk.showTones);
-    this.catalogStore.setToneColorSchemeDraft(cjk.toneColorScheme);
-    this.catalogStore.setTracingStrokeDurationDraft(cjk.tracingStrokeDurationSec);
-    this.catalogStore.setShowIpaDraft(phonetic.showIpa);
-    this.catalogStore.setIpaVariantLabelDraft(phonetic.ipaVariantLabel ?? '');
-    this.catalogStore.setAnswerModesDraft([...phonetic.answerModes]);
+    this.settingsDrafts.setDisplayRomanizationsDraft([...cjk.displayRomanizations]);
+    this.settingsDrafts.setAnswerRomanizationsDraft([...cjk.answerRomanization]);
+    this.settingsDrafts.setToneColorEnabledDraft(cjk.showTones);
+    this.settingsDrafts.setToneColorSchemeDraft(cjk.toneColorScheme);
+    this.settingsDrafts.setTracingStrokeDurationDraft(cjk.tracingStrokeDurationSec);
+    this.settingsDrafts.setShowIpaDraft(phonetic.showIpa);
+    this.settingsDrafts.setIpaVariantLabelDraft(phonetic.ipaVariantLabel ?? '');
+    this.settingsDrafts.setAnswerModesDraft([...phonetic.answerModes]);
   }
 
   // ---- Course catalog methods ----
@@ -481,7 +492,8 @@ export class CourseCatalogPageComponent implements OnInit {
       this.catalogStore.setItems(page.items);
       this.catalogStore.setTotalItems(page.totalItems);
       await this.loadProgress(page.items);
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseCatalog: failed to load catalog', error);
       this.catalogStore.setError('Не удалось загрузить каталог курсов');
     } finally {
       this.catalogStore.setLoading(false);
@@ -565,7 +577,8 @@ export class CourseCatalogPageComponent implements OnInit {
           if (this.resultsStore.isCourseCompleted(course.lessons)) {
             completed.add(entry.id);
           }
-        } catch {
+        } catch (error) {
+          this.logger.debug('CourseCatalog: progress fallback for course', error);
           progress[entry.id] = 0;
         }
       }),

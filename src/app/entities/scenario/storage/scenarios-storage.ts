@@ -21,6 +21,16 @@ export {
 export const SCENARIOS_STORAGE_KEY = 'lingua-code.scenarios';
 
 /**
+ * @deprecated Mock-backend data-access layer.
+ *
+ * These helpers read/write the resolved scenarios (content seed + user-content
+ * overlay) directly from `localStorage`. They are consumed ONLY by the mock
+ * API handlers (`ScenariosCatalogMockHandler`) which simulate the backend
+ * during development. Frontend code must use the API services
+ * (`ScenariosApiService`, `ScenarioCatalogPort`) instead.
+ */
+
+/**
  * Reads stored (user-modified) scenarios from the user content overlay.
  * Returns `null` when no user modifications exist; otherwise returns a copy of the stored scenarios.
  */

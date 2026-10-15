@@ -4,6 +4,7 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import { CourseBuilderStore } from '../../services/course-builder.store';
 import { CoursePdfExportService } from '../../services/course-pdf-export.service';
 import {
@@ -41,6 +42,7 @@ export class CourseBuilderDialogComponent implements OnInit {
     inject<MatDialogRef<CourseBuilderDialogComponent, CourseBuilderDialogResult>>(MatDialogRef);
   private readonly pdfExportService = inject(CoursePdfExportService);
   private readonly snackBar = inject(MatSnackBar);
+  private readonly logger = inject(AppLoggerService);
   readonly data = inject<CourseBuilderDialogData>(MAT_DIALOG_DATA);
   readonly store = inject(CourseBuilderStore);
 
@@ -149,7 +151,7 @@ export class CourseBuilderDialogComponent implements OnInit {
       this.downloadBlob(blob, `${course.id}${withHints ? '.hints' : ''}.pdf`);
       this.snackBar.open('PDF успешно выгружен', 'Закрыть', { duration: 3000 });
     } catch (err) {
-      console.error('[PDF Export]', err);
+      this.logger.error('PDF export failed', err);
       this.snackBar.open('Ошибка при выгрузке PDF', 'Закрыть', { duration: 5000 });
     }
   }

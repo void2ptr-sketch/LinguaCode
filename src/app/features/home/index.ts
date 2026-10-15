@@ -1,5 +1,8 @@
 // ===== Components =====
 
+// ===== Components =====
+export * from './components';
+
 // ===== Services =====
 export { LearningDashboardService } from '../../entities/learning/lib/learning-dashboard.service';
 

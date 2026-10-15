@@ -289,6 +289,41 @@ export class CardApiService {
 - Секреты — только в `.env` / environment, **не в репозитории**.
 - Пользовательский ввод — санитизация через Angular (`DomSanitizer`) при отображении HTML.
 - Зависимости — периодический `npm audit`.
+- Токены — только в `sessionStorage` (не переживают закрытие вкладки), передача через `Authorization: Bearer` (не в URL/куках).
+
+### API versioning
+
+- Версия API задаётся в `environment.apiVersion` (`v1`), URL строится через `buildApiUrl(path)` → `/api/v1/...`.
+- Все API-сервисы и mock-интерсепторы используют `buildApiUrl` — смена версии не требует правок в коде.
+- Стратегия: **URI-версионирование** (`/api/v1/...`). Мажорные изменения контракта — новая версия; старые версии поддерживаются до миграции клиентов.
+
+### CORS (требования к бэкенду)
+
+Фронтенд использует `fetch` (`withFetch`) и Bearer-токены, поэтому бэкенд должен отдавать:
+
+| Заголовок | Значение |
+| --------- | -------- |
+| `Access-Control-Allow-Origin` | домен фронтенда (не `*` при использовании токенов) |
+| `Access-Control-Allow-Headers` | `Authorization, Content-Type` |
+| `Access-Control-Allow-Methods` | `GET, POST, PUT, DELETE, OPTIONS` |
+| `Access-Control-Max-Age` | `86400` (кэш preflight) |
+
+Preflight (`OPTIONS`) — обязателен для `POST/PUT/DELETE` с `Content-Type: application/json`.
+
+### Security headers (хостинг статики)
+
+| Заголовок | Значение |
+| --------- | -------- |
+| `Content-Security-Policy` | `default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:` |
+| `X-Content-Type-Options` | `nosniff` |
+| `X-Frame-Options` | `DENY` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
+
+### HTTPS
+
+- Обязателен в production: service worker (`ngsw`) и fetch-стратегия требуют secure context.
+- HSTS (`Strict-Transport-Security`) — на уровне хостинга/CDN.
 
 ## Hanzi Engine (draw-карточки)
 
@@ -317,6 +352,81 @@ session.summary(): { character, totalMistakes, strokeCount }
 ## Content seed + overlay
 
 Системный контент — `ContentSeedRepository` + `public/data/content-manifest.json`. Пользовательские правки — `UserContentOverlay` (`lingua-code.user-content.v1`). Merge в `user-content-overlay.resolver.ts`. Подробности: [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md#content-seed--overlay), [TASKS.md](../TASKS.md) (G15).
+
+## Офлайн и кэширование
+
+Многоуровневая стратегия офлайн-доступа и кэширования:
+
+### 1. Service Worker (ngsw) — `ngsw-config.json`
+
+- **`app-shell`** (prefetch): `index.html`, JS/CSS-чанки, шрифты, favicon, manifest. Обеспечивает офлайн-запуск приложения.
+- **`content-seed`** (prefetch): все `/data/**/*.json` (manifest + фикстуры). Кэш-first: после первой установки контент отдаётся из кэша.
+- **`hanzi-stroke-data`** (lazy): `/assets/hanzi/**/*.json` (449 файлов). Ленивая загрузка — кэшируются только реально использованные иероглифы.
+- **`api`** (dataGroup, freshness): `/api/**` — network-first с фолбэком на кэш при таймауте (10s) или офлайне; TTL 6 часов, max 100 записей.
+
+Включён только в production-сборке (`provideServiceWorker('ngsw-worker.js', { enabled: environment.production })`).
+
+### 2. IndexedDB — `shared/storage/indexed-db.service.ts`
+
+- **Снапшот seed-контента** (`content-seed.idb.ts`): нормализованные сценарии/курсы/карточки + версия manifest. `ContentSeedRepository.preload()`:
+  1. Читает снапшот из IndexedDB параллельно с запросом manifest;
+  2. Если версия совпадает — гидратирует in-memory кэш без загрузки фикстур (быстрый старт);
+  3. Если manifest недоступен (офлайн) — использует устаревший снапшот;
+  4. После сетевой загрузки персистит новый снапшот (best-effort).
+- **Очередь офлайн-мутаций** (`shared/sync/sync-queue.service.ts`): запись операций `{ id, kind, payload, createdAt, attempts }`; авто-воспроизведение при возврате сети; отбрасывание после `MAX_SYNC_ATTEMPTS = 3` неудач.
+
+### 3. Очередь мутаций (write-behind sync)
+
+- `SyncQueueService` — общая очередь (enqueue/flush/pendingCount).
+- `SyncQueueBootstrap` (`app/sync/`) — регистрирует исполнителей для `card.*`, `scenario.*`, `course.*` операций через API-сервисы.
+- `CardEditorStore` — при офлайн/сетевой ошибке мутации ставятся в очередь и применяются локально (оптимистично).
+
+### 4. Обработка ошибок сети
+
+- `offlineInterceptor` — fail-fast для `/api/**` при `navigator.onLine === false`.
+- `retryInterceptor` — экспоненциальный backoff (250ms × 2ⁿ, max 2) для идемпотентных GET.
+- `timeoutInterceptor` — таймаут 15s с классификацией `kind: 'timeout'`.
+
+## Паттерн стора (Signal API)
+
+Единый паттерн управления состоянием для фич:
+
+1. **Тип состояния** — в `models/<store-name>.ts` (например, `CourseCatalogState` + `initialState`).
+2. **Стор** — в `services/<store-name>.store.ts`, `@Injectable({ providedIn: 'root' })`.
+3. **Внутреннее состояние** — `#state = signal<State>({ ...initialState })`.
+4. **Селекторы** — `get x(): Signal<T> { return computed(() => this.#state().x); }`.
+5. **Мутации** — `setX(value)` через `this.#state.update(...)`; батч-инициализация — `initializeFromPreferences(...)`.
+6. **Один стор = одна ответственность**. Пример: `CourseCatalogStore` (каталог) + `ProfileDraftsStore` (профиль) + `CourseTabDraftsStore` (вкладка «Курсы») + `SettingsDraftsStore` (настройки) вместо единого god-store.
+
+### Асинхронные состояния (RemoteData)
+
+Для API-bound состояния используется `AsyncState<T>` из `shared/types/async-state.types.ts`:
+
+- `createAsyncState(data)` — начальное состояние;
+- `setAsyncLoading / setAsyncSuccess / setAsyncError` — переходы;
+- `runAsyncState(state, task, fallback)` — обёртка над Promise: loading → success/error с классификацией ошибки через `getApiErrorMessage`.
+
+Конвенции UI-состояний:
+- **loading** — спиннер/скелетон;
+- **error** — сообщение + возможность повтора (retry = повторный вызов `load()`);
+- **empty** — отдельное состояние «данных нет» (пустой список ≠ ошибке).
+
+## Производительность и бюджеты
+
+Бюджеты сборки заданы в `angular.json` (production) и проверяются на каждом `build:prod` (в CI — шаг «Production build»):
+
+| Тип бюджета | Warning | Error | Текущее значение |
+| ----------- | ------- | ----- | ---------------- |
+| `initial`   | 800 kB  | 1.2 MB | ~784 kB (raw) / ~250 kB (transfer) |
+| `bundle`    | 500 kB  | 1 MB   | ~173 kB (максимальный чанк) |
+| `all`       | 3.5 MB  | 4.5 MB | ~2.9 MB (все JS) |
+| `anyComponentStyle` | 5 kB | 8 kB | до ~4.4 kB |
+
+Стратегия:
+- **Роуты ленивые** (`loadComponent`) — страницы грузятся по требованию; в initial попадают только общие зависимости (Angular, Material, RxJS).
+- **Тяжёлые библиотеки** (`jspdf`, `canvg`, `html2canvas`) — в ленивых чанках (экспорт PDF), не в initial.
+- **Контент** (hanzi-данные, фикстуры) — статические ассеты, кэшируются ngsw; не входят в JS-бюджеты.
+- **Контроль роста**: превышение `maximumError` ломает сборку; `maximumWarning` — сигнал для ревью.
 
 ## Локализация (бэклог)
 

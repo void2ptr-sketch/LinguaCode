@@ -29,8 +29,27 @@ jobs:
       - name: Lint
         run: npm run lint
 
+      - name: Format check
+        run: npm run format
+
+      - name: Architecture audits
+        run: |
+          npm run audit:fsd
+          npm run check:imports
+          npm run audit:barrels
+
       - name: Production build
         run: npm run build:prod
 
       - name: Unit and smoke tests
         run: npm run test:ci
+
+      - name: API contract tests (conformance)
+        run: npx ng test --no-watch --no-progress --include='**/*.conformance.spec.ts'
+
+      - name: Coverage with thresholds
+        run: npm run test:coverage
+
+      - name: Dependency audit
+        run: npm run audit
+        continue-on-error: true

@@ -52,6 +52,15 @@ describe('courses API (mock interceptor)', () => {
     expect(Array.isArray(courses)).toBe(true);
   });
 
+  it('loads course bundle via GET /api/courses/:id/bundle', async () => {
+    const bundle = await api.getBundle('demo-course');
+
+    expect(bundle.catalog.courses.length).toBeGreaterThan(0);
+    expect(Array.isArray(bundle.scenarios)).toBe(true);
+    expect(Array.isArray(bundle.cards)).toBe(true);
+    expect(bundle.cardIndexMeta).toBeDefined();
+  });
+
   it('searches courses with all criteria params', async () => {
     const page = await api.search({
       query: 'test',

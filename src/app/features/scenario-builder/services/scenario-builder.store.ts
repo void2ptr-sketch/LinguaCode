@@ -1,5 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import {
   DEFAULT_CRITERIA_LIMIT,
   buildSnapshotCardSource,
@@ -46,6 +47,7 @@ export class ScenarioBuilderStore {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly cardsCatalogHandler = inject(CardsCatalogMockHandler);
   private readonly userStore = inject(UserStore);
+  private readonly logger = inject(AppLoggerService);
 
   /** Current page of scenario index entries. */
   readonly indexItems = signal<readonly ScenarioIndexEntry[]>([]);
@@ -111,7 +113,8 @@ export class ScenarioBuilderStore {
 
       this.indexItems.set(page.items);
       this.totalItems.set(page.totalItems);
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to load scenario list', error);
       this.error.set('Не удалось загрузить список сценариев');
     } finally {
       this.loading.set(false);
@@ -147,7 +150,8 @@ export class ScenarioBuilderStore {
         page: { page: 0, pageSize: 100 },
       });
       this.courses.set(page.items);
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to load courses', error);
       this.courses.set([]);
     }
   }
@@ -223,7 +227,8 @@ export class ScenarioBuilderStore {
       this.editorMode.set('edit');
       this.editingScenarioId.set(scenarioId);
       this.editingScenario.set(scenario);
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to load scenario for edit', error);
       this.error.set('Не удалось загрузить сценарий');
     } finally {
       this.editorLoading.set(false);
@@ -260,7 +265,8 @@ export class ScenarioBuilderStore {
       this.cancelEdit();
       await this.loadList();
       return true;
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to create scenario', error);
       this.error.set('Не удалось создать сценарий');
       return false;
     }
@@ -289,7 +295,8 @@ export class ScenarioBuilderStore {
       this.cancelEdit();
       await this.loadList();
       return true;
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to update scenario', error);
       this.error.set('Не удалось сохранить сценарий');
       return false;
     }
@@ -317,7 +324,8 @@ export class ScenarioBuilderStore {
         this.cancelEdit();
       }
       await this.loadList();
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioBuilder: failed to delete scenario', error);
       this.error.set('Не удалось удалить сценарий');
     }
   }

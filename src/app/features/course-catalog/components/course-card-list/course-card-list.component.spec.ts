@@ -3,7 +3,11 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogCoursesComponent } from './course-card-list.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import {
+  CourseTabDraftsStore,
+  ProfileDraftsStore,
+  SettingsDraftsStore,
+} from '../../services';
 
 describe('CourseCatalogCoursesComponent', () => {
   let fixture: ComponentFixture<CourseCatalogCoursesComponent>;
@@ -45,7 +49,7 @@ describe('CourseCatalogCoursesComponent', () => {
           },
         },
         {
-          provide: CourseCatalogStore,
+          provide: ProfileDraftsStore,
           useValue: {
             nameDraft: signal('Ученик'),
             learningProficiencyDraft: signal('beginner'),
@@ -53,18 +57,28 @@ describe('CourseCatalogCoursesComponent', () => {
             fontSizeDraft: signal('md'),
             colorSchemeDraft: signal('light'),
             cardFocusFullscreenDraft: signal(false),
-            knownLanguageDraft: signal('ru'),
-            learningLanguageDraft: signal('en'),
-            settingsPairIdDraft: signal('pair-1'),
-            languagePairInvalid: signal(false),
             setNameDraft: vi.fn(),
             setLearningProficiencyDraft: vi.fn(),
             setThemeDraft: vi.fn(),
             setFontSizeDraft: vi.fn(),
             setColorSchemeDraft: vi.fn(),
             setCardFocusFullscreenDraft: vi.fn(),
+          },
+        },
+        {
+          provide: CourseTabDraftsStore,
+          useValue: {
+            knownLanguageDraft: signal('ru'),
+            learningLanguageDraft: signal('en'),
+            languagePairInvalid: signal(false),
             setKnownLanguageDraft: vi.fn(),
             setLearningLanguageDraft: vi.fn(),
+          },
+        },
+        {
+          provide: SettingsDraftsStore,
+          useValue: {
+            settingsPairIdDraft: signal('pair-1'),
             setSettingsPairIdDraft: vi.fn(),
           },
         },

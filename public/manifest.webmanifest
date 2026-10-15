@@ -1,0 +1,21 @@
+{
+  "name": "LinguaCode",
+  "short_name": "LinguaCode",
+  "description": "Языки в цифровую эпоху: карточки, сценарии, уроки и курсы.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1976d2",
+  "icons": [
+    {
+      "src": "favicon-32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "favicon-16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ]
+}

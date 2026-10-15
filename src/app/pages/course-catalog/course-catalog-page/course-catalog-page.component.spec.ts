@@ -28,7 +28,12 @@ import { LearningResultsStore } from '../../../entities/learning/model/learning-
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
-import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
+import {
+  CourseCatalogStore,
+  CourseTabDraftsStore,
+  ProfileDraftsStore,
+  SettingsDraftsStore,
+} from '../../../features/course-catalog/services';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
 function makePair(
@@ -61,6 +66,9 @@ describe('CourseCatalogPageComponent', () => {
   let mockResultsStore: Partial<LearningResultsStore>;
   let mockRouter: Partial<Router>;
   let mockCatalogStore: Partial<CourseCatalogStore>;
+  let mockProfileDrafts: Partial<ProfileDraftsStore>;
+  let mockCourseTabDrafts: Partial<CourseTabDraftsStore>;
+  let mockSettingsDrafts: Partial<SettingsDraftsStore>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -197,27 +205,7 @@ describe('CourseCatalogPageComponent', () => {
       error: mockErrorSignal,
       progressByCourseId: mockProgressByCourseIdSignal,
       completedCourseIds: mockCompletedCourseIdsSignal,
-      nameDraft: mockNameDraftSignal,
-      learningProficiencyDraft: mockLearningProficiencyDraftSignal,
-      themeDraft: mockThemeDraftSignal,
-      fontSizeDraft: mockFontSizeDraftSignal,
-      colorSchemeDraft: mockColorSchemeDraftSignal,
-      cardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
-      knownLanguageDraft: mockKnownLanguageDraftSignal,
-      learningLanguageDraft: mockLearningLanguageDraftSignal,
-      settingsPairIdDraft: mockSettingsPairIdDraftSignal,
-      displayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
-      answerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
-      showIpaDraft: mockShowIpaDraftSignal,
-      ipaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
-      answerModesDraft: mockAnswerModesDraftSignal,
-      toneColorEnabledDraft: mockToneColorEnabledDraftSignal,
-      toneColorSchemeDraft: mockToneColorSchemeDraftSignal,
-      tracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
       selectedTabIndex: mockSelectedTabIndexSignal,
-      languagePairInvalid: computed(
-        () => mockKnownLanguageDraftSignal() === mockLearningLanguageDraftSignal(),
-      ),
       setItems: (items: readonly CourseIndexEntry[]) => mockItemsSignal.set(items),
       setTotalItems: (total: number) => mockTotalItemsSignal.set(total),
       setPageIndex: (page: number) => mockPageIndexSignal.set(page),
@@ -228,6 +216,16 @@ describe('CourseCatalogPageComponent', () => {
         mockProgressByCourseIdSignal.set(progress as Readonly<Record<string, number>>),
       setCompletedCourseIds: (completed: Set<string>) =>
         mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
+      setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
+    };
+
+    mockProfileDrafts = {
+      nameDraft: mockNameDraftSignal,
+      learningProficiencyDraft: mockLearningProficiencyDraftSignal,
+      themeDraft: mockThemeDraftSignal,
+      fontSizeDraft: mockFontSizeDraftSignal,
+      colorSchemeDraft: mockColorSchemeDraftSignal,
+      cardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
       setNameDraft: (name: string) => mockNameDraftSignal.set(name),
       setLearningProficiencyDraft: (
         level: import('../../../entities/learning/model').LearningProficiencyLevel,
@@ -241,9 +239,29 @@ describe('CourseCatalogPageComponent', () => {
         mockColorSchemeDraftSignal.set(scheme),
       setCardFocusFullscreenDraft: (enabled: boolean) =>
         mockCardFocusFullscreenDraftSignal.set(enabled),
+    };
+
+    mockCourseTabDrafts = {
+      knownLanguageDraft: mockKnownLanguageDraftSignal,
+      learningLanguageDraft: mockLearningLanguageDraftSignal,
+      languagePairInvalid: computed(
+        () => mockKnownLanguageDraftSignal() === mockLearningLanguageDraftSignal(),
+      ),
       setKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
       setLearningLanguageDraft: (lang: ContentLanguage) =>
         mockLearningLanguageDraftSignal.set(lang),
+    };
+
+    mockSettingsDrafts = {
+      settingsPairIdDraft: mockSettingsPairIdDraftSignal,
+      displayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
+      answerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
+      showIpaDraft: mockShowIpaDraftSignal,
+      ipaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
+      answerModesDraft: mockAnswerModesDraftSignal,
+      toneColorEnabledDraft: mockToneColorEnabledDraftSignal,
+      toneColorSchemeDraft: mockToneColorSchemeDraftSignal,
+      tracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
       setSettingsPairIdDraft: (id: string) => mockSettingsPairIdDraftSignal.set(id),
       setDisplayRomanizationsDraft: (
         romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
@@ -261,7 +279,6 @@ describe('CourseCatalogPageComponent', () => {
         mockToneColorSchemeDraftSignal.set(scheme),
       setTracingStrokeDurationDraft: (duration: number) =>
         mockTracingStrokeDurationDraftSignal.set(duration),
-      setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
     };
 
     await TestBed.configureTestingModule({
@@ -286,6 +303,9 @@ describe('CourseCatalogPageComponent', () => {
         { provide: UserStore, useValue: mockUserStore },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: CourseCatalogStore, useValue: mockCatalogStore },
+        { provide: ProfileDraftsStore, useValue: mockProfileDrafts },
+        { provide: CourseTabDraftsStore, useValue: mockCourseTabDrafts },
+        { provide: SettingsDraftsStore, useValue: mockSettingsDrafts },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
@@ -387,10 +407,10 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.languagePairInvalid()).toBe(false);
 
     (
-      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockCourseTabDrafts.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockCourseTabDrafts.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     fixture.detectChanges();
 
@@ -443,10 +463,10 @@ describe('CourseCatalogPageComponent', () => {
     await fixture.whenStable();
 
     (
-      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockCourseTabDrafts.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockCourseTabDrafts.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     component.addPair();
     await fixture.whenStable();
@@ -460,7 +480,7 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockCatalogStore.nameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
+    (mockProfileDrafts.nameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
     component.saveProfile();
     await fixture.whenStable();
 
