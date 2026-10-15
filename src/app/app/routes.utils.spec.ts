@@ -2,9 +2,15 @@ import { describe, it, expect } from 'vitest';
 
 import { mergeRoutes } from './routes.utils';
 import type { Routes } from '@angular/router';
+import type { Type } from '@angular/core';
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const mockComponent = (route: string): any => ({ name: `MockComponent_${route}` });
+const mockComponent = (route: string): Type<unknown> & { name: string } => {
+  const C = function (): void {
+    // empty constructor
+  } as unknown as Type<unknown> & { name: string };
+  C.name = `MockComponent_${route}`;
+  return C;
+};
 
 describe('routes.utils', () => {
   describe('mergeRoutes', () => {

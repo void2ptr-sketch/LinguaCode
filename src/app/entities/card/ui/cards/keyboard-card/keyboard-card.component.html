@@ -27,11 +27,17 @@
       </mat-form-field>
 
       @if (usesPinyinKeyboard()) {
-        <app-pinyin-keyboard
-          [value]="answerText()"
-          [disabled]="feedback() !== null"
-          (valueChange)="answerTextChange.emit($event)"
-        />
+        @defer (on interaction) {
+          <app-pinyin-keyboard
+            [value]="answerText()"
+            [disabled]="feedback() !== null"
+            (valueChange)="answerTextChange.emit($event)"
+          />
+        } @placeholder {
+          <div class="keyboard-card__keyboard-placeholder" aria-label="Загрузка пиньинь-клавиатуры...">
+            Загрузка клавиатуры...
+          </div>
+        }
       }
     </mat-card-content>
   </section>

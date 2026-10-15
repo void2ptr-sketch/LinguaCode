@@ -7,3 +7,14 @@
 .quiz-card__pinyin-keyboard {
   margin-top: 0.5rem;
 }
+
+.keyboard-card__keyboard-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 120px;
+  width: 100%;
+  color: var(--mat-sys-on-surface-variant);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}

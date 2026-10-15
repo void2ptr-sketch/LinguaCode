@@ -1,12 +1,14 @@
-import { Component, inject, signal, OnInit, effect } from '@angular/core';
+import { Component, inject, signal, effect } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { map } from 'rxjs';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 import { LearningJourneyMapComponent } from '../../../features/journey/components/learning-journey-map/learning-journey-map.component';
 import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
 import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import {
   buildJourneyNodes,
   buildScenarioMap,
@@ -68,11 +70,12 @@ import type { CourseWithLessons } from '../../../entities/course/model';
     `,
   ],
 })
-export class JourneyPageComponent implements OnInit {
+export class JourneyPageComponent {
   private readonly dashboardService = inject(LearningDashboardService);
   private readonly analyticsService = inject(JourneyAnalyticsService);
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly contentSeedRepo = inject(ContentSeedRepository);
+  private readonly logger = inject(AppLoggerService);
   private readonly route = inject(ActivatedRoute);
 
   readonly loading = signal(false);
@@ -81,31 +84,32 @@ export class JourneyPageComponent implements OnInit {
   readonly courseId = signal('');
 
   constructor() {
+    this.dashboardService.reload();
+
     effect(() => {
       const course = this.dashboardService.course();
       if (course) {
         this.buildNodes(course);
       }
     });
-  }
 
-  ngOnInit(): void {
-    this.dashboardService.reload();
-
-    this.route.queryParams
-      .pipe(
+    const queryParams = toSignal(
+      this.route.queryParams.pipe(
         map((params) => {
           const fromQuery = params['courseId'] as string | undefined;
           const dashboardCourse = this.dashboardService.course();
           const fromDashboard = dashboardCourse?.id;
           return fromQuery ?? fromDashboard ?? '';
         }),
-      )
-      .subscribe((id) => {
-        if (id) {
-          this.courseId.set(id);
-        }
-      });
+      ),
+    );
+
+    effect(() => {
+      const id = queryParams();
+      if (id) {
+        this.courseId.set(id);
+      }
+    });
   }
 
   private buildNodes(course: CourseWithLessons): void {
@@ -119,8 +123,8 @@ export class JourneyPageComponent implements OnInit {
     const allScenarios = this.contentSeedRepo.getScenarioSeed();
     const allCards = this.contentSeedRepo.getCardSeed();
 
-    console.log('[JourneyPage] Cards loaded:', allCards.length);
-    console.log('[JourneyPage] Scenarios loaded:', allScenarios.length);
+    this.logger.debug(`[JourneyPage] Cards loaded: ${allCards.length}`);
+    this.logger.debug(`[JourneyPage] Scenarios loaded: ${allScenarios.length}`);
 
     const courseScenarioIds = new Set(course.lessons.flatMap((l) => [...l.scenarioIds]));
     const courseScenarios = allScenarios.filter((s) => courseScenarioIds.has(s.id));
@@ -134,11 +138,8 @@ export class JourneyPageComponent implements OnInit {
       hasScenarioVisit,
     );
 
-    console.log(
-      '[JourneyPage] Nodes built:',
-      nodes.length,
-      'First node contentTypes:',
-      nodes[0]?.contentTypes,
+    this.logger.debug(
+      `[JourneyPage] Nodes built: ${nodes.length}, First node contentTypes: ${nodes[0]?.contentTypes}`,
     );
 
     this.nodes.set(nodes);

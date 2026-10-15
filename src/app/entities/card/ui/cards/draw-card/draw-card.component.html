@@ -55,20 +55,26 @@
     }
 
     <mat-card-content class="draw-card__content">
-      <app-draw-canvas
-        class="draw-card__panel"
-        [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
-        [radicalHints]="radicalCanvasHints()"
-        [radicalAriaLabel]="radicalCanvasAriaLabel()"
-        [canvasMode]="panelMode()"
-        [showMemoryReview]="showMemoryReview()"
-        [memoryStrokeGrades]="memoryStrokeGrades()"
-        [disabled]="feedback() !== null"
-        [showClearAll]="hasMultipleSyllables()"
-        [clearAllDisabled]="!hasStrokesOnAnyTab()"
-        (strokesChange)="onStrokesChange($event)"
-        (clearAllRequested)="clearAllStrokes()"
-      />
+      @defer (on interaction) {
+        <app-draw-canvas
+          class="draw-card__panel"
+          [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
+          [radicalHints]="radicalCanvasHints()"
+          [radicalAriaLabel]="radicalCanvasAriaLabel()"
+          [canvasMode]="panelMode()"
+          [showMemoryReview]="showMemoryReview()"
+          [memoryStrokeGrades]="memoryStrokeGrades()"
+          [disabled]="feedback() !== null"
+          [showClearAll]="hasMultipleSyllables()"
+          [clearAllDisabled]="!hasStrokesOnAnyTab()"
+          (strokesChange)="onStrokesChange($event)"
+          (clearAllRequested)="clearAllStrokes()"
+        />
+      } @placeholder {
+        <div class="draw-card__canvas-placeholder" aria-label="Загрузка холста для рисования...">
+          Загрузка холста...
+        </div>
+      }
     </mat-card-content>
 
     @if (showSyllableTabs()) {

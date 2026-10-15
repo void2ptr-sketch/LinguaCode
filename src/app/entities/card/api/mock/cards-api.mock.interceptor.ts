@@ -24,7 +24,7 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { defer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs';
 
 import { parseCardSearchCriteria } from './cards-api.params.utils';
 import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
