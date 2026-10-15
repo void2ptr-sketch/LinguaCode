@@ -8,6 +8,11 @@ import {
 } from '../../../../chinese/lib/animation';
 
 /**
+ * Animation mode for the draw canvas.
+ */
+export type DrawCanvasAnimationMode = 'tracing' | 'hints' | 'none';
+
+/**
  * Animation token to prevent race conditions between animation loops.
  */
 type AnimationLoopState = {
@@ -23,6 +28,10 @@ type AnimationLoopState = {
  * @remarks
  * Handles animation frames, sample data, and frame computation.
  * Rendering is delegated to the component via the exposed signals.
+ *
+ * This service replaces the duplicated animation logic that was previously
+ * embedded in DrawCanvasComponent. The component now delegates all animation
+ * management to this service.
  */
 @Injectable({ providedIn: 'root' })
 export class DrawCanvasAnimationService {
@@ -44,6 +53,9 @@ export class DrawCanvasAnimationService {
   // --- Duration ---
   private readonly tracingStrokeDurationMsSignal = signal(1500);
   readonly tracingStrokeDurationMs = computed(() => this.tracingStrokeDurationMsSignal());
+
+  // --- Sync signature ---
+  private guidanceSyncSignature = '';
 
   /**
    * Sets tracing animation samples and duration.
@@ -137,6 +149,98 @@ export class DrawCanvasAnimationService {
     return this.hintDrawingPaused;
   }
 
+  /**
+   * Syncs the guidance animation (tracing or hints) based on current mode.
+   *
+   * @param mode - The current canvas animation mode.
+   * @param hanziLoadState - Whether hanzi data is loaded ('ready' to start).
+   * @param hanziCharacter - The character being drawn (for cache busting).
+   * @param strokeCount - Number of strokes already drawn (for hints mode).
+   * @param redraw - Whether to redraw after stopping animations.
+   * @returns true if animation was started, false otherwise.
+   */
+  syncGuidanceAnimation(
+    mode: DrawCanvasAnimationMode,
+    hanziLoadState: string,
+    hanziCharacter: string,
+    strokeCount: number,
+    redraw: () => void,
+  ): boolean {
+    const signature = `${mode}|${hanziLoadState}|${hanziCharacter}|${this.tracingStrokeDurationMs()}`;
+
+    if (mode === 'none') {
+      if (this.guidanceSyncSignature !== '') {
+        this.guidanceSyncSignature = '';
+        this.stopTracingAnimation(false);
+        this.stopHintAnimation(false);
+        redraw();
+      }
+      return false;
+    }
+
+    if (hanziLoadState !== 'ready') {
+      this.guidanceSyncSignature = '';
+      this.stopTracingAnimation(false);
+      this.stopHintAnimation(false);
+      redraw();
+      return false;
+    }
+
+    if (signature === this.guidanceSyncSignature) {
+      const animationRunning = mode === 'tracing' ? this.tracingLoopState.active : this.hintLoopState.active;
+      if (animationRunning) {
+        return false;
+      }
+    }
+
+    this.guidanceSyncSignature = signature;
+    this.stopTracingAnimation(false);
+    this.stopHintAnimation(false);
+
+    const samples = mode === 'tracing' ? this.tracingSamples : this.hintSamples;
+    if (!samples || samples.length === 0) {
+      redraw();
+      return false;
+    }
+
+    if (mode === 'tracing') {
+      this.tracingFrame.set(
+        resolveHanziTracingFrame(0, samples, {
+          strokeDurationMs: this.tracingStrokeDurationMs(),
+        }),
+      );
+      this.startTracingAnimation();
+      redraw();
+      return true;
+    }
+
+    // hints mode
+    if (strokeCount >= samples.length) {
+      redraw();
+      return false;
+    }
+
+    this.hintDrawingPaused = false;
+    this.hintFrame.set(
+      resolveHanziHintStrokeFrame(0, samples[strokeCount]!, {
+        strokeDurationMs: this.tracingStrokeDurationMs(),
+      }),
+    );
+    this.startHintAnimation();
+    redraw();
+    return true;
+  }
+
+  /**
+   * Restarts hint animation if it should be active.
+   * Called after stroke changes (undo, clear, new stroke).
+   */
+  restartHintAnimationIfActive(redraw: () => void): void {
+    this.guidanceSyncSignature = '';
+    this.hintDrawingPaused = false;
+    this.syncGuidanceAnimation('hints', 'ready', '', 0, redraw);
+  }
+
   // --- Private animation runners ---
 
   private runTracingAnimation(token: number): void {
@@ -175,7 +279,6 @@ export class DrawCanvasAnimationService {
       this.hintLoopState.frameId = requestAnimationFrame(() => this.runHintAnimation(token));
     }
   }
-
 }
 
 const EMPTY_TRACING_FRAME: HanziTracingFrame = {

@@ -89,9 +89,23 @@ export class ContentSeedRepository {
   /**
    * Promise загрузки всех данных.
    * Используется для предотвращения параллельных загрузок.
-   * После завершения устанавливается в null.
    */
   private preloadPromise: Promise<void> | null = null;
+
+  /**
+   * Флаг, указывающий что preload успешно загрузил данные.
+   * Если preloadAttempted=true, но preloadSuccess=false, разрешаем повторный вызов.
+   */
+  private preloadSuccess = false;
+
+  /**
+   * Сбрасывает состояние preload для тестов.
+   * @internal
+   */
+  resetForTest(): void {
+    this.preloadPromise = null;
+    this.preloadSuccess = false;
+  }
 
   /**
    * Предзагружает все seed-данные из файлов.
@@ -103,6 +117,7 @@ export class ContentSeedRepository {
    */
   preload(): Promise<void> {
     if (isContentSeedCacheReady()) {
+      this.preloadSuccess = true;
       return Promise.resolve();
     }
 
@@ -177,7 +192,8 @@ export class ContentSeedRepository {
         this.hydrate(snapshot);
         return;
       }
-      throw new Error('Content seed is unavailable: no network and no cached snapshot');
+      // No network and no cached snapshot — content seed is optional, app continues without it
+      return;
     }
 
     // Сетевой путь: загружаем фикстуры, нормализуем и обновляем кэш

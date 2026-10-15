@@ -252,14 +252,20 @@ describe('ContentSeedRepository', () => {
       httpMock.expectNone(MANIFEST_URL);
     });
 
-    it('should allow retry after a failed preload', async () => {
+    it('should ignore network errors and allow subsequent preload', async () => {
       resetContentSeedCache();
       createRepository();
 
-      const failed = repository.preload().catch((error: unknown) => error);
+      // First preload fails (500) — silently ignored, cache remains empty
+      const first = repository.preload();
       httpMock.expectOne(MANIFEST_URL).flush('boom', { status: 500, statusText: 'Server Error' });
-      expect(await failed).toBeDefined();
+      await first;
+      expect(isContentSeedCacheReady()).toBe(false);
 
+      // Reset the failed promise to allow new preload
+      repository.resetForTest();
+
+      // Retry succeeds
       const retried = repository.preload();
       flushManifest();
       await retried;

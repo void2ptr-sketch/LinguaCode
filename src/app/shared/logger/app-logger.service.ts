@@ -13,22 +13,18 @@ export class AppLoggerService {
   private readonly prefix = '[LinguaCode]';
 
   error(message: string, context?: unknown): void {
-    // eslint-disable-next-line no-console
     console.error(`${this.prefix} ${message}`, context ?? '');
   }
 
   warn(message: string, context?: unknown): void {
-    // eslint-disable-next-line no-console
     console.warn(`${this.prefix} ${message}`, context ?? '');
   }
 
   info(message: string, context?: unknown): void {
-    // eslint-disable-next-line no-console
     console.info(`${this.prefix} ${message}`, context ?? '');
   }
 
   debug(message: string, context?: unknown): void {
-    // eslint-disable-next-line no-console
     console.debug(`${this.prefix} ${message}`, context ?? '');
   }
 }

@@ -1,5 +1,16 @@
 import { Injectable, signal, effect, untracked, inject, DestroyRef } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import type { DrawCanvasPoint, DrawStrokePath } from '../../../../phonetic/model';
+
+/**
+ * Callback configuration for drawing service events.
+ */
+export type DrawCanvasDrawingCallbacks = {
+  /** Called when stroke state changes (e.g., component.strokesChange.emit). */
+  readonly onStrokeStateChange?: (hasStrokes: boolean) => void;
+  /** Called when hint animation should be restarted after stroke changes. */
+  readonly onRestartHintAnimation?: () => void;
+};
 
 /**
  * Service managing canvas drawing state, pointer events, and stroke operations.
@@ -20,8 +31,11 @@ export class DrawCanvasDrawingService {
   private strokes: DrawStrokePath[] = [];
   private activeStroke: DrawCanvasPoint[] = [];
   private drawing = false;
+  private callbacks: DrawCanvasDrawingCallbacks = {};
 
   constructor() {
+    takeUntilDestroyed(inject(DestroyRef));
+
     effect(() => {
       const strokes = this.strokes;
       const active = this.activeStroke;
@@ -30,6 +44,13 @@ export class DrawCanvasDrawingService {
         this.canUndo.set(strokes.length > 0);
       });
     });
+  }
+
+  /**
+   * Configures callbacks for drawing service events.
+   */
+  configureCallbacks(callbacks: DrawCanvasDrawingCallbacks): void {
+    this.callbacks = callbacks;
   }
 
   /**
@@ -46,6 +67,13 @@ export class DrawCanvasDrawingService {
    */
   getStrokes(): readonly DrawStrokePath[] {
     return this.strokes;
+  }
+
+  /**
+   * Returns the current active stroke being drawn.
+   */
+  getActiveStroke(): readonly DrawCanvasPoint[] {
+    return this.activeStroke;
   }
 
   /**
@@ -84,6 +112,8 @@ export class DrawCanvasDrawingService {
     this.activeStroke = [];
     this.drawing = false;
     this.strokes = [...this.strokes, completed];
+    this.syncState(true);
+    this.callbacks.onRestartHintAnimation?.();
     return completed;
   }
 
@@ -102,6 +132,8 @@ export class DrawCanvasDrawingService {
   undo(): readonly DrawStrokePath[] {
     if (this.strokes.length === 0) return [];
     this.strokes = this.strokes.slice(0, -1);
+    this.syncState(true);
+    this.callbacks.onRestartHintAnimation?.();
     return this.strokes;
   }
 
@@ -112,13 +144,19 @@ export class DrawCanvasDrawingService {
     this.strokes = [];
     this.activeStroke = [];
     this.drawing = false;
+    this.syncState(true);
+    this.callbacks.onRestartHintAnimation?.();
   }
 
   /**
    * Sets the strokes directly (used for loading from memory review data).
+   * @param strokes - The strokes to set (will be deep-copied).
    */
-  setStrokes(strokes: DrawStrokePath[]): void {
-    this.strokes = strokes;
+  setStrokes(strokes: readonly DrawStrokePath[]): void {
+    this.strokes = strokes.map((stroke) => [...stroke]);
+    this.activeStroke = [];
+    this.syncState(false);
+    this.callbacks.onRestartHintAnimation?.();
   }
 
   /**
@@ -126,5 +164,17 @@ export class DrawCanvasDrawingService {
    */
   hasAnyStrokes(): boolean {
     return this.strokes.length > 0 || this.activeStroke.length > 0;
+  }
+
+  // --- Private ---
+
+  private syncState(emitChange: boolean): void {
+    const hasStrokes = this.strokes.length > 0;
+    this.hasStrokes.set(hasStrokes);
+    this.canUndo.set(hasStrokes);
+
+    if (emitChange) {
+      this.callbacks.onStrokeStateChange?.(hasStrokes);
+    }
   }
 }

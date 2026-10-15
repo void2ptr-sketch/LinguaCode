@@ -4,6 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { describe, expect, it } from 'vitest';
 
 import { DrawCanvasComponent } from './draw-canvas.component';
+import { DrawCanvasDrawingService } from './draw-canvas-drawing.service';
+import { DrawCanvasAnimationService } from './draw-canvas-animation.service';
+import { DrawCanvasRenderingService } from './draw-canvas-rendering.service';
+import { DrawCanvasDataLoaderService } from './draw-canvas-data-loader.service';
 import { UserStore } from '../../../../user/model/user.store';
 
 describe('DrawCanvasComponent', () => {
@@ -15,7 +19,13 @@ describe('DrawCanvasComponent', () => {
 
     TestBed.configureTestingModule({
       imports: [DrawCanvasComponent, MatButtonModule, MatIconModule],
-      providers: [UserStore],
+      providers: [
+        UserStore,
+        DrawCanvasDrawingService,
+        DrawCanvasAnimationService,
+        DrawCanvasRenderingService,
+        DrawCanvasDataLoaderService,
+      ],
     });
 
     fixture = TestBed.createComponent(DrawCanvasComponent);
@@ -75,54 +85,54 @@ describe('DrawCanvasComponent', () => {
     expect(component.clearAllRequested).toBeDefined();
   });
 
-  it('should have hasStrokes signal', () => {
-    expect(component.hasStrokes).toBeDefined();
-    expect(typeof component.hasStrokes).toBe('function');
+  it('should have drawing.hasStrokes signal', () => {
+    expect(component.drawing.hasStrokes).toBeDefined();
+    expect(typeof component.drawing.hasStrokes).toBe('function');
   });
 
-  it('should have canUndo signal', () => {
-    expect(component.canUndo).toBeDefined();
-    expect(typeof component.canUndo).toBe('function');
+  it('should have drawing.canUndo signal', () => {
+    expect(component.drawing.canUndo).toBeDefined();
+    expect(typeof component.drawing.canUndo).toBe('function');
   });
 
-  it('should have surfaceWidth signal', () => {
-    expect(component.surfaceWidth).toBeDefined();
-    expect(typeof component.surfaceWidth).toBe('function');
+  it('should have rendering.surfaceWidth signal', () => {
+    expect(component.rendering.surfaceWidth).toBeDefined();
+    expect(typeof component.rendering.surfaceWidth).toBe('function');
   });
 
-  it('should have surfaceHeight signal', () => {
-    expect(component.surfaceHeight).toBeDefined();
-    expect(typeof component.surfaceHeight).toBe('function');
+  it('should have rendering.surfaceHeight signal', () => {
+    expect(component.rendering.surfaceHeight).toBeDefined();
+    expect(typeof component.rendering.surfaceHeight).toBe('function');
   });
 
-  it('should have hanziModel signal', () => {
-    expect(component.hanziModel).toBeDefined();
-    expect(typeof component.hanziModel).toBe('function');
+  it('should have dataLoader.hanziModel signal', () => {
+    expect(component.dataLoader.hanziModel).toBeDefined();
+    expect(typeof component.dataLoader.hanziModel).toBe('function');
   });
 
-  it('should have hanziLoadState signal', () => {
-    expect(component.hanziLoadState).toBeDefined();
-    expect(typeof component.hanziLoadState).toBe('function');
+  it('should have dataLoader.hanziLoadState signal', () => {
+    expect(component.dataLoader.hanziLoadState).toBeDefined();
+    expect(typeof component.dataLoader.hanziLoadState).toBe('function');
   });
 
-  it('should have radicalModels signal', () => {
-    expect(component.radicalModels).toBeDefined();
-    expect(typeof component.radicalModels).toBe('function');
+  it('should have dataLoader.radicalModels signal', () => {
+    expect(component.dataLoader.radicalModels).toBeDefined();
+    expect(typeof component.dataLoader.radicalModels).toBe('function');
   });
 
-  it('should have radicalLoadState signal', () => {
-    expect(component.radicalLoadState).toBeDefined();
-    expect(typeof component.radicalLoadState).toBe('function');
+  it('should have dataLoader.radicalLoadState signal', () => {
+    expect(component.dataLoader.radicalLoadState).toBeDefined();
+    expect(typeof component.dataLoader.radicalLoadState).toBe('function');
   });
 
-  it('should have tracingFrame signal', () => {
-    expect(component.tracingFrame).toBeDefined();
-    expect(typeof component.tracingFrame).toBe('function');
+  it('should have animation.tracingFrame signal', () => {
+    expect(component.animation.tracingFrame).toBeDefined();
+    expect(typeof component.animation.tracingFrame).toBe('function');
   });
 
-  it('should have hintFrame signal', () => {
-    expect(component.hintFrame).toBeDefined();
-    expect(typeof component.hintFrame).toBe('function');
+  it('should have animation.hintFrame signal', () => {
+    expect(component.animation.hintFrame).toBeDefined();
+    expect(typeof component.animation.hintFrame).toBe('function');
   });
 
   it('should have hanziStrokes computed', () => {
