@@ -20,3 +20,6 @@ export * from './options';
 
 // ===== Tone variants =====
 export * from './tone';
+
+// ===== Fallback preview =====
+export { fallbackPreviewCard } from './preview';

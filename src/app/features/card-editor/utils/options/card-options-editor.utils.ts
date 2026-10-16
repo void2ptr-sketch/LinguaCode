@@ -6,6 +6,19 @@ import { defaultScriptForLanguages, syncLexemePrimaryFromText } from '../ux/card
 export const MIN_CARD_OPTIONS = 2;
 export const MAX_CARD_OPTIONS = 8;
 
+/**
+ * Configuration for the card options editor.
+ * Controls display labels and whether the correct-answer radio is shown.
+ */
+export type CardOptionsEditorConfig = {
+  /** Display title for the options section. */
+  title: string;
+  /** Label prefix for individual options (e.g., "Вариант", "Символ"). */
+  optionLabelPrefix: string;
+  /** Whether to show a radio button for selecting the correct option. */
+  showCorrectRadio: boolean;
+};
+
 export type CardOptionsEditorState = {
   options: readonly string[];
   lexemes: readonly LexemeDraftFields[];

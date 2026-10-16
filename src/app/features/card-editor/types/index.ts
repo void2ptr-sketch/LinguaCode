@@ -3,6 +3,7 @@ export type { CardFormContext } from './card-form.types';
 export type {
   CardAppearanceDraft,
   CardDraft,
+  ChoiceCardDraft,
   CodeBlockDraft,
   CodeSelectCardDraft,
   DrawCardDraft,

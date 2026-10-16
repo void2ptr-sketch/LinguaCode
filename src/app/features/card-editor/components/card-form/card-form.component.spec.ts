@@ -225,10 +225,11 @@ describe('CardFormComponent', () => {
     it('should return config for select kind', () => {
       fixture.componentRef.setInput('draft', selectDraft);
       const config = component.choiceOptionsConfig();
-      expect(config.title).toBe('Варианты (известный)');
+      expect(config.title).toBe('Варианты (новый)');
+      expect(config.optionLabelPrefix).toBe('Ответ');
     });
 
-    it('should return default config for other kinds', () => {
+    it('should return config for timed kind', () => {
       fixture.componentRef.setInput('draft', { kind: 'timed' } as CardDraft);
       const config = component.choiceOptionsConfig();
       expect(config.title).toBe('Варианты (новый)');
@@ -347,10 +348,10 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('updateMeta', () => {
+  describe('metaChange output', () => {
     it('should emit metaChange', () => {
       const spy = vi.spyOn(component.metaChange, 'emit');
-      component.updateMeta({ knownLanguage: 'ru', learningLanguage: 'en' });
+      component.metaChange.emit({ knownLanguage: 'ru', learningLanguage: 'en' });
       expect(spy).toHaveBeenCalledWith({ knownLanguage: 'ru', learningLanguage: 'en' });
     });
   });

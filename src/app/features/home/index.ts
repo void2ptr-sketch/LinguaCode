@@ -1,10 +1,8 @@
 // ===== Components =====
-
-// ===== Components =====
 export * from './components';
 
 // ===== Services =====
-export { LearningDashboardService } from '../../entities/learning/lib/learning-dashboard.service';
+export { LearningDashboardService } from './services/learning-dashboard.service';
 
 // ===== Utils / Types =====
 export type { HomeSectionLink, HomeTab } from './types/home-tab.types';

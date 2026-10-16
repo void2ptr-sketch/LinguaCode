@@ -8,10 +8,8 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { describe, expect, it, vi } from 'vitest';
 
-import {
-  CardOptionsEditorComponent,
-  CardOptionsEditorConfig,
-} from './card-options-editor.component';
+import { CardOptionsEditorComponent } from './card-options-editor.component';
+import type { CardOptionsEditorConfig } from '../../utils/options/card-options-editor.utils';
 import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
 import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 

@@ -7,21 +7,26 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
-import { DEFAULT_TONE_OPTIONS } from '../../../../entities/chinese/lib/answers/tone-mark.utils';
-import { Card } from '../../../../entities/card/model';
-import type { ChoiceCardDraft } from './kind-forms/choice-card-form/choice-card-form.component';
+import type { ChoiceCardDraft } from '../../types';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
 import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
 import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
 import {
-  CardDraft,
-  DEFAULT_CARD_DIRECTION,
+  type CardDraft,
   type CodeSelectCardDraft,
   type MemoryCardDraft,
   type SoundCardDraft,
 } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
+import { fallbackPreviewCard } from '../../utils/preview';
+import {
+  resolveChoiceOptionsConfig,
+  resolveChoiceOptionTexts,
+  resolveChoiceOptionLexemes,
+  applyChoiceOptionsState,
+} from '../../utils/options';
+import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
 import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/card-form-phonetics-panel.component';
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
@@ -32,9 +37,6 @@ import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { MatDividerModule } from '@angular/material/divider';
-import type { LexemeDraftFields } from '../../../../entities/chinese/lib/phonetics/lexeme-draft.utils';
-import type { CardOptionsEditorState } from '../../utils/options/card-options-editor.utils';
-import { emptyOptionLexemes } from '../../types';
 import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
@@ -156,12 +158,12 @@ export class CardFormComponent implements OnInit {
   /**
    * Computed normalized Card object for the preview.
    * @remarks
-   * Falls back to a synthetic card via `fallbackPreviewCard` if normalization fails.
+   * Falls back to a synthetic card via `fallbackPreviewCard` utility if normalization fails.
    */
-  readonly previewCard = computed((): Card => {
+  readonly previewCard = computed(() => {
     return (
       normalizeCardDraft(this.draftForPreview(), this.previewId()) ??
-      this.fallbackPreviewCard(this.draftForPreview())
+      fallbackPreviewCard(this.draftForPreview(), this.previewId())
     );
   });
 
@@ -284,7 +286,8 @@ export class CardFormComponent implements OnInit {
       draft.kind === 'select' ||
       draft.kind === 'reading' ||
       draft.kind === 'timed' ||
-      draft.kind === 'symbol'
+      draft.kind === 'symbol' ||
+      draft.kind === 'tone'
     ) {
       this.updateDraft({ ...draft, promptKnown });
     }
@@ -297,7 +300,7 @@ export class CardFormComponent implements OnInit {
    */
   onKnownLanguageChange(knownLanguage: ContentLanguage): void {
     this.knownLanguageChange.emit(knownLanguage);
-    this.updateMeta({ ...this.meta(), knownLanguage });
+    this.metaChange.emit({ ...this.meta(), knownLanguage });
   }
 
   /**
@@ -307,7 +310,7 @@ export class CardFormComponent implements OnInit {
    */
   onLearningLanguageChange(learningLanguage: ContentLanguage): void {
     this.learningLanguageChange.emit(learningLanguage);
-    this.updateMeta({ ...this.meta(), learningLanguage });
+    this.metaChange.emit({ ...this.meta(), learningLanguage });
   }
 
   /**
@@ -358,124 +361,42 @@ export class CardFormComponent implements OnInit {
   }
 
   /**
-   * Returns configuration for the choice options editor based on card kind.
-   *
-   * @returns Configuration object with title, option label prefix, and showCorrectRadio flag.
+   * Resolves the choice options editor configuration.
+   * @remarks Delegates to `resolveChoiceOptionsConfig` utility.
    */
-  choiceOptionsConfig() {
-    const draft = this.choiceDraft();
-    if (!draft) {
-      return { title: '', optionLabelPrefix: '', showCorrectRadio: true };
-    }
-
-    switch (draft.kind) {
-      case 'reading':
-        return { title: 'Варианты чтения', optionLabelPrefix: 'Чтение', showCorrectRadio: true };
-      case 'symbol':
-        return { title: 'Символы', optionLabelPrefix: 'Символ', showCorrectRadio: true };
-      case 'select':
-        return {
-          title: 'Варианты (известный)',
-          optionLabelPrefix: 'Ответ',
-          showCorrectRadio: true,
-        };
-      case 'timed':
-        return { title: 'Варианты (новый)', optionLabelPrefix: 'Новый', showCorrectRadio: true };
-      default:
-        return { title: 'Варианты', optionLabelPrefix: 'Вариант', showCorrectRadio: true };
-    }
-  }
+  readonly choiceOptionsConfig = computed(() =>
+    resolveChoiceOptionsConfig(this.choiceDraft()),
+  );
 
   /**
-   * Returns the option texts for the choice options editor.
-   *
-   * @returns Array of option text strings, or empty array for unsupported kinds.
+   * Resolves the option texts for the choice options editor.
+   * @remarks Delegates to `resolveChoiceOptionTexts` utility.
    */
-  choiceOptionTexts(): readonly string[] {
-    const draft = this.choiceDraft();
-    if (!draft) {
-      return [];
-    }
-
-    if (draft.kind === 'symbol') {
-      return draft.symbols;
-    }
-
-    if (draft.kind === 'tone') {
-      return [];
-    }
-
-    // Для select карточек показываем optionsKnown, а не optionsLearning
-    if (draft.kind === 'select') {
-      return draft.optionsKnown;
-    }
-
-    return draft.optionsLearning;
-  }
+  readonly choiceOptionTexts = computed(() => resolveChoiceOptionTexts(this.choiceDraft()));
 
   /**
-   * Returns the lexeme drafts for the choice options editor.
-   *
-   * @returns Array of lexeme draft fields, or empty array for unsupported kinds.
+   * Resolves the lexeme drafts for the choice options editor.
+   * @remarks Delegates to `resolveChoiceOptionLexemes` utility.
    */
-  choiceOptionLexemes(): readonly LexemeDraftFields[] {
-    const draft = this.choiceDraft();
-    if (!draft) {
-      return [];
-    }
-
-    if (draft.kind === 'symbol') {
-      return draft.symbolLexemes;
-    }
-
-    if (draft.kind === 'tone') {
-      return [];
-    }
-
-    // Для select карточек показываем lexemes для optionsKnown
-    if (draft.kind === 'select') {
-      return draft.optionsLexemes || emptyOptionLexemes(draft.optionsKnown.length);
-    }
-
-    return draft.optionsLexemes;
-  }
+  readonly choiceOptionLexemes = computed(() => resolveChoiceOptionLexemes(this.choiceDraft()));
 
   /**
    * Handles state changes from the choice options editor.
    *
    * @param state - The updated options editor state.
    * @remarks
-   * Updates the draft with new options, lexemes, and correct index
-   * based on the card kind (select, reading, timed, symbol).
+   * No-op for tone cards — syllable and toneOptions are managed separately
+   * in the tone form, not through the options editor.
    */
   onChoiceOptionsStateChange(state: CardOptionsEditorState): void {
     const draft = this.choiceDraft();
     if (!draft) {
       return;
     }
-
-    if (draft.kind === 'select') {
-      this.updateDraft({
-        ...draft,
-        optionsKnown: state.options,
-        optionsLexemes: state.lexemes,
-        correctIndex: state.correctIndex,
-      });
-    } else if (draft.kind === 'reading' || draft.kind === 'timed') {
-      this.updateDraft({
-        ...draft,
-        optionsLearning: state.options,
-        optionsLexemes: state.lexemes,
-        correctIndex: state.correctIndex,
-      });
-    } else if (draft.kind === 'symbol') {
-      this.updateDraft({
-        ...draft,
-        symbols: state.options,
-        symbolLexemes: state.lexemes,
-        correctIndex: state.correctIndex,
-      });
+    if (draft.kind === 'tone') {
+      return;
     }
+    this.updateDraft(applyChoiceOptionsState(draft, state));
   }
 
   /**
@@ -585,139 +506,5 @@ export class CardFormComponent implements OnInit {
       event.preventDefault();
       this.nextTabs();
     }
-  }
-
-  private fallbackPreviewCard(draft: CardDraft): Card {
-    const appearance = draft.appearance;
-
-    switch (draft.kind) {
-      case 'select':
-        return {
-          id: this.previewId(),
-          kind: 'select',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Подсказка',
-          optionsLearning: ['Вариант 1', 'Вариант 2'],
-          optionsKnown: ['Answer 1', 'Answer 2'],
-          correctIndex: 0,
-          appearance,
-        };
-      case 'code-select':
-        return {
-          id: this.previewId(),
-          kind: 'code-select',
-          title: draft.title || 'Новая карточка',
-          caption: draft.caption || undefined,
-          prompt: {
-            code: draft.prompt.code || 'print "Hello";',
-            language: draft.prompt.language,
-          },
-          options: draft.options.map((option, index) => ({
-            code: option.code || `// option ${index + 1}`,
-            language: option.language,
-          })),
-          correctIndex: draft.correctIndex,
-          appearance,
-        };
-      case 'memory':
-        return {
-          id: this.previewId(),
-          kind: 'memory',
-          title: draft.title || 'Новая карточка',
-          promptKnown: draft.promptKnown || 'Подсказка',
-          pairs: [{ known: 'A', learning: 'B' }],
-          appearance,
-        };
-      case 'symbol':
-        return {
-          id: this.previewId(),
-          kind: 'symbol',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Подсказка',
-          symbols: ['👋', '🔥'],
-          correctIndex: 0,
-          appearance,
-        };
-      case 'sound':
-        return {
-          id: this.previewId(),
-          kind: 'sound',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Подсказка',
-          audioLabelLearning: draft.audioLabelLearning || 'Hello',
-          optionsKnown: ['Привет', 'Пока'],
-          correctIndex: 0,
-          appearance,
-        };
-      case 'timed':
-        return {
-          id: this.previewId(),
-          kind: 'timed',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Подсказка',
-          optionsLearning: ['A', 'B'],
-          correctIndex: 0,
-          timeLimitSec: draft.timeLimitSec || 30,
-          appearance,
-        };
-      case 'keyboard':
-        return {
-          id: this.previewId(),
-          kind: 'keyboard',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Подсказка',
-          acceptedAnswersKnown: ['ответ'],
-          appearance,
-        };
-      case 'draw':
-        return {
-          id: this.previewId(),
-          kind: 'draw',
-          title: draft.title || 'Новая карточка',
-          promptKnown: draft.promptKnown || 'Подсказка',
-          referenceHintKnown: draft.referenceHintKnown || 'Ориентир',
-          practiceMode: draft.practiceMode ?? 'freehand',
-          targetCharacter: draft.targetCharacter || draft.promptLexeme?.primary || '',
-          radicalHint: draft.radicalHint,
-          appearance,
-        };
-      case 'tone':
-        return {
-          id: this.previewId(),
-          kind: 'tone',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Какой тон?',
-          syllableBase: draft.syllableBase || 'ma',
-          toneOptions: [...DEFAULT_TONE_OPTIONS],
-          correctIndex: 0,
-          appearance,
-        };
-      case 'reading':
-        return {
-          id: this.previewId(),
-          kind: 'reading',
-          title: draft.title || 'Новая карточка',
-          direction: draft.direction ?? DEFAULT_CARD_DIRECTION,
-          promptKnown: draft.promptKnown || 'Какое чтение?',
-          optionsLearning: ['银行', 'yínxíng'],
-          correctIndex: 0,
-          appearance,
-        };
-    }
-  }
-
-  /**
-   * Emits the updated card index meta override.
-   *
-   * @param next - The new meta override with tags and hierarchy references.
-   */
-  updateMeta(next: CardIndexMetaOverride): void {
-    this.metaChange.emit(next);
   }
 }

@@ -9,6 +9,14 @@ export {
   updateOptionLexeme,
   addOption,
   removeOption,
+  type CardOptionsEditorConfig,
   type CardOptionsEditorState,
   type CardOptionsEditorPatch,
 } from './card-options-editor.utils';
+
+export {
+  resolveChoiceOptionsConfig,
+  resolveChoiceOptionTexts,
+  resolveChoiceOptionLexemes,
+  applyChoiceOptionsState,
+} from './card-choice-options.utils';
