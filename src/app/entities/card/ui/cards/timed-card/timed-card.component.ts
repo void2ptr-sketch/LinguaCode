@@ -1,11 +1,17 @@
-import { Component, ChangeDetectionStrategy, computed, input, OnDestroy, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  input,
+  OnDestroy,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  effectiveCardDirection,
-  resolveOptionCard,
-} from '../../../utils/card-direction.utils';
+import { effectiveCardDirection, resolveOptionCard } from '../../../utils/card-direction.utils';
 import { TimedCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';

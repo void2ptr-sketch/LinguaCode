@@ -16,23 +16,24 @@ describe('CardSelectFlowService', () => {
         {
           provide: CourseSearchService,
           useValue: {
-            getById: async () => ({
-              id: 'c1',
-              title: 'Test Course',
-              lessons: [],
-              lessonIds: [],
-              description: '',
-              authorId: 'u1',
-              published: true,
-              updatedAt: '2026-01-01T00:00:00.000Z',
-              languagePair: { known: 'ru', learning: 'en' },
-              practiceSettings: {
-                mode: 'guided',
-                allowDifficultyFilter: false,
-                enforceLessonPrerequisites: true,
-                requireLessonForScenarios: true,
-              },
-            } as CourseWithLessons),
+            getById: async () =>
+              ({
+                id: 'c1',
+                title: 'Test Course',
+                lessons: [],
+                lessonIds: [],
+                description: '',
+                authorId: 'u1',
+                published: true,
+                updatedAt: '2026-01-01T00:00:00.000Z',
+                languagePair: { known: 'ru', learning: 'en' },
+                practiceSettings: {
+                  mode: 'guided',
+                  allowDifficultyFilter: false,
+                  enforceLessonPrerequisites: true,
+                  requireLessonForScenarios: true,
+                },
+              }) as CourseWithLessons,
           },
         },
         {
@@ -44,7 +45,13 @@ describe('CardSelectFlowService', () => {
         },
         {
           provide: ScenarioSearchService,
-          useValue: { getById: async () => ({ id: 's1', title: 'Test', cardSource: { mode: 'fixed', cardIds: [] } }) },
+          useValue: {
+            getById: async () => ({
+              id: 's1',
+              title: 'Test',
+              cardSource: { mode: 'fixed', cardIds: [] },
+            }),
+          },
         },
         { provide: AppLoggerService, useValue: { warn: vi.fn(), debug: vi.fn() } },
       ],
@@ -401,9 +408,7 @@ describe('CardSelectFlowService', () => {
       const course = {
         id: 'c1',
         title: 'Test Course',
-        lessons: [
-          { id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'] },
-        ],
+        lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'] }],
       } as unknown as CourseWithLessons;
 
       service.selectedCourseId.set('c1');

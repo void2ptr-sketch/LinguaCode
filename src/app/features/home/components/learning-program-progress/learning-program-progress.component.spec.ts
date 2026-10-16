@@ -6,7 +6,12 @@ import { LearningProgramProgressComponent } from './learning-program-progress.co
 @Component({
   standalone: true,
   imports: [LearningProgramProgressComponent],
-  template: `<app-learning-program-progress [courseTitle]="courseTitle" [completed]="completed" [total]="total" [percent]="percent" />`,
+  template: `<app-learning-program-progress
+    [courseTitle]="courseTitle"
+    [completed]="completed"
+    [total]="total"
+    [percent]="percent"
+  />`,
 })
 class TestHostComponent {
   courseTitle = 'Test Course';

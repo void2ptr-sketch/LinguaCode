@@ -21,12 +21,7 @@ import { normalizeCardFocusFullscreen } from '../../card/utils/card-focus-prefer
 import { normalizeLearningProficiencyLevel } from '../../learning/lib/learning-proficiency.utils';
 import type { LanguagePair } from '../../language-pair/model/language-pair.types';
 import type { LearningSessionPreferences } from '../../learning/model';
-import type {
-  User,
-  UserLanguagePairEntry,
-  UserLanguagePairSettings,
-  UserPreferences,
-} from './';
+import type { User, UserLanguagePairEntry, UserLanguagePairSettings, UserPreferences } from './';
 import { DEFAULT_LEARNING_PROFICIENCY_LEVEL } from '../../learning/model';
 import { UserPersistence } from './user.persistence';
 

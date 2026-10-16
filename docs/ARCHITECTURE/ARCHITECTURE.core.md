@@ -6,18 +6,18 @@
 
 ## Куда переехал `core/`
 
-| Бывший путь (`core/`)            | Новое расположение                                        |
-| -------------------------------- | --------------------------------------------------------- |
-| `core/models`                    | `entities/*/model` (card, scenario, course, learning, phonetic, user, language-pair) |
-| `core/domain`                    | `entities/*/lib` (chinese, ipa, phonetic, language-pair, learning, journey, lesson, code-highlight, keyboard-answer-mode, user) |
-| `core/repositories`              | `entities/*/` (card, course, scenario, user, content-seed) |
-| `core/state`                     | `entities/*/model` (`user.store`, `user.persistence`, `learning-results.store`, `learning-results.persistence`) + `shared/types/async-state.types` |
-| `core/api`                       | `entities/*/api` + `app/api` (clients, interceptors, errors, `provide-api.http`) |
-| `core/layout`                    | `widgets/` (header, footer, main-layout, navigation, menu-\*) + `pages/` (user, help, help-usage-scenarios) |
-| `core/security`                  | `shared/security`                                          |
-| `core/theme`                     | `app/theme` + `shared/theme` + `entities/user/lib`         |
-| `core/hanzi-engine`              | `entities/chinese/lib` (drawing, validation, quiz, rendering) |
-| `core/services`                  | `entities/journey/lib/journey-analytics.service`           |
+| Бывший путь (`core/`) | Новое расположение                                                                                                                                 |
+| --------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `core/models`         | `entities/*/model` (card, scenario, course, learning, phonetic, user, language-pair)                                                               |
+| `core/domain`         | `entities/*/lib` (chinese, ipa, phonetic, language-pair, learning, journey, lesson, code-highlight, keyboard-answer-mode, user)                    |
+| `core/repositories`   | `entities/*/` (card, course, scenario, user, content-seed)                                                                                         |
+| `core/state`          | `entities/*/model` (`user.store`, `user.persistence`, `learning-results.store`, `learning-results.persistence`) + `shared/types/async-state.types` |
+| `core/api`            | `entities/*/api` + `app/api` (clients, interceptors, errors, `provide-api.http`)                                                                   |
+| `core/layout`         | `widgets/` (header, footer, main-layout, navigation, menu-\*) + `pages/` (user, help, help-usage-scenarios)                                        |
+| `core/security`       | `shared/security`                                                                                                                                  |
+| `core/theme`          | `app/theme` + `shared/theme` + `entities/user/lib`                                                                                                 |
+| `core/hanzi-engine`   | `entities/chinese/lib` (drawing, validation, quiz, rendering)                                                                                      |
+| `core/services`       | `entities/journey/lib/journey-analytics.service`                                                                                                   |
 
 ## Состояние
 

@@ -52,12 +52,22 @@ export class DrawCanvasAnimationService {
   // --- Tracing animation state ---
   readonly tracingFrame = signal<HanziTracingFrame>({ ...EMPTY_TRACING_FRAME });
   private tracingSamples: readonly HanziTracingStrokeSample[] = [];
-  private tracingLoopState: AnimationLoopState = { token: 0, active: false, frameId: 0, startTimestamp: 0 };
+  private tracingLoopState: AnimationLoopState = {
+    token: 0,
+    active: false,
+    frameId: 0,
+    startTimestamp: 0,
+  };
 
   // --- Hint animation state ---
   readonly hintFrame = signal<HanziHintStrokeFrame>({ ...EMPTY_HINT_FRAME });
   private hintSamples: readonly HanziTracingStrokeSample[] = [];
-  private hintLoopState: AnimationLoopState = { token: 0, active: false, frameId: 0, startTimestamp: 0 };
+  private hintLoopState: AnimationLoopState = {
+    token: 0,
+    active: false,
+    frameId: 0,
+    startTimestamp: 0,
+  };
   private hintDrawingPaused = false;
 
   // --- Computed ---
@@ -201,7 +211,8 @@ export class DrawCanvasAnimationService {
     }
 
     if (signature === this.guidanceSyncSignature) {
-      const animationRunning = mode === 'tracing' ? this.tracingLoopState.active : this.hintLoopState.active;
+      const animationRunning =
+        mode === 'tracing' ? this.tracingLoopState.active : this.hintLoopState.active;
       if (animationRunning) {
         return false;
       }
@@ -258,7 +269,8 @@ export class DrawCanvasAnimationService {
   // --- Private animation runners ---
 
   private runTracingAnimation(token: number): void {
-    if (this._destroyed || !this.tracingLoopState.active || this.tracingSamples.length === 0) return;
+    if (this._destroyed || !this.tracingLoopState.active || this.tracingSamples.length === 0)
+      return;
 
     const elapsed = performance.now() - this.tracingLoopState.startTimestamp;
     const frame = resolveHanziTracingFrame(elapsed, this.tracingSamples, {

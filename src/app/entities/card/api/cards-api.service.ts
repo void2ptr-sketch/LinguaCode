@@ -93,9 +93,9 @@ export class CardsApiService implements CardCatalogPort {
    * ```
    */
   create(card: Card): Promise<Card> {
-    return firstValueFrom(
-      this.http.post<ApiResponse<Card>>(buildApiUrl('/cards'), card),
-    ).then((response) => response.data);
+    return firstValueFrom(this.http.post<ApiResponse<Card>>(buildApiUrl('/cards'), card)).then(
+      (response) => response.data,
+    );
   }
 
   /**

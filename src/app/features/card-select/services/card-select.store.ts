@@ -203,15 +203,15 @@ export class CardSelectStore {
    *
    * @param value - Whether the draw answer has been submitted.
    */
-   setDrawSubmitted(value: boolean): void {
-     if (this.feedback() !== null) {
-       return;
-     }
-     this.drawSubmitted.set(value);
-     if (!value) {
-       this.drawAnswer.set(null);
-     }
-   }
+  setDrawSubmitted(value: boolean): void {
+    if (this.feedback() !== null) {
+      return;
+    }
+    this.drawSubmitted.set(value);
+    if (!value) {
+      this.drawAnswer.set(null);
+    }
+  }
 
   /**
    * Sets the submitted draw answer payload.
@@ -252,25 +252,25 @@ export class CardSelectStore {
    * and session direction. Sets `feedback` signal to `'correct'` or `'incorrect'` on success.
    * Returns `null` when no current card exists or evaluation fails.
    */
-   checkAnswer(): boolean | null {
-     const card = this.currentCard();
-     if (!card) {
-       return null;
-     }
+  checkAnswer(): boolean | null {
+    const card = this.currentCard();
+    if (!card) {
+      return null;
+    }
 
-     const isCorrect = checkCardAnswer(
-       card,
-       this.answerState(),
-       this.sessionDirection(),
-       (character) => this.hanziData.getCachedModel(character),
-     );
-     if (isCorrect === null) {
-       return null;
-     }
+    const isCorrect = checkCardAnswer(
+      card,
+      this.answerState(),
+      this.sessionDirection(),
+      (character) => this.hanziData.getCachedModel(character),
+    );
+    if (isCorrect === null) {
+      return null;
+    }
 
-     this.feedback.set(isCorrect ? 'correct' : 'incorrect');
-     return isCorrect;
-   }
+    this.feedback.set(isCorrect ? 'correct' : 'incorrect');
+    return isCorrect;
+  }
 
   /**
    * Advances to the next card or marks the session as completed.

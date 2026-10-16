@@ -177,8 +177,6 @@ export class DrawCanvasComponent implements OnDestroy {
    */
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
-
-
   /**
    * Strokes from the loaded Hanzi model.
    *
@@ -404,12 +402,14 @@ export class DrawCanvasComponent implements OnDestroy {
       const model = this.dataLoader.hanziModel();
       const loadState = this.dataLoader.hanziLoadState();
       const mode = this.canvasMode();
-      untracked(() => this.syncGuidanceAnimation(
-        mode === 'tracing' ? 'tracing' : mode === 'hints' ? 'hints' : 'none',
-        loadState,
-        model?.character ?? '',
-        this.drawing.getStrokes().length,
-      ));
+      untracked(() =>
+        this.syncGuidanceAnimation(
+          mode === 'tracing' ? 'tracing' : mode === 'hints' ? 'hints' : 'none',
+          loadState,
+          model?.character ?? '',
+          this.drawing.getStrokes().length,
+        ),
+      );
     });
 
     // Memory review redraw
@@ -621,9 +621,7 @@ export class DrawCanvasComponent implements OnDestroy {
     if (!canvasEl) return;
 
     const model = this.dataLoader.hanziModel();
-    const samples = model
-      ? prepareHanziTracingSamples(model.strokes.map((s) => s.points))
-      : [];
+    const samples = model ? prepareHanziTracingSamples(model.strokes.map((s) => s.points)) : [];
 
     if (samples.length === 0) {
       this.animation.syncGuidanceAnimation(mode, hanziLoadState, hanziCharacter, strokeCount, () =>
@@ -676,5 +674,4 @@ export class DrawCanvasComponent implements OnDestroy {
     this.animation.markDestroyed();
     this.drawing.markDestroyed();
   }
-
 }

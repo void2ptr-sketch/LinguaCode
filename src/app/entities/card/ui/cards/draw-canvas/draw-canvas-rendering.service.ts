@@ -2,9 +2,18 @@ import { Injectable, signal, DestroyRef, inject } from '@angular/core';
 import { paintCalligraphyPolyline } from '../../../../chinese/lib/drawing/draw-calligraphy-paint.utils';
 import { resolveRadicalComponentCellCenter } from '../../../../chinese/lib/rendering';
 import type { HanziCharacterModel, HanziLoadState } from '../../../../chinese/model';
-import type { DrawCanvasMode, DrawCanvasPoint, DrawMemoryStrokeGrade, DrawStrokePath } from '../../../../phonetic/model';
+import type {
+  DrawCanvasMode,
+  DrawCanvasPoint,
+  DrawMemoryStrokeGrade,
+  DrawStrokePath,
+} from '../../../../phonetic/model';
 import type { DrawRadicalHint } from './draw-canvas.component';
-import type { HanziHintStrokeFrame, HanziTracingFrame, HanziTracingStrokeSample } from '../../../../chinese/lib/animation';
+import type {
+  HanziHintStrokeFrame,
+  HanziTracingFrame,
+  HanziTracingStrokeSample,
+} from '../../../../chinese/lib/animation';
 import type { HanziPositioner } from '../../../../chinese/lib/positioning';
 
 const DEFAULT_SURFACE_SIZE = 280;
@@ -15,7 +24,7 @@ const GHOST_FONT_RATIO = 0.72;
  */
 export type DrawCanvasRedrawOptions = {
   strokes: readonly DrawStrokePath[];
-    activeStroke: readonly DrawCanvasPoint[];
+  activeStroke: readonly DrawCanvasPoint[];
   memoryGrade: DrawMemoryStrokeGrade | null;
   reviewActive: boolean;
   tracingFrame: HanziTracingFrame;
@@ -225,7 +234,7 @@ export class DrawCanvasRenderingService {
   private paintStrokes(options: {
     ctx: CanvasRenderingContext2D;
     strokes: readonly DrawStrokePath[];
-  activeStroke: readonly DrawCanvasPoint[];
+    activeStroke: readonly DrawCanvasPoint[];
     memoryGrade: DrawMemoryStrokeGrade | null;
     reviewActive: boolean;
     resolveThemeColor: (variable: string, fallback: string) => string;
@@ -325,7 +334,8 @@ export class DrawCanvasRenderingService {
     radicalLoadState: HanziLoadState;
     canvasMode: DrawCanvasMode;
   }): void {
-    const { ctx, width, height, radicalHints, radicalModels, radicalLoadState, canvasMode } = options;
+    const { ctx, width, height, radicalHints, radicalModels, radicalLoadState, canvasMode } =
+      options;
 
     if (canvasMode !== 'radicals' || radicalLoadState !== 'ready') {
       return;

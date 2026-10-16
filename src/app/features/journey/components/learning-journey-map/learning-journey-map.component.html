@@ -7,9 +7,20 @@
         <span class="journey-map__course-title">{{ courseTitle() }}</span>
       }
       @if (explorerLevel()) {
-        <span class="journey-map__level-badge" [class.journey-map__level-badge--novice]="explorerLevel()!.level === 'novice'" [class.journey-map__level-badge--experienced]="explorerLevel()!.level === 'experienced'" [class.journey-map__level-badge--expert]="explorerLevel()!.level === 'expert'">
+        <span
+          class="journey-map__level-badge"
+          [class.journey-map__level-badge--novice]="explorerLevel()!.level === 'novice'"
+          [class.journey-map__level-badge--experienced]="explorerLevel()!.level === 'experienced'"
+          [class.journey-map__level-badge--expert]="explorerLevel()!.level === 'expert'"
+        >
           <mat-icon aria-hidden="true">explore</mat-icon>
-          {{ explorerLevel()!.level === 'novice' ? 'Исследователь' : explorerLevel()!.level === 'experienced' ? 'Исследователь +' : 'Эксперт' }}
+          {{
+            explorerLevel()!.level === 'novice'
+              ? 'Исследователь'
+              : explorerLevel()!.level === 'experienced'
+                ? 'Исследователь +'
+                : 'Эксперт'
+          }}
         </span>
       }
     </div>
@@ -123,9 +134,7 @@
     <h2>Список локаций</h2>
     <ul>
       @for (node of nodes(); track node.id) {
-        <li>
-          {{ node.title }} — {{ node.status }} — {{ node.lessonTitle }}
-        </li>
+        <li>{{ node.title }} — {{ node.status }} — {{ node.lessonTitle }}</li>
       }
     </ul>
   </div>

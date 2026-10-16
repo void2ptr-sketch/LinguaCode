@@ -5,6 +5,7 @@
 ## Назначение
 
 Центральный интерфейс для управления профилем пользователя:
+
 - Отображаемое имя
 - Тема оформления (тема, размер шрифта, цветовая схема)
 - Полноэкранный режим карточек
@@ -28,6 +29,7 @@ pages/user/
 ### UserPageComponent
 
 **Imports:**
+
 - `FormsModule` — двустороннее связывание форм
 - `MatCardModule`, `MatFormFieldModule`, `MatInputModule` — поля ввода
 - `MatSelectModule` — выпадающие списки (тема, размер шрифта)
@@ -36,6 +38,7 @@ pages/user/
 - `MatTabsModule` — вкладки настроек
 
 **Inputs (из UserStore):**
+
 - `displayName` — computed signal, отображаемое имя
 - `preferences` — computed signal, полный объект настроек
 - `languages` — доступные языки контента
@@ -43,22 +46,24 @@ pages/user/
 
 **Draft signals (черновики формы):**
 
-| Signal | Тип | По умолчанию | Описание |
-|--------|-----|-------------|----------|
-| `nameDraft` | `Signal<string>` | `displayName()` | Отображаемое имя |
-| `learningProficiencyDraft` | `Signal<LearningProficiencyLevel>` | `preferences().learningProficiencyLevel` | Уровень подготовки |
-| `themeDraft` | `Signal<string>` | `preferences().theme` | Тема оформления |
-| `fontSizeDraft` | `Signal<UserPreferences['fontSize']>` | `preferences().fontSize` | Размер шрифта |
-| `colorSchemeDraft` | `Signal<AppColorScheme>` | `preferences().colorScheme` | Цветовая схема (light/dark/system) |
-| `cardFocusFullscreenDraft` | `Signal<boolean>` | `preferences().cardFocusFullscreen` | Полноэкранный режим карточек |
-| `selectedTabIndex` | `Signal<number>` | `0` | Текущая вкладка |
+| Signal                     | Тип                                   | По умолчанию                             | Описание                           |
+| -------------------------- | ------------------------------------- | ---------------------------------------- | ---------------------------------- |
+| `nameDraft`                | `Signal<string>`                      | `displayName()`                          | Отображаемое имя                   |
+| `learningProficiencyDraft` | `Signal<LearningProficiencyLevel>`    | `preferences().learningProficiencyLevel` | Уровень подготовки                 |
+| `themeDraft`               | `Signal<string>`                      | `preferences().theme`                    | Тема оформления                    |
+| `fontSizeDraft`            | `Signal<UserPreferences['fontSize']>` | `preferences().fontSize`                 | Размер шрифта                      |
+| `colorSchemeDraft`         | `Signal<AppColorScheme>`              | `preferences().colorScheme`              | Цветовая схема (light/dark/system) |
+| `cardFocusFullscreenDraft` | `Signal<boolean>`                     | `preferences().cardFocusFullscreen`      | Полноэкранный режим карточек       |
+| `selectedTabIndex`         | `Signal<number>`                      | `0`                                      | Текущая вкладка                    |
 
 **Методы:**
+
 - `saveProfile()` — коммит всех черновиков в `UserStore`:
   - `updateDisplayName(nameDraft())` — обновление имени
   - `updatePreferences({...})` — обновление всех настроек одним вызовом
 
 **Lifecycle:**
+
 - `ngOnInit()` — инициализация `learningProficiencyDraft` из `preferences()`
 
 ## UserStore
@@ -67,36 +72,36 @@ pages/user/
 
 ### Сигналы
 
-| Сигнал | Тип | Описание |
-|--------|-----|----------|
-| `user` | `Signal<User>` | Текущий пользователь (readonly) |
-| `displayName` | `Computed<string>` | Отображаемое имя |
-| `preferences` | `Computed<UserPreferences>` | Полный объект настроек |
-| `learningProficiencyLevel` | `Computed<LearningProficiencyLevel>` | Уровень подготовки |
-| `languagePairs` | `Computed<UserLanguagePairEntry[]>` | Все языковые пары |
-| `activeLanguagePairId` | `Computed<string>` | ID активной языковой пары |
-| `activeLanguagePairEntry` | `Computed<UserLanguagePairEntry \| null>` | Запись активной пары |
-| `languagePair` | `Computed<LanguagePair>` | Разрешённая языковая пара |
-| `languagePairLabel` | `Computed<string>` | Метка пары (напр. «Русский → English») |
-| `cjkLearning` | `Computed<...>` | Предпочтения CJK для активной пары |
-| `phonetic` | `Computed<...>` | Фонетические предпочтения |
-| `learningSession` | `Computed<...>` | Настройки сессии обучения |
+| Сигнал                     | Тип                                       | Описание                               |
+| -------------------------- | ----------------------------------------- | -------------------------------------- |
+| `user`                     | `Signal<User>`                            | Текущий пользователь (readonly)        |
+| `displayName`              | `Computed<string>`                        | Отображаемое имя                       |
+| `preferences`              | `Computed<UserPreferences>`               | Полный объект настроек                 |
+| `learningProficiencyLevel` | `Computed<LearningProficiencyLevel>`      | Уровень подготовки                     |
+| `languagePairs`            | `Computed<UserLanguagePairEntry[]>`       | Все языковые пары                      |
+| `activeLanguagePairId`     | `Computed<string>`                        | ID активной языковой пары              |
+| `activeLanguagePairEntry`  | `Computed<UserLanguagePairEntry \| null>` | Запись активной пары                   |
+| `languagePair`             | `Computed<LanguagePair>`                  | Разрешённая языковая пара              |
+| `languagePairLabel`        | `Computed<string>`                        | Метка пары (напр. «Русский → English») |
+| `cjkLearning`              | `Computed<...>`                           | Предпочтения CJK для активной пары     |
+| `phonetic`                 | `Computed<...>`                           | Фонетические предпочтения              |
+| `learningSession`          | `Computed<...>`                           | Настройки сессии обучения              |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
-| `updateDisplayName(displayName)` | Обновить имя (с санитизацией) |
-| `updatePreferences(partial)` | Обновить настройки (с нормализацией) |
-| `updateLanguagePairSettings(id, patch)` | Обновить настройки конкретной языковой пары |
-| `updateLearningSession(patch)` | Обновить настройки сессии активной пары |
-| `updateActiveLanguagePairSettings(patch)` | Обновить настройки активной пары |
-| `updateLanguagePair(languagePair)` | Сменить языковую пару активной записи |
-| `addLanguagePair(pair)` | Добавить новую языковую пару |
-| `removeLanguagePair(id)` | Удалить языковую пару (минимум 1 остаётся) |
-| `setActiveLanguagePair(id)` | Активировать языковую пару |
-| `formatEntryLabel(entry)` | Получить метку языковой пары |
-| `isActiveEntry(entry)` | Проверить, активна ли запись |
+| Метод                                     | Описание                                    |
+| ----------------------------------------- | ------------------------------------------- |
+| `updateDisplayName(displayName)`          | Обновить имя (с санитизацией)               |
+| `updatePreferences(partial)`              | Обновить настройки (с нормализацией)        |
+| `updateLanguagePairSettings(id, patch)`   | Обновить настройки конкретной языковой пары |
+| `updateLearningSession(patch)`            | Обновить настройки сессии активной пары     |
+| `updateActiveLanguagePairSettings(patch)` | Обновить настройки активной пары            |
+| `updateLanguagePair(languagePair)`        | Сменить языковую пару активной записи       |
+| `addLanguagePair(pair)`                   | Добавить новую языковую пару                |
+| `removeLanguagePair(id)`                  | Удалить языковую пару (минимум 1 остаётся)  |
+| `setActiveLanguagePair(id)`               | Активировать языковую пару                  |
+| `formatEntryLabel(entry)`                 | Получить метку языковой пары                |
+| `isActiveEntry(entry)`                    | Проверить, активна ли запись                |
 
 ### Persistence
 

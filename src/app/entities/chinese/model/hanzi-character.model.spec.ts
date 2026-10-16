@@ -44,10 +44,7 @@ describe('hanzi-character.model', () => {
 
       expect(model.character).toBe('一');
       expect(model.strokes).toHaveLength(2);
-      expect(model.strokes.map((stroke) => stroke.path)).toEqual([
-        'M0 0 L100 0',
-        'M50 0 L50 100',
-      ]);
+      expect(model.strokes.map((stroke) => stroke.path)).toEqual(['M0 0 L100 0', 'M50 0 L50 100']);
       expect(model.strokes[0]?.strokeNum).toBe(0);
       expect(model.strokes[1]?.strokeNum).toBe(1);
       expect(model.strokes[0]?.points).toEqual([
@@ -223,9 +220,15 @@ describe('hanzi-character.model', () => {
     });
 
     it('should return 0 when the stroke has no vectors', () => {
-      expect(hanziStrokeDirectionSimilarity([{ x: 0, y: 0 }, { x: 1, y: 0 }], makeStroke([]))).toBe(
-        0,
-      );
+      expect(
+        hanziStrokeDirectionSimilarity(
+          [
+            { x: 0, y: 0 },
+            { x: 1, y: 0 },
+          ],
+          makeStroke([]),
+        ),
+      ).toBe(0);
     });
 
     it('should return a value within [0, 1] for mixed directions', () => {

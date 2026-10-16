@@ -38,7 +38,10 @@ describe('CourseBuilderStore', () => {
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CoursePdfExportService, useValue: mockPdfExport },
         { provide: CoursesApiService, useValue: mockCoursesApi },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         UserStore,
       ],
     });
@@ -92,7 +95,9 @@ describe('CourseBuilderStore', () => {
       resolveFn = resolve;
     });
 
-    mockCourseSearchService.search.mockReturnValue(promise as ReturnType<typeof mockCourseSearchService.search>);
+    mockCourseSearchService.search.mockReturnValue(
+      promise as ReturnType<typeof mockCourseSearchService.search>,
+    );
 
     const loadPromise = store.loadList();
 

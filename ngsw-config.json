@@ -18,10 +18,7 @@
           "/*.js",
           "/assets/fonts/**/*.ttf"
         ],
-        "urls": [
-          "https://fonts.googleapis.com/**",
-          "https://fonts.gstatic.com/**"
-        ]
+        "urls": ["https://fonts.googleapis.com/**", "https://fonts.gstatic.com/**"]
       }
     },
     {

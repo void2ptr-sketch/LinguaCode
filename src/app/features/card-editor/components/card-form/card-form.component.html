@@ -1,10 +1,7 @@
 <div class="card-form">
   <div class="card-form__main">
     <!-- Tab Navigation -->
-    <app-card-form-tabs
-      [tabs]="allAvailableTabs"
-      (activeTabChange)="onTabChange($event)"
-    />
+    <app-card-form-tabs [tabs]="allAvailableTabs" (activeTabChange)="onTabChange($event)" />
 
     <!-- Tab Content -->
     <div class="card-form__tab-content">
@@ -35,9 +32,7 @@
           />
         }
         @case ('Контент') {
-          <p class="card-form__hint card-form__hint--tab">
-            Варианты ответов и правильный ответ.
-          </p>
+          <p class="card-form__hint card-form__hint--tab">Варианты ответов и правильный ответ.</p>
           <app-card-options-editor
             [config]="choiceOptionsConfig()"
             [options]="choiceOptionTexts()"
@@ -50,9 +45,7 @@
           />
         }
         @case ('Фонетика') {
-          <p class="card-form__hint card-form__hint--tab">
-            Лексемы, IPA, пиньинь, URL аудио.
-          </p>
+          <p class="card-form__hint card-form__hint--tab">Лексемы, IPA, пиньинь, URL аудио.</p>
           <app-card-form-phonetics-panel
             [draft]="draft()"
             [knownLanguage]="knownLanguage()"
@@ -61,22 +54,12 @@
           />
         }
         @case ('Метаинфо') {
-          <p class="card-form__hint card-form__hint--tab">
-            Дополнительная информация о карточке.
-          </p>
-          <app-card-meta-fields
-            [meta]="meta()"
-            (metaChange)="metaChange.emit($event)"
-          />
+          <p class="card-form__hint card-form__hint--tab">Дополнительная информация о карточке.</p>
+          <app-card-meta-fields [meta]="meta()" (metaChange)="metaChange.emit($event)" />
         }
         @case ('Настройки') {
-          <p class="card-form__hint card-form__hint--tab">
-            Тема, шрифт, лимит времени и режимы.
-          </p>
-          <app-card-form-settings-panel
-            [draft]="draft()"
-            (draftChange)="updateDraft($event)"
-          />
+          <p class="card-form__hint card-form__hint--tab">Тема, шрифт, лимит времени и режимы.</p>
+          <app-card-form-settings-panel [draft]="draft()" (draftChange)="updateDraft($event)" />
         }
       }
     </div>

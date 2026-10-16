@@ -20,13 +20,11 @@ describe('card-learning-audio.utils', () => {
 
   it('should prefer audio url over speech synthesis', () => {
     const play = vi.fn().mockName('play');
-    const audioSpy = vi
-      .spyOn(window, 'Audio')
-      .mockImplementation(
-        class MockAudio {
-          play = play;
-        } as unknown as typeof Audio,
-      );
+    const audioSpy = vi.spyOn(window, 'Audio').mockImplementation(
+      class MockAudio {
+        play = play;
+      } as unknown as typeof Audio,
+    );
 
     playLearningAudio({
       audioUrl: 'https://example.com/word.mp3',

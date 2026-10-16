@@ -76,9 +76,7 @@ describe('MediaCardFormComponent', () => {
     it('should emit updated draft with new audio label learning', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.updateAudioLabelLearning('Bonjour');
-      expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ audioLabelLearning: 'Bonjour' }),
-      );
+      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ audioLabelLearning: 'Bonjour' }));
     });
 
     it('should also sync audioLabelLexeme in basic mode', () => {

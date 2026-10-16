@@ -1,5 +1,1 @@
-export {
-  HanziPositioner,
-  mapPointsToCanvas,
-  parseHanziMedianPoints,
-} from './hanzi-positioner';
+export { HanziPositioner, mapPointsToCanvas, parseHanziMedianPoints } from './hanzi-positioner';

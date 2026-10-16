@@ -1,9 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 
-import {
-  buildCourseSearchParams,
-  parseCourseSearchCriteria,
-} from './courses-api.params.utils';
+import { buildCourseSearchParams, parseCourseSearchCriteria } from './courses-api.params.utils';
 
 describe('courses-api.params.utils', () => {
   describe('buildCourseSearchParams', () => {
@@ -108,9 +105,7 @@ describe('courses-api.params.utils', () => {
     });
 
     it('should accept valid content languages', () => {
-      const params = new HttpParams()
-        .set('knownLanguage', 'zh')
-        .set('learningLanguage', 'en');
+      const params = new HttpParams().set('knownLanguage', 'zh').set('learningLanguage', 'en');
 
       const criteria = parseCourseSearchCriteria(params);
 

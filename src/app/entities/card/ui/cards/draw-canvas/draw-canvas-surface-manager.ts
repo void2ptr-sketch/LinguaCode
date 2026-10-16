@@ -31,10 +31,7 @@ export class DrawCanvasSurfaceManager {
    * @param canvasRef - Reference to the canvas DOM element.
    * @param onResize - Callback invoked when canvas is resized.
    */
-  initialize(
-    canvasRef: ElementRef<HTMLCanvasElement> | undefined,
-    onResize: () => void,
-  ): void {
+  initialize(canvasRef: ElementRef<HTMLCanvasElement> | undefined, onResize: () => void): void {
     this.canvasElement = canvasRef?.nativeElement ?? null;
     this.observeCanvasResize(onResize);
   }

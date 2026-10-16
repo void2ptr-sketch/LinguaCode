@@ -16,10 +16,7 @@ describe('CoursePdfExportService', () => {
     };
 
     TestBed.configureTestingModule({
-      providers: [
-        CoursePdfExportService,
-        { provide: CoursesApiService, useValue: coursesApiMock },
-      ],
+      providers: [CoursePdfExportService, { provide: CoursesApiService, useValue: coursesApiMock }],
     });
 
     service = TestBed.inject(CoursePdfExportService);

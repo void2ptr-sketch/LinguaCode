@@ -94,8 +94,16 @@ describe('LessonPickerSectionComponent', () => {
   });
 
   it('should emit event when onLessonPickChange is called', () => {
-    component.lessonPickChange.emit({ lessonId: '1', title: 'Test Lesson', scenarioIds: ['s1', 's2'] });
-    expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({ lessonId: '1', title: 'Test Lesson', scenarioIds: ['s1', 's2'] });
+    component.lessonPickChange.emit({
+      lessonId: '1',
+      title: 'Test Lesson',
+      scenarioIds: ['s1', 's2'],
+    });
+    expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({
+      lessonId: '1',
+      title: 'Test Lesson',
+      scenarioIds: ['s1', 's2'],
+    });
   });
 
   it('should emit event when onGoToCourse is called', () => {
@@ -117,7 +125,11 @@ describe('LessonPickerSectionComponent', () => {
 
   it('should emit lessonPickChange when onLessonPickChange is called', () => {
     component.onLessonPickChange({ lessonId: 'l2', title: 'Another Lesson', scenarioIds: ['s3'] });
-    expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({ lessonId: 'l2', title: 'Another Lesson', scenarioIds: ['s3'] });
+    expect(wrapper.onLessonPickChange).toHaveBeenCalledWith({
+      lessonId: 'l2',
+      title: 'Another Lesson',
+      scenarioIds: ['s3'],
+    });
   });
 
   it('should emit goToCourse when onGoToCourse is called', () => {

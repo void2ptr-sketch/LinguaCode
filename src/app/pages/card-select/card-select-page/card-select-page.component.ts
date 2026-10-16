@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, computed, effect, inject, OnInit, untracked } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  untracked,
+} from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -7,7 +15,10 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
-import { CardSelectFlowService, LEARNING_TAB } from '../../../features/card-select/services/card-select-flow.service';
+import {
+  CardSelectFlowService,
+  LEARNING_TAB,
+} from '../../../features/card-select/services/card-select-flow.service';
 import {
   PracticeSessionBarComponent,
   type PracticeSessionSegment,
@@ -159,10 +170,34 @@ export class CardSelectPageComponent implements OnInit {
     const scenarioId = this.selectedScenarioId();
 
     return [
-      { index: tab.course, label: 'Программа', done: !!courseId, current: active === tab.course, locked: false },
-      { index: tab.lessons, label: 'Урок', done: !!lessonId, current: active === tab.lessons, locked: !courseId },
-      { index: tab.scenarios, label: 'Сценарий', done: !!scenarioId, current: active === tab.scenarios, locked: false },
-      { index: tab.learning, label: 'Обучение', done: false, current: active === tab.learning, locked: !scenarioId },
+      {
+        index: tab.course,
+        label: 'Программа',
+        done: !!courseId,
+        current: active === tab.course,
+        locked: false,
+      },
+      {
+        index: tab.lessons,
+        label: 'Урок',
+        done: !!lessonId,
+        current: active === tab.lessons,
+        locked: !courseId,
+      },
+      {
+        index: tab.scenarios,
+        label: 'Сценарий',
+        done: !!scenarioId,
+        current: active === tab.scenarios,
+        locked: false,
+      },
+      {
+        index: tab.learning,
+        label: 'Обучение',
+        done: false,
+        current: active === tab.learning,
+        locked: !scenarioId,
+      },
     ];
   });
 
@@ -284,7 +319,11 @@ export class CardSelectPageComponent implements OnInit {
 
     try {
       const session = await this.cardSelectService.loadScenario(scenarioId);
-      this.flow.setScenarioMetadata(session.scenarioTitle, session.scenarioSourceLabel, session.missingCardIds);
+      this.flow.setScenarioMetadata(
+        session.scenarioTitle,
+        session.scenarioSourceLabel,
+        session.missingCardIds,
+      );
       this.store.setScenario(session.scenarioId, session.cards);
     } catch (error) {
       this.logger.error('CardSelect: failed to load scenario cards', error);

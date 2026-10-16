@@ -33,8 +33,8 @@ export class AuthApiService implements AuthPort {
   }
 
   logout(): Promise<void> {
-    return firstValueFrom(
-      this.http.post<ApiResponse<null>>(buildApiUrl('/auth/logout'), {}),
-    ).then(() => undefined);
+    return firstValueFrom(this.http.post<ApiResponse<null>>(buildApiUrl('/auth/logout'), {})).then(
+      () => undefined,
+    );
   }
 }

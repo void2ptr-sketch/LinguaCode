@@ -1,7 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import { fallbackPreviewCard } from './card-editor-preview.util';
 import { DEFAULT_CARD_DIRECTION } from '../../types';
-import type { SelectCardDraft, CodeSelectCardDraft, MemoryCardDraft, SymbolCardDraft } from '../../types';
+import type {
+  SelectCardDraft,
+  CodeSelectCardDraft,
+  MemoryCardDraft,
+  SymbolCardDraft,
+} from '../../types';
 import type { SoundCardDraft, TimedCardDraft, KeyboardCardDraft, DrawCardDraft } from '../../types';
 import type { ToneCardDraft, ReadingCardDraft } from '../../types';
 import { emptyLexemeCardDraft } from '../../types';
@@ -91,7 +96,11 @@ describe('fallbackPreviewCard', () => {
       kind: 'memory',
       promptKnown: 'Hint',
     });
-    const pair = (result as unknown as { pairs: { known: string; learning: string; learningLexeme: { script: string } }[] }).pairs[0];
+    const pair = (
+      result as unknown as {
+        pairs: { known: string; learning: string; learningLexeme: { script: string } }[];
+      }
+    ).pairs[0];
     expect(pair.known).toBe('A');
     expect(pair.learning).toBe('B');
     expect(pair.learningLexeme.script).toBe('latn');

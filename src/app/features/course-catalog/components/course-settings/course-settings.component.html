@@ -1,16 +1,15 @@
 <section class="page-card__tab-panel">
   <section class="page-card__section">
-    
     @if (settingsCourseLabel()) {
-      <h2 class="page-card__section-title"> Курс: {{ settingsCourseLabel() }}. Настройка карточек:</h2>
+      <h2 class="page-card__section-title">
+        Курс: {{ settingsCourseLabel() }}. Настройка карточек:
+      </h2>
     } @else {
       <h2 class="page-card__section-title">Настройка карточек курса</h2>
     }
 
     @if (showDisplaySettings()) {
-      <h3 class="page-card__subsection-title">
-        Романизация и фонетика для выбранного курса:
-      </h3>
+      <h3 class="page-card__subsection-title">Романизация и фонетика для выбранного курса:</h3>
 
       <app-course-display-settings-matrix
         [showCjk]="showCjkPreferences()"
@@ -29,17 +28,13 @@
         (answerModesChange)="onAnswerModesChange($event)"
       />
     } @else {
-      <p class="page-card__hint">
-        Для этого курса нет дополнительных настроек.
-      </p>
+      <p class="page-card__hint">Для этого курса нет дополнительных настроек.</p>
     }
 
     @if (showCjkPreferences()) {
       <section class="page-card__tone-colors">
         <h3 class="page-card__subsection-title">Цветовая маркировка тонов</h3>
-        <p class="page-card__hint">
-          Иероглифы и пиньинь на карточках окрашиваются по тону слога.
-        </p>
+        <p class="page-card__hint">Иероглифы и пиньинь на карточках окрашиваются по тону слога.</p>
 
         <mat-slide-toggle
           [checked]="toneColorEnabledDraft()"

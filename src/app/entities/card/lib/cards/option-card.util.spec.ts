@@ -18,7 +18,9 @@ describe('buildOptionClass', () => {
   });
 
   it('should mark the incorrect option only when it was selected', () => {
-    expect(buildOptionClass(1, 1, 'incorrect', 2)).toBe('option option--selected option--incorrect');
+    expect(buildOptionClass(1, 1, 'incorrect', 2)).toBe(
+      'option option--selected option--incorrect',
+    );
   });
 
   it('should not mark a wrong option that was not selected', () => {

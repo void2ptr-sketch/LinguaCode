@@ -14,12 +14,12 @@
 
 ## Требования
 
-| Инструмент  | Версия                          |
-| ----------- | ------------------------------- |
-| Node.js     | 24 LTS (см. `.nvmrc`)           |
-| npm         | 10+                             |
-| Angular CLI | 22+                             |
-| Git         | 2.x                             |
+| Инструмент  | Версия                |
+| ----------- | --------------------- |
+| Node.js     | 24 LTS (см. `.nvmrc`) |
+| npm         | 10+                   |
+| Angular CLI | 22+                   |
+| Git         | 2.x                   |
 
 ## Быстрый старт
 
@@ -34,22 +34,22 @@ npm start
 
 ## Скрипты
 
-| Команда                         | Описание                                           |
-| ------------------------------- | -------------------------------------------------- |
-| `npm start`                     | Dev-сервер с hot reload                            |
-| `npm run build`                 | Production-сборка                                  |
-| `npm run build:prod`            | Production-сборка (alias)                          |
-| `npm test`                      | Unit-тесты                                         |
-| `npm run test:ci`               | Тесты в CI-режиме                                  |
-| `npm run lint`                  | ESLint                                             |
-| `npm run format`                | Prettier                                           |
-| `npm run verify`                | lint + sync:hanzi + build + test (полная проверка) |
-| `npm run sync:hanzi`            | Синхронизация stroke-data для draw-карточек        |
-| `npm run export:content-seed`   | Экспорт пользовательского overlay → seed JSON      |
-| `npm run import:perl-idea`      | Импорт идеи Perl-интервью из Markdown              |
-| `npm run import:course-bundle`  | Импорт CourseBundle JSON в seed                    |
-| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed        |
-| `npm run export:course-pdf`     | Экспорт курса в PDF                                |
+| Команда                            | Описание                                           |
+| ---------------------------------- | -------------------------------------------------- |
+| `npm start`                        | Dev-сервер с hot reload                            |
+| `npm run build`                    | Production-сборка                                  |
+| `npm run build:prod`               | Production-сборка (alias)                          |
+| `npm test`                         | Unit-тесты                                         |
+| `npm run test:ci`                  | Тесты в CI-режиме                                  |
+| `npm run lint`                     | ESLint                                             |
+| `npm run format`                   | Prettier                                           |
+| `npm run verify`                   | lint + sync:hanzi + build + test (полная проверка) |
+| `npm run sync:hanzi`               | Синхронизация stroke-data для draw-карточек        |
+| `npm run export:content-seed`      | Экспорт пользовательского overlay → seed JSON      |
+| `npm run import:perl-idea`         | Импорт идеи Perl-интервью из Markdown              |
+| `npm run import:course-bundle`     | Импорт CourseBundle JSON в seed                    |
+| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed           |
+| `npm run export:course-pdf`        | Экспорт курса в PDF                                |
 
 ## Стек
 

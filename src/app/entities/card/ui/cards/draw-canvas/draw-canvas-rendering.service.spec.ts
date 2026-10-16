@@ -101,8 +101,16 @@ describe('DrawCanvasRenderingService', () => {
       service.initialize(mockCanvas, mockDestroyRef);
 
       // Manually trigger resize with new dimensions
-      Object.defineProperty(mockCanvas, 'clientWidth', { value: 400, writable: false, configurable: true });
-      Object.defineProperty(mockCanvas, 'clientHeight', { value: 300, writable: false, configurable: true });
+      Object.defineProperty(mockCanvas, 'clientWidth', {
+        value: 400,
+        writable: false,
+        configurable: true,
+      });
+      Object.defineProperty(mockCanvas, 'clientHeight', {
+        value: 300,
+        writable: false,
+        configurable: true,
+      });
       service.resize();
 
       expect(service.surfaceWidth()).toBe(400);
@@ -118,8 +126,16 @@ describe('DrawCanvasRenderingService', () => {
         callbackCalled = true;
       });
 
-      Object.defineProperty(mockCanvas, 'clientWidth', { value: 350, writable: false, configurable: true });
-      Object.defineProperty(mockCanvas, 'clientHeight', { value: 350, writable: false, configurable: true });
+      Object.defineProperty(mockCanvas, 'clientWidth', {
+        value: 350,
+        writable: false,
+        configurable: true,
+      });
+      Object.defineProperty(mockCanvas, 'clientHeight', {
+        value: 350,
+        writable: false,
+        configurable: true,
+      });
 
       service.resize();
 

@@ -9,7 +9,11 @@ import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-l
 import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
 import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
-import type { CourseOption, LessonOption, ScenarioOption } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
+import type {
+  CourseOption,
+  LessonOption,
+  ScenarioOption,
+} from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
 
 /**
  * Question tab component for the card form.
@@ -21,13 +25,7 @@ import type { CourseOption, LessonOption, ScenarioOption } from '../../../../ent
 @Component({
   selector: 'app-card-form-question-tab',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
-    MatDividerModule,
-  ],
+  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDividerModule],
   templateUrl: './card-form-question-tab.component.html',
 })
 export class CardFormQuestionTabComponent {

@@ -3,8 +3,16 @@ import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
 import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
-import { HANZI_ASSETS_BASE_PATH, HANZI_RADICAL_ASSETS_BASE_PATH, type HanziCharacterJson, type HanziLoadState } from '../../model';
-import { buildHanziCharacterModel, type HanziCharacterModel } from '../../model/hanzi-character.model';
+import {
+  HANZI_ASSETS_BASE_PATH,
+  HANZI_RADICAL_ASSETS_BASE_PATH,
+  type HanziCharacterJson,
+  type HanziLoadState,
+} from '../../model';
+import {
+  buildHanziCharacterModel,
+  type HanziCharacterModel,
+} from '../../model/hanzi-character.model';
 
 type HanziCacheEntry = {
   state: HanziLoadState;

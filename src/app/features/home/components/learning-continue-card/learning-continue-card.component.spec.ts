@@ -7,7 +7,11 @@ import { LearningContinueCardComponent } from './learning-continue-card.componen
 @Component({
   standalone: true,
   imports: [LearningContinueCardComponent],
-  template: `<app-learning-continue-card [label]="label" [resumeTarget]="resumeTarget" [continueQueryParams]="continueQueryParams" />`,
+  template: `<app-learning-continue-card
+    [label]="label"
+    [resumeTarget]="resumeTarget"
+    [continueQueryParams]="continueQueryParams"
+  />`,
 })
 class TestHostComponent {
   label = 'Test Label';

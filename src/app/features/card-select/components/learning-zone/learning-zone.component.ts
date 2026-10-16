@@ -1,4 +1,12 @@
-import { Component, ChangeDetectionStrategy, EventEmitter, Output, computed, inject, input } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  EventEmitter,
+  Output,
+  computed,
+  inject,
+  input,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';

@@ -298,9 +298,7 @@ describe('api-error.utils', () => {
     });
 
     it('should return default message for non-Error with status 0 and null body', () => {
-      expect(getApiErrorMessage('string error')).toBe(
-        'Произошла ошибка при обращении к серверу',
-      );
+      expect(getApiErrorMessage('string error')).toBe('Произошла ошибка при обращении к серверу');
     });
 
     it('should use custom fallback when provided', () => {

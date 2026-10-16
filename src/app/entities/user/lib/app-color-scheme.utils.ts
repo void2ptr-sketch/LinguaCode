@@ -1,5 +1,8 @@
 import { USER_STORAGE_KEY } from '../model/user.persistence';
-import { DEFAULT_APP_COLOR_SCHEME, type AppColorScheme } from '../../../shared/theme/app-color-scheme.types';
+import {
+  DEFAULT_APP_COLOR_SCHEME,
+  type AppColorScheme,
+} from '../../../shared/theme/app-color-scheme.types';
 
 export function isAllowedColorScheme(value: unknown): value is AppColorScheme {
   return value === 'light' || value === 'dark';

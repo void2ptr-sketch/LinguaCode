@@ -170,10 +170,14 @@ export class CourseCatalogPageComponent implements OnInit {
    * @remarks
    * Delegates to `CourseCatalogLanguagePairManagerService.trackActivePairChange`.
    */
-  private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(() => this.load());
+  private readonly reloadOnActivePairChange = this.pairManager.trackActivePairChange(() =>
+    this.load(),
+  );
 
   async ngOnInit(): Promise<void> {
-    this.drafts.setProfileLearningProficiencyDraft(this.userStore.preferences().learningProficiencyLevel);
+    this.drafts.setProfileLearningProficiencyDraft(
+      this.userStore.preferences().learningProficiencyLevel,
+    );
     this.pairManager.syncPairSettingsDrafts();
     await this.load();
   }

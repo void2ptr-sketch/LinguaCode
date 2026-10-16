@@ -1,6 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import type { ContentLanguage } from '../../../../entities/card/model';
-import type { CardDraft, ChoiceCardDraft, CodeSelectCardDraft, MemoryCardDraft, SoundCardDraft } from '../../types';
+import type {
+  CardDraft,
+  ChoiceCardDraft,
+  CodeSelectCardDraft,
+  MemoryCardDraft,
+  SoundCardDraft,
+} from '../../types';
 import type { InputCardDraft } from '../card-form/kind-forms/input-card-form/input-card-form.component';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { CodeSelectCardFormComponent } from '../card-form/kind-forms/code-select-card-form/code-select-card-form.component';

@@ -12,14 +12,14 @@ describe('groupCatalogTagFacets', () => {
       { value: 'advanced', count: 5 },
     ]);
 
-    expect(groups.map((group) => group.label)).toEqual([
-      'Темы',
-      'Подтемы',
-      'Теги',
-    ]);
+    expect(groups.map((group) => group.label)).toEqual(['Темы', 'Подтемы', 'Теги']);
     expect(groups[0]?.facets.map((facet) => facet.value)).toEqual(['basics', 'oop']);
     expect(groups[1]?.facets.map((facet) => facet.value)).toEqual(['regex-captures']);
-    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual(['advanced', 'beginner', 'greetings']);
+    expect(groups[2]?.facets.map((facet) => facet.value)).toEqual([
+      'advanced',
+      'beginner',
+      'greetings',
+    ]);
   });
 });
 

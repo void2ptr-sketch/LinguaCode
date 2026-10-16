@@ -132,8 +132,9 @@ describe('CourseCatalogPreferencesService', () => {
   });
 
   it('should compute canRemovePair as true when multiple pairs', () => {
-    (mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>)
-      .set([makePair('pair-1', 'ru', 'en'), makePair('pair-2', 'en', 'zh')]);
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([makePair('pair-1', 'ru', 'en'), makePair('pair-2', 'en', 'zh')]);
     expect(service.canRemovePair()).toBe(true);
   });
 

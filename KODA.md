@@ -11,15 +11,15 @@
 
 ## Ключевые файлы
 
-| Файл                   | Назначение                     |
-| ---------------------- | ------------------------------ |
-| `README.md`            | Обзор, быстрый старт, стек     |
-| `TASKS.md`             | Чеклист задач и бэклога        |
-| `docs/INDEX.md`        | Оглавление документации        |
-| `docs/SYSTEM/DOMAIN.md`       | Сущности, модели, терминология |
-| `docs/ARCHITECTURE.md` | Технические решения            |
-| `docs/SYSTEM/GIT-RULES.md`    | Правила веток и коммитов       |
-| `.cursorrules`         | Базовые правила стиля          |
+| Файл                       | Назначение                     |
+| -------------------------- | ------------------------------ |
+| `README.md`                | Обзор, быстрый старт, стек     |
+| `TASKS.md`                 | Чеклист задач и бэклога        |
+| `docs/INDEX.md`            | Оглавление документации        |
+| `docs/SYSTEM/DOMAIN.md`    | Сущности, модели, терминология |
+| `docs/ARCHITECTURE.md`     | Технические решения            |
+| `docs/SYSTEM/GIT-RULES.md` | Правила веток и коммитов       |
+| `.cursorrules`             | Базовые правила стиля          |
 
 ## Архитектура
 
@@ -40,14 +40,14 @@ src/app/
 
 Правила направлений:
 
-| Слой       | Может импортировать                                        |
-| ---------- | --------------------------------------------------------- |
-| `app`      | всё ниже                                                   |
-| `pages`    | widgets, features, entities, shared                       |
-| `widgets`  | features, entities, shared                                 |
-| `features` | entities, shared                                           |
-| `entities` | shared                                                     |
-| `shared`   | ничего (только внешние пакеты)                             |
+| Слой       | Может импортировать                 |
+| ---------- | ----------------------------------- |
+| `app`      | всё ниже                            |
+| `pages`    | widgets, features, entities, shared |
+| `widgets`  | features, entities, shared          |
+| `features` | entities, shared                    |
+| `entities` | shared                              |
+| `shared`   | ничего (только внешние пакеты)      |
 
 - Фичи **не импортируют** друг друга (запрещены cross-slice импорты).
 - Публичный API фичи — через `index.ts`.
@@ -85,34 +85,34 @@ src/app/
 
 ### Команды
 
-| Команда                          | Описание                                        |
-| -------------------------------- | ----------------------------------------------- |
-| `npm start`                      | Dev-сервер                                      |
-| `npm run build`                  | Production-сборка                               |
-| `npm test`                       | Unit-тесты (Vitest)                             |
-| `npm run lint`                   | ESLint                                          |
-| `npm run format`                 | Prettier                                        |
-| `npm run verify`                 | lint + sync:hanzi + build + test                |
-| `npm run export:content-seed`    | Экспорт overlay → seed                          |
-| `npm run import:perl-idea`       | Импорт идеи Perl-интервью из Markdown           |
-| `npm run import:course-bundle`   | Импорт CourseBundle JSON                        |
-| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed      |
-| `npm run export:course-pdf`      | Экспорт курса в PDF                             |
+| Команда                            | Описание                                 |
+| ---------------------------------- | ---------------------------------------- |
+| `npm start`                        | Dev-сервер                               |
+| `npm run build`                    | Production-сборка                        |
+| `npm test`                         | Unit-тесты (Vitest)                      |
+| `npm run lint`                     | ESLint                                   |
+| `npm run format`                   | Prettier                                 |
+| `npm run verify`                   | lint + sync:hanzi + build + test         |
+| `npm run export:content-seed`      | Экспорт overlay → seed                   |
+| `npm run import:perl-idea`         | Импорт идеи Perl-интервью из Markdown    |
+| `npm run import:course-bundle`     | Импорт CourseBundle JSON                 |
+| `npm run generate:radicals-course` | Генерация курса радикалов + экспорт seed |
+| `npm run export:course-pdf`        | Экспорт курса в PDF                      |
 
 ### Скрипты данных
 
-| Скрипт                                  | Назначение                                       |
-| --------------------------------------- | ------------------------------------------------ |
-| `scripts/export-content-seed.mjs`       | Генерация seed из `perl-interview-idea.md`       |
-| `scripts/import-perl-interview-idea.mjs`| Импорт идеи Perl-интервью из Markdown            |
-| `scripts/import-course-bundle.mjs`      | Импорт CourseBundle в seed                       |
-| `scripts/import-course-bundle.test.mjs` | Тесты импорта CourseBundle                       |
-| `scripts/generate-radicals-course.mjs`  | Генерация курса радикалов                        |
-| `scripts/add-card-hierarchy-fields.mjs` | Добавление полей иерархии к карточкам            |
-| `scripts/kangxi-radicals.mjs` / `kangxi-radical-meta.mjs` | Данные радикалов Канси |
-| `scripts/collect-hanzi-chars.mjs`       | Сбор иероглифов для синхронизации Hanzi          |
-| `scripts/sync-hanzi-assets.mjs`         | Синхронизация stroke-data (`npm run sync:hanzi`) |
-| `scripts/export-course-pdf.mjs`         | Экспорт курса в PDF                              |
+| Скрипт                                                    | Назначение                                       |
+| --------------------------------------------------------- | ------------------------------------------------ |
+| `scripts/export-content-seed.mjs`                         | Генерация seed из `perl-interview-idea.md`       |
+| `scripts/import-perl-interview-idea.mjs`                  | Импорт идеи Perl-интервью из Markdown            |
+| `scripts/import-course-bundle.mjs`                        | Импорт CourseBundle в seed                       |
+| `scripts/import-course-bundle.test.mjs`                   | Тесты импорта CourseBundle                       |
+| `scripts/generate-radicals-course.mjs`                    | Генерация курса радикалов                        |
+| `scripts/add-card-hierarchy-fields.mjs`                   | Добавление полей иерархии к карточкам            |
+| `scripts/kangxi-radicals.mjs` / `kangxi-radical-meta.mjs` | Данные радикалов Канси                           |
+| `scripts/collect-hanzi-chars.mjs`                         | Сбор иероглифов для синхронизации Hanzi          |
+| `scripts/sync-hanzi-assets.mjs`                           | Синхронизация stroke-data (`npm run sync:hanzi`) |
+| `scripts/export-course-pdf.mjs`                           | Экспорт курса в PDF                              |
 
 ## Domain модели
 

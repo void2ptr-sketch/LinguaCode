@@ -1,6 +1,4 @@
-<p class="card-form__hint card-form__hint--tab">
-  <strong>Языковая Пара</strong> - текущего курса,
-</p>
+<p class="card-form__hint card-form__hint--tab"><strong>Языковая Пара</strong> - текущего курса,</p>
 
 <mat-form-field appearance="outline">
   <mat-label>Известный язык</mat-label>
@@ -75,7 +73,13 @@
 
 @if (choiceDraft(); as choice) {
   <mat-form-field appearance="outline">
-    <mat-label>{{ choice.kind === 'reading' ? 'Контекст (известный)' : choice.kind === 'tone' ? 'Подсказка' : 'Вопрос' }}</mat-label>
+    <mat-label>{{
+      choice.kind === 'reading'
+        ? 'Контекст (известный)'
+        : choice.kind === 'tone'
+          ? 'Подсказка'
+          : 'Вопрос'
+    }}</mat-label>
     <textarea
       matInput
       rows="4"

@@ -1,6 +1,4 @@
-<p class="card-form-answers-tab__hint">
-  Варианты ответа и правильный вариант.
-</p>
+<p class="card-form-answers-tab__hint">Варианты ответа и правильный вариант.</p>
 @if (codeSelectDraft(); as codeDraft) {
   <app-code-select-card-form [draft]="codeDraft" (draftChange)="draftChange.emit($event)" />
 }

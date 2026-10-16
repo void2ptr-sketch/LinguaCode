@@ -11,6 +11,7 @@ This document provides a comprehensive audit of barrel exports (`index.ts`) acro
 All directories with multiple exports have proper `index.ts` files:
 
 #### entities/
+
 - `entities/auth/index.ts` — exports model, repository, api, services (via nested index.ts)
 - `entities/auth/api/index.ts` — exports auth-api.service
 - `entities/auth/model/index.ts` — exports types and state
@@ -61,6 +62,7 @@ All directories with multiple exports have proper `index.ts` files:
 - `entities/user/overlay/index.ts` — exports overlay types, resolver, repair, storage
 
 #### features/
+
 - `features/index.ts` — namespace exports for all features (CardEditor, CardSelect, CourseBuilder, etc.)
 - `features/card-editor/index.ts` — exports components, services, utils/types
 - `features/card-editor/components/index.ts` — exports all card-editor components
@@ -79,6 +81,7 @@ All directories with multiple exports have proper `index.ts` files:
 - `features/scenario-builder/index.ts` — exports components, services, types
 
 #### shared/
+
 - `shared/utils/markdown-field/index.ts` — exports markdown util and component (cohesive module)
 - `shared/utils/pagination/index.ts` — exports pagination types, utils, state, component (cohesive module)
 
@@ -87,6 +90,7 @@ All directories with multiple exports have proper `index.ts` files:
 These directories have only one export and are not used in namespace imports, so they don't need `index.ts`:
 
 #### pages/
+
 - `pages/card-editor/` — contains only card-editor-page component (single export)
 - `pages/card-select/` — contains only card-select-page component (single export)
 - `pages/course-builder/` — contains only course-builder-page component (single export)
@@ -99,6 +103,7 @@ These directories have only one export and are not used in namespace imports, so
 - `pages/help-usage-scenarios/` — contains help-usage-scenarios-page component and data file
 
 #### widgets/
+
 - `widgets/main-layout/` — contains only main-layout component (single export)
 - `widgets/main-header/` — contains only main-header component (single export)
 - `widgets/main-footer/` — contains only main-footer component (single export)
@@ -109,6 +114,7 @@ These directories have only one export and are not used in namespace imports, so
 - `widgets/sidebar-navigation-left/` — contains only sidebar-navigation-left component (single export)
 
 #### entities/language-pair/model/
+
 - Contains only language-pair.types.ts (single export, no index.ts needed)
 
 ### ✅ No Spec Files Exported

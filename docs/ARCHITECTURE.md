@@ -4,13 +4,13 @@
 
 ## Принципы
 
-| Принцип          | Решение                                             |
-| ---------------- | --------------------------------------------------- |
-| Компоненты       | Angular **standalone**, без NgModule                |
-| Типизация        | `type`, не `interface`                              |
-| Состояние        | **Signal API**; RxJS — только HTTP/WebSocket        |
-| UI               | **Angular Material** + SCSS                         |
-| Layout           | CSS **Grid**, предпочтительно `grid-template-areas` |
+| Принцип          | Решение                                                     |
+| ---------------- | ----------------------------------------------------------- |
+| Компоненты       | Angular **standalone**, без NgModule                        |
+| Типизация        | `type`, не `interface`                                      |
+| Состояние        | **Signal API**; RxJS — только HTTP/WebSocket                |
+| UI               | **Angular Material** + SCSS                                 |
+| Layout           | CSS **Grid**, предпочтительно `grid-template-areas`         |
 | Организация кода | **FSD** (Feature-Sliced Design): 6 слоёв, слайсы по доменам |
 
 ## Слои приложения (FSD)
@@ -29,14 +29,14 @@ src/app/
 
 Правила направлений (проверяются скриптом `node scripts/audit-fsd.mjs`):
 
-| Слой       | Может импортировать                                        |
-| ---------- | --------------------------------------------------------- |
-| `app`      | всё ниже                                                   |
-| `pages`    | widgets, features, entities, shared                       |
-| `widgets`  | features, entities, shared                                 |
-| `features` | entities, shared                                           |
-| `entities` | shared                                                     |
-| `shared`   | ничего (только внешние пакеты)                             |
+| Слой       | Может импортировать                 |
+| ---------- | ----------------------------------- |
+| `app`      | всё ниже                            |
+| `pages`    | widgets, features, entities, shared |
+| `widgets`  | features, entities, shared          |
+| `features` | entities, shared                    |
+| `entities` | shared                              |
+| `shared`   | ничего (только внешние пакеты)      |
 
 ### `entities`
 
@@ -79,18 +79,18 @@ features/card-select/
 
 Детальный структурный дизайн — в файлах `ARCHITECTURE.<подсистема>.md` (UML-диаграммы в формате Mermaid):
 
-| Подсистема               | Документ                                                               |
-| ------------------------ | ---------------------------------------------------------------------- |
-| Бывший `core`            | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         |
-| `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     |
-| Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           |
-| Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
-| Путь обучения (`journey`)| [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   |
-| Редактор карточек        | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           |
-| Конструктор сценариев    | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
-| Программы (course)       | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     |
-| Результаты обучения      | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) |
-| Профиль пользователя     | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         |
+| Подсистема                | Документ                                                                            |
+| ------------------------- | ----------------------------------------------------------------------------------- |
+| Бывший `core`             | [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         |
+| `shared`                  | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     |
+| Практика (`card-select`)  | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           |
+| Dashboard (`home`)        | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
+| Путь обучения (`journey`) | [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   |
+| Редактор карточек         | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           |
+| Конструктор сценариев     | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
+| Программы (course)        | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     |
+| Результаты обучения       | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) |
+| Профиль пользователя      | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         |
 
 ## Layout
 
@@ -109,16 +109,16 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 ### Компоненты layout
 
-| Компонент                  | Путь                                                 | Назначение                                                                       |
-| -------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------- |
-| MainHeader                 | `widgets/main-header`                                | Шапка, контейнер для menu-\*                                                     |
-| MenuCards                  | `widgets/menu-cards`                                 | Навигация к карточкам и режимам обучения                                         |
-| MenuTools                  | `widgets/menu-tools`                                 | Инструменты (конструктор сценариев и др.)                                        |
-| MenuHelp                   | `widgets/menu-help`                                  | Справка                                                                          |
-| MenuUser                   | `widgets/menu-user`                                  | Профиль пользователя                                                             |
-| SidebarNavigationLeft      | `widgets/sidebar-navigation-left`                    | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
-| MainLayout                 | `widgets/main-layout`                                | Область контента                                                                 |
-| MainFooter                 | `widgets/main-footer`                                | Подвал                                                                           |
+| Компонент             | Путь                              | Назначение                                                                       |
+| --------------------- | --------------------------------- | -------------------------------------------------------------------------------- |
+| MainHeader            | `widgets/main-header`             | Шапка, контейнер для menu-\*                                                     |
+| MenuCards             | `widgets/menu-cards`              | Навигация к карточкам и режимам обучения                                         |
+| MenuTools             | `widgets/menu-tools`              | Инструменты (конструктор сценариев и др.)                                        |
+| MenuHelp              | `widgets/menu-help`               | Справка                                                                          |
+| MenuUser              | `widgets/menu-user`               | Профиль пользователя                                                             |
+| SidebarNavigationLeft | `widgets/sidebar-navigation-left` | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
+| MainLayout            | `widgets/main-layout`             | Область контента                                                                 |
+| MainFooter            | `widgets/main-footer`             | Подвал                                                                           |
 
 Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
 
@@ -152,25 +152,104 @@ Shell-приложение. Контент фич — через `<router-outlet
 export const routes: Routes = [
   {
     path: '',
-    loadComponent: () => import('./widgets/main-layout/main-layout.component').then(m => m.MainLayoutComponent),
+    loadComponent: () =>
+      import('./widgets/main-layout/main-layout.component').then((m) => m.MainLayoutComponent),
     children: [
       { path: '', redirectTo: 'journey', pathMatch: 'full' },
-      { path: 'home', loadComponent: () => import('./pages/home/home-page/home-page.component').then(m => m.HomePageComponent) },
-      { path: 'home/progress', loadComponent: () => import('./features/learning-results/components/learning-progress/learning-progress.component').then(m => m.LearningProgressComponent) },
-      { path: 'home-learning-tab', loadComponent: () => import('./features/home/components/home-learning-tab/home-learning-tab.component').then(m => m.HomeLearningTabComponent) },
-      { path: 'cards/select', loadComponent: () => import('./pages/card-select/card-select-page/card-select-page.component').then(m => m.CardSelectPageComponent) },
-      { path: 'courses', loadComponent: () => import('./pages/course-catalog/course-catalog-page/course-catalog-page.component').then(m => m.CourseCatalogPageComponent) },
-      { path: 'courses/tabs/courses', loadComponent: () => import('./features/course-catalog/components/course-card-list/course-card-list.component').then(m => m.CourseCatalogCoursesComponent) },
-      { path: 'courses/tabs/settings', loadComponent: () => import('./features/course-catalog/components/course-settings/course-settings.component').then(m => m.CourseCatalogSettingsComponent) },
-      { path: 'courses/tabs/programs', loadComponent: () => import('./features/course-catalog/components/program-list/program-list.component').then(m => m.CourseCatalogProgramsComponent) },
-      { path: 'tools/scenario-builder', loadComponent: () => import('./pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(m => m.ScenarioBuilderPageComponent) },
-      { path: 'tools/courses', loadComponent: () => import('./pages/course-builder/course-builder-page/course-builder-page.component').then(m => m.CourseBuilderPageComponent) },
-      { path: 'tools/cards', loadComponent: () => import('./pages/card-editor/card-editor-page/card-editor-page.component').then(m => m.CardEditorPageComponent) },
+      {
+        path: 'home',
+        loadComponent: () =>
+          import('./pages/home/home-page/home-page.component').then((m) => m.HomePageComponent),
+      },
+      {
+        path: 'home/progress',
+        loadComponent: () =>
+          import('./features/learning-results/components/learning-progress/learning-progress.component').then(
+            (m) => m.LearningProgressComponent,
+          ),
+      },
+      {
+        path: 'home-learning-tab',
+        loadComponent: () =>
+          import('./features/home/components/home-learning-tab/home-learning-tab.component').then(
+            (m) => m.HomeLearningTabComponent,
+          ),
+      },
+      {
+        path: 'cards/select',
+        loadComponent: () =>
+          import('./pages/card-select/card-select-page/card-select-page.component').then(
+            (m) => m.CardSelectPageComponent,
+          ),
+      },
+      {
+        path: 'courses',
+        loadComponent: () =>
+          import('./pages/course-catalog/course-catalog-page/course-catalog-page.component').then(
+            (m) => m.CourseCatalogPageComponent,
+          ),
+      },
+      {
+        path: 'courses/tabs/courses',
+        loadComponent: () =>
+          import('./features/course-catalog/components/course-card-list/course-card-list.component').then(
+            (m) => m.CourseCatalogCoursesComponent,
+          ),
+      },
+      {
+        path: 'courses/tabs/settings',
+        loadComponent: () =>
+          import('./features/course-catalog/components/course-settings/course-settings.component').then(
+            (m) => m.CourseCatalogSettingsComponent,
+          ),
+      },
+      {
+        path: 'courses/tabs/programs',
+        loadComponent: () =>
+          import('./features/course-catalog/components/program-list/program-list.component').then(
+            (m) => m.CourseCatalogProgramsComponent,
+          ),
+      },
+      {
+        path: 'tools/scenario-builder',
+        loadComponent: () =>
+          import('./pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(
+            (m) => m.ScenarioBuilderPageComponent,
+          ),
+      },
+      {
+        path: 'tools/courses',
+        loadComponent: () =>
+          import('./pages/course-builder/course-builder-page/course-builder-page.component').then(
+            (m) => m.CourseBuilderPageComponent,
+          ),
+      },
+      {
+        path: 'tools/cards',
+        loadComponent: () =>
+          import('./pages/card-editor/card-editor-page/card-editor-page.component').then(
+            (m) => m.CardEditorPageComponent,
+          ),
+      },
       { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
-      { path: 'help', loadComponent: () => import('./pages/help/help-page.component').then(m => m.HelpPageComponent) },
-      { path: 'help/scenarios', loadComponent: () => import('./pages/help-usage-scenarios/help-usage-scenarios-page.component').then(m => m.HelpUsageScenariosPageComponent) },
-      { path: 'user', loadComponent: () => import('./pages/user/user-page.component').then(m => m.UserPageComponent) },
+      {
+        path: 'help',
+        loadComponent: () =>
+          import('./pages/help/help-page.component').then((m) => m.HelpPageComponent),
+      },
+      {
+        path: 'help/scenarios',
+        loadComponent: () =>
+          import('./pages/help-usage-scenarios/help-usage-scenarios-page.component').then(
+            (m) => m.HelpUsageScenariosPageComponent,
+          ),
+      },
+      {
+        path: 'user',
+        loadComponent: () =>
+          import('./pages/user/user-page.component').then((m) => m.UserPageComponent),
+      },
       { path: '**', redirectTo: 'home' },
     ],
   },
@@ -227,13 +306,13 @@ export class CardSelectStore {
 
 ### Правила
 
-| Данные                             | Где хранить                                                                 |
-| ---------------------------------- | --------------------------------------------------------------------------- |
-| UI-состояние фичи                  | signal-сервис внутри `features/*/`                                          |
-| Глобальные настройки, пользователь | `entities/user/model/` (`UserStore`, `UserPersistence`)                     |
-| Результаты обучения                | `entities/learning/model/` (`LearningResultsStore`)                         |
+| Данные                             | Где хранить                                                                          |
+| ---------------------------------- | ------------------------------------------------------------------------------------ |
+| UI-состояние фичи                  | signal-сервис внутри `features/*/`                                                   |
+| Глобальные настройки, пользователь | `entities/user/model/` (`UserStore`, `UserPersistence`)                              |
+| Результаты обучения                | `entities/learning/model/` (`LearningResultsStore`)                                  |
 | Сценарии (конструктор)             | `features/scenario-builder/` · [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) |
-| Ответ API                          | signal; конвертация из Observable через `toSignal()` или `rxResource`       |
+| Ответ API                          | signal; конвертация из Observable через `toSignal()` или `rxResource`                |
 
 RxJS — **только** на границе HTTP/WebSocket, не в шаблонах и не в компонентах напрямую.
 
@@ -278,13 +357,13 @@ export class CardApiService {
 
 Конструктор сценариев — список на странице, CRUD в `MatDialog` (`cardSource`: fixed / criteria / snapshot).
 
-|                 |                                                                          |
-| --------------- | ------------------------------------------------------------------------ |
-| Маршрут         | `/tools/scenario-builder`                                                |
-| Точка входа     | `menu-tools` в header, **«Конструктор сценариев»** в sidebar             |
-| Путь            | `features/scenario-builder/`                                             |
-| Список          | `ScenarioBuilderStore` + `ScenarioSearchService`                         |
-| Редактор        | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent`         |
+|                 |                                                                                   |
+| --------------- | --------------------------------------------------------------------------------- |
+| Маршрут         | `/tools/scenario-builder`                                                         |
+| Точка входа     | `menu-tools` в header, **«Конструктор сценариев»** в sidebar                      |
+| Путь            | `features/scenario-builder/`                                                      |
+| Список          | `ScenarioBuilderStore` + `ScenarioSearchService`                                  |
+| Редактор        | `ScenarioBuilderDialogComponent` + `ScenarioEditorFormComponent`                  |
 | Пара языков     | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — `User.preferences.languagePair` |
 | Масштабирование | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                             |
 
@@ -292,13 +371,13 @@ export class CardApiService {
 
 Единый экран **«Карточки»** — поиск по index, CRUD в `MatDialog`, каталог на странице.
 
-|             |                                                                        |
-| ----------- | ---------------------------------------------------------------------- |
-| Маршрут     | `/tools/cards`                                                         |
-| Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar           |
-| Путь        | `features/card-editor/`                                                |
-| Список      | `CardCatalogSearchStore` + `CardSearchService`                         |
-| Редактор    | `CardEditorDialogComponent` + `CardEditorStore` + `card-form`          |
+|             |                                                               |
+| ----------- | ------------------------------------------------------------- |
+| Маршрут     | `/tools/cards`                                                |
+| Точка входа | `menu-tools` → «Карточки» в header, **«Карточки»** в sidebar  |
+| Путь        | `features/card-editor/`                                       |
+| Список      | `CardCatalogSearchStore` + `CardSearchService`                |
+| Редактор    | `CardEditorDialogComponent` + `CardEditorStore` + `card-form` |
 
 ## Безопасность
 
@@ -317,24 +396,24 @@ export class CardApiService {
 
 Фронтенд использует `fetch` (`withFetch`) и Bearer-токены, поэтому бэкенд должен отдавать:
 
-| Заголовок | Значение |
-| --------- | -------- |
-| `Access-Control-Allow-Origin` | домен фронтенда (не `*` при использовании токенов) |
-| `Access-Control-Allow-Headers` | `Authorization, Content-Type` |
-| `Access-Control-Allow-Methods` | `GET, POST, PUT, DELETE, OPTIONS` |
-| `Access-Control-Max-Age` | `86400` (кэш preflight) |
+| Заголовок                      | Значение                                           |
+| ------------------------------ | -------------------------------------------------- |
+| `Access-Control-Allow-Origin`  | домен фронтенда (не `*` при использовании токенов) |
+| `Access-Control-Allow-Headers` | `Authorization, Content-Type`                      |
+| `Access-Control-Allow-Methods` | `GET, POST, PUT, DELETE, OPTIONS`                  |
+| `Access-Control-Max-Age`       | `86400` (кэш preflight)                            |
 
 Preflight (`OPTIONS`) — обязателен для `POST/PUT/DELETE` с `Content-Type: application/json`.
 
 ### Security headers (хостинг статики)
 
-| Заголовок | Значение |
-| --------- | -------- |
+| Заголовок                 | Значение                                                                                            |
+| ------------------------- | --------------------------------------------------------------------------------------------------- |
 | `Content-Security-Policy` | `default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'; font-src 'self' data:` |
-| `X-Content-Type-Options` | `nosniff` |
-| `X-Frame-Options` | `DENY` |
-| `Referrer-Policy` | `strict-origin-when-cross-origin` |
-| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
+| `X-Content-Type-Options`  | `nosniff`                                                                                           |
+| `X-Frame-Options`         | `DENY`                                                                                              |
+| `Referrer-Policy`         | `strict-origin-when-cross-origin`                                                                   |
+| `Permissions-Policy`      | `camera=(), microphone=(), geolocation=()`                                                          |
 
 ### HTTPS
 
@@ -423,6 +502,7 @@ session.summary(): { character, totalMistakes, strokeCount }
 - `runAsyncState(state, task, fallback)` — обёртка над Promise: loading → success/error с классификацией ошибки через `getApiErrorMessage`.
 
 Конвенции UI-состояний:
+
 - **loading** — спиннер/скелетон;
 - **error** — сообщение + возможность повтора (retry = повторный вызов `load()`);
 - **empty** — отдельное состояние «данных нет» (пустой список ≠ ошибке).
@@ -431,14 +511,15 @@ session.summary(): { character, totalMistakes, strokeCount }
 
 Бюджеты сборки заданы в `angular.json` (production) и проверяются на каждом `build:prod` (в CI — шаг «Production build»):
 
-| Тип бюджета | Warning | Error | Текущее значение |
-| ----------- | ------- | ----- | ---------------- |
-| `initial`   | 800 kB  | 1.2 MB | ~784 kB (raw) / ~250 kB (transfer) |
-| `bundle`    | 500 kB  | 1 MB   | ~173 kB (максимальный чанк) |
-| `all`       | 3.5 MB  | 4.5 MB | ~2.9 MB (все JS) |
-| `anyComponentStyle` | 5 kB | 8 kB | до ~4.4 kB |
+| Тип бюджета         | Warning | Error  | Текущее значение                   |
+| ------------------- | ------- | ------ | ---------------------------------- |
+| `initial`           | 800 kB  | 1.2 MB | ~784 kB (raw) / ~250 kB (transfer) |
+| `bundle`            | 500 kB  | 1 MB   | ~173 kB (максимальный чанк)        |
+| `all`               | 3.5 MB  | 4.5 MB | ~2.9 MB (все JS)                   |
+| `anyComponentStyle` | 5 kB    | 8 kB   | до ~4.4 kB                         |
 
 Стратегия:
+
 - **Роуты ленивые** (`loadComponent`) — страницы грузятся по требованию; в initial попадают только общие зависимости (Angular, Material, RxJS).
 - **Тяжёлые библиотеки** (`jspdf`, `canvg`, `html2canvas`) — в ленивых чанках (экспорт PDF), не в initial.
 - **Контент** (hanzi-данные, фикстуры) — статические ассеты, кэшируются ngsw; не входят в JS-бюджеты.

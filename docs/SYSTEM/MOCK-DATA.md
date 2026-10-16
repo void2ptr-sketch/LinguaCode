@@ -371,15 +371,15 @@ public/data/courses/my-courses.json
 
 ## Архитектурные компоненты
 
-| Компонент                     | Расположение                                 | Роль                                |
-| ----------------------------- | -------------------------------------------- | ----------------------------------- |
-| `ContentSeedRepository`       | `entities/content-seed/content-seed.repository.ts`       | Загрузка fixture-файлов из `/data/` |
-| `content-seed.cache.ts`       | `entities/content-seed/content-seed.cache.ts`            | Глобальный кеш seed-данных          |
+| Компонент                     | Расположение                                         | Роль                                |
+| ----------------------------- | ---------------------------------------------------- | ----------------------------------- |
+| `ContentSeedRepository`       | `entities/content-seed/content-seed.repository.ts`   | Загрузка fixture-файлов из `/data/` |
+| `content-seed.cache.ts`       | `entities/content-seed/content-seed.cache.ts`        | Глобальный кеш seed-данных          |
 | `CardsCatalogMockHandler`     | `entities/card/api/mock-catalog.mock.handler.ts`     | Обработка запросов карточек         |
 | `ScenariosCatalogMockHandler` | `entities/scenario/api/mock-catalog.mock.handler.ts` | Обработка запросов сценариев        |
 | `CoursesCatalogMockHandler`   | `entities/course/api/mock-catalog.mock.handler.ts`   | Обработка запросов курсов           |
 | `cardsApiMockInterceptor`     | `entities/card/api/mock-api.mock.interceptor.ts`     | HTTP-интерсептор карточек           |
 | `scenariosApiMockInterceptor` | `entities/scenario/api/mock-api.mock.interceptor.ts` | HTTP-интерсептор сценариев          |
 | `coursesApiMockInterceptor`   | `entities/course/api/mock-api.mock.interceptor.ts`   | HTTP-интерсептор курсов             |
-| `user-content-overlay.*`      | `entities/user/overlay/user-content-overlay.*`           | Слияние seed + overlay              |
-| `provide-api.http.ts`         | `app/api/provide-api.http.ts`               | Регистрация интерсепторов           |
+| `user-content-overlay.*`      | `entities/user/overlay/user-content-overlay.*`       | Слияние seed + overlay              |
+| `provide-api.http.ts`         | `app/api/provide-api.http.ts`                        | Регистрация интерсепторов           |

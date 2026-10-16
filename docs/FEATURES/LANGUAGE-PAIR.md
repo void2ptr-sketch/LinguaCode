@@ -299,21 +299,21 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ## Этапы
 
-| Этап | Содержание                                                                                   | Статус |
-| ---- | -------------------------------------------------------------------------------------------- | ------ |
+| Этап | Содержание                                                                                        | Статус |
+| ---- | ------------------------------------------------------------------------------------------------- | ------ |
 | G0   | `LanguagePair` в DOMAIN и `entities/*/model`; `CardIndexEntry.knownLanguage` / `learningLanguage` | готово |
-| G1   | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении                     | готово |
-| G2   | Structured content в `Card` (known/learning поля); миграция demo                             | готово |
-| G3   | Index/search по паре; редактор — поля языка                                                  | готово |
-| G4   | `Scenario.languagePair` + валидация в builder                                                | готово |
-| G5   | Render по direction; `LearningResult` + pair                                                 | готово |
-| G7   | Несколько пар в профиле, одна активная                                                       | готово |
-| G8   | Scope UI по активной паре (каталоги, сценарии, pickers)                                      | готово |
-| G11  | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`)                   | готово |
-| G15  | User content overlay + content seed manifest                                                 | готово |
-| G9   | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны                                       | готово |
-| G10  | IPA (International Phonetic Alphabet)                                                        | готово |
-| G6   | UiLocale (`@angular/localize`) — отдельный трек                                              | бэклог |
+| G1   | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении                          | готово |
+| G2   | Structured content в `Card` (known/learning поля); миграция demo                                  | готово |
+| G3   | Index/search по паре; редактор — поля языка                                                       | готово |
+| G4   | `Scenario.languagePair` + валидация в builder                                                     | готово |
+| G5   | Render по direction; `LearningResult` + pair                                                      | готово |
+| G7   | Несколько пар в профиле, одна активная                                                            | готово |
+| G8   | Scope UI по активной паре (каталоги, сценарии, pickers)                                           | готово |
+| G11  | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`)                        | готово |
+| G15  | User content overlay + content seed manifest                                                      | готово |
+| G9   | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны                                            | готово |
+| G10  | IPA (International Phonetic Alphabet)                                                             | готово |
+| G6   | UiLocale (`@angular/localize`) — отдельный трек                                                   | бэклог |
 
 ## G2+ — детали бэклога
 

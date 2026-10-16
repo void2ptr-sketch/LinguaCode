@@ -37,7 +37,10 @@ describe('AuthStore', () => {
         AuthStore,
         AuthTokenStorage,
         { provide: AuthApiService, useValue: mockAuthApi },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
 

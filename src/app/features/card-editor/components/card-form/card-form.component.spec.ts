@@ -29,14 +29,8 @@ describe('CardFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [
-        CardFormComponent,
-        CardFormTabsComponent,
-        CardFormQuestionTabComponent,
-      ],
-      providers: [
-        { provide: CardCatalogHierarchyService, useValue: mockHierarchyService },
-      ],
+      imports: [CardFormComponent, CardFormTabsComponent, CardFormQuestionTabComponent],
+      providers: [{ provide: CardCatalogHierarchyService, useValue: mockHierarchyService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardFormComponent);
@@ -222,7 +216,10 @@ describe('CardFormComponent', () => {
     });
 
     it('should return symbols for symbol kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'symbol', symbols: ['👋', '🔥'] } as unknown as CardDraft);
+      fixture.componentRef.setInput('draft', {
+        kind: 'symbol',
+        symbols: ['👋', '🔥'],
+      } as unknown as CardDraft);
       expect(component.choiceOptionTexts()).toEqual(['👋', '🔥']);
     });
   });
@@ -236,7 +233,11 @@ describe('CardFormComponent', () => {
 
   describe('onChoiceOptionsStateChange', () => {
     it('should emit updated draft with options state for reading kind', () => {
-      const readingDraft = { kind: 'reading', optionsLearning: ['A'], correctIndex: 0 } as unknown as CardDraft;
+      const readingDraft = {
+        kind: 'reading',
+        optionsLearning: ['A'],
+        correctIndex: 0,
+      } as unknown as CardDraft;
       fixture.componentRef.setInput('draft', readingDraft);
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.onChoiceOptionsStateChange({

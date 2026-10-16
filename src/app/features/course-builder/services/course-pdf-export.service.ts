@@ -40,9 +40,12 @@ import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import { CoursesApiService } from '../../../entities/course';
 
-type jsPDFConstructor = new (
-  options?: { orientation?: string; unit?: string; format?: string; compress?: boolean },
-) => jsPDFInstance;
+type jsPDFConstructor = new (options?: {
+  orientation?: string;
+  unit?: string;
+  format?: string;
+  compress?: boolean;
+}) => jsPDFInstance;
 
 type jsPDFInstance = {
   addFileToVFS: (fileName: string, data: string) => void;

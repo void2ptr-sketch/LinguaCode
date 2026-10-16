@@ -1,4 +1,13 @@
-import { Component, ChangeDetectionStrategy, computed, effect, input, output, signal, untracked } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+  untracked,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {

@@ -55,7 +55,13 @@ export function fallbackPreviewCard(draft: CardDraft, previewId: string): Card {
         kind: 'memory',
         title: draft.title || 'New card',
         promptKnown: draft.promptKnown || 'Hint',
-        pairs: [{ known: 'A', learning: 'B', learningLexeme: { primary: '', audioUrl: '', script: 'latn' } }],
+        pairs: [
+          {
+            known: 'A',
+            learning: 'B',
+            learningLexeme: { primary: '', audioUrl: '', script: 'latn' },
+          },
+        ],
         appearance,
       };
 

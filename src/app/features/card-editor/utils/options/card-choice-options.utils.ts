@@ -58,7 +58,9 @@ export function resolveChoiceOptionTexts(draft: ChoiceCardDraft | null): readonl
  * @param draft - The choice card draft, or `null`.
  * @returns Array of lexeme draft fields, or empty array for unsupported kinds.
  */
-export function resolveChoiceOptionLexemes(draft: ChoiceCardDraft | null): readonly LexemeDraftFields[] {
+export function resolveChoiceOptionLexemes(
+  draft: ChoiceCardDraft | null,
+): readonly LexemeDraftFields[] {
   if (!draft) {
     return [];
   }

@@ -10,18 +10,18 @@
     @if (store.error()) {
       <p class="card-editor-dialog__error">{{ store.error() }}</p>
     }
-      <app-card-form
-        [draft]="draft()"
-        [previewId]="store.editingCardId() ?? 'preview-card'"
-        [knownLanguage]="indexMeta().knownLanguage"
-        [learningLanguage]="indexMeta().learningLanguage"
-        [meta]="cardMeta()"
-        [defaultAppearance]="defaultAppearance()"
-        (draftChange)="updateDraft($event)"
-        (knownLanguageChange)="onKnownLanguageChange($event)"
-        (learningLanguageChange)="onLearningLanguageChange($event)"
-        (metaChange)="cardMeta.set($event)"
-      />
+    <app-card-form
+      [draft]="draft()"
+      [previewId]="store.editingCardId() ?? 'preview-card'"
+      [knownLanguage]="indexMeta().knownLanguage"
+      [learningLanguage]="indexMeta().learningLanguage"
+      [meta]="cardMeta()"
+      [defaultAppearance]="defaultAppearance()"
+      (draftChange)="updateDraft($event)"
+      (knownLanguageChange)="onKnownLanguageChange($event)"
+      (learningLanguageChange)="onLearningLanguageChange($event)"
+      (metaChange)="cardMeta.set($event)"
+    />
   }
 </mat-dialog-content>
 

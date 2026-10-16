@@ -8,24 +8,24 @@
 
 ## Основные модули
 
-| Область         | Путь                                                           | Назначение                                      |
-| --------------- | -------------------------------------------------------------- | ----------------------------------------------- |
-| Card host       | `entities/card/ui/card-host`                                          | Рендер `Card` по `kind`; `memoryBoardNonce`     |
-| Focus shell     | `entities/card/ui/card-focus-shell`                                   | Fullscreen overlay; reparent host → `body`      |
-| Quiz cards      | `entities/card/ui/cards/`                                             | Select, memory, keyboard, draw, reading…        |
-| Code highlight  | `entities/card/ui/code-highlight`                                   | Подсветка кода в карточках                      |
-| Card catalog    | `entities/card/ui/card-catalog`                                     | UI каталога карточек                            |
-| Pinyin keyboard | `entities/chinese/ui/pinyin-keyboard`                            | Виртуальная клавиатура для `answerMode: pinyin` |
-| Lexeme          | `entities/chinese/ui/lexeme-display`                             | G9/G10 отображение лексем                         |
-| CJK ruby        | `entities/chinese/ui/cjk-ruby`                                   | Иероглифы с ruby-подписями (пиньинь, жуинь)       |
-| IPA             | `entities/chinese/ui/phonetic-ipa`                               | Рендер IPA-транскрипции                             |
-| Tone colors     | `entities/chinese/ui/tone-colored-text`                          | Цветовая маркировка тонов                           |
+| Область         | Путь                                                                                                           | Назначение                                      |
+| --------------- | -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| Card host       | `entities/card/ui/card-host`                                                                                   | Рендер `Card` по `kind`; `memoryBoardNonce`     |
+| Focus shell     | `entities/card/ui/card-focus-shell`                                                                            | Fullscreen overlay; reparent host → `body`      |
+| Quiz cards      | `entities/card/ui/cards/`                                                                                      | Select, memory, keyboard, draw, reading…        |
+| Code highlight  | `entities/card/ui/code-highlight`                                                                              | Подсветка кода в карточках                      |
+| Card catalog    | `entities/card/ui/card-catalog`                                                                                | UI каталога карточек                            |
+| Pinyin keyboard | `entities/chinese/ui/pinyin-keyboard`                                                                          | Виртуальная клавиатура для `answerMode: pinyin` |
+| Lexeme          | `entities/chinese/ui/lexeme-display`                                                                           | G9/G10 отображение лексем                       |
+| CJK ruby        | `entities/chinese/ui/cjk-ruby`                                                                                 | Иероглифы с ruby-подписями (пиньинь, жуинь)     |
+| IPA             | `entities/chinese/ui/phonetic-ipa`                                                                             | Рендер IPA-транскрипции                         |
+| Tone colors     | `entities/chinese/ui/tone-colored-text`                                                                        | Цветовая маркировка тонов                       |
 | Pickers         | `entities/course/ui/course-picker`, `entities/lesson/ui/lesson-picker`, `entities/scenario/ui/scenario-picker` | Выбор программы/урока/сценария                  |
-| Quick switcher  | `widgets/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
-| Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
-| Catalog search  | `entities/card/lib/card-catalog-search`                      | Фильтры и store поиска карточек                 |
-| Utils           | `entities/card/lib/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
-| Markdown        | `shared/utils/markdown-field`                                  | Поле ввода Markdown                             |
+| Quick switcher  | `widgets/active-language-pair-switcher`                                                                        | Быстрое переключение активной языковой пары     |
+| Pagination      | `shared/utils/pagination`                                                                                      | `UiPaginationComponent`, `PageRequest`          |
+| Catalog search  | `entities/card/lib/card-catalog-search`                                                                        | Фильтры и store поиска карточек                 |
+| Utils           | `entities/card/lib/card-answer/`                                                                               | Проверка ответов (CJK, IPA, reading fuzzy)      |
+| Markdown        | `shared/utils/markdown-field`                                                                                  | Поле ввода Markdown                             |
 
 ## CardHost — маршрутизация по kind
 

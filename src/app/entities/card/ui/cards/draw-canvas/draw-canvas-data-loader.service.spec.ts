@@ -11,10 +11,7 @@ describe('DrawCanvasDataLoaderService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        DrawCanvasDataLoaderService,
-        HanziDataService,
-      ],
+      providers: [DrawCanvasDataLoaderService, HanziDataService],
     });
 
     service = TestBed.inject(DrawCanvasDataLoaderService);
@@ -71,7 +68,9 @@ describe('DrawCanvasDataLoaderService', () => {
     });
 
     it('should load radicals from service', async () => {
-      const mockModels = new Map<string, HanziCharacterModel>([['氵', { character: '氵', strokes: [] }]]);
+      const mockModels = new Map<string, HanziCharacterModel>([
+        ['氵', { character: '氵', strokes: [] }],
+      ]);
       vi.spyOn(hanziDataService, 'loadCharacters').mockResolvedValue(mockModels);
 
       await service.loadRadicals(['氵']);
@@ -105,7 +104,10 @@ describe('DrawCanvasDataLoaderService', () => {
 
   describe('hasRadicalStrokeModel', () => {
     it('should return true when radical has strokes', () => {
-      const mockModel: HanziCharacterModel = { character: '氵', strokes: [{ points: [], strokeNum: 0, path: '', isRadical: false }] };
+      const mockModel: HanziCharacterModel = {
+        character: '氵',
+        strokes: [{ points: [], strokeNum: 0, path: '', isRadical: false }],
+      };
       service.radicalModels.set(new Map([['氵', mockModel]]));
 
       expect(service.hasRadicalStrokeModel('氵')).toBe(true);

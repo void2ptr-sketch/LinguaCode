@@ -52,7 +52,10 @@ describe('SyncQueueService', () => {
       providers: [
         { provide: IndexedDbService, useClass: FakeIdb },
         { provide: NetworkStatusService, useValue: { online } },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
     queue = TestBed.inject(SyncQueueService);

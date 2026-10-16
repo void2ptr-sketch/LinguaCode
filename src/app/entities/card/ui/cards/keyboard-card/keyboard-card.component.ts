@@ -5,10 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {
-  effectiveCardDirection,
-  resolveKeyboardPrompt,
-} from '../../../utils/card-direction.utils';
+import { effectiveCardDirection, resolveKeyboardPrompt } from '../../../utils/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../lib/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';

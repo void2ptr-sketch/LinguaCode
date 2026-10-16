@@ -10,7 +10,12 @@ export {
 } from './content-seed.idb';
 
 // ===== Types =====
-export type { ContentManifest, ScenariosSeedFixture, CoursesSeedFixture, CardsSeedFixture } from './content-seed.types';
+export type {
+  ContentManifest,
+  ScenariosSeedFixture,
+  CoursesSeedFixture,
+  CardsSeedFixture,
+} from './content-seed.types';
 
 // ===== Utils =====
 export { getCardSeedCache } from './content-seed.cache';

@@ -2,14 +2,8 @@ import { Component, ChangeDetectionStrategy, computed, inject, input, output } f
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  playLearningAudio,
-  resolveLearningSpeech,
-} from '../../../utils/card-learning-audio.utils';
-import {
-  effectiveCardDirection,
-  resolveOptionCard,
-} from '../../../utils/card-direction.utils';
+import { playLearningAudio, resolveLearningSpeech } from '../../../utils/card-learning-audio.utils';
+import { effectiveCardDirection, resolveOptionCard } from '../../../utils/card-direction.utils';
 import { SoundCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import type { PhoneticLexeme } from '../../../../phonetic/model';

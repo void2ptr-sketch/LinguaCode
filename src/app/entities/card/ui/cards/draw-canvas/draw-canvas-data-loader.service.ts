@@ -1,9 +1,6 @@
 import { Injectable, signal, DestroyRef, inject } from '@angular/core';
 import { HanziDataService } from '../../../../chinese/lib/services';
-import type {
-  HanziCharacterModel,
-  HanziLoadState,
-} from '../../../../chinese/model';
+import type { HanziCharacterModel, HanziLoadState } from '../../../../chinese/model';
 
 /**
  * Service managing async loading of Hanzi character data and radical characters.

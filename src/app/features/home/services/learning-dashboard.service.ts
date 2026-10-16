@@ -210,9 +210,7 @@ export class LearningDashboardService {
     });
   }
 
-  private loadScenarioTitles(
-    scenarioIds: readonly string[],
-  ): Readonly<Record<string, string>> {
+  private loadScenarioTitles(scenarioIds: readonly string[]): Readonly<Record<string, string>> {
     const seedScenarios = getScenarioSeedCache();
     const titles: Record<string, string> = {};
 

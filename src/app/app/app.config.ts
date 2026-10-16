@@ -35,9 +35,12 @@ export const appConfig: ApplicationConfig = {
       const injector = inject(Injector);
 
       // Content seed loading is non-blocking — failure doesn't prevent app startup
-      injector.get(ContentSeedRepository).preload().catch(() => {
-        // Silently ignore — content seed is best-effort, not required for app functionality
-      });
+      injector
+        .get(ContentSeedRepository)
+        .preload()
+        .catch(() => {
+          // Silently ignore — content seed is best-effort, not required for app functionality
+        });
       migrateUserContentOverlayIfNeeded();
       repairUserContentOverlayIfNeeded();
       injector.get(SyncQueueBootstrap);

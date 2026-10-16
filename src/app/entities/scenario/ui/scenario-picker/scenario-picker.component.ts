@@ -1,4 +1,13 @@
-import { Component, ChangeDetectionStrategy, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  effect,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';

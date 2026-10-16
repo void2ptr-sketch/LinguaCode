@@ -7,7 +7,11 @@
   [attr.aria-pressed]="selected()"
   (click)="onSelect()"
   [routerLink]="isInteractive() ? ['/cards/select'] : null"
-  [queryParams]="{ courseId: node().courseId, lessonId: node().lessonId, scenarioId: node().scenarioId }"
+  [queryParams]="{
+    courseId: node().courseId,
+    lessonId: node().lessonId,
+    scenarioId: node().scenarioId,
+  }"
   [queryParamsHandling]="'merge'"
 >
   <mat-card class="journey-node__card">

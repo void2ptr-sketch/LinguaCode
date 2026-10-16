@@ -105,17 +105,13 @@ describe('CoursePickerComponent', () => {
   it('should reset page index on query change', () => {
     component.onQueryChange('test');
     expect(component.pageIndex()).toBe(0);
-    expect(searchSpy).toHaveBeenCalledWith(
-      expect.objectContaining({ query: 'test' }),
-    );
+    expect(searchSpy).toHaveBeenCalledWith(expect.objectContaining({ query: 'test' }));
   });
 
   it('should reset page index on scope change', () => {
     component.onScopeChange('all');
     expect(component.pageIndex()).toBe(0);
-    expect(searchSpy).toHaveBeenCalledWith(
-      expect.objectContaining({ scope: 'all' }),
-    );
+    expect(searchSpy).toHaveBeenCalledWith(expect.objectContaining({ scope: 'all' }));
   });
 
   // ─── Pick ─────────────────────────────────────────────────────────────
@@ -126,9 +122,7 @@ describe('CoursePickerComponent', () => {
 
     component.pick(mockCourses[0]);
     expect(emitSpy).toHaveBeenCalledWith('course-1');
-    expect(labelSpy).toHaveBeenCalledWith(
-      'Course One · 5 уроков · EN-RU',
-    );
+    expect(labelSpy).toHaveBeenCalledWith('Course One · 5 уроков · EN-RU');
   });
 
   it('should collapse full list in compact mode when picking', () => {

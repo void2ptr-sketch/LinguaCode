@@ -50,7 +50,10 @@ describe('ScenarioBuilderStore', () => {
         { provide: CardSearchService, useValue: mockCardSearchService },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CardsCatalogMockHandler, useValue: mockCardsCatalogHandler },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         UserStore,
       ],
     });
@@ -104,7 +107,9 @@ describe('ScenarioBuilderStore', () => {
       resolveFn = resolve;
     });
 
-    mockScenarioSearchService.search.mockReturnValue(promise as ReturnType<typeof mockScenarioSearchService.search>);
+    mockScenarioSearchService.search.mockReturnValue(
+      promise as ReturnType<typeof mockScenarioSearchService.search>,
+    );
 
     const loadPromise = store.loadList();
 

@@ -13,18 +13,18 @@
 
 Исходный тип: `SelectCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'select'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `direction` | `CardDirection` | Направление по умолчанию (`'known-to-learning'` \| `'learning-to-known'`) |
-| `promptKnown` | `string` | Текст вопроса / подсказки |
-| `optionsLearning` | `readonly string[]` | Варианты ответов на изучаемом языке |
-| `optionsKnown` | `readonly string[] \| undefined` | Варианты на известном языке (для режима «новый → известный») |
-| `optionsLexemes` | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции вариантов |
-| `correctIndex` | `number` | Индекс правильного ответа (0-based) |
+| Поле              | Тип                                      | Описание                                                                  |
+| ----------------- | ---------------------------------------- | ------------------------------------------------------------------------- |
+| `id`              | `string`                                 | Уникальный идентификатор карточки                                         |
+| `kind`            | `'select'`                               | Константа, определяющая тип карточки                                      |
+| `title`           | `string`                                 | Заголовок карточки                                                        |
+| `appearance`      | `CardAppearance`                         | Тема оформления и размер шрифта                                           |
+| `direction`       | `CardDirection`                          | Направление по умолчанию (`'known-to-learning'` \| `'learning-to-known'`) |
+| `promptKnown`     | `string`                                 | Текст вопроса / подсказки                                                 |
+| `optionsLearning` | `readonly string[]`                      | Варианты ответов на изучаемом языке                                       |
+| `optionsKnown`    | `readonly string[] \| undefined`         | Варианты на известном языке (для режима «новый → известный»)              |
+| `optionsLexemes`  | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции вариантов                                       |
+| `correctIndex`    | `number`                                 | Индекс правильного ответа (0-based)                                       |
 
 ## Use Cases
 
@@ -66,21 +66,21 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `SelectCard` | (required) | Данные карточки — вопрос, варианты, правильный индекс |
-| `direction` | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа |
-| `selectedIndex` | `number \| null` | `null` | Индекс выбранного варианта (управляется извне) |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи (`'correct'` \| `'incorrect'` \| `null`) |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр        | Тип                                          | По умолчанию          | Описание                                                          |
+| --------------- | -------------------------------------------- | --------------------- | ----------------------------------------------------------------- |
+| `card`          | `SelectCard`                                 | (required)            | Данные карточки — вопрос, варианты, правильный индекс             |
+| `direction`     | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа                                                |
+| `selectedIndex` | `number \| null`                             | `null`                | Индекс выбранного варианта (управляется извне)                    |
+| `feedback`      | `CardFeedback`                               | `null`                | Состояние обратной связи (`'correct'` \| `'incorrect'` \| `null`) |
+| `fontSize`      | `'sm' \| 'md' \| 'lg'`                       | `'md'`                | Размер шрифта                                                     |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `optionSelected` | `Output<number>` | Индекс выбранного варианта |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие          | Тип              | Описание                     |
+| ---------------- | ---------------- | ---------------------------- |
+| `optionSelected` | `Output<number>` | Индекс выбранного варианта   |
+| `checkAnswer`    | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`       | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -109,25 +109,22 @@ const card: SelectCard = {
   promptKnown: 'Что означает «猫»?',
   optionsLearning: ['кошка', 'собака', 'птица', 'рыба'],
   optionsKnown: ['cat', 'dog', 'bird', 'fish'],
-  optionsLexemes: [
-    { primary: 'māo', script: 'hani' },
-    undefined, undefined, undefined,
-  ],
+  optionsLexemes: [{ primary: 'māo', script: 'hani' }, undefined, undefined, undefined],
   correctIndex: 0,
 };
 ```
 
 ### Внутренние вычисляемые значения
 
-| Значение | Тип | Описание |
-|----------|-----|----------|
-| `resolved` | `Computed<ResolvedOptionCard>` | Резолв карточки с учётом направления: `prompt`, `options`, `optionLexemes`, `correctIndex` |
-| `promptLexeme()` | `() => PhoneticLexeme \| undefined` | Фонетика подсказки (из resolved или из карточки) |
-| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика варианта по индексу |
-| `optionClass(index)` | `(index: number) => string` | CSS-классы для варианта: `option`, `option--selected`, `option--correct`, `option--incorrect` |
+| Значение              | Тип                                              | Описание                                                                                      |
+| --------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| `resolved`            | `Computed<ResolvedOptionCard>`                   | Резолв карточки с учётом направления: `prompt`, `options`, `optionLexemes`, `correctIndex`    |
+| `promptLexeme()`      | `() => PhoneticLexeme \| undefined`              | Фонетика подсказки (из resolved или из карточки)                                              |
+| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика варианта по индексу                                                                  |
+| `optionClass(index)`  | `(index: number) => string`                      | CSS-классы для варианта: `option`, `option--selected`, `option--correct`, `option--incorrect` |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
+| Метод                         | Описание                                                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------ |
 | `selectOption(index: number)` | Обработка выбора варианта. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |

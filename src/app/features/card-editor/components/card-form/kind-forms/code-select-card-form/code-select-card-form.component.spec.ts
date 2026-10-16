@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CodeSelectCardFormComponent } from './code-select-card-form.component';
-import { CODE_HIGHLIGHT_LANGUAGES, CODE_HIGHLIGHT_LANGUAGE_LABELS } from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
+import {
+  CODE_HIGHLIGHT_LANGUAGES,
+  CODE_HIGHLIGHT_LANGUAGE_LABELS,
+} from '../../../../../../entities/card/lib/code-highlight/code-highlight.utils';
 import type { CodeSelectCardDraft, CodeBlockDraft } from '../../../../types';
 import { emptyLexemeCardDraft } from '../../../../types';
 
@@ -138,7 +141,14 @@ describe('CodeSelectCardFormComponent', () => {
     it('should emit updated draft with new option', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.addOption();
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({ options: expect.arrayContaining([...baseDraft.options, expect.objectContaining({ code: '', language: 'javascript' })]) }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          options: expect.arrayContaining([
+            ...baseDraft.options,
+            expect.objectContaining({ code: '', language: 'javascript' }),
+          ]),
+        }),
+      );
     });
 
     it('should respect maximum of 8 options', () => {
@@ -167,7 +177,12 @@ describe('CodeSelectCardFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.removeOption(0);
       expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ options: [{ code: 'b', language: 'javascript' }, { code: 'c', language: 'javascript' }] }),
+        expect.objectContaining({
+          options: [
+            { code: 'b', language: 'javascript' },
+            { code: 'c', language: 'javascript' },
+          ],
+        }),
       );
     });
 

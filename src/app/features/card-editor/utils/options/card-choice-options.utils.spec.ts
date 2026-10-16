@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import type { SelectCardDraft, SymbolCardDraft, TimedCardDraft, ReadingCardDraft, ToneCardDraft } from '../../types';
+import type {
+  SelectCardDraft,
+  SymbolCardDraft,
+  TimedCardDraft,
+  ReadingCardDraft,
+  ToneCardDraft,
+} from '../../types';
 import { emptyLexemeCardDraft, emptyOptionLexemes } from '../../types';
 import {
   resolveChoiceOptionsConfig,

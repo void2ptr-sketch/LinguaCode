@@ -29,7 +29,9 @@ import {
 @Injectable()
 export class CardCatalogSearchStore {
   private readonly cardSearchService = inject(CardSearchService);
-  private readonly hierarchyService = inject<CardCatalogHierarchyService>(CardCatalogHierarchyService);
+  private readonly hierarchyService = inject<CardCatalogHierarchyService>(
+    CardCatalogHierarchyService,
+  );
 
   /** Search query text. */
   readonly query = signal('');

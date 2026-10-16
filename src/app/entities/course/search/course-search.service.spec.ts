@@ -20,7 +20,10 @@ describe('CourseSearchService', () => {
       providers: [
         CourseSearchService,
         CoursesApiService,
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         provideHttpClient(withFetch(), withInterceptors([coursesApiMockInterceptor])),
       ],
     });

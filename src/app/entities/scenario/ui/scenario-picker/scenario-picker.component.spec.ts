@@ -116,17 +116,13 @@ describe('ScenarioPickerComponent', () => {
   it('should reset page index on query change', () => {
     component.onQueryChange('test');
     expect(component.pageIndex()).toBe(0);
-    expect(searchSpy).toHaveBeenCalledWith(
-      expect.objectContaining({ query: 'test' }),
-    );
+    expect(searchSpy).toHaveBeenCalledWith(expect.objectContaining({ query: 'test' }));
   });
 
   it('should reset page index on scope change', () => {
     component.onScopeChange('all');
     expect(component.pageIndex()).toBe(0);
-    expect(searchSpy).toHaveBeenCalledWith(
-      expect.objectContaining({ scope: 'all' }),
-    );
+    expect(searchSpy).toHaveBeenCalledWith(expect.objectContaining({ scope: 'all' }));
   });
 
   // ─── Pick ─────────────────────────────────────────────────────────────
@@ -137,9 +133,7 @@ describe('ScenarioPickerComponent', () => {
 
     component.pick(mockScenarios[1]);
     expect(emitSpy).toHaveBeenCalledWith('scenario-2');
-    expect(labelSpy).toHaveBeenCalledWith(
-      'Scenario Two · 30 cards · EN-RU',
-    );
+    expect(labelSpy).toHaveBeenCalledWith('Scenario Two · 30 cards · EN-RU');
   });
 
   // ─── Pagination ───────────────────────────────────────────────────────

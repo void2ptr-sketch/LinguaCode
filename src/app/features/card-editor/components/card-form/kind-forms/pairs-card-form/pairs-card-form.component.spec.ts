@@ -126,7 +126,9 @@ describe('PairsCardFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.addPair();
       expect(spy).toHaveBeenCalledWith(
-        expect.objectContaining({ pairs: expect.arrayContaining([...memoryDraft.pairs, expect.any(Object)]) }),
+        expect.objectContaining({
+          pairs: expect.arrayContaining([...memoryDraft.pairs, expect.any(Object)]),
+        }),
       );
     });
 

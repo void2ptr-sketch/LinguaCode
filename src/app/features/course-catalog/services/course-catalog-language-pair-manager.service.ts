@@ -34,10 +34,7 @@ export class CourseCatalogLanguagePairManagerService {
     effect(() => {
       const activeId = this.userStore.activeLanguagePairId();
 
-      if (
-        lastKnownId !== null &&
-        lastKnownId !== activeId
-      ) {
+      if (lastKnownId !== null && lastKnownId !== activeId) {
         void onLoadCallback();
       }
 

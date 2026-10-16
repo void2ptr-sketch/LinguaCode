@@ -54,7 +54,10 @@ describe('CardSearchService', () => {
         CardSearchService,
         { provide: CardsApiService, useValue: apiSpy },
         { provide: CardsCatalogMockHandler, useValue: mockHandlerSpy },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     }).compileComponents();
 

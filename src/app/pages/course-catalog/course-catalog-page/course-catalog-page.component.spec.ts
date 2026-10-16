@@ -281,7 +281,8 @@ describe('CourseCatalogPageComponent', () => {
         mockColorSchemeDraftSignal.set(scheme),
       setProfileCardFocusFullscreenDraft: (enabled: boolean) =>
         mockCardFocusFullscreenDraftSignal.set(enabled),
-      setCourseTabKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
+      setCourseTabKnownLanguageDraft: (lang: ContentLanguage) =>
+        mockKnownLanguageDraftSignal.set(lang),
       setCourseTabLearningLanguageDraft: (lang: ContentLanguage) =>
         mockLearningLanguageDraftSignal.set(lang),
       setSettingsPairIdDraft: (id: string) => mockSettingsPairIdDraftSignal.set(id),
@@ -296,7 +297,8 @@ describe('CourseCatalogPageComponent', () => {
       setSettingsAnswerModesDraft: (
         modes: readonly import('../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
       ) => mockAnswerModesDraftSignal.set(modes),
-      setSettingsToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
+      setSettingsToneColorEnabledDraft: (enabled: boolean) =>
+        mockToneColorEnabledDraftSignal.set(enabled),
       setSettingsToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
         mockToneColorSchemeDraftSignal.set(scheme),
       setSettingsTracingStrokeDurationDraft: (duration: number) =>
@@ -326,7 +328,10 @@ describe('CourseCatalogPageComponent', () => {
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: CourseCatalogStore, useValue: mockCatalogStore },
         { provide: DraftsStore, useValue: mockDrafts },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         { provide: Router, useValue: mockRouter },
         { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
         { provide: CourseCatalogPreferencesService, useValue: mockPreferences },
@@ -488,7 +493,9 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
+    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set(
+      'Новое имя',
+    );
     component.saveProfile();
     await fixture.whenStable();
 

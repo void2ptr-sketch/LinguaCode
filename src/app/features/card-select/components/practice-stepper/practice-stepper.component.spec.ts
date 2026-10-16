@@ -37,7 +37,8 @@ describe('PracticeStepperComponent', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    stepperComponent = fixture.debugElement.children[0].componentInstance as PracticeStepperComponent;
+    stepperComponent = fixture.debugElement.children[0]
+      .componentInstance as PracticeStepperComponent;
   });
 
   it('should create', () => {

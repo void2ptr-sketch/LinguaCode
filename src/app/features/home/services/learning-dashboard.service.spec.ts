@@ -71,7 +71,10 @@ describe('LearningDashboardService', () => {
         { provide: UserStore, useValue: userStore },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
 

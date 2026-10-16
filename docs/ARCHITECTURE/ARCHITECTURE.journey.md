@@ -24,21 +24,24 @@ features/journey/
 
 ## Компоненты
 
-| Компонент | Путь | Назначение |
-|-----------|------|------------|
-| `LearningJourneyMapComponent` | `features/journey/components/learning-journey-map/` | Карта: группировка узлов по урокам, фильтры по типу контента, избранные, туман войны |
-| `JourneyLocationNodeComponent` | `features/journey/components/journey-location-node/` | Отдельный узел: статус, иконка типа контента, избранное, навигация |
+| Компонент                      | Путь                                                 | Назначение                                                                           |
+| ------------------------------ | ---------------------------------------------------- | ------------------------------------------------------------------------------------ |
+| `LearningJourneyMapComponent`  | `features/journey/components/learning-journey-map/`  | Карта: группировка узлов по урокам, фильтры по типу контента, избранные, туман войны |
+| `JourneyLocationNodeComponent` | `features/journey/components/journey-location-node/` | Отдельный узел: статус, иконка типа контента, избранное, навигация                   |
 
 ### LearningJourneyMapComponent
 
 **Inputs:**
+
 - `courseId: input.required<string>()` — ID курса для аналитики
 - `nodes: input.required<readonly JourneyLocationNode[]>()` — массив узлов карты
 
 **Outputs:**
+
 - `locationSelect: output<string>()` — клик по узлу
 
 **Состояние (signals):**
+
 - `filterType` — фильтр по типу контента (`'all' | JourneyContentType`)
 - `viewMode` — режим отображения (`'map' | 'list'`)
 - `selectedNodeId` — выбранный узел (для трекинга длительности)
@@ -46,12 +49,14 @@ features/journey/
 - `showFogOfWar` — скрывать заблокированные узлы
 
 **Вычисляемые сигналы (computed):**
+
 - `explorerLevel` — уровень исследователя из `JourneyAnalyticsService`
 - `courseTitle` — заголовок курса (из первого узла)
 - `filteredNodes` — узлы, отфильтрованные по типу, избранному и туману войны
 - `groupedByLesson` — узлы, сгруппированные по lessonId, отсортированные по order
 
 **Аналитика:**
+
 - При навигации на страницу — событие `kind: 'visit'`
 - При выборе узла — трекинг длительности через `effect`, событие `kind: 'duration'` при уходе
 - Переключение избранного — `toggleFavorite`
@@ -59,14 +64,17 @@ features/journey/
 ### JourneyLocationNodeComponent
 
 **Inputs:**
+
 - `node: input.required<JourneyLocationNode>()` — данные узла
 - `selected: input<boolean>(false)` — выбран ли узел
 
 **Outputs:**
+
 - `nodeSelect: output<string>()` — клик по узлу
 - `toggleFavorite: output<string>()` — переключение избранного
 
 **Вычисляемые свойства:**
+
 - `statusIcon` — иконка Material для статуса (`lock`, `radio_button_unchecked`, `progress_activity`, `visibility`, `check_circle`)
 - `contentTypeIcon` — иконка первого типа контента
 - `isInteractive` — `true` если статус не `locked`
@@ -106,15 +114,16 @@ type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 
 Отображение card kind → content type:
 
-| Card kind | Content type |
-|-----------|-------------|
-| `select`, `symbol`, `reading` | `theory` |
-| `memory`, `sound`, `keyboard`, `draw`, `tone` | `practice` |
-| `code-select`, `timed` | `test` |
+| Card kind                                     | Content type |
+| --------------------------------------------- | ------------ |
+| `select`, `symbol`, `reading`                 | `theory`     |
+| `memory`, `sound`, `keyboard`, `draw`, `tone` | `practice`   |
+| `code-select`, `timed`                        | `test`       |
 
 ### JourneyAnalyticsEvent
 
 Три типа событий:
+
 - `kind: 'visit'` — посещение узла (timestamp)
 - `kind: 'duration'` — длительность сессии (durationMs)
 - `kind: 'complete'` — завершение сценария (completionPercent)
@@ -122,6 +131,7 @@ type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 ## JourneyAnalyticsService
 
 **Сигналы:**
+
 - `visits` — массив записей о посещениях (localStorage + signal)
 - `visitCountForScenario` — счётчик посещений для сценария
 - `courseVisitStats` — статистика посещений по курсу (totalVisits, totalDurationMs, avgCompletionPercent)
@@ -129,6 +139,7 @@ type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 - `explorerLevel` — уровень: `novice` → `experienced` → `expert`
 
 **Методы:**
+
 - `trackEvent(event)` — обработка события аналитики (visit/duration/complete)
 - `updateLocationProgress(node, completedCount, totalCount)` — обновление статуса узла
 - `toggleFavorite(nodeId, isFavorite)` — переключение избранного
@@ -137,11 +148,11 @@ type JourneyContentType = 'theory' | 'practice' | 'test' | 'video' | 'case';
 
 **Пороги explorer level:**
 
-| Уровень | Посещения | Завершённые |
-|---------|----------|-------------|
-| novice | 0 | 0 |
-| experienced | 5 | 2 |
-| expert | 20 | 10 |
+| Уровень     | Посещения | Завершённые |
+| ----------- | --------- | ----------- |
+| novice      | 0         | 0           |
+| experienced | 5         | 2           |
+| expert      | 20        | 10          |
 
 ## Поток данных
 

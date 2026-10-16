@@ -20,9 +20,7 @@ describe('routes.utils', () => {
     });
 
     it('should return a single config as-is', () => {
-      const config: Routes = [
-        { path: 'home', loadComponent: () => mockComponent('home') },
-      ];
+      const config: Routes = [{ path: 'home', loadComponent: () => mockComponent('home') }];
       const result = mergeRoutes(config);
       expect(result).toEqual(config);
     });
@@ -32,9 +30,7 @@ describe('routes.utils', () => {
         { path: 'home', loadComponent: () => mockComponent('home') },
         { path: 'about', loadComponent: () => mockComponent('about') },
       ];
-      const configB: Routes = [
-        { path: 'contact', loadComponent: () => mockComponent('contact') },
-      ];
+      const configB: Routes = [{ path: 'contact', loadComponent: () => mockComponent('contact') }];
 
       const result = mergeRoutes(configA, configB);
 
@@ -45,15 +41,9 @@ describe('routes.utils', () => {
     });
 
     it('should flatten and merge multiple route configs', () => {
-      const configA: Routes = [
-        { path: 'a', loadComponent: () => mockComponent('a') },
-      ];
-      const configB: Routes = [
-        { path: 'b', loadComponent: () => mockComponent('b') },
-      ];
-      const configC: Routes = [
-        { path: 'c', loadComponent: () => mockComponent('c') },
-      ];
+      const configA: Routes = [{ path: 'a', loadComponent: () => mockComponent('a') }];
+      const configB: Routes = [{ path: 'b', loadComponent: () => mockComponent('b') }];
+      const configC: Routes = [{ path: 'c', loadComponent: () => mockComponent('c') }];
 
       const result = mergeRoutes(configA, configB, configC);
 
@@ -64,9 +54,7 @@ describe('routes.utils', () => {
     });
 
     it('should handle empty config arrays', () => {
-      const configA: Routes = [
-        { path: 'a', loadComponent: () => mockComponent('a') },
-      ];
+      const configA: Routes = [{ path: 'a', loadComponent: () => mockComponent('a') }];
       const configB: Routes = [];
 
       const result = mergeRoutes(configA, configB);
@@ -80,9 +68,7 @@ describe('routes.utils', () => {
         { path: 'first', loadComponent: () => mockComponent('first') },
         { path: 'second', loadComponent: () => mockComponent('second') },
       ];
-      const configB: Routes = [
-        { path: 'third', loadComponent: () => mockComponent('third') },
-      ];
+      const configB: Routes = [{ path: 'third', loadComponent: () => mockComponent('third') }];
 
       const result = mergeRoutes(configA, configB);
 
@@ -95,14 +81,10 @@ describe('routes.utils', () => {
       const configA: Routes = [
         {
           path: 'admin',
-          children: [
-            { path: 'users', loadComponent: () => mockComponent('users') },
-          ],
+          children: [{ path: 'users', loadComponent: () => mockComponent('users') }],
         },
       ];
-      const configB: Routes = [
-        { path: 'home', loadComponent: () => mockComponent('home') },
-      ];
+      const configB: Routes = [{ path: 'home', loadComponent: () => mockComponent('home') }];
 
       const result = mergeRoutes(configA, configB);
 

@@ -302,11 +302,7 @@ export type CardDraft =
  * Used in card editor forms and utilities that handle option-based cards.
  */
 export type ChoiceCardDraft =
-  | SelectCardDraft
-  | ReadingCardDraft
-  | TimedCardDraft
-  | SymbolCardDraft
-  | ToneCardDraft;
+  SelectCardDraft | ReadingCardDraft | TimedCardDraft | SymbolCardDraft | ToneCardDraft;
 
 /**
  * Type alias: all card kinds are editable.

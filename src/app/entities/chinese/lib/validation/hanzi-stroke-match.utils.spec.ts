@@ -5,7 +5,11 @@ import type { HanziPoint, HanziQuizOptions } from '../../model';
 import type { HanziCharacterModel, HanziStrokeModel } from '../../model/hanzi-character.model';
 
 describe('hanzi-stroke-match.utils', () => {
-  const createMockStroke = (points: HanziPoint[], strokeNum = 0, isRadical = false): HanziStrokeModel => ({
+  const createMockStroke = (
+    points: HanziPoint[],
+    strokeNum = 0,
+    isRadical = false,
+  ): HanziStrokeModel => ({
     strokeNum,
     path: 'M0,0 L100,100',
     points,
@@ -26,7 +30,12 @@ describe('hanzi-stroke-match.utils', () => {
   describe('matchHanziUserStroke', () => {
     it('should return non-match for fewer than 2 user points', () => {
       const userPoints: HanziPoint[] = [{ x: 0, y: 0 }];
-      const character = createMockCharacter([createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 100 }])]);
+      const character = createMockCharacter([
+        createMockStroke([
+          { x: 0, y: 0 },
+          { x: 100, y: 100 },
+        ]),
+      ]);
 
       const result = matchHanziUserStroke(userPoints, character, 0);
 
@@ -36,7 +45,12 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should return non-match for empty user points', () => {
-      const character = createMockCharacter([createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 100 }])]);
+      const character = createMockCharacter([
+        createMockStroke([
+          { x: 0, y: 0 },
+          { x: 100, y: 100 },
+        ]),
+      ]);
 
       const result = matchHanziUserStroke([], character, 0);
 
@@ -45,7 +59,12 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should return non-match when stroke index is out of bounds', () => {
-      const character = createMockCharacter([createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 100 }])]);
+      const character = createMockCharacter([
+        createMockStroke([
+          { x: 0, y: 0 },
+          { x: 100, y: 100 },
+        ]),
+      ]);
 
       const result = matchHanziUserStroke(defaultUserPoints, character, 5);
 
@@ -70,8 +89,15 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should check later strokes for confusion when initial match fails', () => {
-      const stroke1 = createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 0 }]);
-      const stroke2 = createMockStroke([{ x: 0, y: 0 }, { x: 50, y: 50 }, { x: 100, y: 100 }]);
+      const stroke1 = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 100, y: 0 },
+      ]);
+      const stroke2 = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 50, y: 50 },
+        { x: 100, y: 100 },
+      ]);
       const character = createMockCharacter([stroke1, stroke2]);
 
       const result = matchHanziUserStroke(defaultUserPoints, character, 0);
@@ -81,8 +107,15 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should apply leniency adjustment when later stroke is a better match', () => {
-      const stroke1 = createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 100 }]);
-      const stroke2 = createMockStroke([{ x: 0, y: 0 }, { x: 50, y: 50 }, { x: 100, y: 100 }]);
+      const stroke1 = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 100, y: 100 },
+      ]);
+      const stroke2 = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 50, y: 50 },
+        { x: 100, y: 100 },
+      ]);
       const character = createMockCharacter([stroke1, stroke2]);
 
       const result = matchHanziUserStroke(defaultUserPoints, character, 0);
@@ -92,7 +125,10 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should handle custom options', () => {
-      const stroke = createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 100 }]);
+      const stroke = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 100, y: 100 },
+      ]);
       const character = createMockCharacter([stroke]);
 
       const options: HanziQuizOptions = {
@@ -108,10 +144,20 @@ describe('hanzi-stroke-match.utils', () => {
     });
 
     it('should return valid result with default options', () => {
-      const stroke = createMockStroke([{ x: 0, y: 0 }, { x: 50, y: 50 }]);
+      const stroke = createMockStroke([
+        { x: 0, y: 0 },
+        { x: 50, y: 50 },
+      ]);
       const character = createMockCharacter([stroke]);
 
-      const result = matchHanziUserStroke([{ x: 0, y: 0 }, { x: 50, y: 50 }], character, 0);
+      const result = matchHanziUserStroke(
+        [
+          { x: 0, y: 0 },
+          { x: 50, y: 50 },
+        ],
+        character,
+        0,
+      );
 
       expect(result).toBeDefined();
       expect(typeof result.isMatch).toBe('boolean');
@@ -121,9 +167,27 @@ describe('hanzi-stroke-match.utils', () => {
 
     it('should handle character with multiple strokes', () => {
       const strokes = [
-        createMockStroke([{ x: 0, y: 0 }, { x: 100, y: 0 }], 0),
-        createMockStroke([{ x: 50, y: 0 }, { x: 50, y: 100 }], 1),
-        createMockStroke([{ x: 0, y: 50 }, { x: 100, y: 50 }], 2),
+        createMockStroke(
+          [
+            { x: 0, y: 0 },
+            { x: 100, y: 0 },
+          ],
+          0,
+        ),
+        createMockStroke(
+          [
+            { x: 50, y: 0 },
+            { x: 50, y: 100 },
+          ],
+          1,
+        ),
+        createMockStroke(
+          [
+            { x: 0, y: 50 },
+            { x: 100, y: 50 },
+          ],
+          2,
+        ),
       ];
       const character = createMockCharacter(strokes);
 

@@ -11,7 +11,10 @@ import type {
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildScenarioSearchParams } from './mock/scenarios-api.params.utils';
-import type { ScenarioCatalogPort, ScenarioWritePayload } from '../repository/scenario-catalog.port';
+import type {
+  ScenarioCatalogPort,
+  ScenarioWritePayload,
+} from '../repository/scenario-catalog.port';
 
 export type { ScenarioWritePayload } from '../repository/scenario-catalog.port';
 

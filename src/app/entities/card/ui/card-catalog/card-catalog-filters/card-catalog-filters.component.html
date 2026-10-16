@@ -17,10 +17,7 @@
   <div class="card-catalog-filters__hierarchy">
     <mat-form-field class="card-catalog-filters__course" appearance="outline">
       <mat-label>Курс</mat-label>
-      <mat-select
-        [ngModel]="store.selectedCourseId()"
-        (ngModelChange)="onCourseChange($event)"
-      >
+      <mat-select [ngModel]="store.selectedCourseId()" (ngModelChange)="onCourseChange($event)">
         <mat-option [value]="null">Вне курса</mat-option>
         @for (course of store.availableCourses(); track course.id) {
           <mat-option [value]="course.id">{{ course.title }}</mat-option>

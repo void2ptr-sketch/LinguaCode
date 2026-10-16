@@ -33,7 +33,9 @@
   border: 2px solid transparent;
   border-radius: 12px;
   background: var(--mat-sys-surface);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
 
   @media (hover: hover) {
     &:hover {

@@ -4,7 +4,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { describe, expect, it, vi } from 'vitest';
 
-import { PracticeSessionBarComponent, PracticeSessionSegment } from './practice-session-bar.component';
+import {
+  PracticeSessionBarComponent,
+  PracticeSessionSegment,
+} from './practice-session-bar.component';
 
 @Component({
   standalone: true,
@@ -59,7 +62,8 @@ describe('PracticeSessionBarComponent', () => {
     fixture = TestBed.createComponent(TestHostComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    barComponent = fixture.debugElement.children[0].componentInstance as PracticeSessionBarComponent;
+    barComponent = fixture.debugElement.children[0]
+      .componentInstance as PracticeSessionBarComponent;
   });
 
   it('should create', () => {

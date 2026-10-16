@@ -1,4 +1,13 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
@@ -27,7 +36,10 @@ import {
   type LessonOption,
   type ScenarioOption,
 } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
-import { CardFormTabsComponent, type TabDefinition } from '../card-form-tabs/card-form-tabs.component';
+import {
+  CardFormTabsComponent,
+  type TabDefinition,
+} from '../card-form-tabs/card-form-tabs.component';
 import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
 import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-answers-tab.component';
 
@@ -202,9 +214,7 @@ export class CardFormComponent implements OnInit {
    * Resolves the choice options editor configuration.
    * @remarks Delegates to `resolveChoiceOptionsConfig` utility.
    */
-  readonly choiceOptionsConfig = computed(() =>
-    resolveChoiceOptionsConfig(this.choiceDraft()),
-  );
+  readonly choiceOptionsConfig = computed(() => resolveChoiceOptionsConfig(this.choiceDraft()));
 
   /**
    * Resolves the option texts for the choice options editor.

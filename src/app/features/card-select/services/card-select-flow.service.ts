@@ -100,7 +100,10 @@ export class CardSelectFlowService {
    */
   private readonly resetOnActivePairChange = effect(() => {
     const activeId = this.userStore.activeLanguagePairId();
-    if (this._lastKnownActiveLanguagePairId !== null && this._lastKnownActiveLanguagePairId !== activeId) {
+    if (
+      this._lastKnownActiveLanguagePairId !== null &&
+      this._lastKnownActiveLanguagePairId !== activeId
+    ) {
       untracked(() => this.resetAll());
     }
     this._lastKnownActiveLanguagePairId = activeId;
@@ -135,7 +138,9 @@ export class CardSelectFlowService {
   readonly lessonScenarioIds = signal<readonly string[]>([]);
 
   /** Lessons with their scenario IDs for the current course. */
-  readonly courseLessons = signal<readonly { lessonId: string; scenarioIds: readonly string[] }[]>([]);
+  readonly courseLessons = signal<readonly { lessonId: string; scenarioIds: readonly string[] }[]>(
+    [],
+  );
 
   /** Selected scenario ID within the current lesson. */
   readonly selectedScenarioId = signal<string>('');
@@ -426,13 +431,15 @@ export class CardSelectFlowService {
    * @param scenarioSourceLabel - The source label (e.g., '10 cards').
    * @param missingCardIds - IDs of cards that could not be resolved.
    */
-  setScenarioMetadata(scenarioTitle: string, scenarioSourceLabel: string, missingCardIds: readonly string[]): void {
+  setScenarioMetadata(
+    scenarioTitle: string,
+    scenarioSourceLabel: string,
+    missingCardIds: readonly string[],
+  ): void {
     this.scenarioTitle.set(scenarioTitle);
     this.scenarioSourceLabel.set(scenarioSourceLabel);
     if (missingCardIds.length > 0) {
-      this.missingCardsWarning.set(
-        `В сценарии отсутствуют карточки: ${missingCardIds.join(', ')}`,
-      );
+      this.missingCardsWarning.set(`В сценарии отсутствуют карточки: ${missingCardIds.join(', ')}`);
     } else {
       this.missingCardsWarning.set(null);
     }

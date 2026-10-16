@@ -53,7 +53,10 @@ describe('CardEditorPageComponent', () => {
         UserStore,
         CardEditorDialogService,
         CardTryDialogService,
-        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     }).compileComponents();
   });

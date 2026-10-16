@@ -121,8 +121,12 @@ describe('CourseCatalogLanguagePairManagerService', () => {
   });
 
   it('should call user store addLanguagePair on addPair when languages differ', () => {
-    (mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('ru');
-    (mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('zh');
+    (
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('ru');
+    (
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('zh');
 
     const result = service.addPair();
 
@@ -131,8 +135,12 @@ describe('CourseCatalogLanguagePairManagerService', () => {
   });
 
   it('should not add pair when languages are the same', () => {
-    (mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
-    (mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>).set('en');
+    (
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
+    (
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+    ).set('en');
 
     const result = service.addPair();
 
@@ -157,7 +165,9 @@ describe('CourseCatalogLanguagePairManagerService', () => {
 
   it('should return null when no settings entry', () => {
     // When settingsPairIdDraft doesn't match any pair, it falls back to first pair
-    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set('nonexistent');
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'nonexistent',
+    );
     const entry = service.settingsEntry();
     // Falls back to first pair, not null
     expect(entry).toBeTruthy();

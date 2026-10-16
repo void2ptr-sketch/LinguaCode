@@ -11,50 +11,50 @@
 
 ## Продукт и домен
 
-| Документ                               | Описание                                           |
-| -------------------------------------- | -------------------------------------------------- |
-| [BUSINESS.md](./BUSINESS.md)           | Бизнес-идеи, миссия, ценность для пользователя     |
-| [DOMAIN.md](./COMMON/DOMAIN.md)               | Доменная модель: сущности, типы, иерархия контента |
+| Документ                                        | Описание                                           |
+| ----------------------------------------------- | -------------------------------------------------- |
+| [BUSINESS.md](./BUSINESS.md)                    | Бизнес-идеи, миссия, ценность для пользователя     |
+| [DOMAIN.md](./COMMON/DOMAIN.md)                 | Доменная модель: сущности, типы, иерархия контента |
 | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home |
 
 ## Техническая документация
 
-| Документ                                                               | Описание                                    |
-| ---------------------------------------------------------------------- | ------------------------------------------- |
-| [ARCHITECTURE.md](./ARCHITECTURE.md)                                   | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
-| [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Бывший `core`: карта переноса в entities/shared/widgets |
-| [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     | CardHost, pickers, lexeme, pagination       |
-| [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           | Практика `/cards/select`                    |
-| [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         | Dashboard `/home`                           |
-| [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           | Редактор `/tools/cards`                     |
-| [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                       |
-| [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                         |
-| [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)               |
-| [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                 |
-| [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         | Профиль пользователя и настройки            |
-| [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                   | Индекс карточек, поиск, пагинация, API      |
-| [API-CONTRACT.md](./API-CONTRACT.md)                                         | HTTP API: эндпоинты, обёртки, ошибки        |
-| [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                           | Конструктор сценариев, `ScenarioCardSource` |
-| [EDITOR-UX.md](./FEATURES/EDITOR-UX.md)                                         | UX редактора карточек (G12)                 |
+| Документ                                                                            | Описание                                                  |
+| ----------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [ARCHITECTURE.md](./ARCHITECTURE.md)                                                | Обзор: слои, layout, роутинг, signals, офлайн-кэширование |
+| [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md)                         | Бывший `core`: карта переноса в entities/shared/widgets   |
+| [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     | CardHost, pickers, lexeme, pagination                     |
+| [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           | Практика `/cards/select`                                  |
+| [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         | Dashboard `/home`                                         |
+| [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           | Редактор `/tools/cards`                                   |
+| [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                                     |
+| [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                                       |
+| [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)                             |
+| [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                               |
+| [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         | Профиль пользователя и настройки                          |
+| [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                         | Индекс карточек, поиск, пагинация, API                    |
+| [API-CONTRACT.md](./API-CONTRACT.md)                                                | HTTP API: эндпоинты, обёртки, ошибки                      |
+| [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                               | Конструктор сценариев, `ScenarioCardSource`               |
+| [EDITOR-UX.md](./FEATURES/EDITOR-UX.md)                                             | UX редактора карточек (G12)                               |
 
 ## Паттерны и архитектура
 
-| Документ                                           | Описание                                              |
-| -------------------------------------------------- | ----------------------------------------------------- |
+| Документ                                                    | Описание                                              |
+| ----------------------------------------------------------- | ----------------------------------------------------- |
 | [PATTERN-DIRTY-STATE.md](./PATTERNS/PATTERN-DIRTY-STATE.md) | Паттерн отслеживания несохранённых изменений в формах |
 | [MODAL-DIALOG.md](./PATTERNS/MODAL-DIALOG.md)               | Архитектура модальных диалогов                        |
 
 ## Контент и локализация
 
-| Документ                                     | Описание                                       |
-| -------------------------------------------- | ---------------------------------------------- |
+| Документ                                             | Описание                                       |
+| ---------------------------------------------------- | ---------------------------------------------- |
 | [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md)           | Иероглифы, пиньинь, жуинь, Палладия, тоны (G9) |
 | [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) | IPA и фонетическая транскрипция (G10)          |
 
 ## Процесс разработки
 
-| Документ                       | Описание              |
-| ------------------------------ | --------------------- |
+| Документ                              | Описание              |
+| ------------------------------------- | --------------------- |
 | [GIT-RULES.md](./SYSTEM/GIT-RULES.md) | Ветки, коммиты, merge |
 
 ## Формат
