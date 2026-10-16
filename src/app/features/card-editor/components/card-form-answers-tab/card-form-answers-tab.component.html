@@ -1,0 +1,33 @@
+<p class="card-form-answers-tab__hint">
+  Варианты ответа и правильный вариант.
+</p>
+@if (codeSelectDraft(); as codeDraft) {
+  <app-code-select-card-form [draft]="codeDraft" (draftChange)="draftChange.emit($event)" />
+}
+@if (choiceDraft(); as choice) {
+  <app-choice-card-form [draft]="choice" (draftChange)="draftChange.emit($event)" />
+}
+@if (inputDraft(); as inputDraftValue) {
+  <app-input-card-form
+    [draft]="inputDraftValue"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (draftChange)="draftChange.emit($event)"
+  />
+}
+@if (pairsDraft(); as pairs) {
+  <app-pairs-card-form
+    [draft]="pairs"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (draftChange)="draftChange.emit($event)"
+  />
+}
+@if (mediaDraft(); as media) {
+  <app-media-card-form
+    [draft]="media"
+    [knownLanguage]="knownLanguage()"
+    [learningLanguage]="learningLanguage()"
+    (draftChange)="draftChange.emit($event)"
+  />
+}

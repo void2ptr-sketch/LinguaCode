@@ -3,16 +3,9 @@ import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
-import type { ChoiceCardDraft } from '../../types';
-import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
 import { CONTENT_LANGUAGE_LABELS } from '../../../../entities/card/lib/catalog-labels';
 import { contentLanguages } from '../../../../entities/language-pair/lib/language-pair.utils';
-import {
-  type CardDraft,
-  type CodeSelectCardDraft,
-  type MemoryCardDraft,
-  type SoundCardDraft,
-} from '../../types';
+import type { CardDraft, ChoiceCardDraft } from '../../types';
 import { cardFormKindGroup } from '../../utils/form/card-form.registry';
 import { normalizeCardDraft } from '../../utils/validation/card-validation.utils';
 import { fallbackPreviewCard } from '../../utils/preview';
@@ -27,11 +20,6 @@ import { CardFormPhoneticsPanelComponent } from '../card-form-phonetics-panel/ca
 import { CardFormSettingsPanelComponent } from '../card-form-settings-panel/card-form-settings-panel.component';
 import { CardPreviewComponent } from '../card-preview/card-preview.component';
 import { CardOptionsEditorComponent } from '../card-options-editor/card-options-editor.component';
-import { CodeSelectCardFormComponent } from './kind-forms/code-select-card-form/code-select-card-form.component';
-import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-card-form.component';
-import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
-import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
-import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,
@@ -41,6 +29,7 @@ import {
 } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
 import { CardFormTabsComponent, type TabDefinition } from '../card-form-tabs/card-form-tabs.component';
 import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
+import { CardFormAnswersTabComponent } from '../card-form-answers-tab/card-form-answers-tab.component';
 
 /**
  * Main form component for creating and editing cards.
@@ -72,15 +61,11 @@ import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-for
     MatTabsModule,
     CardFormTabsComponent,
     CardFormQuestionTabComponent,
+    CardFormAnswersTabComponent,
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
     CardPreviewComponent,
     CardOptionsEditorComponent,
-    CodeSelectCardFormComponent,
-    ChoiceCardFormComponent,
-    InputCardFormComponent,
-    MediaCardFormComponent,
-    PairsCardFormComponent,
     CardMetaFieldsComponent,
   ],
   templateUrl: './card-form.component.html',
@@ -203,50 +188,35 @@ export class CardFormComponent implements OnInit {
    *
    * @remarks
    * Returns `null` for code-select cards and non-choice kinds.
+   * Used by the Content tab to render the options editor.
    */
   readonly choiceDraft = computed((): ChoiceCardDraft | null => {
     const draft = this.draft();
     if (draft.kind === 'code-select') {
       return null;
     }
-
     return cardFormKindGroup(draft.kind) === 'choice' ? (draft as ChoiceCardDraft) : null;
   });
 
   /**
-   * Computed code-select card draft, or `null` if the current draft is not a code-select card.
+   * Resolves the choice options editor configuration.
+   * @remarks Delegates to `resolveChoiceOptionsConfig` utility.
    */
-  readonly codeSelectDraft = computed((): CodeSelectCardDraft | null => {
-    const draft = this.draft();
-    return draft.kind === 'code-select' ? draft : null;
-  });
+  readonly choiceOptionsConfig = computed(() =>
+    resolveChoiceOptionsConfig(this.choiceDraft()),
+  );
 
   /**
-   * Computed input card draft (keyboard).
-   *
-   * @remarks
-   * Returns `null` for non-input kinds.
+   * Resolves the option texts for the choice options editor.
+   * @remarks Delegates to `resolveChoiceOptionTexts` utility.
    */
-  readonly inputDraft = computed((): InputCardDraft | null => {
-    const draft = this.draft();
-    return cardFormKindGroup(draft.kind) === 'input' ? (draft as InputCardDraft) : null;
-  });
+  readonly choiceOptionTexts = computed(() => resolveChoiceOptionTexts(this.choiceDraft()));
 
   /**
-   * Computed memory card draft, or `null` if the current draft is not a memory card.
+   * Resolves the lexeme drafts for the choice options editor.
+   * @remarks Delegates to `resolveChoiceOptionLexemes` utility.
    */
-  readonly pairsDraft = computed((): MemoryCardDraft | null => {
-    const draft = this.draft();
-    return draft.kind === 'memory' ? draft : null;
-  });
-
-  /**
-   * Computed sound card draft, or `null` if the current draft is not a sound card.
-   */
-  readonly mediaDraft = computed((): SoundCardDraft | null => {
-    const draft = this.draft();
-    return draft.kind === 'sound' ? draft : null;
-  });
+  readonly choiceOptionLexemes = computed(() => resolveChoiceOptionLexemes(this.choiceDraft()));
 
   /**
    * Emits the updated card draft when the user makes changes.
@@ -350,26 +320,6 @@ export class CardFormComponent implements OnInit {
   updateScenarioId(scenarioId: string): void {
     this.updateDraft({ ...this.draft(), scenarioId });
   }
-
-  /**
-   * Resolves the choice options editor configuration.
-   * @remarks Delegates to `resolveChoiceOptionsConfig` utility.
-   */
-  readonly choiceOptionsConfig = computed(() =>
-    resolveChoiceOptionsConfig(this.choiceDraft()),
-  );
-
-  /**
-   * Resolves the option texts for the choice options editor.
-   * @remarks Delegates to `resolveChoiceOptionTexts` utility.
-   */
-  readonly choiceOptionTexts = computed(() => resolveChoiceOptionTexts(this.choiceDraft()));
-
-  /**
-   * Resolves the lexeme drafts for the choice options editor.
-   * @remarks Delegates to `resolveChoiceOptionLexemes` utility.
-   */
-  readonly choiceOptionLexemes = computed(() => resolveChoiceOptionLexemes(this.choiceDraft()));
 
   /**
    * Handles state changes from the choice options editor.

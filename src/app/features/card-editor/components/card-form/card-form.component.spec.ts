@@ -128,33 +128,6 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('computed drafts', () => {
-    it('should return null choiceDraft for code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
-      expect(component.choiceDraft()).toBeNull();
-    });
-
-    it('should return null codeSelectDraft for non-code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.codeSelectDraft()).toBeNull();
-    });
-
-    it('should return null inputDraft for non-input kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.inputDraft()).toBeNull();
-    });
-
-    it('should return null pairsDraft for non-memory kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.pairsDraft()).toBeNull();
-    });
-
-    it('should return null mediaDraft for non-sound kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.mediaDraft()).toBeNull();
-    });
-  });
-
   describe('updateDraft', () => {
     it('should emit draftChange', () => {
       fixture.componentRef.setInput('draft', selectDraft);

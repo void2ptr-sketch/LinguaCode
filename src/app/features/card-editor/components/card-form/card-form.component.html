@@ -27,39 +27,12 @@
           />
         }
         @case ('Ответы') {
-          <p class="card-form__hint card-form__hint--tab">
-            Варианты ответа и правильный вариант.
-          </p>
-          @if (codeSelectDraft(); as codeDraft) {
-            <app-code-select-card-form [draft]="codeDraft" (draftChange)="updateDraft($event)" />
-          }
-          @if (choiceDraft(); as choice) {
-            <app-choice-card-form [draft]="choice" (draftChange)="updateDraft($event)" />
-          }
-          @if (inputDraft(); as inputDraftValue) {
-            <app-input-card-form
-              [draft]="inputDraftValue"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
-          @if (pairsDraft(); as pairs) {
-            <app-pairs-card-form
-              [draft]="pairs"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
-          @if (mediaDraft(); as media) {
-            <app-media-card-form
-              [draft]="media"
-              [knownLanguage]="knownLanguage()"
-              [learningLanguage]="learningLanguage()"
-              (draftChange)="updateDraft($event)"
-            />
-          }
+          <app-card-form-answers-tab
+            [draft]="draft()"
+            [knownLanguage]="knownLanguage()"
+            [learningLanguage]="learningLanguage()"
+            (draftChange)="updateDraft($event)"
+          />
         }
         @case ('Контент') {
           <p class="card-form__hint card-form__hint--tab">
