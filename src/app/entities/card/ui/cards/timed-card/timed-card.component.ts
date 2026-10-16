@@ -102,6 +102,7 @@ export class TimedCardComponent implements OnInit, OnDestroy {
    */
   readonly secondsLeft = signal(0);
   private timerId: number | null = null;
+  private destroyed = false;
 
   /**
    * Computed resolved card data with direction applied.
@@ -140,6 +141,7 @@ export class TimedCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
     this.clearTimer();
   }
 
@@ -173,12 +175,17 @@ export class TimedCardComponent implements OnInit, OnDestroy {
     this.clearTimer();
     this.secondsLeft.set(this.card().timeLimitSec);
     this.timerId = window.setInterval(() => {
+      if (this.destroyed) {
+        this.clearTimer();
+        return;
+      }
+
       const next = this.secondsLeft() - 1;
       this.secondsLeft.set(next);
 
       if (next <= 0) {
         this.clearTimer();
-        if (this.feedback() === null) {
+        if (!this.destroyed && this.feedback() === null) {
           this.timeExpired.emit();
         }
       }

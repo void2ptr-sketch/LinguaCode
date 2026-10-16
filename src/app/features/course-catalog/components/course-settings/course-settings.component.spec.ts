@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogSettingsComponent } from './course-settings.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { SettingsDraftsStore } from '../../services';
+import { DraftsStore } from '../../services';
 import type { ToneColorSchemeId } from '../../../../entities/phonetic/model';
 
 describe('CourseCatalogSettingsComponent', () => {
@@ -47,24 +47,24 @@ describe('CourseCatalogSettingsComponent', () => {
           },
         },
         {
-          provide: SettingsDraftsStore,
+          provide: DraftsStore,
           useValue: {
-            displayRomanizationsDraft: signal([]),
-            answerRomanizationsDraft: signal([]),
-            showIpaDraft: signal(false),
-            ipaVariantLabelDraft: signal(''),
-            answerModesDraft: signal([]),
-            toneColorEnabledDraft: signal(false),
-            toneColorSchemeDraft: signal('default' as ToneColorSchemeId),
-            tracingStrokeDurationDraft: signal(0.5),
-            setDisplayRomanizationsDraft: vi.fn(),
-            setAnswerRomanizationsDraft: vi.fn(),
-            setShowIpaDraft: vi.fn(),
-            setIpaVariantLabelDraft: vi.fn(),
-            setAnswerModesDraft: vi.fn(),
-            setToneColorEnabledDraft: vi.fn(),
-            setToneColorSchemeDraft: vi.fn(),
-            setTracingStrokeDurationDraft: vi.fn(),
+            settingsDisplayRomanizationsDraft: signal([]),
+            settingsAnswerRomanizationsDraft: signal([]),
+            settingsShowIpaDraft: signal(false),
+            settingsIpaVariantLabelDraft: signal(''),
+            settingsAnswerModesDraft: signal([]),
+            settingsToneColorEnabledDraft: signal(false),
+            settingsToneColorSchemeDraft: signal('default' as ToneColorSchemeId),
+            settingsTracingStrokeDurationDraft: signal(0.5),
+            setSettingsDisplayRomanizationsDraft: vi.fn(),
+            setSettingsAnswerRomanizationsDraft: vi.fn(),
+            setSettingsShowIpaDraft: vi.fn(),
+            setSettingsIpaVariantLabelDraft: vi.fn(),
+            setSettingsAnswerModesDraft: vi.fn(),
+            setSettingsToneColorEnabledDraft: vi.fn(),
+            setSettingsToneColorSchemeDraft: vi.fn(),
+            setSettingsTracingStrokeDurationDraft: vi.fn(),
           },
         },
       ],

@@ -22,12 +22,7 @@ import type { UserLanguagePairEntry, UserLanguagePairSettings } from '../../../e
 import { ROMANIZATION_DISPLAY_ORDER } from '../../../entities/phonetic/model';
 import type { PageEvent } from '@angular/material/paginator';
 import type { RomanizationOption } from '../../../entities/course/ui/course-display-settings-matrix';
-import {
-  CourseCatalogStore,
-  CourseTabDraftsStore,
-  ProfileDraftsStore,
-  SettingsDraftsStore,
-} from '../../../features/course-catalog/services';
+import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogCoursesComponent } from '../../../features/course-catalog/components/course-card-list/course-card-list.component';
 import { CourseCatalogSettingsComponent } from '../../../features/course-catalog/components/course-settings/course-settings.component';
 import { CourseCatalogProgramsComponent } from '../../../features/course-catalog/components/program-list/program-list.component';
@@ -62,9 +57,7 @@ export class CourseCatalogPageComponent implements OnInit {
   private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
   readonly catalogStore = inject(CourseCatalogStore);
-  readonly profileDrafts = inject(ProfileDraftsStore);
-  readonly courseTabDrafts = inject(CourseTabDraftsStore);
-  readonly settingsDrafts = inject(SettingsDraftsStore);
+  readonly drafts = inject(DraftsStore);
 
   /** Direct references to sub-tab components. */
   readonly coursesComponent = CourseCatalogCoursesComponent;
@@ -138,41 +131,41 @@ export class CourseCatalogPageComponent implements OnInit {
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
   /** Draft value for the user's display name. */
-  readonly nameDraft = this.profileDrafts.nameDraft;
+  readonly nameDraft = this.drafts.profileNameDraft;
   /** Draft value for the learning proficiency level. */
-  readonly learningProficiencyDraft = this.profileDrafts.learningProficiencyDraft;
+  readonly learningProficiencyDraft = this.drafts.profileLearningProficiencyDraft;
   /** Draft value for the application theme. */
-  readonly themeDraft = this.profileDrafts.themeDraft;
+  readonly themeDraft = this.drafts.profileThemeDraft;
   /** Draft value for the font size preference. */
-  readonly fontSizeDraft = this.profileDrafts.fontSizeDraft;
+  readonly fontSizeDraft = this.drafts.profileFontSizeDraft;
   /** Draft value for the color scheme. */
-  readonly colorSchemeDraft = this.profileDrafts.colorSchemeDraft;
+  readonly colorSchemeDraft = this.drafts.profileColorSchemeDraft;
   /** Draft value for the card focus fullscreen preference. */
-  readonly cardFocusFullscreenDraft = this.profileDrafts.cardFocusFullscreenDraft;
+  readonly cardFocusFullscreenDraft = this.drafts.profileCardFocusFullscreenDraft;
 
   /** Draft value for the known (source) language. */
-  readonly knownLanguageDraft = this.courseTabDrafts.knownLanguageDraft;
+  readonly knownLanguageDraft = this.drafts.courseTabKnownLanguageDraft;
   /** Draft value for the learning (target) language. */
-  readonly learningLanguageDraft = this.courseTabDrafts.learningLanguageDraft;
+  readonly learningLanguageDraft = this.drafts.courseTabLearningLanguageDraft;
 
   /** Draft ID for the settings language pair. */
-  readonly settingsPairIdDraft = this.settingsDrafts.settingsPairIdDraft;
+  readonly settingsPairIdDraft = this.drafts.settingsPairIdDraft;
   /** Draft display romanization systems. */
-  readonly displayRomanizationsDraft = this.settingsDrafts.displayRomanizationsDraft;
+  readonly displayRomanizationsDraft = this.drafts.settingsDisplayRomanizationsDraft;
   /** Draft answer romanization systems. */
-  readonly answerRomanizationsDraft = this.settingsDrafts.answerRomanizationsDraft;
+  readonly answerRomanizationsDraft = this.drafts.settingsAnswerRomanizationsDraft;
   /** Draft IPA display preference. */
-  readonly showIpaDraft = this.settingsDrafts.showIpaDraft;
+  readonly showIpaDraft = this.drafts.settingsShowIpaDraft;
   /** Draft custom IPA variant label. */
-  readonly ipaVariantLabelDraft = this.settingsDrafts.ipaVariantLabelDraft;
+  readonly ipaVariantLabelDraft = this.drafts.settingsIpaVariantLabelDraft;
   /** Draft answer display modes. */
-  readonly answerModesDraft = this.settingsDrafts.answerModesDraft;
+  readonly answerModesDraft = this.drafts.settingsAnswerModesDraft;
   /** Draft tone color enabled preference. */
-  readonly toneColorEnabledDraft = this.settingsDrafts.toneColorEnabledDraft;
+  readonly toneColorEnabledDraft = this.drafts.settingsToneColorEnabledDraft;
   /** Draft tone color scheme preference. */
-  readonly toneColorSchemeDraft = this.settingsDrafts.toneColorSchemeDraft;
+  readonly toneColorSchemeDraft = this.drafts.settingsToneColorSchemeDraft;
   /** Draft tracing stroke duration preference. */
-  readonly tracingStrokeDurationDraft = this.settingsDrafts.tracingStrokeDurationDraft;
+  readonly tracingStrokeDurationDraft = this.drafts.settingsTracingStrokeDurationDraft;
 
   /** Currently selected tab index. */
   readonly selectedTabIndex = this.catalogStore.selectedTabIndex;
@@ -199,7 +192,7 @@ export class CourseCatalogPageComponent implements OnInit {
   });
 
   async ngOnInit(): Promise<void> {
-    this.profileDrafts.setLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
+    this.drafts.setProfileLearningProficiencyDraft(this.preferences().learningProficiencyLevel);
     this.syncPairSettingsDrafts();
     await this.load();
   }
@@ -213,7 +206,7 @@ export class CourseCatalogPageComponent implements OnInit {
    * Tied directly to `CourseCatalogStore.languagePairInvalid`. Used to disable
    * the "Add Pair" button when both languages are the same.
    */
-  readonly languagePairInvalid = this.courseTabDrafts.languagePairInvalid;
+  readonly languagePairInvalid = this.drafts.courseTabLanguagePairInvalid;
 
   /**
    * Whether there is more than one language pair (enables removal).
@@ -344,7 +337,7 @@ export class CourseCatalogPageComponent implements OnInit {
    */
   setActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
-    this.settingsDrafts.setSettingsPairIdDraft(id);
+    this.drafts.setSettingsPairIdDraft(id);
     this.syncPairSettingsDrafts();
   }
 
@@ -362,7 +355,7 @@ export class CourseCatalogPageComponent implements OnInit {
     this.userStore.removeLanguagePair(id);
 
     if (wasSettingsTarget) {
-      this.settingsDrafts.setSettingsPairIdDraft(this.activeLanguagePairId());
+      this.drafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
 
     this.syncPairSettingsDrafts();
@@ -385,7 +378,7 @@ export class CourseCatalogPageComponent implements OnInit {
       known: this.knownLanguageDraft(),
       learning: this.learningLanguageDraft(),
     });
-    this.settingsDrafts.setSettingsPairIdDraft(this.activeLanguagePairId());
+    this.drafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     this.syncPairSettingsDrafts();
   }
 
@@ -459,14 +452,14 @@ export class CourseCatalogPageComponent implements OnInit {
     const cjk = resolveCjkLearningForPair(entry);
     const phonetic = resolvePhoneticForPair(entry);
 
-    this.settingsDrafts.setDisplayRomanizationsDraft([...cjk.displayRomanizations]);
-    this.settingsDrafts.setAnswerRomanizationsDraft([...cjk.answerRomanization]);
-    this.settingsDrafts.setToneColorEnabledDraft(cjk.showTones);
-    this.settingsDrafts.setToneColorSchemeDraft(cjk.toneColorScheme);
-    this.settingsDrafts.setTracingStrokeDurationDraft(cjk.tracingStrokeDurationSec);
-    this.settingsDrafts.setShowIpaDraft(phonetic.showIpa);
-    this.settingsDrafts.setIpaVariantLabelDraft(phonetic.ipaVariantLabel ?? '');
-    this.settingsDrafts.setAnswerModesDraft([...phonetic.answerModes]);
+    this.drafts.setSettingsDisplayRomanizationsDraft([...cjk.displayRomanizations]);
+    this.drafts.setSettingsAnswerRomanizationsDraft([...cjk.answerRomanization]);
+    this.drafts.setSettingsToneColorEnabledDraft(cjk.showTones);
+    this.drafts.setSettingsToneColorSchemeDraft(cjk.toneColorScheme);
+    this.drafts.setSettingsTracingStrokeDurationDraft(cjk.tracingStrokeDurationSec);
+    this.drafts.setSettingsShowIpaDraft(phonetic.showIpa);
+    this.drafts.setSettingsIpaVariantLabelDraft(phonetic.ipaVariantLabel ?? '');
+    this.drafts.setSettingsAnswerModesDraft([...phonetic.answerModes]);
   }
 
   // ---- Course catalog methods ----

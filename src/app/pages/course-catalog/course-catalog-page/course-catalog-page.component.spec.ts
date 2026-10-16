@@ -28,12 +28,7 @@ import { LearningResultsStore } from '../../../entities/learning/model/learning-
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
-import {
-  CourseCatalogStore,
-  CourseTabDraftsStore,
-  ProfileDraftsStore,
-  SettingsDraftsStore,
-} from '../../../features/course-catalog/services';
+import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
 function makePair(
@@ -66,9 +61,7 @@ describe('CourseCatalogPageComponent', () => {
   let mockResultsStore: Partial<LearningResultsStore>;
   let mockRouter: Partial<Router>;
   let mockCatalogStore: Partial<CourseCatalogStore>;
-  let mockProfileDrafts: Partial<ProfileDraftsStore>;
-  let mockCourseTabDrafts: Partial<CourseTabDraftsStore>;
-  let mockSettingsDrafts: Partial<SettingsDraftsStore>;
+  let mockDrafts: Partial<DraftsStore>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -219,65 +212,59 @@ describe('CourseCatalogPageComponent', () => {
       setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
     };
 
-    mockProfileDrafts = {
-      nameDraft: mockNameDraftSignal,
-      learningProficiencyDraft: mockLearningProficiencyDraftSignal,
-      themeDraft: mockThemeDraftSignal,
-      fontSizeDraft: mockFontSizeDraftSignal,
-      colorSchemeDraft: mockColorSchemeDraftSignal,
-      cardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
-      setNameDraft: (name: string) => mockNameDraftSignal.set(name),
-      setLearningProficiencyDraft: (
-        level: import('../../../entities/learning/model').LearningProficiencyLevel,
-      ) => mockLearningProficiencyDraftSignal.set(level),
-      setThemeDraft: (theme: import('../../../entities/user/model').AppColorScheme) =>
-        mockThemeDraftSignal.set(theme),
-      setFontSizeDraft: (
-        size: import('../../../entities/user/model').UserPreferences['fontSize'],
-      ) => mockFontSizeDraftSignal.set(size),
-      setColorSchemeDraft: (scheme: import('../../../entities/user/model').AppColorScheme) =>
-        mockColorSchemeDraftSignal.set(scheme),
-      setCardFocusFullscreenDraft: (enabled: boolean) =>
-        mockCardFocusFullscreenDraftSignal.set(enabled),
-    };
-
-    mockCourseTabDrafts = {
-      knownLanguageDraft: mockKnownLanguageDraftSignal,
-      learningLanguageDraft: mockLearningLanguageDraftSignal,
-      languagePairInvalid: computed(
+    mockDrafts = {
+      profileNameDraft: mockNameDraftSignal,
+      profileLearningProficiencyDraft: mockLearningProficiencyDraftSignal,
+      profileThemeDraft: mockThemeDraftSignal,
+      profileFontSizeDraft: mockFontSizeDraftSignal,
+      profileColorSchemeDraft: mockColorSchemeDraftSignal,
+      profileCardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
+      courseTabKnownLanguageDraft: mockKnownLanguageDraftSignal,
+      courseTabLearningLanguageDraft: mockLearningLanguageDraftSignal,
+      courseTabLanguagePairInvalid: computed(
         () => mockKnownLanguageDraftSignal() === mockLearningLanguageDraftSignal(),
       ),
-      setKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
-      setLearningLanguageDraft: (lang: ContentLanguage) =>
-        mockLearningLanguageDraftSignal.set(lang),
-    };
-
-    mockSettingsDrafts = {
       settingsPairIdDraft: mockSettingsPairIdDraftSignal,
-      displayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
-      answerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
-      showIpaDraft: mockShowIpaDraftSignal,
-      ipaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
-      answerModesDraft: mockAnswerModesDraftSignal,
-      toneColorEnabledDraft: mockToneColorEnabledDraftSignal,
-      toneColorSchemeDraft: mockToneColorSchemeDraftSignal,
-      tracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
+      settingsDisplayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
+      settingsAnswerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
+      settingsShowIpaDraft: mockShowIpaDraftSignal,
+      settingsIpaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
+      settingsAnswerModesDraft: mockAnswerModesDraftSignal,
+      settingsToneColorEnabledDraft: mockToneColorEnabledDraftSignal,
+      settingsToneColorSchemeDraft: mockToneColorSchemeDraftSignal,
+      settingsTracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
+      setProfileNameDraft: (name: string) => mockNameDraftSignal.set(name),
+      setProfileLearningProficiencyDraft: (
+        level: import('../../../entities/learning/model').LearningProficiencyLevel,
+      ) => mockLearningProficiencyDraftSignal.set(level),
+      setProfileThemeDraft: (theme: import('../../../entities/user/model').AppColorScheme) =>
+        mockThemeDraftSignal.set(theme),
+      setProfileFontSizeDraft: (
+        size: import('../../../entities/user/model').UserPreferences['fontSize'],
+      ) => mockFontSizeDraftSignal.set(size),
+      setProfileColorSchemeDraft: (scheme: import('../../../entities/user/model').AppColorScheme) =>
+        mockColorSchemeDraftSignal.set(scheme),
+      setProfileCardFocusFullscreenDraft: (enabled: boolean) =>
+        mockCardFocusFullscreenDraftSignal.set(enabled),
+      setCourseTabKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
+      setCourseTabLearningLanguageDraft: (lang: ContentLanguage) =>
+        mockLearningLanguageDraftSignal.set(lang),
       setSettingsPairIdDraft: (id: string) => mockSettingsPairIdDraftSignal.set(id),
-      setDisplayRomanizationsDraft: (
+      setSettingsDisplayRomanizationsDraft: (
         romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
       ) => mockDisplayRomanizationsDraftSignal.set(romanizations),
-      setAnswerRomanizationsDraft: (
+      setSettingsAnswerRomanizationsDraft: (
         romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
       ) => mockAnswerRomanizationsDraftSignal.set(romanizations),
-      setShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
-      setIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
-      setAnswerModesDraft: (
+      setSettingsShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
+      setSettingsIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
+      setSettingsAnswerModesDraft: (
         modes: readonly import('../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
       ) => mockAnswerModesDraftSignal.set(modes),
-      setToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
-      setToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
+      setSettingsToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
+      setSettingsToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
         mockToneColorSchemeDraftSignal.set(scheme),
-      setTracingStrokeDurationDraft: (duration: number) =>
+      setSettingsTracingStrokeDurationDraft: (duration: number) =>
         mockTracingStrokeDurationDraftSignal.set(duration),
     };
 
@@ -303,9 +290,7 @@ describe('CourseCatalogPageComponent', () => {
         { provide: UserStore, useValue: mockUserStore },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: CourseCatalogStore, useValue: mockCatalogStore },
-        { provide: ProfileDraftsStore, useValue: mockProfileDrafts },
-        { provide: CourseTabDraftsStore, useValue: mockCourseTabDrafts },
-        { provide: SettingsDraftsStore, useValue: mockSettingsDrafts },
+        { provide: DraftsStore, useValue: mockDrafts },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
@@ -407,10 +392,10 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.languagePairInvalid()).toBe(false);
 
     (
-      mockCourseTabDrafts.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCourseTabDrafts.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     fixture.detectChanges();
 
@@ -463,10 +448,10 @@ describe('CourseCatalogPageComponent', () => {
     await fixture.whenStable();
 
     (
-      mockCourseTabDrafts.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCourseTabDrafts.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     component.addPair();
     await fixture.whenStable();
@@ -480,7 +465,7 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockProfileDrafts.nameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
+    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
     component.saveProfile();
     await fixture.whenStable();
 

@@ -1,16 +1,9 @@
 import { Injectable, computed, signal, type Signal } from '@angular/core';
 import type { CourseIndexEntry } from '../../../entities/course/model';
 import type { PageEvent } from '@angular/material/paginator';
-import { CourseCatalogState, initialState } from '../models/course-catalog-store';
+import { CourseCatalogState, initialState } from '../types/course-catalog-store';
 
-/**
- * Store каталога курсов: поиск, пагинация, прогресс, вкладки.
- *
- * Черновики профиля/настроек вынесены в отдельные сторы:
- * - `ProfileDraftsStore` — черновики профиля;
- * - `CourseTabDraftsStore` — черновики вкладки «Курсы»;
- * - `SettingsDraftsStore` — черновики вкладки «Настройки».
- */
+/** Store каталога курсов: поиск, пагинация, прогресс, вкладки. */
 @Injectable({ providedIn: 'root' })
 export class CourseCatalogStore {
   #state = signal<CourseCatalogState>({ ...initialState });

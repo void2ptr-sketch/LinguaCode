@@ -5,12 +5,7 @@ export { CourseCatalogProgramsComponent } from './components/program-list/progra
 
 // ===== Services / Stores =====
 export { CourseCatalogStore } from './services/course-catalog.store';
-export { ProfileDraftsStore } from './services/profile-drafts.store';
-export { CourseTabDraftsStore } from './services/course-tab-drafts.store';
-export { SettingsDraftsStore } from './services/settings-drafts.store';
+export { DraftsStore } from './services/drafts-store';
 
 // ===== Utils / Types =====
-export type { CourseCatalogState } from './models/course-catalog-store';
-export type { ProfileDraftsState } from './models/profile-drafts-store';
-export type { CourseTabDraftsState } from './models/course-tab-drafts-store';
-export type { SettingsDraftsState } from './models/settings-drafts-store';
+export type { CourseCatalogState } from './types/course-catalog-store';

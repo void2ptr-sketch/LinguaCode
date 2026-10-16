@@ -2,6 +2,4 @@
 
 // ===== Services / Stores =====
 export { CourseCatalogStore } from './course-catalog.store';
-export { ProfileDraftsStore } from './profile-drafts.store';
-export { CourseTabDraftsStore } from './course-tab-drafts.store';
-export { SettingsDraftsStore } from './settings-drafts.store';
+export { DraftsStore } from './drafts-store';
