@@ -62,7 +62,7 @@ classDiagram
 
 ## Зависимости
 
-- `features/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
+- `entities/card/lib/card-catalog-search/` — `ScenarioCardPickerComponent`, `ScenarioCardCriteriaEditorComponent`, `CardCatalogSearchStore`
 - `entities/chinese/ui/` — course-picker, lesson-picker, scenario-picker, card-host, pinyin-keyboard
 
 ## Связанные документы

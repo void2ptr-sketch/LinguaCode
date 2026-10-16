@@ -16,13 +16,18 @@ features/card-editor/
 │   ├── card-editor-dialog/            # create/edit shell
 │   ├── card-editor-discard-dialog/    # подтверждение отправки изменений
 │   ├── card-form/                     # shell + kind-forms (G12)
+│   ├── card-form-answers-tab/         # вкладка ответов формы
+│   ├── card-form-question-tab/        # вкладка вопроса формы
+│   ├── card-form-settings-panel/      # панель настроек формы
+│   ├── card-form-phonetics-panel/     # панель фонетики формы
+│   ├── card-form-tabs/                # табы формы
 │   ├── card-meta-fields/              # поля индексной метаданных
 │   ├── card-options-editor/           # редактор вариантов ответа
 │   ├── card-preview/                  # предпросмотр карточки
 │   ├── card-try-dialog/               # диалог тестирования карточки
 │   └── lexeme-fields/                 # поля для иероглифов/слов
 ├── services/
-│   └── card-editor.store.ts           # стор редактора
+│   └── card-editor.store.ts           # стор редактора (providedIn: component-level)
 ├── types/                             # типы фичи
 ├── utils/
 │   ├── draft/                         # черновики
@@ -53,13 +58,13 @@ stateDiagram-v2
 ## Особенности (G12)
 
 - Режимы **Базовый / Расширенный** в dialog.
-- Kind-forms: choice, input, pairs, media.
+- Kind-forms: choice, input, pairs, media, code-select.
 - Bilingual fields + `PhoneticLexeme` (G9/G10).
 - Index meta синхронизируется при save (`CardIndexEntry`).
 
 ## Зависимости
 
-- `features/card-catalog-search/` — `CardCatalogSearchStore`
+- `entities/card/lib/card-catalog-search/` — `CardCatalogSearchStore`
 - `entities/card/` — `CardSearchService`, `CardRepository`
 - `entities/chinese/ui/` — `LexemeDisplayComponent`, `PinyinKeyboardComponent` (для preview)
 

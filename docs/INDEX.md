@@ -29,7 +29,9 @@
 | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           | Редактор `/tools/cards`                     |
 | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) | Конструктор сценариев                       |
 | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     | Программы и каталог                         |
+| [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   | Путь обучения (`journey map`)               |
 | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) | Прогресс и `LearningResult`                 |
+| [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         | Профиль пользователя и настройки            |
 | [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md)                                   | Индекс карточек, поиск, пагинация, API      |
 | [API-CONTRACT.md](./API-CONTRACT.md)                                         | HTTP API: эндпоинты, обёртки, ошибки        |
 | [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md)                           | Конструктор сценариев, `ScenarioCardSource` |

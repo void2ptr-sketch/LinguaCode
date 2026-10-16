@@ -23,7 +23,7 @@
 | Pickers         | `entities/course/ui/course-picker`, `entities/lesson/ui/lesson-picker`, `entities/scenario/ui/scenario-picker` | Выбор программы/урока/сценария                  |
 | Quick switcher  | `widgets/active-language-pair-switcher`                      | Быстрое переключение активной языковой пары     |
 | Pagination      | `shared/utils/pagination`                                      | `UiPaginationComponent`, `PageRequest`          |
-| Catalog search  | `features/card-catalog-search`                                 | Фильтры и store поиска карточек                 |
+| Catalog search  | `entities/card/lib/card-catalog-search`                      | Фильтры и store поиска карточек                 |
 | Utils           | `entities/card/lib/card-answer/`                                    | Проверка ответов (CJK, IPA, reading fuzzy)      |
 | Markdown        | `shared/utils/markdown-field`                                  | Поле ввода Markdown                             |
 

@@ -85,10 +85,12 @@ features/card-select/
 | `shared`                 | [ARCHITECTURE.shared.md](./ARCHITECTURE/ARCHITECTURE.shared.md)                     |
 | Практика (`card-select`) | [ARCHITECTURE.card-select.md](./ARCHITECTURE/ARCHITECTURE.card-select.md)           |
 | Dashboard (`home`)       | [ARCHITECTURE.home.md](./ARCHITECTURE/ARCHITECTURE.home.md)                         |
+| Путь обучения (`journey`)| [ARCHITECTURE.journey.md](./ARCHITECTURE/ARCHITECTURE.journey.md)                   |
 | Редактор карточек        | [ARCHITECTURE.card-editor.md](./ARCHITECTURE/ARCHITECTURE.card-editor.md)           |
 | Конструктор сценариев    | [ARCHITECTURE.scenario-builder.md](./ARCHITECTURE/ARCHITECTURE.scenario-builder.md) |
 | Программы (course)       | [ARCHITECTURE.course.md](./ARCHITECTURE/ARCHITECTURE.course.md)                     |
 | Результаты обучения      | [ARCHITECTURE.learning-results.md](./ARCHITECTURE/ARCHITECTURE.learning-results.md) |
+| Профиль пользователя     | [ARCHITECTURE.user.md](./ARCHITECTURE/ARCHITECTURE.user.md)                         |
 
 ## Layout
 
@@ -107,16 +109,16 @@ Shell-приложение. Контент фич — через `<router-outlet
 
 ### Компоненты layout
 
-| Компонент  | Путь                      | Назначение                                                                       |
-| ---------- | ------------------------- | -------------------------------------------------------------------------------- |
-| Header     | `widgets/header`          | Шапка, контейнер для menu-\*                                                     |
-| MenuCards  | `widgets/menu-cards`      | Навигация к карточкам и режимам обучения                                         |
-| MenuTools  | `widgets/menu-tools`      | Инструменты (конструктор сценариев и др.)                                        |
-| MenuHelp   | `widgets/menu-help`       | Справка                                                                          |
-| MenuUser   | `widgets/menu-user`       | Профиль пользователя                                                             |
-| Navigation | `widgets/navigation`      | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
-| MainLayout | `widgets/main-layout`     | Область контента                                                                 |
-| Footer     | `widgets/footer`          | Подвал                                                                           |
+| Компонент                  | Путь                                                 | Назначение                                                                       |
+| -------------------------- | ---------------------------------------------------- | -------------------------------------------------------------------------------- |
+| MainHeader                 | `widgets/main-header`                                | Шапка, контейнер для menu-\*                                                     |
+| MenuCards                  | `widgets/menu-cards`                                 | Навигация к карточкам и режимам обучения                                         |
+| MenuTools                  | `widgets/menu-tools`                                 | Инструменты (конструктор сценариев и др.)                                        |
+| MenuHelp                   | `widgets/menu-help`                                  | Справка                                                                          |
+| MenuUser                   | `widgets/menu-user`                                  | Профиль пользователя                                                             |
+| SidebarNavigationLeft      | `widgets/sidebar-navigation-left`                    | Боковое меню: главная, обучение, каталог карточек, конструктор, справка, профиль |
+| MainLayout                 | `widgets/main-layout`                                | Область контента                                                                 |
+| MainFooter                 | `widgets/main-footer`                                | Подвал                                                                           |
 
 Компоненты `menu-*` встроены в **header**; боковое **navigation** дублирует ключевые маршруты обучения и инструментов (шапка при этом сохраняется).
 
@@ -154,12 +156,20 @@ export const routes: Routes = [
     children: [
       { path: '', redirectTo: 'journey', pathMatch: 'full' },
       { path: 'home', loadComponent: () => import('./pages/home/home-page/home-page.component').then(m => m.HomePageComponent) },
+      { path: 'home/progress', loadComponent: () => import('./features/learning-results/components/learning-progress/learning-progress.component').then(m => m.LearningProgressComponent) },
+      { path: 'home-learning-tab', loadComponent: () => import('./features/home/components/home-learning-tab/home-learning-tab.component').then(m => m.HomeLearningTabComponent) },
       { path: 'cards/select', loadComponent: () => import('./pages/card-select/card-select-page/card-select-page.component').then(m => m.CardSelectPageComponent) },
       { path: 'courses', loadComponent: () => import('./pages/course-catalog/course-catalog-page/course-catalog-page.component').then(m => m.CourseCatalogPageComponent) },
+      { path: 'courses/tabs/courses', loadComponent: () => import('./features/course-catalog/components/course-card-list/course-card-list.component').then(m => m.CourseCatalogCoursesComponent) },
+      { path: 'courses/tabs/settings', loadComponent: () => import('./features/course-catalog/components/course-settings/course-settings.component').then(m => m.CourseCatalogSettingsComponent) },
+      { path: 'courses/tabs/programs', loadComponent: () => import('./features/course-catalog/components/program-list/program-list.component').then(m => m.CourseCatalogProgramsComponent) },
       { path: 'tools/scenario-builder', loadComponent: () => import('./pages/scenario-builder/scenario-builder-page/scenario-builder-page.component').then(m => m.ScenarioBuilderPageComponent) },
       { path: 'tools/courses', loadComponent: () => import('./pages/course-builder/course-builder-page/course-builder-page.component').then(m => m.CourseBuilderPageComponent) },
       { path: 'tools/cards', loadComponent: () => import('./pages/card-editor/card-editor-page/card-editor-page.component').then(m => m.CardEditorPageComponent) },
+      { path: 'tools/card-editor', redirectTo: '/tools/cards', pathMatch: 'full' },
+      { path: 'tools/card-catalog', redirectTo: '/tools/cards', pathMatch: 'full' },
       { path: 'help', loadComponent: () => import('./pages/help/help-page.component').then(m => m.HelpPageComponent) },
+      { path: 'help/scenarios', loadComponent: () => import('./pages/help-usage-scenarios/help-usage-scenarios-page.component').then(m => m.HelpUsageScenariosPageComponent) },
       { path: 'user', loadComponent: () => import('./pages/user/user-page.component').then(m => m.UserPageComponent) },
       { path: '**', redirectTo: 'home' },
     ],
@@ -201,9 +211,15 @@ Card (kind) → CardHostComponent → SelectCardComponent | CodeSelectCardCompon
 ```typescript
 @Injectable({ providedIn: 'root' })
 export class CardSelectStore {
-  readonly cards = signal<readonly SelectCard[]>([]);
+  readonly cards = signal<readonly Card[]>([]);
+  readonly scenarioId = signal<string>('demo-scenario');
+  readonly sessionDirection = signal<CardDirection>('known-to-learning');
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
+  readonly currentIndex = signal(0);
+  readonly selectedIndex = signal<number | null>(null);
+  readonly answerText = signal('');
+  readonly memoryComplete = signal(false);
 
   // методы load(), selectAnswer(), reset() — mutating через update/set
 }
@@ -392,11 +408,11 @@ session.summary(): { character, totalMistakes, strokeCount }
 Единый паттерн управления состоянием для фич:
 
 1. **Тип состояния** — в `models/<store-name>.ts` (например, `CourseCatalogState` + `initialState`).
-2. **Стор** — в `services/<store-name>.store.ts`, `@Injectable({ providedIn: 'root' })`.
+2. **Стор** — в `services/<store-name>.store.ts`, обычно `@Injectable({ providedIn: 'root' })` (исключение: `CardEditorStore` предоставляется на уровне компонента/dialoga).
 3. **Внутреннее состояние** — `#state = signal<State>({ ...initialState })`.
 4. **Селекторы** — `get x(): Signal<T> { return computed(() => this.#state().x); }`.
 5. **Мутации** — `setX(value)` через `this.#state.update(...)`; батч-инициализация — `initializeFromPreferences(...)`.
-6. **Один стор = одна ответственность**. Пример: `CourseCatalogStore` (каталог) + `ProfileDraftsStore` (профиль) + `CourseTabDraftsStore` (вкладка «Курсы») + `SettingsDraftsStore` (настройки) вместо единого god-store.
+6. **Один стор = одна ответственность**. Пример: `CourseCatalogStore` (каталог) + `DraftsStore` (черновики — объединённый стор для вкладки «Курсы» и настроек) вместо единого god-store.
 
 ### Асинхронные состояния (RemoteData)
 
