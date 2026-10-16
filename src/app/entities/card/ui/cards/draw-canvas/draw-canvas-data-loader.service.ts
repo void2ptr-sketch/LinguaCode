@@ -78,6 +78,7 @@ export class DrawCanvasDataLoaderService {
 
     // Loading
     this.hanziLoadState.set('loading');
+    this.activeCharacterRequest = trimmed;
     const model = await this.hanziData.loadCharacter(trimmed);
 
     // Only update if this is still the active request
@@ -85,7 +86,6 @@ export class DrawCanvasDataLoaderService {
       return;
     }
 
-    this.activeCharacterRequest = trimmed;
     this.hanziModel.set(model);
     this.hanziLoadState.set(model ? 'ready' : this.hanziData.getLoadState(trimmed));
   }
