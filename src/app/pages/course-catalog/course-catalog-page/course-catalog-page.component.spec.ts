@@ -29,6 +29,8 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
+import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
+import { CourseCatalogPreferencesService } from '../../../features/course-catalog/services/course-catalog-preferences.service';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
@@ -63,6 +65,8 @@ describe('CourseCatalogPageComponent', () => {
   let mockRouter: Partial<Router>;
   let mockCatalogStore: Partial<CourseCatalogStore>;
   let mockDrafts: Partial<DraftsStore>;
+  let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
+  let mockPreferences: Partial<CourseCatalogPreferencesService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -146,6 +150,36 @@ describe('CourseCatalogPageComponent', () => {
 
     mockRouter = {
       navigate: vi.fn().mockResolvedValue(true),
+    };
+
+    mockPairManager = {
+      trackActivePairChange: vi.fn(() => undefined),
+      setActive: vi.fn(),
+      removePair: vi.fn(),
+      addPair: vi.fn().mockReturnValue(true),
+      savePairSettings: vi.fn(),
+      syncPairSettingsDrafts: vi.fn(),
+      settingsEntry: vi.fn(() => mockPairs[0] ?? null),
+      shouldShowCjkPreferences: vi.fn(() => false),
+      shouldShowPhoneticPreferences: vi.fn(() => false),
+      shouldShowTracingSettings: vi.fn(() => false),
+      romanizationOptions: vi.fn(() => [
+        { value: 'pinyin' as const, label: 'Пиньинь' },
+        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
+      ]),
+    };
+
+    mockPreferences = {
+      canRemovePair: computed(() => mockPairs.length > 1),
+      settingsEntry: signal(mockPairs[0] ?? null),
+      settingsCourseLabel: computed(() => 'ru → en'),
+      showCjkPreferences: signal(false),
+      showPhoneticPreferences: signal(false),
+      showTracingSettings: signal(false),
+      romanizationOptions: computed(() => [
+        { value: 'pinyin' as const, label: 'Пиньинь' },
+        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
+      ]),
     };
 
     // Mock for CourseCatalogStore with proper Signal types
@@ -294,6 +328,8 @@ describe('CourseCatalogPageComponent', () => {
         { provide: DraftsStore, useValue: mockDrafts },
         { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
         { provide: Router, useValue: mockRouter },
+        { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
+        { provide: CourseCatalogPreferencesService, useValue: mockPreferences },
       ],
     }).compileComponents();
   });
@@ -404,22 +440,7 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.languagePairInvalid()).toBe(true);
   });
 
-  it('should compute canRemovePair based on language pairs count', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.canRemovePair()).toBe(false);
-
-    (
-      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
-    ).set([makePair('pair-1', 'ru', 'en'), makePair('pair-2', 'en', 'zh')]);
-    fixture.detectChanges();
-
-    expect(component.canRemovePair()).toBe(true);
-  });
-
-  it('should call user store setActive when setActive called', async () => {
+  it('should call pair manager setActive when setActive called', async () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -428,10 +449,10 @@ describe('CourseCatalogPageComponent', () => {
     component.setActive('pair-1');
     await fixture.whenStable();
 
-    expect(mockUserStore.setActiveLanguagePair).toHaveBeenCalledWith('pair-1');
+    expect(mockPairManager.setActive).toHaveBeenCalledWith('pair-1');
   });
 
-  it('should call user store removeLanguagePair when removePair called', async () => {
+  it('should call pair manager removePair when removePair called', async () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -440,7 +461,7 @@ describe('CourseCatalogPageComponent', () => {
     component.removePair('pair-1');
     await fixture.whenStable();
 
-    expect(mockUserStore.removeLanguagePair).toHaveBeenCalledWith('pair-1');
+    expect(mockPairManager.removePair).toHaveBeenCalledWith('pair-1');
   });
 
   it('should not add language pair when languages are the same', async () => {
