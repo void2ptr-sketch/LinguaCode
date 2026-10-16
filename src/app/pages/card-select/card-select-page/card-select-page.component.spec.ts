@@ -394,8 +394,6 @@ describe('CardSelectPageComponent', () => {
     component.store.setScenario('s1', []);
 
     vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
-    const persistSpy = vi.spyOn(component, 'persistLearningSession' as never);
-    (persistSpy as ReturnType<typeof vi.fn>).mockImplementation(() => void 0);
     await component.goToNextLessonScenario();
 
     expect(component.activeTabIndex()).toBe(3);
@@ -412,80 +410,9 @@ describe('CardSelectPageComponent', () => {
     component.selectedScenarioId.set('s1');
 
     vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
-    const persistSpy2 = vi.spyOn(component, 'persistLearningSession' as never);
-    (persistSpy2 as ReturnType<typeof vi.fn>).mockImplementation(() => void 0);
     await component.goToNextLessonScenario();
 
     expect(component.activeTabIndex()).toBe(0);
     expect(component.loadCards).not.toHaveBeenCalled();
-  });
-
-  // ─── selectOption ─────────────────────────────────────────────────────
-
-  it('should delegate selectOption to store', () => {
-    const spy = vi.spyOn(component.store, 'selectOption');
-    component.selectOption(2);
-    expect(spy).toHaveBeenCalledWith(2);
-  });
-
-  // ─── setAnswerText ────────────────────────────────────────────────────
-
-  it('should delegate setAnswerText to store', () => {
-    const spy = vi.spyOn(component.store, 'setAnswerText');
-    component.setAnswerText('hello');
-    expect(spy).toHaveBeenCalledWith('hello');
-  });
-
-  // ─── setMemoryComplete ────────────────────────────────────────────────
-
-  it('should delegate setMemoryComplete to store', () => {
-    const spy = vi.spyOn(component.store, 'setMemoryComplete');
-    component.setMemoryComplete(true);
-    expect(spy).toHaveBeenCalledWith(true);
-  });
-
-  // ─── setDrawSubmitted ─────────────────────────────────────────────────
-
-  it('should delegate setDrawSubmitted to store', () => {
-    const spy = vi.spyOn(component.store, 'setDrawSubmitted');
-    component.setDrawSubmitted(true);
-    expect(spy).toHaveBeenCalledWith(true);
-  });
-
-  // ─── setDrawAnswer ────────────────────────────────────────────────────
-
-  it('should delegate setDrawAnswer to store', () => {
-    const spy = vi.spyOn(component.store, 'setDrawAnswer');
-    const payload = {
-      canvasMode: 'memory' as const,
-      canvasSize: { width: 100, height: 100 },
-      strokesByCharacter: [],
-    };
-    component.setDrawAnswer(payload);
-    expect(spy).toHaveBeenCalledWith(payload);
-  });
-
-  // ─── handleTimeExpired ────────────────────────────────────────────────
-
-  it('should delegate handleTimeExpired to store', () => {
-    const spy = vi.spyOn(component.store, 'handleTimeExpired');
-    component.handleTimeExpired();
-    expect(spy).toHaveBeenCalled();
-  });
-
-  // ─── onDirectionChange ────────────────────────────────────────────────
-
-  it('should delegate onDirectionChange to store', () => {
-    const spy = vi.spyOn(component.store, 'setSessionDirection');
-    component.onDirectionChange('learning-to-known');
-    expect(spy).toHaveBeenCalledWith('learning-to-known');
-  });
-
-  // ─── nextCard ─────────────────────────────────────────────────────────
-
-  it('should delegate nextCard to store', () => {
-    const spy = vi.spyOn(component.store, 'nextCard');
-    component.nextCard();
-    expect(spy).toHaveBeenCalled();
   });
 });

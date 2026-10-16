@@ -395,4 +395,49 @@ describe('CardSelectFlowService', () => {
       expect(service.activeTabIndex()).toBe(LEARNING_TAB.course);
     });
   });
+
+  describe('applyLessonFromCourse', () => {
+    it('should apply lesson from currentCourse without HTTP call', async () => {
+      const course = {
+        id: 'c1',
+        title: 'Test Course',
+        lessons: [
+          { id: 'l1', title: 'Lesson 1', scenarioIds: ['s1', 's2'] },
+        ],
+      } as unknown as CourseWithLessons;
+
+      service.selectedCourseId.set('c1');
+      service.currentCourse.set(course);
+
+      await service.applyLessonFromCourse('l1');
+
+      expect(service.selectedLessonId()).toBe('l1');
+      expect(service.lessonTitle()).toBe('Lesson 1');
+      expect(service.lessonScenarioIds()).toEqual(['s1', 's2']);
+    });
+
+    it('should do nothing when course is not loaded', async () => {
+      service.selectedCourseId.set('c1');
+      service.currentCourse.set(null);
+
+      await service.applyLessonFromCourse('l1');
+
+      expect(service.selectedLessonId()).toBe('');
+    });
+
+    it('should do nothing when lesson is not found', async () => {
+      const course = {
+        id: 'c1',
+        title: 'Test Course',
+        lessons: [{ id: 'l1', title: 'Lesson 1', scenarioIds: ['s1'] }],
+      } as unknown as CourseWithLessons;
+
+      service.selectedCourseId.set('c1');
+      service.currentCourse.set(course);
+
+      await service.applyLessonFromCourse('nonexistent');
+
+      expect(service.selectedLessonId()).toBe('');
+    });
+  });
 });

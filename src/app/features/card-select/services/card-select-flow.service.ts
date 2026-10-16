@@ -1,4 +1,4 @@
-import { Injectable, computed, signal, inject } from '@angular/core';
+import { Injectable, computed, signal, effect, inject, untracked } from '@angular/core';
 import type { CardDifficulty } from '../../../entities/card/model';
 
 import type { CourseWithLessons } from '../../../entities/course/model';
@@ -14,6 +14,7 @@ import {
 } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { UserStore } from '../../../entities/user/model/user.store';
 
 /** Tab indices for the learning flow: course → lessons → scenarios → learning. */
 export const LEARNING_TAB = {
@@ -36,6 +37,76 @@ export class CardSelectFlowService {
   private readonly cardSearchService = inject(CardSearchService);
   private readonly scenarioSearchService = inject(ScenarioSearchService);
   private readonly logger = inject(AppLoggerService);
+  private readonly userStore = inject(UserStore);
+
+  // ─── Persistence effect ────────────────────────────────────────────────
+
+  /**
+   * Syncs learning session state to UserStore when flow signals change.
+   *
+   * @remarks
+   * Uses `untracked` + `queueMicrotask` to avoid the Angular rule:
+   * "cannot write to signals inside an effect". Direct calls to
+   * `this.userStore.updateLearningSession()` inside the effect body would
+   * trigger `untracked` warnings or infinite loops.
+   *
+   * `queueMicrotask` defers the write to the next microtask, breaking the
+   * signal-read → effect-trigger cycle. This is an intentional workaround —
+   * the persistence is eventually consistent, not synchronous.
+   *
+   * Limitations: no error handling for localStorage writes; the microtask
+   * may run after the service is destroyed (harmless — UserStore handles it).
+   * If strict synchronous persistence is needed, move `updateLearningSession`
+   * calls into each mutator method instead of using an effect.
+   */
+  private readonly persistSessionEffect = effect(() => {
+    const courseId = this.selectedCourseId();
+    const lessonId = this.selectedLessonId();
+    const scenarioId = this.selectedScenarioId();
+
+    untracked(() => {
+      queueMicrotask(() => {
+        this.userStore.updateLearningSession({
+          ...(courseId ? { activeCourseId: courseId } : {}),
+          ...(lessonId ? { lastLessonId: lessonId } : {}),
+          ...(scenarioId ? { lastScenarioId: scenarioId } : {}),
+        });
+      });
+    });
+  });
+
+  // ─── User preferences ────────────────────────────────────────────────
+
+  /** Font size preference from user settings. */
+  readonly fontSize = inject(UserStore).preferences;
+
+  /**
+   * Resets session state when the active language pair changes.
+   *
+   * @remarks
+   * This effect lives in a `providedIn: 'root'` service, so it is always
+   * active for the entire application lifetime — not just when the
+   * card-select page is open. This is intentional: it enables **global
+   * session resume**. When the user switches language pairs anywhere in the
+   * app (e.g. from the header switcher), the flow state is reset so that
+   * the next time the user opens the card-select page, they start fresh
+   * with the correct language pair.
+   *
+   * Behavior change vs. previous implementation: previously the reset was
+   * a page-level method called only from the page component. Now it fires
+   * globally, which means the reset happens even if the page is not mounted.
+   * The effect itself is harmless when the page is not open (signals just
+   * read and compare — no side effects in the untracked branch).
+   */
+  private readonly resetOnActivePairChange = effect(() => {
+    const activeId = this.userStore.activeLanguagePairId();
+    if (this._lastKnownActiveLanguagePairId !== null && this._lastKnownActiveLanguagePairId !== activeId) {
+      untracked(() => this.resetAll());
+    }
+    this._lastKnownActiveLanguagePairId = activeId;
+  });
+
+  private _lastKnownActiveLanguagePairId: string | null = null;
 
   // ─── Flow state signals ────────────────────────────────────────────────
 
@@ -214,6 +285,9 @@ export class CardSelectFlowService {
       await this.loadScenarioDifficultyMap(course);
     } catch (error) {
       this.logger.warn('CardSelect: failed to load course', error);
+      // Reset courseId on failure so the lessons tab doesn't appear available
+      // without an actual course loaded.
+      this.selectedCourseId.set('');
       this.courseTitle.set('');
       this.currentCourse.set(null);
     }
@@ -242,6 +316,10 @@ export class CardSelectFlowService {
   /**
    * Applies a lesson from a deep link (lessonId query parameter).
    *
+   * @remarks
+   * Reads the course from `currentCourse()` to avoid a duplicate HTTP request
+   * when called right after `loadCourse()` in `ngOnInit`.
+   *
    * @param lessonId - The lesson ID to apply.
    */
   async applyLessonFromCourse(lessonId: string): Promise<void> {
@@ -250,18 +328,20 @@ export class CardSelectFlowService {
       return;
     }
 
-    try {
-      const course = await this.courseSearchService.getById(courseId);
-      const lesson = course.lessons.find((item) => item.id === lessonId);
-      if (!lesson) {
-        return;
-      }
-      this.selectedLessonId.set(lesson.id);
-      this.lessonTitle.set(lesson.title);
-      this.lessonScenarioIds.set(lesson.scenarioIds);
-    } catch (error) {
-      this.logger.debug('CardSelect: invalid deep link lesson', error);
+    // Reuse the already-loaded course to avoid a second HTTP call.
+    const course = this.currentCourse();
+    if (!course) {
+      return;
     }
+
+    const lesson = course.lessons.find((item) => item.id === lessonId);
+    if (!lesson) {
+      return;
+    }
+
+    this.selectedLessonId.set(lesson.id);
+    this.lessonTitle.set(lesson.title);
+    this.lessonScenarioIds.set(lesson.scenarioIds);
   }
 
   /**
@@ -455,22 +535,13 @@ export class CardSelectFlowService {
 
   /**
    * Resets all flow state to initial values.
+   *
+   * @remarks
+   * Delegates to `resetCourseState()` — the two methods were merged because
+   * they became semantically identical after the refactoring.
    */
   resetAll(): void {
-    this.selectedCourseId.set('');
-    this.selectedLessonId.set('');
-    this.currentCourse.set(null);
-    this.selectedDifficulty.set(null);
-    this.scenarioDifficultyMap.set(new Map());
-    this.courseTitle.set('');
-    this.lessonTitle.set('');
-    this.lessonScenarioIds.set([]);
-    this.courseLessons.set([]);
-    this.selectedScenarioId.set('');
-    this.scenarioTitle.set('');
-    this.scenarioSourceLabel.set('');
-    this.missingCardsWarning.set(null);
-    this.activeTabIndex.set(LEARNING_TAB.course);
+    this.resetCourseState();
   }
 
   // ─── Private helpers ──────────────────────────────────────────────────

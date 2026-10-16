@@ -20,9 +20,7 @@ import { CoursePickerSectionComponent } from '../../../features/card-select/comp
 import { LessonPickerSectionComponent } from '../../../features/card-select/components/lesson-picker-section/lesson-picker-section.component';
 import { ScenarioPickerSectionComponent } from '../../../features/card-select/components/scenario-picker-section/scenario-picker-section.component';
 import { LearningZoneComponent } from '../../../features/card-select/components/learning-zone/learning-zone.component';
-import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
 import type { CardDifficulty } from '../../../entities/card/model';
-import type { DrawAnswerPayload } from '../../../entities/chinese/model/draw-answer.types';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
 import { DIFFICULTY_LABELS } from '../../../entities/card/lib/catalog-labels';
 import { cardSupportsSessionDirection } from '../../../entities/card/utils/card-direction.utils';
@@ -168,18 +166,9 @@ export class CardSelectPageComponent implements OnInit {
     ];
   });
 
-  readonly fontSize = this.userStore.preferences;
+  readonly fontSize = this.flow.fontSize;
 
   // ─── Effects ──────────────────────────────────────────────────────────
-
-  /** Resets session state when the active language pair changes. */
-  private readonly resetOnActivePairChange = effect(() => {
-    const activeId = this.userStore.activeLanguagePairId();
-    if (this._lastKnownActiveLanguagePairId !== null && this._lastKnownActiveLanguagePairId !== activeId) {
-      this.resetSessionState();
-    }
-    this._lastKnownActiveLanguagePairId = activeId;
-  });
 
   /** Auto-checks draw card answers when the store receives them. */
   private readonly autoCheckDrawAnswer = effect(() => {
@@ -189,8 +178,6 @@ export class CardSelectPageComponent implements OnInit {
       untracked(() => this.checkAnswer());
     }
   });
-
-  private _lastKnownActiveLanguagePairId: string | null = null;
 
   // ─── Lifecycle ────────────────────────────────────────────────────────
 
@@ -229,16 +216,6 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
-  // ─── Persistence helper ───────────────────────────────────────────────
-
-  private persistLearningSession(
-    patch: Partial<{ activeCourseId: string; lastLessonId: string; lastScenarioId: string }>,
-  ): void {
-    queueMicrotask(() => {
-      this.userStore.updateLearningSession(patch);
-    });
-  }
-
   // ─── Event handlers (delegates) ───────────────────────────────────────
 
   goToTab(tabIndex: number): void {
@@ -255,14 +232,9 @@ export class CardSelectPageComponent implements OnInit {
 
   async onCourseChange(courseId: string): Promise<void> {
     if (courseId) {
-      const prevId = this.selectedCourseId();
       await this.flow.loadCourse(courseId);
-      if (prevId !== courseId) {
-        this.persistLearningSession({ activeCourseId: courseId, lastLessonId: '', lastScenarioId: '' });
-      }
     } else {
       this.flow.resetCourseState();
-      this.persistLearningSession({ activeCourseId: '', lastLessonId: '', lastScenarioId: '' });
     }
   }
 
@@ -278,7 +250,6 @@ export class CardSelectPageComponent implements OnInit {
 
   async onLessonPick(payload: LessonPickPayload): Promise<void> {
     this.flow.onLessonPick(payload);
-    this.persistLearningSession({ lastLessonId: payload.lessonId });
   }
 
   async onScenarioChange(scenarioId: string): Promise<void> {
@@ -291,12 +262,6 @@ export class CardSelectPageComponent implements OnInit {
     }
 
     await this.loadCards();
-
-    this.persistLearningSession({
-      ...(this.selectedCourseId() ? { activeCourseId: this.selectedCourseId() } : {}),
-      ...(this.selectedLessonId() ? { lastLessonId: this.selectedLessonId() } : {}),
-      lastScenarioId: scenarioId,
-    });
   }
 
   onScenarioLabelChange(label: string): void {
@@ -327,16 +292,6 @@ export class CardSelectPageComponent implements OnInit {
     }
   }
 
-  // Store delegation methods
-  selectOption(index: number): void { this.store.selectOption(index); }
-  setAnswerText(value: string): void { this.store.setAnswerText(value); }
-  setMemoryComplete(value: boolean): void { this.store.setMemoryComplete(value); }
-  setDrawSubmitted(value: boolean): void { this.store.setDrawSubmitted(value); }
-  setDrawAnswer(payload: DrawAnswerPayload | null): void { this.store.setDrawAnswer(payload); }
-  handleTimeExpired(): void { this.store.handleTimeExpired(); }
-  onDirectionChange(direction: CardDirection): void { this.store.setSessionDirection(direction); }
-  nextCard(): void { this.store.nextCard(); }
-
   /** Checks the current answer and records the result. */
   checkAnswer(): void {
     const card = this.store.currentCard();
@@ -355,12 +310,6 @@ export class CardSelectPageComponent implements OnInit {
       lessonId: this.selectedLessonId() || undefined,
       courseId: this.selectedCourseId() || undefined,
     });
-
-    this.persistLearningSession({
-      activeCourseId: this.selectedCourseId() || undefined,
-      lastLessonId: this.selectedLessonId() || undefined,
-      lastScenarioId: this.store.scenarioId(),
-    });
   }
 
   async goToNextLessonScenario(): Promise<void> {
@@ -370,15 +319,5 @@ export class CardSelectPageComponent implements OnInit {
     }
     this.flow.onScenarioChange(nextId);
     await this.loadCards();
-    this.persistLearningSession({
-      ...(this.selectedCourseId() ? { activeCourseId: this.selectedCourseId() } : {}),
-      ...(this.selectedLessonId() ? { lastLessonId: this.selectedLessonId() } : {}),
-      lastScenarioId: nextId,
-    });
-  }
-
-  private resetSessionState(): void {
-    this.store.reset();
-    this.flow.resetAll();
   }
 }
