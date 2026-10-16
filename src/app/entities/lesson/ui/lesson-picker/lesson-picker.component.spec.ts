@@ -8,6 +8,7 @@ import { vi } from 'vitest';
 import { LessonPickerComponent } from './lesson-picker.component';
 import { CourseSearchService } from '../../../course';
 import { LearningResultsStore } from '../../../learning/model/learning-results.store';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import type { CourseWithLessons, Lesson } from '../../../course/model';
 
 function makeLesson(
@@ -70,6 +71,7 @@ describe('LessonPickerComponent', () => {
       providers: [
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
         provideNoopAnimations(),
       ],
     }).compileComponents();

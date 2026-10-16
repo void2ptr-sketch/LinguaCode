@@ -4,6 +4,7 @@ import { TestBed } from '@angular/core/testing';
 import { AuthApiService } from '../api/auth-api.service';
 import { AuthTokenStorage } from './auth-token.storage';
 import { AuthStore } from './auth.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { AuthSession, AuthTokens } from '../model/auth.types';
 
 describe('AuthStore', () => {
@@ -36,6 +37,7 @@ describe('AuthStore', () => {
         AuthStore,
         AuthTokenStorage,
         { provide: AuthApiService, useValue: mockAuthApi },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
       ],
     });
 

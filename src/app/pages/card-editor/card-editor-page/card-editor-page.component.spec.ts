@@ -8,7 +8,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../../entities/course/api/mock/courses-api.mock.interceptor';
@@ -20,6 +20,7 @@ import { CardCatalogSearchStore } from '../../../entities/card/lib/card-catalog-
 import { UserStore } from '../../../entities/user/model/user.store';
 import { CardEditorDialogService } from '../../../features/card-editor/components/card-editor-dialog/card-editor-dialog.service';
 import { CardTryDialogService } from '../../../features/card-editor/components/card-try-dialog/card-try-dialog.service';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { ContentLanguage } from '../../../entities/card/model';
 
 describe('CardEditorPageComponent', () => {
@@ -52,8 +53,14 @@ describe('CardEditorPageComponent', () => {
         UserStore,
         CardEditorDialogService,
         CardTryDialogService,
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
       ],
     }).compileComponents();
+  });
+
+  afterEach(() => {
+    fixture?.destroy();
+    TestBed.resetTestingModule();
   });
 
   beforeEach(() => {

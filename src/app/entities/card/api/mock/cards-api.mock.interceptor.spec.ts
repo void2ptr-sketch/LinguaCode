@@ -24,6 +24,7 @@ describe('cards API (mock interceptor)', () => {
 
   afterEach(() => {
     localStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('searches cards via GET /api/cards/search', async () => {

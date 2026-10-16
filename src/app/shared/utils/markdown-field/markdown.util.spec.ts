@@ -98,19 +98,37 @@ describe('renderMarkdownToHtml', () => {
   });
 
   it('strips script tags from rendered html (XSS protection)', () => {
-    const html = renderMarkdownToHtml('<script>alert(1)</script>', sanitizer);
-    expect(html).not.toContain('<script');
-    expect(html).not.toContain('alert(1)');
+    const originalWarn = console.warn;
+    console.warn = vi.fn();
+    try {
+      const html = renderMarkdownToHtml('<script>alert(1)</script>', sanitizer);
+      expect(html).not.toContain('<script');
+      expect(html).not.toContain('alert(1)');
+    } finally {
+      console.warn = originalWarn;
+    }
   });
 
   it('sanitizes javascript: protocol in image src', () => {
-    const html = renderMarkdownToHtml('![onerror](javascript:alert(1))', sanitizer);
-    expect(html).toContain('unsafe:javascript:alert(1)');
+    const originalWarn = console.warn;
+    console.warn = vi.fn();
+    try {
+      const html = renderMarkdownToHtml('![onerror](javascript:alert(1))', sanitizer);
+      expect(html).toContain('unsafe:javascript:alert(1)');
+    } finally {
+      console.warn = originalWarn;
+    }
   });
 
   it('sanitizes javascript: protocol in href', () => {
-    const html = renderMarkdownToHtml('[click](javascript:alert(1))', sanitizer);
-    expect(html).toContain('unsafe:javascript:alert(1)');
+    const originalWarn = console.warn;
+    console.warn = vi.fn();
+    try {
+      const html = renderMarkdownToHtml('[click](javascript:alert(1))', sanitizer);
+      expect(html).toContain('unsafe:javascript:alert(1)');
+    } finally {
+      console.warn = originalWarn;
+    }
   });
 
   it('trims input before rendering', () => {

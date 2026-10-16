@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LessonPickerSectionComponent } from './lesson-picker-section.component';
+import { CourseSearchService } from '../../../../entities/course';
 
 @Component({
   standalone: true,
@@ -40,6 +41,26 @@ describe('LessonPickerSectionComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [WrapperComponent],
+      providers: [
+        // The nested lesson picker loads the course on init. Stub the course
+        // service so the unit test does not perform real HTTP requests.
+        {
+          provide: CourseSearchService,
+          useValue: {
+            getById: vi.fn().mockResolvedValue({
+              id: 'test-course-id',
+              title: 'Test Course',
+              description: '',
+              authorId: 'author-1',
+              languagePair: { known: 'ru', learning: 'zh' },
+              lessonIds: [],
+              published: true,
+              updatedAt: '2024-01-01T00:00:00.000Z',
+              lessons: [],
+            }),
+          },
+        },
+      ],
     }).compileComponents();
 
     fixture = TestBed.createComponent(WrapperComponent);

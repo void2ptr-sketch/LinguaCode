@@ -27,6 +27,7 @@ describe('errorInterceptor', () => {
 
   afterEach(() => {
     httpMock.verify();
+    TestBed.resetTestingModule();
   });
 
   describe('API errors', () => {

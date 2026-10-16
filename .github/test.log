@@ -1,0 +1,297 @@
+
+> lingua-code@0.1.0 test:ci
+> ng test --no-watch --no-progress
+
+Application bundle generation complete. [3.511 seconds] - 2026-10-16T08:16:19.781Z
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv5.0.3 [39m[90m/home/alex/workspace/Angular.LinguaCode[39m
+
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/markdown-field/markdown-field.component.spec.ts [2m([22m[2m39 tests[22m[2m)[22m[33m 1028[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/ui/pinyin-keyboard/pinyin-keyboard.component.spec.ts [2m([22m[2m42 tests[22m[2m)[22m[33m 991[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/lexeme-fields/lexeme-fields.component.spec.ts [2m([22m[2m31 tests[22m[2m)[22m[33m 1153[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form-settings-panel/card-form-settings-panel.component.spec.ts [2m([22m[2m25 tests[22m[2m)[22m[33m 1393[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form-phonetics-panel/card-form-phonetics-panel.component.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 1386[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/scenario-picker-section/scenario-picker-section.component.spec.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 554[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/components/course-builder-dialog/course-builder-dialog.component.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1048[2mms[22m[39m
+   [32m✓[39m CourseBuilderDialogComponent [2m(8)[22m
+     [33m[2m✓[22m[39m should create[33m 336[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/user/user-page.component.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1557[2mms[22m[39m
+   [32m✓[39m UserPageComponent [2m(17)[22m
+     [33m[2m✓[22m[39m should create[33m 316[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/pagination/ui-pagination.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 501[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/learning-zone/learning-zone.component.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 1217[2mms[22m[39m
+   [32m✓[39m LearningZoneComponent [2m(21)[22m
+     [33m[2m✓[22m[39m should create[33m 543[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/card-catalog/scenario-card-criteria-editor/scenario-card-criteria-editor.component.spec.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 1472[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-create-wizard/card-create-wizard.component.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 1720[2mms[22m[39m
+   [32m✓[39m CardCreateWizardComponent [2m(16)[22m
+     [33m[2m✓[22m[39m should create[33m 309[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-options-editor/card-options-editor.component.spec.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 1897[2mms[22m[39m
+   [32m✓[39m CardOptionsEditorComponent [2m(24)[22m
+     [33m[2m✓[22m[39m should create[33m 312[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/card-catalog/card-catalog-filters/card-catalog-filters.component.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[33m 1791[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/kind-forms/media-card-form/media-card-form.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 216[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-catalog/components/program-list/program-list.component.spec.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 1991[2mms[22m[39m
+   [32m✓[39m CourseCatalogProgramsComponent [2m(23)[22m
+     [33m[2m✓[22m[39m should create[33m 351[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/kind-forms/code-select-card-form/code-select-card-form.component.spec.ts [2m([22m[2m18 tests[22m[2m)[22m[33m 639[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/sound-card/sound-card.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 438[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/course-catalog/course-catalog-page/course-catalog-page.component.spec.ts [2m([22m[2m23 tests[22m[2m)[22m[33m 1970[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/course-builder.smoke.spec.ts [2m([22m[2m1 test[22m[2m)[22m[33m 537[2mms[22m[39m
+   [32m✓[39m Course builder smoke [2m(1)[22m
+     [33m[2m✓[22m[39m should render the course builder page with course list[33m 537[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/card-editor/card-editor-page/card-editor-page.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 486[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/keyboard-card/keyboard-card.component.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 320[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/journey/components/learning-journey-map/learning-journey-map.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 524[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/card-select.smoke.spec.ts [2m([22m[2m1 test[22m[2m)[22m[33m 2160[2mms[22m[39m
+   [32m✓[39m Card select smoke [2m(1)[22m
+     [33m[2m✓[22m[39m should load scenario cards and render the first question[33m 2159[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/help-usage-scenarios/help-usage-scenarios-page.component.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[33m 1312[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/journey/journey-page/journey-page.component.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 900[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/help/help-page.component.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 728[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/app.smoke.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 992[2mms[22m[39m
+   [32m✓[39m App smoke [2m(3)[22m
+     [33m[2m✓[22m[39m should render home route[33m 463[2mms[22m[39m
+     [33m[2m✓[22m[39m should render user profile route[33m 388[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/draw-canvas/draw-canvas.component.spec.ts [2m([22m[2m50 tests[22m[2m)[22m[33m 1091[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/components/course-form/course-form.component.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[33m 417[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/symbol-card/symbol-card.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 472[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/card-form.component.spec.ts [2m([22m[2m49 tests[22m[2m)[22m[33m 2154[2mms[22m[39m
+   [32m✓[39m CardFormComponent [2m(49)[22m
+     [33m[2m✓[22m[39m should create[33m 541[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/sidebar-navigation-left/sidebar-navigation-left.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 338[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/timed-card/timed-card.component.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 348[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/journey.smoke.spec.ts [2m([22m[2m1 test[22m[2m)[22m[33m 481[2mms[22m[39m
+   [32m✓[39m Journey page smoke [2m(1)[22m
+     [33m[2m✓[22m[39m should render the journey map with course locations[33m 480[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/draw-card/draw-card.component.spec.ts [2m([22m[2m51 tests[22m[2m)[22m[33m 2728[2mms[22m[39m
+   [32m✓[39m DrawCardComponent [2m(51)[22m
+     [33m[2m✓[22m[39m should create[33m 375[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-catalog/components/course-card-list/course-card-list.component.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 554[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/card-editor.smoke.spec.ts [2m([22m[2m1 test[22m[2m)[22m[33m 2680[2mms[22m[39m
+   [32m✓[39m Card editor smoke [2m(1)[22m
+     [33m[2m✓[22m[39m should render the card editor catalog with cards list[33m 2676[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/kind-forms/pairs-card-form/pairs-card-form.component.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 388[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/reading-card/reading-card.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 314[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/card-catalog/scenario-card-picker/scenario-card-picker.component.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 859[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-editor-dialog/card-editor-dialog.component.spec.ts [2m([22m[2m24 tests[22m[2m)[22m[33m 562[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/card-focus-shell/card-focus-shell.component.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-appearance-fields/card-appearance-fields.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 407[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/components/scenario-editor-form/scenario-editor-form.component.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[33m 1392[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/code-select-card/code-select-card.component.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 323[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/course-picker-section/course-picker-section.component.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 272[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/scenario-builder/scenario-builder-page/scenario-builder-page.component.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/home/components/home-learning-tab/home-learning-tab.component.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 256[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/ui/lexeme-display/lexeme-display.component.spec.ts [2m([22m[2m32 tests[22m[2m)[22m[32m 239[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-catalog/components/course-settings/course-settings.component.spec.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 417[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-meta-fields/card-meta-fields.component.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[33m 712[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/lesson-picker-section/lesson-picker-section.component.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 132[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.component.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 146[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/tone-card/tone-card.component.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 295[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-try-dialog/card-try-dialog.component.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 265[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/practice-stepper/practice-stepper.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 102[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/memory-card/memory-card.component.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 135[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/components/reset-overlay-dialog/reset-overlay-dialog.component.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 90[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/journey/components/journey-location-node/journey-location-node.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 148[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/lesson/ui/lesson-picker/lesson-picker.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 345[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/card-host/card-host.component.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 63[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/code-highlight/code-highlight.component.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 159[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/markdown-field/markdown.util.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 149[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/main-header/main-header.component.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 74[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/ui/cjk-ruby/cjk-ruby.component.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 62[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/code-highlight/code-highlight.service.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 108[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/ui/tone-colored-text/tone-colored-text.component.spec.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 117[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-editor-discard-dialog/card-editor-discard-dialog.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 186[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/components/practice-session-bar/practice-session-bar.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 100[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/home-learning.smoke.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 226[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/select-card/select-card.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 108[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/api/mock/courses-catalog.mock.handler.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/api/mock/cards-api.mock.interceptor.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/services/card-select-flow.service.spec.ts [2m([22m[2m49 tests[22m[2m)[22m[32m 39[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/menu-cards/menu-cards.component.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/home/home-page/home-page.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 105[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/kind-forms/input-card-form/input-card-form.component.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/api/mock/scenarios-catalog.mock.handler.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/services/card-select.store.spec.ts [2m([22m[2m53 tests[22m[2m)[22m[32m 59[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/home/components/learning-program-progress/learning-program-progress.component.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 49[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/api/cards-api.service.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/services/card-editor.store.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/services/course-builder.store.spec.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/main-layout/main-layout.component.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/content-seed/content-seed.repository.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-preview/card-preview.component.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 38[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/menu-help/menu-help.component.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/course-builder/course-builder-page/course-builder-page.component.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 56[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/services/scenario-builder.store.spec.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/quiz-card-question-header/quiz-card-question-header.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/quiz/hanzi-golden-quiz.spec.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/api/mock/scenarios-api.mock.interceptor.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-catalog/services/course-catalog.store.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/ui/phonetic-ipa/phonetic-ipa.component.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/menu-tools/menu-tools.component.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 47[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/api/mock/cards-catalog.mock.handler.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/menu-user/menu-user.component.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/auth/services/auth.store.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/journey/services/journey-analytics.service.spec.ts [2m([22m[2m34 tests[22m[2m)[22m[32m 51[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/learning-results/components/learning-progress/learning-progress.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 57[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-form/kind-forms/choice-card-form/choice-card-form.component.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/api/scenarios-api.service.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/active-language-pair-switcher/active-language-pair-switcher.component.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/home/components/learning-lesson-roadmap/learning-lesson-roadmap.component.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 22[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/api/courses-api.service.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/api/mock/courses-api.mock.interceptor.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/api/interceptors/auth-refresh.interceptor.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/model/user.store.spec.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 17[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.component.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/home/services/learning-dashboard.service.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/search/course-search.service.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/pagination/pagination-state.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/api/clients/client-api.service.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 16[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/theme/app-theme.service.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/utils/scenario-card-source.utils.spec.ts [2m([22m[2m46 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/search/card-search.service.spec.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/learning/model/learning-results.store.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/home/components/learning-continue-card/learning-continue-card.component.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/sync/sync-queue.service.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/search/card-search.utils.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-select/services/card-select.service.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/widgets/main-footer/main-footer.component.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/search/scenario-search.service.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/repository/card.repository.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/rendering/hanzi-geometry.utils.spec.ts [2m([22m[2m51 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/catalog-tag-groups/catalog-tag-groups.util.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/mapping/scenario-index.mapper.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/api/interceptors/auth.interceptor.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/auth/api/auth-api.service.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/services/hanzi-data.service.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/draft/card-draft.utils.spec.ts [2m([22m[2m26 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/api/interceptors/error.interceptor.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/overlay/user-content-overlay.resolver.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/validation/hanzi-memory-validation.utils.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/card-catalog-search/card-catalog-search.store.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/api/provide-api.http.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/utils/course-catalog-state.spec.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/storage/indexed-db.service.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/services/scenario-builder.service.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/api/api-error.utils.spec.ts [2m([22m[2m45 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/pinyin/keyboard/pinyin-keyboard.spec.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/storage/courses-storage.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/tone-marks/vowel-tone-maps.spec.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/types/async-state.types.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/options/card-choice-options.utils.spec.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/learning/lib/learning-resume.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/validation/card-validation.utils.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/journey/lib/journey-nodes.utils.spec.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/quiz/hanzi-golden-test.utils.spec.ts [2m([22m[2m18 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/tones/radicals-course.defaults.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/pinyin/phonetics/ipa-conversion.spec.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/storage/card-index-meta.storage.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/validation/hanzi-card-answer.util.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/content-seed/content-seed.cache.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/utils/scenario-catalog.defaults.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/utils/course-bundle.utils.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/content-seed/content-seed.test-utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/utils/course-form-draft.utils.spec.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/answers/cjk-answer-normalize.utils.spec.ts [2m([22m[2m25 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/app.component.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/learning/model/learning-results.persistence.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/storage/scenarios-storage.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/overlay/user-content-overlay.migration.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-try-dialog/single-card-play.store.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/drawing/draw-card.utils.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/mapping/card-legacy.mapper.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/draft/card-draft-lexeme-first.utils.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/drawing/draw-calligraphy-paint.utils.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/utils/card-direction.utils.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/card-answer/card-answer.util.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/lib/user-language-pair.utils.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/overlay/user-content-overlay.repair.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/model/hanzi-character.model.spec.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/hanzi-card-answer/hanzi-card-answer.util.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/validation/hanzi-stroke-match.utils.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/utils/scenario-form-draft.utils.spec.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/preview/card-editor-preview.util.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/pinyin/romanization/palladius.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/model/user.persistence.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/components/course-builder-dialog/course-builder-dialog.service.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/quiz/hanzi-quiz-session.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/index-meta/card-kind-index-meta.utils.spec.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/overlay/user-content-overlay.storage.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/phonetic/lib/phonetic-preferences.utils.spec.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-editor-dialog/card-editor-dialog.service.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/content-seed/content-seed.idb.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/form/card-form.registry.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/app/routes.utils.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/keyboard-answer-mode/keyboard-answer-mode.utils.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/phonetics/lexeme-draft.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/animation/hanzi-tracing-animation.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/lib/app-color-scheme.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/tone-marks/apply-tone.spec.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/utils/scenario-display-label.utils.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/options/card-options-editor.utils.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-catalog/types/course-catalog-store.spec.ts [2m([22m[2m11 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/animation/hanzi-hint-animation.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/utils/course-practice.utils.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/components/card-try-dialog/card-try-dialog.service.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/course-builder/services/course-pdf-export.service.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/api/mock/courses-api.params.utils.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/tone-marks/tone-stripping.spec.ts [2m([22m[2m10 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/utils/card-learning-audio.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/lesson/lib/lesson-prerequisites.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/utils/card-ipa-index.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/help/help-page.data.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/mapping/card-index.mapper.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/tones/tone-color.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/utils/course-authoring.utils.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/pagination/pagination.utils.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/api/api-url.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/tone/tone-variant.utils.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/cards/option-card.util.spec.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/help-usage-scenarios/help-usage-scenarios.data.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/security/input-sanitize.utils.spec.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/mapping/course-index.mapper.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/form/card-create-groups.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/auth/services/auth-token.storage.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/catalog-labels.spec.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/pinyin/phonetics/ipa-mapping.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/search/course-search.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/phonetic/lib/phonetic-lexeme.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/language-pair/lib/language-pair-scope.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/search/scenario-search.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/user/lib/system-author.constants.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/answers/tone-mark.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/auth/model/auth-state.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/scenario-builder/components/scenario-builder-dialog/scenario-builder-dialog.service.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 2[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/language-pair/lib/language-pair.utils.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/rendering/hanzi-radical-layout.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/rendering/hanzi-render.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/learning/lib/learning-session.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/learning/lib/learning-proficiency.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 0[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/api/mock/cards-api.params.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/cards/quiz-card-question.util.spec.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/features/card-editor/utils/ux/card-editor-ux.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/drawing/draw-stroke-guides.data.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/ui/cards/quiz-card-question-header/quiz-card-question.util.spec.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/shared/utils/pagination/paginate-items.spec.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/phonetic/lib/ipa/ipa-normalize.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/positioning/hanzi-positioner.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/api/mock/scenario-catalog-port.conformance.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 0[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/api/mock/card-catalog-port.conformance.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/chinese/lib/phonetics/radical-component-color.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/phonetic/lib/ipa/ipa-en-lookup.utils.spec.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/scenario/api/mock/scenarios-api.params.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/course/api/mock/course-catalog-port.conformance.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 1[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/lib/code-highlight/code-highlight.utils.spec.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 0[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/entities/card/utils/card-focus-preference.utils.spec.ts [2m([22m[2m1 test[22m[2m)[22m[32m 0[2mms[22m[39m
+ [32m✓[39m [30m[45m lingua-code [49m[39m src/app/pages/card-select/card-select-page/card-select-page.component.spec.ts [2m([22m[2m51 tests[22m[2m)[22m[33m 3381[2mms[22m[39m
+   [32m✓[39m CardSelectPageComponent [2m(51)[22m
+     [33m[2m✓[22m[39m should create[33m 637[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m253 passed[39m[22m[90m (253)[39m
+[2m      Tests [22m [1m[32m2794 passed[39m[22m[90m (2794)[39m
+[2m   Start at [22m 11:16:19
+[2m   Duration [22m 6.35s[2m (environment 58%, tests 25%, transform 7%, import 6%, setup 4%)[22m
+

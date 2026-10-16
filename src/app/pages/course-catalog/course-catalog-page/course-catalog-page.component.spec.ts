@@ -29,6 +29,7 @@ import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
 import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
 function makePair(
@@ -291,6 +292,7 @@ describe('CourseCatalogPageComponent', () => {
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: CourseCatalogStore, useValue: mockCatalogStore },
         { provide: DraftsStore, useValue: mockDrafts },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
         { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();

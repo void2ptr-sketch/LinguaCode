@@ -22,6 +22,7 @@ describe('courses API (mock interceptor)', () => {
 
   afterEach(() => {
     localStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('searches courses via GET /api/courses/search', async () => {

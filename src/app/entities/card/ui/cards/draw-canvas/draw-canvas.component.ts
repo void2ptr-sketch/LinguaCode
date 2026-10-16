@@ -3,6 +3,7 @@ import {
   Component,
   DestroyRef,
   ElementRef,
+  OnDestroy,
   afterNextRender,
   computed,
   effect,
@@ -76,13 +77,16 @@ export type DrawRadicalHint = {
   templateUrl: './draw-canvas.component.html',
   styleUrl: './draw-canvas.component.scss',
 })
-export class DrawCanvasComponent {
+export class DrawCanvasComponent implements OnDestroy {
   private readonly destroyRef = inject(DestroyRef);
   public readonly drawing = inject(DrawCanvasDrawingService);
   public readonly animation = inject(DrawCanvasAnimationService);
   public readonly rendering = inject(DrawCanvasRenderingService);
   public readonly dataLoader = inject(DrawCanvasDataLoaderService);
   private readonly userStore = inject(UserStore);
+
+  /** Set to true at the start of ngOnDestroy to prevent post-destroy emits. */
+  private _isDestroyed = false;
 
   /**
    * The ghost character to display as a guide.
@@ -362,10 +366,15 @@ export class DrawCanvasComponent {
       }
     });
 
-    // Configure drawing service callbacks
+    // Configure drawing service callbacks with destroy protection
+    // Use a mutable flag set in ngOnDestroy BEFORE Angular destroys outputs
     this.drawing.configureCallbacks({
-      onStrokeStateChange: (hasStrokes) => this.strokesChange.emit(hasStrokes),
-      onRestartHintAnimation: () => this.restartHintAnimationIfActive(),
+      onStrokeStateChange: (hasStrokes) => {
+        if (!this._isDestroyed) this.strokesChange.emit(hasStrokes);
+      },
+      onRestartHintAnimation: () => {
+        if (!this._isDestroyed) this.restartHintAnimationIfActive();
+      },
     });
 
     // Hanzi data loading
@@ -659,8 +668,13 @@ export class DrawCanvasComponent {
     return getComputedStyle(document.documentElement).getPropertyValue(variable).trim() || fallback;
   }
 
-
-
-
+  ngOnDestroy(): void {
+    // Set flag BEFORE Angular destroys outputs to prevent NG0953
+    this._isDestroyed = true;
+    // Stop all animation loops before outputs are destroyed to prevent
+    // NG0953 (emit for destroyed OutputRef) from rAF callbacks.
+    this.animation.markDestroyed();
+    this.drawing.markDestroyed();
+  }
 
 }

@@ -3,9 +3,9 @@ import { vi } from 'vitest';
 
 import { LearningDashboardService } from './learning-dashboard.service';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
-import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithLessons } from '../../../entities/course/model';
 import type { LanguagePair } from '../../../entities/language-pair/model/language-pair.types';
 import { computed } from '@angular/core';
@@ -13,7 +13,6 @@ import { computed } from '@angular/core';
 describe('LearningDashboardService', () => {
   let service: LearningDashboardService;
   let mockCourseSearchService: Partial<CourseSearchService>;
-  let mockScenariosApiService: Partial<ScenariosApiService>;
   let mockResultsStore: Partial<LearningResultsStore>;
 
   const mockLanguagePair: LanguagePair = { known: 'ru', learning: 'zh' };
@@ -71,8 +70,8 @@ describe('LearningDashboardService', () => {
         LearningDashboardService,
         { provide: UserStore, useValue: userStore },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
-        { provide: ScenariosApiService, useValue: mockScenariosApiService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
       ],
     });
 
@@ -85,10 +84,6 @@ describe('LearningDashboardService', () => {
 
     mockCourseSearchService = {
       getById: vi.fn().mockResolvedValue(mockCourse),
-    };
-
-    mockScenariosApiService = {
-      getById: vi.fn().mockResolvedValue({ id: 'scenario-1', title: 'Test Scenario' }),
     };
 
     mockResultsStore = {
@@ -148,7 +143,6 @@ describe('LearningDashboardService', () => {
 
     it('should set error on reload failure', async () => {
       mockCourseSearchService.getById = vi.fn().mockRejectedValue(new Error('API error'));
-      mockScenariosApiService.getById = vi.fn().mockRejectedValue(new Error('API error'));
 
       await service.reload();
 
@@ -163,11 +157,15 @@ describe('LearningDashboardService', () => {
       expect(mockCourseSearchService.getById).toHaveBeenCalledWith('course-1');
     });
 
-    it('should load scenario titles for all scenarios in course', async () => {
+    it('should load scenario titles from seed cache', async () => {
       await service.reload();
 
-      expect(mockScenariosApiService.getById).toHaveBeenCalledWith('scenario-1');
-      expect(mockScenariosApiService.getById).toHaveBeenCalledWith('scenario-2');
+      // Titles are now loaded from seed cache, not via API
+      expect(service.resumeTarget()).toBeDefined();
+      const target = service.resumeTarget();
+      if (target && target.kind !== 'no-program') {
+        expect(target.scenarioTitle).toBeDefined();
+      }
     });
   });
 

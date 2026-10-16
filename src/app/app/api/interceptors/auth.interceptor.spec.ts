@@ -29,6 +29,7 @@ describe('api interceptors', () => {
   afterEach(() => {
     httpMock.verify();
     sessionStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('should attach auth header for api requests when token exists', () => {

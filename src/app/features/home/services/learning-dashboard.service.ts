@@ -12,7 +12,7 @@ import {
 } from '../../../entities/learning/lib/learning-resume.utils';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
 import { resolveLearningSessionForPair } from '../../../entities/learning/lib/learning-session.utils';
-import { ScenariosApiService } from '../../../entities/scenario/api/scenarios-api.service';
+import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
 import type { CourseWithLessons } from '../../../entities/course/model';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
@@ -28,7 +28,6 @@ import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals
 @Injectable({ providedIn: 'root' })
 export class LearningDashboardService {
   private readonly courseSearchService = inject<CourseSearchService>(CourseSearchService);
-  private readonly scenariosApiService = inject<ScenariosApiService>(ScenariosApiService);
   private readonly userStore = inject<UserStore>(UserStore);
   private readonly resultsStore = inject<LearningResultsStore>(LearningResultsStore);
   private readonly logger = inject<AppLoggerService>(AppLoggerService);
@@ -211,22 +210,18 @@ export class LearningDashboardService {
     });
   }
 
-  private async loadScenarioTitles(
+  private loadScenarioTitles(
     scenarioIds: readonly string[],
-  ): Promise<Readonly<Record<string, string>>> {
+  ): Readonly<Record<string, string>> {
+    const seedScenarios = getScenarioSeedCache();
     const titles: Record<string, string> = {};
 
-    await Promise.all(
-      scenarioIds.map(async (scenarioId) => {
-        try {
-          const scenario = await this.scenariosApiService.getById(scenarioId);
-          titles[scenarioId] = scenario.title;
-        } catch (error) {
-          this.logger.debug('LearningDashboard: scenario title fallback', error);
-          // fallback labels resolve in utils
-        }
-      }),
-    );
+    for (const scenarioId of scenarioIds) {
+      const seed = seedScenarios.find((s) => s.id === scenarioId);
+      if (seed) {
+        titles[scenarioId] = seed.title;
+      }
+    }
 
     return titles;
   }

@@ -23,6 +23,20 @@ export type DrawCanvasDrawingCallbacks = {
 @Injectable({ providedIn: 'root' })
 export class DrawCanvasDrawingService {
   private readonly destroyRef = inject(DestroyRef);
+  private _destroyed = false;
+
+  /** Marks the service as destroyed to prevent post-destroy callback emissions. */
+  markDestroyed(): void {
+    this._destroyed = true;
+    this.strokes = [];
+    this.activeStroke = [];
+    this.drawing = false;
+  }
+
+  /** Returns whether the service has been marked as destroyed. */
+  get destroyed(): boolean {
+    return this._destroyed;
+  }
 
   // --- State ---
   readonly hasStrokes = signal(false);
@@ -113,7 +127,9 @@ export class DrawCanvasDrawingService {
     this.drawing = false;
     this.strokes = [...this.strokes, completed];
     this.syncState(true);
-    this.callbacks.onRestartHintAnimation?.();
+    if (!this._destroyed) {
+      this.callbacks.onRestartHintAnimation?.();
+    }
     return completed;
   }
 
@@ -133,7 +149,9 @@ export class DrawCanvasDrawingService {
     if (this.strokes.length === 0) return [];
     this.strokes = this.strokes.slice(0, -1);
     this.syncState(true);
-    this.callbacks.onRestartHintAnimation?.();
+    if (!this._destroyed) {
+      this.callbacks.onRestartHintAnimation?.();
+    }
     return this.strokes;
   }
 
@@ -145,7 +163,9 @@ export class DrawCanvasDrawingService {
     this.activeStroke = [];
     this.drawing = false;
     this.syncState(true);
-    this.callbacks.onRestartHintAnimation?.();
+    if (!this._destroyed) {
+      this.callbacks.onRestartHintAnimation?.();
+    }
   }
 
   /**
@@ -156,7 +176,9 @@ export class DrawCanvasDrawingService {
     this.strokes = strokes.map((stroke) => [...stroke]);
     this.activeStroke = [];
     this.syncState(false);
-    this.callbacks.onRestartHintAnimation?.();
+    if (!this._destroyed) {
+      this.callbacks.onRestartHintAnimation?.();
+    }
   }
 
   /**
@@ -173,7 +195,7 @@ export class DrawCanvasDrawingService {
     this.hasStrokes.set(hasStrokes);
     this.canUndo.set(hasStrokes);
 
-    if (emitChange) {
+    if (emitChange && !this._destroyed) {
       this.callbacks.onStrokeStateChange?.(hasStrokes);
     }
   }

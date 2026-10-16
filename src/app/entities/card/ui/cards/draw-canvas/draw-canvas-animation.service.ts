@@ -35,6 +35,20 @@ type AnimationLoopState = {
  */
 @Injectable({ providedIn: 'root' })
 export class DrawCanvasAnimationService {
+  private _destroyed = false;
+
+  /** Marks the service as destroyed to prevent post-destroy emissions. */
+  markDestroyed(): void {
+    this._destroyed = true;
+    this.stopTracingAnimation(false);
+    this.stopHintAnimation(false);
+  }
+
+  /** Returns whether the service has been marked as destroyed. */
+  get destroyed(): boolean {
+    return this._destroyed;
+  }
+
   // --- Tracing animation state ---
   readonly tracingFrame = signal<HanziTracingFrame>({ ...EMPTY_TRACING_FRAME });
   private tracingSamples: readonly HanziTracingStrokeSample[] = [];
@@ -244,7 +258,7 @@ export class DrawCanvasAnimationService {
   // --- Private animation runners ---
 
   private runTracingAnimation(token: number): void {
-    if (!this.tracingLoopState.active || this.tracingSamples.length === 0) return;
+    if (this._destroyed || !this.tracingLoopState.active || this.tracingSamples.length === 0) return;
 
     const elapsed = performance.now() - this.tracingLoopState.startTimestamp;
     const frame = resolveHanziTracingFrame(elapsed, this.tracingSamples, {
@@ -252,13 +266,13 @@ export class DrawCanvasAnimationService {
     });
     this.tracingFrame.set(frame);
 
-    if (token === this.tracingLoopState.token) {
+    if (token === this.tracingLoopState.token && !this._destroyed) {
       this.tracingLoopState.frameId = requestAnimationFrame(() => this.runTracingAnimation(token));
     }
   }
 
   private runHintAnimation(token: number): void {
-    if (!this.hintLoopState.active || this.hintSamples.length === 0) return;
+    if (this._destroyed || !this.hintLoopState.active || this.hintSamples.length === 0) return;
     if (this.hintDrawingPaused && token === this.hintLoopState.token) {
       // Keep running but don't update frame while user is drawing
       this.hintLoopState.frameId = requestAnimationFrame(() => this.runHintAnimation(token));
@@ -275,7 +289,7 @@ export class DrawCanvasAnimationService {
     });
     this.hintFrame.set(frame);
 
-    if (token === this.hintLoopState.token) {
+    if (token === this.hintLoopState.token && !this._destroyed) {
       this.hintLoopState.frameId = requestAnimationFrame(() => this.runHintAnimation(token));
     }
   }

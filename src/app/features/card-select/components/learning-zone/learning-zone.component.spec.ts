@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LearningZoneComponent } from './learning-zone.component';
+import { CardSelectStore } from '../../../card-select/services/card-select.store';
 
 @Component({
   standalone: true,
@@ -123,14 +124,32 @@ describe('LearningZoneComponent', () => {
     expect(component.hasCurrentCard()).toBe(false);
   });
 
-  it('should have internal signals', () => {
-    expect(component.selectedIndex()).toBe(0);
+  it('should derive interaction state from store', () => {
+    expect(component.selectedIndex()).toBeNull();
     expect(component.answerText()).toBe('');
     expect(component.memoryComplete()).toBe(false);
     expect(component.memoryBoardNonce()).toBe(0);
     expect(component.drawSubmitted()).toBe(false);
     expect(component.drawAnswer()).toBeNull();
     expect(component.feedback()).toBeNull();
+  });
+
+  it('should reflect store updates in computed signals', () => {
+    const store = TestBed.inject(CardSelectStore);
+    store.selectOption(2);
+    expect(component.selectedIndex()).toBe(2);
+
+    store.setAnswerText('test');
+    expect(component.answerText()).toBe('test');
+
+    store.setMemoryComplete(true);
+    expect(component.memoryComplete()).toBe(true);
+
+    store.setDrawSubmitted(true);
+    expect(component.drawSubmitted()).toBe(true);
+
+    store.feedback.set('correct');
+    expect(component.feedback()).toBe('correct');
   });
 
   it('should have all outputs defined', () => {

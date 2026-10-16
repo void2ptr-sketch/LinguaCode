@@ -31,7 +31,7 @@ describe('Card editor smoke', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
-    await router.navigateByUrl('/tools/cards');
+    await router.navigate(['tools', 'cards']);
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();

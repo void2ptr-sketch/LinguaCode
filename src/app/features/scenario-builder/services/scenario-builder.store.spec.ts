@@ -8,6 +8,7 @@ import { CardSearchService } from '../../../entities/card';
 import { CourseSearchService } from '../../../entities/course';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { ScenarioBuilderStore } from './scenario-builder.store';
 
 describe('ScenarioBuilderStore', () => {
@@ -49,6 +50,7 @@ describe('ScenarioBuilderStore', () => {
         { provide: CardSearchService, useValue: mockCardSearchService },
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CardsCatalogMockHandler, useValue: mockCardsCatalogHandler },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
         UserStore,
       ],
     });
@@ -97,8 +99,8 @@ describe('ScenarioBuilderStore', () => {
   });
 
   it('should set loading to true while loading', async () => {
-    let resolveFn: () => void;
-    const promise = new Promise<void>((resolve) => {
+    let resolveFn: (value: any) => void;
+    const promise = new Promise<any>((resolve) => {
       resolveFn = resolve;
     });
 
@@ -108,7 +110,7 @@ describe('ScenarioBuilderStore', () => {
 
     expect(store.loading()).toBe(true);
 
-    resolveFn!();
+    resolveFn!({ items: [], totalItems: 0 });
 
     await loadPromise;
     expect(store.loading()).toBe(false);

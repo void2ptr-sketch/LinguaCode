@@ -22,6 +22,7 @@ describe('scenarios API (mock interceptor)', () => {
 
   afterEach(() => {
     localStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('searches scenarios via GET /api/scenarios/search', async () => {

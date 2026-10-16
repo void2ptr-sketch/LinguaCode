@@ -11,7 +11,7 @@
     <p class="quiz-card__section-label">Выберите ответ</p>
     <p class="quiz-card__timer">Осталось: {{ secondsLeft() }} с</p>
     <mat-card-content class="quiz-card__options">
-      @for (option of resolved().options; track option; let index = $index) {
+      @for (option of resolved().options; track $index; let index = $index) {
         <button
           type="button"
           [class]="optionClass(index)"

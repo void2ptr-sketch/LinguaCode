@@ -5,6 +5,7 @@ import { NetworkStatusService } from '../api/network-status.service';
 import { IDB_STORE_SYNC_QUEUE, IndexedDbService } from '../storage';
 import { SyncQueueService } from './sync-queue.service';
 import type { SyncQueueEntry, SyncQueueExecutor } from './sync-queue.types';
+import { AppLoggerService } from '../logger/app-logger.service';
 
 /** In-memory заглушка IndexedDbService для тестов очереди. */
 class FakeIdb {
@@ -51,6 +52,7 @@ describe('SyncQueueService', () => {
       providers: [
         { provide: IndexedDbService, useClass: FakeIdb },
         { provide: NetworkStatusService, useValue: { online } },
+        { provide: AppLoggerService, useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() } },
       ],
     });
     queue = TestBed.inject(SyncQueueService);

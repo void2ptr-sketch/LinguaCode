@@ -1,7 +1,9 @@
+import { signal } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardCatalogFiltersComponent } from './card-catalog-filters.component';
 import { CardCatalogSearchStore } from '../../../lib/card-catalog-search/card-catalog-search.store';
+import { CardSearchService } from '../../../search/card-search.service';
 import { DIFFICULTIES, DIFFICULTY_LABELS, CARD_KIND_LABELS } from '../../../lib/catalog-labels';
 
 describe('CardCatalogFiltersComponent', () => {
@@ -11,7 +13,19 @@ describe('CardCatalogFiltersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [CardCatalogFiltersComponent],
-      providers: [CardCatalogSearchStore],
+      providers: [
+        CardCatalogSearchStore,
+        // The store triggers a search on every filter change. Stub the search
+        // service so the unit test does not perform real HTTP requests.
+        {
+          provide: CardSearchService,
+          useValue: {
+            loading: signal(false),
+            error: signal<string | null>(null),
+            search: vi.fn().mockResolvedValue({ items: [], totalItems: 0, facets: null }),
+          },
+        },
+      ],
     }).compileComponents();
 
     store = TestBed.inject(CardCatalogSearchStore);

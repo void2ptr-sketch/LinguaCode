@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { CardPreviewComponent } from './card-preview.component';
 import type { Card } from '../../../../entities/card/model';
@@ -21,10 +21,6 @@ describe('CardPreviewComponent', () => {
   let fixture: ComponentFixture<CardPreviewComponent>;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {
-      /* silence console.error in tests */
-    });
-
     TestBed.configureTestingModule({
       imports: [CardPreviewComponent],
     }).overrideComponent(CardPreviewComponent, {

@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy, EventEmitter, Output, computed, effect, inject, input, signal } from '@angular/core';
+import { Component, ChangeDetectionStrategy, EventEmitter, Output, computed, inject, input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -15,6 +15,10 @@ import { CardSelectStore } from '../../../card-select/services/card-select.store
 
 /**
  * Zone component for displaying learning results.
+ *
+ * @remarks
+ * All interaction state is derived from `CardSelectStore` via computed signals.
+ * Outputs only emit user actions; the store is the single source of truth.
  */
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -34,7 +38,7 @@ import { CardSelectStore } from '../../../card-select/services/card-select.store
   styleUrl: './learning-zone.component.scss',
 })
 export class LearningZoneComponent {
-  private readonly store = inject(CardSelectStore);
+  protected readonly store = inject(CardSelectStore);
 
   // ─── Inputs ───────────────────────────────────────────────────────────────
 
@@ -133,41 +137,30 @@ export class LearningZoneComponent {
   /** Event emitted when moving to the next card. */
   @Output() readonly nextCard = new EventEmitter<void>();
 
-  // ─── Internal state ───────────────────────────────────────────────────────
+  // ─── Computed interaction state (derived from store) ──────────────────────
 
-  /** Index of the currently selected option. */
-  readonly selectedIndex = signal(0);
+  /** Index of the currently selected option (for multiple-choice cards). */
+  readonly selectedIndex = computed(() => this.store.selectedIndex());
 
-  /** Current answer text. */
-  readonly answerText = signal('');
+  /** Current answer text (for keyboard/input cards). */
+  readonly answerText = computed(() => this.store.answerText());
 
   /** Whether memory board is complete. */
-  readonly memoryComplete = signal(false);
+  readonly memoryComplete = computed(() => this.store.memoryComplete());
 
-  /** Nonce for the memory board. */
-  readonly memoryBoardNonce = signal(0);
+  /** Nonce for the memory board layout randomization. */
+  readonly memoryBoardNonce = computed(() => this.store.memoryBoardNonce());
 
   /** Whether the user has submitted a draw answer. */
-  readonly drawSubmitted = signal(false);
+  readonly drawSubmitted = computed(() => this.store.drawSubmitted());
 
   /** Draw answer payload. */
-  readonly drawAnswer = signal<DrawAnswerPayload | null>(null);
+  readonly drawAnswer = computed(() => this.store.drawAnswer());
 
-  /** Current feedback message. */
-  readonly feedback = signal<CardFeedback>(null);
+  /** Current feedback state from the store. */
+  readonly feedback = computed(() => this.store.feedback());
 
-  /**
-   * Effect that syncs the store feedback to the local feedback signal.
-   * Ensures the UI always reflects the latest feedback state from the store.
-   */
-  private readonly syncFeedback = effect(() => {
-    const storeFeedback = this.store.feedback();
-    if (this.feedback() !== storeFeedback) {
-      this.feedback.set(storeFeedback);
-    }
-  });
-
-  // ─── Computed ─────────────────────────────────────────────────────────────
+  // ─── Computed helpers ────────────────────────────────────────────────────
 
   /** Whether the current card has a valid ID. */
   readonly hasCurrentCard = computed(() => this.currentCard() !== null);

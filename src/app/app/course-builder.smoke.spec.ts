@@ -31,7 +31,7 @@ describe('Course builder smoke', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
-    await router.navigateByUrl('/course-builder');
+    await router.navigate(['tools', 'courses']);
     fixture.detectChanges();
     await fixture.whenStable();
     fixture.detectChanges();
