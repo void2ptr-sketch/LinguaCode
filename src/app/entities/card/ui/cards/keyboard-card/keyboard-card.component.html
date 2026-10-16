@@ -27,7 +27,7 @@
       </mat-form-field>
 
       @if (usesPinyinKeyboard()) {
-        @defer (on interaction) {
+        @defer (on viewport) {
           <app-pinyin-keyboard
             [value]="answerText()"
             [disabled]="feedback() !== null"
