@@ -3,7 +3,7 @@ import { vi } from 'vitest';
 
 import { LearningDashboardService } from './learning-dashboard.service';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
-import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { LearningResultsStore } from '../model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithLessons } from '../../../entities/course/model';

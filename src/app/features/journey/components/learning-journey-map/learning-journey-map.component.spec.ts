@@ -6,7 +6,7 @@ import { vi } from 'vitest';
 import { LearningJourneyMapComponent } from './learning-journey-map.component';
 import type { JourneyLocationNode } from '../../../../entities/learning/model';
 import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
-import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
+import { LearningDashboardService } from '../../../../entities/learning/services';
 
 const mockNodes: JourneyLocationNode[] = [
   {

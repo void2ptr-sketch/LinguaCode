@@ -23,7 +23,7 @@ import type {
   ExplorerLevelResult,
 } from '../../../../entities/learning/model';
 import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
-import { LearningDashboardService } from '../../../home/services/learning-dashboard.service';
+import { LearningDashboardService } from '../../../../entities/learning/services';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';
 
 /** Фильтр по типу контента. */

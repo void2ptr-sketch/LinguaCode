@@ -9,12 +9,12 @@ import {
   resolveLearningResumeTarget,
   type LearningResumeTarget,
   type LessonRoadmapItem,
-} from '../../../entities/learning/lib/learning-resume.utils';
+} from '../lib/learning-resume.utils';
 import { CourseSearchService } from '../../../entities/course/search/course-search.service';
-import { resolveLearningSessionForPair } from '../../../entities/learning/lib/learning-session.utils';
+import { resolveLearningSessionForPair } from '../lib/learning-session.utils';
 import { getScenarioSeedCache } from '../../../entities/content-seed/content-seed.cache';
 import type { CourseWithLessons } from '../../../entities/course/model';
-import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
+import { LearningResultsStore } from '../model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
 import { RADICALS_COURSE_ID } from '../../../entities/chinese/lib/tones/radicals-course.defaults';
 

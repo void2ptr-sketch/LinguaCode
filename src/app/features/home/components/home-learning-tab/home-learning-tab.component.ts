@@ -8,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { LearningResultsStore } from '../../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { LearningDashboardService } from '../../services/learning-dashboard.service';
+import { LearningDashboardService } from '../../../../entities/learning/services';
 import {
   buildContinueLinkQueryParams,
   continueButtonLabel,

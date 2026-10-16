@@ -2,7 +2,8 @@
 export * from './components';
 
 // ===== Services =====
-export { LearningDashboardService } from './services/learning-dashboard.service';
+// Re-exported from entities layer (moved for FSD compliance)
+export { LearningDashboardService } from '../../entities/learning/services';
 
 // ===== Utils / Types =====
 export type { HomeSectionLink, HomeTab } from './types/home-tab.types';

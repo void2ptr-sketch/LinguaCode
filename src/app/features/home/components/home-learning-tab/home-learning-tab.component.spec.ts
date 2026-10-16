@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { describe, it, expect, beforeEach } from 'vitest';
 import { HomeLearningTabComponent } from './home-learning-tab.component';
-import { LearningDashboardService } from '../../services/learning-dashboard.service';
+import { LearningDashboardService } from '../../../../entities/learning/services';
 import { LearningResultsStore } from '../../../../entities/learning/model/learning-results.store';
 
 describe('HomeLearningTabComponent', () => {

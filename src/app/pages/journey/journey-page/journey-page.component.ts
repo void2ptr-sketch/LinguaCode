@@ -5,7 +5,7 @@ import { toSignal } from '@angular/core/rxjs-interop';
 
 import { LearningJourneyMapComponent } from '../../../features/journey/components/learning-journey-map/learning-journey-map.component';
 import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
-import { LearningDashboardService } from '../../../features/home/services/learning-dashboard.service';
+import { LearningDashboardService } from '../../../entities/learning/services';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
