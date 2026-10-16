@@ -1,0 +1,32 @@
+<div class="card-form__tabs-wrapper">
+  <div class="card-form__tabs-header">
+    <button
+      class="card-form__nav-btn card-form__nav-btn--left"
+      (click)="prevTabs()"
+      [disabled]="!canPrevTabs()"
+      aria-label="Предыдущие закладки"
+    >
+      ←
+    </button>
+
+    <mat-tab-group
+      class="card-form__tabs"
+      dynamicHeight
+      [selectedIndex]="0"
+      (selectedTabChange)="onTabChange($event.tab.textLabel)"
+    >
+      @for (tab of visibleTabs(); track tab.label) {
+        <mat-tab [label]="tab.label" />
+      }
+    </mat-tab-group>
+
+    <button
+      class="card-form__nav-btn card-form__nav-btn--right"
+      (click)="nextTabs()"
+      [disabled]="!canNextTabs()"
+      aria-label="Следующие закладки"
+    >
+      →
+    </button>
+  </div>
+</div>

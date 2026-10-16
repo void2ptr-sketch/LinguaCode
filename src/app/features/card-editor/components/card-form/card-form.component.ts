@@ -1,11 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, input, OnInit, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
 import { MatTabsModule } from '@angular/material/tabs';
-import type { ContentLanguage } from '../../../../entities/card/model';
+import type { ContentLanguage, CardIndexMetaOverride } from '../../../../entities/card/model';
 import type { CardAppearance } from '../../../../entities/card/model';
 import type { ChoiceCardDraft } from '../../types';
 import type { InputCardDraft } from './kind-forms/input-card-form/input-card-form.component';
@@ -36,8 +32,6 @@ import { ChoiceCardFormComponent } from './kind-forms/choice-card-form/choice-ca
 import { InputCardFormComponent } from './kind-forms/input-card-form/input-card-form.component';
 import { MediaCardFormComponent } from './kind-forms/media-card-form/media-card-form.component';
 import { PairsCardFormComponent } from './kind-forms/pairs-card-form/pairs-card-form.component';
-import { MatDividerModule } from '@angular/material/divider';
-import type { CardIndexMetaOverride } from '../../../../entities/card/model';
 import { CardMetaFieldsComponent } from '../card-meta-fields/card-meta-fields.component';
 import {
   CardCatalogHierarchyService,
@@ -45,16 +39,8 @@ import {
   type LessonOption,
   type ScenarioOption,
 } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
-
-/**
- * Tab definition for the card form navigation.
- */
-type TabDefinition = {
-  /** Display label for the tab. */
-  label: string;
-  /** Whether the tab is visible. */
-  visible: boolean;
-};
+import { CardFormTabsComponent, type TabDefinition } from '../card-form-tabs/card-form-tabs.component';
+import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
 
 /**
  * Main form component for creating and editing cards.
@@ -64,6 +50,8 @@ type TabDefinition = {
  * question, answers, content, phonetics, metadata, and settings.
  * Loads course/lesson/scenario hierarchy for card association.
  * Delegates kind-specific editing to nested form components.
+ * Delegates tab navigation to `CardFormTabsComponent`.
+ * Delegates question tab to `CardFormQuestionTabComponent`.
  *
  * @example
  * ```html
@@ -81,12 +69,9 @@ type TabDefinition = {
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CommonModule,
-    FormsModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatSelectModule,
     MatTabsModule,
-    MatDividerModule,
+    CardFormTabsComponent,
+    CardFormQuestionTabComponent,
     CardFormPhoneticsPanelComponent,
     CardFormSettingsPanelComponent,
     CardPreviewComponent,
@@ -173,6 +158,27 @@ export class CardFormComponent implements OnInit {
   readonly languages = contentLanguages();
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
+  /** Currently selected tab label (explicitly chosen by user). */
+  private readonly selectedTabLabel = signal<string | undefined>(undefined);
+
+  /**
+   * Label of the currently active tab.
+   * @remarks
+   * Uses explicitly selected tab, or falls back to the first visible tab.
+   */
+  readonly activeTabLabel = computed(() => {
+    return this.selectedTabLabel() ?? this.allAvailableTabs[0]?.label ?? '';
+  });
+
+  /**
+   * Records the explicitly selected tab label.
+   *
+   * @param tabLabel - The label of the tab the user selected.
+   */
+  onTabChange(tabLabel: string): void {
+    this.selectedTabLabel.set(tabLabel);
+  }
+
   async ngOnInit(): Promise<void> {
     const known = this.knownLanguage();
     const learning = this.learningLanguage();
@@ -240,21 +246,6 @@ export class CardFormComponent implements OnInit {
   readonly mediaDraft = computed((): SoundCardDraft | null => {
     const draft = this.draft();
     return draft.kind === 'sound' ? draft : null;
-  });
-
-  // Tabs navigation state
-  private readonly VISIBLE_TABS_COUNT = 3;
-  private readonly tabOffset = signal(0);
-  private readonly selectedTabLabel = signal<string | undefined>(undefined);
-
-  /**
-   * Label of the currently active tab.
-   * @remarks
-   * Uses explicitly selected tab, or falls back to the first visible tab.
-   */
-  readonly activeTabLabel = computed(() => {
-    // Use explicitly selected tab, or fall back to the first visible tab
-    return this.selectedTabLabel() ?? this.visibleTabs()[0]?.label ?? '';
   });
 
   /**
@@ -426,85 +417,5 @@ export class CardFormComponent implements OnInit {
     tabs.push({ label: 'Настройки', visible: true });
 
     return tabs;
-  }
-
-  /** Maximum tab offset for horizontal scrolling. */
-  get MAX_TAB_OFFSET(): number {
-    return Math.max(0, this.allAvailableTabs.length - this.VISIBLE_TABS_COUNT);
-  }
-
-  /**
-   * Currently visible tabs (windowed by tab offset).
-   * @remarks
-   * Shows up to `VISIBLE_TABS_COUNT` tabs at a time, scrollable via `prevTabs`/`nextTabs`.
-   */
-  readonly visibleTabs = computed((): TabDefinition[] => {
-    const offset = this.tabOffset();
-    return this.allAvailableTabs.slice(offset, offset + this.VISIBLE_TABS_COUNT);
-  });
-
-  /**
-   * Currently selected tab index (always 0 — tabs scroll, don't switch by index).
-   */
-  readonly tabGroupSelectedIndex = 0;
-
-  /**
-   * Checks whether there are tabs to the left (scrollable).
-   *
-   * @returns `true` if the tab offset is greater than zero.
-   */
-  canPrevTabs(): boolean {
-    return this.tabOffset() > 0;
-  }
-
-  /**
-   * Checks whether there are tabs to the right (scrollable).
-   *
-   * @returns `true` if the tab offset is less than the maximum.
-   */
-  canNextTabs(): boolean {
-    return this.tabOffset() < this.MAX_TAB_OFFSET;
-  }
-
-  /** Scrolls the tab window one step to the left. */
-  prevTabs(): void {
-    if (this.canPrevTabs()) {
-      this.tabOffset.update((n) => n - 1);
-      this.selectedTabLabel.set(undefined);
-    }
-  }
-
-  /** Scrolls the tab window one step to the right. */
-  nextTabs(): void {
-    if (this.canNextTabs()) {
-      this.tabOffset.update((n) => n + 1);
-      this.selectedTabLabel.set(undefined);
-    }
-  }
-
-  /**
-   * Records the explicitly selected tab label.
-   *
-   * @param tabLabel - The label of the tab the user selected.
-   */
-  onTabChange(tabLabel: string): void {
-    this.selectedTabLabel.set(tabLabel);
-  }
-
-  /**
-   * Handles keyboard shortcuts for tab scrolling.
-   *
-   * @param event - The keyboard event.
-   * @remarks
-   * Ctrl+ArrowLeft scrolls tabs left, Ctrl+ArrowRight scrolls tabs right.
-   */
-  handleKeydown(event: KeyboardEvent): void {
-    if (event.ctrlKey && event.key === 'ArrowLeft') {
-      event.preventDefault();
-      this.prevTabs();
-    } else if (event.ctrlKey && event.key === 'ArrowRight') {
-      event.preventDefault();
-      this.nextTabs();
-    }
   }
 }
