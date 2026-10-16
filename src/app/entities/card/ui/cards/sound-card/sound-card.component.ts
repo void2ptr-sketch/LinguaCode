@@ -1,22 +1,16 @@
-import { Component, computed, inject, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  playLearningAudio,
-  resolveLearningSpeech,
-} from '../../../utils/card-learning-audio.utils';
-import {
-  effectiveCardDirection,
-  resolveOptionCard,
-} from '../../../utils/card-direction.utils';
+import { playLearningAudio, resolveLearningSpeech } from '../../../utils/card-learning-audio.utils';
+import { effectiveCardDirection, resolveOptionCard } from '../../../utils/card-direction.utils';
 import { SoundCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import type { PhoneticLexeme } from '../../../../phonetic/model';
 import { UserStore } from '../../../../user/model/user.store';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**
@@ -25,6 +19,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Supports audio playback via `audioUrl` or TTS, with lexeme display.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sound-card',
   imports: [
     MatCardModule,

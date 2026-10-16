@@ -1,6 +1,7 @@
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { buildApiUrl } from '../../../shared/api/api-url';
 import { CoursesApiService, CourseWritePayload } from './courses-api.service';
 import type { CourseIndexEntry, CourseWithLessons } from '../model';
 
@@ -87,7 +88,7 @@ describe('CoursesApiService', () => {
         page: { page: 0, pageSize: 20 },
       });
 
-      const req = httpMock.expectOne((r) => r.url === '/api/courses/search');
+      const req = httpMock.expectOne((r) => r.url === buildApiUrl('/courses/search'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: mockPage });
 
@@ -100,7 +101,7 @@ describe('CoursesApiService', () => {
     it('should retrieve a course by ID', async () => {
       const promise = service.getById('course-1');
 
-      const req = httpMock.expectOne('/api/courses/course-1');
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: mockCourseWithLessons });
 
@@ -113,7 +114,7 @@ describe('CoursesApiService', () => {
     it('should create a new course', async () => {
       const promise = service.create(mockPayload);
 
-      const req = httpMock.expectOne('/api/courses');
+      const req = httpMock.expectOne(buildApiUrl('/courses'));
       expect(req.request.method).toBe('POST');
       expect(req.request.body).toEqual(mockPayload);
       req.flush({ data: mockCourseWithLessons });
@@ -127,7 +128,7 @@ describe('CoursesApiService', () => {
     it('should update an existing course', async () => {
       const promise = service.update('course-1', mockPayload);
 
-      const req = httpMock.expectOne('/api/courses/course-1');
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(mockPayload);
       req.flush({ data: mockCourseWithLessons });
@@ -141,7 +142,7 @@ describe('CoursesApiService', () => {
     it('should delete a course', async () => {
       const promise = service.delete('course-1');
 
-      const req = httpMock.expectOne('/api/courses/course-1');
+      const req = httpMock.expectOne(buildApiUrl('/courses/course-1'));
       expect(req.request.method).toBe('DELETE');
       req.flush({ data: null });
 
@@ -154,7 +155,7 @@ describe('CoursesApiService', () => {
     it('should find courses using a specific scenario', async () => {
       const promise = service.findUsingScenario('scenario-1');
 
-      const req = httpMock.expectOne('/api/courses/by-scenario/scenario-1');
+      const req = httpMock.expectOne(buildApiUrl('/courses/by-scenario/scenario-1'));
       expect(req.request.method).toBe('GET');
       req.flush({ data: [mockCourseIndexEntry] });
 

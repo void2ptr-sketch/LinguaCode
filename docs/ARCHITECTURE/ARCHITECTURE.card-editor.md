@@ -11,22 +11,36 @@
 ```text
 features/card-editor/
 ├── components/
-│   ├── card-editor-page/              # список + фильтры
-│   ├── card-editor-dialog/            # create/edit shell
-│   ├── card-form/                     # shell + kind-forms (G12)
-│   ├── card-form-phonetics-panel/     # фонетические поля формы
-│   ├── card-form-settings-panel/      # настройки формы
 │   ├── card-appearance-fields/        # поля appearance
-│   ├── card-meta-fields/              # поля index meta
 │   ├── card-create-wizard/            # wizard создания (G12)
-│   ├── card-options-editor/
-│   ├── lexeme-fields/
-│   ├── card-preview/
-│   └── card-try-dialog/
+│   ├── card-editor-dialog/            # create/edit shell
+│   ├── card-editor-discard-dialog/    # подтверждение отправки изменений
+│   ├── card-form/                     # shell + kind-forms (G12)
+│   ├── card-form-answers-tab/         # вкладка ответов формы
+│   ├── card-form-question-tab/        # вкладка вопроса формы
+│   ├── card-form-settings-panel/      # панель настроек формы
+│   ├── card-form-phonetics-panel/     # панель фонетики формы
+│   ├── card-form-tabs/                # табы формы
+│   ├── card-meta-fields/              # поля индексной метаданных
+│   ├── card-options-editor/           # редактор вариантов ответа
+│   ├── card-preview/                  # предпросмотр карточки
+│   ├── card-try-dialog/               # диалог тестирования карточки
+│   └── lexeme-fields/                 # поля для иероглифов/слов
 ├── services/
-│   └── card-editor.store.ts
-└── utils/                             # validation, draft, migration
+│   └── card-editor.store.ts           # стор редактора (providedIn: component-level)
+├── types/                             # типы фичи
+├── utils/
+│   ├── draft/                         # черновики
+│   ├── form/                          # валидация форм
+│   ├── index-meta/                    # индексная метаданные
+│   ├── options/                       # варианты ответов
+│   ├── tone/                          # тоновые утилиты
+│   ├── ux/                            # UX-утилиты
+│   └── validation/                    # валидация
+└── index.ts                           # barrel-экспорт
 ```
+
+> **Примечание:** `card-editor-page` — это страница (page), а не компонент фичи. Она расположена в `pages/card-editor/card-editor-page/` и является точкой входа маршрута `/tools/cards`. Компоненты фичи (`features/card-editor/components/`) импортируются страницей.
 
 ## Поток CRUD
 
@@ -44,16 +58,16 @@ stateDiagram-v2
 ## Особенности (G12)
 
 - Режимы **Базовый / Расширенный** в dialog.
-- Kind-forms: choice, input, pairs, media.
+- Kind-forms: choice, input, pairs, media, code-select.
 - Bilingual fields + `PhoneticLexeme` (G9/G10).
 - Index meta синхронизируется при save (`CardIndexEntry`).
 
 ## Зависимости
 
-- `shared/card-catalog-search` — `CardCatalogSearchStore`
-- `entities/card` — `CardSearchService`, `CardRepository`
-- `shared/card-host` — preview
+- `entities/card/lib/card-catalog-search/` — `CardCatalogSearchStore`
+- `entities/card/` — `CardSearchService`, `CardRepository`
+- `entities/chinese/ui/` — `LexemeDisplayComponent`, `PinyinKeyboardComponent` (для preview)
 
 ## Связанные документы
 
-- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [EDITOR-UX.md](./FEATURES/EDITOR-UX.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md)
+- [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) · [EDITOR-UX.md](./FEATURES/EDITOR-UX.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md)

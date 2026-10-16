@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,7 @@ import { UserStore } from '../../entities/user/model/user.store';
  * @remarks Reads the display name from the injected `UserStore`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-menu-user',
   imports: [RouterLink, RouterLinkActive, MatButtonModule, MatIconModule],
   templateUrl: './menu-user.component.html',

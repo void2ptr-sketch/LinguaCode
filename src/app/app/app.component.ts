@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import { AppThemeService } from './theme/app-theme.service';
@@ -8,6 +8,7 @@ import { AppThemeService } from './theme/app-theme.service';
  * @remarks This is the entry point component for the Angular application shell.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-root',
   imports: [RouterOutlet],
   templateUrl: './app.component.html',

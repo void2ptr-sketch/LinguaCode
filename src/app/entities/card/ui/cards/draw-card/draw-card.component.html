@@ -55,20 +55,26 @@
     }
 
     <mat-card-content class="draw-card__content">
-      <app-draw-canvas
-        class="draw-card__panel"
-        [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
-        [radicalHints]="radicalCanvasHints()"
-        [radicalAriaLabel]="radicalCanvasAriaLabel()"
-        [canvasMode]="panelMode()"
-        [showMemoryReview]="showMemoryReview()"
-        [memoryStrokeGrades]="memoryStrokeGrades()"
-        [disabled]="feedback() !== null"
-        [showClearAll]="hasMultipleSyllables()"
-        [clearAllDisabled]="!hasStrokesOnAnyTab()"
-        (strokesChange)="onStrokesChange($event)"
-        (clearAllRequested)="clearAllStrokes()"
-      />
+      @defer (on viewport) {
+        <app-draw-canvas
+          class="draw-card__panel"
+          [ghostCharacter]="panelMode() === 'radicals' ? null : ghostCharacter()"
+          [radicalHints]="radicalCanvasHints()"
+          [radicalAriaLabel]="radicalCanvasAriaLabel()"
+          [canvasMode]="panelMode()"
+          [showMemoryReview]="showMemoryReview()"
+          [memoryStrokeGrades]="memoryStrokeGrades()"
+          [disabled]="feedback() !== null"
+          [showClearAll]="hasMultipleSyllables()"
+          [clearAllDisabled]="!hasStrokesOnAnyTab()"
+          (strokesChange)="onStrokesChange($event)"
+          (clearAllRequested)="clearAllStrokes()"
+        />
+      } @placeholder {
+        <div class="draw-card__canvas-placeholder" aria-label="Загрузка холста для рисования...">
+          Загрузка холста...
+        </div>
+      }
     </mat-card-content>
 
     @if (showSyllableTabs()) {
@@ -116,12 +122,7 @@
     @if (feedback() === null) {
       @if (hasMultipleSyllables() && !allCharsDone()) {
         <!-- Несколько иероглифов: промежуточный шаг -->
-        <button
-          mat-flat-button
-          type="button"
-          [disabled]="!hasStrokes()"
-          (click)="submitDrawing()"
-        >
+        <button mat-flat-button type="button" [disabled]="!hasStrokes()" (click)="submitDrawing()">
           Готово, следующий
         </button>
       } @else if (hasMultipleSyllables() && allCharsDone()) {
@@ -144,18 +145,11 @@
             Проверить
           </button>
         } @else {
-          <button mat-flat-button type="button" (click)="checkAnswer.emit()">
-            Проверить
-          </button>
+          <button mat-flat-button type="button" (click)="checkAnswer.emit()">Проверить</button>
         }
       } @else {
         <!-- Один иероглиф: сразу проверка -->
-        <button
-          mat-flat-button
-          type="button"
-          [disabled]="!hasStrokes()"
-          (click)="submitAndCheck()"
-        >
+        <button mat-flat-button type="button" [disabled]="!hasStrokes()" (click)="submitAndCheck()">
           Проверить
         </button>
       }

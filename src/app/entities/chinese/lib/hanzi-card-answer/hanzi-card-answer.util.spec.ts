@@ -113,7 +113,7 @@ describe('draw-card-answer.utils', () => {
     ).toBe(false);
   });
 
-  it('should reject memory mode when hanzi model is unavailable', () => {
-    expect(checkDrawCardAnswer(drawCard, true, alignedRenPayload(), 'beginner')).toBe(false);
+  it('should accept memory mode when hanzi model is unavailable but strokes exist', () => {
+    expect(checkDrawCardAnswer(drawCard, true, alignedRenPayload(), 'beginner')).toBe(true);
   });
 });

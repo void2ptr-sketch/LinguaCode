@@ -1,5 +1,2 @@
 // ===== Utils =====
-export {
-  canCheckCardAnswer,
-  checkCardAnswer,
-} from './card-answer.util';
+export { canCheckCardAnswer, checkCardAnswer } from './card-answer.util';

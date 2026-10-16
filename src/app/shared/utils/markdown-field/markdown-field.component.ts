@@ -1,4 +1,12 @@
-import { Component, computed, inject, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -30,6 +38,7 @@ type MarkdownFieldMode = 'edit' | 'preview';
 @Component({
   standalone: true,
   selector: 'app-markdown-field',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, MatButtonToggleModule, MatFormFieldModule, MatInputModule],
   templateUrl: './markdown-field.component.html',
   styleUrl: './markdown-field.component.scss',

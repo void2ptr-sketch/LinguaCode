@@ -1,16 +1,13 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  effectiveCardDirection,
-  resolveOptionCard,
-} from '../../../utils/card-direction.utils';
+import { effectiveCardDirection, resolveOptionCard } from '../../../utils/card-direction.utils';
 import { SymbolCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**
@@ -32,6 +29,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-symbol-card',
   imports: [
     MatCardModule,

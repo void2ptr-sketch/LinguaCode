@@ -32,7 +32,12 @@ describe('hanzi-golden-test.utils', () => {
     it('should build a HanziCharacterModel from character and JSON', () => {
       const json: HanziCharacterJson = {
         strokes: ['M0,0 L10,10'],
-        medians: [[{ x: 0, y: 0 }, { x: 10, y: 10 }]],
+        medians: [
+          [
+            { x: 0, y: 0 },
+            { x: 10, y: 10 },
+          ],
+        ],
       };
 
       const model = buildGoldenHanziModel('人', json);
@@ -57,7 +62,12 @@ describe('hanzi-golden-test.utils', () => {
     it('should delegate to buildHanziCharacterModel', () => {
       const json: HanziCharacterJson = {
         strokes: ['M0,0 L10,10'],
-        medians: [[{ x: 0, y: 0 }, { x: 10, y: 10 }]],
+        medians: [
+          [
+            { x: 0, y: 0 },
+            { x: 10, y: 10 },
+          ],
+        ],
       };
 
       const model = buildGoldenHanziModel('人', json);
@@ -85,7 +95,10 @@ describe('hanzi-golden-test.utils', () => {
 
     it('should not mutate the original strokes', () => {
       const original = [
-        [{ x: 0, y: 0 }, { x: 5, y: 5 }],
+        [
+          { x: 0, y: 0 },
+          { x: 5, y: 5 },
+        ],
       ] as never[];
       const strokes = JSON.parse(JSON.stringify(original)) as never[];
 
@@ -107,8 +120,14 @@ describe('hanzi-golden-test.utils', () => {
 
     it('should handle multiple strokes', () => {
       const strokes = [
-        [{ x: 0, y: 0 }, { x: 5, y: 5 }],
-        [{ x: 10, y: 10 }, { x: 15, y: 15 }],
+        [
+          { x: 0, y: 0 },
+          { x: 5, y: 5 },
+        ],
+        [
+          { x: 10, y: 10 },
+          { x: 15, y: 15 },
+        ],
       ] as never[];
 
       const result = offsetDrawStrokes(strokes as never, 2, 3);
@@ -145,7 +164,12 @@ describe('hanzi-golden-test.utils', () => {
     it('should fetch JSON from the correct URL', async () => {
       const mockJson: HanziCharacterJson = {
         strokes: ['M0,0 L10,10'],
-        medians: [[{ x: 0, y: 0 }, { x: 10, y: 10 }]],
+        medians: [
+          [
+            { x: 0, y: 0 },
+            { x: 10, y: 10 },
+          ],
+        ],
       };
 
       global.fetch = vi.fn().mockResolvedValue({

@@ -82,10 +82,12 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.updateDraft({ title: 'Updated Title' });
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        title: 'Updated Title',
-        description: 'Test description',
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          title: 'Updated Title',
+          description: 'Test description',
+        }),
+      );
     });
   });
 
@@ -94,9 +96,11 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       await component.onFixedCardIdsChange(['card-3']);
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        fixedCardIds: ['card-3'],
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fixedCardIds: ['card-3'],
+        }),
+      );
     });
   });
 
@@ -105,9 +109,11 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.onSourceModeChange('criteria');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        sourceMode: 'criteria',
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          sourceMode: 'criteria',
+        }),
+      );
     });
   });
 
@@ -116,18 +122,22 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.moveCard('card-1', 1);
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        fixedCardIds: ['card-2', 'card-1'],
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fixedCardIds: ['card-2', 'card-1'],
+        }),
+      );
     });
 
     it('should swap card positions backward', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.moveCard('card-2', -1);
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        fixedCardIds: ['card-2', 'card-1'],
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          fixedCardIds: ['card-2', 'card-1'],
+        }),
+      );
     });
 
     it('should not move when index is not found', () => {
@@ -168,9 +178,11 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.onCriteriaSortChange('random');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        criteriaSort: 'random',
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          criteriaSort: 'random',
+        }),
+      );
     });
   });
 
@@ -179,9 +191,11 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.onKnownLanguageChange('en');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        languagePair: { known: 'en', learning: 'en' },
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          languagePair: { known: 'en', learning: 'en' },
+        }),
+      );
     });
   });
 
@@ -190,20 +204,28 @@ describe('ScenarioEditorFormComponent', () => {
       const spy = vi.spyOn(component.draftChange, 'emit');
       fixture.componentRef.setInput('draft', baseDraft);
       component.onLearningLanguageChange('zh');
-      expect(spy).toHaveBeenCalledWith(expect.objectContaining({
-        languagePair: { known: 'ru', learning: 'zh' },
-      }));
+      expect(spy).toHaveBeenCalledWith(
+        expect.objectContaining({
+          languagePair: { known: 'ru', learning: 'zh' },
+        }),
+      );
     });
   });
 
   describe('languagePairInvalid', () => {
     it('should return false when languages differ', () => {
-      fixture.componentRef.setInput('draft', { ...baseDraft, languagePair: { known: 'ru', learning: 'en' } });
+      fixture.componentRef.setInput('draft', {
+        ...baseDraft,
+        languagePair: { known: 'ru', learning: 'en' },
+      });
       expect(component.languagePairInvalid()).toBe(false);
     });
 
     it('should return true when languages are equal', () => {
-      fixture.componentRef.setInput('draft', { ...baseDraft, languagePair: { known: 'ru', learning: 'ru' } });
+      fixture.componentRef.setInput('draft', {
+        ...baseDraft,
+        languagePair: { known: 'ru', learning: 'ru' },
+      });
       expect(component.languagePairInvalid()).toBe(true);
     });
   });

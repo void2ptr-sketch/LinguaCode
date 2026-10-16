@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject, input } from '@angular/core';
 
 import {
   resolveRomanizationsForSurface,
@@ -43,6 +43,7 @@ const ROMANIZATION_LABELS: Record<RomanizationSystem, string> = {
 };
 
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-lexeme-display',
   imports: [PhoneticIpaComponent, ToneColoredTextComponent],
   host: {

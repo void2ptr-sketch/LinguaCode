@@ -6,6 +6,29 @@ import 'zone.js';
 import 'zone.js/testing';
 
 /**
+ * Suppress warnings that are not related to our code.
+ * These are known limitations of jsdom and Angular in a Node.js test environment.
+ */
+const originalConsoleWarn = console.warn;
+console.warn = (...args: unknown[]) => {
+  const text = args.map((a) => (typeof a === 'string' ? a : String(a))).join(' ');
+  // Suppress known noisy warnings from jsdom / Angular during tests.
+  if (/Not implemented: navigation to another Document/.test(text)) return;
+  if (/NG0953: Unexpected emit for destroyed/.test(text)) return;
+  originalConsoleWarn(...args);
+};
+
+// jsdom and Angular emit some warnings directly to stderr, bypassing console.warn.
+// Intercept process.stderr.write to filter them out.
+const originalStderrWrite = process.stderr.write.bind(process.stderr);
+process.stderr.write = (chunk: string | Buffer | Uint8Array) => {
+  const text = typeof chunk === 'string' ? chunk : chunk.toString();
+  if (/Not implemented: navigation to another Document/.test(text)) return true;
+  if (/NG0953: Unexpected emit for destroyed/.test(text)) return true;
+  return originalStderrWrite(chunk);
+};
+
+/**
  * The `@angular/build:unit-test` builder runs tests in a Node.js environment
  * with jsdom instead of a real browser (Karma), so there is no HTTP server.
  * Relative fetches used by tests (e.g. `/data/...` or `/assets/...` fixtures

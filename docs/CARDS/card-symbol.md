@@ -12,18 +12,18 @@
 
 Исходный тип: `SymbolCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'symbol'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `direction` | `CardDirection` | Направление по умолчанию |
-| `promptKnown` | `string` | Текст вопроса / подсказки |
-| `symbols` | `readonly string[]` | Набор символов для выбора |
-| `optionsKnown` | `readonly string[] \| undefined` | Варианты на известном языке (для режима «новый → известный») |
-| `symbolLexemes` | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции символов |
-| `correctIndex` | `number` | Индекс правильного символа (0-based) |
+| Поле            | Тип                                      | Описание                                                     |
+| --------------- | ---------------------------------------- | ------------------------------------------------------------ |
+| `id`            | `string`                                 | Уникальный идентификатор карточки                            |
+| `kind`          | `'symbol'`                               | Константа, определяющая тип карточки                         |
+| `title`         | `string`                                 | Заголовок карточки                                           |
+| `appearance`    | `CardAppearance`                         | Тема оформления и размер шрифта                              |
+| `direction`     | `CardDirection`                          | Направление по умолчанию                                     |
+| `promptKnown`   | `string`                                 | Текст вопроса / подсказки                                    |
+| `symbols`       | `readonly string[]`                      | Набор символов для выбора                                    |
+| `optionsKnown`  | `readonly string[] \| undefined`         | Варианты на известном языке (для режима «новый → известный») |
+| `symbolLexemes` | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции символов                           |
+| `correctIndex`  | `number`                                 | Индекс правильного символа (0-based)                         |
 
 ## Use Cases
 
@@ -59,21 +59,21 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `SymbolCard` | (required) | Данные карточки — символы, правильный индекс |
-| `direction` | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа |
-| `selectedIndex` | `number \| null` | `null` | Индекс выбранного символа |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр        | Тип                                          | По умолчанию          | Описание                                     |
+| --------------- | -------------------------------------------- | --------------------- | -------------------------------------------- |
+| `card`          | `SymbolCard`                                 | (required)            | Данные карточки — символы, правильный индекс |
+| `direction`     | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа                           |
+| `selectedIndex` | `number \| null`                             | `null`                | Индекс выбранного символа                    |
+| `feedback`      | `CardFeedback`                               | `null`                | Состояние обратной связи                     |
+| `fontSize`      | `'sm' \| 'md' \| 'lg'`                       | `'md'`                | Размер шрифта                                |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `optionSelected` | `Output<number>` | Индекс выбранного символа |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие          | Тип              | Описание                     |
+| ---------------- | ---------------- | ---------------------------- |
+| `optionSelected` | `Output<number>` | Индекс выбранного символа    |
+| `checkAnswer`    | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`       | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -113,15 +113,15 @@ const card: SymbolCard = {
 
 ### Внутренние вычисляемые значения
 
-| Значение | Тип | Описание |
-|----------|-----|----------|
-| `resolved` | `Computed<ResolvedOptionCard>` | Резолв карточки с учётом направления |
-| `promptLexeme()` | `() => PhoneticLexeme \| undefined` | Фонетика подсказки |
-| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика символа по индексу |
-| `optionClass(index)` | `(index: number) => string` | CSS-классы для варианта |
+| Значение              | Тип                                              | Описание                             |
+| --------------------- | ------------------------------------------------ | ------------------------------------ |
+| `resolved`            | `Computed<ResolvedOptionCard>`                   | Резолв карточки с учётом направления |
+| `promptLexeme()`      | `() => PhoneticLexeme \| undefined`              | Фонетика подсказки                   |
+| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика символа по индексу          |
+| `optionClass(index)`  | `(index: number) => string`                      | CSS-классы для варианта              |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
+| Метод                 | Описание                                                                                      |
+| --------------------- | --------------------------------------------------------------------------------------------- |
 | `selectOption(index)` | Обработка выбора. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |

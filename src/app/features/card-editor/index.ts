@@ -22,4 +22,7 @@ export type { CardDraft } from './types/card-draft.types';
 export type { CardFormContext } from './types/card-form.types';
 export { emptyCardDraft } from './utils/draft/card-draft.utils';
 export { cardFormKindGroup, CARD_FORM_KIND_GROUP } from './utils/form/card-form.registry';
-export { normalizeCardDraft, cardValidationErrorMessage } from './utils/validation/card-validation.utils';
+export {
+  normalizeCardDraft,
+  cardValidationErrorMessage,
+} from './utils/validation/card-validation.utils';

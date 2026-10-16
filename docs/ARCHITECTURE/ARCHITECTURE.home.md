@@ -11,18 +11,21 @@ Dashboard «куда идти дальше». Маршрут `/home`, вклад
 ```text
 features/home/
 ├── components/
-│   ├── home-page/                 # router-outlet для tabs
 │   ├── home-learning-tab/         # dashboard по умолчанию
-│   ├── learning-continue-card/
-│   ├── learning-program-progress/
-│   └── learning-lesson-roadmap/
+│   ├── learning-continue-card/    # CTA для продолжения обучения
+│   ├── learning-lesson-roadmap/   # дорожная карта уроков
+│   └── learning-program-progress/ # прогресс по программе
 ├── services/
-│   └── learning-dashboard.service.ts
+│   └── learning-dashboard.service.ts  # сервис дашборда
 ├── types/
-│   ├── home-tab.types.ts
-│   └── learning-dashboard.types.ts
-└── home-learning.smoke.spec.ts
+│   ├── home-tab.types.ts          # типы вкладок
+│   └── learning-dashboard.types.ts # типы дашборда
+├── utils/                         # утилиты (пустой barrel)
+├── models/                        # модели (пустой barrel)
+└── index.ts                       # barrel-экспорт
 ```
+
+> **Примечание:** `home-page` — это страница (page), а не компонент фичи. Она расположена в `pages/home/home-page/` и является точкой входа маршрута `/home`. Компоненты фичи (`features/home/components/`) импортируются страницей.
 
 ## Компоненты dashboard
 
@@ -37,7 +40,7 @@ features/home/
 ```mermaid
 flowchart TB
   HomePage --> HomeLearningTab
-  HomePage --> LearningProgress
+  HomePage --> LearningProgramProgress
   HomeLearningTab --> LearningDashboardService
   LearningDashboardService --> CourseSearchService
   LearningDashboardService --> UserStore
@@ -50,4 +53,4 @@ flowchart TB
 
 ## Связанные документы
 
-- [DOMAIN.md](./SYSTEM/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md#learning-home-g13) · [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)
+- [DOMAIN.md](./COMMON/DOMAIN.md#learning-home-g13) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md#learning-home-g13) · [ARCHITECTURE.card-select.md](./ARCHITECTURE.card-select.md)

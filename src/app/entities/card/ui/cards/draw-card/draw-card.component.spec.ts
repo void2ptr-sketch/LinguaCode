@@ -1,10 +1,10 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, DeferBlockBehavior, TestBed } from '@angular/core/testing';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { DrawCardComponent } from './draw-card.component';
 import { UserStore } from '../../../../user/model/user.store';
@@ -29,11 +29,12 @@ describe('DrawCardComponent', () => {
   let component: DrawCardComponent;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {
-      /* silence console.error in tests */
-    });
-
     TestBed.configureTestingModule({
+      // The template uses `@defer (on viewport)`, which relies on the browser
+      // `IntersectionObserver` API that jsdom does not implement. Rendering the
+      // deferred block manually keeps the unit test focused on the component
+      // logic instead of the viewport trigger.
+      deferBlockBehavior: DeferBlockBehavior.Manual,
       imports: [
         DrawCardComponent,
         MatButtonModule,

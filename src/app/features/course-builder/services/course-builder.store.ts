@@ -14,9 +14,10 @@
  */
 import { Injectable, computed, inject, signal } from '@angular/core';
 
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { activeLanguagePairCriteria } from '../../../entities/language-pair/lib/language-pair-scope.utils';
 import { normalizeLanguagePair } from '../../../entities/language-pair/lib/language-pair.utils';
-import { CourseSearchService } from '../../../entities/course';
+import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import type {
   CourseIndexEntry,
   CourseListScope,
@@ -30,10 +31,6 @@ import { DEFAULT_PAGE_SIZE } from '../../../shared/utils/pagination';
 import type { CourseFormDraft, CourseEditorMode } from '../types';
 import { formDraftToCourseWritePayload } from '../utils/course-form-draft.utils';
 import { collectCourseBundle } from '../../../entities/course/utils/course-bundle.utils';
-import { loadCourseCatalogFromStorage } from '../../../entities/course/storage/courses-storage';
-import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
-import { CardRepository } from '../../../entities/card/repository/card.repository';
-import { loadCardIndexMetaOverrides } from '../../../entities/card/storage/card-index-meta.storage';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
 /** Sanitizer for course title: max 128 characters, HTML cleaned */
@@ -64,10 +61,12 @@ export class CourseBuilderStore {
   private readonly courseSearchService = inject(CourseSearchService);
   /** User store (current language pair, user ID) */
   private readonly userStore = inject(UserStore);
-  /** Card repository for loading from localStorage */
-  private readonly cardRepository = inject(CardRepository);
+  /** API service for course data access */
+  private readonly coursesApi = inject(CoursesApiService);
   /** Service for exporting courses to PDF */
   private readonly pdfExport = inject(CoursePdfExportService);
+  /** Central logging service */
+  private readonly logger = inject(AppLoggerService);
 
   // -------------------------------------------------------------------------
   // Signals: course list state
@@ -145,7 +144,8 @@ export class CourseBuilderStore {
 
       this.indexItems.set(page.items);
       this.totalItems.set(page.totalItems);
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to load course list', error);
       this.error.set('Не удалось загрузить список курсов');
     } finally {
       this.loading.set(false);
@@ -224,7 +224,8 @@ export class CourseBuilderStore {
       this.editorMode.set('edit');
       this.editingCourseId.set(courseId);
       this.editingCourse.set(course);
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to load course for edit', error);
       this.error.set('Не удалось загрузить курс');
     } finally {
       this.editorLoading.set(false);
@@ -271,7 +272,8 @@ export class CourseBuilderStore {
       this.cancelEdit();
       await this.loadList();
       return true;
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to create course', error);
       this.error.set('Не удалось создать курс');
       return false;
     }
@@ -308,7 +310,8 @@ export class CourseBuilderStore {
       this.cancelEdit();
       await this.loadList();
       return true;
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to update course', error);
       this.error.set('Не удалось сохранить курс');
       return false;
     }
@@ -336,7 +339,8 @@ export class CourseBuilderStore {
         this.cancelEdit();
       }
       await this.loadList();
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to delete course', error);
       this.error.set('Не удалось удалить курс');
     }
   }
@@ -365,12 +369,15 @@ export class CourseBuilderStore {
     }
 
     try {
-      const catalog = loadCourseCatalogFromStorage();
-      const scenarios = loadScenariosFromStorage();
-      const cards = this.cardRepository.loadStored();
-      const cardIndexMeta = loadCardIndexMetaOverrides();
+      const bundle = await this.coursesApi.getBundle(courseId);
 
-      const result = collectCourseBundle(courseId, catalog, scenarios, cards, cardIndexMeta);
+      const result = collectCourseBundle(
+        courseId,
+        bundle.catalog,
+        bundle.scenarios,
+        bundle.cards,
+        bundle.cardIndexMeta,
+      );
 
       if (!result) {
         this.exportError.set('Не удалось собрать пакет: курс не найден');
@@ -383,8 +390,13 @@ export class CourseBuilderStore {
       }
 
       return JSON.stringify(result.bundle, null, 2);
-    } catch {
-      this.exportError.set('Ошибка при экспорте курса');
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to export course bundle', error);
+      this.exportError.set(
+        error instanceof Error && error.message
+          ? `Ошибка при экспорте курса: ${error.message}`
+          : 'Ошибка при экспорте курса',
+      );
       return null;
     }
   }
@@ -413,7 +425,8 @@ export class CourseBuilderStore {
       const blob = await this.pdfExport.export(course, showHints);
       this.downloadBlob(blob, `${courseId}.pdf`);
       return true;
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseBuilder: failed to export course PDF', error);
       this.exportError.set('Ошибка при экспорте в PDF');
       return false;
     }

@@ -6,6 +6,7 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { describe, expect, it } from 'vitest';
+import { IndexedDbService } from '../../shared/storage';
 import type { Card } from '../card/model';
 import type { Course, Lesson } from '../course/model';
 import type { Scenario } from '../scenario/model';
@@ -20,6 +21,7 @@ import {
   setCourseSeedCache,
   setScenarioSeedCache,
 } from './content-seed.cache';
+import type { ContentSeedSnapshot } from './content-seed.idb';
 import { ContentSeedRepository } from './content-seed.repository';
 import type { ContentManifest } from './content-seed.types';
 
@@ -84,16 +86,74 @@ function makeCardFixture(): Card {
   } as unknown as Card;
 }
 
+/**
+ * In-memory заглушка IndexedDbService для тестов.
+ * jsdom не реализует IndexedDB, поэтому реальный сервис в тестах
+ * всегда отклоняет запросы — здесь мы контролируем снапшот вручную.
+ */
+class MockIndexedDbService {
+  private readonly records = new Map<string, unknown>();
+
+  private recordKey(storeName: string, key: IDBValidKey): string {
+    return `${storeName}:${String(key)}`;
+  }
+
+  async get<T>(storeName: string, key: IDBValidKey): Promise<T | undefined> {
+    return this.records.get(this.recordKey(storeName, key)) as T | undefined;
+  }
+
+  async set(storeName: string, value: unknown, key?: IDBValidKey): Promise<void> {
+    this.records.set(this.recordKey(storeName, key ?? 'default'), value);
+  }
+
+  async delete(storeName: string, key: IDBValidKey): Promise<void> {
+    this.records.delete(this.recordKey(storeName, key));
+  }
+
+  async getAll<T>(storeName: string): Promise<readonly T[]> {
+    return [...this.records.entries()]
+      .filter(([recordKey]) => recordKey.startsWith(`${storeName}:`))
+      .map(([, value]) => value as T);
+  }
+
+  async clear(storeName: string): Promise<void> {
+    for (const recordKey of [...this.records.keys()]) {
+      if (recordKey.startsWith(`${storeName}:`)) {
+        this.records.delete(recordKey);
+      }
+    }
+  }
+
+  getSnapshot(): ContentSeedSnapshot | null {
+    const value = this.records.get(this.recordKey('content-seed', 'snapshot'));
+    return (value as ContentSeedSnapshot | undefined) ?? null;
+  }
+
+  setSnapshot(snapshot: ContentSeedSnapshot | null): void {
+    if (snapshot === null) {
+      this.records.delete(this.recordKey('content-seed', 'snapshot'));
+    } else {
+      this.records.set(this.recordKey('content-seed', 'snapshot'), snapshot);
+    }
+  }
+}
+
 describe('ContentSeedRepository', () => {
   let repository: ContentSeedRepository;
   let httpMock: HttpTestingController;
+  let idbMock: MockIndexedDbService;
 
   function createRepository(): void {
     TestBed.configureTestingModule({
-      providers: [provideHttpClient(), provideHttpClientTesting()],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        { provide: IndexedDbService, useClass: MockIndexedDbService },
+      ],
     });
     repository = TestBed.inject(ContentSeedRepository);
     httpMock = TestBed.inject(HttpTestingController);
+    idbMock = TestBed.inject(IndexedDbService) as unknown as MockIndexedDbService;
   }
 
   function flushManifest(manifest: ContentManifest = makeManifest()): void {
@@ -192,14 +252,20 @@ describe('ContentSeedRepository', () => {
       httpMock.expectNone(MANIFEST_URL);
     });
 
-    it('should allow retry after a failed preload', async () => {
+    it('should ignore network errors and allow subsequent preload', async () => {
       resetContentSeedCache();
       createRepository();
 
-      const failed = repository.preload().catch((error: unknown) => error);
+      // First preload fails (500) — silently ignored, cache remains empty
+      const first = repository.preload();
       httpMock.expectOne(MANIFEST_URL).flush('boom', { status: 500, statusText: 'Server Error' });
-      expect(await failed).toBeDefined();
+      await first;
+      expect(isContentSeedCacheReady()).toBe(false);
 
+      // Reset the failed promise to allow new preload
+      repository.resetForTest();
+
+      // Retry succeeds
       const retried = repository.preload();
       flushManifest();
       await retried;
@@ -220,6 +286,83 @@ describe('ContentSeedRepository', () => {
       await promise;
 
       expect(getCardSeedCache()).toEqual([]);
+    });
+
+    it('should hydrate from IndexedDB snapshot when version matches (no fixture requests)', async () => {
+      resetContentSeedCache();
+      createRepository();
+      idbMock.setSnapshot({
+        version: 1,
+        scenarios: [makeScenarioFixture()],
+        courses: [makeCourseFixture()],
+        lessons: [makeLessonFixture()],
+        cards: [makeCardFixture()],
+      });
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ version: 1 }));
+      await promise;
+
+      expect(isContentSeedCacheReady()).toBe(true);
+      expect(getScenarioSeedCache()[0]?.id).toBe('s1');
+      expect(getCourseSeedCache().courses[0]?.id).toBe('c1');
+      expect(getCourseSeedCache().lessons[0]?.id).toBe('l1');
+      expect(getCardSeedCache()[0]?.id).toBe('card-1');
+      httpMock.verify();
+    });
+
+    it('should fall back to IndexedDB snapshot when manifest is unavailable (offline)', async () => {
+      resetContentSeedCache();
+      createRepository();
+      idbMock.setSnapshot({
+        version: 1,
+        scenarios: [makeScenarioFixture()],
+        courses: [],
+        lessons: [],
+        cards: [],
+      });
+
+      const promise = repository.preload();
+      httpMock.expectOne(MANIFEST_URL).error(new ProgressEvent('offline'));
+      await promise;
+
+      expect(getScenarioSeedCache()[0]?.id).toBe('s1');
+    });
+
+    it('should re-fetch fixtures when snapshot version is stale', async () => {
+      resetContentSeedCache();
+      createRepository();
+      idbMock.setSnapshot({
+        version: 0,
+        scenarios: [],
+        courses: [],
+        lessons: [],
+        cards: [],
+      });
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ version: 1, scenarioFiles: ['scenarios/demo.json'] }));
+      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
+      await promise;
+
+      expect(getScenarioSeedCache()[0]?.id).toBe('s1');
+      expect(idbMock.getSnapshot()?.version).toBe(1);
+    });
+
+    it('should persist snapshot to IndexedDB after network load', async () => {
+      resetContentSeedCache();
+      createRepository();
+
+      const promise = repository.preload();
+      flushManifest(makeManifest({ scenarioFiles: ['scenarios/demo.json'] }));
+      await flushFixture('/data/scenarios/demo.json', { scenarios: [makeScenarioFixture()] });
+      await promise;
+
+      const snapshot = idbMock.getSnapshot();
+      expect(snapshot).not.toBeNull();
+      expect(snapshot?.version).toBe(1);
+      expect(snapshot?.scenarios).toHaveLength(1);
+      expect(snapshot?.scenarios[0]?.id).toBe('s1');
     });
   });
 

@@ -1,53 +1,40 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   DestroyRef,
   ElementRef,
+  OnDestroy,
   afterNextRender,
   computed,
   effect,
   inject,
   input,
   output,
-  signal,
   untracked,
   viewChild,
 } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
-import { paintCalligraphyPolyline } from '../../../../chinese/lib/drawing/draw-calligraphy-paint.utils';
-import { UserStore } from '../../../../user/model/user.store';
 import {
-  applyHanziCanvasPathTransform,
   medianLabelPoint,
   medianToSvgPath,
   resolveHanziSvgGroupTransform,
-  resolveRadicalComponentCellCenter,
   resolveRadicalComponentSvgTransform,
 } from '../../../../chinese/lib/rendering';
-import {
-  prepareHanziTracingSamples,
-  resolveHanziHintStrokeFrame,
-  resolveHanziTracingFrame,
-  sliceHanziPolylineByProgress,
-  tracingRevealProgress,
-  type HanziHintStrokeFrame,
-  type HanziTracingFrame,
-  type HanziTracingStrokeSample,
-} from '../../../../chinese/lib/animation';
+import { prepareHanziTracingSamples } from '../../../../chinese/lib/animation';
 import { HanziPositioner } from '../../../../chinese/lib/positioning';
-import { HanziDataService } from '../../../../chinese/lib/services';
-import type {
-  HanziCharacterModel,
-  HanziLoadState,
-  HanziPoint,
-} from '../../../../chinese/model';
+import { UserStore } from '../../../../user/model/user.store';
 import type {
   DrawCanvasMode,
-  DrawCanvasPoint,
   DrawMemoryStrokeGrade,
   DrawStrokePath,
 } from '../../../../phonetic/model';
+import type { HanziCharacterModel, HanziPoint } from '../../../../chinese/model';
+import { DrawCanvasDrawingService } from './draw-canvas-drawing.service';
+import { DrawCanvasAnimationService } from './draw-canvas-animation.service';
+import { DrawCanvasRenderingService } from './draw-canvas-rendering.service';
+import { DrawCanvasDataLoaderService } from './draw-canvas-data-loader.service';
 /**
  * A radical hint for the radicals canvas mode.
  *
@@ -60,24 +47,6 @@ export type DrawRadicalHint = {
   readonly character: string;
   /** The CSS color value for this radical component. */
   readonly color: string;
-};
-
-const DEFAULT_SURFACE_SIZE = 280;
-const GHOST_FONT_RATIO = 0.72;
-
-const EMPTY_TRACING_FRAME: HanziTracingFrame = {
-  completedStrokeCount: 0,
-  activeStrokeIndex: 0,
-  activeProgress: 0,
-  isLoopPause: false,
-  tip: null,
-};
-
-const EMPTY_HINT_FRAME: HanziHintStrokeFrame = {
-  phase: 'brush-placement',
-  progress: 0,
-  showStartCircle: false,
-  tip: null,
 };
 
 /**
@@ -103,14 +72,21 @@ const EMPTY_HINT_FRAME: HanziHintStrokeFrame = {
  */
 @Component({
   selector: 'app-draw-canvas',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [MatButtonModule, MatIconModule],
   templateUrl: './draw-canvas.component.html',
   styleUrl: './draw-canvas.component.scss',
 })
-export class DrawCanvasComponent {
+export class DrawCanvasComponent implements OnDestroy {
   private readonly destroyRef = inject(DestroyRef);
-  private readonly hanziData = inject(HanziDataService);
+  public readonly drawing = inject(DrawCanvasDrawingService);
+  public readonly animation = inject(DrawCanvasAnimationService);
+  public readonly rendering = inject(DrawCanvasRenderingService);
+  public readonly dataLoader = inject(DrawCanvasDataLoaderService);
   private readonly userStore = inject(UserStore);
+
+  /** Set to true at the start of ngOnDestroy to prevent post-destroy emits. */
+  private _isDestroyed = false;
 
   /**
    * The ghost character to display as a guide.
@@ -202,92 +178,22 @@ export class DrawCanvasComponent {
   readonly canvasRef = viewChild<ElementRef<HTMLCanvasElement>>('canvas');
 
   /**
-   * Whether any strokes have been drawn on the canvas.
-   * @remarks
-   * Updated when strokes are added or removed.
-   */
-  readonly hasStrokes = signal(false);
-
-  /**
-   * Whether undo is available.
-   * @remarks
-   * True when at least one stroke exists on the canvas.
-   */
-  readonly canUndo = signal(false);
-
-  /**
-   * Current canvas surface width in pixels.
-   * @remarks
-   * Dynamically updated on canvas resize via `ResizeObserver`.
-   */
-  readonly surfaceWidth = signal(DEFAULT_SURFACE_SIZE);
-
-  /**
-   * Current canvas surface height in pixels.
-   * @remarks
-   * Dynamically updated on canvas resize via `ResizeObserver`.
-   */
-  readonly surfaceHeight = signal(DEFAULT_SURFACE_SIZE);
-
-  /**
-   * Loaded Hanzi character model for the ghost overlay and animations.
-   * @remarks
-   * Contains stroke data, character info, and rendering metadata.
-   * Loaded asynchronously from `HanziDataService`.
-   */
-  readonly hanziModel = signal<HanziCharacterModel | null>(null);
-
-  /**
-   * Current load state of the Hanzi character.
-   * @remarks
-   * Values: 'idle', 'loading', 'ready', 'missing', 'error'.
-   * Drives the visibility of ghost overlay and animation controls.
-   */
-  readonly hanziLoadState = signal<HanziLoadState>('idle');
-
-  /**
-   * Map of radical character to model for radical hints mode.
-   * @remarks
-   * Populated when `canvasMode` is 'radicals' and `radicalHints` are provided.
-   */
-  readonly radicalModels = signal<ReadonlyMap<string, HanziCharacterModel>>(new Map());
-
-  /**
-   * Current load state of radical characters.
-   * @remarks
-   * Values: 'idle', 'loading', 'ready', 'missing', 'error'.
-   */
-  readonly radicalLoadState = signal<HanziLoadState>('idle');
-
-  /**
-   * Current tracing animation frame state.
-   * @remarks
-   * Contains the active stroke index, progress, and tip position for the tracing animation.
-   */
-  readonly tracingFrame = signal<HanziTracingFrame>(EMPTY_TRACING_FRAME);
-
-  /**
-   * Current hint animation frame state.
-   * @remarks
-   * Contains the brush guidance animation state including start circle, direction, and tip position.
-   */
-  readonly hintFrame = signal<HanziHintStrokeFrame>(EMPTY_HINT_FRAME);
-
-  /**
    * Strokes from the loaded Hanzi model.
    *
    * @remarks
    * Used for stroke order guides, hint animation, and tracing animation.
    * Returns an empty array when no model is loaded.
    */
-  readonly hanziStrokes = computed(() => this.hanziModel()?.strokes ?? []);
+  readonly hanziStrokes = computed(() => this.dataLoader.hanziModel()?.strokes ?? []);
 
   /**
    * SVG viewBox string for the canvas, derived from surface dimensions.
    * @remarks
    * Format: `"0 0 {width} {height}"`. Used for SVG element viewBox attribute.
    */
-  readonly svgViewBox = computed(() => `0 0 ${this.surfaceWidth()} ${this.surfaceHeight()}`);
+  readonly svgViewBox = computed(
+    () => `0 0 ${this.rendering.surfaceWidth()} ${this.rendering.surfaceHeight()}`,
+  );
 
   /**
    * Hanzi positioner for coordinate transformations.
@@ -299,8 +205,8 @@ export class DrawCanvasComponent {
   readonly hanziPositioner = computed(
     () =>
       new HanziPositioner({
-        width: this.surfaceWidth(),
-        height: this.surfaceHeight(),
+        width: this.rendering.surfaceWidth(),
+        height: this.rendering.surfaceHeight(),
         padding: 20,
       }),
   );
@@ -334,7 +240,7 @@ export class DrawCanvasComponent {
   readonly showHanziGhost = computed(
     () =>
       (this.hanziDataRequired() || this.showMemoryReviewGhost()) &&
-      this.hanziLoadState() === 'ready' &&
+      this.dataLoader.hanziLoadState() === 'ready' &&
       this.hanziStrokes().length > 0 &&
       this.ghostOpacity() > 0,
   );
@@ -357,7 +263,9 @@ export class DrawCanvasComponent {
   readonly showHanziGuides = computed(() => {
     const mode = this.canvasMode();
     return (
-      mode === 'stroke-order' && this.hanziLoadState() === 'ready' && this.hanziStrokes().length > 0
+      mode === 'stroke-order' &&
+      this.dataLoader.hanziLoadState() === 'ready' &&
+      this.hanziStrokes().length > 0
     );
   });
 
@@ -370,7 +278,7 @@ export class DrawCanvasComponent {
   readonly showHintAnimation = computed(
     () =>
       this.canvasMode() === 'hints' &&
-      this.hanziLoadState() === 'ready' &&
+      this.dataLoader.hanziLoadState() === 'ready' &&
       this.hanziStrokes().length > 0,
   );
 
@@ -383,7 +291,7 @@ export class DrawCanvasComponent {
   readonly showTracingAnimation = computed(
     () =>
       this.canvasMode() === 'tracing' &&
-      this.hanziLoadState() === 'ready' &&
+      this.dataLoader.hanziLoadState() === 'ready' &&
       this.hanziStrokes().length > 0,
   );
 
@@ -415,8 +323,8 @@ export class DrawCanvasComponent {
   readonly showRadicalLayer = computed(
     () =>
       this.radicalDataRequired() &&
-      this.radicalLoadState() === 'ready' &&
-      this.radicalHints().some((hint) => this.hasRadicalStrokeModel(hint.character)),
+      this.dataLoader.radicalLoadState() === 'ready' &&
+      this.radicalHints().some((hint) => this.dataLoader.hasRadicalStrokeModel(hint.character)),
   );
 
   /**
@@ -447,96 +355,74 @@ export class DrawCanvasComponent {
     }
   });
 
-  private strokes: DrawStrokePath[] = [];
-  private activeStroke: DrawCanvasPoint[] = [];
-  private drawing = false;
-  private context: CanvasRenderingContext2D | null = null;
-  private tracingSamples: readonly HanziTracingStrokeSample[] = [];
-  private hintSamples: readonly HanziTracingStrokeSample[] = [];
-  private tracingAnimationStart = 0;
-  private hintAnimationStart = 0;
-  private tracingAnimationFrameId = 0;
-  private hintAnimationFrameId = 0;
-  private tracingAnimationActive = false;
-  private hintAnimationActive = false;
-  private hintDrawingPaused = false;
-  private tracingLoopToken = 0;
-  private hintLoopToken = 0;
-  private guidanceSyncSignature = '';
-
   constructor() {
     afterNextRender(() => {
-      this.resizeCanvas();
-      this.observeCanvasResize();
+      const canvasEl = this.canvasRef()?.nativeElement;
+      if (canvasEl) {
+        this.rendering.initialize(canvasEl, this.destroyRef);
+        this.rendering.setRedrawCallback(() => this.redraw());
+      }
     });
 
-    /**
-     * Effect that syncs the Hanzi character model when the ghost character or mode changes.
-     * @remarks
-     * Loads or reloads the Hanzi character model when `ghostCharacter()` or `canvasMode()` changes.
-     */
+    // Configure drawing service callbacks with destroy protection
+    // Use a mutable flag set in ngOnDestroy BEFORE Angular destroys outputs
+    this.drawing.configureCallbacks({
+      onStrokeStateChange: (hasStrokes) => {
+        if (!this._isDestroyed) this.strokesChange.emit(hasStrokes);
+      },
+      onRestartHintAnimation: () => {
+        if (!this._isDestroyed) this.restartHintAnimationIfActive();
+      },
+    });
+
+    // Hanzi data loading
     effect(() => {
       const character = this.ghostCharacter()?.trim() ?? '';
       this.canvasMode();
-      void this.syncHanziCharacter(character);
+      this.dataLoader.loadCharacter(character);
     });
 
-    /**
-     * Effect that syncs the guidance animation (tracing/hint) when animation parameters change.
-     * @remarks
-     * Triggers on canvas ref, surface dimensions, Hanzi model/state, canvas mode, and duration changes.
-     */
-    effect(() => {
-      void [
-        this.canvasRef()?.nativeElement,
-        this.surfaceWidth(),
-        this.surfaceHeight(),
-        this.hanziModel(),
-        this.hanziLoadState(),
-        this.canvasMode(),
-        this.tracingStrokeDurationMs(),
-      ];
-      untracked(() => this.syncGuidanceAnimation());
-    });
-
-    /**
-     * Effect that syncs radical character models when in radicals mode.
-     * @remarks
-     * Loads radical character models when `canvasMode()` is 'radicals' and `radicalHints()` changes.
-     * Clears models and resets state when not in radicals mode.
-     */
+    // Radical data loading
     effect(() => {
       const mode = this.canvasMode();
       const hints = this.radicalHints();
-
       if (mode !== 'radicals') {
-        this.radicalModels.set(new Map());
-        this.radicalLoadState.set('idle');
+        this.dataLoader.clearRadicals();
         return;
       }
-
-      const characters = hints.map((hint) => hint.character.trim()).filter(Boolean);
-      void this.syncRadicalCharacters(characters);
+      const chars = hints.map((h) => h.character.trim()).filter(Boolean);
+      this.dataLoader.loadRadicals(chars);
     });
 
-    /**
-     * Effect that redraws the canvas when memory review state changes.
-     * @remarks
-     * Triggers when `showMemoryReview()` becomes true or `memoryStrokeGrades()` changes.
-     */
+    // Animation sync
     effect(() => {
-      const reviewActive = this.showMemoryReview();
-      const grades = this.memoryStrokeGrades();
-      if (!reviewActive && grades.length === 0) {
-        return;
-      }
-
-      untracked(() => this.redrawAll());
+      this.rendering.surfaceWidth();
+      this.rendering.surfaceHeight();
+      this.tracingStrokeDurationMs();
+      const model = this.dataLoader.hanziModel();
+      const loadState = this.dataLoader.hanziLoadState();
+      const mode = this.canvasMode();
+      untracked(() =>
+        this.syncGuidanceAnimation(
+          mode === 'tracing' ? 'tracing' : mode === 'hints' ? 'hints' : 'none',
+          loadState,
+          model?.character ?? '',
+          this.drawing.getStrokes().length,
+        ),
+      );
     });
 
+    // Memory review redraw
+    effect(() => {
+      if (this.showMemoryReview() && this.memoryStrokeGrades().length > 0) {
+        untracked(() => this.redraw());
+      }
+    });
+
+    // Cleanup
     this.destroyRef.onDestroy(() => {
-      this.stopTracingAnimation(false);
-      this.stopHintAnimation(false);
+      this.animation.stopTracingAnimation(false);
+      this.animation.stopHintAnimation(false);
     });
   }
 
@@ -567,7 +453,7 @@ export class DrawCanvasComponent {
    * @returns The character model, or `null` if not loaded.
    */
   radicalModelFor(character: string): HanziCharacterModel | null {
-    return this.radicalModels().get(character.trim()) ?? null;
+    return this.dataLoader.radicalModels().get(character.trim()) ?? null;
   }
 
   /**
@@ -579,8 +465,8 @@ export class DrawCanvasComponent {
    */
   radicalComponentTransform(componentIndex: number, componentCount: number): string {
     return resolveRadicalComponentSvgTransform(componentIndex, componentCount, {
-      width: this.surfaceWidth(),
-      height: this.surfaceHeight(),
+      width: this.rendering.surfaceWidth(),
+      height: this.rendering.surfaceHeight(),
     });
   }
 
@@ -589,7 +475,7 @@ export class DrawCanvasComponent {
    * @returns A readonly array of stroke paths.
    */
   getStrokes(): readonly DrawStrokePath[] {
-    return this.strokes;
+    return this.drawing.getStrokes();
   }
 
   /**
@@ -597,10 +483,7 @@ export class DrawCanvasComponent {
    * @returns An object with `width` and `height` in pixels.
    */
   getCanvasSize(): { width: number; height: number } {
-    return {
-      width: this.surfaceWidth(),
-      height: this.surfaceHeight(),
-    };
+    return this.rendering.getCanvasSize();
   }
 
   /**
@@ -612,11 +495,8 @@ export class DrawCanvasComponent {
    * Restarts hint animation if active.
    */
   setStrokes(strokes: readonly DrawStrokePath[]): void {
-    this.strokes = strokes.map((stroke) => [...stroke]);
-    this.activeStroke = [];
-    this.syncStrokeState(false);
-    this.restartHintAnimationIfActive();
-    this.redrawAll();
+    this.drawing.setStrokes(strokes);
+    this.redraw();
   }
 
   /**
@@ -625,14 +505,8 @@ export class DrawCanvasComponent {
    * No-op if no strokes exist. Syncs stroke state and redraws.
    */
   undoLastStroke(): void {
-    if (this.strokes.length === 0) {
-      return;
-    }
-
-    this.strokes.pop();
-    this.syncStrokeState(true);
-    this.restartHintAnimationIfActive();
-    this.redrawAll();
+    this.drawing.undo();
+    this.redraw();
   }
 
   /**
@@ -641,11 +515,8 @@ export class DrawCanvasComponent {
    * Resets the stroke array and active stroke, syncs state, and redraws.
    */
   clearStrokes(): void {
-    this.strokes = [];
-    this.activeStroke = [];
-    this.syncStrokeState(true);
-    this.restartHintAnimationIfActive();
-    this.redrawAll();
+    this.drawing.clearAll();
+    this.redraw();
   }
 
   /**
@@ -653,26 +524,20 @@ export class DrawCanvasComponent {
    *
    * @param event - The pointer event.
    * @remarks
-   * Captures the pointer, initializes the active stroke with the first point.
+   * Captures the pointer, delegates drawing state to `DrawCanvasDrawingService`.
    * Pauses hint animation if in hints mode.
    */
   onPointerDown(event: PointerEvent): void {
-    if (this.disabled()) {
-      return;
-    }
+    if (this.disabled()) return;
 
     const canvas = this.canvasRef()?.nativeElement;
-    if (!canvas) {
-      return;
-    }
+    if (!canvas) return;
 
     canvas.setPointerCapture(event.pointerId);
-    this.drawing = true;
-    this.activeStroke = [this.eventPoint(event, canvas)];
-
+    this.drawing.onPointerDown(this.rendering.pointerPoint(event));
     if (this.canvasMode() === 'hints') {
-      this.hintDrawingPaused = true;
-      this.redrawAll();
+      this.animation.pauseHintDrawing();
+      this.redraw();
     }
   }
 
@@ -681,20 +546,12 @@ export class DrawCanvasComponent {
    *
    * @param event - The pointer event.
    * @remarks
-   * Appends the current pointer position to the active stroke and redraws.
+   * Delegates to `DrawCanvasDrawingService` and redraws.
    */
   onPointerMove(event: PointerEvent): void {
-    if (!this.drawing || this.disabled()) {
-      return;
-    }
-
-    const canvas = this.canvasRef()?.nativeElement;
-    if (!canvas || this.activeStroke.length === 0) {
-      return;
-    }
-
-    this.activeStroke.push(this.eventPoint(event, canvas));
-    this.redrawAll();
+    if (!this.drawing.isDrawing() || this.disabled()) return;
+    this.drawing.onPointerMove(this.rendering.pointerPoint(event));
+    this.redraw();
   }
 
   /**
@@ -702,719 +559,119 @@ export class DrawCanvasComponent {
    *
    * @param event - The pointer event.
    * @remarks
-   * Releases pointer capture, pushes the active stroke to the strokes array,
-   * and syncs state. Resumes hint animation if in hints mode.
+   * Releases pointer capture, delegates to `DrawCanvasDrawingService`,
+   * and redraws. Resumes hint animation if in hints mode.
    */
   onPointerUp(event: PointerEvent): void {
     const canvas = this.canvasRef()?.nativeElement;
-    if (canvas?.hasPointerCapture(event.pointerId)) {
-      canvas.releasePointerCapture(event.pointerId);
-    }
+    canvas?.releasePointerCapture(event.pointerId);
 
-    if (!this.drawing) {
-      return;
-    }
+    if (!this.drawing.isDrawing()) return;
 
-    this.drawing = false;
-
-    if (this.activeStroke.length > 0) {
-      this.strokes.push([...this.activeStroke]);
-      this.activeStroke = [];
-      this.syncStrokeState(true);
-      this.restartHintAnimationIfActive();
-      return;
-    }
-
+    this.drawing.onPointerUp();
     if (this.canvasMode() === 'hints') {
-      this.hintDrawingPaused = false;
-      this.redrawAll();
+      this.animation.resumeHintDrawing();
+      this.redraw();
     }
   }
 
-  private async syncRadicalCharacters(characters: readonly string[]): Promise<void> {
-    if (characters.length === 0) {
-      this.radicalModels.set(new Map());
-      this.radicalLoadState.set('idle');
-      this.redrawAll();
-      return;
-    }
+  /**
+   * Performs a full canvas redraw using the rendering service.
+   */
+  private redraw(): void {
+    const ctx = this.rendering.getContext();
+    if (!ctx) return;
 
-    const requestKey = characters.join('\u0000');
-    const allCached = characters.every(
-      (character) =>
-        this.hanziData.hasCachedData(character) ||
-        this.hanziData.getLoadState(character) === 'missing' ||
-        this.hanziData.getLoadState(character) === 'error',
-    );
-
-    if (!allCached) {
-      this.radicalLoadState.set('loading');
-    }
-
-    const models = await this.hanziData.loadCharacters(characters);
-    const currentKey = this.radicalHints()
-      .map((hint) => hint.character.trim())
-      .filter(Boolean)
-      .join('\u0000');
-
-    if (currentKey !== requestKey || this.canvasMode() !== 'radicals') {
-      return;
-    }
-
-    this.radicalModels.set(models);
-    this.radicalLoadState.set(models.size > 0 ? 'ready' : 'missing');
-    this.redrawAll();
-  }
-
-  private async syncHanziCharacter(character: string): Promise<void> {
-    if (!character) {
-      this.hanziModel.set(null);
-      this.hanziLoadState.set('idle');
-      this.redrawAll();
-      return;
-    }
-
-    const cached = this.hanziData.getCachedModel(character);
-    if (cached) {
-      this.hanziModel.set(cached);
-      this.hanziLoadState.set('ready');
-      this.redrawAll();
-      this.syncGuidanceAnimation();
-      return;
-    }
-
-    const state = this.hanziData.getLoadState(character);
-    if (state === 'missing') {
-      this.hanziModel.set(null);
-      this.hanziLoadState.set('missing');
-      this.redrawAll();
-      return;
-    }
-
-    this.hanziLoadState.set('loading');
-    const model = await this.hanziData.loadCharacter(character);
-    if (this.ghostCharacter()?.trim() !== character) {
-      return;
-    }
-
-    this.hanziModel.set(model);
-    this.hanziLoadState.set(model ? 'ready' : this.hanziData.getLoadState(character));
-    this.redrawAll();
-    this.syncGuidanceAnimation();
-  }
-
-  private redrawAll(): void {
-    const canvas = this.canvasRef()?.nativeElement;
-    const context = this.ensureContext();
-    if (!canvas || !context) {
-      return;
-    }
-
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    this.paintRadicalHints(context, canvas.width, canvas.height);
-    this.paintTracingAnimation(context);
-    this.paintHintAnimation(context);
-    this.paintStrokes(context);
-  }
-
-  private paintStrokes(context: CanvasRenderingContext2D): void {
-    const reviewActive = this.showMemoryReview() && this.canvasMode() === 'memory';
-
-    for (let index = 0; index < this.strokes.length; index += 1) {
-      const stroke = this.strokes[index];
-      if (!stroke) {
-        continue;
-      }
-
-      this.paintStroke(context, stroke, reviewActive ? this.memoryStrokeGradeAt(index) : null);
-    }
-
-    if (this.activeStroke.length > 0) {
-      this.paintStroke(context, this.activeStroke, null);
-    }
-  }
-
-  private memoryStrokeGradeAt(index: number): DrawMemoryStrokeGrade | null {
-    return this.memoryStrokeGrades()[index] ?? 'incorrect';
-  }
-
-  private paintStroke(
-    context: CanvasRenderingContext2D,
-    stroke: DrawStrokePath,
-    memoryGrade: DrawMemoryStrokeGrade | null,
-  ): void {
-    if (stroke.length === 0) {
-      return;
-    }
-
-    const baseWidth = Math.max(3.5, this.surfaceWidth() * 0.022);
-    paintCalligraphyPolyline(context, stroke, {
-      baseWidth,
-      color: this.resolveStrokeColor(memoryGrade),
-      taper: true,
+    this.rendering.redraw({
+      strokes: this.drawing.getStrokes(),
+      activeStroke: this.drawing.getActiveStroke(),
+      memoryGrade: null,
+      reviewActive: this.showMemoryReview() && this.canvasMode() === 'memory',
+      tracingFrame: this.animation.tracingFrame(),
+      tracingActive: this.animation.tracingAnimationActive(),
+      tracingSamples: [],
+      hintFrame: this.animation.hintFrame(),
+      hintActive: this.animation.hintAnimationActive(),
+      hintDrawingPaused: this.animation.isHintDrawingPaused(),
+      hintSamples: [],
+      radicalHints: this.radicalHints(),
+      radicalModels: this.dataLoader.radicalModels(),
+      radicalLoadState: this.dataLoader.radicalLoadState(),
+      canvasMode: this.canvasMode(),
+      positioner: this.hanziPositioner(),
+      resolveThemeColor: (v, f) => this.resolveThemeColor(v, f),
     });
   }
 
-  private resolveStrokeColor(memoryGrade: DrawMemoryStrokeGrade | null): string {
-    if (memoryGrade === 'correct') {
-      return this.resolveThemeColor('--mat-sys-tertiary', '#386a20');
+  /**
+   * Syncs the guidance animation (tracing/hints) based on current mode.
+   *
+   * @param mode - The animation mode ('tracing', 'hints', or 'none').
+   * @param hanziLoadState - Whether hanzi data is loaded.
+   * @param hanziCharacter - The character being animated.
+   * @param strokeCount - Number of strokes drawn.
+   */
+  private syncGuidanceAnimation(
+    mode: 'tracing' | 'hints' | 'none',
+    hanziLoadState: string,
+    hanziCharacter: string,
+    strokeCount: number,
+  ): void {
+    const canvasEl = this.canvasRef()?.nativeElement;
+    if (!canvasEl) return;
+
+    const model = this.dataLoader.hanziModel();
+    const samples = model ? prepareHanziTracingSamples(model.strokes.map((s) => s.points)) : [];
+
+    if (samples.length === 0) {
+      this.animation.syncGuidanceAnimation(mode, hanziLoadState, hanziCharacter, strokeCount, () =>
+        this.redraw(),
+      );
+      return;
     }
 
-    if (memoryGrade === 'incorrect') {
-      return this.resolveThemeColor('--mat-sys-error', '#b3261e');
+    if (mode === 'tracing') {
+      this.animation.setTracingSamples(samples, this.tracingStrokeDurationMs());
+      this.animation.syncGuidanceAnimation(mode, hanziLoadState, hanziCharacter, strokeCount, () =>
+        this.redraw(),
+      );
+      return;
     }
 
-    return '#1a1a1a';
+    if (mode === 'hints') {
+      this.animation.setHintSamples(samples);
+      this.animation.syncGuidanceAnimation(mode, hanziLoadState, hanziCharacter, strokeCount, () =>
+        this.redraw(),
+      );
+    }
   }
 
+  /**
+   * Restarts hint animation if it should be active.
+   */
+  private restartHintAnimationIfActive(): void {
+    if (this.canvasMode() !== 'hints') return;
+    this.animation.restartHintAnimationIfActive(() => this.redraw());
+  }
+
+  /**
+   * Resolves a CSS theme color variable to its computed value.
+   */
   private resolveThemeColor(variable: string, fallback: string): string {
     const canvas = this.canvasRef()?.nativeElement;
     const fromCanvas = canvas ? getComputedStyle(canvas).getPropertyValue(variable).trim() : '';
     if (fromCanvas) {
       return fromCanvas;
     }
-
     return getComputedStyle(document.documentElement).getPropertyValue(variable).trim() || fallback;
   }
 
-  private resizeCanvas(): void {
-    const canvas = this.canvasRef()?.nativeElement;
-    if (!canvas) {
-      return;
-    }
-
-    const width = canvas.clientWidth || DEFAULT_SURFACE_SIZE;
-    const height = canvas.clientHeight || DEFAULT_SURFACE_SIZE;
-    canvas.width = width;
-    canvas.height = height;
-    this.surfaceWidth.set(width);
-    this.surfaceHeight.set(height);
-
-    this.context = null;
-    this.ensureContext();
-    this.syncGuidanceAnimation();
-    this.redrawAll();
-  }
-
-  private ensureContext(): CanvasRenderingContext2D | null {
-    const canvas = this.canvasRef()?.nativeElement;
-    if (!canvas) {
-      return null;
-    }
-
-    if (!this.context) {
-      const context = canvas.getContext('2d');
-      if (!context) {
-        return null;
-      }
-
-      context.lineCap = 'round';
-      context.lineJoin = 'round';
-      context.lineWidth = 4;
-      context.strokeStyle = '#1a1a1a';
-      context.fillStyle = '#1a1a1a';
-      this.context = context;
-    }
-
-    return this.context;
-  }
-
-  private ghostFontSize(width: number): number {
-    return Math.floor(width * GHOST_FONT_RATIO);
-  }
-
-  private ghostFontFamily(): string {
-    return '"Noto Sans SC", "Noto Sans TC", sans-serif';
-  }
-
-  private hasRadicalStrokeModel(character: string): boolean {
-    const model = this.radicalModels().get(character.trim());
-    return Boolean(model && model.strokes.length > 0);
-  }
-
-  private paintRadicalHints(
-    context: CanvasRenderingContext2D,
-    width: number,
-    height: number,
-  ): void {
-    if (this.canvasMode() !== 'radicals' || this.radicalLoadState() !== 'ready') {
-      return;
-    }
-
-    const hints = this.radicalHints();
-    if (hints.every((hint) => this.hasRadicalStrokeModel(hint.character))) {
-      return;
-    }
-
-    const cellCount = hints.length;
-    const cellWidth = width / Math.max(cellCount, 1);
-    const fontSize = Math.min(this.ghostFontSize(cellWidth), this.ghostFontSize(width));
-    context.save();
-    context.font = `${fontSize}px ${this.ghostFontFamily()}`;
-    context.textAlign = 'center';
-    context.textBaseline = 'middle';
-    context.globalAlpha = 0.38;
-
-    for (let index = 0; index < hints.length; index += 1) {
-      const hint = hints[index];
-      if (this.hasRadicalStrokeModel(hint.character)) {
-        continue;
-      }
-
-      const center = resolveRadicalComponentCellCenter(index, cellCount, { width, height });
-      context.fillStyle = hint.color;
-      context.fillText(hint.character, center.x, center.y);
-    }
-
-    context.restore();
-  }
-
-  private eventPoint(event: PointerEvent, canvas: HTMLCanvasElement): DrawCanvasPoint {
-    const rect = canvas.getBoundingClientRect();
-    const scaleX = canvas.width / Math.max(canvas.clientWidth, 1);
-    const scaleY = canvas.height / Math.max(canvas.clientHeight, 1);
-
-    return {
-      x: (event.clientX - rect.left - canvas.clientLeft) * scaleX,
-      y: (event.clientY - rect.top - canvas.clientTop) * scaleY,
-    };
-  }
-
-  private observeCanvasResize(): void {
-    const canvas = this.canvasRef()?.nativeElement;
-    if (!canvas || typeof ResizeObserver === 'undefined') {
-      return;
-    }
-
-    const observer = new ResizeObserver(() => {
-      this.resizeCanvas();
-    });
-    observer.observe(canvas);
-    this.destroyRef.onDestroy(() => observer.disconnect());
-  }
-
-  private syncStrokeState(emitChange: boolean): void {
-    const hasStrokes = this.strokes.length > 0;
-    this.hasStrokes.set(hasStrokes);
-    this.canUndo.set(hasStrokes);
-
-    if (emitChange) {
-      this.strokesChange.emit(hasStrokes);
-    }
-  }
-
-  private syncGuidanceAnimation(): void {
-    const mode = this.canvasMode();
-    const signature = `${mode}|${this.hanziLoadState()}|${this.hanziModel()?.character ?? ''}|${this.tracingStrokeDurationMs()}`;
-
-    if (mode !== 'tracing' && mode !== 'hints') {
-      if (this.guidanceSyncSignature !== '') {
-        this.guidanceSyncSignature = '';
-        this.stopTracingAnimation(false);
-        this.stopHintAnimation(false);
-        this.redrawAll();
-      }
-      return;
-    }
-
-    if (!this.canvasRef()?.nativeElement) {
-      return;
-    }
-
-    if (this.hanziLoadState() !== 'ready' || !this.hanziModel()) {
-      this.guidanceSyncSignature = '';
-      this.stopTracingAnimation(false);
-      this.stopHintAnimation(false);
-      this.redrawAll();
-      return;
-    }
-
-    if (signature === this.guidanceSyncSignature) {
-      const animationRunning =
-        mode === 'tracing' ? this.tracingAnimationActive : this.hintAnimationActive;
-      if (animationRunning) {
-        return;
-      }
-    }
-
-    this.guidanceSyncSignature = signature;
-    this.stopTracingAnimation(false);
-    this.stopHintAnimation(false);
-
-    const model = this.hanziModel();
-    if (!model) {
-      this.redrawAll();
-      return;
-    }
-
-    const samples = prepareHanziTracingSamples(model.strokes.map((stroke) => stroke.points));
-    if (samples.length === 0) {
-      this.redrawAll();
-      return;
-    }
-
-    if (mode === 'tracing') {
-      this.tracingSamples = samples;
-      this.tracingAnimationStart = performance.now();
-      this.tracingFrame.set(
-        resolveHanziTracingFrame(0, samples, {
-          strokeDurationMs: this.tracingStrokeDurationMs(),
-        }),
-      );
-      this.tracingAnimationActive = true;
-      this.tracingLoopToken += 1;
-      const token = this.tracingLoopToken;
-      this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation(token));
-      this.redrawAll();
-      return;
-    }
-
-    if (this.strokes.length >= samples.length) {
-      this.redrawAll();
-      return;
-    }
-
-    this.hintSamples = samples;
-    this.hintDrawingPaused = false;
-    this.hintAnimationStart = performance.now();
-    this.hintFrame.set(
-      resolveHanziHintStrokeFrame(0, samples[this.strokes.length]!, {
-        strokeDurationMs: this.tracingStrokeDurationMs(),
-      }),
-    );
-    this.startHintAnimationLoop();
-    this.redrawAll();
-  }
-
-  private stopHintAnimation(redraw = true): void {
-    this.hintAnimationActive = false;
-    this.hintDrawingPaused = false;
-    this.hintLoopToken += 1;
-
-    if (this.hintAnimationFrameId) {
-      cancelAnimationFrame(this.hintAnimationFrameId);
-      this.hintAnimationFrameId = 0;
-    }
-
-    if (redraw) {
-      this.hintFrame.set(EMPTY_HINT_FRAME);
-      this.redrawAll();
-    }
-  }
-
-  private startHintAnimationLoop(): void {
-    this.hintAnimationActive = true;
-    this.hintLoopToken += 1;
-    const token = this.hintLoopToken;
-    this.hintAnimationFrameId = requestAnimationFrame(() => this.runHintAnimation(token));
-  }
-
-  private restartHintAnimationIfActive(): void {
-    if (this.canvasMode() !== 'hints') {
-      return;
-    }
-
-    this.guidanceSyncSignature = '';
-    this.hintDrawingPaused = false;
-    this.syncGuidanceAnimation();
-  }
-
-  private runHintAnimation(token: number): void {
-    if (!this.hintAnimationActive || token !== this.hintLoopToken) {
-      return;
-    }
-
-    const strokeIndex = this.strokes.length;
-    const sample = this.hintSamples[strokeIndex];
-    if (!sample || this.hintDrawingPaused) {
-      this.redrawAll();
-      this.hintAnimationFrameId = requestAnimationFrame(() => this.runHintAnimation(token));
-      return;
-    }
-
-    const elapsedMs = performance.now() - this.hintAnimationStart;
-    this.hintFrame.set(
-      resolveHanziHintStrokeFrame(elapsedMs, sample, {
-        strokeDurationMs: this.tracingStrokeDurationMs(),
-      }),
-    );
-    this.redrawAll();
-    this.hintAnimationFrameId = requestAnimationFrame(() => this.runHintAnimation(token));
-  }
-
-  private paintHintAnimation(context: CanvasRenderingContext2D): void {
-    if (
-      this.canvasMode() !== 'hints' ||
-      !this.hintAnimationActive ||
-      this.hintDrawingPaused ||
-      this.hintSamples.length === 0
-    ) {
-      return;
-    }
-
-    const strokeIndex = this.strokes.length;
-    const sample = this.hintSamples[strokeIndex];
-    if (!sample) {
-      return;
-    }
-
-    const frame = this.hintFrame();
-    const positioner = this.hanziPositioner();
-    const strokeColor = this.resolvePrimaryColor();
-    const lineWidth = Math.max(5, positioner.scale * 0.24);
-    const elapsedMs = performance.now() - this.hintAnimationStart;
-
-    if (frame.showStartCircle && sample.densified[0]) {
-      this.paintHintStartCircle(context, sample.densified[0], positioner, strokeColor, elapsedMs);
-    }
-
-    if (frame.phase === 'direction' && frame.progress > 0) {
-      const points = sliceHanziPolylineByProgress(sample.densified, frame.progress);
-      this.paintHintDirectionPolyline(context, points, positioner, strokeColor, lineWidth);
-    }
-
-    if (frame.phase === 'direction' && frame.tip) {
-      this.paintHintBrushTip(context, frame.tip, positioner, strokeColor, sample, frame.progress);
-    }
-  }
-
-  private paintHintStartCircle(
-    context: CanvasRenderingContext2D,
-    point: HanziPoint,
-    positioner: HanziPositioner,
-    color: string,
-    elapsedMs: number,
-  ): void {
-    const canvasPoint = positioner.toCanvas(point);
-    const radius = Math.max(10, positioner.scale * 0.42);
-    const pulse = 0.55 + 0.35 * Math.sin((elapsedMs / 700) * Math.PI * 2);
-
-    context.save();
-    context.strokeStyle = color;
-    context.fillStyle = color;
-    context.lineWidth = 3;
-    context.globalAlpha = pulse;
-    context.beginPath();
-    context.arc(canvasPoint.x, canvasPoint.y, radius, 0, Math.PI * 2);
-    context.stroke();
-    context.globalAlpha = pulse * 0.95;
-    context.beginPath();
-    context.arc(canvasPoint.x, canvasPoint.y, radius * 0.28, 0, Math.PI * 2);
-    context.fill();
-    context.restore();
-  }
-
-  private paintHintDirectionPolyline(
-    context: CanvasRenderingContext2D,
-    points: readonly HanziPoint[],
-    positioner: HanziPositioner,
-    color: string,
-    width: number,
-  ): void {
-    if (points.length < 2) {
-      return;
-    }
-
-    const canvasPoints = points.map((point) => positioner.toCanvas(point));
-    context.save();
-    context.strokeStyle = color;
-    context.lineCap = 'round';
-    context.lineJoin = 'round';
-    context.lineWidth = width;
-    context.globalAlpha = 0.72;
-    context.setLineDash([Math.max(6, width * 1.4), Math.max(4, width * 0.9)]);
-    context.beginPath();
-    context.moveTo(canvasPoints[0]!.x, canvasPoints[0]!.y);
-    for (let index = 1; index < canvasPoints.length; index += 1) {
-      context.lineTo(canvasPoints[index]!.x, canvasPoints[index]!.y);
-    }
-    context.stroke();
-    context.restore();
-  }
-
-  private paintHintBrushTip(
-    context: CanvasRenderingContext2D,
-    tip: NonNullable<HanziHintStrokeFrame['tip']>,
-    positioner: HanziPositioner,
-    color: string,
-    sample: HanziTracingStrokeSample,
-    progress: number,
-  ): void {
-    const lookbackPoints = sliceHanziPolylineByProgress(
-      sample.densified,
-      Math.max(0, progress - 0.04),
-    );
-    const canvasTip = positioner.toCanvas(tip.point);
-    const canvasTail = positioner.toCanvas(lookbackPoints.at(-1) ?? tip.point);
-    const angleRad = Math.atan2(canvasTip.y - canvasTail.y, canvasTip.x - canvasTail.x);
-    const brushRadius = Math.max(4, positioner.scale * 0.2);
-
-    context.save();
-    context.globalAlpha = 0.95;
-    context.fillStyle = color;
-    context.translate(canvasTip.x, canvasTip.y);
-    context.rotate(angleRad);
-    context.beginPath();
-    context.ellipse(0, 0, brushRadius * 1.15, brushRadius * 0.72, 0, 0, Math.PI * 2);
-    context.fill();
-    context.restore();
-  }
-
-  private syncTracingAnimation(): void {
-    this.syncGuidanceAnimation();
-  }
-
-  private stopTracingAnimation(redraw = true): void {
-    this.tracingAnimationActive = false;
-    this.tracingLoopToken += 1;
-
-    if (this.tracingAnimationFrameId) {
-      cancelAnimationFrame(this.tracingAnimationFrameId);
-      this.tracingAnimationFrameId = 0;
-    }
-
-    if (redraw) {
-      this.tracingFrame.set(EMPTY_TRACING_FRAME);
-      this.redrawAll();
-    }
-  }
-
-  private runTracingAnimation(token: number): void {
-    if (!this.tracingAnimationActive || token !== this.tracingLoopToken) {
-      return;
-    }
-
-    const elapsedMs = performance.now() - this.tracingAnimationStart;
-    this.tracingFrame.set(
-      resolveHanziTracingFrame(elapsedMs, this.tracingSamples, {
-        strokeDurationMs: this.tracingStrokeDurationMs(),
-      }),
-    );
-    this.redrawAll();
-    this.tracingAnimationFrameId = requestAnimationFrame(() => this.runTracingAnimation(token));
-  }
-
-  private paintTracingAnimation(context: CanvasRenderingContext2D): void {
-    if (
-      this.canvasMode() !== 'tracing' ||
-      !this.tracingAnimationActive ||
-      this.tracingSamples.length === 0
-    ) {
-      return;
-    }
-
-    const frame = this.tracingFrame();
-    const model = this.hanziModel();
-    const positioner = this.hanziPositioner();
-    const strokeColor = this.resolvePrimaryColor();
-    const lineWidth = Math.max(8, positioner.scale * 0.34);
-
-    for (let strokeNum = 0; strokeNum < this.tracingSamples.length; strokeNum += 1) {
-      const sample = this.tracingSamples[strokeNum];
-      const strokePath = model?.strokes[strokeNum]?.path;
-      if (!sample) {
-        continue;
-      }
-
-      const progress = frame.isLoopPause ? 1 : tracingRevealProgress(frame, strokeNum);
-      const isFullyRevealed = strokeNum < frame.completedStrokeCount || progress >= 1;
-
-      if (isFullyRevealed) {
-        if (strokePath) {
-          this.paintTracingStrokeFill(context, strokePath, positioner, strokeColor);
-        } else {
-          this.paintTracingPolyline(
-            context,
-            sample.densified,
-            positioner,
-            strokeColor,
-            lineWidth,
-            1,
-          );
-        }
-        continue;
-      }
-
-      if (progress <= 0) {
-        continue;
-      }
-
-      const points = sliceHanziPolylineByProgress(sample.densified, progress);
-      this.paintTracingPolyline(context, points, positioner, strokeColor, lineWidth, 1);
-    }
-
-    if (!frame.tip || frame.isLoopPause) {
-      return;
-    }
-
-    const activeSample = this.tracingSamples[frame.activeStrokeIndex];
-    const progress = tracingRevealProgress(frame, frame.activeStrokeIndex);
-    if (progress >= 1) {
-      return;
-    }
-
-    const lookbackPoints = activeSample
-      ? sliceHanziPolylineByProgress(activeSample.densified, Math.max(0, progress - 0.04))
-      : [];
-    const canvasTip = positioner.toCanvas(frame.tip.point);
-    const canvasTail = positioner.toCanvas(lookbackPoints.at(-1) ?? frame.tip.point);
-    const angleRad = Math.atan2(canvasTip.y - canvasTail.y, canvasTip.x - canvasTail.x);
-    const brushRadius = Math.max(3.5, positioner.scale * 0.22);
-
-    context.save();
-    context.globalAlpha = 1;
-    context.fillStyle = strokeColor;
-    context.translate(canvasTip.x, canvasTip.y);
-    context.rotate(angleRad);
-    context.beginPath();
-    context.ellipse(0, 0, brushRadius * 1.15, brushRadius * 0.72, 0, 0, Math.PI * 2);
-    context.fill();
-    context.restore();
-  }
-
-  private paintTracingStrokeFill(
-    context: CanvasRenderingContext2D,
-    pathD: string,
-    positioner: HanziPositioner,
-    color: string,
-  ): void {
-    context.save();
-    context.globalAlpha = 1;
-    context.fillStyle = color;
-    applyHanziCanvasPathTransform(context, positioner);
-    context.fill(new Path2D(pathD));
-    context.restore();
-  }
-
-  private paintTracingPolyline(
-    context: CanvasRenderingContext2D,
-    points: readonly HanziPoint[],
-    positioner: HanziPositioner,
-    color: string,
-    width: number,
-    alpha: number,
-  ): void {
-    if (points.length < 2) {
-      return;
-    }
-
-    const canvasPoints = points.map((point) => positioner.toCanvas(point));
-    context.save();
-    context.strokeStyle = color;
-    context.lineCap = 'round';
-    context.lineJoin = 'round';
-    context.lineWidth = width;
-    context.globalAlpha = alpha;
-    context.beginPath();
-    context.moveTo(canvasPoints[0]!.x, canvasPoints[0]!.y);
-    for (let index = 1; index < canvasPoints.length; index += 1) {
-      context.lineTo(canvasPoints[index]!.x, canvasPoints[index]!.y);
-    }
-    context.stroke();
-    context.restore();
-  }
-
-  private resolvePrimaryColor(): string {
-    return this.resolveThemeColor('--mat-sys-primary', '#6750a4');
+  ngOnDestroy(): void {
+    // Set flag BEFORE Angular destroys outputs to prevent NG0953
+    this._isDestroyed = true;
+    // Stop all animation loops before outputs are destroyed to prevent
+    // NG0953 (emit for destroyed OutputRef) from rAF callbacks.
+    this.animation.markDestroyed();
+    this.drawing.markDestroyed();
   }
 }

@@ -26,9 +26,12 @@
  */
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
+
+import { AppLoggerService } from '../../shared/logger/app-logger.service';
 import { firstValueFrom } from 'rxjs';
 
 import { buildFixtureUrl } from '../../shared/api/api-url';
+import { IndexedDbService } from '../../shared/storage';
 import type { Card } from '../card/model';
 import type { Scenario } from '../scenario/model';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
@@ -43,6 +46,11 @@ import {
   setCourseSeedCache,
   setScenarioSeedCache,
 } from './content-seed.cache';
+import {
+  loadContentSeedSnapshot,
+  saveContentSeedSnapshot,
+  type ContentSeedSnapshot,
+} from './content-seed.idb';
 import type {
   CardsSeedFixture,
   ContentManifest,
@@ -72,12 +80,32 @@ export class ContentSeedRepository {
   /** HTTP-клиент для загрузки файлов */
   private readonly http = inject(HttpClient);
 
+  /** Персистентный кэш seed-контента (IndexedDB) */
+  private readonly idb = inject(IndexedDbService);
+
+  /** Центральный логгер */
+  private readonly logger = inject(AppLoggerService);
+
   /**
    * Promise загрузки всех данных.
    * Используется для предотвращения параллельных загрузок.
-   * После завершения устанавливается в null.
    */
   private preloadPromise: Promise<void> | null = null;
+
+  /**
+   * Флаг, указывающий что preload успешно загрузил данные.
+   * Если preloadAttempted=true, но preloadSuccess=false, разрешаем повторный вызов.
+   */
+  private preloadSuccess = false;
+
+  /**
+   * Сбрасывает состояние preload для тестов.
+   * @internal
+   */
+  resetForTest(): void {
+    this.preloadPromise = null;
+    this.preloadSuccess = false;
+  }
 
   /**
    * Предзагружает все seed-данные из файлов.
@@ -89,12 +117,14 @@ export class ContentSeedRepository {
    */
   preload(): Promise<void> {
     if (isContentSeedCacheReady()) {
+      this.preloadSuccess = true;
       return Promise.resolve();
     }
 
     if (!this.preloadPromise) {
       this.preloadPromise = this.loadAll().catch((error) => {
         this.preloadPromise = null;
+        this.logger.error('ContentSeed: preload failed', error);
         throw error;
       });
     }
@@ -139,19 +169,68 @@ export class ContentSeedRepository {
    * @private
    */
   private async loadAll(): Promise<void> {
-    const manifest = await firstValueFrom(
+    // Чтение снапшота и manifest запускаем параллельно:
+    // manifest-запрос уходит сразу (ngsw отдаёт из кэша, офлайн — тоже),
+    // а снапшот из IndexedDB читается фоном.
+    const snapshotPromise = loadContentSeedSnapshot(this.idb).catch(() => null);
+    const manifestPromise = firstValueFrom(
       this.http.get<ContentManifest>(buildFixtureUrl('/content-manifest.json')),
-    );
+    ).catch(() => null);
 
+    const snapshot = await snapshotPromise;
+    const manifest = await manifestPromise;
+
+    // Снапшот актуален (версия совпадает) — используем его без загрузки фикстур
+    if (snapshot && manifest && snapshot.version === manifest.version) {
+      this.hydrate(snapshot);
+      return;
+    }
+
+    // Manifest недоступен (офлайн) — используем устаревший снапшот
+    if (!manifest) {
+      if (snapshot) {
+        this.hydrate(snapshot);
+        return;
+      }
+      // No network and no cached snapshot — content seed is optional, app continues without it
+      return;
+    }
+
+    // Сетевой путь: загружаем фикстуры, нормализуем и обновляем кэш
     const [scenarioFixtures, courseFixtures, cardFixtures] = await Promise.all([
       Promise.all(manifest.scenarioFiles.map((file) => this.loadScenarioFixture(file))),
       Promise.all(manifest.courseFiles.map((file) => this.loadCourseFixture(file))),
       Promise.all(manifest.cardFiles.map((file) => this.loadCardFixture(file))),
     ]);
 
-    setScenarioSeedCache(scenarioFixtures.flatMap((fixture) => fixture.scenarios));
-    setCourseSeedCache(mergeCourseFixtures(courseFixtures));
-    setCardSeedCache(normalizeLegacyCards(cardFixtures.flatMap((fixture) => fixture.cards)));
+    const scenarios = scenarioFixtures.flatMap((fixture) => fixture.scenarios);
+    const courses = mergeCourseFixtures(courseFixtures);
+    const cards = normalizeLegacyCards(cardFixtures.flatMap((fixture) => fixture.cards));
+
+    setScenarioSeedCache(scenarios);
+    setCourseSeedCache(courses);
+    setCardSeedCache(cards);
+
+    // Персист снапшота в IndexedDB (best-effort — ошибка не блокирует старт)
+    await saveContentSeedSnapshot(this.idb, {
+      version: manifest.version,
+      scenarios,
+      courses: courses.courses,
+      lessons: courses.lessons,
+      cards,
+    }).catch(() => undefined);
+  }
+
+  /**
+   * Гидратирует in-memory кэш из снапшота IndexedDB.
+   *
+   * @param snapshot — снапшот seed-контента
+   * @private
+   */
+  private hydrate(snapshot: ContentSeedSnapshot): void {
+    setScenarioSeedCache(snapshot.scenarios);
+    setCourseSeedCache({ courses: [...snapshot.courses], lessons: [...snapshot.lessons] });
+    setCardSeedCache(snapshot.cards);
   }
 
   /**

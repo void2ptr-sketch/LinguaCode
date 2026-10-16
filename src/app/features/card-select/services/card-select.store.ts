@@ -204,10 +204,9 @@ export class CardSelectStore {
    * @param value - Whether the draw answer has been submitted.
    */
   setDrawSubmitted(value: boolean): void {
-    if (this.feedback() !== null || this.completed()) {
+    if (this.feedback() !== null) {
       return;
     }
-
     this.drawSubmitted.set(value);
     if (!value) {
       this.drawAnswer.set(null);

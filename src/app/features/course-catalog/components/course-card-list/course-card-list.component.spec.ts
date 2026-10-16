@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi } from 'vitest';
 import { CourseCatalogCoursesComponent } from './course-card-list.component';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { DraftsStore } from '../../services';
 
 describe('CourseCatalogCoursesComponent', () => {
   let fixture: ComponentFixture<CourseCatalogCoursesComponent>;
@@ -45,26 +45,26 @@ describe('CourseCatalogCoursesComponent', () => {
           },
         },
         {
-          provide: CourseCatalogStore,
+          provide: DraftsStore,
           useValue: {
-            nameDraft: signal('Ученик'),
-            learningProficiencyDraft: signal('beginner'),
-            themeDraft: signal('azure-blue'),
-            fontSizeDraft: signal('md'),
-            colorSchemeDraft: signal('light'),
-            cardFocusFullscreenDraft: signal(false),
-            knownLanguageDraft: signal('ru'),
-            learningLanguageDraft: signal('en'),
+            profileNameDraft: signal('Ученик'),
+            profileLearningProficiencyDraft: signal('beginner'),
+            profileThemeDraft: signal('azure-blue'),
+            profileFontSizeDraft: signal('md'),
+            profileColorSchemeDraft: signal('light'),
+            profileCardFocusFullscreenDraft: signal(false),
+            courseTabKnownLanguageDraft: signal('ru'),
+            courseTabLearningLanguageDraft: signal('en'),
+            courseTabLanguagePairInvalid: signal(false),
             settingsPairIdDraft: signal('pair-1'),
-            languagePairInvalid: signal(false),
-            setNameDraft: vi.fn(),
-            setLearningProficiencyDraft: vi.fn(),
-            setThemeDraft: vi.fn(),
-            setFontSizeDraft: vi.fn(),
-            setColorSchemeDraft: vi.fn(),
-            setCardFocusFullscreenDraft: vi.fn(),
-            setKnownLanguageDraft: vi.fn(),
-            setLearningLanguageDraft: vi.fn(),
+            setProfileNameDraft: vi.fn(),
+            setProfileLearningProficiencyDraft: vi.fn(),
+            setProfileThemeDraft: vi.fn(),
+            setProfileFontSizeDraft: vi.fn(),
+            setProfileColorSchemeDraft: vi.fn(),
+            setProfileCardFocusFullscreenDraft: vi.fn(),
+            setCourseTabKnownLanguageDraft: vi.fn(),
+            setCourseTabLearningLanguageDraft: vi.fn(),
             setSettingsPairIdDraft: vi.fn(),
           },
         },

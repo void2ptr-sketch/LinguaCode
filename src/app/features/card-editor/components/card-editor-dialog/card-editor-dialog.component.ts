@@ -1,4 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -25,7 +32,7 @@ import { loadEditorUxMode, type CardEditorUxMode } from '../../utils/ux/card-edi
 import { CardFormComponent } from '../card-form/card-form.component';
 import { applyLexemeFirstToDraft } from '../../utils/draft/card-draft-lexeme-first.utils';
 import { indexTagsForDraft } from '../../utils/index-meta/card-kind-index-meta.utils';
-import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/card-editor-discard-dialog/card-editor-discard-dialog.component';
+import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import type { CardEditorDialogData, CardEditorDialogResult } from './card-editor-dialog.types';
 
 function serializeDraft(draft: CardDraft): string {
@@ -46,6 +53,7 @@ function serializeDraft(draft: CardDraft): string {
  */
 @Component({
   selector: 'app-card-editor-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     MatButtonModule,

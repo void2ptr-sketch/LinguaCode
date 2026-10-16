@@ -10,3 +10,5 @@
 //   - Директивы и пайпы
 
 export * from './utils';
+export * from './storage';
+export * from './sync';

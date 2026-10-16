@@ -3,16 +3,20 @@ import { environment } from '../../../environments/environment';
 
 describe('api-url', () => {
   describe('buildApiUrl', () => {
-    it('should prepend api base url to a relative path', () => {
-      expect(buildApiUrl('cards/search')).toBe(`${environment.apiUrl}/cards/search`);
+    it('should prepend api base url and version to a relative path', () => {
+      expect(buildApiUrl('cards/search')).toBe(
+        `${environment.apiUrl}/${environment.apiVersion}/cards/search`,
+      );
     });
 
     it('should not duplicate the leading slash', () => {
-      expect(buildApiUrl('/cards/search')).toBe(`${environment.apiUrl}/cards/search`);
+      expect(buildApiUrl('/cards/search')).toBe(
+        `${environment.apiUrl}/${environment.apiVersion}/cards/search`,
+      );
     });
 
     it('should handle root path', () => {
-      expect(buildApiUrl('/')).toBe(`${environment.apiUrl}/`);
+      expect(buildApiUrl('/')).toBe(`${environment.apiUrl}/${environment.apiVersion}/`);
     });
   });
 

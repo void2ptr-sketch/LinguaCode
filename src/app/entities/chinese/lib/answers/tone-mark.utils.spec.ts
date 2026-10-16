@@ -1,28 +1,20 @@
 import {
-  applyToneToLastVowelInSyllable,
-  applyToneToPinyinSyllable,
-  applyToneMarkToVowel,
+  DEFAULT_TONE_OPTIONS,
+  isToneMark,
   normalizeToneOptions,
   toneMarkLabel,
 } from './tone-mark.utils';
 
 describe('tone-mark.utils', () => {
-  it('should apply tone marks to pinyin syllable', () => {
-    expect(applyToneToPinyinSyllable('ma', 1)).toBe('mā');
-    expect(applyToneToPinyinSyllable('ma', 3)).toBe('mǎ');
-    expect(applyToneToPinyinSyllable('ma', 5)).toBe('ma');
-    expect(applyToneToPinyinSyllable('lv', 2)).toBe('lǘ');
+  it('should provide default tone options 1–4', () => {
+    expect(DEFAULT_TONE_OPTIONS).toEqual([1, 2, 3, 4]);
   });
 
-  it('should apply tone marks to the last vowel in a syllable', () => {
-    expect(applyToneToLastVowelInSyllable('hao', 3)).toBe('haǒ');
-    expect(applyToneToLastVowelInSyllable('oioi', 4)).toBe('oioì');
-    expect(applyToneToLastVowelInSyllable('ni', 3)).toBe('nǐ');
-  });
-
-  it('should tone-mark a single vowel for keyboard previews', () => {
-    expect(applyToneMarkToVowel('i', 4)).toBe('ì');
-    expect(applyToneMarkToVowel('o', 3)).toBe('ǒ');
+  it('should validate tone marks', () => {
+    expect(isToneMark(1)).toBe(true);
+    expect(isToneMark(5)).toBe(true);
+    expect(isToneMark(0)).toBe(false);
+    expect(isToneMark(6)).toBe(false);
   });
 
   it('should normalize tone option lists', () => {

@@ -36,8 +36,7 @@
 ```typescript
 // ✅ Правильно
 export type CardEditorDialogData =
-  | { mode: 'create'; kind: CardKind }
-  | { mode: 'edit'; cardId: string };
+  { mode: 'create'; kind: CardKind } | { mode: 'edit'; cardId: string };
 
 export type CardEditorDialogResult = {
   saved: boolean;
@@ -48,10 +47,10 @@ export type CardEditorDialogResult = {
 
 ### Структура типов
 
-| Поле           | Назначение                | Пример                          |
+| Поле | Назначение | Пример |
 | -------------- | ------------------------- | ------------------------------- | ------------------------------------------- |
-| `DialogData`   | Входные данные (контекст) | `{ mode: 'create'               | 'edit', kind?: CardKind, cardId?: string }` |
-| `DialogResult` | Результат закрытия        | `{ saved: boolean }` или `void` |
+| `DialogData` | Входные данные (контекст) | `{ mode: 'create'               | 'edit', kind?: CardKind, cardId?: string }` |
+| `DialogResult` | Результат закрытия | `{ saved: boolean }` или `void` |
 
 ---
 
@@ -410,14 +409,14 @@ await this.dialogService.open(cardId);
 
 ## Примеры в проекте
 
-| Диалог           | Путь                          | Назначение                            |
-| ---------------- | ----------------------------- | ------------------------------------- |
-| Card Editor      | `card-editor-dialog/`         | Создание/редактирование карточки      |
-| Scenario Builder | `scenario-builder-dialog/`    | Создание/редактирование сценария      |
-| Course Builder   | `course-builder-dialog/`      | Создание/редактирование курса         |
-| Card Try         | `card-try-dialog/`            | Тестовый прогон карточки              |
-| Discard          | `card-editor/components/card-editor-dialog/` | Подтверждение закрытия без сохранения |
-| Reset Overlay    | `course-builder/components/reset-overlay-dialog/` | Сброс пользовательских данных |
+| Диалог           | Путь                                              | Назначение                            |
+| ---------------- | ------------------------------------------------- | ------------------------------------- |
+| Card Editor      | `card-editor-dialog/`                             | Создание/редактирование карточки      |
+| Scenario Builder | `scenario-builder-dialog/`                        | Создание/редактирование сценария      |
+| Course Builder   | `course-builder-dialog/`                          | Создание/редактирование курса         |
+| Card Try         | `card-try-dialog/`                                | Тестовый прогон карточки              |
+| Discard          | `card-editor/components/card-editor-dialog/`      | Подтверждение закрытия без сохранения |
+| Reset Overlay    | `course-builder/components/reset-overlay-dialog/` | Сброс пользовательских данных         |
 
 ---
 

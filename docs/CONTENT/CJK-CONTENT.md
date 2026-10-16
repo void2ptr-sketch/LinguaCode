@@ -2,7 +2,7 @@
 
 План поддержки **азиатских языков** в карточках LinguaCode: иероглифы (Han), пиньинь, жуинь (注音), **система Палладия** (кириллическая транскрипция для ru→zh), произношение и тоны.
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./COMMON/DOMAIN.md) · [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) · [PHONETIC-CONTENT.md](./PHONETIC-CONTENT.md) · [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) · [TASKS.md](../TASKS.md).
 
 > **Статус:** MVP реализован · см. [TASKS.md](../TASKS.md) (G9a–G9f).
 
@@ -237,9 +237,11 @@ src/app/entities/chinese/lib/pinyin/cjk-romanization.utils.ts   # pinyin ↔ pal
 src/app/entities/chinese/lib/pinyin/pinyin-keyboard.utils.ts    # виртуальная клавиатура пиньинь
 src/app/entities/chinese/lib/answers/tone-mark.utils.ts          # applyToneToLastVowelInSyllable
 src/app/entities/card/utils/card-learning-audio.utils.ts # audioUrl + TTS fallback
-src/app/shared/components/cjk-ruby/           # app-cjk-ruby
-src/app/shared/components/pinyin-keyboard/    # app-pinyin-keyboard
-src/app/shared/components/cards/reading-card/ # kind reading
+src/app/entities/chinese/ui/cjk-ruby/         # app-cjk-ruby
+src/app/entities/chinese/ui/pinyin-keyboard/  # app-pinyin-keyboard
+src/app/entities/chinese/ui/tone-colored-text/  # app-tone-colored-text
+src/app/entities/chinese/ui/lexeme-display/     # app-lexeme-display
+src/app/features/card-editor/                 # поля лексемы, preview
 src/app/features/card-editor/                 # поля лексемы, preview
 src/app/entities/card/lib/card-answer.utils.ts     # CJK-aware check, reading fuzzy match
 public/data/select-cards.json                 # demo: reading-xing-1, select-zh-1, …

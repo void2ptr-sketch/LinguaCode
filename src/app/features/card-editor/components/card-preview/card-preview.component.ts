@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { Card } from '../../../../entities/card/model';
 import { CardHostComponent } from '../../../../entities/card/ui/card-host';
 
@@ -8,6 +8,7 @@ import { CardHostComponent } from '../../../../entities/card/ui/card-host';
  */
 @Component({
   selector: 'app-card-preview',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CardHostComponent],
   templateUrl: './card-preview.component.html',
   styleUrl: './card-preview.component.scss',

@@ -12,9 +12,7 @@ describe('ResetOverlayDialogComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [ResetOverlayDialogComponent, MatButtonModule, MatDialogModule],
-      providers: [
-        { provide: MatDialogRef, useValue: { close: vi.fn() } },
-      ],
+      providers: [{ provide: MatDialogRef, useValue: { close: vi.fn() } }],
     });
 
     fixture = TestBed.createComponent(ResetOverlayDialogComponent);
@@ -52,8 +50,8 @@ describe('ResetOverlayDialogComponent', () => {
   it('should render cancel button', () => {
     const root = fixture.nativeElement;
     const buttons = root.querySelectorAll('button');
-    const cancelButton = Array.from(buttons).find(
-      (btn: unknown) => (btn as HTMLElement).textContent?.includes('Отмена'),
+    const cancelButton = Array.from(buttons).find((btn: unknown) =>
+      (btn as HTMLElement).textContent?.includes('Отмена'),
     );
     expect(cancelButton).toBeTruthy();
   });
@@ -61,8 +59,8 @@ describe('ResetOverlayDialogComponent', () => {
   it('should render reset button', () => {
     const root = fixture.nativeElement;
     const buttons = root.querySelectorAll('button');
-    const resetButton = Array.from(buttons).find(
-      (btn: unknown) => (btn as HTMLElement).textContent?.includes('Сбросить'),
+    const resetButton = Array.from(buttons).find((btn: unknown) =>
+      (btn as HTMLElement).textContent?.includes('Сбросить'),
     );
     expect(resetButton).toBeTruthy();
   });

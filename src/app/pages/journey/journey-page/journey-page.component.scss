@@ -1,0 +1,19 @@
+:host {
+  display: block;
+  padding: 16px;
+}
+
+.journey-page__loading,
+.journey-page__error,
+.journey-page__empty {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  font-size: 16px;
+  color: var(--mat-sys-on-surface-variant);
+}
+
+.journey-page__error {
+  color: var(--mat-sys-error);
+}

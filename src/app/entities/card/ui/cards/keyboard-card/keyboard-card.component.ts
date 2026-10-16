@@ -1,14 +1,11 @@
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import {
-  effectiveCardDirection,
-  resolveKeyboardPrompt,
-} from '../../../utils/card-direction.utils';
+import { effectiveCardDirection, resolveKeyboardPrompt } from '../../../utils/card-direction.utils';
 import { resolveKeyboardAnswerMode } from '../../../lib/keyboard-answer-mode/keyboard-answer-mode.utils';
 import { KeyboardCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
@@ -40,6 +37,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  */
 @Component({
   selector: 'app-keyboard-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     MatCardModule,

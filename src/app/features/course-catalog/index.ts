@@ -5,6 +5,9 @@ export { CourseCatalogProgramsComponent } from './components/program-list/progra
 
 // ===== Services / Stores =====
 export { CourseCatalogStore } from './services/course-catalog.store';
+export { DraftsStore } from './services/drafts-store';
+export { CourseCatalogLanguagePairManagerService } from './services/course-catalog-language-pair-manager.service';
+export { CourseCatalogPreferencesService } from './services/course-catalog-preferences.service';
 
 // ===== Utils / Types =====
-export type { CourseCatalogState } from './models/course-catalog-store';
+export type { CourseCatalogState } from './types/course-catalog-store';

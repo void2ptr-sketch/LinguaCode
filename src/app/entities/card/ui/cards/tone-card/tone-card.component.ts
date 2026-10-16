@@ -1,17 +1,15 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  applyToneToPinyinSyllable,
-  toneMarkLabel,
-} from '../../../../chinese/lib/answers/tone-mark.utils';
+import { applyToneToPinyinSyllable } from '../../../../chinese/lib/tone-marks/apply-tone';
+import { toneMarkLabel } from '../../../../chinese/lib/answers/tone-mark.utils';
 import { ToneCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import type { ToneMark } from '../../../../phonetic/model';
 import { ToneColoredTextComponent } from '../../../../chinese/ui/tone-colored-text/tone-colored-text.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**
@@ -20,6 +18,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Supports tone coloring via `ToneColoredTextComponent`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tone-card',
   imports: [
     MatCardModule,

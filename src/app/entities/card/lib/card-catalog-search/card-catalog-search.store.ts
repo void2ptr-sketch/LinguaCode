@@ -1,7 +1,7 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import type { PageEvent } from '@angular/material/paginator';
 
-import { CardSearchService } from '../..';
+import { CardSearchService } from '../../search/card-search.service';
 import { formatLanguagePair } from '../../../language-pair/lib/language-pair.utils';
 import type {
   CardDifficulty,
@@ -29,7 +29,9 @@ import {
 @Injectable()
 export class CardCatalogSearchStore {
   private readonly cardSearchService = inject(CardSearchService);
-  private readonly hierarchyService = inject(CardCatalogHierarchyService);
+  private readonly hierarchyService = inject<CardCatalogHierarchyService>(
+    CardCatalogHierarchyService,
+  );
 
   /** Search query text. */
   readonly query = signal('');

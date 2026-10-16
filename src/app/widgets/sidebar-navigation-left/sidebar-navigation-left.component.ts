@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
@@ -21,6 +21,7 @@ type NavGroup = {
  * @remarks The navigation groups are defined inline as readonly class properties.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-sidebar-navigation-left',
   imports: [RouterLink, RouterLinkActive, MatDividerModule, MatListModule, MatIconModule],
   templateUrl: './sidebar-navigation-left.component.html',

@@ -25,9 +25,11 @@ import type { Environment } from './environment.types';
 export const environment: Environment = {
   production: false,
   apiUrl: '/api',
+  apiVersion: 'v1',
   fixturesUrl: '/data',
   appName: 'LinguaCode',
   useCardsApiMock: true,
   useScenariosApiMock: true,
   useCoursesApiMock: true,
+  authEnabled: false,
 };

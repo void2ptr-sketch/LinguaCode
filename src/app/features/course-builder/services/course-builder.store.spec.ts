@@ -3,8 +3,9 @@ import { vi } from 'vitest';
 import { TestBed } from '@angular/core/testing';
 
 import type { CourseWithLessons } from '../../../entities/course/model';
-import { CourseSearchService } from '../../../entities/course';
+import { CourseSearchService, CoursesApiService } from '../../../entities/course';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseBuilderStore } from './course-builder.store';
 import { CoursePdfExportService } from './course-pdf-export.service';
 
@@ -23,6 +24,10 @@ describe('CourseBuilderStore', () => {
     export: vi.fn(),
   };
 
+  const mockCoursesApi = {
+    getBundle: vi.fn(),
+  };
+
   beforeEach(() => {
     localStorage.clear();
     vi.clearAllMocks();
@@ -32,6 +37,11 @@ describe('CourseBuilderStore', () => {
         CourseBuilderStore,
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: CoursePdfExportService, useValue: mockPdfExport },
+        { provide: CoursesApiService, useValue: mockCoursesApi },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         UserStore,
       ],
     });
@@ -80,20 +90,22 @@ describe('CourseBuilderStore', () => {
   });
 
   it('should set loading to true while loading', async () => {
-    let resolveFn: () => void;
-    const promise = new Promise<void>((resolve) => {
+    let resolveFn: ((value: unknown) => void) | undefined;
+    const promise = new Promise<unknown>((resolve) => {
       resolveFn = resolve;
     });
 
-    mockCourseSearchService.search.mockReturnValue(promise);
+    mockCourseSearchService.search.mockReturnValue(
+      promise as ReturnType<typeof mockCourseSearchService.search>,
+    );
 
     const loadPromise = store.loadList();
 
     expect(store.loading()).toBe(true);
 
-    resolveFn!();
-
+    resolveFn!({ items: [], totalItems: 0 });
     await loadPromise;
+
     expect(store.loading()).toBe(false);
   });
 
@@ -309,6 +321,7 @@ describe('CourseBuilderStore', () => {
     ]);
 
     mockCourseSearchService.delete.mockResolvedValue(undefined);
+    mockCourseSearchService.search.mockResolvedValue({ items: [], totalItems: 0 });
 
     await store.deleteCourse('c1');
 
@@ -349,6 +362,7 @@ describe('CourseBuilderStore', () => {
     store.editingCourseId.set('c1');
 
     mockCourseSearchService.delete.mockResolvedValue(undefined);
+    mockCourseSearchService.search.mockResolvedValue({ items: [], totalItems: 0 });
 
     await store.deleteCourse('c1');
 
@@ -358,11 +372,12 @@ describe('CourseBuilderStore', () => {
 
   it('should return null when course not found in bundle export', async () => {
     store.indexItems.set([]);
+    mockCoursesApi.getBundle.mockRejectedValue(new Error('Курс не найден'));
 
     const result = await store.exportCourseBundle('nonexistent');
 
     expect(result).toBeNull();
-    expect(store.exportError()).toContain('курс не найден');
+    expect(store.exportError()).toContain('не найден');
   });
 
   it('should export PDF for own course', async () => {

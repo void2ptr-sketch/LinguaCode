@@ -2,8 +2,17 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable, inject, signal } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
 
-import { HANZI_ASSETS_BASE_PATH, HANZI_RADICAL_ASSETS_BASE_PATH, type HanziCharacterJson, type HanziLoadState } from '../../model';
-import { buildHanziCharacterModel, type HanziCharacterModel } from '../../model/hanzi-character.model';
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
+import {
+  HANZI_ASSETS_BASE_PATH,
+  HANZI_RADICAL_ASSETS_BASE_PATH,
+  type HanziCharacterJson,
+  type HanziLoadState,
+} from '../../model';
+import {
+  buildHanziCharacterModel,
+  type HanziCharacterModel,
+} from '../../model/hanzi-character.model';
 
 type HanziCacheEntry = {
   state: HanziLoadState;
@@ -25,6 +34,7 @@ export class HanziDataService {
   private readonly http = inject(HttpClient);
   private readonly cache = new Map<string, HanziCacheEntry>();
   private readonly inflight = new Map<string, Promise<HanziCharacterModel | null>>();
+  private readonly logger = inject(AppLoggerService);
 
   /** The last character that was successfully loaded. */
   readonly lastLoadedCharacter = signal<string | null>(null);
@@ -185,6 +195,7 @@ export class HanziDataService {
         lastError = error;
         const isMissing = error instanceof HttpErrorResponse && error.status === 404;
         if (!isMissing) {
+          this.logger.warn('HanziData: failed to load character data', error);
           break;
         }
       }

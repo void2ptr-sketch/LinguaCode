@@ -56,6 +56,8 @@ const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
 /**
  * Репозиторий карточек.
  *
+ * @deprecated Mock-backend data-access layer.
+ *
  * Основные возможности:
  * - Загрузка карточек из seed + overlay (loadStored)
  * - Сохранение изменений в overlay (save)
@@ -69,6 +71,10 @@ const REMOVED_SEED_CARD_IDS = new Set(['draw-jiangenshenfang-1']);
  * 2. При каждом запуске загружает overlay из localStorage
  * 3. Объединяет через resolveCards()
  * 4. При сохранении вычисляет новый overlay через computeCardsOverlay()
+ *
+ * Consumed ONLY by the mock API handlers (`CardsCatalogMockHandler`) which
+ * simulate the backend during development. Frontend code must use the API
+ * services (`CardsApiService`, `CardCatalogPort`) instead.
  */
 @Injectable({ providedIn: 'root' })
 export class CardRepository {

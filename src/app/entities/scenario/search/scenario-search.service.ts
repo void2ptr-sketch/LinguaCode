@@ -8,6 +8,7 @@ import type {
 } from '../model';
 
 import { ScenariosApiService, type ScenarioWritePayload } from '../api/scenarios-api.service';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 /**
  * Service for scenario search and management operations.
@@ -18,6 +19,7 @@ import { ScenariosApiService, type ScenarioWritePayload } from '../api/scenarios
 @Injectable({ providedIn: 'root' })
 export class ScenarioSearchService {
   private readonly scenariosApi = inject(ScenariosApiService);
+  private readonly logger = inject(AppLoggerService);
 
   /** Whether a scenario operation is in progress. */
   readonly loading = signal(false);
@@ -98,7 +100,8 @@ export class ScenarioSearchService {
 
     try {
       return await action();
-    } catch {
+    } catch (error) {
+      this.logger.error('ScenarioSearch: operation failed', error);
       this.error.set('Не удалось выполнить операцию со сценариями');
       throw new Error('Scenario operation failed');
     } finally {

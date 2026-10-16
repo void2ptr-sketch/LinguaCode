@@ -7,12 +7,7 @@
  * `stroke-order` — practice correct stroke order; `radicals` — practice radical components.
  */
 export type DrawPracticeMode =
-  | 'freehand'
-  | 'memory'
-  | 'tracing'
-  | 'hints'
-  | 'stroke-order'
-  | 'radicals';
+  'freehand' | 'memory' | 'tracing' | 'hints' | 'stroke-order' | 'radicals';
 
 /**
  * Canvas mode during a session (switchable on a card).

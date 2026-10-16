@@ -74,6 +74,48 @@ export class CardsCatalogMockHandler {
     return cards;
   }
 
+  /**
+   * Creates a new card and persists it via the card repository (overlay + seed).
+   *
+   * @param card - The card to create.
+   * @returns The created card.
+   */
+  async create(card: Card): Promise<Card> {
+    await this.ensureData();
+    this.cardRepository.save([...this.cards!, card]);
+    this.resetCache();
+    return card;
+  }
+
+  /**
+   * Updates an existing card and persists it via the card repository.
+   *
+   * @param cardId - The card ID.
+   * @param card - The updated card.
+   * @returns The updated card.
+   * @throws `Error` when the card does not exist.
+   */
+  async update(cardId: string, card: Card): Promise<Card> {
+    await this.ensureData();
+    if (!this.cards!.some((item) => item.id === cardId)) {
+      throw new Error('Карточка не найдена');
+    }
+    this.cardRepository.save(this.cards!.map((item) => (item.id === cardId ? card : item)));
+    this.resetCache();
+    return card;
+  }
+
+  /**
+   * Deletes a card by ID and persists the change via the card repository.
+   *
+   * @param cardId - The card ID.
+   */
+  async delete(cardId: string): Promise<void> {
+    await this.ensureData();
+    this.cardRepository.save(this.cards!.filter((item) => item.id !== cardId));
+    this.resetCache();
+  }
+
   private async ensureData(): Promise<void> {
     if (this.index && this.cards) {
       return;

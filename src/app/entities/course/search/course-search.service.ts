@@ -8,6 +8,7 @@ import type {
 } from '../model';
 
 import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.service';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 /**
  * Service for course search and management operations.
@@ -18,6 +19,7 @@ import { CoursesApiService, type CourseWritePayload } from '../api/courses-api.s
 @Injectable({ providedIn: 'root' })
 export class CourseSearchService {
   private readonly coursesApi = inject(CoursesApiService);
+  private readonly logger = inject(AppLoggerService);
 
   /** Whether a course operation is in progress. */
   readonly loading = signal(false);
@@ -96,7 +98,8 @@ export class CourseSearchService {
 
     try {
       return await action();
-    } catch {
+    } catch (error) {
+      this.logger.error('CourseSearch: operation failed', error);
       this.error.set('Не удалось выполнить операцию с курсами');
       throw new Error('Course operation failed');
     } finally {

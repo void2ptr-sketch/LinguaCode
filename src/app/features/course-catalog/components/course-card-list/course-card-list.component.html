@@ -6,10 +6,7 @@
 
     <ul class="page-card__pair-list">
       @for (entry of languagePairs(); track entry.id) {
-        <li
-          class="page-card__pair-item"
-          [class.page-card__pair-item--active]="isActive(entry)"
-        >
+        <li class="page-card__pair-item" [class.page-card__pair-item--active]="isActive(entry)">
           <span class="page-card__pair-label">
             {{ entryLabel(entry) }}
             @if (isActive(entry)) {

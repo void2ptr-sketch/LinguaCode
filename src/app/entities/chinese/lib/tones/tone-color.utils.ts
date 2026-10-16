@@ -1,4 +1,4 @@
-import { parsePinyinSyllable } from '../pinyin/pinyin-to-ipa.utils';
+import { parsePinyinSyllable } from '../pinyin/phonetics/ipa-conversion';
 import type { ToneMark, ToneColorPalette, ToneColorSchemeId } from '../../../phonetic/model';
 import { DEFAULT_TONE_COLOR_SCHEME_ID, TONE_COLOR_SCHEMES } from '../../../phonetic/model';
 export type ToneTextSegment = {

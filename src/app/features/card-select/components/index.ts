@@ -7,5 +7,11 @@ export { ScenarioPickerSectionComponent } from './scenario-picker-section/scenar
 export { LearningZoneComponent } from './learning-zone/learning-zone.component';
 
 // ===== Existing components (keep for backward compatibility) =====
-export { PracticeSessionBarComponent, type PracticeSessionSegment } from './practice-session-bar/practice-session-bar.component';
-export { PracticeStepperComponent, type PracticeStepState } from './practice-stepper/practice-stepper.component';
+export {
+  PracticeSessionBarComponent,
+  type PracticeSessionSegment,
+} from './practice-session-bar/practice-session-bar.component';
+export {
+  PracticeStepperComponent,
+  type PracticeStepState,
+} from './practice-stepper/practice-stepper.component';

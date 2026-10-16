@@ -1,6 +1,7 @@
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { CardsCatalogMockHandler } from '../../../entities/card/api/mock/cards-catalog.mock.handler';
+import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
 import { CardRepository, CardSearchService } from '../../../entities/card';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { seedTestContentCache } from '../../../entities/content-seed/content-seed.test-utils';
@@ -40,7 +41,7 @@ describe('CardEditorStore', () => {
         CardsCatalogMockHandler,
         LearningResultsStore,
         UserStore,
-        provideHttpClient(),
+        provideHttpClient(withInterceptors([cardsApiMockInterceptor])),
         {
           provide: CardSearchService,
           useValue: {

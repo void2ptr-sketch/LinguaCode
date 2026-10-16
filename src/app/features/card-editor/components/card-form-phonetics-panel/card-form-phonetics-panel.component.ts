@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -13,6 +13,7 @@ import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component'
  */
 @Component({
   selector: 'app-card-form-phonetics-panel',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [FormsModule, MatFormFieldModule, MatInputModule, LexemeFieldsComponent],
   templateUrl: './card-form-phonetics-panel.component.html',
   styleUrl: './card-form-phonetics-panel.component.scss',

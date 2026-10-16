@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input } from '@angular/core';
 
 /**
  * UI component for displaying IPA (International Phonetic Alphabet) transcriptions.
@@ -14,6 +14,7 @@ import { Component, computed, input } from '@angular/core';
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-phonetic-ipa',
   templateUrl: './phonetic-ipa.component.html',
   styleUrl: './phonetic-ipa.component.scss',

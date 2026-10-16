@@ -14,26 +14,26 @@
 
 Исходный тип: `MemoryCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'memory'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки (отображается в `QuizCardQuestionHeaderComponent`) |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `promptKnown` | `string` | Инструкция к заданию (например, «Сопоставьте переводы») |
+| Поле           | Тип                           | Описание                                                                 |
+| -------------- | ----------------------------- | ------------------------------------------------------------------------ |
+| `id`           | `string`                      | Уникальный идентификатор карточки                                        |
+| `kind`         | `'memory'`                    | Константа, определяющая тип карточки                                     |
+| `title`        | `string`                      | Заголовок карточки (отображается в `QuizCardQuestionHeaderComponent`)    |
+| `appearance`   | `CardAppearance`              | Тема оформления и размер шрифта                                          |
+| `promptKnown`  | `string`                      | Инструкция к заданию (например, «Сопоставьте переводы»)                  |
 | `promptLexeme` | `PhoneticLexeme \| undefined` | Опциональная фонетическая транскрипция подсказки (из `LexemeCardFields`) |
-| `audioUrl` | `string \| undefined` | URL аудио (из `LexemeCardFields`) |
-| `pairs` | `readonly MemoryPair[]` | Массив пар для сопоставления |
+| `audioUrl`     | `string \| undefined`         | URL аудио (из `LexemeCardFields`)                                        |
+| `pairs`        | `readonly MemoryPair[]`       | Массив пар для сопоставления                                             |
 
 ### MemoryPair
 
 Определён в `src/app/entities/card/model/card.types.ts`.
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `known` | `string` | Слово/фраза на известном языке |
-| `learning` | `string` | Перевод на новом языке |
-| `learningLexeme` | `PhoneticLexeme \| undefined` | Фонетика для «новой» стороны |
+| Поле             | Тип                           | Описание                       |
+| ---------------- | ----------------------------- | ------------------------------ |
+| `known`          | `string`                      | Слово/фраза на известном языке |
+| `learning`       | `string`                      | Перевод на новом языке         |
+| `learningLexeme` | `PhoneticLexeme \| undefined` | Фонетика для «новой» стороны   |
 
 ## Use Cases
 
@@ -80,21 +80,21 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `MemoryCard` | (required) | Данные карточки — пары, заголовок, подсказка |
-| `direction` | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление сопоставления |
-| `boardNonce` | `number` | `0` | Nonce-триггер для перемешивания при повторном открытии |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи от сессии |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта для стилизации |
+| Параметр     | Тип                                          | По умолчанию          | Описание                                               |
+| ------------ | -------------------------------------------- | --------------------- | ------------------------------------------------------ |
+| `card`       | `MemoryCard`                                 | (required)            | Данные карточки — пары, заголовок, подсказка           |
+| `direction`  | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление сопоставления                              |
+| `boardNonce` | `number`                                     | `0`                   | Nonce-триггер для перемешивания при повторном открытии |
+| `feedback`   | `CardFeedback`                               | `null`                | Состояние обратной связи от сессии                     |
+| `fontSize`   | `'sm' \| 'md' \| 'lg'`                       | `'md'`                | Размер шрифта для стилизации                           |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `memoryComplete` | `Output<boolean>` | Эмитируется `true`, когда все пары сопоставлены |
-| `checkAnswer` | `Output<void>` | Эмитируется при нажатии кнопки «Проверить» (все пары найдены) |
-| `nextCard` | `Output<void>` | Эмитируется при нажатии кнопки «Далее» (после `feedback`) |
+| Событие          | Тип               | Описание                                                      |
+| ---------------- | ----------------- | ------------------------------------------------------------- |
+| `memoryComplete` | `Output<boolean>` | Эмитируется `true`, когда все пары сопоставлены               |
+| `checkAnswer`    | `Output<void>`    | Эмитируется при нажатии кнопки «Проверить» (все пары найдены) |
+| `nextCard`       | `Output<void>`    | Эмитируется при нажатии кнопки «Далее» (после `feedback`)     |
 
 ## Пример использования
 
@@ -129,13 +129,13 @@ const card: MemoryCard = {
 
 ### Внутренние состояния (Signals)
 
-| Сигнал | Тип | Описание |
-|--------|-----|----------|
-| `leftItems` | `Signal<readonly MemoryColumnItem[]>` | Перемешанные элементы левого столбца |
-| `rightItems` | `Signal<readonly MemoryColumnItem[]>` | Перемешанные элементы правого столбца |
-| `selectedItemId` | `Signal<string \| null>` | ID выбранного элемента (null = ничего не выбрано) |
-| `matchedPairIds` | `Signal<readonly string[]>` | ID пар, которые уже найдены |
-| `mismatchItemIds` | `Signal<readonly string[]>` | ID элементов с неверной парой (для подсветки ошибки) |
+| Сигнал            | Тип                                   | Описание                                             |
+| ----------------- | ------------------------------------- | ---------------------------------------------------- |
+| `leftItems`       | `Signal<readonly MemoryColumnItem[]>` | Перемешанные элементы левого столбца                 |
+| `rightItems`      | `Signal<readonly MemoryColumnItem[]>` | Перемешанные элементы правого столбца                |
+| `selectedItemId`  | `Signal<string \| null>`              | ID выбранного элемента (null = ничего не выбрано)    |
+| `matchedPairIds`  | `Signal<readonly string[]>`           | ID пар, которые уже найдены                          |
+| `mismatchItemIds` | `Signal<readonly string[]>`           | ID элементов с неверной парой (для подсветки ошибки) |
 
 ### Внутренние типы
 

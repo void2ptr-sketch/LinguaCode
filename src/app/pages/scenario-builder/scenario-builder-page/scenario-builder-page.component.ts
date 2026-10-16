@@ -1,4 +1,4 @@
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, effect, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -25,6 +25,7 @@ let lastKnownScenarioBuilderActiveLanguagePairId: string | null = null;
  * @remarks Reloads automatically when the active language pair changes.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-scenario-builder-page',
   imports: [
     FormsModule,

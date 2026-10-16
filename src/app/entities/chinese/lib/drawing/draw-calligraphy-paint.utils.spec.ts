@@ -9,33 +9,41 @@ import {
 type MockCall = {
   method: string;
   args: unknown[];
-}
+};
 
 type MockCanvasContext = {
   ctx: CanvasRenderingContext2D;
   calls: MockCall[];
-}
+};
 
 describe('draw-calligraphy-paint', () => {
   function createMockContext(): MockCanvasContext {
     const calls: MockCall[] = [];
     const ctx: Partial<CanvasRenderingContext2D> = {
-      save: vi.fn(() => { calls.push({ method: 'save', args: [] }); }),
-      restore: vi.fn(() => { calls.push({ method: 'restore', args: [] }); }),
-      beginPath: vi.fn(() => { calls.push({ method: 'beginPath', args: [] }); }),
-      arc: vi.fn(
-        (x: number, y: number, r: number, s: number, e: number) => {
-          calls.push({ method: 'arc', args: [x, y, r, s, e] });
-        },
-      ),
-      fill: vi.fn(() => { calls.push({ method: 'fill', args: [] }); }),
+      save: vi.fn(() => {
+        calls.push({ method: 'save', args: [] });
+      }),
+      restore: vi.fn(() => {
+        calls.push({ method: 'restore', args: [] });
+      }),
+      beginPath: vi.fn(() => {
+        calls.push({ method: 'beginPath', args: [] });
+      }),
+      arc: vi.fn((x: number, y: number, r: number, s: number, e: number) => {
+        calls.push({ method: 'arc', args: [x, y, r, s, e] });
+      }),
+      fill: vi.fn(() => {
+        calls.push({ method: 'fill', args: [] });
+      }),
       moveTo: vi.fn((x: number, y: number) => {
         calls.push({ method: 'moveTo', args: [x, y] });
       }),
       lineTo: vi.fn((x: number, y: number) => {
         calls.push({ method: 'lineTo', args: [x, y] });
       }),
-      stroke: vi.fn(() => { calls.push({ method: 'stroke', args: [] }); }),
+      stroke: vi.fn(() => {
+        calls.push({ method: 'stroke', args: [] });
+      }),
       lineCap: 'round' as CanvasLineCap,
       lineJoin: 'round' as CanvasLineJoin,
       lineWidth: 0,
@@ -70,7 +78,10 @@ describe('draw-calligraphy-paint', () => {
 
     it('should use default alpha and taper when not provided', () => {
       const { ctx, calls } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 10, y: 10 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions());
       expect(ctx.globalAlpha).toBe(1);
       expect(calls.some((c) => c.method === 'stroke')).toBe(true);
@@ -78,14 +89,20 @@ describe('draw-calligraphy-paint', () => {
 
     it('should apply custom alpha value', () => {
       const { ctx } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 10, y: 10 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions({ alpha: 0.5 }));
       expect(ctx.globalAlpha).toBe(0.5);
     });
 
     it('should apply stroke color to strokeStyle and fillStyle', () => {
       const { ctx } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 10, y: 10 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions({ color: '#ff0000' }));
       expect(ctx.strokeStyle).toBe('#ff0000');
       expect(ctx.fillStyle).toBe('#ff0000');
@@ -93,7 +110,10 @@ describe('draw-calligraphy-paint', () => {
 
     it('should set lineCap and lineJoin to round', () => {
       const { ctx } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 10, y: 10 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions());
       expect(ctx.lineCap).toBe('round');
       expect(ctx.lineJoin).toBe('round');
@@ -113,7 +133,10 @@ describe('draw-calligraphy-paint', () => {
 
     it('should restore context after drawing', () => {
       const { ctx } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 10, y: 10 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 10, y: 10 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions());
       expect(ctx.restore).toHaveBeenCalled();
     });
@@ -131,7 +154,10 @@ describe('draw-calligraphy-paint', () => {
 
     it('should not stroke when total length is zero', () => {
       const { ctx, calls } = createMockContext();
-      const points: CanvasPoint[] = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+      const points: CanvasPoint[] = [
+        { x: 0, y: 0 },
+        { x: 0, y: 0 },
+      ];
       paintCalligraphyPolyline(ctx, points, makeOptions());
       const strokeCalls = calls.filter((c) => c.method === 'stroke');
       expect(strokeCalls.length).toBe(0);

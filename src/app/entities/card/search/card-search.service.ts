@@ -4,6 +4,7 @@ import type { Card, CardSearchCriteria, CardSearchPage } from '../model';
 import type { CardIndexEntry } from '../model';
 import { CardsApiService } from '../api/cards-api.service';
 import { CardsCatalogMockHandler } from '../api/mock/cards-catalog.mock.handler';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 const INDEX_CACHE_PAGE_SIZE = 1000;
 
@@ -18,6 +19,7 @@ const INDEX_CACHE_PAGE_SIZE = 1000;
 export class CardSearchService {
   private readonly cardsApiService = inject(CardsApiService);
   private readonly catalogMockHandler = inject(CardsCatalogMockHandler);
+  private readonly logger = inject(AppLoggerService);
 
   private readonly indexCache = signal<readonly CardIndexEntry[]>([]);
 
@@ -61,7 +63,8 @@ export class CardSearchService {
         page: { page: 0, pageSize: INDEX_CACHE_PAGE_SIZE },
       });
       this.indexCache.set(page.items);
-    } catch {
+    } catch (error) {
+      this.logger.error('CardSearch: failed to load index', error);
       this.error.set('Не удалось загрузить каталог карточек');
     } finally {
       this.loading.set(false);
@@ -82,7 +85,8 @@ export class CardSearchService {
       const page = await this.cardsApiService.search(criteria);
       this.mergeIndexCache(page.items);
       return page;
-    } catch {
+    } catch (error) {
+      this.logger.error('CardSearch: search failed', error);
       this.error.set('Не удалось выполнить поиск карточек');
       throw new Error('Card search failed');
     } finally {
@@ -102,7 +106,8 @@ export class CardSearchService {
 
     try {
       return await this.cardsApiService.getById(cardId);
-    } catch {
+    } catch (error) {
+      this.logger.error('CardSearch: card not found', error);
       this.error.set('Карточка не найдена');
       throw new Error('Card not found');
     } finally {

@@ -2,6 +2,9 @@
 export * from './api';
 export * from './search';
 
+// ===== Repository =====
+export * from './repository';
+
 // ===== Mapping =====
 export * from './mapping';
 

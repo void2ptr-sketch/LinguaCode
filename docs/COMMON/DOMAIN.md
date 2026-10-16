@@ -150,7 +150,7 @@ erDiagram
 
 Реэкспорт: barrel-файлы `src/app/entities/*/model/index.ts`.
 
-Подробнее о масштабировании каталога: [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md).
+Подробнее о масштабировании каталога: [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md).
 
 ### Типы карточек (`CardKind`)
 
@@ -322,7 +322,7 @@ type ScenarioCardSource =
 - [BUSINESS.md](./BUSINESS.md) — бизнес-идеи и продуктовое видение
 - [ARCHITECTURE.md](./ARCHITECTURE.md) — слои, layout, роутинг, фичи
 - [ARCHITECTURE.core.md](./ARCHITECTURE/ARCHITECTURE.core.md) — … · полный список в [INDEX.md](./INDEX.md#техническая-документация)
-- [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) — индекс, поиск, пагинация каталога
+- [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) — индекс, поиск, пагинация каталога
 - [SCENARIO-BUILDER.md](./FEATURES/SCENARIO-BUILDER.md) — масштабирование конструктора сценариев
 - [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) — пара языков known → learning (scope контента; не путать с `Course`)
 - [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) — иероглифы, романизация (пиньинь, жуинь, Палладия), тоны (G9)

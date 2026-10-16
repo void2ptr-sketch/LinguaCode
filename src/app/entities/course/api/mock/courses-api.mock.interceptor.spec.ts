@@ -22,6 +22,7 @@ describe('courses API (mock interceptor)', () => {
 
   afterEach(() => {
     localStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('searches courses via GET /api/courses/search', async () => {
@@ -50,6 +51,15 @@ describe('courses API (mock interceptor)', () => {
     const courses = await api.findUsingScenario('lesson-1-scenario-1');
 
     expect(Array.isArray(courses)).toBe(true);
+  });
+
+  it('loads course bundle via GET /api/courses/:id/bundle', async () => {
+    const bundle = await api.getBundle('demo-course');
+
+    expect(bundle.catalog.courses.length).toBeGreaterThan(0);
+    expect(Array.isArray(bundle.scenarios)).toBe(true);
+    expect(Array.isArray(bundle.cards)).toBe(true);
+    expect(bundle.cardIndexMeta).toBeDefined();
   });
 
   it('searches courses with all criteria params', async () => {

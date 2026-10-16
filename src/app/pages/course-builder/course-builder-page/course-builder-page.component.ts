@@ -14,7 +14,7 @@
  * Данные загружаются через CourseBuilderStore, который использует
  * mock-интерсепторы для работы без бэкенда.
  */
-import { Component, effect, inject, OnInit } from '@angular/core';
+import { Component, ChangeDetectionStrategy, effect, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -58,6 +58,7 @@ let lastKnownCourseBuilderActiveLanguagePairId: string | null = null;
  * @see CourseBuilderDialogService
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-builder-page',
   imports: [
     FormsModule,

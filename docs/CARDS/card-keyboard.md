@@ -12,19 +12,19 @@
 
 Исходный тип: `KeyboardCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'keyboard'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `direction` | `CardDirection` | Направление по умолчанию |
-| `promptKnown` | `string` | Текст вопроса / подсказки |
-| `acceptedAnswersKnown` | `readonly string[]` | Допустимые ответы на известном языке |
-| `acceptedAnswersLearning` | `readonly string[] \| undefined` | Допустимые ответы на изучаемом языке |
-| `answerMode` | `KeyboardAnswerMode \| undefined` | Режим ввода |
-| `audioUrl` | `string \| undefined` | URL аудио (из `LexemeCardFields`) |
-| `promptLexeme` | `PhoneticLexeme \| undefined` | Фонетика подсказки (из `LexemeCardFields`) |
+| Поле                      | Тип                               | Описание                                   |
+| ------------------------- | --------------------------------- | ------------------------------------------ |
+| `id`                      | `string`                          | Уникальный идентификатор карточки          |
+| `kind`                    | `'keyboard'`                      | Константа, определяющая тип карточки       |
+| `title`                   | `string`                          | Заголовок карточки                         |
+| `appearance`              | `CardAppearance`                  | Тема оформления и размер шрифта            |
+| `direction`               | `CardDirection`                   | Направление по умолчанию                   |
+| `promptKnown`             | `string`                          | Текст вопроса / подсказки                  |
+| `acceptedAnswersKnown`    | `readonly string[]`               | Допустимые ответы на известном языке       |
+| `acceptedAnswersLearning` | `readonly string[] \| undefined`  | Допустимые ответы на изучаемом языке       |
+| `answerMode`              | `KeyboardAnswerMode \| undefined` | Режим ввода                                |
+| `audioUrl`                | `string \| undefined`             | URL аудио (из `LexemeCardFields`)          |
+| `promptLexeme`            | `PhoneticLexeme \| undefined`     | Фонетика подсказки (из `LexemeCardFields`) |
 
 ### KeyboardAnswerMode
 
@@ -70,20 +70,20 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `KeyboardCard` | (required) | Данные карточки — вопрос, допустимые ответы |
-| `answerText` | `string` | `''` | Текущий текст ввода |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр     | Тип                    | По умолчанию | Описание                                    |
+| ------------ | ---------------------- | ------------ | ------------------------------------------- |
+| `card`       | `KeyboardCard`         | (required)   | Данные карточки — вопрос, допустимые ответы |
+| `answerText` | `string`               | `''`         | Текущий текст ввода                         |
+| `feedback`   | `CardFeedback`         | `null`       | Состояние обратной связи                    |
+| `fontSize`   | `'sm' \| 'md' \| 'lg'` | `'md'`       | Размер шрифта                               |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `answerTextChange` | `Output<string>` | Изменение текста ввода |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие            | Тип              | Описание                     |
+| ------------------ | ---------------- | ---------------------------- |
+| `answerTextChange` | `Output<string>` | Изменение текста ввода       |
+| `checkAnswer`      | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`         | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -118,16 +118,16 @@ const card: KeyboardCard = {
 
 ### Внутренние вычисляемые значения
 
-| Значение | Тип | Описание |
-|----------|-----|----------|
-| `answerMode` | `Computed<KeyboardAnswerMode>` | Режим ввода: `'ipa'` \| `'pinyin'` \| `'text'` \| `'auto'` |
-| `usesIpaInput` | `Computed<boolean>` | `true` если режим `'ipa'` |
-| `usesPinyinKeyboard` | `Computed<boolean>` | `true` если режим `'pinyin'` |
-| `resolvedPrompt` | `Computed<string>` | resolved подсказка через `resolveKeyboardPrompt()` |
-| `promptLexeme` | `Computed<PhoneticLexeme \| undefined>` | Фонетика подсказки с учётом направления |
+| Значение             | Тип                                     | Описание                                                   |
+| -------------------- | --------------------------------------- | ---------------------------------------------------------- |
+| `answerMode`         | `Computed<KeyboardAnswerMode>`          | Режим ввода: `'ipa'` \| `'pinyin'` \| `'text'` \| `'auto'` |
+| `usesIpaInput`       | `Computed<boolean>`                     | `true` если режим `'ipa'`                                  |
+| `usesPinyinKeyboard` | `Computed<boolean>`                     | `true` если режим `'pinyin'`                               |
+| `resolvedPrompt`     | `Computed<string>`                      | resolved подсказка через `resolveKeyboardPrompt()`         |
+| `promptLexeme`       | `Computed<PhoneticLexeme \| undefined>` | Фонетика подсказки с учётом направления                    |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
+| Метод            | Описание                                                            |
+| ---------------- | ------------------------------------------------------------------- |
 | `correctLabel()` | Возвращает метку правильного ответа через `getCorrectAnswerLabel()` |

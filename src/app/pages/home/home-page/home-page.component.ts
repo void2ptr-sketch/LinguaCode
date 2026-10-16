@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HomeTab } from '../../../features/home/types';
@@ -8,6 +8,7 @@ import { HomeTab } from '../../../features/home/types';
  * @remarks Uses lazy-loaded route outlets for each tab content.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-home-page',
   imports: [RouterLink, RouterLinkActive, RouterOutlet, MatTabsModule],
   templateUrl: './home-page.component.html',

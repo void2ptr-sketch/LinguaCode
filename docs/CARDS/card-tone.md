@@ -12,17 +12,17 @@
 
 Исходный тип: `ToneCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'tone'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `direction` | `CardDirection` | Направление по умолчанию |
-| `promptKnown` | `string` | Текст вопроса / подсказки |
-| `syllableBase` | `string` | Базовый слог пиньинь без тона (например, `ni`) |
-| `toneOptions` | `readonly ToneMark[]` | Доступные тоновые марки для выбора |
-| `correctIndex` | `number` | Индекс правильного тона (0-based) |
+| Поле           | Тип                   | Описание                                       |
+| -------------- | --------------------- | ---------------------------------------------- |
+| `id`           | `string`              | Уникальный идентификатор карточки              |
+| `kind`         | `'tone'`              | Константа, определяющая тип карточки           |
+| `title`        | `string`              | Заголовок карточки                             |
+| `appearance`   | `CardAppearance`      | Тема оформления и размер шрифта                |
+| `direction`    | `CardDirection`       | Направление по умолчанию                       |
+| `promptKnown`  | `string`              | Текст вопроса / подсказки                      |
+| `syllableBase` | `string`              | Базовый слог пиньинь без тона (например, `ni`) |
+| `toneOptions`  | `readonly ToneMark[]` | Доступные тоновые марки для выбора             |
+| `correctIndex` | `number`              | Индекс правильного тона (0-based)              |
 
 ### ToneMark
 
@@ -62,21 +62,21 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `ToneCard` | (required) | Данные карточки — базовый слог, варианты тонов |
-| `direction` | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа |
-| `selectedIndex` | `number \| null` | `null` | Индекс выбранного тона |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр        | Тип                                          | По умолчанию          | Описание                                       |
+| --------------- | -------------------------------------------- | --------------------- | ---------------------------------------------- |
+| `card`          | `ToneCard`                                   | (required)            | Данные карточки — базовый слог, варианты тонов |
+| `direction`     | `'known-to-learning' \| 'learning-to-known'` | `'known-to-learning'` | Направление показа                             |
+| `selectedIndex` | `number \| null`                             | `null`                | Индекс выбранного тона                         |
+| `feedback`      | `CardFeedback`                               | `null`                | Состояние обратной связи                       |
+| `fontSize`      | `'sm' \| 'md' \| 'lg'`                       | `'md'`                | Размер шрифта                                  |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `optionSelected` | `Output<number>` | Индекс выбранного тона |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие          | Тип              | Описание                     |
+| ---------------- | ---------------- | ---------------------------- |
+| `optionSelected` | `Output<number>` | Индекс выбранного тона       |
+| `checkAnswer`    | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`       | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -113,9 +113,9 @@ const card: ToneCard = {
 
 ### Внутренние методы
 
-| Метод | Описание |
-|-------|----------|
-| `toneLabel(tone: ToneMark)` | Возвращает текстовую метку тона через `toneMarkLabel()` |
-| `tonedSyllable(tone: ToneMark)` | Возвращает слог с применённой тоновой маркой через `applyToneToPinyinSyllable()` |
-| `optionClass(index)` | CSS-классы: `option`, `option--selected`, `option--correct`, `option--incorrect` |
-| `selectOption(index)` | Обработка выбора. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |
+| Метод                           | Описание                                                                                      |
+| ------------------------------- | --------------------------------------------------------------------------------------------- |
+| `toneLabel(tone: ToneMark)`     | Возвращает текстовую метку тона через `toneMarkLabel()`                                       |
+| `tonedSyllable(tone: ToneMark)` | Возвращает слог с применённой тоновой маркой через `applyToneToPinyinSyllable()`              |
+| `optionClass(index)`            | CSS-классы: `option`, `option--selected`, `option--correct`, `option--incorrect`              |
+| `selectOption(index)`           | Обработка выбора. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |

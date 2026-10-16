@@ -1,26 +1,27 @@
 import { HttpInterceptorFn } from '@angular/common/http';
+import { inject } from '@angular/core';
 import { isApiRequest } from '../../../shared/api/api-url';
+import { AuthTokenStorage } from '../../../entities/auth/services/auth-token.storage';
 
-/** Storage key for the authentication token in sessionStorage. */
-export const AUTH_TOKEN_STORAGE_KEY = 'lingua-code.auth-token';
+export { AUTH_TOKEN_STORAGE_KEY } from '../../../entities/auth/services/auth-token.storage';
 
 /**
- * HTTP interceptor that adds the Bearer token to API requests.
+ * HTTP-интерсептор, добавляющий Bearer-токен к API-запросам.
  *
  * @remarks
- * Reads the token from `sessionStorage` and attaches it as an `Authorization` header.
- * Non-API requests are passed through unchanged.
+ * Читает access-токен через `AuthTokenStorage` (sessionStorage) и добавляет его
+ * как заголовок `Authorization`. Не-API запросы проходят без изменений.
  *
- * @param req - The outgoing HTTP request.
- * @param next - The next interceptor in the chain.
- * @returns The cloned request with the Authorization header (if token exists).
+ * @param req - Исходящий HTTP-запрос.
+ * @param next - Следующий интерсептор в цепочке.
+ * @returns Клонированный запрос с заголовком Authorization (если токен есть).
  */
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
   if (!isApiRequest(req.url)) {
     return next(req);
   }
 
-  const token = sessionStorage.getItem(AUTH_TOKEN_STORAGE_KEY);
+  const token = inject(AuthTokenStorage).readAccessToken();
   if (!token) {
     return next(req);
   }

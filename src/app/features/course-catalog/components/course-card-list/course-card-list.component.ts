@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -12,7 +12,7 @@ import {
   contentLanguages,
 } from '../../../../entities/language-pair/lib/language-pair.utils';
 import { UserStore } from '../../../../entities/user/model/user.store';
-import { CourseCatalogStore } from '../../services/course-catalog.store';
+import { DraftsStore } from '../../services';
 
 /**
  * Course card list component. Displays the courses tab of the course catalog,
@@ -20,6 +20,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
  * @remarks Delegates state to `CourseCatalogStore` and `UserStore`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-catalog-courses',
   imports: [FormsModule, MatButtonModule, MatFormFieldModule, MatIconModule, MatSelectModule],
   standalone: true,
@@ -28,7 +29,7 @@ import { CourseCatalogStore } from '../../services/course-catalog.store';
 })
 export class CourseCatalogCoursesComponent {
   private readonly userStore = inject(UserStore);
-  private readonly catalogStore = inject(CourseCatalogStore);
+  private readonly drafts = inject(DraftsStore);
 
   /** Current user's display name from the store. */
   readonly displayName = this.userStore.displayName;
@@ -40,22 +41,22 @@ export class CourseCatalogCoursesComponent {
   readonly activeLanguagePairId = this.userStore.activeLanguagePairId;
 
   /** Draft value for the user's display name. */
-  readonly nameDraft = this.catalogStore.nameDraft;
+  readonly nameDraft = this.drafts.profileNameDraft;
   /** Draft value for the learning proficiency level. */
-  readonly learningProficiencyDraft = this.catalogStore.learningProficiencyDraft;
+  readonly learningProficiencyDraft = this.drafts.profileLearningProficiencyDraft;
   /** Draft value for the application theme. */
-  readonly themeDraft = this.catalogStore.themeDraft;
+  readonly themeDraft = this.drafts.profileThemeDraft;
   /** Draft value for the font size preference. */
-  readonly fontSizeDraft = this.catalogStore.fontSizeDraft;
+  readonly fontSizeDraft = this.drafts.profileFontSizeDraft;
   /** Draft value for the color scheme. */
-  readonly colorSchemeDraft = this.catalogStore.colorSchemeDraft;
+  readonly colorSchemeDraft = this.drafts.profileColorSchemeDraft;
   /** Draft value for the card focus fullscreen preference. */
-  readonly cardFocusFullscreenDraft = this.catalogStore.cardFocusFullscreenDraft;
+  readonly cardFocusFullscreenDraft = this.drafts.profileCardFocusFullscreenDraft;
 
   /** Draft value for the known (source) language. */
-  readonly knownLanguageDraft = this.catalogStore.knownLanguageDraft;
+  readonly knownLanguageDraft = this.drafts.courseTabKnownLanguageDraft;
   /** Draft value for the learning (target) language. */
-  readonly learningLanguageDraft = this.catalogStore.learningLanguageDraft;
+  readonly learningLanguageDraft = this.drafts.courseTabLearningLanguageDraft;
 
   /** Available content languages. */
   readonly languages = contentLanguages();
@@ -63,7 +64,7 @@ export class CourseCatalogCoursesComponent {
   readonly languageLabels = CONTENT_LANGUAGE_LABELS;
 
   /** Whether the current language pair draft is invalid. */
-  readonly languagePairInvalid = this.catalogStore.languagePairInvalid;
+  readonly languagePairInvalid = this.drafts.courseTabLanguagePairInvalid;
 
   /**
    * Whether there is more than one language pair (enables removal).
@@ -110,7 +111,7 @@ export class CourseCatalogCoursesComponent {
         known: this.knownLanguageDraft(),
         learning: this.learningLanguageDraft(),
       });
-      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
+      this.drafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
   }
 
@@ -120,7 +121,7 @@ export class CourseCatalogCoursesComponent {
    * @param lang - The selected known content language.
    */
   onChangeKnownLanguage(lang: ContentLanguage): void {
-    this.catalogStore.setKnownLanguageDraft(lang);
+    this.drafts.setCourseTabKnownLanguageDraft(lang);
   }
 
   /**
@@ -129,7 +130,7 @@ export class CourseCatalogCoursesComponent {
    * @param lang - The selected learning content language.
    */
   onChangeLearningLanguage(lang: ContentLanguage): void {
-    this.catalogStore.setLearningLanguageDraft(lang);
+    this.drafts.setCourseTabLearningLanguageDraft(lang);
   }
 
   /**
@@ -143,7 +144,7 @@ export class CourseCatalogCoursesComponent {
    */
   onSetActive(id: string): void {
     this.userStore.setActiveLanguagePair(id);
-    this.catalogStore.setSettingsPairIdDraft(id);
+    this.drafts.setSettingsPairIdDraft(id);
   }
 
   /**
@@ -156,11 +157,11 @@ export class CourseCatalogCoursesComponent {
    * is updated to the current active language pair ID.
    */
   onRemovePair(id: string): void {
-    const wasSettingsTarget = this.catalogStore.settingsPairIdDraft() === id;
+    const wasSettingsTarget = this.drafts.settingsPairIdDraft() === id;
     this.userStore.removeLanguagePair(id);
 
     if (wasSettingsTarget) {
-      this.catalogStore.setSettingsPairIdDraft(this.activeLanguagePairId());
+      this.drafts.setSettingsPairIdDraft(this.activeLanguagePairId());
     }
   }
 

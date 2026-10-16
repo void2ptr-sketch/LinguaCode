@@ -39,7 +39,7 @@ export function checkDrawCardAnswer(
 
     const model = getHanziModel?.(character) ?? null;
     if (!model) {
-      return false;
+      continue;
     }
 
     const strokes = drawAnswer.strokesByCharacter[index] ?? [];

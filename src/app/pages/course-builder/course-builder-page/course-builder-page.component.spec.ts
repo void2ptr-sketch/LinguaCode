@@ -12,7 +12,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { CourseBuilderPageComponent } from './course-builder-page.component';
 import { CourseBuilderStore } from '../../../features/course-builder/services/course-builder.store';
@@ -25,10 +25,6 @@ describe('CourseBuilderPageComponent', () => {
   let component: CourseBuilderPageComponent;
 
   beforeEach(() => {
-    vi.spyOn(console, 'error').mockImplementation(() => {
-      /* silence console.error in tests */
-    });
-
     TestBed.configureTestingModule({
       imports: [
         CourseBuilderPageComponent,

@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output } from '@angular/core';
 import { MatPaginatorModule, type PageEvent } from '@angular/material/paginator';
 
 /**
@@ -19,6 +19,7 @@ import { MatPaginatorModule, type PageEvent } from '@angular/material/paginator'
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   standalone: true,
   selector: 'app-pagination',
   imports: [MatPaginatorModule],

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -11,6 +11,7 @@ import { HELP_USAGE_SCENARIOS } from './help-usage-scenarios.data';
  * @remarks Data is loaded from static constants in `help-usage-scenarios.data.ts`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-help-usage-scenarios-page',
   imports: [RouterLink, MatButtonModule, MatCardModule, MatChipsModule, MatIconModule],
   templateUrl: './help-usage-scenarios-page.component.html',

@@ -13,11 +13,7 @@
 
     <mat-form-field appearance="outline">
       <mat-label>Теги (через запятую)</mat-label>
-      <input
-        matInput
-        [ngModel]="tagsString()"
-        (ngModelChange)="updateTags($event)"
-      />
+      <input matInput [ngModel]="tagsString()" (ngModelChange)="updateTags($event)" />
     </mat-form-field>
 
     <mat-form-field appearance="outline">

@@ -97,7 +97,10 @@
   line-height: 1;
   white-space: nowrap;
   cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
 
   &:hover {
     background: var(--mat-sys-secondary-container);
@@ -116,7 +119,6 @@
     border-color: var(--mat-sys-primary);
   }
 }
-
 
 .journey-map__view-btn,
 .journey-map__fav-filter,

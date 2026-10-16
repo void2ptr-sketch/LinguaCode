@@ -8,6 +8,7 @@ describe('provideApiHttp', () => {
   afterEach(() => {
     // Restore original environment
     vi.restoreAllMocks();
+    TestBed.resetTestingModule();
   });
 
   it('should provide HttpClient when called', () => {

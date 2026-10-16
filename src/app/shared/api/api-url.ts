@@ -10,7 +10,7 @@ import { environment } from '../../../environments/environment';
  */
 export const buildApiUrl = (path: string): string => {
   const normalizedPath = path.startsWith('/') ? path : `/${path}`;
-  return `${environment.apiUrl}${normalizedPath}`;
+  return `${environment.apiUrl}/${environment.apiVersion}${normalizedPath}`;
 };
 
 /**

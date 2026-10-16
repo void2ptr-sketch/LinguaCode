@@ -52,9 +52,14 @@ describe('Card select smoke', () => {
     // Only the fixture file requests (content-manifest.json + seed files)
     // reach the HttpTestingController. All /api/* requests are intercepted
     // by the mock interceptors and handled via ContentSeedRepository cache.
-    await router.navigateByUrl(
-      '/cards/select?courseId=demo-course&lessonId=demo-lesson-1&scenarioId=demo-scenario&tab=learning',
-    );
+    await router.navigate(['cards', 'select'], {
+      queryParams: {
+        courseId: 'demo-course',
+        lessonId: 'demo-lesson-1',
+        scenarioId: 'demo-scenario',
+        tab: 'learning',
+      },
+    });
     fixture.detectChanges();
 
     // ── 1st round: ContentSeedRepository loads content-manifest.json ──
@@ -234,5 +239,6 @@ describe('Card select smoke', () => {
     expect(text).toContain('Hello');
 
     httpMock.verify();
+    fixture.destroy();
   });
 });

@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
 import { Card } from '../../model';
 import type { CardDirection } from '../../../language-pair/model/language-pair.types';
 import type { DrawAnswerPayload } from '../../../chinese/model/draw-answer.types';
@@ -38,6 +38,7 @@ import { ToneCardComponent } from '../cards/tone-card/tone-card.component';
 @Component({
   standalone: true,
   selector: 'app-card-host',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     CardFocusShellComponent,
     SelectCardComponent,

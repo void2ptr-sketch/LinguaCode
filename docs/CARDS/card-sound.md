@@ -12,20 +12,20 @@
 
 Исходный тип: `SoundCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'sound'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `direction` | `CardDirection` | Направление по умолчанию |
-| `promptKnown` | `string` | Текст вопроса / подсказки |
-| `audioUrl` | `string \| undefined` | URL аудиофайла для воспроизведения (из `LexemeCardFields`) |
-| `promptLexeme` | `PhoneticLexeme \| undefined` | Фонетика подсказки (из `LexemeCardFields`) |
-| `audioLabelLearning` | `string` | Текст для TTS-синтеза (если нет аудиофайла) |
-| `optionsKnown` | `readonly string[]` | Варианты перевода на известном языке |
-| `optionsLexemes` | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции вариантов |
-| `correctIndex` | `number` | Индекс правильного ответа (0-based) |
+| Поле                 | Тип                                      | Описание                                                   |
+| -------------------- | ---------------------------------------- | ---------------------------------------------------------- |
+| `id`                 | `string`                                 | Уникальный идентификатор карточки                          |
+| `kind`               | `'sound'`                                | Константа, определяющая тип карточки                       |
+| `title`              | `string`                                 | Заголовок карточки                                         |
+| `appearance`         | `CardAppearance`                         | Тема оформления и размер шрифта                            |
+| `direction`          | `CardDirection`                          | Направление по умолчанию                                   |
+| `promptKnown`        | `string`                                 | Текст вопроса / подсказки                                  |
+| `audioUrl`           | `string \| undefined`                    | URL аудиофайла для воспроизведения (из `LexemeCardFields`) |
+| `promptLexeme`       | `PhoneticLexeme \| undefined`            | Фонетика подсказки (из `LexemeCardFields`)                 |
+| `audioLabelLearning` | `string`                                 | Текст для TTS-синтеза (если нет аудиофайла)                |
+| `optionsKnown`       | `readonly string[]`                      | Варианты перевода на известном языке                       |
+| `optionsLexemes`     | `readonly PhoneticLexeme[] \| undefined` | Фонетические транскрипции вариантов                        |
+| `correctIndex`       | `number`                                 | Индекс правильного ответа (0-based)                        |
 
 ## Use Cases
 
@@ -70,20 +70,20 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `SoundCard` | (required) | Данные карточки — аудио, варианты перевода |
-| `selectedIndex` | `number \| null` | `null` | Индекс выбранного варианта |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр        | Тип                    | По умолчанию | Описание                                   |
+| --------------- | ---------------------- | ------------ | ------------------------------------------ |
+| `card`          | `SoundCard`            | (required)   | Данные карточки — аудио, варианты перевода |
+| `selectedIndex` | `number \| null`       | `null`       | Индекс выбранного варианта                 |
+| `feedback`      | `CardFeedback`         | `null`       | Состояние обратной связи                   |
+| `fontSize`      | `'sm' \| 'md' \| 'lg'` | `'md'`       | Размер шрифта                              |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `optionSelected` | `Output<number>` | Индекс выбранного варианта |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие          | Тип              | Описание                     |
+| ---------------- | ---------------- | ---------------------------- |
+| `optionSelected` | `Output<number>` | Индекс выбранного варианта   |
+| `checkAnswer`    | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`       | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -119,17 +119,17 @@ const card: SoundCard = {
 
 ### Внутренные вычисляемые значения
 
-| Значение | Тип | Описание |
-|----------|-----|----------|
-| `resolved` | `Computed<ResolvedOptionCard>` | Резолв карточки с учётом направления |
-| `stimulusLexeme` | `Computed<PhoneticLexeme>` | Текст/фонетика для воспроизведения |
-| `hasAudioFile` | `Computed<boolean>` | Есть ли аудиофайл (`audioUrl` не пустой) |
-| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика варианта по индексу |
-| `optionClass(index)` | `(index: number) => string` | CSS-классы для варианта |
+| Значение              | Тип                                              | Описание                                 |
+| --------------------- | ------------------------------------------------ | ---------------------------------------- |
+| `resolved`            | `Computed<ResolvedOptionCard>`                   | Резолв карточки с учётом направления     |
+| `stimulusLexeme`      | `Computed<PhoneticLexeme>`                       | Текст/фонетика для воспроизведения       |
+| `hasAudioFile`        | `Computed<boolean>`                              | Есть ли аудиофайл (`audioUrl` не пустой) |
+| `optionLexeme(index)` | `(index: number) => PhoneticLexeme \| undefined` | Фонетика варианта по индексу             |
+| `optionClass(index)`  | `(index: number) => string`                      | CSS-классы для варианта                  |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
-| `playAudio()` | Воспроизводит аудио через `playLearningAudio()` с `audioUrl` или TTS |
+| Метод                 | Описание                                                                                      |
+| --------------------- | --------------------------------------------------------------------------------------------- |
+| `playAudio()`         | Воспроизводит аудио через `playLearningAudio()` с `audioUrl` или TTS                          |
 | `selectOption(index)` | Обработка выбора. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |

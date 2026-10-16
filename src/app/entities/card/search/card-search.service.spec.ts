@@ -5,6 +5,7 @@ import { TestBed } from '@angular/core/testing';
 import { CardSearchService } from './card-search.service';
 import { CardsApiService } from '../api/cards-api.service';
 import { CardsCatalogMockHandler } from '../api/mock/cards-catalog.mock.handler';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CardSearchCriteria, CardSearchPage } from '../model';
 import type { CardIndexEntry } from '../model';
 describe('CardSearchService', () => {
@@ -53,6 +54,10 @@ describe('CardSearchService', () => {
         CardSearchService,
         { provide: CardsApiService, useValue: apiSpy },
         { provide: CardsCatalogMockHandler, useValue: mockHandlerSpy },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     }).compileComponents();
 
@@ -63,6 +68,7 @@ describe('CardSearchService', () => {
 
   afterEach(() => {
     vi.restoreAllMocks();
+    TestBed.resetTestingModule();
   });
 
   it('should be created', () => {

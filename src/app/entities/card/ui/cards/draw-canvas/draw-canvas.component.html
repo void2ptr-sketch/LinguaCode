@@ -81,21 +81,21 @@
       </svg>
     }
 
-    @if (hanziLoadState() === 'loading' && hanziDataRequired()) {
+    @if (dataLoader.hanziLoadState() === 'loading' && hanziDataRequired()) {
       <div class="draw-canvas__overlay draw-canvas__overlay--loading" aria-live="polite">
         <mat-icon>hourglass_empty</mat-icon>
         <span>Загрузка черт…</span>
       </div>
     }
 
-    @if (radicalLoadState() === 'loading' && radicalDataRequired()) {
+    @if (dataLoader.radicalLoadState() === 'loading' && radicalDataRequired()) {
       <div class="draw-canvas__overlay draw-canvas__overlay--loading" aria-live="polite">
         <mat-icon>hourglass_empty</mat-icon>
         <span>Загрузка компонентов…</span>
       </div>
     }
 
-    @if (hanziLoadState() === 'missing' && hanziDataRequired()) {
+    @if (dataLoader.hanziLoadState() === 'missing' && hanziDataRequired()) {
       <div class="draw-canvas__overlay draw-canvas__overlay--missing" role="status">
         <mat-icon>info</mat-icon>
         <span>Данные черт недоступны</span>
@@ -107,7 +107,7 @@
     <button
       mat-button
       type="button"
-      [disabled]="disabled() || !canUndo()"
+      [disabled]="disabled() || !drawing.canUndo()"
       (click)="undoLastStroke()"
     >
       <mat-icon>undo</mat-icon>
@@ -116,7 +116,7 @@
     <button
       mat-button
       type="button"
-      [disabled]="disabled() || !hasStrokes()"
+      [disabled]="disabled() || !drawing.hasStrokes()"
       (click)="clearStrokes()"
     >
       <mat-icon>ink_eraser</mat-icon>

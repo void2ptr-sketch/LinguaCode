@@ -2,7 +2,7 @@
 
 Обучение в LinguaCode опирается на **два языка контента**: известный пользователю (known) и изучаемый (learning). Это отдельно от **UiLocale** — языка интерфейса приложения (`@angular/localize`, бэклог).
 
-Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./SYSTEM/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./SYSTEM/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
+Связанные документы: [INDEX.md](./INDEX.md) · [BUSINESS.md](./BUSINESS.md) · [DOMAIN.md](./COMMON/DOMAIN.md) · [ARCHITECTURE.md](./ARCHITECTURE.md) · [CARD-CATALOG.md](./COMMON/CARD-CATALOG.md) · [CJK-CONTENT.md](./CONTENT/CJK-CONTENT.md) · [PHONETIC-CONTENT.md](./CONTENT/PHONETIC-CONTENT.md) · [TASKS.md](../TASKS.md).
 
 ## Терминология: «Курс» (scope) и «Программа» (`Course`) — G11e
 
@@ -242,7 +242,7 @@ applyLanguagePair(activePair.known, activePair.learning);
 
 ## G11 — учебные курсы (Course)
 
-> **Статус:** готово (G11). См. [DOMAIN.md](./SYSTEM/DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
+> **Статус:** готово (G11). См. [DOMAIN.md](./COMMON/DOMAIN.md#иерархия-контента) · [TASKS.md](../TASKS.md).
 
 `Course` — программа из уроков (`Lesson`), каждый урок ссылается на упорядоченные `scenarioIds`. Курс привязан к `Course.languagePair` и фильтруется так же, как сценарии (G8).
 
@@ -299,21 +299,21 @@ Legacy JSON нормализуется через `card-legacy.mapper.ts` при
 
 ## Этапы
 
-| Этап | Содержание                                                                                   | Статус |
-| ---- | -------------------------------------------------------------------------------------------- | ------ |
+| Этап | Содержание                                                                                        | Статус |
+| ---- | ------------------------------------------------------------------------------------------------- | ------ |
 | G0   | `LanguagePair` в DOMAIN и `entities/*/model`; `CardIndexEntry.knownLanguage` / `learningLanguage` | готово |
-| G1   | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении                     | готово |
-| G2   | Structured content в `Card` (known/learning поля); миграция demo                             | готово |
-| G3   | Index/search по паре; редактор — поля языка                                                  | готово |
-| G4   | `Scenario.languagePair` + валидация в builder                                                | готово |
-| G5   | Render по direction; `LearningResult` + pair                                                 | готово |
-| G7   | Несколько пар в профиле, одна активная                                                       | готово |
-| G8   | Scope UI по активной паре (каталоги, сценарии, pickers)                                      | готово |
-| G11  | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`)                   | готово |
-| G15  | User content overlay + content seed manifest                                                 | готово |
-| G9   | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны                                       | готово |
-| G10  | IPA (International Phonetic Alphabet)                                                        | готово |
-| G6   | UiLocale (`@angular/localize`) — отдельный трек                                              | бэклог |
+| G1   | `User.preferences.languagePair`, persist, UI `/user`, подпись в обучении                          | готово |
+| G2   | Structured content в `Card` (known/learning поля); миграция demo                                  | готово |
+| G3   | Index/search по паре; редактор — поля языка                                                       | готово |
+| G4   | `Scenario.languagePair` + валидация в builder                                                     | готово |
+| G5   | Render по direction; `LearningResult` + pair                                                      | готово |
+| G7   | Несколько пар в профиле, одна активная                                                            | готово |
+| G8   | Scope UI по активной паре (каталоги, сценарии, pickers)                                           | готово |
+| G11  | `Course` / `Lesson`; терминология «Курс» (scope) vs «Программа» (`Course`)                        | готово |
+| G15  | User content overlay + content seed manifest                                                      | готово |
+| G9   | CJK-контент: иероглифы, пиньинь, жуинь, Палладия, тоны                                            | готово |
+| G10  | IPA (International Phonetic Alphabet)                                                             | готово |
+| G6   | UiLocale (`@angular/localize`) — отдельный трек                                                   | бэклог |
 
 ## G2+ — детали бэклога
 

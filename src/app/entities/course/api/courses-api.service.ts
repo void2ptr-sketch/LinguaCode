@@ -8,50 +8,26 @@ import type {
   CourseSearchPage,
   CourseWithLessons,
 } from '../model';
-import type { LanguagePair } from '../../language-pair/model/language-pair.types';
-import type { CourseAuthoring } from '../model';
 import type { ApiResponse } from '../../../shared/api/api.types';
 import { buildApiUrl } from '../../../shared/api/api-url';
 import { buildCourseSearchParams } from './mock/courses-api.params.utils';
+import type {
+  CourseCatalogPort,
+  CourseExportBundle,
+  CourseWritePayload,
+} from '../repository/course-catalog.port';
 
-/**
- * Payload for creating or updating a lesson via the courses API.
- *
- * @remarks
- * Used in `CourseWritePayload.lessons` to send lesson data to the backend.
- */
-export type LessonWritePayload = {
-  id?: string;
-  title: string;
-  description: string;
-  scenarioIds: readonly string[];
-  prerequisiteLessonIds?: readonly string[];
-  order: number;
-};
-
-/**
- * Payload for creating or updating a course via the courses API.
- *
- * @remarks
- * Includes lessons, authoring notes, and language pair information.
- */
-export type CourseWritePayload = {
-  title: string;
-  description: string;
-  published: boolean;
-  languagePair?: LanguagePair;
-  lessons: readonly LessonWritePayload[];
-  authoring?: CourseAuthoring;
-};
+export type { CourseWritePayload, LessonWritePayload } from '../repository/course-catalog.port';
 
 /**
  * HTTP API service for course operations.
  *
  * @remarks
- * Wraps the backend courses API with Promise-based methods.
+ * Wraps the backend courses API with Promise-based methods. Implements the
+ * `CourseCatalogPort` data-access contract.
  */
 @Injectable({ providedIn: 'root' })
-export class CoursesApiService {
+export class CoursesApiService implements CourseCatalogPort {
   private readonly http = inject(HttpClient);
 
   /**
@@ -132,6 +108,23 @@ export class CoursesApiService {
       this.http.get<ApiResponse<readonly CourseIndexEntry[]>>(
         buildApiUrl(`/courses/by-scenario/${scenarioId}`),
       ),
+    ).then((response) => response.data);
+  }
+
+  /**
+   * Retrieves a self-contained export bundle for a course.
+   *
+   * @param courseId - The course ID.
+   * @returns The export bundle with the resolved catalog, scenarios, cards, and metadata.
+   *
+   * @example
+   * ```ts
+   * const bundle = await coursesApi.getBundle('course-123');
+   * ```
+   */
+  getBundle(courseId: string): Promise<CourseExportBundle> {
+    return firstValueFrom(
+      this.http.get<ApiResponse<CourseExportBundle>>(buildApiUrl(`/courses/${courseId}/bundle`)),
     ).then((response) => response.data);
   }
 }

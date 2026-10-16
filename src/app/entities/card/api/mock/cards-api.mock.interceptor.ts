@@ -24,12 +24,12 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { defer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs';
 
-import { environment } from '../../../../../environments/environment';
 import { parseCardSearchCriteria } from './cards-api.params.utils';
-import { isApiRequest } from '../../../../shared/api/api-url';
+import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { CardsCatalogMockHandler } from './cards-catalog.mock.handler';
+import type { Card } from '../../model';
 
 /**
  * Checks whether the given URL is a cards search request.
@@ -47,7 +47,7 @@ const isCardsSearchRequest = (url: string): boolean =>
  * @returns The card ID, or `null` if the URL does not target a specific card.
  */
 const extractCardId = (url: string): string | null => {
-  const prefix = `${environment.apiUrl}/cards/`;
+  const prefix = `${buildApiUrl('/cards/')}`;
   if (!url.includes(prefix)) {
     return null;
   }
@@ -77,12 +77,12 @@ const extractCardId = (url: string): string | null => {
 export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   const handler = inject(CardsCatalogMockHandler);
 
+  if (!isApiRequest(req.url)) {
+    return next(req);
+  }
+
   // POST /cards/batch — пакетное получение карточек
-  if (
-    req.method === 'POST' &&
-    isApiRequest(req.url) &&
-    req.url.endsWith(`${environment.apiUrl}/cards/batch`)
-  ) {
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards/batch'))) {
     const body = req.body as { ids?: readonly string[] };
     const ids = body?.ids ?? [];
 
@@ -91,13 +91,31 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
-  // Проверяем, что это GET-запрос к API
-  if (req.method !== 'GET' || !isApiRequest(req.url)) {
-    return next(req);
+  // POST /cards — создание карточки
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/cards'))) {
+    return defer(() => handler.create(req.body as Card)).pipe(
+      map((data) => new HttpResponse({ status: 201, body: { data } })),
+    );
   }
 
-  // POST /cards/search — поиск карточек
-  if (isCardsSearchRequest(req.url)) {
+  const cardId = extractCardId(req.url);
+
+  // PUT /cards/{id} — обновление карточки
+  if (req.method === 'PUT' && cardId) {
+    return defer(() => handler.update(cardId, req.body as Card)).pipe(
+      map((data) => new HttpResponse({ status: 200, body: { data } })),
+    );
+  }
+
+  // DELETE /cards/{id} — удаление карточки
+  if (req.method === 'DELETE' && cardId) {
+    return defer(() => handler.delete(cardId)).pipe(
+      map(() => new HttpResponse({ status: 200, body: { data: null } })),
+    );
+  }
+
+  // GET /cards/search — поиск карточек
+  if (req.method === 'GET' && isCardsSearchRequest(req.url)) {
     const criteria = parseCardSearchCriteria(req.params);
 
     return defer(() => handler.search(criteria)).pipe(
@@ -106,8 +124,7 @@ export const cardsApiMockInterceptor: HttpInterceptorFn = (req, next) => {
   }
 
   // GET /cards/{id} — получение карточки по ID
-  const cardId = extractCardId(req.url);
-  if (cardId) {
+  if (req.method === 'GET' && cardId) {
     return defer(() => handler.getById(cardId)).pipe(
       map((data) => new HttpResponse({ status: 200, body: { data } })),
     );

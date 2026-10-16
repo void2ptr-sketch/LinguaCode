@@ -23,8 +23,11 @@ import {
   saveCourseCatalogToStorage,
   type CourseCatalogState,
 } from '../../storage/courses-storage';
+import { CardRepository } from '../../../card/repository/card.repository';
+import { loadCardIndexMetaOverrides } from '../../../card/storage/card-index-meta.storage';
+import { loadScenariosFromStorage } from '../../../scenario/storage/scenarios-storage';
 
-import type { CourseWritePayload } from '../courses-api.service';
+import type { CourseExportBundle, CourseWritePayload } from '../../repository/course-catalog.port';
 
 /**
  * Mock handler for course catalog operations.
@@ -37,6 +40,7 @@ import type { CourseWritePayload } from '../courses-api.service';
 export class CoursesCatalogMockHandler {
   private readonly userStore = inject(UserStore);
   private readonly contentSeed = inject(ContentSeedRepository);
+  private readonly cardRepository = inject(CardRepository);
 
   private catalog: CourseCatalogState | null = null;
 
@@ -227,6 +231,28 @@ export class CoursesCatalogMockHandler {
         this.catalog!.lessons.filter((lesson) => lesson.courseId === course.id).length,
       ),
     );
+  }
+
+  /**
+   * Retrieves a self-contained export bundle for a course.
+   *
+   * @param courseId - The course ID.
+   * @returns The export bundle with the resolved catalog, scenarios, cards, and metadata.
+   * @throws `HttpErrorResponse` with status 404 if no course is found.
+   */
+  async getBundle(courseId: string): Promise<CourseExportBundle> {
+    await this.ensureData();
+
+    if (!this.catalog!.courses.some((course) => course.id === courseId)) {
+      throw notFound('Курс не найден');
+    }
+
+    return {
+      catalog: this.catalog!,
+      scenarios: loadScenariosFromStorage(),
+      cards: this.cardRepository.loadStored(),
+      cardIndexMeta: loadCardIndexMetaOverrides(),
+    };
   }
 
   /**

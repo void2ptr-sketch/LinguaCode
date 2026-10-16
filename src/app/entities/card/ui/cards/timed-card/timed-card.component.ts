@@ -1,16 +1,22 @@
-import { Component, computed, input, OnDestroy, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  input,
+  OnDestroy,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import {
-  effectiveCardDirection,
-  resolveOptionCard,
-} from '../../../utils/card-direction.utils';
+import { effectiveCardDirection, resolveOptionCard } from '../../../utils/card-direction.utils';
 import { TimedCard } from '../../../model';
 import type { CardDirection } from '../../../../language-pair/model/language-pair.types';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
 
 /**
@@ -19,6 +25,7 @@ import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/qu
  * @remarks Timer starts on `ngOnInit` and is cleared on `ngOnDestroy`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-timed-card',
   imports: [
     MatCardModule,
@@ -101,6 +108,7 @@ export class TimedCardComponent implements OnInit, OnDestroy {
    */
   readonly secondsLeft = signal(0);
   private timerId: number | null = null;
+  private destroyed = false;
 
   /**
    * Computed resolved card data with direction applied.
@@ -139,6 +147,7 @@ export class TimedCardComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
+    this.destroyed = true;
     this.clearTimer();
   }
 
@@ -172,12 +181,17 @@ export class TimedCardComponent implements OnInit, OnDestroy {
     this.clearTimer();
     this.secondsLeft.set(this.card().timeLimitSec);
     this.timerId = window.setInterval(() => {
+      if (this.destroyed) {
+        this.clearTimer();
+        return;
+      }
+
       const next = this.secondsLeft() - 1;
       this.secondsLeft.set(next);
 
       if (next <= 0) {
         this.clearTimer();
-        if (this.feedback() === null) {
+        if (!this.destroyed && this.feedback() === null) {
           this.timeExpired.emit();
         }
       }

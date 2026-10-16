@@ -1,11 +1,11 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input, output } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { CodeSelectCard } from '../../../model';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
-import { buildOptionClass } from '../option-card.util';
+import { buildOptionClass } from '../../../lib/cards/option-card.util';
 
 /**
  * UI component for code-select card exercises.
@@ -28,6 +28,7 @@ import { buildOptionClass } from '../option-card.util';
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-code-select-card',
   imports: [MatCardModule, MatButtonModule, MatIconModule, CodeHighlightComponent],
   templateUrl: './code-select-card.component.html',

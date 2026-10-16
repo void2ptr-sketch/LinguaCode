@@ -8,4 +8,8 @@ export { CourseBuilderStore } from './services/course-builder.store';
 export { CoursePdfExportService } from './services/course-pdf-export.service';
 
 // ===== Utils / Types =====
-export type { CourseFormDraft, CourseEditorMode, LessonFormDraft } from './types/course-builder.types';
+export type {
+  CourseFormDraft,
+  CourseEditorMode,
+  LessonFormDraft,
+} from './types/course-builder.types';

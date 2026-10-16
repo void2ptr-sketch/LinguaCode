@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, input, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -15,26 +15,12 @@ import {
   MIN_CARD_OPTIONS,
   optionTextReadonly,
   removeOption,
+  type CardOptionsEditorConfig,
   type CardOptionsEditorState,
   updateOptionLexeme,
   updateOptionText,
 } from '../../utils/options/card-options-editor.utils';
 import { LexemeFieldsComponent } from '../lexeme-fields/lexeme-fields.component';
-
-/**
- * Configuration for the card options editor.
- *
- * @remarks
- * Controls the display labels and behavior of the options editor component.
- */
-export type CardOptionsEditorConfig = {
-  /** Display title for the options section. */
-  title: string;
-  /** Label prefix for individual options (e.g., "Вариант", "Символ"). */
-  optionLabelPrefix: string;
-  /** Whether to show a radio button for selecting the correct option. */
-  showCorrectRadio: boolean;
-};
 
 /**
  * Reusable options editor component for managing choice card options (text, lexemes, correct index).
@@ -43,6 +29,7 @@ export type CardOptionsEditorConfig = {
  */
 @Component({
   selector: 'app-card-options-editor',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     MatButtonModule,

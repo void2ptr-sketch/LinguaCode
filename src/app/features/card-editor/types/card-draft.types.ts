@@ -295,6 +295,16 @@ export type CardDraft =
   | ReadingCardDraft;
 
 /**
+ * Union of choice-type card drafts (multiple-choice with options).
+ *
+ * @remarks
+ * Includes select, reading, timed, symbol, and tone card drafts.
+ * Used in card editor forms and utilities that handle option-based cards.
+ */
+export type ChoiceCardDraft =
+  SelectCardDraft | ReadingCardDraft | TimedCardDraft | SymbolCardDraft | ToneCardDraft;
+
+/**
  * Type alias: all card kinds are editable.
  *
  * @remarks

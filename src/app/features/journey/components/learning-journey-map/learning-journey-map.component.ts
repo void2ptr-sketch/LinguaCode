@@ -9,6 +9,7 @@ import {
   OnInit,
   OnDestroy,
   ViewEncapsulation,
+  ChangeDetectionStrategy,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatIconModule } from '@angular/material/icon';
@@ -21,8 +22,8 @@ import type {
   JourneyContentType,
   ExplorerLevelResult,
 } from '../../../../entities/learning/model';
-import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
-import { LearningDashboardService } from '../../../../entities/learning/lib/learning-dashboard.service';
+import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
+import { LearningDashboardService } from '../../../../entities/learning/services';
 import { JourneyLocationNodeComponent } from '../journey-location-node/journey-location-node.component';
 
 /** Фильтр по типу контента. */
@@ -37,6 +38,7 @@ export type JourneyViewMode = 'map' | 'list';
  * @remarks Tracks visit durations and favorite toggles via `JourneyAnalyticsService`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-learning-journey-map',
   encapsulation: ViewEncapsulation.None,
   imports: [

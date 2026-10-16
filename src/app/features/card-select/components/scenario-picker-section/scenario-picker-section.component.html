@@ -41,12 +41,7 @@
 
   <footer class="card-select-page__tab-footer">
     <p class="card-select-page__tab-hint">{{ nextStepHint() }}</p>
-    <button
-      mat-flat-button
-      type="button"
-      [disabled]="!canStartPractice()"
-      (click)="onNextClick()"
-    >
+    <button mat-flat-button type="button" [disabled]="!canStartPractice()" (click)="onNextClick()">
       Начать практику
     </button>
   </footer>

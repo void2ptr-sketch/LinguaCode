@@ -1,11 +1,10 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { defer } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map } from 'rxjs';
 
-import { environment } from '../../../../../environments/environment';
 import { parseScenarioSearchCriteria } from './scenarios-api.params.utils';
-import { isApiRequest } from '../../../../shared/api/api-url';
+import { buildApiUrl, isApiRequest } from '../../../../shared/api/api-url';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 
 import type { ScenarioWritePayload } from '../scenarios-api.service';
@@ -26,7 +25,7 @@ const isScenariosSearchRequest = (url: string): boolean =>
  * @returns The scenario ID, or `null` if the URL does not target a specific scenario.
  */
 const extractScenarioId = (url: string): string | null => {
-  const prefix = `${environment.apiUrl}/scenarios/`;
+  const prefix = `${buildApiUrl('/scenarios/')}`;
   if (!url.includes(prefix)) {
     return null;
   }
@@ -50,7 +49,7 @@ const extractScenarioId = (url: string): string | null => {
  * @returns The card ID, or `null` if the URL does not target a card.
  */
 const extractCardIdFromScenarioUsage = (url: string): string | null => {
-  const marker = `${environment.apiUrl}/scenarios/by-card/`;
+  const marker = `${buildApiUrl('/scenarios/by-card/')}`;
   if (!url.includes(marker)) {
     return null;
   }
@@ -99,7 +98,7 @@ export const scenariosApiMockInterceptor: HttpInterceptorFn = (req, next) => {
     );
   }
 
-  if (req.method === 'POST' && req.url.endsWith(`${environment.apiUrl}/scenarios`)) {
+  if (req.method === 'POST' && req.url.endsWith(buildApiUrl('/scenarios'))) {
     const payload = req.body as ScenarioWritePayload;
 
     return defer(() => handler.create(payload)).pipe(

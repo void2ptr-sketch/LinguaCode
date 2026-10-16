@@ -34,13 +34,40 @@ function shuffle<T>(array: readonly T[]): T[] {
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
-import { jsPDF } from 'jspdf';
 
 import type { Card } from '../../../entities/card/model';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
-import { CardRepository } from '../../../entities/card/repository/card.repository';
-import { loadScenariosFromStorage } from '../../../entities/scenario/storage/scenarios-storage';
+import { CoursesApiService } from '../../../entities/course';
+
+type jsPDFConstructor = new (options?: {
+  orientation?: string;
+  unit?: string;
+  format?: string;
+  compress?: boolean;
+}) => jsPDFInstance;
+
+type jsPDFInstance = {
+  addFileToVFS: (fileName: string, data: string) => void;
+  addFont: (fontName: string, fontName2: string, style: string) => void;
+  setFont: (fontName: string) => void;
+  setFontSize: (size: number) => void;
+  setTextColor: (r: number, g: number, b: number) => void;
+  text: (text: string | string[], x: number, y: number, options?: unknown) => string;
+  setDrawColor: (...args: unknown[]) => void;
+  line: (x1: number, y1: number, x2: number, y2: number) => void;
+  splitTextToSize: (text: string, maxSize: number, options?: unknown) => string[];
+  getNumberOfPages: () => number;
+  getTextColor: () => [number, number, number];
+  getTextWidth: (text: string) => number;
+  setFillColor: (...args: unknown[]) => void;
+  rect: (x: number, y: number, w: number, h: number, style: string) => void;
+  link: (x: number, y: number, w: number, h: number, options: unknown) => void;
+  output: (type: string) => Blob;
+  addPage: () => void;
+  setLineHeight: (value: number) => void;
+  lineHeight: number;
+};
 
 /**
  * Представление карточки в контексте курса.
@@ -107,8 +134,8 @@ const FONT_PATH = 'assets/fonts/DejaVuSansCondensed.ttf';
 export class CoursePdfExportService {
   /** HTTP-клиент для загрузки шрифта */
   private readonly http = inject(HttpClient);
-  /** Репозиторий карточек */
-  private readonly cardRepository = inject(CardRepository);
+  /** API-сервис для загрузки данных курса */
+  private readonly coursesApi = inject(CoursesApiService);
 
   /** Кэш base64-данных шрифта (загружается один раз) */
   private fontData: string | null = null;
@@ -137,9 +164,10 @@ export class CoursePdfExportService {
       this.fontData = await this.loadFont();
     }
 
-    // 2. Загружаем сценарии и карточки
-    const allScenarios = loadScenariosFromStorage();
-    const allCards = this.cardRepository.loadStored() as readonly Card[];
+    // 2. Загружаем сценарии и карточки через bundle-эндпоинт API
+    const bundle = await this.coursesApi.getBundle(course.id);
+    const allScenarios = bundle.scenarios;
+    const allCards = bundle.cards;
 
     // 3. Собираем карточки в порядке курса
     const lessons = [...course.lessons].sort((a, b) => a.order - b.order);
@@ -178,8 +206,12 @@ export class CoursePdfExportService {
     lessons: readonly Lesson[],
     showHints: boolean,
   ): Promise<Blob> {
+    // Lazy load jsPDF to reduce initial bundle size
+    const jsPDFModule = await import('jspdf');
+    const JsPDFConstructor = (jsPDFModule.default ?? jsPDFModule) as unknown as jsPDFConstructor;
+
     // Создаём PDF документ A4
-    const doc = new jsPDF({
+    const doc = new JsPDFConstructor({
       orientation: 'portrait',
       unit: 'pt',
       format: 'a4',
@@ -242,7 +274,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderTitlePage(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     courseTitle: string,
     stages: IdeaStage[],
     cardEntries: CardEntry[],
@@ -377,7 +409,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card,
     scenarioTitle: string,
     lessonTitle: string,
@@ -502,7 +534,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderSelectCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'select' },
     startY: number,
     showHints: boolean,
@@ -565,7 +597,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderCodeSelectCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'code-select' },
     startY: number,
     showHints: boolean,
@@ -644,7 +676,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderMemoryCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'memory' },
     startY: number,
     contentWidth: number,
@@ -680,7 +712,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderSymbolCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'symbol' },
     startY: number,
     showHints: boolean,
@@ -733,7 +765,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderOptionCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'sound' | 'timed' | 'reading' },
     startY: number,
     showHints: boolean,
@@ -801,7 +833,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderKeyboardCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'keyboard' },
     startY: number,
     contentWidth: number,
@@ -836,7 +868,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderDrawCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'draw' },
     startY: number,
     contentWidth: number,
@@ -865,7 +897,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderToneCard(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     card: Card & { kind: 'tone' },
     startY: number,
     showHints: boolean,
@@ -916,7 +948,7 @@ export class CoursePdfExportService {
    * @private
    */
   private renderFooter(
-    doc: jsPDF,
+    doc: jsPDFInstance,
     pageNum: number,
     currentY: number,
     pageWidth: number,

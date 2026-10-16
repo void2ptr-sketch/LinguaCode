@@ -1,13 +1,15 @@
 import { HttpClient, provideHttpClient, withInterceptors } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { AUTH_TOKEN_STORAGE_KEY, authInterceptor } from './auth.interceptor';
+import { authInterceptor } from './auth.interceptor';
 import { errorInterceptor } from './error.interceptor';
-import { isHttpApiError } from '../errors/api-error.utils';
+import { isHttpApiError } from '../../../shared/api/api-error.utils';
+import { AuthTokenStorage } from '../../../entities/auth/services/auth-token.storage';
 
 describe('api interceptors', () => {
   let http: HttpClient;
   let httpMock: HttpTestingController;
+  let tokenStorage: AuthTokenStorage;
 
   beforeEach(() => {
     sessionStorage.clear();
@@ -21,15 +23,21 @@ describe('api interceptors', () => {
 
     http = TestBed.inject(HttpClient);
     httpMock = TestBed.inject(HttpTestingController);
+    tokenStorage = TestBed.inject(AuthTokenStorage);
   });
 
   afterEach(() => {
     httpMock.verify();
     sessionStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('should attach auth header for api requests when token exists', () => {
-    sessionStorage.setItem(AUTH_TOKEN_STORAGE_KEY, 'test-token');
+    tokenStorage.write({
+      accessToken: 'test-token',
+      refreshToken: 'refresh-token',
+      expiresAt: Date.now() + 60_000,
+    });
 
     http.get('/api/scenarios/demo').subscribe();
 
@@ -47,7 +55,11 @@ describe('api interceptors', () => {
   });
 
   it('should skip auth header for fixture requests', () => {
-    sessionStorage.setItem(AUTH_TOKEN_STORAGE_KEY, 'test-token');
+    tokenStorage.write({
+      accessToken: 'test-token',
+      refreshToken: 'refresh-token',
+      expiresAt: Date.now() + 60_000,
+    });
 
     http.get('/repositories/select-cards.json').subscribe();
 

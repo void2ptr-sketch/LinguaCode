@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { vi, describe, it, expect, beforeEach } from 'vitest';
 import { CardFormComponent } from './card-form.component';
+import { CardFormTabsComponent } from '../card-form-tabs/card-form-tabs.component';
+import { CardFormQuestionTabComponent } from '../card-form-question-tab/card-form-question-tab.component';
 import { CardCatalogHierarchyService } from '../../../../entities/card/lib/card-catalog-hierarchy/card-catalog-hierarchy.service';
 import type { CardDraft } from '../../types';
 
@@ -27,10 +29,8 @@ describe('CardFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CardFormComponent],
-      providers: [
-        { provide: CardCatalogHierarchyService, useValue: mockHierarchyService },
-      ],
+      imports: [CardFormComponent, CardFormTabsComponent, CardFormQuestionTabComponent],
+      providers: [{ provide: CardCatalogHierarchyService, useValue: mockHierarchyService }],
     }).compileComponents();
 
     fixture = TestBed.createComponent(CardFormComponent);
@@ -122,33 +122,6 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('computed drafts', () => {
-    it('should return null choiceDraft for code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
-      expect(component.choiceDraft()).toBeNull();
-    });
-
-    it('should return null codeSelectDraft for non-code-select kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.codeSelectDraft()).toBeNull();
-    });
-
-    it('should return null inputDraft for non-input kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.inputDraft()).toBeNull();
-    });
-
-    it('should return null pairsDraft for non-memory kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.pairsDraft()).toBeNull();
-    });
-
-    it('should return null mediaDraft for non-sound kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'select' } as CardDraft);
-      expect(component.mediaDraft()).toBeNull();
-    });
-  });
-
   describe('updateDraft', () => {
     it('should emit draftChange', () => {
       fixture.componentRef.setInput('draft', selectDraft);
@@ -225,10 +198,11 @@ describe('CardFormComponent', () => {
     it('should return config for select kind', () => {
       fixture.componentRef.setInput('draft', selectDraft);
       const config = component.choiceOptionsConfig();
-      expect(config.title).toBe('Варианты (известный)');
+      expect(config.title).toBe('Варианты (новый)');
+      expect(config.optionLabelPrefix).toBe('Ответ');
     });
 
-    it('should return default config for other kinds', () => {
+    it('should return config for timed kind', () => {
       fixture.componentRef.setInput('draft', { kind: 'timed' } as CardDraft);
       const config = component.choiceOptionsConfig();
       expect(config.title).toBe('Варианты (новый)');
@@ -242,7 +216,10 @@ describe('CardFormComponent', () => {
     });
 
     it('should return symbols for symbol kind', () => {
-      fixture.componentRef.setInput('draft', { kind: 'symbol', symbols: ['👋', '🔥'] } as unknown as CardDraft);
+      fixture.componentRef.setInput('draft', {
+        kind: 'symbol',
+        symbols: ['👋', '🔥'],
+      } as unknown as CardDraft);
       expect(component.choiceOptionTexts()).toEqual(['👋', '🔥']);
     });
   });
@@ -256,7 +233,11 @@ describe('CardFormComponent', () => {
 
   describe('onChoiceOptionsStateChange', () => {
     it('should emit updated draft with options state for reading kind', () => {
-      const readingDraft = { kind: 'reading', optionsLearning: ['A'], correctIndex: 0 } as unknown as CardDraft;
+      const readingDraft = {
+        kind: 'reading',
+        optionsLearning: ['A'],
+        correctIndex: 0,
+      } as unknown as CardDraft;
       fixture.componentRef.setInput('draft', readingDraft);
       const spy = vi.spyOn(component.draftChange, 'emit');
       component.onChoiceOptionsStateChange({
@@ -270,87 +251,62 @@ describe('CardFormComponent', () => {
     });
   });
 
-  describe('tabs', () => {
-    it('should have allAvailableTabs getter', () => {
+  describe('allAvailableTabs', () => {
+    it('should return tabs array with required tabs', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.allAvailableTabs).toBeDefined();
       const tabs = component.allAvailableTabs;
       expect(Array.isArray(tabs)).toBe(true);
       expect(tabs.length).toBeGreaterThan(0);
+      expect(tabs.map((t) => t.label)).toContain('Вопрос');
+      expect(tabs.map((t) => t.label)).toContain('Ответы');
+      expect(tabs.map((t) => t.label)).toContain('Метаинфо');
+      expect(tabs.map((t) => t.label)).toContain('Настройки');
     });
 
-    it('should have MAX_TAB_OFFSET getter', () => {
+    it('should include Content tab for choice cards', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.MAX_TAB_OFFSET).toBeDefined();
-      expect(typeof component.MAX_TAB_OFFSET).toBe('number');
+      const tabs = component.allAvailableTabs;
+      expect(tabs.map((t) => t.label)).toContain('Контент');
     });
 
-    it('should have visibleTabs computed', () => {
+    it('should exclude Phonetics tab for code-select cards', () => {
+      fixture.componentRef.setInput('draft', { kind: 'code-select' } as CardDraft);
+      const tabs = component.allAvailableTabs;
+      expect(tabs.map((t) => t.label)).not.toContain('Фонетика');
+    });
+
+    it('should include Phonetics tab for non-code-select cards', () => {
       fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.visibleTabs).toBeDefined();
-    });
-
-    it('should have tabGroupSelectedIndex', () => {
-      expect(component.tabGroupSelectedIndex).toBe(0);
-    });
-
-    it('should have activeTabLabel computed', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.activeTabLabel).toBeDefined();
-    });
-
-    it('should return false for canPrevTabs when offset is 0', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      expect(component.canPrevTabs()).toBe(false);
-    });
-
-    it('should return boolean for canNextTabs', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      expect(typeof component.canNextTabs()).toBe('boolean');
-    });
-
-    it('should decrease tabOffset on prevTabs', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      // Start with default offset 0, canPrevTabs should be false
-      expect(component.canPrevTabs()).toBe(false);
-      // prevTabs should be a no-op when at offset 0
-      component.prevTabs();
-      expect(component.canPrevTabs()).toBe(false);
-    });
-
-    it('should increase tabOffset on nextTabs', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      // nextTabs should work when canNextTabs is true
-      if (component.canNextTabs()) {
-        component.nextTabs();
-        expect(component.canPrevTabs()).toBe(true);
-      }
-    });
-
-    it('should record selected tab label on onTabChange', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      component.onTabChange('Вопрос');
-      expect(component.activeTabLabel()).toBe('Вопрос');
-    });
-
-    it('should handle keyboard shortcuts', () => {
-      fixture.componentRef.setInput('draft', selectDraft);
-      const leftEvent = { ctrlKey: true, key: 'ArrowLeft', preventDefault: vi.fn() } as unknown as KeyboardEvent;
-      component.handleKeydown(leftEvent);
-      expect(leftEvent.preventDefault).toHaveBeenCalled();
-
-      const rightEvent = { ctrlKey: true, key: 'ArrowRight', preventDefault: vi.fn() } as unknown as KeyboardEvent;
-      if (component.canNextTabs()) {
-        component.handleKeydown(rightEvent);
-        expect(rightEvent.preventDefault).toHaveBeenCalled();
-      }
+      const tabs = component.allAvailableTabs;
+      expect(tabs.map((t) => t.label)).toContain('Фонетика');
     });
   });
 
-  describe('updateMeta', () => {
+  describe('activeTabLabel', () => {
+    it('should return first tab as default', () => {
+      fixture.componentRef.setInput('draft', selectDraft);
+      expect(component.activeTabLabel()).toBe('Вопрос');
+    });
+
+    it('should return selected tab label', () => {
+      fixture.componentRef.setInput('draft', selectDraft);
+      component.onTabChange('Ответы');
+      expect(component.activeTabLabel()).toBe('Ответы');
+    });
+  });
+
+  describe('onTabChange', () => {
+    it('should update selectedTabLabel', () => {
+      fixture.componentRef.setInput('draft', selectDraft);
+      component.onTabChange('Контент');
+      expect(component.activeTabLabel()).toBe('Контент');
+    });
+  });
+
+  describe('metaChange output', () => {
     it('should emit metaChange', () => {
       const spy = vi.spyOn(component.metaChange, 'emit');
-      component.updateMeta({ knownLanguage: 'ru', learningLanguage: 'en' });
+      component.metaChange.emit({ knownLanguage: 'ru', learningLanguage: 'en' });
       expect(spy).toHaveBeenCalledWith({ knownLanguage: 'ru', learningLanguage: 'en' });
     });
   });

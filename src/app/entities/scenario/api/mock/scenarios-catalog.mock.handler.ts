@@ -25,7 +25,7 @@ import { CardsCatalogMockHandler } from '../../../card/api/mock/cards-catalog.mo
 import { ContentSeedRepository } from '../../../content-seed/content-seed.repository';
 import { loadScenariosFromStorage, saveScenariosToStorage } from '../../storage/scenarios-storage';
 
-import type { ScenarioWritePayload } from '../scenarios-api.service';
+import type { ScenarioWritePayload } from '../../repository/scenario-catalog.port';
 
 @Injectable({ providedIn: 'root' })
 export class ScenariosCatalogMockHandler {

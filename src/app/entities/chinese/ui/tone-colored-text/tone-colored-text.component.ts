@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject, input } from '@angular/core';
 
 import {
   resolveToneColorPalette,
@@ -15,6 +15,7 @@ import { UserStore } from '../../../user/model/user.store';
  * and configurable color palettes from user preferences.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-tone-colored-text',
   host: {
     class: 'tone-colored-text',

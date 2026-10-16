@@ -1,8 +1,18 @@
-import { Component, computed, effect, inject, input, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  effect,
+  inject,
+  input,
+  output,
+  signal,
+} from '@angular/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
+import { AppLoggerService } from '../../../../shared/logger/app-logger.service';
 import {
   buildLessonsById,
   isLessonUnlocked,
@@ -42,6 +52,7 @@ type LessonListItem = {
  * scenario results, and supports auto-picking the first unlocked lesson.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-lesson-picker',
   imports: [MatIconModule, MatProgressSpinnerModule, MatTooltipModule],
   templateUrl: './lesson-picker.component.html',
@@ -50,6 +61,7 @@ type LessonListItem = {
 export class LessonPickerComponent {
   private readonly courseSearchService = inject(CourseSearchService);
   private readonly resultsStore = inject(LearningResultsStore);
+  private readonly logger = inject(AppLoggerService);
 
   /**
    * ID of the course whose lessons to display.
@@ -199,7 +211,8 @@ export class LessonPickerComponent {
       const course = await this.courseSearchService.getById(courseId);
       const sorted = [...course.lessons].sort((left, right) => left.order - right.order);
       this.lessons.set(sorted);
-    } catch {
+    } catch (error) {
+      this.logger.error('LessonPicker: failed to load lessons', error);
       this.error.set('Не удалось загрузить уроки курса');
     } finally {
       this.loading.set(false);

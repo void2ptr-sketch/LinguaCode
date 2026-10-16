@@ -7,6 +7,7 @@ import type { Scenario, ScenarioIndexEntry } from '../model';
 import { ScenarioSearchService } from './scenario-search.service';
 import { ScenariosApiService } from '../api/scenarios-api.service';
 import { scenariosApiMockInterceptor } from '../api/mock/scenarios-api.mock.interceptor';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 describe('ScenarioSearchService', () => {
   let service: ScenarioSearchService;
@@ -20,6 +21,10 @@ describe('ScenarioSearchService', () => {
         ScenarioSearchService,
         ScenariosApiService,
         provideHttpClient(withFetch(), withInterceptors([scenariosApiMockInterceptor])),
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
 

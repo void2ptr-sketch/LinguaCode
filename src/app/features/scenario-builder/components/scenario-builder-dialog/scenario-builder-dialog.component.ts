@@ -1,4 +1,11 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+  OnInit,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
   MAT_DIALOG_DATA,
@@ -10,7 +17,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { firstValueFrom } from 'rxjs';
 
 import { CardCatalogSearchStore } from '../../../../entities/card/lib/card-catalog-search/card-catalog-search.store';
-import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/card-editor-discard-dialog/card-editor-discard-dialog.component';
+import { CardEditorDiscardDialogComponent } from '../../../../shared/ui/dialogs';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { ScenarioBuilderStore } from '../../services/scenario-builder.store';
 import {
@@ -33,6 +40,7 @@ import type {
  */
 @Component({
   selector: 'app-scenario-builder-dialog',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatButtonModule,
     MatDialogModule,

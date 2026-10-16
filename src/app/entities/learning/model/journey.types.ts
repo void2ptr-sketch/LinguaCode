@@ -5,7 +5,8 @@
  * `locked` — not yet accessible; `available` — ready to start; `in-progress` — partially completed;
  * `visited` — visited but not completed; `completed` — fully completed.
  */
-export type JourneyLocationStatus = 'locked' | 'available' | 'in-progress' | 'visited' | 'completed';
+export type JourneyLocationStatus =
+  'locked' | 'available' | 'in-progress' | 'visited' | 'completed';
 
 /**
  * Content type of a scenario — determines the icon displayed on the journey map.

@@ -1,4 +1,13 @@
-import { Component, computed, effect, input, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  effect,
+  input,
+  OnDestroy,
+  output,
+  signal,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -52,6 +61,7 @@ export type MemoryColumnItem = {
  */
 @Component({
   selector: 'app-memory-card',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     MatCardModule,
     MatButtonModule,
@@ -62,7 +72,7 @@ export type MemoryColumnItem = {
   templateUrl: './memory-card.component.html',
   styleUrl: './memory-card.component.scss',
 })
-export class MemoryCardComponent {
+export class MemoryCardComponent implements OnDestroy {
   /**
    * The memory card to display (pair matching exercise).
    * @remarks
@@ -169,6 +179,7 @@ export class MemoryCardComponent {
   });
 
   private mismatchTimerId: number | null = null;
+  private destroyed = false;
 
   constructor() {
     effect(() => {
@@ -177,6 +188,11 @@ export class MemoryCardComponent {
       this.boardNonce();
       this.resetBoard();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.destroyed = true;
+    this.clearMismatchTimer();
   }
 
   /**
@@ -273,8 +289,10 @@ export class MemoryCardComponent {
     this.mismatchItemIds.set([selected.id, item.id]);
     this.clearMismatchTimer();
     this.mismatchTimerId = window.setTimeout(() => {
-      this.mismatchItemIds.set([]);
-      this.mismatchTimerId = null;
+      if (!this.destroyed) {
+        this.mismatchItemIds.set([]);
+        this.mismatchTimerId = null;
+      }
     }, 700);
   }
 

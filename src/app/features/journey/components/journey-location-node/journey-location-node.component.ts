@@ -1,4 +1,4 @@
-import { Component, input, output, computed, inject } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, computed, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -6,7 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import type { JourneyLocationNode } from '../../../../entities/learning/model';
-import { JourneyAnalyticsService } from '../../../../entities/journey/lib/journey-analytics.service';
+import { JourneyAnalyticsService } from '../../services/journey-analytics.service';
 
 /** Иконки Material для типов контента. */
 const CONTENT_TYPE_ICONS: Record<string, string> = {
@@ -32,6 +32,7 @@ const STATUS_ICONS: Record<string, string> = {
  * @remarks Locked nodes are non-interactive; others trigger `nodeSelect` on click.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-journey-location-node',
   imports: [RouterLink, MatCardModule, MatIconModule, MatButtonModule, MatProgressSpinnerModule],
   templateUrl: './journey-location-node.component.html',

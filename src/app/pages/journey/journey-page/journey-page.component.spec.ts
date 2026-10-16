@@ -6,10 +6,11 @@ import { ActivatedRoute } from '@angular/router';
 import { of } from 'rxjs';
 
 import { JourneyPageComponent } from './journey-page.component';
-import { LearningDashboardService } from '../../../entities/learning/lib/learning-dashboard.service';
-import { JourneyAnalyticsService } from '../../../entities/journey/lib/journey-analytics.service';
+import { LearningDashboardService } from '../../../entities/learning/services';
+import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
@@ -131,6 +132,13 @@ describe('JourneyPageComponent', () => {
       ]),
     };
 
+    const mockLogger = {
+      debug: vi.fn(),
+      info: vi.fn(),
+      warn: vi.fn(),
+      error: vi.fn(),
+    };
+
     mockActivatedRoute = {
       queryParams: of({ courseId: 'course-1' }),
     };
@@ -144,6 +152,7 @@ describe('JourneyPageComponent', () => {
         { provide: JourneyAnalyticsService, useValue: mockAnalyticsService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: ContentSeedRepository, useValue: mockContentSeedRepo },
+        { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ],
     }).compileComponents();

@@ -7,6 +7,7 @@ import type { PageResponse } from '../../../shared/utils/pagination';
 import { CourseSearchService } from './course-search.service';
 import { CoursesApiService } from '../api/courses-api.service';
 import { coursesApiMockInterceptor } from '../api/mock/courses-api.mock.interceptor';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 
 describe('CourseSearchService', () => {
   let service: CourseSearchService;
@@ -19,6 +20,10 @@ describe('CourseSearchService', () => {
       providers: [
         CourseSearchService,
         CoursesApiService,
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         provideHttpClient(withFetch(), withInterceptors([coursesApiMockInterceptor])),
       ],
     });

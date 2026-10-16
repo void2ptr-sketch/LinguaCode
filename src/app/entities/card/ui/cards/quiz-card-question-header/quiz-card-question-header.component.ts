@@ -1,8 +1,8 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, input } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import type { PhoneticLexeme } from '../../../../phonetic/model';
 import { LexemeDisplayComponent } from '../../../../chinese/ui/lexeme-display/lexeme-display.component';
-import { resolveQuizQuestionHeaderDisplay } from '../quiz-card-question.util';
+import { resolveQuizQuestionHeaderDisplay } from '../../../lib/cards/quiz-card-question.util';
 
 /**
  * Quiz card question header component. Displays the question title and prompt
@@ -10,6 +10,7 @@ import { resolveQuizQuestionHeaderDisplay } from '../quiz-card-question.util';
  * @remarks Supports both rich (lexeme) and plain text display modes.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-quiz-card-question-header',
   imports: [MatCardModule, LexemeDisplayComponent],
   templateUrl: './quiz-card-question-header.component.html',

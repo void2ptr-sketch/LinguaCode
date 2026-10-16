@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
 /**
@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
  * @remarks This component is a simple presentational element with no inputs or outputs.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-main-footer',
   imports: [MatToolbarModule],
   templateUrl: './main-footer.component.html',

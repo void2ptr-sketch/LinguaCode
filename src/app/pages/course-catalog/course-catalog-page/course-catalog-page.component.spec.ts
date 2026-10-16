@@ -28,7 +28,10 @@ import { LearningResultsStore } from '../../../entities/learning/model/learning-
 import { UserStore } from '../../../entities/user/model/user.store';
 import { UiPaginationComponent } from '../../../shared/utils/pagination';
 import { CourseDisplaySettingsMatrixComponent } from '../../../entities/course/ui/course-display-settings-matrix';
-import { CourseCatalogStore } from '../../../features/course-catalog/services/course-catalog.store';
+import { CourseCatalogStore, DraftsStore } from '../../../features/course-catalog/services';
+import { CourseCatalogLanguagePairManagerService } from '../../../features/course-catalog/services/course-catalog-language-pair-manager.service';
+import { CourseCatalogPreferencesService } from '../../../features/course-catalog/services/course-catalog-preferences.service';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { CourseCatalogPageComponent } from './course-catalog-page.component';
 
 function makePair(
@@ -61,6 +64,9 @@ describe('CourseCatalogPageComponent', () => {
   let mockResultsStore: Partial<LearningResultsStore>;
   let mockRouter: Partial<Router>;
   let mockCatalogStore: Partial<CourseCatalogStore>;
+  let mockDrafts: Partial<DraftsStore>;
+  let mockPairManager: Partial<CourseCatalogLanguagePairManagerService>;
+  let mockPreferences: Partial<CourseCatalogPreferencesService>;
 
   const mockPairs: UserLanguagePairEntry[] = [makePair('pair-1', 'ru', 'en')];
 
@@ -146,6 +152,36 @@ describe('CourseCatalogPageComponent', () => {
       navigate: vi.fn().mockResolvedValue(true),
     };
 
+    mockPairManager = {
+      trackActivePairChange: vi.fn(() => undefined),
+      setActive: vi.fn(),
+      removePair: vi.fn(),
+      addPair: vi.fn().mockReturnValue(true),
+      savePairSettings: vi.fn(),
+      syncPairSettingsDrafts: vi.fn(),
+      settingsEntry: vi.fn(() => mockPairs[0] ?? null),
+      shouldShowCjkPreferences: vi.fn(() => false),
+      shouldShowPhoneticPreferences: vi.fn(() => false),
+      shouldShowTracingSettings: vi.fn(() => false),
+      romanizationOptions: vi.fn(() => [
+        { value: 'pinyin' as const, label: 'Пиньинь' },
+        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
+      ]),
+    };
+
+    mockPreferences = {
+      canRemovePair: computed(() => mockPairs.length > 1),
+      settingsEntry: signal(mockPairs[0] ?? null),
+      settingsCourseLabel: computed(() => 'ru → en'),
+      showCjkPreferences: signal(false),
+      showPhoneticPreferences: signal(false),
+      showTracingSettings: signal(false),
+      romanizationOptions: computed(() => [
+        { value: 'pinyin' as const, label: 'Пиньинь' },
+        { value: 'zhuyin' as const, label: 'Жуинь (Bopomofo)' },
+      ]),
+    };
+
     // Mock for CourseCatalogStore with proper Signal types
     const mockItemsSignal = signal([] as readonly CourseIndexEntry[]);
     const mockTotalItemsSignal = signal(0);
@@ -197,27 +233,7 @@ describe('CourseCatalogPageComponent', () => {
       error: mockErrorSignal,
       progressByCourseId: mockProgressByCourseIdSignal,
       completedCourseIds: mockCompletedCourseIdsSignal,
-      nameDraft: mockNameDraftSignal,
-      learningProficiencyDraft: mockLearningProficiencyDraftSignal,
-      themeDraft: mockThemeDraftSignal,
-      fontSizeDraft: mockFontSizeDraftSignal,
-      colorSchemeDraft: mockColorSchemeDraftSignal,
-      cardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
-      knownLanguageDraft: mockKnownLanguageDraftSignal,
-      learningLanguageDraft: mockLearningLanguageDraftSignal,
-      settingsPairIdDraft: mockSettingsPairIdDraftSignal,
-      displayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
-      answerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
-      showIpaDraft: mockShowIpaDraftSignal,
-      ipaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
-      answerModesDraft: mockAnswerModesDraftSignal,
-      toneColorEnabledDraft: mockToneColorEnabledDraftSignal,
-      toneColorSchemeDraft: mockToneColorSchemeDraftSignal,
-      tracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
       selectedTabIndex: mockSelectedTabIndexSignal,
-      languagePairInvalid: computed(
-        () => mockKnownLanguageDraftSignal() === mockLearningLanguageDraftSignal(),
-      ),
       setItems: (items: readonly CourseIndexEntry[]) => mockItemsSignal.set(items),
       setTotalItems: (total: number) => mockTotalItemsSignal.set(total),
       setPageIndex: (page: number) => mockPageIndexSignal.set(page),
@@ -228,40 +244,65 @@ describe('CourseCatalogPageComponent', () => {
         mockProgressByCourseIdSignal.set(progress as Readonly<Record<string, number>>),
       setCompletedCourseIds: (completed: Set<string>) =>
         mockCompletedCourseIdsSignal.set(completed as ReadonlySet<string>),
-      setNameDraft: (name: string) => mockNameDraftSignal.set(name),
-      setLearningProficiencyDraft: (
+      setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
+    };
+
+    mockDrafts = {
+      profileNameDraft: mockNameDraftSignal,
+      profileLearningProficiencyDraft: mockLearningProficiencyDraftSignal,
+      profileThemeDraft: mockThemeDraftSignal,
+      profileFontSizeDraft: mockFontSizeDraftSignal,
+      profileColorSchemeDraft: mockColorSchemeDraftSignal,
+      profileCardFocusFullscreenDraft: mockCardFocusFullscreenDraftSignal,
+      courseTabKnownLanguageDraft: mockKnownLanguageDraftSignal,
+      courseTabLearningLanguageDraft: mockLearningLanguageDraftSignal,
+      courseTabLanguagePairInvalid: computed(
+        () => mockKnownLanguageDraftSignal() === mockLearningLanguageDraftSignal(),
+      ),
+      settingsPairIdDraft: mockSettingsPairIdDraftSignal,
+      settingsDisplayRomanizationsDraft: mockDisplayRomanizationsDraftSignal,
+      settingsAnswerRomanizationsDraft: mockAnswerRomanizationsDraftSignal,
+      settingsShowIpaDraft: mockShowIpaDraftSignal,
+      settingsIpaVariantLabelDraft: mockIpaVariantLabelDraftSignal,
+      settingsAnswerModesDraft: mockAnswerModesDraftSignal,
+      settingsToneColorEnabledDraft: mockToneColorEnabledDraftSignal,
+      settingsToneColorSchemeDraft: mockToneColorSchemeDraftSignal,
+      settingsTracingStrokeDurationDraft: mockTracingStrokeDurationDraftSignal,
+      setProfileNameDraft: (name: string) => mockNameDraftSignal.set(name),
+      setProfileLearningProficiencyDraft: (
         level: import('../../../entities/learning/model').LearningProficiencyLevel,
       ) => mockLearningProficiencyDraftSignal.set(level),
-      setThemeDraft: (theme: import('../../../entities/user/model').AppColorScheme) =>
+      setProfileThemeDraft: (theme: import('../../../entities/user/model').AppColorScheme) =>
         mockThemeDraftSignal.set(theme),
-      setFontSizeDraft: (
+      setProfileFontSizeDraft: (
         size: import('../../../entities/user/model').UserPreferences['fontSize'],
       ) => mockFontSizeDraftSignal.set(size),
-      setColorSchemeDraft: (scheme: import('../../../entities/user/model').AppColorScheme) =>
+      setProfileColorSchemeDraft: (scheme: import('../../../entities/user/model').AppColorScheme) =>
         mockColorSchemeDraftSignal.set(scheme),
-      setCardFocusFullscreenDraft: (enabled: boolean) =>
+      setProfileCardFocusFullscreenDraft: (enabled: boolean) =>
         mockCardFocusFullscreenDraftSignal.set(enabled),
-      setKnownLanguageDraft: (lang: ContentLanguage) => mockKnownLanguageDraftSignal.set(lang),
-      setLearningLanguageDraft: (lang: ContentLanguage) =>
+      setCourseTabKnownLanguageDraft: (lang: ContentLanguage) =>
+        mockKnownLanguageDraftSignal.set(lang),
+      setCourseTabLearningLanguageDraft: (lang: ContentLanguage) =>
         mockLearningLanguageDraftSignal.set(lang),
       setSettingsPairIdDraft: (id: string) => mockSettingsPairIdDraftSignal.set(id),
-      setDisplayRomanizationsDraft: (
+      setSettingsDisplayRomanizationsDraft: (
         romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
       ) => mockDisplayRomanizationsDraftSignal.set(romanizations),
-      setAnswerRomanizationsDraft: (
+      setSettingsAnswerRomanizationsDraft: (
         romanizations: readonly import('../../../entities/phonetic/model').RomanizationSystem[],
       ) => mockAnswerRomanizationsDraftSignal.set(romanizations),
-      setShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
-      setIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
-      setAnswerModesDraft: (
+      setSettingsShowIpaDraft: (show: boolean) => mockShowIpaDraftSignal.set(show),
+      setSettingsIpaVariantLabelDraft: (label: string) => mockIpaVariantLabelDraftSignal.set(label),
+      setSettingsAnswerModesDraft: (
         modes: readonly import('../../../entities/course/ui/course-display-settings-matrix/course-display-settings-matrix.util').AnswerDisplayMode[],
       ) => mockAnswerModesDraftSignal.set(modes),
-      setToneColorEnabledDraft: (enabled: boolean) => mockToneColorEnabledDraftSignal.set(enabled),
-      setToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
+      setSettingsToneColorEnabledDraft: (enabled: boolean) =>
+        mockToneColorEnabledDraftSignal.set(enabled),
+      setSettingsToneColorSchemeDraft: (scheme: ToneColorSchemeId) =>
         mockToneColorSchemeDraftSignal.set(scheme),
-      setTracingStrokeDurationDraft: (duration: number) =>
+      setSettingsTracingStrokeDurationDraft: (duration: number) =>
         mockTracingStrokeDurationDraftSignal.set(duration),
-      setSelectedTabIndex: (index: number) => mockSelectedTabIndexSignal.set(index),
     };
 
     await TestBed.configureTestingModule({
@@ -286,7 +327,14 @@ describe('CourseCatalogPageComponent', () => {
         { provide: UserStore, useValue: mockUserStore },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: CourseCatalogStore, useValue: mockCatalogStore },
+        { provide: DraftsStore, useValue: mockDrafts },
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
         { provide: Router, useValue: mockRouter },
+        { provide: CourseCatalogLanguagePairManagerService, useValue: mockPairManager },
+        { provide: CourseCatalogPreferencesService, useValue: mockPreferences },
       ],
     }).compileComponents();
   });
@@ -387,32 +435,17 @@ describe('CourseCatalogPageComponent', () => {
     expect(component.languagePairInvalid()).toBe(false);
 
     (
-      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     fixture.detectChanges();
 
     expect(component.languagePairInvalid()).toBe(true);
   });
 
-  it('should compute canRemovePair based on language pairs count', () => {
-    const fixture = TestBed.createComponent(CourseCatalogPageComponent);
-    const component = fixture.componentInstance;
-    fixture.detectChanges();
-
-    expect(component.canRemovePair()).toBe(false);
-
-    (
-      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
-    ).set([makePair('pair-1', 'ru', 'en'), makePair('pair-2', 'en', 'zh')]);
-    fixture.detectChanges();
-
-    expect(component.canRemovePair()).toBe(true);
-  });
-
-  it('should call user store setActive when setActive called', async () => {
+  it('should call pair manager setActive when setActive called', async () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -421,10 +454,10 @@ describe('CourseCatalogPageComponent', () => {
     component.setActive('pair-1');
     await fixture.whenStable();
 
-    expect(mockUserStore.setActiveLanguagePair).toHaveBeenCalledWith('pair-1');
+    expect(mockPairManager.setActive).toHaveBeenCalledWith('pair-1');
   });
 
-  it('should call user store removeLanguagePair when removePair called', async () => {
+  it('should call pair manager removePair when removePair called', async () => {
     const fixture = TestBed.createComponent(CourseCatalogPageComponent);
     const component = fixture.componentInstance;
     fixture.detectChanges();
@@ -433,7 +466,7 @@ describe('CourseCatalogPageComponent', () => {
     component.removePair('pair-1');
     await fixture.whenStable();
 
-    expect(mockUserStore.removeLanguagePair).toHaveBeenCalledWith('pair-1');
+    expect(mockPairManager.removePair).toHaveBeenCalledWith('pair-1');
   });
 
   it('should not add language pair when languages are the same', async () => {
@@ -443,10 +476,10 @@ describe('CourseCatalogPageComponent', () => {
     await fixture.whenStable();
 
     (
-      mockCatalogStore.knownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabKnownLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     (
-      mockCatalogStore.learningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
+      mockDrafts.courseTabLearningLanguageDraft as import('@angular/core').WritableSignal<ContentLanguage>
     ).set('en');
     component.addPair();
     await fixture.whenStable();
@@ -460,7 +493,9 @@ describe('CourseCatalogPageComponent', () => {
     fixture.detectChanges();
     await fixture.whenStable();
 
-    (mockCatalogStore.nameDraft as import('@angular/core').WritableSignal<string>).set('Новое имя');
+    (mockDrafts.profileNameDraft as import('@angular/core').WritableSignal<string>).set(
+      'Новое имя',
+    );
     component.saveProfile();
     await fixture.whenStable();
 

@@ -11,12 +11,14 @@ import { ScenariosApiService } from '../scenarios-api.service';
 import { ScenariosCatalogMockHandler } from './scenarios-catalog.mock.handler';
 import { scenariosApiMockInterceptor } from './scenarios-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 
 describe('ScenariosCatalogMockHandler', () => {
   let api: ScenariosApiService;
   let handler: ScenariosCatalogMockHandler;
 
   beforeEach(() => {
+    seedTestContentCache();
     localStorage.clear();
 
     TestBed.configureTestingModule({

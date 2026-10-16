@@ -1,21 +1,31 @@
-import { Component, computed, effect, input, output, signal, untracked } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  computed,
+  effect,
+  input,
+  output,
+  signal,
+  untracked,
+} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {
   applyPinyinKeyboardKey,
   createPinyinKeyboardState,
-  formatPinyinKeyboardValue,
   PINYIN_KEYBOARD_LETTER_ROWS,
   PINYIN_KEYBOARD_UTILITY_KEYS,
-  PINYIN_TONE_MARKS,
+  PINYIN_TONE_OPTIONS,
   pendingSyllableTonePreview,
   pinyinKeyboardKeyAriaLabel,
   pinyinKeyboardKeyLabel,
   pinyinKeyboardToneKeyAriaLabel,
   shouldShowPinyinToneRow,
-  type PinyinKeyboardKey,
-  type PinyinKeyboardState,
-} from '../../lib/pinyin/pinyin-keyboard.utils';
+} from '../../lib/pinyin/keyboard/pinyin-keyboard.utils';
+import type {
+  PinyinKeyboardKey,
+  PinyinKeyboardState,
+} from '../../lib/pinyin/keyboard/pinyin-keyboard.types';
 import type { ToneMark } from '../../../phonetic/model';
 import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text.component';
 
@@ -24,6 +34,7 @@ import { ToneColoredTextComponent } from '../tone-colored-text/tone-colored-text
  * @remarks Supports committed syllables, pending syllables, tone marks, and tone preview.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-pinyin-keyboard',
   imports: [MatButtonModule, MatIconModule, ToneColoredTextComponent],
   templateUrl: './pinyin-keyboard.component.html',
@@ -70,7 +81,7 @@ export class PinyinKeyboardComponent {
    * @remarks
    * Imported from `pinyin-keyboard.utils` as a constant.
    */
-  readonly toneMarks = PINYIN_TONE_MARKS;
+  readonly toneMarks = PINYIN_TONE_OPTIONS;
 
   /**
    * Key label resolver function.
@@ -151,8 +162,8 @@ export class PinyinKeyboardComponent {
    * @param key - The keyboard key to check.
    * @returns `true` if the key should be non-interactive.
    * @remarks
-   * Space key is disabled when there is no pending syllable or the committed text ends with a space.
-   * Backspace key is disabled when there is no pending syllable and no committed text.
+   * Space key is disabled when the input is empty or already ends with a space.
+   * Backspace key is disabled when the input is empty.
    */
   isKeyDisabled(key: PinyinKeyboardKey): boolean {
     if (this.disabled()) {
@@ -161,12 +172,12 @@ export class PinyinKeyboardComponent {
 
     if (key.kind === 'space') {
       const current = this.state();
-      return !current.pendingSyllable && (!current.committed || current.committed.endsWith(' '));
+      return !current.value || current.value.endsWith(' ');
     }
 
     if (key.kind === 'backspace') {
       const current = this.state();
-      return !current.pendingSyllable && !current.committed;
+      return !current.value;
     }
 
     return false;
@@ -193,7 +204,7 @@ export class PinyinKeyboardComponent {
     }
 
     const nextState = applyPinyinKeyboardKey(this.state(), key);
-    const nextValue = formatPinyinKeyboardValue(nextState);
+    const nextValue = nextState.value;
     this.state.set(nextState);
     this.lastEmitted = nextValue;
     this.valueChange.emit(nextValue);

@@ -23,32 +23,38 @@ describe('App smoke', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
-    await router.navigateByUrl('/home');
+    await router.navigate(['home']);
     fixture.detectChanges();
 
     const text = fixture.nativeElement.textContent as string;
     expect(text).toContain('Привет');
     expect(text).toContain('Обучение');
+
+    fixture.destroy();
   });
 
   it('should render user profile route', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
-    await router.navigateByUrl('/user');
+    await router.navigate(['user']);
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('Профиль пользователя');
+
+    fixture.destroy();
   });
 
   it('should redirect unknown routes to home', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
-    await router.navigateByUrl('/unknown-route');
+    await router.navigate(['unknown-route']);
     fixture.detectChanges();
 
     expect(router.url).toBe('/home');
     expect(fixture.nativeElement.textContent).toContain('Привет');
+
+    fixture.destroy();
   });
 });

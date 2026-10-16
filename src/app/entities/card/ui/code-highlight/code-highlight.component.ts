@@ -1,4 +1,4 @@
-import { Component, computed, inject, input } from '@angular/core';
+import { Component, ChangeDetectionStrategy, computed, inject, input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import type { CodeHighlightLanguage } from '../../model';
 import { CodeHighlightService } from './code-highlight.service';
@@ -17,6 +17,7 @@ import { CodeHighlightService } from './code-highlight.service';
  * ```
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-code-highlight',
   templateUrl: './code-highlight.component.html',
   styleUrl: './code-highlight.component.scss',

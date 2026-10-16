@@ -15,11 +15,13 @@ import { describe, expect, it, vi } from 'vitest';
 import { CardSelectPageComponent } from './card-select-page.component';
 import { CardSelectStore } from '../../../features/card-select/services/card-select.store';
 import { CardSelectService } from '../../../features/card-select/services/card-select.service';
+import { CardSelectFlowService } from '../../../features/card-select/services/card-select-flow.service';
 import { CourseSearchService } from '../../../entities/course';
 import { CardSearchService } from '../../../entities/card';
 import { ScenarioSearchService } from '../../../entities/scenario';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { UserStore } from '../../../entities/user/model/user.store';
+import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import { cardsApiMockInterceptor } from '../../../entities/card/api/mock/cards-api.mock.interceptor';
 import { coursesApiMockInterceptor } from '../../../entities/course/api/mock/courses-api.mock.interceptor';
 import { scenariosApiMockInterceptor } from '../../../entities/scenario/api/mock/scenarios-api.mock.interceptor';
@@ -72,11 +74,13 @@ describe('CardSelectPageComponent', () => {
         ),
         CardSelectStore,
         CardSelectService,
+        CardSelectFlowService,
         CourseSearchService,
         CardSearchService,
         ScenarioSearchService,
         LearningResultsStore,
         UserStore,
+        AppLoggerService,
       ],
     });
 
@@ -88,8 +92,10 @@ describe('CardSelectPageComponent', () => {
   });
 
   afterEach(() => {
+    fixture.destroy();
     localStorage.clear();
     sessionStorage.clear();
+    TestBed.resetTestingModule();
   });
 
   it('should create', () => {
@@ -98,6 +104,10 @@ describe('CardSelectPageComponent', () => {
 
   it('should have CardSelectStore injected', () => {
     expect(component.store).toBeDefined();
+  });
+
+  it('should have CardSelectFlowService injected', () => {
+    expect(component.flow).toBeDefined();
   });
 
   it('should have difficultyLabels', () => {
@@ -165,11 +175,7 @@ describe('CardSelectPageComponent', () => {
     expect(component.hasNextLessonScenario()).toBe(false);
   });
 
-  it('should have isLearningTabActive computed', () => {
-    expect(component.isLearningTabActive()).toBe(false);
-  });
-
-  it('should have allowedScenarioIdsForPicker computed returning null when no scenarios', () => {
+  it('should have allowedScenarioIdsForPicker returning null when no scenarios', () => {
     expect(component.allowedScenarioIdsForPicker()).toBeNull();
   });
 
@@ -374,72 +380,39 @@ describe('CardSelectPageComponent', () => {
     expect(component.selectedDifficulty()).toBeNull();
   });
 
-  // ─── selectOption ─────────────────────────────────────────────────────
+  // ─── goToNextLessonScenario ───────────────────────────────────────────
 
-  it('should delegate selectOption to store', () => {
-    const spy = vi.spyOn(component.store, 'selectOption');
-    component.selectOption(2);
-    expect(spy).toHaveBeenCalledWith(2);
+  it('should advance to next scenario and load cards', async () => {
+    component.selectedCourseId.set('test-course');
+    component.selectedLessonId.set('test-lesson');
+    component.flow.onLessonPick({
+      lessonId: 'test-lesson',
+      title: 'Test Lesson',
+      scenarioIds: ['s1', 's2', 's3'],
+    });
+    component.selectedScenarioId.set('s1');
+    component.store.setScenario('s1', []);
+
+    vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
+    await component.goToNextLessonScenario();
+
+    expect(component.activeTabIndex()).toBe(3);
+    expect(component.selectedScenarioId()).toBe('s2');
+    expect(component.loadCards).toHaveBeenCalled();
   });
 
-  // ─── setAnswerText ────────────────────────────────────────────────────
+  it('should not advance when no next scenario exists', async () => {
+    component.flow.onLessonPick({
+      lessonId: 'test-lesson',
+      title: 'Test Lesson',
+      scenarioIds: ['s1'],
+    });
+    component.selectedScenarioId.set('s1');
 
-  it('should delegate setAnswerText to store', () => {
-    const spy = vi.spyOn(component.store, 'setAnswerText');
-    component.setAnswerText('hello');
-    expect(spy).toHaveBeenCalledWith('hello');
-  });
+    vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
+    await component.goToNextLessonScenario();
 
-  // ─── setMemoryComplete ────────────────────────────────────────────────
-
-  it('should delegate setMemoryComplete to store', () => {
-    const spy = vi.spyOn(component.store, 'setMemoryComplete');
-    component.setMemoryComplete(true);
-    expect(spy).toHaveBeenCalledWith(true);
-  });
-
-  // ─── setDrawSubmitted ─────────────────────────────────────────────────
-
-  it('should delegate setDrawSubmitted to store', () => {
-    const spy = vi.spyOn(component.store, 'setDrawSubmitted');
-    component.setDrawSubmitted(true);
-    expect(spy).toHaveBeenCalledWith(true);
-  });
-
-  // ─── setDrawAnswer ────────────────────────────────────────────────────
-
-  it('should delegate setDrawAnswer to store', () => {
-    const spy = vi.spyOn(component.store, 'setDrawAnswer');
-    const payload = {
-      canvasMode: 'memory' as const,
-      canvasSize: { width: 100, height: 100 },
-      strokesByCharacter: [],
-    };
-    component.setDrawAnswer(payload);
-    expect(spy).toHaveBeenCalledWith(payload);
-  });
-
-  // ─── handleTimeExpired ────────────────────────────────────────────────
-
-  it('should delegate handleTimeExpired to store', () => {
-    const spy = vi.spyOn(component.store, 'handleTimeExpired');
-    component.handleTimeExpired();
-    expect(spy).toHaveBeenCalled();
-  });
-
-  // ─── onDirectionChange ────────────────────────────────────────────────
-
-  it('should delegate onDirectionChange to store', () => {
-    const spy = vi.spyOn(component.store, 'setSessionDirection');
-    component.onDirectionChange('learning-to-known');
-    expect(spy).toHaveBeenCalledWith('learning-to-known');
-  });
-
-  // ─── nextCard ─────────────────────────────────────────────────────────
-
-  it('should delegate nextCard to store', () => {
-    const spy = vi.spyOn(component.store, 'nextCard');
-    component.nextCard();
-    expect(spy).toHaveBeenCalled();
+    expect(component.activeTabIndex()).toBe(0);
+    expect(component.loadCards).not.toHaveBeenCalled();
   });
 });

@@ -38,7 +38,7 @@ describe('Home learning dashboard smoke', () => {
     const router = TestBed.inject(Router);
     const httpMock = TestBed.inject(HttpTestingController);
 
-    await router.navigateByUrl('/home');
+    await router.navigate(['home']);
     fixture.detectChanges();
 
     const flushRequests = (): void => {
@@ -95,5 +95,6 @@ describe('Home learning dashboard smoke', () => {
     expect(text).toContain('Свободная практика');
 
     httpMock.verify();
+    fixture.destroy();
   });
 });

@@ -12,22 +12,22 @@
 
 Исходный тип: `CodeSelectCard` (определён в `src/app/entities/card/model/card.types.ts`).
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `id` | `string` | Уникальный идентификатор карточки |
-| `kind` | `'code-select'` | Константа, определяющая тип карточки |
-| `title` | `string` | Заголовок карточки |
-| `appearance` | `CardAppearance` | Тема оформления и размер шрифта |
-| `caption` | `string \| undefined` | Дополнительный заголовок-вопрос (если есть — используется вместо `title`) |
-| `prompt` | `CodeBlock` | Блок кода-вопроса |
-| `options` | `readonly CodeBlock[]` | Варианты ответов — блоки кода |
-| `correctIndex` | `number` | Индекс правильного ответа (0-based) |
+| Поле           | Тип                    | Описание                                                                  |
+| -------------- | ---------------------- | ------------------------------------------------------------------------- |
+| `id`           | `string`               | Уникальный идентификатор карточки                                         |
+| `kind`         | `'code-select'`        | Константа, определяющая тип карточки                                      |
+| `title`        | `string`               | Заголовок карточки                                                        |
+| `appearance`   | `CardAppearance`       | Тема оформления и размер шрифта                                           |
+| `caption`      | `string \| undefined`  | Дополнительный заголовок-вопрос (если есть — используется вместо `title`) |
+| `prompt`       | `CodeBlock`            | Блок кода-вопроса                                                         |
+| `options`      | `readonly CodeBlock[]` | Варианты ответов — блоки кода                                             |
+| `correctIndex` | `number`               | Индекс правильного ответа (0-based)                                       |
 
 ### CodeBlock
 
-| Поле | Тип | Описание |
-|------|-----|----------|
-| `code` | `string` | Текст кода |
+| Поле       | Тип                     | Описание                  |
+| ---------- | ----------------------- | ------------------------- |
+| `code`     | `string`                | Текст кода                |
 | `language` | `CodeHighlightLanguage` | Язык подсветки синтаксиса |
 
 ### CodeHighlightLanguage
@@ -65,20 +65,20 @@
 
 ### @Input (входные параметры)
 
-| Параметр | Тип | По умолчанию | Описание |
-|----------|-----|---------------|----------|
-| `card` | `CodeSelectCard` | (required) | Данные карточки — код-вопрос, варианты, правильный индекс |
-| `selectedIndex` | `number \| null` | `null` | Индекс выбранного варианта |
-| `feedback` | `CardFeedback` | `null` | Состояние обратной связи |
-| `fontSize` | `'sm' \| 'md' \| 'lg'` | `'md'` | Размер шрифта |
+| Параметр        | Тип                    | По умолчанию | Описание                                                  |
+| --------------- | ---------------------- | ------------ | --------------------------------------------------------- |
+| `card`          | `CodeSelectCard`       | (required)   | Данные карточки — код-вопрос, варианты, правильный индекс |
+| `selectedIndex` | `number \| null`       | `null`       | Индекс выбранного варианта                                |
+| `feedback`      | `CardFeedback`         | `null`       | Состояние обратной связи                                  |
+| `fontSize`      | `'sm' \| 'md' \| 'lg'` | `'md'`       | Размер шрифта                                             |
 
 ### @Output (выходные события)
 
-| Событие | Тип | Описание |
-|---------|-----|----------|
-| `optionSelected` | `Output<number>` | Индекс выбранного варианта |
-| `checkAnswer` | `Output<void>` | Запрос на проверку ответа |
-| `nextCard` | `Output<void>` | Переход к следующей карточке |
+| Событие          | Тип              | Описание                     |
+| ---------------- | ---------------- | ---------------------------- |
+| `optionSelected` | `Output<number>` | Индекс выбранного варианта   |
+| `checkAnswer`    | `Output<void>`   | Запрос на проверку ответа    |
+| `nextCard`       | `Output<void>`   | Переход к следующей карточке |
 
 ## Пример использования
 
@@ -103,7 +103,7 @@ const card: CodeSelectCard = {
   title: 'Angular Signals',
   caption: 'Какой метод создаёт вычисляемый сигнал?',
   appearance: { theme: 'dark', fontSize: 'md' },
-  prompt: { code: 'import { signal, computed } from \'@angular/core\';', language: 'typescript' },
+  prompt: { code: "import { signal, computed } from '@angular/core';", language: 'typescript' },
   options: [
     { code: 'signal(42)', language: 'typescript' },
     { code: 'computed(() => value())', language: 'typescript' },
@@ -115,13 +115,13 @@ const card: CodeSelectCard = {
 
 ### Внутренние вычисляемые значения
 
-| Значение | Тип | Описание |
-|----------|-----|----------|
-| `questionHeadline` | `Computed<string>` | `caption` (trimmed) или `title` |
+| Значение             | Тип                         | Описание                                                                         |
+| -------------------- | --------------------------- | -------------------------------------------------------------------------------- |
+| `questionHeadline`   | `Computed<string>`          | `caption` (trimmed) или `title`                                                  |
 | `optionClass(index)` | `(index: number) => string` | CSS-классы: `option`, `option--selected`, `option--correct`, `option--incorrect` |
 
 ### Методы
 
-| Метод | Описание |
-|-------|----------|
+| Метод                         | Описание                                                                                      |
+| ----------------------------- | --------------------------------------------------------------------------------------------- |
 | `selectOption(index: number)` | Обработка выбора. Если `feedback !== null` — игнорирует. Иначе эмитит `optionSelected(index)` |

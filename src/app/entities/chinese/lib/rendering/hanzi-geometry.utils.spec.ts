@@ -87,7 +87,12 @@ describe('hanzi-geometry.utils', () => {
     });
 
     it('should return 0 for two identical points', () => {
-      expect(hanziLength([{ x: 0, y: 0 }, { x: 0, y: 0 }])).toBe(0);
+      expect(
+        hanziLength([
+          { x: 0, y: 0 },
+          { x: 0, y: 0 },
+        ]),
+      ).toBe(0);
     });
 
     it('should calculate total polyline length', () => {
@@ -213,7 +218,10 @@ describe('hanzi-geometry.utils', () => {
     });
 
     it('should not mutate the original array', () => {
-      const points = [{ x: 1, y: 2 }, { x: 3, y: 4 }];
+      const points = [
+        { x: 1, y: 2 },
+        { x: 3, y: 4 },
+      ];
       const result = hanziNormalizeCurve(points);
       expect(result).not.toBe(points);
       expect(points[0]).toEqual({ x: 1, y: 2 });
@@ -247,8 +255,15 @@ describe('hanzi-geometry.utils', () => {
     });
 
     it('should handle polylines of different lengths', () => {
-      const left = [{ x: 0, y: 0 }, { x: 1, y: 1 }];
-      const right = [{ x: 0, y: 0 }, { x: 1, y: 1 }, { x: 2, y: 2 }];
+      const left = [
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+      ];
+      const right = [
+        { x: 0, y: 0 },
+        { x: 1, y: 1 },
+        { x: 2, y: 2 },
+      ];
       const result = hanziFrechetDistance(left, right);
       expect(result).toBeGreaterThan(0);
     });
@@ -292,7 +307,10 @@ describe('hanzi-geometry.utils', () => {
     });
 
     it('should not mutate the original array', () => {
-      const points = [{ x: 0, y: 0 }, { x: 0, y: 0 }];
+      const points = [
+        { x: 0, y: 0 },
+        { x: 0, y: 0 },
+      ];
       const result = hanziStripDuplicatePoints(points);
       expect(result).not.toBe(points);
     });

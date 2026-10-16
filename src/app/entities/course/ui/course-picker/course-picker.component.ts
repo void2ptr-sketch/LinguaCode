@@ -1,4 +1,13 @@
-import { Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  effect,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -25,6 +34,7 @@ let lastKnownCoursePickerActiveLanguagePairId: string | null = null;
  * Supports expanding to a full list and clearing selection.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-course-picker',
   imports: [
     FormsModule,

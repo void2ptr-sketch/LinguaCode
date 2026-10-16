@@ -1,4 +1,13 @@
-import { Component, effect, inject, input, OnInit, output, signal } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  effect,
+  inject,
+  input,
+  OnInit,
+  output,
+  signal,
+} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -24,6 +33,7 @@ let lastKnownScenarioPickerActiveLanguagePairId: string | null = null;
  * Supports auto-selecting the first scenario and limiting results via `allowedScenarioIds`.
  */
 @Component({
+  changeDetection: ChangeDetectionStrategy.OnPush,
   selector: 'app-scenario-picker',
   imports: [
     FormsModule,
