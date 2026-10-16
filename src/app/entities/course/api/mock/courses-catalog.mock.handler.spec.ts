@@ -6,6 +6,7 @@ import { CoursesApiService } from '../courses-api.service';
 import { CoursesCatalogMockHandler } from './courses-catalog.mock.handler';
 import { coursesApiMockInterceptor } from './courses-api.mock.interceptor';
 import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/http';
+import { seedTestContentCache } from '../../../content-seed/content-seed.test-utils';
 
 const makeLanguagePair = (known: ContentLanguage, learning: ContentLanguage) => ({
   known,
@@ -17,6 +18,7 @@ describe('CoursesCatalogMockHandler', () => {
   let handler: CoursesCatalogMockHandler;
 
   beforeEach(() => {
+    seedTestContentCache();
     localStorage.clear();
 
     TestBed.configureTestingModule({
