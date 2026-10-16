@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { computed, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of, firstValueFrom } from 'rxjs';
+import { of } from 'rxjs';
 
 import { JourneyPageComponent } from './journey-page.component';
 import { LearningDashboardService } from '../../../features/home/services/learning-dashboard.service';

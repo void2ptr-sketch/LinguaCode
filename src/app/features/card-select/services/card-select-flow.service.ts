@@ -1,6 +1,6 @@
 import { Injectable, computed, signal, inject } from '@angular/core';
 import type { CardDifficulty } from '../../../entities/card/model';
-import type { CardDirection } from '../../../entities/language-pair/model/language-pair.types';
+
 import type { CourseWithLessons } from '../../../entities/course/model';
 import type { LessonPickPayload } from '../../../entities/lesson/ui/lesson-picker';
 import { CardSearchService } from '../../../entities/card';

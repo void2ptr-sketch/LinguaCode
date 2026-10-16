@@ -9,7 +9,6 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { CardHostComponent } from '../../../../entities/card/ui/card-host/card-host.component';
 import type { Card } from '../../../../entities/card/model';
 import type { CardDirection } from '../../../../entities/language-pair/model/language-pair.types';
-import type { CardFeedback } from '../../../../entities/card/model/card-interaction.types';
 import type { DrawAnswerPayload } from '../../../../entities/chinese/model/draw-answer.types';
 import { CardSelectStore } from '../../../card-select/services/card-select.store';
 

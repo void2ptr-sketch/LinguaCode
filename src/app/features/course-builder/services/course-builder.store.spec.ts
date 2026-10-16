@@ -87,12 +87,12 @@ describe('CourseBuilderStore', () => {
   });
 
   it('should set loading to true while loading', async () => {
-    let resolveFn: (value: any) => void;
-    const promise = new Promise<any>((resolve) => {
+    let resolveFn: ((value: unknown) => void) | undefined;
+    const promise = new Promise<unknown>((resolve) => {
       resolveFn = resolve;
     });
 
-    mockCourseSearchService.search.mockReturnValue(promise);
+    mockCourseSearchService.search.mockReturnValue(promise as ReturnType<typeof mockCourseSearchService.search>);
 
     const loadPromise = store.loadList();
 

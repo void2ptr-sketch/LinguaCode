@@ -35,12 +35,18 @@ describe('CardSelectFlowService', () => {
             } as CourseWithLessons),
           },
         },
-        { provide: CardSearchService, useValue: { ensureIndexLoaded: async () => {}, indexEntries: () => [] } },
+        {
+          provide: CardSearchService,
+          useValue: {
+            ensureIndexLoaded: vi.fn().mockResolvedValue(undefined),
+            indexEntries: () => [],
+          },
+        },
         {
           provide: ScenarioSearchService,
           useValue: { getById: async () => ({ id: 's1', title: 'Test', cardSource: { mode: 'fixed', cardIds: [] } }) },
         },
-        { provide: AppLoggerService, useValue: { warn: () => {}, debug: () => {} } },
+        { provide: AppLoggerService, useValue: { warn: vi.fn(), debug: vi.fn() } },
       ],
     });
 

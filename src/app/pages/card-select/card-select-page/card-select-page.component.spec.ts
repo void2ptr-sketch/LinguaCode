@@ -394,7 +394,8 @@ describe('CardSelectPageComponent', () => {
     component.store.setScenario('s1', []);
 
     vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
-    vi.spyOn(component as any, 'persistLearningSession').mockReturnValue(undefined);
+    const persistSpy = vi.spyOn(component, 'persistLearningSession' as never);
+    (persistSpy as ReturnType<typeof vi.fn>).mockImplementation(() => void 0);
     await component.goToNextLessonScenario();
 
     expect(component.activeTabIndex()).toBe(3);
@@ -411,7 +412,8 @@ describe('CardSelectPageComponent', () => {
     component.selectedScenarioId.set('s1');
 
     vi.spyOn(component, 'loadCards').mockResolvedValue(undefined);
-    vi.spyOn(component as any, 'persistLearningSession').mockReturnValue(undefined);
+    const persistSpy2 = vi.spyOn(component, 'persistLearningSession' as never);
+    (persistSpy2 as ReturnType<typeof vi.fn>).mockImplementation(() => void 0);
     await component.goToNextLessonScenario();
 
     expect(component.activeTabIndex()).toBe(0);
