@@ -11,6 +11,9 @@ import type {
   SoundCardDraft,
   MemoryCardDraft,
   KeyboardCardDraft,
+  ReadingCardDraft,
+  TimedCardDraft,
+  CardDraft,
 } from '../../types';
 
 // ---------------------------------------------------------------------------
@@ -237,5 +240,110 @@ describe('applyLexemeFirstToDraft', () => {
     const result = applyLexemeFirstToDraft(draft);
 
     expect((result as SelectCardDraft).optionsLearning).toEqual(['opt1', 'opt2']);
+  });
+
+  it('updates optionsLearning for reading cards', () => {
+    const draft = {
+      kind: 'reading' as const,
+      title: 'Test',
+      promptKnown: 'Q?',
+      direction: 'known-to-learning' as const,
+      promptLexeme: makeLexeme('prompt'),
+      audioUrl: '',
+      optionsLearning: ['fa', 'fb'],
+      optionsLexemes: [makeLexeme('lex-a'), makeLexeme('')],
+      correctIndex: 0,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    } satisfies ReadingCardDraft;
+
+    const result = applyLexemeFirstToDraft(draft);
+
+    expect((result as ReadingCardDraft).optionsLearning).toEqual(['lex-a', 'fb']);
+    expect(result).not.toBe(draft);
+  });
+
+  it('updates optionsLearning for timed cards', () => {
+    const draft = {
+      kind: 'timed' as const,
+      title: 'Test',
+      promptKnown: 'Q?',
+      direction: 'known-to-learning' as const,
+      promptLexeme: makeLexeme('prompt'),
+      audioUrl: '',
+      optionsLearning: ['fa', 'fb'],
+      optionsLexemes: [makeLexeme(''), makeLexeme('lex-b')],
+      correctIndex: 1,
+      timeLimitSec: 30,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    } satisfies TimedCardDraft;
+
+    const result = applyLexemeFirstToDraft(draft);
+
+    expect((result as TimedCardDraft).optionsLearning).toEqual(['fa', 'lex-b']);
+    expect(result).not.toBe(draft);
+  });
+
+  it('returns unchanged draft for code-select cards', () => {
+    const draft = {
+      kind: 'code-select' as const,
+      title: 'Test',
+      promptKnown: 'Q?',
+      direction: 'known-to-learning' as const,
+      promptLexeme: makeLexeme('prompt'),
+      audioUrl: '',
+      caption: 'Caption',
+      prompt: { code: 'console.log("hi")' },
+      options: [
+        { code: 'opt1', language: 'plain' },
+        { code: 'opt2', language: 'java' },
+      ],
+      optionsLexemes: [makeLexeme('lex1'), makeLexeme('lex2')],
+      correctIndex: 0,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    } as unknown as CardDraft;
+
+    const result = applyLexemeFirstToDraft(draft);
+
+    expect(result).toBe(draft);
+  });
+
+  it('returns unchanged draft for draw cards', () => {
+    const draft = {
+      kind: 'draw' as const,
+      title: 'Test',
+      promptKnown: 'Q?',
+      direction: 'known-to-learning' as const,
+      promptLexeme: makeLexeme('prompt'),
+      audioUrl: '',
+      referenceHintKnown: 'hint',
+      meaningKnown: 'meaning',
+      targetCharacter: '好',
+      radicalHint: '女',
+      strokeGuides: [],
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    } as unknown as CardDraft;
+
+    const result = applyLexemeFirstToDraft(draft);
+
+    expect(result).toBe(draft);
+  });
+
+  it('returns unchanged draft for tone cards', () => {
+    const draft = {
+      kind: 'tone' as const,
+      title: 'Test',
+      promptKnown: 'Q?',
+      direction: 'known-to-learning' as const,
+      promptLexeme: makeLexeme('prompt'),
+      audioUrl: '',
+      syllableBase: 'ni',
+      toneOptions: [1, 2, 3, 4, 5] as unknown as readonly number[],
+      correctIndex: 0,
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+    } as unknown as CardDraft;
+
+    const result = applyLexemeFirstToDraft(draft);
+
+    expect(result).toBe(draft);
   });
 });

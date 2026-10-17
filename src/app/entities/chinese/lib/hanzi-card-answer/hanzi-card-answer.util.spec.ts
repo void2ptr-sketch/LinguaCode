@@ -116,4 +116,105 @@ describe('draw-card-answer.utils', () => {
   it('should accept memory mode when hanzi model is unavailable but strokes exist', () => {
     expect(checkDrawCardAnswer(drawCard, true, alignedRenPayload(), 'beginner')).toBe(true);
   });
+
+  it('should skip validation for empty character targets', () => {
+    const card: DrawCard = {
+      id: 'draw-empty',
+      kind: 'draw',
+      title: 'Empty',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      promptKnown: 'Q',
+      referenceHintKnown: 'hint',
+      characterTargets: [{ character: '' }],
+    };
+
+    const payload: DrawAnswerPayload = {
+      canvasMode: 'memory',
+      canvasSize,
+      strokesByCharacter: [[[{ x: 10, y: 10 }]]],
+    };
+
+    expect(checkDrawCardAnswer(card, true, payload, 'beginner', getHanziModel)).toBe(true);
+  });
+
+  it('should skip validation for non-Han character targets', () => {
+    const card: DrawCard = {
+      id: 'draw-non-han',
+      kind: 'draw',
+      title: 'Non-Han',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      promptKnown: 'Q',
+      referenceHintKnown: 'hint',
+      characterTargets: [{ character: 'abc' }],
+    };
+
+    const payload: DrawAnswerPayload = {
+      canvasMode: 'memory',
+      canvasSize,
+      strokesByCharacter: [[[{ x: 10, y: 10 }]]],
+    };
+
+    expect(checkDrawCardAnswer(card, true, payload, 'beginner', getHanziModel)).toBe(true);
+  });
+
+  it('should reject memory mode when validation fails', () => {
+    const payload = alignedRenPayload();
+    // Use intermediate level with wrong strokes (only 1 of 2)
+    expect(
+      checkDrawCardAnswer(
+        drawCard,
+        true,
+        {
+          ...payload,
+          strokesByCharacter: [payload.strokesByCharacter[0]!.slice(0, 1)],
+        },
+        'intermediate',
+        getHanziModel,
+      ),
+    ).toBe(false);
+  });
+
+  it('should reject when no strokes submitted', () => {
+    expect(
+      checkDrawCardAnswer(drawCard, false, alignedRenPayload(), 'beginner', getHanziModel),
+    ).toBe(false);
+  });
+
+  it('should reject when drawAnswer is null', () => {
+    expect(checkDrawCardAnswer(drawCard, true, null, 'beginner', getHanziModel)).toBe(false);
+  });
+
+  it('should reject when drawAnswer is undefined', () => {
+    expect(checkDrawCardAnswer(drawCard, true, undefined, 'beginner', getHanziModel)).toBe(false);
+  });
+
+  it('should reject when no strokes in any character', () => {
+    const payload: DrawAnswerPayload = {
+      canvasMode: 'memory',
+      canvasSize,
+      strokesByCharacter: [[]],
+    };
+
+    expect(checkDrawCardAnswer(drawCard, true, payload, 'beginner', getHanziModel)).toBe(false);
+  });
+
+  it('should accept drawing with multiple characters when all pass validation', () => {
+    const card: DrawCard = {
+      id: 'draw-multi',
+      kind: 'draw',
+      title: 'Multi',
+      appearance: { theme: 'azure-blue', fontSize: 'md' },
+      promptKnown: 'Q',
+      referenceHintKnown: 'hint',
+      characterTargets: [{ character: '人' }, { character: '大' }],
+    };
+
+    const payload: DrawAnswerPayload = {
+      canvasMode: 'memory',
+      canvasSize,
+      strokesByCharacter: [alignedRenPayload().strokesByCharacter[0]!, []],
+    };
+
+    expect(checkDrawCardAnswer(card, true, payload, 'beginner', getHanziModel)).toBe(true);
+  });
 });
