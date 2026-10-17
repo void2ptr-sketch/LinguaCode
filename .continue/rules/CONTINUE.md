@@ -154,7 +154,7 @@ src/
 - **Unit-тесты** через **Vitest** (`*.spec.ts`, runner `vitest` в `angular.json`)
 - Мокайте внешние зависимости вместо вызова реальных эндпоинтов
 - Тестируйте: инициализацию компонентов, input/output bindings, реактивные потоки (observables, signals), обработку ошибок
-- Целевые пороги покрытия: statements 70%, branches 65%, functions 70%, lines 70%
+- Целевые пороги покрытия: statements 80%, branches 80%, functions 80%, lines 80%
 
 ### Процесс сборки и деплоя
 - Production builds с tree-shaking и оптимизацией
@@ -365,7 +365,7 @@ export { formatLabel } from './format.util';
 
 ## 11. Testing Rules
 
-> Полные правила тестирования и пороги покрытия (statements 70%, branches 65%, functions 70%, lines 70%) — см. `03.angular.05.testing-strategy.rule.md`.
+> Полные правила тестирования и пороги покрытия (statements 80%, branches 80%, functions 80%, lines 80%) — см. `03.angular.05.testing-strategy.rule.md`.
 
 ---
 
