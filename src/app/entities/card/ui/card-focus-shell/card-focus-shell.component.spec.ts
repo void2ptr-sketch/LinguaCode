@@ -40,7 +40,9 @@ describe('CardFocusShellComponent', () => {
     // layer is rendered with `position: fixed` + high z-index.
     expect(host.parentElement).toBe(initialParent);
     expect(document.body.classList.contains('card-focus-shell-open')).toBe(true);
-    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
+    // The toggle only affects the current session and never overwrites the
+    // profile preference.
+    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
 
     component.toggleFullscreen();
     expect(component.fullscreen()).toBe(false);
@@ -70,12 +72,14 @@ describe('CardFocusShellComponent', () => {
 
   it('should exit fullscreen on Escape and persist preference', () => {
     const component = fixture.componentInstance;
+    userStore.updatePreferences({ cardFocusFullscreen: true });
     component.toggleFullscreen();
 
     component.onEscape();
 
     expect(component.fullscreen()).toBe(false);
-    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
+    // Escape exit is temporary: the profile preference is preserved.
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
   });
 
   it('should auto enter fullscreen on learning when preference is enabled', () => {
@@ -108,7 +112,9 @@ describe('CardFocusShellComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.fullscreen()).toBe(false);
-    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
+    // Escape exit is temporary: the profile preference is preserved, and the
+    // auto-enter is suppressed for this shell instance only.
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
   });
 
   it('should not re-enter fullscreen when exiting via toggle on learning tab', () => {
@@ -121,7 +127,9 @@ describe('CardFocusShellComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.componentInstance.fullscreen()).toBe(false);
-    expect(userStore.preferences().cardFocusFullscreen).toBe(false);
+    // Toggle exit is temporary: the profile preference is preserved, and the
+    // auto-enter is suppressed for this shell instance only.
+    expect(userStore.preferences().cardFocusFullscreen).toBe(true);
   });
 
   it('should exit fullscreen on document keydown escape', () => {

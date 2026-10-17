@@ -55,6 +55,7 @@ plans/
 _*.js
 
 .codeassistant/
+screenshots/
 
 # Continue rules (.continue/) — коммитим правила проекта в репозиторий
 .continue/agents/

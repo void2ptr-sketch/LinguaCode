@@ -25,8 +25,13 @@ export const CARD_FOCUS_BODY_LOCK_CLASS = 'card-focus-shell-open';
  * `position: fixed` + a high z-index. The host is only detached and appended to
  * `<body>` when an ancestor creates a containing block for fixed positioning
  * (e.g. a transformed dialog container), which would otherwise break the
- * fullscreen overlay. Supports keyboard (Escape) exit, auto-enter on the
- * learning tab, and preference persistence via `UserStore`.
+ * fullscreen overlay. Supports keyboard (Escape) exit and auto-enter on the
+ * learning tab.
+ *
+ * The `cardFocusFullscreen` profile preference is the single source of truth:
+ * the toggle button and Escape only affect the current session and never
+ * overwrite the profile setting. Exiting fullscreen is temporary — reopening
+ * the scenario (a new shell instance) restores the profile mode.
  */
 @Component({
   selector: 'app-card-focus-shell',
@@ -51,6 +56,8 @@ export class CardFocusShellComponent {
    * @remarks
    * When true and the user is on the Learning tab, automatically enters
    * fullscreen mode if the user has `cardFocusFullscreen` preference enabled.
+   * A manual exit (Escape/toggle) suppresses re-entry for this shell instance
+   * only; a new instance (reopened scenario) applies the profile setting again.
    */
   readonly autoEnterFullscreen = input(false);
 
@@ -74,9 +81,10 @@ export class CardFocusShellComponent {
       const preferFullscreen = this.userStore.preferences().cardFocusFullscreen;
 
       if (autoEnter && preferFullscreen && !this.fullscreen() && !this.manualExit) {
-        this.enterFullscreen(false);
+        this.enterFullscreen();
       } else if (this.autoEnterWasActive && !autoEnter && this.fullscreen()) {
         // Уход с вкладки «Обучение» — закрыть overlay, не меняя сохранённое предпочтение.
+        // Возврат на вкладку снова применит режим из профиля (manualExit не выставляется).
         this.exitFullscreen(false);
       }
 
@@ -92,6 +100,8 @@ export class CardFocusShellComponent {
   /**
    * Exits fullscreen mode when Escape is pressed.
    * @remarks Triggered by the `@HostListener` on `document:keydown.escape`.
+   * The exit is temporary: the profile preference is not changed, and the
+   * auto-enter is suppressed for this shell instance only.
    */
   @HostListener('document:keydown.escape')
   onEscape(): void {
@@ -101,10 +111,11 @@ export class CardFocusShellComponent {
   }
 
   /**
-   * Toggles fullscreen mode.
+   * Toggles fullscreen mode for the current session.
    * @remarks
-   * Enters fullscreen if not already active, exits otherwise.
-   * Persists the preference to the user store.
+   * Enters fullscreen if not already active, exits otherwise. The profile
+   * preference is never changed here — the toggle only affects the current
+   * session, so reopening the scenario restores the profile mode.
    */
   toggleFullscreen(): void {
     if (this.fullscreen()) {
@@ -112,10 +123,10 @@ export class CardFocusShellComponent {
       return;
     }
 
-    this.enterFullscreen(true);
+    this.enterFullscreen();
   }
 
-  private enterFullscreen(persistPreference: boolean): void {
+  private enterFullscreen(): void {
     if (this.fullscreen()) {
       return;
     }
@@ -124,22 +135,15 @@ export class CardFocusShellComponent {
     this.fullscreen.set(true);
     this.attachShellToBody();
     document.body.classList.add(CARD_FOCUS_BODY_LOCK_CLASS);
-
-    if (persistPreference) {
-      this.userStore.updatePreferences({ cardFocusFullscreen: true });
-    }
   }
 
-  private exitFullscreen(persistPreference: boolean): void {
+  private exitFullscreen(markManualExit: boolean): void {
     if (!this.fullscreen()) {
       return;
     }
 
-    this.manualExit = true;
-    // Persist the preference BEFORE clearing the signal so the auto-enter
-    // effect observes the new value and does not immediately re-enter.
-    if (persistPreference) {
-      this.userStore.updatePreferences({ cardFocusFullscreen: false });
+    if (markManualExit) {
+      this.manualExit = true;
     }
 
     this.fullscreen.set(false);

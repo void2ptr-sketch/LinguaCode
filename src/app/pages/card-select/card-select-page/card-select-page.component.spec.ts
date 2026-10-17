@@ -80,7 +80,10 @@ describe('CardSelectPageComponent', () => {
         ScenarioSearchService,
         LearningResultsStore,
         UserStore,
-        AppLoggerService,
+        {
+          provide: AppLoggerService,
+          useValue: { debug: vi.fn(), info: vi.fn(), warn: vi.fn(), error: vi.fn() },
+        },
       ],
     });
 
