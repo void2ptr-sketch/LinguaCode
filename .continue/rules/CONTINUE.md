@@ -264,7 +264,8 @@ src/
 - Vitest suite documentation
 
 ### Ссылки на правила проекта
-- `.continue/rules/00.project.rule.md` — границы доступа к файлам
+- `.continue/rules/00.agent-behavior.rule.md` — поведение агента, границы доступа к файлам
+- `.continue/rules/00.angular.project-architecture.rule.md` — архитектура проекта, FSD-слои
 - `.continue/rules/04.angular.DI-PS.rule.md` — DI и provider rules
 - `.continue/rules/05.angular.Reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
 - `.continue/rules/07.angular.testing-strategy.rule.md` — тестирование и пороги покрытия
@@ -282,6 +283,22 @@ src/
 - `.continue/rules/22.pwa.rule.md` — PWA / service worker
 - `.continue/rules/23.a11y.rule.md` — доступность (a11y)
 - `.continue/rules/24.env-api-contract.rule.md` — окружение и API-контракт
+- `.continue/rules/25.angular.control-flow.rule.md` — control flow (`@if`/`@for`/`@switch`/`@defer`/`@let`)
+- `.continue/rules/26.angular.signal-inputs.rule.md` — signal inputs / `model()` / `output()`
+- `.continue/rules/27.angular.component-patterns.rule.md` — OnPush, `inject()`, жизненный цикл
+- `.continue/rules/28.angular.forms.rule.md` — формы (template-driven, dirty-state)
+- `.continue/rules/29.angular.stores.rule.md` — signal-based stores (`*.store.ts`)
+- `.continue/rules/30.testing.smoke-conformance.rule.md` — smoke и conformance тесты
+- `.continue/rules/31.angular.dialogs.rule.md` — модальные диалоги (MatDialog)
+- `.continue/rules/32.docs-conventions.rule.md` — конвенции документации `docs/`
+- `.continue/rules/33.backend-coordination.rule.md` — координация с бэкендом (java.LinguaCode)
+- `.continue/rules/34.i18n.rule.md` — локализация UI (RU-строки)
+- `.continue/rules/35.performance.rule.md` — производительность (бюджеты, `@defer`, track)
+- `.continue/rules/36.auth.rule.md` — аутентификация (AuthStore, токены, guards)
+- `.continue/rules/37.storage.rule.md` — хранение (IndexedDB, localStorage, persistence)
+- `.continue/rules/38.ci-parity.rule.md` — паритет локальных проверок и CI
+- `.continue/rules/39.dependencies.rule.md` — управление зависимостями
+- `.continue/rules/40.rules-maintenance.rule.md` — поддержка правил в актуальном состоянии
 
 ---
 
