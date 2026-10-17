@@ -144,7 +144,7 @@ src/
 
 1. **Только standalone components** — никогда не используйте NgModules
 2. **TypeScript Strict Mode** — строгая типизация, предпочитайте `type` над `interface` для данных
-3. **Signals для локального состояния** — RxJS только для внешних потоков (см. `05.angular.Reactive.rule.md`)
+3. **Signals для локального состояния** — RxJS только для внешних потоков (см. `03.angular.03.reactive.rule.md`)
 4. **Названия файлов** — kebab-case с суффиксом типа (`user-profile.component.ts`, `user.service.ts`)
 5. **Названия классов** — UpperCamelCase с суффиксом (`UserProfileComponent`, `UserService`)
 6. **Константы** — UPPER_CASE (`MAX_RETRY_COUNT`)
@@ -264,41 +264,60 @@ src/
 - Vitest suite documentation
 
 ### Ссылки на правила проекта
-- `.continue/rules/00.agent-behavior.rule.md` — поведение агента, границы доступа к файлам
-- `.continue/rules/00.angular.project-architecture.rule.md` — архитектура проекта, FSD-слои
-- `.continue/rules/04.angular.DI-PS.rule.md` — DI и provider rules
-- `.continue/rules/05.angular.Reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
-- `.continue/rules/07.angular.testing-strategy.rule.md` — тестирование и пороги покрытия
-- `.continue/rules/09.angular.migration-to-standalone.rule.md` — миграция на standalone
-- `.continue/rules/10.angular.security.rule.md` — безопасность
-- `.continue/rules/11.angular.naming.rule.md` — соглашения о названиях, когезивные модули
-- `.continue/rules/14.fsd-imports.rule.md` — FSD-слои и направления импортов
-- `.continue/rules/15.git-workflow.rule.md` — Git workflow (ветки, коммиты)
-- `.continue/rules/16.tasks-workflow.rule.md` — workflow с `TASKS.md`
-- `.continue/rules/17.styles.rule.md` — SCSS/CSS-конвенции
-- `.continue/rules/18.data-content.rule.md` — данные/контент (seed, overlay)
-- `.continue/rules/19.verification-checklist.rule.md` — чек-лист верификации
-- `.continue/rules/20.errors-http.rule.md` — обработка ошибок и HTTP-слой
-- `.continue/rules/21.routing.rule.md` — маршрутизация, guards
-- `.continue/rules/22.pwa.rule.md` — PWA / service worker
-- `.continue/rules/23.a11y.rule.md` — доступность (a11y)
-- `.continue/rules/24.env-api-contract.rule.md` — окружение и API-контракт
-- `.continue/rules/25.angular.control-flow.rule.md` — control flow (`@if`/`@for`/`@switch`/`@defer`/`@let`)
-- `.continue/rules/26.angular.signal-inputs.rule.md` — signal inputs / `model()` / `output()`
-- `.continue/rules/27.angular.component-patterns.rule.md` — OnPush, `inject()`, жизненный цикл
-- `.continue/rules/28.angular.forms.rule.md` — формы (template-driven, dirty-state)
-- `.continue/rules/29.angular.stores.rule.md` — signal-based stores (`*.store.ts`)
-- `.continue/rules/30.testing.smoke-conformance.rule.md` — smoke и conformance тесты
-- `.continue/rules/31.angular.dialogs.rule.md` — модальные диалоги (MatDialog)
-- `.continue/rules/32.docs-conventions.rule.md` — конвенции документации `docs/`
-- `.continue/rules/33.backend-coordination.rule.md` — координация с бэкендом (java.LinguaCode)
-- `.continue/rules/34.i18n.rule.md` — локализация UI (RU-строки)
-- `.continue/rules/35.performance.rule.md` — производительность (бюджеты, `@defer`, track)
-- `.continue/rules/36.auth.rule.md` — аутентификация (AuthStore, токены, guards)
-- `.continue/rules/37.storage.rule.md` — хранение (IndexedDB, localStorage, persistence)
-- `.continue/rules/38.ci-parity.rule.md` — паритет локальных проверок и CI
-- `.continue/rules/39.dependencies.rule.md` — управление зависимостями
-- `.continue/rules/40.rules-maintenance.rule.md` — поддержка правил в актуальном состоянии
+
+Правила именуются по схеме `NN.domain.NZ.name.rule.md`: `NN` — номер домена (01=meta, 02=architecture, 03=angular, 04=design, 05=business), `NZ` — номер сортировки внутри домена (см. `01.meta.09.rules-maintenance.rule.md`).
+
+#### meta — процесс и инструменты
+- `.continue/rules/01.meta.01.agent-behavior.rule.md` — поведение агента, границы доступа к файлам
+- `.continue/rules/01.meta.02.validate-write-arguments.rule.md` — валидация аргументов write-инструментов
+- `.continue/rules/01.meta.03.git-workflow.rule.md` — Git workflow (ветки, коммиты)
+- `.continue/rules/01.meta.04.tasks-workflow.rule.md` — workflow с `TASKS.md`
+- `.continue/rules/01.meta.05.verification-checklist.rule.md` — чек-лист верификации
+- `.continue/rules/01.meta.06.docs-conventions.rule.md` — конвенции документации `docs/`
+- `.continue/rules/01.meta.07.ci-parity.rule.md` — паритет локальных проверок и CI
+- `.continue/rules/01.meta.08.dependencies.rule.md` — управление зависимостями
+- `.continue/rules/01.meta.09.rules-maintenance.rule.md` — поддержка правил в актуальном состоянии
+
+#### architecture — структура проекта
+- `.continue/rules/02.architecture.01.project-architecture.rule.md` — архитектура проекта, FSD-слои
+- `.continue/rules/02.architecture.02.lazy-loading.rule.md` — lazy loading маршрутов (`loadComponent`)
+- `.continue/rules/02.architecture.03.di-providers.rule.md` — DI и provider rules
+- `.continue/rules/02.architecture.04.fsd-imports.rule.md` — FSD-слои и направления импортов
+- `.continue/rules/02.architecture.05.routing.rule.md` — маршрутизация, guards
+- `.continue/rules/02.architecture.06.component-patterns.rule.md` — OnPush, `inject()`, жизненный цикл
+- `.continue/rules/02.architecture.07.stores.rule.md` — signal-based stores (`*.store.ts`)
+- `.continue/rules/02.architecture.08.migration-standalone.rule.md` — миграция на standalone
+
+#### angular — код на Angular
+- `.continue/rules/03.angular.01.senior-developer.rule.md` — свод правил senior-разработчика
+- `.continue/rules/03.angular.02.build.rule.md` — сборка и оптимизация (Ivy)
+- `.continue/rules/03.angular.03.reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
+- `.continue/rules/03.angular.04.typescript.rule.md` — TypeScript и строгость типов
+- `.continue/rules/03.angular.05.testing-strategy.rule.md` — тестирование и пороги покрытия
+- `.continue/rules/03.angular.06.code-style.rule.md` — стиль кода и форматирование
+- `.continue/rules/03.angular.07.naming.rule.md` — соглашения о названиях, когезивные модули
+- `.continue/rules/03.angular.08.config-editing.rule.md` — правка конфиг-файлов (`angular.json`, `tsconfig`)
+- `.continue/rules/03.angular.09.control-flow.rule.md` — control flow (`@if`/`@for`/`@switch`/`@defer`/`@let`)
+- `.continue/rules/03.angular.10.signal-inputs.rule.md` — signal inputs / `model()` / `output()`
+- `.continue/rules/03.angular.11.forms.rule.md` — формы (template-driven, dirty-state)
+- `.continue/rules/03.angular.12.smoke-conformance.rule.md` — smoke и conformance тесты
+- `.continue/rules/03.angular.13.performance.rule.md` — производительность (бюджеты, `@defer`, track)
+
+#### design — UI и UX
+- `.continue/rules/04.design.01.styles.rule.md` — SCSS/CSS-конвенции
+- `.continue/rules/04.design.02.a11y.rule.md` — доступность (a11y)
+- `.continue/rules/04.design.03.dialogs.rule.md` — модальные диалоги (MatDialog)
+- `.continue/rules/04.design.04.i18n.rule.md` — локализация UI (RU-строки)
+
+#### business — домен и данные
+- `.continue/rules/05.business.01.security.rule.md` — безопасность
+- `.continue/rules/05.business.02.data-content.rule.md` — данные/контент (seed, overlay)
+- `.continue/rules/05.business.03.errors-http.rule.md` — обработка ошибок и HTTP-слой
+- `.continue/rules/05.business.04.pwa.rule.md` — PWA / service worker
+- `.continue/rules/05.business.05.env-api-contract.rule.md` — окружение и API-контракт
+- `.continue/rules/05.business.06.backend-coordination.rule.md` — координация с бэкендом (java.LinguaCode)
+- `.continue/rules/05.business.07.auth.rule.md` — аутентификация (AuthStore, токены, guards)
+- `.continue/rules/05.business.08.storage.rule.md` — хранение (IndexedDB, localStorage, persistence)
 
 ---
 
@@ -334,22 +353,22 @@ export type { FirstType } from './first.types';
 export { formatLabel } from './format.util';
 ```
 
-> Когезивные модули (папки, которые нельзя разделять) и правила публичного API слайсов — см. `11.angular.naming.rule.md` и `14.fsd-imports.rule.md`.
+> Когезивные модули (папки, которые нельзя разделять) и правила публичного API слайсов — см. `03.angular.07.naming.rule.md` и `02.architecture.04.fsd-imports.rule.md`.
 
 ---
 
 ## 10. Security Rules
 
-> Полные правила безопасности — см. `10.angular.security.rule.md` (санитизация, секреты, `npm run audit`, PWA-кэширование).
+> Полные правила безопасности — см. `05.business.01.security.rule.md` (санитизация, секреты, `npm run audit`, PWA-кэширование).
 
 ---
 
 ## 11. Testing Rules
 
-> Полные правила тестирования и пороги покрытия (statements 70%, branches 65%, functions 70%, lines 70%) — см. `07.angular.testing-strategy.rule.md`.
+> Полные правила тестирования и пороги покрытия (statements 70%, branches 65%, functions 70%, lines 70%) — см. `03.angular.05.testing-strategy.rule.md`.
 
 ---
 
 ## 12. Migration Notes
 
-> Полные правила миграции с NgModule на standalone — см. `09.angular.migration-to-standalone.rule.md` и [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone).
+> Полные правила миграции с NgModule на standalone — см. `02.architecture.08.migration-standalone.rule.md` и [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone).

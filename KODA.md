@@ -1,6 +1,6 @@
 # KODA.md — Инструкции для AI-ассистента
 
-> **Единый источник правил разработки — `.continue/rules/`** (см. [`CONTINUE.md`](.continue/rules/CONTINUE.md) и правила 00–40). Этот файл — краткий обзор проекта и указатели; при расхождении приоритет у `.continue/rules/`.
+> **Единый источник правил разработки — `.continue/rules/`** (см. [`CONTINUE.md`](.continue/rules/CONTINUE.md) и правила по доменам `meta` / `architecture` / `angular` / `design` / `business`). Этот файл — краткий обзор проекта и указатели; при расхождении приоритет у `.continue/rules/`.
 
 ## О проекте
 
@@ -53,7 +53,7 @@ src/app/
 
 - Фичи **не импортируют** друг друга (запрещены cross-slice импорты).
 - Публичный API фичи — через `index.ts`.
-- `core/` **удалён** при FSD-миграции; инфраструктура живёт в `app/`, `shared/`, `entities/` или `widgets/` (см. `00.angular.project-architecture.rule.md`).
+- `core/` **удалён** при FSD-миграции; инфраструктура живёт в `app/`, `shared/`, `entities/` или `widgets/` (см. `02.architecture.01.project-architecture.rule.md`).
 
 ### Контент
 

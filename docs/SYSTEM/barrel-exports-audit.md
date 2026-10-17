@@ -2,7 +2,7 @@
 
 ## Summary
 
-This document provides a comprehensive audit of barrel exports (`index.ts`) across the Angular.LinguaCode project, verifying compliance with the rules defined in `11.angular.naming.rules.md`.
+This document provides a comprehensive audit of barrel exports (`index.ts`) across the Angular.LinguaCode project, verifying compliance with the rules defined in `06.angular.naming.rule.md`.
 
 ## Audit Results
 

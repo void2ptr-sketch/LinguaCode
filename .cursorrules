@@ -1,4 +1,4 @@
-> Единый источник правил разработки — `.continue/rules/` (CONTINUE.md + правила 00–40). Ниже — краткая выжимка; при расхождении приоритет у `.continue/rules/`.
+> Единый источник правил разработки — `.continue/rules/` (CONTINUE.md + правила по доменам `meta` / `architecture` / `angular` / `design` / `business`). Ниже — краткая выжимка; при расхождении приоритет у `.continue/rules/`.
 
 · Архитектура: Используй Standalone компоненты (забудьте про NgModule). Структура — FSD (Feature-Sliced Design), 6 слоёв: app → pages → widgets → features → entities → shared. Импорты строго вниз.
 · FSD-правила: фичи НЕ импортируют друг друга (cross-slice запрещён); entities НЕ импортируют features/widgets/pages/app; shared НЕ импортирует ничего из src/app. Проверка: `node scripts/audit-fsd.mjs`.
