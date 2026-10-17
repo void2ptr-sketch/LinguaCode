@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { provideRouter } from '@angular/router';
+import { provideRouter, Router } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
 import { MatCardModule } from '@angular/material/card';
@@ -414,5 +414,64 @@ describe('CardSelectPageComponent', () => {
 
     expect(component.activeTabIndex()).toBe(0);
     expect(component.loadCards).not.toHaveBeenCalled();
+  });
+
+  // ─── Scenario completion → learning path ─────────────────────────────
+
+  it('should navigate to journey map when a course scenario completes', async () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+
+    component.selectedCourseId.set('course-1');
+    component.store.setScenario('scenario-1', [
+      {
+        id: 'c1',
+        kind: 'select',
+        title: 'Test 1',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        direction: 'known-to-learning',
+        promptKnown: 'Q1?',
+        optionsLearning: ['A', 'B'],
+        optionsKnown: ['A', 'B'],
+        correctIndex: 0,
+      },
+    ]);
+    component.store.selectOption(0);
+    component.store.checkAnswer();
+    component.store.nextCard();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.store.completed()).toBe(true);
+    expect(navigateSpy).toHaveBeenCalledWith(['/journey'], {
+      queryParams: { courseId: 'course-1' },
+    });
+  });
+
+  it('should keep the completion screen for free practice without a course', async () => {
+    const router = TestBed.inject(Router);
+    const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+
+    component.store.setScenario('scenario-1', [
+      {
+        id: 'c1',
+        kind: 'select',
+        title: 'Test 1',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        direction: 'known-to-learning',
+        promptKnown: 'Q1?',
+        optionsLearning: ['A', 'B'],
+        optionsKnown: ['A', 'B'],
+        correctIndex: 0,
+      },
+    ]);
+    component.store.selectOption(0);
+    component.store.checkAnswer();
+    component.store.nextCard();
+    fixture.detectChanges();
+    await fixture.whenStable();
+
+    expect(component.store.completed()).toBe(true);
+    expect(navigateSpy).not.toHaveBeenCalled();
   });
 });

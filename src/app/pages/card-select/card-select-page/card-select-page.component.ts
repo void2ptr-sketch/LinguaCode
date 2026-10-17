@@ -7,7 +7,7 @@ import {
   OnInit,
   untracked,
 } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTabsModule } from '@angular/material/tabs';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
@@ -66,7 +66,10 @@ export class CardSelectPageComponent implements OnInit {
   private readonly resultsStore = inject(LearningResultsStore);
   private readonly userStore = inject(UserStore);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
   private readonly logger = inject(AppLoggerService);
+  /** Guard so the journey return fires exactly once per completed session. */
+  private journeyReturnFired = false;
 
   readonly store = inject(CardSelectStore);
   readonly flow = inject(CardSelectFlowService);
@@ -211,6 +214,23 @@ export class CardSelectPageComponent implements OnInit {
     const drawAnswer = this.store.drawAnswer();
     if (drawSubmitted && drawAnswer !== null) {
       untracked(() => this.checkAnswer());
+    }
+  });
+
+  /**
+   * Returns to the learning path map (Путь обучения) when a course scenario ends.
+   *
+   * @remarks
+   * Triggered when the session is completed via the "Далее" button on the last card.
+   * Navigates to `/journey` with the course ID; free practice (no course) keeps
+   * the current completion screen.
+   */
+  private readonly returnToJourneyOnCompletion = effect(() => {
+    const completed = this.store.completed();
+    const courseId = this.selectedCourseId();
+    if (completed && courseId && !this.journeyReturnFired) {
+      this.journeyReturnFired = true;
+      void this.router.navigate(['/journey'], { queryParams: { courseId } });
     }
   });
 

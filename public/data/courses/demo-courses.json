@@ -17,6 +17,23 @@
       "updatedAt": "2026-01-01T00:00:00.000Z"
     },
     {
+      "id": "course-demo-card-kinds",
+      "title": "Все типы карточек — Демо",
+      "description": "Демо-программа ru→en: обзор всех 13 типов карточек, по сценарию на каждый тип.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "en"
+      },
+      "lessonIds": [
+        "demo-lesson-card-kinds-1",
+        "demo-lesson-card-kinds-2",
+        "demo-lesson-card-kinds-3"
+      ],
+      "published": true,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
       "id": "course-zh-a1",
       "title": "Китайский A1: первые шаги",
       "description": "Базовая программа для курса ru→zh: приветствия, фонетика и иероглифы.",
@@ -76,6 +93,52 @@
       ],
       "order": 1,
       "updatedAt": "2026-01-01T00:00:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-1",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 1: выбор, код, память, символы, звук",
+      "description": "5 сценариев: select, code-select, memory, symbol, sound.",
+      "scenarioIds": [
+        "scenario-demo-select",
+        "scenario-demo-code-select",
+        "scenario-demo-memory",
+        "scenario-demo-symbol",
+        "scenario-demo-sound"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-2",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 2: время, клавиатура, рисование, тон, чтение",
+      "description": "5 сценариев: timed, keyboard, draw, tone, reading.",
+      "scenarioIds": [
+        "scenario-demo-timed",
+        "scenario-demo-keyboard",
+        "scenario-demo-draw",
+        "scenario-demo-tone",
+        "scenario-demo-reading"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 1,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
+    },
+    {
+      "id": "demo-lesson-card-kinds-3",
+      "courseId": "course-demo-card-kinds",
+      "title": "Часть 3: переворот, пропуск, код-trace",
+      "description": "3 сценария: flip, cloze, code-trace.",
+      "scenarioIds": [
+        "scenario-demo-flip",
+        "scenario-demo-cloze",
+        "scenario-demo-code-trace"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 2,
+      "updatedAt": "2026-10-17T12:35:00.000Z"
     },
     {
       "id": "lesson-zh-greetings",
