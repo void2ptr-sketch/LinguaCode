@@ -1,0 +1,845 @@
+{
+  "scenarioId": "scenario-cpp-smart-pointers",
+  "cards": [
+    {
+      "id": "code-select-cpp-sp-1",
+      "kind": "code-select",
+      "title": "C++: std::unique_ptr базовый умный указатель",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-unique-ptr",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает unique_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::unique_ptr<int> p = std.make_unique<int>(42);\n// Автоматическое удаление при выходе из области"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "make_unique"
+        },
+        {
+          "language": "cpp",
+          "code": "create_unique"
+        },
+        {
+          "language": "cpp",
+          "code": "new_unique"
+        },
+        {
+          "language": "cpp",
+          "code": "alloc_unique"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::unique_ptr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-2",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr общий указатель",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-ptr",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает shared_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> p1 = std.make_shared<int>(42);\nauto p2 = p1; // count == 2\n// Удаляется когда последний указатель исчезает"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "make_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "create_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "new_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "alloc_shared"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::shared_ptr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-3",
+      "kind": "code-select",
+      "title": "C++: std::weak_ptr слабая ссылка",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-weak-ptr",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем нужен weak_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> sp = std.make_shared<int>(42);\nstd.weak_ptr<int> wp(sp);\nauto sp2 = wp.s______(); // Возвращает shared_ptr"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "trength"
+        },
+        {
+          "language": "cpp",
+          "code": "lock"
+        },
+        {
+          "language": "cpp",
+          "code": "upgrade"
+        },
+        {
+          "language": "cpp",
+          "code": "resolve"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::weak_ptr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-4",
+      "kind": "code-select",
+      "title": "C++: std::make_unique C++14",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-make-unique",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Почему make_unique лучше raw new?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\n// Плохо: утечка при исключении\nauto p = new std::vector<int>(10, 42);\n\n// Хорошо:\nauto p = std.m______-unique<std::vector<int>>(10, 42);"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ake"
+        },
+        {
+          "language": "cpp",
+          "code": "make"
+        },
+        {
+          "language": "cpp",
+          "code": "create"
+        },
+        {
+          "language": "cpp",
+          "code": "build"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::make_unique"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-5",
+      "kind": "code-select",
+      "title": "C++: std::enable_shared_from_this",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-enable-shared",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как получить shared_ptr изнутри объекта?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nclass MyClass : public std.e______-_shared_from_this<MyClass> {\npublic:\n    std::shared_ptr<MyClass> getSelf() {\n        return shared_from_this();\n    }\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "nable_shared_from_this"
+        },
+        {
+          "language": "cpp",
+          "code": "enable_self_ptr"
+        },
+        {
+          "language": "cpp",
+          "code": "shared_base"
+        },
+        {
+          "language": "cpp",
+          "code": "smart_base"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::enable_shared_from_this"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-6",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr custom deleter",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-custom-deleter",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как задать свой deleter?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<FILE> fp(\n    std.f______(\"file.txt\", \"r\"),\n    [](FILE* f) { std.close(f); }\n);"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "open"
+        },
+        {
+          "language": "cpp",
+          "code": "fopen"
+        },
+        {
+          "language": "cpp",
+          "code": "create"
+        },
+        {
+          "language": "cpp",
+          "code": "alloc"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["custom deleter"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-7",
+      "kind": "code-select",
+      "title": "C++: std::unique_ptr массивы",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-unique-array",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как использовать unique_ptr для массива?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::unique_ptr<int[]> arr(\n    new int[10]\n);\n// Или через make_unique:\nauto arr2 = std.make_unique<int[]>(10);"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "["
+        },
+        {
+          "language": "cpp",
+          "code": "]"
+        },
+        {
+          "language": "cpp",
+          "code": "<>"
+        },
+        {
+          "language": "cpp",
+          "code": "{}"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::unique_ptr array"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-8",
+      "kind": "code-select",
+      "title": "C++: std::shared_count счётчик ссылок",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-use-count",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как узнать количество ссылок?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> sp = std.make_shared<int>(42);\nauto c = sp.u______-_count(); // Возвращает 1"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "se_count"
+        },
+        {
+          "language": "cpp",
+          "code": "use_count"
+        },
+        {
+          "language": "cpp",
+          "code": "ref_count"
+        },
+        {
+          "language": "cpp",
+          "code": "count"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["use_count"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-9",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr thread safety",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-thread-safety",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Безопасен ли shared_ptr в многопоточности?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> sp;\n// Поток 1:\nsp = std.make_shared<int>(42);\n// Поток 2:\nauto copy = sp; // Чтение безопасно\n// Но оба пишут в счётчик ссылок — это потокобезопасно"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "Счётчик ссылок атомарен, но данные нет"
+        },
+        {
+          "language": "cpp",
+          "code": "Полностью потокобезопасен"
+        },
+        {
+          "language": "cpp",
+          "code": "Не потокобезопасен вообще"
+        },
+        {
+          "language": "cpp",
+          "code": "Только для чтения"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["thread safety"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-10",
+      "kind": "code-select",
+      "title": "C++: std::default_delete по умолчанию",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-default-deleter",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает default_delete?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::unique_ptr<int, std.d______-_delete<int>> p(\n    new int(42)\n); // Вызовет delete"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "efault_delete"
+        },
+        {
+          "language": "cpp",
+          "code": "default_delete"
+        },
+        {
+          "language": "cpp",
+          "code": "normal_delete"
+        },
+        {
+          "language": "cpp",
+          "code": "basic_delete"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::default_delete"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-11",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr custom deleter тип",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-deleter-type",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как задать deleter для shared_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nauto fp = std.make_shared<FILE>(\n    std.f______(\"file.txt\", \"r\")\n); // Нужно кастомный deleter!"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "fopen"
+        },
+        {
+          "language": "cpp",
+          "code": "open"
+        },
+        {
+          "language": "cpp",
+          "code": "create"
+        },
+        {
+          "language": "cpp",
+          "code": "alloc"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["custom deleter"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-12",
+      "kind": "code-select",
+      "title": "C++: std::unique_ptr move семантика",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-unique-move",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Можно ли копировать unique_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::unique_ptr<int> p1 = std.make_unique<int>(42);\n// std::unique_ptr<int> p2 = p1; // ОШИБКА!\nauto p2 = std.m______(p1); // Перемещение"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ove"
+        },
+        {
+          "language": "cpp",
+          "code": "move"
+        },
+        {
+          "language": "cpp",
+          "code": "transfer"
+        },
+        {
+          "language": "cpp",
+          "code": "swap"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::move"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-13",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr circular reference",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-circular-ref",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое circular reference?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstruct B; // Вперёддеklarация\nstruct A {\n    std.s______-_ptr<B> child; // Ссылка на B\n};\nstruct B {\n    std.s______-_ptr<A> parent; // Ссылка на A\n};\n// Утечка памяти — счётчик не станет 0!"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "hared / hared"
+        },
+        {
+          "language": "cpp",
+          "code": "shared / shared"
+        },
+        {
+          "language": "cpp",
+          "code": "unique / unique"
+        },
+        {
+          "language": "cpp",
+          "code": "weak / weak"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["circular reference"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-14",
+      "kind": "code-select",
+      "title": "C++: std::weak_ptr lock метод",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-weak-lock",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что возвращает weak_ptr::lock?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> sp = std.make_shared<int>(42);\nstd.weak_ptr<int> wp(sp);\nauto p = wp.l______(); // shared_ptr или nullptr"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ock"
+        },
+        {
+          "language": "cpp",
+          "code": "lock"
+        },
+        {
+          "language": "cpp",
+          "code": "upgrade"
+        },
+        {
+          "language": "cpp",
+          "code": "resolve"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["weak_ptr::lock"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-15",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr reset метод",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-reset",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает shared_ptr::reset?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::shared_ptr<int> sp = std.make_shared<int>(42);\nsp.r______(); // Счётчик уменьшается, объект удаляется если 0"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "eset"
+        },
+        {
+          "language": "cpp",
+          "code": "reset"
+        },
+        {
+          "language": "cpp",
+          "code": "clear"
+        },
+        {
+          "language": "cpp",
+          "code": "release"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["shared_ptr::reset"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-16",
+      "kind": "code-select",
+      "title": "C++: std::unique_ptr release метод",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-unique-release",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает unique_ptr::release?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::unique_ptr<int> sp = std.make_unique<int>(42);\nint* raw = sp.r______(); // sp становится nullptr"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "elease"
+        },
+        {
+          "language": "cpp",
+          "code": "release"
+        },
+        {
+          "language": "cpp",
+          "code": "detach"
+        },
+        {
+          "language": "cpp",
+          "code": "transfer"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["unique_ptr::release"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-17",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr aliasing constructor",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-aliasing",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое aliasing constructor?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstruct Data { int x; };\nstruct Wrapper {\n    std::shared_ptr<Data> data;\n};\n\nauto sp = std.make_shared<Data>();\nstd::shared_ptr<Wrapper> w(sp.get(), sp); // Утечка!"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "sp — правильный способ"
+        },
+        {
+          "language": "cpp",
+          "code": "nullptr — неправильный способ"
+        },
+        {
+          "language": "cpp",
+          "code": "new Data() — безопасный способ"
+        },
+        {
+          "language": "cpp",
+          "code": "make_unique — универсальный способ"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["aliasing constructor"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-18",
+      "kind": "code-select",
+      "title": "C++: std::allocate_shared распределение",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-alloc-shared",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем allocate_shared?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nstd::allocator<int> alloc;\nauto sp = std.a______-_shared<int>(alloc, 42);\n// Кастомное распределение памяти"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "llocate_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "allocate_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "custom_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "pool_shared"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::allocate_shared"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-19",
+      "kind": "code-select",
+      "title": "C++: std::make_shared vs new shared_ptr",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-make-vs-new",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Почему make_shared лучше new?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\n// Плохо: два выделения памяти\nstd::shared_ptr<int> sp(new int(42));\n\n// Хорошо: одно выделение (данные + control block)\nauto sp = std.m______-_shared<int>(42);"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ake_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "make_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "create_shared"
+        },
+        {
+          "language": "cpp",
+          "code": "build_shared"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["make_shared vs new"]
+      }
+    },
+    {
+      "id": "code-select-cpp-sp-20",
+      "kind": "code-select",
+      "title": "C++: std::shared_ptr custom deleter тип 2",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-shared-deleter-type2",
+      "scenarioId": "scenario-cpp-smart-pointers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как задать тип deleter для shared_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <memory>\n\nauto fp = std.make_shared<FILE>(\n    std.f______(\"file.txt\", \"r\")\n); // Нужно кастомный deleter!"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "fopen"
+        },
+        {
+          "language": "cpp",
+          "code": "open"
+        },
+        {
+          "language": "cpp",
+          "code": "create"
+        },
+        {
+          "language": "cpp",
+          "code": "alloc"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["custom deleter"]
+      }
+    }
+  ]
+}

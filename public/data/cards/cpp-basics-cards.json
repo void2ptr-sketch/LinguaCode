@@ -1,0 +1,803 @@
+{
+  "scenarioId": "scenario-cpp-basics",
+  "cards": [
+    {
+      "id": "code-select-cpp-2",
+      "kind": "code-select",
+      "title": "C++: переменные и типы",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-variables",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Какой тип данных используется для целых чисел в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Как объявить целочисленную переменную?\n______ age = 25;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "int"
+        },
+        {
+          "language": "cpp",
+          "code": "float"
+        },
+        {
+          "language": "cpp",
+          "code": "string"
+        },
+        {
+          "language": "cpp",
+          "code": "char"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["типы", "переменные"]
+      }
+    },
+    {
+      "id": "code-select-cpp-3",
+      "kind": "code-select",
+      "title": "C++: вывод в консоль",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-io",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Какая функция используется для вывода текста в консоль?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nint main() {\n    // Выведите \"Hello, World!\"\n    ______ \"Hello, World!\";\n    return 0;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "std::cout <<"
+        },
+        {
+          "language": "cpp",
+          "code": "std::cout <<"
+        },
+        {
+          "language": "cpp",
+          "code": "print("
+        },
+        {
+          "language": "cpp",
+          "code": "console.log("
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["ввод/вывод", "iostream"]
+      }
+    },
+    {
+      "id": "code-select-cpp-4",
+      "kind": "code-select",
+      "title": "C++: условия if-else",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-control",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как проверить условие в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "int x = 10;\nif (______) {\n    std::cout << \"x больше 5\";\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "x > 5"
+        },
+        {
+          "language": "cpp",
+          "code": "x = 5"
+        },
+        {
+          "language": "cpp",
+          "code": "== x > 5"
+        },
+        {
+          "language": "cpp",
+          "code": "if (x > 5)"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["условия", "if-else"]
+      }
+    },
+    {
+      "id": "code-select-cpp-5",
+      "kind": "code-select",
+      "title": "C++: циклы for",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-loops",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как написать цикл for от 0 до 4?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Выведите числа 0, 1, 2, 3, 4\nfor (int i = 0; ______; i++) {\n    std::cout << i << \" \";\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "i < 5"
+        },
+        {
+          "language": "cpp",
+          "code": "i <= 5"
+        },
+        {
+          "language": "cpp",
+          "code": "i < 4"
+        },
+        {
+          "language": "cpp",
+          "code": "i == 5"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["циклы", "for"]
+      }
+    },
+    {
+      "id": "code-select-cpp-6",
+      "kind": "code-select",
+      "title": "C++: массивы",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-arrays",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить массив из 5 целых чисел?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Объявите массив arr размером 5\n______ arr[5];"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "int"
+        },
+        {
+          "language": "cpp",
+          "code": "array"
+        },
+        {
+          "language": "cpp",
+          "code": "vector"
+        },
+        {
+          "language": "cpp",
+          "code": "list"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["массивы"]
+      }
+    },
+    {
+      "id": "code-select-cpp-7",
+      "kind": "code-select",
+      "title": "C++: функции",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-functions",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить функцию, возвращающую int?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Объявите функцию add, которая принимает два int и возвращает их сумму\n______ add(int a, int b) {\n    return a + b;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "int"
+        },
+        {
+          "language": "cpp",
+          "code": "void"
+        },
+        {
+          "language": "cpp",
+          "code": "function"
+        },
+        {
+          "language": "cpp",
+          "code": "auto"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["функции"]
+      }
+    },
+    {
+      "id": "code-select-cpp-8",
+      "kind": "code-select",
+      "title": "C++: std::string",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-strings",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить строковую переменную в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <string>\n\n// Как правильно объявить строку?\n______ greeting = \"Hello\";"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "std::string"
+        },
+        {
+          "language": "cpp",
+          "code": "string"
+        },
+        {
+          "language": "cpp",
+          "code": "String"
+        },
+        {
+          "language": "cpp",
+          "code": "char[]"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["строки", "std::string"]
+      }
+    },
+    {
+      "id": "code-select-cpp-9",
+      "kind": "code-select",
+      "title": "C++: указатели",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-pointers",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить указатель на int?",
+      "prompt": {
+        "language": "cpp",
+        "code": "int value = 42;\n// Объявите указатель ptr, который указывает на value\n______ ptr = &value;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "int *"
+        },
+        {
+          "language": "cpp",
+          "code": "pointer int"
+        },
+        {
+          "language": "cpp",
+          "code": "*int"
+        },
+        {
+          "language": "cpp",
+          "code": "ref int"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["указатели"]
+      }
+    },
+    {
+      "id": "code-select-cpp-10",
+      "kind": "code-select",
+      "title": "C++: std::vector",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-vectors",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как создать пустой вектор целых чисел?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <vector>\n\n// Создайте пустой вектор\nstd::vector<int> numbers; \n// Добавьте элемент 10\nc______ 10;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "numbers.push_back"
+        },
+        {
+          "language": "cpp",
+          "code": "numbers.add"
+        },
+        {
+          "language": "cpp",
+          "code": "numbers.insert"
+        },
+        {
+          "language": "cpp",
+          "code": "numbers.append"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["векторы", "std::vector"]
+      }
+    },
+    {
+      "id": "code-select-cpp-11",
+      "kind": "code-select",
+      "title": "C++: структуры (struct)",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-structs",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить структуру в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Объявите структуру Person с полями name и age\n______ Person {\n    std::string name;\n    int age;\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "struct"
+        },
+        {
+          "language": "cpp",
+          "code": "class"
+        },
+        {
+          "language": "cpp",
+          "code": "typedef"
+        },
+        {
+          "language": "cpp",
+          "code": "record"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["структуры", "struct"]
+      }
+    },
+    {
+      "id": "code-select-cpp-12",
+      "kind": "code-select",
+      "title": "C++: const",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-const",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что означает ключевое слово const?",
+      "prompt": {
+        "language": "cpp",
+        "code": "const int MAX_SIZE = 100;\n// MAX_SIZE = 200; // Что произойдёт?"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "Ошибка компиляции"
+        },
+        {
+          "language": "cpp",
+          "code": "Ничего, всё работает"
+        },
+        {
+          "language": "cpp",
+          "code": "RUNTIME ошибка"
+        },
+        {
+          "language": "cpp",
+          "code": "MAX_SIZE станет 200"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["const", "константы"]
+      }
+    },
+    {
+      "id": "code-select-cpp-13",
+      "kind": "code-select",
+      "title": "C++: namespace",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-namespaces",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Какой namespace содержит std::cout?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// В каком namespace находится std::cout?\n#include <iostream>\n\nint main() {\n    std::cout << \"Test\";\n    return 0;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "std"
+        },
+        {
+          "language": "cpp",
+          "code": "system"
+        },
+        {
+          "language": "cpp",
+          "code": "io"
+        },
+        {
+          "language": "cpp",
+          "code": "console"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["namespace", "std"]
+      }
+    },
+    {
+      "id": "code-select-cpp-14",
+      "kind": "code-select",
+      "title": "C++: include",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как подключить заголовочный файл в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Как правильно подключить iostream?\n______ <iostream>"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "#include"
+        },
+        {
+          "language": "cpp",
+          "code": "#import"
+        },
+        {
+          "language": "cpp",
+          "code": "#load"
+        },
+        {
+          "language": "cpp",
+          "code": "#include_once"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["include", "заголовочные файлы"]
+      }
+    },
+    {
+      "id": "code-select-cpp-15",
+      "kind": "code-select",
+      "title": "C++: main функция",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Какая функция является точкой входа в C++ программе?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Какая функция вызывается первой при запуске программы?"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "int main()"
+        },
+        {
+          "language": "cpp",
+          "code": "void start()"
+        },
+        {
+          "language": "cpp",
+          "code": "int begin()"
+        },
+        {
+          "language": "cpp",
+          "code": "public static void main()"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["main", "точка входа"]
+      }
+    },
+    {
+      "id": "code-select-cpp-16",
+      "kind": "code-select",
+      "title": "C++: комментарии",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-basics",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как написать однострочный комментарий в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "// Это ______ комментарий\nint x = 5;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "однострочный"
+        },
+        {
+          "language": "cpp",
+          "code": "многострочный"
+        },
+        {
+          "language": "cpp",
+          "code": "документирующий"
+        },
+        {
+          "language": "cpp",
+          "code": "блок"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["комментарии"]
+      }
+    },
+    {
+      "id": "code-select-cpp-17",
+      "kind": "code-select",
+      "title": "C++: semicolon",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-syntax",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Чем заканчивается оператор в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "int x = 5______\nstd::cout << x;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": ";"
+        },
+        {
+          "language": "cpp",
+          "code": "."
+        },
+        {
+          "language": "cpp",
+          "code": ","
+        },
+        {
+          "language": "cpp",
+          "code": ":"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["синтаксис", "точка с запятой"]
+      }
+    },
+    {
+      "id": "code-select-cpp-18",
+      "kind": "code-select",
+      "title": "C++: bool типы",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-types",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Какие значения может принимать bool в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "bool isTrue = true;\n// Какие ещё значения возможны?"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "true и false"
+        },
+        {
+          "language": "cpp",
+          "code": "0 и 1"
+        },
+        {
+          "language": "cpp",
+          "code": "any integer"
+        },
+        {
+          "language": "cpp",
+          "code": "\"yes\" и \"no\""
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["bool", "логический тип"]
+      }
+    },
+    {
+      "id": "code-select-cpp-19",
+      "kind": "code-select",
+      "title": "C++: cin ввод",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-io",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как ввести данные от пользователя в C++?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nint age;\n// Введите значение в age\nstd.______ >> age;"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "cin"
+        },
+        {
+          "language": "cpp",
+          "code": "cout <<"
+        },
+        {
+          "language": "cpp",
+          "code": "scanf"
+        },
+        {
+          "language": "cpp",
+          "code": "read"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["ввод/вывод", "cin"]
+      }
+    },
+    {
+      "id": "code-select-cpp-20",
+      "kind": "code-select",
+      "title": "C++: return",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-functions",
+      "scenarioId": "scenario-cpp-basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает return в функции?",
+      "prompt": {
+        "language": "cpp",
+        "code": "int multiply(int a, int b) {\n    return a * b;\n    // Что происходит здесь?\n}\n\nint main() {\n    int result = multiply(3, 4);\n    // result равен?"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "12"
+        },
+        {
+          "language": "cpp",
+          "code": "7"
+        },
+        {
+          "language": "cpp",
+          "code": "34"
+        },
+        {
+          "language": "cpp",
+          "code": "Ошибка"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["return", "функции"]
+      }
+    }
+  ]
+}

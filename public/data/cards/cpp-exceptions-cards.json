@@ -1,0 +1,845 @@
+{
+  "scenarioId": "scenario-cpp-exceptions",
+  "cards": [
+    {
+      "id": "code-select-cpp-except-1",
+      "kind": "code-select",
+      "title": "C++: try-catch базовый блок",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-try-catch",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как поймать исключение?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntry {\n    throw 42;\n} c______ (...) {\n    std::cout << \"Caught: \" << e;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch"
+        },
+        {
+          "language": "cpp",
+          "code": "catch"
+        },
+        {
+          "language": "cpp",
+          "code": "except"
+        },
+        {
+          "language": "cpp",
+          "code": "handle"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["try-catch"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-2",
+      "kind": "code-select",
+      "title": "C++: std::exception базовый класс",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-std-exception",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое std::exception?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\ntry {\n    throw std.r______-_exception(\"Error message\");\n} c______ (const std::exception& e) {\n    std::cout << e.w______();\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "aise / atch / hat"
+        },
+        {
+          "language": "cpp",
+          "code": "raise / catch / what"
+        },
+        {
+          "language": "cpp",
+          "code": "throw / except / msg"
+        },
+        {
+          "language": "cpp",
+          "code": "error / handle / text"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::exception"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-3",
+      "kind": "code-select",
+      "title": "C++: std::runtime_error",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-runtime-error",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Когда использовать runtime_error?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <stdexcept>\n\nthrow std.r______-_error(\"Something went wrong at runtime\");"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "untime_error"
+        },
+        {
+          "language": "cpp",
+          "code": "runtime_error"
+        },
+        {
+          "language": "cpp",
+          "code": "run_error"
+        },
+        {
+          "language": "cpp",
+          "code": "time_error"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::runtime_error"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-4",
+      "kind": "code-select",
+      "title": "C++: std::logic_error",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-logic-error",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое logic_error?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <stdexcept>\n\nthrow std.l______-_error(\"Program logic violated\");"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ogic_error"
+        },
+        {
+          "language": "cpp",
+          "code": "logic_error"
+        },
+        {
+          "language": "cpp",
+          "code": "logical_error"
+        },
+        {
+          "language": "cpp",
+          "code": "code_error"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::logic_error"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-5",
+      "kind": "code-select",
+      "title": "C++: std::out_of_range",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-out-of-range",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Когда выбрасывается out_of_range?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <vector>\n\nstd::vector<int> v = {1, 2, 3};\nv.a______(10); // Бросит out_of_range"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "t"
+        },
+        {
+          "language": "cpp",
+          "code": "at"
+        },
+        {
+          "language": "cpp",
+          "code": "get"
+        },
+        {
+          "language": "cpp",
+          "code": "index"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::out_of_range"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-6",
+      "kind": "code-select",
+      "title": "C++: std::bad_alloc",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-bad-alloc",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Когда выбрасывается bad_alloc?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <vector>\n\ntry {\n    std::vector<int> v;\n    for (int i = 0; i < 1e9; ++i)\n        v.push_back(i);\n} c______ (const std::b______-_alloc& e) {\n    std::cout << \"Memory exhausted: \" << e.w______();\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch / ad / hat"
+        },
+        {
+          "language": "cpp",
+          "code": "catch / bad / what"
+        },
+        {
+          "language": "cpp",
+          "code": "except / alloc / msg"
+        },
+        {
+          "language": "cpp",
+          "code": "handle / error / text"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["std::bad_alloc"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-7",
+      "kind": "code-select",
+      "title": "C++: std::nested_exception вложенные исключения",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-nested-exception",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое nested_exception?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nvoid f() {\n    try {\n        throw std::runtime_error(\"Inner\");\n    } c______ (...) {\n        std::rethrow_n______-_exception();\n    }\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch / ested"
+        },
+        {
+          "language": "cpp",
+          "code": "catch / nested"
+        },
+        {
+          "language": "cpp",
+          "code": "except / inner"
+        },
+        {
+          "language": "cpp",
+          "code": "handle / wrapped"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::nested_exception"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-8",
+      "kind": "code-select",
+      "title": "C++: std::rethrow_exception",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-rethrow",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем rethrow_exception?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\ntry {\n    throw std::runtime_error(\"Error\");\n} c______ (std::e______-_ptr& e) {\n    // Сохраняем исключение\n    std::rethrow_e______-_exception(e); // Повторно выбрасываем\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch / xception / ethrow_exception"
+        },
+        {
+          "language": "cpp",
+          "code": "catch / exception / rethrow_exception"
+        },
+        {
+          "language": "cpp",
+          "code": "except / error / throw_error"
+        },
+        {
+          "language": "cpp",
+          "code": "handle / fault / rethrow_fault"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::rethrow_exception"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-9",
+      "kind": "code-select",
+      "title": "C++: noexcept спецификатор",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-noexcept",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает noexcept?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nvoid f() n______-_except {\n    // Гарантирует, что исключений не будет\n    std::cout << \"No exceptions!\";\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "oexcept"
+        },
+        {
+          "language": "cpp",
+          "code": "noexcept"
+        },
+        {
+          "language": "cpp",
+          "code": "no_exception"
+        },
+        {
+          "language": "cpp",
+          "code": "safe"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["noexcept"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-10",
+      "kind": "code-select",
+      "title": "C++: std::exception_ptr указатель на исключение",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-exception-ptr",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем exception_ptr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nstd::e______-_ptr saveException() {\n    try {\n        throw 42;\n    } c______ (...) {\n        return std::c______-_current_exception();\n    }\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "xception / atch / apture"
+        },
+        {
+          "language": "cpp",
+          "code": "exception / catch / capture_current"
+        },
+        {
+          "language": "cpp",
+          "code": "error / except / get_current"
+        },
+        {
+          "language": "cpp",
+          "code": "fault / handle / save_fault"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::exception_ptr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-11",
+      "kind": "code-select",
+      "title": "C++: std::uncaught_exception функция",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-uncaught",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает uncaught_exception?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nvoid destructor() {\n    if (std.u______-_caught_exception()) {\n        // Мы в стеке разворачивания\n        std::terminate();\n    }\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ncaught_exception"
+        },
+        {
+          "language": "cpp",
+          "code": "uncaught_exception"
+        },
+        {
+          "language": "cpp",
+          "code": "no_catch"
+        },
+        {
+          "language": "cpp",
+          "code": "still_thrown"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::uncaught_exception"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-12",
+      "kind": "code-select",
+      "title": "C++: std::set_terminate обработчик terminators",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-set-terminate",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает set_terminate?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nvoid myTerminator() {\n    std::cout << \"Program terminating!\";\n    std.exit(1);\n}\n\nstd.set_t______-_inator(myTerminator);"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "erminator"
+        },
+        {
+          "language": "cpp",
+          "code": "terminator"
+        },
+        {
+          "language": "cpp",
+          "code": "abort"
+        },
+        {
+          "language": "cpp",
+          "code": "shutdown"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::set_terminate"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-13",
+      "kind": "code-select",
+      "title": "C++: std::unexpected_handler",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-unexpected",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое unexpected_handler?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nvoid myUnexpected() {\n    std.set_u______-_handler(myUnexpected);\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "nexpected"
+        },
+        {
+          "language": "cpp",
+          "code": "unexpected"
+        },
+        {
+          "language": "cpp",
+          "code": "surprise"
+        },
+        {
+          "language": "cpp",
+          "code": "exception_handler"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::unexpected_handler"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-14",
+      "kind": "code-select",
+      "title": "C++: catch(...) ловит всё",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-catch-all",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает catch(...)?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntry {\n    throw 42;\n} c______ (...) {\n    // Ловит ВСЕ исключения, но не знает тип\n    std::cout << \"Unknown exception\";\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch"
+        },
+        {
+          "language": "cpp",
+          "code": "catch"
+        },
+        {
+          "language": "cpp",
+          "code": "except"
+        },
+        {
+          "language": "cpp",
+          "code": "handle"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["catch(...)"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-15",
+      "kind": "code-select",
+      "title": "C++: catch(const std::exception&)",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-catch-base",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем ловить по константной ссылке?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\ntry {\n    throw std::runtime_error(\"Error\");\n} c______ (const std::e______-_exception& e) {\n    // Ловим по const& — избегаем слайсинга\n    std::cout << e.w______();\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch / xception / hat"
+        },
+        {
+          "language": "cpp",
+          "code": "catch / exception / what"
+        },
+        {
+          "language": "cpp",
+          "code": "except / error / msg"
+        },
+        {
+          "language": "cpp",
+          "code": "handle / fault / text"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["catch by reference"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-16",
+      "kind": "code-select",
+      "title": "C++: std::ios_base::failure",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-ios-failure",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое ios_base::failure?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nstd::ifstream f(\"nonexistent.txt\");\nif (!f) {\n    throw std::ios_base::f______-_ailure(\"File open failed\");\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ailure"
+        },
+        {
+          "language": "cpp",
+          "code": "failure"
+        },
+        {
+          "language": "cpp",
+          "code": "error"
+        },
+        {
+          "language": "cpp",
+          "code": "exception"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::ios_base::failure"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-17",
+      "kind": "code-select",
+      "title": "C++: std::bad_cast приведение типов",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-bad-cast",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Когда выбрасывается bad_cast?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <typeinfo>\n\nBase* b = new Derived();\ntry {\n    Derived& d = std.cast<const Derived&>(*b);\n} c______ (const std::b______-_cast& e) {\n    std::cout << \"Cast failed: \" << e.w______();\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "atch / ad / hat"
+        },
+        {
+          "language": "cpp",
+          "code": "catch / bad / what"
+        },
+        {
+          "language": "cpp",
+          "code": "except / error / msg"
+        },
+        {
+          "language": "cpp",
+          "code": "handle / fault / text"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::bad_cast"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-18",
+      "kind": "code-select",
+      "title": "C++: std::bad_typeid typeid",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-bad-typeid",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Когда выбрасывается bad_typeid?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <typeinfo>\n\nBase* b = nullptr;\ntry {\n    std.typeof(b).n______-_ame(); // Бросит bad_typeid для nullptr"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ame"
+        },
+        {
+          "language": "cpp",
+          "code": "name"
+        },
+        {
+          "language": "cpp",
+          "code": "type"
+        },
+        {
+          "language": "cpp",
+          "code": "id"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["std::bad_typeid"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-19",
+      "kind": "code-select",
+      "title": "C++: std::uncaught_exceptions C++17",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-uncaught-count",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает uncaught_exceptions()?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <exception>\n\nint count = std.u______-_caught_exceptions();\n// Возвращает количество активных необработанных исключений"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "ncaught_exceptions"
+        },
+        {
+          "language": "cpp",
+          "code": "uncaught_exceptions"
+        },
+        {
+          "language": "cpp",
+          "code": "no_catch_count"
+        },
+        {
+          "language": "cpp",
+          "code": "thrown_count"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::uncaught_exceptions"]
+      }
+    },
+    {
+      "id": "code-select-cpp-except-20",
+      "kind": "code-select",
+      "title": "C++: noexcept(true) vs noexcept(expr)",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-noexcept-expr",
+      "scenarioId": "scenario-cpp-exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Чем отличается noexcept(expr) от noexcept()?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nvoid f1() n______-_except(true) {} // Всегда без исключений\nvoid f2() n______-_except(noexcept(f1())) {} // Зависит от f1()"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "oexcept / oexcept"
+        },
+        {
+          "language": "cpp",
+          "code": "noexcept / noexcept"
+        },
+        {
+          "language": "cpp",
+          "code": "safe / conditional"
+        },
+        {
+          "language": "cpp",
+          "code": "pure / checked"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["noexcept expression"]
+      }
+    }
+  ]
+}

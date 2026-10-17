@@ -132,7 +132,7 @@ function checkOptionCardAnswer(
   selectedIndex: number,
   sessionDirection: CardDirection,
 ): boolean {
-  if (card.kind === 'code-select') {
+  if (card.kind === 'code-select' || card.kind === 'code-trace') {
     return selectedIndex === card.correctIndex;
   }
 
@@ -239,13 +239,20 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
     case 'timed':
     case 'reading':
     case 'tone':
+    case 'code-trace':
       return state.selectedIndex !== null;
     case 'keyboard':
       return state.answerText.trim().length > 0;
+    case 'cloze':
+      return card.options?.length
+        ? state.selectedIndex !== null
+        : state.answerText.trim().length > 0;
     case 'memory':
       return state.memoryComplete;
     case 'draw':
       return state.drawSubmitted;
+    case 'flip':
+      return state.flipKnown !== null;
   }
 };
 
@@ -280,6 +287,16 @@ export const checkCardAnswer = (
     }
     case 'tone':
       return state.selectedIndex === card.correctIndex;
+    case 'cloze': {
+      if (card.options?.length) {
+        return state.selectedIndex !== null && state.selectedIndex === card.correctIndex;
+      }
+
+      const accepted = [card.correctAnswer, ...(card.acceptedAnswers ?? [])].filter(
+        (value) => value.trim().length > 0,
+      );
+      return matchesKeyboardAnswer(state.answerText, accepted, card.promptLexeme);
+    }
     case 'memory':
       return state.memoryComplete;
     case 'draw':
@@ -290,6 +307,8 @@ export const checkCardAnswer = (
         state.learningProficiencyLevel,
         getHanziModel,
       );
+    case 'flip':
+      return state.flipKnown;
   }
 };
 
@@ -344,6 +363,18 @@ export const getCorrectAnswerLabel = (
     }
 
     return accepted[0] ?? null;
+  }
+
+  if (card.kind === 'flip') {
+    return card.back.trim() || card.front.trim() || null;
+  }
+
+  if (card.kind === 'cloze') {
+    if (card.options?.length && card.correctIndex !== undefined) {
+      return card.options[card.correctIndex] ?? card.correctAnswer;
+    }
+
+    return card.correctAnswer.trim() || card.acceptedAnswers?.[0]?.trim() || null;
   }
 
   if (card.kind === 'tone') {

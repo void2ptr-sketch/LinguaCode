@@ -1,0 +1,15 @@
+@use '../quiz-card';
+
+.code-trace-card__prompt {
+  ::ng-deep code {
+    font-size: 0.95rem;
+  }
+}
+
+.code-trace-card__options {
+  button {
+    code {
+      font-family: 'DejaVu Sans Mono', 'Roboto Mono', monospace;
+    }
+  }
+}

@@ -23,6 +23,8 @@ export type CardAnswerState = {
   memoryComplete: boolean;
   drawSubmitted: boolean;
   drawAnswer: DrawAnswerPayload | null;
+  /** Self-reported result for flip cards: `true` — knew, `false` — did not know. */
+  flipKnown: boolean | null;
   learningProficiencyLevel: LearningProficiencyLevel;
 };
 
@@ -44,5 +46,6 @@ export const createCardAnswerState = (
   memoryComplete: false,
   drawSubmitted: false,
   drawAnswer: null,
+  flipKnown: null,
   learningProficiencyLevel,
 });

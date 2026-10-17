@@ -243,4 +243,53 @@ describe('fallbackPreviewCard', () => {
       optionsLearning: ['\u9280\u884c', 'y\u00ednx\u00edng'],
     });
   });
+
+  it('should return flip card with fallback sides', () => {
+    const result = fallbackPreviewCard(
+      {
+        kind: 'flip',
+        title: 'Flip',
+        front: '',
+        back: '',
+        audioUrl: '',
+        appearance,
+      },
+      'preview-flip',
+    );
+
+    expect(result).toMatchObject({ kind: 'flip', front: 'Front', back: 'Back' });
+  });
+
+  it('should return cloze card with fallback answer', () => {
+    const draft: import('../../types').ClozeCardDraft = {
+      ...emptyLexemeCardDraft(),
+      kind: 'cloze',
+      title: 'Cloze',
+      promptKnown: '',
+      options: [],
+      acceptedAnswers: [],
+      correctAnswer: '',
+      correctIndex: 0,
+      appearance,
+    };
+    const result = fallbackPreviewCard(draft, 'preview-cloze');
+
+    expect(result).toMatchObject({ kind: 'cloze', correctAnswer: 'brave' });
+  });
+
+  it('should return code-trace card with output options', () => {
+    const draft: import('../../types').CodeTraceCardDraft = {
+      kind: 'code-trace',
+      title: 'Trace',
+      caption: '',
+      question: '',
+      code: { code: '', language: 'cpp' },
+      outputOptions: [],
+      correctIndex: 0,
+      appearance,
+    };
+    const result = fallbackPreviewCard(draft, 'preview-trace');
+
+    expect(result).toMatchObject({ kind: 'code-trace', outputOptions: ['Hello', 'World'] });
+  });
 });

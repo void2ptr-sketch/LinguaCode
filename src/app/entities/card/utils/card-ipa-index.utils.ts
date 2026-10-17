@@ -63,7 +63,13 @@ export function collectCardIpaReadings(card: Card): readonly string[] {
         }
       }
       break;
+    case 'flip':
+      addLexeme(card.frontLexeme);
+      addLexeme(card.backLexeme);
+      break;
     case 'draw':
+    case 'cloze':
+    case 'code-trace':
       break;
   }
 

@@ -1,0 +1,18 @@
+@use '../quiz-card';
+
+.cloze-card__sentence {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+.cloze-card__blank {
+  min-width: 2.5rem;
+  display: inline-block;
+  text-align: center;
+  border-bottom: 2px dotted var(--mat-outlined-button-outline-color, currentColor);
+  color: var(--mat-form-field-outline-color, currentColor);
+  font-weight: 600;
+}

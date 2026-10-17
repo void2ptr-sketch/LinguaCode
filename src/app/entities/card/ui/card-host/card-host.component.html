@@ -124,6 +124,42 @@
           (nextCard)="nextCard.emit()"
         />
       }
+      @case ('flip') {
+        <app-flip-card
+          [card]="current"
+          [direction]="direction()"
+          [flipKnown]="flipKnown()"
+          [feedback]="feedback()"
+          [fontSize]="fontSize()"
+          (flipKnownChange)="flipKnownChange.emit($event)"
+          (checkAnswer)="checkAnswer.emit()"
+          (nextCard)="nextCard.emit()"
+        />
+      }
+      @case ('cloze') {
+        <app-cloze-card
+          [card]="current"
+          [selectedIndex]="selectedIndex()"
+          [answerText]="answerText()"
+          [feedback]="feedback()"
+          [fontSize]="fontSize()"
+          (optionSelected)="optionSelected.emit($event)"
+          (answerTextChange)="answerTextChange.emit($event)"
+          (checkAnswer)="checkAnswer.emit()"
+          (nextCard)="nextCard.emit()"
+        />
+      }
+      @case ('code-trace') {
+        <app-code-trace-card
+          [card]="current"
+          [selectedIndex]="selectedIndex()"
+          [feedback]="feedback()"
+          [fontSize]="fontSize()"
+          (optionSelected)="optionSelected.emit($event)"
+          (checkAnswer)="checkAnswer.emit()"
+          (nextCard)="nextCard.emit()"
+        />
+      }
     }
   }
 </app-card-focus-shell>

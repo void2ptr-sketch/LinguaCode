@@ -31,6 +31,23 @@ function shuffle<T>(array: readonly T[]): T[] {
   return result;
 }
 
+/**
+ * Возвращает однострочное описание карточки для PDF-экспорта
+ * для видов без специализированного рендера (flip, cloze, code-trace).
+ */
+function describeCardForPdf(card: Card): string {
+  switch (card.kind) {
+    case 'flip':
+      return `${card.front} → ${card.back}`;
+    case 'cloze':
+      return `${card.promptKnown} (${card.correctAnswer})`;
+    case 'code-trace':
+      return `${card.question?.trim() || card.title}: ${card.outputOptions[card.correctIndex] ?? ''}`;
+    default:
+      return card.title;
+  }
+}
+
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
@@ -511,11 +528,20 @@ export class CoursePdfExportService {
         break;
       }
 
+      case 'flip':
+      case 'cloze':
+      case 'code-trace': {
+        const label = describeCardForPdf(card);
+        const lines = doc.splitTextToSize(label, CONTENT_WIDTH);
+        doc.text(lines, MARGIN, y);
+        y += lines.length * 16 + 12;
+        break;
+      }
+
       default: {
-        const _exhaustive: never = card;
         doc.setFontSize(14);
         doc.setTextColor(153, 153, 153);
-        doc.text(`[Неизвестный тип карточки: ${(_exhaustive as Card).kind}]`, MARGIN, y);
+        doc.text(`[Неизвестный тип карточки: ${(card as Card).kind}]`, MARGIN, y);
         break;
       }
     }

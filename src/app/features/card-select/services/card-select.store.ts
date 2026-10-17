@@ -50,6 +50,9 @@ export class CardSelectStore {
   /** Whether the user has completed the memory board. */
   readonly memoryComplete = signal(false);
 
+  /** Self-reported result for flip cards: `true` — knew, `false` — did not know, `null` — unknown. */
+  readonly flipKnown = signal<boolean | null>(null);
+
   /** Whether the user has submitted a draw answer. */
   readonly drawSubmitted = signal(false);
 
@@ -192,6 +195,22 @@ export class CardSelectStore {
     }
 
     this.memoryComplete.set(value);
+  }
+
+  /**
+   * Sets the self-reported result for flip cards.
+   *
+   * @remarks
+   * No-op if feedback is already shown or the session is completed.
+   *
+   * @param value - Whether the user knew the back side.
+   */
+  setFlipKnown(value: boolean): void {
+    if (this.feedback() !== null || this.completed()) {
+      return;
+    }
+
+    this.flipKnown.set(value);
   }
 
   /**
@@ -344,6 +363,7 @@ export class CardSelectStore {
       memoryComplete: this.memoryComplete(),
       drawSubmitted: this.drawSubmitted(),
       drawAnswer: this.drawAnswer(),
+      flipKnown: this.flipKnown(),
       learningProficiencyLevel: this.userStore.learningProficiencyLevel(),
     };
   }
@@ -361,6 +381,7 @@ export class CardSelectStore {
     this.selectedIndex.set(null);
     this.answerText.set('');
     this.memoryComplete.set(false);
+    this.flipKnown.set(null);
     this.drawSubmitted.set(false);
     this.drawAnswer.set(null);
     this.feedback.set(null);

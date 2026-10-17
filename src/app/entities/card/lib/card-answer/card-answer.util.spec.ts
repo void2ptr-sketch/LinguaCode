@@ -374,4 +374,78 @@ describe('card-answer.utils', () => {
       }),
     ).toBe(true);
   });
+
+  it('should check code-trace cards by output index', () => {
+    const card = {
+      id: 'trace-1',
+      kind: 'code-trace' as const,
+      title: 'Trace',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      code: { language: 'cpp' as const, code: 'int main() { return 0; }' },
+      outputOptions: ['0', '1'],
+      correctIndex: 0,
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(false);
+    expect(getCorrectAnswerLabel(card)).toBe('0');
+  });
+
+  it('should check select-mode cloze cards by option index', () => {
+    const card = {
+      id: 'cloze-select-1',
+      kind: 'cloze' as const,
+      title: 'Cloze select',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'I ___ coffee.',
+      options: ['drinks', 'drink', 'drinking'],
+      correctIndex: 1,
+      correctAnswer: 'drink',
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+    expect(canCheckCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 1 })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, selectedIndex: 0 })).toBe(false);
+    expect(getCorrectAnswerLabel(card)).toBe('drink');
+  });
+
+  it('should check input-mode cloze cards by typed text', () => {
+    const card = {
+      id: 'cloze-input-1',
+      kind: 'cloze' as const,
+      title: 'Cloze input',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      promptKnown: 'Five + five = ___',
+      correctAnswer: 'ten',
+      acceptedAnswers: ['10'],
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+    expect(canCheckCardAnswer(card, { ...baseState, answerText: 'ten' })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, answerText: ' TEN ' })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, answerText: '10' })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, answerText: 'eleven' })).toBe(false);
+    expect(getCorrectAnswerLabel(card)).toBe('ten');
+  });
+
+  it('should check flip cards via self-reported flipKnown', () => {
+    const card = {
+      id: 'flip-1',
+      kind: 'flip' as const,
+      title: 'Flip',
+      appearance: { theme: 'azure-blue' as const, fontSize: 'md' as const },
+      front: 'Привет',
+      back: 'Hello',
+    };
+
+    expect(canCheckCardAnswer(card, baseState)).toBe(false);
+    expect(canCheckCardAnswer(card, { ...baseState, flipKnown: true })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, flipKnown: true })).toBe(true);
+    expect(checkCardAnswer(card, { ...baseState, flipKnown: false })).toBe(false);
+    expect(checkCardAnswer(card, baseState)).toBeNull();
+    expect(getCorrectAnswerLabel(card)).toBe('Hello');
+  });
 });

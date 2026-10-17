@@ -80,6 +80,14 @@ export function resolveCardPrompt(card: Card, direction: CardDirection): string 
     return card.promptKnown;
   }
 
+  if (card.kind === 'flip') {
+    return card.front;
+  }
+
+  if (card.kind === 'cloze') {
+    return card.promptKnown;
+  }
+
   return '';
 }
 
@@ -134,6 +142,14 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
     };
   }
 
+  if (card.kind === 'code-trace') {
+    return {
+      prompt: card.question?.trim() || card.caption?.trim() || 'Что выведет код?',
+      options: card.outputOptions,
+      correctIndex: card.correctIndex,
+    };
+  }
+
   if (card.kind === 'sound') {
     return {
       prompt: card.promptKnown,
@@ -158,7 +174,7 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
 }
 
 function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard {
-  if (card.kind === 'code-select') {
+  if (card.kind === 'code-select' || card.kind === 'code-trace') {
     return resolveKnownToLearningOptionCard(card);
   }
 

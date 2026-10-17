@@ -1231,6 +1231,105 @@
         "difficulty": "beginner",
         "tags": []
       }
+    },
+    {
+      "id": "flip-1",
+      "kind": "flip",
+      "title": "Карточка-переворот: приветствие",
+      "courseId": "demo-course",
+      "lessonId": "demo-lesson-2",
+      "scenarioId": "demo-scenario",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "front": "Здравствуйте!",
+      "back": "Hello!",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
+    },
+    {
+      "id": "cloze-1",
+      "kind": "cloze",
+      "title": "Пропуск: спряжение глагола",
+      "courseId": "demo-course",
+      "lessonId": "demo-lesson-2",
+      "scenarioId": "demo-scenario",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "I ___ coffee every morning.",
+      "options": [
+        "drinks",
+        "drink",
+        "drinking",
+        "to drink"
+      ],
+      "correctAnswer": "drink",
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
+    },
+    {
+      "id": "cloze-input-1",
+      "kind": "cloze",
+      "title": "Пропуск (ввод): числительное",
+      "courseId": "demo-course",
+      "lessonId": "demo-lesson-2",
+      "scenarioId": "demo-scenario",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Five + five = ___",
+      "correctAnswer": "ten",
+      "acceptedAnswers": [
+        "10"
+      ],
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": []
+      }
+    },
+    {
+      "id": "code-trace-cpp-1",
+      "kind": "code-trace",
+      "title": "C++: что выведет код?",
+      "scenarioId": "scenario-code-demo",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "std::mutex и порядок вывода",
+      "question": "Что выведет программа?",
+      "code": {
+        "language": "cpp",
+        "code": "#include <atomic>\n#include <iostream>\n\nint main() {\n    int counter = 0;\n    auto inc = [&counter]() { ++counter; };\n    inc();\n    inc();\n    std::cout << counter;\n}"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "3",
+        "0"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": []
+      }
     }
   ]
 }

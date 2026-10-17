@@ -480,4 +480,87 @@ describe('card-draft.utils', () => {
       expect(cardSummary(card)).toBe('Caption');
     });
   });
+
+  describe('new card kinds (flip, cloze, code-trace)', () => {
+    it('should convert flip card to draft', () => {
+      const card = {
+        id: 'flip-1',
+        kind: 'flip',
+        title: 'Flip',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        front: 'Привет',
+        back: 'Hello',
+      } as unknown as Card;
+
+      const draft = cardToDraft(card);
+      expect(draft).toMatchObject({ kind: 'flip', front: 'Привет', back: 'Hello' });
+    });
+
+    it('should convert cloze card to draft preserving options', () => {
+      const card = {
+        id: 'cloze-1',
+        kind: 'cloze',
+        title: 'Cloze',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        promptKnown: 'I ___ coffee.',
+        options: ['drinks', 'drink'],
+        correctIndex: 1,
+        correctAnswer: 'drink',
+        acceptedAnswers: ['drink'],
+      } as unknown as Card;
+
+      const draft = cardToDraft(card);
+      expect(draft).toMatchObject({
+        kind: 'cloze',
+        options: ['drinks', 'drink'],
+        acceptedAnswers: ['drink'],
+        correctAnswer: 'drink',
+      });
+    });
+
+    it('should convert code-trace card to draft', () => {
+      const card = {
+        id: 'trace-1',
+        kind: 'code-trace',
+        title: 'Trace',
+        appearance: { theme: 'azure-blue', fontSize: 'md' },
+        code: { language: 'cpp', code: 'int main() {}' },
+        outputOptions: ['0', '1'],
+        correctIndex: 0,
+      } as unknown as Card;
+
+      const draft = cardToDraft(card);
+      expect(draft).toMatchObject({ kind: 'code-trace', outputOptions: ['0', '1'] });
+    });
+
+    it('should create empty drafts for new kinds', () => {
+      const appearance = { theme: 'azure-blue', fontSize: 'md' as const };
+      expect(emptyCardDraft('flip', appearance).kind).toBe('flip');
+      expect(emptyCardDraft('cloze', appearance).kind).toBe('cloze');
+      expect(emptyCardDraft('code-trace', appearance).kind).toBe('code-trace');
+    });
+
+    it('should summarize flip cards via front side', () => {
+      const card = {
+        id: 'flip-1',
+        kind: 'flip',
+        title: 'Flip',
+        front: 'Front',
+        back: 'Back',
+      } as unknown as Card;
+
+      expect(cardSummary(card)).toBe('Front');
+    });
+
+    it('should summarize code-trace cards via question', () => {
+      const card = {
+        id: 'trace-1',
+        kind: 'code-trace',
+        title: 'Trace',
+        question: 'Что выведет?',
+      } as unknown as Card;
+
+      expect(cardSummary(card)).toBe('Что выведет?');
+    });
+  });
 });

@@ -259,4 +259,91 @@ describe('card-legacy.mapper', () => {
       expect(result).toHaveLength(1);
     });
   });
+
+  describe('new card kinds (flip, cloze, code-trace)', () => {
+    it('should pass through a modern flip card', () => {
+      const card = {
+        id: 'flip-1',
+        kind: 'flip',
+        title: 'Flip',
+        appearance: { theme: 'default', fontSize: 'md' },
+        front: 'Привет',
+        back: 'Hello',
+      } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({ kind: 'flip', front: 'Привет', back: 'Hello' });
+    });
+
+    it('should fill empty front/back for legacy flip cards', () => {
+      const card = { id: 'flip-1', kind: 'flip', title: 'Flip' } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({ kind: 'flip', front: '', back: '' });
+    });
+
+    it('should pass through a modern cloze card', () => {
+      const card = {
+        id: 'cloze-1',
+        kind: 'cloze',
+        title: 'Cloze',
+        appearance: { theme: 'default', fontSize: 'md' },
+        promptKnown: 'I ___ coffee.',
+        options: ['drinks', 'drink'],
+        correctIndex: 1,
+        correctAnswer: 'drink',
+        acceptedAnswers: ['drink'],
+      } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({
+        kind: 'cloze',
+        promptKnown: 'I ___ coffee.',
+        correctAnswer: 'drink',
+      });
+    });
+
+    it('should fill missing correctAnswer for legacy cloze cards', () => {
+      const card = {
+        id: 'cloze-1',
+        kind: 'cloze',
+        title: 'Cloze',
+        prompt: 'I ___ coffee.',
+      } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({
+        kind: 'cloze',
+        promptKnown: 'I ___ coffee.',
+        correctAnswer: '',
+      });
+    });
+
+    it('should fill outputOptions from legacy options for code-trace cards', () => {
+      const card = {
+        id: 'trace-1',
+        kind: 'code-trace',
+        title: 'Trace',
+        options: ['0', '1'],
+      } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({ kind: 'code-trace', outputOptions: ['0', '1'] });
+    });
+
+    it('should pass through a modern code-trace card', () => {
+      const card = {
+        id: 'trace-1',
+        kind: 'code-trace',
+        title: 'Trace',
+        appearance: { theme: 'default', fontSize: 'md' },
+        code: { language: 'cpp', code: 'int main() {}' },
+        outputOptions: ['0', '1'],
+        correctIndex: 0,
+      } as unknown as Card;
+
+      const result = normalizeLegacyCard(card);
+      expect(result).toMatchObject({ kind: 'code-trace', outputOptions: ['0', '1'] });
+    });
+  });
 });

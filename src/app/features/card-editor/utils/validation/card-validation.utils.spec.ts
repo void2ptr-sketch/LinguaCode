@@ -959,4 +959,146 @@ describe('card-validation.utils', () => {
 
     expect(card?.kind).toBe('reading');
   });
+
+  // ── new kinds: flip, cloze, code-trace ──
+
+  it('should normalize a flip draft', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'flip',
+        title: 'Flip',
+        front: 'Привет',
+        back: 'Hello',
+        audioUrl: '',
+        appearance,
+      },
+      'flip-1',
+    );
+
+    expect(card).toMatchObject({ kind: 'flip', front: 'Привет', back: 'Hello' });
+    expect(card?.appearance).toEqual(appearance);
+  });
+
+  it('should return null for invalid flip draft', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'flip',
+        title: '',
+        front: 'Привет',
+        back: 'Hello',
+        audioUrl: '',
+        appearance,
+      },
+      'flip-empty',
+    );
+
+    expect(card).toBeNull();
+  });
+
+  it('should normalize a cloze draft in select mode', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'cloze',
+        title: 'Cloze',
+        promptKnown: 'I ___ coffee.',
+        options: ['drinks', 'drink'],
+        acceptedAnswers: [],
+        correctAnswer: 'drink',
+        correctIndex: 1,
+        appearance,
+        ...lexemeDraft,
+      },
+      'cloze-select',
+    );
+
+    expect(card).toMatchObject({
+      kind: 'cloze',
+      options: ['drinks', 'drink'],
+      correctIndex: 1,
+      correctAnswer: 'drink',
+    });
+  });
+
+  it('should normalize a cloze draft in input mode', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'cloze',
+        title: 'Cloze',
+        promptKnown: 'Five + five = ___',
+        options: [],
+        acceptedAnswers: ['10'],
+        correctAnswer: 'ten',
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      },
+      'cloze-input',
+    );
+
+    expect(card).toMatchObject({
+      kind: 'cloze',
+      acceptedAnswers: ['10'],
+      correctAnswer: 'ten',
+    });
+    expect('options' in (card ?? {})).toBe(false);
+  });
+
+  it('should return null for cloze draft without correct answer', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'cloze',
+        title: 'Cloze',
+        promptKnown: 'I ___ coffee.',
+        options: [],
+        acceptedAnswers: [],
+        correctAnswer: '',
+        correctIndex: 0,
+        appearance,
+        ...lexemeDraft,
+      },
+      'cloze-invalid',
+    );
+
+    expect(card).toBeNull();
+  });
+
+  it('should normalize a code-trace draft', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'code-trace',
+        title: 'Trace',
+        caption: '',
+        question: 'Что выведет?',
+        code: { code: 'int main() {}', language: 'cpp' },
+        outputOptions: ['0', '1'],
+        correctIndex: 0,
+        appearance,
+      },
+      'trace-1',
+    );
+
+    expect(card).toMatchObject({
+      kind: 'code-trace',
+      outputOptions: ['0', '1'],
+      correctIndex: 0,
+    });
+  });
+
+  it('should return null for code-trace draft with empty options', () => {
+    const card = normalizeCardDraft(
+      {
+        kind: 'code-trace',
+        title: 'Trace',
+        caption: '',
+        question: '',
+        code: { code: 'int main() {}', language: 'cpp' },
+        outputOptions: [],
+        correctIndex: 0,
+        appearance,
+      },
+      'trace-invalid',
+    );
+
+    expect(card).toBeNull();
+  });
 });

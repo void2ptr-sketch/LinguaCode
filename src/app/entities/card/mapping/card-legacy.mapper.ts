@@ -1,6 +1,9 @@
 import type {
   Card,
+  ClozeCard,
+  CodeTraceCard,
   DrawCard,
+  FlipCard,
   KeyboardCard,
   MemoryCard,
   MemoryPair,
@@ -114,6 +117,30 @@ export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
         ...card,
         promptKnown: card.promptKnown ?? card.prompt ?? '',
         referenceHintKnown: card.referenceHintKnown ?? card.referenceHint ?? '',
+      };
+    }
+    case 'flip': {
+      const card = raw as FlipCard & LegacyCard;
+      return {
+        ...card,
+        front: card.front ?? '',
+        back: card.back ?? '',
+      };
+    }
+    case 'cloze': {
+      const card = raw as ClozeCard & LegacyCard;
+      return {
+        ...card,
+        promptKnown: card.promptKnown ?? card.prompt ?? '',
+        correctAnswer: card.correctAnswer ?? '',
+      };
+    }
+    case 'code-trace': {
+      const card = raw as CodeTraceCard & LegacyCard;
+      return {
+        ...card,
+        outputOptions: card.outputOptions ?? card.options ?? [],
+        correctIndex: card.correctIndex ?? 0,
       };
     }
     default:

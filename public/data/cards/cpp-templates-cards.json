@@ -1,0 +1,845 @@
+{
+  "scenarioId": "scenario-cpp-templates",
+  "cards": [
+    {
+      "id": "code-select-cpp-temp-1",
+      "kind": "code-select",
+      "title": "C++: шаблон функции basic template",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-func-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить шаблон функции?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nt______-_emplate<typename T>\nT max(T a, T b) {\n    return (a > b) ? a : b;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "generic"
+        },
+        {
+          "language": "cpp",
+          "code": "param"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["template"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-2",
+      "kind": "code-select",
+      "title": "C++: typename vs class в шаблоне",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-typename-class",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Чем typename отличается от class в шаблоне?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nt______-_emplate<typename T> // Или class T — эквивалентно\nvoid foo(T x) {}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate / emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template / template"
+        },
+        {
+          "language": "cpp",
+          "code": "generic / generic"
+        },
+        {
+          "language": "cpp",
+          "code": "type / class"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["typename"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-3",
+      "kind": "code-select",
+      "title": "C++: шаблон класса basic template class",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-class-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как объявить шаблон класса?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nt______-_emplate<typename T>\nclass Box {\n    T value;\npublic:\n    Box(T v) : value(v) {}\n    T get() const { return value; }\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "generic"
+        },
+        {
+          "language": "cpp",
+          "code": "param"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["template class"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-4",
+      "kind": "code-select",
+      "title": "C++: template specialization частичная специализация",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-specialization",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое template specialization?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\nclass Handler {\npublic:\n    void handle() { std::cout << \"Generic\"; }\n};\n\nt______-_emplate<> // Полная специализация для int\nclass Handler<int> {\npublic:\n    void handle() { std::cout << \"Int handler\"; }\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "specialize"
+        },
+        {
+          "language": "cpp",
+          "code": "override"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["template specialization"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-5",
+      "kind": "code-select",
+      "title": "C++: template параметр по умолчанию default template arg",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-default-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как задать параметр шаблона по умолчанию?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T = i______-_nt>\nclass Container {\n    T value;\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "nt"
+        },
+        {
+          "language": "cpp",
+          "code": "int"
+        },
+        {
+          "language": "cpp",
+          "code": "integer"
+        },
+        {
+          "language": "cpp",
+          "code": "number"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["default template arg"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-6",
+      "kind": "code-select",
+      "title": "C++: non-type template parameter параметр не-тип",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-non-type-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое non-type template parameter?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<int N> // Не тип, а значение!\nclass Array {\n    int data[N];\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "N"
+        },
+        {
+          "language": "cpp",
+          "code": "N"
+        },
+        {
+          "language": "cpp",
+          "code": "size"
+        },
+        {
+          "language": "cpp",
+          "code": "count"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["non-type template"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-7",
+      "kind": "code-select",
+      "title": "C++: variadic template вариативный шаблон",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-variadic-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое variadic template?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename... Args>\nvoid print(Args... args) {\n    // Переменное число аргументов\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "... Args / ... args"
+        },
+        {
+          "language": "cpp",
+          "code": "...args / ...args"
+        },
+        {
+          "language": "cpp",
+          "code": "*args / *args"
+        },
+        {
+          "language": "cpp",
+          "code": "&args / &args"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["variadic template"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-8",
+      "kind": "code-select",
+      "title": "C++: template alias псевдоним шаблона",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-template-alias",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как создать псевдоним шаблона?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nt______-_emplate<typename T>\nusing Vec = std::vector<T>;\n\nVec<int> v; // То же, что std::vector<int>"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "alias"
+        },
+        {
+          "language": "cpp",
+          "code": "typedef"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["template alias"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-9",
+      "kind": "code-select",
+      "title": "C++: template deduction вывод типа шаблона",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-template-deduction",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как работает template deduction?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\nvoid foo(T x) {}\n\nfoo(42); // T выводится как int"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "T"
+        },
+        {
+          "language": "cpp",
+          "code": "T"
+        },
+        {
+          "language": "cpp",
+          "code": "int"
+        },
+        {
+          "language": "cpp",
+          "code": "auto"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "beginner",
+        "tags": ["template deduction"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-10",
+      "kind": "code-select",
+      "title": "C++: constexpr в шаблоне константное время компиляции",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-constexpr-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое constexpr в шаблоне?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\nc______-_onstantexpr T square(T x) {\n    return x * x; // Вычисляется на этапе компиляции\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "onstantexpr"
+        },
+        {
+          "language": "cpp",
+          "code": "constexpr"
+        },
+        {
+          "language": "cpp",
+          "code": "const"
+        },
+        {
+          "language": "cpp",
+          "code": "static"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["constexpr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-11",
+      "kind": "code-select",
+      "title": "C++: if constexpr условная компиляция C++17",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-if-constexpr",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает if constexpr?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\nvoid foo(T x) {\n    i______-_f constexpr(std::is_integral_v<T>) {\n        std::cout << \"Integral\";\n    } e______-_lse {\n        std::cout << \"Not integral\";\n    }\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "f / if / lse"
+        },
+        {
+          "language": "cpp",
+          "code": "if / if / else"
+        },
+        {
+          "language": "cpp",
+          "code": "when / when / otherwise"
+        },
+        {
+          "language": "cpp",
+          "code": "switch / switch / default"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["if constexpr"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-12",
+      "kind": "code-select",
+      "title": "C++: fold expression свёртка C++17",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-fold-expression",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое fold expression?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename... Args>\nauto sum(Args... args) {\n    return (args + ...); // Свёртка: складывает все аргументы\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "+ ..."
+        },
+        {
+          "language": "cpp",
+          "code": "+ ..."
+        },
+        {
+          "language": "cpp",
+          "code": ", ..."
+        },
+        {
+          "language": "cpp",
+          "code": "::..."
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["fold expression"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-13",
+      "kind": "code-select",
+      "title": "C++: template template parameter параметр шаблона",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-template-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое template template parameter?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T, t______-_emplate<typename> class Container>\nclass Wrapper {\n    Container<T> data;\n};"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "generic"
+        },
+        {
+          "language": "cpp",
+          "code": "param"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["template template parameter"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-14",
+      "kind": "code-select",
+      "title": "C++: SFINAE substitution failure is not an error",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-sfinae",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое SFINAE?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\na______-_uto typename T::iterator foo(T& t) {\n    // Если у T нет iterator, эта функция игнорируется\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "uto / typename"
+        },
+        {
+          "language": "cpp",
+          "code": "auto / typename"
+        },
+        {
+          "language": "cpp",
+          "code": "static / class"
+        },
+        {
+          "language": "cpp",
+          "code": "virtual / type"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["SFINAE"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-15",
+      "kind": "code-select",
+      "title": "C++: std::enable_if условный шаблон",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-enable-if",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Зачем enable_if?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n#include <type_traits>\n\ntemplate<typename T>\ns______-_td::enable_if_t<std::is_integral_v<T>, int>\nfoo(T x) {\n    return x;\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "td"
+        },
+        {
+          "language": "cpp",
+          "code": "std"
+        },
+        {
+          "language": "cpp",
+          "code": "type"
+        },
+        {
+          "language": "cpp",
+          "code": "class"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["std::enable_if"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-16",
+      "kind": "code-select",
+      "title": "C++: concept ограничение шаблона C++20",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-concept",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое concept?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\nt______-_emplate<typename T>\nconcept Integral = std::is_integral_v<T>;\n\ntemplate<Integral T>\nvoid foo(T x) {}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "emplate"
+        },
+        {
+          "language": "cpp",
+          "code": "template"
+        },
+        {
+          "language": "cpp",
+          "code": "concept"
+        },
+        {
+          "language": "cpp",
+          "code": "requirement"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["concept"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-17",
+      "kind": "code-select",
+      "title": "C++: requires выражение C++20",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-requires",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает requires?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\nr______-_equires(std::is_integral_v<T>)\nvoid foo(T x) {}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "equires"
+        },
+        {
+          "language": "cpp",
+          "code": "requires"
+        },
+        {
+          "language": "cpp",
+          "code": "require"
+        },
+        {
+          "language": "cpp",
+          "code": "constraint"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["requires"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-18",
+      "kind": "code-select",
+      "title": "C++: explicit template specialization явная специализация",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-explicit-specialization",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что делает explicit для шаблона?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<> s______-_pecialized void foo<int>(int x) {\n    // Явная специализация для int\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "pecialized"
+        },
+        {
+          "language": "cpp",
+          "code": "specialized"
+        },
+        {
+          "language": "cpp",
+          "code": "explicit"
+        },
+        {
+          "language": "cpp",
+          "code": "override"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["explicit specialization"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-19",
+      "kind": "code-select",
+      "title": "C++: template pack expansion раскрытие пакета",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-pack-expansion",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Что такое pack expansion?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename... Args>\nvoid print(Args... args) {\n    (std::cout << ... << args); // Раскрытие пакета\n}"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "... args"
+        },
+        {
+          "language": "cpp",
+          "code": "...args"
+        },
+        {
+          "language": "cpp",
+          "code": "*args"
+        },
+        {
+          "language": "cpp",
+          "code": "&args"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "advanced",
+        "tags": ["pack expansion"]
+      }
+    },
+    {
+      "id": "code-select-cpp-temp-20",
+      "kind": "code-select",
+      "title": "C++: using alias template псевдоним шаблона C++14",
+      "courseId": "course-cpp-beginner",
+      "lessonId": "lesson-cpp-using-alias-template",
+      "scenarioId": "scenario-cpp-templates",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Как создать alias template?",
+      "prompt": {
+        "language": "cpp",
+        "code": "#include <iostream>\n\ntemplate<typename T>\na______-_lias MyVec = std::vector<T>;\n\nMyVec<int> v; // std::vector<int>"
+      },
+      "options": [
+        {
+          "language": "cpp",
+          "code": "lias"
+        },
+        {
+          "language": "cpp",
+          "code": "alias"
+        },
+        {
+          "language": "cpp",
+          "code": "typedef"
+        },
+        {
+          "language": "cpp",
+          "code": "using"
+        }
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "en",
+        "difficulty": "intermediate",
+        "tags": ["alias template"]
+      }
+    }
+  ]
+}

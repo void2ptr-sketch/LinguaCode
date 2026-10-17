@@ -152,6 +152,45 @@ export function fallbackPreviewCard(draft: CardDraft, previewId: string): Card {
         appearance,
       };
 
+    case 'flip':
+      return {
+        id: previewId,
+        kind: 'flip',
+        title: draft.title || 'New card',
+        front: draft.front || 'Front',
+        back: draft.back || 'Back',
+        appearance,
+      };
+
+    case 'cloze':
+      return {
+        id: previewId,
+        kind: 'cloze',
+        title: draft.title || 'New card',
+        promptKnown: draft.promptKnown || 'Hello ___ world',
+        correctAnswer: draft.correctAnswer || 'brave',
+        options: draft.options.length ? draft.options : undefined,
+        correctIndex: draft.options.length ? draft.correctIndex : undefined,
+        acceptedAnswers: draft.acceptedAnswers.length ? draft.acceptedAnswers : undefined,
+        appearance,
+      };
+
+    case 'code-trace':
+      return {
+        id: previewId,
+        kind: 'code-trace',
+        title: draft.title || 'New card',
+        caption: draft.caption || undefined,
+        question: draft.question || 'What will the code output?',
+        code: {
+          code: draft.code.code || 'std::cout << "Hello";',
+          language: draft.code.language,
+        },
+        outputOptions: draft.outputOptions.length ? draft.outputOptions : ['Hello', 'World'],
+        correctIndex: 0,
+        appearance,
+      };
+
     default: {
       // Exhaustive switch: draft is narrowed to never here
       const _draft = draft as CardDraft;
