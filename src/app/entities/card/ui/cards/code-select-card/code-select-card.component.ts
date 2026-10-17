@@ -2,6 +2,7 @@ import { Component, ChangeDetectionStrategy, computed, input, output } from '@an
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
+import { resolveOptionCard } from '../../../utils/card-direction.utils';
 import { CodeSelectCard } from '../../../model';
 import { CodeHighlightComponent } from '../../code-highlight/code-highlight.component';
 import { CardFeedback } from '../../../model/card-interaction.types';
@@ -62,6 +63,9 @@ export class CodeSelectCardComponent {
    */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = input<number>(0);
+
   /**
    * Emits when the user selects a code block option.
    * @remarks Payload is the zero-based index of the selected option.
@@ -93,13 +97,23 @@ export class CodeSelectCardComponent {
   });
 
   /**
+   * Resolved card data with shuffled options.
+   * @remarks
+   * Uses `resolveOptionCard` to apply direction and shuffle nonce.
+   */
+  readonly resolved = computed(() => {
+    const card = this.card();
+    return resolveOptionCard(card, 'known-to-learning', this.shuffleNonce());
+  });
+
+  /**
    * Returns the CSS class for an option based on selection and feedback state.
    *
    * @param index - Zero-based option index.
    * @returns CSS class string for styling the option card.
    */
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.card().correctIndex);
+    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.resolved().correctIndex);
   }
 
   /**

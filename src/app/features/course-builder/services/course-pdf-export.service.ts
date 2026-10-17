@@ -15,25 +15,20 @@
  * ```
  */
 
-/**
- * Перемешивает массив методом Фишера-Йейтса.
- * Исходный массив не изменяется.
- *
- * @param array — исходный массив
- * @returns новый перемешанный массив
- */
-function shuffle<T>(array: readonly T[]): T[] {
-  const result = [...array];
-  for (let i = result.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [result[i], result[j]] = [result[j], result[i]];
-  }
-  return result;
-}
+
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { firstValueFrom } from 'rxjs';
+
+import type { Card } from '../../../entities/card/model';
+import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
+import type { Scenario } from '../../../entities/scenario/model';
+import { CoursesApiService } from '../../../entities/course';
+import { shuffleArray, hashSeed } from '../../../entities/card/utils/card-shuffle.util';
 
 /**
- * Возвращает однострочное описание карточки для PDF-экспорта
- * для видов без специализированного рендера (flip, cloze, code-trace).
+ * Returns a one-line description of a card for PDF export
+ * for card types without specialized rendering (flip, cloze, code-trace).
  */
 function describeCardForPdf(card: Card): string {
   switch (card.kind) {
@@ -48,14 +43,17 @@ function describeCardForPdf(card: Card): string {
   }
 }
 
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { firstValueFrom } from 'rxjs';
-
-import type { Card } from '../../../entities/card/model';
-import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
-import type { Scenario } from '../../../entities/scenario/model';
-import { CoursesApiService } from '../../../entities/course';
+/**
+ * Перемешивает массив методом Фишера-Йейтса с seed для детерминированности.
+ * Исходный массив не изменяется.
+ *
+ * @param array — исходный массив
+ * @param seed — seed для воспроизводимости
+ * @returns новый перемешанный массив
+ */
+function shuffle<T>(array: readonly T[], seed: string): T[] {
+  return shuffleArray(array, hashSeed(seed)) as T[];
+}
 
 type jsPDFConstructor = new (options?: {
   orientation?: string;
@@ -589,7 +587,7 @@ export class CoursePdfExportService {
     y += 16;
 
     // Перемешиваем варианты ответов
-    const shuffledOptions = shuffle(card.optionsLearning);
+    const shuffledOptions = shuffle(card.optionsLearning, `${card.id}-pdf`);
 
     // Находим индекс правильного ответа в перемешанном массиве
     const originalCorrectOption = card.optionsLearning[card.correctIndex];
@@ -667,7 +665,7 @@ export class CoursePdfExportService {
     y += 16;
 
     // Перемешиваем варианты ответов
-    const shuffledOptions = shuffle(card.options);
+    const shuffledOptions = shuffle(card.options, `${card.id}-pdf`);
 
     // Находим индекс правильного ответа в перемешанном массиве
     const originalCorrectOption = card.options[card.correctIndex];
@@ -759,7 +757,7 @@ export class CoursePdfExportService {
     y += 16;
 
     // Перемешиваем варианты ответов
-    const shuffledSymbols = shuffle(card.symbols);
+    const shuffledSymbols = shuffle(card.symbols, `${card.id}-pdf`);
 
     // Находим индекс правильного ответа в перемешанном массиве
     const originalCorrectSymbol = card.symbols[card.correctIndex];
@@ -825,7 +823,7 @@ export class CoursePdfExportService {
     y += 16;
 
     // Перемешиваем варианты ответов
-    const shuffledOptions = shuffle(options);
+    const shuffledOptions = shuffle(options, `${card.id}-pdf`);
 
     // Находим индекс правильного ответа в перемешанном массиве
     const originalCorrectOption = options[card.correctIndex];
@@ -944,7 +942,7 @@ export class CoursePdfExportService {
     y += 16;
 
     // Перемешиваем варианты ответов
-    const shuffledTones = shuffle(card.toneOptions);
+    const shuffledTones = shuffle(card.toneOptions, `${card.id}-pdf`);
 
     // Находим индекс правильного ответа в перемешанном массиве
     const originalCorrectTone = card.toneOptions[card.correctIndex];

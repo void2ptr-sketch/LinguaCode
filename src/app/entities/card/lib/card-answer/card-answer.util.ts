@@ -131,16 +131,17 @@ function checkOptionCardAnswer(
   card: OptionCard,
   selectedIndex: number,
   sessionDirection: CardDirection,
+  shuffleNonce?: number,
 ): boolean {
-  if (card.kind === 'code-select' || card.kind === 'code-trace') {
-    return selectedIndex === card.correctIndex;
-  }
-
   const direction = effectiveCardDirection(
     'direction' in card ? card.direction : undefined,
     sessionDirection,
   );
-  const resolved = resolveOptionCard(card, direction);
+  const resolved = resolveOptionCard(card, direction, shuffleNonce);
+
+  if (card.kind === 'code-select' || card.kind === 'code-trace') {
+    return selectedIndex === resolved.correctIndex;
+  }
 
   if (card.kind === 'reading') {
     return matchesReadingCardSelection(card, resolved, selectedIndex);
@@ -263,6 +264,7 @@ export const canCheckCardAnswer = (card: Card, state: CardAnswerState): boolean 
  * @param state - The current answer state (selected index, text, etc.).
  * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
  * @param getHanziModel - Optional resolver for Hanzi character models (used for draw cards).
+ * @param shuffleNonce - Optional nonce for deterministic option shuffling.
  * @returns `true` if correct, `false` if incorrect, `null` if the answer cannot be evaluated.
  */
 export const checkCardAnswer = (
@@ -270,13 +272,14 @@ export const checkCardAnswer = (
   state: CardAnswerState,
   sessionDirection: CardDirection = 'known-to-learning',
   getHanziModel?: HanziModelResolver,
+  shuffleNonce?: number,
 ): boolean | null => {
   if (!canCheckCardAnswer(card, state)) {
     return null;
   }
 
   if (isOptionCard(card)) {
-    return checkOptionCardAnswer(card, state.selectedIndex!, sessionDirection);
+    return checkOptionCardAnswer(card, state.selectedIndex!, sessionDirection, shuffleNonce);
   }
 
   switch (card.kind) {
@@ -321,18 +324,20 @@ export const checkCardAnswer = (
  *
  * @param card - The card being answered.
  * @param sessionDirection - The session direction (defaults to `'known-to-learning'`).
+ * @param shuffleNonce - Optional nonce for deterministic option shuffling.
  * @returns The correct answer label, or `null` if not applicable.
  */
 export const getCorrectAnswerLabel = (
   card: Card,
   sessionDirection: CardDirection = 'known-to-learning',
+  shuffleNonce?: number,
 ): string | null => {
   if (isOptionCard(card)) {
     const direction = effectiveCardDirection(
       'direction' in card ? card.direction : undefined,
       sessionDirection,
     );
-    const resolved = resolveOptionCard(card, direction);
+    const resolved = resolveOptionCard(card, direction, shuffleNonce);
 
     if (card.kind === 'code-select') {
       return resolved.options[resolved.correctIndex] ?? null;

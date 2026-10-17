@@ -210,4 +210,54 @@ describe('card-direction.utils', () => {
     expect(cardSupportsSessionDirection(selectCard)).toBe(true);
     expect(cardSupportsSessionDirection(null)).toBe(false);
   });
+
+  describe('shuffle with nonce', () => {
+    it('should return same order when nonce is undefined', () => {
+      const resolved = resolveOptionCard(selectCard, 'known-to-learning', undefined);
+      expect(resolved.options).toEqual(['Hello', 'Goodbye', 'Thanks']);
+      expect(resolved.correctIndex).toBe(0);
+    });
+
+    it('should produce same shuffled order with same nonce', () => {
+      const resolved1 = resolveOptionCard(selectCard, 'known-to-learning', 42);
+      const resolved2 = resolveOptionCard(selectCard, 'known-to-learning', 42);
+      expect(resolved1.options).toEqual(resolved2.options);
+      expect(resolved1.correctIndex).toBe(resolved2.correctIndex);
+    });
+
+    it('should produce different shuffled order with different nonce', () => {
+      const resolved1 = resolveOptionCard(selectCard, 'known-to-learning', 42);
+      const resolved2 = resolveOptionCard(selectCard, 'known-to-learning', 99);
+      // With 3 options, different nonces should produce different orders most of the time
+      const different = resolved1.options[0] !== resolved2.options[0] ||
+        resolved1.options[1] !== resolved2.options[1] ||
+        resolved1.options[2] !== resolved2.options[2];
+      expect(different).toBe(true);
+    });
+
+    it('should adjust correctIndex after shuffle', () => {
+      const resolved = resolveOptionCard(selectCard, 'known-to-learning', 42);
+      // The correct option 'Hello' should still be in the shuffled array
+      expect(resolved.options).toContain('Hello');
+      // correctIndex should point to 'Hello' in the shuffled array
+      expect(resolved.options[resolved.correctIndex]).toBe('Hello');
+    });
+
+    it('should preserve all original options after shuffle', () => {
+      const resolved = resolveOptionCard(selectCard, 'known-to-learning', 42);
+      expect([...resolved.options].sort()).toEqual(['Hello', 'Goodbye', 'Thanks'].sort());
+    });
+
+    it('should not shuffle when there is only one option', () => {
+      const singleOptionCard: OptionCard = {
+        ...selectCard,
+        optionsLearning: ['Only'],
+        optionsKnown: ['Только'],
+        correctIndex: 0,
+      };
+      const resolved = resolveOptionCard(singleOptionCard, 'known-to-learning', 42);
+      expect(resolved.options).toEqual(['Only']);
+      expect(resolved.correctIndex).toBe(0);
+    });
+  });
 });

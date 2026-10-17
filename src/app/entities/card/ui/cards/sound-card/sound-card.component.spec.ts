@@ -21,6 +21,7 @@ describe('SoundCardComponent', () => {
 
   let fixture: ComponentFixture<SoundCardComponent>;
   let component: SoundCardComponent;
+  let correctOptionIndex: number;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -31,7 +32,11 @@ describe('SoundCardComponent', () => {
     fixture = TestBed.createComponent(SoundCardComponent);
     component = fixture.componentInstance;
     fixture.componentRef.setInput('card', card);
+    // Set deterministic shuffle nonce
+    fixture.componentRef.setInput('shuffleNonce', 0);
     fixture.detectChanges();
+    // Find the correct option index after shuffle
+    correctOptionIndex = component.resolved().correctIndex;
   });
 
   it('should create', () => {
@@ -83,11 +88,13 @@ describe('SoundCardComponent', () => {
   });
 
   it('should show incorrect option when feedback is incorrect', () => {
-    fixture.componentRef.setInput('selectedIndex', 1);
+    // Find an index that is NOT the correct option
+    const wrongIndex = correctOptionIndex === 0 ? 1 : 0;
+    fixture.componentRef.setInput('selectedIndex', wrongIndex);
     fixture.componentRef.setInput('feedback', 'incorrect');
     fixture.detectChanges();
 
-    expect(component.optionClass(1)).toContain('incorrect');
+    expect(component.optionClass(wrongIndex)).toContain('incorrect');
   });
 
   it('should have hasAudioFile false when audioUrl is empty', () => {

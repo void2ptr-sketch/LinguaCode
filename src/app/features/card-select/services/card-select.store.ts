@@ -64,6 +64,16 @@ export class CardSelectStore {
 
   /** Whether all cards in the session have been completed. */
   readonly completed = signal(false);
+
+  /**
+   * Nonce for deterministic option shuffling across all option-based cards.
+   *
+   * @remarks
+   * Incremented when starting a new scenario to reshuffle all card options.
+   * Remains stable during navigation within the same session.
+   */
+  readonly shuffleNonce = signal(0);
+
   /**
    * Nonce incremented each time a memory card is shown fresh.
    *
@@ -122,6 +132,7 @@ export class CardSelectStore {
     this.completed.set(false);
     this.loading.set(false);
     this.error.set(null);
+    this.shuffleNonce.update((n) => n + 1);
   }
 
   /**
@@ -282,6 +293,7 @@ export class CardSelectStore {
       this.answerState(),
       this.sessionDirection(),
       (character) => this.hanziData.getCachedModel(character),
+      this.shuffleNonce(),
     );
     if (isCorrect === null) {
       return null;

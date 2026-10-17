@@ -5,6 +5,7 @@ import { Card } from '../../../../entities/card/model';
 import { HanziDataService } from '../../../../entities/chinese/lib/services/hanzi-data.service';
 import { UserStore } from '../../../../entities/user/model/user.store';
 import { SingleCardPlayStore } from './single-card-play.store';
+import { resolveOptionCard } from '../../../../entities/card/utils/card-direction.utils';
 
 const SELECT_CARD: Card = {
   id: 'c1',
@@ -19,6 +20,8 @@ const SELECT_CARD: Card = {
 
 describe('SingleCardPlayStore', () => {
   let store: SingleCardPlayStore;
+  /** Index of the correct option after deterministic shuffle (nonce=0). */
+  let correctOptionIndex: number;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -38,6 +41,11 @@ describe('SingleCardPlayStore', () => {
     });
     store = TestBed.inject(SingleCardPlayStore);
     store.setCard(SELECT_CARD);
+    // Set a deterministic shuffle nonce so tests are reproducible
+    store.shuffleNonce.set(0);
+    // Find where the correct option ended up after shuffle
+    const resolved = resolveOptionCard(SELECT_CARD as Extract<Card, { kind: 'select' }>, 'known-to-learning', 0);
+    correctOptionIndex = resolved.correctIndex;
   });
 
   // ── Loading & Error ──
@@ -65,7 +73,7 @@ describe('SingleCardPlayStore', () => {
   // ── setCard ──
 
   it('should set card and reset interaction state', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.setAnswerText('test');
     store.setMemoryComplete(true);
 
@@ -106,12 +114,12 @@ describe('SingleCardPlayStore', () => {
   });
 
   it('should not allow selecting after feedback', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.feedback()).toBe('correct');
 
     store.selectOption(1);
-    expect(store.selectedIndex()).toBe(0);
+    expect(store.selectedIndex()).toBe(correctOptionIndex);
   });
 
   // ── setAnswerText ──
@@ -123,7 +131,7 @@ describe('SingleCardPlayStore', () => {
 
   it('should not allow setting answer after feedback', () => {
     store.setAnswerText('pingyin');
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
 
     store.setAnswerText('new answer');
@@ -139,7 +147,7 @@ describe('SingleCardPlayStore', () => {
 
   it('should not allow setting memory complete after feedback', () => {
     store.setMemoryComplete(true);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
 
     store.setMemoryComplete(false);
@@ -164,7 +172,7 @@ describe('SingleCardPlayStore', () => {
 
   it('should not allow setting draw submitted after feedback', () => {
     store.setDrawSubmitted(true);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
 
     store.setDrawSubmitted(false);
@@ -186,7 +194,7 @@ describe('SingleCardPlayStore', () => {
 
   it('should not allow setting draw answer after feedback', () => {
     store.setDrawAnswer({ strokes: [], character: '画' } as never);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
 
     store.setDrawAnswer(null);
@@ -211,14 +219,16 @@ describe('SingleCardPlayStore', () => {
   // ── checkAnswer ──
 
   it('should return true for correct select answer', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     const result = store.checkAnswer();
     expect(result).toBe(true);
     expect(store.feedback()).toBe('correct');
   });
 
   it('should return false for incorrect select answer', () => {
-    store.selectOption(1);
+    // Select a wrong option (not the correct one)
+    const wrongIndex = correctOptionIndex === 0 ? 1 : 0;
+    store.selectOption(wrongIndex);
     const result = store.checkAnswer();
     expect(result).toBe(false);
     expect(store.feedback()).toBe('incorrect');
@@ -240,7 +250,7 @@ describe('SingleCardPlayStore', () => {
   // ── setSessionDirection ──
 
   it('should change session direction and reset interaction', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.feedback()).toBe('correct');
 
@@ -259,7 +269,7 @@ describe('SingleCardPlayStore', () => {
   // ── tryAgain ──
 
   it('should reset interaction and bump host key', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     const keyBefore = store.hostKey();
 
@@ -278,14 +288,14 @@ describe('SingleCardPlayStore', () => {
   });
 
   it('should be false when feedback is already set', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.canCheckAnswer()).toBe(false);
   });
 
   it('should be true when card is set and no feedback', () => {
     expect(store.canCheckAnswer()).toBe(false); // no answer yet
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     expect(store.canCheckAnswer()).toBe(true);
   });
 
@@ -308,7 +318,7 @@ describe('SingleCardPlayStore', () => {
   // ── resetInteraction ──
 
   it('should reset all interaction state', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.setAnswerText('test');
     store.setMemoryComplete(true);
     store.setDrawSubmitted(true);

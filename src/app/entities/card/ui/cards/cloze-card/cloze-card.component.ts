@@ -9,6 +9,7 @@ import { ClozeCard } from '../../../model';
 import { CardFeedback } from '../../../model/card-interaction.types';
 import { buildOptionClass } from '../../../lib/cards/option-card.util';
 import { QuizCardQuestionHeaderComponent } from '../quiz-card-question-header/quiz-card-question-header.component';
+import { hashSeed, shuffleArray } from '../../../utils/card-shuffle.util';
 
 /** Segment of the cloze prompt: static text or the blank placeholder. */
 export type ClozePromptSegment = { text: string; blank: boolean };
@@ -67,6 +68,9 @@ export class ClozeCardComponent {
   /** Font size for card content: 'sm', 'md', or 'lg'. */
   readonly fontSize = input<'sm' | 'md' | 'lg'>('md');
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = input<number>(0);
+
   /** Emits when the user selects an option (select mode). */
   readonly optionSelected = output<number>();
 
@@ -82,6 +86,24 @@ export class ClozeCardComponent {
   /** Whether the card runs in select mode (options provided). */
   readonly hasOptions = computed(() => (this.card().options?.length ?? 0) > 0);
 
+  /**
+   * Resolved card data with shuffled options (select mode only).
+   * @remarks
+   * Shuffles `options` and adjusts `correctIndex` when shuffleNonce is provided.
+   */
+  readonly resolved = computed(() => {
+    const card = this.card();
+    const options = card.options ?? [];
+    const nonce = this.shuffleNonce();
+    if (nonce === undefined || options.length <= 1) {
+      return { options, correctIndex: card.correctIndex ?? -1 };
+    }
+    const seed = `${card.id}-${nonce}`;
+    const shuffled = shuffleArray(options, hashSeed(seed));
+    const newCorrectIndex = shuffled.indexOf(options[card.correctIndex ?? -1]);
+    return { options: shuffled, correctIndex: newCorrectIndex };
+  });
+
   /** The masked prompt split into segments (text + blank placeholder). */
   readonly promptSegments = computed<readonly ClozePromptSegment[]>(() =>
     splitClozePrompt(this.card().promptKnown),
@@ -92,7 +114,7 @@ export class ClozeCardComponent {
       index,
       this.selectedIndex(),
       this.feedback(),
-      this.card().correctIndex ?? -1,
+      this.resolved().correctIndex,
     );
   }
 

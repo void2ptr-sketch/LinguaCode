@@ -85,6 +85,9 @@ export class CardHostComponent {
   /** Nonce value to randomize the memory card board layout. */
   readonly memoryBoardNonce = input(0);
 
+  /** Nonce for deterministic option shuffling on option-based cards. */
+  readonly shuffleNonce = input<number>(0);
+
   /** Whether the draw card submission has been triggered. */
   readonly drawSubmitted = input(false);
 

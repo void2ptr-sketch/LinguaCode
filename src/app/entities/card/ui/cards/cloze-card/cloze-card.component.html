@@ -19,7 +19,7 @@
     <mat-card-content>
       @if (hasOptions()) {
         <div class="quiz-card__options">
-          @for (option of card().options ?? []; track option; let index = $index) {
+          @for (option of resolved().options; track option; let index = $index) {
             <button type="button" [class]="optionClass(index)" (click)="selectOption(index)">
               {{ option }}
             </button>

@@ -3,6 +3,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import type { Card } from '../../../entities/card/model';
 import { CardSelectStore } from './card-select.store';
+import { resolveOptionCard } from '../../../entities/card/utils/card-direction.utils';
 
 const CARDS: readonly Card[] = [
   {
@@ -39,6 +40,8 @@ const CARDS: readonly Card[] = [
 
 describe('CardSelectStore', () => {
   let store: CardSelectStore;
+  /** Index of the correct option for the first card after deterministic shuffle. */
+  let correctOptionIndex: number;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -46,6 +49,12 @@ describe('CardSelectStore', () => {
     });
     store = TestBed.inject(CardSelectStore);
     store.setScenario('scenario-1', CARDS);
+    // Set deterministic shuffle nonce for reproducible tests
+    store.shuffleNonce.set(0);
+    // Find the correct option index after shuffle
+    const firstCard = CARDS[0] as Extract<Card, { kind: 'select' }>;
+    const resolved = resolveOptionCard(firstCard, 'known-to-learning', 0);
+    correctOptionIndex = resolved.correctIndex;
   });
 
   it('should expose current card and progress', () => {
@@ -54,7 +63,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should check select answer and move to next card', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     expect(store.checkAnswer()).toBe(true);
     expect(store.feedback()).toBe('correct');
 
@@ -64,7 +73,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should check keyboard answer', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     store.setAnswerText('hi');
@@ -73,7 +82,7 @@ describe('CardSelectStore', () => {
 
   it('should complete scenario on last card', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
 
@@ -82,7 +91,7 @@ describe('CardSelectStore', () => {
 
   it('should reset to initial state', () => {
     store.setLoading(true);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.reset();
 
     expect(store.cards()).toEqual([]);
@@ -126,19 +135,19 @@ describe('CardSelectStore', () => {
   });
 
   it('should not select option when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.selectOption(1);
-    expect(store.selectedIndex()).toBe(0);
+    expect(store.selectedIndex()).toBe(correctOptionIndex);
   });
 
   it('should not select option when completed', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     store.selectOption(1);
-    expect(store.selectedIndex()).toBe(0);
+    expect(store.selectedIndex()).toBe(correctOptionIndex);
   });
 
   // ─── setAnswerText ────────────────────────────────────────────────────
@@ -149,7 +158,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should not set answer text when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.setAnswerText('hello');
     expect(store.answerText()).toBe('');
@@ -163,7 +172,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should not set memory complete when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.setMemoryComplete(true);
     expect(store.memoryComplete()).toBe(false);
@@ -190,7 +199,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should not set draw submitted when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.setDrawSubmitted(true);
     expect(store.drawSubmitted()).toBe(false);
@@ -220,7 +229,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should not set draw answer when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     const payload = {
       canvasMode: 'memory' as const,
@@ -239,7 +248,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should not set feedback on time expired when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.handleTimeExpired();
     expect(store.feedback()).toBe('correct');
@@ -247,7 +256,7 @@ describe('CardSelectStore', () => {
 
   it('should not set feedback on time expired when completed', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     store.handleTimeExpired();
@@ -262,23 +271,25 @@ describe('CardSelectStore', () => {
   });
 
   it('should return true for correct answer', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     expect(store.checkAnswer()).toBe(true);
   });
 
   it('should return false for incorrect answer', () => {
-    store.selectOption(1);
+    const wrongIndex = correctOptionIndex === 0 ? 1 : 0;
+    store.selectOption(wrongIndex);
     expect(store.checkAnswer()).toBe(false);
   });
 
   it('should set feedback to correct', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.feedback()).toBe('correct');
   });
 
   it('should set feedback to incorrect', () => {
-    store.selectOption(1);
+    const wrongIndex = correctOptionIndex === 0 ? 1 : 0;
+    store.selectOption(wrongIndex);
     store.checkAnswer();
     expect(store.feedback()).toBe('incorrect');
   });
@@ -292,7 +303,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should advance to next card', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     expect(store.currentIndex()).toBe(1);
@@ -300,7 +311,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should reset interaction after advancing', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     expect(store.selectedIndex()).toBeNull();
@@ -313,7 +324,7 @@ describe('CardSelectStore', () => {
 
   it('should mark as completed on last card', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     expect(store.completed()).toBe(true);
@@ -321,7 +332,7 @@ describe('CardSelectStore', () => {
 
   it('should not advance when already completed', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     const initialCompleted = store.completed();
@@ -343,7 +354,7 @@ describe('CardSelectStore', () => {
   });
 
   it('should reset interaction when direction changes', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.setSessionDirection('learning-to-known');
     expect(store.selectedIndex()).toBeNull();
     expect(store.answerText()).toBe('');
@@ -373,19 +384,19 @@ describe('CardSelectStore', () => {
   // ─── canCheckAnswer ───────────────────────────────────────────────────
 
   it('should return true when card exists and no feedback', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     expect(store.canCheckAnswer()).toBe(true);
   });
 
   it('should return false when feedback already shown', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.canCheckAnswer()).toBe(false);
   });
 
   it('should return false when completed', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     expect(store.canCheckAnswer()).toBe(false);
@@ -399,7 +410,7 @@ describe('CardSelectStore', () => {
   // ─── canGoNext ────────────────────────────────────────────────────────
 
   it('should return true when feedback exists and not completed', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     expect(store.canGoNext()).toBe(true);
   });
@@ -410,7 +421,7 @@ describe('CardSelectStore', () => {
 
   it('should return false when completed', () => {
     store.setScenario('scenario-1', [CARDS[0]]);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     expect(store.canGoNext()).toBe(false);
@@ -440,7 +451,7 @@ describe('CardSelectStore', () => {
 
   it('should reset all state to initial values', () => {
     store.setScenario('scenario-1', CARDS);
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.nextCard();
     store.setAnswerText('test');
@@ -466,7 +477,7 @@ describe('CardSelectStore', () => {
   // ─── setScenario ──────────────────────────────────────────────────────
 
   it('should set scenario and reset interaction', () => {
-    store.selectOption(0);
+    store.selectOption(correctOptionIndex);
     store.checkAnswer();
     store.setScenario('scenario-2', [CARDS[1]]);
     expect(store.scenarioId()).toBe('scenario-2');

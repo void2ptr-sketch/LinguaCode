@@ -38,6 +38,9 @@ export class SingleCardPlayStore {
   /** Nonce for forcing host component re-render. */
   readonly hostKey = signal(0);
 
+  /** Nonce for deterministic option shuffling. */
+  readonly shuffleNonce = signal(0);
+
   /** Index of the selected option (for multiple-choice cards). */
   readonly selectedIndex = signal<number | null>(null);
 
@@ -103,6 +106,7 @@ export class SingleCardPlayStore {
     this.error.set(null);
     this.resetInteraction();
     this.bumpHostKey();
+    this.shuffleNonce.set(Math.floor(Math.random() * 1_000_000));
   }
 
   /**
@@ -216,6 +220,7 @@ export class SingleCardPlayStore {
       this.answerState(),
       this.sessionDirection(),
       (character) => this.hanziData.getCachedModel(character),
+      this.shuffleNonce(),
     );
     if (isCorrect === null) {
       return null;

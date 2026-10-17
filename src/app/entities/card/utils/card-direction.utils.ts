@@ -7,6 +7,7 @@ import type {
 } from '../model';
 import type { CardDirection } from '../../language-pair/model/language-pair.types';
 import type { PhoneticLexeme } from '../../phonetic/model';
+import { shuffleArray, hashSeed } from './card-shuffle.util';
 /** В сессии направление задаёт toggle; `card.direction` — только default при старте. */
 export function effectiveCardDirection(
   _cardDirection: CardDirection | undefined,
@@ -33,13 +34,22 @@ export function extractQuotedLemma(text: string): string | null {
 /**
  * Разрешает option-карточку в `ResolvedOptionCard` с учётом направления сессии.
  * Перенаправляет на `resolveKnownToLearningOptionCard` или `resolveLearningToKnownOptionCard`.
+ *
+ * @param card - The option card to resolve.
+ * @param direction - The session direction.
+ * @param shuffleNonce - Optional nonce for deterministic option shuffling.
+ * @returns Resolved card data with shuffled options (when nonce provided).
  */
-export function resolveOptionCard(card: OptionCard, direction: CardDirection): ResolvedOptionCard {
+export function resolveOptionCard(
+  card: OptionCard,
+  direction: CardDirection,
+  shuffleNonce?: number,
+): ResolvedOptionCard {
   if (direction === 'known-to-learning') {
-    return resolveKnownToLearningOptionCard(card);
+    return resolveKnownToLearningOptionCard(card, shuffleNonce);
   }
 
-  return resolveLearningToKnownOptionCard(card);
+  return resolveLearningToKnownOptionCard(card, shuffleNonce);
 }
 
 /**
@@ -133,29 +143,38 @@ export function resolveKeyboardAcceptedAnswers(
   return card.acceptedAnswersKnown;
 }
 
-function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard {
+function resolveKnownToLearningOptionCard(
+  card: OptionCard,
+  shuffleNonce?: number,
+): ResolvedOptionCard {
   if (card.kind === 'code-select') {
+    const options = card.options.map((option) => option.code);
+    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
     return {
       prompt: card.caption ?? card.prompt.code,
-      options: card.options.map((option) => option.code),
-      correctIndex: card.correctIndex,
+      options: resolvedOptions,
+      correctIndex,
     };
   }
 
   if (card.kind === 'code-trace') {
+    const options = card.outputOptions;
+    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
     return {
       prompt: card.question?.trim() || card.caption?.trim() || 'Что выведет код?',
-      options: card.outputOptions,
-      correctIndex: card.correctIndex,
+      options: resolvedOptions,
+      correctIndex,
     };
   }
 
   if (card.kind === 'sound') {
+    const options = card.optionsKnown ?? [];
+    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
     return {
       prompt: card.promptKnown,
-      options: card.optionsKnown,
+      options: resolvedOptions,
       optionLexemes: card.optionsLexemes,
-      correctIndex: card.correctIndex,
+      correctIndex,
     };
   }
 
@@ -164,26 +183,33 @@ function resolveKnownToLearningOptionCard(card: OptionCard): ResolvedOptionCard 
       ? card.optionsLearning
       : card.symbols;
 
+  const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+
   return {
     prompt: card.promptKnown,
     promptLexeme: card.promptLexeme,
-    options,
+    options: resolvedOptions,
     optionLexemes: card.kind === 'symbol' ? card.symbolLexemes : card.optionsLexemes,
-    correctIndex: card.correctIndex,
+    correctIndex,
   };
 }
 
-function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard {
+function resolveLearningToKnownOptionCard(
+  card: OptionCard,
+  shuffleNonce?: number,
+): ResolvedOptionCard {
   if (card.kind === 'code-select' || card.kind === 'code-trace') {
-    return resolveKnownToLearningOptionCard(card);
+    return resolveKnownToLearningOptionCard(card, shuffleNonce);
   }
 
   if (card.kind === 'sound') {
+    const options = card.optionsKnown ?? [];
+    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
     return {
       prompt: card.promptKnown,
-      options: card.optionsKnown,
+      options: resolvedOptions,
       optionLexemes: card.optionsLexemes,
-      correctIndex: card.correctIndex,
+      correctIndex,
     };
   }
 
@@ -206,17 +232,19 @@ function resolveLearningToKnownOptionCard(card: OptionCard): ResolvedOptionCard 
     card.correctIndex,
   );
 
+  const { resolvedOptions, correctIndex } = applyShuffle(knownOptions, card.correctIndex, card.id, shuffleNonce);
+
   return {
     prompt,
     promptLexeme,
-    options: knownOptions,
+    options: resolvedOptions,
     optionLexemes: buildKnownOptionLexemes(
-      knownOptions,
+      resolvedOptions,
       card.promptLexeme,
       card.correctIndex,
       learningLexemes,
     ),
-    correctIndex: card.correctIndex,
+    correctIndex,
   };
 }
 
@@ -314,6 +342,23 @@ function buildKnownOptionLexemes(
         : {}),
     };
   });
+}
+
+function applyShuffle<T>(
+  options: readonly T[],
+  correctIndex: number,
+  cardId: string,
+  shuffleNonce?: number,
+): { resolvedOptions: readonly T[]; correctIndex: number } {
+  if (shuffleNonce === undefined || !options || options.length <= 1) {
+    return { resolvedOptions: options, correctIndex };
+  }
+
+  const seed = `${cardId}-${shuffleNonce}`;
+  const shuffled = shuffleArray(options, hashSeed(seed));
+  const newCorrectIndex = shuffled.indexOf(options[correctIndex]);
+
+  return { resolvedOptions: shuffled, correctIndex: newCorrectIndex };
 }
 
 function isOptionCard(card: Card): card is OptionCard {
