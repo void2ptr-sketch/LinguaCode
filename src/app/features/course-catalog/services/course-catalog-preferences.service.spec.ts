@@ -233,4 +233,61 @@ describe('CourseCatalogPreferencesService', () => {
     );
     expect(service.showTracingSettings()).toBe(false);
   });
+
+  it('should return null settings entry when no pairs exist', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    const entry = service.settingsEntry();
+    expect(entry).toBeNull();
+  });
+
+  it('should return empty label when settings entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    const label = service.settingsCourseLabel();
+    expect(label).toBe('');
+  });
+
+  it('should return false for showCjkPreferences when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showCjkPreferences()).toBe(false);
+  });
+
+  it('should return false for showPhoneticPreferences when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showPhoneticPreferences()).toBe(false);
+  });
+
+  it('should return false for showTracingSettings when entry is null', () => {
+    (
+      mockUserStore.languagePairs as import('@angular/core').WritableSignal<UserLanguagePairEntry[]>
+    ).set([]);
+    (mockDrafts.settingsPairIdDraft as import('@angular/core').WritableSignal<string>).set(
+      'pair-1',
+    );
+
+    expect(service.showTracingSettings()).toBe(false);
+  });
 });
