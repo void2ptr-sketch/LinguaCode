@@ -1,7 +1,7 @@
 import type { HanziCharacterJson } from '../../model';
 import { buildHanziCharacterModel } from '../../model/hanzi-character.model';
 import { HanziPositioner } from '../positioning/hanzi-positioner';
-import { HanziQuizSession } from './hanzi-quiz-session';
+import { HanziQuizSession, resolveHanziQuizLeniency } from './hanzi-quiz-session';
 
 const REN_JSON: HanziCharacterJson = {
   strokes: [
@@ -63,5 +63,175 @@ describe('HanziQuizSession', () => {
       totalMistakes: 0,
       strokeCount: 2,
     });
+  });
+});
+
+it('should expose strokes remaining count', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  expect(session.strokesRemaining()).toBe(2);
+
+  const canvasPoints = model.strokes[0]!.points.map((point) => positioner.toCanvas(point));
+  session.submitCanvasStroke(canvasPoints);
+
+  expect(session.strokesRemaining()).toBe(1);
+});
+
+it('should expose shouldShowHint based on mistake threshold', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, {
+    leniency: 1.3,
+    showHintAfterMisses: 2,
+  });
+
+  expect(session.shouldShowHint()).toBe(false);
+
+  session.mistakesOnStroke.set(2);
+  expect(session.shouldShowHint()).toBe(true);
+});
+
+it('should not show hint when disabled', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, {
+    leniency: 1.3,
+    showHintAfterMisses: false,
+  });
+
+  session.mistakesOnStroke.set(10);
+  expect(session.shouldShowHint()).toBe(false);
+});
+
+it('should return summary after completion', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  for (const stroke of model.strokes) {
+    const canvasPoints = stroke.points.map((point) => positioner.toCanvas(point));
+    session.submitCanvasStroke(canvasPoints);
+  }
+
+  expect(session.summary()).toEqual({
+    character: '人',
+    totalMistakes: 0,
+    strokeCount: 2,
+  });
+});
+
+it('should reset session state for reuse', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  for (const stroke of model.strokes) {
+    const canvasPoints = stroke.points.map((point) => positioner.toCanvas(point));
+    session.submitCanvasStroke(canvasPoints);
+  }
+
+  expect(session.completed()).toBe(true);
+  session.reset();
+
+  expect(session.strokeIndex()).toBe(0);
+  expect(session.mistakesOnStroke()).toBe(0);
+  expect(session.totalMistakes()).toBe(0);
+  expect(session.completed()).toBe(false);
+});
+
+it('should reject strokes when already completed', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  for (const stroke of model.strokes) {
+    const canvasPoints = stroke.points.map((point) => positioner.toCanvas(point));
+    session.submitCanvasStroke(canvasPoints);
+  }
+
+  const result = session.submitCanvasStroke([]);
+
+  expect(result.accepted).toBe(false);
+  expect(result.completed).toBe(true);
+});
+
+it('should force correct stroke after max misses', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, {
+    leniency: 0.1,
+    markStrokeCorrectAfterMisses: 2,
+  });
+
+  // First submission - wrong stroke (empty)
+  const result1 = session.submitCanvasStroke([]);
+  expect(result1.accepted).toBe(false);
+
+  // Second submission - should be forced correct
+  const result2 = session.submitCanvasStroke([]);
+  expect(result2.accepted).toBe(true);
+  expect(result2.forcedCorrect).toBe(true);
+});
+
+it('should track total mistakes across strokes', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  const canvasPoints = model.strokes[0]!.points.map((point) => positioner.toCanvas(point));
+  session.submitCanvasStroke(canvasPoints);
+  session.mistakesOnStroke.update((v) => v + 1);
+  session.totalMistakes.update((v) => v + 1);
+
+  const canvasPoints2 = model.strokes[1]!.points.map((point) => positioner.toCanvas(point));
+  session.submitCanvasStroke(canvasPoints2);
+
+  expect(session.totalMistakes()).toBe(1);
+});
+
+it('should report lastResult with correct state', () => {
+  const model = buildHanziCharacterModel('人', REN_JSON);
+  const positioner = new HanziPositioner({ width: 280, height: 280, padding: 20 });
+  const session = new HanziQuizSession(model, positioner, { leniency: 1.3 });
+
+  const canvasPoints = model.strokes[0]!.points.map((point) => positioner.toCanvas(point));
+  session.submitCanvasStroke(canvasPoints);
+
+  const lastResult = session.lastResult();
+  expect(lastResult?.accepted).toBe(true);
+  expect(lastResult?.strokeIndex).toBe(1);
+  expect(lastResult?.completed).toBe(false);
+});
+
+it('should use proficiency level to adjust leniency', () => {
+  const leniency = resolveHanziQuizLeniency('new-to-language');
+  expect(leniency).toBe(1.35);
+
+  const beginnerLeniency = resolveHanziQuizLeniency('beginner');
+  expect(beginnerLeniency).toBe(1.2);
+
+  const advancedLeniency = resolveHanziQuizLeniency('advanced');
+  expect(advancedLeniency).toBe(0.8);
+
+  const professionalLeniency = resolveHanziQuizLeniency('professional');
+  expect(professionalLeniency).toBe(0.7);
+});
+
+it('should handle all proficiency levels', () => {
+  const levels: import('../../../learning/model').LearningProficiencyLevel[] = [
+    'new-to-language',
+    'beginner',
+    'elementary',
+    'intermediate',
+    'upper-intermediate',
+    'advanced',
+    'professional',
+  ];
+
+  levels.forEach((level) => {
+    const leniency = resolveHanziQuizLeniency(level);
+    expect(leniency).toBeGreaterThan(0);
   });
 });

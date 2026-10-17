@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClient, HttpResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { vi, Mock, beforeEach, afterEach } from 'vitest';
 import { of, throwError } from 'rxjs';
 
@@ -8,33 +8,37 @@ import { CoursesApiService } from '../../../entities/course';
 import type { CourseWithLessons } from '../../../entities/course/model';
 
 // Mock jsPDF — используем doMock чтобы избежать проблем с hoisting
+const _noop = (): void => {
+  // intentionally empty
+};
 const createMockDoc = () => {
-  const fn = () => {};
   return {
-    addFileToVFS: fn,
-    addFont: fn,
-    setFont: fn,
-    setFontSize: fn,
-    setTextColor: fn,
+    addFileToVFS: _noop,
+    addFont: _noop,
+    setFont: _noop,
+    setFontSize: _noop,
+    setTextColor: _noop,
     text: (...args: unknown[]) => args,
-    setDrawColor: fn,
-    line: fn,
+    setDrawColor: _noop,
+    line: _noop,
     splitTextToSize: (text: string) => [text],
     getNumberOfPages: () => 1,
     getTextColor: () => [0, 0, 0],
     getTextWidth: () => 50,
-    setFillColor: fn,
-    rect: fn,
-    link: fn,
+    setFillColor: _noop,
+    rect: _noop,
+    link: _noop,
     output: () => new Blob(),
-    addPage: fn,
-    setLineHeight: fn,
+    addPage: _noop,
+    setLineHeight: _noop,
     lineHeight: 1,
   };
 };
 
 vi.doMock('jspdf', () => {
-  const MockJsPDF = function () { return createMockDoc(); };
+  const MockJsPDF = function () {
+    return createMockDoc();
+  };
   return { default: MockJsPDF };
 });
 
@@ -46,14 +50,34 @@ describe('CoursePdfExportService', () => {
   const mockFontBase64 = 'dGVzdCBmb250IGRhdGE=';
 
   const mockScenarios = [
-    { id: 's1', title: 'Сценарий 1', cardSource: { mode: 'fixed' as const, cardIds: ['c1', 'c2'] } },
+    {
+      id: 's1',
+      title: 'Сценарий 1',
+      cardSource: { mode: 'fixed' as const, cardIds: ['c1', 'c2'] },
+    },
     { id: 's2', title: 'Сценарий 2', cardSource: { mode: 'fixed' as const, cardIds: ['c3'] } },
   ];
 
   const mockCards = [
-    { id: 'c1', kind: 'select' as const, promptKnown: 'Вопрос 1', optionsLearning: ['A', 'B', 'C'], correctIndex: 0 },
-    { id: 'c2', kind: 'keyboard' as const, promptKnown: 'Вопрос 2', acceptedAnswersLearning: ['ответ1', 'ответ2'] },
-    { id: 'c3', kind: 'memory' as const, promptKnown: 'Вопрос 3', pairs: [{ known: 'a', learning: 'b' }] },
+    {
+      id: 'c1',
+      kind: 'select' as const,
+      promptKnown: 'Вопрос 1',
+      optionsLearning: ['A', 'B', 'C'],
+      correctIndex: 0,
+    },
+    {
+      id: 'c2',
+      kind: 'keyboard' as const,
+      promptKnown: 'Вопрос 2',
+      acceptedAnswersLearning: ['ответ1', 'ответ2'],
+    },
+    {
+      id: 'c3',
+      kind: 'memory' as const,
+      promptKnown: 'Вопрос 3',
+      pairs: [{ known: 'a', learning: 'b' }],
+    },
   ];
 
   const mockCourse: CourseWithLessons = {
@@ -75,8 +99,26 @@ describe('CoursePdfExportService', () => {
       status: 'draft',
     },
     lessons: [
-      { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание урока 1', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
-      { id: 'l2', courseId: 'course-1', title: 'Урок 2', description: 'Описание урока 2', scenarioIds: ['s2'], prerequisiteLessonIds: [], order: 2, updatedAt: '2024-01-01T00:00:00Z' },
+      {
+        id: 'l1',
+        courseId: 'course-1',
+        title: 'Урок 1',
+        description: 'Описание урока 1',
+        scenarioIds: ['s1'],
+        prerequisiteLessonIds: [],
+        order: 1,
+        updatedAt: '2024-01-01T00:00:00Z',
+      },
+      {
+        id: 'l2',
+        courseId: 'course-1',
+        title: 'Урок 2',
+        description: 'Описание урока 2',
+        scenarioIds: ['s2'],
+        prerequisiteLessonIds: [],
+        order: 2,
+        updatedAt: '2024-01-01T00:00:00Z',
+      },
     ],
   };
 
@@ -87,7 +129,9 @@ describe('CoursePdfExportService', () => {
       getBundle: vi.fn().mockResolvedValue({ scenarios: mockScenarios, cards: mockCards }),
     };
 
-    httpGetMock = vi.fn().mockReturnValue(of(new TextEncoder().encode(mockFontBase64).buffer as ArrayBuffer));
+    httpGetMock = vi
+      .fn()
+      .mockReturnValue(of(new TextEncoder().encode(mockFontBase64).buffer as ArrayBuffer));
 
     TestBed.configureTestingModule({
       providers: [
@@ -152,7 +196,16 @@ describe('CoursePdfExportService', () => {
       const courseWithMissingScenario: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание', scenarioIds: ['non-existent'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание',
+            scenarioIds: ['non-existent'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
 
@@ -165,11 +218,24 @@ describe('CoursePdfExportService', () => {
       const courseWithMissingCard: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
       const courseWithMissingCardScenarios = [
-        { id: 's1', title: 'Сценарий 1', cardSource: { mode: 'fixed' as const, cardIds: ['non-existent-card'] } },
+        {
+          id: 's1',
+          title: 'Сценарий 1',
+          cardSource: { mode: 'fixed' as const, cardIds: ['non-existent-card'] },
+        },
       ];
 
       coursesApiMock.getBundle.mockResolvedValue({
@@ -186,8 +252,26 @@ describe('CoursePdfExportService', () => {
       const unsortedCourse: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l2', courseId: 'course-1', title: 'Урок 2', description: 'Описание 2', scenarioIds: ['s2'], prerequisiteLessonIds: [], order: 2, updatedAt: '2024-01-01T00:00:00Z' },
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание 1', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l2',
+            courseId: 'course-1',
+            title: 'Урок 2',
+            description: 'Описание 2',
+            scenarioIds: ['s2'],
+            prerequisiteLessonIds: [],
+            order: 2,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание 1',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
 
@@ -204,13 +288,19 @@ describe('CoursePdfExportService', () => {
     });
 
     it('should handle empty idea', async () => {
-      const emptyCourse: CourseWithLessons = { ...mockCourse, authoring: { idea: '', status: 'draft' } };
+      const emptyCourse: CourseWithLessons = {
+        ...mockCourse,
+        authoring: { idea: '', status: 'draft' },
+      };
       await service.export(emptyCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
     });
 
     it('should handle idea without stages', async () => {
-      const noStagesCourse: CourseWithLessons = { ...mockCourse, authoring: { idea: 'Some text without stages', status: 'draft' } };
+      const noStagesCourse: CourseWithLessons = {
+        ...mockCourse,
+        authoring: { idea: 'Some text without stages', status: 'draft' },
+      };
       await service.export(noStagesCourse, false);
       expect(coursesApiMock.getBundle).toHaveBeenCalled();
     });
@@ -242,7 +332,16 @@ describe('CoursePdfExportService', () => {
       const selectCourse: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
       const selectScenarios = [
@@ -262,7 +361,16 @@ describe('CoursePdfExportService', () => {
       const keyboardCourse: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
       const keyboardScenarios = [
@@ -282,7 +390,16 @@ describe('CoursePdfExportService', () => {
       const memoryCourse: CourseWithLessons = {
         ...mockCourse,
         lessons: [
-          { id: 'l1', courseId: 'course-1', title: 'Урок 1', description: 'Описание', scenarioIds: ['s1'], prerequisiteLessonIds: [], order: 1, updatedAt: '2024-01-01T00:00:00Z' },
+          {
+            id: 'l1',
+            courseId: 'course-1',
+            title: 'Урок 1',
+            description: 'Описание',
+            scenarioIds: ['s1'],
+            prerequisiteLessonIds: [],
+            order: 1,
+            updatedAt: '2024-01-01T00:00:00Z',
+          },
         ],
       };
       const memoryScenarios = [
@@ -304,17 +421,17 @@ describe('CoursePdfExportService', () => {
       const fontBytes = new TextEncoder().encode('DejaVu Sans Condensed font data');
       httpGetMock.mockReturnValue(of(fontBytes.buffer as ArrayBuffer));
 
-      const fontData = await (service as any).loadFont();
+      const fontData = await (service as unknown as { loadFont: () => Promise<string> }).loadFont();
       expect(typeof fontData).toBe('string');
       expect(fontData).toBe(btoa('DejaVu Sans Condensed font data'));
     });
 
     it('should handle font loading error', async () => {
-      httpGetMock.mockReturnValue(
-        throwError(() => new Error('Font load failed'))
-      );
+      httpGetMock.mockReturnValue(throwError(() => new Error('Font load failed')));
 
-      await expect((service as any).loadFont()).rejects.toThrow('Font load failed');
+      await expect(
+        (service as unknown as { loadFont: () => Promise<string> }).loadFont(),
+      ).rejects.toThrow('Font load failed');
     });
   });
 });
