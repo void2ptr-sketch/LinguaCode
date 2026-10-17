@@ -241,7 +241,18 @@ src/
 
 ## 8. References
 
-### Документация
+### Документация проекта
+- [`docs/INDEX.md`](../docs/INDEX.md) — оглавление всей документации
+- [`docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md) — обзор архитектуры
+- [`docs/COMMON/DOMAIN.md`](../docs/COMMON/DOMAIN.md) — доменная модель
+- [`docs/COMMON/CARD-CATALOG.md`](../docs/COMMON/CARD-CATALOG.md) — индекс карточек
+- [`docs/CONTENT/CJK-CONTENT.md`](../docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны
+- [`docs/CONTENT/PHONETIC-CONTENT.md`](../docs/CONTENT/PHONETIC-CONTENT.md) — IPA
+- [`docs/API-CONTRACT.md`](../docs/API-CONTRACT.md) — HTTP API
+- [`docs/SYSTEM/GIT-RULES.md`](../docs/SYSTEM/GIT-RULES.md) — Git workflow
+- [`TASKS.md`](../TASKS.md) — чеклист задач
+
+### Внешняя документация
 - [Angular Documentation](https://angular.dev/docs)
 - [Angular Material Documentation](https://material.angular.io/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
@@ -253,10 +264,24 @@ src/
 - Vitest suite documentation
 
 ### Ссылки на правила проекта
-- `.continue/rules/00.project.md` — границы доступа к файлам
+- `.continue/rules/00.project.rule.md` — границы доступа к файлам
 - `.continue/rules/04.angular.DI-PS.rule.md` — DI и provider rules
 - `.continue/rules/05.angular.Reactive.rule.md` — реактивные паттерны (Signals vs RxJS)
-- `.continue/rules/11.angular.naming.rules.md` — соглашения о названиях, когезивные модули
+- `.continue/rules/07.angular.testing-strategy.rule.md` — тестирование и пороги покрытия
+- `.continue/rules/09.angular.migration-to-standalone.rule.md` — миграция на standalone
+- `.continue/rules/10.angular.security.rule.md` — безопасность
+- `.continue/rules/11.angular.naming.rule.md` — соглашения о названиях, когезивные модули
+- `.continue/rules/14.fsd-imports.rule.md` — FSD-слои и направления импортов
+- `.continue/rules/15.git-workflow.rule.md` — Git workflow (ветки, коммиты)
+- `.continue/rules/16.tasks-workflow.rule.md` — workflow с `TASKS.md`
+- `.continue/rules/17.styles.rule.md` — SCSS/CSS-конвенции
+- `.continue/rules/18.data-content.rule.md` — данные/контент (seed, overlay)
+- `.continue/rules/19.verification-checklist.rule.md` — чек-лист верификации
+- `.continue/rules/20.errors-http.rule.md` — обработка ошибок и HTTP-слой
+- `.continue/rules/21.routing.rule.md` — маршрутизация, guards
+- `.continue/rules/22.pwa.rule.md` — PWA / service worker
+- `.continue/rules/23.a11y.rule.md` — доступность (a11y)
+- `.continue/rules/24.env-api-contract.rule.md` — окружение и API-контракт
 
 ---
 
@@ -292,42 +317,22 @@ export type { FirstType } from './first.types';
 export { formatLabel } from './format.util';
 ```
 
-### Когезивные модули (нельзя разделять)
-Следующие папки представляют когезивные логические единицы — все файлы внутри должны перемещаться целиком:
-- `src/app/shared/utils/markdown-field/` — component, utils, tests, `index.ts`
-- `src/app/shared/utils/pagination/` — component, utils, types, state, tests, `index.ts`
+> Когезивные модули (папки, которые нельзя разделять) и правила публичного API слайсов — см. `11.angular.naming.rule.md` и `14.fsd-imports.rule.md`.
 
 ---
 
 ## 10. Security Rules
 
-- Санитизируйте пользовательский ввод при рендеринге HTML; никогда не привязывайте напрямую к `[innerHTML]` без санитизации
-- Валидируйте и санитизируйте URL перед использованием в редиректах или динамических импортах
-- Избегайте хранения чувствительных данных в localStorage без шифрования
-- Используйте встроенные механизмы безопасности Angular (DOM sanitization, XSS protection)
+> Полные правила безопасности — см. `10.angular.security.rule.md` (санитизация, секреты, `npm run audit`, PWA-кэширование).
 
 ---
 
 ## 11. Testing Rules
 
-- Генерируйте unit-тесты с помощью **Vitest** со значимыми ассершинами
-- Мокайте внешние зависимости (сервисы, API) вместо вызова реальных эндпоинтов
-- Включайте тесты для:
-  - Инициализации компонентов и input/output bindings
-  - Реактивных потоков (observables, signals)
-  - Обработки ошибок и edge cases
-- Избегайте написания тестов, зависящих от глобального состояния или неконтролируемого асинхронного поведения
+> Полные правила тестирования и пороги покрытия (statements 70%, branches 65%, functions 70%, lines 70%) — см. `07.angular.testing-strategy.rule.md`.
 
 ---
 
 ## 12. Migration Notes
 
-### Миграция с NgModule на standalone
-- Используйте официальные migration schematics: `ng generate @angular/core:standalone`
-- Конвертируйте маршруты из NgModule lazy loading (`loadChildren` + `NgModule`) в standalone `loadComponent`
-- Замените `BrowserModule`/`CommonModule` imports в migrated классах на `imports` array standalone компонента
-- Переместите root providers в `app.config.ts` (`provideHttpClient()`, interceptors, etc.) вместо `AppModule`
-- Удалите пустые NgModules после миграции; проверьте с `ng build` и Vitest suite
-
-### Ссылки
-- [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone)
+> Полные правила миграции с NgModule на standalone — см. `09.angular.migration-to-standalone.rule.md` и [Angular Standalone Migration Guide](https://angular.dev/reference/migrations/standalone).
