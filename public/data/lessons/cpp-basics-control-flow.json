@@ -1,0 +1,21 @@
+{
+  "id": "cpp-basics-control-flow",
+  "title": "Управление потоком выполнения",
+  "description": "Условия if-else, switch-case, циклы for, while, do-while",
+  "tags": ["базовые", "условия", "циклы", "switch"],
+  "difficulty": "beginner",
+  "estimatedDuration": 35,
+  "scenarios": [
+    "cpp-basics"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 3,
+    "prerequisites": ["cpp-basics-types"],
+    "learningObjectives": [
+      "Понимать условия if-else",
+      "Знать switch-case",
+      "Уметь использовать циклы for, while"
+    ]
+  }
+}

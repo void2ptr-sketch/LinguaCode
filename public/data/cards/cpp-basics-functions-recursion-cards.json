@@ -1,0 +1,805 @@
+{
+  "scenarioId": "scenario-cpp-basics-functions-04",
+  "cards": [
+    {
+      "id": "scenario-cpp-basics-functions-04-card-01",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 1 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 1 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-02",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 2 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 2 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-03",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 3 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 3 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-04",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 4 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 4 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-05",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 5 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 5 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-06",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 6 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 6 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-07",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 7 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 7 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-08",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 8 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 8 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-09",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 9 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 9 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-10",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 10 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 10 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-11",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 11 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 11 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-12",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 12 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 12 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-13",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 13 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 13 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-14",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 14 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 14 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-15",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 15 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 15 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-16",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 16 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 16 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-17",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 17 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 17 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-18",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 18 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 18 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-19",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 19 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 19 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    },
+    {
+      "id": "scenario-cpp-basics-functions-04-card-20",
+      "kind": "multiple-choice",
+      "title": "Рекурсия - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "caption": "Вопрос 20 по теме: Рекурсия",
+      "options": [
+        {
+          "id": "a",
+          "text": "Правильный ответ"
+        },
+        {
+          "id": "b",
+          "text": "Неправильный 1"
+        },
+        {
+          "id": "c",
+          "text": "Неправильный 2"
+        },
+        {
+          "id": "d",
+          "text": "Неправильный 3"
+        }
+      ],
+      "correctOptionId": "a",
+      "explanation": "Объяснение для вопроса 20 по теме \"Рекурсия\".",
+      "authoring": {
+        "status": "materialized",
+        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
+        "materializedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true
+    }
+  ]
+}

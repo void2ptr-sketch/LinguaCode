@@ -1,0 +1,21 @@
+{
+  "id": "cpp-stl-algorithms-deep",
+  "title": "Глубокое изучение STL алгоритмов",
+  "description": "Подробно: sort, find, transform, for_each, accumulate и другие алгоритмы",
+  "tags": ["STL", "алгоритмы", "sort", "find", "transform", "accumulate"],
+  "difficulty": "intermediate",
+  "estimatedDuration": 45,
+  "scenarios": [
+    "cpp-stl-algorithms"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 10,
+    "prerequisites": ["cpp-stl-containers-deep"],
+    "learningObjectives": [
+      "Понимать различные STL алгоритмы",
+      "Знать когда использовать каждый алгоритм",
+      "Уметь применять алгоритмы к контейнерам"
+    ]
+  }
+}

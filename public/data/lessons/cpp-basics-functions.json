@@ -1,0 +1,21 @@
+{
+  "id": "cpp-basics-functions",
+  "title": "Функции в C++",
+  "description": "Объявление функций, параметры, возвращаемые значения, перегрузка",
+  "tags": ["базовые", "функции", "перегрузка", "параметры"],
+  "difficulty": "beginner",
+  "estimatedDuration": 30,
+  "scenarios": [
+    "cpp-basics"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 4,
+    "prerequisites": ["cpp-basics-control-flow"],
+    "learningObjectives": [
+      "Понимать объявление функций",
+      "Знать параметры и возвращаемые значения",
+      "Уметь перегружать функции"
+    ]
+  }
+}

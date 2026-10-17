@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario-cpp-oop-inheritance-01",
+      "title": "Основы наследования",
+      "description": "Сценарий: Основы наследования",
+      "order": 0,
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-oop-inheritance-01-card-01",
+          "scenario-cpp-oop-inheritance-01-card-02",
+          "scenario-cpp-oop-inheritance-01-card-03",
+          "scenario-cpp-oop-inheritance-01-card-04",
+          "scenario-cpp-oop-inheritance-01-card-05",
+          "scenario-cpp-oop-inheritance-01-card-06",
+          "scenario-cpp-oop-inheritance-01-card-07",
+          "scenario-cpp-oop-inheritance-01-card-08",
+          "scenario-cpp-oop-inheritance-01-card-09",
+          "scenario-cpp-oop-inheritance-01-card-10",
+          "scenario-cpp-oop-inheritance-01-card-11",
+          "scenario-cpp-oop-inheritance-01-card-12",
+          "scenario-cpp-oop-inheritance-01-card-13",
+          "scenario-cpp-oop-inheritance-01-card-14",
+          "scenario-cpp-oop-inheritance-01-card-15",
+          "scenario-cpp-oop-inheritance-01-card-16",
+          "scenario-cpp-oop-inheritance-01-card-17",
+          "scenario-cpp-oop-inheritance-01-card-18",
+          "scenario-cpp-oop-inheritance-01-card-19",
+          "scenario-cpp-oop-inheritance-01-card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

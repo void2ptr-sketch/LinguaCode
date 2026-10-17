@@ -1,0 +1,48 @@
+{
+  "scenarios": [
+    {
+      "scenarioId": "scenario-cpp-basics-types-05",
+      "title": "Приведение типов",
+      "description": "Сценарий: Приведение типов",
+      "order": 4,
+      "lessonId": "lesson-cpp-basics-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-basics-types-05-card-01",
+          "scenario-cpp-basics-types-05-card-02",
+          "scenario-cpp-basics-types-05-card-03",
+          "scenario-cpp-basics-types-05-card-04",
+          "scenario-cpp-basics-types-05-card-05",
+          "scenario-cpp-basics-types-05-card-06",
+          "scenario-cpp-basics-types-05-card-07",
+          "scenario-cpp-basics-types-05-card-08",
+          "scenario-cpp-basics-types-05-card-09",
+          "scenario-cpp-basics-types-05-card-10",
+          "scenario-cpp-basics-types-05-card-11",
+          "scenario-cpp-basics-types-05-card-12",
+          "scenario-cpp-basics-types-05-card-13",
+          "scenario-cpp-basics-types-05-card-14",
+          "scenario-cpp-basics-types-05-card-15",
+          "scenario-cpp-basics-types-05-card-16",
+          "scenario-cpp-basics-types-05-card-17",
+          "scenario-cpp-basics-types-05-card-18",
+          "scenario-cpp-basics-types-05-card-19",
+          "scenario-cpp-basics-types-05-card-20"
+        ],
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

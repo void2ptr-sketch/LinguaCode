@@ -1,5 +1,6 @@
 import type {
   Card,
+  CardBase,
   ClozeCard,
   CodeTraceCard,
   DrawCard,
@@ -18,6 +19,22 @@ type LegacyMemoryPair = {
   back?: string;
   known?: string;
   learning?: string;
+};
+
+/**
+ * Legacy multiple-choice card emitted by the C++ content generator.
+ *
+ * @remarks
+ * Unlike the platform's `select` cards, it carries `options` as objects
+ * (`{ id, text }`) plus a `correctOptionId` instead of `correctIndex`.
+ */
+type LegacyMultipleChoiceCard = Omit<CardBase, 'kind'> & {
+  kind: 'multiple-choice';
+  caption?: string;
+  direction?: CardDirection;
+  promptKnown?: string;
+  options?: readonly { id: string; text: string }[];
+  correctOptionId?: string;
 };
 
 type LegacyCard = Omit<Card, 'options'> & {
@@ -48,7 +65,9 @@ function normalizeMemoryPair(pair: LegacyMemoryPair): MemoryPair {
  * Заполняет отсутствующие поля (`promptKnown`, `direction`, `optionsLearning` и др.) значениями по умолчанию.
  */
 export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
-  switch (raw.kind) {
+  // Широкий switch по строке: legacy-контент может содержать kind'ы,
+  // которых нет в доменном типе CardKind (например 'multiple-choice').
+  switch (raw.kind as string) {
     case 'select': {
       const card = raw as SelectCard & LegacyCard;
       if (card.promptKnown && card.optionsLearning) {
@@ -142,6 +161,19 @@ export function normalizeLegacyCard(raw: LegacyCard | Card): Card {
         outputOptions: card.outputOptions ?? card.options ?? [],
         correctIndex: card.correctIndex ?? 0,
       };
+    }
+    case 'multiple-choice': {
+      const card = raw as unknown as LegacyMultipleChoiceCard;
+      const options = card.options ?? [];
+      const correctIndex = options.findIndex((option) => option.id === card.correctOptionId);
+      return {
+        ...card,
+        kind: 'select',
+        direction: card.direction ?? DEFAULT_DIRECTION,
+        promptKnown: card.promptKnown ?? card.caption ?? card.title,
+        optionsLearning: options.map((option) => option.text),
+        correctIndex: correctIndex >= 0 ? correctIndex : 0,
+      } as Card;
     }
     default:
       return raw as Card;

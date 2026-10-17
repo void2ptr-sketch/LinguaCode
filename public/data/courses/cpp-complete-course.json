@@ -1,0 +1,213 @@
+{
+  "courses": [
+    {
+      "id": "course-cpp-complete",
+      "title": "C++ Complete Course",
+      "description": "Полный курс C++ от основ до продвинутых тем: переменные, типы данных, условия, циклы, функции, массивы, строки, ООП, наследование, полиморфизм, STL контейнеры и алгоритмы.",
+      "authorId": "system",
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "lessonIds": [
+        "lesson-cpp-basics-intro",
+        "lesson-cpp-basics-types",
+        "lesson-cpp-basics-control-flow",
+        "lesson-cpp-basics-functions",
+        "lesson-cpp-basics-arrays-strings",
+        "lesson-cpp-oop-fundamentals",
+        "lesson-cpp-oop-inheritance",
+        "lesson-cpp-oop-polymorphism",
+        "lesson-cpp-stl-containers-deep",
+        "lesson-cpp-stl-algorithms-deep"
+      ],
+      "published": true,
+      "authoring": {
+        "idea": "# Курс «C++ Complete Course»\n\n## Цели курса\n\n* Освоить базовые концепции C++: переменные, типы данных, условия, циклы, функции.\n* Научиться работать с массивами, строками и основными структурами данных.\n* Понять принципы объектно-ориентированного программирования: классы, наследование, полиморфизм.\n* Изучить стандартную библиотеку шаблонов (STL): контейнеры, алгоритмы, итераторы.\n* Освоить продвинутые техники C++: шаблоны, лямбды, move-семантика, C++17/20 фичи.\n\n---\n\n## Аудитория\n\n* Начинающие программисты, изучающие C++ с нуля.\n* Разработчики на других языках, желающие перейти на C++.\n* Студенты технических специальностей.\n* Опытные разработчики, желающие систематизировать знания.\n\nУровень: A0–C1 (от полного новичка до продвинутого уровня).\n\n---\n\n## Формат\n\n### Самостоятельное изучение\n\n* **Платформа:** LinguaCode (карточки, статистика, режимы тренировки).\n* **Темп:** 1 урок в 2–3 дня — с учётом закрепления материала.\n* **Ежедневная нагрузка:** 20–30 минут (основная сессия) + 10 минут на повторение.\n* **Структура одного урока:**\n  * 5 минут — теория: ключевые концепции, примеры кода.\n  * 10 минут — практика: решение задач, карточки в LinguaCode.\n  * 15 минут — закрепление: тесты, мини-задания на применение.\n\n### Инструменты и материалы\n\n* Карточки в LinguaCode, разбитые по урокам (20 карточек на урок).\n* Примеры кода с комментариями.\n* Чек-листы прогресса и трекер повторений.\n* Список рекомендуемых ресурсов для углублённого изучения.\n\n---\n\n## Этапы изучения (10 уроков)\n\n### Урок 1. Введение в C++\n\n* Теория: история C++, структура программы, компиляция.\n* Практика: первая программа «Hello World».\n* LinguaCode: 20 карточек — базовые концепции.\n* Мини-задание: написать программу, которая выводит информацию о себе.\n\n### Урок 2. Типы данных C++\n\n* Теория: int, double, bool, char, string, приведение типов.\n* Практика: операции с разными типами.\n* LinguaCode: 20 карточек — типы данных.\n* Мини-задание: создать программу с переменными разных типов.\n\n### Урок 3. Управление потоком выполнения\n\n* Теория: if-else, switch-case, циклы for/while/do-while.\n* Практика: условные конструкции и циклы.\n* LinguaCode: 20 карточек — условия и циклы.\n* Мини-задание: написать программу с циклом и условиями.\n\n### Урок 4. Функции в C++\n\n* Теория: объявление функций, параметры, возвращаемые значения, перегрузка.\n* Практика: создание и вызов функций.\n* LinguaCode: 20 карточек — функции.\n* Мини-задание: написать программу с несколькими функциями.\n\n### Урок 5. Массивы и строки\n\n* Теория: массивы, std::string, строковые операции.\n* Практика: работа с массивами и строками.\n* LinguaCode: 20 карточек — массивы и строки.\n* Мини-задание: написать программу для обработки строк.\n\n### Урок 6. Основы ООП\n\n* Теория: классы, объекты, инкапсуляция, конструкторы, деструкторы.\n* Практика: создание классов и объектов.\n* LinguaCode: 20 карточек — основы ООП.\n* Мини-задание: создать класс с методами и свойствами.\n\n### Урок 7. Наследование в C++\n\n* Теория: наследование классов, модификаторы доступа, super, override.\n* Практика: создание иерархий классов.\n* LinguaCode: 20 карточек — наследование.\n* Мини-задание: создать иерархию из 3 классов.\n\n### Урок 8. Полиморфизм и виртуальные методы\n\n* Теория: виртуальные методы, динамическая диспетчеризация, абстрактные классы.\n* Практика: использование полиморфизма.\n* LinguaCode: 20 карточек — полиморфизм.\n* Мини-задание: создать программу с виртуальными методами.\n\n### Урок 9. Глубокое изучение STL контейнеров\n\n* Теория: vector, map, set, unordered_map, итераторы, аллокаторы.\n* Практика: работа с различными контейнерами.\n* LinguaCode: 20 карточек — STL контейнеры.\n* Мини-задание: написать программу с использованием STL контейнеров.\n\n### Урок 10. Глубокое изучение STL алгоритмов\n\n* Теория: sort, find, transform, for_each, accumulate и другие алгоритмы.\n* Практика: применение алгоритмов к контейнерам.\n* LinguaCode: 20 карточек — STL алгоритмы.\n* Мини-задание: написать программу с использованием STL алгоритмов.",
+        "status": "planned",
+        "ideaUpdatedAt": "2026-06-14T18:00:00.000Z"
+      },
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson-cpp-basics-intro",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 1: Введение в C++",
+      "description": "5 сценариев: scenario-cpp-basics-intro-01 — scenario-cpp-basics-intro-05.",
+      "scenarioIds": [
+        "scenario-cpp-basics-intro-01",
+        "scenario-cpp-basics-intro-02",
+        "scenario-cpp-basics-intro-03",
+        "scenario-cpp-basics-intro-04",
+        "scenario-cpp-basics-intro-05"
+      ],
+      "prerequisiteLessonIds": [],
+      "order": 0,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-types",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 2: Типы данных C++",
+      "description": "5 сценариев: scenario-cpp-basics-types-01 — scenario-cpp-basics-types-05.",
+      "scenarioIds": [
+        "scenario-cpp-basics-types-01",
+        "scenario-cpp-basics-types-02",
+        "scenario-cpp-basics-types-03",
+        "scenario-cpp-basics-types-04",
+        "scenario-cpp-basics-types-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-intro"
+      ],
+      "order": 1,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-control-flow",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 3: Управление потоком выполнения",
+      "description": "5 сценариев: scenario-cpp-basics-control-flow-01 — scenario-cpp-basics-control-flow-05.",
+      "scenarioIds": [
+        "scenario-cpp-basics-control-flow-01",
+        "scenario-cpp-basics-control-flow-02",
+        "scenario-cpp-basics-control-flow-03",
+        "scenario-cpp-basics-control-flow-04",
+        "scenario-cpp-basics-control-flow-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-types"
+      ],
+      "order": 2,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-functions",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 4: Функции в C++",
+      "description": "5 сценариев: scenario-cpp-basics-functions-01 — scenario-cpp-basics-functions-05.",
+      "scenarioIds": [
+        "scenario-cpp-basics-functions-01",
+        "scenario-cpp-basics-functions-02",
+        "scenario-cpp-basics-functions-03",
+        "scenario-cpp-basics-functions-04",
+        "scenario-cpp-basics-functions-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-control-flow"
+      ],
+      "order": 3,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-arrays-strings",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 5: Массивы и строки",
+      "description": "5 сценариев: scenario-cpp-basics-arrays-strings-01 — scenario-cpp-basics-arrays-strings-05.",
+      "scenarioIds": [
+        "scenario-cpp-basics-arrays-strings-01",
+        "scenario-cpp-basics-arrays-strings-02",
+        "scenario-cpp-basics-arrays-strings-03",
+        "scenario-cpp-basics-arrays-strings-04",
+        "scenario-cpp-basics-arrays-strings-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-functions"
+      ],
+      "order": 4,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-oop-fundamentals",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 6: Основы ООП",
+      "description": "5 сценариев: scenario-cpp-oop-fundamentals-01 — scenario-cpp-oop-fundamentals-05.",
+      "scenarioIds": [
+        "scenario-cpp-oop-fundamentals-01",
+        "scenario-cpp-oop-fundamentals-02",
+        "scenario-cpp-oop-fundamentals-03",
+        "scenario-cpp-oop-fundamentals-04",
+        "scenario-cpp-oop-fundamentals-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-arrays-strings"
+      ],
+      "order": 5,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-oop-inheritance",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 7: Наследование в C++",
+      "description": "5 сценариев: scenario-cpp-oop-inheritance-01 — scenario-cpp-oop-inheritance-05.",
+      "scenarioIds": [
+        "scenario-cpp-oop-inheritance-01",
+        "scenario-cpp-oop-inheritance-02",
+        "scenario-cpp-oop-inheritance-03",
+        "scenario-cpp-oop-inheritance-04",
+        "scenario-cpp-oop-inheritance-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-oop-fundamentals"
+      ],
+      "order": 6,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-oop-polymorphism",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 8: Полиморфизм и виртуальные методы",
+      "description": "5 сценариев: scenario-cpp-oop-polymorphism-01 — scenario-cpp-oop-polymorphism-05.",
+      "scenarioIds": [
+        "scenario-cpp-oop-polymorphism-01",
+        "scenario-cpp-oop-polymorphism-02",
+        "scenario-cpp-oop-polymorphism-03",
+        "scenario-cpp-oop-polymorphism-04",
+        "scenario-cpp-oop-polymorphism-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-oop-inheritance"
+      ],
+      "order": 7,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-stl-containers-deep",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 9: Глубокое изучение STL контейнеров",
+      "description": "5 сценариев: scenario-cpp-stl-containers-deep-01 — scenario-cpp-stl-containers-deep-05.",
+      "scenarioIds": [
+        "scenario-cpp-stl-containers-deep-01",
+        "scenario-cpp-stl-containers-deep-02",
+        "scenario-cpp-stl-containers-deep-03",
+        "scenario-cpp-stl-containers-deep-04",
+        "scenario-cpp-stl-containers-deep-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-oop-polymorphism"
+      ],
+      "order": 8,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-stl-algorithms-deep",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 10: Глубокое изучение STL алгоритмов",
+      "description": "5 сценариев: scenario-cpp-stl-algorithms-deep-01 — scenario-cpp-stl-algorithms-deep-05.",
+      "scenarioIds": [
+        "scenario-cpp-stl-algorithms-deep-01",
+        "scenario-cpp-stl-algorithms-deep-02",
+        "scenario-cpp-stl-algorithms-deep-03",
+        "scenario-cpp-stl-algorithms-deep-04",
+        "scenario-cpp-stl-algorithms-deep-05"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-stl-containers-deep"
+      ],
+      "order": 9,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    }
+  ]
+}

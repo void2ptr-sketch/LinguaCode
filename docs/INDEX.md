@@ -16,6 +16,7 @@
 | [BUSINESS.md](./BUSINESS.md)                    | Бизнес-идеи, миссия, ценность для пользователя     |
 | [DOMAIN.md](./COMMON/DOMAIN.md)                 | Доменная модель: сущности, типы, иерархия контента |
 | [LANGUAGE-PAIR.md](./FEATURES/LANGUAGE-PAIR.md) | Пара языков known → learning, G7–G8, Learning Home |
+| [COURSE-CPP.md](./COURSE-CPP.md)                       | Курс C++ Complete Course: структура, сценарии, карточки |
 
 ## Техническая документация
 

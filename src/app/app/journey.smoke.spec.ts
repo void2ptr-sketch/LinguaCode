@@ -33,7 +33,7 @@ describe('Journey page smoke', () => {
     localStorage.clear();
   });
 
-  it('should render the journey map with course locations', async () => {
+  it('should render the journey map for the course from query params', async () => {
     const fixture = TestBed.createComponent(AppComponent);
     const router = TestBed.inject(Router);
 
@@ -44,7 +44,10 @@ describe('Journey page smoke', () => {
 
     const text = fixture.nativeElement.textContent as string;
     expect(text).toContain('Карта');
-    expect(text).toContain('Радикалы');
+    // Query-параметр ?courseId= должен определять содержимое карты,
+    // а не активный курс дашборда (fallback по умолчанию — «214 китайских радикалов»).
+    expect(text).toContain('Демо-сценарий');
+    expect(text).not.toContain('214 китайских радикалов');
 
     fixture.destroy();
   });

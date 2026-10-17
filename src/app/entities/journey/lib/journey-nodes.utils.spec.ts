@@ -103,6 +103,22 @@ describe('journey-nodes.utils', () => {
       expect(node.cardCount).toBe(0);
     });
 
+    it('should count cards for snapshot-based cardSource', () => {
+      const snapshotScenario: Scenario = {
+        ...baseScenario,
+        id: 'scenario-snapshot',
+        cardSource: {
+          mode: 'snapshot',
+          cardIds: ['c1', 'c2', 'c3'],
+          criteria: {},
+          frozenAt: '2026-01-01T00:00:00.000Z',
+        },
+      };
+
+      const node = mapScenarioToNode(snapshotScenario, baseOptions);
+      expect(node.cardCount).toBe(3);
+    });
+
     it('should handle empty description', () => {
       const scenario: Scenario = {
         ...baseScenario,

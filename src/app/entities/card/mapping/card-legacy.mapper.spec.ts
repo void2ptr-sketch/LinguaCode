@@ -60,6 +60,54 @@ describe('card-legacy.mapper', () => {
       });
     });
 
+    describe('multiple-choice card', () => {
+      it('should normalize legacy multiple-choice to select card', () => {
+        const legacy = {
+          id: 'c1',
+          kind: 'multiple-choice',
+          title: 'Q1',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          caption: 'Вопрос по теме',
+          options: [
+            { id: 'a', text: 'Правильный ответ' },
+            { id: 'b', text: 'Неправильный 1' },
+            { id: 'c', text: 'Неправильный 2' },
+          ],
+          correctOptionId: 'a',
+          languagePair: { known: 'ru', learning: 'cpp' },
+        } as unknown as Card;
+
+        const result = normalizeLegacyCard(legacy);
+        expect(result.kind).toBe('select');
+        const select = result as SelectCard;
+        expect(select.promptKnown).toBe('Вопрос по теме');
+        expect(select.optionsLearning).toEqual([
+          'Правильный ответ',
+          'Неправильный 1',
+          'Неправильный 2',
+        ]);
+        expect(select.correctIndex).toBe(0);
+        expect(select.direction).toBe('known-to-learning');
+      });
+
+      it('should fall back to title when caption is absent and default correctIndex is 0', () => {
+        const legacy = {
+          id: 'c1',
+          kind: 'multiple-choice',
+          title: 'Fallback title',
+          appearance: { theme: 'azure-blue', fontSize: 'md' },
+          options: [{ id: 'x', text: 'Only' }],
+          correctOptionId: 'missing',
+        } as unknown as Card;
+
+        const result = normalizeLegacyCard(legacy);
+        expect(result.kind).toBe('select');
+        const select = result as SelectCard;
+        expect(select.promptKnown).toBe('Fallback title');
+        expect(select.correctIndex).toBe(0);
+      });
+    });
+
     describe('memory card', () => {
       it('should pass through a valid modern memory card with complete pairs', () => {
         const card: MemoryCard = {

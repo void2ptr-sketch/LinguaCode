@@ -1,0 +1,21 @@
+{
+  "id": "cpp-oop-fundamentals",
+  "title": "Основы ООП",
+  "description": "Классы, объекты, инкапсуляция, конструкторы, деструкторы",
+  "tags": ["ООП", "классы", "объекты", "инкапсуляция"],
+  "difficulty": "intermediate",
+  "estimatedDuration": 40,
+  "scenarios": [
+    "cpp-oop"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 6,
+    "prerequisites": ["cpp-basics-arrays-strings"],
+    "learningObjectives": [
+      "Понимать основы ООП",
+      "Знать принципы инкапсуляции",
+      "Уметь создавать классы и объекты"
+    ]
+  }
+}

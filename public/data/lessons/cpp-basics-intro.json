@@ -1,0 +1,21 @@
+{
+  "id": "cpp-basics-intro",
+  "title": "Введение в C++",
+  "description": "Базовые концепции: переменные, типы данных, условия, циклы, функции",
+  "tags": ["базовые", "введение", "переменные", "типы"],
+  "difficulty": "beginner",
+  "estimatedDuration": 30,
+  "scenarios": [
+    "cpp-basics"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 1,
+    "prerequisites": [],
+    "learningObjectives": [
+      "Понимать базовые типы данных C++",
+      "Знать основы условий и циклов",
+      "Уметь создавать функции"
+    ]
+  }
+}

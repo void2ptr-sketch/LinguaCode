@@ -1,0 +1,21 @@
+{
+  "id": "cpp-oop-polymorphism",
+  "title": "Полиморфизм и виртуальные методы",
+  "description": "Виртуальные методы, динамическая диспетчеризация, абстрактные классы",
+  "tags": ["ООП", "полиморфизм", "виртуальные методы", "абстрактные классы"],
+  "difficulty": "intermediate",
+  "estimatedDuration": 40,
+  "scenarios": [
+    "cpp-oop"
+  ],
+  "meta": {
+    "courseId": "cpp-complete-course",
+    "order": 8,
+    "prerequisites": ["cpp-oop-inheritance"],
+    "learningObjectives": [
+      "Понимать полиморфизм",
+      "Знать виртуальные методы",
+      "Уметь создавать абстрактные классы"
+    ]
+  }
+}

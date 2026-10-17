@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario-cpp-basics-intro-03",
+      "title": "Hello World и базовый вывод",
+      "description": "Сценарий: Hello World и базовый вывод",
+      "order": 2,
+      "lessonId": "lesson-cpp-basics-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-basics-intro-03-card-01",
+          "scenario-cpp-basics-intro-03-card-02",
+          "scenario-cpp-basics-intro-03-card-03",
+          "scenario-cpp-basics-intro-03-card-04",
+          "scenario-cpp-basics-intro-03-card-05",
+          "scenario-cpp-basics-intro-03-card-06",
+          "scenario-cpp-basics-intro-03-card-07",
+          "scenario-cpp-basics-intro-03-card-08",
+          "scenario-cpp-basics-intro-03-card-09",
+          "scenario-cpp-basics-intro-03-card-10",
+          "scenario-cpp-basics-intro-03-card-11",
+          "scenario-cpp-basics-intro-03-card-12",
+          "scenario-cpp-basics-intro-03-card-13",
+          "scenario-cpp-basics-intro-03-card-14",
+          "scenario-cpp-basics-intro-03-card-15",
+          "scenario-cpp-basics-intro-03-card-16",
+          "scenario-cpp-basics-intro-03-card-17",
+          "scenario-cpp-basics-intro-03-card-18",
+          "scenario-cpp-basics-intro-03-card-19",
+          "scenario-cpp-basics-intro-03-card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

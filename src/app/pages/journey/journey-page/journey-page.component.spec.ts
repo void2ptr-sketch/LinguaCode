@@ -3,13 +3,14 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { computed, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 import { JourneyPageComponent } from './journey-page.component';
 import { LearningDashboardService } from '../../../entities/learning/services';
 import { JourneyAnalyticsService } from '../../../features/journey/services/journey-analytics.service';
 import { LearningResultsStore } from '../../../entities/learning/model/learning-results.store';
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
+import { CourseSearchService } from '../../../entities/course';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
@@ -80,6 +81,7 @@ describe('JourneyPageComponent', () => {
   let mockAnalyticsService: Partial<JourneyAnalyticsService>;
   let mockResultsStore: Partial<LearningResultsStore>;
   let mockContentSeedRepo: Partial<ContentSeedRepository>;
+  let mockCourseSearchService: { getById: ReturnType<typeof vi.fn> };
   let mockActivatedRoute: Partial<ActivatedRoute>;
 
   beforeEach(async () => {
@@ -139,8 +141,16 @@ describe('JourneyPageComponent', () => {
       error: vi.fn(),
     };
 
+    mockCourseSearchService = {
+      getById: vi
+        .fn()
+        .mockImplementation((courseId: string) =>
+          Promise.resolve(makeCourse(courseId, `Course ${courseId}`, mockLessons)),
+        ),
+    };
+
     mockActivatedRoute = {
-      queryParams: of({ courseId: 'course-1' }),
+      queryParams: new BehaviorSubject({ courseId: 'course-1' }),
     };
 
     await TestBed.configureTestingModule({
@@ -152,6 +162,7 @@ describe('JourneyPageComponent', () => {
         { provide: JourneyAnalyticsService, useValue: mockAnalyticsService },
         { provide: LearningResultsStore, useValue: mockResultsStore },
         { provide: ContentSeedRepository, useValue: mockContentSeedRepo },
+        { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
       ],
@@ -225,6 +236,11 @@ describe('JourneyPageComponent', () => {
   });
 
   it('should handle empty course lessons', async () => {
+    // Без query-параметра карта следует за активным курсом дашборда.
+    (mockActivatedRoute.queryParams as BehaviorSubject<Record<string, string>>).next({});
+    fixture.detectChanges();
+    await fixture.whenStable();
+
     const courseSignal = mockDashboardService.course as ReturnType<typeof signal>;
     const emptyCourse = makeCourse('course-empty', 'Empty Course', []);
     courseSignal.set(emptyCourse);
@@ -232,5 +248,19 @@ describe('JourneyPageComponent', () => {
     await fixture.whenStable();
 
     expect(component.nodes()).toEqual([]);
+  });
+
+  it('should load the course from query params when it differs from the dashboard course', async () => {
+    (mockActivatedRoute.queryParams as BehaviorSubject<Record<string, string>>).next({
+      courseId: 'course-2',
+    });
+    fixture.detectChanges();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(mockCourseSearchService.getById).toHaveBeenCalledWith('course-2');
+    expect(component.courseId()).toBe('course-2');
+    expect(component.nodes().length).toBeGreaterThan(0);
+    expect(component.nodes()[0]?.courseId).toBe('course-2');
   });
 });
