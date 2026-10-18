@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-01",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter?",
+      "optionsLearning": [
+        "Переменная в объявлении функции",
+        "Значение при вызове",
+        "Возвращаемое значение",
+        "Тело функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-02",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое argument?",
+      "optionsLearning": [
+        "Значение при вызове функции",
+        "Переменная в объявлении",
+        "Возвращаемое значение",
+        "Тело функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-03",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by value?",
+      "optionsLearning": [
+        "Копирование значения",
+        "Передача по ссылке",
+        "Передача по указателю",
+        "Передача по имени"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-04",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by reference?",
+      "optionsLearning": [
+        "Передача ссылки на переменную",
+        "Копирование значения",
+        "Передача по указателю",
+        "Передача по имени"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-05",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by const reference?",
+      "optionsLearning": [
+        "Ссылка без изменения",
+        "Копирование значения",
+        "Указатель",
+        "Передача по имени"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-06",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pass by pointer?",
+      "optionsLearning": [
+        "Передача адреса переменной",
+        "Копирование значения",
+        "Ссылка",
+        "Передача по имени"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-07",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default argument?",
+      "optionsLearning": [
+        "Значение по умолчанию для параметра",
+        "Обязательный параметр",
+        "Необязательный параметр",
+        "Параметр без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-08",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Где можно объявить default argument?",
+      "optionsLearning": [
+        "В declaration или definition",
+        "Только в declaration",
+        "Только в definition",
+        "Только в call"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-09",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое optional argument?",
+      "optionsLearning": [
+        "Аргумент со значением по умолчанию",
+        "Обязательный аргумент",
+        "Необязательный аргумент",
+        "Аргумент без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-10",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое variadic function?",
+      "optionsLearning": [
+        "Функция с переменным числом параметров",
+        "Функция с одним параметром",
+        "Функция без параметров",
+        "Функция с фиксированным числом"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-11",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter pack?",
+      "optionsLearning": [
+        "Пакет параметров в template",
+        "Один параметр",
+        "Фиксированный пакет",
+        "Параметр без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-12",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter deduction?",
+      "optionsLearning": [
+        "Вывод типа параметра",
+        "Изменение типа",
+        "Удаление типа",
+        "Добавление типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-13",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter matching?",
+      "optionsLearning": [
+        "Соответствие аргументов параметрам",
+        "Изменение параметров",
+        "Удаление параметров",
+        "Добавление параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-14",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter type conversion?",
+      "optionsLearning": [
+        "Преобразование типа аргумента",
+        "Изменение параметра",
+        "Удаление параметра",
+        "Добавление параметра"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-15",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter overload resolution?",
+      "optionsLearning": [
+        "Выбор лучшей функции",
+        "Создание функции",
+        "Удаление функции",
+        "Изменение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-16",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter ambiguity?",
+      "optionsLearning": [
+        "Неоднозначность выбора функции",
+        "Однозначный выбор",
+        "Ошибка компиляции",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-17",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter default initialization?",
+      "optionsLearning": [
+        "Инициализация по умолчанию",
+        "Обязательная инициализация",
+        "Необязательная инициализация",
+        "Инициализация без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-18",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter move semantics?",
+      "optionsLearning": [
+        "Перемещение ресурса",
+        "Копирование ресурса",
+        "Удаление ресурса",
+        "Добавление ресурса"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-19",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter forwarding?",
+      "optionsLearning": [
+        "Передача параметров дальше",
+        "Изменение параметров",
+        "Удаление параметров",
+        "Добавление параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario.card-20",
+      "kind": "select",
+      "title": "Параметры и возвращаемые значения - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parameter perfect forwarding?",
+      "optionsLearning": [
+        "Идеальная передача с сохранением типов",
+        "Обычная передача",
+        "Изменение параметров",
+        "Удаление параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+    }
+  ]
+}

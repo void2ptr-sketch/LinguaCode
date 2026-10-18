@@ -1,0 +1,605 @@
+{
+  "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-01",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic polymorphism?",
+      "optionsLearning": [
+        "Полиморфизм через virtual методы и vtable во время выполнения",
+        "Статический полиморфизм",
+        "Без полиморфизма",
+        "Случайный полиморфизм"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-02",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое static polymorphism?",
+      "optionsLearning": [
+        "Полиморфизм на этапе компиляции (templates, CRTP)",
+        "Во время выполнения",
+        "Без полиморфизма",
+        "Случайный полиморфизм"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-03",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое runtime type identification?",
+      "optionsLearning": [
+        "Определение типа объекта во время выполнения (RTTI)",
+        "На этапе компиляции",
+        "Без определения",
+        "Случайное определение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-04",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic_cast?",
+      "optionsLearning": [
+        "Безопасный downcast с проверкой типа во время выполнения",
+        "Небезопасный cast",
+        "Без cast",
+        "Случайный cast"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-05",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое static_cast?",
+      "optionsLearning": [
+        "Статический cast на этапе компиляции без проверки типа",
+        "Динамический cast",
+        "Без cast",
+        "Случайный cast"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-06",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое reinterpret_cast?",
+      "optionsLearning": [
+        "Битовое преобразование указателя без проверки типа",
+        "Типобезопасное преобразование",
+        "Без cast",
+        "Случайный cast"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-07",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое const_cast?",
+      "optionsLearning": [
+        "Добавление или удаление const/volatile спецификаторов",
+        "Изменение типа",
+        "Без cast",
+        "Случайный cast"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-08",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое downcast?",
+      "optionsLearning": [
+        "Приведение от base pointer к derived pointer",
+        "От derived к base",
+        "Без приведения",
+        "Случайное приведение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-09",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое upcast?",
+      "optionsLearning": [
+        "Приведение от derived pointer к base pointer (безопасно)",
+        "От base к derived",
+        "Без приведения",
+        "Случайное приведение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-10",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое safe cast?",
+      "optionsLearning": [
+        "Cast с проверкой типа во время выполнения (dynamic_cast)",
+        "Без проверки",
+        "Удаление проверки",
+        "Добавление проверки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-11",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unsafe cast?",
+      "optionsLearning": [
+        "Cast без проверки типа (static_cast, reinterpret_cast)",
+        "С проверкой",
+        "Без cast",
+        "Случайный cast"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-12",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое null pointer on failed dynamic_cast?",
+      "optionsLearning": [
+        "dynamic_cast возвращает nullptr при неудачном downcast указателя",
+        "Бросает исключение",
+        "Возвращает reference",
+        "Возвращает void"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-13",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое bad_cast exception?",
+      "optionsLearning": [
+        "std::bad_cast при неудачном dynamic_cast reference",
+        "Без исключения",
+        "Удаление исключения",
+        "Добавление исключения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-14",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое type_info?",
+      "optionsLearning": [
+        "Класс информации о типе из typeid operator",
+        "Без класса",
+        "Удаление класса",
+        "Добавление класса"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-15",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое typeid operator?",
+      "optionsLearning": [
+        "Оператор для получения type_info объекта во время выполнения",
+        "На этапе компиляции",
+        "Без оператора",
+        "Случайный оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-16",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое polymorphic object?",
+      "optionsLearning": [
+        "Объект с хотя бы одним virtual методом (имеет vptr)",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-17",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое non-polymorphic object?",
+      "optionsLearning": [
+        "Объект без virtual методов (нет vptr)",
+        "С virtual",
+        "Без объекта",
+        "Случайный объект"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-18",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое polymorphic hierarchy?",
+      "optionsLearning": [
+        "Иерархия классов с virtual методами для полиморфного поведения",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-19",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interface-based design?",
+      "optionsLearning": [
+        "Проектирование через интерфейсы (abstract classes) для loose coupling",
+        "Без проектирования",
+        "Удаление проектирования",
+        "Добавление проектирования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario.card-20",
+      "kind": "select",
+      "title": "Динамическая диспетчеризация - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dependency injection?",
+      "optionsLearning": [
+        "Передача зависимостей через constructor/interface вместо создания внутри",
+        "Создание внутри",
+        "Без передачи",
+        "Случайная передача"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-dynamic.01.scenario"
+    }
+  ]
+}

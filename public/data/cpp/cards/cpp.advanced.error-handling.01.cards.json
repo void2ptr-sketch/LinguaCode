@@ -1,0 +1,605 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-01",
+      "question": "В чём разница между `std::terminate()` и `std::abort()`?",
+      "answer": "`std::abort()` вызывает аварийное завершение программы с генерацией сигнала (SIGABRT на Unix, EXCEPTION_ACCESS_VIOLATION на Windows) и дамп памяти. `std::terminate()` вызывается автоматически при выбросе исключения из деструктора, из конструктора/деструктора во время unwind или из функции, зарегистрированной через `std::set_terminate()`. По умолчанию `std::terminate()` вызывает `std::abort()`, но можно заменить через `std::set_terminate()`.",
+      "hints": [
+        "Подумайте о механизме обработки исключений C++",
+        "Оба вызывают аварийное завершение, но на разных этапах"
+      ],
+      "tags": [
+        "error-handling",
+        "exceptions",
+        "termination"
+      ],
+      "difficulty": 3,
+      "order": 1,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-02",
+      "question": "Что произойдёт, если деструктор бросит исключение во время unwind другого исключения?",
+      "answer": "Будет вызвана `std::terminate()`, и программа завершится аварийно. Это одно из ключевых правил C++: деструкторы не должны выбрасывать исключения во время обработки другого исключения (unwind). Стандарт гарантирует, что в момент вызова деструктора для первого исключения второе исключение активно.",
+      "hints": [
+        "Правило noexcept и unwind",
+        "std::uncaught_exceptions()"
+      ],
+      "tags": [
+        "exceptions",
+        "destructors",
+        "termination"
+      ],
+      "difficulty": 3,
+      "order": 2,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-03",
+      "question": "Зачем нужен `noexcept` спецификатор и как он влияет на оптимизацию?",
+      "answer": "`noexcept` сообщает компилятору, что функция не выбросит исключение. Это позволяет: (1) оптимизировать код — компилятор может генерировать более эффективный код без таблиц unwind; (2) использовать `std::vector::reserve()` и другие операции без резервного копирования при перемещении элементов; (3) получать ошибку компиляции, если функция всё же бросает исключение. В C++11 `noexcept` был спецификатором, с C++14 — выражением.",
+      "hints": [
+        "Unwind tables, move semantics",
+        "std::vector при перемещении"
+      ],
+      "tags": [
+        "noexcept",
+        "optimization",
+        "exceptions"
+      ],
+      "difficulty": 2,
+      "order": 3,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-04",
+      "question": "Как работает `std::set_terminate()` и чем он отличается от `std::set_unexpected()`?",
+      "answer": "`std::set_terminate()` устанавливает пользовательскую функцию, вызываемую при `std::terminate()`. Это последняя точка перед аварийным завершением. `std::set_unexpected()` был удалён в C++19 — он использовался для обработки unexpected-исключений от dynamic exception specifications (например, `void f() throw(int)`), которые были deprecated в C++11 и удалены.",
+      "hints": [
+        "C++19 удаление",
+        "Последняя точка перед abort"
+      ],
+      "tags": [
+        "termination",
+        "deprecated",
+        "exceptions"
+      ],
+      "difficulty": 3,
+      "order": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-05",
+      "question": "Что такое `std::current_exception()` и как использовать `std::rethrow_exception()`?",
+      "answer": "`std::current_exception()` захватывает текущее активное исключение и возвращает `std::exception_ptr`. Этот указатель можно сохранить, передать между потоками и затем выбросить заново через `std::rethrow_exception()`. Это позволяет реализовать кастомную обработку ошибок, логирование или передачу ошибки в другой поток.",
+      "hints": [
+        "exception_ptr, передача между потоками",
+        "Сохранение и повторный бросок"
+      ],
+      "tags": [
+        "exceptions",
+        "exception_ptr",
+        "concurrency"
+      ],
+      "difficulty": 3,
+      "order": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-06",
+      "question": "В чём разница между `std::exception_ptr` и обычным указателем на исключение?",
+      "answer": "`std::exception_ptr` — это типобезопасный, ref-counted умный указатель на объект исключения. Он может быть null (не указывает ни на какое исключение), копируется инкрементируя счётчик ссылок и позволяет выбросить сохранённое исключение через `std::rethrow_exception()`. Обычный указатель `void*` не хранит тип, не имеет ref-counting и не может быть использован для повторного броска.",
+      "hints": [
+        "Ref-counting, type safety",
+        "null-значение, rethrow"
+      ],
+      "tags": [
+        "exception_ptr",
+        "smart-pointers",
+        "exceptions"
+      ],
+      "difficulty": 2,
+      "order": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-07",
+      "question": "Как правильно использовать `std::unexpected_handler` и почему он deprecated?",
+      "answer": "`std::unexpected_handler` вызывался при нарушении dynamic exception specification (например, функция объявлена как `void f() throw(int)`, но бросает `std::string`). Начиная с C++11 это поведение было помечено как deprecated, а в C++19 полностью удалено. Вместо этого следует использовать `noexcept` или явную обработку ошибок через `std::expected<T,E>` (C++23).",
+      "hints": [
+        "dynamic exception specifications",
+        "C++19 удаление"
+      ],
+      "tags": [
+        "deprecated",
+        "exceptions",
+        "noexcept"
+      ],
+      "difficulty": 3,
+      "order": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-08",
+      "question": "Что такое `std::nested_exception` и как использовать `std::throw_with_nested()`?",
+      "answer": "`std::nested_exception` позволяет обернуть одно исключение в другое. `std::throw_with_nested(exc)` создаёт `std::nested_exception< decltype(exc) >`, содержащий оригинальное исключение. В обработчике можно получить вложенное исключение через `e.nested_ptr()`. Это полезно для добавления контекста к ошибкам без потери исходной информации.",
+      "hints": [
+        "Обёртка исключений, контекст",
+        "e.nested_ptr()"
+      ],
+      "tags": [
+        "nested-exceptions",
+        "error-handling",
+        "context"
+      ],
+      "difficulty": 3,
+      "order": 8,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-09",
+      "question": "Как работает `std::uncaught_exceptions()` и чем он лучше `std::uncaught_exception()`?",
+      "answer": "`std::uncaught_exceptions()` (C++17) возвращает счётчик активных исключений, тогда как `std::uncaught_exception()` (deprecated в C++23) возвращал только bool. Это важно при обработке вложенных исключений: если бросить новое исключение из обработчика старого, `uncaught_exception()` всё ещё вернёт true, хотя первое исключение уже обработано. Счётчик точно показывает глубину stack.",
+      "hints": [
+        "C++17 vs deprecated",
+        "Вложенные исключения"
+      ],
+      "tags": [
+        "exceptions",
+        "deprecated",
+        "counting"
+      ],
+      "difficulty": 3,
+      "order": 9,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-10",
+      "question": "Что произойдёт, если `std::shared_ptr` бросит исключение при копировании?",
+      "answer": "Если копирующий конструктор `shared_ptr` (или оператор присваивания) бросит исключение, счётчик ссылок не будет инкрементирован, и программа вызовет `std::terminate()`. Однако на практике это практически невозможно, так как `shared_ptr` использует атомарные операции для управления ref-count. Проблема может возникнуть только при кастомном deleter или allocate.",
+      "hints": [
+        "Ref-counting, atomics",
+        "Terminate при исключении из конструктора"
+      ],
+      "tags": [
+        "shared-ptr",
+        "exceptions",
+        "memory"
+      ],
+      "difficulty": 3,
+      "order": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-11",
+      "question": "Как отладить crash с core dump на Linux?",
+      "answer": "1) Убедитесь, что `ulimit -c unlimited` установлен. 2) Запустите программу под gdb: `gdb ./program core`. 3) Используйте `bt` (backtrace) для просмотра стека вызовов. 4) `info registers` для просмотра регистров. 5) `print` для переменных. 6) Для C++ используйте `catch throw` и `catch catch` в gdb для перехвата исключений.",
+      "hints": [
+        "gdb, backtrace, core dump",
+        "ulimit"
+      ],
+      "tags": [
+        "debugging",
+        "crash",
+        "linux"
+      ],
+      "difficulty": 2,
+      "order": 11,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-12",
+      "question": "Как работает Address Sanitizer (ASan) и что он обнаруживает?",
+      "answer": "ASan — инструмент компилятора (GCC/Clang), который обнаруживает: (1) use-after-free, (2) buffer overflows, (3) double free, (4) leaks (через Leak Sanitizer). Он работает путём вставки проверок в каждый аллок/деаллок и каждой операции с памятью. Включается флагом `-fsanitize=address`. Обнаруживает ошибки во время выполнения, а не на этапе компиляции.",
+      "hints": [
+        "-fsanitize=address",
+        "use-after-free, buffer overflow"
+      ],
+      "tags": [
+        "asan",
+        "debugging",
+        "memory"
+      ],
+      "difficulty": 2,
+      "order": 12,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-13",
+      "question": "В чём разница между UBSan и ASan?",
+      "answer": "ASan обнаруживает ошибки работы с памятью (use-after-free, buffer overflow) во время выполнения. UBSan (Undefined Behavior Sanitizer, `-fsanitize=undefined`) обнаруживает неопределённое поведение C++: переполнение signed integer, деление на ноль, misaligned access, unreachable code и т.д. Оба инструмента вставляются компилятором, но проверяют разные классы проблем.",
+      "hints": [
+        "Memory vs UB",
+        "-fsanitize=undefined"
+      ],
+      "tags": [
+        "ubsan",
+        "asan",
+        "debugging"
+      ],
+      "difficulty": 2,
+      "order": 13,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-14",
+      "question": "Как отладить deadlock в многопоточной программе?",
+      "answer": "1) Используйте `std::lock_guard` с `std::defer_lock` и `std::try_lock` для диагностики. 2) Включите Thread Sanitizer (`-fsanitize=thread`). 3) Используйте `gdb` с `info threads` и `thread apply all bt`. 4) Добавьте логирование acquire/release мьютексов с таймстампами. 5) Используйте `std::unique_lock` с `std::adopt_lock` для отладки. 6) Инструменты: Valgrind Helgrind, Intel Inspector.",
+      "hints": [
+        "Thread Sanitizer, gdb threads",
+        "Lock ordering"
+      ],
+      "tags": [
+        "deadlock",
+        "debugging",
+        "concurrency"
+      ],
+      "difficulty": 3,
+      "order": 14,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-15",
+      "question": "Что такое Memory Sanitizer (MSan) и чем он отличается от ASan?",
+      "answer": "MSan (`-fsanitize=memory`) обнаруживает использование неинициализированной памяти. В отличие от ASan, который проверяет доступ к уже выделенной/освобождённой памяти, MSan отслеживает propagation неинициализированных значений через регистры и стек. Работает только с Clang. ASan работает с выделенной памятью, MSan — с инициализацией.",
+      "hints": [
+        "Uninitialized memory",
+        "Clang only"
+      ],
+      "tags": [
+        "msan",
+        "debugging",
+        "memory"
+      ],
+      "difficulty": 3,
+      "order": 15,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-16",
+      "question": "Как работает Thread Sanitizer (TSan) и что он обнаруживает?",
+      "answer": "TSan (`-fsanitize=thread`) обнаружает data races во время выполнения. Он вставляет хуки в каждый атомарный доступ и мьютекс, отслеживая happens-before отношения. Сообщает о конфликтах: чтение без синхронизации при записи из другого потока. Не обнаруживает логические ошибки (deadlock, starvation), только race conditions.",
+      "hints": [
+        "Data races, happens-before",
+        "-fsanitize=thread"
+      ],
+      "tags": [
+        "tsan",
+        "debugging",
+        "concurrency"
+      ],
+      "difficulty": 2,
+      "order": 16,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-17",
+      "question": "Как использовать GDB для отладки многопоточной программы?",
+      "answer": "1) `set non-stop on` — остановка одного потока без остановки других. 2) `info threads` — список потоков. 3) `thread ID` — переключение на поток. 4) `thread apply all bt` — бэктрейс всех потоков. 5) `watch` — установка watchpoint на переменную. 6) `catch throw` — остановка при броске исключения. 7) `set scheduler-locking on` — блокировка других потоков при отладке одного.",
+      "hints": [
+        "non-stop, thread apply all bt",
+        "scheduler-locking"
+      ],
+      "tags": [
+        "gdb",
+        "debugging",
+        "concurrency"
+      ],
+      "difficulty": 2,
+      "order": 17,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-18",
+      "question": "Что такое Valgrind и какие инструменты он предоставляет?",
+      "answer": "Valgrind — фреймворк для отладки и профилирования. Основные инструменты: (1) Memcheck — проверка утечек памяти, use-after-free, uninitialized access; (2) Helgrind — обнаружение data races и deadlock; (3) Callgrind — профилирование вызовов; (4) Cachegrind — анализ кэш-промахов; (5) Massif — анализ использования кучи. Работает как интерпретатор, поэтому медленнее ASan/TSan.",
+      "hints": [
+        "Memcheck, Helgrind, Callgrind",
+        "Интерпретатор vs компилятор"
+      ],
+      "tags": [
+        "valgrind",
+        "debugging",
+        "memory"
+      ],
+      "difficulty": 2,
+      "order": 18,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-19",
+      "question": "Как работает LeakSanitizer (LSan) и как он интегрирован с ASan?",
+      "answer": "LSan обнарувает утечки памяти — память, выделенную через new/malloc, но не освобождённую к моменту завершения программы. Встроен в ASan (`-fsanitize=address` включает LSan автоматически). Можно отключить: `export LSAN_OPTIONS=detect_leaks=0`. Для точной диагностики используйте `--leak-check=full` и `--show-leak-kinds=definite`.",
+      "hints": [
+        "Выделено, но не освобождено",
+        "-fsanitize=address включает LSan"
+      ],
+      "tags": [
+        "lsan",
+        "asan",
+        "memory-leaks"
+      ],
+      "difficulty": 2,
+      "order": 19,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario.card-20",
+      "question": "Как правильно реализовать custom error type в C++?",
+      "answer": "Наследуйте от `std::exception` и переопределите `what()`. Используйте `[[noreturn]]` для функций, которые никогда не возвращаются. Добавьте контекст через `std::nested_exception` или C++23 `std::source_location`. Пример: `class MyError : public std::runtime_error { ... }; throw MyError(msg);`. Для error codes используйте `std::error_code` из `<system_error>`.",
+      "hints": [
+        "Наследование от std::exception",
+        "std::error_code, nested_exception"
+      ],
+      "tags": [
+        "error-handling",
+        "exceptions",
+        "custom-errors"
+      ],
+      "difficulty": 2,
+      "order": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-error-handling-01-01-course",
+      "lessonId": "scenario-cpp-advanced-error-handling-01-01-lesson",
+      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+    }
+  ],
+  "scenarioId": "cpp.advanced.error-handling.01.scenario"
+}

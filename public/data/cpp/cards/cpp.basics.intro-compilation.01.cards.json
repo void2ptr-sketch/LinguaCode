@@ -1,0 +1,605 @@
+{
+  "scenarioId": "cpp.basics.intro-compilation.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-01",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое компиляция в C++?",
+      "optionsLearning": [
+        "Процесс преобразования исходного кода в машинный код",
+        "Выполнение программы",
+        "Отладка кода",
+        "Редактирование файлов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-02",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой этап следует за лексическим анализом?",
+      "optionsLearning": [
+        "Синтаксический анализ (parsing)",
+        "Генерация кода",
+        "Линковка",
+        "Выполнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-03",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое препроцессор C++?",
+      "optionsLearning": [
+        "Программа, обрабатывающая директивы до компиляции",
+        "Часть компилятора",
+        "Отладчик",
+        "Редактор кода"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-04",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой файл создает компилятор после обработки?",
+      "optionsLearning": [
+        "Объектный файл (.o или .obj)",
+        "Исходный файл",
+        "Файл выполнения",
+        "Документация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-05",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает linker (линковщик)?",
+      "optionsLearning": [
+        "Объединяет объектные файлы в исполняемый",
+        "Компилирует код",
+        "Запускает программу",
+        "Удаляет ошибки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-06",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое object code?",
+      "optionsLearning": [
+        "Машинный код в объектном файле",
+        "Исходный код на C++",
+        "Байт-код Java",
+        "P-код"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-07",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая команда компилирует файл main.cpp?",
+      "optionsLearning": [
+        "g++ main.cpp",
+        "python main.cpp",
+        "java main.cpp",
+        "cc main.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-08",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое static linking?",
+      "optionsLearning": [
+        "Встраивание библиотек в исполняемый файл",
+        "Загрузка библиотек при запуске",
+        "Удаление библиотек",
+        "Компиляция без библиотек"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-09",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic linking?",
+      "optionsLearning": [
+        "Загрузка библиотек во время выполнения",
+        "Статическая компиляция",
+        "Удаление кода",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-10",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое precompiled header?",
+      "optionsLearning": [
+        "Предварительно скомпилированный заголовочный файл",
+        "Быстрый редактор",
+        "Тип данных",
+        "Библиотека"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-11",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой флаг компилятора показывает команды препроцессора?",
+      "optionsLearning": [
+        "-E",
+        "-O",
+        "-g",
+        "-c"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-12",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает флаг -std=c++17?",
+      "optionsLearning": [
+        "Устанавливает стандарт C++17",
+        "Включает отладку",
+        "Оптимизирует код",
+        "Создает библиотеку"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-13",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compilation unit?",
+      "optionsLearning": [
+        "Исходный файл с всеми включенными заголовками",
+        "Весь проект",
+        "Одна функция",
+        "Библиотека"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-14",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое undefined behavior?",
+      "optionsLearning": [
+        "Поведение, не определенное стандартом C++",
+        "Ошибка компиляции",
+        "Предупреждение",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-15",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой этап проверяет типы данных?",
+      "optionsLearning": [
+        "Semantic analysis (семантический анализ)",
+        "Лексический анализ",
+        "Генерация кода",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-16",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое optimization level -O2?",
+      "optionsLearning": [
+        "Средняя оптимизация для скорости",
+        "Без оптимизации",
+        "Максимальная оптимизация",
+        "Отладка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-17",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое #include \"file.h\"?",
+      "optionsLearning": [
+        "Включение локального заголовочного файла",
+        "Подключение системной библиотеки",
+        "Удаление файла",
+        "Компиляция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-18",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое #include <iostream>?",
+      "optionsLearning": [
+        "Подключение системной библиотеки iostream",
+        "Локальный файл",
+        "Удаление файла",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-19",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает препроцессор с #define PI 3.14?",
+      "optionsLearning": [
+        "Заменяет все вхождения PI на 3.14",
+        "Объявляет переменную",
+        "Создает функцию",
+        "Компилирует код"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario.card-20",
+      "kind": "select",
+      "title": "Компиляция и этапы преобразования - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое assembly code?",
+      "optionsLearning": [
+        "Машинно-ориентированный мнемонический код",
+        "Исходный C++ код",
+        "Байт-код",
+        "Объектный файл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-compilation.01.scenario"
+    }
+  ]
+}

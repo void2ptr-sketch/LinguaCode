@@ -1,0 +1,652 @@
+{
+  "scenarioId": "cpp.advanced.ub.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-01",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 1: use-after-free",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint* p = new int(42);\ndelete p;\nstd::cout << *p;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Неопределённое поведение (use-after-free)",
+        "0",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "memory",
+          "delete"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-02",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 2: что такое UB?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что означает Undefined Behavior в C++?",
+      "optionsLearning": [
+        "Компилятор обязан выдать ошибку",
+        "Стандарт не гарантирует поведение — программа может вести себя любым образом",
+        "Программа всегда завершается с ошибкой",
+        "Это предупреждение компилятора"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "standards"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 3: signed integer overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint x = 2147483647; // INT_MAX\nx = x + 1;\nstd::cout << x;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "-2147483648 (переполнение)",
+        "Неопределённое поведение",
+        "0",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "overflow",
+          "int"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-04",
+      "kind": "code-select",
+      "title": "Undefined Behavior — Вопрос 4: null pointer dereference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Какой код вызывает UB?",
+      "code": {
+        "code": "int* p = nullptr;\n// Какой вариант вызывает UB?\n???;",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "if (p) *p = 5;",
+        "*p = 5;",
+        "std::cout << p;",
+        "delete p;"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "null-pointer",
+          "dereference"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-05",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 5: unsequenced modifications",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что вызывает UB при unsequenced modifications?",
+      "optionsLearning": [
+        "int x = 5; int y = x++ + ++x;",
+        "int x = 5; std::cout << x;",
+        "int x = 5; x = 10;",
+        "int x = 5; if (x > 3) {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "sequencing",
+          "operator-precedence"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 6: dangling reference",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint& getRef() {\n  int x = 42;\n  return x;\n}\nstd::cout << getRef();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Неопределённое поведение (dangling reference)",
+        "0",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "dangling-reference",
+          "lifetime"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-07",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 7: strict aliasing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что такое strict aliasing rule?",
+      "optionsLearning": [
+        "Объекты разных типов могут обращаться к одной памяти через указатели",
+        "Доступ к объекту через указатель несовместимого типа — UB",
+        "Указатели всегда 64-битные",
+        "Тип int можно приводить к float без UB"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "strict-aliasing",
+          "casting"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 8: array out of bounds",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint arr[5] = {1, 2, 3, 4, 5};\nstd::cout << arr[5];",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0 (нулевой элемент)",
+        "Неопределённое поведение (out-of-bounds)",
+        "5 (последний элемент)",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "array",
+          "out-of-bounds"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-09",
+      "kind": "code-select",
+      "title": "Undefined Behavior — Вопрос 9: uninitialized variable",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Какой код вызывает UB?",
+      "code": {
+        "code": "int x;\n// Какой вариант вызывает UB?\n???;",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "std::cout << x;",
+        "x = 5;",
+        "if (x == 0) {}",
+        "int y = x + 1;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "uninitialized",
+          "variable"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-10",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 10: signed shift overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что вызывает UB при побитных сдвигах?",
+      "optionsLearning": [
+        "Сдвиг на отрицательное число или >= width типа",
+        "Сдвиг на 1 бит",
+        "Сдвиг unsigned значения",
+        "Сдвиг nullptr"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "bitwise",
+          "shift"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 11: iterator invalidation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <vector>\n#include <iostream>\nstd::vector<int> v = {1, 2, 3};\nauto it = v.begin();\nv.push_back(4);\nstd::cout << *it;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "Неопределённое поведение (iterator invalidation)",
+        "4",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "iterator",
+          "vector"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-12",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 12: division by zero",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что вызывает UB при делении?",
+      "optionsLearning": [
+        "Деление целого числа на ноль",
+        "Деление double на ноль",
+        "Деление unsigned на ноль",
+        "Деление на 1"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "division",
+          "zero"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 13: signed/unsigned comparison",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint x = -1;\nif (x > 5u) {\n  std::cout << \"yes\";\n} else {\n  std::cout << \"no\";\n}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "yes",
+        "no",
+        "Неопределённое поведение",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "signed-unsigned",
+          "comparison"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-14",
+      "kind": "code-select",
+      "title": "Undefined Behavior — Вопрос 14: double free",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Какой код вызывает UB?",
+      "code": {
+        "code": "int* p = new int(42);\n// Какой вариант вызывает UB?\n???;",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "delete p; delete p;",
+        "delete p;",
+        "int x = *p;",
+        "p = nullptr;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "double-free",
+          "delete"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-15",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 15: stack overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Что вызывает UB при переполнении стека?",
+      "optionsLearning": [
+        "Бесконечная рекурсия без base case",
+        "Большой массив на стеке",
+        "Глубокая иерархия наследования",
+        "Все перечисленные варианты"
+      ],
+      "correctIndex": 3,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "stack-overflow",
+          "recursion"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-16",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 16: pointer arithmetic overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint arr[10];\nint* p = &arr[9];\np++; // Указатель за пределы массива\nstd::cout << (p == &arr[10] ? \"equal\" : \"not-equal\");",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "equal (разрешено указывать на один элемент за пределами)",
+        "not-equal",
+        "Неопределённое поведение",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "pointer-arithmetic",
+          "array"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-17",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 17: const cast UB",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Когда const_cast вызывает UB?",
+      "optionsLearning": [
+        "При модификации объекта, изначально объявленного как const",
+        "При приведении к другому типу",
+        "Всегда",
+        "Никогда — const_cast безопасен"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "const-cast",
+          "casting"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Undefined Behavior — Вопрос 18: vtable access on incomplete type",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nclass Base {\npublic:\n  virtual ~Base() {}\n};\nclass Derived : public Base {\npublic:\n  ~Derived() override {}\n};\nint main() {\n  Base* b = new Derived();\n  delete b;\n  return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Корректно: вызывается ~Derived()",
+        "Неопределённое поведение: виртуальный деструктор без override",
+        "Ошибка компиляции",
+        "Segmentation fault"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "virtual-destructor",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-19",
+      "kind": "code-select",
+      "title": "Undefined Behavior — Вопрос 19: data race",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "question": "Какой код вызывает UB (data race)?",
+      "code": {
+        "code": "#include <thread>\nint shared = 0;\n// Какой вариант вызывает data race?\nvoid threadFunc() {\n  ???;\n}",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "shared++;",
+        "std::atomic<int> local = shared;",
+        "int x = shared;",
+        "shared = 0;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "data-race",
+          "threading"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-20",
+      "kind": "select",
+      "title": "Undefined Behavior — Вопрос 20: how to detect UB?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "promptKnown": "Какой инструмент помогает обнаруживать UB?",
+      "optionsLearning": [
+        "Sanitizers (UBSan, ASan, TSan)",
+        "GDB только",
+        "Просто компиляция с -O2",
+        "Valgrind для всех случаев"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "undefined-behavior",
+          "sanitizers",
+          "debugging"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    }
+  ]
+}

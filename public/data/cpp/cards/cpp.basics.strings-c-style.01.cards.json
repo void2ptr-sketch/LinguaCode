@@ -1,0 +1,645 @@
+{
+  "scenarioId": "cpp.basics.strings-c-style.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-01",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое C-style строка?",
+      "optionsLearning": [
+        "Указатель на char",
+        "Объект string",
+        "Вектор символов",
+        "Массив символов с завершающим нулем '\\0'"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-02",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой символ завершает C-style строку?",
+      "optionsLearning": [
+        "'\\t'",
+        "'\\n'",
+        "' '",
+        "'\\0'"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-03",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `char s[] = \"AB\"; cout << sizeof(s);`?",
+      "optionsLearning": [
+        "4",
+        "2",
+        "1",
+        "3"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-04",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция копирует строку в C?",
+      "optionsLearning": [
+        "strcat()",
+        "memcpy()",
+        "strlen()",
+        "strcpy()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-05",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `char s[] = \"Hi\"; cout << strlen(s);`?",
+      "optionsLearning": [
+        "1",
+        "3",
+        "0",
+        "2"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-06",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция объединяет строки в C?",
+      "optionsLearning": [
+        "strcmp()",
+        "strcpy()",
+        "strlen()",
+        "strcat()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-07",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `strcmp(\"A\", \"A\")`?",
+      "optionsLearning": [
+        "-1",
+        "1",
+        "А",
+        "0"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-08",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция возвращает длину строки без '\\0'?",
+      "optionsLearning": [
+        "strlen() + 1",
+        "sizeof()",
+        "length()",
+        "strlen()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-09",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое null-terminated string?",
+      "optionsLearning": [
+        "Строка с пробелом",
+        "Пустая строка",
+        "Строка без символов",
+        "Строка, заканчивающаяся символом '\\0'"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-10",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер массива: `char s[5] = \"Hi\";`?",
+      "optionsLearning": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-11",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `strcpy(dest, \"ABC\"); cout << strlen(dest);`?",
+      "optionsLearning": [
+        "2",
+        "4",
+        "0",
+        "3"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-12",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция сравнивает строки посимвольно?",
+      "optionsLearning": [
+        "strcat()",
+        "strcpy()",
+        "strlen()",
+        "strcmp()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-13",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `strcmp(\"A\", \"B\")`?",
+      "optionsLearning": [
+        "положительное",
+        "0",
+        "1",
+        "отрицательное"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-14",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция находит подстроку в C?",
+      "optionsLearning": [
+        "strcmp()",
+        "strchr()",
+        "strcpy()",
+        "strstr()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-15",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `strcat(\"A\", \"B\")` (результат)?",
+      "optionsLearning": [
+        "\"B\"",
+        "\"A\"",
+        "Ошибка",
+        "\"AB\""
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-16",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок нужен для C-string функций?",
+      "optionsLearning": [
+        "<iostream>",
+        "<string>",
+        "<vector>",
+        "<cstring>"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-17",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `char s[] = {'H', 'i'}; cout << strlen(s);`?",
+      "optionsLearning": [
+        "3",
+        "2",
+        "0",
+        "неопределено"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-18",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция копирует n символов?",
+      "optionsLearning": [
+        "strcat()",
+        "strcpy()",
+        "strlen()",
+        "strncpy()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-19",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `sizeof(\"Hi\")`?",
+      "optionsLearning": [
+        "4",
+        "2",
+        "1",
+        "3"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario.card-20",
+      "kind": "select",
+      "title": "C-style строки - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая функция преобразует число в строку?",
+      "optionsLearning": [
+        "stoi()",
+        "atoi()",
+        "printf()",
+        "sprintf()"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-c-style.01.scenario"
+    }
+  ]
+}

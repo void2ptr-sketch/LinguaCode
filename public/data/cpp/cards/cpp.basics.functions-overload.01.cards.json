@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.functions-overload.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-01",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function overloading?",
+      "optionsLearning": [
+        "Несколько функций с одним именем",
+        "Одна функция с несколькими именами",
+        "Функция без имени",
+        "Функция без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-02",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличаются overloaded функции?",
+      "optionsLearning": [
+        "Типом или количеством параметров",
+        "Именем",
+        "Return type",
+        "Телом"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-03",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли overload только по return type?",
+      "optionsLearning": [
+        "Нет, ошибка компиляции",
+        "Да",
+        "Только для void",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-04",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое overload resolution?",
+      "optionsLearning": [
+        "Выбор лучшей функции",
+        "Создание функции",
+        "Удаление функции",
+        "Изменение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-05",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое exact match?",
+      "optionsLearning": [
+        "Точное совпадение типов",
+        "Частичное совпадение",
+        "Полное несовпадение",
+        "Случайное совпадение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-06",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое implicit conversion?",
+      "optionsLearning": [
+        "Автоматическое преобразование типов",
+        "Явное преобразование",
+        "Нет преобразования",
+        "Случайное преобразование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-07",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое user-defined conversion?",
+      "optionsLearning": [
+        "Преобразование через constructor/operator",
+        "Автоматическое преобразование",
+        "Нет преобразования",
+        "Случайное преобразование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-08",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ambiguity error?",
+      "optionsLearning": [
+        "Неоднозначность выбора функции",
+        "Однозначный выбор",
+        "Ошибка компиляции",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-09",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое best viable function?",
+      "optionsLearning": [
+        "Лучшая подходящая функция",
+        "Худшая подходящая функция",
+        "Средняя подходящая функция",
+        "Первая подходящая функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-10",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое conversion rank?",
+      "optionsLearning": [
+        "Ранг преобразования типов",
+        "Количество преобразований",
+        "Скорость преобразования",
+        "Размер преобразования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-11",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое standard conversion?",
+      "optionsLearning": [
+        "Стандартное преобразование типов",
+        "Пользовательское преобразование",
+        "Нет преобразования",
+        "Случайное преобразование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-12",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое user-defined conversion sequence?",
+      "optionsLearning": [
+        "Последовательность пользовательских преобразований",
+        "Стандартная последовательность",
+        "Нет последовательности",
+        "Случайная последовательность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-13",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ellipsis parameter?",
+      "optionsLearning": [
+        "Переменное число параметров (...)",
+        "Один параметр",
+        "Фиксированное число параметров",
+        "Параметр без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-14",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template overload?",
+      "optionsLearning": [
+        "Шаблонная функция с overload",
+        "Обычная функция",
+        "Функция без шаблона",
+        "Функция без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-15",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое non-template vs template?",
+      "optionsLearning": [
+        "Обычная против шаблонной функции",
+        "Шаблонная против обычной",
+        "Функция без шаблона",
+        "Функция без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-16",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit template argument?",
+      "optionsLearning": [
+        "Явное указание типа шаблона",
+        "Неявное указание типа",
+        "Нет указания типа",
+        "Случайное указание типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-17",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое implicit template argument?",
+      "optionsLearning": [
+        "Вывод типа шаблона",
+        "Явное указание типа",
+        "Нет указания типа",
+        "Случайное указание типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-18",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template deduction failure?",
+      "optionsLearning": [
+        "Неудача вывода типа шаблона",
+        "Успех вывода",
+        "Нет вывода",
+        "Случайный вывод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-19",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SFINAE?",
+      "optionsLearning": [
+        "Substitution Failure Is Not An Error",
+        "Success Is Fine And Easy Always",
+        "Simple Function Interface Always Works",
+        "Standard Function Interface Always Exists"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario.card-20",
+      "kind": "select",
+      "title": "Перегрузка функций - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое enable_if?",
+      "optionsLearning": [
+        "Условная компиляция функции",
+        "Условное выполнение",
+        "Условное создание",
+        "Условное удаление"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-overload.01.scenario"
+    }
+  ]
+}

@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.functions-declare.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-01",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое функция в C++?",
+      "optionsLearning": [
+        "Блок кода с именем и параметрами",
+        "Переменная",
+        "Массив",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-02",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая структура функции?",
+      "optionsLearning": [
+        "return_type name(params) { body }",
+        "name return_type(params) { body }",
+        "params name(return_type) { body }",
+        "body name(params) { return_type }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-03",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое void функция?",
+      "optionsLearning": [
+        "Функция без возврата значения",
+        "Функция с null",
+        "Функция с 0",
+        "Функция с empty"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-04",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое return statement?",
+      "optionsLearning": [
+        "Возврат значения из функции",
+        "Переход к следующей итерации",
+        "Прерывание цикла",
+        "Создание нового блока"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-05",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function signature?",
+      "optionsLearning": [
+        "Имя + параметры (без return type)",
+        "Только имя",
+        "Имя + return type",
+        "Только параметры"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-06",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function prototype?",
+      "optionsLearning": [
+        "Объявление функции без тела",
+        "Вызов функции",
+        "Определение функции",
+        "Использование функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-07",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function definition?",
+      "optionsLearning": [
+        "Полное определение с телом",
+        "Объявление без тела",
+        "Вызов функции",
+        "Использование функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-08",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function call?",
+      "optionsLearning": [
+        "Выполнение функции",
+        "Объявление функции",
+        "Определение функции",
+        "Использование функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-09",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function overload?",
+      "optionsLearning": [
+        "Несколько функций с одним именем",
+        "Одна функция с несколькими именами",
+        "Функция без имени",
+        "Функция без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-10",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function template?",
+      "optionsLearning": [
+        "Обобщенная функция для разных типов",
+        "Функция без типов",
+        "Функция с одним типом",
+        "Функция без параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-11",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default parameter?",
+      "optionsLearning": [
+        "Параметр со значением по умолчанию",
+        "Обязательный параметр",
+        "Необязательный параметр",
+        "Параметр без значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-12",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function pointer?",
+      "optionsLearning": [
+        "Указатель на функцию",
+        "Указатель на параметр",
+        "Указатель на return",
+        "Указатель на тело"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-13",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lambda function?",
+      "optionsLearning": [
+        "Анонимная функция",
+        "Функция без имени",
+        "Функция без параметров",
+        "Функция без return"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-14",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function object?",
+      "optionsLearning": [
+        "Объект с operator()",
+        "Объект без operator()",
+        "Объект с параметрами",
+        "Объект без return"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-15",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function signature matching?",
+      "optionsLearning": [
+        "Соответствие параметров и типов",
+        "Соответствие имен",
+        "Соответствие return type",
+        "Соответствие тела"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-16",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function resolution?",
+      "optionsLearning": [
+        "Выбор правильной функции",
+        "Создание функции",
+        "Удаление функции",
+        "Изменение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-17",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function ambiguity?",
+      "optionsLearning": [
+        "Неоднозначность выбора функции",
+        "Однозначный выбор",
+        "Ошибка компиляции",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-18",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function overloading resolution?",
+      "optionsLearning": [
+        "Выбор лучшей функции",
+        "Создание функции",
+        "Удаление функции",
+        "Изменение функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-19",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function template specialization?",
+      "optionsLearning": [
+        "Специализация для конкретного типа",
+        "Обобщенная функция",
+        "Функция без типов",
+        "Функция с одним типом"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario.card-20",
+      "kind": "select",
+      "title": "Объявление и вызов функций - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое function template partial specialization?",
+      "optionsLearning": [
+        "Частичная специализация",
+        "Полная специализация",
+        "Обобщенная функция",
+        "Функция без типов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "functions",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-functions",
+      "scenarioId": "cpp.basics.functions-declare.01.scenario"
+    }
+  ]
+}

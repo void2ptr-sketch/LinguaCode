@@ -1,0 +1,645 @@
+{
+  "scenarioId": "cpp.basics.strings-operations.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-01",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить длину string?",
+      "optionsLearning": [
+        ".length() или .size()",
+        ".count()",
+        ".size()",
+        ".length()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-02",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить символ по индексу?",
+      "optionsLearning": [
+        "s[i]",
+        "s.get(i)",
+        "s.at(i) только",
+        "s.charAt(i)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-03",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличается .at() от []?",
+      "optionsLearning": [
+        ".at() проверяет границы",
+        "Нет разницы",
+        ".at() быстрее",
+        "[] безопаснее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-04",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить символ в конец string?",
+      "optionsLearning": [
+        ".push_back() или +=",
+        ".add()",
+        ".append() только",
+        ".insert()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-05",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить строку в string?",
+      "optionsLearning": [
+        ".append() или +=",
+        ".add()",
+        ".concat()",
+        ".join()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-06",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как удалить символ из string?",
+      "optionsLearning": [
+        ".erase()",
+        ".remove()",
+        ".delete()",
+        ".pop()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-07",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как заменить часть string?",
+      "optionsLearning": [
+        ".replace()",
+        ".modify()",
+        ".change()",
+        ".update()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-08",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти подстроку?",
+      "optionsLearning": [
+        ".find()",
+        ".search()",
+        ".locate()",
+        ".index()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-09",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает .find() если не найдено?",
+      "optionsLearning": [
+        "string::npos",
+        "-1",
+        "0",
+        "null"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-10",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сравнить две string?",
+      "optionsLearning": [
+        "Оператором == или .compare()",
+        "Только ==",
+        "Только .compare()",
+        "strcmp()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-11",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает .compare()?",
+      "optionsLearning": [
+        "0 если равны, <0 или >0",
+        "true/false",
+        "1/0",
+        "-1/1"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-12",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как извлечь подстроку?",
+      "optionsLearning": [
+        ".substr()",
+        ".extract()",
+        ".slice()",
+        ".substring()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-13",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие параметры у .substr()?",
+      "optionsLearning": [
+        "(pos, len)",
+        "(start, end)",
+        "(index)",
+        "(begin, count)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-14",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать string в int?",
+      "optionsLearning": [
+        "stoi()",
+        "parseInt()",
+        "int()",
+        "convert()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-15",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать int в string?",
+      "optionsLearning": [
+        "to_string()",
+        "toString()",
+        "string()",
+        "convert()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-16",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое C-string?",
+      "optionsLearning": [
+        "Массив char с \\0",
+        "std::string",
+        "char переменная",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-17",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать std::string в C-string?",
+      "optionsLearning": [
+        ".c_str()",
+        ".data() только",
+        ".str()",
+        ".to_c_string()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-18",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем .c_str() отличается от .data()?",
+      "optionsLearning": [
+        ".c_str() гарантирует \\0",
+        "Нет разницы",
+        ".data() быстрее",
+        ".c_str() медленнее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-19",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать string в upper case?",
+      "optionsLearning": [
+        "Через цикл или algorithm",
+        ".toUpper()",
+        ".uppercase()",
+        ".toUpperCase()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario.card-20",
+      "kind": "select",
+      "title": "Операции со строками - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как преобразовать string в lower case?",
+      "optionsLearning": [
+        "Через цикл или algorithm",
+        ".toLower()",
+        ".lowercase()",
+        ".toLowerCase()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.strings-operations.01.scenario"
+    }
+  ]
+}

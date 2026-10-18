@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.control-if-else.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-01",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (10 > 5) cout << \"A\"; else cout << \"B\";`?",
+      "optionsLearning": [
+        "AB",
+        "B",
+        "Ничего",
+        "A"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-02",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор используется для проверки неравенства в C++?",
+      "optionsLearning": [
+        "==",
+        "<>",
+        ">=",
+        "!="
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-03",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `int x = 0; if (x) cout << \"True\"; else cout << \"False\";`?",
+      "optionsLearning": [
+        "0",
+        "True",
+        "Ничего",
+        "False"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-04",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `bool b = (5 < 3);`?",
+      "optionsLearning": [
+        "5",
+        "true",
+        "3",
+        "false"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-05",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое вложенный if-else?",
+      "optionsLearning": [
+        "Только else",
+        "Два отдельных if",
+        "Цикл while",
+        "if внутри другого if или else блока"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-06",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `!(true && false)`?",
+      "optionsLearning": [
+        "0",
+        "false",
+        "1",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-07",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (1) cout << \"X\";`?",
+      "optionsLearning": [
+        "1",
+        "Ничего",
+        "Ошибка",
+        "X"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-08",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор логического И в C++?",
+      "optionsLearning": [
+        "&",
+        "||",
+        "::",
+        "&&"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-09",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (0 || 1) cout << \"Y\";`?",
+      "optionsLearning": [
+        "0",
+        "Ничего",
+        "1",
+        "Y"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-10",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `5 > 3 && 2 < 4`?",
+      "optionsLearning": [
+        "1 && 1",
+        "false",
+        "Ошибка",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-11",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое short-circuit evaluation?",
+      "optionsLearning": [
+        "Обратный порядок",
+        "Полное вычисление",
+        "Без вычисления",
+        "Остановка вычисления при известном результате"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-12",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (true || false) cout << \"A\"; else cout << \"B\";`?",
+      "optionsLearning": [
+        "AB",
+        "B",
+        "Ничего",
+        "A"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-13",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `!false || !true`?",
+      "optionsLearning": [
+        "0",
+        "false",
+        "1",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-14",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `int x = 10; if (x > 5 && x < 15) cout << \"OK\";`?",
+      "optionsLearning": [
+        "10",
+        "Ничего",
+        "Ошибка",
+        "OK"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-15",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор логического ИЛИ в C++?",
+      "optionsLearning": [
+        "|",
+        "&&",
+        "::",
+        "||"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-16",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (false && true) cout << \"X\"; else cout << \"Y\";`?",
+      "optionsLearning": [
+        "XY",
+        "X",
+        "Ничего",
+        "Y"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-17",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `5 == 5 || 3 > 7`?",
+      "optionsLearning": [
+        "0",
+        "false",
+        "1",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-18",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (true && false) cout << \"A\"; else cout << \"B\";`?",
+      "optionsLearning": [
+        "AB",
+        "A",
+        "Ничего",
+        "B"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-19",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой результат: `!(5 > 3)`?",
+      "optionsLearning": [
+        "5",
+        "true",
+        "3",
+        "false"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario.card-20",
+      "kind": "select",
+      "title": "Условия: if-else - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `if (0 || 0) cout << \"X\"; else cout << \"Y\";`?",
+      "optionsLearning": [
+        "0",
+        "X",
+        "Ничего",
+        "Y"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-if-else.01.scenario"
+    }
+  ]
+}

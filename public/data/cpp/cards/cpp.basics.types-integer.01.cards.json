@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.types-integer.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-01",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие целочисленные типы есть в C++?",
+      "optionsLearning": [
+        "int, short, long, long long",
+        "float, double",
+        "char, string",
+        "bool, void"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-02",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у int обычно?",
+      "optionsLearning": [
+        "4 байта (32 бита)",
+        "2 байта",
+        "8 байт",
+        "1 байт"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-03",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой диапазон у signed int?",
+      "optionsLearning": [
+        "-2,147,483,648 до 2,147,483,647",
+        "0 до 4,294,967,295",
+        "-128 до 127",
+        "Неограниченный"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-04",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unsigned int?",
+      "optionsLearning": [
+        "Только положительные числа",
+        "Отрицательные числа",
+        "Дробные числа",
+        "Символы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-05",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у short?",
+      "optionsLearning": [
+        "2 байта (16 бит)",
+        "4 байта",
+        "8 байт",
+        "1 байт"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-06",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у long?",
+      "optionsLearning": [
+        "4 или 8 байт (зависит от системы)",
+        "2 байта",
+        "16 байт",
+        "Неизменный"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-07",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое long long?",
+      "optionsLearning": [
+        "Целочисленный тип минимум 64 бита",
+        "Длинное число с плавающей точкой",
+        "Строка",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-08",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор sizeof?",
+      "optionsLearning": [
+        "Возвращает размер типа в байтах",
+        "Создает тип",
+        "Изменяет значение",
+        "Компилирует код"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-09",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет sizeof(int)?",
+      "optionsLearning": [
+        "4 (на большинстве систем)",
+        "2",
+        "8",
+        "Зависит от компилятора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-10",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое overflow int?",
+      "optionsLearning": [
+        "Переполнение диапазона",
+        "Деление на ноль",
+        "Недостаток памяти",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-11",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое underflow int?",
+      "optionsLearning": [
+        "Значение меньше минимального",
+        "Больше максимального",
+        "Деление на ноль",
+        "Нуль"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-12",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое wraparound?",
+      "optionsLearning": [
+        "Переполнение с переходом в начало диапазона",
+        "Обнуление",
+        "Ошибка",
+        "Бесконечность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-13",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип для символа?",
+      "optionsLearning": [
+        "char",
+        "int",
+        "string",
+        "bool"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-14",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Сколько байт занимает char?",
+      "optionsLearning": [
+        "1 байт",
+        "2 байта",
+        "4 байта",
+        "8 байт"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-15",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ASCII?",
+      "optionsLearning": [
+        "Стандарт кодировки символов",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-16",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой код у '0' в ASCII?",
+      "optionsLearning": [
+        "48",
+        "0",
+        "1",
+        "65"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-17",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли присвоить char значение int?",
+      "optionsLearning": [
+        "Да, но с потерей данных",
+        "Нет, ошибка компиляции",
+        "Только в C++17",
+        "Только для положительных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-18",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое wchar_t?",
+      "optionsLearning": [
+        "Широкий символ (Unicode)",
+        "Обычный char",
+        "Строка",
+        "Число"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-19",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr?",
+      "optionsLearning": [
+        "Константа времени компиляции",
+        "Переменная",
+        "Функция",
+        "Тип данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-20",
+      "kind": "select",
+      "title": "Целочисленные типы - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое enum?",
+      "optionsLearning": [
+        "Перечисление констант",
+        "Массив",
+        "Указатель",
+        "Класс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "types",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "cpp.basics.types-integer.01.scenario"
+    }
+  ]
+}

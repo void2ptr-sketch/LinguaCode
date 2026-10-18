@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-01",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое destructor?",
+      "optionsLearning": [
+        "Специальная функция для очистки объекта",
+        "Без функции",
+        "Удаление функции",
+        "Добавление функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-02",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual destructor?",
+      "optionsLearning": [
+        "Destructors с ключевым словом virtual для полиморфного удаления",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-03",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое non-virtual destructor?",
+      "optionsLearning": [
+        "Destructors без ключевого слова virtual",
+        "С virtual",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-04",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit destructor?",
+      "optionsLearning": [
+        "Destructors с явным вызовом ~ClassName()",
+        "Неявный вызов",
+        "Без вызова",
+        "Случайный вызов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-05",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое implicit destructor?",
+      "optionsLearning": [
+        "Destructors, генерируемый компилятором по умолчанию",
+        "Явный destructors",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-06",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое defaulted destructor?",
+      "optionsLearning": [
+        "Destructors с = default",
+        "Удаленный destructors",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-07",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое deleted destructor?",
+      "optionsLearning": [
+        "Destructors с = delete",
+        "Разрешенный destructors",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое private destructor?",
+      "optionsLearning": [
+        "Destructors с private access для предотвращения удаления",
+        "Public destructors",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-09",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое protected destructor?",
+      "optionsLearning": [
+        "Destructors с protected access для наследников",
+        "Public destructors",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-10",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое order of destruction?",
+      "optionsLearning": [
+        "Порядок вызова destructors (обратный порядку constructor)",
+        "Прямой порядок",
+        "Случайный порядок",
+        "Нет порядка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-11",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое stack unwinding?",
+      "optionsLearning": [
+        "Процесс вызова destructors при выходе из области видимости",
+        "Без процесса",
+        "Удаление процесса",
+        "Добавление процесса"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-12",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RAII?",
+      "optionsLearning": [
+        "Resource Acquisition Is Initialization",
+        "Resource Allocation After Initialization",
+        "Resource Access After Initialization",
+        "Resource Avoidance After Initialization"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-13",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое scope guard?",
+      "optionsLearning": [
+        "Объект для выполнения кода при выходе из области видимости",
+        "Без объекта",
+        "Удаление объекта",
+        "Добавление объекта"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-14",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое atexit handler?",
+      "optionsLearning": [
+        "Функция вызова при завершении программы",
+        "Без функции",
+        "Удаление функции",
+        "Добавление функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-15",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::at_quick_exit?",
+      "optionsLearning": [
+        "Быстрый exit handler для критических ситуаций",
+        "Обычный exit handler",
+        "Без handler",
+        "Случайный handler"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-16",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое noexcept destructor?",
+      "optionsLearning": [
+        "Destructors, не бросающий исключений",
+        "Бросающий исключения",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-17",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое throw destructor?",
+      "optionsLearning": [
+        "Destructors, бросающий исключения (опасно!)",
+        "Не бросающий исключения",
+        "Без destructors",
+        "Случайный destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-18",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое terminate on destructor throw?",
+      "optionsLearning": [
+        "Вызов std::terminate при исключении из destructors",
+        "Без вызова",
+        "Удаление вызова",
+        "Добавление вызова"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-19",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unique_ptr destructor?",
+      "optionsLearning": [
+        "Destructors unique_ptr для удаления объекта",
+        "Без destructors",
+        "Удаление destructors",
+        "Добавление destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-20",
+      "kind": "select",
+      "title": "Деструкторы - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое shared_ptr destructor?",
+      "optionsLearning": [
+        "Destructors shared_ptr для уменьшения count и удаления",
+        "Без destructors",
+        "Удаление destructors",
+        "Добавление destructors"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+    }
+  ]
+}

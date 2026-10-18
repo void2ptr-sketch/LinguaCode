@@ -1,0 +1,605 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-01",
+      "question": "В чём разница между `std::unique_ptr` и `std::shared_ptr` с точки зрения владения?",
+      "answer": "`std::unique_ptr` — эксклюзивное владение: объект может иметь только один владелец. `std::shared_ptr` — совместное владение: несколько указателей могут владеть одним объектом через ref-counting. `unique_ptr` нулевых затрат (zero-cost), `shared_ptr` имеет overhead на control block.",
+      "hints": [
+        "Эксклюзивное vs совместное владение",
+        "Zero-cost vs overhead"
+      ],
+      "tags": [
+        "smart-pointers",
+        "ownership",
+        "memory-management"
+      ],
+      "difficulty": 1,
+      "order": 1,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-02",
+      "question": "Что произойдёт, если создать два `shared_ptr` из одного сырого указателя?",
+      "answer": "Два независимых control block с ref-count = 1. При уничтожении первого — объект удалится, второй станет dangling pointer. Правильно: создавать все `shared_ptr` из одного источника или использовать `std::enable_shared_from_this`.",
+      "hints": [
+        "Два control block",
+        "Dangling pointer"
+      ],
+      "tags": [
+        "shared-ptr",
+        "pitfalls",
+        "memory-management"
+      ],
+      "difficulty": 2,
+      "order": 2,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-03",
+      "question": "Как правильно передать `this` в `shared_ptr` через `enable_shared_from_this`?",
+      "answer": "Наследуйте от `std::enable_shared_from_this<T>` и вызовите `shared_from_this()` внутри метода (не конструктора!). Это создаст `shared_ptr` с тем же control block. В конструкторе нельзя — объект ещё не полностью создан.",
+      "hints": [
+        "Наследование",
+        "Не в конструкторе"
+      ],
+      "tags": [
+        "enable-shared-from-this",
+        "smart-pointers",
+        "this-pointer"
+      ],
+      "difficulty": 3,
+      "order": 3,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-04",
+      "question": "В чём разница между `std::move` и `std::forward` при передаче умных указателей?",
+      "answer": "`std::move` приводит lvalue к rvalue reference для перемещения. `std::forward<T>` сохраняет value category (perfect forwarding). Для умных указателей: `std::move(ptr)` перемещает ownership, `std::forward<T>(ptr)` форвардит тип и category.",
+      "hints": [
+        "rvalue vs perfect forwarding",
+        "Ownership transfer"
+      ],
+      "tags": [
+        "move-semantics",
+        "forward",
+        "smart-pointers"
+      ],
+      "difficulty": 2,
+      "order": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-05",
+      "question": "Как работает `std::weak_ptr::lock()` и что он возвращает?",
+      "answer": "`weak_ptr::lock()` пытается создать `shared_ptr` из weak_ptr. Если объект ещё жив — возвращает `shared_ptr` с инкрементированным ref-count, иначе — пустой `shared_ptr`. Всегда проверяйте результат на пустоту.",
+      "hints": [
+        "Создание shared_ptr",
+        "Проверка на nullptr"
+      ],
+      "tags": [
+        "weak-ptr",
+        "lock",
+        "smart-pointers"
+      ],
+      "difficulty": 2,
+      "order": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-06",
+      "question": "Что такое `std::owner_less` и зачем он нужен в `shared_ptr`?",
+      "answer": "`std::owner_less` сравнивает `shared_ptr` по control block (для owner-equivalence) или по указателю (для pointer-comparison). Используется в ассоциативных контейнерах для корректного сравнения `shared_ptr` с разными owners, но указывающих на один объект.",
+      "hints": [
+        "Owner equivalence vs pointer comparison",
+        "Associative containers"
+      ],
+      "tags": [
+        "owner-less",
+        "shared-ptr",
+        "comparison"
+      ],
+      "difficulty": 3,
+      "order": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-07",
+      "question": "Как правильно использовать `std::unique_ptr` с массивами?",
+      "answer": "Используйте специализацию `std::unique_ptr<T[]>`. Она вызывает `delete[]` в деструкторе. Не используйте `std::unique_ptr<T>` для массивов — вызовется `delete` вместо `delete[]`, что приведёт к UB.",
+      "hints": [
+        "Специализация T[]",
+        "delete vs delete[]"
+      ],
+      "tags": [
+        "unique-ptr-arrays",
+        "smart-pointers",
+        "arrays"
+      ],
+      "difficulty": 2,
+      "order": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-08",
+      "question": "В чём разница между `std::make_unique` и прямым `new`?",
+      "answer": "`std::make_unique<T>(args...)` выделяет память и вызывает конструктор одной операцией. Прямой `new T(args...)` тоже, но при исключении из конструктора может утечь память, если `new` не выбросил. `make_unique` гарантирует no-leak даже при исключениях.",
+      "hints": [
+        "No-leak guarantee",
+        "Exception safety"
+      ],
+      "tags": [
+        "make-unique",
+        "smart-pointers",
+        "exception-safety"
+      ],
+      "difficulty": 2,
+      "order": 8,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-09",
+      "question": "Как работает `std::shared_ptr` с custom deleter и чем это отличается от `unique_ptr`?",
+      "answer": "`shared_ptr` с custom deleter хранит deleter в control block (дополнительные 8-16 байт). `unique_ptr` с non-trivial deleter увеличивает размер объекта. Если deleter trivial (size 1), `unique_ptr` zero-cost.",
+      "hints": [
+        "Control block overhead",
+        "Trivial vs non-trivial"
+      ],
+      "tags": [
+        "custom-deleters",
+        "smart-pointers",
+        "overhead"
+      ],
+      "difficulty": 3,
+      "order": 9,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-10",
+      "question": "Что такое `std::allocate_shared` и когда его использовать?",
+      "answer": "`std::allocate_shared<T>(alloc, args...)` создаёт `shared_ptr` с custom аллокатором. Используется для memory pools, PMR, кастомных allocators. Позволяет контролировать память через пользовательский аллокатор.",
+      "hints": [
+        "Custom allocator",
+        "Memory pools"
+      ],
+      "tags": [
+        "allocate-shared",
+        "allocators",
+        "smart-pointers"
+      ],
+      "difficulty": 3,
+      "order": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-11",
+      "question": "Как работает `std::enable_shared_from_this` и в чём его ловушка?",
+      "answer": "`std::enable_shared_from_this<T>` позволяет получить `shared_ptr` изнутри объекта через `shared_from_this()`. Ловушка: объект должен уже быть в `shared_ptr`, иначе бросит `std::bad_weak_ptr`. Не используйте в конструкторе.",
+      "hints": [
+        "shared_from_this()",
+        "Объект должен быть в shared_ptr"
+      ],
+      "tags": [
+        "enable-shared-from-this",
+        "smart-pointers",
+        "pitfalls"
+      ],
+      "difficulty": 3,
+      "order": 11,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-12",
+      "question": "Что такое `std::weak_ptr` и как избежать cyclic references?",
+      "answer": "`std::weak_ptr` — наблюдающий указатель, не участвующий в ref-counting. Используется для: (1) кэширования, (2) observer-паттерна, (3) предотвращения циклических ссылок. Для избежания циклов: одна сторона использует `shared_ptr`, другая — `weak_ptr`.",
+      "hints": [
+        "Наблюдающий указатель",
+        "Parent-child relationship"
+      ],
+      "tags": [
+        "weak-ptr",
+        "cyclic-references",
+        "smart-pointers"
+      ],
+      "difficulty": 2,
+      "order": 12,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-13",
+      "question": "Как работает `std::make_shared` и в чём его преимущество перед прямым `new`?",
+      "answer": "`std::make_shared<T>(args...)` выделяет память для объекта и control block одним аллокацией. Прямой `new T(args)` требует двух аллокаций: одна для объекта, другая для control block `shared_ptr`. Преимущество: меньше фрагментация, выше cache locality.",
+      "hints": [
+        "Одна vs две аллокации",
+        "Control block"
+      ],
+      "tags": [
+        "make-shared",
+        "smart-pointers",
+        "performance"
+      ],
+      "difficulty": 2,
+      "order": 13,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-14",
+      "question": "Что такое `std::default_delete` и как кастомизировать deleter?",
+      "answer": "`std::default_delete<T>` — стандартный deleter для `unique_ptr`, вызывает `delete ptr`. Кастомизация: (1) лямбда `[](T* p){ custom_free(p); }`, (2) функтор с `operator()(T*)`, (3) функция-указатель. Если deleter не trivial, `unique_ptr` становится больше.",
+      "hints": [
+        "delete ptr по умолчанию",
+        "Лямбда, функтор, function pointer"
+      ],
+      "tags": [
+        "deleters",
+        "unique-ptr",
+        "customization"
+      ],
+      "difficulty": 2,
+      "order": 14,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-15",
+      "question": "Как работает `std::shared_ptr` с массивами и почему это плохо?",
+      "answer": "`std::shared_ptr<T[]>` требует custom deleter (по умолчанию `delete[]`). Но `make_shared` не поддерживает массивы — нужно использовать `shared_ptr<T[]>(new T[N]{}, default_delete<T[]>())`. Лучше использовать `std::vector<T>` вместо сырых массивов.",
+      "hints": [
+        "delete[] vs delete",
+        "make_shared не поддерживает массивы"
+      ],
+      "tags": [
+        "shared-ptr-arrays",
+        "smart-pointers",
+        "anti-patterns"
+      ],
+      "difficulty": 3,
+      "order": 15,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-16",
+      "question": "Что такое `std::atomic` и как он работает на уровне памяти?",
+      "answer": "`std::atomic<T>` обеспечивает атомарные операции без data races. На уровне памяти: (1) использует lock-free инструкции (cmpxchg, xadd) на современных CPU, (2) вставляет memory barriers при необходимости, (3) `std::memory_order` контролирует ordering.",
+      "hints": [
+        "Lock-free инструкции",
+        "Memory barriers"
+      ],
+      "tags": [
+        "atomics",
+        "memory-model",
+        "concurrency"
+      ],
+      "difficulty": 3,
+      "order": 16,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-17",
+      "question": "Как работает `std::mutex` и в чём разница с `std::recursive_mutex`?",
+      "answer": "`std::mutex` — базовый мьютекс, не рекурсивный. Повторное захватывание тем же потоком приводит к UB. `std::recursive_mutex` позволяет одному потоку захватывать мьютекс несколько раз (внутренний counter). Недостаток: больше накладных расходов.",
+      "hints": [
+        "Рекурсия vs один захват",
+        "Overhead"
+      ],
+      "tags": [
+        "mutex",
+        "concurrency",
+        "synchronization"
+      ],
+      "difficulty": 2,
+      "order": 17,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-18",
+      "question": "Что такое `std::lock_guard` и чем он отличается от `std::unique_lock`?",
+      "answer": "`std::lock_guard` — лёгкий RAII-обёртка для мьютекса, захватывает при создании, освобождает при выходе. Не поддерживает deferred lock, try_lock, или изменение режима. `std::unique_lock` — более гибкий: поддерживает `try_lock()`, `unlock()` вручную.",
+      "hints": [
+        "Лёгкий vs гибкий",
+        "condition_variable"
+      ],
+      "tags": [
+        "lock-guards",
+        "concurrency",
+        "raii"
+      ],
+      "difficulty": 2,
+      "order": 18,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-19",
+      "question": "Как работает `std::condition_variable` и в чём разница между `notify_one()` и `notify_all()`?",
+      "answer": "`std::condition_variable` позволяет потокам ждать условия. `wait(lock, predicate)` блокирует поток до сигнала или spurious wakeup. `notify_one()` будит один ожидающий поток, `notify_all()` — все.",
+      "hints": [
+        "Spurious wakeup",
+        "Predicate проверка"
+      ],
+      "tags": [
+        "condition-variable",
+        "concurrency",
+        "synchronization"
+      ],
+      "difficulty": 2,
+      "order": 19,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario.card-20",
+      "question": "Как правильно реализовать custom error type в C++?",
+      "answer": "Наследуйте от `std::exception` и переопределите `what()`. Используйте `[[noreturn]]` для функций, которые никогда не возвращаются. Добавьте контекст через `std::nested_exception` или C++23 `std::source_location`. Для error codes используйте `std::error_code` из `<system_error>`.",
+      "hints": [
+        "Наследование от std::exception",
+        "std::error_code, nested_exception"
+      ],
+      "tags": [
+        "error-handling",
+        "exceptions",
+        "custom-errors"
+      ],
+      "difficulty": 2,
+      "order": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-smart-pointers-01-01-course",
+      "lessonId": "scenario-cpp-advanced-smart-pointers-01-01-lesson",
+      "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+    }
+  ],
+  "scenarioId": "cpp.advanced.smart-pointers.01.scenario"
+}

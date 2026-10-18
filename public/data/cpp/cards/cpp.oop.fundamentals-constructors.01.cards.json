@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-01",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constructor?",
+      "optionsLearning": [
+        "Специальная функция для инициализации объекта",
+        "Без функции",
+        "Удаление функции",
+        "Добавление функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-02",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default constructor?",
+      "optionsLearning": [
+        "Constructor без параметров или с параметрами по умолчанию",
+        "С обязательными параметрами",
+        "Без constructor",
+        "Случайный constructor"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-03",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое copy constructor?",
+      "optionsLearning": [
+        "Constructor для инициализации из другого объекта того же типа",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-04",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое move constructor?",
+      "optionsLearning": [
+        "Constructor для перемещения ресурсов из rvalue",
+        "Копирование ресурсов",
+        "Без constructor",
+        "Случайный constructor"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-05",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое delegating constructor?",
+      "optionsLearning": [
+        "Constructor, вызывающий другой constructor того же класса",
+        "Вызывающий base constructor",
+        "Без вызова",
+        "Случайный вызов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-06",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое converting constructor?",
+      "optionsLearning": [
+        "Constructor, допускающий неявное преобразование типа",
+        "Без преобразования",
+        "Удаление преобразования",
+        "Добавление преобразования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-07",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit constructor?",
+      "optionsLearning": [
+        "Constructor, запрещающий неявное преобразование",
+        "Разрешающий преобразование",
+        "Без constructor",
+        "Случайный constructor"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое initializer list?",
+      "optionsLearning": [
+        "Список инициализации членов класса через :",
+        "Без списка",
+        "Удаление списка",
+        "Добавление списка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-09",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое member initializer?",
+      "optionsLearning": [
+        "Инициализация конкретного члена класса",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-10",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое aggregate initialization?",
+      "optionsLearning": [
+        "Инициализация aggregate типа через {}",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-11",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое uniform initialization?",
+      "optionsLearning": [
+        "Инициализация через {}",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-12",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое brace initialization?",
+      "optionsLearning": [
+        "Инициализация через {}",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-13",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое value initialization?",
+      "optionsLearning": [
+        "Инициализация с нулевым значением по умолчанию",
+        "Без значения",
+        "Удаление значения",
+        "Добавление значения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-14",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое direct initialization?",
+      "optionsLearning": [
+        "Инициализация через () или {}",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-15",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое copy initialization?",
+      "optionsLearning": [
+        "Инициализация через =",
+        "Без инициализации",
+        "Удаление инициализации",
+        "Добавление инициализации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-16",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое implicit conversion?",
+      "optionsLearning": [
+        "Неявное преобразование типа при инициализации",
+        "Явное преобразование",
+        "Без преобразования",
+        "Случайное преобразование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-17",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit conversion?",
+      "optionsLearning": [
+        "Явное преобразование типа через cast",
+        "Неявное преобразование",
+        "Без преобразования",
+        "Случайное преобразование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-18",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое perfect forwarding constructor?",
+      "optionsLearning": [
+        "Constructor с std::forward для идеального forwarding",
+        "Без forwarding",
+        "Удаление forwarding",
+        "Добавление forwarding"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-19",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template constructor?",
+      "optionsLearning": [
+        "Constructor с параметрами типа",
+        "Без параметров",
+        "Удаление параметров",
+        "Добавление параметров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario.card-20",
+      "kind": "select",
+      "title": "Конструкторы - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое variadic constructor?",
+      "optionsLearning": [
+        "Constructor с переменным числом аргументов",
+        "Фиксированное число",
+        "Без числа",
+        "Случайное число"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "classes",
+          "encapsulation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "cpp.oop.fundamentals-constructors.01.scenario"
+    }
+  ]
+}

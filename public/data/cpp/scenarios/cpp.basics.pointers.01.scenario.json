@@ -1,0 +1,16 @@
+{
+  "id": "cpp.basics.pointers.01.scenario",
+  "title": "Основы указателей в C++",
+  "description": "Введение в указатели: объявление, адресная операция, разыменование.",
+  "language": "cpp",
+  "difficulty": "beginner",
+  "tags": [
+    "language-basics",
+    "pointers"
+  ],
+  "cardsCount": 20,
+  "estimatedMinutes": 15,
+  "order": 1,
+  "lessonId": "lesson-cpp-basics-pointers",
+  "courseId": "course-cpp-complete"
+}

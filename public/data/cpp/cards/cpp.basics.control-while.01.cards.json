@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.control-while.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-01",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой цикл для неизвестного количества итераций?",
+      "optionsLearning": [
+        "while",
+        "for",
+        "do-while",
+        "foreach"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-02",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая структура while цикла?",
+      "optionsLearning": [
+        "while (condition) { body }",
+        "while { body } condition",
+        "while body condition",
+        "while (body) condition"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-03",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда проверяется условие в while?",
+      "optionsLearning": [
+        "Перед каждой итерацией",
+        "После итерации",
+        "Один раз",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-04",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое do-while цикл?",
+      "optionsLearning": [
+        "Цикл с проверкой после тела",
+        "Цикл с проверкой до",
+        "Бесконечный цикл",
+        "Вложенный цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-05",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая структура do-while?",
+      "optionsLearning": [
+        "do { body } while (condition);",
+        "do (condition) { body }",
+        "do { body } while condition;",
+        "do { body } while (condition)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-06",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать do-while?",
+      "optionsLearning": [
+        "Когда тело должно выполниться хотя бы раз",
+        "Всегда",
+        "Никогда",
+        "Только для чтения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-07",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое infinite while loop?",
+      "optionsLearning": [
+        "Цикл без изменения условия",
+        "Быстрый цикл",
+        "Медленный цикл",
+        "Вложенный цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-08",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прервать while loop?",
+      "optionsLearning": [
+        "break",
+        "continue",
+        "return",
+        "exit()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-09",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает continue в while?",
+      "optionsLearning": [
+        "Переход к проверке условия",
+        "Прерывание цикла",
+        "Выход из функции",
+        "Создание нового цикла"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-10",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sentinel value?",
+      "optionsLearning": [
+        "Специальное значение для завершения цикла",
+        "Нулевое значение",
+        "Единичное значение",
+        "Случайное значение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-11",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое accumulator pattern?",
+      "optionsLearning": [
+        "Накопление суммы в переменной",
+        "Удаление элементов",
+        "Сортировка",
+        "Поиск"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-12",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое counter pattern?",
+      "optionsLearning": [
+        "Подсчет количества элементов",
+        "Накопление суммы",
+        "Удаление элементов",
+        "Сортировка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-13",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое flag variable?",
+      "optionsLearning": [
+        "Булева переменная для состояния",
+        "Целочисленная переменная",
+        "Указатель",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-14",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое nested while loop?",
+      "optionsLearning": [
+        "While внутри while",
+        "While без тела",
+        "While в switch",
+        "While в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-15",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность nested while?",
+      "optionsLearning": [
+        "O(n * m)",
+        "O(n + m)",
+        "O(n)",
+        "O(log n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-16",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop invariant?",
+      "optionsLearning": [
+        "Условие, истинное перед и после итерации",
+        "Изменяемое условие",
+        "Фиксированная переменная",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-17",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop variant?",
+      "optionsLearning": [
+        "Величина, уменьшающаяся к termination",
+        "Увеличивающаяся величина",
+        "Фиксированная переменная",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-18",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое while loop optimization?",
+      "optionsLearning": [
+        "Улучшение производительности цикла",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-19",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vectorization?",
+      "optionsLearning": [
+        "SIMD оптимизация циклов",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario.card-20",
+      "kind": "select",
+      "title": "Циклы: while и do-while - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop unrolling?",
+      "optionsLearning": [
+        "Оптимизация раскрытием цикла",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-while.01.scenario"
+    }
+  ]
+}

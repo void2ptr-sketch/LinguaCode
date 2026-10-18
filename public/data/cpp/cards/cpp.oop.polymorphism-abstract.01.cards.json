@@ -1,0 +1,605 @@
+{
+  "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-01",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое abstract class?",
+      "optionsLearning": [
+        "Класс с хотя бы одной pure virtual функцией, который нельзя инстанцировать",
+        "Без pure virtual",
+        "Можно инстанцировать",
+        "Случайный класс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-02",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pure virtual function?",
+      "optionsLearning": [
+        "Virtual функция с = 0, не имеющая реализации в base class",
+        "С реализацией",
+        "Без функции",
+        "Случайная функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-03",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое abstract method?",
+      "optionsLearning": [
+        "Метод без реализации, обязательный для переопределения в derived",
+        "С реализацией",
+        "Необязательный",
+        "Случайный метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-04",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое concrete method?",
+      "optionsLearning": [
+        "Метод с полной реализацией, не требующий переопределения",
+        "Без реализации",
+        "Обязательный",
+        "Случайный метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-05",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое override implementation?",
+      "optionsLearning": [
+        "Переопределение pure virtual метода в concrete derived class",
+        "Без переопределения",
+        "Удаление переопределения",
+        "Добавление переопределения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-06",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое partial implementation?",
+      "optionsLearning": [
+        "Реализация части pure virtual методов в intermediate abstract class",
+        "Полная реализация",
+        "Без реализации",
+        "Случайная реализация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-07",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interface segregation?",
+      "optionsLearning": [
+        "Разделение больших интерфейсов на маленькие специфичные",
+        "Объединение интерфейсов",
+        "Без разделения",
+        "Случайное разделение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-08",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interface class design?",
+      "optionsLearning": [
+        "Проектирование классов только с pure virtual методами",
+        "Без проектирования",
+        "Удаление проектирования",
+        "Добавление проектирования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-09",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое abstract factory?",
+      "optionsLearning": [
+        "Паттерн для создания семейств связанных объектов через интерфейсы",
+        "Без паттерна",
+        "Удаление паттерна",
+        "Добавление паттерна"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-10",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое strategy pattern?",
+      "optionsLearning": [
+        "Паттерн для определения семейства алгоритмов с interchangeability",
+        "Без паттерна",
+        "Удаление паттерна",
+        "Добавление паттерна"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-11",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое template method pattern?",
+      "optionsLearning": [
+        "Паттерн с абстрактным base class и concrete steps",
+        "Без паттерна",
+        "Удаление паттерна",
+        "Добавление паттерна"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-12",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое hook method?",
+      "optionsLearning": [
+        "Virtual метод с пустой реализацией в abstract class для переопределения",
+        "С реализацией",
+        "Без метода",
+        "Случайный метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-13",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое invariant in abstract class?",
+      "optionsLearning": [
+        "Условие, всегда истинное для всех concrete implementations",
+        "Ложное условие",
+        "Без условия",
+        "Случайное условие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-14",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое contract in abstract class?",
+      "optionsLearning": [
+        "Обязательства concrete classes реализовать все pure virtual методы",
+        "Без обязательств",
+        "Удаление обязательств",
+        "Добавление обязательств"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-15",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое LSP (Liskov Substitution Principle)?",
+      "optionsLearning": [
+        "Derived объекты должны заменять base без изменения корректности программы",
+        "Без замены",
+        "Удаление замены",
+        "Добавление замены"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-16",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое violation of LSP?",
+      "optionsLearning": [
+        "Нарушение контракта base class в derived implementation",
+        "Без нарушения",
+        "Удаление нарушения",
+        "Добавление нарушения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-17",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое is-a relationship?",
+      "optionsLearning": [
+        "Отношение наследования: derived является видом base",
+        "Содержит base",
+        "Без отношения",
+        "Случайное отношение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-18",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое has-a relationship?",
+      "optionsLearning": [
+        "Отношение композиции: объект содержит другой объект",
+        "Является base",
+        "Без отношения",
+        "Случайное отношение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-19",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interface vs implementation inheritance?",
+      "optionsLearning": [
+        "Различие между наследованием интерфейса (pure virtual) и реализации",
+        "Без различия",
+        "Удаление различия",
+        "Добавление различия"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario.card-20",
+      "kind": "select",
+      "title": "Абстрактные классы - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое abstract base class design?",
+      "optionsLearning": [
+        "Проектирование абстрактных классов с четким разделением интерфейса и реализации",
+        "Без проектирования",
+        "Удаление проектирования",
+        "Добавление проектирования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-polymorphism",
+      "scenarioId": "cpp.oop.polymorphism-abstract.01.scenario"
+    }
+  ]
+}

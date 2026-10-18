@@ -1,0 +1,16 @@
+{
+  "id": "cpp.basics.strings.01.scenario",
+  "title": "Строки в C++ (std::string)",
+  "description": "Введение в строки: объявление, инициализация, конкатенация, длина.",
+  "language": "cpp",
+  "difficulty": "beginner",
+  "tags": [
+    "language-basics",
+    "strings"
+  ],
+  "cardsCount": 20,
+  "estimatedMinutes": 15,
+  "order": 1,
+  "lessonId": "lesson-cpp-basics-strings",
+  "courseId": "course-cpp-complete"
+}

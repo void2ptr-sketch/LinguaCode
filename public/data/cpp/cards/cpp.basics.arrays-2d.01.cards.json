@@ -1,0 +1,645 @@
+{
+  "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-01",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое 2D массив?",
+      "optionsLearning": [
+        "Массив массивов",
+        "Одномерный массив",
+        "Указатель",
+        "Структура"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-02",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить 2D массив 3x4?",
+      "optionsLearning": [
+        "int arr[3][4];",
+        "int arr[3, 4];",
+        "int arr(3)(4);",
+        "int arr[4][3];"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-03",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить элемент arr[1][2]?",
+      "optionsLearning": [
+        "Вторая строка, третий столбец",
+        "Третья строка, второй столбец",
+        "Первая строка, третий столбец",
+        "Вторая строка, второй столбец"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-04",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать 2D массив?",
+      "optionsLearning": [
+        "int arr[2][3] = {{1,2,3},{4,5,6}};",
+        "int arr[2][3] = {1,2,3,4,5,6};",
+        "int arr[2][3] = [1,2,3],[4,5,6];",
+        "int arr[2][3] = (1,2,3),(4,5,6);"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-05",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перебрать 2D массив?",
+      "optionsLearning": [
+        "Два вложенных цикла for",
+        "Один цикл for",
+        "while",
+        "foreach"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-06",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое row-major order?",
+      "optionsLearning": [
+        "Хранение по строкам",
+        "Хранение по столбцам",
+        "Случайный порядок",
+        "Обратный порядок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-07",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое column-major order?",
+      "optionsLearning": [
+        "Хранение по столбцам",
+        "Хранение по строкам",
+        "Случайный порядок",
+        "Обратный порядок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-08",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить количество строк?",
+      "optionsLearning": [
+        "sizeof(arr) / sizeof(arr[0])",
+        "arr.rows()",
+        "arr.size()",
+        "count(arr)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-09",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить количество столбцов?",
+      "optionsLearning": [
+        "sizeof(arr[0]) / sizeof(arr[0][0])",
+        "arr.cols()",
+        "arr.size()",
+        "count(arr)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-10",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое jagged array?",
+      "optionsLearning": [
+        "Массив с разным количеством элементов в строках",
+        "2D массив",
+        "1D массив",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-11",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как передать 2D массив в функцию?",
+      "optionsLearning": [
+        "void func(int arr[][4], int rows)",
+        "void func(int arr[][], int rows)",
+        "void func(int arr[3][4])",
+        "void func(int** arr)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-12",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое transpose матрицы?",
+      "optionsLearning": [
+        "Поменять строки и столбцы местами",
+        "Умножить на скаляр",
+        "Добавить элемент",
+        "Удалить строку"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-13",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое identity matrix?",
+      "optionsLearning": [
+        "Единицы на диагонали, нули везде",
+        "Все единицы",
+        "Все нули",
+        "Случайные числа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-14",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое matrix multiplication?",
+      "optionsLearning": [
+        "Сумма произведений элементов строк и столбцов",
+        "Поэлементное умножение",
+        "Сложение",
+        "Вычитание"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-15",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность умножения матриц?",
+      "optionsLearning": [
+        "O(n^3)",
+        "O(n^2)",
+        "O(n)",
+        "O(log n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-16",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sparse matrix?",
+      "optionsLearning": [
+        "Матрица с большинством нулей",
+        "Полная матрица",
+        "Квадратная матрица",
+        "Треугольная матрица"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-17",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diagonal matrix?",
+      "optionsLearning": [
+        "Элементы только на главной диагонали",
+        "Все элементы равны",
+        "Нулевая матрица",
+        "Единичная матрица"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-18",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое symmetric matrix?",
+      "optionsLearning": [
+        "A[i][j] = A[j][i]",
+        "A[i][j] = -A[j][i]",
+        "A[i][j] = 0",
+        "A[i][j] = 1"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-19",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое triangular matrix?",
+      "optionsLearning": [
+        "Нули выше или ниже диагонали",
+        "Все элементы равны",
+        "Случайные числа",
+        "Единицы на диагонали"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario.card-20",
+      "kind": "select",
+      "title": "Многомерные массивы - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работает flatten 2D массива?",
+      "optionsLearning": [
+        "Преобразование в 1D массив",
+        "Удаление элементов",
+        "Сортировка",
+        "Обратный порядок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "arrays",
+          "strings",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+    }
+  ]
+}

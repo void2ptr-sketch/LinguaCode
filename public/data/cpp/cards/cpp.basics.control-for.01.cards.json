@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.control-for.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-01",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой цикл для известного количества итераций?",
+      "optionsLearning": [
+        "for",
+        "while",
+        "do-while",
+        "foreach"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-02",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая структура for цикла?",
+      "optionsLearning": [
+        "for (init; condition; increment)",
+        "for (condition; init; increment)",
+        "for (init; increment; condition)",
+        "for (increment; condition; init)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-03",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое initialization в for?",
+      "optionsLearning": [
+        "Выполняется один раз перед циклом",
+        "Каждую итерацию",
+        "После цикла",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-04",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое condition в for?",
+      "optionsLearning": [
+        "Проверяется перед каждой итерацией",
+        "После итерации",
+        "Один раз",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-05",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое increment в for?",
+      "optionsLearning": [
+        "Выполняется после тела цикла",
+        "Перед телом",
+        "Один раз",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-06",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое empty for?",
+      "optionsLearning": [
+        "for (;;)",
+        "for ()",
+        "for (0)",
+        "for (null)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-07",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое range-based for?",
+      "optionsLearning": [
+        "for (auto x : container)",
+        "for (x in container)",
+        "for (container.x)",
+        "for (x <- container)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-08",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать range-based for?",
+      "optionsLearning": [
+        "Для простого обхода элементов",
+        "Для изменения размера",
+        "Для вложенных циклов",
+        "Для условий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-09",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли изменить элементы через range-based for?",
+      "optionsLearning": [
+        "Да, через ссылку auto&",
+        "Нет, только чтение",
+        "Только через index",
+        "Только через pointer"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-10",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое for_each algorithm?",
+      "optionsLearning": [
+        "Применяет функцию к каждому элементу",
+        "Создает новый цикл",
+        "Удаляет элементы",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-11",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое infinite for loop?",
+      "optionsLearning": [
+        "Цикл без условия выхода",
+        "Быстрый цикл",
+        "Медленный цикл",
+        "Вложенный цикл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-12",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прервать for loop?",
+      "optionsLearning": [
+        "break",
+        "continue",
+        "return",
+        "exit()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-13",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает continue в for?",
+      "optionsLearning": [
+        "Переход к increment и проверке",
+        "Прерывание цикла",
+        "Выход из функции",
+        "Создание нового цикла"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-14",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое nested for loop?",
+      "optionsLearning": [
+        "For внутри for",
+        "For без тела",
+        "For в switch",
+        "For в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-15",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность nested for?",
+      "optionsLearning": [
+        "O(n * m)",
+        "O(n + m)",
+        "O(n)",
+        "O(log n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-16",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop unrolling?",
+      "optionsLearning": [
+        "Оптимизация раскрытием цикла",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-17",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop invariant?",
+      "optionsLearning": [
+        "Условие, истинное перед и после итерации",
+        "Изменяемое условие",
+        "Фиксированная переменная",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-18",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое loop variant?",
+      "optionsLearning": [
+        "Величина, уменьшающаяся к termination",
+        "Увеличивающаяся величина",
+        "Фиксированная переменная",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-19",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое for loop optimization?",
+      "optionsLearning": [
+        "Улучшение производительности цикла",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario.card-20",
+      "kind": "select",
+      "title": "Циклы: for - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vectorization?",
+      "optionsLearning": [
+        "SIMD оптимизация циклов",
+        "Удаление цикла",
+        "Добавление цикла",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-for.01.scenario"
+    }
+  ]
+}

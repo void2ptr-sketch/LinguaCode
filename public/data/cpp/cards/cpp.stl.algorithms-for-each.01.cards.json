@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.stl.algorithms-for-each.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-01",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::for_each?",
+      "optionsLearning": [
+        "Находит элемент",
+        "Сортирует диапазон",
+        "Удаляет элементы",
+        "Применяет функцию к каждому элементу диапазона"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-02",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок для std::for_each?",
+      "optionsLearning": [
+        "<numeric>",
+        "<vector>",
+        "<iterator>",
+        "<algorithm>"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-03",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает for_each?",
+      "optionsLearning": [
+        "Итератор",
+        "void",
+        "Количество элементов",
+        "Копию переданной функции (lambda)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-04",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли изменять элементы через for_each?",
+      "optionsLearning": [
+        "Только с const",
+        "Нет",
+        "Только с int",
+        "Да, через reference в lambda"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-05",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){cout << x;})` (v={1,2,3})?",
+      "optionsLearning": [
+        "321",
+        "1 2 3",
+        "0",
+        "123"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-06",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность for_each?",
+      "optionsLearning": [
+        "O(1)",
+        "O(log n)",
+        "O(n²)",
+        "O(n)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-07",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем for_each отличается от range-based for?",
+      "optionsLearning": [
+        "for_each быстрее",
+        "Ничем не отличаются",
+        "Range-based медленнее",
+        "for_each возвращает функцию, range-based - нет"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-08",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с custom типом?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с vector",
+        "Да, если можно итерировать"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-09",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int& x){x *= 2;})` (v={1,2,3})?",
+      "optionsLearning": [
+        "Ничего",
+        "v={1,2,3}",
+        "Ошибка",
+        "v={2,4,6}"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-10",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с list?",
+      "optionsLearning": [
+        "Только с vector",
+        "Нет",
+        "Только с array",
+        "Да, требует input iterator"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-11",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){return x;})` (v={1,2,3})?",
+      "optionsLearning": [
+        "6",
+        "123",
+        "Ошибка",
+        "Значения возвращаются, но не используются"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-12",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с forward_list?",
+      "optionsLearning": [
+        "Только с random access",
+        "Нет",
+        "Только с vector",
+        "Да"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-13",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){cout << x << \" \";})` (v={1,2,3})?",
+      "optionsLearning": [
+        "3 2 1",
+        "123",
+        "0",
+        "1 2 3 "
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-14",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each для filter операции?",
+      "optionsLearning": [
+        "Только с if",
+        "Да",
+        "Только с vector",
+        "Нет, for_each не фильтрует"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-15",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){cout << x;})` (v пустой)?",
+      "optionsLearning": [
+        "Ошибка",
+        "0",
+        "-1",
+        "Ничего"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-16",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с custom comparator?",
+      "optionsLearning": [
+        "Только с binary",
+        "Да",
+        "Только с predicate",
+        "Нет, for_each принимает unary function"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-17",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){static int c=0; c++;})` (v={1,2,3})?",
+      "optionsLearning": [
+        "Ошибка",
+        "c=0",
+        "Ничего",
+        "c=3 (статическая переменная)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-18",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с transform результатом?",
+      "optionsLearning": [
+        "Только с vector",
+        "Да",
+        "Только с array",
+        "Нет, для этого есть transform"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-19",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `for_each(v.begin(), v.end(), [](int x){cout << x;})` (v={3,2,1})?",
+      "optionsLearning": [
+        "3 2 1",
+        "123",
+        "0",
+        "321"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario.card-20",
+      "kind": "select",
+      "title": "for_each и алгоритмы обхода - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать for_each с const vector?",
+      "optionsLearning": [
+        "Только с non-const",
+        "Нет",
+        "Только с int",
+        "Да, но функция должна быть const"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-for-each.01.scenario"
+    }
+  ]
+}

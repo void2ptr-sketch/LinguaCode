@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-01",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::accumulate?",
+      "optionsLearning": [
+        "Поиск элемента",
+        "Сортировку диапазона",
+        "Трансформацию",
+        "Накопление значений в диапазоне (сумма по умолчанию)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-02",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок нужен для std::accumulate?",
+      "optionsLearning": [
+        "<vector>",
+        "<algorithm>",
+        "<iterator>",
+        "<numeric>"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-03",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 0)` (v = {1,2,3})?",
+      "optionsLearning": [
+        "1",
+        "5",
+        "0",
+        "6"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-04",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой третий параметр accumulate?",
+      "optionsLearning": [
+        "Итератор конца",
+        "Функцию-компаратор",
+        "Размер диапазона",
+        "Начальное значение (initial value)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-05",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 10, plus<int>())`?",
+      "optionsLearning": [
+        "10",
+        "6",
+        "21",
+        "16 (если v={1,2,3})"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-06",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип возвращает accumulate?",
+      "optionsLearning": [
+        "int всегда",
+        "Тип элементов диапазона",
+        "void",
+        "Тип начального значения"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-07",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 1)` (умножение)?",
+      "optionsLearning": [
+        "0",
+        "1",
+        "Ошибка",
+        "6 (если v={1,2,3})"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-08",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать accumulate для строк?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с double",
+        "Да, через operator+"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-09",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), string(\"Hi\"))`?",
+      "optionsLearning": [
+        "Hi",
+        "\"ABC\"",
+        "Ошибка",
+        "\"HiABC\" (если v={\"A\",\"B\",\"C\"})"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-10",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность accumulate?",
+      "optionsLearning": [
+        "O(n²)",
+        "O(log n)",
+        "O(1)",
+        "O(n) - линейная"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-11",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 0.0)` (vector<int>)?",
+      "optionsLearning": [
+        "0",
+        "Сумма как int",
+        "Ошибка",
+        "Сумма как double"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-12",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать accumulate без итераторов?",
+      "optionsLearning": [
+        "Только с массивами",
+        "Да",
+        "Только с vector",
+        "Нет, требует итераторы диапазона"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-13",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), vector<int>())`?",
+      "optionsLearning": [
+        "Ошибка",
+        "Пустой вектор",
+        "0",
+        "Конкатенированный вектор"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-14",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор использует accumulate по умолчанию?",
+      "optionsLearning": [
+        "- (вычитание)",
+        "* (умножение)",
+        "/ (деление)",
+        "+ (сложение)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-15",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 1, multiplies<int>())`?",
+      "optionsLearning": [
+        "Максимум",
+        "Сумма элементов",
+        "Минимум",
+        "Произведение элементов"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-16",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать accumulate с custom типом?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с double",
+        "Да, если есть operator+"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-17",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 0)` (v пустой)?",
+      "optionsLearning": [
+        "Ошибка",
+        "Ничего",
+        "-1",
+        "0 (initial value)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-18",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой параметр accumulate обязателен?",
+      "optionsLearning": [
+        "Итератор начала",
+        "Функцию-бинарный оператор",
+        "Размер",
+        "Начальное значение"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-19",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `accumulate(v.begin(), v.end(), 5)` (v={2,3})?",
+      "optionsLearning": [
+        "0",
+        "5",
+        "17",
+        "10"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario.card-20",
+      "kind": "select",
+      "title": "accumulate и агрегация - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать accumulate для поиска максимума?",
+      "optionsLearning": [
+        "Только с sort",
+        "Нет",
+        "Только с min_element",
+        "Да, через custom binary op"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-accumulate.01.scenario"
+    }
+  ]
+}

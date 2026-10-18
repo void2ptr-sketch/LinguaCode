@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.basics.control-switch.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-01",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор для множественного выбора?",
+      "optionsLearning": [
+        "switch",
+        "if",
+        "for",
+        "while"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-02",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая структура switch?",
+      "optionsLearning": [
+        "switch (expr) { case val: ... }",
+        "if (expr) { case val: ... }",
+        "switch { case val: expr }",
+        "case (expr) { switch val: ... }"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-03",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое case?",
+      "optionsLearning": [
+        "Вариант значения",
+        "Условие",
+        "Цикл",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-04",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default?",
+      "optionsLearning": [
+        "Блок по умолчанию",
+        "Первый case",
+        "Последний case",
+        "Условие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-05",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fall-through?",
+      "optionsLearning": [
+        "Выполнение следующего case без break",
+        "Прерывание цикла",
+        "Ошибка компиляции",
+        "Повтор case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-06",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает break в switch?",
+      "optionsLearning": [
+        "Выход из switch",
+        "Продолжение следующего case",
+        "Ошибка",
+        "Повтор case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-07",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать float в switch?",
+      "optionsLearning": [
+        "Нет, только целочисленные типы",
+        "Да",
+        "Только int",
+        "Только char"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-08",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое duplicate case?",
+      "optionsLearning": [
+        "Два одинаковых case значения",
+        "Два разных case",
+        "Default case",
+        "Nested switch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-09",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое nested switch?",
+      "optionsLearning": [
+        "Switch внутри switch",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-10",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое switch optimization?",
+      "optionsLearning": [
+        "Jump table для быстрого выбора",
+        "Удаление case",
+        "Добавление case",
+        "Изменение типа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-11",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое jump table?",
+      "optionsLearning": [
+        "Таблица переходов для switch",
+        "Массив case",
+        "Список case",
+        "Условие"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-12",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать switch вместо if?",
+      "optionsLearning": [
+        "Для множественного выбора по значению",
+        "Всегда",
+        "Никогда",
+        "Только для float"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-13",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое enum switch?",
+      "optionsLearning": [
+        "Switch с enum типом",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-14",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое missing case warning?",
+      "optionsLearning": [
+        "Предупреждение о неполном switch",
+        "Ошибка компиляции",
+        "Ошибочный case",
+        "Default case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-15",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое exhaustive switch?",
+      "optionsLearning": [
+        "Switch со всеми case",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-16",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pattern matching?",
+      "optionsLearning": [
+        "Сравнение структуры данных",
+        "Сравнение значений",
+        "Сравнение типов",
+        "Сравнение размеров"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-17",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое C++20 constexpr if?",
+      "optionsLearning": [
+        "Условие на этапе компиляции",
+        "Условие во время выполнения",
+        "Условие в switch",
+        "Условие в цикле"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-18",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое C++23 std::variant?",
+      "optionsLearning": [
+        "Типобезопасное объединение",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-19",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::visit?",
+      "optionsLearning": [
+        "Применение функции к variant",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario.card-20",
+      "kind": "select",
+      "title": "Условия: switch-case - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::optional?",
+      "optionsLearning": [
+        "Упакованное значение или отсутствие",
+        "Switch без break",
+        "Switch в цикле",
+        "Switch в функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics",
+          "control-flow",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-control-flow",
+      "scenarioId": "cpp.basics.control-switch.01.scenario"
+    }
+  ]
+}

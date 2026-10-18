@@ -1,0 +1,625 @@
+{
+  "scenarioId": "cpp.stl.algorithms-find.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-01",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::find?",
+      "optionsLearning": [
+        "Сортирует диапазон",
+        "Ищет по индексу",
+        "Удаляет элемент",
+        "Ищет элемент по значению в диапазоне"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-02",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок для std::find?",
+      "optionsLearning": [
+        "<numeric>",
+        "<vector>",
+        "<iterator>",
+        "<algorithm>"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-03",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает find при отсутствии элемента?",
+      "optionsLearning": [
+        "-1",
+        "nullptr",
+        "begin()",
+        "end() итератор"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-04",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип сравения использует find?",
+      "optionsLearning": [
+        "operator>",
+        "operator<",
+        "custom comparator",
+        "operator== (равенство)"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-05",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5)` (v={1,2,3,5})?",
+      "optionsLearning": [
+        "-1",
+        "индекс 3",
+        "end()",
+        "итератор на 5"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-06",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность std::find?",
+      "optionsLearning": [
+        "O(1)",
+        "O(log n)",
+        "O(n²)",
+        "O(n) - линейный поиск"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-07",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с custom типом?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с string",
+        "Да, если есть operator=="
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-08",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `*find(v.begin(), v.end(), 10)` (если есть)?",
+      "optionsLearning": [
+        "0",
+        "end()",
+        "Ошибка",
+        "10"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-09",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем find отличается от find_if?",
+      "optionsLearning": [
+        "find быстрее",
+        "Ничем не отличаются",
+        "find_if медленнее",
+        "find ищет по значению, find_if по предикату"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-10",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 0)` (v={1,2,3})?",
+      "optionsLearning": [
+        "-1",
+        "begin()",
+        "0",
+        "end() итератор"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-11",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с list?",
+      "optionsLearning": [
+        "Только с vector",
+        "Нет",
+        "Только с array",
+        "Да, требует input iterator"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-12",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 'A')` (string)?",
+      "optionsLearning": [
+        "true",
+        "индекс",
+        "-1",
+        "итератор на 'A'"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-13",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор нужен для find с custom типом?",
+      "optionsLearning": [
+        "operator>",
+        "operator<",
+        "operator[]",
+        "operator=="
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-14",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5) - v.begin()` (если есть)?",
+      "optionsLearning": [
+        "end()",
+        "значение 5",
+        "-1",
+        "индекс элемента"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-15",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с forward_list?",
+      "optionsLearning": [
+        "Только с random access",
+        "Нет",
+        "Только с vector",
+        "Да, но только один проход"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-16",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 1) == v.end()` (v={2,3})?",
+      "optionsLearning": [
+        "1",
+        "false",
+        "0",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-17",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем find_if отличается от find?",
+      "optionsLearning": [
+        "find_if медленнее",
+        "find_if быстрее",
+        "Ничем не отличаются",
+        "find_if принимает предикат для условия"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-18",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5) != v.end()` (v={1,2,3,5})?",
+      "optionsLearning": [
+        "5",
+        "false",
+        "-1",
+        "true"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-19",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find для поиска подстроки?",
+      "optionsLearning": [
+        "Только с string",
+        "Да",
+        "Только с array",
+        "Нет, ищет только элемент"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario.card-20",
+      "kind": "select",
+      "title": "find и поиск - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 3)` (v={3,2,1})?",
+      "optionsLearning": [
+        "индекс 1",
+        "end()",
+        "-1",
+        "begin() итератор"
+      ],
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms",
+          "standard-library"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "cpp.stl.algorithms-find.01.scenario"
+    }
+  ]
+}

@@ -1,0 +1,605 @@
+{
+  "scenarioId": "cpp.oop.inheritance-multiple.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-01",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple inheritance?",
+      "optionsLearning": [
+        "Наследование от нескольких base classes одновременно",
+        "От одного base class",
+        "Без наследования",
+        "Случайное наследование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-02",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple base classes?",
+      "optionsLearning": [
+        "Несколько родительских классов в inheritance list",
+        "Один base class",
+        "Без base classes",
+        "Случайные base classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-03",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple constructor call?",
+      "optionsLearning": [
+        "Вызов constructors всех base classes в initializer list",
+        "Без вызова",
+        "Удаление вызова",
+        "Добавление вызова"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-04",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constructor order in multiple inheritance?",
+      "optionsLearning": [
+        "Порядок вызова constructors base classes (по объявлению в class)",
+        "Случайный порядок",
+        "Обратный порядок",
+        "Нет порядка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-05",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое destructor order in multiple inheritance?",
+      "optionsLearning": [
+        "Порядок вызова destructors (обратный порядку constructors)",
+        "Прямой порядок",
+        "Случайный порядок",
+        "Нет порядка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-06",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое method name collision?",
+      "optionsLearning": [
+        "Конфликт имен методов от разных base classes",
+        "Без конфликта",
+        "Удаление конфликта",
+        "Добавление конфликта"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-07",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое method resolution in multiple inheritance?",
+      "optionsLearning": [
+        "Разрешение вызова метода при наличии в нескольких base",
+        "Без разрешения",
+        "Удаление разрешения",
+        "Добавление разрешения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-08",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое scope resolution for method?",
+      "optionsLearning": [
+        "using Base::method; для разрешения коллизии методов",
+        "Без using",
+        "Удаление using",
+        "Добавление using"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-09",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual method in multiple inheritance?",
+      "optionsLearning": [
+        "Virtual метод, переопределенный в нескольких base classes",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-10",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vtable layout in multiple inheritance?",
+      "optionsLearning": [
+        "Компоновка vtables для нескольких base classes в объекте",
+        "Одна vtable",
+        "Нет vtables",
+        "Случайные vtables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-11",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple vptrs?",
+      "optionsLearning": [
+        "Несколько указателей на vtables в объекте с множественным наследованием",
+        "Один vptr",
+        "Нет vptrs",
+        "Случайные vptrs"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-12",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое this pointer adjustment?",
+      "optionsLearning": [
+        "Корректировка указателя this при приведении к разным base types",
+        "Без корректировки",
+        "Удаление корректировки",
+        "Добавление корректировки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-13",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pointer adjustment in cast?",
+      "optionsLearning": [
+        "Корректировка указателя при static_cast между base types",
+        "Без корректировки",
+        "Удаление корректировки",
+        "Добавление корректировки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-14",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond with multiple inheritance?",
+      "optionsLearning": [
+        "Ромбовидная структура с множественным наследованием",
+        "Линейная структура",
+        "Древовидная структура",
+        "Случайная структура"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-15",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple inheritance with virtual?",
+      "optionsLearning": [
+        "Множественное наследование с virtual base classes для устранения diamond",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-16",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple inheritance overhead?",
+      "optionsLearning": [
+        "Накладные расходы на множественное наследование (vptrs, this adjustment)",
+        "Без накладных расходов",
+        "Удаление расходов",
+        "Добавление расходов"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-17",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple inheritance complexity?",
+      "optionsLearning": [
+        "Сложность управления множественным наследованием",
+        "Без сложности",
+        "Удаление сложности",
+        "Добавление сложности"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-18",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple inheritance best practice?",
+      "optionsLearning": [
+        "Избегать множественного наследования, использовать интерфейсы или композицию",
+        "Использовать всегда",
+        "Без практики",
+        "Случайная практика"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-19",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое interface inheritance?",
+      "optionsLearning": [
+        "Наследование только с virtual методов (интерфейс)",
+        "С данными",
+        "Без наследования",
+        "Случайное наследование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario.card-20",
+      "kind": "select",
+      "title": "Множественное наследование - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pure interface class?",
+      "optionsLearning": [
+        "Класс только с pure virtual methods (интерфейс)",
+        "С реализациями",
+        "Без класса",
+        "Случайный класс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
+    }
+  ]
+}

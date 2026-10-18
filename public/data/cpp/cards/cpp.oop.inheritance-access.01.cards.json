@@ -1,0 +1,605 @@
+{
+  "scenarioId": "cpp.oop.inheritance-access.01.scenario",
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-01",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое public access in derived?",
+      "optionsLearning": [
+        "Public members base class доступны как public в derived",
+        "Как private",
+        "Без доступа",
+        "Случайный доступ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-02",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое protected access in derived?",
+      "optionsLearning": [
+        "Protected members base class доступны как protected в derived",
+        "Как public",
+        "Без доступа",
+        "Случайный доступ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-03",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое private access in derived?",
+      "optionsLearning": [
+        "Private members base class недоступны напрямую в derived",
+        "Доступны как public",
+        "Без доступа",
+        "Случайный доступ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-04",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое protected inheritance access?",
+      "optionsLearning": [
+        "Public и protected members base class становятся protected в derived",
+        "Как public",
+        "Как private",
+        "Без доступа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-05",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое private inheritance access?",
+      "optionsLearning": [
+        "Public и protected members base class становятся private в derived",
+        "Как public",
+        "Как protected",
+        "Без доступа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-06",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access control in inheritance?",
+      "optionsLearning": [
+        "Правила управления доступом к членам через наследование",
+        "Без правил",
+        "Удаление правил",
+        "Добавление правил"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-07",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое friend in inheritance?",
+      "optionsLearning": [
+        "Friend функции/классы не наследуются, но имеют доступ к private members",
+        "Наследуются",
+        "Без доступа",
+        "Случайный доступ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-08",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое protected friend?",
+      "optionsLearning": [
+        "Friend с доступом к protected members base class",
+        "Без доступа",
+        "Удаление доступа",
+        "Добавление доступа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-09",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access specifier in derived?",
+      "optionsLearning": [
+        "Ключевое слово для изменения уровня доступа в derived class",
+        "Без ключевого слова",
+        "Удаление ключевого слова",
+        "Добавление ключевого слова"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-10",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое using declaration in inheritance?",
+      "optionsLearning": [
+        "Объявление для изменения видимости inherited member в derived",
+        "Без объявления",
+        "Удаление объявления",
+        "Добавление объявления"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-11",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое using declaration public?",
+      "optionsLearning": [
+        "using Base::member; делает member public в derived",
+        "Как protected",
+        "Как private",
+        "Без видимости"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-12",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое using declaration protected?",
+      "optionsLearning": [
+        "using Base::member; делает member protected в derived",
+        "Как public",
+        "Как private",
+        "Без видимости"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-13",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое using declaration private?",
+      "optionsLearning": [
+        "using Base::member; делает member private в derived",
+        "Как public",
+        "Как protected",
+        "Без видимости"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-14",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое name hiding in inheritance?",
+      "optionsLearning": [
+        "Скрытие имени base class метода в derived при переопредении с другим signature",
+        "Без сокрытия",
+        "Удаление сокрытия",
+        "Добавление сокрытия"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-15",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое name override in inheritance?",
+      "optionsLearning": [
+        "Переопределение имени base class метода с тем же signature",
+        "Без переопределения",
+        "Удаление переопределения",
+        "Добавление переопределения"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-16",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access check in inheritance?",
+      "optionsLearning": [
+        "Проверка доступа к member при использовании в derived context",
+        "Без проверки",
+        "Удаление проверки",
+        "Добавление проверки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-17",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access violation in inheritance?",
+      "optionsLearning": [
+        "Попытка доступа к private member извне класса",
+        "Без попытки",
+        "Удаление попытки",
+        "Добавление попытки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-18",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access compatibility?",
+      "optionsLearning": [
+        "Совместимость уровней доступа при наследовании",
+        "Несовместимость",
+        "Без совместимости",
+        "Случайная совместимость"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-19",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access transformation?",
+      "optionsLearning": [
+        "Преобразование уровня доступа при наследовании",
+        "Без преобразования",
+        "Удаление преобразования",
+        "Добавление преобразования"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario.card-20",
+      "kind": "select",
+      "title": "Модификаторы доступа в наследовании - Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое access policy?",
+      "optionsLearning": [
+        "Политика управления доступом к членам класса",
+        "Без политики",
+        "Удаление политики",
+        "Добавление политики"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-access.01.scenario"
+    }
+  ]
+}
