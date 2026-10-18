@@ -33,7 +33,7 @@ import { firstValueFrom } from 'rxjs';
 import { buildFixtureUrl } from '../../shared/api/api-url';
 import { IndexedDbService } from '../../shared/storage';
 import type { Card } from '../card/model';
-import type { Scenario } from '../scenario/model';
+import type { LegacyScenario, Scenario } from '../scenario/model';
 import { normalizeLegacyCards } from '../card/mapping/card-legacy.mapper';
 import { normalizeScenario } from '../scenario/utils/scenario-card-source.utils';
 
@@ -241,11 +241,15 @@ export class ContentSeedRepository {
    * @private
    */
   private loadScenarioFixture(path: string): Promise<ScenariosSeedFixture> {
-    return firstValueFrom(this.http.get<ScenariosSeedFixture>(buildFixtureUrl(path))).then(
-      (fixture) => ({
-        scenarios: fixture.scenarios.map((scenario) => normalizeScenario(scenario)),
-      }),
-    );
+    return firstValueFrom(this.http.get<unknown>(buildFixtureUrl(path))).then((raw) => {
+      const record = raw as Record<string, unknown>;
+      const scenarios = Array.isArray(record['scenarios'])
+        ? (raw as ScenariosSeedFixture).scenarios
+        : [(raw as LegacyScenario)];
+      return {
+        scenarios: scenarios.map((scenario) => normalizeScenario(scenario)),
+      };
+    });
   }
 
   /**
