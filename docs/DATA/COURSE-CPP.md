@@ -34,7 +34,7 @@
 - **scenario-cpp-basics-intro-02** — Компиляция и этапы преобразования
 - **scenario-cpp-basics-intro-03** — Hello World и базовый вывод
 - **scenario-cpp-basics-intro-04** — Комментарии и документация
-- **scenario-cpp-basics-intro-05** — Структура программы: main, include
+- **scenario-cpp-basics-intro-compiler-setup** — Компиляция и настройка проекта
 
 #### lesson-cpp-basics-types — Типы данных
 

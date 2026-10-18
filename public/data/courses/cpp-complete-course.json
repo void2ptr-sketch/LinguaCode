@@ -35,13 +35,13 @@
       "id": "lesson-cpp-basics-intro",
       "courseId": "course-cpp-complete",
       "title": "Урок 1: Введение в C++",
-      "description": "5 сценариев: scenario-cpp-basics-intro-01 — scenario-cpp-basics-intro-05.",
+      "description": "5 сценариев: scenario-cpp-basics-intro-history — scenario-cpp-basics-intro-compiler-setup.",
       "scenarioIds": [
         "scenario-cpp-basics-intro-01",
         "scenario-cpp-basics-intro-02",
         "scenario-cpp-basics-intro-03",
         "scenario-cpp-basics-intro-04",
-        "scenario-cpp-basics-intro-05"
+        "scenario-cpp-basics-intro-compiler-setup"
       ],
       "prerequisiteLessonIds": [],
       "order": 0,

@@ -1,8 +1,8 @@
 {
-  "scenarioId": "scenario-cpp-basics-intro-05",
+  "scenarioId": "scenario-cpp-basics-intro-compiler-setup",
   "cards": [
     {
-      "id": "scenario-cpp-basics-intro-05-card-01",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-01",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 1",
       "appearance": {
@@ -29,10 +29,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-02",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-02",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 2",
       "appearance": {
@@ -59,10 +59,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-03",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-03",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 3",
       "appearance": {
@@ -89,10 +89,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-04",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-04",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 4",
       "appearance": {
@@ -119,10 +119,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-05",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-05",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 5",
       "appearance": {
@@ -149,10 +149,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-06",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-06",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 6",
       "appearance": {
@@ -179,10 +179,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-07",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-07",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 7",
       "appearance": {
@@ -209,10 +209,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-08",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-08",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 8",
       "appearance": {
@@ -239,10 +239,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-09",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-09",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 9",
       "appearance": {
@@ -269,10 +269,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-10",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-10",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 10",
       "appearance": {
@@ -299,10 +299,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-11",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-11",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 11",
       "appearance": {
@@ -329,10 +329,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-12",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-12",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 12",
       "appearance": {
@@ -359,10 +359,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-13",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-13",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 13",
       "appearance": {
@@ -389,10 +389,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-14",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-14",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 14",
       "appearance": {
@@ -419,10 +419,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-15",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-15",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 15",
       "appearance": {
@@ -449,10 +449,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-16",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-16",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 16",
       "appearance": {
@@ -479,10 +479,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-17",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-17",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 17",
       "appearance": {
@@ -509,10 +509,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-18",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-18",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 18",
       "appearance": {
@@ -539,10 +539,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-19",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-19",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 19",
       "appearance": {
@@ -569,10 +569,10 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     },
     {
-      "id": "scenario-cpp-basics-intro-05-card-20",
+      "id": "scenario-cpp-basics-intro-compiler-setup-card-20",
       "kind": "select",
       "title": "Компиляция и настройка - Вопрос 20",
       "appearance": {
@@ -599,7 +599,7 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics-intro",
-      "scenarioId": "scenario-cpp-basics-intro-05"
+      "scenarioId": "scenario-cpp-basics-intro-compiler-setup"
     }
   ]
 }

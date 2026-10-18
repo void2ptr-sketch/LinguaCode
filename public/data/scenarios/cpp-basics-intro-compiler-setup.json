@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario-cpp-basics-intro-compiler-setup",
+      "title": "Компиляция и настройка проекта",
+      "description": "Сценарий: Компиляция, препроцессор, линковка, инструменты разработки",
+      "order": 4,
+      "lessonId": "lesson-cpp-basics-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-basics-intro-compiler-setup-card-01",
+          "scenario-cpp-basics-intro-compiler-setup-card-02",
+          "scenario-cpp-basics-intro-compiler-setup-card-03",
+          "scenario-cpp-basics-intro-compiler-setup-card-04",
+          "scenario-cpp-basics-intro-compiler-setup-card-05",
+          "scenario-cpp-basics-intro-compiler-setup-card-06",
+          "scenario-cpp-basics-intro-compiler-setup-card-07",
+          "scenario-cpp-basics-intro-compiler-setup-card-08",
+          "scenario-cpp-basics-intro-compiler-setup-card-09",
+          "scenario-cpp-basics-intro-compiler-setup-card-10",
+          "scenario-cpp-basics-intro-compiler-setup-card-11",
+          "scenario-cpp-basics-intro-compiler-setup-card-12",
+          "scenario-cpp-basics-intro-compiler-setup-card-13",
+          "scenario-cpp-basics-intro-compiler-setup-card-14",
+          "scenario-cpp-basics-intro-compiler-setup-card-15",
+          "scenario-cpp-basics-intro-compiler-setup-card-16",
+          "scenario-cpp-basics-intro-compiler-setup-card-17",
+          "scenario-cpp-basics-intro-compiler-setup-card-18",
+          "scenario-cpp-basics-intro-compiler-setup-card-19",
+          "scenario-cpp-basics-intro-compiler-setup-card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}
