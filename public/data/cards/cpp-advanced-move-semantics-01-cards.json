@@ -1,0 +1,604 @@
+{
+  "cards": [
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-01",
+      "question": "В чём разница между lvalue и rvalue reference?",
+      "answer": "Lvalue reference: `T&` — привязывается к именованным объектам (lvalue). Rvalue reference: `T&&` — привязывается к временным объектам (rvalue). Rvalue reference позволяет реализовать move semantics — перемещение ресурсов вместо копирования.",
+      "hints": [
+        "Именованные vs временные объекты",
+        "Move semantics"
+      ],
+      "tags": [
+        "move-semantics",
+        "references",
+        "c++11"
+      ],
+      "difficulty": 1,
+      "order": 1,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-02",
+      "question": "Что такое `std::move` и что он делает на самом деле?",
+      "answer": "`std::move()` не перемещает ничего! Он просто приводит lvalue к rvalue reference (`static_cast<T&&>()`). Фактическое перемещение происходит в конструкторе/операторе присваивания, которые принимают rvalue reference.",
+      "hints": [
+        "Static cast, не физическое перемещение",
+        "Конструктор перемещения"
+      ],
+      "tags": [
+        "std-move",
+        "move-semantics",
+        "cast"
+      ],
+      "difficulty": 1,
+      "order": 2,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-03",
+      "question": "Когда компилятор автоматически генерирует move constructor?",
+      "answer": "Компилятор генерирует move constructor, если: (1) нет user-declared copy/move/destroy, (2) нет user-declared destructor, (3) нет user-declared move assignment. Если определён хотя бы один copy/move/destroy — move constructor не генерируется автоматически.",
+      "hints": [
+        "User-declared vs implicit",
+        "Copy vs move"
+      ],
+      "tags": [
+        "move-constructor",
+        "implicit-generation",
+        "rule-of-five"
+      ],
+      "difficulty": 2,
+      "order": 3,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-04",
+      "question": "Что такое `std::forward` и как работает perfect forwarding?",
+      "answer": "`std<T>(arg)` сохраняет value category аргумента (lvalue/rvalue) через reference collapsing rules. При вызове функции с `T&&` (universal reference), `std::forward<T>` форвардит аргумент с оригинальной category. Это позволяет передавать аргументы без потери информации.",
+      "hints": [
+        "Reference collapsing",
+        "Value category preservation"
+      ],
+      "tags": [
+        "std-forward",
+        "perfect-forwarding",
+        "templates"
+      ],
+      "difficulty": 3,
+      "order": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-05",
+      "question": "Что такое universal reference и чем она отличается от rvalue reference?",
+      "answer": "Universal reference (forwarding reference): `T&&` в контексте template deduction. Тип `T` выводится из аргумента, поэтому может быть lvalue или rvalue reference. Обычная rvalue reference: тип уже известен, привязывается только к rvalue.",
+      "hints": [
+        "Template deduction",
+        "T&& vs known type"
+      ],
+      "tags": [
+        "universal-reference",
+        "template-deduction",
+        "move-semantics"
+      ],
+      "difficulty": 2,
+      "order": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-06",
+      "question": "Как работает reference collapsing rules?",
+      "answer": "Правила коллапса ссылок: (1) `T& &` → `T&`, (2) `T& &&` → `T&`, (3) `T&& &` → `T&`, (4) `T&& &&` → `T&&`. Только оба rvalue дают rvalue reference. Это основа perfect forwarding.",
+      "hints": [
+        "Четыре комбинации",
+        "Только T&& && даёт T&&"
+      ],
+      "tags": [
+        "reference-collapsing",
+        "templates",
+        "move-semantics"
+      ],
+      "difficulty": 2,
+      "order": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-07",
+      "question": "Что такое `std::swap` и как его кастомизировать?",
+      "answer": "`std::swap(a, b)` меняет значения местами. Кастомизация: определите `void swap(T&, T&)` в namespace типа или специализацию `std::swap<T>`. C++11 `std::swap` использует move semantics, если available.",
+      "hints": [
+        "Custom swap in namespace",
+        "C++11 move-based"
+      ],
+      "tags": [
+        "std-swap",
+        "customization",
+        "move-semantics"
+      ],
+      "difficulty": 2,
+      "order": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-08",
+      "question": "В чём разница между copy-and-swap и move-and-swap идиомами?",
+      "answer": "Copy-and-swap: создаёт temporary copy, затем swap. Safe, но inefficient. Move-and-swap: использует move constructor для temporary, затем swap. Более efficient при rvalue аргументах. C++11 `std::swap` автоматически использует move.",
+      "hints": [
+        "Temporary creation",
+        "C++11 automatic move"
+      ],
+      "tags": [
+        "copy-swap",
+        "move-swap",
+        "idioms"
+      ],
+      "difficulty": 2,
+      "order": 8,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-09",
+      "question": "Что такое `std::vector::reserve()` и как он влияет на move semantics?",
+      "answer": "`reserve(n)` резервирует память для n элементов. При `push_back` с rvalue, если capacity exceeded, элементы перемещаются (move), а не копируются. Это оптимизация: move дешевле copy.",
+      "hints": [
+        "Capacity vs size",
+        "Move on reallocation"
+      ],
+      "tags": [
+        "vector-reserve",
+        "move-semantics",
+        "containers"
+      ],
+      "difficulty": 2,
+      "order": 9,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-10",
+      "question": "Как работает `std::string` с move semantics?",
+      "answer": "C++11 `std::string` имеет move constructor и move assignment. При перемещении, указатель на буфер просто копируется, старый обнуляется. Это O(1) операция вместо O(n) копирования.",
+      "hints": [
+        "O(1) vs O(n)",
+        "Pointer copy"
+      ],
+      "tags": [
+        "string-move",
+        "move-semantics",
+        "containers"
+      ],
+      "difficulty": 2,
+      "order": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-11",
+      "question": "Что такое `std::move_if_noexcept()` и зачем он нужен?",
+      "answer": "`std::move_if_noexcept()` (C++14) перемещает, если move constructor noexcept, иначе копирует. Используется в `std::vector::push_back` для safe reallocation. Если move может бросить — лучше copy.",
+      "hints": [
+        "noexcept check",
+        "Safe reallocation"
+      ],
+      "tags": [
+        "move-if-noexcept",
+        "exception-safety",
+        "containers"
+      ],
+      "difficulty": 3,
+      "order": 11,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-12",
+      "question": "Как работает `std::unique_ptr` с move semantics?",
+      "answer": "`std::unique_ptr` move-only: move constructor и move assignment разрешены, copy запрещены. При перемещении, указатель просто копируется, старый обнуляется. Zero-cost операция.",
+      "hints": [
+        "Move-only",
+        "Pointer copy + nullify"
+      ],
+      "tags": [
+        "unique-ptr-move",
+        "move-semantics",
+        "smart-pointers"
+      ],
+      "difficulty": 2,
+      "order": 12,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-13",
+      "question": "Что такое `std::exchange()` и как он связан с move semantics?",
+      "answer": "`std::exchange(obj, new_value)` заменяет `obj` на `new_value` и возвращает старое значение. Полезен для move operations: `return std::exchange(ptr, nullptr);` — безопасно обнуляет после перемещения.",
+      "hints": [
+        "Replace and return old",
+        "Safe nullify"
+      ],
+      "tags": [
+        "std-exchange",
+        "move-semantics",
+        "utilities"
+      ],
+      "difficulty": 2,
+      "order": 13,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-14",
+      "question": "Как работает `std::optional` с move semantics?",
+      "answer": "`std::optional<T>` имеет move constructor и move assignment. При перемещении, если T moveable — используется move constructor T. Если нет — copy. C++23 `std::optional` поддерживает `valueless_by_exception`.",
+      "hints": [
+        "Conditional move",
+        "C++23 valueless"
+      ],
+      "tags": [
+        "optional-move",
+        "move-semantics",
+        "optional"
+      ],
+      "difficulty": 2,
+      "order": 14,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-15",
+      "question": "Что такое `std::variant` и как он работает с move semantics?",
+      "answer": "`std::variant<T...>` хранит один из типов. Move constructor/performs move на активный тип. Если все типы move-noexcept, variant тоже noexcept. C++23 добавляет `std::monostate` для empty state.",
+      "hints": [
+        "Active type move",
+        "Noexcept propagation"
+      ],
+      "tags": [
+        "variant-move",
+        "move-semantics",
+        "variant"
+      ],
+      "difficulty": 3,
+      "order": 15,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-16",
+      "question": "Как работает `std::any` с move semantics?",
+      "answer": "`std::any` хранит любой тип. Move constructor перемещает внутренний объект, если тип moveable. Если нет — копирует. C++17 требует type erasure overhead.",
+      "hints": [
+        "Type erasure",
+        "Conditional move"
+      ],
+      "tags": [
+        "any-move",
+        "move-semantics",
+        "any"
+      ],
+      "difficulty": 3,
+      "order": 16,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-17",
+      "question": "Что такое `std::tuple` и как он работает с move semantics?",
+      "answer": "`std::tuple<T...>` — гетерогенный контейнер. Move constructor перемещает каждый элемент. Если все элементы move-noexcept, tuple тоже noexcept. C++17 добавляет `std::apply` для работы с кортежами.",
+      "hints": [
+        "Element-wise move",
+        "Noexcept propagation"
+      ],
+      "tags": [
+        "tuple-move",
+        "move-semantics",
+        "tuple"
+      ],
+      "difficulty": 2,
+      "order": 17,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-18",
+      "question": "Как работает `std::pair` с move semantics?",
+      "answer": "`std::pair<T, U>` имеет move constructor и move assignment. Перемещает first и second отдельно. Если оба move-noexcept, pair тоже noexcept.",
+      "hints": [
+        "Element-wise move",
+        "Noexcept propagation"
+      ],
+      "tags": [
+        "pair-move",
+        "move-semantics",
+        "pair"
+      ],
+      "difficulty": 1,
+      "order": 18,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-19",
+      "question": "Что такое `std::function` и как он работает с move semantics?",
+      "answer": "`std::function<T()>` хранит callable object. Move constructor перемещает внутренний объект, если type erasure позволяет. C++17 требует allocation для small objects.",
+      "hints": [
+        "Type erasure",
+        "Callable move"
+      ],
+      "tags": [
+        "function-move",
+        "move-semantics",
+        "function"
+      ],
+      "difficulty": 3,
+      "order": 19,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    },
+    {
+      "id": "scenario-cpp-advanced-move-semantics-01-card-20",
+      "question": "Как работает `std::string_view` с move semantics?",
+      "answer": "`std::string_view` — non-owning view на string. Move constructor просто копирует pointer и length (O(1)). Нет аллокаций, нет копирования данных. C++17 добавляет для substring operations.",
+      "hints": [
+        "Non-owning",
+        "Pointer + length copy"
+      ],
+      "tags": [
+        "string-view-move",
+        "move-semantics",
+        "string-view"
+      ],
+      "difficulty": 2,
+      "order": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "courseId": "scenario-cpp-advanced-move-semantics-01-01-course",
+      "lessonId": "scenario-cpp-advanced-move-semantics-01-01-lesson",
+      "scenarioId": "scenario-cpp-advanced-move-semantics-01-01-scenario"
+    }
+  ]
+}

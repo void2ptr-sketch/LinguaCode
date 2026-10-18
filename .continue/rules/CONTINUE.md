@@ -1,5 +1,7 @@
 ---
 description: LinguaCode Project Guide
+lastReviewed: 2026-10-18
+reviewInterval: 90d   # the period after which the assistant is required to double‑check the facts
 ---
 
 ## 1. Project Overview
@@ -242,15 +244,15 @@ src/
 ## 8. References
 
 ### Документация проекта
-- [`docs/INDEX.md`](../docs/INDEX.md) — оглавление всей документации
-- [`docs/ARCHITECTURE.md`](../docs/ARCHITECTURE.md) — обзор архитектуры
-- [`docs/COMMON/DOMAIN.md`](../docs/COMMON/DOMAIN.md) — доменная модель
-- [`docs/COMMON/CARD-CATALOG.md`](../docs/COMMON/CARD-CATALOG.md) — индекс карточек
-- [`docs/CONTENT/CJK-CONTENT.md`](../docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны
-- [`docs/CONTENT/PHONETIC-CONTENT.md`](../docs/CONTENT/PHONETIC-CONTENT.md) — IPA
-- [`docs/API-CONTRACT.md`](../docs/API-CONTRACT.md) — HTTP API
-- [`docs/SYSTEM/GIT-RULES.md`](../docs/SYSTEM/GIT-RULES.md) — Git workflow
-- [`TASKS.md`](../TASKS.md) — чеклист задач
+- [`docs/INDEX.md`](../../docs/INDEX.md) — оглавление всей документации
+- [`docs/ARCHITECTURE.md`](../../docs/ARCHITECTURE.md) — обзор архитектуры
+- [`docs/COMMON/DOMAIN.md`](../../docs/COMMON/DOMAIN.md) — доменная модель
+- [`docs/COMMON/CARD-CATALOG.md`](../../docs/COMMON/CARD-CATALOG.md) — индекс карточек
+- [`docs/CONTENT/CJK-CONTENT.md`](../../docs/CONTENT/CJK-CONTENT.md) — иероглифы, пиньинь, тоны
+- [`docs/CONTENT/PHONETIC-CONTENT.md`](../../docs/CONTENT/PHONETIC-CONTENT.md) — IPA
+- [`docs/API-CONTRACT.md`](../../docs/API-CONTRACT.md) — HTTP API
+- [`docs/SYSTEM/GIT-RULES.md`](../../docs/SYSTEM/GIT-RULES.md) — Git workflow
+- [`TASKS.md`](../../TASKS.md) — чеклист задач
 
 ### Внешняя документация
 - [Angular Documentation](https://angular.dev/docs)
@@ -277,6 +279,10 @@ src/
 - `.continue/rules/01.meta.07.ci-parity.rule.md` — паритет локальных проверок и CI
 - `.continue/rules/01.meta.08.dependencies.rule.md` — управление зависимостями
 - `.continue/rules/01.meta.09.rules-maintenance.rule.md` — поддержка правил в актуальном состоянии
+- `.continue/rules/01.meta.10.anti-looping.rule.md` — предотвращение зацикливания (повтор команд/вызовов без прогресса)
+- `.continue/rules/01.meta.11.rag.rule.md` — RAG: поиск в интернете в сложных случаях вместо догадок
+- `.continue/rules/01.meta.12.built-in-tools.rule.md` — встроенные инструменты (Continue "Built-in Tools", MCP)
+- `.continue/rules/01.meta.13.rules-lifecycle.rule.md` — жизненный цикл правил: триггеры обновления, ревью-цикл, changelog
 
 #### architecture — структура проекта
 - `.continue/rules/02.architecture.01.project-architecture.rule.md` — архитектура проекта, FSD-слои
@@ -319,7 +325,16 @@ src/
 - `.continue/rules/05.business.07.auth.rule.md` — аутентификация (AuthStore, токены, guards)
 - `.continue/rules/05.business.08.storage.rule.md` — хранение (IndexedDB, localStorage, persistence)
 
+#### Obsolete rules — архив заменённых правил
+
+Правило, которое заменено или удалено, **не удаляется молча**: его запись переносится сюда с указанием замены (см. `01.meta.13.rules-lifecycle.rule.md`). Это предотвращает «правила-зомби», которые продолжают цитироваться, но файла уже нет.
+
+| Устаревшее правило | Замена | Дата |
+| ------------------ | ------ | ---- |
+| *(пока нет)* | | |
+
 ---
+
 
 ## 9. Barrel Exports (`index.ts`)
 

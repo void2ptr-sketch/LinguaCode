@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario-cpp-basics-multithreading-async-02",
+      "title": "Multithreading Async 02",
+      "description": "Сценарий: Multithreading Async 02",
+      "order": 0,
+      "lessonId": "lesson-cpp-basics-multithreading",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T16:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T16:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-basics-multithreading-async-02-card-01",
+          "scenario-cpp-basics-multithreading-async-02-card-02",
+          "scenario-cpp-basics-multithreading-async-02-card-03",
+          "scenario-cpp-basics-multithreading-async-02-card-04",
+          "scenario-cpp-basics-multithreading-async-02-card-05",
+          "scenario-cpp-basics-multithreading-async-02-card-06",
+          "scenario-cpp-basics-multithreading-async-02-card-07",
+          "scenario-cpp-basics-multithreading-async-02-card-08",
+          "scenario-cpp-basics-multithreading-async-02-card-09",
+          "scenario-cpp-basics-multithreading-async-02-card-10",
+          "scenario-cpp-basics-multithreading-async-02-card-11",
+          "scenario-cpp-basics-multithreading-async-02-card-12",
+          "scenario-cpp-basics-multithreading-async-02-card-13",
+          "scenario-cpp-basics-multithreading-async-02-card-14",
+          "scenario-cpp-basics-multithreading-async-02-card-15",
+          "scenario-cpp-basics-multithreading-async-02-card-16",
+          "scenario-cpp-basics-multithreading-async-02-card-17",
+          "scenario-cpp-basics-multithreading-async-02-card-18",
+          "scenario-cpp-basics-multithreading-async-02-card-19",
+          "scenario-cpp-basics-multithreading-async-02-card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T16:00:00.000Z"
+      }
+    }
+  ]
+}

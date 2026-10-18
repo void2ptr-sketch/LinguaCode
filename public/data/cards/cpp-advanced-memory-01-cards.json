@@ -1,0 +1,521 @@
+{
+  "scenarioId": "scenario-cpp-advanced-memory-01",
+  "cards": [
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-01",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 1: unique_ptr ownership",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstd::unique_ptr<int> p1 = std::make_unique<int>(42);\nauto p2 = std::move(p1);\nstd::cout << (p1 ? \"not-null\" : \"null\");",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "not-null",
+        "null",
+        "Ошибка компиляции",
+        "Неопределённое поведение"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "unique-ptr", "ownership"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-02",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 2: shared_ptr reference counting",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Сколько ссылок будет у объекта после этого кода?",
+      "code": {
+        "code": "#include <memory>\nstd::shared_ptr<int> p1 = std::make_shared<int>(42);\nstd::shared_ptr<int> p2 = p1;\nstd::shared_ptr<int> p3 = std::move(p2);",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "2 (p1 и p3)",
+        "1 (только p1)",
+        "0 (все перемещены)",
+        "3 (p1, p2, p3)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "shared-ptr", "reference-counting"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-03",
+      "kind": "code-select",
+      "title": "Memory Management — Вопрос 3: circular reference",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Какой код предотвращает circular reference?",
+      "code": {
+        "code": "struct Node {\n  std::shared_ptr<Node> next;\n  // ??? — как избежать утечки?\n};",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "Использовать std::weak_ptr для обратных ссылок",
+        "Удалить shared_ptr вообще",
+        "Использовать unique_ptr для всех полей",
+        "Ручной delete в деструкторе"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "circular-reference", "weak-ptr"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-04",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 4: make_unique vs new",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstd::unique_ptr<int> p1 = std::make_unique<int>(42);\nstd::unique_ptr<int> p2(new int(42));\nstd::cout << (*p1 == *p2 ? \"equal\" : \"not-equal\");",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "equal",
+        "not-equal",
+        "Ошибка компиляции",
+        "Неопределённое поведение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "make-unique", "new-operator"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-05",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 5: custom deleter",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Зачем нужен custom deleter в unique_ptr?",
+      "optionsLearning": [
+        "Для освобождения ресурсов, отличных от delete (например, fclose)",
+        "Для ускорения удаления",
+        "Для проверки null перед удалением",
+        "Custom deleter не поддерживается"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "custom-deleter", "unique-ptr"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-06",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 6: shared_ptr aliasing constructor",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstruct Inner {\n  int value;\n};\nstruct Outer {\n  Inner inner;\n};\nauto p = std::make_shared<Outer>();\nauto alias = std::shared_ptr<Inner>(p, &p->inner);\np->inner.value = 42;\nstd::cout << alias->value;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Неопределённое поведение",
+        "0 (неинициализировано)",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "shared-ptr", "aliasing"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-07",
+      "kind": "code-select",
+      "title": "Memory Management — Вопрос 7: weak_ptr lock",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Какой код безопасно проверяет существование объекта?",
+      "code": {
+        "code": "std::weak_ptr<int> wp = /* ... */;\n// ??? — безопасная проверка\nif (auto sp = wp.???) {\n  std::cout << *sp;\n}",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "lock() — возвращает shared_ptr или nullptr",
+        "expired() — возвращает bool",
+        "use_count() — возвращает int",
+        "get() — возвращает raw pointer"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "weak-ptr", "lock"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-08",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 8: memory leak с exceptions",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Какой код вызывает memory leak при исключении?",
+      "optionsLearning": [
+        "int* p1 = new int(1); int* p2 = new int(2); foo(p1, p2);",
+        "auto p1 = std::make_unique<int>(1); auto p2 = std::make_unique<int>(2); foo(p1, p2);",
+        "std::vector<int> v; v.push_back(1); v.push_back(2);",
+        "Все варианты безопасны"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "memory-leak", "exceptions"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-09",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 9: shared_ptr thread safety",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <memory>\n#include <thread>\nstd::shared_ptr<int> p = std::make_shared<int>(42);\nstd::thread t1([&]() { auto copy = p; });\nstd::thread t2([&]() { auto copy = p; });\nt1.join(); t2.join();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Корректно: reference counting atomic",
+        "UB: shared_ptr не thread-safe для чтения",
+        "Ошибка компиляции",
+        "Неопределённое поведение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "shared-ptr", "thread-safety"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-10",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 10: placement new",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Что такое placement new?",
+      "optionsLearning": [
+        "Размещение объекта в уже выделенной памяти без вызова allocator",
+        "Выделение памяти с помощью new[]",
+        "Удаление объекта с помощью delete[]",
+        "Кастирование указателя к другому типу"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "placement-new", "allocation"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-11",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 11: shared_ptr custom deleter type",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nvoid myDeleter(int* p) { delete p; }\nint main() {\n  std::unique_ptr<int, void(*)(int*)> p1(new int(42), myDeleter);\n  std::cout << sizeof(p1);\n}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Зависит от реализации (включает deleter)",
+        "Равно размеру указателя",
+        "0",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "unique-ptr", "custom-deleter"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-12",
+      "kind": "code-select",
+      "title": "Memory Management — Вопрос 12: arena allocator pattern",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Какой паттерн оптимизирует множественные small allocations?",
+      "code": {
+        "code": "// Какой подход лучше для частых мелких выделений?\n???;",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "Arena/Pool allocator —大块 памяти, инкрементальный указатель",
+        "std::vector вместо new",
+        "Удаление всех объектов сразу через unique_ptr",
+        "Кэширование через shared_ptr"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "arena-allocator", "optimization"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-13",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 13: memory pool vs heap",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Когда memory pool эффективнее heap allocations?",
+      "optionsLearning": [
+        "При множестве объектов одинакового размера с коротким временем жизни",
+        "Всегда — pool быстрее",
+        "Никогда — heap оптимизирован лучше",
+        "Только для std::string"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "memory-pool", "performance"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-14",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 14: shared_ptr control block",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nauto p1 = std::make_shared<int>(42);\nauto p2 = p1;\nauto p3 = std::move(p2);\nstd::cout << p1.use_count() << \" \" << p3.use_count();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2 2 (p1 и p3)",
+        "1 1 (только один shared_ptr)",
+        "0 2",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "shared-ptr", "use-count"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-15",
+      "kind": "code-select",
+      "title": "Memory Management — Вопрос 15: memory order и atomics",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Какой memory order самый слабый?",
+      "code": {
+        "code": "#include <atomic>\nstd::atomic<int> x{0};\n// Какой порядок самый слабый?\nx.store(1, ???);",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "memory_order_relaxed",
+        "memory_order_acquire",
+        "memory_order_release",
+        "memory_order_seq_cst"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "atomics", "memory-order"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-16",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 16: stack vs heap allocation",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Когда предпочтительнее stack allocation?",
+      "optionsLearning": [
+        "Для небольших объектов с коротким временем жизни",
+        "Всегда — stack быстрее",
+        "Никогда — heap безопаснее",
+        "Только для указателей"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "stack", "heap"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-17",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 17: shared_ptr self-deletion",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstruct Node {\n  std::shared_ptr<Node> next;\n  ~Node() { std::cout << \"destroyed\"; }\n};\nint main() {\n  auto p = std::make_shared<Node>();\n  p->next = p; // circular\n}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "destroyed (shared_ptr корректно обрабатывает circular)",
+        "Ничего (memory leak из-за circular reference)",
+        "Ошибка компиляции",
+        "Неопределённое поведение"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "circular-reference", "shared-ptr"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-18",
+      "kind": "code-select",
+      "title": "Memory Management — Вопрос 18: memory sanitizer",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Какой sanitizer обнаруживает use-after-free?",
+      "code": {
+        "code": "// Какой флаг компилятора включить?\ng++ -fsanitize=??? program.cpp",
+        "language": "cpp"
+      },
+      "optionsLearning": [
+        "address (ASan)",
+        "undefined (UBSan)",
+        "thread (TSan)",
+        "leak (LSan)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "address-sanitizer", "debugging"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-19",
+      "kind": "select",
+      "title": "Memory Management — Вопрос 19: memory fragmentation",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "promptKnown": "Что такое memory fragmentation?",
+      "optionsLearning": [
+        "Разбиение свободной памяти на мелкие несвязанные блоки",
+        "Утечка памяти из-за циклических ссылок",
+        "Избыточное использование кэша процессора",
+        "Переполнение стека"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "fragmentation", "allocation"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    },
+    {
+      "id": "scenario-cpp-advanced-memory-01-card-20",
+      "kind": "code-trace",
+      "title": "Memory Management — Вопрос 20: unique_ptr array specialization",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() {\n  auto arr = std::make_unique<int[]>(5);\n  arr[0] = 42;\n  std::cout << arr[0];\n}",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Ошибка компиляции: make_unique для массивов не поддерживается (C++14)",
+        "Неопределённое поведение",
+        "0"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": ["memory-management", "unique-ptr", "array-specialization"]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-advanced-memory-01"
+    }
+  ]
+}

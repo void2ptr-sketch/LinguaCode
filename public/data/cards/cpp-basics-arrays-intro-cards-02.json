@@ -1,0 +1,170 @@
+{
+  "scenarioId": "scenario-cpp-basics-arrays-01",
+  "cards": [
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-11",
+      "kind": "code-trace",
+      "title": "Массивы - Вопрос 11",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int arr[3] = {1, 2, 3};\n    for (int i = 0; i < 3; i++) std::cout << arr[i];\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["123", "12", "321", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-12",
+      "kind": "code-select",
+      "title": "Массивы - Вопрос 12",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что выведет: int arr[3] = {1, 2, 3}; std::cout << arr[0] * arr[1];",
+        "language": "cpp"
+      },
+      "options": ["2", "3", "6", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-13",
+      "kind": "select",
+      "title": "Массивы - Вопрос 13",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое инициализация массива?",
+      "optionsLearning": ["Присваивание начальных значений при создании", "Удаление элементов", "Изменение размера", "Копирование"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-14",
+      "kind": "code-trace",
+      "title": "Массивы - Вопрос 14",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int arr[3] = {1};\n    std::cout << arr[2];\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["0", "1", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-15",
+      "kind": "code-select",
+      "title": "Массивы - Вопрос 15",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что выведет: int arr[3] = {1, 2, 3}; std::cout << arr[0];",
+        "language": "cpp"
+      },
+      "options": ["1", "2", "3", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-16",
+      "kind": "select",
+      "title": "Массивы - Вопрос 16",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое индекс массива?",
+      "optionsLearning": ["Позиция элемента в массиве", "Размер массива", "Тип данных", "Оператор"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-17",
+      "kind": "code-trace",
+      "title": "Массивы - Вопрос 17",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int arr[3] = {1, 2, 3};\n    std::cout << arr[1];\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["2", "1", "3", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-18",
+      "kind": "code-select",
+      "title": "Массивы - Вопрос 18",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что выведет: int arr[3] = {1, 2, 3}; std::cout << arr[2];",
+        "language": "cpp"
+      },
+      "options": ["3", "2", "1", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-19",
+      "kind": "select",
+      "title": "Массивы - Вопрос 19",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое статический массив?",
+      "optionsLearning": ["Массив с фиксированным размером, заданным при компиляции", "Массив с динамическим размером", "Массив указателей", "Массив строк"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    },
+    {
+      "id": "scenario-cpp-basics-arrays-01-card-20",
+      "kind": "code-trace",
+      "title": "Массивы - Вопрос 20",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int arr[3] = {1, 2, 3};\n    std::cout << arr[0] + arr[1] + arr[2];\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["6", "5", "4", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "arrays"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-arrays",
+      "scenarioId": "scenario-cpp-basics-arrays-01"
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "id": "scenario-cpp-basics-structs-02",
+  "title": "Структуры и массивы в C++",
+  "description": "Массивы структур, перебор элементов, сортировка.",
+  "language": "cpp",
+  "difficulty": "beginner",
+  "tags": ["language-basics", "structs", "arrays"],
+  "cardsCount": 20,
+  "estimatedMinutes": 15,
+  "order": 2,
+  "lessonId": "lesson-cpp-basics-structs",
+  "courseId": "course-cpp-complete"
+}

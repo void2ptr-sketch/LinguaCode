@@ -1,0 +1,170 @@
+{
+  "scenarioId": "scenario-cpp-basics-pointers-01",
+  "cards": [
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-01",
+      "kind": "select",
+      "title": "Указатели - Вопрос 1",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое указатель в C++?",
+      "optionsLearning": ["Переменная, хранящая адрес другой переменной", "Тип данных для хранения текста", "Оператор цикла", "Функция"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-02",
+      "kind": "code-trace",
+      "title": "Указатели - Вопрос 2",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int x = 10;\n    int* p = &x;\n    std::cout << *p;\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["10", "Адрес x", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-03",
+      "kind": "code-trace",
+      "title": "Указатели - Вопрос 3",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int x = 5;\n    int* p = &x;\n    *p = 10;\n    std::cout << x;\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["10", "5", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-04",
+      "kind": "code-select",
+      "title": "Указатели - Вопрос 4",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что означает оператор & в C++?",
+        "language": "cpp"
+      },
+      "options": ["Адрес переменной", "Логическое И", "Побитовое И", "Сдвиг"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-05",
+      "kind": "code-select",
+      "title": "Указатели - Вопрос 5",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что означает оператор * в контексте указателей?",
+        "language": "cpp"
+      },
+      "options": ["Дereференс (получение значения по адресу)", "Умножение", "Комментарий", "Звёздочка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-06",
+      "kind": "select",
+      "title": "Указатели - Вопрос 6",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое NULL указатель?",
+      "optionsLearning": ["Указатель, не указывающий ни на какую переменную", "Указатель на нулевой элемент массива", "Пустой указатель", "Ошибка"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-07",
+      "kind": "code-trace",
+      "title": "Указатели - Вопрос 7",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int x = 5;\n    int* p = &x;\n    std::cout << p;\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["Адрес x", "5", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-08",
+      "kind": "select",
+      "title": "Указатели - Вопрос 8",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое разыменование указателя?",
+      "optionsLearning": ["Получение значения по адресу, хранящемуся в указателе", "Удаление указателя", "Изменение адреса", "Сравнение адресов"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-09",
+      "kind": "code-trace",
+      "title": "Указатели - Вопрос 9",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "question": "Что выведет?",
+      "code": {
+        "code": "#include <iostream>\nint main() {\n    int x = 5;\n    int* p = &x;\n    *p += 5;\n    std::cout << x;\n    return 0;\n}",
+        "language": "cpp"
+      },
+      "outputOptions": ["10", "5", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    },
+    {
+      "id": "scenario-cpp-basics-pointers-01-card-10",
+      "kind": "code-select",
+      "title": "Указатели - Вопрос 10",
+      "appearance": {"theme": "azure-blue", "fontSize": "md"},
+      "direction": "known-to-learning",
+      "prompt": {
+        "code": "Что выведет: int x = 5; int* p = &x; std::cout << *p;",
+        "language": "cpp"
+      },
+      "options": ["5", "Адрес x", "Ошибка", "Неопределено"],
+      "correctIndex": 0,
+      "meta": {"knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["language-basics", "pointers"]},
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-pointers",
+      "scenarioId": "scenario-cpp-basics-pointers-01"
+    }
+  ]
+}

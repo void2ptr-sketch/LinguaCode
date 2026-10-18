@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "scenario-cpp-advanced-metaprogramming-01",
+      "title": "Metaprogramming и Templates",
+      "description": "Сценарий: Metaprogramming и Templates — каверзные вопросы по метапрограммированию и шаблонам в C++",
+      "order": 16,
+      "lessonId": "lesson-cpp-advanced-advanced",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-06-14T12:00:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "scenario-cpp-advanced-metaprogramming-01-card-01",
+          "scenario-cpp-advanced-metaprogramming-01-card-02",
+          "scenario-cpp-advanced-metaprogramming-01-card-03",
+          "scenario-cpp-advanced-metaprogramming-01-card-04",
+          "scenario-cpp-advanced-metaprogramming-01-card-05",
+          "scenario-cpp-advanced-metaprogramming-01-card-06",
+          "scenario-cpp-advanced-metaprogramming-01-card-07",
+          "scenario-cpp-advanced-metaprogramming-01-card-08",
+          "scenario-cpp-advanced-metaprogramming-01-card-09",
+          "scenario-cpp-advanced-metaprogramming-01-card-10",
+          "scenario-cpp-advanced-metaprogramming-01-card-11",
+          "scenario-cpp-advanced-metaprogramming-01-card-12",
+          "scenario-cpp-advanced-metaprogramming-01-card-13",
+          "scenario-cpp-advanced-metaprogramming-01-card-14",
+          "scenario-cpp-advanced-metaprogramming-01-card-15",
+          "scenario-cpp-advanced-metaprogramming-01-card-16",
+          "scenario-cpp-advanced-metaprogramming-01-card-17",
+          "scenario-cpp-advanced-metaprogramming-01-card-18",
+          "scenario-cpp-advanced-metaprogramming-01-card-19",
+          "scenario-cpp-advanced-metaprogramming-01-card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-06-14T12:00:00.000Z"
+      }
+    }
+  ]
+}

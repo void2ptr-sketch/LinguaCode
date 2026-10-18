@@ -15,11 +15,37 @@
         "lesson-cpp-basics-control-flow",
         "lesson-cpp-basics-functions",
         "lesson-cpp-basics-arrays-strings",
+        "lesson-cpp-basics-pointers",
+        "lesson-cpp-basics-strings",
+        "lesson-cpp-basics-structs",
         "lesson-cpp-oop-fundamentals",
         "lesson-cpp-oop-inheritance",
         "lesson-cpp-oop-polymorphism",
         "lesson-cpp-stl-containers-deep",
-        "lesson-cpp-stl-algorithms-deep"
+        "lesson-cpp-stl-algorithms-deep",
+        "lesson-cpp-advanced-memory",
+        "lesson-cpp-advanced-modern",
+        "lesson-cpp-advanced-concurrency",
+        "lesson-cpp-advanced-stl",
+        "lesson-cpp-advanced-systems",
+        "lesson-cpp-advanced-apps",
+        "lesson-cpp-advanced-engineering",
+        "lesson-cpp-advanced-advanced",
+        "lesson-cpp-basics-templates",
+        "lesson-cpp-basics-templates-stl",
+        "lesson-cpp-basics-stl",
+        "lesson-cpp-basics-exceptions",
+        "lesson-cpp-basics-file-io",
+        "lesson-cpp-basics-io",
+        "lesson-cpp-basics-classes",
+        "lesson-cpp-basics-operators",
+        "lesson-cpp-basics-pointers-references",
+        "lesson-cpp-basics-streams",
+        "lesson-cpp-basics-algorithms",
+        "lesson-cpp-basics-modern-cpp",
+        "lesson-cpp-basics-multithreading",
+        "lesson-cpp-basics-networking",
+        "lesson-cpp-basics-systems"
       ],
       "published": true,
       "authoring": {
@@ -120,9 +146,54 @@
       "updatedAt": "2026-06-14T12:00:00.000Z"
     },
     {
+      "id": "lesson-cpp-basics-pointers",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 6: Указатели и ссылки",
+      "description": "2 сценария: pointers, references.",
+      "scenarioIds": [
+        "scenario-cpp-basics-pointers-01",
+        "scenario-cpp-basics-pointers-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-arrays-strings"
+      ],
+      "order": 5,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-strings",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 7: Строки и потоки",
+      "description": "2 сценария: strings, streams.",
+      "scenarioIds": [
+        "scenario-cpp-basics-strings-01",
+        "scenario-cpp-basics-strings-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-pointers"
+      ],
+      "order": 6,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-structs",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 8: Структуры и классы",
+      "description": "2 сценария: structs, classes.",
+      "scenarioIds": [
+        "scenario-cpp-basics-structs-01",
+        "scenario-cpp-basics-structs-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-strings"
+      ],
+      "order": 7,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
       "id": "lesson-cpp-oop-fundamentals",
       "courseId": "course-cpp-complete",
-      "title": "Урок 6: Основы ООП",
+      "title": "Урок 9: Основы ООП",
       "description": "5 сценариев: scenario-cpp-oop-fundamentals-01 — scenario-cpp-oop-fundamentals-05.",
       "scenarioIds": [
         "scenario-cpp-oop-fundamentals-01",
@@ -132,15 +203,15 @@
         "scenario-cpp-oop-fundamentals-05"
       ],
       "prerequisiteLessonIds": [
-        "lesson-cpp-basics-arrays-strings"
+        "lesson-cpp-basics-structs"
       ],
-      "order": 5,
+      "order": 8,
       "updatedAt": "2026-06-14T12:00:00.000Z"
     },
     {
       "id": "lesson-cpp-oop-inheritance",
       "courseId": "course-cpp-complete",
-      "title": "Урок 7: Наследование в C++",
+      "title": "Урок 10: Наследование в C++",
       "description": "5 сценариев: scenario-cpp-oop-inheritance-01 — scenario-cpp-oop-inheritance-05.",
       "scenarioIds": [
         "scenario-cpp-oop-inheritance-01",
@@ -152,13 +223,13 @@
       "prerequisiteLessonIds": [
         "lesson-cpp-oop-fundamentals"
       ],
-      "order": 6,
+      "order": 9,
       "updatedAt": "2026-06-14T12:00:00.000Z"
     },
     {
       "id": "lesson-cpp-oop-polymorphism",
       "courseId": "course-cpp-complete",
-      "title": "Урок 8: Полиморфизм и виртуальные методы",
+      "title": "Урок 11: Полиморфизм и виртуальные методы",
       "description": "5 сценариев: scenario-cpp-oop-polymorphism-01 — scenario-cpp-oop-polymorphism-05.",
       "scenarioIds": [
         "scenario-cpp-oop-polymorphism-01",
@@ -170,13 +241,13 @@
       "prerequisiteLessonIds": [
         "lesson-cpp-oop-inheritance"
       ],
-      "order": 7,
+      "order": 10,
       "updatedAt": "2026-06-14T12:00:00.000Z"
     },
     {
       "id": "lesson-cpp-stl-containers-deep",
       "courseId": "course-cpp-complete",
-      "title": "Урок 9: Глубокое изучение STL контейнеров",
+      "title": "Урок 12: Глубокое изучение STL контейнеров",
       "description": "5 сценариев: scenario-cpp-stl-containers-deep-01 — scenario-cpp-stl-containers-deep-05.",
       "scenarioIds": [
         "scenario-cpp-stl-containers-deep-01",
@@ -188,13 +259,13 @@
       "prerequisiteLessonIds": [
         "lesson-cpp-oop-polymorphism"
       ],
-      "order": 8,
+      "order": 11,
       "updatedAt": "2026-06-14T12:00:00.000Z"
     },
     {
       "id": "lesson-cpp-stl-algorithms-deep",
       "courseId": "course-cpp-complete",
-      "title": "Урок 10: Глубокое изучение STL алгоритмов",
+      "title": "Урок 13: Глубокое изучение STL алгоритмов",
       "description": "5 сценариев: scenario-cpp-stl-algorithms-deep-01 — scenario-cpp-stl-algorithms-deep-05.",
       "scenarioIds": [
         "scenario-cpp-stl-algorithms-deep-01",
@@ -206,8 +277,375 @@
       "prerequisiteLessonIds": [
         "lesson-cpp-stl-containers-deep"
       ],
-      "order": 9,
+      "order": 12,
       "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-memory",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 11: Memory Management и Smart Pointers",
+      "description": "8 сценариев: memory, smart-pointers, RAII, move-semantics, memory-model.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-memory-01",
+        "scenario-cpp-advanced-smart-pointers-01",
+        "scenario-cpp-advanced-smart-pointers-02",
+        "scenario-cpp-advanced-raii-01",
+        "scenario-cpp-advanced-raii-02",
+        "scenario-cpp-advanced-move-semantics-01",
+        "scenario-cpp-advanced-memory-model-01",
+        "scenario-cpp-advanced-error-handling-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-oop-polymorphism"
+      ],
+      "order": 10,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-modern",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 12: Modern C++ (C++17/20/23)",
+      "description": "7 сценариев: modern-features, modules, ranges, concepts, lambda, variadic, type-traits.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-modern-features-01",
+        "scenario-cpp-advanced-modules-01",
+        "scenario-cpp-advanced-ranges-01",
+        "scenario-cpp-advanced-concepts-01",
+        "scenario-cpp-advanced-lambda-01",
+        "scenario-cpp-advanced-variadic-01",
+        "scenario-cpp-advanced-type-traits-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-memory"
+      ],
+      "order": 11,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-concurrency",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 13: Concurrency и Multithreading",
+      "description": "3 сценария: concurrency, threading, coroutines.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-concurrency-01",
+        "scenario-cpp-advanced-threading-01",
+        "scenario-cpp-advanced-coroutines-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-modern"
+      ],
+      "order": 12,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-stl",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 14: STL Advanced",
+      "description": "2 сценария: containers-deep, stl-algorithms-deep.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-containers-01",
+        "scenario-cpp-advanced-stl-algorithms-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-concurrency"
+      ],
+      "order": 13,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-systems",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 15: Systems Programming",
+      "description": "6 сценариев: embedded, os, hpc, realtime, performance, wasm.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-embedded-01",
+        "scenario-cpp-advanced-os-01",
+        "scenario-cpp-advanced-hpc-01",
+        "scenario-cpp-advanced-realtime-01",
+        "scenario-cpp-advanced-performance-01",
+        "scenario-cpp-advanced-wasm-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-stl"
+      ],
+      "order": 14,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-apps",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 16: Applications и Networking",
+      "description": "5 сценариев: networking, database, graphics, cross-platform, distributed.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-networking-01",
+        "scenario-cpp-advanced-database-01",
+        "scenario-cpp-advanced-graphics-01",
+        "scenario-cpp-advanced-cross-platform-01",
+        "scenario-cpp-advanced-distributed-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-systems"
+      ],
+      "order": 15,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-engineering",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 17: Engineering Practices",
+      "description": "5 сценариев: compiler, compiler-construction, design-patterns, testing, security.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-compiler-01",
+        "scenario-cpp-advanced-compiler-construction-01",
+        "scenario-cpp-advanced-design-patterns-01",
+        "scenario-cpp-advanced-testing-01",
+        "scenario-cpp-advanced-security-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-apps"
+      ],
+      "order": 16,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-advanced-advanced",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 18: Advanced Topics",
+      "description": "5 сценариев: exception-handling, exception-safety, ub, metaprogramming.",
+      "scenarioIds": [
+        "scenario-cpp-advanced-exception-handling-02",
+        "scenario-cpp-advanced-exception-safety-01",
+        "scenario-cpp-advanced-ub-01",
+        "scenario-cpp-advanced-metaprogramming-01",
+        "scenario-cpp-advanced-constexpr-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-advanced-engineering"
+      ],
+      "order": 17,
+      "updatedAt": "2026-06-14T12:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-templates",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 19: Templates Intro",
+      "description": "1 сценарий: templates-intro.",
+      "scenarioIds": [
+        "scenario-cpp-basics-templates-intro-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-structs"
+      ],
+      "order": 18,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-templates-stl",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 20: Templates и STL Intro",
+      "description": "3 сценария: advanced-templates-stl, templates-stl-01, templates-stl-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-advanced-templates-stl-01",
+        "scenario-cpp-basics-templates-stl-01",
+        "scenario-cpp-basics-templates-stl-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-templates"
+      ],
+      "order": 19,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-stl",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 21: STL Intro",
+      "description": "3 сценария: stl-01, stl-containers-01, stl-algorithms-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-stl-01",
+        "scenario-cpp-basics-stl-containers-01",
+        "scenario-cpp-basics-stl-algorithms-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-templates-stl"
+      ],
+      "order": 20,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-exceptions",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 22: Exceptions и Errors",
+      "description": "3 сценария: exceptions-01, exceptions-errors-01, exceptions-errors-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-exceptions-01",
+        "scenario-cpp-basics-exceptions-errors-01",
+        "scenario-cpp-basics-exceptions-errors-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-stl"
+      ],
+      "order": 21,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-file-io",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 23: File IO",
+      "description": "2 сценария: files-01, file-io-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-files-01",
+        "scenario-cpp-basics-file-io-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-exceptions"
+      ],
+      "order": 22,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-io",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 24: IO Intro",
+      "description": "2 сценария: io-01, io-files-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-io-01",
+        "scenario-cpp-basics-io-files-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-file-io"
+      ],
+      "order": 23,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-classes",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 25: Classes",
+      "description": "2 сценария: classes-01, classes-objects-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-classes-01",
+        "scenario-cpp-basics-classes-objects-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-io"
+      ],
+      "order": 24,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-operators",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 26: Operators и Expressions",
+      "description": "1 сценарий: operators-expressions-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-operators-expressions-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-classes"
+      ],
+      "order": 25,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-pointers-references",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 27: Pointers и References",
+      "description": "3 сценария: pointers-references-01, pointers-references-02, references-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-pointers-references-01",
+        "scenario-cpp-basics-pointers-references-02",
+        "scenario-cpp-basics-references-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-operators"
+      ],
+      "order": 26,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-streams",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 28: Streams и Files",
+      "description": "2 сценария: streams-files-01, strings-streams-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-streams-files-01",
+        "scenario-cpp-basics-strings-streams-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-pointers-references"
+      ],
+      "order": 27,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-algorithms",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 29: Algorithms Intro",
+      "description": "1 сценарий: algorithms-01.",
+      "scenarioIds": [
+        "scenario-cpp-basics-algorithms-01"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-streams"
+      ],
+      "order": 28,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-modern-cpp",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 30: Modern C++",
+      "description": "1 сценарий: modern-cpp-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-modern-cpp-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-algorithms"
+      ],
+      "order": 29,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-multithreading",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 31: Multithreading",
+      "description": "1 сценарий: multithreading-async-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-multithreading-async-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-modern-cpp"
+      ],
+      "order": 30,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-networking",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 32: Networking",
+      "description": "1 сценарий: network-programming-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-network-programming-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-multithreading"
+      ],
+      "order": 31,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
+    },
+    {
+      "id": "lesson-cpp-basics-systems",
+      "courseId": "course-cpp-complete",
+      "title": "Урок 33: Systems Programming",
+      "description": "1 сценарий: system-programming-02.",
+      "scenarioIds": [
+        "scenario-cpp-basics-system-programming-02"
+      ],
+      "prerequisiteLessonIds": [
+        "lesson-cpp-basics-networking"
+      ],
+      "order": 32,
+      "updatedAt": "2026-10-18T16:00:00.000Z"
     }
   ]
 }
