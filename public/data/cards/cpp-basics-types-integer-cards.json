@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-basics-types-01-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какие целочисленные типы есть в C++?",
+      "optionsLearning": [
+        "int, short, long, long long",
+        "float, double",
+        "char, string",
+        "bool, void"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у int обычно?",
+      "optionsLearning": [
+        "4 байта (32 бита)",
+        "2 байта",
+        "8 байт",
+        "1 байт"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой диапазон у signed int?",
+      "optionsLearning": [
+        "-2,147,483,648 до 2,147,483,647",
+        "0 до 4,294,967,295",
+        "-128 до 127",
+        "Неограниченный"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unsigned int?",
+      "optionsLearning": [
+        "Только положительные числа",
+        "Отрицательные числа",
+        "Дробные числа",
+        "Символы"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у short?",
+      "optionsLearning": [
+        "2 байта (16 бит)",
+        "4 байта",
+        "8 байт",
+        "1 байт"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер у long?",
+      "optionsLearning": [
+        "4 или 8 байт (зависит от системы)",
+        "2 байта",
+        "16 байт",
+        "Неизменный"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое long long?",
+      "optionsLearning": [
+        "Целочисленный тип минимум 64 бита",
+        "Длинное число с плавающей точкой",
+        "Строка",
+        "Указатель"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор sizeof?",
+      "optionsLearning": [
+        "Возвращает размер типа в байтах",
+        "Создает тип",
+        "Изменяет значение",
+        "Компилирует код"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет sizeof(int)?",
+      "optionsLearning": [
+        "4 (на большинстве систем)",
+        "2",
+        "8",
+        "Зависит от компилятора"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое overflow int?",
+      "optionsLearning": [
+        "Переполнение диапазона",
+        "Деление на ноль",
+        "Недостаток памяти",
+        "Ошибка компиляции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое underflow int?",
+      "optionsLearning": [
+        "Значение меньше минимального",
+        "Больше максимального",
+        "Деление на ноль",
+        "Нуль"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое wraparound?",
+      "optionsLearning": [
+        "Переполнение с переходом в начало диапазона",
+        "Обнуление",
+        "Ошибка",
+        "Бесконечность"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип для символа?",
+      "optionsLearning": [
+        "char",
+        "int",
+        "string",
+        "bool"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Сколько байт занимает char?",
+      "optionsLearning": [
+        "1 байт",
+        "2 байта",
+        "4 байта",
+        "8 байт"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ASCII?",
+      "optionsLearning": [
+        "Стандарт кодировки символов",
+        "Тип данных",
+        "Оператор",
+        "Функция"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой код у '0' в ASCII?",
+      "optionsLearning": [
+        "48",
+        "0",
+        "1",
+        "65"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли присвоить char значение int?",
+      "optionsLearning": [
+        "Да, но с потерей данных",
+        "Нет, ошибка компиляции",
+        "Только в C++17",
+        "Только для положительных"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое wchar_t?",
+      "optionsLearning": [
+        "Широкий символ (Unicode)",
+        "Обычный char",
+        "Строка",
+        "Число"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое constexpr?",
+      "optionsLearning": [
+        "Константа времени компиляции",
+        "Переменная",
+        "Функция",
+        "Тип данных"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     },
     {
       "id": "scenario-cpp-basics-types-01-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Целочисленные типы - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: Целочисленные типы",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое enum?",
+      "optionsLearning": [
+        "Перечисление констант",
+        "Массив",
+        "Указатель",
+        "Класс"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"Целочисленные типы\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-01"
     }
   ]
 }

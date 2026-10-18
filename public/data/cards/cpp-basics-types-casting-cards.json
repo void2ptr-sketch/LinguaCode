@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-basics-types-05-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает static_cast?",
+      "optionsLearning": [
+        "Битовое преобразование",
+        "Динамическую проверку",
+        "Удаление const",
+        "Статическое преобразование типов на этапе компиляции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast удаляет const?",
+      "optionsLearning": [
+        "dynamic_cast",
+        "static_cast",
+        "reinterpret_cast",
+        "const_cast"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает dynamic_cast?",
+      "optionsLearning": [
+        "Битовое преобразование",
+        "Статическое приведение",
+        "Удаление const",
+        "Безопасное приведение с проверкой во время выполнения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast выполняет битовое преобразование указателя?",
+      "optionsLearning": [
+        "dynamic_cast",
+        "static_cast",
+        "const_cast",
+        "reinterpret_cast"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<int>(3.7)`?",
+      "optionsLearning": [
+        "3.7",
+        "4",
+        "Ошибка",
+        "3"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда используется dynamic_cast?",
+      "optionsLearning": [
+        "Только для int",
+        "Для любых типов",
+        "На этапе компиляции",
+        "Для polymorphic типов (с virtual методами)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<double>(5)`?",
+      "optionsLearning": [
+        "0",
+        "5",
+        "Ошибка",
+        "5.0"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast безопасен для downcast указателя?",
+      "optionsLearning": [
+        "reinterpret_cast",
+        "static_cast",
+        "const_cast",
+        "dynamic_cast"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `reinterpret_cast<int>(ptr)` (где ptr = 0x1000)?",
+      "optionsLearning": [
+        "Указатель",
+        "0x1000",
+        "Ошибка",
+        "4096"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает static_cast между наследниками?",
+      "optionsLearning": [
+        "Битовое преобразование",
+        "Проверку во время выполнения",
+        "Удаление const",
+        "Приведение без проверки типа"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast может вернуть nullptr при неудаче?",
+      "optionsLearning": [
+        "reinterpret_cast",
+        "static_cast",
+        "const_cast",
+        "dynamic_cast (для указателей)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<int>(true)`?",
+      "optionsLearning": [
+        "true",
+        "0",
+        "Ошибка",
+        "1"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast опасен и требует осторожности?",
+      "optionsLearning": [
+        "dynamic_cast",
+        "static_cast",
+        "const_cast",
+        "reinterpret_cast"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `const_cast<int&>(x) = 5` (где x const int)?",
+      "optionsLearning": [
+        "Ошибка",
+        "Оригинальное значение",
+        "Ничего",
+        "5"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда static_cast вызывает ошибку компиляции?",
+      "optionsLearning": [
+        "Только для int",
+        "Всегда",
+        "Никогда",
+        "При приведении без отношения наследования (без virtual)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<char>(65)`?",
+      "optionsLearning": [
+        "0",
+        "65",
+        "Ошибка",
+        "'A'"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast сохраняет тип при приведении к base class?",
+      "optionsLearning": [
+        "Только static_cast",
+        "Только dynamic_cast",
+        "reinterpret_cast",
+        "Любой из них (upcast безопасен)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<int>(3.9)`?",
+      "optionsLearning": [
+        "3.9",
+        "4",
+        "Ошибка",
+        "3"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой cast используется для приведения void* к другому типу?",
+      "optionsLearning": [
+        "reinterpret_cast",
+        "dynamic_cast",
+        "const_cast",
+        "static_cast"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     },
     {
       "id": "scenario-cpp-basics-types-05-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Приведение типов - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: Приведение типов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `static_cast<int>(false)`?",
+      "optionsLearning": [
+        "false",
+        "1",
+        "Ошибка",
+        "0"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"Приведение типов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-types",
+      "scenarioId": "scenario-cpp-basics-types-05"
     }
   ]
 }

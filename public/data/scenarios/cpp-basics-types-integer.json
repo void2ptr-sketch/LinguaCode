@@ -2,9 +2,9 @@
   "scenarios": [
     {
       "id": "scenario-cpp-basics-types-01",
-      "title": "Целочисленные типы",
-      "description": "Сценарий: Целочисленные типы",
-      "order": 0,
+      "title": "Целочисленные типы данных",
+      "description": "Основные целочисленные типы: int, short, long, unsigned и их характеристики",
+      "order": 1,
       "lessonId": "lesson-cpp-basics-types",
       "courseId": "course-cpp-complete",
       "cardCount": 20,

@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое this pointer?",
+      "optionsLearning": [
+        "Указатель на текущий объект в member function",
+        "Без указателя",
+        "Удаление указателя",
+        "Добавление указателя"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое *this expression?",
+      "optionsLearning": [
+        "Выражение для получения ссылки на текущий объект",
+        "Без выражения",
+        "Удаление выражения",
+        "Добавление выражения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator overloading?",
+      "optionsLearning": [
+        "Переопределение поведения операторов для пользовательских типов",
+        "Без переопределения",
+        "Удаление переопределения",
+        "Добавление переопределения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator function?",
+      "optionsLearning": [
+        "Функция для перегруженного оператора",
+        "Без функции",
+        "Удаление функции",
+        "Добавление функции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое member operator?",
+      "optionsLearning": [
+        "Оператор как member function класса",
+        "Вне класса",
+        "Без оператора",
+        "Случайный оператор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое non-member operator?",
+      "optionsLearning": [
+        "Оператор как free function",
+        "Как member",
+        "Без оператора",
+        "Случайный оператор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое friend operator?",
+      "optionsLearning": [
+        "Оператор как friend function для доступа к private members",
+        "Без доступа",
+        "Удаление доступа",
+        "Добавление доступа"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator precedence?",
+      "optionsLearning": [
+        "Приоритет выполнения операторов",
+        "Без приоритета",
+        "Удаление приоритета",
+        "Добавление приоритета"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator associativity?",
+      "optionsLearning": [
+        "Направление группировки операторов (слева направо или справа налево)",
+        "Без направления",
+        "Удаление направления",
+        "Добавление направления"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator new?",
+      "optionsLearning": [
+        "Оператор выделения памяти без вызова constructor",
+        "С вызовом constructor",
+        "Без оператора",
+        "Случайный оператор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator delete?",
+      "optionsLearning": [
+        "Оператор освобождения памяти без вызова destructor",
+        "С вызовом destructor",
+        "Без оператора",
+        "Случайный оператор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое placement new?",
+      "optionsLearning": [
+        "New для размещения объекта в указанной памяти",
+        "Без размещения",
+        "Удаление размещения",
+        "Добавление размещения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator= overload?",
+      "optionsLearning": [
+        "Перегрузка оператора присваивания",
+        "Без перегрузки",
+        "Удаление перегрузки",
+        "Добавление перегрузки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое copy assignment operator?",
+      "optionsLearning": [
+        "Оператор присваивания из другого объекта того же типа",
+        "Без оператора",
+        "Удаление оператора",
+        "Добавление оператора"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое move assignment operator?",
+      "optionsLearning": [
+        "Оператор присваивания из rvalue объекта",
+        "Из lvalue",
+        "Без оператора",
+        "Случайный оператор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator& overload?",
+      "optionsLearning": [
+        "Перегрузка оператора взятия адреса",
+        "Без перегрузки",
+        "Удаление перегрузки",
+        "Добавление перегрузки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator-> overload?",
+      "optionsLearning": [
+        "Перегрузка оператора доступа к члену через указатель",
+        "Без перегрузки",
+        "Удаление перегрузки",
+        "Добавление перегрузки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator() overload?",
+      "optionsLearning": [
+        "Перегрузка оператора вызова функции (functor)",
+        "Без перегрузки",
+        "Удаление перегрузки",
+        "Добавление перегрузки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое operator[] overload?",
+      "optionsLearning": [
+        "Перегрузка оператора индексации",
+        "Без перегрузки",
+        "Удаление перегрузки",
+        "Добавление перегрузки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     },
     {
       "id": "scenario-cpp-oop-fundamentals-05-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "this-указатель и перегрузка операторов - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: this-указатель и перегрузка операторов",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit operator bool?",
+      "optionsLearning": [
+        "Явное преобразование в bool для предотвращения неявных сравнений",
+        "Неявное преобразование",
+        "Без преобразования",
+        "Случайное преобразование"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"this-указатель и перегрузка операторов\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-fundamentals",
+      "scenarioId": "scenario-cpp-oop-fundamentals-05"
     }
   ]
 }

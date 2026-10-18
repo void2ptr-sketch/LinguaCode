@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::find?",
+      "optionsLearning": [
+        "Сортирует диапазон",
+        "Ищет по индексу",
+        "Удаляет элемент",
+        "Ищет элемент по значению в диапазоне"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок для std::find?",
+      "optionsLearning": [
+        "<numeric>",
+        "<vector>",
+        "<iterator>",
+        "<algorithm>"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает find при отсутствии элемента?",
+      "optionsLearning": [
+        "-1",
+        "nullptr",
+        "begin()",
+        "end() итератор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой тип сравения использует find?",
+      "optionsLearning": [
+        "operator>",
+        "operator<",
+        "custom comparator",
+        "operator== (равенство)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5)` (v={1,2,3,5})?",
+      "optionsLearning": [
+        "-1",
+        "индекс 3",
+        "end()",
+        "итератор на 5"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность std::find?",
+      "optionsLearning": [
+        "O(1)",
+        "O(log n)",
+        "O(n²)",
+        "O(n) - линейный поиск"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с custom типом?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с string",
+        "Да, если есть operator=="
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `*find(v.begin(), v.end(), 10)` (если есть)?",
+      "optionsLearning": [
+        "0",
+        "end()",
+        "Ошибка",
+        "10"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Чем find отличается от find_if?",
+      "optionsLearning": [
+        "find быстрее",
+        "Ничем не отличаются",
+        "find_if медленнее",
+        "find ищет по значению, find_if по предикату"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 0)` (v={1,2,3})?",
+      "optionsLearning": [
+        "-1",
+        "begin()",
+        "0",
+        "end() итератор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с list?",
+      "optionsLearning": [
+        "Только с vector",
+        "Нет",
+        "Только с array",
+        "Да, требует input iterator"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 'A')` (string)?",
+      "optionsLearning": [
+        "true",
+        "индекс",
+        "-1",
+        "итератор на 'A'"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор нужен для find с custom типом?",
+      "optionsLearning": [
+        "operator>",
+        "operator<",
+        "operator[]",
+        "operator=="
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5) - v.begin()` (если есть)?",
+      "optionsLearning": [
+        "end()",
+        "значение 5",
+        "-1",
+        "индекс элемента"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find с forward_list?",
+      "optionsLearning": [
+        "Только с random access",
+        "Нет",
+        "Только с vector",
+        "Да, но только один проход"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 1) == v.end()` (v={2,3})?",
+      "optionsLearning": [
+        "1",
+        "false",
+        "0",
+        "true"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Чем find_if отличается от find?",
+      "optionsLearning": [
+        "find_if медленнее",
+        "find_if быстрее",
+        "Ничем не отличаются",
+        "find_if принимает предикат для условия"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 5) != v.end()` (v={1,2,3,5})?",
+      "optionsLearning": [
+        "5",
+        "false",
+        "-1",
+        "true"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать find для поиска подстроки?",
+      "optionsLearning": [
+        "Только с string",
+        "Да",
+        "Только с array",
+        "Нет, ищет только элемент"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     },
     {
       "id": "scenario-cpp-stl-algorithms-deep-02-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "find и поиск - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: find и поиск",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `find(v.begin(), v.end(), 3)` (v={3,2,1})?",
+      "optionsLearning": [
+        "индекс 1",
+        "end()",
+        "-1",
+        "begin() итератор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"find и поиск\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "scenarioId": "scenario-cpp-stl-algorithms-deep-02"
     }
   ]
 }

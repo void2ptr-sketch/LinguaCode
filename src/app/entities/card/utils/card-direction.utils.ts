@@ -149,7 +149,12 @@ function resolveKnownToLearningOptionCard(
 ): ResolvedOptionCard {
   if (card.kind === 'code-select') {
     const options = card.options.map((option) => option.code);
-    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+    const { resolvedOptions, correctIndex } = applyShuffle(
+      options,
+      card.correctIndex,
+      card.id,
+      shuffleNonce,
+    );
     return {
       prompt: card.caption ?? card.prompt.code,
       options: resolvedOptions,
@@ -159,7 +164,12 @@ function resolveKnownToLearningOptionCard(
 
   if (card.kind === 'code-trace') {
     const options = card.outputOptions;
-    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+    const { resolvedOptions, correctIndex } = applyShuffle(
+      options,
+      card.correctIndex,
+      card.id,
+      shuffleNonce,
+    );
     return {
       prompt: card.question?.trim() || card.caption?.trim() || 'Что выведет код?',
       options: resolvedOptions,
@@ -169,7 +179,12 @@ function resolveKnownToLearningOptionCard(
 
   if (card.kind === 'sound') {
     const options = card.optionsKnown ?? [];
-    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+    const { resolvedOptions, correctIndex } = applyShuffle(
+      options,
+      card.correctIndex,
+      card.id,
+      shuffleNonce,
+    );
     return {
       prompt: card.promptKnown,
       options: resolvedOptions,
@@ -183,7 +198,12 @@ function resolveKnownToLearningOptionCard(
       ? card.optionsLearning
       : card.symbols;
 
-  const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+  const { resolvedOptions, correctIndex } = applyShuffle(
+    options,
+    card.correctIndex,
+    card.id,
+    shuffleNonce,
+  );
 
   return {
     prompt: card.promptKnown,
@@ -204,7 +224,12 @@ function resolveLearningToKnownOptionCard(
 
   if (card.kind === 'sound') {
     const options = card.optionsKnown ?? [];
-    const { resolvedOptions, correctIndex } = applyShuffle(options, card.correctIndex, card.id, shuffleNonce);
+    const { resolvedOptions, correctIndex } = applyShuffle(
+      options,
+      card.correctIndex,
+      card.id,
+      shuffleNonce,
+    );
     return {
       prompt: card.promptKnown,
       options: resolvedOptions,
@@ -232,7 +257,12 @@ function resolveLearningToKnownOptionCard(
     card.correctIndex,
   );
 
-  const { resolvedOptions, correctIndex } = applyShuffle(knownOptions, card.correctIndex, card.id, shuffleNonce);
+  const { resolvedOptions, correctIndex } = applyShuffle(
+    knownOptions,
+    card.correctIndex,
+    card.id,
+    shuffleNonce,
+  );
 
   return {
     prompt,

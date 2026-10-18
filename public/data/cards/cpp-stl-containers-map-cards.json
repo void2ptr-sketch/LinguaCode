@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::map в C++?",
+      "optionsLearning": [
+        "Динамический массив",
+        "Неупорядоченный",
+        "Стек",
+        "Упорядоченное ассоциативное контейнер (key-value, RB-tree)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность поиска в map?",
+      "optionsLearning": [
+        "O(n)",
+        "O(1)",
+        "O(n log n)",
+        "O(log n)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать operator[] для map?",
+      "optionsLearning": [
+        "Только с const map",
+        "Нет",
+        "Только с int",
+        "Да, создает элемент если ключа нет"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<string,int> m; m[\"A\"] = 1; cout << m[\"A\"];`?",
+      "optionsLearning": [
+        "-1",
+        "0",
+        "Ошибка",
+        "1"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой iterator у map?",
+      "optionsLearning": [
+        "InputIterator",
+        "RandomAccessIterator",
+        "OutputIterator",
+        "BidirectionalIterator (const key)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли изменять key через iterator map?",
+      "optionsLearning": [
+        "Только с int",
+        "Да",
+        "Только с string",
+        "Нет, key const"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m = {{1,10},{2,20}}; cout << m.size();`?",
+      "optionsLearning": [
+        "3",
+        "1",
+        "Ошибка",
+        "2"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Чем map отличается от unordered_map?",
+      "optionsLearning": [
+        "Map быстрее",
+        "Ничем не отличаются",
+        "Unordered_map медленнее",
+        "Map упорядочен (RB-tree), unordered_map нет (hash)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m = {{3,30},{1,10},{2,20}}; cout << m.begin()->first;`?",
+      "optionsLearning": [
+        "2",
+        "3",
+        "Ошибка",
+        "1"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать map с custom comparator?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с string",
+        "Да, третий параметр шаблона"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m; m[5] = 100; cout << m.count(5);`?",
+      "optionsLearning": [
+        "100",
+        "0",
+        "Ошибка",
+        "1"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность вставки в map?",
+      "optionsLearning": [
+        "O(n)",
+        "O(1)",
+        "O(n log n)",
+        "O(log n)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать map с pair?",
+      "optionsLearning": [
+        "Только с vector",
+        "Нет",
+        "Только с array",
+        "Да, internally использует std::pair"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m = {{1,10},{2,20}}; auto it = m.find(2); cout << it->second;`?",
+      "optionsLearning": [
+        "2",
+        "10",
+        "Ошибка",
+        "20"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать map с erase по key?",
+      "optionsLearning": [
+        "Только по итератору",
+        "Нет",
+        "Только с vector",
+        "Да, m.erase(key)"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m = {{1,10},{2,20}}; m.erase(1); cout << m.size();`?",
+      "optionsLearning": [
+        "0",
+        "2",
+        "Ошибка",
+        "1"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок для map?",
+      "optionsLearning": [
+        "<unordered_map>",
+        "<vector>",
+        "<array>",
+        "<map>"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать map с custom type key?",
+      "optionsLearning": [
+        "Только с int",
+        "Нет",
+        "Только с string",
+        "Да, если есть operator<"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет: `map<int,int> m = {{1,10},{2,20}}; cout << m.at(2);`?",
+      "optionsLearning": [
+        "2",
+        "10",
+        "Ошибка",
+        "20"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     },
     {
       "id": "scenario-cpp-stl-containers-deep-03-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "map и unordered_map - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: map и unordered_map",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли использовать map с lower_bound?",
+      "optionsLearning": [
+        "Только с find",
+        "Нет",
+        "Только с vector",
+        "Да, O(log n) поиск"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"map и unordered_map\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 2,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl-containers-deep",
+      "scenarioId": "scenario-cpp-stl-containers-deep-03"
     }
   ]
 }

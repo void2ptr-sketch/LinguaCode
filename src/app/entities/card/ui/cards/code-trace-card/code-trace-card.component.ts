@@ -77,7 +77,12 @@ export class CodeTraceCardComponent {
   });
 
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.resolved().correctIndex);
+    return buildOptionClass(
+      index,
+      this.selectedIndex(),
+      this.feedback(),
+      this.resolved().correctIndex,
+    );
   }
 
   selectOption(index: number): void {

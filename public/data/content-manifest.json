@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 14,
   "cardFiles": [
     "/cards/cpp-basics-arrays-1d-cards.json",
     "/cards/cpp-basics-arrays-2d-cards.json",
@@ -13,6 +13,7 @@
     "/cards/cpp-basics-functions-overload-cards.json",
     "/cards/cpp-basics-functions-parameters-cards.json",
     "/cards/cpp-basics-functions-recursion-cards.json",
+    "/cards/cpp-basics-intro-05-cards.json",
     "/cards/cpp-basics-intro-comments-cards.json",
     "/cards/cpp-basics-intro-compilation-cards.json",
     "/cards/cpp-basics-intro-hello-world-cards.json",
@@ -37,8 +38,8 @@
     "/cards/cpp-oop-inheritance-diamond-cards.json",
     "/cards/cpp-oop-inheritance-multiple-cards.json",
     "/cards/cpp-oop-polymorphism-abstract-cards.json",
-    "/cards/cpp-oop-polymorphism-dynamic-cards.json",
     "/cards/cpp-oop-polymorphism-dynamic-cast-cards.json",
+    "/cards/cpp-oop-polymorphism-dynamic-cards.json",
     "/cards/cpp-oop-polymorphism-hierarchies-cards.json",
     "/cards/cpp-oop-polymorphism-virtual-cards.json",
     "/cards/cpp-stl-algorithms-accumulate-cards.json",
@@ -69,6 +70,7 @@
     "/scenarios/cpp-basics-functions-overload.json",
     "/scenarios/cpp-basics-functions-parameters.json",
     "/scenarios/cpp-basics-functions-recursion.json",
+    "/scenarios/cpp-basics-intro-05.json",
     "/scenarios/cpp-basics-intro-comments.json",
     "/scenarios/cpp-basics-intro-compilation.json",
     "/scenarios/cpp-basics-intro-hello-world.json",

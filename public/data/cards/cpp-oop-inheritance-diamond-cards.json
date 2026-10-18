@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-oop-inheritance-05-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 1 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond problem?",
+      "optionsLearning": [
+        "Проблема неоднозначности при ромбовидном наследовании",
+        "Без проблемы",
+        "Удаление проблемы",
+        "Добавление проблемы"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 1 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 2 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual inheritance?",
+      "optionsLearning": [
+        "Наследование с ключевым словом virtual для устранения diamond problem",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 2 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 3 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual base class?",
+      "optionsLearning": [
+        "Base class с ключевым словом virtual в наследовании",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 3 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 4 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое non-virtual base class?",
+      "optionsLearning": [
+        "Обычный base class без ключевого слова virtual",
+        "С virtual",
+        "Без base class",
+        "Случайный base class"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 4 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 5 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond inheritance?",
+      "optionsLearning": [
+        "Структура A -> B, C -> D с двумя путями к D",
+        "Линейная структура",
+        "Древовидная структура",
+        "Случайная структура"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 5 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 6 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ambiguity resolution?",
+      "optionsLearning": [
+        "Разрешение неоднозначности через scope resolution operator ::",
+        "Без разрешения",
+        "Удаление разрешения",
+        "Добавление разрешения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 6 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 7 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое explicit base constructor call?",
+      "optionsLearning": [
+        "Явный вызов constructor base class в самом производном классе",
+        "Неявный вызов",
+        "Без вызова",
+        "Случайный вызов"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 7 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 8 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual base constructor order?",
+      "optionsLearning": [
+        "Порядок вызова virtual base constructor в самом производном классе",
+        "В промежуточных классах",
+        "Без порядка",
+        "Случайный порядок"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 8 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 9 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vptr in virtual inheritance?",
+      "optionsLearning": [
+        "Указатель на vtable для virtual base class",
+        "Без указателя",
+        "Удаление указателя",
+        "Добавление указателя"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 9 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 10 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vbtable?",
+      "optionsLearning": [
+        "Таблица для virtual base class offsets",
+        "Обычная таблица",
+        "Нет таблицы",
+        "Случайная таблица"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 10 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 11 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое offset adjustment?",
+      "optionsLearning": [
+        "Корректировка указателя this для доступа к virtual base",
+        "Без корректировки",
+        "Удаление корректировки",
+        "Добавление корректировки"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 11 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 12 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое multiple vbases?",
+      "optionsLearning": [
+        "Несколько virtual base classes в объекте",
+        "Один vbase",
+        "Нет vbases",
+        "Случайное количество"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 12 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 13 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond with multiple levels?",
+      "optionsLearning": [
+        "Ромбовидная структура с многослойным наследованием",
+        "Одноуровневая",
+        "Без структуры",
+        "Случайная структура"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 13 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 14 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual inheritance overhead?",
+      "optionsLearning": [
+        "Накладные расходы на virtual base class (vptr, vbtable)",
+        "Без накладных расходов",
+        "Удаление расходов",
+        "Добавление расходов"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 14 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 15 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual inheritance size?",
+      "optionsLearning": [
+        "Размер объекта с virtual base class (общая копия base)",
+        "Отдельные копии",
+        "Без размера",
+        "Случайный размер"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 15 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 16 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое virtual destructor in diamond?",
+      "optionsLearning": [
+        "Virtual destructor для корректного удаления через base pointer",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 16 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 17 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond with virtual destructors?",
+      "optionsLearning": [
+        "Ромбовидная структура с virtual destructors для всех base",
+        "Без virtual",
+        "Удаление virtual",
+        "Добавление virtual"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 17 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 18 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond problem solution?",
+      "optionsLearning": [
+        "Решение через virtual inheritance для устранения дублирования",
+        "Без решения",
+        "Удаление решения",
+        "Добавление решения"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 18 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 19 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond problem alternative?",
+      "optionsLearning": [
+        "Альтернатива: композиция вместо наследования для избежания diamond",
+        "Без альтернативы",
+        "Удаление альтернативы",
+        "Добавление альтернативы"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 19 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     },
     {
       "id": "scenario-cpp-oop-inheritance-05-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "Проблема ромба и виртуальное наследование - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Вопрос 20 по теме: Проблема ромба и виртуальное наследование",
-      "options": [
-        {
-          "id": "a",
-          "text": "Правильный ответ"
-        },
-        {
-          "id": "b",
-          "text": "Неправильный 1"
-        },
-        {
-          "id": "c",
-          "text": "Неправильный 2"
-        },
-        {
-          "id": "d",
-          "text": "Неправильный 3"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond problem best practice?",
+      "optionsLearning": [
+        "Избегать ромбовидного наследования, использовать композицию или virtual inheritance",
+        "Использовать всегда",
+        "Без практики",
+        "Случайная практика"
       ],
-      "correctOptionId": "a",
-      "explanation": "Объяснение для вопроса 20 по теме \"Проблема ромба и виртуальное наследование\".",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "scenario-cpp-oop-inheritance-05"
     }
   ]
 }

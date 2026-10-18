@@ -6,29 +6,30 @@
 
 ### Метаданные курса
 
-| Поле | Значение |
-|------|----------|
-| `id` | `course-cpp-complete` |
-| `title` | `C++ Complete Course` |
-| `description` | Полный курс C++ от основ до продвинутых тем: переменные, типы данных, условия, циклы, функции, массивы, строки, ООП, наследование, полиморфизм, STL контейнеры и алгоритмы |
-| `languagePair` | `{ "known": "ru", "learning": "cpp" }` |
-| `published` | `true` |
+| Поле           | Значение                                                                                                                                                                   |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`           | `course-cpp-complete`                                                                                                                                                      |
+| `title`        | `C++ Complete Course`                                                                                                                                                      |
+| `description`  | Полный курс C++ от основ до продвинутых тем: переменные, типы данных, условия, циклы, функции, массивы, строки, ООП, наследование, полиморфизм, STL контейнеры и алгоритмы |
+| `languagePair` | `{ "known": "ru", "learning": "cpp" }`                                                                                                                                     |
+| `published`    | `true`                                                                                                                                                                     |
 
 ### Структура курса
 
 Курс состоит из **10 программ обучения** (уроков), каждая из которых содержит **5 сценариев**, а каждый сценарий — **20 карточек**.
 
-| Уровень | Количество | Описание |
-|---------|-----------|----------|
-| **Программы обучения** | 10 | Тематические блоки курса |
-| **Сценарии** | 50 (5 на урок) | Интерактивные сессии обучения |
-| **Карточки** | 1000 (20 на сценарий) | Единицы контента: вопрос + варианты + объяснение |
+| Уровень                | Количество            | Описание                                         |
+| ---------------------- | --------------------- | ------------------------------------------------ |
+| **Программы обучения** | 10                    | Тематические блоки курса                         |
+| **Сценарии**           | 50 (5 на урок)        | Интерактивные сессии обучения                    |
+| **Карточки**           | 1000 (20 на сценарий) | Единицы контента: вопрос + варианты + объяснение |
 
 ## Программы обучения
 
 ### 1. Основы C++
 
 #### lesson-cpp-basics-intro — Введение и история
+
 - **scenario-cpp-basics-intro-01** — История и структура программы
 - **scenario-cpp-basics-intro-02** — Компиляция и этапы преобразования
 - **scenario-cpp-basics-intro-03** — Hello World и базовый вывод
@@ -36,6 +37,7 @@
 - **scenario-cpp-basics-intro-05** — Структура программы: main, include
 
 #### lesson-cpp-basics-types — Типы данных
+
 - **scenario-cpp-basics-types-01** — Целочисленные типы
 - **scenario-cpp-basics-types-02** — Вещественные типы
 - **scenario-cpp-basics-types-03** — Символы и строки
@@ -43,6 +45,7 @@
 - **scenario-cpp-basics-types-05** — Приведение типов
 
 #### lesson-cpp-basics-control-flow — Управление потоком
+
 - **scenario-cpp-basics-control-flow-01** — Условия: if-else
 - **scenario-cpp-basics-control-flow-02** — Условия: switch-case
 - **scenario-cpp-basics-control-flow-03** — Циклы: for
@@ -50,6 +53,7 @@
 - **scenario-cpp-basics-control-flow-05** — Управление циклами: break и continue
 
 #### lesson-cpp-basics-functions — Функции
+
 - **scenario-cpp-basics-functions-01** — Объявление и вызов функций
 - **scenario-cpp-basics-functions-02** — Параметры и возвращаемые значения
 - **scenario-cpp-basics-functions-03** — Перегрузка функций
@@ -57,6 +61,7 @@
 - **scenario-cpp-basics-functions-05** — Inline и макросы
 
 #### lesson-cpp-basics-arrays-strings — Массивы и строки
+
 - **scenario-cpp-basics-arrays-strings-01** — Одномерные массивы
 - **scenario-cpp-basics-arrays-strings-02** — Многомерные массивы
 - **scenario-cpp-basics-arrays-strings-03** — Строки: std::string
@@ -66,6 +71,7 @@
 ### 2. Объектно-ориентированное программирование
 
 #### lesson-cpp-oop-fundamentals — Основы ООП
+
 - **scenario-cpp-oop-fundamentals-01** — Классы и объекты
 - **scenario-cpp-oop-fundamentals-02** — Инкапсуляция
 - **scenario-cpp-oop-fundamentals-03** — Конструкторы
@@ -73,6 +79,7 @@
 - **scenario-cpp-oop-fundamentals-05** — this-указатель и перегрузка операторов
 
 #### lesson-cpp-oop-inheritance — Наследование
+
 - **scenario-cpp-oop-inheritance-01** — Основы наследования
 - **scenario-cpp-oop-inheritance-02** — Модификаторы доступа в наследовании
 - **scenario-cpp-oop-inheritance-03** — Множественное наследование
@@ -80,6 +87,7 @@
 - **scenario-cpp-oop-inheritance-05** — Проблема ромба и виртуальное наследование
 
 #### lesson-cpp-oop-polymorphism — Полиморфизм
+
 - **scenario-cpp-oop-polymorphism-01** — Виртуальные методы
 - **scenario-cpp-oop-polymorphism-02** — Динамическая диспетчеризация
 - **scenario-cpp-oop-polymorphism-03** — Абстрактные классы
@@ -89,6 +97,7 @@
 ### 3. Стандартная библиотека шаблонов (STL)
 
 #### lesson-cpp-stl-containers-deep — Контейнеры STL
+
 - **scenario-cpp-stl-containers-deep-01** — vector: динамические массивы
 - **scenario-cpp-stl-containers-deep-02** — list и forward_list
 - **scenario-cpp-stl-containers-deep-03** — map и unordered_map
@@ -96,6 +105,7 @@
 - **scenario-cpp-stl-containers-deep-05** — Итераторы и аллокаторы
 
 #### lesson-cpp-stl-algorithms-deep — Алгоритмы STL
+
 - **scenario-cpp-stl-algorithms-deep-01** — sort и сортировки
 - **scenario-cpp-stl-algorithms-deep-02** — find и поиск
 - **scenario-cpp-stl-algorithms-deep-03** — transform и преобразования
@@ -105,17 +115,21 @@
 ## Файловая структура
 
 ### Метаданные курса
+
 ```
 public/data/courses/cpp-complete-course.json
 ```
 
 ### Сценарии
+
 ```
 public/data/scenarios/cpp-<slug>.json
 ```
+
 Где `<slug>` — уникальное имя сценария (например, `basics-intro-history`).
 
 Формат файла:
+
 ```json
 {
   "scenarios": [
@@ -143,12 +157,15 @@ public/data/scenarios/cpp-<slug>.json
 ```
 
 ### Карточки
+
 ```
 public/data/cards/cpp-<slug>-cards.json
 ```
+
 Где `<slug>` — уникальное имя сценария.
 
 Формат файла:
+
 ```json
 {
   "scenarioId": "scenario-cpp-basics-intro-01",
@@ -210,20 +227,20 @@ public/data/cards/cpp-<slug>-cards.json
 
 ## Статистика
 
-| Метрика | Значение |
-|---------|----------|
-| Всего программ обучения | 10 |
-| Всего уроков | 10 |
-| Всего сценариев | 50 |
-| Всего карточек | 1000 |
-| Карточек на урок | 100 |
-| Карточек на сценарий | 20 |
+| Метрика                 | Значение |
+| ----------------------- | -------- |
+| Всего программ обучения | 10       |
+| Всего уроков            | 10       |
+| Всего сценариев         | 50       |
+| Всего карточек          | 1000     |
+| Карточек на урок        | 100      |
+| Карточек на сценарий    | 20       |
 
 ## История версий
 
-| Версия | Дата | Описание |
-|--------|------|----------|
-| 10 | 2026-06-14 | Создание курса C++ Complete Course (50 сценариев, 1000 карточек) |
+| Версия | Дата       | Описание                                                         |
+| ------ | ---------- | ---------------------------------------------------------------- |
+| 10     | 2026-06-14 | Создание курса C++ Complete Course (50 сценариев, 1000 карточек) |
 
 ## Связанные документы
 

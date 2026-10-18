@@ -113,7 +113,12 @@ export class CodeSelectCardComponent {
    * @returns CSS class string for styling the option card.
    */
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.resolved().correctIndex);
+    return buildOptionClass(
+      index,
+      this.selectedIndex(),
+      this.feedback(),
+      this.resolved().correctIndex,
+    );
   }
 
   /**

@@ -3,803 +3,543 @@
   "cards": [
     {
       "id": "scenario-cpp-basics-intro-01-card-01",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какой язык стал основой для C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "C"
-        },
-        {
-          "id": "b",
-          "text": "Java"
-        },
-        {
-          "id": "c",
-          "text": "Python"
-        },
-        {
-          "id": "d",
-          "text": "Smalltalk"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Кто создал язык C++?",
+      "optionsLearning": [
+        "Бьярне Страуструп",
+        "Деннис Ритчи",
+        "Гвидо ван Россум",
+        "詹姆斯·Гоs"
       ],
-      "correctOptionId": "a",
-      "explanation": "C++ был создан Бьярне Страуструпом на основе языка C.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-02",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "В каком году началась работа над C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "1979"
-        },
-        {
-          "id": "b",
-          "text": "1985"
-        },
-        {
-          "id": "c",
-          "text": "1990"
-        },
-        {
-          "id": "d",
-          "text": "1995"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Из какого языка произошел C++?",
+      "optionsLearning": [
+        "C",
+        "Java",
+        "Python",
+        "Simula"
       ],
-      "correctOptionId": "a",
-      "explanation": "Работа над C++ началась в 1979 году в Bell Labs.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-03",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Кто создал C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Бьярне Страуструп"
-        },
-        {
-          "id": "b",
-          "text": "Деннис Ритчи"
-        },
-        {
-          "id": "c",
-          "text": "Гвидо ван Россум"
-        },
-        {
-          "id": "d",
-          "text": "James Gosling"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что предшествовало C++?",
+      "optionsLearning": [
+        "Simula",
+        "Java",
+        "Python",
+        "Pascal"
       ],
-      "correctOptionId": "a",
-      "explanation": "C++ был создан Бьярне Страуструпом в Bell Labs.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-04",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Как изначально назывался C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "C with Classes"
-        },
-        {
-          "id": "b",
-          "text": "Objective-C"
-        },
-        {
-          "id": "c",
-          "text": "C#"
-        },
-        {
-          "id": "d",
-          "text": "Java"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда был выпущен первый стандарт C++?",
+      "optionsLearning": [
+        "1998 год (C++98)",
+        "1985",
+        "2000",
+        "1979"
       ],
-      "correctOptionId": "a",
-      "explanation": "Первоначально язык назывался 'C with Classes'.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-05",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какая версия добавила виртуальные функции?",
-      "options": [
-        {
-          "id": "a",
-          "text": "C++ 2.0"
-        },
-        {
-          "id": "b",
-          "text": "C++ 1.0"
-        },
-        {
-          "id": "c",
-          "text": "C++ 3.0"
-        },
-        {
-          "id": "d",
-          "text": "C++ 4.0"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое 'C with Classes'?",
+      "optionsLearning": [
+        "Прародитель C++ (версия 1.0)",
+        "Новый язык",
+        "Библиотека",
+        "Компилятор"
       ],
-      "correctOptionId": "a",
-      "explanation": "Виртуальные функции появились в C++ 2.0 (1985).",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-06",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Когда появился стандарт ANSI C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "1998"
-        },
-        {
-          "id": "b",
-          "text": "1995"
-        },
-        {
-          "id": "c",
-          "text": "2000"
-        },
-        {
-          "id": "d",
-          "text": "1990"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавила версия C++ 2.0?",
+      "optionsLearning": [
+        "Виртуальные функции и operator overloading",
+        "Шаблоны",
+        "STL",
+        "Lambda"
       ],
-      "correctOptionId": "a",
-      "explanation": "Первый стандарт ANSI/ISO C++ был принят в 1998 году.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-07",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какой компилятор стал первым для C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Cfront"
-        },
-        {
-          "id": "b",
-          "text": "GCC"
-        },
-        {
-          "id": "c",
-          "text": "Clang"
-        },
-        {
-          "id": "d",
-          "text": "MSVC"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда появились шаблоны (templates)?",
+      "optionsLearning": [
+        "В C++ 2.0 (1985)",
+        "C++98",
+        "C++11",
+        "C++17"
       ],
-      "correctOptionId": "a",
-      "explanation": "Первым компилятором C++ была программа Cfront.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-08",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что такое 'standard library' в C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Стандартная библиотека шаблонов (STL)"
-        },
-        {
-          "id": "b",
-          "text": "Библиотека GUI"
-        },
-        {
-          "id": "c",
-          "text": "Операционная система"
-        },
-        {
-          "id": "d",
-          "text": "Компилятор"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое STL?",
+      "optionsLearning": [
+        "Standard Template Library",
+        "Simple Tool Library",
+        "System Type List",
+        "Standard Type Library"
       ],
-      "correctOptionId": "a",
-      "explanation": "STL - Standard Template Library, стандартная библиотека шаблонов.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-09",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какой заголовочный файл для std::vector?",
-      "options": [
-        {
-          "id": "a",
-          "text": "<vector>"
-        },
-        {
-          "id": "b",
-          "text": "<array>"
-        },
-        {
-          "id": "c",
-          "text": "<list>"
-        },
-        {
-          "id": "d",
-          "text": "<map>"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда STL стала частью стандарта?",
+      "optionsLearning": [
+        "C++98",
+        "C++90",
+        "C++11",
+        "C++17"
       ],
-      "correctOptionId": "a",
-      "explanation": "Класс vector находится в заголовочном файле <vector>.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-10",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что делает препроцессор?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Обрабатывает директивы #include"
-        },
-        {
-          "id": "b",
-          "text": "Компилирует код"
-        },
-        {
-          "id": "c",
-          "text": "Запускает программу"
-        },
-        {
-          "id": "d",
-          "text": "Отлаживает код"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавил C++11?",
+      "optionsLearning": [
+        "Lambda, auto, rvalue references",
+        "Классы",
+        "Шаблоны",
+        "Виртуальные функции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Препроцессор обрабатывает директивы вида #include и #define до компиляции.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-11",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что такое 'translation unit'?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Единица трансляции: .cpp + все include"
-        },
-        {
-          "id": "b",
-          "text": "Вся программа целиком"
-        },
-        {
-          "id": "c",
-          "text": "Одна функция"
-        },
-        {
-          "id": "d",
-          "text": "Один класс"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое 'modern C++'?",
+      "optionsLearning": [
+        "C++11 и новее",
+        "C++98",
+        "C++90",
+        "C with Classes"
       ],
-      "correctOptionId": "a",
-      "explanation": "Translation unit - это один .cpp файл со всеми включёнными заголовочными файлами.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-12",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какая директива подключает файл?",
-      "options": [
-        {
-          "id": "a",
-          "text": "#include"
-        },
-        {
-          "id": "b",
-          "text": "#import"
-        },
-        {
-          "id": "c",
-          "text": "#require"
-        },
-        {
-          "id": "d",
-          "text": "#load"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда вышел C++17?",
+      "optionsLearning": [
+        "2017 год",
+        "2015",
+        "2019",
+        "2020"
       ],
-      "correctOptionId": "a",
-      "explanation": "Директива #include подключает заголовочные файлы.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-13",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что такое 'namespace std'?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Пространство имён стандартной библиотеки"
-        },
-        {
-          "id": "b",
-          "text": "Название переменной"
-        },
-        {
-          "id": "c",
-          "text": "Тип данных"
-        },
-        {
-          "id": "d",
-          "text": "Функция"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавил C++17?",
+      "optionsLearning": [
+        "std::optional, std::variant, filesystem",
+        "Lambda",
+        "auto",
+        "move semantics"
       ],
-      "correctOptionId": "a",
-      "explanation": "std - стандартное пространство имён для всех элементов стандартной библиотеки.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-14",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Как вывести текст в консоль?",
-      "options": [
-        {
-          "id": "a",
-          "text": "std::cout << \"text\";"
-        },
-        {
-          "id": "b",
-          "text": "System.out.println(\"text\");"
-        },
-        {
-          "id": "c",
-          "text": "print(\"text\")"
-        },
-        {
-          "id": "d",
-          "text": "echo \"text\";"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда вышел C++20?",
+      "optionsLearning": [
+        "2020 год",
+        "2019",
+        "2021",
+        "2018"
       ],
-      "correctOptionId": "a",
-      "explanation": "В C++ используется std::cout из библиотеки iostream.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-15",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что такое 'semicolon' в C++?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Точка с запятой (;)"
-        },
-        {
-          "id": "b",
-          "text": "Запятая (,)"
-        },
-        {
-          "id": "c",
-          "text": "Точка (.)"
-        },
-        {
-          "id": "d",
-          "text": "Двоеточие (:)"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавил C++20?",
+      "optionsLearning": [
+        "Concepts, ranges, coroutines, modules",
+        "Классы",
+        "Шаблоны",
+        "Виртуальные функции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Каждая инструкция в C++ завершается точкой с запятой.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-16",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какая ошибка возникает при отсутствии include?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Error: file not found"
-        },
-        {
-          "id": "b",
-          "text": "Warning: unused variable"
-        },
-        {
-          "id": "c",
-          "text": "Linker error"
-        },
-        {
-          "id": "d",
-          "text": "Runtime error"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Concepts в C++20?",
+      "optionsLearning": [
+        "Условия для шаблонов",
+        "Типы данных",
+        "Функции",
+        "Классы"
       ],
-      "correctOptionId": "a",
-      "explanation": "Препроцессор не найдёт файл и выдаст ошибку компиляции.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-17",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что такое 'precompiled header'?",
-      "options": [
-        {
-          "id": "a",
-          "text": "Предварительно скомпилированный заголовочный файл"
-        },
-        {
-          "id": "b",
-          "text": "Любой .h файл"
-        },
-        {
-          "id": "c",
-          "text": "Исходный .cpp файл"
-        },
-        {
-          "id": "d",
-          "text": "Объектный файл"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Ranges в C++20?",
+      "optionsLearning": [
+        "Ленивые последовательности",
+        "Массивы",
+        "Связанные списки",
+        "Деревья"
       ],
-      "correctOptionId": "a",
-      "explanation": "PCH ускоряет компиляцию, предварительно обрабатывая часто используемые заголовки.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-18",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какой флаг показывает предупреждения в GCC?",
-      "options": [
-        {
-          "id": "a",
-          "text": "-Wall"
-        },
-        {
-          "id": "b",
-          "text": "-Werror"
-        },
-        {
-          "id": "c",
-          "text": "-O2"
-        },
-        {
-          "id": "d",
-          "text": "-g"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Когда выйдет C++23?",
+      "optionsLearning": [
+        "2023 год",
+        "2022",
+        "2024",
+        "2025"
       ],
-      "correctOptionId": "a",
-      "explanation": "Флаг -Wall включает все основные предупреждения компилятора.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-19",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Что выведет: cout << \"Hello\";",
-      "options": [
-        {
-          "id": "a",
-          "text": "Hello"
-        },
-        {
-          "id": "b",
-          "text": "Hello;"
-        },
-        {
-          "id": "c",
-          "text": "Error"
-        },
-        {
-          "id": "d",
-          "text": "Nothing"
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Что добавил C++23?",
+      "optionsLearning": [
+        "std::expected, std::jthread, multidimensional array",
+        "Классы",
+        "Шаблоны",
+        "Виртуальные функции"
       ],
-      "correctOptionId": "a",
-      "explanation": "Код выводит строку Hello без дополнительных символов.",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     },
     {
       "id": "scenario-cpp-basics-intro-01-card-20",
-      "kind": "multiple-choice",
+      "kind": "select",
       "title": "История и структура программы - Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "caption": "Какой оператор используется для вывода?",
-      "options": [
-        {
-          "id": "a",
-          "text": "<<"
-        },
-        {
-          "id": "b",
-          "text": ">>"
-        },
-        {
-          "id": "c",
-          "text": "->"
-        },
-        {
-          "id": "d",
-          "text": "."
-        }
+      "direction": "known-to-learning",
+      "promptKnown": "Почему язык называется C++?",
+      "optionsLearning": [
+        "Оператор инкремента ++",
+        "Версия 2",
+        "Клон C",
+        "Кодировка"
       ],
-      "correctOptionId": "a",
-      "explanation": "Оператор << вставляет данные в поток вывода (std::cout).",
-      "authoring": {
-        "status": "materialized",
-        "ideaUpdatedAt": "2026-06-14T12:00:00.000Z",
-        "materializedAt": "2026-06-14T12:00:00.000Z"
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": []
       },
-      "languagePair": {
-        "known": "ru",
-        "learning": "cpp"
-      },
-      "published": true
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "scenario-cpp-basics-intro-01"
     }
   ]
 }

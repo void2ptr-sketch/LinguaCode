@@ -229,7 +229,8 @@ describe('card-direction.utils', () => {
       const resolved1 = resolveOptionCard(selectCard, 'known-to-learning', 42);
       const resolved2 = resolveOptionCard(selectCard, 'known-to-learning', 99);
       // With 3 options, different nonces should produce different orders most of the time
-      const different = resolved1.options[0] !== resolved2.options[0] ||
+      const different =
+        resolved1.options[0] !== resolved2.options[0] ||
         resolved1.options[1] !== resolved2.options[1] ||
         resolved1.options[2] !== resolved2.options[2];
       expect(different).toBe(true);

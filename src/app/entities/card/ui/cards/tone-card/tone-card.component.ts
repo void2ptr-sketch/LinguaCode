@@ -87,27 +87,27 @@ export class ToneCardComponent {
    * @remarks
    * Triggered when the user clicks the next card button.
    */
-   readonly nextCard = output<void>();
+  readonly nextCard = output<void>();
 
-   /**
-    * Resolved tone options with shuffled order.
-    * @remarks
-    * Shuffles `toneOptions` and adjusts `correctIndex` when shuffleNonce is provided.
-    */
-   readonly resolved = computed(() => {
-     const card = this.card();
-     const nonce = this.shuffleNonce();
-     if (nonce === undefined || card.toneOptions.length <= 1) {
-       return { options: card.toneOptions, correctIndex: card.correctIndex };
-     }
-     const seed = `${card.id}-${nonce}`;
-     const shuffled = shuffleArray(card.toneOptions, hashSeed(seed));
-     const newCorrectIndex = shuffled.indexOf(card.toneOptions[card.correctIndex]);
-     return { options: shuffled, correctIndex: newCorrectIndex };
-   });
+  /**
+   * Resolved tone options with shuffled order.
+   * @remarks
+   * Shuffles `toneOptions` and adjusts `correctIndex` when shuffleNonce is provided.
+   */
+  readonly resolved = computed(() => {
+    const card = this.card();
+    const nonce = this.shuffleNonce();
+    if (nonce === undefined || card.toneOptions.length <= 1) {
+      return { options: card.toneOptions, correctIndex: card.correctIndex };
+    }
+    const seed = `${card.id}-${nonce}`;
+    const shuffled = shuffleArray(card.toneOptions, hashSeed(seed));
+    const newCorrectIndex = shuffled.indexOf(card.toneOptions[card.correctIndex]);
+    return { options: shuffled, correctIndex: newCorrectIndex };
+  });
 
-   /**
-    * Returns the display label for a tone mark.
+  /**
+   * Returns the display label for a tone mark.
    *
    * @param tone - The tone mark to label.
    * @returns The human-readable tone label.
@@ -133,7 +133,12 @@ export class ToneCardComponent {
    * @returns CSS class string for styling the option card.
    */
   optionClass(index: number): string {
-    return buildOptionClass(index, this.selectedIndex(), this.feedback(), this.resolved().correctIndex);
+    return buildOptionClass(
+      index,
+      this.selectedIndex(),
+      this.feedback(),
+      this.resolved().correctIndex,
+    );
   }
 
   /**

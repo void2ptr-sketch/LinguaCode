@@ -44,7 +44,11 @@ describe('SingleCardPlayStore', () => {
     // Set a deterministic shuffle nonce so tests are reproducible
     store.shuffleNonce.set(0);
     // Find where the correct option ended up after shuffle
-    const resolved = resolveOptionCard(SELECT_CARD as Extract<Card, { kind: 'select' }>, 'known-to-learning', 0);
+    const resolved = resolveOptionCard(
+      SELECT_CARD as Extract<Card, { kind: 'select' }>,
+      'known-to-learning',
+      0,
+    );
     correctOptionIndex = resolved.correctIndex;
   });
 

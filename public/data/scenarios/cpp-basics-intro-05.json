@@ -1,9 +1,9 @@
 {
   "scenarios": [
     {
-      "scenarioId": "scenario-cpp-basics-intro-05",
-      "title": "Структура программы: main, include",
-      "description": "Сценарий: Структура программы: main, include",
+      "id": "scenario-cpp-basics-intro-05",
+      "title": "Компиляция и настройка проекта",
+      "description": "Сценарий: Компиляция, препроцессор, линковка, инструменты разработки",
       "order": 4,
       "lessonId": "lesson-cpp-basics-intro",
       "courseId": "course-cpp-complete",
@@ -17,6 +17,8 @@
         "learning": "cpp"
       },
       "published": true,
+      "updatedAt": "2026-06-14T12:00:00.000Z",
+      "authorId": "system",
       "cardSource": {
         "mode": "snapshot",
         "cardIds": [
@@ -41,6 +43,7 @@
           "scenario-cpp-basics-intro-05-card-19",
           "scenario-cpp-basics-intro-05-card-20"
         ],
+        "criteria": {},
         "frozenAt": "2026-06-14T12:00:00.000Z"
       }
     }
