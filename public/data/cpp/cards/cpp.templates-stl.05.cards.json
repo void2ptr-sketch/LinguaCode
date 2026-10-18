@@ -1,0 +1,585 @@
+{
+  "scenarioId": "cpp.templates-stl.05.scenario",
+  "cards": [
+    {
+      "id": "cpp.templates-stl.05.scenario.card-01",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 1 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-02",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 2 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-03",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 3 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-04",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 4 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-05",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 5 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-06",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 6 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-07",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 7 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-08",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 8 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-09",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 9 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-10",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 10 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-11",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 11 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-12",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 12 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-13",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 13 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-14",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 14 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-15",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 15 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-16",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 16 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-17",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 17 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-18",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 18 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-19",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 19 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario.card-20",
+      "kind": "select",
+      "title": "Контейнеры как шаблоны — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Вопрос 20 по теме \"Контейнеры как шаблоны\"",
+      "optionsLearning": [
+        "Вариант A",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "language-basics"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "",
+      "scenarioId": "cpp.templates-stl.05.scenario"
+    }
+  ]
+}

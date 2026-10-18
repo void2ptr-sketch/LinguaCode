@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.templates.02.scenario",
+      "title": "Шаблоны функций",
+      "description": "Сценарий: Шаблоны функций",
+      "order": 1,
+      "lessonId": "lesson-cpp-basics-templates",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.590Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.590Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.templates.02.scenario.card-01",
+          "cpp.templates.02.scenario.card-02",
+          "cpp.templates.02.scenario.card-03",
+          "cpp.templates.02.scenario.card-04",
+          "cpp.templates.02.scenario.card-05",
+          "cpp.templates.02.scenario.card-06",
+          "cpp.templates.02.scenario.card-07",
+          "cpp.templates.02.scenario.card-08",
+          "cpp.templates.02.scenario.card-09",
+          "cpp.templates.02.scenario.card-10",
+          "cpp.templates.02.scenario.card-11",
+          "cpp.templates.02.scenario.card-12",
+          "cpp.templates.02.scenario.card-13",
+          "cpp.templates.02.scenario.card-14",
+          "cpp.templates.02.scenario.card-15",
+          "cpp.templates.02.scenario.card-16",
+          "cpp.templates.02.scenario.card-17",
+          "cpp.templates.02.scenario.card-18",
+          "cpp.templates.02.scenario.card-19",
+          "cpp.templates.02.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.590Z"
+      }
+    }
+  ]
+}

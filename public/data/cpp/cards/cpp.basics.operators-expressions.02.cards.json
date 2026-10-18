@@ -1,0 +1,19 @@
+{
+  "scenarioId": "cpp.basics.operators-expressions.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.operators-expressions.02.scenario.card-01",
+      "kind": "select",
+      "title": "Арифметические операторы — Вопрос 1",
+      "appearance": { "theme": "azure-blue", "fontSize": "md" },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор используется для деления в C++?",
+      "optionsLearning": ["/", "*", "%", "-"],
+      "correctIndex": 0,
+      "meta": { "knownLanguage": "ru", "learningLanguage": "cpp", "difficulty": "beginner", "tags": ["operators", "arithmetic"] },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-operators",
+      "scenarioId": "cpp.basics.operators-expressions.02.scenario"
+    }
+  ]
+}

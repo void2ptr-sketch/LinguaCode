@@ -1,17 +1,51 @@
 {
-  "id": "cpp.basics.arrays.02.scenario",
-  "title": "Циклы и массивы в C++",
-  "description": "Использование циклов для перебора элементов массива, суммирование, поиск.",
-  "language": "cpp",
-  "difficulty": "beginner",
-  "tags": [
-    "language-basics",
-    "arrays",
-    "loops"
-  ],
-  "cardsCount": 20,
-  "estimatedMinutes": 15,
-  "order": 2,
-  "lessonId": "lesson-cpp-basics-arrays",
-  "courseId": "course-cpp-complete"
+  "scenarios": [
+    {
+      "id": "cpp.basics.arrays.02.scenario",
+      "title": "Циклы и массивы в C++",
+      "description": "Сценарий: Циклы и массивы в C++",
+      "order": 1,
+      "lessonId": "lesson-cpp-basics-arrays",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T23:18:00.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T23:18:00.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.basics.arrays.02.scenario.card-01",
+          "cpp.basics.arrays.02.scenario.card-02",
+          "cpp.basics.arrays.02.scenario.card-03",
+          "cpp.basics.arrays.02.scenario.card-04",
+          "cpp.basics.arrays.02.scenario.card-05",
+          "cpp.basics.arrays.02.scenario.card-06",
+          "cpp.basics.arrays.02.scenario.card-07",
+          "cpp.basics.arrays.02.scenario.card-08",
+          "cpp.basics.arrays.02.scenario.card-09",
+          "cpp.basics.arrays.02.scenario.card-10",
+          "cpp.basics.arrays.02.scenario.card-11",
+          "cpp.basics.arrays.02.scenario.card-12",
+          "cpp.basics.arrays.02.scenario.card-13",
+          "cpp.basics.arrays.02.scenario.card-14",
+          "cpp.basics.arrays.02.scenario.card-15",
+          "cpp.basics.arrays.02.scenario.card-16",
+          "cpp.basics.arrays.02.scenario.card-17",
+          "cpp.basics.arrays.02.scenario.card-18",
+          "cpp.basics.arrays.02.scenario.card-19",
+          "cpp.basics.arrays.02.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T23:18:00.000Z"
+      }
+    }
+  ]
 }

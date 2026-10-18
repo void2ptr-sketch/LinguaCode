@@ -1,0 +1,51 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.systems.02.scenario",
+      "title": "memory layout",
+      "description": "Сценарий: memory layout",
+      "order": 1,
+      "lessonId": "lesson-cpp-basics-systems",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-18T20:11:59.594Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-18T20:11:59.594Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.systems.02.scenario.card-01",
+          "cpp.systems.02.scenario.card-02",
+          "cpp.systems.02.scenario.card-03",
+          "cpp.systems.02.scenario.card-04",
+          "cpp.systems.02.scenario.card-05",
+          "cpp.systems.02.scenario.card-06",
+          "cpp.systems.02.scenario.card-07",
+          "cpp.systems.02.scenario.card-08",
+          "cpp.systems.02.scenario.card-09",
+          "cpp.systems.02.scenario.card-10",
+          "cpp.systems.02.scenario.card-11",
+          "cpp.systems.02.scenario.card-12",
+          "cpp.systems.02.scenario.card-13",
+          "cpp.systems.02.scenario.card-14",
+          "cpp.systems.02.scenario.card-15",
+          "cpp.systems.02.scenario.card-16",
+          "cpp.systems.02.scenario.card-17",
+          "cpp.systems.02.scenario.card-18",
+          "cpp.systems.02.scenario.card-19",
+          "cpp.systems.02.scenario.card-20"
+        ],
+        "criteria": {},
+        "frozenAt": "2026-10-18T20:11:59.594Z"
+      }
+    }
+  ]
+}
