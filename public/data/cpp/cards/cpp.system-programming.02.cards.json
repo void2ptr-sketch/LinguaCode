@@ -1,20 +1,20 @@
 {
   "version": "1.0",
   "scenarioId": "cpp.system-programming.02.scenario",
-  "title": "System Programming — Дополнительные сценарии 2",
+  "title": "Intro — Intermediate C++",
   "cards": [
     {
       "id": "cpp.system-programming.02.scenario.card-01",
       "kind": "select",
-      "title": "Environment variables (getenv, setenv)",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Environment variables (getenv, setenv)' в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Environment variables (getenv, setenv) — важный элемент C++",
+        "Основные аспекты: Что такое C++? — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -25,26 +25,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "environment"
+          "intro",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-02",
       "kind": "select",
-      "title": "Signal handling (signal, sigaction)",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Signal handling (signal, sigaction)' в C++?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Signal handling (signal, sigaction) — важный элемент C++",
+        "Основные аспекты: История создания C++ — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -55,26 +55,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "signal"
+          "intro",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-03",
       "kind": "select",
-      "title": "Process groups and sessions",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Process groups and sessions' в C++?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Process groups and sessions — важный элемент C++",
+        "Основные аспекты: Структура простой программы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -85,26 +85,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "process"
+          "intro",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-04",
       "kind": "select",
-      "title": "Shared memory (shm_open, mmap)",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Shared memory (shm_open, mmap)' в C++?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Shared memory (shm_open, mmap) — важный элемент C++",
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -115,26 +115,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "shared"
+          "intro",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-05",
       "kind": "select",
-      "title": "Message queues (posix mq_open)",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Message queues (posix mq_open)' в C++?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Message queues (posix mq_open) — важный элемент C++",
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -145,26 +145,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "message"
+          "intro",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-06",
       "kind": "select",
-      "title": "Semaphores (sem_init, sem_wait)",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Semaphores (sem_init, sem_wait)' в C++?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Semaphores (sem_init, sem_wait) — важный элемент C++",
+        "Основные аспекты: Основные типы данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -175,26 +175,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "semaphores"
+          "intro",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-07",
       "kind": "select",
-      "title": "POSIX threads vs Windows threads",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'POSIX threads vs Windows threads' в C++?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: POSIX threads vs Windows threads — важный элемент C++",
+        "Основные аспекты: Переменные и константы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -205,26 +205,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "posix"
+          "intro",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-08",
       "kind": "select",
-      "title": "System calls wrapper functions",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'System calls wrapper functions' в C++?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: System calls wrapper functions — важный элемент C++",
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -235,26 +235,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "system"
+          "intro",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-09",
       "kind": "select",
-      "title": "Resource limits (setrlimit, getrlimit)",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Resource limits (setrlimit, getrlimit)' в C++?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Resource limits (setrlimit, getrlimit) — важный элемент C++",
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -265,26 +265,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "resource"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     },
     {
       "id": "cpp.system-programming.02.scenario.card-10",
       "kind": "select",
-      "title": "Process scheduling policies",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Process scheduling policies' в C++?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Process scheduling policies — важный элемент C++",
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -295,12 +295,312 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "system-programming",
-          "process"
+          "intro",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-system-programming",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-11",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "циклы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-12",
+      "kind": "select",
+      "title": "Операторы break и continue",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "операторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-13",
+      "kind": "select",
+      "title": "Функции: объявление и вызов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "функции:"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-14",
+      "kind": "select",
+      "title": "Параметры функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-15",
+      "kind": "select",
+      "title": "Возвращаемые значения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "возвращаемые"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-17",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-19",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.system-programming.02.scenario"
+    },
+    {
+      "id": "cpp.system-programming.02.scenario.card-20",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.system-programming.02.scenario"
     }
   ]

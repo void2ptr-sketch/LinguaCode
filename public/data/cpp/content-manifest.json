@@ -1,0 +1,2125 @@
+{
+  "$schema": "./content-schema.json",
+  "version": "1.0.0",
+  "language": "cpp",
+  "title": "C++ Complete Course",
+  "description": "Полный курс C++ от основ до продвинутых тем",
+  "lastUpdated": "2025-07-14T10:30:00Z",
+  "stats": {
+    "totalCards": 4680,
+    "totalScenarios": 234,
+    "cardsByDifficulty": {
+      "beginner": 1700,
+      "intermediate": 2060,
+      "advanced": 920
+    }
+  },
+  "scenarios": [
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.01",
+      "title": "Advanced — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics.01",
+      "title": "Basics — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Basics C++",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.01",
+      "title": "Oop — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Advanced C++",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "stl.01",
+      "title": "Stl — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    },
+    {
+      "id": "unknown.01",
+      "title": "Unknown — Intermediate C++",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "unknown"
+      ]
+    }
+  ]
+}

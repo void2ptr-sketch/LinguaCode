@@ -3,52 +3,49 @@
   "cards": [
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-01",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 1: data race detection",
+      "kind": "select",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <thread>\nint shared = 0;\nvoid increment() {\n  for (int i = 0; i < 1000; ++i)\n    shared++;\n}\nint main() {\n  std::thread t1(increment);\n  std::thread t2(increment);\n  t1.join(); t2.join();\n  std::cout << shared;\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "2000 (корректно)",
-        "Меньше 2000 (data race)",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "data-race",
-          "thread"
+          "advanced",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-02",
       "kind": "select",
-      "title": "Concurrency — Вопрос 2: mutex vs atomic",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Когда предпочтительнее использовать std::atomic вместо mutex?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Для простых операций с одним переменным (load/store/compare-exchange)",
-        "Всегда — atomic быстрее",
-        "Никогда — mutex безопаснее",
-        "Только для float"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -56,33 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "atomic",
-          "mutex"
+          "advanced",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-03",
-      "kind": "code-select",
-      "title": "Concurrency — Вопрос 3: lock_guard vs unique_lock",
+      "kind": "select",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой RAII guard поддерживает condition_variable?",
-      "code": {
-        "code": "std::mutex mtx;\nstd::condition_variable cv;\n// ??? — какой lock использовать?\ncv.wait(lock, predicate);",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "std::unique_lock — поддерживает unlock/lock и condition_variable",
-        "std::lock_guard — всегда быстрее",
-        "std::shared_lock — для read-write mutex",
-        "Оба варианта одинаковы"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -90,33 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "lock-guard",
-          "unique-lock"
+          "advanced",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-04",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 4: future/promise",
+      "kind": "select",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <future>\nint compute() {\n  return 42;\n}\nint main() {\n  std::future<int> f = std::async(compute);\n  std::cout << f.get();\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42",
-        "Неопределённое поведение",
-        "Ошибка компиляции",
-        "Пустая строка"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -124,63 +113,59 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "future",
-          "promise"
+          "advanced",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-05",
       "kind": "select",
-      "title": "Concurrency — Вопрос 5: deadlock prevention",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Как предотвратить deadlock при захвате нескольких mutex?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "std::lock() или std::scoped_lock (C++17) для атомарного захвата",
-        "Всегда захватывать mutex в одном порядке",
-        "Использовать только один mutex",
-        "Все перечисленные варианты"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 3,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "deadlock",
-          "prevention"
+          "advanced",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-06",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 6: std::async launch policy",
+      "kind": "select",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <future>\nint main() {\n  auto f = std::async(std::launch::deferred, [](){ return 42; });\n  std::cout << f.get();\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42 (вычисление отложено до get())",
-        "Неопределённое поведение",
-        "Ошибка компиляции",
-        "Пустая строка"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -188,33 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "async",
-          "launch-policy"
+          "advanced",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-07",
-      "kind": "code-select",
-      "title": "Concurrency — Вопрос 7: condition_variable notify",
+      "kind": "select",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой метод уведомляет все ожидающие потоки?",
-      "code": {
-        "code": "std::condition_variable cv;\n// ??? — уведомить все потоки\ncv.???();",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "notify_all()",
-        "notify_one()",
-        "broadcast()",
-        "signal_all()"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -222,29 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "condition-variable",
-          "notify"
+          "advanced",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-08",
       "kind": "select",
-      "title": "Concurrency — Вопрос 8: memory_order_seq_cst",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что означает memory_order_seq_cst?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Sequentially consistent — самый строгий порядок, гарантирует total order",
-        "Только для atomic переменных",
-        "Самый слабый порядок",
-        "Отключает оптимизации"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -252,33 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "memory-order",
-          "seq-cst"
+          "advanced",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-09",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 9: thread_local storage",
+      "kind": "select",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <thread>\nthread_local int counter = 0;\nvoid increment() {\n  counter++;\n}\nint main() {\n  std::thread t1(increment);\n  std::thread t2(increment);\n  t1.join(); t2.join();\n  std::cout << counter;\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "1 (main thread видит только свой counter)",
-        "2",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -286,29 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "thread-local",
-          "storage"
+          "advanced",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-10",
       "kind": "select",
-      "title": "Concurrency — Вопрос 10: spinlock vs mutex",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Когда spinlock эффективнее mutex?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "При очень коротких критических секциях и высоком параллелизме",
-        "Всегда — spinlock быстрее",
-        "Никогда — mutex оптимизирован лучше",
-        "Только для single-core"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -316,33 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "spinlock",
-          "mutex"
+          "advanced",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-11",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 11: std::shared_mutex (C++17)",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <shared_mutex>\nstd::shared_mutex mtx;\nint data = 0;\nvoid writer() {\n  std::unique_lock lock(mtx);\n  data = 42;\n}\nvoid reader() {\n  std::shared_lock lock(mtx);\n  std::cout << data;\n}\n// writer и reader вызываются последовательно",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42 (writer завершается перед reader)",
-        "0 (reader видит старое значение)",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -350,33 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "shared-mutex",
-          "read-write"
+          "advanced",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-12",
-      "kind": "code-select",
-      "title": "Concurrency — Вопрос 12: std::jthread (C++20)",
+      "kind": "select",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Чем jthread отличается от thread?",
-      "code": {
-        "code": "std::jthread t([](std::stop_token& st) {\n  // ??? — как проверить stop request?\n});",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Автоматический join при destruction + поддержка stop_token",
-        "Только faster execution",
-        "Поддержка только для lambda",
-        "Ничем не отличается"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -384,29 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "jthread",
-          "stop-token"
+          "advanced",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-13",
       "kind": "select",
-      "title": "Concurrency — Вопрос 13: lock-free data structures",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое lock-free структура данных?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Структура, где хотя бы один поток всегда прогрессирует без блокировок",
-        "Структура без mutex вообще",
-        "Структура с atomic операциями только",
-        "Структура, работающая на multi-core"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -414,33 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "lock-free",
-          "data-structures"
+          "advanced",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-14",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 14: std::atomic compare_exchange",
+      "kind": "select",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <atomic>\nstd::atomic<int> x{0};\nbool success = x.compare_exchange_strong(0, 42);\nstd::cout << (success ? \"ok\" : \"fail\") << \" \" << x;",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "ok 42",
-        "fail 0",
-        "ok 0",
-        "Неопределённое поведение"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -448,33 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "atomic",
-          "compare-exchange"
+          "advanced",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-15",
-      "kind": "code-select",
-      "title": "Concurrency — Вопрос 15: memory barrier / fence",
+      "kind": "select",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Зачем нужен std::atomic_thread_fence?",
-      "code": {
-        "code": "// ??? — обеспечить видимость операций до/после\nstd::atomic_thread_fence(std::memory_order_release);",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Гарантирует порядок операций памяти относительно fence",
-        "Блокирует все потоки",
-        "Удаляет кэш процессора",
-        "Включает multi-threading"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -482,29 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "memory-barrier",
-          "fence"
+          "advanced",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-16",
       "kind": "select",
-      "title": "Concurrency — Вопрос 16: ABA problem",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое ABA problem в lock-free алгоритмах?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Значение изменилось с A → B → A, но CAS не обнаружил изменение",
-        "Атомарная блокировка двух потоков",
-        "Проблема с atomic load/store",
-        "Ошибка компиляции для atomic"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -512,33 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "aba-problem",
-          "lock-free"
+          "advanced",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-17",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 17: std::async vs thread pool",
+      "kind": "select",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <future>\nint main() {\n  std::vector<std::future<int>> futures;\n  for (int i = 0; i < 100; ++i) {\n    futures.push_back(std::async([](){ return 1; }));\n  }\n  int sum = 0;\n  for (auto& f : futures) sum += f.get();\n  std::cout << sum;\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "100",
-        "Неопределённое поведение",
-        "Ошибка компиляции",
-        "Пустая строка"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -546,33 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "async",
-          "thread-pool"
+          "advanced",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-18",
-      "kind": "code-select",
-      "title": "Concurrency — Вопрос 18: std::stop_source / stop_callback",
+      "kind": "select",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Как запросить остановку потока из jthread?",
-      "code": {
-        "code": "std::jthread t([](std::stop_token& st) {\n  // ??? — как проверить stop request?\n  while (!st.stop_requested()) {\n    // work\n  }\n});\nt.???();",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "request_stop()",
-        "stop()",
-        "cancel()",
-        "terminate()"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -580,29 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "stop-source",
-          "jthread"
+          "advanced",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-19",
       "kind": "select",
-      "title": "Concurrency — Вопрос 19: false sharing",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое false sharing в многопоточных программах?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Разные потоки модифицируют переменные, находящиеся в одной cache line",
-        "Ложная блокировка mutex",
-        "Неверный memory order",
-        "Ошибка компиляции для atomic"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -610,33 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "false-sharing",
-          "cache-line"
+          "advanced",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     },
     {
       "id": "cpp.advanced.concurrency.01.scenario.card-20",
-      "kind": "code-trace",
-      "title": "Concurrency — Вопрос 20: std::this_thread::sleep_for precision",
+      "kind": "select",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <chrono>\n#include <thread>\nint main() {\n  auto start = std::chrono::high_resolution_clock::now();\n  std::this_thread::sleep_for(std::chrono::milliseconds(100));\n  auto end = std::chrono::high_resolution_clock::now();\n  auto ms = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();\n  std::cout << (ms >= 100 ? \"ok\" : \"too-fast\");\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "ok (sleep_for гарантирует минимум указанное время)",
-        "too-fast",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -644,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "concurrency",
-          "sleep-for",
-          "time"
+          "advanced",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.concurrency.01.scenario"
     }
-  ]
+  ],
+  "title": "Advanced — Advanced C++"
 }

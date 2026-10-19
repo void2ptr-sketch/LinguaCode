@@ -361,6 +361,29 @@ describe('journey-nodes.utils', () => {
       expect(nodes[2].blockReason).toContain('Урок 1');
     });
 
+    it('should unlock all lessons when course practiceSettings disables prerequisites', () => {
+      const openCourse: CourseWithLessons = {
+        ...baseCourse,
+        practiceSettings: {
+          mode: 'open',
+          enforceLessonPrerequisites: false,
+          requireLessonForScenarios: false,
+        },
+      };
+
+      const nodes = buildJourneyNodes(
+        openCourse,
+        scenarioMap,
+        mockCards,
+        () => false,
+        () => false,
+      );
+
+      // lesson-2 depends on lesson-1, but prerequisites are disabled in open mode
+      expect(nodes[2].status).toBe('available');
+      expect(nodes[2].blockReason).toBeNull();
+    });
+
     it('should compute completion percent per lesson', () => {
       const nodes = buildJourneyNodes(
         baseCourse,

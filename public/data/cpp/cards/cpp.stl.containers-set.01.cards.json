@@ -4,622 +4,603 @@
     {
       "id": "cpp.stl.containers-set.01.scenario.card-01",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 1",
+      "title": "Что такое STL?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое std::set в C++?",
+      "promptKnown": "Что известно о 'Что такое STL?' в C++?",
       "optionsLearning": [
-        "Динамический массив",
-        "Неупорядоченный",
-        "Стек",
-        "Упорядоченный контейнер уникальных элементов (RB-tree)"
+        "Основные аспекты: Что такое STL? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-02",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 2",
+      "title": "Containers overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая сложность поиска в set?",
+      "promptKnown": "Что известно о 'Containers overview' в C++?",
       "optionsLearning": [
-        "O(n)",
-        "O(1)",
-        "O(n log n)",
-        "O(log n)"
+        "Основные аспекты: Containers overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-03",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 3",
+      "title": "std::vector basics",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли добавить дубликат в set?",
+      "promptKnown": "Что известно о 'std::vector basics' в C++?",
       "optionsLearning": [
-        "Только с int",
-        "Да",
-        "Только с string",
-        "Нет, set хранит только уникальные элементы"
+        "Основные аспекты: std::vector basics — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::vector"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-04",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 4",
+      "title": "std::list implementation",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; cout << s.size();`?",
+      "promptKnown": "Что известно о 'std::list implementation' в C++?",
       "optionsLearning": [
-        "2",
-        "1",
-        "Ошибка",
-        "3"
+        "Основные аспекты: std::list implementation — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::list"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-05",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 5",
+      "title": "std::deque characteristics",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой iterator у set?",
+      "promptKnown": "Что известно о 'std::deque characteristics' в C++?",
       "optionsLearning": [
-        "InputIterator",
-        "RandomAccessIterator",
-        "OutputIterator",
-        "BidirectionalIterator (const)"
+        "Основные аспекты: std::deque characteristics — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::deque"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-06",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 6",
+      "title": "Iterators и их типы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли изменять элемент через iterator set?",
+      "promptKnown": "Что известно о 'Iterators и их типы' в C++?",
       "optionsLearning": [
-        "Только с int",
-        "Да",
-        "Только с string",
-        "Нет, элементы const"
+        "Основные аспекты: Iterators и их типы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-07",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 7",
+      "title": "Algorithms library",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {3,1,2}; cout << *s.begin();`?",
+      "promptKnown": "Что известно о 'Algorithms library' в C++?",
       "optionsLearning": [
-        "2",
-        "3",
-        "Ошибка",
-        "1"
+        "Основные аспекты: Algorithms library — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-08",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 8",
+      "title": "std::sort usage",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем set отличается от unordered_set?",
+      "promptKnown": "Что известно о 'std::sort usage' в C++?",
       "optionsLearning": [
-        "Set быстрее",
-        "Ничем не отличаются",
-        "Unordered_set медленнее",
-        "Set упорядочен (RB-tree), unordered_set нет (hash)"
+        "Основные аспекты: std::sort usage — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::sort"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-09",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 9",
+      "title": "std::find variations",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; cout << s.count(2);`?",
+      "promptKnown": "Что известно о 'std::find variations' в C++?",
       "optionsLearning": [
-        "2",
-        "0",
-        "Ошибка",
-        "1"
+        "Основные аспекты: std::find variations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::find"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-10",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 10",
+      "title": "std::for_each examples",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать set с custom comparator?",
+      "promptKnown": "Что известно о 'std::for_each examples' в C++?",
       "optionsLearning": [
-        "Только с int",
-        "Нет",
-        "Только с string",
-        "Да, третий параметр шаблона"
+        "Основные аспекты: std::for_each examples — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::for_each"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-11",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 11",
+      "title": "std::transform patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; auto it = s.find(2); cout << *it;`?",
+      "promptKnown": "Что известно о 'std::transform patterns' в C++?",
       "optionsLearning": [
-        "3",
-        "1",
-        "Ошибка",
-        "2"
+        "Основные аспекты: std::transform patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "std::transform"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-12",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 12",
+      "title": "Predicate design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая сложность вставки в set?",
+      "promptKnown": "Что известно о 'Predicate design' в C++?",
       "optionsLearning": [
-        "O(n)",
-        "O(1)",
-        "O(n log n)",
-        "O(log n)"
+        "Основные аспекты: Predicate design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "predicate"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-13",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 13",
+      "title": "Custom comparators",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать set с pair?",
+      "promptKnown": "Что известно о 'Custom comparators' в C++?",
       "optionsLearning": [
-        "Только с int",
-        "Нет",
-        "Только с string",
-        "Да, но pair сравнивается по first, then second"
+        "Основные аспекты: Custom comparators — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "custom"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-14",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 14",
+      "title": "Container adaptors (stack, queue)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; s.erase(2); cout << s.size();`?",
+      "promptKnown": "Что известно о 'Container adaptors (stack, queue)' в C++?",
       "optionsLearning": [
-        "1",
-        "3",
-        "Ошибка",
-        "2"
+        "Основные аспекты: Container adaptors (stack, queue) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "container"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-15",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 15",
+      "title": "Associative containers (set, map)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать set с lower_bound?",
+      "promptKnown": "Что известно о 'Associative containers (set, map)' в C++?",
       "optionsLearning": [
-        "Только с find",
-        "Нет",
-        "Только с vector",
-        "Да, O(log n) поиск"
+        "Основные аспекты: Associative containers (set, map) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "associative"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-16",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 16",
+      "title": "Unordered containers (unordered_set, unordered_map)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; cout << *s.lower_bound(2);`?",
+      "promptKnown": "Что известно о 'Unordered containers (unordered_set, unordered_map)' в C++?",
       "optionsLearning": [
-        "3",
-        "1",
-        "Ошибка",
-        "2"
+        "Основные аспекты: Unordered containers (unordered_set, unordered_map) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "unordered"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-17",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 17",
+      "title": "String manipulation with STL",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой заголовок для set?",
+      "promptKnown": "Что известно о 'String manipulation with STL' в C++?",
       "optionsLearning": [
-        "<unordered_set>",
-        "<vector>",
-        "<array>",
-        "<set>"
+        "Основные аспекты: String manipulation with STL — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "string"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-18",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 18",
+      "title": "Debugging STL issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать set с custom type?",
+      "promptKnown": "Что известно о 'Debugging STL issues' в C++?",
       "optionsLearning": [
-        "Только с int",
-        "Нет",
-        "Только с string",
-        "Да, если есть operator<"
+        "Основные аспекты: Debugging STL issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-19",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 19",
+      "title": "Performance optimization",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `set<int> s = {1,2,3}; s.insert(2); cout << s.size();`?",
+      "promptKnown": "Что известно о 'Performance optimization' в C++?",
       "optionsLearning": [
-        "2",
-        "4",
-        "Ошибка",
-        "3 (дубликат не добавлен)"
+        "Основные аспекты: Performance optimization — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     },
     {
       "id": "cpp.stl.containers-set.01.scenario.card-20",
       "kind": "select",
-      "title": "set и unordered_set - Вопрос 20",
+      "title": "Best practices для STL",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать set с upper_bound?",
+      "promptKnown": "Что известно о 'Best practices для STL' в C++?",
       "optionsLearning": [
-        "Только с lower_bound",
-        "Нет",
-        "Только с vector",
-        "Да, O(log n) поиск"
+        "Основные аспекты: Best practices для STL — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
           "stl",
-          "containers",
-          "standard-library"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-containers-deep",
+      "lessonId": "lesson-cpp-stl",
       "scenarioId": "cpp.stl.containers-set.01.scenario"
     }
-  ]
+  ],
+  "title": "Stl — Intermediate C++"
 }

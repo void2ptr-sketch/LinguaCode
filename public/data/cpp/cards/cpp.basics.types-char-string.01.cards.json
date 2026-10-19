@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-01",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой тип используется для одного символа?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "char",
-        "string",
-        "int",
-        "bool"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,30 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-02",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить char переменную?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "char c = 'A';",
-        "char c = \"A\";",
-        "string c = 'A';",
-        "char c = A;"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,30 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-03",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое escape sequence?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Спецсимвол с обратным слэшем",
-        "Обычный символ",
-        "Комментарий",
-        "Оператор"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -85,30 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-04",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое \n?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Перевод строки",
-        "Табуляция",
-        "Обратный слэш",
-        "Конец строки"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -116,30 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-05",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое \t?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Табуляция",
-        "Перевод строки",
-        "Обратный слэш",
-        "Пробел"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -147,30 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-06",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое \\?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Обратный слэш",
-        "Двойной слэш",
-        "Конец строки",
-        "Начало строки"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -178,30 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-07",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое \"?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Двойная кавычка",
-        "Одинарная кавычка",
-        "Конец строки",
-        "Начало строки"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -209,30 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-08",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое \u0000?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Null terminator",
-        "Ноль",
-        "Пробел",
-        "Конец файла"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -240,30 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-09",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое std::string?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Класс для работы со строками",
-        "Тип данных",
-        "Массив",
-        "Указатель"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -271,30 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-10",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить string переменную?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "string s = \"Hello\";",
-        "string s = 'Hello';",
-        "char s = \"Hello\";",
-        "str s = \"Hello\";"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -302,30 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-11",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает .length() в string?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Возвращает длину строки",
-        "Изменяет строку",
-        "Удаляет символ",
-        "Добавляет символ"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -333,30 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-12",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает .size() в string?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Возвращает длину строки",
-        "Изменяет строку",
-        "Удаляет символ",
-        "Добавляет символ"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -364,30 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-13",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли сложить две string?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Да, оператором +",
-        "Нет, ошибка",
-        "Только через function",
-        "Только char"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -395,30 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-14",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое C-style string?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Массив char с \u0000 в конце",
-        "std::string",
-        "char переменная",
-        "Указатель"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -426,30 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-15",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое strlen()?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Функция для длины C-string",
-        "Для std::string",
-        "Для char",
-        "Для int"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -457,30 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-16",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое strcmp()?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Сравнение двух C-strings",
-        "Конкатенация",
-        "Копирование",
-        "Изменение"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -488,30 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-17",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое strcpy()?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "Копирование C-string",
-        "Сравнение",
-        "Удаление",
-        "Изменение"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -519,30 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-18",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое strcat()?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Конкатенация C-strings",
-        "Сравнение",
-        "Копирование",
-        "Удаление"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,30 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-19",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое std::string_view?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Невладеющая ссылка на string",
-        "Новый тип string",
-        "Указатель",
-        "Массив"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -581,30 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     },
     {
       "id": "cpp.basics.types-char-string.01.scenario.card-20",
       "kind": "select",
-      "title": "Символы и строки - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать string_view?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Для чтения без модификации",
-        "Для изменения",
-        "Для создания новой",
-        "Для удаления"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -612,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-char-string.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

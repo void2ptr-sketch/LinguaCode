@@ -4,18 +4,18 @@
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-01",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond problem?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Проблема неоднозначности при ромбовидном наследовании",
-        "Без проблемы",
-        "Удаление проблемы",
-        "Добавление проблемы"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -24,28 +24,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-02",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual inheritance?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Наследование с ключевым словом virtual для устранения diamond problem",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,28 +54,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-03",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual base class?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Base class с ключевым словом virtual в наследовании",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -84,28 +84,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-04",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое non-virtual base class?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Обычный base class без ключевого слова virtual",
-        "С virtual",
-        "Без base class",
-        "Случайный base class"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -118,24 +118,24 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-05",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond inheritance?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Структура A -> B, C -> D с двумя путями к D",
-        "Линейная структура",
-        "Древовидная структура",
-        "Случайная структура"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -144,28 +144,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-06",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое ambiguity resolution?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Разрешение неоднозначности через scope resolution operator ::",
-        "Без разрешения",
-        "Удаление разрешения",
-        "Добавление разрешения"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -174,28 +174,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-07",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое explicit base constructor call?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Явный вызов constructor base class в самом производном классе",
-        "Неявный вызов",
-        "Без вызова",
-        "Случайный вызов"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -204,28 +204,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-08",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual base constructor order?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Порядок вызова virtual base constructor в самом производном классе",
-        "В промежуточных классах",
-        "Без порядка",
-        "Случайный порядок"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -234,28 +234,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-09",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое vptr in virtual inheritance?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Указатель на vtable для virtual base class",
-        "Без указателя",
-        "Удаление указателя",
-        "Добавление указателя"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -264,28 +264,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-10",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое vbtable?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Таблица для virtual base class offsets",
-        "Обычная таблица",
-        "Нет таблицы",
-        "Случайная таблица"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -294,28 +294,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-11",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое offset adjustment?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Корректировка указателя this для доступа к virtual base",
-        "Без корректировки",
-        "Удаление корректировки",
-        "Добавление корректировки"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -324,28 +324,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-12",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple vbases?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Несколько virtual base classes в объекте",
-        "Один vbase",
-        "Нет vbases",
-        "Случайное количество"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -354,28 +354,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-13",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond with multiple levels?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Ромбовидная структура с многослойным наследованием",
-        "Одноуровневая",
-        "Без структуры",
-        "Случайная структура"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -384,28 +384,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-14",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual inheritance overhead?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Накладные расходы на virtual base class (vptr, vbtable)",
-        "Без накладных расходов",
-        "Удаление расходов",
-        "Добавление расходов"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -414,28 +414,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-15",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual inheritance size?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Размер объекта с virtual base class (общая копия base)",
-        "Отдельные копии",
-        "Без размера",
-        "Случайный размер"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -444,28 +444,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-16",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual destructor in diamond?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Virtual destructor для корректного удаления через base pointer",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -474,28 +474,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-17",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond with virtual destructors?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Ромбовидная структура с virtual destructors для всех base",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -504,28 +504,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-18",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond problem solution?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Решение через virtual inheritance для устранения дублирования",
-        "Без решения",
-        "Удаление решения",
-        "Добавление решения"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -534,28 +534,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-19",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond problem alternative?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Альтернатива: композиция вместо наследования для избежания diamond",
-        "Без альтернативы",
-        "Удаление альтернативы",
-        "Добавление альтернативы"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -564,28 +564,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-diamond.01.scenario.card-20",
       "kind": "select",
-      "title": "Проблема ромба и виртуальное наследование - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond problem best practice?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Избегать ромбовидного наследования, использовать композицию или virtual inheritance",
-        "Использовать всегда",
-        "Без практики",
-        "Случайная практика"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -594,12 +594,13 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-diamond.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Intermediate C++"
 }

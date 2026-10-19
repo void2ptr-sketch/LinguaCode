@@ -4,18 +4,18 @@
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-01",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое class в C++?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Пользовательский тип с данными и методами",
-        "Базовый тип",
-        "Системный тип",
-        "Случайный тип"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -24,29 +24,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-02",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое struct в C++?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Класс с public access по умолчанию",
-        "Класс с private access",
-        "Без доступа",
-        "Случайный доступ"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -55,29 +54,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-03",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое union в C++?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Тип с общими полями памяти",
-        "Тип с отдельными полями",
-        "Без полей",
-        "Случайные поля"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -86,29 +84,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
           "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-04",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое enum class?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Типизированная перечисляемая константа",
-        "Нетипизированная константа",
-        "Без константы",
-        "Случайная константа"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -117,29 +114,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-05",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое member variable?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Переменная внутри класса",
-        "Вне класса",
-        "Без переменной",
-        "Случайная переменная"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -148,29 +144,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-06",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое member function?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Функция внутри класса",
-        "Вне класса",
-        "Без функции",
-        "Случайная функция"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -179,29 +174,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-07",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое static member?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Член класса, общий для всех объектов",
-        "Уникальный для каждого объекта",
-        "Без члена",
-        "Случайный член"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -210,29 +204,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-08",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое const member?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Член класса, не изменяемый после создания",
-        "Изменяемый член",
-        "Без члена",
-        "Случайный член"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -241,29 +234,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-09",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое constexpr member?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Член класса для compile-time вычислений",
-        "Runtime вычисления",
-        "Без вычислений",
-        "Случайные вычисления"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -272,29 +264,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-10",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое inline member?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Член класса с возможностью inline",
-        "Без возможности",
-        "Удаление возможности",
-        "Добавление возможности"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -303,29 +294,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-11",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое friend class?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Класс с доступом к private members другого класса",
-        "Без доступа",
-        "Удаление доступа",
-        "Добавление доступа"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -334,29 +324,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-12",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое friend function?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Функция с доступом к private members класса",
-        "Без доступа",
-        "Удаление доступа",
-        "Добавление доступа"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -365,29 +354,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-13",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое nested class?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Класс внутри другого класса",
-        "Вне класса",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -396,29 +384,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-14",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое local class?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Класс внутри функции",
-        "Вне функции",
-        "Без функции",
-        "Случайная функция"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -427,29 +414,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-15",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template class?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Класс с параметрами типа",
-        "Без параметров",
-        "Удаление параметров",
-        "Добавление параметров"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -458,29 +444,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-16",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое variadic class?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Класс с переменным числом параметров",
-        "Фиксированное число",
-        "Без числа",
-        "Случайное число"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -489,29 +474,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-17",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое abstract class?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Класс с хотя бы одним pure virtual методом",
-        "Обычный класс",
-        "Удаленный класс",
-        "Добавленный класс"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -520,29 +504,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-18",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое final class?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Класс без наследования",
-        "Класс с наследованием",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -551,29 +534,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-19",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое sealed class?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Класс без наследования (C# стиль)",
-        "Класс с наследованием",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -582,29 +564,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-classes.01.scenario.card-20",
       "kind": "select",
-      "title": "Классы и объекты - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое POD class?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Plain Old Data класс для C-совместимости",
-        "Не-POD класс",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -613,13 +594,13 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-classes.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Intermediate C++"
 }

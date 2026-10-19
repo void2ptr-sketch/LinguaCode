@@ -4,602 +4,603 @@
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-01",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое inheritance?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Механизм создания нового класса на основе существующего",
-        "Без механизма",
-        "Удаление механизма",
-        "Добавление механизма"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-02",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое base class?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Существующий класс, от которого наследуется новый",
-        "Новый класс",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-03",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое derived class?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Новый класс, созданный на основе base class",
-        "Существующий класс",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-04",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое single inheritance?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Наследование от одного base class",
-        "От нескольких",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
           "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-05",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Наследование от нескольких base classes",
-        "От одного",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-06",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое hierarchical inheritance?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Несколько derived классов от одного base",
-        "Один derived",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-07",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multilevel inheritance?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Цепочка наследования A -> B -> C",
-        "Одноуровневое",
-        "Без цепочки",
-        "Случайная цепочка"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-08",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое hybrid inheritance?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Комбинация видов наследования",
-        "Один вид",
-        "Без комбинации",
-        "Случайная комбинация"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-09",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое access modifier?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Ключевое слово для управления доступом (public/protected/private)",
-        "Без ключевого слова",
-        "Удаление ключевого слова",
-        "Добавление ключевого слова"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-10",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое public inheritance?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Derived class наследует public members как public",
-        "Как protected",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-11",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое protected inheritance?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Derived class наследует members как protected",
-        "Как public",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-12",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое private inheritance?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Derived class наследует members как private",
-        "Как public",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-13",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое member access in inheritance?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Правила доступа к членам base class в derived",
-        "Без правил",
-        "Удаление правил",
-        "Добавление правил"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-14",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое member override?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Переопределение метода base class в derived",
-        "Без переопределения",
-        "Удаление переопределения",
-        "Добавление переопределения"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-15",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое method hiding?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Скрытие метода base class в derived без virtual",
-        "Без сокрытия",
-        "Удаление сокрытия",
-        "Добавление сокрытия"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-16",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое member initialization order?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Порядок инициализации членов класса (по объявлению)",
-        "Случайный порядок",
-        "Обратный порядок",
-        "Нет порядка"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-17",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое constructor chaining?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Вызов одного constructor из другого через initializer list",
-        "Без вызова",
-        "Удаление вызова",
-        "Добавление вызова"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-18",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое base class constructor call?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Вызов constructor base class в initializer list derived",
-        "Без вызова",
-        "Удаление вызова",
-        "Добавление вызова"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-19",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual inheritance?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Наследование с ключевым словом virtual для устранения diamond problem",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-basics.01.scenario.card-20",
       "kind": "select",
-      "title": "Основы наследования - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое non-virtual inheritance?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Обычное наследование без ключевого слова virtual",
-        "С virtual",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "inheritance"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-basics.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Basics C++"
 }

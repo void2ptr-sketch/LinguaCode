@@ -1,165 +1,170 @@
 {
   "version": "1.0",
   "scenarioId": "cpp.templates-intro.01.scenario",
-  "title": "Шаблоны (Templates) — Сценарий 1",
+  "title": "Intro — Intermediate C++",
   "cards": [
     {
       "id": "cpp.templates-intro.01.scenario.card-01",
       "kind": "select",
-      "title": "Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Зачем нужны шаблоны в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Для написания обобщённого кода",
-        "Для ускорения компиляции",
-        "Для работы с файлами",
-        "Для многопоточности"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "templates-intro"
+          "intro",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-02",
       "kind": "select",
-      "title": "Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить шаблонную функцию?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "template<typename T>",
-        "function<T>",
-        "generic<T>",
-        "class<T>"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "templates-intro"
+          "intro",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-03",
       "kind": "select",
-      "title": "Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template specialization?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Специальная реализация для конкретного типа",
-        "Ошибка компиляции",
-        "Анонимная функция",
-        "Статический метод"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "templates-intro"
+          "intro",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-04",
       "kind": "select",
-      "title": "Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли перегружать шаблоны?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Да",
-        "Нет",
-        "Только в C++11",
-        "Только для классов"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "templates-intro"
+          "intro",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-05",
       "kind": "select",
-      "title": "Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template parameter pack?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Несколько параметров одного типа",
-        "Переменное количество параметров",
-        "Обязательные параметры",
-        "Неизменяемые параметры"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "templates-intro"
+          "intro",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-06",
       "kind": "select",
-      "title": "Template specialization для конкретных типов",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Template specialization для конкретных типов' в C++?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Template specialization для конкретных типов — важный элемент C++",
+        "Основные аспекты: Основные типы данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -170,26 +175,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "template"
+          "intro",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-07",
       "kind": "select",
-      "title": "Template template parameters",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Template template parameters' в C++?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Template template parameters — важный элемент C++",
+        "Основные аспекты: Переменные и константы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -200,26 +205,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "template"
+          "intro",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-08",
       "kind": "select",
-      "title": "Variadic templates (C++11)",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Variadic templates (C++11)' в C++?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Variadic templates (C++11) — важный элемент C++",
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -230,26 +235,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "variadic"
+          "intro",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-09",
       "kind": "select",
-      "title": "Fold expressions (C++17)",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Fold expressions (C++17)' в C++?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Fold expressions (C++17) — важный элемент C++",
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -260,26 +265,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "fold"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-10",
       "kind": "select",
-      "title": "Concepts and requires (C++20)",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Concepts and requires (C++20)' в C++?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Concepts and requires (C++20) — важный элемент C++",
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -290,26 +295,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "concepts"
+          "intro",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-11",
       "kind": "select",
-      "title": "Template metaprogramming basics",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Template metaprogramming basics' в C++?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Template metaprogramming basics — важный элемент C++",
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -320,26 +325,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "template"
+          "intro",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-12",
       "kind": "select",
-      "title": "SFINAE и std::enable_if",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'SFINAE и std::enable_if' в C++?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Основные аспекты: SFINAE и std::enable_if — важный элемент C++",
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -350,26 +355,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "sfinae"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-13",
       "kind": "select",
-      "title": "if constexpr (C++17)",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'if constexpr (C++17)' в C++?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Основные аспекты: if constexpr (C++17) — важный элемент C++",
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -380,26 +385,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "if"
+          "intro",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-14",
       "kind": "select",
-      "title": "Alias templates (using)",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Alias templates (using)' в C++?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Alias templates (using) — важный элемент C++",
+        "Основные аспекты: Параметры функций — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -410,26 +415,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "alias"
+          "intro",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     },
     {
       "id": "cpp.templates-intro.01.scenario.card-15",
       "kind": "select",
-      "title": "Non-type template parameters",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Non-type template parameters' в C++?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Non-type template parameters — важный элемент C++",
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -440,12 +445,162 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "templates-intro",
-          "non-type"
+          "intro",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-templates-intro",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.templates-intro.01.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.templates-intro.01.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario.card-17",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.templates-intro.01.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.templates-intro.01.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario.card-19",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.templates-intro.01.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario.card-20",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.templates-intro.01.scenario"
     }
   ]

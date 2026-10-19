@@ -1,20 +1,20 @@
 {
   "version": "1.0",
   "scenarioId": "cpp.classes-objects.02.scenario",
-  "title": "Classes Objects — Дополнительные сценарии 2",
+  "title": "Intro — Intermediate C++",
   "cards": [
     {
       "id": "cpp.classes-objects.02.scenario.card-01",
       "kind": "select",
-      "title": "CRTP (Curiously Recurring Template Pattern)",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'CRTP (Curiously Recurring Template Pattern)' в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Основные аспекты: CRTP (Curiously Recurring Template Pattern) — важный элемент C++",
+        "Основные аспекты: Что такое C++? — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -25,26 +25,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "crtp"
+          "intro",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-02",
       "kind": "select",
-      "title": "Pimpl idiom (pointer to implementation)",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Pimpl idiom (pointer to implementation)' в C++?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Pimpl idiom (pointer to implementation) — важный элемент C++",
+        "Основные аспекты: История создания C++ — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -55,26 +55,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "pimpl"
+          "intro",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-03",
       "kind": "select",
-      "title": "Flyweight pattern для оптимизации памяти",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Flyweight pattern для оптимизации памяти' в C++?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Flyweight pattern для оптимизации памяти — важный элемент C++",
+        "Основные аспекты: Структура простой программы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -85,26 +85,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "flyweight"
+          "intro",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-04",
       "kind": "select",
-      "title": "Builder pattern с fluent interface",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Builder pattern с fluent interface' в C++?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Builder pattern с fluent interface — важный элемент C++",
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -115,26 +115,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "builder"
+          "intro",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-05",
       "kind": "select",
-      "title": "Factory method и abstract factory",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Factory method и abstract factory' в C++?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Factory method и abstract factory — важный элемент C++",
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -145,26 +145,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "factory"
+          "intro",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-06",
       "kind": "select",
-      "title": "Singleton pattern (thread-safe)",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Singleton pattern (thread-safe)' в C++?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Singleton pattern (thread-safe) — важный элемент C++",
+        "Основные аспекты: Основные типы данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -175,26 +175,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "singleton"
+          "intro",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-07",
       "kind": "select",
-      "title": "Observer pattern с std::function",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Observer pattern с std::function' в C++?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Observer pattern с std::function — важный элемент C++",
+        "Основные аспекты: Переменные и константы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -205,26 +205,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "observer"
+          "intro",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-08",
       "kind": "select",
-      "title": "Strategy pattern с lambdas",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Strategy pattern с lambdas' в C++?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Strategy pattern с lambdas — важный элемент C++",
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -235,26 +235,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "strategy"
+          "intro",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-09",
       "kind": "select",
-      "title": "Decorator pattern для расширения функциональности",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Decorator pattern для расширения функциональности' в C++?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Decorator pattern для расширения функциональности — важный элемент C++",
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -265,26 +265,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "decorator"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     },
     {
       "id": "cpp.classes-objects.02.scenario.card-10",
       "kind": "select",
-      "title": "Proxy pattern для lazy initialization",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Proxy pattern для lazy initialization' в C++?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Proxy pattern для lazy initialization — важный элемент C++",
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -295,12 +295,312 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "classes-objects",
-          "proxy"
+          "intro",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-classes-objects",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-11",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "циклы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-12",
+      "kind": "select",
+      "title": "Операторы break и continue",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "операторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-13",
+      "kind": "select",
+      "title": "Функции: объявление и вызов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "функции:"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-14",
+      "kind": "select",
+      "title": "Параметры функций",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "параметры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-15",
+      "kind": "select",
+      "title": "Возвращаемые значения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "возвращаемые"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-17",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-19",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-20",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.classes-objects.02.scenario"
     }
   ]

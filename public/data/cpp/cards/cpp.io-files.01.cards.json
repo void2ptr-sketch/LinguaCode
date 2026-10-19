@@ -1,165 +1,170 @@
 {
   "version": "1.0",
   "scenarioId": "cpp.io-files.01.scenario",
-  "title": "Ввод-вывод и файлы — Сценарий 1",
+  "title": "Intro — Intermediate C++",
   "cards": [
     {
       "id": "cpp.io-files.01.scenario.card-01",
       "kind": "select",
-      "title": "Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой класс для работы с файлами в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "std::fstream",
-        "std::file",
-        "std::filesystem",
-        "std::io"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "io-files"
+          "intro",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-02",
       "kind": "select",
-      "title": "Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как открыть файл для чтения и записи?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "std::ios::in | std::ios::out",
-        "std::ios::read",
-        "std::ios::write",
-        "std::ios::both"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "io-files"
+          "intro",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-03",
       "kind": "select",
-      "title": "Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает tellg() в потоках?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Возвращает текущую позицию чтения",
-        "Устанавливает позицию",
-        "Закрывает поток",
-        "Открывает файл"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "io-files"
+          "intro",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-04",
       "kind": "select",
-      "title": "Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как проверить конец файла?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "file.eof()",
-        "file.end()",
-        "file.finish()",
-        "file.done()"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "io-files"
+          "intro",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-05",
       "kind": "select",
-      "title": "Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое binary mode в файлах?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Режим работы с бинарными данными",
-        "Режим текста",
-        "Режим чтения",
-        "Режим записи"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "io-files"
+          "intro",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-06",
       "kind": "select",
-      "title": "Custom file formats (binary, CSV, JSON)",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Custom file formats (binary, CSV, JSON)' в C++?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Custom file formats (binary, CSV, JSON) — важный элемент C++",
+        "Основные аспекты: Основные типы данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -170,26 +175,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "custom"
+          "intro",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-07",
       "kind": "select",
-      "title": "File compression and decompression",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'File compression and decompression' в C++?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: File compression and decompression — важный элемент C++",
+        "Основные аспекты: Переменные и константы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -200,26 +205,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "file"
+          "intro",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-08",
       "kind": "select",
-      "title": "Log file rotation strategies",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Log file rotation strategies' в C++?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Log file rotation strategies — важный элемент C++",
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -230,26 +235,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "log"
+          "intro",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-09",
       "kind": "select",
-      "title": "Atomic file operations",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Atomic file operations' в C++?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Atomic file operations — важный элемент C++",
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -260,26 +265,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "atomic"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-10",
       "kind": "select",
-      "title": "File watching and notifications",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'File watching and notifications' в C++?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Основные аспекты: File watching and notifications — важный элемент C++",
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -290,26 +295,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "file"
+          "intro",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-11",
       "kind": "select",
-      "title": "Symbolic links and hard links",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Symbolic links and hard links' в C++?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Symbolic links and hard links — важный элемент C++",
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -320,26 +325,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "symbolic"
+          "intro",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-12",
       "kind": "select",
-      "title": "Filesystem types and mount points",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Filesystem types and mount points' в C++?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Filesystem types and mount points — важный элемент C++",
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -350,26 +355,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "filesystem"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-13",
       "kind": "select",
-      "title": "Disk I/O scheduling",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Disk I/O scheduling' в C++?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Disk I/O scheduling — важный элемент C++",
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -380,26 +385,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "disk"
+          "intro",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-14",
       "kind": "select",
-      "title": "Cache management for file operations",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Cache management for file operations' в C++?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Cache management for file operations — важный элемент C++",
+        "Основные аспекты: Параметры функций — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -410,26 +415,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "cache"
+          "intro",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     },
     {
       "id": "cpp.io-files.01.scenario.card-15",
       "kind": "select",
-      "title": "Cross-platform file path handling",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Cross-platform file path handling' в C++?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Cross-platform file path handling — важный элемент C++",
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -440,12 +445,162 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "io-files",
-          "cross-platform"
+          "intro",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-io-files",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.io-files.01.scenario"
+    },
+    {
+      "id": "cpp.io-files.01.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.io-files.01.scenario"
+    },
+    {
+      "id": "cpp.io-files.01.scenario.card-17",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.io-files.01.scenario"
+    },
+    {
+      "id": "cpp.io-files.01.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.io-files.01.scenario"
+    },
+    {
+      "id": "cpp.io-files.01.scenario.card-19",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.io-files.01.scenario"
+    },
+    {
+      "id": "cpp.io-files.01.scenario.card-20",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.io-files.01.scenario"
     }
   ]

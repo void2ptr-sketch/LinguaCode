@@ -1,165 +1,170 @@
 {
   "version": "1.0",
   "scenarioId": "cpp.strings-streams.01.scenario",
-  "title": "Строки и потоки — Сценарий 1",
+  "title": "Intro — Intermediate C++",
   "cards": [
     {
       "id": "cpp.strings-streams.01.scenario.card-01",
       "kind": "select",
-      "title": "Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой класс используется для работы со строками в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "std::string",
-        "std::String",
-        "std::text",
-        "std::char"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "strings-streams"
+          "intro",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-02",
       "kind": "select",
-      "title": "Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как вывести текст в консоль в C++?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "std::cout <<",
-        "std::print()",
-        "console.log()",
-        "System.out.println()"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "strings-streams"
+          "intro",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-03",
       "kind": "select",
-      "title": "Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой заголовочный файл нужен для std::string?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "<string>",
-        "<strings>",
-        "<str>",
-        "<cstring>"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "strings-streams"
+          "intro",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-04",
       "kind": "select",
-      "title": "Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое std::cin?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Стандартный входной поток",
-        "Стандартный выходной поток",
-        "Файловый поток",
-        "Строковый поток"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "strings-streams"
+          "intro",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-05",
       "kind": "select",
-      "title": "Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как прочитать строку из ввода в C++?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "std::cin >> variable",
-        "std::cout << variable",
-        "variable.read()",
-        "input(variable)"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "strings-streams"
+          "intro",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-06",
       "kind": "select",
-      "title": "Конкатенация строк",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Конкатенация строк' в C++?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Конкатенация строк — важный элемент C++",
+        "Основные аспекты: Основные типы данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -170,26 +175,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "конкатенация"
+          "intro",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-07",
       "kind": "select",
-      "title": "Поиск подстрок (find, rfind)",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Поиск подстрок (find, rfind)' в C++?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Поиск подстрок (find, rfind) — важный элемент C++",
+        "Основные аспекты: Переменные и константы — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -200,26 +205,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "поиск"
+          "intro",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-08",
       "kind": "select",
-      "title": "Извлечение подстрок (substr)",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Извлечение подстрок (substr)' в C++?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Извлечение подстрок (substr) — важный элемент C++",
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -230,26 +235,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "извлечение"
+          "intro",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-09",
       "kind": "select",
-      "title": "Преобразование строки в число и обратно",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Преобразование строки в число и обратно' в C++?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Преобразование строки в число и обратно — важный элемент C++",
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -260,26 +265,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "преобразование"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-10",
       "kind": "select",
-      "title": "std::string_view для эффективной работы со строками",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::string_view для эффективной работы со строками' в C++?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Основные аспекты: std::string_view для эффективной работы со строками — важный элемент C++",
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -290,26 +295,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "std::string_view"
+          "intro",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-11",
       "kind": "select",
-      "title": "C-style строки vs std::string",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'C-style строки vs std::string' в C++?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Основные аспекты: C-style строки vs std::string — важный элемент C++",
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -320,26 +325,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "c-style"
+          "intro",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-12",
       "kind": "select",
-      "title": "Работа с символами (isspace, isdigit, toupper)",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Работа с символами (isspace, isdigit, toupper)' в C++?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Работа с символами (isspace, isdigit, toupper) — важный элемент C++",
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -350,26 +355,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "работа"
+          "intro",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-13",
       "kind": "select",
-      "title": "Строковые потоки (stringstream) для форматирования",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Строковые потоки (stringstream) для форматирования' в C++?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Строковые потоки (stringstream) для форматирования — важный элемент C++",
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -380,26 +385,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "строковые"
+          "intro",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-14",
       "kind": "select",
-      "title": "Числовые потоки (istringstream, ostringstream)",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Числовые потоки (istringstream, ostringstream)' в C++?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Числовые потоки (istringstream, ostringstream) — важный элемент C++",
+        "Основные аспекты: Параметры функций — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -410,26 +415,26 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "числовые"
+          "intro",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     },
     {
       "id": "cpp.strings-streams.01.scenario.card-15",
       "kind": "select",
-      "title": "Кодировки и Unicode в C++",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Кодировки и Unicode в C++' в C++?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Кодировки и Unicode в C++ — важный элемент C++",
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
         "Не имеет отношения к C++",
         "Устаревшая технология",
         "Только для embedded"
@@ -440,12 +445,162 @@
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
-          "strings-streams",
-          "кодировки"
+          "intro",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-strings-streams",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings-streams.01.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings-streams.01.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario.card-17",
+      "kind": "select",
+      "title": "Рекурсия",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "рекурсия"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings-streams.01.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings-streams.01.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario.card-19",
+      "kind": "select",
+      "title": "Массивы многомерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings-streams.01.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario.card-20",
+      "kind": "select",
+      "title": "Строки и работа с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "intro",
+          "строки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
       "scenarioId": "cpp.strings-streams.01.scenario"
     }
   ]

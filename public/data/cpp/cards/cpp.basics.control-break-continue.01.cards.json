@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-01",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает break?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Прерывает цикл или switch",
-        "Продолжает цикл",
-        "Останавливает программу",
-        "Создает новый цикл"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,30 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-02",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает continue?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Пропускает текущую итерацию",
-        "Прерывает цикл",
-        "Останавливает программу",
-        "Создает новый цикл"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,30 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-03",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Где можно использовать break?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "В циклах и switch",
-        "Только в циклах",
-        "Только в switch",
-        "Везде"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -85,30 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-04",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Где можно использовать continue?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Только в циклах",
-        "Только в switch",
-        "Везде",
-        "Только в if"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -116,30 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-05",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает break в switch?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Выход из case",
-        "Продолжение следующего case",
-        "Ошибка",
-        "Повтор case"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -147,30 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-06",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое fall-through в switch?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Выполнение следующего case без break",
-        "Прерывание цикла",
-        "Ошибка компиляции",
-        "Повтор case"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -178,30 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-07",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает nested break?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Выход из внутреннего цикла",
-        "Выход из внешнего цикла",
-        "Ошибка",
-        "Повтор цикла"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -209,30 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-08",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое labeled break?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Break с меткой для выхода из нескольких циклов",
-        "Обычный break",
-        "Break в switch",
-        "Break в if"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -240,30 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-09",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает continue в for?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Переход к increment и проверке",
-        "Прерывание цикла",
-        "Выход из функции",
-        "Создание нового цикла"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -271,30 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-10",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает continue в while?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Переход к проверке условия",
-        "Прерывание цикла",
-        "Выход из функции",
-        "Создание нового цикла"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -302,30 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-11",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает continue в do-while?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Переход к проверке условия",
-        "Прерывание цикла",
-        "Выход из функции",
-        "Создание нового цикла"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -333,30 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-12",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break вне цикла?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Нет, ошибка компиляции",
-        "Да, игнорируется",
-        "Да, работает как return",
-        "Зависит от компилятора"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -364,30 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-13",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать continue вне цикла?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Нет, ошибка компиляции",
-        "Да, игнорируется",
-        "Да, работает как return",
-        "Зависит от компилятора"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -395,30 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-14",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое infinite loop?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Цикл без выхода",
-        "Быстрый цикл",
-        "Медленный цикл",
-        "Вложенный цикл"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -426,30 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-15",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как прервать infinite loop?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "break или signal",
-        "return",
-        "continue",
-        "exit()"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -457,30 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-16",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает goto?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Неусловный переход по метке",
-        "Прерывание цикла",
-        "Выход из функции",
-        "Создание нового цикла"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -488,30 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-17",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать goto?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "Редко, для обработки ошибок",
-        "Всегда",
-        "Никогда",
-        "Только в циклах"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -519,30 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-18",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое structured programming?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Программирование без goto",
-        "Программирование с goto",
-        "Программирование с break",
-        "Программирование с continue"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,30 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-19",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает early exit pattern?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Ранний return при ошибке",
-        "Бесконечный цикл",
-        "Вложенные if",
-        "Goto"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -581,30 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     },
     {
       "id": "cpp.basics.control-break-continue.01.scenario.card-20",
       "kind": "select",
-      "title": "Управление циклами: break и continue - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clause?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Проверка условия в начале функции",
-        "Проверка в конце",
-        "Вложенный if",
-        "Цикл"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -612,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "control-flow",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-control-flow",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.control-break-continue.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

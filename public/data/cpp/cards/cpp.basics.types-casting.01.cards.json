@@ -4,622 +4,603 @@
     {
       "id": "cpp.basics.types-casting.01.scenario.card-01",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает static_cast?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Битовое преобразование",
-        "Динамическую проверку",
-        "Удаление const",
-        "Статическое преобразование типов на этапе компиляции"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-02",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast удаляет const?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "dynamic_cast",
-        "static_cast",
-        "reinterpret_cast",
-        "const_cast"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-03",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает dynamic_cast?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Битовое преобразование",
-        "Статическое приведение",
-        "Удаление const",
-        "Безопасное приведение с проверкой во время выполнения"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-04",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast выполняет битовое преобразование указателя?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "dynamic_cast",
-        "static_cast",
-        "const_cast",
-        "reinterpret_cast"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-05",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<int>(3.7)`?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "3.7",
-        "4",
-        "Ошибка",
-        "3"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-06",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда используется dynamic_cast?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Только для int",
-        "Для любых типов",
-        "На этапе компиляции",
-        "Для polymorphic типов (с virtual методами)"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-07",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<double>(5)`?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "0",
-        "5",
-        "Ошибка",
-        "5.0"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-08",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast безопасен для downcast указателя?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "reinterpret_cast",
-        "static_cast",
-        "const_cast",
-        "dynamic_cast"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-09",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `reinterpret_cast<int>(ptr)` (где ptr = 0x1000)?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Указатель",
-        "0x1000",
-        "Ошибка",
-        "4096"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-10",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает static_cast между наследниками?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Битовое преобразование",
-        "Проверку во время выполнения",
-        "Удаление const",
-        "Приведение без проверки типа"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-11",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast может вернуть nullptr при неудаче?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "reinterpret_cast",
-        "static_cast",
-        "const_cast",
-        "dynamic_cast (для указателей)"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-12",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<int>(true)`?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "true",
-        "0",
-        "Ошибка",
-        "1"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-13",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast опасен и требует осторожности?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "dynamic_cast",
-        "static_cast",
-        "const_cast",
-        "reinterpret_cast"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-14",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `const_cast<int&>(x) = 5` (где x const int)?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Ошибка",
-        "Оригинальное значение",
-        "Ничего",
-        "5"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-15",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда static_cast вызывает ошибку компиляции?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Только для int",
-        "Всегда",
-        "Никогда",
-        "При приведении без отношения наследования (без virtual)"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-16",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<char>(65)`?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "0",
-        "65",
-        "Ошибка",
-        "'A'"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-17",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast сохраняет тип при приведении к base class?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "Только static_cast",
-        "Только dynamic_cast",
-        "reinterpret_cast",
-        "Любой из них (upcast безопасен)"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-18",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<int>(3.9)`?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "3.9",
-        "4",
-        "Ошибка",
-        "3"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-19",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой cast используется для приведения void* к другому типу?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "reinterpret_cast",
-        "dynamic_cast",
-        "const_cast",
-        "static_cast"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     },
     {
       "id": "cpp.basics.types-casting.01.scenario.card-20",
       "kind": "select",
-      "title": "Приведение типов - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что выведет: `static_cast<int>(false)`?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "false",
-        "1",
-        "Ошибка",
-        "0"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 2,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-casting.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

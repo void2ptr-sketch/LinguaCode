@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.performance.16.scenario.card-01",
       "kind": "select",
-      "title": "Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как открыть файл для чтения?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "std::ifstream file(\"path.txt\");",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,28 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-02",
       "kind": "select",
-      "title": "Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как записать в файл?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "std::ofstream file(\"path.txt\", std::ios::out);",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -52,28 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-03",
       "kind": "select",
-      "title": "Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `std::filesystem::exists()`?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Проверка существования файла или директории (C++17)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -81,28 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-04",
       "kind": "select",
-      "title": "Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как прочитать весь файл в string?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "std::string content((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -110,28 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-05",
       "kind": "select",
-      "title": "Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое `std::cout`?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Стандартный поток вывода (stdout)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -139,28 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-06",
       "kind": "select",
-      "title": "Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как получить размер файла?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "std::filesystem::file_size(path)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -168,28 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-07",
       "kind": "select",
-      "title": "Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает file.seekg()?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Перемещение указателя чтения в потоке ввода",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -197,28 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-08",
       "kind": "select",
-      "title": "Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как создать директорию рекурсивно?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "std::filesystem::create_directories(path)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -226,28 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-09",
       "kind": "select",
-      "title": "Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое `std::fstream`?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Класс для ввода-вывода файлов (наследник std::iostream)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -255,28 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-10",
       "kind": "select",
-      "title": "Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как переименовать файл?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "std::filesystem::rename(old_path, new_path)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -284,28 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-11",
       "kind": "select",
-      "title": "Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `std::ios::binary`?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Бинарный режим открытия файла (без преобразования переводов строк)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -313,28 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-12",
       "kind": "select",
-      "title": "Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как проверить конец файла?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "!file.eof() или !file.good()",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -342,28 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-13",
       "kind": "select",
-      "title": "Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает file.clear()?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Сброс всех флагов состояния потока (eof, fail, bad)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -371,28 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-14",
       "kind": "select",
-      "title": "Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как удалить файл?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "std::filesystem::remove(path)",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -400,28 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-15",
       "kind": "select",
-      "title": "Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое `std::endl`?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Перевод строки + принудительный flush буфера вывода",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -429,28 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-16",
       "kind": "select",
-      "title": "Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как получить текущую рабочую директорию?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "std::filesystem::current_path()",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -458,28 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-17",
       "kind": "select",
-      "title": "Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как перебрать файлы в директории?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "for (const auto& entry : std::filesystem::directory_iterator(path))",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -487,28 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-18",
       "kind": "select",
-      "title": "Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `file.exceptions()`?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Настройка выброса исключений при ошибках потока",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -516,28 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-19",
       "kind": "select",
-      "title": "Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать `std::setw()`?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "std::cout << std::setw(10) << value; — установка ширины поля",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -545,28 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     },
     {
       "id": "cpp.basics.performance.16.scenario.card-20",
       "kind": "select",
-      "title": "Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Ч",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "о",
-        " ",
-        "т",
-        "а"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -574,12 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.16.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

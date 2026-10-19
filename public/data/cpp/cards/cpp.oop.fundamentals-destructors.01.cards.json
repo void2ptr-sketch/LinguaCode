@@ -4,18 +4,18 @@
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-01",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое destructor?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Специальная функция для очистки объекта",
-        "Без функции",
-        "Удаление функции",
-        "Добавление функции"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -24,29 +24,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-02",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual destructor?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Destructors с ключевым словом virtual для полиморфного удаления",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -55,29 +54,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-03",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое non-virtual destructor?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Destructors без ключевого слова virtual",
-        "С virtual",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -86,29 +84,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
           "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-04",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое explicit destructor?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Destructors с явным вызовом ~ClassName()",
-        "Неявный вызов",
-        "Без вызова",
-        "Случайный вызов"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -117,29 +114,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-05",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое implicit destructor?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Destructors, генерируемый компилятором по умолчанию",
-        "Явный destructors",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -148,29 +144,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-06",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое defaulted destructor?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Destructors с = default",
-        "Удаленный destructors",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -179,29 +174,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-07",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое deleted destructor?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Destructors с = delete",
-        "Разрешенный destructors",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -210,29 +204,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-08",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое private destructor?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Destructors с private access для предотвращения удаления",
-        "Public destructors",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -241,29 +234,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-09",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое protected destructor?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Destructors с protected access для наследников",
-        "Public destructors",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -272,29 +264,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-10",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое order of destruction?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Порядок вызова destructors (обратный порядку constructor)",
-        "Прямой порядок",
-        "Случайный порядок",
-        "Нет порядка"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -303,29 +294,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-11",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое stack unwinding?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Процесс вызова destructors при выходе из области видимости",
-        "Без процесса",
-        "Удаление процесса",
-        "Добавление процесса"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -334,29 +324,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-12",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое RAII?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Resource Acquisition Is Initialization",
-        "Resource Allocation After Initialization",
-        "Resource Access After Initialization",
-        "Resource Avoidance After Initialization"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -365,29 +354,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-13",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое scope guard?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Объект для выполнения кода при выходе из области видимости",
-        "Без объекта",
-        "Удаление объекта",
-        "Добавление объекта"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -396,29 +384,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-14",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое atexit handler?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Функция вызова при завершении программы",
-        "Без функции",
-        "Удаление функции",
-        "Добавление функции"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -427,29 +414,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-15",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое std::at_quick_exit?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Быстрый exit handler для критических ситуаций",
-        "Обычный exit handler",
-        "Без handler",
-        "Случайный handler"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -458,29 +444,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-16",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое noexcept destructor?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Destructors, не бросающий исключений",
-        "Бросающий исключения",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -489,29 +474,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-17",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое throw destructor?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Destructors, бросающий исключения (опасно!)",
-        "Не бросающий исключения",
-        "Без destructors",
-        "Случайный destructors"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -520,29 +504,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-18",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое terminate on destructor throw?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Вызов std::terminate при исключении из destructors",
-        "Без вызова",
-        "Удаление вызова",
-        "Добавление вызова"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -551,29 +534,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-19",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое unique_ptr destructor?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Destructors unique_ptr для удаления объекта",
-        "Без destructors",
-        "Удаление destructors",
-        "Добавление destructors"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -582,29 +564,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-20",
       "kind": "select",
-      "title": "Деструкторы - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое shared_ptr destructor?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Destructors shared_ptr для уменьшения count и удаления",
-        "Без destructors",
-        "Удаление destructors",
-        "Добавление destructors"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -613,13 +594,13 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes",
-          "encapsulation"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-fundamentals",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Intermediate C++"
 }

@@ -3,7 +3,10 @@ import type { Scenario } from '../../scenario/model';
 import type { CardBase } from '../../card/model';
 import type { JourneyLocationNode, JourneyContentType } from '../../learning/model';
 import { CARD_KIND_TO_CONTENT_TYPE } from '../../learning/model';
-import { scenarioCardIds } from '../../course/utils/course-practice.utils';
+import {
+  resolveCoursePracticeSettings,
+  scenarioCardIds,
+} from '../../course/utils/course-practice.utils';
 /** Маппинг scenarioId → Scenario для быстрого доступа. */
 type ScenarioMap = Map<string, Scenario>;
 
@@ -116,8 +119,18 @@ export function buildJourneyNodes(
   const lessonsById = buildLessonsById(sortedLessons);
   const allNodes: JourneyLocationNode[] = [];
 
+  // Уважаем practiceSettings курса: при `enforceLessonPrerequisites: false`
+  // (open-режим) пререквизиты на карте не применяются — все уроки открыты.
+  const enforcePrerequisites =
+    resolveCoursePracticeSettings(course).enforceLessonPrerequisites !== false;
+
   for (const lesson of sortedLessons) {
-    const isLessonUnlocked = isLessonUnlockedInternal(lesson, lessonsById, hasScenarioResult);
+    const isLessonUnlocked = isLessonUnlockedInternal(
+      lesson,
+      lessonsById,
+      hasScenarioResult,
+      enforcePrerequisites,
+    );
     const isLessonCompleted = isLessonCompletedInternal(lesson, hasScenarioResult);
 
     for (let order = 0; order < lesson.scenarioIds.length; order++) {
@@ -181,7 +194,12 @@ function isLessonUnlockedInternal(
   lesson: Lesson,
   lessonsById: Map<string, Lesson>,
   hasScenarioResult: (scenarioId: string) => boolean,
+  enforcePrerequisites: boolean,
 ): boolean {
+  if (!enforcePrerequisites) {
+    return true;
+  }
+
   const prerequisites = lesson.prerequisiteLessonIds ?? [];
 
   for (const prerequisiteId of prerequisites) {

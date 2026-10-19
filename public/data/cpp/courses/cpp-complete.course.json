@@ -9,6 +9,11 @@
         "known": "ru",
         "learning": "cpp"
       },
+      "practiceSettings": {
+        "mode": "open",
+        "enforceLessonPrerequisites": false,
+        "requireLessonForScenarios": false
+      },
       "lessonIds": [
         "lesson-cpp-basics-intro",
         "lesson-cpp-basics-types",

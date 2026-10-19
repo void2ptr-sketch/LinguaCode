@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-01",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое inline функция?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Функция, встроенная в вызов",
-        "Функция без return",
-        "Функция без параметров",
-        "Функция с одним параметром"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,30 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-02",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Зачем использовать inline?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Устранение накладных расходов вызова",
-        "Увеличение размера",
-        "Уменьшение скорости",
-        "Изменение типа"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,30 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-03",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое macro?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Текстовая подстановка на этапе препроцессинга",
-        "Функция",
-        "Переменная",
-        "Массив"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -85,30 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-04",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое #define macro?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Препроцессорная директива",
-        "Функция",
-        "Переменная",
-        "Массив"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -116,30 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-05",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое function-like macro?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Macro с параметрами",
-        "Без параметров",
-        "С одним параметром",
-        "С фиксированным числом"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -147,30 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-06",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое macro expansion?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Замена macro на тело",
-        "Удаление macro",
-        "Изменение macro",
-        "Добавление macro"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -178,30 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-07",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое macro side effects?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Неожиданное поведение из-за подстановки",
-        "Ожидаемое поведение",
-        "Нет поведения",
-        "Случайное поведение"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -209,30 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-08",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое constexpr function?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Функция, вычисляемая на этапе компиляции",
-        "Функция без return",
-        "Функция без параметров",
-        "Функция с одним параметром"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -240,30 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-09",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем constexpr отличается от inline?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "constexpr вычисляется на этапе компиляции",
-        "inline быстрее",
-        "constexpr медленнее",
-        "Нет разницы"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -271,30 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-10",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template inline?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Inline для шаблонов",
-        "Без inline",
-        "С одним типом",
-        "Без типов"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -302,30 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-11",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое header-only library?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Библиотека только в заголовках",
-        "Только в .cpp",
-        "Только в .h",
-        "Только в .o"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -333,30 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-12",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое include guard?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Защита от многократного включения",
-        "Защита от удаления",
-        "Защита от изменения",
-        "Защита от добавления"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -364,30 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-13",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое #pragma once?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Альтернатива include guard",
-        "Дубликат include guard",
-        "Удаление include guard",
-        "Изменение include guard"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -395,30 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-14",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое macro constant?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Константа через #define",
-        "Переменная",
-        "Функция",
-        "Массив"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -426,30 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-15",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое enum class?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Типобезопасное перечисление",
-        "Обычное перечисление",
-        "Без типов",
-        "С одним типом"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -457,30 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-16",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем enum class лучше macro constant?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Типобезопасность и scope",
-        "Macro быстрее",
-        "Macro проще",
-        "Нет разницы"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -488,30 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-17",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое static inline variable?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "Статическая переменная в классе",
-        "Динамическая переменная",
-        "Глобальная переменная",
-        "Локальная переменная"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -519,30 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-18",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое ODR violation?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Нарушение одного определения",
-        "Соблюдение одного определения",
-        "Нет нарушения",
-        "Частичное нарушение"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,30 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-19",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое inline variable C++17?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Переменная в заголовке с определением",
-        "Переменная без определения",
-        "Переменная в .cpp",
-        "Переменная без типа"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -581,30 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     },
     {
       "id": "cpp.basics.functions-inline-macros.01.scenario.card-20",
       "kind": "select",
-      "title": "Inline и макросы - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое constexpr if?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Условие на этапе компиляции",
-        "Условие во время выполнения",
-        "Условие в switch",
-        "Условие в цикле"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -612,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-inline-macros.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.types-floating.01.scenario.card-01",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой тип используется для чисел с плавающей точкой в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "float, double, long double",
-        "int, char, bool",
-        "string, vector, array",
-        "short, long, unsigned"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,30 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-02",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Сколько бит занимает double в большинстве систем?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "64 бита",
-        "32 бита",
-        "16 бит",
-        "128 бит"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,30 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-03",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое NaN?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Not a Number - специальное значение",
-        "Null And Null",
-        "New Array Node",
-        "Named Address Number"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -85,30 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-04",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой суффикс указывает float литерал?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "f или F (например 3.14f)",
-        "l или L",
-        "u или U",
-        "нет суффикса"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -116,30 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-05",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое infinity в C++?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Специальное значение для бесконечности",
-        "Ошибка компиляции",
-        "Максимальное int",
-        "Нуль"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -147,30 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-06",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая точность у float?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Около 7 значащих цифр",
-        "15-17 цифр",
-        "2 цифры",
-        "Неограниченная"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -178,30 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-07",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое denormalized number?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Число очень близкое к нулю",
-        "Отрицательное число",
-        "Бесконечность",
-        "NaN"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -209,30 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-08",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой оператор сравнения чисел с плавающей точкой опасен?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "== (проверка на равенство)",
-        "===",
-        "+",
-        "-"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -240,30 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-09",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое epsilon в контексте float?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Минимальная разница для сравнения",
-        "Максимальное значение",
-        "Тип данных",
-        "Оператор"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -271,30 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-10",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой диапазон у float?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Приблизительно ±1.2E-38 до ±3.4E+38",
-        "0 до 255",
-        "-128 до 127",
-        "Неограниченный"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -302,30 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-11",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что произойдет при 1.0/0.0 в C++?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Infinity",
-        "Ошибка компиляции",
-        "NaN",
-        "0"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -333,30 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-12",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое sign bit в float?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Бит, определяющий знак числа",
-        "Бит точности",
-        "Бит экспоненты",
-        "Бит переполнения"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -364,30 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-13",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое mantissa в float?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Значащая часть числа",
-        "Экспонента",
-        "Знаковый бит",
-        "Бит точности"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -395,30 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-14",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какой тип имеет литерал 3.14?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "double",
-        "float",
-        "int",
-        "long double"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -426,30 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-15",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое overflow float?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Число слишком велико для представления",
-        "Число слишком мало",
-        "Деление на ноль",
-        "Недостаток памяти"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -457,30 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-16",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое underflow float?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Число слишком близко к нулю",
-        "Число слишком велико",
-        "Отрицательное число",
-        "NaN"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -488,30 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-17",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая разница между float и double?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "double имеет большую точность и диапазон",
-        "float быстрее",
-        "Нет разницы",
-        "float больше"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -519,30 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-18",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает std::numeric_limits<float>::epsilon()?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Возвращает машинный эпсилон для float",
-        "Устанавливает epsilon",
-        "Создает float",
-        "Очищает значение"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,30 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-19",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое scientific notation в C++?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Запись вида 1.23e-4",
-        "Строковое представление",
-        "Шестнадцатеричная запись",
-        "Двоичная запись"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -581,30 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-20",
       "kind": "select",
-      "title": "Вещественные типы - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли присвоить double переменной float без потери?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Нет, требуется явное приведение",
-        "Да, автоматически",
-        "Только в C++17",
-        "Зависит от компилятора"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -612,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "types",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-types",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.types-floating.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

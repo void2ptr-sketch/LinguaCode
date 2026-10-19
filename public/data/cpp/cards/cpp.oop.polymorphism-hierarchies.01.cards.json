@@ -4,18 +4,18 @@
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-01",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое inheritance hierarchy?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Иерархия классов через наследование",
-        "Без иерархии",
-        "Удаление иерархии",
-        "Добавление иерархии"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -24,28 +24,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-02",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое base class?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Родительский класс в иерархии",
-        "Дочерний класс",
-        "Братский класс",
-        "Сестринский класс"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,28 +54,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-03",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое derived class?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Дочерний класс в иерархии",
-        "Родительский класс",
-        "Братский класс",
-        "Сестринский класс"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -84,28 +84,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-04",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое root class?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Корневой класс в иерархии",
-        "Листовой класс",
-        "Промежуточный класс",
-        "Случайный класс"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -114,28 +114,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-05",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое leaf class?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Класс без производных классов",
-        "Класс с производными",
-        "Промежуточный класс",
-        "Случайный класс"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -148,24 +148,24 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-06",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое deep hierarchy?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Глубокая иерархия с многими уровнями",
-        "Плоская иерархия",
-        "Нет иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -174,28 +174,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-07",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое flat hierarchy?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Плоская иерархия с малым количеством уровней",
-        "Глубокая иерархия",
-        "Нет иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -204,28 +204,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-08",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое mixin hierarchy?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Иерархия с mix-in классами для добавления функциональности",
-        "Без mix-in",
-        "Удаление mix-in",
-        "Добавление mix-in"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -234,28 +234,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-09",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое interface hierarchy?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Иерархия только с интерфейсами",
-        "Иерархия с данными",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -264,28 +264,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-10",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое implementation hierarchy?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Иерархия с реализациями",
-        "Иерархия без реализаций",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -294,28 +294,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-11",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance hierarchy?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Иерархия с множественным наследованием",
-        "Иерархия с одним базовым",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -324,28 +324,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-12",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual inheritance hierarchy?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Иерархия с виртуальным наследованием",
-        "Иерархия без виртуального",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -354,28 +354,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-13",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond inheritance hierarchy?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Иерархия с ромбовидной структурой",
-        "Линейная иерархия",
-        "Древовидная иерархия",
-        "Случайная иерархия"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -384,28 +384,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-14",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tree hierarchy?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Древовидная иерархия",
-        "Линейная иерархия",
-        "Нет иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -414,28 +414,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-15",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое graph hierarchy?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Графовая иерархия с перекрестными связями",
-        "Линейная иерархия",
-        "Древовидная иерархия",
-        "Случайная иерархия"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -444,28 +444,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-16",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое composition hierarchy?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Иерархия через композицию",
-        "Иерархия через наследование",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -474,28 +474,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-17",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое aggregation hierarchy?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Иерархия через агрегацию",
-        "Иерархия через композицию",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -504,28 +504,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-18",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое association hierarchy?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Иерархия через ассоциацию",
-        "Иерархия через композицию",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -534,28 +534,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-19",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое dependency hierarchy?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Иерархия через зависимости",
-        "Иерархия без зависимостей",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -564,28 +564,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-20",
       "kind": "select",
-      "title": "Полиморфные иерархии - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое polymorphic hierarchy?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Иерархия с полиморфизмом",
-        "Иерархия без полиморфизма",
-        "Без иерархии",
-        "Случайная иерархия"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -594,12 +594,13 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "polymorphism"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-polymorphism",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Intermediate C++"
 }

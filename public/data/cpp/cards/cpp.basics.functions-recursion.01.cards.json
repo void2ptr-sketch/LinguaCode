@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-01",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое рекурсия?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Функция вызывает сама себя",
-        "Функция без параметров",
-        "Функция без return",
-        "Функция с одним параметром"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,30 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-02",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое base case?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Условие остановки рекурсии",
-        "Начало рекурсии",
-        "Средний случай",
-        "Конец программы"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,30 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-03",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursive case?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Вызов функции с меньшим аргументом",
-        "Без вызова",
-        "С большим аргументом",
-        "Бесконечный вызов"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -85,30 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-04",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое stack overflow?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Переполнение стека при глубокой рекурсии",
-        "Переполнение кучи",
-        "Переполнение памяти",
-        "Переполнение диска"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -116,30 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-05",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Рекурсия в конце функции",
-        "Рекурсия в начале",
-        "Рекурсия в середине",
-        "Без рекурсии"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -147,30 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-06",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail call optimization?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "Оптимизация хвостовой рекурсии",
-        "Оптимизация начала",
-        "Оптимизация середины",
-        "Без оптимизации"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -178,30 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-07",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое memoization?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Кэширование результатов рекурсии",
-        "Удаление результатов",
-        "Создание результатов",
-        "Изменение результатов"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -209,30 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-08",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое dynamic programming?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Оптимизация рекурсии через кэш",
-        "Без кэша",
-        "С кэшем",
-        "Без рекурсии"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -240,30 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-09",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Fibonacci рекурсия?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "F(n) = F(n-1) + F(n-2)",
-        "F(n) = F(n-1) * F(n-2)",
-        "F(n) = F(n-1) - F(n-2)",
-        "F(n) = F(n-1) / F(n-2)"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -271,30 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-10",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая сложность Fibonacci рекурсии?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "O(2^n)",
-        "O(n)",
-        "O(n^2)",
-        "O(log n)"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -302,30 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-11",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое factorial рекурсия?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "n! = n * (n-1)! ",
-        "n! = n + (n-1)!",
-        "n! = n - (n-1)!",
-        "n! = n / (n-1)!"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -333,30 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-12",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какая сложность factorial рекурсии?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "O(n)",
-        "O(1)",
-        "O(n^2)",
-        "O(log n)"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -364,30 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-13",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое mutual recursion?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Две функции вызывают друг друга",
-        "Одна функция",
-        "Три функции",
-        "Без функций"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -395,30 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-14",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое higher-order recursion?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "Рекурсия с функциями как аргументами",
-        "Обычная рекурсия",
-        "Без функций",
-        "Без аргументов"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -426,30 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-15",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Y-combinator?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Фиксированная точка для рекурсии",
-        "Без фиксированной точки",
-        "С фиксированной точкой",
-        "Без рекурсии"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -457,30 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-16",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursion depth?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Глубина вложенных вызовов",
-        "Ширина вызовов",
-        "Высота вызовов",
-        "Длина вызовов"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -488,30 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursion limit?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "Максимальная глубина рекурсии",
-        "Минимальная глубина",
-        "Средняя глубина",
-        "Нет предела"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -519,30 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-18",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursion tree?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Дерево вызовов рекурсии",
-        "Граф вызовов",
-        "Список вызовов",
-        "Массив вызовов"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,30 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-19",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursion stack?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Стек кадров рекурсии",
-        "Куча кадров",
-        "Список кадров",
-        "Массив кадров"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -581,30 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     },
     {
       "id": "cpp.basics.functions-recursion.01.scenario.card-20",
       "kind": "select",
-      "title": "Рекурсия - Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое recursion unwind?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Возврат из рекурсии",
-        "Вызов рекурсии",
-        "Создание рекурсии",
-        "Удаление рекурсии"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -612,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "language-basics",
-          "functions",
-          "syntax"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-functions",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.functions-recursion.01.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

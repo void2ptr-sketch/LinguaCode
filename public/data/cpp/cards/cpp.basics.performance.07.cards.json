@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.performance.07.scenario.card-01",
       "kind": "select",
-      "title": "Вопрос 1",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template в C++?",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
       "optionsLearning": [
-        "Анонимная функция",
-        "Тип данных для коллекций",
-        "Макрос препроцессора",
-        "Вариант 4"
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,28 +23,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-02",
       "kind": "select",
-      "title": "Вопрос 2",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить template функцию?",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "generic<T> void func(T param)",
-        "function<T> void func(T param)",
-        "template(T) void func(T param)",
-        "Вариант 4"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -52,28 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-03",
       "kind": "select",
-      "title": "Вопрос 3",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое specialization шаблона?",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Ошибка компиляции",
-        "Анонимный шаблон",
-        "Шаблон без параметров",
-        "Вариант 4"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -81,28 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-04",
       "kind": "select",
-      "title": "Вопрос 4",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `typename` в template parameter?",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "Создаёт новый тип",
-        "Удаляет тип",
-        "Приводит к базовому типу",
-        "Вариант 4"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -110,28 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-05",
       "kind": "select",
-      "title": "Вопрос 5",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое variadic template?",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Шаблон без параметров",
-        "Шаблон с одним параметром",
-        "Вложенный шаблон",
-        "Вариант 4"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -139,28 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-06",
       "kind": "select",
-      "title": "Вопрос 6",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как создать template class?",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
       "optionsLearning": [
-        "generic<T> class Container {}",
-        "class Container<type T> {}",
-        "template(T) class Container {}",
-        "Вариант 4"
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -168,28 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-07",
       "kind": "select",
-      "title": "Вопрос 7",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template metaprogramming?",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Написание шаблонных функций",
-        "Использование STL",
-        "Динамический полиморфизм",
-        "Вариант 4"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -197,28 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-08",
       "kind": "select",
-      "title": "Вопрос 8",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `template<>`?",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "Удаляет шаблон",
-        "Создаёт новый шаблон",
-        "Отменяет specialization",
-        "Вариант 4"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -226,28 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-09",
       "kind": "select",
-      "title": "Вопрос 9",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое partial specialization?",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
       "optionsLearning": [
-        "Частичный шаблон без body",
-        "Шаблон с одним параметром",
-        "Анонимный template",
-        "Вариант 4"
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -255,28 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-10",
       "kind": "select",
-      "title": "Вопрос 10",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать template с non-type parameter?",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "template<typename N> class Array {}",
-        "template(const int N) class Array {}",
-        "template(int N) class Array {}",
-        "Вариант 4"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -284,28 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-11",
       "kind": "select",
-      "title": "Вопрос 11",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое SFINAE?",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
       "optionsLearning": [
-        "Ошибка в шаблоне",
-        "Статический анализ кода",
-        "Система исключений для template",
-        "Вариант 4"
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -313,28 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-12",
       "kind": "select",
-      "title": "Вопрос 12",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `decltype()`?",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Приводит к типу int",
-        "Удаляет const/volatile",
-        "Создаёт new объект",
-        "Вариант 4"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -342,28 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-13",
       "kind": "select",
-      "title": "Вопрос 13",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое concept (C++20)?",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "Новый тип данных",
-        "Старый name для template",
-        "Алгоритм сортировки",
-        "Вариант 4"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -371,28 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-14",
       "kind": "select",
-      "title": "Вопрос 14",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как ограничить шаблон constraint'ами?",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "template<integral T>",
-        "template(T: integral)",
-        "template<typename T where integral>",
-        "Вариант 4"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -400,28 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-15",
       "kind": "select",
-      "title": "Вопрос 15",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `static_assert`?",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Проверка во время выполнения",
-        "Ассерт в debug режиме",
-        "Логическое И",
-        "Вариант 4"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -429,28 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-16",
       "kind": "select",
-      "title": "Вопрос 16",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое fold expression (C++17)?",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Свёртка массива",
-        "Рекурсивный template",
-        "Итератор по шаблону",
-        "Вариант 4"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -458,28 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-17",
       "kind": "select",
-      "title": "Вопрос 17",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить template alias?",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "typedef std::vector<T> Vec;",
-        "alias Vec = vector<T>;",
-        "template<typename T> alias Vec = vector<T>;",
-        "Вариант 4"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -487,28 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-18",
       "kind": "select",
-      "title": "Вопрос 18",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое template template parameter?",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
       "optionsLearning": [
-        "Вложенный шаблон внутри класса",
-        "Шаблон без параметров",
-        "Анонимный параметр",
-        "Вариант 4"
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -516,28 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-19",
       "kind": "select",
-      "title": "Вопрос 19",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делает `auto` в return type (C++14)?",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Динамический тип",
-        "Указатель на auto-память",
-        "Глобальная переменная",
-        "Вариант 4"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -545,28 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     },
     {
       "id": "cpp.basics.performance.07.scenario.card-20",
       "kind": "select",
-      "title": "Вопрос 20",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое `decltype(auto)`?",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Вывод типа с сохранением reference/const qualifiers",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -574,12 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "performance"
+          "basics",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics-performance",
+      "lessonId": "lesson-cpp-basics",
       "scenarioId": "cpp.basics.performance.07.scenario"
     }
-  ]
+  ],
+  "title": "Basics — Basics C++"
 }

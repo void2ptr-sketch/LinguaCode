@@ -3,149 +3,139 @@
   "cards": [
     {
       "id": "cpp.advanced.ub.01.scenario.card-01",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 1: use-after-free",
+      "kind": "select",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint* p = new int(42);\ndelete p;\nstd::cout << *p;",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42",
-        "Неопределённое поведение (use-after-free)",
-        "0",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "memory",
-          "delete"
+          "advanced",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-02",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 2: что такое UB?",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что означает Undefined Behavior в C++?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "Компилятор обязан выдать ошибку",
-        "Стандарт не гарантирует поведение — программа может вести себя любым образом",
-        "Программа всегда завершается с ошибкой",
-        "Это предупреждение компилятора"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "standards"
+          "advanced",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-03",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 3: signed integer overflow",
+      "kind": "select",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint x = 2147483647; // INT_MAX\nx = x + 1;\nstd::cout << x;",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "-2147483648 (переполнение)",
-        "Неопределённое поведение",
-        "0",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "overflow",
-          "int"
+          "advanced",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-04",
-      "kind": "code-select",
-      "title": "Undefined Behavior — Вопрос 4: null pointer dereference",
+      "kind": "select",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой код вызывает UB?",
-      "code": {
-        "code": "int* p = nullptr;\n// Какой вариант вызывает UB?\n???;",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
       "optionsLearning": [
-        "if (p) *p = 5;",
-        "*p = 5;",
-        "std::cout << p;",
-        "delete p;"
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "null-pointer",
-          "dereference"
+          "advanced",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-05",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 5: unsequenced modifications",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что вызывает UB при unsequenced modifications?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "int x = 5; int y = x++ + ++x;",
-        "int x = 5; std::cout << x;",
-        "int x = 5; x = 10;",
-        "int x = 5; if (x > 3) {}"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -153,131 +143,59 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "sequencing",
-          "operator-precedence"
+          "advanced",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-06",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 6: dangling reference",
+      "kind": "select",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint& getRef() {\n  int x = 42;\n  return x;\n}\nstd::cout << getRef();",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42",
-        "Неопределённое поведение (dangling reference)",
-        "0",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "dangling-reference",
-          "lifetime"
+          "advanced",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-07",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 7: strict aliasing",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое strict aliasing rule?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "Объекты разных типов могут обращаться к одной памяти через указатели",
-        "Доступ к объекту через указатель несовместимого типа — UB",
-        "Указатели всегда 64-битные",
-        "Тип int можно приводить к float без UB"
-      ],
-      "correctIndex": 1,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "undefined-behavior",
-          "strict-aliasing",
-          "casting"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
-      "scenarioId": "cpp.advanced.ub.01.scenario"
-    },
-    {
-      "id": "cpp.advanced.ub.01.scenario.card-08",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 8: array out of bounds",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint arr[5] = {1, 2, 3, 4, 5};\nstd::cout << arr[5];",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "0 (нулевой элемент)",
-        "Неопределённое поведение (out-of-bounds)",
-        "5 (последний элемент)",
-        "Ошибка компиляции"
-      ],
-      "correctIndex": 1,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "undefined-behavior",
-          "array",
-          "out-of-bounds"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
-      "scenarioId": "cpp.advanced.ub.01.scenario"
-    },
-    {
-      "id": "cpp.advanced.ub.01.scenario.card-09",
-      "kind": "code-select",
-      "title": "Undefined Behavior — Вопрос 9: uninitialized variable",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "question": "Какой код вызывает UB?",
-      "code": {
-        "code": "int x;\n// Какой вариант вызывает UB?\n???;",
-        "language": "cpp"
-      },
-      "optionsLearning": [
-        "std::cout << x;",
-        "x = 5;",
-        "if (x == 0) {}",
-        "int y = x + 1;"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -285,29 +203,89 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "uninitialized",
-          "variable"
+          "advanced",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-08",
+      "kind": "select",
+      "title": "Ввод/вывод данных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "ввод/вывод"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-09",
+      "kind": "select",
+      "title": "Операторы и выражения",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "операторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-10",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 10: signed shift overflow",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что вызывает UB при побитных сдвигах?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Сдвиг на отрицательное число или >= width типа",
-        "Сдвиг на 1 бит",
-        "Сдвиг unsigned значения",
-        "Сдвиг nullptr"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -315,63 +293,59 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "bitwise",
-          "shift"
+          "advanced",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-11",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 11: iterator invalidation",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <vector>\n#include <iostream>\nstd::vector<int> v = {1, 2, 3};\nauto it = v.begin();\nv.push_back(4);\nstd::cout << *it;",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "1",
-        "Неопределённое поведение (iterator invalidation)",
-        "4",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "iterator",
-          "vector"
+          "advanced",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-12",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 12: division by zero",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что вызывает UB при делении?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Деление целого числа на ноль",
-        "Деление double на ноль",
-        "Деление unsigned на ноль",
-        "Деление на 1"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -379,33 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "division",
-          "zero"
+          "advanced",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-13",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 13: signed/unsigned comparison",
+      "kind": "select",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint x = -1;\nif (x > 5u) {\n  std::cout << \"yes\";\n} else {\n  std::cout << \"no\";\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "yes",
-        "no",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -413,33 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "signed-unsigned",
-          "comparison"
+          "advanced",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-14",
-      "kind": "code-select",
-      "title": "Undefined Behavior — Вопрос 14: double free",
+      "kind": "select",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой код вызывает UB?",
-      "code": {
-        "code": "int* p = new int(42);\n// Какой вариант вызывает UB?\n???;",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
       "optionsLearning": [
-        "delete p; delete p;",
-        "delete p;",
-        "int x = *p;",
-        "p = nullptr;"
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -447,63 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "double-free",
-          "delete"
+          "advanced",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-15",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 15: stack overflow",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что вызывает UB при переполнении стека?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "Бесконечная рекурсия без base case",
-        "Большой массив на стеке",
-        "Глубокая иерархия наследования",
-        "Все перечисленные варианты"
-      ],
-      "correctIndex": 3,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "undefined-behavior",
-          "stack-overflow",
-          "recursion"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
-      "scenarioId": "cpp.advanced.ub.01.scenario"
-    },
-    {
-      "id": "cpp.advanced.ub.01.scenario.card-16",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 16: pointer arithmetic overflow",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nint arr[10];\nint* p = &arr[9];\np++; // Указатель за пределы массива\nstd::cout << (p == &arr[10] ? \"equal\" : \"not-equal\");",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "equal (разрешено указывать на один элемент за пределами)",
-        "not-equal",
-        "Неопределённое поведение",
-        "Ошибка компиляции"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -511,29 +443,59 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "pointer-arithmetic",
-          "array"
+          "advanced",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.ub.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario.card-16",
+      "kind": "select",
+      "title": "Область видимости переменных",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "область"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-17",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 17: const cast UB",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Когда const_cast вызывает UB?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "При модификации объекта, изначально объявленного как const",
-        "При приведении к другому типу",
-        "Всегда",
-        "Никогда — const_cast безопасен"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -541,33 +503,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "const-cast",
-          "casting"
+          "advanced",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-18",
-      "kind": "code-trace",
-      "title": "Undefined Behavior — Вопрос 18: vtable access on incomplete type",
+      "kind": "select",
+      "title": "Массивы одномерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\nclass Base {\npublic:\n  virtual ~Base() {}\n};\nclass Derived : public Base {\npublic:\n  ~Derived() override {}\n};\nint main() {\n  Base* b = new Derived();\n  delete b;\n  return 0;\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "Корректно: вызывается ~Derived()",
-        "Неопределённое поведение: виртуальный деструктор без override",
-        "Ошибка компиляции",
-        "Segmentation fault"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -575,33 +533,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "virtual-destructor",
-          "polymorphism"
+          "advanced",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-19",
-      "kind": "code-select",
-      "title": "Undefined Behavior — Вопрос 19: data race",
+      "kind": "select",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой код вызывает UB (data race)?",
-      "code": {
-        "code": "#include <thread>\nint shared = 0;\n// Какой вариант вызывает data race?\nvoid threadFunc() {\n  ???;\n}",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "shared++;",
-        "std::atomic<int> local = shared;",
-        "int x = shared;",
-        "shared = 0;"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -609,29 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "data-race",
-          "threading"
+          "advanced",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     },
     {
       "id": "cpp.advanced.ub.01.scenario.card-20",
       "kind": "select",
-      "title": "Undefined Behavior — Вопрос 20: how to detect UB?",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Какой инструмент помогает обнаруживать UB?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
       "optionsLearning": [
-        "Sanitizers (UBSan, ASan, TSan)",
-        "GDB только",
-        "Просто компиляция с -O2",
-        "Valgrind для всех случаев"
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -639,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "undefined-behavior",
-          "sanitizers",
-          "debugging"
+          "advanced",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.ub.01.scenario"
     }
-  ]
+  ],
+  "title": "Advanced — Advanced C++"
 }

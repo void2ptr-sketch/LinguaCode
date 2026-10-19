@@ -4,18 +4,18 @@
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-01",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 1",
+      "title": "Что такое OOP в C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance?",
+      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Наследование от нескольких base classes одновременно",
-        "От одного base class",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -24,28 +24,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-02",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 2",
+      "title": "Classes и objects",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple base classes?",
+      "promptKnown": "Что известно о 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Несколько родительских классов в inheritance list",
-        "Один base class",
-        "Без base classes",
-        "Случайные base classes"
+        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -54,28 +54,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "classes"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-03",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 3",
+      "title": "Encapsulation principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple constructor call?",
+      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Вызов constructors всех base classes в initializer list",
-        "Без вызова",
-        "Удаление вызова",
-        "Добавление вызова"
+        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -84,28 +84,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "encapsulation"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-04",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 4",
+      "title": "Inheritance mechanisms",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое constructor order in multiple inheritance?",
+      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Порядок вызова constructors base classes (по объявлению в class)",
-        "Случайный порядок",
-        "Обратный порядок",
-        "Нет порядка"
+        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -118,24 +118,24 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-05",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 5",
+      "title": "Polymorphism types",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое destructor order in multiple inheritance?",
+      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Порядок вызова destructors (обратный порядку constructors)",
-        "Прямой порядок",
-        "Случайный порядок",
-        "Нет порядка"
+        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -144,28 +144,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-06",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 6",
+      "title": "Abstraction techniques",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое method name collision?",
+      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Конфликт имен методов от разных base classes",
-        "Без конфликта",
-        "Удаление конфликта",
-        "Добавление конфликта"
+        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -174,28 +174,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "abstraction"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-07",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 7",
+      "title": "Design patterns overview",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое method resolution in multiple inheritance?",
+      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Разрешение вызова метода при наличии в нескольких base",
-        "Без разрешения",
-        "Удаление разрешения",
-        "Добавление разрешения"
+        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -204,28 +204,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "design"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-08",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 8",
+      "title": "SOLID principles",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое scope resolution for method?",
+      "promptKnown": "Что известно о 'SOLID principles' в C++?",
       "optionsLearning": [
-        "using Base::method; для разрешения коллизии методов",
-        "Без using",
-        "Удаление using",
-        "Добавление using"
+        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -234,28 +234,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "solid"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-09",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 9",
+      "title": "Dependency injection",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое virtual method in multiple inheritance?",
+      "promptKnown": "Что известно о 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Virtual метод, переопределенный в нескольких base classes",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -264,28 +264,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "dependency"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-10",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 10",
+      "title": "Factory patterns",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое vtable layout in multiple inheritance?",
+      "promptKnown": "Что известно о 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Компоновка vtables для нескольких base classes в объекте",
-        "Одна vtable",
-        "Нет vtables",
-        "Случайные vtables"
+        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -294,28 +294,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "factory"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-11",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 11",
+      "title": "Observer pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple vptrs?",
+      "promptKnown": "Что известно о 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Несколько указателей на vtables в объекте с множественным наследованием",
-        "Один vptr",
-        "Нет vptrs",
-        "Случайные vptrs"
+        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -324,28 +324,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "observer"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-12",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 12",
+      "title": "Strategy pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое this pointer adjustment?",
+      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Корректировка указателя this при приведении к разным base types",
-        "Без корректировки",
-        "Удаление корректировки",
-        "Добавление корректировки"
+        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -354,28 +354,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "strategy"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-13",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 13",
+      "title": "Adapter pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое pointer adjustment in cast?",
+      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Корректировка указателя при static_cast между base types",
-        "Без корректировки",
-        "Удаление корректировки",
-        "Добавление корректировки"
+        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -384,28 +384,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "adapter"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-14",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 14",
+      "title": "Decorator pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое diamond with multiple inheritance?",
+      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Ромбовидная структура с множественным наследованием",
-        "Линейная структура",
-        "Древовидная структура",
-        "Случайная структура"
+        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -414,28 +414,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "decorator"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-15",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 15",
+      "title": "Facade pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance with virtual?",
+      "promptKnown": "Что известно о 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Множественное наследование с virtual base classes для устранения diamond",
-        "Без virtual",
-        "Удаление virtual",
-        "Добавление virtual"
+        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -444,28 +444,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "facade"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-16",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 16",
+      "title": "Builder pattern",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance overhead?",
+      "promptKnown": "Что известно о 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Накладные расходы на множественное наследование (vptrs, this adjustment)",
-        "Без накладных расходов",
-        "Удаление расходов",
-        "Добавление расходов"
+        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -474,28 +474,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "builder"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-17",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 17",
+      "title": "Debugging OOP issues",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance complexity?",
+      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Сложность управления множественным наследованием",
-        "Без сложности",
-        "Удаление сложности",
-        "Добавление сложности"
+        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -504,28 +504,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-18",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 18",
+      "title": "Performance implications of OOP",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое multiple inheritance best practice?",
+      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Избегать множественного наследования, использовать интерфейсы или композицию",
-        "Использовать всегда",
-        "Без практики",
-        "Случайная практика"
+        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -534,28 +534,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-19",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 19",
+      "title": "Best practices для OOP design",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое interface inheritance?",
+      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Наследование только с virtual методов (интерфейс)",
-        "С данными",
-        "Без наследования",
-        "Случайное наследование"
+        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -564,28 +564,28 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     },
     {
       "id": "cpp.oop.inheritance-multiple.01.scenario.card-20",
       "kind": "select",
-      "title": "Множественное наследование - Вопрос 20",
+      "title": "Composition over inheritance",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое pure interface class?",
+      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Класс только с pure virtual methods (интерфейс)",
-        "С реализациями",
-        "Без класса",
-        "Случайный класс"
+        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -594,12 +594,13 @@
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "composition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop-inheritance",
+      "lessonId": "lesson-cpp-oop",
       "scenarioId": "cpp.oop.inheritance-multiple.01.scenario"
     }
-  ]
+  ],
+  "title": "Oop — Intermediate C++"
 }

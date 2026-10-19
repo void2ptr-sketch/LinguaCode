@@ -3,56 +3,49 @@
   "cards": [
     {
       "id": "cpp.advanced.memory.01.scenario.card-01",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 1: unique_ptr ownership",
+      "kind": "select",
+      "title": "Что такое C++?",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nstd::unique_ptr<int> p1 = std::make_unique<int>(42);\nauto p2 = std::move(p1);\nstd::cout << (p1 ? \"not-null\" : \"null\");",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "not-null",
-        "null",
-        "Ошибка компиляции",
-        "Неопределённое поведение"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Что такое C++? — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
-      "correctIndex": 1,
+      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "unique-ptr",
-          "ownership"
+          "advanced",
+          "что"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-02",
       "kind": "select",
-      "title": "Memory Management — Вопрос 2: shared_ptr reference counting",
+      "title": "История создания C++",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Сколько ссылок будет у объекта после этого кода?",
-      "code": {
-        "code": "#include <memory>\nstd::shared_ptr<int> p1 = std::make_shared<int>(42);\nstd::shared_ptr<int> p2 = p1;\nstd::shared_ptr<int> p3 = std::move(p2);",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'История создания C++' в C++?",
       "optionsLearning": [
-        "2 (p1 и p3)",
-        "1 (только p1)",
-        "0 (все перемещены)",
-        "3 (p1, p2, p3)"
+        "Основные аспекты: История создания C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -60,33 +53,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "shared-ptr",
-          "reference-counting"
+          "advanced",
+          "история"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-03",
-      "kind": "code-select",
-      "title": "Memory Management — Вопрос 3: circular reference",
+      "kind": "select",
+      "title": "Структура простой программы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой код предотвращает circular reference?",
-      "code": {
-        "code": "struct Node {\n  std::shared_ptr<Node> next;\n  // ??? — как избежать утечки?\n};",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
       "optionsLearning": [
-        "Использовать std::weak_ptr для обратных ссылок",
-        "Удалить shared_ptr вообще",
-        "Использовать unique_ptr для всех полей",
-        "Ручной delete в деструкторе"
+        "Основные аспекты: Структура простой программы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -94,33 +83,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "circular-reference",
-          "weak-ptr"
+          "advanced",
+          "структура"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-04",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 4: make_unique vs new",
+      "kind": "select",
+      "title": "Компиляция и запуск",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nstd::unique_ptr<int> p1 = std::make_unique<int>(42);\nstd::unique_ptr<int> p2(new int(42));\nstd::cout << (*p1 == *p2 ? \"equal\" : \"not-equal\");",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "equal",
-        "not-equal",
-        "Ошибка компиляции",
-        "Неопределённое поведение"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Компиляция и запуск — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -128,29 +113,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "make-unique",
-          "new-operator"
+          "advanced",
+          "компиляция"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-05",
       "kind": "select",
-      "title": "Memory Management — Вопрос 5: custom deleter",
+      "title": "Настройка окружения (IDE, компилятор)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Зачем нужен custom deleter в unique_ptr?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
       "optionsLearning": [
-        "Для освобождения ресурсов, отличных от delete (например, fclose)",
-        "Для ускорения удаления",
-        "Для проверки null перед удалением",
-        "Custom deleter не поддерживается"
+        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -158,33 +143,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "custom-deleter",
-          "unique-ptr"
+          "advanced",
+          "настройка"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-06",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 6: shared_ptr aliasing constructor",
+      "kind": "select",
+      "title": "Основные типы данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nstruct Inner {\n  int value;\n};\nstruct Outer {\n  Inner inner;\n};\nauto p = std::make_shared<Outer>();\nauto alias = std::shared_ptr<Inner>(p, &p->inner);\np->inner.value = 42;\nstd::cout << alias->value;",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42",
-        "Неопределённое поведение",
-        "0 (неинициализировано)",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Основные типы данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -192,33 +173,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "shared-ptr",
-          "aliasing"
+          "advanced",
+          "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-07",
-      "kind": "code-select",
-      "title": "Memory Management — Вопрос 7: weak_ptr lock",
+      "kind": "select",
+      "title": "Переменные и константы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой код безопасно проверяет существование объекта?",
-      "code": {
-        "code": "std::weak_ptr<int> wp = /* ... */;\n// ??? — безопасная проверка\nif (auto sp = wp.???) {\n  std::cout << *sp;\n}",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
       "optionsLearning": [
-        "lock() — возвращает shared_ptr или nullptr",
-        "expired() — возвращает bool",
-        "use_count() — возвращает int",
-        "get() — возвращает raw pointer"
+        "Основные аспекты: Переменные и константы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -226,29 +203,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "weak-ptr",
-          "lock"
+          "advanced",
+          "переменные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-08",
       "kind": "select",
-      "title": "Memory Management — Вопрос 8: memory leak с exceptions",
+      "title": "Ввод/вывод данных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Какой код вызывает memory leak при исключении?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
       "optionsLearning": [
-        "int* p1 = new int(1); int* p2 = new int(2); foo(p1, p2);",
-        "auto p1 = std::make_unique<int>(1); auto p2 = std::make_unique<int>(2); foo(p1, p2);",
-        "std::vector<int> v; v.push_back(1); v.push_back(2);",
-        "Все варианты безопасны"
+        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -256,33 +233,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "memory-leak",
-          "exceptions"
+          "advanced",
+          "ввод/вывод"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-09",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 9: shared_ptr thread safety",
+      "kind": "select",
+      "title": "Операторы и выражения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <memory>\n#include <thread>\nstd::shared_ptr<int> p = std::make_shared<int>(42);\nstd::thread t1([&]() { auto copy = p; });\nstd::thread t2([&]() { auto copy = p; });\nt1.join(); t2.join();",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "Корректно: reference counting atomic",
-        "UB: shared_ptr не thread-safe для чтения",
-        "Ошибка компиляции",
-        "Неопределённое поведение"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Операторы и выражения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -290,29 +263,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "shared-ptr",
-          "thread-safety"
+          "advanced",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-10",
       "kind": "select",
-      "title": "Memory Management — Вопрос 10: placement new",
+      "title": "Условные операторы if-else",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое placement new?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
       "optionsLearning": [
-        "Размещение объекта в уже выделенной памяти без вызова allocator",
-        "Выделение памяти с помощью new[]",
-        "Удаление объекта с помощью delete[]",
-        "Кастирование указателя к другому типу"
+        "Основные аспекты: Условные операторы if-else — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -320,33 +293,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "placement-new",
-          "allocation"
+          "advanced",
+          "условные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-11",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 11: shared_ptr custom deleter type",
+      "kind": "select",
+      "title": "Циклы for, while, do-while",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nvoid myDeleter(int* p) { delete p; }\nint main() {\n  std::unique_ptr<int, void(*)(int*)> p1(new int(42), myDeleter);\n  std::cout << sizeof(p1);\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "Зависит от реализации (включает deleter)",
-        "Равно размеру указателя",
-        "0",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -354,33 +323,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "unique-ptr",
-          "custom-deleter"
+          "advanced",
+          "циклы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-12",
-      "kind": "code-select",
-      "title": "Memory Management — Вопрос 12: arena allocator pattern",
+      "kind": "select",
+      "title": "Операторы break и continue",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой паттерн оптимизирует множественные small allocations?",
-      "code": {
-        "code": "// Какой подход лучше для частых мелких выделений?\n???;",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
       "optionsLearning": [
-        "Arena/Pool allocator —大块 памяти, инкрементальный указатель",
-        "std::vector вместо new",
-        "Удаление всех объектов сразу через unique_ptr",
-        "Кэширование через shared_ptr"
+        "Основные аспекты: Операторы break и continue — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -388,29 +353,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "arena-allocator",
-          "optimization"
+          "advanced",
+          "операторы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-13",
       "kind": "select",
-      "title": "Memory Management — Вопрос 13: memory pool vs heap",
+      "title": "Функции: объявление и вызов",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Когда memory pool эффективнее heap allocations?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
       "optionsLearning": [
-        "При множестве объектов одинакового размера с коротким временем жизни",
-        "Всегда — pool быстрее",
-        "Никогда — heap оптимизирован лучше",
-        "Только для std::string"
+        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -418,33 +383,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "memory-pool",
-          "performance"
+          "advanced",
+          "функции:"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-14",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 14: shared_ptr control block",
+      "kind": "select",
+      "title": "Параметры функций",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nauto p1 = std::make_shared<int>(42);\nauto p2 = p1;\nauto p3 = std::move(p2);\nstd::cout << p1.use_count() << \" \" << p3.use_count();",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "2 2 (p1 и p3)",
-        "1 1 (только один shared_ptr)",
-        "0 2",
-        "Ошибка компиляции"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Параметры функций — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -452,33 +413,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "shared-ptr",
-          "use-count"
+          "advanced",
+          "параметры"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-15",
-      "kind": "code-select",
-      "title": "Memory Management — Вопрос 15: memory order и atomics",
+      "kind": "select",
+      "title": "Возвращаемые значения",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Какой memory order самый слабый?",
-      "code": {
-        "code": "#include <atomic>\nstd::atomic<int> x{0};\n// Какой порядок самый слабый?\nx.store(1, ???);",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
       "optionsLearning": [
-        "memory_order_relaxed",
-        "memory_order_acquire",
-        "memory_order_release",
-        "memory_order_seq_cst"
+        "Основные аспекты: Возвращаемые значения — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -486,29 +443,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "atomics",
-          "memory-order"
+          "advanced",
+          "возвращаемые"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-16",
       "kind": "select",
-      "title": "Memory Management — Вопрос 16: stack vs heap allocation",
+      "title": "Область видимости переменных",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Когда предпочтительнее stack allocation?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
       "optionsLearning": [
-        "Для небольших объектов с коротким временем жизни",
-        "Всегда — stack быстрее",
-        "Никогда — heap безопаснее",
-        "Только для указателей"
+        "Основные аспекты: Область видимости переменных — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -516,67 +473,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "stack",
-          "heap"
+          "advanced",
+          "область"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-17",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 17: shared_ptr self-deletion",
+      "kind": "select",
+      "title": "Рекурсия",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nstruct Node {\n  std::shared_ptr<Node> next;\n  ~Node() { std::cout << \"destroyed\"; }\n};\nint main() {\n  auto p = std::make_shared<Node>();\n  p->next = p; // circular\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "destroyed (shared_ptr корректно обрабатывает circular)",
-        "Ничего (memory leak из-за circular reference)",
-        "Ошибка компиляции",
-        "Неопределённое поведение"
-      ],
-      "correctIndex": 1,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "memory-management",
-          "circular-reference",
-          "shared-ptr"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
-    },
-    {
-      "id": "cpp.advanced.memory.01.scenario.card-18",
-      "kind": "code-select",
-      "title": "Memory Management — Вопрос 18: memory sanitizer",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "question": "Какой sanitizer обнаруживает use-after-free?",
-      "code": {
-        "code": "// Какой флаг компилятора включить?\ng++ -fsanitize=??? program.cpp",
-        "language": "cpp"
-      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Рекурсия' в C++?",
       "optionsLearning": [
-        "address (ASan)",
-        "undefined (UBSan)",
-        "thread (TSan)",
-        "leak (LSan)"
+        "Основные аспекты: Рекурсия — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -584,29 +503,59 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "address-sanitizer",
-          "debugging"
+          "advanced",
+          "рекурсия"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
+      "scenarioId": "cpp.advanced.memory.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory.01.scenario.card-18",
+      "kind": "select",
+      "title": "Массивы одномерные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы одномерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-19",
       "kind": "select",
-      "title": "Memory Management — Вопрос 19: memory fragmentation",
+      "title": "Массивы многомерные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "promptKnown": "Что такое memory fragmentation?",
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
       "optionsLearning": [
-        "Разбиение свободной памяти на мелкие несвязанные блоки",
-        "Утечка памяти из-за циклических ссылок",
-        "Избыточное использование кэша процессора",
-        "Переполнение стека"
+        "Основные аспекты: Массивы многомерные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -614,33 +563,29 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "fragmentation",
-          "allocation"
+          "advanced",
+          "массивы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-20",
-      "kind": "code-trace",
-      "title": "Memory Management — Вопрос 20: unique_ptr array specialization",
+      "kind": "select",
+      "title": "Строки и работа с ними",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
-      "question": "Что выведет этот код?",
-      "code": {
-        "code": "#include <iostream>\n#include <memory>\nint main() {\n  auto arr = std::make_unique<int[]>(5);\n  arr[0] = 42;\n  std::cout << arr[0];\n}",
-        "language": "cpp"
-      },
-      "outputOptions": [
-        "42",
-        "Ошибка компиляции: make_unique для массивов не поддерживается (C++14)",
-        "Неопределённое поведение",
-        "0"
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Строки и работа с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
@@ -648,14 +593,14 @@
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "memory-management",
-          "unique-ptr",
-          "array-specialization"
+          "advanced",
+          "строки"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl-algorithms-deep",
+      "lessonId": "lesson-cpp-advanced",
       "scenarioId": "cpp.advanced.memory.01.scenario"
     }
-  ]
+  ],
+  "title": "Advanced — Advanced C++"
 }
