@@ -4,18 +4,18 @@
     {
       "id": "cpp.basics.types-integer.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Основные целочисленные типы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
+      "promptKnown": "Какие целочисленные типы есть в C++?",
       "optionsLearning": [
-        "Основные аспекты: Что такое C++? — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "int, short, long, long long",
+        "byte, int, long",
+        "integer, number",
+        "Int32, Int64"
       ],
       "correctIndex": 0,
       "meta": {
@@ -23,179 +23,185 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
-    },
-    {
-      "id": "cpp.basics.types-integer.01.scenario.card-02",
-      "kind": "select",
-      "title": "История создания C++",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'История создания C++' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: История создания C++ — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "история"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
-    },
-    {
-      "id": "cpp.basics.types-integer.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: Структура простой программы — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "структура"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
-    },
-    {
-      "id": "cpp.basics.types-integer.01.scenario.card-04",
-      "kind": "select",
-      "title": "Компиляция и запуск",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: Компиляция и запуск — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "компиляция"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
-    },
-    {
-      "id": "cpp.basics.types-integer.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "настройка"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
-    },
-    {
-      "id": "cpp.basics.types-integer.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: Основные типы данных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
+          "intro",
           "основные"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "C++: int (обычно 32-bit), short (16), long (32/64), long long (64). Размер зависит от платформы."
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-02",
+      "kind": "select",
+      "title": "Размеры типов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер int на 64-бит системе?",
+      "optionsLearning": [
+        "Обычно 4 байта (32 бита)",
+        "2 байта",
+        "8 байт",
+        "Зависит только от компилятора, не от системы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "размеры"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "int — минимум 16 бит, обычно 32 бита на современных системах. long long — минимум 64 бита."
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-03",
+      "kind": "select",
+      "title": "Signed vs Unsigned",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличается signed int от unsigned int?",
+      "optionsLearning": [
+        "signed: -N..+N, unsigned: 0..2N",
+        "signed быстрее",
+        "unsigned больше по размеру",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "signed"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "signed int: -2^31..2^31-1. unsigned int: 0..2^32-1. Unsigned даёт вдвое больший диапазон без знака."
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-04",
+      "kind": "select",
+      "title": "Переполнение signed",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при переполнении signed int?",
+      "optionsLearning": [
+        "Undefined behavior (UB)",
+        "Возврат к min value",
+        "Выброс исключения",
+        "Автоматическое расширение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "переполнение"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "Переполнение signed int — UB! Может вызвать crash или silent corruption. Используйте unsigned для арифметики без знака."
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-05",
+      "kind": "select",
+      "title": "Переполнение unsigned",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при переполнении unsigned int?",
+      "optionsLearning": [
+        "Wrap-around (возврат к 0)",
+        "Undefined behavior",
+        "Ошибка компиляции",
+        "Выброс std::overflow_error"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "переполнение"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "unsigned int переполняется по модулю 2^N. INT_MAX + 1 = 0. Предсказуемо, но опасно."
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario.card-06",
+      "kind": "select",
+      "title": "std::int32_t и фиксированные размеры",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем использовать std::int32_t?",
+      "optionsLearning": [
+        "Гарантированный размер 32 бита на любой платформе",
+        "Более быстрый int",
+        "Автоматическое преобразование",
+        "Поддержка float"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "std::int32_t"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "<cstdint>: std::int32_t — точно 32 бита. Используйте для сетевых протоколов, файлов."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Литералы целочисленные",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
+      "promptKnown": "Как записать hex число в C++?",
       "optionsLearning": [
-        "Основные аспекты: Переменные и константы — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "0xFF или 0XFF",
+        "0b11111111",
+        "#FF",
+        "hex(255)"
       ],
       "correctIndex": 0,
       "meta": {
@@ -203,29 +209,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "intro",
+          "литералы"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "0x — hex, 0b — binary (C++14), 0 — octal. 0xFF = 255."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Auto вывод типа",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
+      "promptKnown": "Что выведет auto для 42?",
       "optionsLearning": [
-        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "int",
+        "auto",
+        "number",
+        "integer"
       ],
       "correctIndex": 0,
       "meta": {
@@ -233,29 +240,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "intro",
+          "auto"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "auto 42 → int. Компилятор выводит тип из инициализатора."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Explicit conversion",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
+      "promptKnown": "Как безопасно преобразовать int в long?",
       "optionsLearning": [
-        "Основные аспекты: Операторы и выражения — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "long x = static_cast<long>(int_val)",
+        "(long)int_val только",
+        "long x = int_val (implicit)",
+        "static_cast<int>(long_val)"
       ],
       "correctIndex": 0,
       "meta": {
@@ -263,29 +271,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "intro",
+          "explicit"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "static_cast — явное, безопасное преобразование. Implicit widening (int→long) безопасен."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Narrowing conversion",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
+      "promptKnown": "Что такое narrowing conversion?",
       "optionsLearning": [
-        "Основные аспекты: Условные операторы if-else — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Потеря данных при преобразовании (long→int)",
+        "Безопасное преобразование",
+        "Преобразование строк",
+        "Автоматическое расширение"
       ],
       "correctIndex": 0,
       "meta": {
@@ -293,29 +302,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "intro",
+          "narrowing"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "long→int может потерять данные. Compiler warning: narrowing conversion in initializer list."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "INT_MAX и INT_MIN",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "promptKnown": "Где определить INT_MAX?",
       "optionsLearning": [
-        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "<climits> или <limits>",
+        "#define INT_MAX 2147483647",
+        "std::INT_MAX",
+        "int.MAX_VALUE"
       ],
       "correctIndex": 0,
       "meta": {
@@ -323,29 +333,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "intro",
+          "int_max"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "<climits>: INT_MAX, INT_MIN. Или std::numeric_limits<int>::max() из <limits>."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Bitwise operators",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
+      "promptKnown": "Какой оператор побитового И?",
       "optionsLearning": [
-        "Основные аспекты: Операторы break и continue — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "& (амперсанд)",
+        "&& (логическое И)",
+        "| (ИЛИ)",
+        "~ (НЕ)"
       ],
       "correctIndex": 0,
       "meta": {
@@ -353,29 +364,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "intro",
+          "bitwise"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "& — побитовое И, && — логическое И. 0xFF & 0x0F = 0x0F."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Shift operators",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
+      "promptKnown": "Что делает x << 2?",
       "optionsLearning": [
-        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Умножение на 4 (сдвиг влево на 2 бита)",
+        "Деление на 2",
+        "Побитовое И",
+        "Сдвиг вправо"
       ],
       "correctIndex": 0,
       "meta": {
@@ -383,29 +395,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "intro",
+          "shift"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "<< n — умножить на 2^n. >> n — разделить на 2^n (для unsigned). Для signed >> может быть arithmetic shift."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "XOR swap trick",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "promptKnown": "Что делает a ^= b ^= a ^= b?",
       "optionsLearning": [
-        "Основные аспекты: Параметры функций — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Менест a и b местами (без temp)",
+        "Бесконечный цикл",
+        "Обнуляет оба",
+        "Умножает на 2"
       ],
       "correctIndex": 0,
       "meta": {
@@ -413,29 +426,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "intro",
+          "xor"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "a ^= b ^= a ^= b — swap через XOR. Не рекомендуется: UB при aliasing, менее читаемо."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Enum классический",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
+      "promptKnown": "Проблема классического enum?",
       "optionsLearning": [
-        "Основные аспекты: Возвращаемые значения — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Конфликт имён (RED может конфликтовать)",
+        "Нет типа",
+        "Нельзя использовать в switch",
+        "Медленный"
       ],
       "correctIndex": 0,
       "meta": {
@@ -443,29 +457,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "intro",
+          "enum"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "enum { RED, GREEN } — значения в глобальной области. RED может конфликтовать с другими переменными."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Enum class (C++11)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "promptKnown": "Преимущество enum class?",
       "optionsLearning": [
-        "Основные аспекты: Область видимости переменных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Типобезопасность, нет конфликта имён",
+        "Быстрее",
+        "Меньше памяти",
+        "Автоматическое преобразование"
       ],
       "correctIndex": 0,
       "meta": {
@@ -473,29 +488,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "intro",
+          "enum"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "enum class Color { Red, Green }; — Color::Red. Типобезопасно, не конфликтует."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Underlying type enum",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "promptKnown": "Как задать underlying type для enum class?",
       "optionsLearning": [
-        "Основные аспекты: Рекурсия — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "enum class Color : uint8_t { ... }",
+        "enum class Color (uint8_t)",
+        "enum class Color -> uint8_t",
+        "Нельзя задать"
       ],
       "correctIndex": 0,
       "meta": {
@@ -503,29 +519,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "intro",
+          "underlying"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "enum class Color : uint8_t — контроль размера. Полезно для C-интероперации."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "std::numeric_limits",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "promptKnown": "Как получить max int?",
       "optionsLearning": [
-        "Основные аспекты: Массивы одномерные — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "std::numeric_limits<int>::max()",
+        "INT_MAX только",
+        "int.MaxValue",
+        "sizeof(int)"
       ],
       "correctIndex": 0,
       "meta": {
@@ -533,29 +550,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "intro",
+          "std::numeric_limits"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "<limits>: std::numeric_limits<T>::min()/max()/digits(). Более гибко, чем <climits>."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Best practices",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "promptKnown": "Какой тип использовать для счётчиков?",
       "optionsLearning": [
-        "Основные аспекты: Массивы многомерные — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "size_t или uint32_t",
+        "int всегда",
+        "long всегда",
+        "float"
       ],
       "correctIndex": 0,
       "meta": {
@@ -563,29 +581,30 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "intro",
+          "best"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "size_t — для размеров/индексов (unsigned). uint32_t — для сетевых/файловых форматов."
     },
     {
       "id": "cpp.basics.types-integer.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Common mistakes",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "promptKnown": "Ошибка при сравнении signed и unsigned?",
       "optionsLearning": [
-        "Основные аспекты: Строки и работа с ними — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Signed приводится к unsigned, может дать неверный результат",
+        "Компилятор ругается",
+        "Никакой ошибки",
+        "Автоматический cast к int"
       ],
       "correctIndex": 0,
       "meta": {
@@ -593,14 +612,15 @@
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "intro",
+          "common"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-integer.01.scenario"
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.basics.types-integer.01.scenario",
+      "explanation": "-1u (unsigned) > 5u → true! -1 как unsigned — огромное число. Избегайте смешения signed/unsigned."
     }
   ],
-  "title": "Basics — Basics C++"
+  "title": "Целочисленные типы — Basics"
 }

@@ -10,18 +10,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Что такое C++?' в C++?",
+      "promptKnown": "Определите, что представляет собой язык программирования C++",
       "optionsLearning": [
-        "Основные аспекты: Что такое C++? — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Язык программирования, созданный как расширение C с поддержкой ООП",
+        "Высокоуровневый интерпретируемый язык без указателей",
+        "Язык только для веб-разработки",
+        "Только язык для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "что"
@@ -29,7 +29,8 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "C++ — компилируемый язык программирования, созданный Бьярном Страуструпом как расширение C с классами и ООП."
     },
     {
       "id": "cpp.strings.05.scenario.card-02",
@@ -40,18 +41,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'История создания C++' в C++?",
+      "promptKnown": "Назовите год создания C++ и автора языка",
       "optionsLearning": [
-        "Основные аспекты: История создания C++ — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "1979 год, Бьярн Страуструп в Bell Labs",
+        "1985 год, Деннис Ритчи в AT&T",
+        "1990 год, Гвидо ван Россум",
+        "1995 год, Джеймс Гослинг"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "история"
@@ -59,7 +60,8 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "C++ создан Бьярном Страуструпом в 1979 году в Bell Labs, изначально назывался 'C with Classes'."
     },
     {
       "id": "cpp.strings.05.scenario.card-03",
@@ -70,18 +72,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Структура простой программы' в C++?",
+      "promptKnown": "Какие обязательные элементы есть в минимальной программе C++?",
       "optionsLearning": [
-        "Основные аспекты: Структура простой программы — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "#include <iostream>, int main(), return 0",
+        "class Program, public static void main",
+        "def main(), print(), import",
+        "package main, func main()"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "структура"
@@ -89,7 +91,8 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Минимальная программа C++ включает подключение заголовочных файлов, функцию main() и оператор return."
     },
     {
       "id": "cpp.strings.05.scenario.card-04",
@@ -100,18 +103,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Компиляция и запуск' в C++?",
+      "promptKnown": "Какой командой компилируется C++ программа в Linux?",
       "optionsLearning": [
-        "Основные аспекты: Компиляция и запуск — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "g++ program.cpp -o program",
+        "javac program.java",
+        "python program.py",
+        "cc -E program.c"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "компиляция"
@@ -119,40 +122,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "g++ — компилятор C++, опция -o указывает имя выходного исполняемого файла."
     },
     {
       "id": "cpp.strings.05.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Настройка окружения (IDE, компилятор)' в C++?",
-      "optionsLearning": [
-        "Основные аспекты: Настройка окружения (IDE, компилятор) — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "intro",
-          "настройка"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
-    },
-    {
-      "id": "cpp.strings.05.scenario.card-06",
       "kind": "select",
       "title": "Основные типы данных",
       "appearance": {
@@ -160,18 +134,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Основные типы данных' в C++?",
+      "promptKnown": "Какие базовые типы данных есть в C++?",
       "optionsLearning": [
-        "Основные аспекты: Основные типы данных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "int, double, char, bool, void",
+        "String, Number, Boolean, Array, Object",
+        "str, int, float, list, dict",
+        "byte, short, long, float, double"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "основные"
@@ -179,10 +153,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Базовые типы C++: int (целые), double (浮点数), char (символы), bool (логические), void (пустота)."
     },
     {
-      "id": "cpp.strings.05.scenario.card-07",
+      "id": "cpp.strings.05.scenario.card-06",
       "kind": "select",
       "title": "Переменные и константы",
       "appearance": {
@@ -190,18 +165,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Переменные и константы' в C++?",
+      "promptKnown": "Как объявить константу в C++?",
       "optionsLearning": [
-        "Основные аспекты: Переменные и константы — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "const int MAX_SIZE = 100;",
+        "final int MAX_SIZE = 100;",
+        "const val MAX_SIZE = 100",
+        "define MAX_SIZE 100"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "переменные"
@@ -209,10 +184,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Ключевое слово const делает переменную константой. #define — препроцессорная директива (не типобезопасна)."
     },
     {
-      "id": "cpp.strings.05.scenario.card-08",
+      "id": "cpp.strings.05.scenario.card-07",
       "kind": "select",
       "title": "Ввод/вывод данных",
       "appearance": {
@@ -220,18 +196,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Ввод/вывод данных' в C++?",
+      "promptKnown": "Какие объекты используются для ввода/вывода в C++?",
       "optionsLearning": [
-        "Основные аспекты: Ввод/вывод данных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "std::cin, std::cout, std::endl",
+        "System.in, System.out",
+        "input(), print()",
+        "scanf(), printf()"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "ввод/вывод"
@@ -239,10 +215,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "std::cin (ввод), std::cout (вывод), std::endl (перенос строки + очистка буфера) — стандартные потоки C++."
     },
     {
-      "id": "cpp.strings.05.scenario.card-09",
+      "id": "cpp.strings.05.scenario.card-08",
       "kind": "select",
       "title": "Операторы и выражения",
       "appearance": {
@@ -250,18 +227,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Операторы и выражения' в C++?",
+      "promptKnown": "Какой результат выражения 5 + 3 * 2 в C++?",
       "optionsLearning": [
-        "Основные аспекты: Операторы и выражения — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "11 (умножение приоритетнее сложения)",
+        "16 (последовательное вычисление)",
+        "10 (приоритет одинаковый)",
+        "Ошибка компиляции"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "операторы"
@@ -269,29 +246,30 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Оператор * имеет более высокий приоритет, чем +. Сначала 3*2=6, затем 5+6=11."
     },
     {
-      "id": "cpp.strings.05.scenario.card-10",
+      "id": "cpp.strings.05.scenario.card-09",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Условные операторы",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Условные операторы if-else' в C++?",
+      "promptKnown": "Какой синтаксус if-else в C++?",
       "optionsLearning": [
-        "Основные аспекты: Условные операторы if-else — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "if (condition) { } else { }",
+        "if condition { } else { }",
+        "if: condition; end",
+        "switch (condition) { case: }"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "условные"
@@ -299,10 +277,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "C++ использует скобки для условия и фигурные скобки для блоков кода, как в C."
     },
     {
-      "id": "cpp.strings.05.scenario.card-11",
+      "id": "cpp.strings.05.scenario.card-10",
       "kind": "select",
       "title": "Циклы for, while, do-while",
       "appearance": {
@@ -310,18 +289,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Циклы for, while, do-while' в C++?",
+      "promptKnown": "Какой цикл гарантирует хотя бы одно выполнение?",
       "optionsLearning": [
-        "Основные аспекты: Циклы for, while, do-while — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "do-while (проверка после тела)",
+        "for (проверка перед телом)",
+        "while (проверка перед телом)",
+        "foreach (итерация по коллекции)"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "циклы"
@@ -329,10 +308,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "do-while проверяет условие ПОСЛЕ выполнения тела, поэтому тело выполняется минимум один раз."
     },
     {
-      "id": "cpp.strings.05.scenario.card-12",
+      "id": "cpp.strings.05.scenario.card-11",
       "kind": "select",
       "title": "Операторы break и continue",
       "appearance": {
@@ -340,18 +320,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Операторы break и continue' в C++?",
+      "promptKnown": "Чем отличается break от continue в цикле?",
       "optionsLearning": [
-        "Основные аспекты: Операторы break и continue — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "break — выход из цикла, continue — пропуск итерации",
+        "break — пропуск итерации, continue — выход из цикла",
+        "Оба прерывают цикл полностью",
+        "Оба пропускают текущую итерацию"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "операторы"
@@ -359,10 +339,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "break полностью завершает цикл, continue переходит к следующей итерации, пропуская остаток тела."
     },
     {
-      "id": "cpp.strings.05.scenario.card-13",
+      "id": "cpp.strings.05.scenario.card-12",
       "kind": "select",
       "title": "Функции: объявление и вызов",
       "appearance": {
@@ -370,18 +351,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Функции: объявление и вызов' в C++?",
+      "promptKnown": "Какова структура функции в C++?",
       "optionsLearning": [
-        "Основные аспекты: Функции: объявление и вызов — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "return_type name(params) { body }",
+        "def name(params): body",
+        "function name(params) { body }",
+        "name(params) -> type { body }"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "функции:"
@@ -389,10 +370,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Функция C++: тип возвращаемого значения, имя, параметры в скобках, тело в фигурных скобках."
     },
     {
-      "id": "cpp.strings.05.scenario.card-14",
+      "id": "cpp.strings.05.scenario.card-13",
       "kind": "select",
       "title": "Параметры функций",
       "appearance": {
@@ -400,18 +382,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Параметры функций' в C++?",
+      "promptKnown": "Как передать переменную по значению в функцию?",
       "optionsLearning": [
-        "Основные аспекты: Параметры функций — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "void func(int x) — копия значения",
+        "void func(int& x) — копия значения",
+        "void func(int* x) — копия значения",
+        "void func(const int x) — ссылка"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "параметры"
@@ -419,10 +401,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Параметр без & и * копирует значение. int& — передача по ссылке, int* — по указателю."
     },
     {
-      "id": "cpp.strings.05.scenario.card-15",
+      "id": "cpp.strings.05.scenario.card-14",
       "kind": "select",
       "title": "Возвращаемые значения",
       "appearance": {
@@ -430,18 +413,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Возвращаемые значения' в C++?",
+      "promptKnown": "Что возвращает функция с void?",
       "optionsLearning": [
-        "Основные аспекты: Возвращаемые значения — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Ничего (пустой результат)",
+        "0 по умолчанию",
+        "null",
+        "Неопределённое значение"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "возвращаемые"
@@ -449,10 +432,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "void означает 'без возвращаемого значения'. Функция не может использовать return с значением."
     },
     {
-      "id": "cpp.strings.05.scenario.card-16",
+      "id": "cpp.strings.05.scenario.card-15",
       "kind": "select",
       "title": "Область видимости переменных",
       "appearance": {
@@ -460,18 +444,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Область видимости переменных' в C++?",
+      "promptKnown": "Где доступна локальная переменная, объявленная внутри функции?",
       "optionsLearning": [
-        "Основные аспекты: Область видимости переменных — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только внутри этой функции",
+        "Во всей программе",
+        "Только в main()",
+        "В других функциях того же файла"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "область"
@@ -479,10 +463,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Локальные переменные видны только в блоке, где объявлены (фунции, цикле, if-блоке)."
     },
     {
-      "id": "cpp.strings.05.scenario.card-17",
+      "id": "cpp.strings.05.scenario.card-16",
       "kind": "select",
       "title": "Рекурсия",
       "appearance": {
@@ -490,18 +475,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Рекурсия' в C++?",
+      "promptKnown": "Что такое рекурсия?",
       "optionsLearning": [
-        "Основные аспекты: Рекурсия — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Вызов функцией самой себя",
+        "Цикл for внутри функции",
+        "Вызов другой функции",
+        "Двойное объявление переменной"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "рекурсия"
@@ -509,10 +494,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "Рекурсия — вызов функцией самой себя. Требует базовый случай (условие выхода) для предотвращения бесконечного цикла."
     },
     {
-      "id": "cpp.strings.05.scenario.card-18",
+      "id": "cpp.strings.05.scenario.card-17",
       "kind": "select",
       "title": "Массивы одномерные",
       "appearance": {
@@ -520,18 +506,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Массивы одномерные' в C++?",
+      "promptKnown": "Как объявить массив из 10 целых чисел?",
       "optionsLearning": [
-        "Основные аспекты: Массивы одномерные — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "int arr[10];",
+        "int arr(10);",
+        "array<int, 10> arr;",
+        "int[] arr = new int[10];"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "массивы"
@@ -539,10 +525,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "int arr[10] — массив из 10 элементов типа int. Индексы от 0 до 9."
     },
     {
-      "id": "cpp.strings.05.scenario.card-19",
+      "id": "cpp.strings.05.scenario.card-18",
       "kind": "select",
       "title": "Массивы многомерные",
       "appearance": {
@@ -550,18 +537,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Массивы многомерные' в C++?",
+      "promptKnown": "Как объявить двумерный массив 3x4?",
       "optionsLearning": [
-        "Основные аспекты: Массивы многомерные — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "int arr[3][4];",
+        "int arr[3, 4];",
+        "int arr(3)(4);",
+        "int[][] arr = new int[3][4];"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "массивы"
@@ -569,10 +556,11 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "int arr[3][4] — массив 3 строки по 4 столбца. Доступ: arr[i][j], где i=0..2, j=0..3."
     },
     {
-      "id": "cpp.strings.05.scenario.card-20",
+      "id": "cpp.strings.05.scenario.card-19",
       "kind": "select",
       "title": "Строки и работа с ними",
       "appearance": {
@@ -580,18 +568,18 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Строки и работа с ними' в C++?",
+      "promptKnown": "Какой тип использовать для строк в C++?",
       "optionsLearning": [
-        "Основные аспекты: Строки и работа с ними — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "std::string (за #include <string>)",
+        "char[] всегда",
+        "String (с большой буквы)",
+        "text"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "intro",
           "строки"
@@ -599,8 +587,40 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-intro",
-      "scenarioId": "cpp.strings.05.scenario"
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "std::string — удобный класс для строк. char[] — C-style строки, требуют ручного управления."
+    },
+    {
+      "id": "cpp.strings.05.scenario.card-20",
+      "kind": "select",
+      "title": "Компиляция с опциями",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая опция g++ включает все предупреждения?",
+      "optionsLearning": [
+        "-Wall (Warning All)",
+        "-O3 (оптимизация)",
+        "-g (отладка)",
+        "-std=c++17 (стандарт)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro",
+          "компиляция"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-intro",
+      "scenarioId": "cpp.strings.05.scenario",
+      "explanation": "-Wall включает большинство предупреждений компилятора. Полезно для поиска потенциальных ошибок."
     }
   ],
-  "title": "Intro — Intermediate C++"
+  "title": "Введение в C++ — Basics"
 }
