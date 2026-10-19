@@ -10,12 +10,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Что такое OOP в C++?' в C++?",
+      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
       "optionsLearning": [
-        "Основные аспекты: Что такое OOP в C++?",
+        "Как классы в C++ обеспечивают инкапсуляцию данных?",
+        "Устаревшая технология",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -40,12 +40,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Classes и objects' в C++?",
+      "promptKnown": "Как объявить класс и создать объект в C++?",
       "optionsLearning": [
-        "Основные аспекты: Classes и objects",
+        "Как объявить класс и создать объект в C++?",
+        "Устаревшая технология",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -70,11 +70,11 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Encapsulation principles' в C++?",
+      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
       "optionsLearning": [
-        "Основные аспекты: Encapsulation principles",
-        "Не имеет отношения к C++",
+        "Как работает инкапсуляция через public/private/protected в C++?",
         "Только для embedded систем",
+        "Не имеет отношения к C++",
         "Устаревшая технология"
       ],
       "correctIndex": 0,
@@ -100,12 +100,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Inheritance mechanisms' в C++?",
+      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
       "optionsLearning": [
-        "Основные аспекты: Inheritance mechanisms",
-        "Не имеет отношения к C++",
+        "Как работает virtual inheritance и зачем оно нужно в C++?",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -130,12 +130,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Polymorphism types' в C++?",
+      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
       "optionsLearning": [
-        "Основные аспекты: Polymorphism types",
-        "Не имеет отношения к C++",
+        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Устаревшая технология",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -160,12 +160,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Abstraction techniques' в C++?",
+      "promptKnown": "Какие техники абстракции используются в STL C++?",
       "optionsLearning": [
-        "Основные аспекты: Abstraction techniques",
+        "Какие техники абстракции используются в STL C++?",
         "Не имеет отношения к C++",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -190,12 +190,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Design patterns overview' в C++?",
+      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
       "optionsLearning": [
-        "Основные аспекты: Design patterns overview",
+        "Когда стоит применять паттерн, а когда это излишество в C++?",
+        "Устаревшая технология",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -220,12 +220,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'SOLID principles' в C++?",
+      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
       "optionsLearning": [
-        "Основные аспекты: SOLID principles",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
+        "Применяется только в теории",
+        "Устаревшая технология",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -250,12 +250,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Dependency injection' в C++?",
+      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
       "optionsLearning": [
-        "Основные аспекты: Dependency injection",
-        "Не имеет отношения к C++",
+        "Чем отличается constructor injection от method injection в C++?",
+        "Устаревшая технология",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -280,12 +280,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Factory patterns' в C++?",
+      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
       "optionsLearning": [
-        "Основные аспекты: Factory patterns",
-        "Не имеет отношения к C++",
+        "Как simple factory отличается от abstract factory в C++?",
+        "Устаревшая технология",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -310,12 +310,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Observer pattern' в C++?",
+      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
       "optionsLearning": [
-        "Основные аспекты: Observer pattern",
+        "Как реализовать observer pattern в C++ с использованием modern features?",
         "Не имеет отношения к C++",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -340,12 +340,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Strategy pattern' в C++?",
+      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
       "optionsLearning": [
-        "Основные аспекты: Strategy pattern",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Как реализовать strategy pattern с lambda expressions в C++?",
+        "Устаревшая технология",
+        "Применяется только в теории",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -370,10 +370,10 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Adapter pattern' в C++?",
+      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
       "optionsLearning": [
-        "Основные аспекты: Adapter pattern",
-        "Не имеет отношения к C++",
+        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
+        "Применяется только в теории",
         "Только для embedded систем",
         "Устаревшая технология"
       ],
@@ -400,12 +400,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Decorator pattern' в C++?",
+      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
       "optionsLearning": [
-        "Основные аспекты: Decorator pattern",
+        "Чем отличается decorator от inheritance для расширения поведения в C++?",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории",
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -430,12 +430,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Facade pattern' в C++?",
+      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
       "optionsLearning": [
-        "Основные аспекты: Facade pattern",
-        "Не имеет отношения к C++",
+        "Как обеспечить обратную совместимость при использовании facade в C++?",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Устаревшая технология",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -460,9 +460,9 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Builder pattern' в C++?",
+      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
       "optionsLearning": [
-        "Основные аспекты: Builder pattern",
+        "Когда использовать builder вместо constructor с множеством параметров в C++?",
         "Не имеет отношения к C++",
         "Только для embedded систем",
         "Устаревшая технология"
@@ -490,11 +490,11 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Debugging OOP issues' в C++?",
+      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
       "optionsLearning": [
-        "Основные аспекты: Debugging OOP issues",
+        "Что делать, если destructor не вызывается для объекта в C++?",
+        "Применяется только в теории",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
         "Устаревшая технология"
       ],
       "correctIndex": 0,
@@ -520,11 +520,11 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Performance implications of OOP' в C++?",
+      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
       "optionsLearning": [
-        "Основные аспекты: Performance implications of OOP",
+        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
         "Не имеет отношения к C++",
-        "Только для embedded систем",
+        "Применяется только в теории",
         "Устаревшая технология"
       ],
       "correctIndex": 0,
@@ -550,12 +550,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Best practices для OOP design' в C++?",
+      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
       "optionsLearning": [
-        "Основные аспекты: Best practices для OOP design",
+        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
         "Не имеет отношения к C++",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -580,12 +580,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ключевые аспекты 'Composition over inheritance' в C++?",
+      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
       "optionsLearning": [
-        "Основные аспекты: Composition over inheritance",
-        "Не имеет отношения к C++",
+        "Как реализовать composition pattern для замены inheritance в C++?",
+        "Устаревшая технология",
         "Только для embedded систем",
-        "Устаревшая технология"
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
