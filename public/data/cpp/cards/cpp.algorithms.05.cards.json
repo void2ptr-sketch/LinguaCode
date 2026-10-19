@@ -1,584 +1,306 @@
 {
+  "version": "1.0",
   "scenarioId": "cpp.algorithms.05.scenario",
+  "title": "Algorithms — Дополнительные сценарии 5",
   "cards": [
     {
       "id": "cpp.algorithms.05.scenario.card-01",
       "kind": "select",
-      "title": "std::transform — Вопрос 1",
+      "title": "Predicate functions и lambdas в алгоритмах",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 1 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Predicate functions и lambdas в алгоритмах' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Predicate functions и lambdas в алгоритмах — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "predicate"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-02",
       "kind": "select",
-      "title": "std::transform — Вопрос 2",
+      "title": "Custom comparators для sort",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 2 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Custom comparators для sort' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Custom comparators для sort — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "custom"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-03",
       "kind": "select",
-      "title": "std::transform — Вопрос 3",
+      "title": "Partition and stable_partition",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 3 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Partition and stable_partition' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Partition and stable_partition — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "partition"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-04",
       "kind": "select",
-      "title": "std::transform — Вопрос 4",
+      "title": "Merge operations (merge, inplace_merge)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 4 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Merge operations (merge, inplace_merge)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Merge operations (merge, inplace_merge) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "merge"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-05",
       "kind": "select",
-      "title": "std::transform — Вопрос 5",
+      "title": "Set algorithms (set_union, set_intersection)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 5 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Set algorithms (set_union, set_intersection)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Set algorithms (set_union, set_intersection) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "set"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-06",
       "kind": "select",
-      "title": "std::transform — Вопрос 6",
+      "title": "Adjacent_find и unique",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 6 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Adjacent_find и unique' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Adjacent_find и unique — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "adjacent_find"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-07",
       "kind": "select",
-      "title": "std::transform — Вопрос 7",
+      "title": "Rotate и reverse",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 7 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Rotate и reverse' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Rotate и reverse — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "rotate"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-08",
       "kind": "select",
-      "title": "std::transform — Вопрос 8",
+      "title": "Random_shuffle и shuffle",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 8 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Random_shuffle и shuffle' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Random_shuffle и shuffle — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "random_shuffle"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-09",
       "kind": "select",
-      "title": "std::transform — Вопрос 9",
+      "title": "Partial_sort и nth_element",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 9 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Partial_sort и nth_element' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Partial_sort и nth_element — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "partial_sort"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     },
     {
       "id": "cpp.algorithms.05.scenario.card-10",
       "kind": "select",
-      "title": "std::transform — Вопрос 10",
+      "title": "Accumulate и reduce",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 10 по теме \"std::transform\"",
+      "promptKnown": "Что известно о 'Accumulate и reduce' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Accumulate и reduce — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "algorithms",
+          "accumulate"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-11",
-      "kind": "select",
-      "title": "std::transform — Вопрос 11",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 11 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-12",
-      "kind": "select",
-      "title": "std::transform — Вопрос 12",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 12 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-13",
-      "kind": "select",
-      "title": "std::transform — Вопрос 13",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 13 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-14",
-      "kind": "select",
-      "title": "std::transform — Вопрос 14",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 14 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-15",
-      "kind": "select",
-      "title": "std::transform — Вопрос 15",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 15 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-16",
-      "kind": "select",
-      "title": "std::transform — Вопрос 16",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 16 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-17",
-      "kind": "select",
-      "title": "std::transform — Вопрос 17",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 17 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-18",
-      "kind": "select",
-      "title": "std::transform — Вопрос 18",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 18 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-19",
-      "kind": "select",
-      "title": "std::transform — Вопрос 19",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 19 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.algorithms.05.scenario"
-    },
-    {
-      "id": "cpp.algorithms.05.scenario.card-20",
-      "kind": "select",
-      "title": "std::transform — Вопрос 20",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 20 по теме \"std::transform\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-algorithms",
       "scenarioId": "cpp.algorithms.05.scenario"
     }
   ]

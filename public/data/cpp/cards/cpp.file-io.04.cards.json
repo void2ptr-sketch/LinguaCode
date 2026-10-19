@@ -1,584 +1,306 @@
 {
+  "version": "1.0",
   "scenarioId": "cpp.file-io.04.scenario",
+  "title": "File Io — Дополнительные сценарии 4",
   "cards": [
     {
       "id": "cpp.file-io.04.scenario.card-01",
       "kind": "select",
-      "title": "ofstream — Вопрос 1",
+      "title": "Memory-mapped files (mmap) для high-performance I/O",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 1 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Memory-mapped files (mmap) для high-performance I/O' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Memory-mapped files (mmap) для high-performance I/O — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "memory-mapped"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-02",
       "kind": "select",
-      "title": "ofstream — Вопрос 2",
+      "title": "File locking в многопоточном окружении",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 2 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'File locking в многопоточном окружении' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: File locking в многопоточном окружении — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "file"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-03",
       "kind": "select",
-      "title": "ofstream — Вопрос 3",
+      "title": "Atomic file operations (rename-based)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 3 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Atomic file operations (rename-based)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Atomic file operations (rename-based) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "atomic"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-04",
       "kind": "select",
-      "title": "ofstream — Вопрос 4",
+      "title": "Buffered I/O vs unbuffered I/O",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 4 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Buffered I/O vs unbuffered I/O' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Buffered I/O vs unbuffered I/O — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "buffered"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-05",
       "kind": "select",
-      "title": "ofstream — Вопрос 5",
+      "title": "Random access files (seekg/seekp)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 5 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Random access files (seekg/seekp)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Random access files (seekg/seekp) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "random"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-06",
       "kind": "select",
-      "title": "ofstream — Вопрос 6",
+      "title": "Large file handling (>2GB)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 6 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Large file handling (>2GB)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Large file handling (>2GB) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "large"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-07",
       "kind": "select",
-      "title": "ofstream — Вопрос 7",
+      "title": "Temp files и временные директории",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 7 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Temp files и временные директории' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Temp files и временные директории — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "temp"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-08",
       "kind": "select",
-      "title": "ofstream — Вопрос 8",
+      "title": "File permissions и безопасность",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 8 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'File permissions и безопасность' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: File permissions и безопасность — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "file"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-09",
       "kind": "select",
-      "title": "ofstream — Вопрос 9",
+      "title": "File system operations (rename, remove, copy)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 9 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'File system operations (rename, remove, copy)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: File system operations (rename, remove, copy) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "file"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     },
     {
       "id": "cpp.file-io.04.scenario.card-10",
       "kind": "select",
-      "title": "ofstream — Вопрос 10",
+      "title": "Path manipulation (std::filesystem)",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Вопрос 10 по теме \"ofstream\"",
+      "promptKnown": "Что известно о 'Path manipulation (std::filesystem)' в C++?",
       "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
+        "Основные аспекты: Path manipulation (std::filesystem) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
       ],
       "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "language-basics"
+          "file-io",
+          "path"
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-11",
-      "kind": "select",
-      "title": "ofstream — Вопрос 11",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 11 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-12",
-      "kind": "select",
-      "title": "ofstream — Вопрос 12",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 12 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-13",
-      "kind": "select",
-      "title": "ofstream — Вопрос 13",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 13 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-14",
-      "kind": "select",
-      "title": "ofstream — Вопрос 14",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 14 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-15",
-      "kind": "select",
-      "title": "ofstream — Вопрос 15",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 15 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-16",
-      "kind": "select",
-      "title": "ofstream — Вопрос 16",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 16 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-17",
-      "kind": "select",
-      "title": "ofstream — Вопрос 17",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 17 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-18",
-      "kind": "select",
-      "title": "ofstream — Вопрос 18",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 18 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-19",
-      "kind": "select",
-      "title": "ofstream — Вопрос 19",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 19 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
-      "scenarioId": "cpp.file-io.04.scenario"
-    },
-    {
-      "id": "cpp.file-io.04.scenario.card-20",
-      "kind": "select",
-      "title": "ofstream — Вопрос 20",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Вопрос 20 по теме \"ofstream\"",
-      "optionsLearning": [
-        "Вариант A",
-        "Вариант B",
-        "Вариант C",
-        "Вариант D"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "language-basics"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "",
+      "lessonId": "lesson-cpp-file-io",
       "scenarioId": "cpp.file-io.04.scenario"
     }
   ]

@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.streams-files.02.scenario",
+  "title": "Streams Files — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.streams-files.02.scenario.card-01",
+      "kind": "select",
+      "title": "Custom stream buffers (streambuf)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom stream buffers (streambuf)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom stream buffers (streambuf) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-02",
+      "kind": "select",
+      "title": "Wide character streams (wcin, wcout)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Wide character streams (wcin, wcout)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Wide character streams (wcin, wcout) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "wide"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-03",
+      "kind": "select",
+      "title": "Locale-aware I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Locale-aware I/O' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Locale-aware I/O — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "locale-aware"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-04",
+      "kind": "select",
+      "title": "Sync with C stdio (setvbuf, setbuf)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Sync with C stdio (setvbuf, setbuf)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Sync with C stdio (setvbuf, setbuf) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "sync"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-05",
+      "kind": "select",
+      "title": "Thread-safe I/O operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Thread-safe I/O operations' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Thread-safe I/O operations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "thread-safe"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-06",
+      "kind": "select",
+      "title": "Asynchronous file I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Asynchronous file I/O' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Asynchronous file I/O — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "asynchronous"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-07",
+      "kind": "select",
+      "title": "Memory allocation in streams",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Memory allocation in streams' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Memory allocation in streams — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-08",
+      "kind": "select",
+      "title": "Stream state flags (good, eof, fail, bad)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Stream state flags (good, eof, fail, bad)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Stream state flags (good, eof, fail, bad) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "stream"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-09",
+      "kind": "select",
+      "title": "Clearing and resetting stream state",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Clearing and resetting stream state' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Clearing and resetting stream state — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "clearing"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    },
+    {
+      "id": "cpp.streams-files.02.scenario.card-10",
+      "kind": "select",
+      "title": "Custom manipulators",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom manipulators' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom manipulators — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "streams-files",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-streams-files",
+      "scenarioId": "cpp.streams-files.02.scenario"
+    }
+  ]
+}

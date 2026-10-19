@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.multithreading-async.02.scenario",
+  "title": "Multithreading Async — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-01",
+      "kind": "select",
+      "title": "std::async и std::future для асинхронных задач",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'std::async и std::future для асинхронных задач' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: std::async и std::future для асинхронных задач — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "std::async"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-02",
+      "kind": "select",
+      "title": "std::promise и std::shared_future",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'std::promise и std::shared_future' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: std::promise и std::shared_future — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "std::promise"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-03",
+      "kind": "select",
+      "title": "Thread pools и их реализация",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Thread pools и их реализация' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Thread pools и их реализация — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "thread"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-04",
+      "kind": "select",
+      "title": "Atomic operations (load, store, compare_exchange)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Atomic operations (load, store, compare_exchange)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Atomic operations (load, store, compare_exchange) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "atomic"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-05",
+      "kind": "select",
+      "title": "Memory order (relaxed, acquire, release, seq_cst)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Memory order (relaxed, acquire, release, seq_cst)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Memory order (relaxed, acquire, release, seq_cst) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-06",
+      "kind": "select",
+      "title": "Condition variables и wait/notify",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Condition variables и wait/notify' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Condition variables и wait/notify — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "condition"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-07",
+      "kind": "select",
+      "title": "Read-write locks (std::shared_mutex)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Read-write locks (std::shared_mutex)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Read-write locks (std::shared_mutex) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "read-write"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-08",
+      "kind": "select",
+      "title": "Lock-free data structures",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Lock-free data structures' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Lock-free data structures — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "lock-free"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-09",
+      "kind": "select",
+      "title": "Thread-local storage (thread_local)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Thread-local storage (thread_local)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Thread-local storage (thread_local) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "thread-local"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario.card-10",
+      "kind": "select",
+      "title": "Detached threads и проблемы с ними",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Detached threads и проблемы с ними' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Detached threads и проблемы с ними — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "multithreading-async",
+          "detached"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-multithreading-async",
+      "scenarioId": "cpp.multithreading-async.02.scenario"
+    }
+  ]
+}

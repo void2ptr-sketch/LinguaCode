@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.exceptions-errors.02.scenario",
+  "title": "Exceptions Errors — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-01",
+      "kind": "select",
+      "title": "Exception safety guarantees (basic, strong, nothrow)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Exception safety guarantees (basic, strong, nothrow)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Exception safety guarantees (basic, strong, nothrow) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "exception"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-02",
+      "kind": "select",
+      "title": "RAII и обработка исключений",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'RAII и обработка исключений' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: RAII и обработка исключений — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "raii"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-03",
+      "kind": "select",
+      "title": "Custom exception hierarchies",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom exception hierarchies' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom exception hierarchies — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-04",
+      "kind": "select",
+      "title": "Exception handling in constructors/destructors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Exception handling in constructors/destructors' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Exception handling in constructors/destructors — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "exception"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-05",
+      "kind": "select",
+      "title": "std::bad_alloc для ошибок выделения памяти",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'std::bad_alloc для ошибок выделения памяти' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: std::bad_alloc для ошибок выделения памяти — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "std::bad_alloc"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-06",
+      "kind": "select",
+      "title": "Nested exceptions (C++ standard library)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Nested exceptions (C++ standard library)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Nested exceptions (C++ standard library) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "nested"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-07",
+      "kind": "select",
+      "title": "Uncaught exception handler (std::terminate)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Uncaught exception handler (std::terminate)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Uncaught exception handler (std::terminate) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "uncaught"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-08",
+      "kind": "select",
+      "title": "Performance impact of exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Performance impact of exceptions' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Performance impact of exceptions — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-09",
+      "kind": "select",
+      "title": "Noexcept move constructors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Noexcept move constructors' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Noexcept move constructors — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "noexcept"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario.card-10",
+      "kind": "select",
+      "title": "Exception propagation across DLL boundaries",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Exception propagation across DLL boundaries' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Exception propagation across DLL boundaries — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "exceptions-errors",
+          "exception"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-exceptions-errors",
+      "scenarioId": "cpp.exceptions-errors.02.scenario"
+    }
+  ]
+}

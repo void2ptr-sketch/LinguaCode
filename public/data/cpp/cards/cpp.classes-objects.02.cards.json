@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.classes-objects.02.scenario",
+  "title": "Classes Objects — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.classes-objects.02.scenario.card-01",
+      "kind": "select",
+      "title": "CRTP (Curiously Recurring Template Pattern)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'CRTP (Curiously Recurring Template Pattern)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: CRTP (Curiously Recurring Template Pattern) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "crtp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-02",
+      "kind": "select",
+      "title": "Pimpl idiom (pointer to implementation)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Pimpl idiom (pointer to implementation)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Pimpl idiom (pointer to implementation) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "pimpl"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-03",
+      "kind": "select",
+      "title": "Flyweight pattern для оптимизации памяти",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Flyweight pattern для оптимизации памяти' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Flyweight pattern для оптимизации памяти — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "flyweight"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-04",
+      "kind": "select",
+      "title": "Builder pattern с fluent interface",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Builder pattern с fluent interface' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Builder pattern с fluent interface — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "builder"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-05",
+      "kind": "select",
+      "title": "Factory method и abstract factory",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Factory method и abstract factory' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Factory method и abstract factory — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "factory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-06",
+      "kind": "select",
+      "title": "Singleton pattern (thread-safe)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Singleton pattern (thread-safe)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Singleton pattern (thread-safe) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "singleton"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-07",
+      "kind": "select",
+      "title": "Observer pattern с std::function",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Observer pattern с std::function' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Observer pattern с std::function — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "observer"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-08",
+      "kind": "select",
+      "title": "Strategy pattern с lambdas",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Strategy pattern с lambdas' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Strategy pattern с lambdas — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "strategy"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-09",
+      "kind": "select",
+      "title": "Decorator pattern для расширения функциональности",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Decorator pattern для расширения функциональности' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Decorator pattern для расширения функциональности — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "decorator"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario.card-10",
+      "kind": "select",
+      "title": "Proxy pattern для lazy initialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Proxy pattern для lazy initialization' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Proxy pattern для lazy initialization — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "proxy"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.02.scenario"
+    }
+  ]
+}

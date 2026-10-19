@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.strings-streams.02.scenario",
+  "title": "Strings Streams — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.strings-streams.02.scenario.card-01",
+      "kind": "select",
+      "title": "Regex (регулярные выражения) в C++11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Regex (регулярные выражения) в C++11' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Regex (регулярные выражения) в C++11 — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "regex"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-02",
+      "kind": "select",
+      "title": "Unicode строки (std::wstring, std::u8string)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Unicode строки (std::wstring, std::u8string)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Unicode строки (std::wstring, std::u8string) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "unicode"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-03",
+      "kind": "select",
+      "title": "Encoding conversion (UTF-8, UTF-16, UTF-32)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Encoding conversion (UTF-8, UTF-16, UTF-32)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Encoding conversion (UTF-8, UTF-16, UTF-32) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "encoding"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-04",
+      "kind": "select",
+      "title": "String formatting with std::format (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'String formatting with std::format (C++20)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: String formatting with std::format (C++20) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-05",
+      "kind": "select",
+      "title": "Custom string allocators",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom string allocators' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom string allocators — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-06",
+      "kind": "select",
+      "title": "String_view vs String_ref",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'String_view vs String_ref' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: String_view vs String_ref — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "string_view"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-07",
+      "kind": "select",
+      "title": "Performance: reserve(), shrink_to_fit()",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Performance: reserve(), shrink_to_fit()' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Performance: reserve(), shrink_to_fit() — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "performance:"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-08",
+      "kind": "select",
+      "title": "String interning и caching",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'String interning и caching' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: String interning и caching — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-09",
+      "kind": "select",
+      "title": "Locale-specific string operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Locale-specific string operations' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Locale-specific string operations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "locale-specific"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario.card-10",
+      "kind": "select",
+      "title": "Wide character I/O (wcin, wcout)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Wide character I/O (wcin, wcout)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Wide character I/O (wcin, wcout) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "strings-streams",
+          "wide"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-strings-streams",
+      "scenarioId": "cpp.strings-streams.02.scenario"
+    }
+  ]
+}

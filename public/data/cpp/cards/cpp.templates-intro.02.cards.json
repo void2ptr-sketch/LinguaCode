@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.templates-intro.02.scenario",
+  "title": "Templates Intro — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.templates-intro.02.scenario.card-01",
+      "kind": "select",
+      "title": "Template alias templates (using)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Template alias templates (using)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Template alias templates (using) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "template"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-02",
+      "kind": "select",
+      "title": "Template template parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Template template parameters' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Template template parameters — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "template"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-03",
+      "kind": "select",
+      "title": "Non-type template parameters (pointers, references)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Non-type template parameters (pointers, references)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Non-type template parameters (pointers, references) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "non-type"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-04",
+      "kind": "select",
+      "title": "Variadic templates с fold expressions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Variadic templates с fold expressions' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Variadic templates с fold expressions — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "variadic"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-05",
+      "kind": "select",
+      "title": "Concepts and requires clauses (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Concepts and requires clauses (C++20)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Concepts and requires clauses (C++20) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "concepts"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-06",
+      "kind": "select",
+      "title": "Constraints on template parameters",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Constraints on template parameters' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Constraints on template parameters — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "constraints"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-07",
+      "kind": "select",
+      "title": "if constexpr для conditional compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'if constexpr для conditional compilation' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: if constexpr для conditional compilation — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "if"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-08",
+      "kind": "select",
+      "title": "Template metaprogramming: type traits",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Template metaprogramming: type traits' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Template metaprogramming: type traits — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "template"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-09",
+      "kind": "select",
+      "title": "SFINAE и std::enable_if",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'SFINAE и std::enable_if' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: SFINAE и std::enable_if — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "sfinae"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario.card-10",
+      "kind": "select",
+      "title": "Alias templates и using declarations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Alias templates и using declarations' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Alias templates и using declarations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "templates-intro",
+          "alias"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-templates-intro",
+      "scenarioId": "cpp.templates-intro.02.scenario"
+    }
+  ]
+}

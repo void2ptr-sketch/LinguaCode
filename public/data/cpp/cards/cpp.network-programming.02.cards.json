@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.network-programming.02.scenario",
+  "title": "Network Programming — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.network-programming.02.scenario.card-01",
+      "kind": "select",
+      "title": "UDP vs TCP: когда что использовать",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'UDP vs TCP: когда что использовать' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: UDP vs TCP: когда что использовать — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "udp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-02",
+      "kind": "select",
+      "title": "Non-blocking sockets",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Non-blocking sockets' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Non-blocking sockets — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "non-blocking"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-03",
+      "kind": "select",
+      "title": "Socket options (SO_REUSEADDR, SO_KEEPALIVE)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Socket options (SO_REUSEADDR, SO_KEEPALIVE)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Socket options (SO_REUSEADDR, SO_KEEPALIVE) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "socket"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-04",
+      "kind": "select",
+      "title": "HTTP request/response parsing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'HTTP request/response parsing' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: HTTP request/response parsing — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "http"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-05",
+      "kind": "select",
+      "title": "SSL/TLS encryption in C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'SSL/TLS encryption in C++' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: SSL/TLS encryption in C++ — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "ssl/tls"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-06",
+      "kind": "select",
+      "title": "WebSocket implementation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'WebSocket implementation' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: WebSocket implementation — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "websocket"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-07",
+      "kind": "select",
+      "title": "DNS resolution (getaddrinfo)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'DNS resolution (getaddrinfo)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: DNS resolution (getaddrinfo) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "dns"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-08",
+      "kind": "select",
+      "title": "Byte order conversion (htonl, ntohl)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Byte order conversion (htonl, ntohl)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Byte order conversion (htonl, ntohl) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "byte"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-09",
+      "kind": "select",
+      "title": "Multicast and broadcast",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Multicast and broadcast' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Multicast and broadcast — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "multicast"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    },
+    {
+      "id": "cpp.network-programming.02.scenario.card-10",
+      "kind": "select",
+      "title": "Network latency and throughput optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Network latency and throughput optimization' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Network latency and throughput optimization — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "network-programming",
+          "network"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-network-programming",
+      "scenarioId": "cpp.network-programming.02.scenario"
+    }
+  ]
+}

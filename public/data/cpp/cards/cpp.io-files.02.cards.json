@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.io-files.02.scenario",
+  "title": "Io Files — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.io-files.02.scenario.card-01",
+      "kind": "select",
+      "title": "Custom file formats (binary, CSV, JSON)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom file formats (binary, CSV, JSON)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom file formats (binary, CSV, JSON) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-02",
+      "kind": "select",
+      "title": "File compression and decompression",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'File compression and decompression' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: File compression and decompression — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "file"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-03",
+      "kind": "select",
+      "title": "Log file rotation strategies",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Log file rotation strategies' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Log file rotation strategies — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "log"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-04",
+      "kind": "select",
+      "title": "Atomic file operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Atomic file operations' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Atomic file operations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "atomic"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-05",
+      "kind": "select",
+      "title": "File watching and notifications",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'File watching and notifications' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: File watching and notifications — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "file"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-06",
+      "kind": "select",
+      "title": "Symbolic links and hard links",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Symbolic links and hard links' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Symbolic links and hard links — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "symbolic"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-07",
+      "kind": "select",
+      "title": "Filesystem types and mount points",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Filesystem types and mount points' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Filesystem types and mount points — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-08",
+      "kind": "select",
+      "title": "Disk I/O scheduling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Disk I/O scheduling' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Disk I/O scheduling — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "disk"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-09",
+      "kind": "select",
+      "title": "Cache management for file operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Cache management for file operations' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Cache management for file operations — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "cache"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    },
+    {
+      "id": "cpp.io-files.02.scenario.card-10",
+      "kind": "select",
+      "title": "Cross-platform file path handling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Cross-platform file path handling' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Cross-platform file path handling — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "io-files",
+          "cross-platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-io-files",
+      "scenarioId": "cpp.io-files.02.scenario"
+    }
+  ]
+}

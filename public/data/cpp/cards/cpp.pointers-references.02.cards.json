@@ -1,0 +1,307 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.pointers-references.02.scenario",
+  "title": "Pointers References — Дополнительные сценарии 2",
+  "cards": [
+    {
+      "id": "cpp.pointers-references.02.scenario.card-01",
+      "kind": "select",
+      "title": "Указатели и массивы: взаимное преобразование",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Указатели и массивы: взаимное преобразование' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Указатели и массивы: взаимное преобразование — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "указатели"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-02",
+      "kind": "select",
+      "title": "Двумерные массивы указателей",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Двумерные массивы указателей' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Двумерные массивы указателей — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "двумерные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-03",
+      "kind": "select",
+      "title": "Массивы ссылок (reference arrays)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы ссылок (reference arrays)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы ссылок (reference arrays) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-04",
+      "kind": "select",
+      "title": "Указатели на функции (function pointers)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Указатели на функции (function pointers)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Указатели на функции (function pointers) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "указатели"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-05",
+      "kind": "select",
+      "title": "Указатели на члены класса (member pointers)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Указатели на члены класса (member pointers)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Указатели на члены класса (member pointers) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "указатели"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-06",
+      "kind": "select",
+      "title": "Векторы указателей vs указатели на векторы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Векторы указателей vs указатели на векторы' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Векторы указателей vs указатели на векторы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "векторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-07",
+      "kind": "select",
+      "title": "Smart pointers: unique_ptr vs shared_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Smart pointers: unique_ptr vs shared_ptr' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Smart pointers: unique_ptr vs shared_ptr — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "smart"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-08",
+      "kind": "select",
+      "title": "Weak pointers и циклические ссылки",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Weak pointers и циклические ссылки' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Weak pointers и циклические ссылки — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "weak"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-09",
+      "kind": "select",
+      "title": "Custom deleters для умных указателей",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Custom deleters для умных указателей' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Custom deleters для умных указателей — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "custom"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario.card-10",
+      "kind": "select",
+      "title": "Placement new и destructor вызовы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Placement new и destructor вызовы' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Placement new и destructor вызовы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "placement"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.02.scenario"
+    }
+  ]
+}
