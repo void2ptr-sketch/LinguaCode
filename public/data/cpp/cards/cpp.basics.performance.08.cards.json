@@ -1,0 +1,585 @@
+{
+    "scenarioId": "cpp.basics.performance.08.scenario",
+    "cards": [
+        {
+            "id": "cpp.basics.performance.08.scenario.card-01",
+            "kind": "select",
+            "title": "Вопрос 1",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер обеспечивает O(1) доступ по индексу?",
+            "optionsLearning": [
+                "std::list",
+                "std::set",
+                "std::map",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-02",
+            "kind": "select",
+            "title": "Вопрос 2",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::unordered_map?",
+            "optionsLearning": [
+                "Двунаправленный список",
+                "Бинарное дерево",
+                "Фиксированный массив",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-03",
+            "kind": "select",
+            "title": "Вопрос 3",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер автоматически сортирует элементы?",
+            "optionsLearning": [
+                "std::vector",
+                "std::deque",
+                "std::forward_list",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-04",
+            "kind": "select",
+            "title": "Вопрос 4",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::stack?",
+            "optionsLearning": [
+                "FIFO очередь",
+                "Хеш-таблица",
+                "Дерево поиска",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-05",
+            "kind": "select",
+            "title": "Вопрос 5",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер лучше для вставок в середину?",
+            "optionsLearning": [
+                "std::vector",
+                "std::array",
+                "std::string",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-06",
+            "kind": "select",
+            "title": "Вопрос 6",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает std::reserve()?",
+            "optionsLearning": [
+                "Изменяет размер контейнера",
+                "Удаляет элементы",
+                "Сортирует контейнер",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-07",
+            "kind": "select",
+            "title": "Вопрос 7",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой метод удаляет элемент из vector по итератору?",
+            "optionsLearning": [
+                "v.remove(it)",
+                "v.delete(it)",
+                "v.pop(it)",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-08",
+            "kind": "select",
+            "title": "Вопрос 8",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::pair?",
+            "optionsLearning": [
+                "Тройка значений",
+                "Массив из двух элементов",
+                "Связанный список",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-09",
+            "kind": "select",
+            "title": "Вопрос 9",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер не допускает дубликатов?",
+            "optionsLearning": [
+                "std::vector",
+                "std::list",
+                "std::map",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-10",
+            "kind": "select",
+            "title": "Вопрос 10",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое emplace_back()?",
+            "optionsLearning": [
+                "Копирует элемент в конец",
+                "Удаляет последний элемент",
+                "Вставляет null в конец",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-11",
+            "kind": "select",
+            "title": "Вопрос 11",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой метод возвращает итератор на первый элемент?",
+            "optionsLearning": [
+                "first()",
+                "start()",
+                "head()",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-12",
+            "kind": "select",
+            "title": "Вопрос 12",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::forward_list?",
+            "optionsLearning": [
+                "Двунаправленный список",
+                "Хеш-таблица",
+                "Кольцевой буфер",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-13",
+            "kind": "select",
+            "title": "Вопрос 13",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер для FIFO очереди?",
+            "optionsLearning": [
+                "std::stack",
+                "std::deque",
+                "std::vector",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-14",
+            "kind": "select",
+            "title": "Вопрос 14",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает std::sort()?",
+            "optionsLearning": [
+                "Сортирует диапазон (Introsort — QuickSort + HeapSort + InsertionSort)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-15",
+            "kind": "select",
+            "title": "Вопрос 15",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как найти элемент в std::map?",
+            "optionsLearning": [
+                "m[key] всегда безопасен",
+                "m.search(key)",
+                "std::find(m.begin(), m.end(), key)",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-16",
+            "kind": "select",
+            "title": "Вопрос 16",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::deque?",
+            "optionsLearning": [
+                "Двойной указатель",
+                "Структура данных для deque-операций",
+                "Устаревший контейнер",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-17",
+            "kind": "select",
+            "title": "Вопрос 17",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой контейнер использует красно-чёрное дерево?",
+            "optionsLearning": [
+                "std::unordered_map",
+                "std::vector",
+                "std::list",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-18",
+            "kind": "select",
+            "title": "Вопрос 18",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `v.clear()`?",
+            "optionsLearning": [
+                "Освобождает всю память включая capacity",
+                "Устанавливает размер в 0 и освобождает память",
+                "Делает вектор null",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-19",
+            "kind": "select",
+            "title": "Вопрос 19",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой метод проверяет пустоту контейнера?",
+            "optionsLearning": [
+                "is_empty()",
+                "has_elements()",
+                "count() == false",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.08.scenario.card-20",
+            "kind": "select",
+            "title": "Вопрос 20",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое std::tuple?",
+            "optionsLearning": [
+                "Контейнер фиксированного размера для разнородных типов",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.08.scenario"
+        }
+    ]
+}

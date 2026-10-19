@@ -1,0 +1,585 @@
+{
+    "scenarioId": "cpp.basics.performance.20.scenario",
+    "cards": [
+        {
+            "id": "cpp.basics.performance.20.scenario.card-01",
+            "kind": "select",
+            "title": "Вопрос 1",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое TCP socket?",
+            "optionsLearning": [
+                "Надёжный двунаправленный поток данных с установлением соединения (3-way handshake)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-02",
+            "kind": "select",
+            "title": "Вопрос 2",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как создать TCP server?",
+            "optionsLearning": [
+                "socket() → bind() → listen() → accept() — цикл обработки соединений",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-03",
+            "kind": "select",
+            "title": "Вопрос 3",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `bind()`?",
+            "optionsLearning": [
+                "Привязывает socket к IP-адресу и порту",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-04",
+            "kind": "select",
+            "title": "Вопрос 4",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как отправить данные по socket?",
+            "optionsLearning": [
+                "send(sock, buf, len, 0) или write(sock, buf, len)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-05",
+            "kind": "select",
+            "title": "Вопрос 5",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое HTTP request?",
+            "optionsLearning": [
+                "\"GET /path HTTP/1.1\\r\\nHost: example.com\\r\\n\\r\\n\"",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-06",
+            "kind": "select",
+            "title": "Вопрос 6",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `htons()`?",
+            "optionsLearning": [
+                "Преобразует число из host byte order в network byte order (big-endian)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-07",
+            "kind": "select",
+            "title": "Вопрос 7",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как получить IP адрес хоста?",
+            "optionsLearning": [
+                "getaddrinfo() или gethostbyname() (устаревший)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-08",
+            "kind": "select",
+            "title": "Вопрос 8",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое UDP socket?",
+            "optionsLearning": [
+                "Ненадёжный пакетный протокол без установления соединения (connectionless)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-09",
+            "kind": "select",
+            "title": "Вопрос 9",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как отправить UDP пакет?",
+            "optionsLearning": [
+                "sendto(sock, buf, len, 0, &addr, addrlen)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-10",
+            "kind": "select",
+            "title": "Вопрос 10",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое WebSocket?",
+            "optionsLearning": [
+                "Двунаправленный протокол поверх TCP для постоянного соединения client-server",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-11",
+            "kind": "select",
+            "title": "Вопрос 11",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как создать HTTP server на C++?",
+            "optionsLearning": [
+                "Использовать Boost.Asio, Crow или cpp-httplib",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-12",
+            "kind": "select",
+            "title": "Вопрос 12",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `setsockopt()`?",
+            "optionsLearning": [
+                "Устанавливает опции socket (SO_REUSEADDR, SO_KEEPALIVE и т.д.)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-13",
+            "kind": "select",
+            "title": "Вопрос 13",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как закрыть socket безопасно?",
+            "optionsLearning": [
+                "closesocket(sock) или close(sock); затем free ресурсов",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-14",
+            "kind": "select",
+            "title": "Вопрос 14",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое SSL/TLS в C++?",
+            "optionsLearning": [
+                "Шифрование сетевого соединения через OpenSSL или WolfSSL",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-15",
+            "kind": "select",
+            "title": "Вопрос 15",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как парсить HTTP response?",
+            "optionsLearning": [
+                "std::istringstream + getline() для заголовков, затем чтение body по Content-Length",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-16",
+            "kind": "select",
+            "title": "Вопрос 16",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как использовать non-blocking socket?",
+            "optionsLearning": [
+                "fcntl(sock, F_SETFL, O_NONBLOCK) — операции возвращают EAGAIN",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-17",
+            "kind": "select",
+            "title": "Вопрос 17",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `getpeername()`?",
+            "optionsLearning": [
+                "Возвращает адрес удалённого endpoint соединения",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-18",
+            "kind": "select",
+            "title": "Вопрос 18",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как создать UDP client?",
+            "optionsLearning": [
+                "socket(AF_INET, SOCK_DGRAM, 0) → sendto() без connect()",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-19",
+            "kind": "select",
+            "title": "Вопрос 19",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое select()?",
+            "optionsLearning": [
+                "Механизм мультиплексирования I/O — ожидание готовности сокетов для чтения/записи",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.20.scenario.card-20",
+            "kind": "select",
+            "title": "Вопрос 20",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как получить текущее время в C++?",
+            "optionsLearning": [
+                "std::chrono::system_clock::now()",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.20.scenario"
+        }
+    ]
+}

@@ -1,0 +1,585 @@
+{
+    "scenarioId": "cpp.basics.performance.01.scenario",
+    "cards": [
+        {
+            "id": "cpp.basics.performance.01.scenario.card-01",
+            "kind": "select",
+            "title": "Вопрос 1",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой тип данных используется для целых чисел в C++?",
+            "optionsLearning": [
+                "float",
+                "char",
+                "bool",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-02",
+            "kind": "select",
+            "title": "Вопрос 2",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что выведет `sizeof(char)`?",
+            "optionsLearning": [
+                "2",
+                "4",
+                "8",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-03",
+            "kind": "select",
+            "title": "Вопрос 3",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой модификатор делает переменную неизменяемой?",
+            "optionsLearning": [
+                "static",
+                "volatile",
+                "extern",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-04",
+            "kind": "select",
+            "title": "Вопрос 4",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Чем отличается `int a;` от `int a = 0;`?",
+            "optionsLearning": [
+                "Они одинаковы",
+                "Первая вызывает ошибку",
+                "Вторая медленнее",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-05",
+            "kind": "select",
+            "title": "Вопрос 5",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой тип используется для символов?",
+            "optionsLearning": [
+                "string",
+                "text",
+                "chr",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-06",
+            "kind": "select",
+            "title": "Вопрос 6",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое `auto` в C++11?",
+            "optionsLearning": [
+                "Динамический тип",
+                "Указатель на переменную",
+                "Глобальная переменная",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-07",
+            "kind": "select",
+            "title": "Вопрос 7",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой размер у `bool` в C++?",
+            "optionsLearning": [
+                "2 байта",
+                "4 байта",
+                "Зависит от платформы, но минимум 1",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-08",
+            "kind": "select",
+            "title": "Вопрос 8",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `static` внутри функции?",
+            "optionsLearning": [
+                "Делает переменную глобальной",
+                "Запрещает изменение",
+                "Удаляет переменную после функции",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-09",
+            "kind": "select",
+            "title": "Вопрос 9",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой тип подходит для больших чисел?",
+            "optionsLearning": [
+                "short",
+                "char",
+                "float",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-10",
+            "kind": "select",
+            "title": "Вопрос 10",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое `nullptr`?",
+            "optionsLearning": [
+                "То же самое что 0",
+                "То же что NULL в C",
+                "Указатель на пустую память",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-11",
+            "kind": "select",
+            "title": "Вопрос 11",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой спецификатор для широких символов?",
+            "optionsLearning": [
+                "wide_char",
+                "wstring",
+                "unicode",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-12",
+            "kind": "select",
+            "title": "Вопрос 12",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что выведет `sizeof(double)` обычно?",
+            "optionsLearning": [
+                "4 байта",
+                "16 байт",
+                "2 байта",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-13",
+            "kind": "select",
+            "title": "Вопрос 13",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как объявить константу времени компиляции?",
+            "optionsLearning": [
+                "const int N = 10;",
+                "final int N = 10;",
+                "#define N 10",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-14",
+            "kind": "select",
+            "title": "Вопрос 14",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой тип для строки в C++?",
+            "optionsLearning": [
+                "str",
+                "String",
+                "text",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-15",
+            "kind": "select",
+            "title": "Вопрос 15",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое `enum class`?",
+            "optionsLearning": [
+                "Старый enum из C",
+                "Динамический список значений",
+                "Анонимный тип",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-16",
+            "kind": "select",
+            "title": "Вопрос 16",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой оператор возвращает размер в байтах?",
+            "optionsLearning": [
+                "size()",
+                "length()",
+                "count()",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-17",
+            "kind": "select",
+            "title": "Вопрос 17",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `volatile`?",
+            "optionsLearning": [
+                "Делает переменную постоянной",
+                "Удаляет переменную",
+                "Копирует переменную в кэш",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-18",
+            "kind": "select",
+            "title": "Вопрос 18",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой тип для булевых значений?",
+            "optionsLearning": [
+                "boolean",
+                "bit",
+                "flag",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-19",
+            "kind": "select",
+            "title": "Вопрос 19",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое `std::uint32_t`?",
+            "optionsLearning": [
+                "Любое целое число",
+                "Указатель на 32 бита",
+                "Плавающая точка",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.01.scenario.card-20",
+            "kind": "select",
+            "title": "Вопрос 20",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как объявить ссылку в C++?",
+            "optionsLearning": [
+                "int *ref = a;",
+                "ref int = a;",
+                "link int = a;",
+                "Вариант 4"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.01.scenario"
+        }
+    ]
+}

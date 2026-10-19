@@ -1,0 +1,585 @@
+{
+    "scenarioId": "cpp.basics.performance.18.scenario",
+    "cards": [
+        {
+            "id": "cpp.basics.performance.18.scenario.card-01",
+            "kind": "select",
+            "title": "Вопрос 1",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое unit test?",
+            "optionsLearning": [
+                "Тестирование отдельной функции/класса в изоляции от зависимостей",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-02",
+            "kind": "select",
+            "title": "Вопрос 2",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Какой фреймворк для тестирования C++?",
+            "optionsLearning": [
+                "Google Test (GTest), Catch2, Boost.Test",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-03",
+            "kind": "select",
+            "title": "Вопрос 3",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как использовать `assert()`?",
+            "optionsLearning": [
+                "assert(condition) — проверка условия, выбрасывает std::abort при false",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-04",
+            "kind": "select",
+            "title": "Вопрос 4",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает valgrind?",
+            "optionsLearning": [
+                "Инструмент для обнаружения утечек памяти и ошибок работы с памятью",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-05",
+            "kind": "select",
+            "title": "Вопрос 5",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как скомпилировать с AddressSanitizer?",
+            "optionsLearning": [
+                "g++ -fsanitize=address -g main.cpp",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-06",
+            "kind": "select",
+            "title": "Вопрос 6",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое GDB breakpoint?",
+            "optionsLearning": [
+                "Точка останова: break function_name или break line_number",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-07",
+            "kind": "select",
+            "title": "Вопрос 7",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `--leak-check` в valgrind?",
+            "optionsLearning": [
+                "Поиск утечек памяти при выполнении программы",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-08",
+            "kind": "select",
+            "title": "Вопрос 8",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как включить profiling?",
+            "optionsLearning": [
+                "g++ -pg main.cpp && ./a.out && gprof",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-09",
+            "kind": "select",
+            "title": "Вопрос 9",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое sanitizer checker?",
+            "optionsLearning": [
+                "-fsanitize=address,undefined,thread — обнаружение ошибок на этапе выполнения",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-10",
+            "kind": "select",
+            "title": "Вопрос 10",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как отладить crash в production?",
+            "optionsLearning": [
+                "core dump + gdb core_file или crash utility",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-11",
+            "kind": "select",
+            "title": "Вопрос 11",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `std::cout` для отладки?",
+            "optionsLearning": [
+                "Вывод значений переменных: std::cout << \"var=\" << var << std::endl;",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-12",
+            "kind": "select",
+            "title": "Вопрос 12",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое coverage testing?",
+            "optionsLearning": [
+                "Измерение процента кода, покрытого тестами (gcov, lcov)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-13",
+            "kind": "select",
+            "title": "Вопрос 13",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как использовать static analyzer?",
+            "optionsLearning": [
+                "clang-tidy или cppcheck — анализ кода без выполнения",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-14",
+            "kind": "select",
+            "title": "Вопрос 14",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как установить breakpoint по условию в GDB?",
+            "optionsLearning": [
+                "break func if var > 10",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-15",
+            "kind": "select",
+            "title": "Вопрос 15",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает valgrind --tool=helgrind?",
+            "optionsLearning": [
+                "Поиск race conditions в многопоточном коде",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-16",
+            "kind": "select",
+            "title": "Вопрос 16",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое memory leak detector?",
+            "optionsLearning": [
+                "Valgrind, Dr. Memory, CRT debug heap (Visual Studio)",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-17",
+            "kind": "select",
+            "title": "Вопрос 17",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как отключить assert в release?",
+            "optionsLearning": [
+                "#define NDEBUG перед #include <cassert>",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-18",
+            "kind": "select",
+            "title": "Вопрос 18",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что делает `catch` в Google Test?",
+            "optionsLearning": [
+                "ASSERT_EQ(expected, actual) — проверка равенства с детальным сообщением",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-19",
+            "kind": "select",
+            "title": "Вопрос 19",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Как запустить тесты в GTest?",
+            "optionsLearning": [
+                "./test_binary --gtest_filter='*Prefix*'",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        },
+        {
+            "id": "cpp.basics.performance.18.scenario.card-20",
+            "kind": "select",
+            "title": "Вопрос 20",
+            "appearance": {
+                "theme": "azure-blue",
+                "fontSize": "md"
+            },
+            "direction": "known-to-learning",
+            "promptKnown": "Что такое mock object?",
+            "optionsLearning": [
+                "Заменяющий объект, имитирующий поведение зависимости для изоляции теста",
+                "Вариант B",
+                "Вариант C",
+                "Вариант D"
+            ],
+            "correctIndex": 0,
+            "meta": {
+                "knownLanguage": "ru",
+                "learningLanguage": "cpp",
+                "difficulty": "beginner",
+                "tags": [
+                    "performance"
+                ]
+            },
+            "courseId": "course-cpp-complete",
+            "lessonId": "",
+            "scenarioId": "cpp.basics.performance.18.scenario"
+        }
+    ]
+}
