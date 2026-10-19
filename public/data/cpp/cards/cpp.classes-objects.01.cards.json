@@ -30,7 +30,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "C++ — компилируемый язык программирования, созданный Бьярном Страуструпом как расширение C с классами и ООП."
     },
@@ -61,7 +61,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "C++ создан Бьярном Страуструпом в 1979 году в Bell Labs, изначально назывался 'C with Classes'."
     },
@@ -92,7 +92,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Минимальная программа C++ включает подключение заголовочных файлов, функцию main() и оператор return."
     },
@@ -123,7 +123,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "g++ — компилятор C++, опция -o указывает имя выходного исполняемого файла."
     },
@@ -154,7 +154,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Базовые типы C++: int (целые), double (浮点数), char (символы), bool (логические), void (пустота)."
     },
@@ -185,7 +185,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Ключевое слово const делает переменную константой. #define — препроцессорная директива (не типобезопасна)."
     },
@@ -216,7 +216,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "std::cin (ввод), std::cout (вывод), std::endl (перенос строки + очистка буфера) — стандартные потоки C++."
     },
@@ -247,7 +247,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Оператор * имеет более высокий приоритет, чем +. Сначала 3*2=6, затем 5+6=11."
     },
@@ -278,7 +278,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "C++ использует скобки для условия и фигурные скобки для блоков кода, как в C."
     },
@@ -309,7 +309,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "do-while проверяет условие ПОСЛЕ выполнения тела, поэтому тело выполняется минимум один раз."
     },
@@ -340,7 +340,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "break полностью завершает цикл, continue переходит к следующей итерации, пропуская остаток тела."
     },
@@ -371,7 +371,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Функция C++: тип возвращаемого значения, имя, параметры в скобках, тело в фигурных скобках."
     },
@@ -402,7 +402,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Параметр без & и * копирует значение. int& — передача по ссылке, int* — по указателю."
     },
@@ -433,7 +433,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "void означает 'без возвращаемого значения'. Функция не может использовать return с значением."
     },
@@ -464,7 +464,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Локальные переменные видны только в блоке, где объявлены (фунции, цикле, if-блоке)."
     },
@@ -495,7 +495,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "Рекурсия — вызов функцией самой себя. Требует базовый случай (условие выхода) для предотвращения бесконечного цикла."
     },
@@ -526,7 +526,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "int arr[10] — массив из 10 элементов типа int. Индексы от 0 до 9."
     },
@@ -557,7 +557,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "int arr[3][4] — массив 3 строки по 4 столбца. Доступ: arr[i][j], где i=0..2, j=0..3."
     },
@@ -588,7 +588,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "std::string — удобный класс для строк. char[] — C-style строки, требуют ручного управления."
     },
@@ -619,7 +619,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-classes",
       "scenarioId": "cpp.classes-objects.01.scenario",
       "explanation": "-Wall включает большинство предупреждений компилятора. Полезно для поиска потенциальных ошибок."
     }

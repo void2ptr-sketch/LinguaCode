@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Inheritance syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис наследования?",
+      "optionsLearning": [
+        "class Derived : public Base {}",
+        "class Derived extends Base {}",
+        "class Derived inherits Base {}",
+        "class Derived implements Base {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Access in inheritance",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "public vs private inheritance?",
+      "optionsLearning": [
+        "public: публичные члены Base доступны",
+        "private всегда",
+        "protected только",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Base constructor call",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вызвать конструктор базового?",
+      "optionsLearning": [
+        "Derived() : Base(args) {}",
+        "Base(); в теле",
+        "Нельзя",
+        "super()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Virtual functions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем virtual?",
+      "optionsLearning": [
+        "Полиморфизм: вызов метода по base pointer",
+        "Оптимизация",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать наследование?",
+      "optionsLearning": [
+        "IS-A relationship (Dog IS-A Animal)",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Polymorphism definition",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое полиморфизм?",
+      "optionsLearning": [
+        "Один интерфейс, разные реализации",
+        "Наследование только",
+        "Шаблоны только",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Virtual destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем virtual деструктор?",
+      "optionsLearning": [
+        "Корректное удаление через base pointer",
+        "Оптимизация",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Override keyword",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем override?",
+      "optionsLearning": [
+        "Проверка компилятором переопределения",
+        "Удаление метода",
+        "Константность",
+        "Статический метод"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Dynamic dispatch",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic dispatch?",
+      "optionsLearning": [
+        "Вызов метода по vtable во runtime",
+        "Статический вызов",
+        "Inline функция",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать полиморфизм?",
+      "optionsLearning": [
+        "Base pointer/reference + virtual methods",
+        "Наследование всегда",
+        "Шаблоны всегда",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Abstract class",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое абстрактный класс?",
+      "optionsLearning": [
+        "Класс с pure virtual методами (нельзя создать объект)",
+        "Обычный класс",
+        "Структура",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Interface pattern",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать интерфейс в C++?",
+      "optionsLearning": [
+        "Класс только с pure virtual методами",
+        "interface keyword",
+        "abstract keyword",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Pure virtual destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем pure virtual деструктор?",
+      "optionsLearning": [
+        "Делает класс abstract, но деструктор должен быть определён",
+        "Ошибка",
+        "Оптимизация",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать абстрактные классы?",
+      "optionsLearning": [
+        "Для определения интерфейса без реализации",
+        "Всегда",
+        "Никогда",
+        "Только для small classes"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "abstract"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Exception in constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при исключении в конструкторе?",
+      "optionsLearning": [
+        "Объект не создан, деструкторы вызванных частей работают",
+        "Объект частично создан",
+        "Ничего",
+        "Утечка памяти"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "Exception in destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что при исключении в деструкторе?",
+      "optionsLearning": [
+        "std::terminate — нельзя выбрасывать из деструктора!",
+        "Ничего",
+        "Объект удалён",
+        "Утечка памяти"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "No-throw guarantee",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое no-throw guarantee?",
+      "optionsLearning": [
+        "Метод гарантированно не выбросит исключение",
+        "Метод всегда выбрасывает",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать исключения в ООП?",
+      "optionsLearning": [
+        "RAII + noexcept для деструкторов",
+        "Никак",
+        "Всегда",
+        "Только try-catch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Что такое шаблоны?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите шаблон в C++",
+      "optionsLearning": [
+        "Generic programming: функции/классы с параметрами типов",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    },
+    {
+      "id": "cpp.oop.inheritance-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Function template",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис function template?",
+      "optionsLearning": [
+        "template<typename T> void f(T x) {}",
+        "function<T>(x) {}",
+        "def f(x):",
+        "generic f<T>(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop-inheritance",
+      "scenarioId": "cpp.oop.inheritance-extra.01.scenario"
+    }
+  ]
+}

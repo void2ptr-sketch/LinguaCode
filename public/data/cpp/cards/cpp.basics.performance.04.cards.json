@@ -20,7 +20,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Что такое C++?",
       "optionsLearning": [
@@ -51,7 +51,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Какой парадигм поддерживает C++?",
       "optionsLearning": [
@@ -82,7 +82,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "В чём главное преимущество C++ над высокоуровневыми языками?",
       "optionsLearning": [
@@ -113,7 +113,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Кто создал язык C++?",
       "optionsLearning": [
@@ -144,7 +144,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Из какого языка C++ взял базовый синтаксис?",
       "optionsLearning": [
@@ -174,7 +174,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Где применяется C++?",
       "optionsLearning": [
@@ -205,7 +205,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -240,7 +240,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Как компилируется программа на C++?",
       "optionsLearning": [
@@ -271,7 +271,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Что такое компилятор?",
       "optionsLearning": [
@@ -302,7 +302,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Какие инструменты нужны для начала работы с C++?",
       "optionsLearning": [
@@ -332,7 +332,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Чем C++20 отличается от C++11?",
       "optionsLearning": [
@@ -362,7 +362,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Что означает «собран на C++»?",
       "optionsLearning": [
@@ -393,7 +393,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Какова роль фигурных скобок { } в C++?",
       "optionsLearning": [
@@ -424,7 +424,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Что значит «статическая типизация»?",
       "optionsLearning": [
@@ -455,7 +455,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Что такое стандартная библиотека C++?",
       "optionsLearning": [
@@ -486,7 +486,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Какая функция является точкой входа в программу?",
       "optionsLearning": [
@@ -517,7 +517,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -551,7 +551,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Зачем нужно изучать C++ в 2020-х?",
       "optionsLearning": [
@@ -581,7 +581,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Чем C++ отличается от C#?",
       "optionsLearning": [
@@ -612,7 +612,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-1",
       "scenarioId": "cpp.basics.performance.04.scenario",
       "promptKnown": "Какая философия «zero-overhead» у C++?",
       "optionsLearning": [

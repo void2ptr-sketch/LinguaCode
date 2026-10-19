@@ -5,7 +5,7 @@
       "title": "Основы массивов в C++",
       "description": "Сценарий: Основы массивов в C++",
       "order": 0,
-      "lessonId": "lesson-cpp-basics-arrays",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "courseId": "course-cpp-complete",
       "cardCount": 20,
       "authoring": {

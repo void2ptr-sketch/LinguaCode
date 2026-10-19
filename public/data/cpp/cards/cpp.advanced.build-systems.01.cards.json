@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-01",
+      "kind": "select",
+      "title": "CI pipeline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CI?",
+      "optionsLearning": [
+        "Continuous Integration (автоматическая сборка и тесты)",
+        "Continuous Deployment",
+        "Continuous Delivery",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-02",
+      "kind": "select",
+      "title": "CD pipeline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CD?",
+      "optionsLearning": [
+        "Continuous Deployment/Delivery (автоматический деплой)",
+        "Manual deployment",
+        "Testing only",
+        "Documentation"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-03",
+      "kind": "select",
+      "title": "GitHub Actions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое GitHub Actions?",
+      "optionsLearning": [
+        "CI/CD platform на GitHub (YAML workflows)",
+        "Тестовый фреймворк",
+        "IDE",
+        "Database"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-04",
+      "kind": "select",
+      "title": "Docker basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем Docker?",
+      "optionsLearning": [
+        "Контейнеризация приложений (reproducible environments)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как настроить CI/CD?",
+      "optionsLearning": [
+        "Automate build, test, deploy on push",
+        "Manual only",
+        "Никак",
+        "Только testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-06",
+      "kind": "select",
+      "title": "CMakeLists.txt",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CMakeLists.txt?",
+      "optionsLearning": [
+        "Файл конфигурации сборки (cross-platform)",
+        "Файл исходного кода",
+        "Файл настроек",
+        "Файл документации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-07",
+      "kind": "select",
+      "title": "Target creation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать target в CMake?",
+      "optionsLearning": [
+        "add_executable(myapp main.cpp)",
+        "create_target(myapp)",
+        "build(myapp)",
+        "compile(myapp)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-08",
+      "kind": "select",
+      "title": "Link libraries",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как линковать библиотеки?",
+      "optionsLearning": [
+        "target_link_libraries(myapp lib1 lib2)",
+        "link(myapp lib1)",
+        "import(lib1)",
+        "include(lib1)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-09",
+      "kind": "select",
+      "title": "Find modules",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти библиотеку?",
+      "optionsLearning": [
+        "find_package(OpenSSL REQUIRED)",
+        "import OpenSSL",
+        "require OpenSSL",
+        "include OpenSSL"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать CMake?",
+      "optionsLearning": [
+        "Modern CMake (target-based, not global)",
+        "Global variables",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-11",
+      "kind": "select",
+      "title": "Compilation stages",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Этапы компиляции?",
+      "optionsLearning": [
+        "Preprocess → Compile → Assemble → Link",
+        "Только compile",
+        "Только link",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-12",
+      "kind": "select",
+      "title": "Linker",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает linker?",
+      "optionsLearning": [
+        "Объединяет object files в executable",
+        "Компилирует код",
+        "Запускает программу",
+        "Отлаживает"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-13",
+      "kind": "select",
+      "title": "Optimization levels",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Уровни оптимизации?",
+      "optionsLearning": [
+        "-O0, -O1, -O2, -O3 (GCC/Clang)",
+        "Только один",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-14",
+      "kind": "select",
+      "title": "LTO",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое LTO?",
+      "optionsLearning": [
+        "Link-Time Optimization (cross-module optimization)",
+        "Обычная оптимизация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-Wall -Wextra -O2 + sanitizers",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-16",
+      "kind": "select",
+      "title": "AST",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое AST?",
+      "optionsLearning": [
+        "Abstract Syntax Tree (дерево синтаксиса)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-17",
+      "kind": "select",
+      "title": "IR",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое IR?",
+      "optionsLearning": [
+        "Intermediate Representation (промежуточный код)",
+        "Исходный код",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-18",
+      "kind": "select",
+      "title": "Code generation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое code generation?",
+      "optionsLearning": [
+        "Генерация машинного кода из IR",
+        "Исходный код",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-19",
+      "kind": "select",
+      "title": "Optimization passes",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое optimization passes?",
+      "optionsLearning": [
+        "Последовательные оптимизации (loop unroll, inlining)",
+        "Одна оптимизация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.build-systems.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать compiler?",
+      "optionsLearning": [
+        "-O2 + sanitizers + profile-guided optimization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "internals2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-engineering",
+      "scenarioId": "cpp.advanced.build-systems.01.scenario"
+    }
+  ]
+}

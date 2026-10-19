@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Memory order",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory order?",
+      "optionsLearning": [
+        "Гарантии порядка операций (relaxed, acquire, release)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Atomic operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое atomic?",
+      "optionsLearning": [
+        "Атомарная операция (непрерывная, без прерываний)",
+        "Обычная операция",
+        "Оптимизация",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Lock-free programming",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое lock-free?",
+      "optionsLearning": [
+        "Прогресс без mutex (атомарные операции)",
+        "С mutex",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Memory barriers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory barrier?",
+      "optionsLearning": [
+        "Гарантия порядка операций в multi-threaded code",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать lock-free code?",
+      "optionsLearning": [
+        "std::atomic + memory orders",
+        "Только mutex",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Memory ordering models",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory ordering models?",
+      "optionsLearning": [
+        "Sequential consistency vs relaxed (C++ memory model)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Atomic compare-and-swap",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CAS?",
+      "optionsLearning": [
+        "Атомарное сравнение и замена (fundamental primitive)",
+        "Обычная операция",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Memory fence",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory fence?",
+      "optionsLearning": [
+        "Барьер для порядка операций (compiler + CPU)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "False sharing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое false sharing?",
+      "optionsLearning": [
+        "Потеря производительности из-за shared cache line",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать lock-free code?",
+      "optionsLearning": [
+        "std::atomic + memory orders + avoid false sharing",
+        "Только mutex",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Preprocessor directives",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое препроцессор?",
+      "optionsLearning": [
+        "Текстовая обработка перед компиляцией (#include, #define)",
+        "Оптимизация кода",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Include guards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем include guards?",
+      "optionsLearning": [
+        "Предотвращение multiple inclusion header'ов",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Macro dangers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблемы макросов?",
+      "optionsLearning": [
+        "Нет проверки типов, side effects, трудно дебажить",
+        "Безопасны всегда",
+        "Быстрее inline",
+        "Не используются"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Conditional compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #ifdef?",
+      "optionsLearning": [
+        "Условная компиляция (debug/release, platform)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что использовать вместо макросов?",
+      "optionsLearning": [
+        "constexpr, inline functions, templates",
+        "#define всегда",
+        "Ничего",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "SIMD basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SIMD?",
+      "optionsLearning": [
+        "Single Instruction Multiple Data (vector operations)",
+        "Scalar operations",
+        "Оптимизация памяти",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Intrinsics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое intrinsics?",
+      "optionsLearning": [
+        "Compiler built-in functions для SIMD (_mm_add_ps)",
+        "Обычные функции",
+        "Макросы",
+        "Шаблоны"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Vectorization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое auto-vectorization?",
+      "optionsLearning": [
+        "Compiler автоматическое преобразование в SIMD loops",
+        "Ручное SIMD",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "OpenMP",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое OpenMP?",
+      "optionsLearning": [
+        "Pragma-based parallelism (#pragma omp parallel)",
+        "Ручные threads",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.memory-model-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать performance?",
+      "optionsLearning": [
+        "Profile → SIMD/OpenMP → vectorization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-memory",
+      "scenarioId": "cpp.advanced.memory-model-extra.01.scenario"
+    }
+  ]
+}

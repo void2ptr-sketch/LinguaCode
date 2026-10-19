@@ -20,7 +20,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Каким ключевым словом объявляется структура в C++?",
       "optionsLearning": [
@@ -51,7 +51,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Какова видимость членов struct по умолчанию?",
       "optionsLearning": [
@@ -82,7 +82,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -117,7 +117,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Как обратиться к полю объекта структуры?",
       "optionsLearning": [
@@ -148,7 +148,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Какой оператор обращается к полю через указатель на структуру?",
       "optionsLearning": [
@@ -179,7 +179,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -214,7 +214,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Можно ли сравнивать две структуры оператором == напрямую?",
       "optionsLearning": [
@@ -245,7 +245,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -280,7 +280,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Сколько памяти обычно занимает struct { char c; int i; }?",
       "optionsLearning": [
@@ -311,7 +311,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Что такое выравнивание (alignment) структур?",
       "optionsLearning": [
@@ -342,7 +342,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -377,7 +377,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Как инициализировать структуру агрегатной инициализацией?",
       "optionsLearning": [
@@ -408,7 +408,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Чем struct отличается от class в C++?",
       "optionsLearning": [
@@ -439,7 +439,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -474,7 +474,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Как определить метод внутри структуры?",
       "optionsLearning": [
@@ -505,7 +505,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Когда структура считается стандартным (trivially copyable) типом?",
       "optionsLearning": [
@@ -536,7 +536,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -571,7 +571,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Что делает sizeof(Point) для struct Point { int x; int y; }?",
       "optionsLearning": [
@@ -602,7 +602,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Как перегрузить operator== для структуры в C++20?",
       "optionsLearning": [
@@ -633,7 +633,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.01.scenario",
       "promptKnown": "Почему структуры полезны для группировки связанных данных?",
       "optionsLearning": [

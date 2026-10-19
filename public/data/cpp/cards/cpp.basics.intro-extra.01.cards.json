@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-01",
+      "kind": "select",
+      "title": "Что такое комментарии?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем нужны комментарии в коде?",
+      "optionsLearning": [
+        "Объяснение логики для других разработчиков",
+        "Увеличение размера файла",
+        "Ускорение компиляции",
+        "Обязательны для запуска"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-02",
+      "kind": "select",
+      "title": "Однострочные комментарии",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как написать однострочный комментарий?",
+      "optionsLearning": [
+        "// Комментарий",
+        "/* Комментарий */",
+        "# Комментарий",
+        "<!-- Комментарий -->"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-03",
+      "kind": "select",
+      "title": "Многострочные комментарии",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как написать многострочный комментарий?",
+      "optionsLearning": [
+        "/* Комментарий\n   в несколько строк */",
+        "// Комментарий",
+        "# Комментарий",
+        "\"\"\" Комментарий \"\"\""
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-04",
+      "kind": "select",
+      "title": "Doxygen комментарии",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Doxygen?",
+      "optionsLearning": [
+        "Система документации с /// или /**/",
+        "Компилятор оптимизации",
+        "Фреймворк для тестов",
+        "База данных"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-05",
+      "kind": "select",
+      "title": "TODO и FIXME",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем использовать TODO/FIXME?",
+      "optionsLearning": [
+        "Метки для будущих задач",
+        "Ошибки компиляции",
+        "Устаревший синтаксис",
+        "Анотации для IDE"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-06",
+      "kind": "select",
+      "title": "Комментарии в коде",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно комментировать код?",
+      "optionsLearning": [
+        "Объяснять 'почему', а не 'что'",
+        "Писать комментарии к каждой строке",
+        "Не комментировать вообще",
+        "Использовать только //"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-07",
+      "kind": "select",
+      "title": "Self-documenting code",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое self-documenting code?",
+      "optionsLearning": [
+        "Читаемый код, не требующий комментариев",
+        "Код с автогенерацией документации",
+        "Код без комментариев",
+        "Зашифрованный код"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-08",
+      "kind": "select",
+      "title": "Bad comments",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Пример плохого комментария?",
+      "optionsLearning": [
+        "// Увеличить x на 1 (x++);",
+        "x = x + 1;",
+        "// Ошибка в расчёте",
+        "// TODO: исправить"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-09",
+      "kind": "select",
+      "title": "Commented out code",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Правильно ли закомментированный код?",
+      "optionsLearning": [
+        "Нет, используйте Git для истории",
+        "Да, это хорошая практика",
+        "Да, для отладки",
+        "Зависит от проекта"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как комментировать функции?",
+      "optionsLearning": [
+        "Doxygen: /// brief description\n/// detailed explanation",
+        "Комментарий после функции",
+        "Без комментариев",
+        "Только имя функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "comments"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-11",
+      "kind": "select",
+      "title": "Что такое компиляция?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите компиляцию",
+      "optionsLearning": [
+        "Преобразование исходного кода в машинный код",
+        "Запуск программы без преобразования",
+        "Редактирование файлов",
+        "Отладка кода"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-12",
+      "kind": "select",
+      "title": "Этапы компиляции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие этапы компиляции C++?",
+      "optionsLearning": [
+        "Препроцессинг → Компиляция → Ассемблирование → Линковка",
+        "Запуск → Отладка → Деплой",
+        "Написание → Тестирование",
+        "Исполнение → Кэширование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-13",
+      "kind": "select",
+      "title": "Препроцессор",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает препроцессор?",
+      "optionsLearning": [
+        "Обработка #include, #define до компиляции",
+        "Запуск программы",
+        "Создание документации",
+        "Отладка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-14",
+      "kind": "select",
+      "title": "Object file",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое object file (.o)?",
+      "optionsLearning": [
+        "Компилированный код ещё не линкованный",
+        "Исполняемый файл",
+        "Исходный код",
+        "Документация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-15",
+      "kind": "select",
+      "title": "Linking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает линковщик?",
+      "optionsLearning": [
+        "Объединяет object files в executable",
+        "Запускает программу",
+        "Компилирует код",
+        "Создаёт документацию"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-16",
+      "kind": "select",
+      "title": "g++ команды",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как скомпилировать программу?",
+      "optionsLearning": [
+        "g++ main.cpp -o program",
+        "run main.cpp",
+        "compile main.cpp",
+        "exec main.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-17",
+      "kind": "select",
+      "title": "Multiple files compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как компилировать несколько файлов?",
+      "optionsLearning": [
+        "g++ file1.cpp file2.cpp -o program",
+        "g++ *.cpp -o program только",
+        "Нельзя компилировать несколько",
+        "g++ file1.cpp"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-18",
+      "kind": "select",
+      "title": "Compilation errors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ошибка компиляции?",
+      "optionsLearning": [
+        "Синтаксическая/семантическая ошибка в коде",
+        "Ошибка во время выполнения",
+        "Ошибка линковки только",
+        "Ошибка препроцессора"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-19",
+      "kind": "select",
+      "title": "Warnings vs Errors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем отличается warning от error?",
+      "optionsLearning": [
+        "Warning — предупреждение (код компилируется), error — ошибка (нет бинарника)",
+        "Оба останавливают компиляцию",
+        "Error менее важен",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    },
+    {
+      "id": "cpp.basics.intro-extra.01.scenario.card-20",
+      "kind": "select",
+      "title": "Optimization levels",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает -O3?",
+      "optionsLearning": [
+        "Максимальная оптимизация скорости",
+        "Отладочная информация",
+        "Без оптимизации",
+        "Только для release"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "compilation"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-intro",
+      "scenarioId": "cpp.basics.intro-extra.01.scenario"
+    }
+  ]
+}

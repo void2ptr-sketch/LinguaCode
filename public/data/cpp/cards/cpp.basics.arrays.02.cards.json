@@ -28,7 +28,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "Массив — последовательные ячейки памяти одинакового размера. Элементы расположены рядом, что обеспечивает cache-friendly доступ."
     },
@@ -59,7 +59,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "int arr[10] объявляет массив из 10 int. Размер должен быть константой на момент компиляции (для stack-массивов)."
     },
@@ -90,7 +90,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "Список инициализации в {} задаёт начальные значения. Остальные элементы обнуляются."
     },
@@ -121,7 +121,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "C++ использует 0-based индексацию. Для массива size N: индексы 0..N-1."
     },
@@ -152,7 +152,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "sizeof(arr) даёт общий размер в байтах. Для count: sizeof(arr)/sizeof(arr[0])."
     },
@@ -183,7 +183,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "Классический for с индексом — стандартный способ обхода raw arrays. C++11: range-based for (for (auto x : arr))."
     },
@@ -214,7 +214,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "arr[i][j] = *(*(arr + i) + j). В памяти хранится как линейный массив: row-major порядок."
     },
@@ -245,7 +245,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "Имя массива decay-ится в указатель на первый элемент. Функция получает pointer, а не копию."
     },
@@ -276,7 +276,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "sizeof внутри функции вернёт размер pointer'а (4/8 байт), а не массива. Размер нужно передавать явно."
     },
@@ -307,7 +307,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "const применяется к элементам: arr[i] = 5; — ошибка компиляции. Но сам массив (arr) — не pointer."
     },
@@ -338,7 +338,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "static массивы хранятся в data segment. Они инициализируются один раз и сохраняют значение между вызовами."
     },
@@ -369,7 +369,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "new int[10] выделяет массив на heap. delete[] arr — освобождает память. Забытый delete = memory leak."
     },
@@ -400,7 +400,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "std::array<N, T> — wrapper над raw array. Знает свой размер, поддерживает .size(), .at() с проверкой."
     },
@@ -431,7 +431,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "std::vector — динамический массив с automatic memory management. Автоматически растёт при добавлении элементов."
     },
@@ -462,7 +462,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "arr[10] для size 10 — UB. Компилятор не проверяет границы. Возможны crash или silent corruption."
     },
@@ -493,7 +493,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "int arr[10] без инициализации содержит garbage из памяти. Используйте int arr[10] = {} для zero-init."
     },
@@ -524,7 +524,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": ".at() проверяет границы и выбрасывает исключение при ошибке. arr[i] — без проверки (быстрее, но опасно)."
     },
@@ -555,7 +555,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "Элементы расположены последовательно. CPU prefetcher загружает блоки памяти в cache заранее."
     },
@@ -586,7 +586,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "C++ хранит массивы row-major. Обход по строкам (arr[i][j]) cache-friendly. По столбцам — cache misses."
     },
@@ -617,7 +617,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-intro",
+      "lessonId": "lesson-cpp-basics-arrays-strings",
       "scenarioId": "cpp.basics.arrays.02.scenario",
       "explanation": "STL контейнеры безопаснее: автоматическое управление памятью, size checking, итераторы, алгоритмы."
     }

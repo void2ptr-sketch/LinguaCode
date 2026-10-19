@@ -1,0 +1,584 @@
+{
+  "cards": [
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-01",
+      "kind": "select",
+      "title": "Game loop",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое game loop?",
+      "optionsLearning": [
+        "Основной цикл игры (update + render)",
+        "Однократное выполнение",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-02",
+      "kind": "select",
+      "title": "Entity-Component-System",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ECS?",
+      "optionsLearning": [
+        "Архитектура: entities + components + systems",
+        "Один класс",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-03",
+      "kind": "select",
+      "title": "Memory pool",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем memory pool?",
+      "optionsLearning": [
+        "Быстрое выделение/освобождение (avoid fragmentation)",
+        "Обычная память",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-04",
+      "kind": "select",
+      "title": "Spatial partitioning",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое spatial partitioning?",
+      "optionsLearning": [
+        "Оптимизация коллизий (quadtree, octree)",
+        "Обычная проверка",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-06",
+      "kind": "select",
+      "title": "Physics engine",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое physics engine?",
+      "optionsLearning": [
+        "Симуляция физики (rigid body, collision, gravity)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-07",
+      "kind": "select",
+      "title": "Animation system",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое animation system?",
+      "optionsLearning": [
+        "Система анимации (keyframes, skeletal, blend trees)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-08",
+      "kind": "select",
+      "title": "AI pathfinding",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pathfinding?",
+      "optionsLearning": [
+        "Поиск пути (A*, Dijkstra, navigation meshes)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-09",
+      "kind": "select",
+      "title": "Networking multiplayer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать multiplayer?",
+      "optionsLearning": [
+        "Client-server + state synchronization + prediction",
+        "Только P2P",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-10",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-11",
+      "kind": "select",
+      "title": "Physics engine advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая физика?",
+      "optionsLearning": [
+        "Soft body, fluid simulation, cloth physics",
+        "Только rigid body",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-12",
+      "kind": "select",
+      "title": "Animation blending",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое animation blending?",
+      "optionsLearning": [
+        "Смешивание анимаций (smooth transitions)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-13",
+      "kind": "select",
+      "title": "Procedural generation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое procedural generation?",
+      "optionsLearning": [
+        "Автоматическая генерация контента (procedural worlds)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-14",
+      "kind": "select",
+      "title": "Networking prediction",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое client-side prediction?",
+      "optionsLearning": [
+        "Предсказание на клиенте (reduce lag)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-15",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS + profiling",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-16",
+      "kind": "select",
+      "title": "Physics engine advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая физика 2?",
+      "optionsLearning": [
+        "GPU physics + cloth simulation + fluid dynamics + rigid body constraints",
+        "Только basic physics",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-17",
+      "kind": "select",
+      "title": "Animation blending advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое blending?",
+      "optionsLearning": [
+        "Inverse kinematics + motion matching + procedural animation",
+        "Только basic blending",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-18",
+      "kind": "select",
+      "title": "Procedural generation advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая procedural generation?",
+      "optionsLearning": [
+        "Noise functions + L-systems + cellular automata + machine learning",
+        "Только basic noise",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-19",
+      "kind": "select",
+      "title": "Networking prediction advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое networking?",
+      "optionsLearning": [
+        "Rollback netcode + deterministic lockstep + state interpolation",
+        "Только basic prediction",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    },
+    {
+      "id": "cpp.advanced.game-development.01.scenario.card-20",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS + profiling + memory pools",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-advanced-apps",
+      "scenarioId": "cpp.advanced.game-development.01.scenario"
+    }
+  ]
+}

@@ -5,7 +5,7 @@
       "title": "C++ — Что такое C++?",
       "description": "Сценарий: Что такое C++? — карточки по теме C++",
       "order": 2,
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-performance-2",
       "courseId": "course-cpp-complete",
       "cardCount": 20,
       "authoring": {

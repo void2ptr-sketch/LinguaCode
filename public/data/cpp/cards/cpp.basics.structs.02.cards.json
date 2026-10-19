@@ -20,7 +20,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Может ли структура содержать методы и конструкторы?",
       "optionsLearning": [
@@ -51,7 +51,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Как определить конструктор структуры?",
       "optionsLearning": [
@@ -82,7 +82,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -117,7 +117,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Чем список инициализации (member initializer list) лучше присваивания в теле?",
       "optionsLearning": [
@@ -148,7 +148,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Что произойдёт при наличии const-поля в структуре и копировании?",
       "optionsLearning": [
@@ -179,7 +179,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -214,7 +214,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Как обнулить все поля структуры?",
       "optionsLearning": [
@@ -245,7 +245,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Что такое агрегат (aggregate) в C++?",
       "optionsLearning": [
@@ -276,7 +276,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -311,7 +311,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Какой оператор присваивания генерируется компилятором?",
       "optionsLearning": [
@@ -342,7 +342,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Когда генерируемый оператор присваивания удаляется?",
       "optionsLearning": [
@@ -373,7 +373,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -408,7 +408,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Можно ли вложить структуру в структуру?",
       "optionsLearning": [
@@ -439,7 +439,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Что такое битовое поле (bit-field) в структуре?",
       "optionsLearning": [
@@ -470,7 +470,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -505,7 +505,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Как передать структуру в функцию без копирования?",
       "optionsLearning": [
@@ -536,7 +536,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "question": "Что выведет эта программа?",
       "code": {
@@ -571,7 +571,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Что такое размер структуры с учётом выравнивания или pragma pack?",
       "optionsLearning": [
@@ -602,7 +602,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Как создать массив структур?",
       "optionsLearning": [
@@ -633,7 +633,7 @@
         ]
       },
       "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-basics",
+      "lessonId": "lesson-cpp-basics-structs",
       "scenarioId": "cpp.basics.structs.02.scenario",
       "promptKnown": "Почему не рекомендуется изменять порядок полей без нужды?",
       "optionsLearning": [
