@@ -1,585 +1,585 @@
 {
-    "scenarioId": "cpp.basics.performance.03.scenario",
-    "cards": [
-        {
-            "id": "cpp.basics.performance.03.scenario.card-01",
-            "kind": "select",
-            "title": "Вопрос 1",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как объявить массив из 10 целых чисел?",
-            "optionsLearning": [
-                "array int arr[10];",
-                "int arr(10);",
-                "list<int> arr;",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-02",
-            "kind": "select",
-            "title": "Вопрос 2",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой индекс у первого элемента массива?",
-            "optionsLearning": [
-                "1",
-                "-1",
-                "Зависит от платформы",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-03",
-            "kind": "select",
-            "title": "Вопрос 3",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::vector`?",
-            "optionsLearning": [
-                "Фиксированный массив",
-                "Связанный список",
-                "Хеш-таблица",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-04",
-            "kind": "select",
-            "title": "Вопрос 4",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как получить размер vector?",
-            "optionsLearning": [
-                "v.length()",
-                "v.count()",
-                "sizeof(v)",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-05",
-            "kind": "select",
-            "title": "Вопрос 5",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `push_back()` у vector?",
-            "optionsLearning": [
-                "Удаляет последний элемент",
-                "Вставляет в начало",
-                "Очищает весь вектор",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-06",
-            "kind": "select",
-            "title": "Вопрос 6",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Чем C-строка заканчивается?",
-            "optionsLearning": [
-                "Звёздочкой '*' ",
-                "Символом '$'",
-                "Размером в первом байте",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-07",
-            "kind": "select",
-            "title": "Вопрос 7",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::string_view`?",
-            "optionsLearning": [
-                "Новый тип строки с копированием",
-                "Указатель на C-строку",
-                "Массив символов",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-08",
-            "kind": "select",
-            "title": "Вопрос 8",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как инициализировать array фиксированного размера?",
-            "optionsLearning": [
-                "int arr[5] = {};",
-                "vector<int> arr(5);",
-                "Оба варианта верны",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-09",
-            "kind": "select",
-            "title": "Вопрос 9",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `v.reserve(n)`?",
-            "optionsLearning": [
-                "Устанавливает размер вектора",
-                "Добавляет n элементов",
-                "Очищает вектор",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-10",
-            "kind": "select",
-            "title": "Вопрос 10",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какая сложность доступа по индексу в vector?",
-            "optionsLearning": [
-                "O(n)",
-                "O(log n)",
-                "O(n log n)",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-11",
-            "kind": "select",
-            "title": "Вопрос 11",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::span` (C++20)?",
-            "optionsLearning": [
-                "Новый тип массива",
-                "Итератор по массиву",
-                "Контейнер с сортировкой",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-12",
-            "kind": "select",
-            "title": "Вопрос 12",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как скопировать C-строку?",
-            "optionsLearning": [
-                "dest = src;",
-                "copy(src, dest);",
-                "memcpy(dest, src) всегда безопаснее",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-13",
-            "kind": "select",
-            "title": "Вопрос 13",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `v.pop_back()`?",
-            "optionsLearning": [
-                "Добавляет элемент",
-                "Меняет местами элементы",
-                "Возвращает последний элемент без удаления",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-14",
-            "kind": "select",
-            "title": "Вопрос 14",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой заголовок для std::string?",
-            "optionsLearning": [
-                "<str>",
-                "<cstring>",
-                "<strings>",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-15",
-            "kind": "select",
-            "title": "Вопрос 15",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::to_string()`?",
-            "optionsLearning": [
-                "Преобразование string в int",
-                "Копирование строки",
-                "Сравнение строк",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-16",
-            "kind": "select",
-            "title": "Вопрос 16",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как найти элемент в vector?",
-            "optionsLearning": [
-                "v.find(value)",
-                "v.search(value)",
-                "vector::find(value)",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-17",
-            "kind": "select",
-            "title": "Вопрос 17",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `v.erase(it)`?",
-            "optionsLearning": [
-                "Добавляет элемент",
-                "Меняет итератор",
-                "Возвращает итератор на следующий элемент",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-18",
-            "kind": "select",
-            "title": "Вопрос 18",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой размер std::array<int, 5> на стеке?",
-            "optionsLearning": [
-                "5 байт",
-                "Зависит от компилятора, но фиксированный",
-                "8 байт всегда",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-19",
-            "kind": "select",
-            "title": "Вопрос 19",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::string::npos`?",
-            "optionsLearning": [
-                "Нулевой символ",
-                "Максимальная длина строки",
-                "Ошибка парсинга",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.03.scenario.card-20",
-            "kind": "select",
-            "title": "Вопрос 20",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как отсортировать vector?",
-            "optionsLearning": [
-                "v.sort();",
-                "sort(v);",
-                "v.order()",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.03.scenario"
-        }
-    ]
+  "scenarioId": "cpp.basics.performance.03.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.03.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить массив из 10 целых чисел?",
+      "optionsLearning": [
+        "array int arr[10];",
+        "int arr(10);",
+        "list<int> arr;",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой индекс у первого элемента массива?",
+      "optionsLearning": [
+        "1",
+        "-1",
+        "Зависит от платформы",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::vector`?",
+      "optionsLearning": [
+        "Фиксированный массив",
+        "Связанный список",
+        "Хеш-таблица",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить размер vector?",
+      "optionsLearning": [
+        "v.length()",
+        "v.count()",
+        "sizeof(v)",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `push_back()` у vector?",
+      "optionsLearning": [
+        "Удаляет последний элемент",
+        "Вставляет в начало",
+        "Очищает весь вектор",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-06",
+      "kind": "select",
+      "title": "Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем C-строка заканчивается?",
+      "optionsLearning": [
+        "Звёздочкой '*' ",
+        "Символом '$'",
+        "Размером в первом байте",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-07",
+      "kind": "select",
+      "title": "Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::string_view`?",
+      "optionsLearning": [
+        "Новый тип строки с копированием",
+        "Указатель на C-строку",
+        "Массив символов",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-08",
+      "kind": "select",
+      "title": "Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как инициализировать array фиксированного размера?",
+      "optionsLearning": [
+        "int arr[5] = {};",
+        "vector<int> arr(5);",
+        "Оба варианта верны",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-09",
+      "kind": "select",
+      "title": "Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `v.reserve(n)`?",
+      "optionsLearning": [
+        "Устанавливает размер вектора",
+        "Добавляет n элементов",
+        "Очищает вектор",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-10",
+      "kind": "select",
+      "title": "Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая сложность доступа по индексу в vector?",
+      "optionsLearning": [
+        "O(n)",
+        "O(log n)",
+        "O(n log n)",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-11",
+      "kind": "select",
+      "title": "Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::span` (C++20)?",
+      "optionsLearning": [
+        "Новый тип массива",
+        "Итератор по массиву",
+        "Контейнер с сортировкой",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-12",
+      "kind": "select",
+      "title": "Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как скопировать C-строку?",
+      "optionsLearning": [
+        "dest = src;",
+        "copy(src, dest);",
+        "memcpy(dest, src) всегда безопаснее",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-13",
+      "kind": "select",
+      "title": "Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `v.pop_back()`?",
+      "optionsLearning": [
+        "Добавляет элемент",
+        "Меняет местами элементы",
+        "Возвращает последний элемент без удаления",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-14",
+      "kind": "select",
+      "title": "Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовок для std::string?",
+      "optionsLearning": [
+        "<str>",
+        "<cstring>",
+        "<strings>",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-15",
+      "kind": "select",
+      "title": "Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::to_string()`?",
+      "optionsLearning": [
+        "Преобразование string в int",
+        "Копирование строки",
+        "Сравнение строк",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-16",
+      "kind": "select",
+      "title": "Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент в vector?",
+      "optionsLearning": [
+        "v.find(value)",
+        "v.search(value)",
+        "vector::find(value)",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-17",
+      "kind": "select",
+      "title": "Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `v.erase(it)`?",
+      "optionsLearning": [
+        "Добавляет элемент",
+        "Меняет итератор",
+        "Возвращает итератор на следующий элемент",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-18",
+      "kind": "select",
+      "title": "Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер std::array<int, 5> на стеке?",
+      "optionsLearning": [
+        "5 байт",
+        "Зависит от компилятора, но фиксированный",
+        "8 байт всегда",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-19",
+      "kind": "select",
+      "title": "Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::string::npos`?",
+      "optionsLearning": [
+        "Нулевой символ",
+        "Максимальная длина строки",
+        "Ошибка парсинга",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario.card-20",
+      "kind": "select",
+      "title": "Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как отсортировать vector?",
+      "optionsLearning": [
+        "v.sort();",
+        "sort(v);",
+        "v.order()",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.03.scenario"
+    }
+  ]
 }

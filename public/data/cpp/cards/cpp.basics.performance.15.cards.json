@@ -1,585 +1,585 @@
 {
-    "scenarioId": "cpp.basics.performance.15.scenario",
-    "cards": [
-        {
-            "id": "cpp.basics.performance.15.scenario.card-01",
-            "kind": "select",
-            "title": "Вопрос 1",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как создать поток в C++?",
-            "optionsLearning": [
-                "std::thread t(func, args); t.join();",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-02",
-            "kind": "select",
-            "title": "Вопрос 2",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как синхронизировать потоки?",
-            "optionsLearning": [
-                "std::mutex + std::lock_guard<std::mutex> lock(mtx)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-03",
-            "kind": "select",
-            "title": "Вопрос 3",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::atomic`?",
-            "optionsLearning": [
-                "Атомарная операция без блокировок (lock-free для простых типов)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-04",
-            "kind": "select",
-            "title": "Вопрос 4",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `std::lock_guard()`?",
-            "optionsLearning": [
-                "RAII-обёртка для mutex — автоматически разблокирует при выходе из области видимости",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-05",
-            "kind": "select",
-            "title": "Вопрос 5",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое deadlock?",
-            "optionsLearning": [
-                "Два или более потока ждут друг друга бесконечно, ни один не может продолжить",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-06",
-            "kind": "select",
-            "title": "Вопрос 6",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как избежать race condition?",
-            "optionsLearning": [
-                "Использовать mutex, atomic переменные или thread-local storage",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-07",
-            "kind": "select",
-            "title": "Вопрос 7",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `std::async()`?",
-            "optionsLearning": [
-                "Асинхронный вызов функции с возвратом std::future для получения результата",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-08",
-            "kind": "select",
-            "title": "Вопрос 8",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::future`?",
-            "optionsLearning": [
-                "Значение, которое будет доступно в будущем (результат async операции)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-09",
-            "kind": "select",
-            "title": "Вопрос 9",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::promise`?",
-            "optionsLearning": [
-                "Объект для установки значения в std::future из другого потока",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-10",
-            "kind": "select",
-            "title": "Вопрос 10",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `std::condition_variable`?",
-            "optionsLearning": [
-                "Сигнализация между потоками — ожидание условия с разблокировкой mutex",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-11",
-            "kind": "select",
-            "title": "Вопрос 11",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое memory order в atomics?",
-            "optionsLearning": [
-                "std::memory_order_relaxed/acquire/release/seq_cst — контроль синхронизации",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-12",
-            "kind": "select",
-            "title": "Вопрос 12",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как создать thread pool?",
-            "optionsLearning": [
-                "Использовать библиотеку (Intel TBB, Folly) или реализовать на базе std::vector<std::thread> + queue",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-13",
-            "kind": "select",
-            "title": "Вопрос 13",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `thread_local` storage?",
-            "optionsLearning": [
-                "Переменная, уникальная для каждого потока — создаётся при входе в поток",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-14",
-            "kind": "select",
-            "title": "Вопрос 14",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `std::shared_mutex` (C++17)?",
-            "optionsLearning": [
-                "Reader-writer lock — несколько читателей или один писатель",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-15",
-            "kind": "select",
-            "title": "Вопрос 15",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое parallel algorithms (C++17)?",
-            "optionsLearning": [
-                "Алгоритмы STL с policy std::execution::par для параллельного выполнения",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-16",
-            "kind": "select",
-            "title": "Вопрос 16",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как проверить равенство atomics?",
-            "optionsLearning": [
-                "atomic::operator== (только для trivially copyable типов)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-17",
-            "kind": "select",
-            "title": "Вопрос 17",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `std::once_flag` + `std::call_once`?",
-            "optionsLearning": [
-                "Гарантия однократного выполнения кода многопоточно безопасно",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-18",
-            "kind": "select",
-            "title": "Вопрос 18",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `std::stop_token` (C++20)?",
-            "optionsLearning": [
-                "Механизм запроса отмены coroutine или jthread",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-19",
-            "kind": "select",
-            "title": "Вопрос 19",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как использовать non-blocking socket в C++?",
-            "optionsLearning": [
-                "fcntl(fd, F_SETFL, O_NONBLOCK) или Boost.Asio async API",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.15.scenario.card-20",
-            "kind": "select",
-            "title": "Вопрос 20",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Ч",
-            "optionsLearning": [
-                "о",
-                " ",
-                "д",
-                "е"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.15.scenario"
-        }
-    ]
+  "scenarioId": "cpp.basics.performance.15.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.15.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать поток в C++?",
+      "optionsLearning": [
+        "std::thread t(func, args); t.join();",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как синхронизировать потоки?",
+      "optionsLearning": [
+        "std::mutex + std::lock_guard<std::mutex> lock(mtx)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::atomic`?",
+      "optionsLearning": [
+        "Атомарная операция без блокировок (lock-free для простых типов)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `std::lock_guard()`?",
+      "optionsLearning": [
+        "RAII-обёртка для mutex — автоматически разблокирует при выходе из области видимости",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое deadlock?",
+      "optionsLearning": [
+        "Два или более потока ждут друг друга бесконечно, ни один не может продолжить",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-06",
+      "kind": "select",
+      "title": "Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как избежать race condition?",
+      "optionsLearning": [
+        "Использовать mutex, atomic переменные или thread-local storage",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-07",
+      "kind": "select",
+      "title": "Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `std::async()`?",
+      "optionsLearning": [
+        "Асинхронный вызов функции с возвратом std::future для получения результата",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-08",
+      "kind": "select",
+      "title": "Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::future`?",
+      "optionsLearning": [
+        "Значение, которое будет доступно в будущем (результат async операции)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-09",
+      "kind": "select",
+      "title": "Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::promise`?",
+      "optionsLearning": [
+        "Объект для установки значения в std::future из другого потока",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-10",
+      "kind": "select",
+      "title": "Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `std::condition_variable`?",
+      "optionsLearning": [
+        "Сигнализация между потоками — ожидание условия с разблокировкой mutex",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-11",
+      "kind": "select",
+      "title": "Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory order в atomics?",
+      "optionsLearning": [
+        "std::memory_order_relaxed/acquire/release/seq_cst — контроль синхронизации",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-12",
+      "kind": "select",
+      "title": "Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать thread pool?",
+      "optionsLearning": [
+        "Использовать библиотеку (Intel TBB, Folly) или реализовать на базе std::vector<std::thread> + queue",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-13",
+      "kind": "select",
+      "title": "Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `thread_local` storage?",
+      "optionsLearning": [
+        "Переменная, уникальная для каждого потока — создаётся при входе в поток",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-14",
+      "kind": "select",
+      "title": "Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `std::shared_mutex` (C++17)?",
+      "optionsLearning": [
+        "Reader-writer lock — несколько читателей или один писатель",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-15",
+      "kind": "select",
+      "title": "Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое parallel algorithms (C++17)?",
+      "optionsLearning": [
+        "Алгоритмы STL с policy std::execution::par для параллельного выполнения",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-16",
+      "kind": "select",
+      "title": "Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить равенство atomics?",
+      "optionsLearning": [
+        "atomic::operator== (только для trivially copyable типов)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-17",
+      "kind": "select",
+      "title": "Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `std::once_flag` + `std::call_once`?",
+      "optionsLearning": [
+        "Гарантия однократного выполнения кода многопоточно безопасно",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-18",
+      "kind": "select",
+      "title": "Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `std::stop_token` (C++20)?",
+      "optionsLearning": [
+        "Механизм запроса отмены coroutine или jthread",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-19",
+      "kind": "select",
+      "title": "Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать non-blocking socket в C++?",
+      "optionsLearning": [
+        "fcntl(fd, F_SETFL, O_NONBLOCK) или Boost.Asio async API",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario.card-20",
+      "kind": "select",
+      "title": "Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Ч",
+      "optionsLearning": [
+        "о",
+        " ",
+        "д",
+        "е"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.15.scenario"
+    }
+  ]
 }

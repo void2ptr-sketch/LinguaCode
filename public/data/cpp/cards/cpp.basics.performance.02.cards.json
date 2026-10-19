@@ -1,585 +1,585 @@
 {
-    "scenarioId": "cpp.basics.performance.02.scenario",
-    "cards": [
-        {
-            "id": "cpp.basics.performance.02.scenario.card-01",
-            "kind": "select",
-            "title": "Вопрос 1",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое указатель?",
-            "optionsLearning": [
-                "Переменная для хранения строки",
-                "Тип данных для чисел",
-                "Функция выделения памяти",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-02",
-            "kind": "select",
-            "title": "Вопрос 2",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Чем ссылка отличается от указателя?",
-            "optionsLearning": [
-                "Ссылка медленнее",
-                "Указатель безопаснее",
-                "Ссылка занимает больше памяти",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-03",
-            "kind": "select",
-            "title": "Вопрос 3",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `&` перед переменной?",
-            "optionsLearning": [
-                "Логическое И",
-                "Побитовое И",
-                "Оператор приведения типа",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-04",
-            "kind": "select",
-            "title": "Вопрос 4",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `*` перед указателем?",
-            "optionsLearning": [
-                "Множественное объявление",
-                "Указатель на null",
-                "Умножение",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-05",
-            "kind": "select",
-            "title": "Вопрос 5",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое dangling pointer?",
-            "optionsLearning": [
-                "Нулевой указатель",
-                "Указатель на статическую переменную",
-                "Указатель на стек",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-06",
-            "kind": "select",
-            "title": "Вопрос 6",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как выделить память под массив указателей?",
-            "optionsLearning": [
-                "int* arr = new int[10];",
-                "int arr[10];",
-                "pointer int arr[10];",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-07",
-            "kind": "select",
-            "title": "Вопрос 7",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `const int* p`?",
-            "optionsLearning": [
-                "Константный указатель на переменную",
-                "Указатель, который сам константен",
-                "Невозможная конструкция",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-08",
-            "kind": "select",
-            "title": "Вопрос 8",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `int* const p`?",
-            "optionsLearning": [
-                "Указатель на константу",
-                "Нулевой указатель",
-                "Двойной указатель",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-09",
-            "kind": "select",
-            "title": "Вопрос 9",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `void*`?",
-            "optionsLearning": [
-                "Пустой указатель",
-                "Указатель на void-функцию",
-                "Недействительный указатель",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-10",
-            "kind": "select",
-            "title": "Вопрос 10",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как освободить память, выделенную через `new[]`?",
-            "optionsLearning": [
-                "delete arr;",
-                "free arr;",
-                "drop arr;",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-11",
-            "kind": "select",
-            "title": "Вопрос 11",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое pointer arithmetic?",
-            "optionsLearning": [
-                "Арифметика с содержимым указателя",
-                "Математические операции через указатель",
-                "Вычисление адреса через формулу",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-12",
-            "kind": "select",
-            "title": "Вопрос 12",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что выведет `*p` если `int* p = &a;`?",
-            "optionsLearning": [
-                "Адрес переменной a",
-                "Размер переменной a",
-                "Тип переменной a",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-13",
-            "kind": "select",
-            "title": "Вопрос 13",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой оператор используется для доступа к члену через указатель на объект?",
-            "optionsLearning": [
-                ".",
-                "::",
-                ".",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-14",
-            "kind": "select",
-            "title": "Вопрос 14",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `nullptr_t`?",
-            "optionsLearning": [
-                "Базовый класс указателей",
-                "Алгоритм проверки null",
-                "Стандартная библиотека",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-15",
-            "kind": "select",
-            "title": "Вопрос 15",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Можно ли создать массив ссылок?",
-            "optionsLearning": [
-                "Да, int arr[10];",
-                "Да, но только в C++11",
-                "Да, через указатели",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-16",
-            "kind": "select",
-            "title": "Вопрос 16",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое address-of operator?",
-            "optionsLearning": [
-                "Оператор *",
-                "Оператор ::",
-                "Оператор ->",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-17",
-            "kind": "select",
-            "title": "Вопрос 17",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `reinterpret_cast<int*>(ptr)`?",
-            "optionsLearning": [
-                "Безопасное приведение типов",
-                "Проверка на null",
-                "Выделение памяти",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-18",
-            "kind": "select",
-            "title": "Вопрос 18",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой размер double pointer?",
-            "optionsLearning": [
-                "8 байт всегда",
-                "Зависит от типа данных",
-                "2 раза больше обычного указателя",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-19",
-            "kind": "select",
-            "title": "Вопрос 19",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое smart pointer?",
-            "optionsLearning": [
-                "Указатель, который сам себя удаляет",
-                "Быстрый указатель",
-                "Указатель на умный объект",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.02.scenario.card-20",
-            "kind": "select",
-            "title": "Вопрос 20",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как создать unique_ptr?",
-            "optionsLearning": [
-                "unique_ptr<int> p = new int(42);",
-                "ptr<int> p(42);",
-                "auto p = new unique_ptr<int>;",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.02.scenario"
-        }
-    ]
+  "scenarioId": "cpp.basics.performance.02.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.02.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое указатель?",
+      "optionsLearning": [
+        "Переменная для хранения строки",
+        "Тип данных для чисел",
+        "Функция выделения памяти",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем ссылка отличается от указателя?",
+      "optionsLearning": [
+        "Ссылка медленнее",
+        "Указатель безопаснее",
+        "Ссылка занимает больше памяти",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `&` перед переменной?",
+      "optionsLearning": [
+        "Логическое И",
+        "Побитовое И",
+        "Оператор приведения типа",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `*` перед указателем?",
+      "optionsLearning": [
+        "Множественное объявление",
+        "Указатель на null",
+        "Умножение",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dangling pointer?",
+      "optionsLearning": [
+        "Нулевой указатель",
+        "Указатель на статическую переменную",
+        "Указатель на стек",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-06",
+      "kind": "select",
+      "title": "Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как выделить память под массив указателей?",
+      "optionsLearning": [
+        "int* arr = new int[10];",
+        "int arr[10];",
+        "pointer int arr[10];",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-07",
+      "kind": "select",
+      "title": "Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `const int* p`?",
+      "optionsLearning": [
+        "Константный указатель на переменную",
+        "Указатель, который сам константен",
+        "Невозможная конструкция",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-08",
+      "kind": "select",
+      "title": "Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `int* const p`?",
+      "optionsLearning": [
+        "Указатель на константу",
+        "Нулевой указатель",
+        "Двойной указатель",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-09",
+      "kind": "select",
+      "title": "Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `void*`?",
+      "optionsLearning": [
+        "Пустой указатель",
+        "Указатель на void-функцию",
+        "Недействительный указатель",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-10",
+      "kind": "select",
+      "title": "Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как освободить память, выделенную через `new[]`?",
+      "optionsLearning": [
+        "delete arr;",
+        "free arr;",
+        "drop arr;",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-11",
+      "kind": "select",
+      "title": "Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое pointer arithmetic?",
+      "optionsLearning": [
+        "Арифметика с содержимым указателя",
+        "Математические операции через указатель",
+        "Вычисление адреса через формулу",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-12",
+      "kind": "select",
+      "title": "Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что выведет `*p` если `int* p = &a;`?",
+      "optionsLearning": [
+        "Адрес переменной a",
+        "Размер переменной a",
+        "Тип переменной a",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-13",
+      "kind": "select",
+      "title": "Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор используется для доступа к члену через указатель на объект?",
+      "optionsLearning": [
+        ".",
+        "::",
+        ".",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-14",
+      "kind": "select",
+      "title": "Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `nullptr_t`?",
+      "optionsLearning": [
+        "Базовый класс указателей",
+        "Алгоритм проверки null",
+        "Стандартная библиотека",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-15",
+      "kind": "select",
+      "title": "Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли создать массив ссылок?",
+      "optionsLearning": [
+        "Да, int arr[10];",
+        "Да, но только в C++11",
+        "Да, через указатели",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-16",
+      "kind": "select",
+      "title": "Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое address-of operator?",
+      "optionsLearning": [
+        "Оператор *",
+        "Оператор ::",
+        "Оператор ->",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-17",
+      "kind": "select",
+      "title": "Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `reinterpret_cast<int*>(ptr)`?",
+      "optionsLearning": [
+        "Безопасное приведение типов",
+        "Проверка на null",
+        "Выделение памяти",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-18",
+      "kind": "select",
+      "title": "Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой размер double pointer?",
+      "optionsLearning": [
+        "8 байт всегда",
+        "Зависит от типа данных",
+        "2 раза больше обычного указателя",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-19",
+      "kind": "select",
+      "title": "Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое smart pointer?",
+      "optionsLearning": [
+        "Указатель, который сам себя удаляет",
+        "Быстрый указатель",
+        "Указатель на умный объект",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario.card-20",
+      "kind": "select",
+      "title": "Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать unique_ptr?",
+      "optionsLearning": [
+        "unique_ptr<int> p = new int(42);",
+        "ptr<int> p(42);",
+        "auto p = new unique_ptr<int>;",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.02.scenario"
+    }
+  ]
 }

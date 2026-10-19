@@ -1,0 +1,452 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.classes-objects.01.scenario",
+  "title": "Структуры и классы — Сценарий 1",
+  "cards": [
+    {
+      "id": "cpp.classes-objects.01.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "В чём разница между struct и class в C++?",
+      "optionsLearning": [
+        "По умолчанию members публичные в struct, приватные в class",
+        "Нет разницы",
+        "class быстрее",
+        "struct не поддерживает методы"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "classes-objects"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое объект в ООП?",
+      "optionsLearning": [
+        "Экземпляр класса",
+        "Тип данных",
+        "Функция",
+        "Модуль"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "classes-objects"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как объявить конструктор в классе?",
+      "optionsLearning": [
+        "Метод с именем класса",
+        "Метод void",
+        "Статический метод",
+        "Геттер"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "classes-objects"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое инкапсуляция?",
+      "optionsLearning": [
+        "Объединение данных и методов в классе",
+        "Наследование от родителя",
+        "Переопределение методов",
+        "Полиморфизм"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "classes-objects"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой модификатор доступа делает member приватным?",
+      "optionsLearning": [
+        "private",
+        "public",
+        "protected",
+        "internal"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "classes-objects"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-06",
+      "kind": "select",
+      "title": "Конструкторы по умолчанию и параметризованные",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Конструкторы по умолчанию и параметризованные' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Конструкторы по умолчанию и параметризованные — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "конструкторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-07",
+      "kind": "select",
+      "title": "Деструкторы и очистка ресурсов",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Деструкторы и очистка ресурсов' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Деструкторы и очистка ресурсов — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "деструкторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-08",
+      "kind": "select",
+      "title": "Copy constructor и move constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Copy constructor и move constructor' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Copy constructor и move constructor — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "copy"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-09",
+      "kind": "select",
+      "title": "Operator overloading (=, +, <<, >>)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Operator overloading (=, +, <<, >>)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Operator overloading (=, +, <<, >>) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "operator"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-10",
+      "kind": "select",
+      "title": "Friend функции и классы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Friend функции и классы' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Friend функции и классы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "friend"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-11",
+      "kind": "select",
+      "title": "Static members в классах",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Static members в классах' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Static members в классах — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "static"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-12",
+      "kind": "select",
+      "title": "Вложенные классы",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Вложенные классы' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Вложенные классы — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "вложенные"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-13",
+      "kind": "select",
+      "title": "Инициализация членов класса (initializer list)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Инициализация членов класса (initializer list)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Инициализация членов класса (initializer list) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "инициализация"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-14",
+      "kind": "select",
+      "title": "Explicit constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Explicit constructor' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Explicit constructor — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "explicit"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario.card-15",
+      "kind": "select",
+      "title": "Aggregates и aggregate initialization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Aggregates и aggregate initialization' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Aggregates и aggregate initialization — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "classes-objects",
+          "aggregates"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-classes-objects",
+      "scenarioId": "cpp.classes-objects.01.scenario"
+    }
+  ]
+}

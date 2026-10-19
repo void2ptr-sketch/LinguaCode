@@ -1,585 +1,585 @@
 {
-    "scenarioId": "cpp.basics.performance.06.scenario",
-    "cards": [
-        {
-            "id": "cpp.basics.performance.06.scenario.card-01",
-            "kind": "select",
-            "title": "Вопрос 1",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое base class?",
-            "optionsLearning": [
-                "Класс без наследников",
-                "Самый первый класс в программе",
-                "Класс с virtual методами",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-02",
-            "kind": "select",
-            "title": "Вопрос 2",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как указать режим наследования `public`?",
-            "optionsLearning": [
-                "class Derived inherits Base",
-                "class Derived extends Base",
-                "class Derived > Base",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-03",
-            "kind": "select",
-            "title": "Вопрос 3",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое diamond problem?",
-            "optionsLearning": [
-                "Проблема с виртуальными функциями",
-                "Утечка памяти при наследовании",
-                "Переполнение стека",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-04",
-            "kind": "select",
-            "title": "Вопрос 4",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как решить diamond problem?",
-            "optionsLearning": [
-                "Удалить один путь наследования",
-                "Использовать template",
-                "Сделать все методы static",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-05",
-            "kind": "select",
-            "title": "Вопрос 5",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое dynamic_cast?",
-            "optionsLearning": [
-                "Статическое приведение типов",
-                "Приведение указателей одного типа",
-                "Каст к void*",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-06",
-            "kind": "select",
-            "title": "Вопрос 6",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `dynamic_cast` если приведение невозможно для ссылки?",
-            "optionsLearning": [
-                "Возвращает nullptr",
-                "Работает как static_cast",
-                "Вызывает undefined behavior",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-07",
-            "kind": "select",
-            "title": "Вопрос 7",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое vtable?",
-            "optionsLearning": [
-                "Виртуальная таблица данных",
-                "Список наследников класса",
-                "Файл компиляции",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-08",
-            "kind": "select",
-            "title": "Вопрос 8",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Какой overhead у virtual методов?",
-            "optionsLearning": [
-                "Никакого оверхеда нет",
-                "Удваивает размер объекта",
-                "Замедляет только конструктор",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-09",
-            "kind": "select",
-            "title": "Вопрос 9",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое RTTI в C++?",
-            "optionsLearning": [
-                "Real-Time Type Inspection",
-                "Compile-time проверка типов",
-                "Система исключений",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-10",
-            "kind": "select",
-            "title": "Вопрос 10",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как запретить наследование от класса?",
-            "optionsLearning": [
-                "class sealed Base {}",
-                "class private Base {}",
-                "class abstract Base;",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-11",
-            "kind": "select",
-            "title": "Вопрос 11",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое covariant return type?",
-            "optionsLearning": [
-                "Изменение типа параметра",
-                "Удаление return type",
-                "Возват void вместо значения",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-12",
-            "kind": "select",
-            "title": "Вопрос 12",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое method overriding?",
-            "optionsLearning": [
-                "Перегрузка метода с другими параметрами",
-                "Вызов базового метода",
-                "Удаление метода из памяти",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-13",
-            "kind": "select",
-            "title": "Вопрос 13",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как вызвать метод базового класса из производного?",
-            "optionsLearning": [
-                "super.method();",
-                "parent.method();",
-                "base.method();",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-14",
-            "kind": "select",
-            "title": "Вопрос 14",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое abstract base class (ABC)?",
-            "optionsLearning": [
-                "Класс без данных",
-                "Класс с одним методом",
-                "Статический класс-хелпер",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-15",
-            "kind": "select",
-            "title": "Вопрос 15",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое is-a relationship?",
-            "optionsLearning": [
-                "Отношение композиции",
-                "Отношение агрегации",
-                "Отношение friend",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-16",
-            "kind": "select",
-            "title": "Вопрос 16",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `protected` inheritance?",
-            "optionsLearning": [
-                "Все члены становятся private",
-                "Полный доступ к членам Base",
-                "Удаляет все методы Base",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-17",
-            "kind": "select",
-            "title": "Вопрос 17",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Можно ли создать объект абстрактного класса?",
-            "optionsLearning": [
-                "Да, через new",
-                "Да, если есть конструктор по умолчанию",
-                "Да, но только в C++11",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-18",
-            "kind": "select",
-            "title": "Вопрос 18",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое polymorphic type?",
-            "optionsLearning": [
-                "Любой класс с методами",
-                "Только абстрактный класс",
-                "Класс без данных",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-19",
-            "kind": "select",
-            "title": "Вопрос 19",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое `typeid` operator?",
-            "optionsLearning": [
-                "Проверка типа на стадии компиляции",
-                "Приведение типов",
-                "Сравнение двух объектов",
-                "Вариант 4"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.06.scenario.card-20",
-            "kind": "select",
-            "title": "Вопрос 20",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как работает virtual dispatch?",
-            "optionsLearning": [
-                "Через vptr → vtable → вызов функции по индексу",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.06.scenario"
-        }
-    ]
+  "scenarioId": "cpp.basics.performance.06.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.06.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое base class?",
+      "optionsLearning": [
+        "Класс без наследников",
+        "Самый первый класс в программе",
+        "Класс с virtual методами",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как указать режим наследования `public`?",
+      "optionsLearning": [
+        "class Derived inherits Base",
+        "class Derived extends Base",
+        "class Derived > Base",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое diamond problem?",
+      "optionsLearning": [
+        "Проблема с виртуальными функциями",
+        "Утечка памяти при наследовании",
+        "Переполнение стека",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как решить diamond problem?",
+      "optionsLearning": [
+        "Удалить один путь наследования",
+        "Использовать template",
+        "Сделать все методы static",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое dynamic_cast?",
+      "optionsLearning": [
+        "Статическое приведение типов",
+        "Приведение указателей одного типа",
+        "Каст к void*",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-06",
+      "kind": "select",
+      "title": "Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `dynamic_cast` если приведение невозможно для ссылки?",
+      "optionsLearning": [
+        "Возвращает nullptr",
+        "Работает как static_cast",
+        "Вызывает undefined behavior",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-07",
+      "kind": "select",
+      "title": "Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое vtable?",
+      "optionsLearning": [
+        "Виртуальная таблица данных",
+        "Список наследников класса",
+        "Файл компиляции",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-08",
+      "kind": "select",
+      "title": "Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой overhead у virtual методов?",
+      "optionsLearning": [
+        "Никакого оверхеда нет",
+        "Удваивает размер объекта",
+        "Замедляет только конструктор",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-09",
+      "kind": "select",
+      "title": "Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RTTI в C++?",
+      "optionsLearning": [
+        "Real-Time Type Inspection",
+        "Compile-time проверка типов",
+        "Система исключений",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-10",
+      "kind": "select",
+      "title": "Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как запретить наследование от класса?",
+      "optionsLearning": [
+        "class sealed Base {}",
+        "class private Base {}",
+        "class abstract Base;",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-11",
+      "kind": "select",
+      "title": "Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое covariant return type?",
+      "optionsLearning": [
+        "Изменение типа параметра",
+        "Удаление return type",
+        "Возват void вместо значения",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-12",
+      "kind": "select",
+      "title": "Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое method overriding?",
+      "optionsLearning": [
+        "Перегрузка метода с другими параметрами",
+        "Вызов базового метода",
+        "Удаление метода из памяти",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-13",
+      "kind": "select",
+      "title": "Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как вызвать метод базового класса из производного?",
+      "optionsLearning": [
+        "super.method();",
+        "parent.method();",
+        "base.method();",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-14",
+      "kind": "select",
+      "title": "Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое abstract base class (ABC)?",
+      "optionsLearning": [
+        "Класс без данных",
+        "Класс с одним методом",
+        "Статический класс-хелпер",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-15",
+      "kind": "select",
+      "title": "Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое is-a relationship?",
+      "optionsLearning": [
+        "Отношение композиции",
+        "Отношение агрегации",
+        "Отношение friend",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-16",
+      "kind": "select",
+      "title": "Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `protected` inheritance?",
+      "optionsLearning": [
+        "Все члены становятся private",
+        "Полный доступ к членам Base",
+        "Удаляет все методы Base",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-17",
+      "kind": "select",
+      "title": "Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли создать объект абстрактного класса?",
+      "optionsLearning": [
+        "Да, через new",
+        "Да, если есть конструктор по умолчанию",
+        "Да, но только в C++11",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-18",
+      "kind": "select",
+      "title": "Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое polymorphic type?",
+      "optionsLearning": [
+        "Любой класс с методами",
+        "Только абстрактный класс",
+        "Класс без данных",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-19",
+      "kind": "select",
+      "title": "Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое `typeid` operator?",
+      "optionsLearning": [
+        "Проверка типа на стадии компиляции",
+        "Приведение типов",
+        "Сравнение двух объектов",
+        "Вариант 4"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario.card-20",
+      "kind": "select",
+      "title": "Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работает virtual dispatch?",
+      "optionsLearning": [
+        "Через vptr → vtable → вызов функции по индексу",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.06.scenario"
+    }
+  ]
 }

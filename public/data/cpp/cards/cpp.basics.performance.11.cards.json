@@ -1,585 +1,585 @@
 {
-    "scenarioId": "cpp.basics.performance.11.scenario",
-    "cards": [
-        {
-            "id": "cpp.basics.performance.11.scenario.card-01",
-            "kind": "select",
-            "title": "Вопрос 1",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как перехватить исключение?",
-            "optionsLearning": [
-                "try { код } catch (const std::exception& e) { обработка }",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-02",
-            "kind": "select",
-            "title": "Вопрос 2",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как перехватить все исключения?",
-            "optionsLearning": [
-                "catch (...)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-03",
-            "kind": "select",
-            "title": "Вопрос 3",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `throw`?",
-            "optionsLearning": [
-                "Выбрасывает исключение с сообщением",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-04",
-            "kind": "select",
-            "title": "Вопрос 4",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое std::exception?",
-            "optionsLearning": [
-                "Базовый класс всех стандартных исключений C++",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-05",
-            "kind": "select",
-            "title": "Вопрос 5",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как создать кастомное исключение?",
-            "optionsLearning": [
-                "class MyError : public std::runtime_error { ... }",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-06",
-            "kind": "select",
-            "title": "Вопрос 6",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает `noexcept` на функции?",
-            "optionsLearning": [
-                "Гарантирует, что функция не выбросит исключение; при throw — вызов std::terminate()",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-07",
-            "kind": "select",
-            "title": "Вопрос 7",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое stack unwinding?",
-            "optionsLearning": [
-                "Процесс выхода из вложенных функций при выбросе исключения с вызовом деструкторов",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-08",
-            "kind": "select",
-            "title": "Вопрос 8",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как предотвратить утечку памяти при исключении?",
-            "optionsLearning": [
-                "Использовать RAII и умные указатели",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-09",
-            "kind": "select",
-            "title": "Вопрос 9",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает std::rethrow_exception()?",
-            "optionsLearning": [
-                "Повторно выбрасывает текущее перехваченное исключение",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-10",
-            "kind": "select",
-            "title": "Вопрос 10",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое std::nested_exception?",
-            "optionsLearning": [
-                "Возможность вложить одно исключение в другое для сохранения контекста",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-11",
-            "kind": "select",
-            "title": "Вопрос 11",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как получить текст исключения?",
-            "optionsLearning": [
-                "e.what() — виртуальный метод std::exception",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-12",
-            "kind": "select",
-            "title": "Вопрос 12",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое std::bad_alloc?",
-            "optionsLearning": [
-                "Исключение, выбрасываемое при неудачном new (нехватка памяти)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-13",
-            "kind": "select",
-            "title": "Вопрос 13",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает noexcept specifier в C++11?",
-            "optionsLearning": [
-                "Оптимизация компилятора + гарантия отсутствия исключений",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-14",
-            "kind": "select",
-            "title": "Вопрос 14",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как обработить исключение из конструктора?",
-            "optionsLearning": [
-                "Через initializer list или factory method, либо делегирование конструктору",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-15",
-            "kind": "select",
-            "title": "Вопрос 15",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое std::uncaught_exceptions() (C++17)?",
-            "optionsLearning": [
-                "Количество незавершённых исключений в текущем потоке",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-16",
-            "kind": "select",
-            "title": "Вопрос 16",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как сделать exception-safe код?",
-            "optionsLearning": [
-                "Использовать RAII, copy-and-swap, strong/weak guarantee",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-17",
-            "kind": "select",
-            "title": "Вопрос 17",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что делает std::current_exception()?",
-            "optionsLearning": [
-                "Создаёт std::exception_ptr на текущее исключение",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-18",
-            "kind": "select",
-            "title": "Вопрос 18",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Можно ли перехватить исключение из деструктора?",
-            "optionsLearning": [
-                "Нет — std::terminate() вызывается автоматически",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-19",
-            "kind": "select",
-            "title": "Вопрос 19",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Что такое noexcept move constructor?",
-            "optionsLearning": [
-                "Конструктор перемещения, помеченный noexcept для оптимизации vector и безопасности исключений",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        },
-        {
-            "id": "cpp.basics.performance.11.scenario.card-20",
-            "kind": "select",
-            "title": "Вопрос 20",
-            "appearance": {
-                "theme": "azure-blue",
-                "fontSize": "md"
-            },
-            "direction": "known-to-learning",
-            "promptKnown": "Как отключить исключения в C++?",
-            "optionsLearning": [
-                "-fno-exceptions при компиляции (не рекомендуется)",
-                "Вариант B",
-                "Вариант C",
-                "Вариант D"
-            ],
-            "correctIndex": 0,
-            "meta": {
-                "knownLanguage": "ru",
-                "learningLanguage": "cpp",
-                "difficulty": "beginner",
-                "tags": [
-                    "performance"
-                ]
-            },
-            "courseId": "course-cpp-complete",
-            "lessonId": "",
-            "scenarioId": "cpp.basics.performance.11.scenario"
-        }
-    ]
+  "scenarioId": "cpp.basics.performance.11.scenario",
+  "cards": [
+    {
+      "id": "cpp.basics.performance.11.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перехватить исключение?",
+      "optionsLearning": [
+        "try { код } catch (const std::exception& e) { обработка }",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перехватить все исключения?",
+      "optionsLearning": [
+        "catch (...)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `throw`?",
+      "optionsLearning": [
+        "Выбрасывает исключение с сообщением",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::exception?",
+      "optionsLearning": [
+        "Базовый класс всех стандартных исключений C++",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать кастомное исключение?",
+      "optionsLearning": [
+        "class MyError : public std::runtime_error { ... }",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-06",
+      "kind": "select",
+      "title": "Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает `noexcept` на функции?",
+      "optionsLearning": [
+        "Гарантирует, что функция не выбросит исключение; при throw — вызов std::terminate()",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-07",
+      "kind": "select",
+      "title": "Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое stack unwinding?",
+      "optionsLearning": [
+        "Процесс выхода из вложенных функций при выбросе исключения с вызовом деструкторов",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-08",
+      "kind": "select",
+      "title": "Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как предотвратить утечку памяти при исключении?",
+      "optionsLearning": [
+        "Использовать RAII и умные указатели",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-09",
+      "kind": "select",
+      "title": "Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::rethrow_exception()?",
+      "optionsLearning": [
+        "Повторно выбрасывает текущее перехваченное исключение",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-10",
+      "kind": "select",
+      "title": "Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::nested_exception?",
+      "optionsLearning": [
+        "Возможность вложить одно исключение в другое для сохранения контекста",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-11",
+      "kind": "select",
+      "title": "Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить текст исключения?",
+      "optionsLearning": [
+        "e.what() — виртуальный метод std::exception",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-12",
+      "kind": "select",
+      "title": "Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::bad_alloc?",
+      "optionsLearning": [
+        "Исключение, выбрасываемое при неудачном new (нехватка памяти)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-13",
+      "kind": "select",
+      "title": "Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает noexcept specifier в C++11?",
+      "optionsLearning": [
+        "Оптимизация компилятора + гарантия отсутствия исключений",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-14",
+      "kind": "select",
+      "title": "Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обработить исключение из конструктора?",
+      "optionsLearning": [
+        "Через initializer list или factory method, либо делегирование конструктору",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-15",
+      "kind": "select",
+      "title": "Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::uncaught_exceptions() (C++17)?",
+      "optionsLearning": [
+        "Количество незавершённых исключений в текущем потоке",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-16",
+      "kind": "select",
+      "title": "Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сделать exception-safe код?",
+      "optionsLearning": [
+        "Использовать RAII, copy-and-swap, strong/weak guarantee",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-17",
+      "kind": "select",
+      "title": "Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает std::current_exception()?",
+      "optionsLearning": [
+        "Создаёт std::exception_ptr на текущее исключение",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-18",
+      "kind": "select",
+      "title": "Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Можно ли перехватить исключение из деструктора?",
+      "optionsLearning": [
+        "Нет — std::terminate() вызывается автоматически",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-19",
+      "kind": "select",
+      "title": "Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое noexcept move constructor?",
+      "optionsLearning": [
+        "Конструктор перемещения, помеченный noexcept для оптимизации vector и безопасности исключений",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario.card-20",
+      "kind": "select",
+      "title": "Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как отключить исключения в C++?",
+      "optionsLearning": [
+        "-fno-exceptions при компиляции (не рекомендуется)",
+        "Вариант B",
+        "Вариант C",
+        "Вариант D"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-basics-performance",
+      "scenarioId": "cpp.basics.performance.11.scenario"
+    }
+  ]
 }

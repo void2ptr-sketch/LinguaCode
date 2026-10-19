@@ -1,0 +1,452 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.system-programming.01.scenario",
+  "title": "Системное программирование — Сценарий 1",
+  "cards": [
+    {
+      "id": "cpp.system-programming.01.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое syscall в C++?",
+      "optionsLearning": [
+        "Вызов системной функции ОС",
+        "Стандартная библиотека",
+        "Тип данных",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system-programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой заголовочный файл нужен для работы с процессами?",
+      "optionsLearning": [
+        "<process>",
+        "<sys/wait.h>",
+        "<thread>",
+        "<system>"
+      ],
+      "correctIndex": 1,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system-programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает fork() в Unix?",
+      "optionsLearning": [
+        "Создаёт новый процесс",
+        "Убивает процесс",
+        "Паузит процесс",
+        "Перезапускает процесс"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system-programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить PID текущего процесса?",
+      "optionsLearning": [
+        "getpid()",
+        "get_process_id()",
+        "process.id()",
+        "current_pid()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system-programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое signal в Unix?",
+      "optionsLearning": [
+        "Сигнал для уведомления процесса о событии",
+        "Тип данных",
+        "Функция",
+        "Переменная"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "system-programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-06",
+      "kind": "select",
+      "title": "Environment variables (getenv, setenv)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Environment variables (getenv, setenv)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Environment variables (getenv, setenv) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "environment"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-07",
+      "kind": "select",
+      "title": "Signal handling (signal, sigaction)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Signal handling (signal, sigaction)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Signal handling (signal, sigaction) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "signal"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-08",
+      "kind": "select",
+      "title": "Process groups and sessions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Process groups and sessions' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Process groups and sessions — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "process"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-09",
+      "kind": "select",
+      "title": "Shared memory (shm_open, mmap)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Shared memory (shm_open, mmap)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Shared memory (shm_open, mmap) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "shared"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-10",
+      "kind": "select",
+      "title": "Message queues (posix mq_open)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Message queues (posix mq_open)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Message queues (posix mq_open) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "message"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-11",
+      "kind": "select",
+      "title": "Semaphores (sem_init, sem_wait)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Semaphores (sem_init, sem_wait)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Semaphores (sem_init, sem_wait) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "semaphores"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-12",
+      "kind": "select",
+      "title": "POSIX threads vs Windows threads",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'POSIX threads vs Windows threads' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: POSIX threads vs Windows threads — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "posix"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-13",
+      "kind": "select",
+      "title": "System calls wrapper functions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'System calls wrapper functions' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: System calls wrapper functions — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "system"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-14",
+      "kind": "select",
+      "title": "Resource limits (setrlimit, getrlimit)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Resource limits (setrlimit, getrlimit)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Resource limits (setrlimit, getrlimit) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "resource"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    },
+    {
+      "id": "cpp.system-programming.01.scenario.card-15",
+      "kind": "select",
+      "title": "Process scheduling policies",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Process scheduling policies' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Process scheduling policies — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "system-programming",
+          "process"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-system-programming",
+      "scenarioId": "cpp.system-programming.01.scenario"
+    }
+  ]
+}

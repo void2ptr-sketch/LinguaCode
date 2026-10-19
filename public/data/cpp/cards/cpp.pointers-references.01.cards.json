@@ -1,0 +1,452 @@
+{
+  "version": "1.0",
+  "scenarioId": "cpp.pointers-references.01.scenario",
+  "title": "Указатели и ссылки — Сценарий 1",
+  "cards": [
+    {
+      "id": "cpp.pointers-references.01.scenario.card-01",
+      "kind": "select",
+      "title": "Вопрос 1",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое указатель в C++?",
+      "optionsLearning": [
+        "Переменная, хранящая адрес другой переменной",
+        "Тип данных для строк",
+        "Функция для выделения памяти",
+        "Модификатор доступа"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers-references"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-02",
+      "kind": "select",
+      "title": "Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить адрес переменной в C++?",
+      "optionsLearning": [
+        "Оператор &",
+        "Оператор *",
+        "Оператор ->",
+        "Оператор ::"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers-references"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-03",
+      "kind": "select",
+      "title": "Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ссылка в C++?",
+      "optionsLearning": [
+        "Альтернативное имя для переменной",
+        "Указатель на указатель",
+        "Тип данных для чисел",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers-references"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-04",
+      "kind": "select",
+      "title": "Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой оператор используется для разыменования указателя?",
+      "optionsLearning": [
+        "Оператор *",
+        "Оператор &",
+        "Оператор ->",
+        "Оператор ."
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers-references"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-05",
+      "kind": "select",
+      "title": "Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое nullptr в C++?",
+      "optionsLearning": [
+        "Нулевой указатель",
+        "Пустая строка",
+        "Ноль в целочисленном типе",
+        "Пустой массив"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers-references"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-06",
+      "kind": "select",
+      "title": "Указатели на указатели (double pointers)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Указатели на указатели (double pointers)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Указатели на указатели (double pointers) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "указатели"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-07",
+      "kind": "select",
+      "title": "Массивы указателей",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Массивы указателей' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Массивы указателей — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "массивы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-08",
+      "kind": "select",
+      "title": "Векторы указателей",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Векторы указателей' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Векторы указателей — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "векторы"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-09",
+      "kind": "select",
+      "title": "const указатели и указатели на const",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'const указатели и указатели на const' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: const указатели и указатели на const — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "const"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-10",
+      "kind": "select",
+      "title": "Указатели и функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Указатели и функции' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Указатели и функции — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "указатели"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-11",
+      "kind": "select",
+      "title": "Возврат указателя из функции",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Возврат указателя из функции' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Возврат указателя из функции — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "возврат"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-12",
+      "kind": "select",
+      "title": "Динамическое выделение памяти (new/delete)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Динамическое выделение памяти (new/delete)' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Динамическое выделение памяти (new/delete) — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "динамическое"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-13",
+      "kind": "select",
+      "title": "Утечки памяти и как их избежать",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Утечки памяти и как их избежать' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Утечки памяти и как их избежать — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "утечки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-14",
+      "kind": "select",
+      "title": "Ссылки vs указатели: когда что использовать",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Ссылки vs указатели: когда что использовать' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Ссылки vs указатели: когда что использовать — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "ссылки"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario.card-15",
+      "kind": "select",
+      "title": "Null pointer dereference и защита от него",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что известно о 'Null pointer dereference и защита от него' в C++?",
+      "optionsLearning": [
+        "Основные аспекты: Null pointer dereference и защита от него — важный элемент C++",
+        "Не имеет отношения к C++",
+        "Устаревшая технология",
+        "Только для embedded"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "pointers-references",
+          "null"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-pointers-references",
+      "scenarioId": "cpp.pointers-references.01.scenario"
+    }
+  ]
+}
