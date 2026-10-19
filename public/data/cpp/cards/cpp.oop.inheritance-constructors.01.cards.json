@@ -4,110 +4,78 @@
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Конструкторы в наследовании — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "что"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как передать аргументы конструктору базового класса?",
+      "optionsLearning": [
+        "Через список инициализации: D(...) : B(args)",
+        "В теле D",
+        "Нельзя",
+        "Статически"
+      ],
+      "correctIndex": 0,
+      "explanation": "Список инициализации производного вызывает конструктор базового."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-02",
-      "kind": "select",
-      "title": "Classes и objects",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "classes"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B() { std::cout << 'b'; } };\nstruct D : B { D() : B() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bd",
+        "db",
+        "d",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "B инициализируется перед D: bd."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-03",
       "kind": "select",
-      "title": "Encapsulation principles",
+      "title": "Конструкторы в наследовании — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "encapsulation"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-04",
-      "kind": "select",
-      "title": "Inheritance mechanisms",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
-      "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -119,25 +87,382 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что произойдёт, если базовый класс не имеет конструктора по умолчанию?",
+      "optionsLearning": [
+        "Ошибка: нужен явный вызов конструктора Base",
+        "Автоматически",
+        "Null",
+        "Дефолт создаётся"
+      ],
+      "correctIndex": 0,
+      "explanation": "производный обязан вызвать подходящий конструктор Base."
     },
     {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-05",
-      "kind": "select",
-      "title": "Polymorphism types",
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-04",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Компилируется ли этот код?",
+      "code": {
+        "code": "struct B { B(int) {} };\nstruct D : B { D() {} };",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — B без конструктора по умолчанию",
+        "Да",
+        "Да в C++20",
+        "С warning"
       ],
       "correctIndex": 0,
+      "explanation": "D() не вызывает B(int) — ошибка: нет B()."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-05",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как исправить предыдущую ситуацию?",
+      "optionsLearning": [
+        "D() : B(0) {}",
+        "Добавить B()",
+        "static",
+        "virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явный вызов конструктора базы с аргументом решает задачу."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-06",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "modern-cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое унаследованные конструкторы (C++11)?",
+      "optionsLearning": [
+        "using Base::Base; — конструкторы базы наследуются",
+        "Копирование",
+        "Дефолт",
+        "Статика"
+      ],
+      "correctIndex": 0,
+      "explanation": "using B::B; переносит конструкторы в производный класс."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-07",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": [
+          "oop",
+          "inheritance"
+        ],
+        "tags": "Порядок: базы (по объявлению), потом члены производного."
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "В каком порядке инициализируются части объекта D из B?",
+      "code": {
+        "code": [
+          "Сначала B (базы), потом члены D",
+          "Члены D первыми",
+          "Случайно",
+          "Параллельно"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Почему перед телом D уже выполнен конструктор B?",
+      "optionsLearning": [
+        "Чтобы базовые поля были готовы",
+        "Так удобно",
+        "Случайно",
+        "Для скорости"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализация базы — precondition использования её полей."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-09",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Можно ли вызвать виртуальный метод в конструкторе базового?",
+      "optionsLearning": [
+        "Да, но вызовется версия базового (safe), не производного",
+        "Нельзя",
+        "Только в C++20",
+        "Ошибка всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Во время конструктора базы объект ещё не производный — virtual не работает полностью."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-10",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B(int x) { std::cout << x; } };\nstruct D : B { D() : B(7) { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7d",
+        "d7",
+        "7",
+        "d"
+      ],
+      "correctIndex": 0,
+      "explanation": "B(7) печатает 7, потом D: 7d."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-11",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что будет при копировании производного объекта?",
+      "optionsLearning": [
+        "Копируется базовый и производный срезы (в зависимости)",
+        "Дубли ссылки",
+        "Ошибка",
+        "Только id"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор копии D копирует базу и свои члены."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-12",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое slicing (срезка) объекта?",
+      "optionsLearning": [
+        "Копирование только базовой части при присваивании в Base",
+        "Удаление полей",
+        "Шаблон",
+        "Сортировка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Base b = d; теряет производные части — опасное сужение."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-13",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "inheritance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { int x = 1; };\nstruct D : B { int y = 2; };\nint main() { D d; B b = d; std::cout << b.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Slicing: копируется лишь базовая часть — x=1."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-14",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что будет с виртуальным деструктором при удалении базового указателя?",
+      "optionsLearning": [
+        "Вызовется деструктор производного (правильный)",
+        "Только базовый",
+        "Ничего",
+        "UB при отсутствии virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual ~B() гарантирует полное уничтожение D."
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario.card-15",
+      "kind": "select",
+      "title": "Конструкторы в наследовании — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -149,457 +474,175 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-06",
-      "kind": "select",
-      "title": "Abstraction techniques",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Зачем базовому классу виртуальный деструктор?",
       "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "Корректное удаление полиморфных объектов",
+        "Для скорости",
+        "Документации",
+        "Обязателен"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "abstraction"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-07",
-      "kind": "select",
-      "title": "Design patterns overview",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "design"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-08",
-      "kind": "select",
-      "title": "SOLID principles",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "solid"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-09",
-      "kind": "select",
-      "title": "Dependency injection",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "dependency"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-10",
-      "kind": "select",
-      "title": "Factory patterns",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "factory"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-11",
-      "kind": "select",
-      "title": "Observer pattern",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "observer"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-12",
-      "kind": "select",
-      "title": "Strategy pattern",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "strategy"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-13",
-      "kind": "select",
-      "title": "Adapter pattern",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "adapter"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-14",
-      "kind": "select",
-      "title": "Decorator pattern",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "decorator"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.inheritance-constructors.01.scenario.card-15",
-      "kind": "select",
-      "title": "Facade pattern",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "facade"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "explanation": "delete через Base* без virtual — UB (неполное уничтожение)."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-16",
       "kind": "select",
-      "title": "Builder pattern",
+      "title": "Конструкторы в наследовании — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "builder"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Что такое delegating constructor в производном?",
+      "optionsLearning": [
+        "Свой конструктор вызывает другой своего класса, который зовёт базу",
+        "Вызов base",
+        "Копия",
+        "Перегрузка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Делегирование упрощает дублирующиеся инициализации."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "Конструкторы в наследовании — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "debugging"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Порядок деструкторов в иерархии?",
+      "optionsLearning": [
+        "Сначала D, потом B",
+        "Сначала B",
+        "Случайно",
+        "По алфавиту"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разрушение обратно созданию."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-18",
-      "kind": "select",
-      "title": "Performance implications of OOP",
+      "kind": "code-trace",
+      "title": "Конструкторы в наследовании — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "performance"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { ~B() { std::cout << 'b'; } };\nstruct D : B { ~D() { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "db",
+        "bd",
+        "d",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор D, затем B: db."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-19",
       "kind": "select",
-      "title": "Best practices для OOP design",
+      "title": "Конструкторы в наследовании — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-      "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "best"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Почему нельзя полагаться на конструктор Base для инициализации членов D?",
+      "optionsLearning": [
+        "Члены D не существуют при вызове базы",
+        "Скорость",
+        "Стиль",
+        "База чище"
+      ],
+      "correctIndex": 0,
+      "explanation": "Члены D инициализируются после базы."
     },
     {
       "id": "cpp.oop.inheritance-constructors.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Конструкторы в наследовании — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "composition"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario"
+      "scenarioId": "cpp.oop.inheritance-constructors.01.scenario",
+      "promptKnown": "Как правильно создать иерархию с общими полями?",
+      "optionsLearning": [
+        "Общие поля в Base + конструктор с параметрами",
+        "Дублировать",
+        "static",
+        "генер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Базовый класс владеет общей частью состояния."
     }
   ],
   "title": "Oop — Intermediate C++"

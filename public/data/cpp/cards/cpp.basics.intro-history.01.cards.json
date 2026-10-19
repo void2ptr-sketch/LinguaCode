@@ -4,602 +4,615 @@
     {
       "id": "cpp.basics.intro-history.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "История и структура программы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Кто создал язык C++?",
+      "optionsLearning": [
+        "Бьёрн Страуструп",
+        "Деннис Ритчи",
+        "Джеймс Гослинг",
+        "Линус Торвальдс"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ разработал Бьёрн Страуструп в Bell Labs в начале 1980-х."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "История и структура программы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Из какого языка C++ позаимствовал большую часть синтаксиса?",
+      "optionsLearning": [
+        "C",
+        "Java",
+        "Python",
+        "Assembly"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ начинался как C with Classes и сохранил обратную совместимость с C."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "История и структура программы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "В каком году появился стандарт C++11, добавивший auto и lambda?",
+      "optionsLearning": [
+        "2011",
+        "1998",
+        "2003",
+        "2017"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++11 (2011) — крупная ревизия: auto, лямбды, move-семантика, nullptr."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "История и структура программы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какой стандарт добавил в C++ концепции (concepts) и ranges?",
+      "optionsLearning": [
+        "C++20",
+        "C++14",
+        "C++17",
+        "C++11"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++20 принёс concepts, ranges, coroutines, modules."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "История и структура программы — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Что означает аббревиатура STL?",
+      "optionsLearning": [
+        "Standard Template Library",
+        "Simple Type Language",
+        "Standard Test Lab",
+        "System Template Loader"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL — стандартная библиотека шаблонов: контейнеры, алгоритмы, итераторы."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "История и структура программы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "В каком году был ратифицирован первый стандарт C++ (ISO)?",
+      "optionsLearning": [
+        "1998",
+        "1985",
+        "2000",
+        "2011"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первый стандарт ISO C++98 был опубликован в 1998 году."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "История и структура программы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Кто разработал стандартную библиотеку шаблонов STL?",
+      "optionsLearning": [
+        "Александр Степанов",
+        "Бьёрн Страуструп",
+        "Деннис Ритчи",
+        "Дональд Кнут"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL создал Александр Степанов; она вошла в стандартную библиотеку C++."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "История и структура программы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какой стандарт добавил std::optional, std::variant и structured bindings?",
+      "optionsLearning": [
+        "C++17",
+        "C++11",
+        "C++14",
+        "C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++17 ввёл optional, variant, any, structured bindings, if constexpr."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "История и структура программы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Как называется расширение .cpp для исходных файлов?",
+      "optionsLearning": [
+        "cpp",
+        "py",
+        "java",
+        "h"
+      ],
+      "correctIndex": 0,
+      "explanation": "Файлы исходного кода C++ обычно имеют расширение .cpp (реже .cc, .cxx)."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "История и структура программы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "language-basics",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "В чём ключевое отличие C от C++?",
+      "optionsLearning": [
+        "C++ добавляет классы, ООП и библиотеку шаблонов",
+        "C++ не совместим с C",
+        "C быстрее всегда",
+        "C++ только для игр"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ расширяет C классами, перегрузкой, исключениями, шаблонами и STL."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "История и структура программы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Кто такой Бьёрн Страуструп по отношению к C++?",
+      "optionsLearning": [
+        "Создатель языка и автор книги The C++ Programming Language",
+        "Разработчик ядра Linux",
+        "Создатель Java",
+        "Автор стандарта Unicode"
+      ],
+      "correctIndex": 0,
+      "explanation": "Страуструп спроектировал C++ и написал его главное руководство."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "История и структура программы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Что означает философия «вы не платите за то, что не используете» в C++?",
+      "optionsLearning": [
+        "Нулевые накладные расходы для ненужных абстракций",
+        "Бесплатная лицензия",
+        "Оптимизация через макросы",
+        "Отсутствие исключений"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстракции C++ не добавляют затрат, если ими не пользуются (zero-overhead principle)."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "История и структура программы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какой стандарт добавил std::string_view и if constexpr?",
+      "optionsLearning": [
+        "C++17",
+        "C++14",
+        "C++11",
+        "C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++17 добавил string_view, if constexpr, файловую систему и параллельные алгоритмы."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "История и структура программы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Что такое RAII (в контексте истории языка)?",
+      "optionsLearning": [
+        "Идиома управления ресурсами: захват в конструкторе, освобождение в деструкторе",
+        "Формат имён переменных",
+        "Инструкция ассемблера",
+        "Вариант цикла"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII — ключевая идиома C++, позволяющая безопасно владеть ресурсами через объекты."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "История и структура программы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какая библиотека делает C++ кроссплатформенным на уровне стандарта?",
+      "optionsLearning": [
+        "Стандартная библиотека (cin/cout, containers, algorithm)",
+        "Только OpenGL",
+        "Только Windows API",
+        "Только POSIX"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандартная библиотека задаёт единый API независимо от платформы."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "История и структура программы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какой стандарт ввёл корутины (coroutines)?",
+      "optionsLearning": [
+        "C++20",
+        "C++14",
+        "C++17",
+        "C++11"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++20 добавил корутины для асинхронного и генераторного кода."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "История и структура программы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "В чём разница между C++ и C#?",
+      "optionsLearning": [
+        "C# работает на управляемой платформе .NET, C++ — нативный",
+        "Это один язык",
+        "C# — расширение C",
+        "C++ написан на C#"
+      ],
+      "correctIndex": 0,
+      "explanation": "C# — управляемый язык с GC для платформы .NET; C++ — нативный со свободным управлением памятью."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "История и структура программы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "language-basics",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Почему C++ до сих пор используется в высоконагруженных системах?",
+      "optionsLearning": [
+        "Производительность и контроль над ресурсами",
+        "Только из-за исторического наследия",
+        "Отсутствие альтернатив",
+        "Простота изучения"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ даёт предсказуемую производительность, низкоуровневый контроль и богатую экосистему."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "История и структура программы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Какой стандарт ввёл шаблоны с variadic и nullptr?",
+      "optionsLearning": [
+        "C++11",
+        "C++98",
+        "C++14",
+        "C++17"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++11 добавил variadic templates, nullptr, auto, лямбды и move-семантику."
     },
     {
       "id": "cpp.basics.intro-history.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "История и структура программы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-history.01.scenario"
+      "scenarioId": "cpp.basics.intro-history.01.scenario",
+      "promptKnown": "Что символизирует название каждого стандарта — например, C++23?",
+      "optionsLearning": [
+        "Год публикации стандарта",
+        "Номер версии ядра",
+        "Количество фич",
+        "Порядковый номер релиза"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обозначение C++NN соответствует году выхода очередного стандарта ISO."
     }
   ],
   "title": "Basics — Basics C++"

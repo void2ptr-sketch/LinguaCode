@@ -4,602 +4,648 @@
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Одномерные массивы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Как объявить массив из 5 целых чисел в C++?",
+      "optionsLearning": [
+        "int arr[5];",
+        "int[5] arr;",
+        "array 5 int;",
+        "int arr(5);"
+      ],
+      "correctIndex": 0,
+      "explanation": "Массив объявляется как тип имя[размер]: int arr[5];"
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Одномерные массивы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "С какого индекса начинается массив в C++?",
+      "optionsLearning": [
+        "С 0",
+        "С 1",
+        "С -1",
+        "С 5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Индексация в C++ начинается с нуля."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[3] = {10, 20, 30}; std::cout << a[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "20",
+        "10",
+        "30",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "a[1] — второй элемент массива: 20."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Одномерные массивы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Какое значение получит элемент массива без инициализации (для локального int)?",
+      "optionsLearning": [
+        "Неопределённое (мусор)",
+        "0",
+        "nullptr",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальные массивы без инициализации содержат произвольные значения."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Одномерные массивы — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Как инициализировать массив нулями?",
+      "optionsLearning": [
+        "int a[5] = {};",
+        "int a[5];",
+        "int a[5] = {1};",
+        "zero(a)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пустой список {} обнуляет все элементы."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[] = {1, 2, 3, 4}; std::cout << sizeof(a) / sizeof(a[0]); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "16",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "sizeof(a) — байты всего массива; деление на sizeof элемента даёт число элементов."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Одномерные массивы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Что произойдёт при обращении к a[5] для массива int a[5]?",
+      "optionsLearning": [
+        "Неопределённое поведение (выход за границы)",
+        "Ошибка компиляции",
+        "Возврат 0",
+        "Ошибка линковки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ за границы — UB; компилятор не обязан это проверять."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Одномерные массивы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "arrays",
+          "syntax",
+          "control-flow"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Как перебрать все элементы массива int a[5]?",
+      "optionsLearning": [
+        "for (int i = 0; i < 5; ++i) { a[i] ... }",
+        "for (int i = 1; i <= 5; ++i)",
+        "for (int i = 0; i <= 5; ++i)",
+        "foreach (a)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Индексы 0..4 включительно; условие i < 5."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[4] = {1, 2, 3, 4}; int s = 0; for (int i = 0; i < 4; ++i) s += a[i]; std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "24",
+        "1",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сумма 1+2+3+4 = 10."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Одномерные массивы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Какой тип результата у выражения a[i], если a — массив int?",
+      "optionsLearning": [
+        "int (значение элемента)",
+        "int*",
+        "Ошибка",
+        "Ссылка на массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "a[i] — lvalue элемента типа int."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Одномерные массивы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "arrays",
+          "syntax",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Что будет, если размер массива задан переменной runtime?",
+      "optionsLearning": [
+        "Массив переменной длины (VLA) — нестандартно в C++; используют std::vector",
+        "Ошибка всегда",
+        "Работает везде",
+        "Замедление"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандартный C++ требует константный размер; для динамического — std::vector."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Одномерные массивы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Чем лучше std::array<int,5> перед int[5]?",
+      "optionsLearning": [
+        "Знает свой размер, безопасен, совместим с алгоритмами",
+        "Он быстрее",
+        "Он короче",
+        "Он глобальнее"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::array хранит размер и работает как объект с удобным API."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[3] = {5, 7, 9}; a[1] = 0; std::cout << a[1] + a[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "7",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "a[1]=0, a[2]=9 → 9."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Одномерные массивы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Можно ли изменить размер обычного массива после создания?",
+      "optionsLearning": [
+        "Нет, размер фиксирован при компиляции",
+        "Да, через resize",
+        "Да, через realloc",
+        "Только в C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Размер статического массива неизменяем; изменение требует vector или новый массив."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Одномерные массивы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Как получить первый элемент массива a?",
+      "optionsLearning": [
+        "a[0]",
+        "a[1]",
+        "a.begin()",
+        "a.first"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первый элемент — a[0]."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[5] = {}; for (int i = 0; i < 5; ++i) a[i] = i * 2; std::cout << a[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "8",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "a[3] = 3*2 = 6."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Одномерные массивы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Какая функция (из C) копирует массив байтов?",
+      "optionsLearning": [
+        "memcpy(a, b, sizeof(a))",
+        "copy(b, a)",
+        "strcpy для int нельзя",
+        "clone(a)"
+      ],
+      "correctIndex": 0,
+      "explanation": "memcpy из <cstring> копирует n байт между участками памяти."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Одномерные массивы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "arrays",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Чем опасен std::copy для перекрывающихся массивов?",
+      "optionsLearning": [
+        "Перекрытие требует std::copy_backward/memmove",
+        "Он запрещён",
+        "Он всегда безопасен",
+        "Он ускоряется"
+      ],
+      "correctIndex": 0,
+      "explanation": "При перекрытии областей результат copy может быть некорректен — нужен memmove."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Одномерные массивы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[2] = {3}; std::cout << a[0] << a[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "33",
+        "03",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализация {3} ставит 3 в a[0], остальное — 0: вывод 30."
     },
     {
       "id": "cpp.basics.arrays-1d.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Одномерные массивы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-1d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-1d.01.scenario",
+      "promptKnown": "Почему нельзя вернуть локальный массив из функции по значению?",
+      "optionsLearning": [
+        "Массив распадётся в указатель на уничтоженный стек",
+        "Можно, стандарт разрешает",
+        "Компилятор вернёт копию",
+        "Только через return { }"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат локального массива даёт висячий указатель; используют std::array/vector."
     }
   ],
   "title": "Basics — Basics C++"

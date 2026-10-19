@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.structs.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Структуры (продвинутые) — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "structs",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Может ли структура содержать методы и конструкторы?",
+      "optionsLearning": [
+        "Да",
+        "Нет",
+        "Только поля",
+        "Только в C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "struct поддерживает методы, конструкторы, операторы — как class."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Структуры (продвинутые) — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "structs",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Как определить конструктор структуры?",
+      "optionsLearning": [
+        "Point(int a, int b) : x(a), y(b) {}",
+        "Конструктор нельзя",
+        "Point = (a,b)",
+        "Через деструктор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор с списком инициализации полей."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "structs",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int x; P(int v) : x(v) {} };\nint main() { P p(5); std::cout << p.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор инициализирует x = 5."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Структуры (продвинутые) — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "structs",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Чем список инициализации (member initializer list) лучше присваивания в теле?",
+      "optionsLearning": [
+        "Инициализирует поля напрямую (необходим для const/ссылок/базовых)",
+        "Короче",
+        "Быстрее компиляция",
+        "Безопаснее всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Список инициализации обязателен для const и ссылочных членов."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Структуры (продвинутые) — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "настройка"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Что произойдёт при наличии const-поля в структуре и копировании?",
+      "optionsLearning": [
+        "const-поле копируется с сохранением const; присваивание запрещено",
+        "Ошибка",
+        "Ничего",
+        "Поле станет изменяемым"
+      ],
+      "correctIndex": 0,
+      "explanation": "const-члены делают тип некопируемо-присваиваемым (копирование в C++23 разрешено)."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "structs",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct S { int a; int b; };\nint main() { S s; std::cout << s.a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Мусор (неопределённое значение)",
+        "0",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Локальная структура без инициализации содержит мусор."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Структуры (продвинутые) — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Как обнулить все поля структуры?",
+      "optionsLearning": [
+        "S s = {}; или S s{};",
+        "s = 0",
+        "memset(s)",
+        "s.clear()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Агрегатная инициализация пустым списком обнуляет поля."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Структуры (продвинутые) — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Что такое агрегат (aggregate) в C++?",
+      "optionsLearning": [
+        "Тип без пользовательских конструкторов, приватных/виртуальных членов — инициализируемый списком",
+        "Любая структура",
+        "Массив",
+        "Шаблон"
+      ],
+      "correctIndex": 0,
+      "explanation": "Агрегаты допускают инициализацию { }. C++20 расширил правила."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int x{7}; int y{8}; };\nint main() { P p; std::cout << p.x << p.y; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "78",
+        "0",
+        "7",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализаторы по умолчанию: 7 и 8."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Структуры (продвинутые) — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Какой оператор присваивания генерируется компилятором?",
+      "optionsLearning": [
+        "operator= по умолчанию (поле к полю)",
+        "Никакой",
+        "Только move",
+        "Только копирующий вручную"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор генерирует копирующее/перемещающее присваивание."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Структуры (продвинутые) — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "циклы"
+          "structs",
+          "oop"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Когда генерируемый оператор присваивания удаляется?",
+      "optionsLearning": [
+        "При const/ссылочных членах или удалённой копии у поля",
+        "Никогда",
+        "Всегда",
+        "При virtual"
+      ],
+      "correctIndex": 0,
+      "explanation": "const/ссылки и некопируемые поля делают присваивание удалённым."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { int v; };\nint main() { A a{1}, b{2}; a = b; std::cout << a.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Присваивание копирует поле: a.v = 2."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Структуры (продвинутые) — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Можно ли вложить структуру в структуру?",
+      "optionsLearning": [
+        "Да: struct B { A a; };",
+        "Нет",
+        "Только через указатели",
+        "Только в C++23"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вложенность структур разрешена и распространена."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Структуры (продвинутые) — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Что такое битовое поле (bit-field) в структуре?",
+      "optionsLearning": [
+        "Поле с заданным числом бит: unsigned x : 3;",
+        "Поле bool",
+        "Указатель на бит",
+        "Массив бит"
+      ],
+      "correctIndex": 0,
+      "explanation": "Битовые поля экономят память для флагов, но медленнее и платформозависимы."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "structs",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct N { int x = 3; int y = 4; };\nint main() { N n{1, 2}; std::cout << n.x + n.y; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "7",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явные значения {1,2} переопределяют умолчания: 1+2=3."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Структуры (продвинутые) — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "structs",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Как передать структуру в функцию без копирования?",
+      "optionsLearning": [
+        "const S&",
+        "S",
+        "S* только чтение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Константная ссылка — без копии и без изменения."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Структуры (продвинутые) — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "structs",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct S { int a; int b; };\nvoid f(S s) { s.a = 100; }\nint main() { S s{1, 2}; f(s); std::cout << s.a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "100",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "По значению — копия; оригинал не меняется: 1."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Структуры (продвинутые) — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "structs",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Что такое размер структуры с учётом выравнивания или pragma pack?",
+      "optionsLearning": [
+        "pragma pack меняет выравнивание, уменьшая размер ценой доступа",
+        "Не существует",
+        "Ускоряет код",
+        "Запрещено стандартом"
+      ],
+      "correctIndex": 0,
+      "explanation": "#pragma pack отключает выравнивание — компактнее, но потенциально медленнее."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Структуры (продвинутые) — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "structs",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Как создать массив структур?",
+      "optionsLearning": [
+        "S arr[3] = {{1,2},{3,4},{5,6}};",
+        "S arr(3);",
+        "S arr = 3;",
+        "Невозможно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Массив структур инициализируется списком агрегатов."
     },
     {
       "id": "cpp.basics.structs.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Структуры (продвинутые) — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "structs",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.structs.02.scenario"
+      "scenarioId": "cpp.basics.structs.02.scenario",
+      "promptKnown": "Почему не рекомендуется изменять порядок полей без нужды?",
+      "optionsLearning": [
+        "Влияет на размер, выравнивание и сериализацию",
+        "Компилятор быстрее",
+        "Код красивей",
+        "Стиль обязателен"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок полей определяет раскладку в памяти и совместимость данных."
     }
   ],
   "title": "Basics — Basics C++"

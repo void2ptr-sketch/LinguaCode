@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.exceptions.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Exceptions Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Какой оператор выбрасывает исключение?",
+      "optionsLearning": [
+        "throw",
+        "raise",
+        "catch",
+        "error"
+      ],
+      "correctIndex": 0,
+      "explanation": "throw создаёт и запускает исключение."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Exceptions Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Какой блок перехватывает исключение?",
+      "optionsLearning": [
+        "try { } catch (…) { }",
+        "if-error",
+        "switch-case",
+        "try-only"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключения ловятся в блоке catch после try."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { try { throw 42; } catch (int e) { std::cout << e; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "0",
+        "Ошибка",
+        "42 дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "throw int 42 перехватывается catch (int)."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Exceptions Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Какой тип исключения ловит catch (...)?",
+      "optionsLearning": [
+        "Любое исключение",
+        "Только int",
+        "Только std::exception",
+        "Никакое"
+      ],
+      "correctIndex": 0,
+      "explanation": "catch (…) — универсальный перехватчик (эллипсис)."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { try { throw 'x'; } catch (int) { std::cout << 'i'; } catch (...) { std::cout << 'a'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "i",
+        "x",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "char не int — срабатывает catch (...): a."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Exceptions Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что произойдёт, если исключение не перехвачено?",
+      "optionsLearning": [
+        "Программа завершится через std::terminate",
+        "Оно игнорируется",
+        "Печать",
+        "Вернётся 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Необработанное исключение вызывает terminate."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Exceptions Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "exceptions",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Какой тип исключения бросает new при нехватке памяти?",
+      "optionsLearning": [
+        "std::bad_alloc",
+        "std::runtime_error",
+        "nullptr",
+        "int"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::bad_alloc — исключение нехватки памяти (по умолчанию)."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stdexcept>\nint main() { try { throw std::runtime_error(\"bad\"); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bad",
+        "runtime_error",
+        "Ошибка",
+        "exc"
+      ],
+      "correctIndex": 0,
+      "explanation": "e.what() возвращает сообщение \"bad\"."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Exceptions Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что должен делать код в блоке catch?",
+      "optionsLearning": [
+        "Обработать ошибку или пробросить дальше",
+        "Всегда молчать",
+        "Завершить программу",
+        "throw again"
+      ],
+      "correctIndex": 0,
+      "explanation": "Catch обрабатывает или передаёт исключение далее (throw;)."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Exceptions Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что делают объекты при раскрутке стека?",
+      "optionsLearning": [
+        "Уничтожаются (деструкторы вызываются)",
+        "Замораживаются",
+        "Копируются",
+        "Игнорируются"
+      ],
+      "correctIndex": 0,
+      "explanation": "При исключении RAII-объекты корректно уничтожаются."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct R { R() { std::cout << 'c'; } ~R() { std::cout << 'd'; } };\nint main() { try { R r; throw 1; } catch (int) { std::cout << 'x'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "cdx",
+        "cx",
+        "xcd",
+        "dcx"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор c, деструктор при раскрутке d, потом catch → cdx."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Exceptions Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Почему исключения нельзя бросать из деструктора?",
+      "optionsLearning": [
+        "Риск terminate при активном исключении",
+        "Запрещено компилятором",
+        "Деструктор не выполняет код",
+        "Быстрее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из деструктора во время раскрутки — std::terminate."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Exceptions Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что делает noexcept?",
+      "optionsLearning": [
+        "Обещает, что функция не бросит исключение",
+        "Бросает исключение",
+        "Ловит исключение",
+        "Отключает throw"
+      ],
+      "correctIndex": 0,
+      "explanation": "noexcept — контракт отсутствия исключений; нарушение — terminate."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "exceptions",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v; try { std::cout << v.at(5); } catch (const std::out_of_range&) { std::cout << 'o'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "o",
+        "0",
+        "Ошибка",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "at() бросает out_of_range → перехват."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Exceptions Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что возвращает std::bad_alloc::what()?",
+      "optionsLearning": [
+        "Сообщение об ошибке",
+        "Код",
+        "nullptr",
+        "Размер"
+      ],
+      "correctIndex": 0,
+      "explanation": "what() — текст описания исключения."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Exceptions Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Как пробросить пойманное исключение дальше?",
+      "optionsLearning": [
+        "throw; (без выражения)",
+        "throw снова новым",
+        "return",
+        "нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "throw; повторно бросает текущее исключение."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Exceptions Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid f() { try { throw 5; } catch (int) { std::cout << 'a'; throw; } }\nint main() { try { f(); } catch (int e) { std::cout << e; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a5",
+        "a",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Внутренний catch: a, затем rethrow 5 → 5."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Exceptions Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Почему ловят по const std::exception&?",
+      "optionsLearning": [
+        "Единая обработка всех стандартных исключений без копий",
+        "Обязательно",
+        "Быстрее start",
+        "Так читается"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылка на базовый класс перехватывает все производные."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Exceptions Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Что такое std::exception?",
+      "optionsLearning": [
+        "Базовый класс стандартных исключений",
+        "Шаблон",
+        "Макрос",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::exception — корень иерархии исключений STL."
     },
     {
       "id": "cpp.basics.exceptions.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Exceptions Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions.01.scenario"
+      "scenarioId": "cpp.basics.exceptions.01.scenario",
+      "promptKnown": "Когда исключения удобно использовать?",
+      "optionsLearning": [
+        "Ошибки в глубоких вызовах, где return неудобен",
+        "Всегда",
+        "Никогда",
+        "Только в циклах"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключения отделяют обработку ошибок от основной логики."
     }
   ],
   "title": "Basics — Basics C++"

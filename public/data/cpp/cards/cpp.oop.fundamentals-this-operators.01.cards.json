@@ -4,602 +4,645 @@
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "this-указатель и перегрузка операторов — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "что"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Что возвращает this?",
+      "optionsLearning": [
+        "Указатель на текущий объект",
+        "Копию объекта",
+        "Значение поля",
+        "nullptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "this — скрытый параметр нестатического метода."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-02",
       "kind": "select",
-      "title": "Classes и objects",
+      "title": "this-указатель и перегрузка операторов — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Для чего используется return *this;?",
+      "optionsLearning": [
+        "Вернуть ссылку на текущий объект (цепочки вызовов)",
+        "Вернуть копию",
+        "Завершить метод",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "return *this из operator= и подобных строит цепочки."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-03",
-      "kind": "select",
-      "title": "Encapsulation principles",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "encapsulation"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass C { int v; public: C(int x) : v(x) {} C& add(int x) { v += x; return *this; } int get() const { return v; } };\nint main() { C c(1); c.add(2).add(3); std::cout << c.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Цепочка: 1+2+3 = 6."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-04",
       "kind": "select",
-      "title": "Inheritance mechanisms",
+      "title": "this-указатель и перегрузка операторов — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
-      "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Можно ли использовать this в static-методе?",
+      "optionsLearning": [
+        "Нет — у статического метода нет объекта",
+        "Да",
+        "Только в C++20",
+        "Только для чтения"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статический метод не привязан к объекту."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-05",
       "kind": "select",
-      "title": "Polymorphism types",
+      "title": "this-указатель и перегрузка операторов — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "polymorphism"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Что такое перегрузка операторов?",
+      "optionsLearning": [
+        "Определение поведения операторов для пользовательских типов",
+        "Рекурсия",
+        "Наследование",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator+ и др. определяются для своих классов."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-06",
-      "kind": "select",
-      "title": "Abstraction techniques",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
-      "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "abstraction"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct V { int x; V operator+(const V& o) const { return {x + o.x}; } };\nint main() { V a{2}, b{3}; V c = a + b; std::cout << c.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "23",
+        "6",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator+ складывает поля: 5."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-07",
       "kind": "select",
-      "title": "Design patterns overview",
+      "title": "this-указатель и перегрузка операторов — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "design"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Какие операторы нельзя перегружать?",
+      "optionsLearning": [
+        ".",
+        "::",
+        ".*",
+        "Все перечисленные"
+      ],
+      "correctIndex": 3,
+      "explanation": "Нельзя перегружать ., ::, .*, ?: и sizeof."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-08",
       "kind": "select",
-      "title": "SOLID principles",
+      "title": "this-указатель и перегрузка операторов — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "solid"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Как перегрузить operator==?",
+      "optionsLearning": [
+        "bool operator==(const T& other) const",
+        "int operator==()",
+        "friend == ",
+        "else присвоение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Бинарный оператор == принимает второй объект."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-09",
-      "kind": "select",
-      "title": "Dependency injection",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "dependency"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { int v; bool operator==(const P& o) const { return v == o.v; } };\nint main() { P a{1}, b{1}; std::cout << (a == b); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сравнение полей: true → 1."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-10",
       "kind": "select",
-      "title": "Factory patterns",
+      "title": "this-указатель и перегрузка операторов — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "factory"
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Как перегрузить operator<< для вывода?",
+      "optionsLearning": [
+        "friend std::ostream& operator<<(std::ostream&, const T&)",
+        "Внутри класса напрямую",
+        "macro",
+        "Метод print"
+      ],
+      "correctIndex": 0,
+      "explanation": "ostream& — слева, объект — справа; обычно friend."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-11",
       "kind": "select",
-      "title": "Observer pattern",
+      "title": "this-указатель и перегрузка операторов — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "observer"
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Что должен возвращать operator<<?",
+      "optionsLearning": [
+        "ссылку на ostream для цепочек",
+        "void",
+        "int",
+        "объект"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат ostream& позволяет std::cout << a << b."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-12",
-      "kind": "select",
-      "title": "Strategy pattern",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "strategy"
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct T { int x; };\nstd::ostream& operator<<(std::ostream& os, const T& t) { os << t.x; return os; }\nint main() { std::cout << T{7}; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "Ошибка",
+        "T",
+        "0x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пользовательский вывод поля: 7."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-13",
       "kind": "select",
-      "title": "Adapter pattern",
+      "title": "this-указатель и перегрузка операторов — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "adapter"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Как перегрузить инкремент ++?",
+      "optionsLearning": [
+        "operator++() — префикс; operator++(int) — постфикс",
+        "operator++() всегда",
+        "Нельзя",
+        "через ++="
+      ],
+      "correctIndex": 0,
+      "explanation": "Фиктивный int отличает постфиксную версию."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-14",
       "kind": "select",
-      "title": "Decorator pattern",
+      "title": "this-указатель и перегрузка операторов — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "decorator"
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Что в C++20 добавили для операторов сравнения?",
+      "optionsLearning": [
+        "Тройное сравнение <=> (spaceship)",
+        "Новый оператор ->",
+        "operator&&",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "<=> генерирует все операторы сравнения."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-15",
-      "kind": "select",
-      "title": "Facade pattern",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
+        "difficulty": [
           "oop",
-          "facade"
-        ]
+          "c++20"
+        ],
+        "tags": "Spaceship даёт полный набор сравнений через = default."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что делает оператор <=> в C++20?",
+      "code": {
+        "code": [
+          "Возвращает ordering (less/equal/greater)",
+          "Сравнивает адреса",
+          "Считает",
+          "Копирует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-16",
       "kind": "select",
-      "title": "Builder pattern",
+      "title": "this-указатель и перегрузка операторов — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "builder"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Зачем перегружать operator[]?",
+      "optionsLearning": [
+        "Индексируемый доступ к кастомным контейнерам",
+        "Не нужно",
+        "Для строк",
+        "Для циклов"
+      ],
+      "correctIndex": 0,
+      "explanation": "Свой класс может поддерживать v[i]."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "this-указатель и перегрузка операторов — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "debugging"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Почему operator= должен возвращать T&?",
+      "optionsLearning": [
+        "Для цепочек a = b = c и корректной семантики",
+        "void быстрее",
+        "Он обязан int",
+        "Неважно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Традиция языка: присваивание возвращает ссылку на присвоенное."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-18",
       "kind": "select",
-      "title": "Performance implications of OOP",
+      "title": "this-указатель и перегрузка операторов — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "performance"
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Что такое явные требования к operator== в C++20?",
+      "optionsLearning": [
+        "= default для всех трёх операторов/<=>",
+        "friend",
+        "виртуальный",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "= default генерирует сравнение по всем полям."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-19",
-      "kind": "select",
-      "title": "Best practices для OOP design",
+      "kind": "code-trace",
+      "title": "this-указатель и перегрузка операторов — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-      "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "best"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct V { int x; }; \nV operator+(V a, V b) { return {a.x + b.x}; }\nint main() { V c = V{1} + V{2} + V{3}; std::cout << c.x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "123",
+        "Ошибка",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ассоциативность: (1+2)+3 = 6."
     },
     {
       "id": "cpp.oop.fundamentals-this-operators.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "this-указатель и перегрузка операторов — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "composition"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "promptKnown": "Какая связь this и non-const операторов?",
+      "optionsLearning": [
+        "this неконстантен, можно менять поля",
+        "this константен",
+        "this отсутствует",
+        "Неважно"
+      ],
+      "correctIndex": 0,
+      "explanation": "В не-const методах this — T*, поля изменяемы."
     }
   ],
   "title": "Oop — Intermediate C++"

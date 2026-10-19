@@ -4,140 +4,74 @@
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Виртуальные методы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "что"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что делает virtual метод?",
+      "optionsLearning": [
+        "Позволяет переопределение и динамическую диспетчеризацию",
+        "Делает метод static",
+        "Запрещает переопределение",
+        "Ускоряет вызов"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual включают позднее связывание по типу объекта."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-02",
       "kind": "select",
-      "title": "Classes и objects",
+      "title": "Виртуальные методы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "classes"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Как объявить виртуальный метод в базе?",
+      "optionsLearning": [
+        "virtual void f();",
+        "void virtual f();",
+        "void f() virtual;",
+        "explicit void f();"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ключевое слово virtual перед методом в базовом классе."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-03",
-      "kind": "select",
-      "title": "Encapsulation principles",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "encapsulation"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-04",
-      "kind": "select",
-      "title": "Inheritance mechanisms",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
-      "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "inheritance"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-05",
-      "kind": "select",
-      "title": "Polymorphism types",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -149,389 +83,519 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual void f() const { std::cout << 'b'; } };\nstruct D : B { void f() const override { std::cout << 'd'; } };\nint main() { B* p = new D; p->f(); delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "d",
+        "b",
+        "bd",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "virtual + вызов через B* → версия D: d."
     },
     {
-      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-06",
+      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-04",
       "kind": "select",
-      "title": "Abstraction techniques",
+      "title": "Виртуальные методы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "polymorphism",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Какой механизм реализует virtual-вызовы?",
       "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "Таблица виртуальных функций (vtable)",
+        "Макросы",
+        "Массив",
+        "Ссылка"
       ],
       "correctIndex": 0,
+      "explanation": "Каждый полиморфный объект имеет указатель на vtable."
+    },
+    {
+      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-05",
+      "kind": "select",
+      "title": "Виртуальные методы — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "abstraction"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что такое override?",
+      "optionsLearning": [
+        "Явное переопределение виртуального метода (C++11)",
+        "Макрос",
+        "Перегрузка",
+        "Удаление"
+      ],
+      "correctIndex": 0,
+      "explanation": "override — проверка компилятором корректности переопределения."
+    },
+    {
+      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Компилируется ли это?",
+      "code": {
+        "code": "struct B { virtual void f(); };\nstruct D : B { void f() override; };",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да — f override виртуального",
+        "Нет",
+        "С warning",
+        "Только в C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "override допустим, т.к. B::f виртуальный."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-07",
       "kind": "select",
-      "title": "Design patterns overview",
+      "title": "Виртуальные методы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "design"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что произойдёт, если override не совпадает с сигнатурой?",
+      "optionsLearning": [
+        "Ошибка компиляции",
+        "Тихий вызов",
+        "Предупреждение",
+        "Новая функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "override требует совпадения сигнатуры."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-08",
       "kind": "select",
-      "title": "SOLID principles",
+      "title": "Виртуальные методы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "solid"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что делает ключевое слово final у метода?",
+      "optionsLearning": [
+        "Запрещает дальнейшее переопределение",
+        "Ускоряет",
+        "Делает static",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "final на методе останавливает переопределение ниже."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-09",
-      "kind": "select",
-      "title": "Dependency injection",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "dependency"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual void f() const { std::cout << 'b'; } };\nstruct D : B {};\nint main() { B* p = new D; p->f(); delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "d",
+        "Ошибка",
+        "bd"
+      ],
+      "correctIndex": 0,
+      "explanation": "D не переопределяет — вызывается базовый: b."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-10",
       "kind": "select",
-      "title": "Factory patterns",
+      "title": "Виртуальные методы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "factory"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Можно ли вызвать базовую версию виртуального метода?",
+      "optionsLearning": [
+        "Да: B::f() с квалификацией",
+        "Нет",
+        "Только static",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "p->B::f() явно вызывает версию базы."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-11",
-      "kind": "select",
-      "title": "Observer pattern",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "observer"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual void f() const { std::cout << 'b'; } };\nstruct D : B { void f() const override { B::f(); std::cout << 'd'; } };\nint main() { B* p = new D; p->f(); delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bd",
+        "d",
+        "b",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "D вызывает базу (b) и печатает d: bd."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-12",
       "kind": "select",
-      "title": "Strategy pattern",
+      "title": "Виртуальные методы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "strategy"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что такое полиморфный класс?",
+      "optionsLearning": [
+        "Класс с хотя бы одним виртуальным методом",
+        "Класс с шаблонами",
+        "Абстрактный",
+        "Структура"
+      ],
+      "correctIndex": 0,
+      "explanation": "Наличие virtual делает класс полиморфным (vptr)."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-13",
       "kind": "select",
-      "title": "Adapter pattern",
+      "title": "Виртуальные методы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "adapter"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Почему не рекомендуется вызывать virtual из конструктора?",
+      "optionsLearning": [
+        "Вызывается версия текущего (базового) класса",
+        "Крэш",
+        "Плохая практика only",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Во время конструирования базы объект ещё не производный."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-14",
-      "kind": "select",
-      "title": "Decorator pattern",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "decorator"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { B() { f(); } virtual void f() const { std::cout << 'b'; } };\nstruct D : B { void f() const override { std::cout << 'd'; } };\nint main() { D d; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "d",
+        "bd",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор B вызывает B::f: b (не d)."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-15",
       "kind": "select",
-      "title": "Facade pattern",
+      "title": "Виртуальные методы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "facade"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Виртуальная функция должна быть определена?",
+      "optionsLearning": [
+        "Объявление достаточно, если не вызывается; определение в базе обычно есть",
+        "Всегда определена",
+        "Никогда",
+        "В .cpp"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чисто виртуальный метод требует определения производными."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-16",
       "kind": "select",
-      "title": "Builder pattern",
+      "title": "Виртуальные методы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "builder"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что такое чисто виртуальный метод?",
+      "optionsLearning": [
+        "virtual void f() = 0; — без реализации",
+        "static",
+        "private",
+        "inline"
+      ],
+      "correctIndex": 0,
+      "explanation": "= 0 делает класс абстрактным."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-17",
-      "kind": "select",
-      "title": "Debugging OOP issues",
+      "kind": "code-trace",
+      "title": "Виртуальные методы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
+        "difficulty": [
           "oop",
-          "debugging"
-        ]
+          "polymorphism"
+        ],
+        "tags": "Абстрактные классы нельзя инстанцировать напрямую."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "question": "Можно ли создать объект абстрактного класса?",
+      "code": {
+        "code": [
+          "Нет",
+          "Да",
+          "Только в куче",
+          "Только с virtual"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-18",
       "kind": "select",
-      "title": "Performance implications of OOP",
+      "title": "Виртуальные методы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Что делает vptr?",
+      "optionsLearning": [
+        "Указатель объекта на vtable",
+        "Указатель на кучу",
+        "Счётчик",
+        "nullptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "vptr хранится в начале полиморфного объекта."
+    },
+    {
+      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-19",
+      "kind": "select",
+      "title": "Виртуальные методы — Вопрос 19",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
         "tags": [
           "oop",
           "performance"
@@ -539,67 +603,47 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-virtual.01.scenario.card-19",
-      "kind": "select",
-      "title": "Best practices для OOP design",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Насколько дороже виртуальный вызов?",
       "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "Одна косвенная операция (vtable) — небольшая цена",
+        "В 100 раз",
+        "Бесплатно",
+        "Не вызывается"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "best"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "explanation": "Virtual вызов: чтение vptr → vtable → адрес (без девиртуализации)."
     },
     {
       "id": "cpp.oop.polymorphism-virtual.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Виртуальные методы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "composition"
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-virtual.01.scenario",
+      "promptKnown": "Как девиртуализируются вызовы с известным статическим типом?",
+      "optionsLearning": [
+        "Компилятор вызывает напрямую (devirtualization)",
+        "Никак",
+        "Медленнее",
+        "Ошибки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Когда тип известен статически, виртуальность оптимизируется."
     }
   ],
   "title": "Oop — Intermediate C++"

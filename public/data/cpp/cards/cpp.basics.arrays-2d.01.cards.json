@@ -4,602 +4,647 @@
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Многомерные массивы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Как объявить матрицу 3×4 (3 строки, 4 столбца) типа int?",
+      "optionsLearning": [
+        "int m[3][4];",
+        "int m[4][3];",
+        "int m(3,4);",
+        "matrix m[3]"
+      ],
+      "correctIndex": 0,
+      "explanation": "int m[строки][столбцы] = int m[3][4]."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Многомерные массивы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Сколько элементов в массиве int m[2][3]?",
+      "optionsLearning": [
+        "6",
+        "5",
+        "2",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "2×3 = 6 элементов."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Чему равно m[1][2] после этой инициализации?",
+      "code": {
+        "code": "int m[2][3] = {{1, 2, 3}, {4, 5, 6}};",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "5",
+        "3",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[1] — вторая строка {4,5,6}, m[1][2] = 6."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Многомерные массивы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "В каком порядке хранятся элементы двумерного массива в памяти?",
+      "optionsLearning": [
+        "По строкам (row-major): сначала первая строка",
+        "По столбцам (column-major)",
+        "В случайном порядке",
+        "Списком"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ хранит массивы в порядке строк — это важно для кэша."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Многомерные массивы — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "arrays",
+          "syntax",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Какой цикл обходит матрицу построчно эффективнее по кэшу?",
+      "optionsLearning": [
+        "Внешний по i (строки), внутренний по j (столбцы)",
+        "Внешний по j",
+        "Оба одинаковы",
+        "Обратный"
+      ],
+      "correctIndex": 0,
+      "explanation": "Строка лежит непрерывно: идти по j во внутреннем цикле кэш-дружественно."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int m[2][2] = {{1, 2}, {3, 4}}; std::cout << m[1][1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "3",
+        "2",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[1][1] — элемент правого нижнего угла: 4."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Многомерные массивы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Что означает m[i] для двумерного массива m?",
+      "optionsLearning": [
+        "Массив i-й строки (распадается в указатель на её начало)",
+        "Элемент m[i][0]",
+        "Число",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[i] — i-я строка как массив; при передаче становится указателем на int."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Многомерные массивы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "arrays",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Как передать матрицу в функцию с известными размерами?",
+      "optionsLearning": [
+        "void f(int m[3][4]) или void f(int m[][4], int rows)",
+        "void f(int m)",
+        "void f(int* m[][])",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Второй размер обязателен в параметре; число строк можно передавать отдельно."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Многомерные массивы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Чем удобны векторы векторов vs массивы?",
+      "optionsLearning": [
+        "Динамические размеры и безопасность std::vector",
+        "Быстрее всегда",
+        "Меньше памяти всегда",
+        "Проще синтаксис"
+      ],
+      "correctIndex": 0,
+      "explanation": "vector<vector<int>> — динамическая матрица с контролем границ."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int m[2][3] = {0}; m[1][0] = 7; std::cout << m[1][0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "0",
+        "Ошибка",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инициализация {0} обнуляет всё; m[1][0]=7 присваивает 7."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Многомерные массивы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Сколько байт займёт int m[3][4] при sizeof(int)==4?",
+      "optionsLearning": [
+        "48",
+        "12",
+        "7",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "3×4×4 = 48 байт."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Многомерные массивы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Что произойдёт при инициализации {{1,2},{3,4}} для int m[2][3]?",
+      "optionsLearning": [
+        "Остаток второй строки заполнится 0",
+        "Ошибка компиляции",
+        "Мусор",
+        "Авторазмер"
+      ],
+      "correctIndex": 0,
+      "explanation": "Недостающие элементы обнуляются: {3,4,0}."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Что выведет этот код при обходе по строкам?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int m[2][3] = {{1, 2, 3}, {4, 5, 6}}; for (int i = 0; i < 2; ++i) std::cout << m[i][2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "36",
+        "3",
+        "6",
+        "35"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[0][2]=3 и m[1][2]=6 → вывод 36."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Многомерные массивы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Можно ли сделать массив массивов с неодинаковой длиной строк?",
+      "optionsLearning": [
+        "Только через массив указателей/vector — не прямоугольный массив",
+        "Да, напрямую",
+        "Нет никогда",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "«Зубчатый» массив (jagged) строится из указателей или vector-ов."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Многомерные массивы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "arrays",
+          "pointers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Что делает выражение m + 1 для int m[2][3]?",
+      "optionsLearning": [
+        "Указатель на вторую строку (сдвиг на 3 int)",
+        "Указатель на m[0][1]",
+        "Арифметику индекса",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "m распадается в int(*)[3]; +1 переходит к следующей строке."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int m[3][3] = {}; int c = 0; for (int i = 0; i < 3; ++i) for (int j = 0; j < 3; ++j) if (i == j) m[i][j] = 1; std::cout << m[1][1] + m[2][0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "0",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единицы на диагонали: m[1][1]=1, m[2][0]=0 → 1."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Многомерные массивы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Какая библиотека оптимальна для матриц в научных задачах?",
+      "optionsLearning": [
+        "Eigen / Armadillo (а не ручные массивы)",
+        "Только <iostream>",
+        "<string>",
+        "<cctype>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Библиотеки линейной алгебры дают производительность и удобный API."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Многомерные массивы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Как получить число строк у std::vector<std::vector<int>> v?",
+      "optionsLearning": [
+        "v.size()",
+        "v[0].size()",
+        "sizeof(v)",
+        "v.length()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Количество строк — v.size(); столбцов — v[0].size() (если не пусто)."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Многомерные массивы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "arrays",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int m[2][2] = {1, 2, 3, 4}; std::cout << m[1][0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "4",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Плоская инициализация заполняет по строкам: m[1][0] = 3."
     },
     {
       "id": "cpp.basics.arrays-2d.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Многомерные массивы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "arrays",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.arrays-2d.01.scenario"
+      "scenarioId": "cpp.basics.arrays-2d.01.scenario",
+      "promptKnown": "Как безопасно работать с динамической матрицей в C++?",
+      "optionsLearning": [
+        "std::vector<std::vector<T>> или одномерный vector + индексация",
+        "new int[n][m] вручную",
+        "только C-style",
+        "массив в стеке всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Векторы управляют памятью автоматически; ручной new требует аккуратного delete."
     }
   ],
   "title": "Basics — Basics C++"

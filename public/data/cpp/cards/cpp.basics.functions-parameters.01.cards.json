@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Параметры и возвращаемые значения — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Какие части есть у объявления функции в C++?",
+      "optionsLearning": [
+        "Возвращаемый тип, имя, список параметров",
+        "Только имя и тело",
+        "Класс и метод",
+        "Заголовок и комментарий"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функция объявляется как returnType name(params) — затем определение."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Параметры и возвращаемые значения — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Что возвращает функция с типом void?",
+      "optionsLearning": [
+        "Ничего",
+        "0",
+        "nullptr",
+        "Пустую строку"
+      ],
+      "correctIndex": 0,
+      "explanation": "void означает отсутствие возвращаемого значения."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint add(int a, int b) { return a + b; }\nint main() { std::cout << add(2, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "23",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "add(2,3) возвращает 2+3 = 5."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Параметры и возвращаемые значения — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как передаются параметры по значению в C++?",
+      "optionsLearning": [
+        "Копия значения передаётся в функцию",
+        "Ссылка на оригинал",
+        "Указатель на функцию",
+        "Значение не передаётся"
+      ],
+      "correctIndex": 0,
+      "explanation": "По умолчанию параметры передаются по значению — функция работает с копией."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(int x) { x = 10; }\nint main() { int a = 1; f(a); std::cout << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "10",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изменение копии внутри f не влияет на a — выводится 1."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Параметры и возвращаемые значения — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как передать параметр так, чтобы функция могла его изменить?",
+      "optionsLearning": [
+        "Передать по ссылке: void f(int& x)",
+        "Передать по значению",
+        "Передать константу",
+        "Использовать глобальную переменную"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылка int& даёт доступ к оригиналу; изменения видны в вызывающем коде."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-07",
-      "kind": "select",
-      "title": "Переменные и константы",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nvoid f(int& x) { x = 10; }\nint main() { int a = 1; f(a); std::cout << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "1",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "f(a) меняет оригинал через ссылку — выводится 10."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Параметры и возвращаемые значения — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Когда предпочтительна передача по ссылке?",
+      "optionsLearning": [
+        "Для больших объектов, чтобы избежать копирования",
+        "Только для int",
+        "Никогда",
+        "Только для void"
+      ],
+      "correctIndex": 0,
+      "explanation": "Передача ссылки не копирует объект; для чтения используют const&."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Параметры и возвращаемые значения — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как передать большой объект только для чтения?",
+      "optionsLearning": [
+        "const Type& param",
+        "Type param",
+        "Type& param",
+        "Type* param"
+      ],
+      "correctIndex": 0,
+      "explanation": "const Type& — чтение без копирования и без возможности изменения."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Параметры и возвращаемые значения — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Что такое параметры по умолчанию?",
+      "optionsLearning": [
+        "Значения, подставляемые при вызове без аргумента",
+        "Параметры, всегда равные нулю",
+        "Скрытые параметры",
+        "Параметры-константы"
+      ],
+      "correctIndex": 0,
+      "explanation": "void f(int x = 5) — при вызове f() x будет 5."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint mul(int a, int b = 2) { return a * b; }\nint main() { std::cout << mul(3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "32",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "b не передан, берётся 2: 3*2 = 6."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Параметры и возвращаемые значения — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Сколько раз выполняется return в функции?",
+      "optionsLearning": [
+        "Один при завершении функции — после return код функции не выполняется",
+        "Ровно столько, сколько строк",
+        "Ноль",
+        "Неограниченно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первый выполненный return завершает функцию; остальной код пропускается."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что вернёт эта функция при x=0?",
+      "code": {
+        "code": "int f(int x) { if (x == 0) return 0; return 100 / x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "100",
+        "Ошибка",
+        "50"
+      ],
+      "correctIndex": 0,
+      "explanation": "При x==0 — ранний return 0, деления не будет."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Параметры и возвращаемые значения — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как называется место вызова функции?",
+      "optionsLearning": [
+        "Точка вызова (call site)",
+        "Точка входа",
+        "Итерация",
+        "Единица трансляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Место, где вызывается функция, называют точкой вызова."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Параметры и возвращаемые значения — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Может ли функция иметь несколько return в разных ветках?",
+      "optionsLearning": [
+        "Да, по одному возврату в каждой ветке",
+        "Нет",
+        "Только в main",
+        "Только два"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функция может содержать много return; выполняется первый достигнутый."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint max(int a, int b) { return (a > b) ? a : b; }\nint main() { std::cout << max(7, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "3",
+        "10",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тернарный оператор возвращает большее: 7."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Параметры и возвращаемые значения — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как называется необязательный параметр, идущий после значений по умолчанию?",
+      "optionsLearning": [
+        "Обычный параметр — значения по умолчанию пишутся с конца",
+        "Параметр-ссылка",
+        "Глобальный параметр",
+        "static параметр"
+      ],
+      "correctIndex": 0,
+      "explanation": "Параметры с умолчаниями — в конце списка; аргументы подставляются слева направо."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Параметры и возвращаемые значения — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Что произойдёт, если вызвать функцию с меньшим числом аргументов, чем параметров?",
+      "optionsLearning": [
+        "Ошибка компиляции (если нет умолчаний)",
+        "Параметры станут нулями",
+        "Программа упадёт",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Количество аргументов должно совпадать с параметрами (без умолчаний)."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Параметры и возвращаемые значения — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint sqr(int x) { return x * x; }\nint main() { std::cout << sqr(sqr(2)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "16",
+        "8",
+        "4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "sqr(sqr(2)) = sqr(4) = 16 — вложенные вызовы функций."
     },
     {
       "id": "cpp.basics.functions-parameters.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Параметры и возвращаемые значения — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "functions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.functions-parameters.01.scenario"
+      "scenarioId": "cpp.basics.functions-parameters.01.scenario",
+      "promptKnown": "Как правильно объявить функцию перед main?",
+      "optionsLearning": [
+        "Прототипом: int add(int, int); затем определение",
+        "Вызвать до объявления",
+        "Объявить в main",
+        "Не нужно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Прототип (declaration) позволяет вызывать функцию до её определения."
     }
   ],
   "title": "Basics — Basics C++"

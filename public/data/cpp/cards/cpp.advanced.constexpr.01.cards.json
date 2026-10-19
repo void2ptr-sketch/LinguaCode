@@ -4,602 +4,632 @@
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "constexpr и compile-time — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "что"
+          "modern-cpp",
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое constexpr-функция?",
+      "optionsLearning": [
+        "Функция, выполнимая на этапе компиляции",
+        "const функция",
+        "Виртуальная",
+        "inline"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr позволяет вычислять в compile-time при константных аргументах."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "constexpr и compile-time — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое consteval?",
+      "optionsLearning": [
+        "Функция, обязательно вызываемая в compile-time (C++20)",
+        "const",
+        "inline",
+        "volatile"
+      ],
+      "correctIndex": 0,
+      "explanation": "consteval запрещает runtime-вызовы."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "структура"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nconstexpr int sq(int x) { return x * x; }\nint main() { constexpr int v = sq(5); std::cout << v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "25",
+        "5",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "sq(5) считается компилятором: 25."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "constexpr и compile-time — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Чем constinit отличается?",
+      "optionsLearning": [
+        "Гарантирует инициализацию в compile-time (C++20)",
+        "const",
+        "static",
+        "Mutex"
+      ],
+      "correctIndex": 0,
+      "explanation": "constinit для глобальных объектов."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "constexpr и compile-time — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что произойдёт при constexpr int x = f(); где f runtime?",
+      "optionsLearning": [
+        "Ошибка компиляции (не константа)",
+        "Значение 0",
+        "Runtime",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr требует константного выражения."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "modern-cpp"
+        ],
+        "tags": "C++14 разрешил циклы, условия, local в constexpr."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Можно ли в C++14 использовать циклы в constexpr?",
+      "code": {
+        "code": [
+          "Да (C++14 упростил)",
+          "Нет",
+          "Только for",
+          "Только while"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "constexpr и compile-time — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "переменные"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое constexpr массив?",
+      "optionsLearning": [
+        "Массив с константным размером/значениями в compile-time",
+        "Динамический",
+        "std::vector",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::array с constexpr-инициализацией."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "constexpr и compile-time — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "modern-cpp",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Чем полезна constexpr-математика?",
+      "optionsLearning": [
+        "Вычисления заранее, без runtime-цены",
+        "Медленнее",
+        "Ошибки",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Таблицы и константы вычисляются при сборке."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nconstexpr int n = 6;\nint main() { int a[n]; a[3] = 9; std::cout << a[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "6",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "n — константа: размер массива валиден."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "constexpr и compile-time — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "условные"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Где constexpr значение хранится?",
+      "optionsLearning": [
+        "Встраивается/вычисляется въ код",
+        "В куче",
+        "В стеке только",
+        "В файл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор подставляет константы."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "constexpr и compile-time — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "modern-cpp",
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое conditional constexpr?",
+      "optionsLearning": [
+        "if constexpr — ветки по константам",
+        "Вариант",
+        "Тернарный",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "if constexpr отбрасывает ветки при инстанцировании."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> int len(const T&) { if constexpr (std::is_same_v<T, int>) return 1; else return 0; }\nint main() { std::cout << len(5) << len(5.5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "if constexpr: int → 1, double → 0."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "constexpr и compile-time — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "функции:"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое константное выражение (constant expression)?",
+      "optionsLearning": [
+        "Выражение, вычислимое компилятором",
+        "Любое",
+        "С переменными",
+        "С функциями"
+      ],
+      "correctIndex": 0,
+      "explanation": "Только литералы/constexpr/операции."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "constexpr и compile-time — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "параметры"
+          "modern-cpp",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Как constexpr влияет на производительность?",
+      "optionsLearning": [
+        "Ранняя выжимка вычислений",
+        "Медленнее сборка лишь",
+        "Быстрее always",
+        "Только память"
+      ],
+      "correctIndex": 0,
+      "explanation": "Runtime обязанность переносится в compile-time."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Компилируется ли это?",
+      "code": {
+        "code": "constexpr int f(int x) { return x * 2; } int v = f(3);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да (v можно вычислить статически)",
+        "Нет",
+        "С warning",
+        "Только const"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr-функция работает и с runtime аргументами."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "constexpr и compile-time — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "область"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что возвращает constexpr функция при runtime args?",
+      "optionsLearning": [
+        "Обычное значение (как inline)",
+        "Ошибку",
+        "0",
+        "Ошибки"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr-функция универсальна."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "constexpr и compile-time — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Что такое constexpr-класс?",
+      "optionsLearning": [
+        "Класс с constexpr-конструктором/методами",
+        "Обычный",
+        "Абстрактный",
+        "final"
+      ],
+      "correctIndex": 0,
+      "explanation": "Позволяет создавать объекты в compile-time."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "constexpr и compile-time — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct P { constexpr P(int x) : v(x) {} int v; };\nint main() { constexpr P p(4); std::cout << p.v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "0",
+        "p",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr-конструктор создаёт объект: 4."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "constexpr и compile-time — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Почему стандарт расширял constexpr (C++14/20)?",
+      "optionsLearning": [
+        "Больше вычислений в compile-time",
+        "Меньше кода",
+        "Стиль",
+        "Обязательность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Растущая мощность compile-time вычислений."
     },
     {
       "id": "cpp.advanced.constexpr.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "constexpr и compile-time — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "строки"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.constexpr.01.scenario"
+      "scenarioId": "cpp.advanced.constexpr.01.scenario",
+      "promptKnown": "Когда constexpr бесполезна?",
+      "optionsLearning": [
+        "Для runtime-зависимых вычислений (ввод пользователя)",
+        "Всегда полезна",
+        "В играх",
+        "Для строк"
+      ],
+      "correctIndex": 0,
+      "explanation": "Если значение известно только в runtime — constexpr не применима."
     }
   ],
   "title": "Advanced — Advanced C++"

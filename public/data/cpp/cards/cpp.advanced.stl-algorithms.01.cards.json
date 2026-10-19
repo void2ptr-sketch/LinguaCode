@@ -4,602 +4,653 @@
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "STL Algorithms Deep Dive — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "что"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что такое идиома iterator-pair?",
+      "optionsLearning": [
+        "Алгоритмы принимают [begin, end), а не контейнер",
+        "Пара чисел",
+        "Массив",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Универсальность работы с любыми диапазонами."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "STL Algorithms Deep Dive — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "история"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм удаляет дубликаты?",
+      "optionsLearning": [
+        "unique (после sort)",
+        "remove",
+        "erase",
+        "find"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique сжимает соседние равные."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "структура"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {2, 1, 1, 3}; std::sort(v.begin(), v.end()); std::cout << *v.begin() << v.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "11",
+        "23",
+        "31"
+      ],
+      "correctIndex": 0,
+      "explanation": "После сортировки {1,1,2,3}: 1 и 3."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "STL Algorithms Deep Dive — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::upper_bound?",
+      "optionsLearning": [
+        "Первый элемент > значения",
+        "Первый >=",
+        "Последний",
+        "end"
+      ],
+      "correctIndex": 0,
+      "explanation": "upper_bound — граница для вставки."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "STL Algorithms Deep Dive — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "настройка"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::transform с двумя диапазонами?",
+      "optionsLearning": [
+        "Попарная комбинация",
+        "Сортирует",
+        "Удаляет",
+        "Ищет"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform(in1, in2, out, op) — поэлементно."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "основные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> a = {1, 2}; std::vector<int> b = {10, 20}; std::vector<int> r(2); std::transform(a.begin(), a.end(), b.begin(), r.begin(), [](int x, int y) { return x * y; }); std::cout << r[0] << r[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1020",
+        "21",
+        "20",
+        "102010"
+      ],
+      "correctIndex": 0,
+      "explanation": "1*10=10, 2*20=40 → 1040."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "STL Algorithms Deep Dive — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::rotate?",
+      "optionsLearning": [
+        "Циклический сдвиг диапазона",
+        "Сортирует",
+        "Ищет",
+        "Считает"
+      ],
+      "correctIndex": 0,
+      "explanation": "rotate переносит середину в начало."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::rotate(v.begin(), v.begin() + 2, v.end()); std::cout << v[0] << v[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "31",
+        "12",
+        "41",
+        "44"
+      ],
+      "correctIndex": 0,
+      "explanation": "После rotate: {3,4,1,2} → 3 и 2? Нет, v[3]=2."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "STL Algorithms Deep Dive — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::partition?",
+      "optionsLearning": [
+        "Разбивает по предикату (нестабильно)",
+        "Сортирует",
+        "Ищет",
+        "Считывает"
+      ],
+      "correctIndex": 0,
+      "explanation": "partition ставит true-элементы сначала."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; auto it = std::partition(v.begin(), v.end(), [](int x) { return x % 2 == 0; }); std::cout << std::distance(v.begin(), it); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "4",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чётные 2,4 — разделитель на 2-й позиции."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "STL Algorithms Deep Dive — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::inplace_merge?",
+      "optionsLearning": [
+        "Сливает две отсортированные части на месте",
+        "Копирует",
+        "Сортирует всё",
+        "Игнорирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Объединение в линейное время."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "STL Algorithms Deep Dive — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "операторы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::minmax_element?",
+      "optionsLearning": [
+        "Возвращает пару минимум/максимум",
+        "Считает",
+        "Ищет",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Однократный обход даёт обе экстремы."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "функции:"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {3, 1, 4, 2}; auto r = std::minmax_element(v.begin(), v.end()); std::cout << *r.first << *r.second; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "14",
+        "31",
+        "43",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "min=1, max=4 → 14."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "STL Algorithms Deep Dive — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "параметры"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::copy_if?",
+      "optionsLearning": [
+        "Копирует элементы по предикату",
+        "Удаляет",
+        "Сортирует",
+        "Считает"
+      ],
+      "correctIndex": 0,
+      "explanation": "filter + copy в один проход."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::vector<int> r; std::copy_if(v.begin(), v.end(), std::back_inserter(r), [](int x) { return x > 2; }); std::cout << r.size() << r[0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "23",
+        "32",
+        "24",
+        "43"
+      ],
+      "correctIndex": 0,
+      "explanation": "Остаются 3,4: size 2, первый 3 → 23."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "STL Algorithms Deep Dive — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "область"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::accumulate с init?",
+      "optionsLearning": [
+        "Свёртку с начальным значением",
+        "Только сумму",
+        "Сортировку",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Численные алгоритмы принимают начальное значение."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "STL Algorithms Deep Dive — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "stl",
+          "algorithms",
+          "c++17"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::reduce (C++17)?",
+      "optionsLearning": [
+        "Параллелизуемую свёртку",
+        "Сортировку",
+        "Поиск",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "explanation": "reduce допускает параллельное исполнение."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "STL Algorithms Deep Dive — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "stl",
+          "algorithms",
+          "c++17"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <numeric>\n#include <execution>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4, 5}; std::cout << std::reduce(std::execution::par, v.begin(), v.end(), 0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "15",
+        "5",
+        "120",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Параллельная свёртка: 15."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "STL Algorithms Deep Dive — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "stl",
+          "algorithms",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Когда алгоритмы быстрее ручных циклов?",
+      "optionsLearning": [
+        "При оптимизированной реализации/использовании внутренних механизмов",
+        "Никогда",
+        "Всегда",
+        "Равно"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL реализует эффективные обходы и компилятор видит типы."
     },
     {
       "id": "cpp.advanced.stl-algorithms.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "STL Algorithms Deep Dive — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "строки"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.advanced.stl-algorithms.01.scenario",
+      "promptKnown": "Как получить доступ к элементам из алгоритма результата?",
+      "optionsLearning": [
+        "Итератор/контейнер назначения",
+        "Строка",
+        "Макрос",
+        "Глобал"
+      ],
+      "correctIndex": 0,
+      "explanation": "Результаты пишутся в выходной диапазон."
     }
   ],
   "title": "Advanced — Advanced C++"

@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "STL Containers Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "что"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какой контейнер выбрать для частых вставок в середину?",
+      "optionsLearning": [
+        "std::list",
+        "std::vector",
+        "std::array",
+        "std::map"
+      ],
+      "correctIndex": 0,
+      "explanation": "list даёт O(1) вставку по итератору (без сдвигов)."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "STL Containers Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какой контейнер хранит элементы в порядке добавления с быстрым доступом по индексу?",
+      "optionsLearning": [
+        "std::vector",
+        "std::list",
+        "std::set",
+        "std::stack"
+      ],
+      "correctIndex": 0,
+      "explanation": "vector сочетает порядок и произвольный доступ."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "структура"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <set>\nint main() { std::set<int> s = {3, 1, 3, 2}; std::cout << s.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "4",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "set хранит уникальные значения: {1,2,3} → size 3."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "STL Containers Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Как проверить наличие ключа в set?",
+      "optionsLearning": [
+        "s.count(k) > 0 или s.find(k) != s.end()",
+        "s[k]",
+        "s.contains только",
+        "s.find(k) == nullptr"
+      ],
+      "correctIndex": 0,
+      "explanation": "count/find проверяют наличие; s[k] для set не работает."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "STL Containers Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какая сложность поиска в std::set/std::map?",
+      "optionsLearning": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сбалансированные деревья дают логарифмический поиск."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, char> m; m[1] = 'a'; m[2] = 'b'; std::cout << m.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "a",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "два ключа → size 2."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "STL Containers Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Чем unordered_map отличается от map?",
+      "optionsLearning": [
+        "Хеш-таблица: O(1) в среднем vs O(log n)",
+        "Она сортированная",
+        "Она медленнее",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "unordered_map — хеш с O(1) средним доступом, но без порядка."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "STL Containers Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какой контейнер реализует очередь с приоритетом?",
+      "optionsLearning": [
+        "std::priority_queue",
+        "std::queue",
+        "std::vector",
+        "std::set"
+      ],
+      "correctIndex": 0,
+      "explanation": "priority_queue — адаптер с максимальным (по умолчанию) элементом сверху."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <queue>\nint main() { std::priority_queue<int> q; q.push(3); q.push(10); q.push(1); std::cout << q.top(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "top() — наибольший элемент: 10."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "STL Containers Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Что хранит std::deque?",
+      "optionsLearning": [
+        "Двусторонняя очередь: вставка/удаление с двух концов",
+        "Стек",
+        "Дерево",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "deque умеет push_back и push_front за O(1)."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "STL Containers Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Как получить стек (LIFO) из STL?",
+      "optionsLearning": [
+        "std::stack",
+        "std::vector",
+        "std::queue",
+        "std::set"
+      ],
+      "correctIndex": 0,
+      "explanation": "stack — адаптер LIFO: push/pop/top."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stack>\nint main() { std::stack<int> s; s.push(1); s.push(2); s.pop(); std::cout << s.top(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После pop остаётся 1 наверху."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "STL Containers Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Почему для маленьких фиксированных массивов используют std::array?",
+      "optionsLearning": [
+        "Объект с size(), никакой кучи, совместимость с алгоритмами",
+        "Он динамический",
+        "Он меньше",
+        "Он глобальный"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::array хранит данные в стеке и знает свой размер."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "STL Containers Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Как проверить, что контейнер пуст?",
+      "optionsLearning": [
+        "c.empty()",
+        "c.size() == nullptr",
+        "c.null()",
+        "c.begin() == c[0]"
+      ],
+      "correctIndex": 0,
+      "explanation": "empty() — стандартная проверка пустоты."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <list>\nint main() { std::list<int> l = {1, 2, 3}; l.push_front(0); std::cout << l.front(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "front() — первый элемент после push_front: 0."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "STL Containers Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какая сложность доступа к середине списка std::list по индексу?",
+      "optionsLearning": [
+        "O(n) — нет произвольного доступа",
+        "O(1)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "list не поддерживает operator[] — итерация линейна."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "STL Containers Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Какой контейнер оптимален для частых операций top-элемента?",
+      "optionsLearning": [
+        "std::vector для стека или priority_queue",
+        "std::map",
+        "std::string",
+        "unordered_set"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стековые операции push_back/pop_back у vector — O(1)."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "STL Containers Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v(5, 0); v[2] = 9; std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "0",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "v(5,0) — пять нулей; v[2]=9."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "STL Containers Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Чем queue отличается от stack?",
+      "optionsLearning": [
+        "queue — FIFO (первый вошёл, первый вышел), stack — LIFO",
+        "Ничем",
+        "queue медленнее",
+        "stack хранит пары"
+      ],
+      "correctIndex": 0,
+      "explanation": "FIFO vs LIFO — ключевые различия адаптеров."
     },
     {
       "id": "cpp.basics.stl-containers.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "STL Containers Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "stl",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-containers.01.scenario"
+      "scenarioId": "cpp.basics.stl-containers.01.scenario",
+      "promptKnown": "Когда следует выбирать unordered_set вместо set?",
+      "optionsLearning": [
+        "Когда важен средний O(1) поиск и не нужна сортировка",
+        "Всегда",
+        "Никогда",
+        "Для порядка итерации"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хеш-таблица быстрее, но без упорядоченности."
     }
   ],
   "title": "Basics — Basics C++"

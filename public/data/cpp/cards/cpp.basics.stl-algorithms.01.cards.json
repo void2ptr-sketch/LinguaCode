@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "STL Algorithms Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм сортирует диапазон?",
+      "optionsLearning": [
+        "std::sort",
+        "std::find",
+        "std::reverse",
+        "std::accumulate"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::sort сортирует [begin, end) по возрастанию."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "STL Algorithms Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::reverse?",
+      "optionsLearning": [
+        "Разворачивает порядок элементов",
+        "Сортирует",
+        "Копирует",
+        "Ищет"
+      ],
+      "correctIndex": 0,
+      "explanation": "reverse меняет порядок на обратный."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; std::reverse(v.begin(), v.end()); std::cout << v[0] << v[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "41",
+        "14",
+        "44",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После reverse: {4,3,2,1} → 4 и 1."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "STL Algorithms Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::min(a, b)?",
+      "optionsLearning": [
+        "Возвращает меньшее из двух",
+        "Минимальный элемент диапазона",
+        "Сортирует",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::min — меньшее из двух значений."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "STL Algorithms Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм находит наименьший элемент диапазона?",
+      "optionsLearning": [
+        "std::min_element",
+        "std::min",
+        "std::sort",
+        "std::find"
+      ],
+      "correctIndex": 0,
+      "explanation": "min_element возвращает итератор на минимум диапазона."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {5, 1, 4, 1, 3}; auto it = std::max_element(v.begin(), v.end()); std::cout << *it; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "1",
+        "4",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "max_element указывает на 5."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "STL Algorithms Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::count?",
+      "optionsLearning": [
+        "Считает вхождения значения в диапазоне",
+        "Удаляет дубликаты",
+        "Сортирует",
+        "Находит первое"
+      ],
+      "correctIndex": 0,
+      "explanation": "count(begin, end, value) — число совпадений."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\nint main() { int a[] = {1, 2, 1, 3, 1}; std::cout << std::count(a, a + 5, 1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единица встречается трижды."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "STL Algorithms Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм копирует элементы?",
+      "optionsLearning": [
+        "std::copy",
+        "std::move",
+        "std::swap",
+        "std::sort"
+      ],
+      "correctIndex": 0,
+      "explanation": "copy(begin, end, dest) копирует диапазон в назначение."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "STL Algorithms Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::fill?",
+      "optionsLearning": [
+        "Заполняет диапазон заданным значением",
+        "Сортирует",
+        "Очищает",
+        "Находит"
+      ],
+      "correctIndex": 0,
+      "explanation": "fill(begin, end, value) присваивает значение элементам."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v(4); std::fill(v.begin(), v.end(), 7); std::cout << v[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "4",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Все элементы = 7."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "STL Algorithms Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::transform?",
+      "optionsLearning": [
+        "Применяет функцию к элементам, записывая результат",
+        "Перемещает элементы",
+        "Сортирует",
+        "Считает"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform(begin, end, out, fn) преобразует диапазон."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::transform(v.begin(), v.end(), v.begin(), [](int x) { return x * x; }); std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "3",
+        "6",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Квадраты: {1,4,9} → v[2]=9."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "STL Algorithms Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::remove?",
+      "optionsLearning": [
+        "«Удаляет» значения, сдвигая остаток (но не уменьшает size)",
+        "Полностью удаляет элементы",
+        "Сортирует",
+        "Добавляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "remove сдвигает и возвращает новый логический конец; erase фактически удаляет."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "STL Algorithms Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Почему применяют идиому remove-erase?",
+      "optionsLearning": [
+        "remove возвращает новый end, а erase удаляет хвост",
+        "remove сам удаляет",
+        "erase сам сдвигает",
+        "Это модно"
+      ],
+      "correctIndex": 0,
+      "explanation": "v.erase(remove(v.begin(), v.end(), x), v.end()) — стандартный паттерн."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "область"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 2, 3}; v.erase(std::remove(v.begin(), v.end(), 2), v.end()); std::cout << v.size() << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "23",
+        "33",
+        "12",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "Остаётся {1,3}: size 2, v[1]=3 → 23."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "STL Algorithms Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Что делает std::unique?",
+      "optionsLearning": [
+        "Убирает подряд идущие дубликаты",
+        "Убирает все дубликаты",
+        "Сортирует",
+        "Разворачивает"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique сжимает соседние повторы (обычно после sort)."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "STL Algorithms Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Какой алгоритм проверяет условие для всех элементов?",
+      "optionsLearning": [
+        "std::all_of",
+        "std::find",
+        "std::count_if",
+        "std::for_each"
+      ],
+      "correctIndex": 0,
+      "explanation": "all_of(begin, end, pred) — true, если предикат истинен для всех."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "STL Algorithms Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {2, 4, 6}; std::cout << std::all_of(v.begin(), v.end(), [](int x) { return x % 2 == 0; }); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Все чётные → true → 1."
     },
     {
       "id": "cpp.basics.stl-algorithms.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "STL Algorithms Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "stl",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.stl-algorithms.01.scenario"
+      "scenarioId": "cpp.basics.stl-algorithms.01.scenario",
+      "promptKnown": "Зачем STL-алгоритмы принимают диапазоны (итераторы)?",
+      "optionsLearning": [
+        "Единый код для любых контейнеров",
+        "Только для массивов",
+        "Для скорости компиляции",
+        "Историческая случайность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итераторы абстрагируют контейнер: алгоритм работает везде."
     }
   ],
   "title": "Basics — Basics C++"

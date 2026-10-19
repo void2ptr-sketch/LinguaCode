@@ -4,50 +4,12 @@
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое STL?",
+      "title": "vector: динамические массивы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие преимущества даёт использование STL в C++?",
-      "optionsLearning": [
-        "Какие преимущества даёт использование STL в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "что"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-02",
-      "kind": "select",
-      "title": "Containers overview",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда использовать vector, а когда list или deque?",
-      "optionsLearning": [
-        "Когда использовать vector, а когда list или deque?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -59,115 +21,513 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Какая гарантия сложности push_back у vector?",
+      "optionsLearning": [
+        "Амортизированная O(1)",
+        "O(n) всегда",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Capacity растёт геометрически — перераспределения происходят редко, поэтому в среднем O(1)."
     },
     {
-      "id": "cpp.stl.containers-vector.01.scenario.card-03",
+      "id": "cpp.stl.containers-vector.01.scenario.card-02",
       "kind": "select",
-      "title": "std::vector basics",
+      "title": "vector: динамические массивы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает динамическое выделение памяти в std::vector?",
-      "optionsLearning": [
-        "Как работает динамическое выделение памяти в std::vector?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::vector"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что делает vector.reserve(n)?",
+      "optionsLearning": [
+        "Резервирует capacity >= n без изменения size",
+        "Меняет размер",
+        "Удаляет элементы",
+        "Добавляет элементы"
+      ],
+      "correctIndex": 0,
+      "explanation": "reserve заранее выделяет память, снижая число реаллокаций."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v; v.reserve(10); std::cout << v.capacity() << v.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "100",
+        "010",
+        "1010",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "capacity() = 10, size() = 0 → вывод 100."
     },
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-04",
       "kind": "select",
-      "title": "std::list implementation",
+      "title": "vector: динамические массивы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какова сложность вставки/удаления элементов в list?",
-      "optionsLearning": [
-        "Какова сложность вставки/удаления элементов в list?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "std::list"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что происходит с итераторами при реаллокации vector?",
+      "optionsLearning": [
+        "Они инвалидируются",
+        "Не меняются",
+        "Дублируются",
+        "Ускоряются"
+      ],
+      "correctIndex": 0,
+      "explanation": "Новый буфер — старые итераторы и ссылки становятся недействительными."
     },
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-05",
       "kind": "select",
-      "title": "std::deque characteristics",
+      "title": "vector: динамические массивы — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает block-based storage в deque?",
-      "optionsLearning": [
-        "Как работает block-based storage в deque?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::deque"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что делает v.shrink_to_fit()?",
+      "optionsLearning": [
+        "Уменьшает capacity до size",
+        "Удаляет элементы",
+        "Увеличивает capacity",
+        "Копирует вектор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Просьба освободить лишнюю память (не гарантируется)."
     },
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-06",
-      "kind": "select",
-      "title": "Iterators и их типы",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работают random access iterators у vector?",
-      "optionsLearning": [
-        "Как работают random access iterators у vector?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v(4, 1); v.erase(v.begin() + 1); std::cout << v.size() << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "31",
+        "41",
+        "30",
+        "Ошибка"
       ],
       "correctIndex": 0,
+      "explanation": "После erase: {1,1,1}, size=3, v[2]=1 → 31."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-07",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Какая операция в vector самая медленная?",
+      "optionsLearning": [
+        "Вставка/удаление в середине (O(n))",
+        "push_back",
+        "back()",
+        "size()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сдвиг элементов при вставке в середину — линейный."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4, 5}; v.resize(2); std::cout << v.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После resize(2): {1,2}, back() = 2."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-09",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Как получить внутренний массив vector как указатель?",
+      "optionsLearning": [
+        "v.data()",
+        "v.raw()",
+        "v.to_array()",
+        "v.c_str()"
+      ],
+      "correctIndex": 0,
+      "explanation": "data() возвращает указатель на непрерывный буфер."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-10",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers",
+          "performance"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Почему vector хранит элементы непрерывно?",
+      "optionsLearning": [
+        "Кэш-локальность и O(1) доступ по индексу",
+        "Случайно",
+        "Мода",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Непрерывность даёт быстрый доступ и дружелюбие к кэшу."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-11",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 11",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; v.insert(v.begin(), 0); std::cout << v.front() << v.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "04",
+        "03",
+        "0",
+        "13"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вставка в начало: {0,1,2,3}, front=0, size=4."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-12",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 12",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что будет при v.at(i) с индексом за границами?",
+      "optionsLearning": [
+        "Исключение std::out_of_range",
+        "UB",
+        "0",
+        "Срез"
+      ],
+      "correctIndex": 0,
+      "explanation": "at() проверяет границы и бросает out_of_range."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-13",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 13",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Чем cbegin() отличается от begin()?",
+      "optionsLearning": [
+        "cbegin возвращает const-итератор",
+        "Ничем",
+        "Он быстрее",
+        "Он указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "cbegin()/cend() запрещают изменение элементов."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-14",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 14",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "containers",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nint main() { std::vector<int> v = {2, 4, 6}; std::reverse(v.begin(), v.end()); std::cout << v.front() << v.back(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "62",
+        "26",
+        "64",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разворот: {6,4,2} → 6 и 2."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-15",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 15",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Когда выбрать deque вместо vector?",
+      "optionsLearning": [
+        "При частых вставках/удалениях с обоих концов",
+        "Всегда",
+        "Никогда",
+        "При сортировке"
+      ],
+      "correctIndex": 0,
+      "explanation": "deque умеет push_front/pop_front за O(1)."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-16",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 16",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что нужно, чтобы vector мог хранить unique_ptr?",
+      "optionsLearning": [
+        "Перемещаемость (move) — элементы не копируются при росте",
+        "Копируемость",
+        "Хеш",
+        "operator<"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr некопируем — vector использует перемещение."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-17",
+      "kind": "code-trace",
+      "title": "vector: динамические массивы — Вопрос 17",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -179,427 +539,114 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-07",
-      "kind": "select",
-      "title": "Algorithms library",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4, 5}; auto it = v.begin() + 3; std::cout << *it; }",
+        "language": "cpp"
       },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие основные алгоритмы предоставляет <algorithm>?",
-      "optionsLearning": [
-        "Какие основные алгоритмы предоставляет <algorithm>?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
+      "outputOptions": [
+        "4",
+        "3",
+        "5",
+        "Ошибка"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "algorithms"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-08",
-      "kind": "select",
-      "title": "std::sort usage",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как сортировать объекты по нескольким полям?",
-      "optionsLearning": [
-        "Как сортировать объекты по нескольким полям?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::sort"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-09",
-      "kind": "select",
-      "title": "std::find variations",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как найти элемент по ключу в std::map?",
-      "optionsLearning": [
-        "Как найти элемент по ключу в std::map?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::find"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-10",
-      "kind": "select",
-      "title": "std::for_each examples",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как применить функцию к каждому элементу контейнера?",
-      "optionsLearning": [
-        "Как применить функцию к каждому элементу контейнера?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::for_each"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-11",
-      "kind": "select",
-      "title": "std::transform patterns",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать std::transform для объединения двух контейнеров?",
-      "optionsLearning": [
-        "Можно ли использовать std::transform для объединения двух контейнеров?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::transform"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-12",
-      "kind": "select",
-      "title": "Predicate design",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что такое predicate функция и какие требования к ней?",
-      "optionsLearning": [
-        "Что такое predicate функция и какие требования к ней?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "predicate"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-13",
-      "kind": "select",
-      "title": "Custom comparators",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда нужно использовать operator< vs custom comparator?",
-      "optionsLearning": [
-        "Когда нужно использовать operator< vs custom comparator?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "custom"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-14",
-      "kind": "select",
-      "title": "Container adaptors (stack, queue)",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается priority_queue от queue?",
-      "optionsLearning": [
-        "Чем отличается priority_queue от queue?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "container"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-15",
-      "kind": "select",
-      "title": "Associative containers (set, map)",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какова сложность операций поиска в associative containers?",
-      "optionsLearning": [
-        "Какова сложность операций поиска в associative containers?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "associative"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-16",
-      "kind": "select",
-      "title": "Unordered containers (unordered_set, unordered_map)",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает hashing в unordered containers?",
-      "optionsLearning": [
-        "Как работает hashing в unordered containers?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "unordered"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-17",
-      "kind": "select",
-      "title": "String manipulation with STL",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как эффективно конкатенировать строки в C++?",
-      "optionsLearning": [
-        "Как эффективно конкатенировать строки в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "string"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "explanation": "begin()+3 → элемент с индексом 3: 4."
     },
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-18",
       "kind": "select",
-      "title": "Debugging STL issues",
+      "title": "vector: динамические массивы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как диагностировать segmentation fault при работе с контейнерами?",
-      "optionsLearning": [
-        "Как диагностировать segmentation fault при работе с контейнерами?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "debugging"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Что делает emplace_back?",
+      "optionsLearning": [
+        "Конструирует элемент на месте (без лишней копии)",
+        "То же, что push_back всегда",
+        "Удаляет",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "emplace_back передаёт аргументы прямо конструктору."
     },
     {
       "id": "cpp.stl.containers-vector.01.scenario.card-19",
       "kind": "select",
-      "title": "Performance optimization",
+      "title": "vector: динамические массивы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как профилировать hot paths в C++ коде?",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "containers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "В чём опасность сохранения ссылки на v[0] при push_back?",
       "optionsLearning": [
-        "Как профилировать hot paths в C++ коде?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
+        "Реаллокация инвалидирует ссылку",
+        "Ничего",
+        "Ссылка копируется",
+        "Ошибка"
       ],
       "correctIndex": 0,
+      "explanation": "Рост vector может перенести элементы в новый буфер."
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario.card-20",
+      "kind": "select",
+      "title": "vector: динамические массивы — Вопрос 20",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
+          "containers",
           "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-vector.01.scenario.card-20",
-      "kind": "select",
-      "title": "Best practices для STL",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие ошибки новичков чаще всего встречаются при работе со STL?",
+      "scenarioId": "cpp.stl.containers-vector.01.scenario",
+      "promptKnown": "Как эффективно собрать большой вектор?",
       "optionsLearning": [
-        "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
+        "reserve заранее + push_back",
+        "push без reserve",
+        "insert в начало",
+        "new[] вручную"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "best"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-vector.01.scenario"
+      "explanation": "reserve избегает многократных реаллокаций."
     }
   ],
   "title": "Stl — Intermediate C++"

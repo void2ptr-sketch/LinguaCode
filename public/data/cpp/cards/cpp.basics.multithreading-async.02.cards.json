@@ -4,602 +4,637 @@
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Multithreading Async 02 — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Какой класс создаёт поток в C++11?",
+      "optionsLearning": [
+        "std::thread",
+        "std::process",
+        "std::async только",
+        "new Thread"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::thread из <thread> запускает поток выполнения."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Multithreading Async 02 — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Как дождаться завершения потока?",
+      "optionsLearning": [
+        "t.join()",
+        "t.wait()",
+        "t.sync()",
+        "t.done()"
+      ],
+      "correctIndex": 0,
+      "explanation": "join() блокирует до завершения потока."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Multithreading Async 02 — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <thread>\nvoid work() { std::cout << \"hi\"; }\nint main() { std::thread t(work); t.join(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "hi",
+        "ничего",
+        "Ошибка",
+        "hi дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поток выполняет work, join ожидает завершения."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Multithreading Async 02 — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что случится, если забросить поток без join или detach?",
+      "optionsLearning": [
+        "std::terminate при разрушении joinable-потока",
+        "Поток сам завершится",
+        "Ошибка",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор joinable-потока вызывает std::terminate."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Multithreading Async 02 — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что делает t.detach()?",
+      "optionsLearning": [
+        "Отвязывает поток — он работает независимо",
+        "Останавливает поток",
+        "Паузит",
+        "Присоединяет"
+      ],
+      "correctIndex": 0,
+      "explanation": "detach освобождает поток от объекта thread."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Multithreading Async 02 — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что такое гонка данных (data race)?",
+      "optionsLearning": [
+        "Несинхронизированный доступ нескольких потоков к данным",
+        "Быстрый код",
+        "Ошибка компиляции",
+        "Сетевой сбой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Data race — UB; требуются мьютексы или атомики."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Multithreading Async 02 — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Какой объект защищает критическую секцию?",
+      "optionsLearning": [
+        "std::mutex",
+        "std::vector",
+        "std::queue",
+        "std::atomic только"
+      ],
+      "correctIndex": 0,
+      "explanation": "mutex с lock/unlock сериализует доступ."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Multithreading Async 02 — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "ввод/вывод"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "concurrency"
+        ],
+        "tags": "lock_guard блокирует при создании и разблокирует при разрушении."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "question": "Что делает std::lock_guard?",
+      "code": {
+        "code": [
+          "RAII-блокировка мьютекса на время области видимости",
+          "Разблокирует вручную",
+          "Ждёт",
+          "Удаляет мьютекс"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Multithreading Async 02 — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что лучше lock_guard или std::unique_lock?",
+      "optionsLearning": [
+        "unique_lock можно разблокировать/переносить; lock_guard — проще",
+        "Только lock_guard",
+        "Только unique_lock",
+        "Ни одно"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_lock гибче (для condition_variable), lock_guard дешевле."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Multithreading Async 02 — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что делает std::async?",
+      "optionsLearning": [
+        "Асинхронно запускает функцию в потоке/пуле",
+        "Синхронизирует вызов",
+        "Складывает числа",
+        "Создаёт процесс"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::async может выполнять функцию в отдельном потоке."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Multithreading Async 02 — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <future>\nint main() { auto f = std::async([] { return 6 * 7; }); std::cout << f.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Ошибка",
+        "0",
+        "42 дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "future.get() ждёт результат асинхронного вызова: 42."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Multithreading Async 02 — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что такое std::future?",
+      "optionsLearning": [
+        "Объект, дающий доступ к будущему результату",
+        "Поток",
+        "Мьютекс",
+        "Счётчик"
+      ],
+      "correctIndex": 0,
+      "explanation": "future хранит результат асинхронной операции."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Multithreading Async 02 — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "функции:"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что делает std::promise?",
+      "optionsLearning": [
+        "Позволяет установить значение для future",
+        "Обещает поток",
+        "Удаляет future",
+        "Синхронизирует cout"
+      ],
+      "correctIndex": 0,
+      "explanation": "promise передаёт результат/исключение в связанный future."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Multithreading Async 02 — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что такое атомарная операция?",
+      "optionsLearning": [
+        "Неделимая операция для нескольких потоков",
+        "Быстрая операция",
+        "Операция над числами",
+        "RAM-операция"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::atomic гарантирует атомарность и видимость."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Multithreading Async 02 — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> a = 0; a++; std::cout << a.load(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Атомарный инкремент: значение 1."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Multithreading Async 02 — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Какие операции безопасны для std::atomic?",
+      "optionsLearning": [
+        "load/store/fetch_add и др.",
+        "Любые",
+        "Только ++",
+        "Только ="
+      ],
+      "correctIndex": 0,
+      "explanation": "Атомики поддерживают набор неделимых операций."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Multithreading Async 02 — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что делает condition_variable?",
+      "optionsLearning": [
+        "Позволяет потокам ждать выполнения условия",
+        "Ускоряет потоки",
+        "Останавливает все",
+        "Выбирает поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "condition_variable + unique_lock организуют ожидание/уведомление."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Multithreading Async 02 — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Почему общий std::cout из нескольких потоков опасен?",
+      "optionsLearning": [
+        "Поток cout не атомарен — вывод перемешивается",
+        "cout слишком быстрый",
+        "cout нельзя делить",
+        "Он один"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для вывода из потоков нужен мьютекс или атомарная запись."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Multithreading Async 02 — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Что такое deadlock?",
+      "optionsLearning": [
+        "Взаимная блокировка потоков, ожидающих ресурсы",
+        "Быстрая работа",
+        "Крах программы мгновенно",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Deadlock возникает при циклическом ожидании блокировок."
     },
     {
       "id": "cpp.basics.multithreading-async.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Multithreading Async 02 — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.multithreading-async.02.scenario"
+      "scenarioId": "cpp.basics.multithreading-async.02.scenario",
+      "promptKnown": "Как избежать deadlock при нескольких мьютексах?",
+      "optionsLearning": [
+        "Брать блокировки в едином порядке или std::scoped_lock",
+        "Игнорировать",
+        "Больше потоков",
+        "std::sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": "Единый порядок захвата/RAII устраняет взаимные блокировки."
     }
   ],
   "title": "Basics — Basics C++"

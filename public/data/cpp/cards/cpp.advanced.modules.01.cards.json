@@ -4,602 +4,641 @@
     {
       "id": "cpp.advanced.modules.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Modules (C++20) — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что такое module?",
+      "optionsLearning": [
+        "Новая единица организации кода (C++20)",
+        "Файл .hpp",
+        "Makefile",
+        "Библиотека"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модули заменяют включение заголовков."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Modules (C++20) — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Чем модуль лучше #include?",
+      "optionsLearning": [
+        "Изоляция и скорость сборки, без повторного препроцессинга",
+        "Короче",
+        "Быстрее runtime",
+        "Меньше памяти"
+      ],
+      "correctIndex": 0,
+      "explanation": "Границы модулей компилируются один раз."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Modules (C++20) — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "структура"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Ключевое слово import."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "question": "Как импортировать модуль?",
+      "code": {
+        "code": [
+          "import module;",
+          "#include module",
+          "using module",
+          "imported;"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Modules (C++20) — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что такое interface unit?",
+      "optionsLearning": [
+        "Файл с export-объявлениями модуля",
+        "Заголовок",
+        "Исполняемый",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "Интерфейс модуля определяет экспорт."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Modules (C++20) — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что делает export в модуле?",
+      "optionsLearning": [
+        "Публикует имена наружу",
+        "Скрывает",
+        "Сортирует",
+        "Печатает"
+      ],
+      "correctIndex": 0,
+      "explanation": "export — публичная часть модуля."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Modules (C++20) — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "основные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "question": "Что выведет эта программа (с модулем math)?",
+      "code": {
+        "code": "import math;\nint main() { std::cout << add(2, 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5 (если add экспортирована)",
+        "Ошибка",
+        "23",
+        "модуль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Экспортированная функция доступна через import."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Modules (C++20) — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что такое partition (подмодуль)?",
+      "optionsLearning": [
+        "Часть модуля, распределённая по файлам",
+        "Копия",
+        "Поток",
+        "Секция"
+      ],
+      "correctIndex": 0,
+      "explanation": "module partition организуют крупные модули."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Modules (C++20) — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Влияют ли модули на ODR и включаемость?",
+      "optionsLearning": [
+        "Уменьшают конфликты макросов и повторного включения",
+        "Нет",
+        "Увеличивают",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модули изолированы от #define и внешних #include."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Modules (C++20) — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Почему модули ускоряют сборку?",
+      "optionsLearning": [
+        "Интерфейс компилируется один раз в BMI",
+        "Архивация",
+        "Параллельность",
+        "Кэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Precompiled module interface (BMI)."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Modules (C++20) — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "условные"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "export module задаёт имя модуля."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "question": "Какое слово начинают определения в module interface?",
+      "code": {
+        "code": [
+          "export module math;",
+          "module math",
+          "using math",
+          "import math"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Modules (C++20) — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что экспортирует пустой export?",
+      "optionsLearning": [
+        "Помечает декларации текущей области",
+        "Ничего",
+        "Модуль",
+        "Файл"
+      ],
+      "correctIndex": 0,
+      "explanation": "export { … } группирует."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Modules (C++20) — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Можно ли использовать модули и заголовки вместе?",
+      "optionsLearning": [
+        "Да, гибридно",
+        "Нет",
+        "Запрещено",
+        "Только в C++23"
+      ],
+      "correctIndex": 0,
+      "explanation": "Смешанные проекты возможны."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Modules (C++20) — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "функции:"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Один импорт — без повторного препроцессинга."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "question": "Что избавляет модуль от include guards?",
+      "code": {
+        "code": [
+          "Сама природа модулей",
+          "Макросы",
+          "pragma once",
+          "Ничего"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Modules (C++20) — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Как видимость внутренних деталей в модуле?",
+      "optionsLearning": [
+        "Не-экспортированное скрыто",
+        "Всё открыто",
+        "Все скрыто",
+        "Случайно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Только export-имена видны импортёрам."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Modules (C++20) — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что такое module global fragment?",
+      "optionsLearning": [
+        "Секция для legacy #include в начале",
+        "Стек",
+        "Поток",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "module; ... #include ... для совместимости."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Modules (C++20) — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что повышает модуль в кодовой базе?",
+      "optionsLearning": [
+        "Изоляция и явные зависимости",
+        "Случайность",
+        "Глобал",
+        "Меньше типов"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явные границы и скорость итераций."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Modules (C++20) — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "рекурсия"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Импорт модуля по имени."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "question": "Какой символ обозначает импорт всех?",
+      "code": {
+        "code": [
+          "import module;",
+          "import *",
+          "import all",
+          "include"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Modules (C++20) — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Что делает export в контексте класса?",
+      "optionsLearning": [
+        "Экспортирует класс целиком",
+        "Делает final",
+        "Абстрактным",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "export class публикует тип."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Modules (C++20) — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Когда модули станут массовыми?",
+      "optionsLearning": [
+        "По мере зрелости компиляторов и экосистемы",
+        "Никогда",
+        "Завтра",
+        "В C++11"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поддержка растёт в GCC/Clang/MSVC."
     },
     {
       "id": "cpp.advanced.modules.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Modules (C++20) — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.modules.01.scenario"
+      "scenarioId": "cpp.advanced.modules.01.scenario",
+      "promptKnown": "Главный мотиватор модулей?",
+      "optionsLearning": [
+        "Ускорение сборки и гигиена кода",
+        "Мода",
+        "Память",
+        "Безопасность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Меньше препроцессинга — меньше времени сборки."
     }
   ],
   "title": "Advanced — Advanced C++"

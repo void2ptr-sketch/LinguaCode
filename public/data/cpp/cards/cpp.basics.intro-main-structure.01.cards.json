@@ -4,602 +4,630 @@
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Структура main() — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какой заголовок обязателен для вывода на экран через std::cout?",
+      "optionsLearning": [
+        "#include <iostream>",
+        "#include <stdio.h>",
+        "#include <string>",
+        "#include <algorithm>"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::cout объявлен в заголовке <iostream>."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Структура main() — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какая сигнатура main() допустима по стандарту?",
+      "optionsLearning": [
+        "int main()",
+        "void main()",
+        "float main()",
+        "char main()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандарт требует int main() (либо int main(int argc, char* argv[]))."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Структура main() — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что означает int в int main()?",
+      "optionsLearning": [
+        "Тип возвращаемого значения — код завершения программы",
+        "Количество аргументов",
+        "Размер стека",
+        "Номер версии"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат 0 означает успех; ненулевое значение — код ошибки для ОС."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Структура main() — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какой код возврата означает успешное завершение программы?",
+      "optionsLearning": [
+        "0",
+        "1",
+        "-1",
+        "42"
+      ],
+      "correctIndex": 0,
+      "explanation": "По соглашению 0 — успех; остальные коды — ошибки."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Структура main() — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Где должна находиться функция main() в программе?",
+      "optionsLearning": [
+        "Ровно одно определение на программу",
+        "В каждом .cpp файле",
+        "В заголовочном файле",
+        "Только в IDE"
+      ],
+      "correctIndex": 1,
+      "explanation": "Определение main() должно быть единственным во всей программе."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Структура main() — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какое пространство имён нужно указать для записи std::cout без префикса?",
+      "optionsLearning": [
+        "using namespace std;",
+        "namespace main",
+        "import std;",
+        "using cout; только"
+      ],
+      "correctIndex": 0,
+      "explanation": "Директива using namespace std; позволяет писать cout вместо std::cout."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-07",
-      "kind": "select",
-      "title": "Переменные и константы",
+      "kind": "code-trace",
+      "title": "Структура main() — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << \"Привет\"; return 0; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Привет",
+        "«Привет» с кавычками",
+        "Ошибка компиляции",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::cout выводит строку без обрамляющих кавычек."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Структура main() — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Как вывести перевод строки после текста?",
+      "optionsLearning": [
+        "std::cout << \"текст\\n\";",
+        "std::cout << \"текст/;\";",
+        "перевод();",
+        "std::cout << newline;"
+      ],
+      "correctIndex": 0,
+      "explanation": "Управляющий символ \\n внутри строки создаёт перевод строки."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Структура main() — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что будет, если в main() нет оператора return?",
+      "optionsLearning": [
+        "Компилятор добавит return 0 автоматически",
+        "Ошибка компиляции",
+        "Программа вернёт мусор",
+        "Стандартное поведение не определено"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для main() без return автоматически подставляется return 0."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Структура main() — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что означает манипулятор std::endl?",
+      "optionsLearning": [
+        "Перевод строки и сброс буфера",
+        "Только перевод строки",
+        "Конец программы",
+        "Символ табуляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::endl выводит '\\n' и вызывает flush выходного буфера."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Структура main() — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Почему return 0; в main() считается хорошей практикой в конце программы?",
+      "optionsLearning": [
+        "Явно объявляет успешное завершение",
+        "Ускоряет программу",
+        "Обязательно по стандарту C++23",
+        "Очищает память вручную"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явный return 0 документирует успешное завершение и удобен при копировании в другие функции."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Структура main() — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какие аргументы принимает двухаргументная форма main()?",
+      "optionsLearning": [
+        "int argc, char* argv[]",
+        "int a, int b",
+        "string args[]",
+        "void* params"
+      ],
+      "correctIndex": 0,
+      "explanation": "argc — количество аргументов командной строки, argv — сами аргументы."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Структура main() — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что хранит argv[0]?",
+      "optionsLearning": [
+        "Имя запущенной программы",
+        "Первый пользовательский аргумент",
+        "Путь к домашней папке",
+        "Код возврата"
+      ],
+      "correctIndex": 0,
+      "explanation": "argv[0] — имя программы; пользовательские аргументы начинаются с argv[1]."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Структура main() — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "question": "Что выведет программа при запуске ./app hello world?",
+      "code": {
+        "code": "#include <iostream>\nint main(int argc, char* argv[]) { std::cout << argc; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "hello"
+      ],
+      "correctIndex": 0,
+      "explanation": "argc = 3: имя программы, hello, world."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Структура main() — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какая директива подключает стандартный заголовок <string>?",
+      "optionsLearning": [
+        "#include <string>",
+        "#include \"string\"",
+        "import string;",
+        "#define string"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандартные заголовки подключаются угловыми скобками: #include <string>."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Структура main() — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что произойдёт при выполнении return 1; в main()?",
+      "optionsLearning": [
+        "Программа завершится с кодом ошибки 1",
+        "Программа продолжится",
+        "Вывод 1 на экран",
+        "Выброс исключения"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ненулевой код возврата сигнализирует ОС об ошибке."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Структура main() — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Для чего в программе используются фигурные скобки { }?",
+      "optionsLearning": [
+        "Обозначают блок кода (тело main, тела функций)",
+        "Обозначают комментарий",
+        "Обозначают строку",
+        "Используются для чисел"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фигурные скобки выделяют составные операторы и области видимости."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Структура main() — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Какой оператор используется для вставки данных в поток вывода?",
+      "optionsLearning": [
+        "<<",
+        ">>",
+        "->",
+        "=>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор вставки << направляет данные в выходной поток (cout)."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Структура main() — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "Что делать, если компилятор сообщает undefined reference to main?",
+      "optionsLearning": [
+        "Добавить/найти определение int main() в проекте",
+        "Переименовать файл",
+        "Добавить #include <main>",
+        "Игнорировать — это предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Линковщик не нашёл точку входа main() — она отсутствует или не слинкована."
     },
     {
       "id": "cpp.basics.intro-main-structure.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Структура main() — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "language-basics",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.intro-main-structure.01.scenario"
+      "scenarioId": "cpp.basics.intro-main-structure.01.scenario",
+      "promptKnown": "В какой последовательности выполняются операторы main()?",
+      "optionsLearning": [
+        "Сверху вниз в порядке следования",
+        "Снизу вверх",
+        "В случайном порядке",
+        "Параллельно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Программа выполняется последовательно: операторы main() исполняются по порядку записи."
     }
   ],
   "title": "Basics — Basics C++"

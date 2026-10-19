@@ -4,110 +4,171 @@
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Инкапсуляция — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "что"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что такое инкапсуляция?",
+      "optionsLearning": [
+        "Скрытие внутреннего состояния и защита данных",
+        "Наследование",
+        "Полиморфизм",
+        "Перегрузка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция ограничивает доступ к состоянию объекта."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-02",
       "kind": "select",
-      "title": "Classes и objects",
+      "title": "Инкапсуляция — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "classes"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Как скрыть поле в классе?",
+      "optionsLearning": [
+        "Объявить его private",
+        "public поле",
+        "static-поле",
+        "Просто не использовать"
+      ],
+      "correctIndex": 0,
+      "explanation": "private-члены доступны только методам класса."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-03",
       "kind": "select",
-      "title": "Encapsulation principles",
+      "title": "Инкапсуляция — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "encapsulation"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что даёт инкапсуляция с геттерами?",
+      "optionsLearning": [
+        "Контроль над изменением состояния и инвариантов",
+        "Скорость",
+        "Стиль",
+        "Короткий код"
+      ],
+      "correctIndex": 0,
+      "explanation": "Геттеры/сеттеры валидируют изменения."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-04",
-      "kind": "select",
-      "title": "Inheritance mechanisms",
+      "kind": "code-trace",
+      "title": "Инкапсуляция — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
-      "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass B { int x = 10; public: int getX() const { return x; } };\nint main() { B b; std::cout << b.getX(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "0",
+        "Ошибка",
+        "x"
       ],
       "correctIndex": 0,
+      "explanation": "Геттер открывает чтение приватного поля."
+    },
+    {
+      "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-05",
+      "kind": "select",
+      "title": "Инкапсуляция — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что будет при попытке вызвать приватный метод извне?",
+      "optionsLearning": [
+        "Ошибка компиляции",
+        "Вызов разрешён",
+        "Предупреждение",
+        "runtime error"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приватный метод недоступен вне класса."
+    },
+    {
+      "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-06",
+      "kind": "select",
+      "title": "Инкапсуляция — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -119,487 +180,461 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-05",
-      "kind": "select",
-      "title": "Polymorphism types",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что такое protected-члены?",
       "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
+        "Доступны классу и наследникам",
+        "Только классу",
+        "Всем",
+        "Только друзьям"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "polymorphism"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-06",
-      "kind": "select",
-      "title": "Abstraction techniques",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
-      "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "abstraction"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "explanation": "protected — средний уровень доступа для иерархий."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-07",
       "kind": "select",
-      "title": "Design patterns overview",
+      "title": "Инкапсуляция — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "design"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Каковы уровни доступа в C++?",
+      "optionsLearning": [
+        "public, private, protected",
+        "open, close, hidden",
+        "static, const, final",
+        "только public"
+      ],
+      "correctIndex": 0,
+      "explanation": "Три модификатора доступа."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-08",
-      "kind": "select",
-      "title": "SOLID principles",
+      "kind": "code-trace",
+      "title": "Инкапсуляция — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "solid"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass A { public: int pub = 1; private: int priv = 2; };\nint main() { A a; std::cout << a.pub; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "Ошибка",
+        "privacy"
+      ],
+      "correctIndex": 0,
+      "explanation": "pub доступен; попытка priv — ошибка компиляции."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-09",
       "kind": "select",
-      "title": "Dependency injection",
+      "title": "Инкапсуляция — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "dependency"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Зачем прятать состояние?",
+      "optionsLearning": [
+        "Защита инвариантов и свобода менять реализацию",
+        "Читаемость всегда",
+        "Скорость",
+        "Обязанность стандарта"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция позволяет менять внутренности без слома API."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-10",
       "kind": "select",
-      "title": "Factory patterns",
+      "title": "Инкапсуляция — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "factory"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что такое friend-функция и зачем она нужна?",
+      "optionsLearning": [
+        "Внешняя функция с приватным доступом к классу",
+        "Член класса",
+        "Виртуальная",
+        "Статическая"
+      ],
+      "correctIndex": 0,
+      "explanation": "friend нарушает инкапсуляцию точечно (для operator<< и т.п.)."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-11",
-      "kind": "select",
-      "title": "Observer pattern",
+      "kind": "code-trace",
+      "title": "Инкапсуляция — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
+        "difficulty": [
           "oop",
-          "observer"
-        ]
+          "syntax"
+        ],
+        "tags": "friend-функция проходит сквозь инкапсуляцию."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "question": "Доступен ли private-член friend-функции?",
+      "code": {
+        "code": [
+          "Да — friend имеет доступ к приватным",
+          "Нет",
+          "Только protected",
+          "Переменная зависит"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-12",
       "kind": "select",
-      "title": "Strategy pattern",
+      "title": "Инкапсуляция — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "strategy"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что такое инвариант класса?",
+      "optionsLearning": [
+        "Условие, поддерживаемое всеми методами класса",
+        "Имя класса",
+        "Поле",
+        "Метод"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инвариант — гарантия корректного состояния объекта."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-13",
       "kind": "select",
-      "title": "Adapter pattern",
+      "title": "Инкапсуляция — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "adapter"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Как сеттер поддерживает инвариант?",
+      "optionsLearning": [
+        "Проверяет значение перед присваиванием",
+        "Игнорирует аргумент",
+        "Всегда успешен",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сеттер валидирует ввод, исключая недопустимые состояния."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-14",
       "kind": "select",
-      "title": "Decorator pattern",
+      "title": "Инкапсуляция — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "decorator"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Чем плохо делать все поля public?",
+      "optionsLearning": [
+        "Можно нарушить инварианты из любого места",
+        "Нет, это нормально",
+        "Код раздувается",
+        "Медленнее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Открытые поля разрывают контроль состояния."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-15",
       "kind": "select",
-      "title": "Facade pattern",
+      "title": "Инкапсуляция — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "facade"
+          "structs"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Когда оправдана public-структура без методов?",
+      "optionsLearning": [
+        "Для простых данных-агрегатов (DTO)",
+        "Никогда",
+        "Всегда",
+        "В классах"
+      ],
+      "correctIndex": 0,
+      "explanation": "Агрегаты данных (Point, Config) могут быть полностью открытыми."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-16",
-      "kind": "select",
-      "title": "Builder pattern",
+      "kind": "code-trace",
+      "title": "Инкапсуляция — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "builder"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass T { int v; public: void set(int x) { if (x > 0) v = x; } int get() const { return v; } };\nint main() { T t; t.set(-5); std::cout << t.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Мусор (v не инициализировано)",
+        "0",
+        "-5",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сеттер отклонил -5, v остался неинициализированным."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "Инкапсуляция — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "debugging"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что такое pimpl-идиома (pointer to implementation)?",
+      "optionsLearning": [
+        "Скрытие реализации через указатель на приватный класс",
+        "Указатель на main",
+        "Паттерн фабрики",
+        "Инлайн-функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "Pimpl уменьшает зависимости заголовков и скрывает реализацию."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-18",
       "kind": "select",
-      "title": "Performance implications of OOP",
+      "title": "Инкапсуляция — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "performance"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Какой паттерн доступа к приватному полю без нарушения инкапсуляции?",
+      "optionsLearning": [
+        "Геттер/сеттер",
+        "friend для всех",
+        "public поле",
+        "макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Геттеры/сеттеры — контролируемый интерфейс."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-19",
       "kind": "select",
-      "title": "Best practices для OOP design",
+      "title": "Инкапсуляция — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-      "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "best"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Какая связь инкапсуляции и «скрытия информации»?",
+      "optionsLearning": [
+        "Инкапсуляция реализует скрытие информации",
+        "Никакой",
+        "Одно и то же как язык",
+        "Противоположность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция — механизм, скрытие информации — цель."
     },
     {
       "id": "cpp.oop.fundamentals-encapsulation.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Инкапсуляция — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "composition"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "promptKnown": "Что произойдёт с README-интерфейсом при изменении private-полей?",
+      "optionsLearning": [
+        "Публичный API не меняется — код клиентов работает",
+        "Все ломается",
+        "Нужна миграция",
+        "Компиляция падает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция изолирует изменения реализации от пользователей."
     }
   ],
   "title": "Oop — Intermediate C++"

@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.strings.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Строковые операции в C++ — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "что"
+          "strings",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как заменить все символы 'a' на 'b' в строке?",
+      "optionsLearning": [
+        "std::replace(s.begin(), s.end(), 'a', 'b')",
+        "s.replace_all",
+        "s.swap",
+        "s.map"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::replace меняет все вхождения в диапазоне."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-02",
-      "kind": "select",
-      "title": "История создания C++",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "история"
+          "strings",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\n#include <algorithm>\nint main() { std::string s = \"banana\"; std::replace(s.begin(), s.end(), 'a', 'o'); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "bonono",
+        "banana",
+        "bonana",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Все 'a' заменяются на 'o': bonono."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Строковые операции в C++ — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "структура"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как вставить строку в позицию 2?",
+      "optionsLearning": [
+        "s.insert(2, other)",
+        "s.put(other, 2)",
+        "s.add_at(other)",
+        "s.push(other)"
+      ],
+      "correctIndex": 0,
+      "explanation": "insert(pos, str) вставляет строку в указанную позицию."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Строковые операции в C++ — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "strings",
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как разбить строку по разделителю?",
+      "optionsLearning": [
+        "std::getline со stringstream или find+substr",
+        "s.split()",
+        "s.explode",
+        "strtok для string"
+      ],
+      "correctIndex": 0,
+      "explanation": "В C++ нет split в std::string; используют stringstream с getline или вручную."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "strings",
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <sstream>\n#include <string>\nint main() { std::string s = \"a b c\"; std::stringstream ss(s); std::string w; int n = 0; while (ss >> w) ++n; std::cout << n; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Три слова разбиты пробелами: a, b, c."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Строковые операции в C++ — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "основные"
+          "strings",
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как выровнять строку до ширины 10?",
+      "optionsLearning": [
+        "std::setw(10) и std::left/std::right",
+        "s.width(10)",
+        "s.resize(10)",
+        "s.pad(10)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Манипуляторы <iomanip>: setw, left, right."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Строковые операции в C++ — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "strings",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как преобразовать строку к нижнему регистру в C++11?",
+      "optionsLearning": [
+        "std::transform + ::tolower",
+        "s.lower()",
+        "strlower(s)",
+        "s.to_lower()"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::transform применяет tolower к каждому символу."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"abc\"; s.assign(2, 'x'); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "xx",
+        "xxabc",
+        "abc",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "assign(2,'x') заменяет содержимое на xx."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Строковые операции в C++ — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как найти последнее вхождение подстроки?",
+      "optionsLearning": [
+        "s.rfind(sub)",
+        "s.find(sub)",
+        "s.find_last",
+        "s.back_find"
+      ],
+      "correctIndex": 0,
+      "explanation": "rfind ищет с конца строки."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"ababa\"; std::cout << s.rfind('a'); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "0",
+        "2",
+        "3"
+      ],
+      "correctIndex": 0,
+      "explanation": "Последнее 'a' на индексе 4."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Строковые операции в C++ — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как извлечь число из начала строки?",
+      "optionsLearning": [
+        "std::stoi(s, &pos)",
+        "atoi всегда возвращает int",
+        "s.at(0)",
+        "parse(s)"
+      ],
+      "correctIndex": 0,
+      "explanation": "stoi парсит число и может вернуть позицию окончания."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Строковые операции в C++ — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Чем грозит stoi при нечисловой строке?",
+      "optionsLearning": [
+        "Бросает std::invalid_argument (или out_of_range)",
+        "Возвращает 0",
+        "Ошибка компиляции",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "stoi бросает исключение при некорректном вводе."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"42abc\"; std::cout << std::stoi(s); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "abc",
+        "Ошибка",
+        "420"
+      ],
+      "correctIndex": 0,
+      "explanation": "stoi парсит число 42 и останавливается на буквах."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Строковые операции в C++ — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как сравнить первые n символов двух строк?",
+      "optionsLearning": [
+        "s1.compare(0, n, s2)",
+        "s1 == s2",
+        "memcmp(s1, s2, n)",
+        "s1.substr(0,n) == s2.substr(0,n) тоже можно"
+      ],
+      "correctIndex": 0,
+      "explanation": "compare(0,n,s2) сравнивает префикс; можно и через substr."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Строковые операции в C++ — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как проверить, что строка пустая или из пробелов?",
+      "optionsLearning": [
+        "Пустая — s.empty(); пробелы — обход и isspace",
+        "s == \" \"",
+        "s.trim().empty() без trim нельзя",
+        "s.null()"
+      ],
+      "correctIndex": 0,
+      "explanation": "empty() — точная проверка; проверка на пробелы требует обхода/trim."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"abcabc\"; std::cout << s.find(\"ca\"); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "5",
+        "0",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Подстрока \"ca\" начинается на индексе 2."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Строковые операции в C++ — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как создать строку повторением другой строки (C++ нет std::operator* для std::string)?",
+      "optionsLearning": [
+        "В цикле конкатенировать или string(len*…)",
+        "s * 3 автоматически",
+        "s.repeat(3)",
+        "std::repeat(s,3)"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator* не определён для std::string — повторение вручную."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Строковые операции в C++ — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Что делает s.clear()?",
+      "optionsLearning": [
+        "Очищает строку (size = 0)",
+        "Удаляет последний символ",
+        "Заполняет пробелами",
+        "Сбрасывает кодировку"
+      ],
+      "correctIndex": 0,
+      "explanation": "clear удаляет все символы из строки."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Строковые операции в C++ — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string s = \"Hello\"; s.erase(0, 2); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "llo",
+        "Hello",
+        "He",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "erase(0,2) удаляет первые два символа: llo."
     },
     {
       "id": "cpp.basics.strings.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Строковые операции в C++ — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "strings",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.strings.02.scenario"
+      "scenarioId": "cpp.basics.strings.02.scenario",
+      "promptKnown": "Как безопасно хранить копию строки для будущего использования?",
+      "optionsLearning": [
+        "std::string копия = s; (глубокая копия)",
+        "char* p = s.c_str()",
+        "std::string_view полный",
+        "s.data()"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::string владеет копией; c_str()/data() ссылаются на данные строки."
     }
   ],
   "title": "Basics — Basics C++"

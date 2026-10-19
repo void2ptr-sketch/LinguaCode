@@ -4,144 +4,272 @@
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Деструкторы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "что"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что такое деструктор?",
+      "optionsLearning": [
+        "Метод, вызываемый при уничтожении объекта",
+        "Конструктор",
+        "Геттер",
+        "exception"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор освобождает ресурсы объекта."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-02",
       "kind": "select",
-      "title": "Classes и objects",
+      "title": "Деструкторы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "classes"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Как называется деструктор класса Foo?",
+      "optionsLearning": [
+        "~Foo()",
+        "Foo()",
+        "delete Foo",
+        "destruct()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор — имя класса с тильдой: ~Foo()."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-03",
-      "kind": "select",
-      "title": "Encapsulation principles",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "encapsulation"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass D { public: ~D() { std::cout << 'd'; } };\nint main() { D d; std::cout << 'x'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "xd",
+        "dx",
+        "d",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор вызывается при выходе из области: xd."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-04",
       "kind": "select",
-      "title": "Inheritance mechanisms",
+      "title": "Деструкторы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Когда автоматически вызывается деструктор локального объекта?",
       "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
+        "При выходе из области видимости",
+        "В конце main всегда",
+        "Никогда",
+        "По сборщику"
       ],
       "correctIndex": 0,
+      "explanation": "Локальные объекты разрушаются на выходе из блока."
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-05",
+      "kind": "select",
+      "title": "Деструкторы — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что должен делать деструктор при владении ресурсом?",
+      "optionsLearning": [
+        "Освобождать его (delete, close и т.п.)",
+        "Ничего",
+        "Только логировать",
+        "Вызывать new"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор закрывает/освобождает захваченные ресурсы (RAII)."
     },
     {
-      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-05",
-      "kind": "select",
-      "title": "Polymorphism types",
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass R { int* p; public: R() : p(new int(5)) {} ~R() { delete p; std::cout << 'r'; } int get() const { return *p; } };\nint main() { R r; std::cout << r.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5r",
+        "r5",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "get() → 5, затем деструктор освобождает память: 5r."
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-07",
+      "kind": "select",
+      "title": "Деструкторы — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Можно ли иметь несколько деструкторов?",
+      "optionsLearning": [
+        "Нет, только один",
+        "Да",
+        "Два",
+        "Десять"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор единственный и не перегружается."
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-08",
+      "kind": "select",
+      "title": "Деструкторы — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "syntax"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Принимает ли деструктор параметры?",
+      "optionsLearning": [
+        "Нет, деструктор без параметров",
+        "Да, int",
+        "Да, любые",
+        "Только указатели"
+      ],
+      "correctIndex": 0,
+      "explanation": "У деструктора нет параметров и типа возврата."
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-09",
+      "kind": "select",
+      "title": "Деструкторы — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
         "tags": [
           "oop",
           "polymorphism"
@@ -149,457 +277,372 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-06",
-      "kind": "select",
-      "title": "Abstraction techniques",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Когда деструктор должен быть виртуальным?",
       "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "В полиморфном базовом классе (удаление через базовый указатель)",
+        "Всегда",
+        "Никогда",
+        "В final"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "abstraction"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-07",
-      "kind": "select",
-      "title": "Design patterns overview",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "design"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-08",
-      "kind": "select",
-      "title": "SOLID principles",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "solid"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
-    },
-    {
-      "id": "cpp.oop.fundamentals-destructors.01.scenario.card-09",
-      "kind": "select",
-      "title": "Dependency injection",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "dependency"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "explanation": "Виртуальный деструктор корректно удаляет производные объекты."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-10",
-      "kind": "select",
-      "title": "Factory patterns",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "factory"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual ~A() { std::cout << 'A'; } };\nstruct B : A { ~B() override { std::cout << 'B'; } };\nint main() { A* p = new B; delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "BA",
+        "AB",
+        "A",
+        "B"
+      ],
+      "correctIndex": 0,
+      "explanation": "Производный деструктор B, затем базовый A: BA."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-11",
       "kind": "select",
-      "title": "Observer pattern",
+      "title": "Деструкторы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "observer"
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Бросать ли исключения из деструктора?",
+      "optionsLearning": [
+        "Нет — риск terminate (деструктор noexcept по умолчанию)",
+        "Да, всегда",
+        "Иногда",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение из деструктора во время раскрутки стека — terminate."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-12",
       "kind": "select",
-      "title": "Strategy pattern",
+      "title": "Деструкторы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "strategy"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что такое RAII?",
+      "optionsLearning": [
+        "Захват ресурса в конструкторе, освобождение в деструкторе",
+        "Формат кода",
+        "Тип данных",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII связывает ресурс с временем жизни объекта."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-13",
-      "kind": "select",
-      "title": "Adapter pattern",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
+        "difficulty": [
           "oop",
-          "adapter"
-        ]
+          "syntax"
+        ],
+        "tags": "LIFO: позже созданные разрушаются раньше."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "В каком порядке разрушаются объекты в области?",
+      "code": {
+        "code": [
+          "В обратном порядке создания",
+          "В порядке создания",
+          "Случайно",
+          "Алфавитном"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-14",
       "kind": "select",
-      "title": "Decorator pattern",
+      "title": "Деструкторы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "decorator"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что будет при delete на объект, созданный без new?",
+      "optionsLearning": [
+        "Неопределённое поведение",
+        "Очистка стека",
+        "Ничего",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "delete применим только к памяти из new."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-15",
       "kind": "select",
-      "title": "Facade pattern",
+      "title": "Деструкторы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "facade"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что такое double delete?",
+      "optionsLearning": [
+        "Двукратное освобождение — UB",
+        "Два new",
+        "Два объекта",
+        "Два класса"
+      ],
+      "correctIndex": 0,
+      "explanation": "Повторный delete одного указателя — UB (часто крах)."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-16",
-      "kind": "select",
-      "title": "Builder pattern",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "builder"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct X { ~X() { std::cout << 'x'; } };\nint main() { X a; { X b; } std::cout << 'm'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "xmx",
+        "xxm",
+        "mx",
+        "max"
+      ],
+      "correctIndex": 0,
+      "explanation": "b разрушается по выходу из блока (x), затем a (x) после m: xmx."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "Деструкторы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "debugging"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Чем опасен класс с голевым delete в деструкторе при копировании?",
+      "optionsLearning": [
+        "Двойное освобождение (мелкое копирование)",
+        "Утечка",
+        "Ошибка",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без правила трёх/пяти две копии удалят один указатель дважды."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-18",
       "kind": "select",
-      "title": "Performance implications of OOP",
+      "title": "Деструкторы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "performance"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Как корректно управлять памятью в классе?",
+      "optionsLearning": [
+        "Умные указатели (unique_ptr) вместо ручного delete",
+        "delete в каждом методе",
+        "malloc",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr устраняет ручное управление и ошибки."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-19",
-      "kind": "select",
-      "title": "Best practices для OOP design",
+      "kind": "code-trace",
+      "title": "Деструкторы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-      "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "best"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct C { C() { std::cout << 'c'; } ~C() { std::cout << 'd'; } };\nint main() { C c1; C c2; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "ccdd",
+        "cdcd",
+        "ddcc",
+        "cc"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два конструктора при создании, два деструктора в конце: ccdd."
     },
     {
       "id": "cpp.oop.fundamentals-destructors.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Деструкторы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "composition"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario"
+      "scenarioId": "cpp.oop.fundamentals-destructors.01.scenario",
+      "promptKnown": "Что гарантирует умный указатель в деструкторе класса?",
+      "optionsLearning": [
+        "Автоматическое освобождение ресурса (не нужен ручной деструктор)",
+        "Ничего",
+        "Более быстрый код",
+        "Только логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Умные указатели реализуют RAII без явных деструкторов."
     }
   ],
   "title": "Oop — Intermediate C++"

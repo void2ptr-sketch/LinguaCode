@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.classes.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Classes Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что такое метод класса?",
+      "optionsLearning": [
+        "Функция, объявленная внутри класса",
+        "Глобальная функция",
+        "Указатель",
+        "Структура"
+      ],
+      "correctIndex": 0,
+      "explanation": "Метод — функция-член класса."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Classes Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Какой модификатор делает член доступным всем?",
+      "optionsLearning": [
+        "public",
+        "private",
+        "protected",
+        "hidden"
+      ],
+      "correctIndex": 0,
+      "explanation": "public — доступен отовсюду."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass A { public: int get() const { return 42; } };\nint main() { A a; std::cout << a.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "get() возвращает 42."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Classes Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что означает const в конце объявления метода?",
+      "optionsLearning": [
+        "Метод не изменяет объект (this — const)",
+        "Метод возвращает const",
+        "Метод принимает const",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "const-метод можно вызывать на константных объектах."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "oop",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Компилируется ли этот метод?",
+      "code": {
+        "code": "class A { int x; void bad() const { x = 1; } };",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Нет — const-метод не может менять поля",
+        "Да",
+        "Только с mutable",
+        "В C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "const-метод читает состояние; изменение поля — ошибка (кроме mutable)."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Classes Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "основные"
+          "oop",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что делает mutable поле?",
+      "optionsLearning": [
+        "Позволяет изменять поле в const-методах",
+        "Делает поле константным",
+        "Скрывает поле",
+        "Делает static"
+      ],
+      "correctIndex": 0,
+      "explanation": "mutable нарушает const для конкретного поля (кэши, счётчики)."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Classes Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Как объявить статический метод класса?",
+      "optionsLearning": [
+        "static returnType method(...);",
+        "const method",
+        "public static всё",
+        "friend method"
+      ],
+      "correctIndex": 0,
+      "explanation": "static-методы вызываются без объекта: Class::method()."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass M { public: static int twice(int x) { return x * 2; } };\nint main() { std::cout << M::twice(4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "4",
+        "Ошибка",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статический метод вызывается через класс: 8."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Classes Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Может ли static-метод обращаться к нестатическим полям?",
+      "optionsLearning": [
+        "Нет, у него нет объекта (this)",
+        "Да",
+        "Только к public",
+        "Только в C++23"
+      ],
+      "correctIndex": 0,
+      "explanation": "Статический метод не имеет this — нужен объект/передача."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Classes Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "oop",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что такое перегрузка методов в классе?",
+      "optionsLearning": [
+        "Методы с одним именем и разными параметрами",
+        "Наследование",
+        "Полиморфизм",
+        "Дружелюбие"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перегрузка внутри класса — как и для свободных функций."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "oop",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass C { public: int f(int) { return 1; } int f(double) { return 2; } };\nint main() { C c; std::cout << c.f(1.0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "Ошибка",
+        "1.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выбирается перегрузка double: 2."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Classes Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что такое дружественная функция (friend)?",
+      "optionsLearning": [
+        "Функция вне класса с доступом к private",
+        "Член класса",
+        "Статическая функция",
+        "Виртуальная функция"
+      ],
+      "correctIndex": 0,
+      "explanation": "friend предоставляет внешней функции приватный доступ."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Classes Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Нужен ли friend для перегрузки operator<<?",
+      "optionsLearning": [
+        "Да, часто — доступ к приватным полям",
+        "Нет",
+        "Только в C++20",
+        "Запрещено"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator<< обычно реализуется как friend для доступа к данным."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass P { int x = 9; public: int get() const { return x; } };\nint main() { const P p; std::cout << p.get(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "const-объект может вызывать только const-методы: 9."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Classes Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Какой метод вызывается автоматически при создании объекта?",
+      "optionsLearning": [
+        "Конструктор",
+        "Деструктор",
+        "Геттер",
+        "main"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конструктор инициализирует объект при создании."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Classes Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Какой метод вызывается при уничтожении объекта?",
+      "optionsLearning": [
+        "Деструктор",
+        "Конструктор",
+        "finalize",
+        "close"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор освобождает ресурсы при разрушении."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Classes Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nclass D { public: D() { std::cout << 'c'; } ~D() { std::cout << 'd'; } };\nint main() { D d; std::cout << 'x'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "cxd",
+        "cdx",
+        "dxc",
+        "xc"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок: конструктор, тело, деструктор → cxd."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Classes Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что такое правило трёх (Rule of Three)?",
+      "optionsLearning": [
+        "Если нужен один из {деструктор, копирующий оператор=, копирующий конструктор}, нужны все",
+        "Три конструктора",
+        "Три класса",
+        "Три метода"
+      ],
+      "correctIndex": 0,
+      "explanation": "Правило трёх связывает явное управление ресурсами и копирование."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Classes Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Что такое конструктор копирования?",
+      "optionsLearning": [
+        "Создаёт объект-копию другого объекта",
+        "Копирует поля в себе",
+        "Перемещает объект",
+        "Удаляет объект"
+      ],
+      "correctIndex": 0,
+      "explanation": "Copy constructor: Class(const Class& other)."
     },
     {
       "id": "cpp.basics.classes.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Classes Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "oop",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.classes.01.scenario"
+      "scenarioId": "cpp.basics.classes.01.scenario",
+      "promptKnown": "Какая цель инкапсуляции в классе?",
+      "optionsLearning": [
+        "Защита инвариантов и скрытие деталей реализации",
+        "Ускорение компиляции",
+        "Уменьшение файлов",
+        "Упрощение синтаксиса"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкапсуляция даёт контроль над изменением состояния."
     }
   ],
   "title": "Basics — Basics C++"

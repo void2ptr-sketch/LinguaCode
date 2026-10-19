@@ -4,602 +4,637 @@
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Modern C++ 02 — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что даёт auto в C++?",
+      "optionsLearning": [
+        "Вывод типа из инициализатора",
+        "динамическая типизация",
+        "обязательно int",
+        "макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "auto снимает необходимость писать тип явно."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Modern C++ 02 — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое nullptr?",
+      "optionsLearning": [
+        "Типобезопасный литерал пустого указателя",
+        "0",
+        "NULL из C",
+        "false"
+      ],
+      "correctIndex": 0,
+      "explanation": "nullptr имеет тип std::nullptr_t и не путается с 0."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int* p = nullptr; std::cout << (p == nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "nullptr == nullptr — истина (1)."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Modern C++ 02 — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое range-based for?",
+      "optionsLearning": [
+        "for (auto x : container)",
+        "for (;;)",
+        "for (x=0;x<n;x++)",
+        "foreach в C#"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удобный цикл по контейнеру."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Modern C++ 02 — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "modern-cpp",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что делает std::make_unique?",
+      "optionsLearning": [
+        "Создаёт unique_ptr безопасно",
+        "Создаёт копию",
+        "Делает код быстрым",
+        "Включает оптимизации"
+      ],
+      "correctIndex": 0,
+      "explanation": "make_unique<T>(args) — предпочтительный способ владения."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "modern-cpp",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { auto p = std::make_unique<int>(7); std::cout << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разыменование unique_ptr даёт 7."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Modern C++ 02 — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое structured bindings (C++17)?",
+      "optionsLearning": [
+        "Распаковка pair/tuple/структур: auto [a, b] = expr;",
+        "Привязка к потоку",
+        "Ссылки",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "structured bindings декомпозируют значения в переменные."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\nint main() { std::pair<int, int> p = {3, 4}; auto [a, b] = p; std::cout << a + b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "34",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "a=3, b=4 → 7."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Modern C++ 02 — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое std::optional?",
+      "optionsLearning": [
+        "Значение, которое может отсутствовать",
+        "Умный указатель",
+        "Строка",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "optional<T> хранит либо T, либо ничего (nullopt)."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <optional>\nint main() { std::optional<int> o = 5; std::cout << o.value(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "Ошибка",
+        "адрес",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "value() возвращает хранимое значение 5."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Modern C++ 02 — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Как проверить, что optional пуст?",
+      "optionsLearning": [
+        "if (!o.has_value())",
+        "if (o == nullptr)",
+        "if (o.empty)",
+        "o == 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "has_value() (или bool(o)) проверяет наличие значения."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Modern C++ 02 — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое std::variant?",
+      "optionsLearning": [
+        "Типобезопасная «union» из нескольких альтернатив",
+        "Упаковщик",
+        "Конвертер",
+        "Контейнер"
+      ],
+      "correctIndex": 0,
+      "explanation": "variant<T1, T2, …> хранит одно значение одного из типов."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <variant>\nint main() { std::variant<int, double> v = 42; std::cout << std::get<int>(v); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "Ошибка",
+        "0",
+        "42.0"
+      ],
+      "correctIndex": 0,
+      "explanation": "get<int> извлекает значение 42."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Modern C++ 02 — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что делает std::visit?",
+      "optionsLearning": [
+        "Применяет посетителя к активной альтернативе variant",
+        "Вызывает метод",
+        "Сортирует",
+        "Печатает"
+      ],
+      "correctIndex": 0,
+      "explanation": "visit обрабатывает variant по фактическому типу."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Modern C++ 02 — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "modern-cpp",
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое if constexpr?",
+      "optionsLearning": [
+        "Условная компиляция по константному условию",
+        "Обычный if",
+        "switch",
+        "макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "if constexpr выборочно включает код при инстанцировании."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Modern C++ 02 — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "modern-cpp",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что делает std::string_view?",
+      "optionsLearning": [
+        "Не владеющее представление строки",
+        "Копирование строки",
+        "Динамическую строку",
+        "Хэш"
+      ],
+      "correctIndex": 0,
+      "explanation": "string_view — лёгкий обзор чужой строки без копирования."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "modern-cpp",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string_view>\nint main() { std::string_view sv = \"abc\"; std::cout << sv.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "4",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "size() = 3 без завершающего нуля."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Modern C++ 02 — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "modern-cpp",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Что такое move-семантика?",
+      "optionsLearning": [
+        "Передача владения ресурсом вместо копирования",
+        "Удаление объекта",
+        "Перемещение файлов",
+        "Оптимизация цикла"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::move позволяет эффективно переносить ресурсы."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Modern C++ 02 — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "modern-cpp",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string a = \"hi\"; std::string b = std::move(a); std::cout << b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "hi",
+        "a",
+        "Ошибка",
+        "пустая"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перемещение передаёт содержимое в b: hi."
     },
     {
       "id": "cpp.basics.modern-cpp.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Modern C++ 02 — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.modern-cpp.02.scenario"
+      "scenarioId": "cpp.basics.modern-cpp.02.scenario",
+      "promptKnown": "Почему лямбды важны в современном C++?",
+      "optionsLearning": [
+        "Позволяют передавать функциональность в алгоритмы кратко",
+        "Они обязательны",
+        "Они быстрее",
+        "Они заменяют классы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбды улучшают читаемость и сокращают код."
     }
   ],
   "title": "Basics — Basics C++"

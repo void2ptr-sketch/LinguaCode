@@ -4,602 +4,638 @@
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Exceptions и Errors 01 — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Какие способы обработки ошибок есть в C++?",
+      "optionsLearning": [
+        "Исключения, коды возврата, errno, optional/expected",
+        "Только исключения",
+        "Только коды",
+        "Только exit"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ поддерживает несколько стратегий ошибок."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Exceptions и Errors 01 — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "история"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Какой недостаток у кодов возврата?",
+      "optionsLearning": [
+        "Ошибку легко проигнорировать",
+        "Они медленные",
+        "Они бросают",
+        "Они запрещены"
+      ],
+      "correctIndex": 0,
+      "explanation": "Коды возврата не принуждают к обработке."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Exceptions и Errors 01 — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "структура"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Когда исключения нежелательны?",
+      "optionsLearning": [
+        "Real-time/embedded с требованием отсутствия сюрпризов",
+        "В маленьких программах",
+        "При работе с int",
+        "Всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "В средах с жёстким временем исключения часто отключают (-fno-exceptions)."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-04",
-      "kind": "select",
-      "title": "Компиляция и запуск",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 01 — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stdexcept>\nint divide(int a, int b) { if (b == 0) throw std::invalid_argument(\"div0\"); return a / b; }\nint main() { try { std::cout << divide(6, 0); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "div0",
+        "0",
+        "6",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "При b=0 бросается invalid_argument: div0."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Exceptions и Errors 01 — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "настройка"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что такое exception guarantee?",
+      "optionsLearning": [
+        "Гарантия безопасности функции при исключении",
+        "Гарантия скорости",
+        "Макрос",
+        "Тип исключения"
+      ],
+      "correctIndex": 0,
+      "explanation": "Уровни: no-throw, strong, basic, no guarantee."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Exceptions и Errors 01 — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "основные"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что означает strong exception guarantee?",
+      "optionsLearning": [
+        "Объект либо изменился полностью, либо не изменился",
+        "Ничего не бросает",
+        "Бросает всегда",
+        "Копирует дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "Strong гарантия — транзакционность: откат при исключении."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Exceptions и Errors 01 — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "переменные"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что делает noexcept в сигнатуре move-конструктора?",
+      "optionsLearning": [
+        "Сообщает, что перемещение не бросает (контейнеры оптимизируют)",
+        "Запрещает move",
+        "Ускоряет",
+        "Бросает"
+      ],
+      "correctIndex": 0,
+      "explanation": "noexcept-move позволяет vector расти без копий."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 01 — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "exceptions",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v(2); v.push_back(9); std::cout << v.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "9",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После push_back — 3 элемента."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Exceptions и Errors 01 — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что делать, если исключение поймано, но обработать нельзя?",
+      "optionsLearning": [
+        "Вывести в лог и пробросить/терминировать",
+        "Молчать",
+        "Игнорировать",
+        "return 0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логирование и переброс — честная стратегия."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Exceptions и Errors 01 — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Чем std::optional подходит для ошибок?",
+      "optionsLearning": [
+        "Сигнализирует отсутствие результата без исключений",
+        "Бросает",
+        "Содержит лог",
+        "Работает с файлами"
+      ],
+      "correctIndex": 0,
+      "explanation": "optional — результат, которого может не быть."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 01 — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <optional>\nstd::optional<int> findId() { return std::nullopt; }\nint main() { auto r = findId(); std::cout << r.has_value(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "nullopt",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "nullopt значит отсутствие значения: has_value()=false."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Exceptions и Errors 01 — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что такое std::error_code?",
+      "optionsLearning": [
+        "Низкоуровневый код ошибки без исключений",
+        "Сообщение",
+        "Исключение",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "error_code (как в filesystem) передаёт код системной ошибки."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Exceptions и Errors 01 — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "функции:"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Какой режим компиляции отключает исключения?",
+      "optionsLearning": [
+        "-fno-exceptions",
+        "-O2",
+        "-g",
+        "-std=fail"
+      ],
+      "correctIndex": 0,
+      "explanation": "Флаг GCC/Clang -fno-exceptions отключает механизм."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Exceptions и Errors 01 — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что произойдёт с throw при -fno-exceptions?",
+      "optionsLearning": [
+        "Программа завершится (terminate)",
+        "Исключение станет кодом",
+        "Ошибка компиляции",
+        "throw игнорируется"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без поддержки исключений throw вызывает terminate."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Exceptions и Errors 01 — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что такое except specification в старом стандарте?",
+      "optionsLearning": [
+        "Историческое объявление бросаемых типов (throw(...)) — устарело",
+        "модификатор доступа",
+        "макрос",
+        "тип данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "Динамические спецификации исключений удалены в C++17."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Exceptions и Errors 01 — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Какой заголовок содержит стандартные исключения?",
+      "optionsLearning": [
+        "<stdexcept>",
+        "<string>",
+        "<vector>",
+        "<errno.h> только"
+      ],
+      "correctIndex": 0,
+      "explanation": "runtime_error, invalid_argument и др. — в <stdexcept>."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Exceptions и Errors 01 — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stdexcept>\nint main() { try { throw std::out_of_range(\"oops\"); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "oops",
+        "out_of_range",
+        "Ошибка",
+        "exc"
+      ],
+      "correctIndex": 0,
+      "explanation": "what() возвращает \"oops\"."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Exceptions и Errors 01 — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Почему не рекомендуется ловить все исключения молча?",
+      "optionsLearning": [
+        "Маскирует реальные проблемы",
+        "Это быстрее",
+        "Обязательно",
+        "Исключение исчезнет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пустой catch скрывает ошибки и усложняет отладку."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Exceptions и Errors 01 — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Что такое rethrow?",
+      "optionsLearning": [
+        "Повторное бросание текущего исключения (throw;)",
+        "Новое исключение",
+        "Копия",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "throw; в catch перенаправляет исключение выше."
     },
     {
       "id": "cpp.basics.exceptions-errors.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Exceptions и Errors 01 — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.exceptions-errors.01.scenario"
+      "scenarioId": "cpp.basics.exceptions-errors.01.scenario",
+      "promptKnown": "Какая стратегия лучше для библиотек?",
+      "optionsLearning": [
+        "Документированные исключения или error_code для API без исключений",
+        "Случайная",
+        "Всегда бросать",
+        "Всегда молчать"
+      ],
+      "correctIndex": 0,
+      "explanation": "Контракт обработки ошибок должен быть явным."
     }
   ],
   "title": "Basics — Basics C++"

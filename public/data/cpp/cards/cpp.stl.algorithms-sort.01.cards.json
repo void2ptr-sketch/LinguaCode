@@ -4,200 +4,43 @@
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое STL?",
+      "title": "sort и сортировки — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие преимущества даёт использование STL в C++?",
-      "optionsLearning": [
-        "Какие преимущества даёт использование STL в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "что"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что делает std::sort?",
+      "optionsLearning": [
+        "Сортирует диапазон в порядке возрастания",
+        "Разворачивает",
+        "Ищет",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "sort(begin, end) — сортировка по умолчанию operator<."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-02",
       "kind": "select",
-      "title": "Containers overview",
+      "title": "sort и сортировки — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать vector, а когда list или deque?",
-      "optionsLearning": [
-        "Когда использовать vector, а когда list или deque?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "containers"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
-    },
-    {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-03",
-      "kind": "select",
-      "title": "std::vector basics",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает динамическое выделение памяти в std::vector?",
-      "optionsLearning": [
-        "Как работает динамическое выделение памяти в std::vector?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::vector"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
-    },
-    {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-04",
-      "kind": "select",
-      "title": "std::list implementation",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какова сложность вставки/удаления элементов в list?",
-      "optionsLearning": [
-        "Какова сложность вставки/удаления элементов в list?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::list"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
-    },
-    {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-05",
-      "kind": "select",
-      "title": "std::deque characteristics",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает block-based storage в deque?",
-      "optionsLearning": [
-        "Как работает block-based storage в deque?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::deque"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
-    },
-    {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-06",
-      "kind": "select",
-      "title": "Iterators и их типы",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работают random access iterators у vector?",
-      "optionsLearning": [
-        "Как работают random access iterators у vector?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "iterators"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
-    },
-    {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-07",
-      "kind": "select",
-      "title": "Algorithms library",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие основные алгоритмы предоставляет <algorithm>?",
-      "optionsLearning": [
-        "Какие основные алгоритмы предоставляет <algorithm>?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -209,397 +52,608 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Какая средняя сложность std::sort?",
+      "optionsLearning": [
+        "O(n log n)",
+        "O(n)",
+        "O(n^2)",
+        "O(log n)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Introsort — O(n log n) в среднем."
     },
     {
-      "id": "cpp.stl.algorithms-sort.01.scenario.card-08",
-      "kind": "select",
-      "title": "std::sort usage",
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как сортировать объекты по нескольким полям?",
-      "optionsLearning": [
-        "Как сортировать объекты по нескольким полям?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {3, 1, 2}; std::sort(v.begin(), v.end()); std::cout << v[0] << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "31",
+        "12",
+        "23"
       ],
       "correctIndex": 0,
+      "explanation": "После сортировки {1,2,3}: 1 и 3."
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-04",
+      "kind": "select",
+      "title": "sort и сортировки — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::sort"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Как отсортировать по убыванию?",
+      "optionsLearning": [
+        "std::sort(begin, end, std::greater<int>())",
+        "sort по умолчанию убывает",
+        "reverse после",
+        "меньше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компаратор std::greater<int>() меняет порядок."
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {3, 1, 2}; std::sort(v.begin(), v.end(), std::greater<int>()); std::cout << v[0] << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "31",
+        "13",
+        "12",
+        "23"
+      ],
+      "correctIndex": 0,
+      "explanation": "Убывание {3,2,1}: 3 и 1."
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-06",
+      "kind": "select",
+      "title": "sort и сортировки — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что такое компаратор?",
+      "optionsLearning": [
+        "Бинарный предикат a < b для порядка",
+        "Сортировщик",
+        "Массива",
+        "Минимум"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компаратор возвращает true, если a идёт раньше b."
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-07",
+      "kind": "select",
+      "title": "sort и сортировки — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Чем stable_sort лучше sort?",
+      "optionsLearning": [
+        "Сохраняет относительный порядок равных",
+        "Быстрее",
+        "Меньше памяти",
+        "Всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "stable_sort — стабильность ценой скорости."
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "stl",
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {5, 2, 8, 1}; std::sort(v.begin(), v.end()); std::cout << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "5",
+        "8"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отсортированный {1,2,5,8}: v[1]=2."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-09",
       "kind": "select",
-      "title": "std::find variations",
+      "title": "sort и сортировки — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как найти элемент по ключу в std::map?",
-      "optionsLearning": [
-        "Как найти элемент по ключу в std::map?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::find"
+          "algorithms",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Как сортировать по убыванию строк по длине?",
+      "optionsLearning": [
+        "Компаратор-лямбда: a.size() > b.size()",
+        "sort по умолчанию",
+        "Нельзя",
+        "reverse"
+      ],
+      "correctIndex": 0,
+      "explanation": "Лямбда задаёт произвольный порядок."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-10",
-      "kind": "select",
-      "title": "std::for_each examples",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как применить функцию к каждому элементу контейнера?",
-      "optionsLearning": [
-        "Как применить функцию к каждому элементу контейнера?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::for_each"
+          "algorithms",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\n#include <string>\nint main() { std::vector<std::string> v = {\"bb\", \"a\", \"ccc\"}; std::sort(v.begin(), v.end(), [](const std::string& a, const std::string& b) { return a.size() < b.size(); }); std::cout << v.front(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "a",
+        "bb",
+        "ccc",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "По длине: a (1)."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-11",
       "kind": "select",
-      "title": "std::transform patterns",
+      "title": "sort и сортировки — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать std::transform для объединения двух контейнеров?",
-      "optionsLearning": [
-        "Можно ли использовать std::transform для объединения двух контейнеров?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "std::transform"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что сортирует std::nth_element?",
+      "optionsLearning": [
+        "Ставит n-й элемент на место как в сортировке",
+        "Все элементы",
+        "Только чётные",
+        "Минимум"
+      ],
+      "correctIndex": 0,
+      "explanation": "nth_element — частичная сортировка за O(n)."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-12",
-      "kind": "select",
-      "title": "Predicate design",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое predicate функция и какие требования к ней?",
-      "optionsLearning": [
-        "Что такое predicate функция и какие требования к ней?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "predicate"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {7, 1, 9, 3, 5}; std::nth_element(v.begin(), v.begin() + 2, v.end()); std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Элемент, который был бы третьим в сортировке (5)",
+        "1",
+        "7",
+        "9"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отсортировано бы {1,3,5,7,9}: v[2]=5."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-13",
       "kind": "select",
-      "title": "Custom comparators",
+      "title": "sort и сортировки — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда нужно использовать operator< vs custom comparator?",
-      "optionsLearning": [
-        "Когда нужно использовать operator< vs custom comparator?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "custom"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что если сортировать уже отсортированный диапазон?",
+      "optionsLearning": [
+        "Быстро (O(n) для уже сортированного в некоторых реализациях)",
+        "Всегда O(n^2)",
+        "Ошибка",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Introsort адаптируется к отсортированным данным."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-14",
       "kind": "select",
-      "title": "Container adaptors (stack, queue)",
+      "title": "sort и сортировки — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается priority_queue от queue?",
-      "optionsLearning": [
-        "Чем отличается priority_queue от queue?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "container"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что делает std::partial_sort?",
+      "optionsLearning": [
+        "Сортирует только первые k элементов (остальные произвольны)",
+        "Всё",
+        "Ничего",
+        "Обратное"
+      ],
+      "correctIndex": 0,
+      "explanation": "partial_sort удобен для «топ-k»."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-15",
-      "kind": "select",
-      "title": "Associative containers (set, map)",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какова сложность операций поиска в associative containers?",
-      "optionsLearning": [
-        "Какова сложность операций поиска в associative containers?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "associative"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {9, 1, 8, 2, 7}; std::partial_sort(v.begin(), v.begin() + 2, v.end()); std::cout << v[0] << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "91",
+        "18",
+        "27"
+      ],
+      "correctIndex": 0,
+      "explanation": "Первые 2 — наименьшие {1,2}."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-16",
       "kind": "select",
-      "title": "Unordered containers (unordered_set, unordered_map)",
+      "title": "sort и сортировки — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает hashing в unordered containers?",
-      "optionsLearning": [
-        "Как работает hashing в unordered containers?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "unordered"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Как отсортировать массив структур по полю?",
+      "optionsLearning": [
+        "Компаратор-лямбда по полю",
+        "Нельзя",
+        "memcmp",
+        "Массив не сортируется"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::sort с лямбдой по member."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-17",
-      "kind": "select",
-      "title": "String manipulation with STL",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эффективно конкатенировать строки в C++?",
-      "optionsLearning": [
-        "Как эффективно конкатенировать строки в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "string"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nstruct P { int v; };\nint main() { std::vector<P> v = {{3}, {1}, {2}}; std::sort(v.begin(), v.end(), [](const P& a, const P& b) { return a.v < b.v; }); std::cout << v[0].v << v[2].v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "31",
+        "12",
+        "23"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сортировка по v: 1 и 3."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-18",
       "kind": "select",
-      "title": "Debugging STL issues",
+      "title": "sort и сортировки — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как диагностировать segmentation fault при работе с контейнерами?",
-      "optionsLearning": [
-        "Как диагностировать segmentation fault при работе с контейнерами?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "debugging"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Что будет при сортировке некорректным компаратором?",
+      "optionsLearning": [
+        "Неопределённое поведение (non-strict-weak-order)",
+        "Сортировка всё равно",
+        "Ошибка",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компаратор обязан задавать строгий слабый порядок."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-19",
       "kind": "select",
-      "title": "Performance optimization",
+      "title": "sort и сортировки — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как профилировать hot paths в C++ коде?",
-      "optionsLearning": [
-        "Как профилировать hot paths в C++ коде?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "performance"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "promptKnown": "Как объединить два отсортированных диапазона?",
+      "optionsLearning": [
+        "std::merge(b1, e1, b2, e2, out)",
+        "sort всех",
+        "concat",
+        "union"
+      ],
+      "correctIndex": 0,
+      "explanation": "merge сливает за O(n+m)."
     },
     {
       "id": "cpp.stl.algorithms-sort.01.scenario.card-20",
-      "kind": "select",
-      "title": "Best practices для STL",
+      "kind": "code-trace",
+      "title": "sort и сортировки — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-      "optionsLearning": [
-        "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "best"
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.algorithms-sort.01.scenario"
+      "scenarioId": "cpp.stl.algorithms-sort.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> a = {1, 3}; std::vector<int> b = {2, 4}; std::vector<int> c(4); std::merge(a.begin(), a.end(), b.begin(), b.end(), c.begin()); std::cout << c[1] << c[3]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "24",
+        "13",
+        "12",
+        "34"
+      ],
+      "correctIndex": 0,
+      "explanation": "Слив: {1,2,3,4} → c[1]=2, c[3]=4."
     }
   ],
   "title": "Stl — Intermediate C++"

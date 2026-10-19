@@ -4,602 +4,629 @@
     {
       "id": "cpp.advanced.realtime.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Real-time Systems — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "что"
+          "realtime",
+          "embedded",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое real-time система?",
+      "optionsLearning": [
+        "Гарантированная реакция в срок",
+        "Быстрая всегда",
+        "Сеть",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Deadline — обязательство."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Real-time Systems — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Чем hard real-time отличается?",
+      "optionsLearning": [
+        "Пропуск deadline = отказ",
+        "мягкий",
+        "средний",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Жёсткие требования."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Real-time — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "структура"
-        ]
+        "difficulty": [
+          "realtime",
+          "memory"
+        ],
+        "tags": "Выделение может блокировать."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "question": "Почему динамические аллокации нежелательны?",
+      "code": {
+        "code": [
+          "Недетерминизм времени",
+          "Скорость",
+          "Память",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Real-time Systems — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое планируемость?",
+      "optionsLearning": [
+        "Возможно ли уложить задачи в сроки",
+        "Сортировка",
+        "Хеш",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Rate Monotonic, EDF."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Real-time Systems — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "realtime",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Почему запрещать блокировки?",
+      "optionsLearning": [
+        "Блокировка мешает сроку",
+        "Быстро",
+        "Память",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приоритетная инверсия."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Real-time — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "realtime"
+        ],
+        "tags": "Стабильность ритма."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "question": "Что такое jitter?",
+      "code": {
+        "code": [
+          "Отклонение времени реакции",
+          "ошибку",
+          "лог",
+          "хэш"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Real-time Systems — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "переменные"
+          "realtime",
+          "os"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что гарантирует RTOS?",
+      "optionsLearning": [
+        "Детерминированные сроки",
+        "максимум скорость",
+        "GUI",
+        "сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Планировщик подробный."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Real-time Systems — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое тайм-слот?",
+      "optionsLearning": [
+        "Окно времени задачи",
+        "ошибка",
+        "поток",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Циклические расписания."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Real-time Systems — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "realtime",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Почему unsafe: сложная иерархия?",
+      "optionsLearning": [
+        "Детерминизм и предсказуемость важнее",
+        "Стиль",
+        "быстро",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Простота критична."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Real-time — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "условные"
-        ]
+        "difficulty": [
+          "realtime",
+          "memory"
+        ],
+        "tags": "Без недетерминированных аллокаций."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "question": "Какие структуры выбрать?",
+      "code": {
+        "code": [
+          "Статические/фиксированные",
+          "динамические",
+          "list везде",
+          "vector всегда"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Real-time Systems — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "циклы"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое deadline?",
+      "optionsLearning": [
+        "Крайний срок выполнения",
+        "Тип",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Гарантия ответа."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Real-time Systems — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое worst-case execution time (WCET)?",
+      "optionsLearning": [
+        "Максимальное время задачи",
+        "среднее",
+        "минимальное",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Анализ худшего случая."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Real-time — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "функции:"
-        ]
+        "difficulty": [
+          "realtime"
+        ],
+        "tags": "Профиль худших сценариев."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "question": "Что важно измерять?",
+      "code": {
+        "code": [
+          "WCET и jitter",
+          "среднее только",
+          "логи",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Real-time Systems — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "realtime",
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Почему избегают исключений?",
+      "optionsLearning": [
+        "Недетерминизм времени",
+        "типизация",
+        "быстро",
+        "упрощение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неоднозначные точки остановки."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Real-time Systems — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "realtime"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое interrupt latency?",
+      "optionsLearning": [
+        "Задержка до обработки прерывания",
+        "ошибка",
+        "сеть",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Минимизация критична."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Real-time Systems — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "realtime",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что такое приоритетное наследование?",
+      "optionsLearning": [
+        "Механизм от инверсии приоритетов",
+        "стиль",
+        "хэш",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Терпимость к блокировкам."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Real-time Systems — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "realtime",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Как синхронизировать без блокировок?",
+      "optionsLearning": [
+        "lock-free/atomic/Lock guards с бюджетом",
+        "тривиально",
+        "сеть",
+        "лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ограниченные критические секции."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Real-time — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "массивы"
-        ]
+        "difficulty": [
+          "realtime"
+        ],
+        "tags": "Обработка перегрузки."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "question": "Что будет при пропущенном deadline?",
+      "code": {
+        "code": [
+          "Смотр system failure/hard",
+          "автоматизация",
+          "лог",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Real-time Systems — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "realtime",
+          "testing"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Что важно при тестировании RT?",
+      "optionsLearning": [
+        "Нагрузочные и худшие сценарии",
+        "быстрое",
+        "средние",
+        "нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проверка сроков."
     },
     {
       "id": "cpp.advanced.realtime.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Real-time Systems — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "realtime",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.realtime.01.scenario"
+      "scenarioId": "cpp.advanced.realtime.01.scenario",
+      "promptKnown": "Ключикме принципы RT C++?",
+      "optionsLearning": [
+        "Детерминизм, статика, предсказуемость, минимум абстракций",
+        "максимум абстракций",
+        "GC",
+        "динамика"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проектирование для сроков."
     }
   ],
   "title": "Advanced — Advanced C++"

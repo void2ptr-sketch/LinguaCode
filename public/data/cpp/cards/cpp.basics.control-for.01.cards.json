@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.control-for.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Циклы: for — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Какие три части содержит классический цикл for в C++?",
+      "optionsLearning": [
+        "Инициализация; условие; шаг",
+        "Условие; тело; конец",
+        "Начало; середина; финал",
+        "Счётчик; предел; шаг"
+      ],
+      "correctIndex": 0,
+      "explanation": "for (init; condition; step) { } — инициализация, условие продолжения, изменение счётчика."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-02",
-      "kind": "select",
-      "title": "История создания C++",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 3; ++i) std::cout << i; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "012",
+        "123",
+        "0123",
+        "1234"
+      ],
+      "correctIndex": 0,
+      "explanation": "i принимает 0, 1, 2 — выводится 012."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Циклы: for — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Сколько раз выполнится тело for (int i = 0; i < 5; ++i)?",
+      "optionsLearning": [
+        "5",
+        "4",
+        "6",
+        "Бесконечно"
+      ],
+      "correctIndex": 0,
+      "explanation": "i = 0..4 — всего 5 итераций; при i=5 условие ложно."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Циклы: for — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Какой оператор увеличивает счётчик на 1 в цикле?",
+      "optionsLearning": [
+        "i++ или ++i",
+        "i + 1",
+        "i += 2",
+        "inc i"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инкремент i++ (или ++i) увеличивает переменную на 1."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 2; i <= 6; i += 2) std::cout << i << ' '; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2 4 6",
+        "2 4",
+        "2 3 4 5 6",
+        "6 4 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шаг 2: i = 2, 4, 6; при 8 условие ложно."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Циклы: for — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Что будет, если в for опустить все три части?",
+      "optionsLearning": [
+        "Бесконечный цикл for (;;) { }",
+        "Ошибка компиляции",
+        "Цикл не выполнится",
+        "Цикл выполнится один раз"
+      ],
+      "correctIndex": 0,
+      "explanation": "for (;;) — бесконечный цикл, эквивалент while (true)."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Циклы: for — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Можно ли объявить переменную внутри инициализации for?",
+      "optionsLearning": [
+        "Да: for (int i = 0; ...)",
+        "Нет, обязательно снаружи",
+        "Только в C++20",
+        "Только с auto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Переменная, объявленная в инициализации for, видна только внутри цикла."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int s = 0; for (int i = 1; i <= 4; ++i) s += i; std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "9",
+        "1 2 3 4",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сумма 1+2+3+4 = 10."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Циклы: for — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Какой оператор выходит из цикла досрочно?",
+      "optionsLearning": [
+        "break",
+        "continue",
+        "return всегда",
+        "exit(0)"
+      ],
+      "correctIndex": 0,
+      "explanation": "break немедленно завершает ближайший цикл."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Циклы: for — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Что делает continue в цикле?",
+      "optionsLearning": [
+        "Переходит к следующей итерации",
+        "Завершает цикл",
+        "Выходит из программы",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "continue пропускает остаток тела и переходит к шагу/условию следующей итерации."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 5; ++i) { if (i == 2) continue; std::cout << i; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0134",
+        "01234",
+        "01",
+        "024"
+      ],
+      "correctIndex": 0,
+      "explanation": "При i=2 continue пропускает вывод — остаётся 0,1,3,4."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Циклы: for — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "control-flow",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Как перебрать элементы массива arr размера n?",
+      "optionsLearning": [
+        "for (int i = 0; i < n; ++i) { arr[i]... }",
+        "for i in arr",
+        "arr.forEach(i)",
+        "foreach arr as value"
+      ],
+      "correctIndex": 0,
+      "explanation": "Индексный цикл по i от 0 до n-1 обращается к arr[i]."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Циклы: for — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Что такое range-based for в C++?",
+      "optionsLearning": [
+        "for (auto x : container)",
+        "for (;;)",
+        "for (auto)",
+        "for (x:y:z)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Range-based for перебирает элементы контейнера без индексов: for (auto x : c)."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "control-flow",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; for (int x : v) std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "123",
+        "12",
+        "1 2 3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Range-based for выводит каждый элемент: 123."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Циклы: for — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "control-flow",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Как перебрать элементы с одновременным изменением?",
+      "optionsLearning": [
+        "for (auto& x : container) x = ...;",
+        "for (auto x : container) x = ...;",
+        "for (const auto& x : c) x = ...;",
+        "Никак нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ссылка auto& позволяет изменять элементы исходного контейнера."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Циклы: for — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Какой цикл напечатает числа от 10 до 1 в обратном порядке?",
+      "optionsLearning": [
+        "for (int i = 10; i >= 1; --i)",
+        "for (int i = 1; i <= 10; ++i)",
+        "for (int i = 10; i > 0; i+=2)",
+        "for (int i = 10; i; --i)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Условие i >= 1 с декрементом --i даёт 10..1."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 3; ++i) { std::cout << i; if (i == 1) break; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "01",
+        "012",
+        "0",
+        "0123"
+      ],
+      "correctIndex": 0,
+      "explanation": "break при i=1 завершает цикл после вывода 0 и 1."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Циклы: for — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Для чего в заголовке for используется объявление без тела (пустой оператор)?",
+      "optionsLearning": [
+        "for (int i = 0; i < n; ++i); — пустое тело, например для задержки/поиска",
+        "Это всегда ошибка",
+        "Так объявляют функцию",
+        "Так пишут макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пустое тело допустимо, но часто является ошибкой (пропущенная фигурная скобка)."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Циклы: for — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "promptKnown": "Чем ++i отличается от i++ в заголовке цикла?",
+      "optionsLearning": [
+        "++i инкрементирует до использования, i++ после; для счётчика цикла результат одинаков",
+        "i++ быстрее",
+        "++i запрещён",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для счётчика в for разница не влияет, но ++i предпочтителен (нет временной копии)."
     },
     {
       "id": "cpp.basics.control-for.01.scenario.card-20",
-      "kind": "select",
-      "title": "Строки и работа с ними",
+      "kind": "code-trace",
+      "title": "Циклы: for — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "строки"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-for.01.scenario"
+      "scenarioId": "cpp.basics.control-for.01.scenario",
+      "question": "Сколько раз выполнится тело этого цикла?",
+      "code": {
+        "code": "for (int i = 0; i < 0; ++i) std::cout << i;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "Бесконечно",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Условие i < 0 ложно с самого начала — тело не выполняется ни разу."
     }
   ],
   "title": "Basics — Basics C++"

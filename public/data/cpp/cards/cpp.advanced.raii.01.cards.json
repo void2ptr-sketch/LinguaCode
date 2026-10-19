@@ -4,602 +4,648 @@
     {
       "id": "cpp.advanced.raii.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "RAII и Resource Management — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "что"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что такое RAII?",
+      "optionsLearning": [
+        "Захват ресурса в конструкторе, освобождение в деструкторе",
+        "Формат кода",
+        "Макрос",
+        "Тип данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "Resource Acquisition Is Initialization — ключевая идиома."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "RAII и Resource Management — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "история"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Какие ресурсы управляются через RAII?",
+      "optionsLearning": [
+        "Память, файлы, мьютексы, сокеты",
+        "Только int",
+        "Строки",
+        "Никакие"
+      ],
+      "correctIndex": 0,
+      "explanation": "Любой парный захват/освобождение."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "структура"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { auto p = std::make_unique<int>(1); std::cout << 'x'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "x",
+        "1",
+        "1x",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr автоматически освободится; вывод x."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "RAII и Resource Management — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "компиляция"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что произойдёт с unique_ptr при выходе из области?",
+      "optionsLearning": [
+        "Автоматический delete",
+        "Утечка",
+        "Ошибка",
+        "Копия"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор unique_ptr удаляет объект."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "RAII и Resource Management — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "modern-cpp",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что такое scope guard (C++17)?",
+      "optionsLearning": [
+        "Отложенное действие при выходе из области",
+        "Виртуальная функция",
+        "Шаблон",
+        "Атомик"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::scope_exit выполняет действие на выходе."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "основные"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nstruct R { ~R() { std::cout << 'r'; } };\nint main() { { auto r = std::make_unique<R>(); } std::cout << 'x'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "rx",
+        "xr",
+        "r",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выход из блока разрушает R (r), затем x: rx."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "RAII и Resource Management — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "переменные"
+          "memory",
+          "modern-cpp",
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Как RAII помогает при исключениях?",
+      "optionsLearning": [
+        "Ресурсы освобождаются при раскрутке стека",
+        "Исключения скрываются",
+        "Ресурсы копируются",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструкторы вызываются автоматически — ресурсы не текут."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "memory",
+          "modern-cpp",
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct G { ~G() { std::cout << 'g'; } };\nint main() { try { G g; throw 1; } catch (...) { std::cout << 'c'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "gc",
+        "cg",
+        "g",
+        "c"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор g при раскрутке (g), затем catch (c)."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "RAII и Resource Management — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что делает std::lock_guard?",
+      "optionsLearning": [
+        "Блокирует мьютекс при создании, разблокирует при разрушении",
+        "Ждёт вечно",
+        "Удаляет мьютекс",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Классический RAII для мьютексов."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "условные"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <mutex>\nint main() { std::mutex m; { std::lock_guard<std::mutex> g(m); } std::cout << 'o'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "o",
+        "Ошибка",
+        "блокировка",
+        "мутекс"
+      ],
+      "correctIndex": 0,
+      "explanation": "lock_guard разблокировал мьютекс автоматически; вывод o."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "RAII и Resource Management — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "циклы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что такое unique_ptr?",
+      "optionsLearning": [
+        "Умный указатель с единоличным владением",
+        "Разделяемое владение",
+        "Слабый указатель",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr нельзя копировать, только перемещать."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "RAII и Resource Management — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что делает shared_ptr?",
+      "optionsLearning": [
+        "Разделяет владение через счётчик ссылок",
+        "Один владелец",
+        "Ноль",
+        "Стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "shared_ptr освобождается, когда счётчик падает до нуля."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { std::shared_ptr<int> a = std::make_shared<int>(7); { std::shared_ptr<int> b = a; std::cout << b.use_count() << ' '; } std::cout << a.use_count(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2 1",
+        "1 1",
+        "2 2",
+        "1 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два владельца, затем один — счётчики 2 и 1."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "RAII и Resource Management — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Чем weak_ptr полезен?",
+      "optionsLearning": [
+        "Наблюдение без владения, разрыв циклов",
+        "Ускоряет",
+        "Управляет памятью",
+        "Заменяет unique"
+      ],
+      "correctIndex": 0,
+      "explanation": "weak_ptr не увеличивает счётчик ссылок."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "RAII и Resource Management — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что такое правило пяти (Rule of Five)?",
+      "optionsLearning": [
+        "Деструктор, копирующий/перемещающий конструкторы и присваивания",
+        "Пять методов",
+        "Пять классов",
+        "Пять файлов"
+      ],
+      "correctIndex": 0,
+      "explanation": "При явном управлении ресурсом нужны все пять."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "RAII и Resource Management — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Когда деструктор удаляется (deleted)?",
+      "optionsLearning": [
+        "При const/ссылочных членах или некопируемых полях",
+        "Никогда",
+        "Всегда",
+        "При public"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компилятор не может сгенерировать — помечает deleted."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "RAII и Resource Management — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "memory",
+          "io"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <fstream>\nint main() { { std::ofstream f(\"tmp.txt\"); f << \"hi\"; } std::cout << \"done\"; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "done (файл закрыт деструктором)",
+        "hi",
+        "Ошибка",
+        "tmp"
+      ],
+      "correctIndex": 0,
+      "explanation": "Деструктор ofstream закрыл файл — здоровый RAII."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "RAII и Resource Management — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что такое небезопасный голый new?",
+      "optionsLearning": [
+        "Ручное управление с риском утечки/двойного delete",
+        "Скорость",
+        "Ошибка",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Умные указатели делают new/delete излишними."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "RAII и Resource Management — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Какая идиома для блокировок вместо ручного lock/unlock?",
+      "optionsLearning": [
+        "std::lock_guard / std::unique_lock",
+        "lock; unlock",
+        "mutex.lock только",
+        "sleep"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII-блокировки защищают при исключениях."
     },
     {
       "id": "cpp.advanced.raii.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "RAII и Resource Management — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "строки"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.raii.01.scenario"
+      "scenarioId": "cpp.advanced.raii.01.scenario",
+      "promptKnown": "Что даёт интеграция RAII в проектирование?",
+      "optionsLearning": [
+        "Меньше утечек и безопасное исключение",
+        "Больше кода",
+        "Медленнее",
+        "Строже стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Автоматическое управление временем жизни ресурсов."
     }
   ],
   "title": "Advanced — Advanced C++"

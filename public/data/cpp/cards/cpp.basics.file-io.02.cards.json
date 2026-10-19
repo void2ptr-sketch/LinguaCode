@@ -4,602 +4,645 @@
     {
       "id": "cpp.basics.file-io.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "File IO 02 — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Какой заголовок содержит классы файловых потоков?",
+      "optionsLearning": [
+        "<fstream>",
+        "<iostream>",
+        "<cstdio>",
+        "<files>"
+      ],
+      "correctIndex": 0,
+      "explanation": "ifstream/ofstream/fstream объявлены в <fstream>."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "File IO 02 — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "история"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Какой класс читает и пишет в один файл?",
+      "optionsLearning": [
+        "std::fstream",
+        "std::ifstream",
+        "std::ofstream",
+        "std::cin"
+      ],
+      "correctIndex": 0,
+      "explanation": "fstream поддерживает чтение и запись."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "структура"
-        ]
+        "difficulty": [
+          "io",
+          "syntax"
+        ],
+        "tags": "ofstream по умолчанию перезаписывает файл."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Какая строка открывает файл на запись с перезаписью?",
+      "code": {
+        "code": [
+          "std::ofstream out(\"log.txt\");",
+          "std::ifstream out(\"log.txt\");",
+          "std::fstream out = \"log.txt\";",
+          "out(\"log.txt\")"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "File IO 02 — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как защититься от потери данных при перезаписи?",
+      "optionsLearning": [
+        "Открывать с std::ios::app или проверять существование",
+        "Нельзя",
+        "Копировать вручную",
+        "Использовать cin"
+      ],
+      "correctIndex": 0,
+      "explanation": "Режим app добавляет данные в конец, не затирая файл."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Сколько строк запишется в файл этим кодом?",
+      "code": {
+        "code": "std::ofstream f(\"x.txt\"); for (int i = 0; i < 3; ++i) f << i << '\\n';",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Каждая итерация пишет число и перевод строки."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "File IO 02 — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Что будет при записи в файл, открытый для чтения?",
+      "optionsLearning": [
+        "Ошибка/неопределённое поведение (нет прав записи)",
+        "Запись успешна",
+        "Файл создастся",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поток открыт только для чтения — запись не работает."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "File IO 02 — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "переменные"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как прочитать весь файл в одну std::string?",
+      "optionsLearning": [
+        "std::istreambuf_iterator + assign",
+        "file >> s",
+        "file.read(s)",
+        "getline один раз"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::string((std::istreambuf_iterator<char>(f)), {}) — компактное чтение целиком."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Чему равна size строки после чтения всего файла 'one two'?",
+      "code": {
+        "code": "std::ifstream f(\"a.txt\"); std::string s; s.assign(std::istreambuf_iterator<char>(f), {}); std::cout << s.size();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "7",
+        "3",
+        "6",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оба слова и пробел: 7 символов."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "File IO 02 — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "io",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как удалить файл в C++17?",
+      "optionsLearning": [
+        "std::filesystem::remove(path)",
+        "remove с ifstream",
+        "delete file",
+        "f.erase()"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::filesystem::remove из <filesystem> удаляет файл."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "File IO 02 — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "io",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как проверить существование файла в C++17?",
+      "optionsLearning": [
+        "std::filesystem::exists(path)",
+        "file.exists()",
+        "if (file)",
+        "stat вручную"
+      ],
+      "correctIndex": 0,
+      "explanation": "filesystem::exists возвращает true, если путь существует."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "io",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Что выведет эта программа при существующем data.txt?",
+      "code": {
+        "code": "#include <filesystem>\nint main() { std::cout << std::filesystem::exists(\"data.txt\"); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "data.txt",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Существующий файл → true → 1."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "File IO 02 — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как прочитать бинарный файл?",
+      "optionsLearning": [
+        "f.read(buffer, size)",
+        "f >> buffer",
+        "getline",
+        "scanf"
+      ],
+      "correctIndex": 0,
+      "explanation": "istream::read читает заданное число байт в буфер."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "File IO 02 — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как записать бинарные данные?",
+      "optionsLearning": [
+        "f.write(buffer, size)",
+        "f << buffer",
+        "f.puts",
+        "printf"
+      ],
+      "correctIndex": 0,
+      "explanation": "ostream::write записывает байты из буфера."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Что выведет эта программа при gcount()?",
+      "code": {
+        "code": "char buf[10]; std::ifstream f(\"b.bin\"); f.read(buf, 10); std::cout << f.gcount();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Число реально прочитанных байтов",
+        "10 всегда",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "gcount() возвращает количество успешно прочитанных байт."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "File IO 02 — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Чем бинарный режим отличается от текстового?",
+      "optionsLearning": [
+        "Нет преобразования переводов строк — байты как есть",
+        "Файл шифруется",
+        "Скорость выше",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "В двоичном режиме не выполняется трансформация '\\n'."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "File IO 02 — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как открыть файл в бинарном режиме?",
+      "optionsLearning": [
+        "std::ifstream f(\"d\", std::ios::binary)",
+        "std::ifstream f(\"d\")",
+        "binary(f)",
+        "f.binary()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Флаг std::ios::binary включает бинарный режим."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "File IO 02 — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <fstream>\nint main() { std::ofstream f(\"t.bin\", std::ios::binary); int v = 42; f.write(reinterpret_cast<char*>(&v), sizeof(v)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "В файл запишется 4 байта числа 42",
+        "42 текстом",
+        "Ничего",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "write сохраняет бинарное представление int."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "File IO 02 — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "В каком состоянии поток после успешного чтения до конца файла?",
+      "optionsLearning": [
+        "eofbit установлен",
+        "failbit",
+        "badbit",
+        "Чистом"
+      ],
+      "correctIndex": 0,
+      "explanation": "Достижение конца файла устанавливает eofbit."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "File IO 02 — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Почему while (!file.eof()) читает данные некорректно?",
+      "optionsLearning": [
+        "eof() становится true только после неудачной попытки чтения",
+        "eof() запрещён",
+        "Он всегда false",
+        "Он медленный"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проверка eof до чтения приводит к лишней/ложной итерации."
     },
     {
       "id": "cpp.basics.file-io.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "File IO 02 — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.file-io.02.scenario"
+      "scenarioId": "cpp.basics.file-io.02.scenario",
+      "promptKnown": "Как корректно читать файл до конца?",
+      "optionsLearning": [
+        "while (file >> item) или while (getline(file, line))",
+        "while (!file.eof() && file >> item)",
+        "for (;;)",
+        "do-while с eof"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проверка потока после операции чтения — правильная идиома."
     }
   ],
   "title": "Basics — Basics C++"

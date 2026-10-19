@@ -4,144 +4,307 @@
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Динамическое приведение типов — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "что"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что делает dynamic_cast?",
+      "optionsLearning": [
+        "Безопасное приведение по иерархии в runtime",
+        "Приведение чисел",
+        "Приведение void*",
+        "Снимок"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast валидирует преобразование во время выполнения."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-02",
       "kind": "select",
-      "title": "Classes и objects",
+      "title": "Динамическое приведение типов — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "classes"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что вернёт dynamic_cast при неудаче для указателя?",
+      "optionsLearning": [
+        "nullptr",
+        "Исключение",
+        "Оригинал",
+        "Мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для указателей при неудаче возвращается nullptr."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-03",
-      "kind": "select",
-      "title": "Encapsulation principles",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "encapsulation"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual ~A() {} };\nstruct B : A { void g() const {} };\nint main() { A* p = new B; B* b = dynamic_cast<B*>(p); std::cout << (b != nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "Динамическое приведение успешно: 1."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-04",
       "kind": "select",
-      "title": "Inheritance mechanisms",
+      "title": "Динамическое приведение типов — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при неудаче dynamic_cast для ссылки?",
       "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
+        "Исключение std::bad_cast",
+        "nullptr",
+        "Копия",
+        "0"
       ],
       "correctIndex": 0,
+      "explanation": "Для ссылок бросается bad_cast."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "inheritance"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <typeinfo>\nstruct A { virtual ~A() {} };\nstruct B : A {};\nstruct C : A {};\nint main() { A* p = new B; C* c = dynamic_cast<C*>(p); std::cout << (c == nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "B"
+      ],
+      "correctIndex": 0,
+      "explanation": "B не является C — nullptr: 1."
     },
     {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-05",
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-06",
       "kind": "select",
-      "title": "Polymorphism types",
+      "title": "Динамическое приведение типов — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Когда dynamic_cast возможен?",
+      "optionsLearning": [
+        "Только для полиморфных типов (с virtual)",
+        "Всегда",
+        "Никогда",
+        "Только для int"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI требует хотя бы одного виртуального метода."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-07",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 7",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что такое RTTI?",
+      "optionsLearning": [
+        "Информация о типах во время выполнения",
+        "Сборщик мусора",
+        "Оптимизатор",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "RTTI (typeid, dynamic_cast) опирается на virtual."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-08",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 8",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <typeinfo>\nstruct A { virtual ~A() {} };\nstruct D : A {};\nint main() { A* p = new D; std::cout << (typeid(*p) == typeid(D)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "A"
+      ],
+      "correctIndex": 0,
+      "explanation": "typeid по реальному типу: D == D → 1."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-09",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 9",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "types"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Чем dynamic_cast отличается от static_cast?",
+      "optionsLearning": [
+        "dynamic проверяет в runtime, static — без проверки",
+        "Ничем",
+        "static в runtime",
+        "dynamic при компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "static_cast для downcast доверяет программисту."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-10",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 10",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
         "tags": [
           "oop",
           "polymorphism"
@@ -149,389 +312,286 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-06",
-      "kind": "select",
-      "title": "Abstraction techniques",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Когда оправдан dynamic_cast?",
       "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "Обработка объектов по конкретному типу в иерархии",
+        "Всегда",
+        "Никогда",
+        "Для чисел"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "abstraction"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-07",
-      "kind": "select",
-      "title": "Design patterns overview",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "design"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-08",
-      "kind": "select",
-      "title": "SOLID principles",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "solid"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-09",
-      "kind": "select",
-      "title": "Dependency injection",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "dependency"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-10",
-      "kind": "select",
-      "title": "Factory patterns",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "factory"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "explanation": "Использовать аккуратно; часто можно спроектировать без него."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-11",
       "kind": "select",
-      "title": "Observer pattern",
+      "title": "Динамическое приведение типов — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "observer"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при dynamic_cast<int>(p) для указателя?",
+      "optionsLearning": [
+        "Ошибка компиляции (не отношение наследования)",
+        "nullptr",
+        "int",
+        "Исключение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приведение к несвязанному типу не компилируется."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-12",
-      "kind": "select",
-      "title": "Strategy pattern",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "strategy"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual ~B() {} };\nstruct D : B { int x = 5; };\nint main() { B* b = new D; if (auto d = dynamic_cast<D*>(b)) std::cout << d->x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "Ошибка",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Успешное downcast и чтение поля: 5."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-13",
       "kind": "select",
-      "title": "Adapter pattern",
+      "title": "Динамическое приведение типов — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "adapter"
+          "inheritance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что делает upcast (производный → базовый)?",
+      "optionsLearning": [
+        "Безопасен и автоматичен; dynamic не нужен",
+        "Опасен",
+        "Запрещён",
+        "Только dynamic"
+      ],
+      "correctIndex": 0,
+      "explanation": "Производный всегда «является» базовым."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-14",
       "kind": "select",
-      "title": "Decorator pattern",
+      "title": "Динамическое приведение типов — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "decorator"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что произойдёт при static_cast неправильного downcast?",
+      "optionsLearning": [
+        "Неопределённое поведение",
+        "nullptr",
+        "Исключение",
+        "Предупреждение"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неверный static_cast вниз — UB; dynamic безопасен."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-15",
       "kind": "select",
-      "title": "Facade pattern",
+      "title": "Динамическое приведение типов — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "facade"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Что такое кросс-cast (sibling cast)?",
+      "optionsLearning": [
+        "Приведение между «братскими» базами/наследниками через dynamic",
+        "Приведение чисел",
+        "Срез",
+        "Копия"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast позволяет переходы между ветвями иерархии."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-16",
-      "kind": "select",
-      "title": "Builder pattern",
+      "kind": "code-trace",
+      "title": "Динамическое приведение типов — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "builder"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual ~A() {} };\nstruct B { virtual ~B() {} };\nstruct C : A, B {};\nint main() { A* a = new C; B* b = dynamic_cast<B*>(a); std::cout << (b != nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "C"
+      ],
+      "correctIndex": 0,
+      "explanation": "Кросс-cast от A к B успешен через C: 1."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "Динамическое приведение типов — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "oop",
+          "memory"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Откуда dynamic_cast знает тип?",
       "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
+        "Из RTTI, ассоциированной с vptr",
+        "По имени",
+        "Из комментариев",
+        "Не знает"
       ],
       "correctIndex": 0,
+      "explanation": "RTTI хранится рядом с vtable полиморфных классов."
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-18",
+      "kind": "select",
+      "title": "Динамическое приведение типов — Вопрос 18",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "debugging"
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Чем typeid отличается от dynamic_cast?",
+      "optionsLearning": [
+        "typeid даёт тип, dynamic_cast проверяет/преобразует",
+        "Одним же",
+        "typeid для чисел",
+        "Не отличается"
+      ],
+      "correctIndex": 0,
+      "explanation": "typeid::name/id — идентификация; cast — преобразование."
     },
     {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-18",
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-19",
       "kind": "select",
-      "title": "Performance implications of OOP",
+      "title": "Динамическое приведение типов — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
           "performance"
@@ -539,67 +599,47 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-19",
-      "kind": "select",
-      "title": "Best practices для OOP design",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Влияет ли RTTI на скорость?",
       "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
+        "Небольшая цена хранения и проверок",
+        "Огромная",
+        "Ноль",
+        "Отрицательная"
       ],
       "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "best"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "explanation": "RTTI добавляет накладные расходы и размер."
     },
     {
       "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Динамическое приведение типов — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "composition"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "promptKnown": "Как отключить RTTI?",
+      "optionsLearning": [
+        "Флаг -fno-rtti у GCC/Clang",
+        "Нельзя",
+        "#pragma rtti",
+        "std::disable"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без RTTI dynamic_cast и typeid недоступны."
     }
   ],
   "title": "Oop — Intermediate C++"

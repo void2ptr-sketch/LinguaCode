@@ -4,602 +4,621 @@
     {
       "id": "cpp.advanced.distributed.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Distributed Systems — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "что"
+          "distributed",
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое распределённая система?",
+      "optionsLearning": [
+        "Множество узлов, совместно обрабатывающих задачи",
+        "Один ПК",
+        "Сеть-только",
+        "Базу данных"
+      ],
+      "correctIndex": 0,
+      "explanation": "Кластеры, микросервисы."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Distributed Systems — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое консенсус?",
+      "optionsLearning": [
+        "Согласие узлов о значении",
+        "Скорость",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Raft/Paxos."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Distributed — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "структура"
-        ]
+        "difficulty": [
+          "distributed"
+        ],
+        "tags": "Надёжный лог в кластере."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "question": "Что делает Raft?",
+      "code": {
+        "code": [
+          "Определяет лидера и репликацию",
+          "Сортирует",
+          "Шифрует",
+          "Логи"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Distributed Systems — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "компиляция"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое репликация?",
+      "optionsLearning": [
+        "Копирование данных на узлы",
+        "Сжатие",
+        "Хеш",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отказоустойчивость."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Distributed Systems — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое sharding?",
+      "optionsLearning": [
+        "Разделение данных по узлам",
+        "Сортировка",
+        "Лог",
+        "Шифр"
+      ],
+      "correctIndex": 0,
+      "explanation": "Партиционирование по ключу."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Distributed — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "distributed"
+        ],
+        "tags": "Нужны таймауты и ретраи."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "question": "Что означает «частичный отказ»?",
+      "code": {
+        "code": [
+          "Некоторые узлы вышли из строя",
+          "Все",
+          "Ошибка",
+          "Логи"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Distributed Systems — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое idempotency?",
+      "optionsLearning": [
+        "Результат повтора операции тот же",
+        "Быстро",
+        "Хеш",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защита от двойной обработки."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Distributed Systems — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "distributed",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое distributed lock?",
+      "optionsLearning": [
+        "Блокировка между узлами",
+        "Мьютекс процесса",
+        "Сеть",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Redlock/ZooKeeper etc."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Distributed — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "операторы"
-        ]
+        "difficulty": [
+          "distributed"
+        ],
+        "tags": "Выбор компромиссов."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "question": "Что такое CAP-теорема?",
+      "code": {
+        "code": [
+          "Ограничение: consistency, availability, partition",
+          "Сетевой протокол",
+          "Хеш",
+          "Шифр"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Distributed Systems — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что выбрать при сетевом разрыве?",
+      "optionsLearning": [
+        "Приоритет CP или AP",
+        "всё",
+        "ничего",
+        "не знаем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Conosistency против Availability."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Distributed Systems — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "циклы"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое message queue?",
+      "optionsLearning": [
+        "Очередь сообщений между узлами",
+        "Поток",
+        "БД",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Kafka, RabbitMQ."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Distributed Systems — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "distributed",
+          "patterns"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое event sourcing?",
+      "optionsLearning": [
+        "Хранение последовательности событий",
+        "Текущее состояние",
+        "Хеш",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "История вместо снимков."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Distributed — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "функции:"
-        ]
+        "difficulty": [
+          "distributed"
+        ],
+        "tags": "Трудно; часто at-least-once."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "question": "Что даёт exactly-once семантика?",
+      "code": {
+        "code": [
+          "Гарантия однократной обработки",
+          "двойная",
+          "нулевая",
+          "случайна"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Distributed Systems — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "параметры"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое microservices?",
+      "optionsLearning": [
+        "Разделение на малые сервисы",
+        "Монолит",
+        "ОС",
+        "Файл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Независимое развёртывание."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Distributed Systems — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "distributed",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Чем платят за микросервисы?",
+      "optionsLearning": [
+        "Сетевые задержки и сложность",
+        "Проще",
+        "Быстрее",
+        "Дешевле"
+      ],
+      "correctIndex": 0,
+      "explanation": "Распределённая сложность."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Distributed Systems — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое service discovery?",
+      "optionsLearning": [
+        "Нахождение адресов сервисов",
+        "Хеш",
+        "Лог",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Consul, etcd."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Distributed Systems — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое Health check?",
+      "optionsLearning": [
+        "Проверка живости узла",
+        "Лог",
+        "Хеш",
+        "Сортировку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удаление мёртвых узлов."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Distributed — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "массивы"
-        ]
+        "difficulty": [
+          "distributed"
+        ],
+        "tags": "Защита от каскада."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "question": "Что делает circuit breaker?",
+      "code": {
+        "code": [
+          "Останавливает вызовы к падающему сервису",
+          "Разрешает все",
+          "Логи",
+          "Шифрует"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Distributed Systems — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Что такое distributed tracing?",
+      "optionsLearning": [
+        "Трассировка запроса через узлы",
+        "Лог на одном",
+        "Хеш",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Jaeger/Zipkin."
     },
     {
       "id": "cpp.advanced.distributed.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Distributed Systems — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "distributed"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.distributed.01.scenario"
+      "scenarioId": "cpp.advanced.distributed.01.scenario",
+      "promptKnown": "Ключевое правило распределённых систем?",
+      "optionsLearning": [
+        "Ожидать отказы и проектировать устойчивость",
+        "идеальные сети",
+        "без таймаутов",
+        "монолит лучше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Design for failure."
     }
   ],
   "title": "Advanced — Advanced C++"

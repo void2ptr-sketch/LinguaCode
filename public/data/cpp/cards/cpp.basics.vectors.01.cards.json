@@ -1,605 +1,649 @@
 {
-  "scenarioId": "scenario-cpp-basics-vectors-01",
+  "scenarioId": "cpp.basics.vectors.01.scenario",
   "cards": [
     {
-      "id": "scenario-cpp-basics-vectors-01.card-01",
+      "id": "cpp.basics.vectors.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Vectors Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Какой тип является динамическим массивом в STL?",
+      "optionsLearning": [
+        "std::vector<T>",
+        "std::set",
+        "std::map",
+        "std::deque только"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::vector — динамический массив с произвольным доступом."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-02",
+      "id": "cpp.basics.vectors.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Vectors Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как создать пустой вектор типа double?",
+      "optionsLearning": [
+        "std::vector<double> v;",
+        "double v[];",
+        "vector v;",
+        "std::array<double> v;"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::vector<double> v; — пустой вектор."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "id": "cpp.basics.vectors.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "containers",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<std::string> v = {\"a\", \"bb\"}; std::cout << v[1].size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "bb",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "v[1] = \"bb\", .size() = 2."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-04",
+      "id": "cpp.basics.vectors.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Vectors Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "containers",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Какая сложность доступа v[i] к элементу?",
+      "optionsLearning": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Произвольный доступ к вектору — константное время."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-05",
+      "id": "cpp.basics.vectors.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Vectors Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Что изменится при копировании вектора?",
+      "optionsLearning": [
+        "Создастся независимая копия всех элементов",
+        "Векторы разделят память",
+        "Копия запрещена",
+        "Только указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Копирование вектора глубокое — элементы дублируются."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "id": "cpp.basics.vectors.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> a = {1, 2}; std::vector<int> b = a; b[0] = 99; std::cout << a[0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "99",
+        "Ошибка",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "b — копия; изменение b не затрагивает a: a[0]=1."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-07",
+      "id": "cpp.basics.vectors.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Vectors Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как сравнить два вектора на равенство?",
+      "optionsLearning": [
+        "Оператором ==: v1 == v2 (побайтово элементы)",
+        "Через strcmp",
+        "Нельзя",
+        "По размеру"
+      ],
+      "correctIndex": 0,
+      "explanation": "vector перегружает ==, сравнивая размер и элементы."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-08",
+      "id": "cpp.basics.vectors.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Vectors Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Что делает v.clear()?",
+      "optionsLearning": [
+        "Удаляет все элементы (size=0)",
+        "Удаляет последний",
+        "Обнуляет все значения",
+        "Очищает capacity"
+      ],
+      "correctIndex": 0,
+      "explanation": "clear удаляет содержимое, но может сохранять capacity."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "id": "cpp.basics.vectors.01.scenario.card-09",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "containers",
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; v.erase(v.begin() + 1); std::cout << v.size() << v[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "33",
+        "34",
+        "23",
+        "32"
+      ],
+      "correctIndex": 0,
+      "explanation": "После erase второго элемента: {1,3,4}, size=3, v[1]=3 → 33."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-10",
+      "id": "cpp.basics.vectors.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Vectors Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "containers",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Почему std::vector быстрее std::list для произвольного доступа?",
+      "optionsLearning": [
+        "vector хранит элементы подряд в памяти",
+        "vector меньше",
+        "list динамичнее",
+        "list старше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Непрерывная память vector даёт O(1) доступ и кэш-локальность."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-11",
+      "id": "cpp.basics.vectors.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Vectors Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "containers",
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как получить итератор на начало вектора?",
+      "optionsLearning": [
+        "v.begin()",
+        "v.start()",
+        "v.first()",
+        "v.zero()"
+      ],
+      "correctIndex": 0,
+      "explanation": "begin() возвращает итератор на первый элемент."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "id": "cpp.basics.vectors.01.scenario.card-12",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "containers",
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {5, 3, 1}; for (auto it = v.rbegin(); it != v.rend(); ++it) std::cout << *it; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "135",
+        "531",
+        "513",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обратные итераторы обходят вектор задом наперёд: 1,3,5."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-13",
+      "id": "cpp.basics.vectors.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Vectors Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "функции:"
+          "containers",
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Что такое невалидизация итераторов при push_back?",
+      "optionsLearning": [
+        "Реаллокация может сделать старые итераторы/указатели недействительными",
+        "Итераторы становятся быстрее",
+        "Ничего",
+        "Вектор ломается"
+      ],
+      "correctIndex": 0,
+      "explanation": "При превышении capacity буфер переносится — старые итераторы аннулируются."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-14",
+      "id": "cpp.basics.vectors.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Vectors Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "containers",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как найти элемент в векторе?",
+      "optionsLearning": [
+        "std::find(begin, end, x)",
+        "v.find(x)",
+        "v.contains только",
+        "Поиск по индексу всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::find возвращает итератор на найденный элемент (или end())."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "id": "cpp.basics.vectors.01.scenario.card-15",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "containers",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\n#include <algorithm>\nint main() { std::vector<int> v = {4, 1, 3}; std::sort(v.begin(), v.end()); std::cout << v[0] << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "14",
+        "43",
+        "31",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После sort: {1,3,4} → 14."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-16",
+      "id": "cpp.basics.vectors.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Vectors Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "containers",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как перевернуть вектор?",
+      "optionsLearning": [
+        "std::reverse(v.begin(), v.end())",
+        "v.reverse()",
+        "v.flip()",
+        "sort вниз"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::reverse меняет порядок элементов на обратный."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-17",
+      "id": "cpp.basics.vectors.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Vectors Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Что делает v.shrink_to_fit()?",
+      "optionsLearning": [
+        "Уменьшает capacity до size",
+        "Удаляет элементы",
+        "Увеличивает capacity",
+        "Копирует вектор"
+      ],
+      "correctIndex": 0,
+      "explanation": "shrink_to_fit просит сократить зарезервированную память."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "id": "cpp.basics.vectors.01.scenario.card-18",
+      "kind": "code-trace",
+      "title": "Vectors Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v; std::cout << v.empty(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "true",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "empty() возвращает true — выводится 1."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-19",
+      "id": "cpp.basics.vectors.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Vectors Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "containers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Когда происходит невалидизация ссылок на элементы vector?",
+      "optionsLearning": [
+        "При реаллокации (push_back свыше capacity)",
+        "Никогда",
+        "При чтении",
+        "При size()==0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Реаллокация переносит элементы — ссылки и указатели на них становятся висячими."
     },
     {
-      "id": "scenario-cpp-basics-vectors-01.card-20",
+      "id": "cpp.basics.vectors.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Vectors Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "containers",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "scenario-cpp-basics-vectors-01"
+      "scenarioId": "cpp.basics.vectors.01.scenario",
+      "promptKnown": "Как правильно вернуть большой вектор из функции?",
+      "optionsLearning": [
+        "Вернуть по значению (NRVO/move делает это почти бесплатно)",
+        "Вернуть указатель на стек",
+        "Копировать всегда",
+        "Через глобальную переменную"
+      ],
+      "correctIndex": 0,
+      "explanation": "RVO/move-семантика позволяют возвращать вектор без лишнего копирования."
     }
   ],
   "title": "Basics — Basics C++"

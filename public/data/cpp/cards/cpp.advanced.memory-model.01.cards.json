@@ -4,602 +4,643 @@
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Memory Model и Atomics — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "memory",
+          "concurrency",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что такое модель памяти C++?",
+      "optionsLearning": [
+        "Правила видимости и упорядочивания между потоками",
+        "RAM",
+        "Кэш",
+        "Разметка стека"
+      ],
+      "correctIndex": 0,
+      "explanation": "Модель памяти определяет, что видят потоки."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Memory Model и Atomics — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "история"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что делает std::atomic<T>?",
+      "optionsLearning": [
+        "Неделимые операции над T для потоков",
+        "Обычную переменную",
+        "Мутекс",
+        "Копию"
+      ],
+      "correctIndex": 0,
+      "explanation": "Атомарные типы устраняют гонки данных."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Memory Model и Atomics — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "структура"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> a{0}; a.fetch_add(5); std::cout << a.load(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "Ошибка",
+        "a"
+      ],
+      "correctIndex": 0,
+      "explanation": "fetch_add(5) → 5."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Memory Model и Atomics — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "компиляция"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что такое data race?",
+      "optionsLearning": [
+        "Несинхронизированный доступ, меняющий данные",
+        "Быстрый код",
+        "Ошибка компиляции",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Data race — UB в модели памяти C++."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Memory Model и Atomics — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "настройка"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Какие операции являются атомарными?",
+      "optionsLearning": [
+        "load, store, fetch_add, compare_exchange у atomic",
+        "Любые",
+        "Только ++",
+        "Только int"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::atomic предоставляет неделимые операции."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Memory Model и Atomics — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "основные"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> a{0}; ++a; ++a; std::cout << a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "0",
+        "Ошибка",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два атомарных инкремента → 2."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Memory Model и Atomics — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что такое memory_order::seq_cst?",
+      "optionsLearning": [
+        "Строгая последовательная согласованность (по умолчанию)",
+        "Слабая",
+        "Расслабленная",
+        "Отсутствует"
+      ],
+      "correctIndex": 0,
+      "explanation": "seq_cst — самая строгая и простая для понимания."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Memory Model и Atomics — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что делает memory_order::relaxed?",
+      "optionsLearning": [
+        "Только атомарность без упорядочивания",
+        "Полную синхронизацию",
+        "Сортировку",
+        "Запрет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Relaxed — минимальные гарантии, максимальная скорость."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Memory Model и Atomics — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> a{1}; int v = a.exchange(2); std::cout << v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "exchange возвращает старое значение 1."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Memory Model и Atomics — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что делает compare_exchange?",
+      "optionsLearning": [
+        "Атомарное сравнение и условная запись",
+        "Копию",
+        "Сложение",
+        "Загрузку"
+      ],
+      "correctIndex": 0,
+      "explanation": "CAS — основа lock-free алгоритмов."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Memory Model и Atomics — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что значит «happens-before»?",
+      "optionsLearning": [
+        "Порядок, гарантирующий видимость в модели памяти",
+        "Хронограф",
+        "Поток",
+        "Объект"
+      ],
+      "correctIndex": 0,
+      "explanation": "Отношение упорядочивания синхронизации."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Memory Model и Atomics — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что такое lock-free структуры?",
+      "optionsLearning": [
+        "Алгоритмы без блокировок на атомиках",
+        "Мьютексы",
+        "Сети",
+        "Очереди с lock"
+      ],
+      "correctIndex": 0,
+      "explanation": "Lock-free — прогресс без ожидания блокировок."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Memory Model и Atomics — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic<int> a{0}; int expected = 0; a.compare_exchange_strong(expected, 10); std::cout << a.load(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "0",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ожидание 0 — замена на 10 успешна."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Memory Model и Atomics — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "В чём разница compare_exchange_weak и _strong?",
+      "optionsLearning": [
+        "Weak может ложно сразить (spurious); strong — нет",
+        "Никаких",
+        "Strong быстрее",
+        "Weak запрещён"
+      ],
+      "correctIndex": 0,
+      "explanation": "Weak в циклах — быстрее; strong — проще."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Memory Model и Atomics — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что такое видимость store другим потокам?",
+      "optionsLearning": [
+        "Гарантия, что значение будет прочитано после синхронизации",
+        "Автоматически",
+        "Кэш",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Мьютексы/атомики и ordering определяют видимость."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Memory Model и Atomics — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <atomic>\nint main() { std::atomic_bool b{false}; bool old = b.exchange(true); std::cout << old; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "true",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Старое значение false → 0."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Memory Model и Atomics — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что делает std::atomic_thread_fence?",
+      "optionsLearning": [
+        "Барьер упорядочивания памяти",
+        "Сетевой firewall",
+        "Стек",
+        "Цикл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fence применяет ordering без атомарной операции."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Memory Model и Atomics — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Когда достаточно relaxed?",
+      "optionsLearning": [
+        "Счётчики, где важен только итог",
+        "Всегда",
+        "Никогда",
+        "Для строк"
+      ],
+      "correctIndex": 0,
+      "explanation": "Счётчики без использования данных."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Memory Model и Atomics — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Что гарантирует DEFAULT memory_order?",
+      "optionsLearning": [
+        "seq_cst — единый порядок всех атомиков",
+        "Расслабленность",
+        "Ничего",
+        "Локальный порядок"
+      ],
+      "correctIndex": 0,
+      "explanation": "По умолчанию — строгая согласованность."
     },
     {
       "id": "cpp.advanced.memory-model.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Memory Model и Atomics — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "строки"
+          "memory",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory-model.01.scenario"
+      "scenarioId": "cpp.advanced.memory-model.01.scenario",
+      "promptKnown": "Чем опасен неатомарный доступ к общим данным?",
+      "optionsLearning": [
+        "Гонка данных → UB",
+        "Замедление",
+        "Улучшение perf",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Общие данные требуют синхронизации."
     }
   ],
   "title": "Advanced — Advanced C++"

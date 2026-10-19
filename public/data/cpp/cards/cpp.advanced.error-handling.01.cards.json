@@ -3,602 +3,634 @@
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Error Handling и Debugging — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Какие уровни обработки ошибок есть в C++?",
+      "optionsLearning": [
+        "Исключения, коды, errno, optional/expected, ассерты",
+        "Только исключения",
+        "Только коды",
+        "exit"
+      ],
+      "correctIndex": 0,
+      "explanation": "Многослойная стратегия."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Error Handling и Debugging — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Когда предпочесть error_code исключениям?",
+      "optionsLearning": [
+        "Библиотеки без исключений/hot-path",
+        "Всегда",
+        "Never",
+        "Для отладки"
+      ],
+      "correctIndex": 0,
+      "explanation": "Явная передача ошибки."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Error Handling и Debugging — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "структура"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <optional>\nstd::optional<int> parse(const std::string& s) { if (s.empty()) return std::nullopt; return s.size(); }\nint main() { std::cout << parse(\"\").has_value(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "0 или 1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пустая строка → nullopt: false."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Error Handling и Debugging — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "компиляция"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое assert()?",
+      "optionsLearning": [
+        "Проверка инварианта в debug-сборке",
+        "Runtime всегда",
+        "Макрос быстрый",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "assert убивает debug, помогает отладке."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Error Handling и Debugging — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "настройка"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что делает NDEBUG?",
+      "optionsLearning": [
+        "Выключает assert в release",
+        "Включает логи",
+        "Ускоряет",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "С NDEBUG ассерты не компилируются."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Error Handling и Debugging — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "основные"
+          "exceptions",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "question": "Что выведет этот код без NDEBUG?",
+      "code": {
+        "code": "assert(1 == 2);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Упал ассерт (abort)",
+        "1",
+        "Ошибка компиляции",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "assert поймал нарушение: abort."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Error Handling и Debugging — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "переменные"
+          "exceptions",
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое попадание в отладчик?",
+      "optionsLearning": [
+        "breakpoint в gdb/lldb",
+        "Ошибка",
+        "Логи",
+        "Стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "Точки останова для анализа."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Error Handling и Debugging — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "debugging",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что делает valgrind?",
+      "optionsLearning": [
+        "Поиск утечек памяти и ошибок",
+        "Компилятор",
+        "Сеть",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Memcheck находит неверное использование памяти."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Error Handling и Debugging — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "debugging",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое sanitizer?",
+      "optionsLearning": [
+        "Инструменты обнаружения UB (ASan/UBSan)",
+        "Стиль кода",
+        "Линтер",
+        "Генератор"
+      ],
+      "correctIndex": 0,
+      "explanation": "AddressSanitizer и др. в GCC/Clang."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Error Handling и Debugging — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "условные"
-        ]
+        "difficulty": [
+          "debugging",
+          "syntax"
+        ],
+        "tags": "ASan ловит переполнения и use-after-free."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "question": "Как включить AddressSanitizer?",
+      "code": {
+        "code": [
+          "-fsanitize=address",
+          "-g",
+          "-Wall",
+          "-o"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Error Handling и Debugging — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "циклы"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое stack trace?",
+      "optionsLearning": [
+        "Цепочка вызовов до момента ошибки",
+        "Стек данных",
+        "Код",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Показывает путь вызовов."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Error Handling и Debugging — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "операторы"
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что делает catch (...) по Best practice?",
+      "optionsLearning": [
+        "Логирует и перебрасывает или завершает",
+        "Молчит",
+        "Ретёрны",
+        "Спит"
+      ],
+      "correctIndex": 0,
+      "explanation": "Не глотать исключения молча."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Error Handling и Debugging — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "функции:"
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <stdexcept>\ndouble divv(double a, double b) { if (b == 0) throw std::runtime_error(\"div0\"); return a / b; }\nint main() { try { std::cout << divv(4, 0); } catch (const std::exception& e) { std::cout << e.what(); } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "div0",
+        "0",
+        "4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Исключение поймано: div0."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Error Handling и Debugging — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое robust «fail fast»?",
+      "optionsLearning": [
+        "Быстрое обнаружение и остановка при инвариант-нарушении",
+        "Замедление",
+        "Логи",
+        "Повтор"
+      ],
+      "correctIndex": 0,
+      "explanation": "fail-fast — ранний детект."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Error Handling и Debugging — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "exceptions",
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Зачем логировать исключения?",
+      "optionsLearning": [
+        "Контекст для диагностики",
+        "Стиль",
+        "Скорость",
+        "Законы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логирование помогает понять причину."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Error Handling и Debugging — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое structured logging?",
+      "optionsLearning": [
+        "Логирование по полям/структуре (JSON)",
+        "Просто текст",
+        "Нет",
+        "Сетевой"
+      ],
+      "correctIndex": 0,
+      "explanation": "Машинно-читаемые логи."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Error Handling и Debugging — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "exceptions",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <system_error>\nint main() { std::error_code ec = std::make_error_code(std::errc::file_exists); std::cout << (int)ec.value(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Некоторый код ошибки (не 0)",
+        "0",
+        "17",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "error_code — системный код."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Error Handling и Debugging — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "exceptions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Чем helper ошибочно?: try/catch глубоко вложенных? ",
+      "optionsLearning": [
+        "Пониманием точки перехвата и контракта функции",
+        "Скоростью",
+        "Стилем",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Выбор стратегии оправдан слоем."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Error Handling и Debugging — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Что такое reproducible bug?",
+      "optionsLearning": [
+        "Воспроизводимая ошибка — идеал отладки",
+        "Случайная",
+        "Логи",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Воспроизведение упрощает поиск."
     },
     {
       "id": "cpp.advanced.error-handling.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Error Handling и Debugging — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "debugging",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.error-handling.01.scenario"
+      "scenarioId": "cpp.advanced.error-handling.01.scenario",
+      "promptKnown": "Какой инструмент профилирования производительности?",
+      "optionsLearning": [
+        "perf, gprof, трассеры",
+        "только компилятор",
+        "text editor",
+        "git"
+      ],
+      "correctIndex": 0,
+      "explanation": "Профилировщики выявляют горячие точки."
     }
   ],
   "scenarioId": "cpp.advanced.error-handling.01.scenario",

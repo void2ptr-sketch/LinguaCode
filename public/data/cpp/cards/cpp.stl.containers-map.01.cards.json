@@ -4,50 +4,43 @@
     {
       "id": "cpp.stl.containers-map.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое STL?",
+      "title": "map и unordered_map — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие преимущества даёт использование STL в C++?",
-      "optionsLearning": [
-        "Какие преимущества даёт использование STL в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "что"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Что хранит std::map?",
+      "optionsLearning": [
+        "Пары ключ-значение, упорядоченные по ключу",
+        "Только ключи",
+        "Только значения",
+        "Массивы"
+      ],
+      "correctIndex": 0,
+      "explanation": "map — ассоциативный контейнер с сортировкой по ключу."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-02",
       "kind": "select",
-      "title": "Containers overview",
+      "title": "map и unordered_map — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать vector, а когда list или deque?",
-      "optionsLearning": [
-        "Когда использовать vector, а когда list или deque?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -59,547 +52,602 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Какая сложность поиска в std::map?",
+      "optionsLearning": [
+        "O(log n)",
+        "O(1)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correctIndex": 0,
+      "explanation": "map реализован деревом — логарифмический доступ."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-03",
-      "kind": "select",
-      "title": "std::vector basics",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает динамическое выделение памяти в std::vector?",
-      "optionsLearning": [
-        "Как работает динамическое выделение памяти в std::vector?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::vector"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m; m[3] = 30; m[1] = 10; std::cout << m.begin()->first; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "3",
+        "30",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "map сортирует ключи: begin указывает на {1,10}."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-04",
       "kind": "select",
-      "title": "std::list implementation",
+      "title": "map и unordered_map — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какова сложность вставки/удаления элементов в list?",
-      "optionsLearning": [
-        "Какова сложность вставки/удаления элементов в list?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::list"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Чем operator[] отличается от at() в map?",
+      "optionsLearning": [
+        "[] создаёт ключ при отсутствии; at() бросает out_of_range",
+        "Ничем",
+        "at() создаёт",
+        "[] бросает"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[k] с новым ключом создаёт элемент; at() безопаснее."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-05",
-      "kind": "select",
-      "title": "std::deque characteristics",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает block-based storage в deque?",
-      "optionsLearning": [
-        "Как работает block-based storage в deque?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::deque"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m; std::cout << m[5]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0 (ключ создан со значением 0)",
+        "Ошибка",
+        "5",
+        "мусор"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator[] создаёт {5, 0}."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-06",
       "kind": "select",
-      "title": "Iterators и их типы",
+      "title": "map и unordered_map — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работают random access iterators у vector?",
-      "optionsLearning": [
-        "Как работают random access iterators у vector?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "iterators"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Как проверить наличие ключа без его создания?",
+      "optionsLearning": [
+        "m.count(k) > 0 или m.find(k) != m.end()",
+        "m[k]",
+        "m.get(k)",
+        "m.has(k)"
+      ],
+      "correctIndex": 0,
+      "explanation": "find/count не модифицируют контейнер."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-07",
-      "kind": "select",
-      "title": "Algorithms library",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие основные алгоритмы предоставляет <algorithm>?",
-      "optionsLearning": [
-        "Какие основные алгоритмы предоставляет <algorithm>?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "algorithms"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m = {{1, 10}, {2, 20}}; std::cout << m.count(2) << m.count(9); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "20"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ключ 2 есть (1), ключ 9 — нет (0)."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-08",
       "kind": "select",
-      "title": "std::sort usage",
+      "title": "map и unordered_map — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как сортировать объекты по нескольким полям?",
-      "optionsLearning": [
-        "Как сортировать объекты по нескольким полям?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::sort"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Какая средняя сложность поиска в unordered_map?",
+      "optionsLearning": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n^2)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хеш-таблица без коллизий — константное время."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-09",
       "kind": "select",
-      "title": "std::find variations",
+      "title": "map и unordered_map — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как найти элемент по ключу в std::map?",
-      "optionsLearning": [
-        "Как найти элемент по ключу в std::map?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::find"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Что нужно для std::string в качестве ключа unordered_map?",
+      "optionsLearning": [
+        "Готовая специализация std::hash<string>",
+        "Ничего нельзя",
+        "operator<",
+        "Вручную"
+      ],
+      "correctIndex": 0,
+      "explanation": "Стандарт предоставляет hash для string."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-10",
-      "kind": "select",
-      "title": "std::for_each examples",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как применить функцию к каждому элементу контейнера?",
-      "optionsLearning": [
-        "Как применить функцию к каждому элементу контейнера?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::for_each"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <unordered_map>\nint main() { std::unordered_map<int, int> m; m[1] = 7; m[1] += 3; std::cout << m[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "7",
+        "3",
+        "1"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[1] = 7, затем +3 → 10."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-11",
       "kind": "select",
-      "title": "std::transform patterns",
+      "title": "map и unordered_map — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать std::transform для объединения двух контейнеров?",
-      "optionsLearning": [
-        "Можно ли использовать std::transform для объединения двух контейнеров?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::transform"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Когда выбрать map, а когда unordered_map?",
+      "optionsLearning": [
+        "map — нужен порядок; unordered_map — скорость поиска",
+        "Всегда map",
+        "Всегда unordered_map",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Компромисс между сортировкой и средним O(1)."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-12",
       "kind": "select",
-      "title": "Predicate design",
+      "title": "map и unordered_map — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое predicate функция и какие требования к ней?",
-      "optionsLearning": [
-        "Что такое predicate функция и какие требования к ней?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "predicate"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Что является элементом std::map?",
+      "optionsLearning": [
+        "std::pair<const Key, Value>",
+        "Key",
+        "Value",
+        "Кортеж"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итерация по map даёт пары ключ-значение."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-13",
-      "kind": "select",
-      "title": "Custom comparators",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда нужно использовать operator< vs custom comparator?",
-      "optionsLearning": [
-        "Когда нужно использовать operator< vs custom comparator?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "custom"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m = {{1, 10}, {2, 20}}; for (const auto& [k, v] : m) std::cout << k; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "21",
+        "1020",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "structured bindings: ключи 1, 2 по порядку."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-14",
       "kind": "select",
-      "title": "Container adaptors (stack, queue)",
+      "title": "map и unordered_map — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается priority_queue от queue?",
-      "optionsLearning": [
-        "Чем отличается priority_queue от queue?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "container"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Как удалить ключ из map?",
+      "optionsLearning": [
+        "m.erase(k)",
+        "m.remove",
+        "delete m[k]",
+        "m.pop(k)"
+      ],
+      "correctIndex": 0,
+      "explanation": "erase по ключу или итератору."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-15",
-      "kind": "select",
-      "title": "Associative containers (set, map)",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какова сложность операций поиска в associative containers?",
-      "optionsLearning": [
-        "Какова сложность операций поиска в associative containers?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "associative"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m = {{1, 1}, {2, 2}}; m.erase(1); std::cout << m.size() << m.begin()->first; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "21",
+        "11",
+        "22"
+      ],
+      "correctIndex": 0,
+      "explanation": "Остаётся {2,2}: size 1, first 2 → 12."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-16",
       "kind": "select",
-      "title": "Unordered containers (unordered_set, unordered_map)",
+      "title": "map и unordered_map — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает hashing в unordered containers?",
-      "optionsLearning": [
-        "Как работает hashing в unordered containers?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "unordered"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Что происходит при insert с существующим ключом?",
+      "optionsLearning": [
+        "Вставка игнорируется, значение не перезаписывается",
+        "Перезаписывается",
+        "Ошибка",
+        "Дубли"
+      ],
+      "correctIndex": 0,
+      "explanation": "insert не заменяет существующее значение; [] — заменяет."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-17",
       "kind": "select",
-      "title": "String manipulation with STL",
+      "title": "map и unordered_map — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эффективно конкатенировать строки в C++?",
-      "optionsLearning": [
-        "Как эффективно конкатенировать строки в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "string"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Что делает emplace в map?",
+      "optionsLearning": [
+        "Конструирует пару на месте",
+        "Копирует всегда",
+        "Удаляет",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "emplace избегает лишних копий/перемещений."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-18",
       "kind": "select",
-      "title": "Debugging STL issues",
+      "title": "map и unordered_map — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как диагностировать segmentation fault при работе с контейнерами?",
-      "optionsLearning": [
-        "Как диагностировать segmentation fault при работе с контейнерами?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "debugging"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "На какой структуре обычно реализован std::map?",
+      "optionsLearning": [
+        "Красно-чёрном дереве",
+        "Массиве",
+        "Списке",
+        "Хеше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сбалансированное дерево даёт O(log n)."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-19",
-      "kind": "select",
-      "title": "Performance optimization",
+      "kind": "code-trace",
+      "title": "map и unordered_map — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как профилировать hot paths в C++ коде?",
-      "optionsLearning": [
-        "Как профилировать hot paths в C++ коде?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "performance"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<std::string, int> m; m[\"a\"] = 1; std::cout << m[\"z\"]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0 (создаст ключ z)",
+        "мусор",
+        "Ошибка",
+        "z"
+      ],
+      "correctIndex": 0,
+      "explanation": "Новый ключ value-init: 0."
     },
     {
       "id": "cpp.stl.containers-map.01.scenario.card-20",
       "kind": "select",
-      "title": "Best practices для STL",
+      "title": "map и unordered_map — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-      "optionsLearning": [
-        "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "best"
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-map.01.scenario"
+      "scenarioId": "cpp.stl.containers-map.01.scenario",
+      "promptKnown": "Как задать хеш для пользовательского типа?",
+      "optionsLearning": [
+        "Специализировать std::hash<Key> или передать хешер",
+        "Нельзя",
+        "operator<",
+        "operator>>"
+      ],
+      "correctIndex": 0,
+      "explanation": "Кастомный ключ требует hash-объекта и operator==."
     }
   ],
   "title": "Stl — Intermediate C++"

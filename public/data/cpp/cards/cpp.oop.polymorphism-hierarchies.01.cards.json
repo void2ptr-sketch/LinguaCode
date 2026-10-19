@@ -4,140 +4,12 @@
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое OOP в C++?",
+      "title": "Полиморфные иерархии — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как классы в C++ обеспечивают инкапсуляцию данных?",
-      "optionsLearning": [
-        "Как классы в C++ обеспечивают инкапсуляцию данных?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "что"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-02",
-      "kind": "select",
-      "title": "Classes и objects",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как объявить класс и создать объект в C++?",
-      "optionsLearning": [
-        "Как объявить класс и создать объект в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "classes"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-03",
-      "kind": "select",
-      "title": "Encapsulation principles",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает инкапсуляция через public/private/protected в C++?",
-      "optionsLearning": [
-        "Как работает инкапсуляция через public/private/protected в C++?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "encapsulation"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-04",
-      "kind": "select",
-      "title": "Inheritance mechanisms",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает virtual inheritance и зачем оно нужно в C++?",
-      "optionsLearning": [
-        "Как работает virtual inheritance и зачем оно нужно в C++?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "oop",
-          "inheritance"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
-    },
-    {
-      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-05",
-      "kind": "select",
-      "title": "Polymorphism types",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-      "optionsLearning": [
-        "Чем отличается compile-time polymorphism от runtime polymorphism в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -149,457 +21,629 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Как грамотно проектировать полиморфную иерархию?",
+      "optionsLearning": [
+        "Общий интерфейс в базе, детали в наследниках",
+        "Копировать всё",
+        "Глобальные функции",
+        "Меньше классов"
+      ],
+      "correctIndex": 0,
+      "explanation": "База — контракт, наследники — реализации."
+    },
+    {
+      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-02",
+      "kind": "select",
+      "title": "Полиморфные иерархии — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что делать с общим поведением?",
+      "optionsLearning": [
+        "Реализовать в базовом методе, переопределять при необходимости",
+        "Дублировать",
+        "Удалить",
+        "Макросом"
+      ],
+      "correctIndex": 0,
+      "explanation": "Базовые реализации сокращают дублирование."
+    },
+    {
+      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct Animal { virtual void speak() const { std::cout << '?'; } };\nstruct Dog : Animal { void speak() const override { std::cout << 'W'; } };\nint main() { std::cout << 'd'; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "d",
+        "W",
+        "?",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "В main только вывод 'd' — иерархия не вызвана."
+    },
+    {
+      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-04",
+      "kind": "select",
+      "title": "Полиморфные иерархии — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Как хранить разнотипные объекты полиморфно?",
+      "optionsLearning": [
+        "Вектор указателей/умных указателей на базу",
+        "Массив объектов",
+        "Один объект",
+        "union"
+      ],
+      "correctIndex": 0,
+      "explanation": "vector<unique_ptr<Base>> — стандартный контейнер полиморфизма."
+    },
+    {
+      "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-05",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "oop",
+          "polymorphism"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-oop",
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\n#include <memory>\nstruct Shape { virtual int v() const = 0; };\nstruct S1 : Shape { int v() const override { return 1; } };\nstruct S2 : Shape { int v() const override { return 2; } };\nint main() { std::vector<std::unique_ptr<Shape>> v; v.push_back(std::make_unique<S1>()); v.push_back(std::make_unique<S2>()); int s = 0; for (auto& p : v) s += p->v(); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "12",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфная сумма: 1+2=3."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-06",
       "kind": "select",
-      "title": "Abstraction techniques",
+      "title": "Полиморфные иерархии — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие техники абстракции используются в STL C++?",
-      "optionsLearning": [
-        "Какие техники абстракции используются в STL C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "abstraction"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что такое срезка и как её избежать?",
+      "optionsLearning": [
+        "Передача по значению теряет тип; использовать ссылки/указатели",
+        "Невозможно",
+        "Игнорировать",
+        "Она ok"
+      ],
+      "correctIndex": 0,
+      "explanation": "Полиморфизм работает через указатели/ссылки, не по значению."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-07",
-      "kind": "select",
-      "title": "Design patterns overview",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит применять паттерн, а когда это излишество в C++?",
-      "optionsLearning": [
-        "Когда стоит применять паттерн, а когда это излишество в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "design"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual int f() const { return 1; } };\nstruct D : B { int f() const override { return 2; } };\nvoid print(B b) { std::cout << b.f(); }\nint main() { D d; print(d); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "Ошибка",
+        "12"
+      ],
+      "correctIndex": 0,
+      "explanation": "Передача по значению срезает D до B: 1."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-08",
       "kind": "select",
-      "title": "SOLID principles",
+      "title": "Полиморфные иерархии — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-      "optionsLearning": [
-        "Что такое Single Responsibility Principle и как его соблюдать в C++?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "solid"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Как клонировать полиморфный объект?",
+      "optionsLearning": [
+        "Виртуальный clone(): Base* clone() = 0;",
+        "Копией",
+        "memcpy",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Паттерн clone возвращает новую копию корректного типа."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-09",
       "kind": "select",
-      "title": "Dependency injection",
+      "title": "Полиморфные иерархии — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается constructor injection от method injection в C++?",
-      "optionsLearning": [
-        "Чем отличается constructor injection от method injection в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "dependency"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что такое NVI (Non-Virtual Interface)?",
+      "optionsLearning": [
+        "Публичный non-virtual вызывает приватный virtual",
+        "Интерфейс без virtual",
+        "Фабрика",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "NVI разделяет API и точки расширения."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-10",
-      "kind": "select",
-      "title": "Factory patterns",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как simple factory отличается от abstract factory в C++?",
-      "optionsLearning": [
-        "Как simple factory отличается от abstract factory в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "factory"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа (NVI-стиль)?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { void run() { step(); } virtual void step() const { std::cout << 'b'; } };\nstruct D : B { void step() const override { std::cout << 'd'; } };\nint main() { B* p = new D; p->run(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "d",
+        "b",
+        "bd",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "run вызывает виртуальный step → D: d."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-11",
       "kind": "select",
-      "title": "Observer pattern",
+      "title": "Полиморфные иерархии — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать observer pattern в C++ с использованием modern features?",
-      "optionsLearning": [
-        "Как реализовать observer pattern в C++ с использованием modern features?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "observer"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что делать с глубокими иерархиями?",
+      "optionsLearning": [
+        "Держать их мелкими и понятными",
+        "Больше уровней",
+        "Только один уровень",
+        "Неважно"
+      ],
+      "correctIndex": 0,
+      "explanation": "Глубокие иерархии усложняют сопровождение."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-12",
       "kind": "select",
-      "title": "Strategy pattern",
+      "title": "Полиморфные иерархии — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать strategy pattern с lambda expressions в C++?",
-      "optionsLearning": [
-        "Как реализовать strategy pattern с lambda expressions в C++?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "strategy"
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что такое mixin применительно к полиморфизму?",
+      "optionsLearning": [
+        "Малые классы, добавляющие поведение через наследование",
+        "Шаблон",
+        "Интерфейс",
+        "Глобал"
+      ],
+      "correctIndex": 0,
+      "explanation": "Mixin-композиция дополняет функциональность."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-13",
-      "kind": "select",
-      "title": "Adapter pattern",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать adapter вместо модификации существующего кода в C++?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "adapter"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct A { virtual void f() const { std::cout << 'a'; } };\nstruct B : A {};\nstruct C : B { void f() const override { std::cout << 'c'; } };\nint main() { A* p = new C; p->f(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "c",
+        "a",
+        "b",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Переопределение в C: вызов c."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-14",
       "kind": "select",
-      "title": "Decorator pattern",
+      "title": "Полиморфные иерархии — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается decorator от inheritance для расширения поведения в C++?",
-      "optionsLearning": [
-        "Чем отличается decorator от inheritance для расширения поведения в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "decorator"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Стоит ли делать все методы virtual?",
+      "optionsLearning": [
+        "Нет — только точки расширения",
+        "Да",
+        "Только getters",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Избыточный virtual усложняет контракт."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-15",
       "kind": "select",
-      "title": "Facade pattern",
+      "title": "Полиморфные иерархии — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как обеспечить обратную совместимость при использовании facade в C++?",
-      "optionsLearning": [
-        "Как обеспечить обратную совместимость при использовании facade в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "facade"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что такое полиморфизм подтипов?",
+      "optionsLearning": [
+        "Использование производного как базового",
+        "Шаблоны",
+        "Перегрузка",
+        "Специализация"
+      ],
+      "correctIndex": 0,
+      "explanation": "Subtype polymorphism — «is-a» через virtual."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-16",
       "kind": "select",
-      "title": "Builder pattern",
+      "title": "Полиморфные иерархии — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда использовать builder вместо constructor с множеством параметров в C++?",
-      "optionsLearning": [
-        "Когда использовать builder вместо constructor с множеством параметров в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "oop",
-          "builder"
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Чем заменить глубокий полиморфизм для вариантов?",
+      "optionsLearning": [
+        "std::variant + visit (статический полиморфизм)",
+        "Ещё наследование",
+        "switch",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Варианты и паттерн посетителя — альтернатива виртуальности."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-17",
       "kind": "select",
-      "title": "Debugging OOP issues",
+      "title": "Полиморфные иерархии — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что делать, если destructor не вызывается для объекта в C++?",
-      "optionsLearning": [
-        "Что делать, если destructor не вызывается для объекта в C++?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "oop",
-          "debugging"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что такое виртуальный деструктор в иерархии?",
+      "optionsLearning": [
+        "virtual ~Base() для корректного удаления",
+        "Геттер",
+        "Не нужен",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без virtual~ удаление Base* неполное."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-18",
-      "kind": "select",
-      "title": "Performance implications of OOP",
+      "kind": "code-trace",
+      "title": "Полиморфные иерархии — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-      "optionsLearning": [
-        "Когда стоит использовать CRTP вместо dynamic polymorphism в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "performance"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nstruct B { virtual ~B() {} virtual int x() const { return 1; } };\nstruct D : B { int x() const override { return 3; } };\nint main() { B* p = new D; D* d = dynamic_cast<D*>(p); std::cout << (d ? d->x() : 0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "dynamic_cast успешен: 3."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-19",
       "kind": "select",
-      "title": "Best practices для OOP design",
+      "title": "Полиморфные иерархии — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-      "optionsLearning": [
-        "Какие лучшие практики проектирования классов важны для C++ разработчика?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "best"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Зачем интерфейсы в иерархиях?",
+      "optionsLearning": [
+        "Унифицируют контракты и упрощают замену реализаций",
+        "Данные",
+        "Скорость",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Интерфейсы поддерживают слабую связанность."
     },
     {
       "id": "cpp.oop.polymorphism-hierarchies.01.scenario.card-20",
       "kind": "select",
-      "title": "Composition over inheritance",
+      "title": "Полиморфные иерархии — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как реализовать composition pattern для замены inheritance в C++?",
-      "optionsLearning": [
-        "Как реализовать composition pattern для замены inheritance в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "oop",
-          "composition"
+          "polymorphism"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-oop",
-      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario"
+      "scenarioId": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "promptKnown": "Что важно для переиспользования иерархий?",
+      "optionsLearning": [
+        "Понятный контракт, отсутствие срезки, аккуратные не-виртуальные API",
+        "Меньше кода",
+        "Больше friends",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хорошая иерархия — ясные обязанности и безопасность."
     }
   ],
   "title": "Oop — Intermediate C++"

@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.streams-files.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Streams и Files — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Что такое поток (stream) в C++?",
+      "optionsLearning": [
+        "Последовательность данных с операциями ввода/вывода",
+        "Файл",
+        "Массив",
+        "Пайп"
+      ],
+      "correctIndex": 0,
+      "explanation": "Поток абстрагирует источник/приёмник данных."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Streams и Files — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "С каким потоком связан std::cout?",
+      "optionsLearning": [
+        "Стандартный вывод (stdout)",
+        "Файл",
+        "Клавиатура",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "cout связан со стандартным потоком вывода."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <sstream>\nint main() { std::stringstream ss; ss << 5 << \" and \" << 7; std::cout << ss.str(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5 and 7",
+        "12",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "stringstream форматирует данные в строку."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Streams и Files — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Как преобразовать строку с числом в int?",
+      "optionsLearning": [
+        "std::stoi(s)",
+        "int(s)",
+        "(int)s",
+        "s.to_int()"
+      ],
+      "correctIndex": 0,
+      "explanation": "stoi парсит строку в целое число."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Streams и Files — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Как преобразовать число в строку?",
+      "optionsLearning": [
+        "std::to_string(x)",
+        "x.to_string",
+        "str(x)",
+        "string(x)"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::to_string формирует строку из числа."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <sstream>\nint main() { std::stringstream ss(\"123\"); int n; ss >> n; std::cout << n + 1; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "124",
+        "123",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Из строки читается 123, выводится 124."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Streams и Files — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Какой манипулятор задаёт точность вещественного вывода?",
+      "optionsLearning": [
+        "std::setprecision(n) / std::fixed",
+        "std::exact",
+        "std::digits",
+        "std::round"
+      ],
+      "correctIndex": 0,
+      "explanation": "setprecision вместе с fixed контролирует число знаков после запятой."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <iomanip>\nint main() { std::cout << std::fixed << std::setprecision(2) << 3.14159; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3.14",
+        "3.14159",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Два знака после запятой: 3.14."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Streams и Files — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Как очистить состояние ошибки потока?",
+      "optionsLearning": [
+        "stream.clear()",
+        "stream.reset()",
+        "stream.ok()",
+        "stream.begin()"
+      ],
+      "correctIndex": 0,
+      "explanation": "clear() сбрасывает failbit/eofbit/badbit."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Streams и Files — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Что произойдёт при stream.fail()?",
+      "optionsLearning": [
+        "true, если последняя операция ввода/вывода не удалась",
+        "true всегда",
+        "program exit",
+        "ошибка типа"
+      ],
+      "correctIndex": 0,
+      "explanation": "fail() сообщает о сбое последней операции."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет этот код при вводе 'abc'?",
+      "code": {
+        "code": "int x; std::cin >> x; std::cout << std::cin.fail();",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "abc",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чтение букв в int — сбой: fail() = true (1)."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Streams и Files — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Как считывать по одному символу из потока?",
+      "optionsLearning": [
+        "stream.get(ch)",
+        "stream >> ch",
+        "stream.read_all",
+        "stream.chars()"
+      ],
+      "correctIndex": 0,
+      "explanation": "get(ch) читает следующий символ без пропуска пробелов."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Streams и Files — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Чем get(ch) отличается от operator>> (ch)?",
+      "optionsLearning": [
+        ">> пропускает пробелы, get — нет",
+        "Они одинаковы",
+        "get быстрее",
+        "Читают int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Извлечение символа >> игнорирует пробельные символы."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char c; std::cin.get(c); std::cout << c; } // ввод: A",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "A",
+        "пробел",
+        "Ошибка",
+        "A\\n"
+      ],
+      "correctIndex": 0,
+      "explanation": "get считывает первый символ 'A'."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Streams и Files — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Что такое форматированный ввод?",
+      "optionsLearning": [
+        "Ввод с интерпретацией типов (>> int, >> string)",
+        "Чтение байт",
+        "Ввод файла",
+        "Шифрование"
+      ],
+      "correctIndex": 0,
+      "explanation": "Форматированный ввод преобразует текст в значения типов."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Streams и Files — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Что делает std::skipws?",
+      "optionsLearning": [
+        "Пропускает пробельные символы при вводе (по умолчанию)",
+        "Запрещает пробелы",
+        "Ускоряет вывод",
+        "Удаляет пробелы из строк"
+      ],
+      "correctIndex": 0,
+      "explanation": "skipws — поведение >> по умолчанию."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Streams и Files — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "рекурсия"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "question": "Что выведет этот код с noskipws?",
+      "code": {
+        "code": "char c; std::cin >> std::noskipws >> c; std::cout << (int)c; // ввод: пусто, только Enter",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "0",
+        "32",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Нажатие Enter оставляет '\\n' (код 10) — он и читается."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Streams и Files — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Какой класс работает со строкой как с потоком?",
+      "optionsLearning": [
+        "std::stringstream",
+        "std::ifstream",
+        "std::cout",
+        "std::filebuf"
+      ],
+      "correctIndex": 0,
+      "explanation": "stringstream — поток поверх std::string."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Streams и Files — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "io",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Какая польза от stringstream?",
+      "optionsLearning": [
+        "Безопасное форматирование/парсинг в одну строку",
+        "Быстрее cout",
+        "Меньше кода",
+        "Только для вывода"
+      ],
+      "correctIndex": 0,
+      "explanation": "stringstream удобен для создания и разбора строк."
     },
     {
       "id": "cpp.basics.streams-files.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Streams и Files — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "io",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.streams-files.01.scenario"
+      "scenarioId": "cpp.basics.streams-files.01.scenario",
+      "promptKnown": "Что возвращает streambuf::in_avail()?",
+      "optionsLearning": [
+        "Число доступных для чтения символов",
+        "Размер потока",
+        "Адрес",
+        "Флаг ошибки"
+      ],
+      "correctIndex": 0,
+      "explanation": "in_avail() — количество символов, готовых к чтению без блокировки."
     }
   ],
   "title": "Basics — Basics C++"

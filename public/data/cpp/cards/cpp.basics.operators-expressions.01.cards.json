@@ -4,602 +4,654 @@
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Operators и Expressions — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор выполняет целочисленное деление?",
+      "optionsLearning": [
+        "/",
+        "%",
+        "div",
+        "//"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор / для целых — целочисленное деление."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Operators и Expressions — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор возвращает остаток от деления?",
+      "optionsLearning": [
+        "%",
+        "/",
+        "mod",
+        "&"
+      ],
+      "correctIndex": 0,
+      "explanation": "% — остаток (modulo) для целых."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Operators и Expressions — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << (7 % 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "2",
+        "3",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 % 3 = 1 (остаток)."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Operators и Expressions — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Как записать инкремент переменной x на 1?",
+      "optionsLearning": [
+        "++x или x++",
+        "x + 1",
+        "x = x + 1.0",
+        "add x 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "Префиксный/постфиксный инкремент."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Operators и Expressions — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "В чём разница x++ и ++x как выражений?",
+      "optionsLearning": [
+        "x++ возвращает старое значение, ++x — новое",
+        "Разницы нет",
+        "++x старше",
+        "x++ быстрее"
+      ],
+      "correctIndex": 0,
+      "explanation": "Постфиксный возвращает копию до изменения; префиксный — после."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Operators и Expressions — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 5; std::cout << x++ << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "56",
+        "55",
+        "66",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "x++ печатает 5, затем x = 6 → вывод 56."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Operators and Expressions — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какие операторы сравнения есть в C++?",
+      "optionsLearning": [
+        "==, !=, <, >, <=, >=",
+        "=, <>",
+        "eq, ne, lt",
+        "is, isnot"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шесть операторов сравнения."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Operators and Expressions — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор присваивает значение?",
+      "optionsLearning": [
+        "=",
+        "==",
+        ":=",
+        "<-"
+      ],
+      "correctIndex": 0,
+      "explanation": "Одиночный = — присваивание; == — сравнение."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 2; x *= 5; std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "7",
+        "25",
+        "2"
+      ],
+      "correctIndex": 0,
+      "explanation": "x *= 5 эквивалентно x = x * 5 → 10."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Operators and Expressions — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор НЕ (логическое отрицание)?",
+      "optionsLearning": [
+        "!",
+        "not из Python",
+        "~",
+        "≠"
+      ],
+      "correctIndex": 0,
+      "explanation": "Унарный ! инвертирует логическое значение."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { bool a = true, b = false; std::cout << (a && b) << (a || b) << !b; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "011",
+        "101",
+        "000",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "a&&b=0, a||b=1, !b=1 → 011."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Operators and Expressions — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Что такое короткое замыкание?",
+      "optionsLearning": [
+        "Второй операнд &&/|| не вычисляется, если первый определяет результат",
+        "Ускорение цикла",
+        "Ошибка",
+        "Кэширование"
+      ],
+      "correctIndex": 0,
+      "explanation": "false && … → false без вычисления правого; true || … → true."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 0; bool r = (x != 0) && (10 / x > 1); std::cout << r; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "Ошибка деления",
+        "10"
+      ],
+      "correctIndex": 0,
+      "explanation": "Короткое замыкание: 10/x не вычисляется — результата false (0)."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Operators and Expressions — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Каков приоритет арифметики в C++?",
+      "optionsLearning": [
+        "*, /, % выше чем +, -",
+        "+, - выше",
+        "Всё равно",
+        "Скобки не нужны"
+      ],
+      "correctIndex": 0,
+      "explanation": "Умножение/деление имеют приоритет над сложением/вычитанием."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << 2 + 3 * 4; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "14",
+        "20",
+        "24",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "3*4=12, +2 = 14."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Operators and Expressions — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор — тернарный?",
+      "optionsLearning": [
+        "cond ? a : b",
+        "if-else",
+        "switch",
+        "??"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тернарный оператор с тремя операндами."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 4; std::string s = (x % 2 == 0) ? std::string(\"even\") : std::string(\"odd\"); std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "even",
+        "odd",
+        "4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "4 чётно → печатается even."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Operators and Expressions — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Какой оператор проверяет биты (побитовое И)?",
+      "optionsLearning": [
+        "&",
+        "&&",
+        "and",
+        "|"
+      ],
+      "correctIndex": 0,
+      "explanation": "Побитовое И — одиночный &; && — логическое."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Operators and Expressions — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << (6 & 3) << (6 | 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "27",
+        "11",
+        "63",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "6&3=2; 6|3=7 → 27."
     },
     {
       "id": "cpp.basics.operators-expressions.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Operators and Expressions — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "types",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.operators-expressions.01.scenario"
+      "scenarioId": "cpp.basics.operators-expressions.01.scenario",
+      "promptKnown": "Как сдвинуть биты вправо?",
+      "optionsLearning": [
+        ">>",
+        "<<",
+        ">>=",
+        "shift"
+      ],
+      "correctIndex": 0,
+      "explanation": "Побитовый сдвиг вправо — >>, влево — <<."
     }
   ],
   "title": "Basics — Basics C++"

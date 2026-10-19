@@ -4,602 +4,649 @@
     {
       "id": "cpp.basics.pointers.02.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Арифметика указателей в C++ — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "что"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что делает p + 1 для указателя на int?",
+      "optionsLearning": [
+        "Сдвигает на один int (обычно 4 байта)",
+        "Прибавляет 1 байт",
+        "Меняет адрес на 1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Арифметика указателей масштабируется размером типа."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-02",
-      "kind": "select",
-      "title": "История создания C++",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "история"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[3] = {10, 20, 30}; int* p = a; std::cout << *(p + 2); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "20",
+        "10",
+        "адрес"
+      ],
+      "correctIndex": 0,
+      "explanation": "p+2 указывает на a[2] = 30."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Арифметика указателей в C++ — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "структура"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Чему равен *(p + i) для массива int a[]? ",
+      "optionsLearning": [
+        "a[i] — тот же элемент",
+        "a[i + 1]",
+        "a[i - 1]",
+        "адресу a[i]"
+      ],
+      "correctIndex": 0,
+      "explanation": "Эквивалентность p[i] == *(p + i) — основа индексации."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Арифметика указателей в C++ — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "компиляция"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что означает p[i] для указателя p?",
+      "optionsLearning": [
+        "Разыменование (p + i) — элемент i",
+        "Байт i в памяти",
+        "Метод i",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "p[i] — синтаксический сахар для *(p + i)."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "pointers",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char s[] = \"abc\"; char* p = s; std::cout << *(p + 1); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "c",
+        "abc"
+      ],
+      "correctIndex": 0,
+      "explanation": "p+1 указывает на 'b'."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Арифметика указателей в C++ — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "основные"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что такое разность указателей p2 - p1?",
+      "optionsLearning": [
+        "Число элементов типа между указателями",
+        "Разность байт",
+        "Адрес",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разность валидна для элементов одного массива и даёт количество элементов."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-07",
-      "kind": "select",
-      "title": "Переменные и константы",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "переменные"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[5] = {1,2,3,4,5}; int* p = a; std::cout << (p + 4) - p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "4",
+        "16",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разность указателей — число элементов: 4."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Арифметика указателей в C++ — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что будет при выходе указателя за границы массива?",
+      "optionsLearning": [
+        "Неопределённое поведение при доступе",
+        "Автоудлинение массива",
+        "0 всегда",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Доступ вне массива — UB; даже вычисление за один элемент считается проблемой."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Арифметика указателей в C++ — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Как перебрать массив через указатели?",
+      "optionsLearning": [
+        "for (int* p = a; p != a + n; ++p) { *p ... }",
+        "for (int* p = a; p <= a; ++p)",
+        "foreach не для указателей",
+        "while (*p++) везде"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итерация от a до a+n с инкрементом указателя."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[4] = {1, 2, 3, 4}; int* p = a; while (p != a + 4) { *p *= 2; ++p; } std::cout << a[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "3",
+        "8",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Удвоение: a[2] = 3*2 = 6."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Арифметика указателей в C++ — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что делает оператор ++p (префиксный инкремент указателя)?",
+      "optionsLearning": [
+        "Смещает указатель на следующий элемент типа",
+        "Увеличивает значение по адресу",
+        "Прибавляет 1 байт",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "++p переходит к следующему элементу массива."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Арифметика указателей в C++ — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Какой эффект у *p++ в C++?",
+      "optionsLearning": [
+        "Разыменовывает p, затем сдвигает p",
+        "Сдвигает, потом разыменовывает",
+        "Ошибка",
+        "Умножает p"
+      ],
+      "correctIndex": 0,
+      "explanation": "Приоритет: *(p++) — значение старого p и сдвиг после."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "функции:"
+          "pointers",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[3] = {5, 6, 7}; int* p = a; std::cout << *p++ << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "56",
+        "65",
+        "57",
+        "77"
+      ],
+      "correctIndex": 0,
+      "explanation": "*p++ — 5, затем p на a[1]; второй *p — 6 → 56."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Арифметика указателей в C++ — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Можно ли вычитать из указателя на первый элемент массива?",
+      "optionsLearning": [
+        "Можно, но результат до начала массива — некорректная арифметика",
+        "Запрещено",
+        "Всегда 0",
+        "Только для char"
+      ],
+      "correctIndex": 0,
+      "explanation": "Указатель до начала массива не определён стандартом."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Арифметика указателей в C++ — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что возвращает std::begin(a) для массива?",
+      "optionsLearning": [
+        "Указатель на первый элемент",
+        "Индекс 0",
+        "Размер",
+        "Итератор конца"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::begin(a) — начало диапазона (для массива — указатель)."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "область"
+          "pointers",
+          "arrays"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int a[5] = {0}; int* p = a + 0; std::cout << p - a; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "адрес",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "p == a — разность 0."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Арифметика указателей в C++ — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Почему p + 1 для char* сдвигает на 1 байт?",
+      "optionsLearning": [
+        "Размер char = 1 байт — масштаб шага",
+        "char магический",
+        "Это исключение",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Арифметика указателей использует sizeof(T) как масштаб."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Арифметика указателей в C++ — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "pointers",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Что будет при сравнении указателей из разных массивов (p1 < p2)?",
+      "optionsLearning": [
+        "Результат не определён стандартом",
+        "Всегда true",
+        "Всегда false",
+        "Сравнение байт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Относительные сравнения указателей валидны только в одном массиве."
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Арифметика указателей в C++ — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "массивы"
-        ]
+        "difficulty": [
+          "pointers",
+          "memory"
+        ],
+        "tags": "(116-100)/4 = 4 элемента."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "question": "Сколько элементов между адресами 100 и 116 для int (4 байта)?",
+      "code": {
+        "code": [
+          "4",
+          "16",
+          "5",
+          "3"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.basics.pointers.02.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Арифметика указателей в C++ — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "pointers",
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.pointers.02.scenario"
+      "scenarioId": "cpp.basics.pointers.02.scenario",
+      "promptKnown": "Какой современный способ итерации лучше ручных указателей?",
+      "optionsLearning": [
+        "Итераторы и range-for (begin/end)",
+        "Указатели всегда лучше",
+        "Только while",
+        "Глобальные переменные"
+      ],
+      "correctIndex": 0,
+      "explanation": "Итераторы/range-for безопаснее и универсальнее."
     }
   ],
   "title": "Basics — Basics C++"

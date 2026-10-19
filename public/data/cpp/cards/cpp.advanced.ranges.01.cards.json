@@ -4,602 +4,648 @@
     {
       "id": "cpp.advanced.ranges.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Ranges (C++20) — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что такое ranges в C++20?",
+      "optionsLearning": [
+        "Библиотека композиции алгоритмов и ленивых представлений",
+        "Массив",
+        "Строка",
+        "Итератор"
+      ],
+      "correctIndex": 0,
+      "explanation": "ranges объединяют алгоритмы и конвейеры."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Ranges (C++20) — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что такое view?",
+      "optionsLearning": [
+        "Ленивое невладеющее представление данных",
+        "Копия",
+        "Контейнер",
+        "Ссылка"
+      ],
+      "correctIndex": 0,
+      "explanation": "views вычисляют при итерации, без выделения."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "структура"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\nint main() { for (int x : std::views::iota(1, 4)) std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "123",
+        "0123",
+        "1..4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "iota генерирует 1,2,3."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Ranges (C++20) — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что делает view::transform?",
+      "optionsLearning": [
+        "Ленивое отображение элементов",
+        "Немедленное копирование",
+        "Сортировку",
+        "Фильтр"
+      ],
+      "correctIndex": 0,
+      "explanation": "transform-вид применяет функцию на лету."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Ranges (C++20) — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что делает view::filter?",
+      "optionsLearning": [
+        "Лениво оставляет только подходящие элементы",
+        "Удаляет контейнер",
+        "Сортирует",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фильтрация по предикату при обходе."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "основные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\nint main() { int s = 0; for (int x : std::views::iota(1, 6) | std::views::filter([](int n) { return n % 2 == 0; })) s += x; std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "6",
+        "15",
+        "4",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Чётные 2+4 = 6."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Ranges (C++20) — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что даёт оператор |> в ranges?",
+      "optionsLearning": [
+        "Композиция конвейеров",
+        "Сдвиг",
+        "Сортировку",
+        "Вывод"
+      ],
+      "correctIndex": 0,
+      "explanation": "Левый «pipe» соединяет views в цепочку."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Ranges (C++20) — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что делает std::ranges::sort?",
+      "optionsLearning": [
+        "Сортирует целый диапазон (не пару итераторов)",
+        "Как STL sort",
+        "Только массив",
+        "Удаляет"
+      ],
+      "correctIndex": 0,
+      "explanation": "ranges::sort(vec) принимает контейнер."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\n#include <vector>\n#include <algorithm>\nint main() { std::vector<int> v = {3, 1, 2}; std::ranges::sort(v); std::cout << v[0] << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "31",
+        "12",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "ranges::sort: {1,2,3}."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Ranges (C++20) — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Какая польза ленивых views?",
+      "optionsLearning": [
+        "Без промежуточных контейнеров",
+        "Скорость компиляции",
+        "Меньше типов",
+        "Память больше"
+      ],
+      "correctIndex": 0,
+      "explanation": "Цепочки вычисляются за один проход."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Ranges (C++20) — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что делает views::take(n)?",
+      "optionsLearning": [
+        "Берёт первые n элементов",
+        "Бросает n",
+        "Сортирует",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ограничение длины ленивой последовательности."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\nint main() { for (int x : std::views::iota(1) | std::views::take(3)) std::cout << x; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "123",
+        "1",
+        "012",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Бесконечный iota обрезается take(3): 123."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Ranges (C++20) — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что делает views::reverse?",
+      "optionsLearning": [
+        "Разворачивает порядок лениво",
+        "Копирует вниз",
+        "Сортирует",
+        "Фильтрует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Обратный обход диапазона."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Ranges (C++20) — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что такое sentinel в ranges?",
+      "optionsLearning": [
+        "Тип конца без хранения итератора",
+        "Сторож",
+        "Число",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Sentinel завершает диапазон."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; int c = 0; for (int x : v | std::views::drop(2)) ++c; std::cout << c; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "4",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "drop(2) оставляет 3,4 — счёт 2."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Ranges (C++20) — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Как ranges повышают выразительность?",
+      "optionsLearning": [
+        "Конвейеры читаются слева направо",
+        "Больше кода",
+        "Меньше функций",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пайплайн: фильтр → трансформ → вывод."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Ranges (C++20) — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Что такое std::views::all?",
+      "optionsLearning": [
+        "Всеобъемлющее представление диапазона",
+        "Половину",
+        "Ничего",
+        "Ошибку"
+      ],
+      "correctIndex": 0,
+      "explanation": "all(rng) оборачивает диапазон в view."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Ranges (C++20) — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <ranges>\nint main() { for (int x : std::views::iota(1, 5) | std::views::transform([](int n) { return n * n; })) std::cout << x << ' '; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1 4 9 16",
+        "1 2 3 4",
+        "16 9 4 1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Квадраты 1,2,3,4."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Ranges (C++20) — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Какая связь ranges и алгоритмов?",
+      "optionsLearning": [
+        "ranges::starts с views и целыми диапазонами",
+        "Разные",
+        "Нет",
+        "Одинаковые старые"
+      ],
+      "correctIndex": 0,
+      "explanation": "Унифицированный интерфейс диапазонов."
     },
     {
       "id": "cpp.advanced.ranges.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Ranges (C++20) — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.ranges.01.scenario"
+      "scenarioId": "cpp.advanced.ranges.01.scenario",
+      "promptKnown": "Когда ranges НЕ подходят?",
+      "optionsLearning": [
+        "Критичный hot-loop с тонкими требованиями к кэшу",
+        "Всегда",
+        "Никогда",
+        "В играх"
+      ],
+      "correctIndex": 0,
+      "explanation": "Абстракции могут мешать микрооптимизации."
     }
   ],
   "title": "Advanced — Advanced C++"

@@ -4,602 +4,646 @@
     {
       "id": "cpp.basics.control-switch.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Условия: switch-case — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Какие типы можно использовать в switch?",
+      "optionsLearning": [
+        "Целочисленные, enum и char",
+        "double и float",
+        "std::string напрямую",
+        "Любые классы"
+      ],
+      "correctIndex": 0,
+      "explanation": "switch работает с интегральными типами: int, char, enum."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Условия: switch-case — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Для чего служит break в конце case?",
+      "optionsLearning": [
+        "Предотвращает fall-through (проваливание) в следующий case",
+        "Завершает программу",
+        "Выходит из функции",
+        "Пропускает case"
+      ],
+      "correctIndex": 0,
+      "explanation": "Без break выполнение «проваливается» в следующий case."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 2; switch (x) { case 1: std::cout << 'a'; break; case 2: std::cout << 'b'; break; default: std::cout << 'c'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "a",
+        "c",
+        "bc"
+      ],
+      "correctIndex": 0,
+      "explanation": "x=2 совпадает с case 2 — выводится b."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Условия: switch-case — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Что делает ветка default?",
+      "optionsLearning": [
+        "Выполняется, если ни один case не совпал",
+        "Выполняется всегда",
+        "Обязательна по стандарту",
+        "Завершает switch"
+      ],
+      "correctIndex": 0,
+      "explanation": "default — обработчик значений, не попавших ни в один case."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код (fall-through)?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 1; switch (x) { case 1: std::cout << 'a'; case 2: std::cout << 'b'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "ab",
+        "a",
+        "b",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Нет break — case 1 проваливается в case 2: вывод ab."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Условия: switch-case — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Чем switch лучше длинной цепочки if-else if?",
+      "optionsLearning": [
+        "Читаемость и потенциальная оптимизация (таблица переходов)",
+        "Он быстрее всегда",
+        "Он запрещает ошибки",
+        "Он меньше памяти занимает обязательно"
+      ],
+      "correctIndex": 0,
+      "explanation": "switch понятнее для множественного выбора по константе и может компилироваться в jump table."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Условия: switch-case — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "переменные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Можно ли сравнивать std::string в switch?",
+      "optionsLearning": [
+        "Нет, switch требует константные интегральные значения",
+        "Да, в C++17",
+        "Да, через == в case",
+        "Только в C++20"
+      ],
+      "correctIndex": 0,
+      "explanation": "case требует compile-time константы; строки — runtime, поэтому нужен if-else."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Условия: switch-case — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Должен ли каждый case заканчиваться break?",
+      "optionsLearning": [
+        "Да, если не нужен fall-through",
+        "Нет, никогда",
+        "Только последний",
+        "Только default"
+      ],
+      "correctIndex": 0,
+      "explanation": "break нужен, чтобы не выполнять следующие case (кроме намеренного fall-through)."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { char c = 'b'; switch (c) { case 'a': std::cout << 1; break; case 'b': std::cout << 2; break; default: std::cout << 3; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2",
+        "1",
+        "3",
+        "b"
+      ],
+      "correctIndex": 0,
+      "explanation": "char 'b' совпадает с case 'b' — выводится 2."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Условия: switch-case — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Можно ли объявлять переменные внутри case без скобок?",
+      "optionsLearning": [
+        "Да, но нужно { } для области видимости, иначе ошибка перехода",
+        "Нет, никогда",
+        "Только в C++11",
+        "Только auto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Объявление в case требует блока { }, иначе возможен переход через инициализацию (ошибка компиляции)."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Условия: switch-case — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "циклы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Какой синтаксис верен для switch?",
+      "optionsLearning": [
+        "switch (x) { case 1: ...; break; }",
+        "switch x { case 1 ...; }",
+        "switch (x) do case 1;",
+        "switch(x) then case 1"
+      ],
+      "correctIndex": 0,
+      "explanation": "switch с круглыми скобками и телом в { } с case-метками."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 7; switch (x) { case 1: case 2: std::cout << 'm'; break; default: std::cout << 'M'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "M",
+        "m",
+        "12",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "7 не совпадает с 1 или 2 — выполняется default и выводится 'M'."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Условия: switch-case — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Как сгруппировать несколько значений в один case?",
+      "optionsLearning": [
+        "case 1: case 2: ...; break;",
+        "case 1, 2:",
+        "case (1 || 2):",
+        "Сгруппировать нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пустые case друг за другом объединяют значения до общего тела."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Условия: switch-case — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "параметры"
+          "control-flow",
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Что будет при switch (x) с enum?",
+      "optionsLearning": [
+        "Каждый case — значение enum",
+        "Ошибка",
+        "switch не работает с enum",
+        "Нужен int из enum"
+      ],
+      "correctIndex": 0,
+      "explanation": "enum неявно приводится к int — case по именам значений enum."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { for (int i = 0; i < 4; ++i) switch (i) { case 0: std::cout << 'a'; break; case 2: std::cout << 'b'; break; default: std::cout << 'c'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "acbc",
+        "abc",
+        "accc",
+        "aabb"
+      ],
+      "correctIndex": 0,
+      "explanation": "i=0→a, i=1→c, i=2→b, i=3→c → acbc."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Условия: switch-case — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Почему в case нельзя использовать переменную runtime?",
+      "optionsLearning": [
+        "case требует константное выражение, известное при компиляции",
+        "Переменные запрещены в switch",
+        "Будет медленно",
+        "Стандарт не разрешает int"
+      ],
+      "correctIndex": 0,
+      "explanation": "case-метки — compile-time константы; сравнение веток строится на этапе компиляции."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Условия: switch-case — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "control-flow",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Какая альтернатива switch для больших цепочек условий со строками?",
+      "optionsLearning": [
+        "if-else if-else или словарь (map)",
+        "Второй switch",
+        "Тернарный оператор",
+        "Нет альтернативы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для строк и сложных условий используют if-else или ассоциативный контейнер."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Условия: switch-case — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "question": "Что выведет этот код?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int x = 2; switch (x) { case 1: std::cout << 1; default: std::cout << 9; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "19",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "case 2 отсутствует, совпадений нет — выполняется default: 9."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Условия: switch-case — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Какие значения допускаются в switch (month) для целого month?",
+      "optionsLearning": [
+        "case 1: case 2: ... — константные литералы",
+        "case month > 5 — условия нельзя",
+        "case 1.5 — вещественные нельзя",
+        "case var — переменные нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "case принимает интегральные константы; условия/вещественные/переменные недопустимы."
     },
     {
       "id": "cpp.basics.control-switch.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Условия: switch-case — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "control-flow",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.control-switch.01.scenario"
+      "scenarioId": "cpp.basics.control-switch.01.scenario",
+      "promptKnown": "Как в C++17 записывается switch с объявлением переменной в условии?",
+      "optionsLearning": [
+        "switch (int x = get(); ...)",
+        "switch (auto x)",
+        "Нельзя",
+        "switch (x; ...)"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++17 позволяет инициализатор в switch: switch (int x = f(); x) { ... }."
     }
   ],
   "title": "Basics — Basics C++"

@@ -4,602 +4,645 @@
     {
       "id": "cpp.advanced.memory.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Memory Management и Smart Pointers — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "что"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что означает управление памятью вручную в C++?",
+      "optionsLearning": [
+        "Программист сам выделяет и освобождает память",
+        "Язык делает всё автоматически",
+        "Только сборщик мусора",
+        "Освобождение невозможно"
+      ],
+      "correctIndex": 0,
+      "explanation": "В C++ программирование может управлять памятью напрямую через new/delete."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-02",
-      "kind": "select",
-      "title": "История создания C++",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "история"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int* p = new int(5); std::cout << *p; delete p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "new создаёт int 5 в куче; *p = 5; delete освобождает."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Memory Management и Smart Pointers — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "структура"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что такое утечка памяти?",
+      "optionsLearning": [
+        "Выделенная память не освобождена",
+        "Слишком быстрый доступ",
+        "Переполнение стека",
+        "Ошибка компиляции"
+      ],
+      "correctIndex": 0,
+      "explanation": "Потеря адреса без delete приводит к утечке."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Memory Management и Smart Pointers — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "компиляция"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Чем new отличается от malloc?",
+      "optionsLearning": [
+        "new вызывает конструктор и типизирован",
+        "Только размером",
+        "malloc вызывает конструктор",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "new строит объект (конструктор), malloc выделяет сырую память."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Memory Management и Smart Pointers — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "настройка"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что делает delete[]?",
+      "optionsLearning": [
+        "Освобождает массив, созданный new[]",
+        "Удаляет индекс",
+        "Освобождает один элемент",
+        "Запрещён"
+      ],
+      "correctIndex": 0,
+      "explanation": "new[] требует delete[] (симметрия)."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "memory",
+          "modern-cpp"
+        ],
+        "tags": "delete только для памяти из new — иначе UB."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Что произойдёт при delete на int, созданный без new?",
+      "code": {
+        "code": [
+          "Неопределённое поведение",
+          "Ничего",
+          "Очистка",
+          "0"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Memory Management и Smart Pointers — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "переменные"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что такое висячий указатель после delete?",
+      "optionsLearning": [
+        "Указатель на освобождённую память",
+        "nullptr",
+        "Указатель на стек",
+        "Константный указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Использование после delete — UB."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Memory Management и Smart Pointers — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Как правильно обнулить указатель после delete?",
+      "optionsLearning": [
+        "p = nullptr;",
+        "delete p;",
+        "p = 0; только",
+        "Не нужно"
+      ],
+      "correctIndex": 0,
+      "explanation": "После delete разумно присвоить nullptr, чтобы избежать double delete."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { int* p = new int(42); delete p; p = nullptr; std::cout << (p == nullptr); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "42",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После обнуления nullptr — сравнение true (1)."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Memory Management и Smart Pointers — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "условные"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Как управлять памятью безопаснее всего?",
+      "optionsLearning": [
+        "Умными указателями (unique_ptr, shared_ptr)",
+        "Голым указателем",
+        "Сборщиком в коде",
+        "Макросами"
+      ],
+      "correctIndex": 0,
+      "explanation": "RAII-умные указатели автоматизируют освобождение."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Memory Management и Smart Pointers — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "циклы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что делает std::bad_alloc?",
+      "optionsLearning": [
+        "Сигнализирует о нехватке памяти (new)",
+        "Ошибку типа",
+        "Ошибку доступа",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "new при неудаче бросает std::bad_alloc (по умолчанию)."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <new>\nint main() { try { new int[1e9]; } catch (const std::bad_alloc&) { std::cout << 'b'; } }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "b",
+        "0",
+        "Ошибка",
+        "спад"
+      ],
+      "correctIndex": 0,
+      "explanation": "Огромное выделение бросает bad_alloc → перехват b."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Memory Management и Smart Pointers — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что делает не-throwing new (nothrow)?",
+      "optionsLearning": [
+        "Возвращает nullptr вместо исключения",
+        "Бросает",
+        "Вызывает abort",
+        "Ускоряет"
+      ],
+      "correctIndex": 0,
+      "explanation": "new (std::nothrow) не бросает исключение."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Memory Management и Smart Pointers — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что такое placement new?",
+      "optionsLearning": [
+        "Конструирование объекта в существующей памяти",
+        "Новый оператор",
+        "delete в месте",
+        "malloc"
+      ],
+      "correctIndex": 0,
+      "explanation": "new (ptr) T(args) строит объект по адресу ptr."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-15",
-      "kind": "select",
-      "title": "Возвращаемые значения",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { auto p = std::make_unique<int>(9); std::cout << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "9",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "make_unique создаёт unique_ptr с числом 9."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Memory Management и Smart Pointers — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что такое memory order в атомиках?",
+      "optionsLearning": [
+        "Ограничения упорядочивания операций памяти",
+        "Порядок байт",
+        "Сортировка",
+        "Разметка"
+      ],
+      "correctIndex": 0,
+      "explanation": "memory_order управляет видимостью и упорядочиванием."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Memory Management и Smart Pointers — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "memory",
+          "stl"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что даёт std::allocator?",
+      "optionsLearning": [
+        "Низкоуровневое выделение для контейнеров",
+        "Умный указатель",
+        "Пул потоков",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аллокаторы абстрагируют выделение памяти в STL."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Memory Management и Smart Pointers — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Что такое memory pool?",
+      "optionsLearning": [
+        "Заранее выделенный буфер для объектов",
+        "Куча системы",
+        "Стек",
+        "Сегмент"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пул ускоряет выделение/освобождение многих мелких объектов."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Memory Management и Smart Pointers — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "question": "Компилируется ли этот код и что он делает?",
+      "code": {
+        "code": "int* p = new int[10]; p[0] = 5; std::cout << p[0]; delete[] p;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да, создаёт массив, 5, освобождает",
+        "Нет",
+        "Утечка",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Массив в куче, обращение по индексу, симметричный delete[]."
     },
     {
       "id": "cpp.advanced.memory.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Memory Management и Smart Pointers — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.memory.01.scenario"
+      "scenarioId": "cpp.advanced.memory.01.scenario",
+      "promptKnown": "Зачем нужен section std::launder?",
+      "optionsLearning": [
+        "Переиспользование объектов в том же адресе",
+        "Удаление",
+        "Сброс",
+        "Шифрование"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::launder корректирует указатель при реюзе памяти."
     }
   ],
   "title": "Advanced — Advanced C++"

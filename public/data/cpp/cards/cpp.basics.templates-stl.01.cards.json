@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Templates STL 01 — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Какие STL-контейнеры являются шаблонными классами?",
+      "optionsLearning": [
+        "Все: vector<T>, map<K,V>, set<T>…",
+        "Только vector",
+        "Никакие",
+        "Только string"
+      ],
+      "correctIndex": 0,
+      "explanation": "STL построена на шаблонах: тип элементов — параметр."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Templates STL 01 — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Как объявить вектор строк?",
+      "optionsLearning": [
+        "std::vector<std::string> v;",
+        "std::vector v;",
+        "vector<string> v без std",
+        "list<string> v;"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::vector<std::string> — вектор, параметризованный типом string."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::cout << v.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "9",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "size() = 3 для трёх элементов."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Templates STL 01 — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "templates",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Какой шаблон функции находит максимум в диапазоне?",
+      "optionsLearning": [
+        "std::max_element",
+        "std::max",
+        "std::top",
+        "std::peak"
+      ],
+      "correctIndex": 0,
+      "explanation": "max_element — алгоритм для диапазона итераторов."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Templates STL 01 — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "настройка"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Что означает запись std::pair<int, std::string>?",
+      "optionsLearning": [
+        "Пара значений двух типов",
+        "Массив",
+        "Кортеж из трёх",
+        "Словарь"
+      ],
+      "correctIndex": 0,
+      "explanation": "pair — шаблонная структура из двух разнотипных значений."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "основные"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\nint main() { std::pair<int, int> p = {2, 3}; std::cout << p.first + p.second; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "23",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "first + second = 5."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Templates STL 01 — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "templates",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Как задать компаратор для sort?",
+      "optionsLearning": [
+        "std::sort(begin, end, лямбда/функция)",
+        "sort() сам знает",
+        "через #define",
+        "нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Третий аргумент sort — предикат сравнения."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "templates",
+          "algorithms"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <algorithm>\n#include <vector>\nint main() { std::vector<int> v = {3, 1, 2}; std::sort(v.begin(), v.end(), std::greater<int>()); std::cout << v[0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "greater<int>() сортирует по убыванию: первый 3."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Templates STL 01 — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Что такое функтор (function object)?",
+      "optionsLearning": [
+        "Класс с перегруженным operator()",
+        "Функция",
+        "Макрос",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Функтор — объект, вызываемый как функция благодаря operator()(…)."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Templates STL 01 — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "условные"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Как хранить элемент map по ключу?",
+      "optionsLearning": [
+        "m[key] или m.at(key)",
+        "m(key)",
+        "m->key",
+        "m.get(key)"
+      ],
+      "correctIndex": 0,
+      "explanation": "operator[] создаёт/возвращает значение по ключу; at — с проверкой."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "циклы"
+          "templates",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <map>\nint main() { std::map<int, int> m; m[1] = 10; m[1] += 5; std::cout << m[1]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "15",
+        "10",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "m[1] сначала 10, потом +5 = 15."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Templates STL 01 — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Какой шаблон автоматически управляет памятью?",
+      "optionsLearning": [
+        "std::unique_ptr<T>",
+        "std::vector<T> только",
+        "raw T*",
+        "std::pair"
+      ],
+      "correctIndex": 0,
+      "explanation": "unique_ptr — умный указатель с RAII-владением."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Templates STL 01 — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "функции:"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Как создать unique_ptr?",
+      "optionsLearning": [
+        "std::make_unique<T>(args)",
+        "new T",
+        "T* p = T",
+        "unique(T)"
+      ],
+      "correctIndex": 0,
+      "explanation": "make_unique безопасно создаёт объект в куче (C++14)."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { auto p = std::make_unique<int>(42); std::cout << *p; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "42",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Разыменование unique_ptr даёт 42."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Templates STL 01 — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "templates",
+          "functions"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Чем шаблонный std::function<T(...)> полезен?",
+      "optionsLearning": [
+        "Хранит любые вызываемые объекты",
+        "Заменяет контейнер",
+        "Ускоряет",
+        "Обязателен в main"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::function оборачивает функции, лямбды, функторы."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <functional>\nint main() { std::function<int(int,int)> f = [](int a, int b) { return a * b; }; std::cout << f(3, 4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "12",
+        "7",
+        "34",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::function вызвал лямбду: 3*4=12."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Templates STL 01 — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Что такое auto для переменной?",
+      "optionsLearning": [
+        "Вывод типа из инициализатора",
+        "Динамический тип",
+        "обяз. int",
+        "макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "auto x = expr; — тип выводится компилятором."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Templates STL 01 — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Чем std::vector<std::unique_ptr<T>> отличается от vector<T>?",
+      "optionsLearning": [
+        "Хранит указатели: объекты не копируются при расширении",
+        "То же самое",
+        "Быстрее",
+        "Меньше памяти всегда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Контейнер умных указателей удобен для полиморфных/тяжёлых объектов."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Templates STL 01 — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\n#include <memory>\nint main() { std::vector<std::unique_ptr<int>> v; v.push_back(std::make_unique<int>(8)); std::cout << *v[0]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "8",
+        "адрес",
+        "0",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "v[0] — unique_ptr, *v[0] = 8."
     },
     {
       "id": "cpp.basics.templates-stl.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Templates STL 01 — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.templates-stl.01.scenario",
+      "promptKnown": "Когда шаблон даёт ошибку компиляции?",
+      "optionsLearning": [
+        "Когда операция для типа не определена (например, + для нет числа)",
+        "Всегда",
+        "При запуске",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Инстанцирование с неподдерживаемыми операциями ломает компиляцию."
     }
   ],
   "title": "Basics — Basics C++"

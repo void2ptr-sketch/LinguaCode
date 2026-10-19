@@ -4,602 +4,621 @@
     {
       "id": "cpp.advanced.networking.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Networking и IPC — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "что"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое сокет?",
+      "optionsLearning": [
+        "Интерфейс двухсторонней связи между узлами",
+        "Файл",
+        "Поток",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Конечная точка соединения."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Networking и IPC — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "история"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Какой протокол надёжен?",
+      "optionsLearning": [
+        "TCP",
+        "UDP",
+        "IP",
+        "HTTP raw"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порядок и доставка."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Networking — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "структура"
-        ]
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "Другая сторона закрыла."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "question": "Что означает recv() == 0?",
+      "code": {
+        "code": [
+          "Соединение закрыто (EOF)",
+          "Нет данных после",
+          "Ошибка",
+          "0 байт"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Networking и IPC — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Выбери неблокирующий сокет?",
+      "optionsLearning": [
+        "O_NONBLOCK + poll/epoll",
+        "блокирующий всегда",
+        "нет",
+        "задержка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Event-driven IO."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Networking и IPC — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "настройка"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое http?",
+      "optionsLearning": [
+        "Протокол прикладного уровня",
+        "Транспорт",
+        "Канальный",
+        "Ядро"
+      ],
+      "correctIndex": 0,
+      "explanation": "GET/POST для веба."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Networking — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "TLS-шифрование."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "question": "Какой порт у HTTPS?",
+      "code": {
+        "code": [
+          "443",
+          "80",
+          "22",
+          "53"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "beginner"
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Networking и IPC — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "переменные"
+          "os",
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое IPC в C++?",
+      "optionsLearning": [
+        "Межпроцессное взаимодействие",
+        "Сеть",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сокеты, трубы, shared memory."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Networking и IPC — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое gRPC?",
+      "optionsLearning": [
+        "RPC-фреймворк (protobuf)",
+        "ОС",
+        "Хеш",
+        "Транспорт"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вызов удалённых функций."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Networking — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "операторы"
-        ]
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "Бинарные эффективные сообщения."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "question": "Что отправляет gRPC по HTTP/2?",
+      "code": {
+        "code": [
+          "Protobuf-сообщения",
+          "JSON всегда",
+          "текст",
+          "нет"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Networking и IPC — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "условные"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое timeout в сети?",
+      "optionsLearning": [
+        "Ограничение времени ожидания",
+        "Ошибка",
+        "Логи",
+        "Скорость"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защита от зависания."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Networking и IPC — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое retry/backoff?",
+      "optionsLearning": [
+        "Повторы с экспоненциальной паузой",
+        "Спам запросов",
+        "Поток",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Устойчивость к скачкам сети."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Networking и IPC — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое сертификат TLS?",
+      "optionsLearning": [
+        "Публичный ключ с подписью",
+        "Пароль",
+        "Лог",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аутентификация сервера."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Networking — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "функции:"
-        ]
+        "difficulty": [
+          "networking"
+        ],
+        "tags": "Установка защищённого канала."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "question": "Что делает handshake TLS?",
+      "code": {
+        "code": [
+          "Обмен ключами и проверка",
+          "Отправку данных",
+          "Закрытие",
+          "Логи"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Networking и IPC — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое multiplexing?",
+      "optionsLearning": [
+        "Несколько потоков/запросов на соединении",
+        "Сеть",
+        "Логи",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "HTTP/2, gRPC."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Networking и IPC — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "networking",
+          "concurrency"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Как написать асинхронный сервер?",
+      "optionsLearning": [
+        "event loop (epoll/io_uring) + coroutines",
+        "блокирующие потоки",
+        "comet",
+        "нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Масштабируемость соединений."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Networking — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "область"
-        ]
+        "difficulty": [
+          "networking",
+          "performance"
+        ],
+        "tags": "Событийная модель."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "question": "Что из этого масштабируемо до 100k соединений?",
+      "code": {
+        "code": [
+          "epoll/kqueue + корутины",
+          "поток на соединение",
+          "while(true)",
+          "sleep"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Networking и IPC — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое serialization?",
+      "optionsLearning": [
+        "Превращение структур в байты для сети",
+        "Сортировку",
+        "Хеш",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "protobuf/JSON/CBOR."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Networking и IPC — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "networking",
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Почему нужна валидация входящих данных?",
+      "optionsLearning": [
+        "Предотвращение атак и повреждений",
+        "Скорость",
+        "Логи",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Никогда не доверять сети."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Networking и IPC — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что такое endianness в протоколах?",
+      "optionsLearning": [
+        "Порядок байт для чисел по сети",
+        "Тип",
+        "Хеш",
+        "Сеть"
+      ],
+      "correctIndex": 0,
+      "explanation": "Network byte order (big-endian)."
     },
     {
       "id": "cpp.advanced.networking.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Networking и IPC — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "networking"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.networking.01.scenario"
+      "scenarioId": "cpp.advanced.networking.01.scenario",
+      "promptKnown": "Что делает htons()?",
+      "optionsLearning": [
+        "Переводит host в network byte order",
+        "Хеш",
+        "Шифрует",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Порт в правильный порядок."
     }
   ],
   "title": "Advanced — Advanced C++"

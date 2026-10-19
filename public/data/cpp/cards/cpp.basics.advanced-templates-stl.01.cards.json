@@ -4,602 +4,650 @@
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Advanced Templates и STL Intro — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "что"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что такое variadic-шаблон?",
+      "optionsLearning": [
+        "Шаблон с произвольным числом параметров",
+        "Шаблон с одним типом",
+        "Макрос",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "template <typename... Args> принимает любое число типов."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Advanced Templates и STL Intro — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "история"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что делает sizeof...(Args)?",
+      "optionsLearning": [
+        "Возвращает число параметров шаблона",
+        "Размер типа",
+        "Число аргументов main",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "sizeof... считает параметры pack'а."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "структура"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Args>\nauto sum(Args... args) { return (args + ...); }\nint main() { std::cout << sum(1, 2, 3, 4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "1234",
+        "Ошибка",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Fold-выражение складывает все аргументы: C++17."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Advanced Templates и STL Intro — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "компиляция"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Как раскрыть pack в вызове функции?",
+      "optionsLearning": [
+        "f(args...)",
+        "args",
+        "sizeof args",
+        "f(args)"
+      ],
+      "correctIndex": 0,
+      "explanation": "Многоточие args... раскрывает pack в список аргументов."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Advanced Templates и STL Intro — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "настройка"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что такое fold-выражение в C++17?",
+      "optionsLearning": [
+        "Свёртка pack'а оператором ((x + ...) и т.п.)",
+        "Массив",
+        "Цикл",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "(args + ...) сворачивает вариадики с оператором +."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "основные"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа (C++17)?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Ts>\nbool allT(Ts... xs) { return (xs && ...); }\nint main() { std::cout << allT(true, true, true) << allT(true, false); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Логическое И по всем: true&&true&&true=1; второй =0."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Advanced Templates и STL Intro — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "переменные"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что такое type traits (std::is_integral и т.п.)?",
+      "optionsLearning": [
+        "Шаблонные проверки свойств типов на этапе компиляции",
+        "Преобразования типов",
+        "Макросы",
+        "Функции вывода"
+      ],
+      "correctIndex": 0,
+      "explanation": "type_traits позволяют писать код, зависящий от типов."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Advanced Templates и STL Intro — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Как проверить, что тип — целочисленный?",
+      "optionsLearning": [
+        "std::is_integral<T>::value",
+        "T.is_int()",
+        "typeid(T) == int",
+        "тип != double"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::is_integral<T>::value — true для int, long и т.д."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_integral<int>::value << std::is_integral<double>::value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "00"
+      ],
+      "correctIndex": 0,
+      "explanation": "int — интегральный (1), double — нет (0)."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Advanced Templates и STL Intro — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "условные"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что делает std::enable_if?",
+      "optionsLearning": [
+        "Условно включает перегрузку по свойству типа",
+        "Включает оптимизации",
+        "Подключает заголовок",
+        "Отключает шаблон"
+      ],
+      "correctIndex": 0,
+      "explanation": "enable_if<cond, T> — инструмент SFINAE."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Advanced Templates и STL Intro — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "циклы"
+          "templates",
+          "syntax"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что такое SFINAE?",
+      "optionsLearning": [
+        "Substitution Failure Is Not An Error — отказ подстановки шаблона не ошибка",
+        "Синтаксическая ошибка",
+        "Сборка",
+        "Тест"
+      ],
+      "correctIndex": 0,
+      "explanation": "SFINAE позволяет компилятору пробовать другие перегрузки при неудаче."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Advanced Templates и STL Intro — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "операторы"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Как проверить наличие метода у типа в C++20?",
+      "optionsLearning": [
+        "Концепты (requires)",
+        "SFINAE длинный код",
+        "typeid",
+        "Напрямую нельзя"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепты C++20 лаконично выражают требования к типам."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "функции:"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <concepts>\ntemplate <std::integral T>\nT twice(T x) { return x * 2; }\nint main() { std::cout << twice(5); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "5",
+        "Ошибка",
+        "дважды"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::integral ограничивает T целочисленным типом: 10."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Advanced Templates и STL Intro — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "параметры"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что делает концепт std::floating_point?",
+      "optionsLearning": [
+        "Требует вещественный тип",
+        "Требует double",
+        "Округляет",
+        "Макрос"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::floating_point проверяет float/double/long double."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Advanced Templates и STL Intro — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Чем концemnt в requires-выражении отличается от template-typename?",
+      "optionsLearning": [
+        "Концепты задают семантические ограничения типов",
+        "Только синтаксис",
+        "Быстрее",
+        "Меньше кода"
+      ],
+      "correctIndex": 0,
+      "explanation": "Концепты документируют требования и дают лучшие сообщения."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "область"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T>\nconstexpr bool is_int() { return std::is_same_v<T, int>; }\nint main() { std::cout << is_int<int>() << is_int<double>(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "01",
+        "11",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "is_same_v — совпадение типов: для int 1, для double 0."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Advanced Templates и STL Intro — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "рекурсия"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что такое constexpr-функция?",
+      "optionsLearning": [
+        "Функция, вычисляемая в compile-time, если аргументы константны",
+        "Константная функция",
+        "Виртуальная",
+        "static"
+      ],
+      "correctIndex": 0,
+      "explanation": "constexpr позволяет вычислять значения на этапе компиляции."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "массивы"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nconstexpr int sq(int x) { return x * x; }\nint main() { constexpr int v = sq(6); std::cout << v; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "36",
+        "6",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "sq(6) вычисляется в compile-time: 36."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Advanced Templates и STL Intro — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "массивы"
+          "templates",
+          "c++17"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "promptKnown": "Что делает if constexpr?",
+      "optionsLearning": [
+        "Условная компиляция веток шаблона по константе",
+        "Обычный if",
+        "Макрос",
+        "switch"
+      ],
+      "correctIndex": 0,
+      "explanation": "if constexpr отбрасывает невыбранную ветку при инстанцировании."
     },
     {
       "id": "cpp.basics.advanced-templates-stl.01.scenario.card-20",
-      "kind": "select",
-      "title": "Строки и работа с ними",
+      "kind": "code-trace",
+      "title": "Advanced Templates и STL Intro — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "basics",
-          "строки"
+          "templates",
+          "c++17"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario"
+      "scenarioId": "cpp.basics.advanced-templates-stl.01.scenario",
+      "question": "Что выведет эта программа (C++17)?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T> auto f(T x) { if constexpr (std::is_integral_v<T>) return x + 1; else return x + 0.5; }\nint main() { std::cout << f(1) << ' ' << f(1.0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "2 1.5",
+        "1 1",
+        "Ошибка",
+        "2 2"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для int → 2, для double → 1.5."
     }
   ],
   "title": "Basics — Advanced C++"

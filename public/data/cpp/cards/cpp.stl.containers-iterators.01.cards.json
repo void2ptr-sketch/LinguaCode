@@ -4,170 +4,12 @@
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое STL?",
+      "title": "Итераторы и аллокаторы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие преимущества даёт использование STL в C++?",
-      "optionsLearning": [
-        "Какие преимущества даёт использование STL в C++?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "что"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-iterators.01.scenario.card-02",
-      "kind": "select",
-      "title": "Containers overview",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Когда использовать vector, а когда list или deque?",
-      "optionsLearning": [
-        "Когда использовать vector, а когда list или deque?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "containers"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-iterators.01.scenario.card-03",
-      "kind": "select",
-      "title": "std::vector basics",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает динамическое выделение памяти в std::vector?",
-      "optionsLearning": [
-        "Как работает динамическое выделение памяти в std::vector?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::vector"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-iterators.01.scenario.card-04",
-      "kind": "select",
-      "title": "std::list implementation",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Какова сложность вставки/удаления элементов в list?",
-      "optionsLearning": [
-        "Какова сложность вставки/удаления элементов в list?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::list"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-iterators.01.scenario.card-05",
-      "kind": "select",
-      "title": "std::deque characteristics",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работает block-based storage в deque?",
-      "optionsLearning": [
-        "Как работает block-based storage в deque?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
-      "meta": {
-        "knownLanguage": "ru",
-        "learningLanguage": "cpp",
-        "difficulty": "intermediate",
-        "tags": [
-          "stl",
-          "std::deque"
-        ]
-      },
-      "courseId": "course-cpp-complete",
-      "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
-    },
-    {
-      "id": "cpp.stl.containers-iterators.01.scenario.card-06",
-      "kind": "select",
-      "title": "Iterators и их типы",
-      "appearance": {
-        "theme": "azure-blue",
-        "fontSize": "md"
-      },
-      "direction": "known-to-learning",
-      "promptKnown": "Как работают random access iterators у vector?",
-      "optionsLearning": [
-        "Как работают random access iterators у vector?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
@@ -179,427 +21,629 @@
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что такое категории итераторов STL?",
+      "optionsLearning": [
+        "input, output, forward, bidirectional, random-access",
+        "Только два типа",
+        "Указатели",
+        "Счётчики"
+      ],
+      "correctIndex": 0,
+      "explanation": "Категории определяют поддерживаемые операции."
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario.card-02",
+      "kind": "select",
+      "title": "Итераторы и аллокаторы — Вопрос 2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Какой итератор поддерживает it + 5?",
+      "optionsLearning": [
+        "random access",
+        "forward",
+        "bidirectional",
+        "input"
+      ],
+      "correctIndex": 0,
+      "explanation": "У vector/map нет; random access даёт it + n."
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario.card-03",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 3",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4, 5}; std::cout << *(v.begin() + 2); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "4",
+        "5"
+      ],
+      "correctIndex": 0,
+      "explanation": "begin()+2 → элемент 3."
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario.card-04",
+      "kind": "select",
+      "title": "Итераторы и аллокаторы — Вопрос 4",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Какой контейнер имеет только forward-итераторы?",
+      "optionsLearning": [
+        "std::forward_list",
+        "std::vector",
+        "std::list",
+        "std::array"
+      ],
+      "correctIndex": 0,
+      "explanation": "forward_list — однонаправленный обход."
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario.card-05",
+      "kind": "select",
+      "title": "Итераторы и аллокаторы — Вопрос 5",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что такое output-итератор?",
+      "optionsLearning": [
+        "Пишет значения (например, back_inserter)",
+        "Читает",
+        "Перемещает",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Output-итераторы используются как приёмники алгоритмов."
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario.card-06",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 6",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "intermediate",
+        "tags": [
+          "stl",
+          "iterators"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-cpp-stl",
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <iterator>\n#include <vector>\nint main() { std::vector<int> v = {10, 20}; auto it = std::back_inserter(v); *it = 30; std::cout << v[2]; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "20",
+        "10",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "back_inserter добавляет 30 в конец."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-07",
       "kind": "select",
-      "title": "Algorithms library",
+      "title": "Итераторы и аллокаторы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие основные алгоритмы предоставляет <algorithm>?",
-      "optionsLearning": [
-        "Какие основные алгоритмы предоставляет <algorithm>?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "algorithms"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что делает std::advance(it, n)?",
+      "optionsLearning": [
+        "Сдвигает итератор на n позиций",
+        "Возвращает расстояние",
+        "Удаляет",
+        "Сравнивает"
+      ],
+      "correctIndex": 0,
+      "explanation": "advance работает для всех категорий итераторов."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-08",
       "kind": "select",
-      "title": "std::sort usage",
+      "title": "Итераторы и аллокаторы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как сортировать объекты по нескольким полям?",
-      "optionsLearning": [
-        "Как сортировать объекты по нескольким полям?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::sort"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что делает std::next(it)?",
+      "optionsLearning": [
+        "Возвращает следующий итератор",
+        "Сдвигает исходный",
+        "Удаляет",
+        "Разыменовывает"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::next возвращает новый итератор без изменения."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-09",
-      "kind": "select",
-      "title": "std::find variations",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как найти элемент по ключу в std::map?",
-      "optionsLearning": [
-        "Как найти элемент по ключу в std::map?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "std::find"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <iterator>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; std::cout << *std::prev(v.end()); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "prev(end()) — последний элемент 3."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-10",
       "kind": "select",
-      "title": "std::for_each examples",
+      "title": "Итераторы и аллокаторы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как применить функцию к каждому элементу контейнера?",
-      "optionsLearning": [
-        "Как применить функцию к каждому элементу контейнера?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "std::for_each"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что такое идиома begin()/end()?",
+      "optionsLearning": [
+        "Полуинтервал [begin, end) для алгоритмов",
+        "Массив",
+        "Индексы",
+        "Цикл"
+      ],
+      "correctIndex": 0,
+      "explanation": "Алгоритмы обрабатывают диапазоны [begin, end)."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-11",
       "kind": "select",
-      "title": "std::transform patterns",
+      "title": "Итераторы и аллокаторы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать std::transform для объединения двух контейнеров?",
-      "optionsLearning": [
-        "Можно ли использовать std::transform для объединения двух контейнеров?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "std::transform"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Когда итераторы инвалидизируются у vector?",
+      "optionsLearning": [
+        "При реаллокации (рост capacity)",
+        "Никогда",
+        "При чтении",
+        "При size()"
+      ],
+      "correctIndex": 0,
+      "explanation": "Последующие push_back могут сдвинуть буфер."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-12",
-      "kind": "select",
-      "title": "Predicate design",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое predicate функция и какие требования к ней?",
-      "optionsLearning": [
-        "Что такое predicate функция и какие требования к ней?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "predicate"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <iterator>\nint main() { int a[] = {5, 6, 7}; std::cout << std::distance(a, a + 3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "7",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "distance между началом и концом — 3 элемента."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-13",
       "kind": "select",
-      "title": "Custom comparators",
+      "title": "Итераторы и аллокаторы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Когда нужно использовать operator< vs custom comparator?",
-      "optionsLearning": [
-        "Когда нужно использовать operator< vs custom comparator?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "custom"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Зачем нужны аллокаторы (allocators)?",
+      "optionsLearning": [
+        "Управление выделением памяти контейнеров",
+        "Итерации",
+        "Сортировка",
+        "Типы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Аллокаторы абстрагируют выделение памяти."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-14",
       "kind": "select",
-      "title": "Container adaptors (stack, queue)",
+      "title": "Итераторы и аллокаторы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается priority_queue от queue?",
-      "optionsLearning": [
-        "Чем отличается priority_queue от queue?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "advanced",
         "tags": [
           "stl",
-          "container"
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что делает пользовательский аллокатор?",
+      "optionsLearning": [
+        "Определяет, как контейнер выделяет/освобождает память",
+        "Меняет типы",
+        "Ускоряет",
+        "Не используется"
+      ],
+      "correctIndex": 0,
+      "explanation": "Пользовательские аллокаторы для пулов/арен."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-15",
-      "kind": "select",
-      "title": "Associative containers (set, map)",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какова сложность операций поиска в associative containers?",
-      "optionsLearning": [
-        "Какова сложность операций поиска в associative containers?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "associative"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3}; auto it = v.end(); --it; std::cout << *it; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "1",
+        "2",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Декремент end() даёт последний элемент: 3."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-16",
       "kind": "select",
-      "title": "Unordered containers (unordered_set, unordered_map)",
+      "title": "Итераторы и аллокаторы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает hashing в unordered containers?",
-      "optionsLearning": [
-        "Как работает hashing в unordered containers?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "unordered"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что такое range-based for под капотом?",
+      "optionsLearning": [
+        "Итерация begin()-end() через итераторы",
+        "Счётчик",
+        "Указатель",
+        "Массив"
+      ],
+      "correctIndex": 0,
+      "explanation": "for (auto x : c) компилируется в итераторный цикл."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-17",
       "kind": "select",
-      "title": "String manipulation with STL",
+      "title": "Итераторы и аллокаторы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эффективно конкатенировать строки в C++?",
-      "optionsLearning": [
-        "Как эффективно конкатенировать строки в C++?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "string"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Чем const-итератор отличается от обычного?",
+      "optionsLearning": [
+        "Запрещает изменение элементов",
+        "Быстрее",
+        "Короче",
+        "Память"
+      ],
+      "correctIndex": 0,
+      "explanation": "cbegin()/cend() возвращают константные итераторы."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-18",
-      "kind": "select",
-      "title": "Debugging STL issues",
+      "kind": "code-trace",
+      "title": "Итераторы и аллокаторы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как диагностировать segmentation fault при работе с контейнерами?",
-      "optionsLearning": [
-        "Как диагностировать segmentation fault при работе с контейнерами?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "intermediate",
+        "difficulty": "beginner",
         "tags": [
           "stl",
-          "debugging"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> v = {1, 2, 3, 4}; int s = 0; for (auto it = v.cbegin(); it != v.cend(); ++it) s += *it; std::cout << s; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "4",
+        "24",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Сумма через const-итераторы: 10."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-19",
       "kind": "select",
-      "title": "Performance optimization",
+      "title": "Итераторы и аллокаторы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как профилировать hot paths в C++ коде?",
-      "optionsLearning": [
-        "Как профилировать hot paths в C++ коде?",
-        "Устаревшая технология",
-        "Только для embedded систем",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "performance"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что делает std::back_inserter?",
+      "optionsLearning": [
+        "Создаёт итератор вставки в конец контейнера",
+        "Удаляет",
+        "Сортирует",
+        "Читает"
+      ],
+      "correctIndex": 0,
+      "explanation": "back_inserter используется в алгоритмах для вывода."
     },
     {
       "id": "cpp.stl.containers-iterators.01.scenario.card-20",
       "kind": "select",
-      "title": "Best practices для STL",
+      "title": "Итераторы и аллокаторы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-      "optionsLearning": [
-        "Какие ошибки новичков чаще всего встречаются при работе со STL?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "intermediate",
         "tags": [
           "stl",
-          "best"
+          "iterators"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-stl",
-      "scenarioId": "cpp.stl.containers-iterators.01.scenario"
+      "scenarioId": "cpp.stl.containers-iterators.01.scenario",
+      "promptKnown": "Что даёт RandomAccessIterator дополнительно?",
+      "optionsLearning": [
+        "it + n, it - n, сравнения <, оператор []",
+        "Всё равно",
+        "Ничего",
+        "Только ++"
+      ],
+      "correctIndex": 0,
+      "explanation": "Произвольный доступ vector/array/deque."
     }
   ],
   "title": "Stl — Intermediate C++"

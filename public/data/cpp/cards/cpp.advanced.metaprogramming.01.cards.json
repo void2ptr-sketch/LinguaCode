@@ -4,602 +4,633 @@
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Metaprogramming и Templates — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое метапрограммирование?",
+      "optionsLearning": [
+        "Вычисления и генерация кода на этапе компиляции",
+        "Runtime-код",
+        "Макросы",
+        "Сети"
+      ],
+      "correctIndex": 0,
+      "explanation": "Шаблоны выполняют «программы» в компиляторе."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Metaprogramming и Templates — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое шаблонная рекурсия?",
+      "optionsLearning": [
+        "Рекурсивные инстанцирования шаблонов",
+        "Цикл",
+        "Функция",
+        "goto"
+      ],
+      "correctIndex": 0,
+      "explanation": "Классический мета-цикл."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "структура"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа (factorial)?",
+      "code": {
+        "code": "template <int N> struct Fact { static constexpr int value = N * Fact<N - 1>::value; };\ntemplate <> struct Fact<0> { static constexpr int value = 1; };\nstd::cout << Fact<5>::value;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "120",
+        "15",
+        "5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "5! = 120."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Metaprogramming и Templates — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое специализация?",
+      "optionsLearning": [
+        "Отдельное определение для конкретного набора типов",
+        "Копия",
+        "Перегрузка",
+        "Инлайн"
+      ],
+      "correctIndex": 0,
+      "explanation": "template<> для int и др."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Metaprogramming и Templates — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое partial specialization?",
+      "optionsLearning": [
+        "Частичная специализация для подмножества",
+        "Полная",
+        "Нет",
+        "Только полная"
+      ],
+      "correctIndex": 0,
+      "explanation": "template<T> для указателей и пр."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "основные"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename T, typename U> struct IsSame { static constexpr bool value = false; };\ntemplate <typename T> struct IsSame<T, T> { static constexpr bool value = true; };\nint main() { std::cout << IsSame<int, int>::value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "Ошибка",
+        "value"
+      ],
+      "correctIndex": 0,
+      "explanation": "Специализация: true."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Metaprogramming и Templates — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое SFINAE в метапрограммировании?",
+      "optionsLearning": [
+        "Отбор вариантов по типовым признакам",
+        "Ошибку",
+        "Сборку",
+        "Сортировку"
+      ],
+      "correctIndex": 0,
+      "explanation": "Механизм разрешения перегрузок."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Metaprogramming и Templates — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое Т-выражения (template engines)?",
+      "optionsLearning": [
+        "Выражения, зависящие от типов",
+        "Runtime",
+        "Строки",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Мета-вычисления на типах."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "операторы"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "template <typename T> T add(T a, T b) { return a + b; }\nstd::cout << add(1, 2);",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "12",
+        "Ошибка",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вывод типа: int 3."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Metaprogramming и Templates — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое constexpr-метапрограммирование?",
+      "optionsLearning": [
+        "Вычисления значений во время компиляции",
+        "Типовое",
+        "Циклы",
+        "Хеши"
+      ],
+      "correctIndex": 0,
+      "explanation": "if constexpr, fold и функции constexpr."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Metaprogramming и Templates — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "templates",
+          "c++17"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое выражения пакетов (fold)?",
+      "optionsLearning": [
+        "Свёртка variadic в одно выражение",
+        "Массив",
+        "Цикл",
+        "string"
+      ],
+      "correctIndex": 0,
+      "explanation": "(args + ...) — fold."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\ntemplate <typename... Ts> auto sum(Ts... xs) { return (0 + ... + xs); }\nint main() { std::cout << sum(1, 2, 3, 4); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "10",
+        "1234",
+        "24",
+        "4"
+      ],
+      "correctIndex": 0,
+      "explanation": "Свёртка с нулевым инициализатором: 10."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Metaprogramming и Templates — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что делает std::integral_constant?",
+      "optionsLearning": [
+        "Константа типа в виде типа",
+        "Счётчик",
+        "Хеш",
+        "Строку"
+      ],
+      "correctIndex": 0,
+      "explanation": "true_type/false_type — база трейтов."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <type_traits>\nint main() { std::cout << std::is_same<int, std::remove_const_t<const int>>::value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "int",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "remove_const снимает const: true."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Metaprogramming и Templates — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "templates",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Когда метапрограммирование вредно?",
+      "optionsLearning": [
+        "Чрезмерная сложность и время компиляции",
+        "Всегда",
+        "Никогда",
+        "Для игр"
+      ],
+      "correctIndex": 0,
+      "explanation": "Баланс выразительности и поддержки."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Metaprogramming и Templates — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "templates",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое expression templates?",
+      "optionsLearning": [
+        "Оптимизация формул через шаблоны (lazy)",
+        "Макросы",
+        "Функции",
+        "Классы"
+      ],
+      "correctIndex": 0,
+      "explanation": "Библиотеки линейной алгебры."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Metaprogramming и Templates — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое concepts в этом контексте?",
+      "optionsLearning": [
+        "Ограничение мета-кода (C++20)",
+        "Типы",
+        "Макросы",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Читаемые ограничения вместо SFINAE."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-18",
-      "kind": "select",
-      "title": "Массивы одномерные",
+      "kind": "code-trace",
+      "title": "Metaprogramming и Templates — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "question": "Что выведет эта программа (типы)?",
+      "code": {
+        "code": "#include <iostream>\n#include <tuple>\nint main() { std::cout << std::tuple_size<std::tuple<int, int, int>>::value; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "3",
+        "2",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "tuple_size — 3."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Metaprogramming и Templates — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "templates"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Что такое type list?",
+      "optionsLearning": [
+        "Список типов для мета-обработки",
+        "Массив",
+        "Строка",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "Рекурсивные списки типов."
     },
     {
       "id": "cpp.advanced.metaprogramming.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Metaprogramming и Templates — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "templates",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.metaprogramming.01.scenario"
+      "scenarioId": "cpp.advanced.metaprogramming.01.scenario",
+      "promptKnown": "Куда движется метапрограммирование?",
+      "optionsLearning": [
+        "В константные вычисления и концепты (проще)",
+        "В макросы",
+        "В runtime",
+        "Никуда"
+      ],
+      "correctIndex": 0,
+      "explanation": "Меньше «страшных» трюков."
     }
   ],
   "title": "Advanced — Advanced C++"

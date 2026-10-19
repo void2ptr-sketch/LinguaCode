@@ -3,602 +3,652 @@
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Move semantics и rvalue references — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "что"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое move-семантика?",
+      "optionsLearning": [
+        "Передача владения ресурсом вместо копирования",
+        "Удаление объекта",
+        "Копирование всегда",
+        "Перемещение файлов"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::move переносит ресурс без глубокого копирования."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Move semantics и rvalue references — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "история"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое rvalue-ссылка?",
+      "optionsLearning": [
+        "Ссылка Т&&, связывающаяся с временными объектами",
+        "Обычная ссылка",
+        "Указатель",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "explanation": "T&& обеспечивает распознавание временных значений."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "структура"
+          "memory",
+          "modern-cpp",
+          "strings"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <string>\nint main() { std::string a = \"hello\"; std::string b = std::move(a); std::cout << b.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "5",
+        "0",
+        "hello",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перемещение строки: b получает содержимое (5)."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Move semantics и rvalue references — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "компиляция"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое move-конструктор?",
+      "optionsLearning": [
+        "Конструктор, переносящий ресурсы из временного объекта",
+        "Копия",
+        "Дефолт",
+        "Вируальный"
+      ],
+      "correctIndex": 0,
+      "explanation": "T(T&& other) noexcept — перенос состояния."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Move semantics и rvalue references — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "настройка"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое move-присваивание?",
+      "optionsLearning": [
+        "Оператор = принимающий rvalue и переносящий ресурсы",
+        "Обычный =",
+        "Копия",
+        "Удаление"
+      ],
+      "correctIndex": 0,
+      "explanation": "T& operator=(T&&) noexcept."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "основные"
+          "memory",
+          "modern-cpp",
+          "containers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <vector>\nint main() { std::vector<int> a = {1, 2, 3}; std::vector<int> b = std::move(a); std::cout << b.size() << a.size(); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "30",
+        "33",
+        "03",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После move: b=3 элемента, a обычно 0."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Move semantics и rvalue references — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "В каком состоянии остаётся исходник после move?",
+      "optionsLearning": [
+        "Валидном, но неопределённом (обычно пустом)",
+        "Невалидном",
+        "Заблокированном",
+        "Копии"
+      ],
+      "correctIndex": 0,
+      "explanation": "Перемещённый объект должен быть пригоден к деструктору/присваиванию."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Move semantics и rvalue references — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "memory",
+          "modern-cpp",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Зачем move быстрее копий?",
+      "optionsLearning": [
+        "Переносит указатели, не копируя буферы",
+        "Меньше кода",
+        "Случайно",
+        "Использует SIMD"
+      ],
+      "correctIndex": 0,
+      "explanation": "Глубокие ресурсы переходят к новому владельцу."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\nvoid f(int&) { std::cout << 'l'; }\nvoid f(int&&) { std::cout << 'r'; }\nint main() { int x = 1; f(std::move(x)); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "r",
+        "l",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::move даёт rvalue: выбирается f(int&&) → r."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Move semantics и rvalue references — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое std::move на самом деле?",
+      "optionsLearning": [
+        "Приведение к rvalue-ссылке (static_cast<T&&>)",
+        "Физическое перемещение",
+        "Копию",
+        "malloc"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::move лишь помечает объект как перемещаемый."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Move semantics и rvalue references — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "memory",
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое forwarding reference (T&& в шаблоне)?",
+      "optionsLearning": [
+        "Ссылка, сохраняющая категорию значения",
+        "Rvalue всегда",
+        "Указатель",
+        "Константа"
+      ],
+      "correctIndex": 0,
+      "explanation": "В шаблонах T&& поддерживает perfect forwarding."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "memory",
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <utility>\ntemplate <typename T> void g(T&&) { std::cout << 'g'; }\nint main() { int x = 1; g(x); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "g",
+        "Ошибка",
+        "1",
+        "x"
+      ],
+      "correctIndex": 0,
+      "explanation": "Forwarding-ссылка принимает lvalue: g."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Move semantics и rvalue references — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "memory",
+          "templates",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что делает std::forward?",
+      "optionsLearning": [
+        "Передаёт аргумент с сохранением категории (perfect forwarding)",
+        "Всегда move",
+        "Всегда copy",
+        "Сортирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::forward<T>(arg) для идеальной передачи."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-14",
-      "kind": "select",
-      "title": "Параметры функций",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Какая перегрузка вызовется?",
+      "code": {
+        "code": "void h(const std::string&); void h(std::string&&);\nstd::string s; h(std::move(s));",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "h(std::string&&)",
+        "h(const&)",
+        "Обе",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "move-выражение выбирает rvalue-перегрузку."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Move semantics и rvalue references — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Когда move-конструктор компилятор генерирует сам?",
+      "optionsLearning": [
+        "При отсутствии пользовательских спец-методов",
+        "Всегда",
+        "Никогда",
+        "Только final"
+      ],
+      "correctIndex": 0,
+      "explanation": "Неявный move появляется при соблюдении правил."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-16",
       "kind": "select",
-      "title": "Область видимости переменных",
+      "title": "Move semantics и rvalue references — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "область"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что даёт noexcept у move-конструктора?",
+      "optionsLearning": [
+        "Контейнеры выбирают move вместо copy при росте",
+        "Ускорение",
+        "Безопасность исключений",
+        "Всё верно"
+      ],
+      "correctIndex": 0,
+      "explanation": "noexcept-move позволяет vector перемещать элементы."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-17",
-      "kind": "select",
-      "title": "Рекурсия",
+      "kind": "code-trace",
+      "title": "Move semantics и rvalue references — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <memory>\nint main() { auto p = std::make_unique<int>(3); auto q = std::move(p); std::cout << (p == nullptr) << *q; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "13",
+        "01",
+        "03",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "После move p пуст (1), q владеет 3."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Move semantics и rvalue references — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Что такое value categories (lvalue/rvalue/prvalue)?",
+      "optionsLearning": [
+        "Классификация выражений по доступу к объектам",
+        "Сортировка",
+        "Числа",
+        "Типы"
+      ],
+      "correctIndex": 0,
+      "explanation": "lvalue имеет адрес, prvalue — временное."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Move semantics и rvalue references — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Почему std::move(x) не перемещает, пока нет move-присваивания?",
+      "optionsLearning": [
+        "Только вызывает перегрузку; перенос выполняет сам оператор",
+        "Сразу переносит",
+        "Ошибка",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::move — это просто приведение типа."
     },
     {
       "id": "cpp.advanced.move-semantics.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Move semantics и rvalue references — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "memory",
+          "modern-cpp"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.move-semantics.01.scenario"
+      "scenarioId": "cpp.advanced.move-semantics.01.scenario",
+      "promptKnown": "Каков результат move от int?",
+      "optionsLearning": [
+        "Копия (int невладеющий тип)",
+        "Ноль",
+        "Переполнение",
+        "Ссылка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Для тривиальных типов move равен копии."
     }
   ],
   "scenarioId": "cpp.advanced.move-semantics.01.scenario",

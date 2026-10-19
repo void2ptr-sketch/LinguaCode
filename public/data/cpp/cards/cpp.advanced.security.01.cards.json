@@ -4,602 +4,634 @@
     {
       "id": "cpp.advanced.security.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Security и Cryptography — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "что"
+          "security",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Какие уязвимости типичны для C++?",
+      "optionsLearning": [
+        "Переполнение буфера, use-after-free, UB",
+        "Только сеть",
+        "SQL-инъекции всегда",
+        "Нет"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ручное управление памятью — риск."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Security и Cryptography — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "история"
+          "security",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое buffer overflow?",
+      "optionsLearning": [
+        "Запись за границы массива",
+        "Ошибка типа",
+        "Сеть",
+        "Логи"
+      ],
+      "correctIndex": 0,
+      "explanation": "Может перезаписать данные/код."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Security и Cryptography — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "структура"
+          "security",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "question": "Опасно ли это?",
+      "code": {
+        "code": "int a[3]; a[3] = 1;",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Да — выход за границы",
+        "Нет",
+        "Ок",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Запись за массив — переполнение."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Security и Cryptography — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "beginner",
         "tags": [
-          "advanced",
-          "компиляция"
+          "security",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Как предотвратить переполнение буфера?",
+      "optionsLearning": [
+        "Границы, std::array/vector, .at()",
+        "Меньше памяти",
+        "Макрос",
+        "Безопасность"
+      ],
+      "correctIndex": 0,
+      "explanation": "Использовать безопасные контейнеры."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Security и Cryptography — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "security",
+          "types"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое integer overflow в безопасности?",
+      "optionsLearning": [
+        "Переполнение может дать неверные проверки",
+        "Всегда crash",
+        "Ошибка",
+        "Стиль"
+      ],
+      "correctIndex": 0,
+      "explanation": "Условия длины могут ломаться."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Security и Cryptography — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "основные"
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "question": "Что выведет проверка размера?",
+      "code": {
+        "code": "size_t sz = get_size(); if (sz < 1024) { ... }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "Зависит от входных данных — опасен overflow при расчётах",
+        "всегда safe",
+        "0",
+        "ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "Проверки до выделения/копирования."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Security и Cryptography — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое format string vulnerability?",
+      "optionsLearning": [
+        "Передача пользовательского ввода в printf как формат",
+        "Ошибка типа",
+        "Сеть",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "printf(buf) — риск."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Security и Cryptography — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Как избежать format vulnerabilities?",
+      "optionsLearning": [
+        "std::cout << data, не printf(data)",
+        "Использовать printf",
+        "Макрос",
+        "ignore"
+      ],
+      "correctIndex": 0,
+      "explanation": "Безопасный вывод без формата."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Security и Cryptography — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "security",
+          "memory"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое use-after-free в контексте безопасности?",
+      "optionsLearning": [
+        "Доступ после освобождения — эксплуатация",
+        "Быстро",
+        "Ошибка компиляции",
+        "ничего"
+      ],
+      "correctIndex": 0,
+      "explanation": "Частый вектор атак."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-10",
-      "kind": "select",
-      "title": "Условные операторы if-else",
+      "kind": "code-trace",
+      "title": "Security и Cryptography — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "условные"
-        ]
+        "difficulty": [
+          "security",
+          "memory"
+        ],
+        "tags": "RAII сокращает риски."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "question": "Как защититься от UAF?",
+      "code": {
+        "code": [
+          "Smart pointers, не хранить сырые указатели",
+          "new везде",
+          "Логи",
+          "ignore"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Security и Cryptography — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "security",
+          "crypto"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое симметричное шифрование?",
+      "optionsLearning": [
+        "Один ключ для шифрования/дешифрования",
+        "Два",
+        "Ноль",
+        "Публичный"
+      ],
+      "correctIndex": 0,
+      "explanation": "AES и др."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Security и Cryptography — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "операторы"
+          "security",
+          "crypto"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое асимметричное шифрование?",
+      "optionsLearning": [
+        "Пара ключей: публичный/приватный",
+        "Один ключ",
+        "Ноль",
+        "Хеш"
+      ],
+      "correctIndex": 0,
+      "explanation": "RSA, ECC."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-13",
-      "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "kind": "code-trace",
+      "title": "Security и Cryptography — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "функции:"
-        ]
+        "difficulty": [
+          "security",
+          "crypto"
+        ],
+        "tags": "SHA-256 и др."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "question": "Что делает хеш?",
+      "code": {
+        "code": [
+          "Одностороннее преобразование (необратимое)",
+          "Шифрование",
+          "Сжатие",
+          "Сортировку"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Security и Cryptography — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "security",
+          "crypto"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Чем хеш отличается от шифрования?",
+      "optionsLearning": [
+        "Хеш необратим, шифрование обратимо",
+        "Одно",
+        "Хеш обратим",
+        "Ничем"
+      ],
+      "correctIndex": 0,
+      "explanation": "Назначения различны."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Security и Cryptography — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "security",
+          "crypto"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое constant-time сравнение?",
+      "optionsLearning": [
+        "Сравнение без утечки времени (для secret)",
+        "Быстрое",
+        "Обычное",
+        "Строковое"
+      ],
+      "correctIndex": 0,
+      "explanation": "Защита от timing-атак."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Security и Cryptography — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "область"
-        ]
+        "difficulty": [
+          "security",
+          "crypto"
+        ],
+        "tags": "Время сравнения выдаёт информацию."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "question": "Чем опасен временный непараллельный memcmp секретов?",
+      "code": {
+        "code": [
+          "Timing-атака",
+          "Ничего",
+          "Быстрее",
+          "Ошибка"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Security и Cryptography — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое sandbox?",
+      "optionsLearning": [
+        "Ограниченная среда выполнения",
+        "Сеть",
+        "Файл",
+        "Лог"
+      ],
+      "correctIndex": 0,
+      "explanation": "Изоляция потенциально опасного кода."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Security и Cryptography — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "security"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое самый важный принцип C++ security?",
+      "optionsLearning": [
+        "Проверять входные данные и контрактные инварианты",
+        "Скорость",
+        "Меньше кода",
+        "Умные указатели только"
+      ],
+      "correctIndex": 0,
+      "explanation": "Validate everything."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Security и Cryptography — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "security",
+          "debugging"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что делает ASan при атаке?",
+      "optionsLearning": [
+        "Детектит переполнения в тестах",
+        "Исправляет",
+        "Шифрует",
+        "Хеширует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Санитайзеры находят ошибки памяти."
     },
     {
       "id": "cpp.advanced.security.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Security и Cryptography — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "security",
+          "compilers"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.security.01.scenario"
+      "scenarioId": "cpp.advanced.security.01.scenario",
+      "promptKnown": "Что такое hardening (компиляторные защиты)?",
+      "optionsLearning": [
+        "-fstack-protector, PIE, RELRO",
+        "Стиль",
+        "Логи",
+        "Сети"
+      ],
+      "correctIndex": 0,
+      "explanation": "Устойчивость к эксплуатации (ROP и пр.)."
     }
   ],
   "title": "Advanced — Advanced C++"

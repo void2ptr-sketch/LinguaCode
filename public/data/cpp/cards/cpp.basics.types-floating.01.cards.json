@@ -4,602 +4,641 @@
     {
       "id": "cpp.basics.types-floating.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Вещественные типы — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "что"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Какой тип хранит числа с плавающей точкой одинарной точности?",
+      "optionsLearning": [
+        "float",
+        "int",
+        "double",
+        "long"
+      ],
+      "correctIndex": 0,
+      "explanation": "float — тип с плавающей точкой одинарной точности (обычно 4 байта)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Вещественные типы — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "история"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Какой вещественный тип имеет двойную точность?",
+      "optionsLearning": [
+        "double",
+        "float",
+        "short",
+        "char"
+      ],
+      "correctIndex": 0,
+      "explanation": "double — двойная точность (обычно 8 байт), используется по умолчанию для литералов."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-03",
       "kind": "select",
-      "title": "Структура простой программы",
+      "title": "Вещественные типы — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "структура"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Какой суффикс указывает на литерал типа float (например, 2.5)?",
+      "optionsLearning": [
+        "2.5f",
+        "2.5d",
+        "2.5s",
+        "2.5l только"
+      ],
+      "correctIndex": 0,
+      "explanation": "Литерал с суффиксом f имеет тип float: 2.5f."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Вещественные типы — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "компиляция"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Число 3.14 без суффикса в C++ имеет тип ...?",
+      "optionsLearning": [
+        "double",
+        "float",
+        "long double",
+        "int"
+      ],
+      "correctIndex": 0,
+      "explanation": "Вещественный литерал по умолчанию имеет тип double."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-05",
-      "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "kind": "code-trace",
+      "title": "Вещественные типы — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "настройка"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { double d = 0.1 + 0.2; std::cout << (d == 0.3); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0",
+        "1",
+        "true",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "0.1 + 0.2 не равно точно 0.3 из-за ошибок представления double — сравнение даёт false (0)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-06",
       "kind": "select",
-      "title": "Основные типы данных",
+      "title": "Вещественные типы — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "основные"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Почему нельзя надёжно сравнивать float через ==",
+      "optionsLearning": [
+        "Из-за погрешностей двоичного представления",
+        "float нельзя сравнивать",
+        "Это запрещено стандартом",
+        "Компилятор не поддерживает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Погрешности округления делают прямое == ненадёжным; сравнивают с эпсилон-допуском."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Вещественные типы — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "переменные"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Как сравнивать вещественные числа с допустимой погрешностью?",
+      "optionsLearning": [
+        "fabs(a - b) <= epsilon",
+        "a == b",
+        "(int)a == (int)b",
+        "a >= b только"
+      ],
+      "correctIndex": 0,
+      "explanation": "Корректно: |a - b| меньше малого epsilon (например, 1e-9)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-08",
-      "kind": "select",
-      "title": "Ввод/вывод данных",
+      "kind": "code-trace",
+      "title": "Вещественные типы — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "ввод/вывод"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { float f = 1.0f / 3.0f; std::cout << f; }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "0.333333",
+        "0.3",
+        "1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "1.0f/3.0f ≈ 0.333333 с ограниченной точностью float."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-09",
       "kind": "select",
-      "title": "Операторы и выражения",
+      "title": "Вещественные типы — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "операторы"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Что такое NaN?",
+      "optionsLearning": [
+        "Значение «не число» (Not a Number)",
+        "Отрицательное число",
+        "Новое число",
+        "Ошибка типа"
+      ],
+      "correctIndex": 0,
+      "explanation": "NaN — специальное значение результата недопустимых операций (например, 0.0/0.0)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Вещественные типы — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "условные"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Что обозначает inf?",
+      "optionsLearning": [
+        "Бесконечность (например, при делении на ноль в double)",
+        "Целое число",
+        "Имя переменной",
+        "Формат вывода"
+      ],
+      "correctIndex": 0,
+      "explanation": "Операция вида 1.0/0.0 в арифметике с плавающей точкой даёт +inf."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-11",
-      "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "kind": "code-trace",
+      "title": "Вещественные типы — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
-        "tags": [
-          "basics",
-          "циклы"
-        ]
+        "difficulty": [
+          "types",
+          "language-basics"
+        ],
+        "tags": "В арифметике IEEE 754 деление на ±0.0 даёт ±inf для ненулевого числителя."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "question": "Что произойдёт при делении double на 0.0?",
+      "code": {
+        "code": [
+          "Результат inf или -inf (не ошибка)",
+          "Ошибка компиляции",
+          "Исключение всегда",
+          "Программа завершится"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "intermediate"
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-12",
       "kind": "select",
-      "title": "Операторы break и continue",
+      "title": "Вещественные типы — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "операторы"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Чем double лучше float по умолчанию?",
+      "optionsLearning": [
+        "Больше точность и диапазон",
+        "Меньше память",
+        "Быстрее всегда",
+        "Точнее 1/3"
+      ],
+      "correctIndex": 0,
+      "explanation": "double хранит больше значащих цифр и шире диапазон, чем float."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Вещественные типы — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "функции:"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Какой тип имеет максимальную точность среди стандартных вещественных?",
+      "optionsLearning": [
+        "long double",
+        "double",
+        "float",
+        "int64"
+      ],
+      "correctIndex": 0,
+      "explanation": "long double — расширенная точность (размер зависит от платформы)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Вещественные типы — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "параметры"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Что выведет выражение 10 % 3?",
+      "optionsLearning": [
+        "1",
+        "3",
+        "3.33",
+        "0"
+      ],
+      "correctIndex": 0,
+      "explanation": "Оператор % возвращает остаток: 10 % 3 = 1."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Вещественные типы — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "возвращаемые"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Можно ли применять оператор % к double?",
+      "optionsLearning": [
+        "Нет, % работает только с целыми типами",
+        "Да, всегда",
+        "Только в C++20",
+        "Только через fmod на самом деле"
+      ],
+      "correctIndex": 0,
+      "explanation": "% применим к целым; для вещественных используется fmod из <cmath>."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Вещественные типы — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "область"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\n#include <cmath>\nint main() { std::cout << fmod(7.5, 2.0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1.5",
+        "3.75",
+        "0.5",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "fmod(7.5, 2.0) = 1.5 — остаток вещественного деления."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Вещественные типы — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "рекурсия"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Какая функция округляет число до ближайшего целого?",
+      "optionsLearning": [
+        "round(x)",
+        "floor(x) всегда",
+        "int(x)",
+        "truncate(x)"
+      ],
+      "correctIndex": 0,
+      "explanation": "round(x) округляет к ближайшему целому; floor/ceil — вниз/вверх."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Вещественные типы — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Что делает ceil(2.1)?",
+      "optionsLearning": [
+        "3",
+        "2",
+        "2.1",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "ceil округляет вверх до ближайшего целого: ceil(2.1) = 3."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-19",
-      "kind": "select",
-      "title": "Массивы многомерные",
+      "kind": "code-trace",
+      "title": "Вещественные типы — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "beginner",
         "tags": [
-          "basics",
-          "массивы"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "question": "Что выведет эта программа?",
+      "code": {
+        "code": "#include <iostream>\nint main() { std::cout << (2.0 * 3 == 6.0); }",
+        "language": "cpp"
+      },
+      "outputOptions": [
+        "1",
+        "0",
+        "true",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "explanation": "2.0*3 = 6.0 точно представляемо, сравнение даёт true (вывод 1)."
     },
     {
       "id": "cpp.basics.types-floating.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Вещественные типы — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "beginner",
+        "difficulty": "intermediate",
         "tags": [
-          "basics",
-          "строки"
+          "types",
+          "language-basics"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-basics",
-      "scenarioId": "cpp.basics.types-floating.01.scenario"
+      "scenarioId": "cpp.basics.types-floating.01.scenario",
+      "promptKnown": "Как вывести больше знаков после запятой для double?",
+      "optionsLearning": [
+        "std::setprecision(15) из <iomanip>",
+        "Только %f",
+        "double::precision",
+        "std::cout << d * 100"
+      ],
+      "correctIndex": 0,
+      "explanation": "Манипулятор std::setprecision(N) из <iomanip> задаёт число выводимых знаков."
     }
   ],
   "title": "Basics — Basics C++"

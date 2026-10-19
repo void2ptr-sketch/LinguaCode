@@ -4,602 +4,638 @@
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-01",
       "kind": "select",
-      "title": "Что такое C++?",
+      "title": "Coroutines и Async (C++20) — Вопрос 1",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В каких областях применяется C++ и почему он остаётся популярным?",
-      "optionsLearning": [
-        "В каких областях применяется C++ и почему он остаётся популярным?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "что"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что такое корутина?",
+      "optionsLearning": [
+        "Функция с приостановкой и возобновлением",
+        "Поток",
+        "Процесс",
+        "Класс"
+      ],
+      "correctIndex": 0,
+      "explanation": "Корутина может yield/await, сохраняя состояние."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-02",
       "kind": "select",
-      "title": "История создания C++",
+      "title": "Coroutines и Async (C++20) — Вопрос 2",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как эволюционировал C++ от C с классами до C++20?",
-      "optionsLearning": [
-        "Как эволюционировал C++ от C с классами до C++20?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "история"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Какие ключевые слова у корутин?",
+      "optionsLearning": [
+        "co_await, co_yield, co_return",
+        "await, yield",
+        "pause",
+        "goto"
+      ],
+      "correctIndex": 0,
+      "explanation": "co_* в сигнатуре корутины."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-03",
-      "kind": "select",
-      "title": "Структура простой программы",
+      "kind": "code-trace",
+      "title": "Coroutines и Async (C++20) — Вопрос 3",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие обязательные элементы есть в каждой C++ программе?",
-      "optionsLearning": [
-        "Какие обязательные элементы есть в каждой C++ программе?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "структура"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "co_yield приостанавливает и отдаёт значение."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "question": "Какой синтаксис выдаёт значение?",
+      "code": {
+        "code": [
+          "co_yield value;",
+          "yield value",
+          "return с value",
+          "emit"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-04",
       "kind": "select",
-      "title": "Компиляция и запуск",
+      "title": "Coroutines и Async (C++20) — Вопрос 4",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие этапы проходят от исходного кода до исполняемого файла?",
-      "optionsLearning": [
-        "Какие этапы проходят от исходного кода до исполняемого файла?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "компиляция"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что делает co_await?",
+      "optionsLearning": [
+        "Приостанавливает до готовности",
+        "Ждёт всегда",
+        "Завершает",
+        "Бросает"
+      ],
+      "correctIndex": 0,
+      "explanation": "Ожидание асинхронной операции."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-05",
       "kind": "select",
-      "title": "Настройка окружения (IDE, компилятор)",
+      "title": "Coroutines и Async (C++20) — Вопрос 5",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Какие компиляторы C++ доступны для разработки?",
-      "optionsLearning": [
-        "Какие компиляторы C++ доступны для разработки?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "настройка"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Кто реализует корутину в C++20?",
+      "optionsLearning": [
+        "Пользовательские promise/future типы (framework)",
+        "Компилятор сам",
+        "Только std",
+        "Сборщик"
+      ],
+      "correctIndex": 0,
+      "explanation": "Нужен собственный promise_type."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-06",
-      "kind": "select",
-      "title": "Основные типы данных",
+      "kind": "code-trace",
+      "title": "Coroutines и Async (C++20) — Вопрос 6",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается int от long long в C++?",
-      "optionsLearning": [
-        "Чем отличается int от long long в C++?",
-        "Только для embedded систем",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "основные"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Минимальный контракт корутин."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "question": "Что обязано быть в promise_type?",
+      "code": {
+        "code": [
+          "get_return_object, initial_suspend, final_suspend, return_void/return_value",
+          "ничего",
+          "main",
+          "typeid"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-07",
       "kind": "select",
-      "title": "Переменные и константы",
+      "title": "Coroutines и Async (C++20) — Вопрос 7",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как объявить переменную в C++ и какие способы инициализации существуют?",
-      "optionsLearning": [
-        "Как объявить переменную в C++ и какие способы инициализации существуют?",
-        "Применяется только в теории",
-        "Только для embedded систем",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "переменные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что такое stackless-корутина?",
+      "optionsLearning": [
+        "Сохранение состояния в куче, без системного стека",
+        "Стек всегда",
+        "Поток",
+        "none"
+      ],
+      "correctIndex": 0,
+      "explanation": "C++ корутины — stackless."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-08",
       "kind": "select",
-      "title": "Ввод/вывод данных",
+      "title": "Coroutines и Async (C++20) — Вопрос 8",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как использовать std::cin и std::cout для ввода-вывода?",
-      "optionsLearning": [
-        "Как использовать std::cin и std::cout для ввода-вывода?",
-        "Только для embedded систем",
-        "Применяется только в теории",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "ввод/вывод"
+          "modern-cpp",
+          "c++20",
+          "performance"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Чем корутины лучше потоков для IO?",
+      "optionsLearning": [
+        "Дешёвые приостановки без переключения контекста",
+        "Быстрее всегда",
+        "Меньше кода",
+        "Один поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Тысячи корутин на один поток."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-09",
-      "kind": "select",
-      "title": "Операторы и выражения",
+      "kind": "code-trace",
+      "title": "Coroutines и Async (C++20) — Вопрос 9",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое short-circuit evaluation логических операторов?",
-      "optionsLearning": [
-        "Что такое short-circuit evaluation логических операторов?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "операторы"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Генераторы отдают последовательность."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "question": "Что возвращает co_yield в генераторе?",
+      "code": {
+        "code": [
+          "Значение, которое можно забрать извне",
+          "Поток",
+          "Пустоту",
+          "Ошибку"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-10",
       "kind": "select",
-      "title": "Условные операторы if-else",
+      "title": "Coroutines и Async (C++20) — Вопрос 10",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое guard clauses и зачем они нужны?",
-      "optionsLearning": [
-        "Что такое guard clauses и зачем они нужны?",
-        "Применяется только в теории",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "условные"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что такое awaiter?",
+      "optionsLearning": [
+        "Объект с await_ready/await_suspend/await_resume",
+        "Поток",
+        "Класс",
+        "Указатель"
+      ],
+      "correctIndex": 0,
+      "explanation": "Механика co_await."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-11",
       "kind": "select",
-      "title": "Циклы for, while, do-while",
+      "title": "Coroutines и Async (C++20) — Вопрос 11",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "В чём разница между for и while циклами?",
-      "optionsLearning": [
-        "В чём разница между for и while циклами?",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "циклы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что делает await_suspend?",
+      "optionsLearning": [
+        "Решает, приостановить ли и передать управление",
+        "Всегда resume",
+        "Убивает",
+        "Копирует"
+      ],
+      "correctIndex": 0,
+      "explanation": "Возврат false — не приостанавливать."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-12",
-      "kind": "select",
-      "title": "Операторы break и continue",
+      "kind": "code-trace",
+      "title": "Coroutines и Async (C++20) — Вопрос 12",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Можно ли использовать break/continue с switch?",
-      "optionsLearning": [
-        "Можно ли использовать break/continue с switch?",
-        "Устаревшая технология",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "операторы"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "coroutine_handle::resume."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "question": "Какая функция возобновляет корутину?",
+      "code": {
+        "code": [
+          "handle.resume()",
+          "handle.start",
+          "run()",
+          "go"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-13",
       "kind": "select",
-      "title": "Функции: объявление и вызов",
+      "title": "Coroutines и Async (C++20) — Вопрос 13",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое declaration и definition функции?",
-      "optionsLearning": [
-        "Что такое declaration и definition функции?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "функции:"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что хранит coroutine_handle?",
+      "optionsLearning": [
+        "Ссылку на фрейм корутины",
+        "Поток",
+        "Значение",
+        "Стек"
+      ],
+      "correctIndex": 0,
+      "explanation": "Хендл управляет состоянием."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-14",
       "kind": "select",
-      "title": "Параметры функций",
+      "title": "Coroutines и Async (C++20) — Вопрос 14",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое default parameters и как они работают?",
-      "optionsLearning": [
-        "Что такое default parameters и как они работают?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "параметры"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что происходит при co_return без значения?",
+      "optionsLearning": [
+        "Вызов return_void",
+        "Ошибка",
+        "Крэш",
+        "Печать"
+      ],
+      "correctIndex": 0,
+      "explanation": "return_void завершает корутину."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-15",
       "kind": "select",
-      "title": "Возвращаемые значения",
+      "title": "Coroutines и Async (C++20) — Вопрос 15",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как правильно возвращать значения из функции?",
-      "optionsLearning": [
-        "Как правильно возвращать значения из функции?",
-        "Устаревшая технология",
-        "Не имеет отношения к C++",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "возвращаемые"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Где чаще применяют корутины?",
+      "optionsLearning": [
+        "Async-IO, генераторы, сеть",
+        "Игры вроде",
+        "Только сервера",
+        "Нигде"
+      ],
+      "correctIndex": 0,
+      "explanation": "Идиоматичный асинхронный код."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-16",
-      "kind": "select",
-      "title": "Область видимости переменных",
+      "kind": "code-trace",
+      "title": "Coroutines и Async (C++20) — Вопрос 16",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается local scope от global scope?",
-      "optionsLearning": [
-        "Чем отличается local scope от global scope?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
-        "tags": [
-          "advanced",
-          "область"
-        ]
+        "difficulty": [
+          "modern-cpp",
+          "c++20"
+        ],
+        "tags": "Незавершённая корутина должна уничтожаться destroy()."
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "question": "Что вызывает утечку фрейма?",
+      "code": {
+        "code": [
+          "Потеря корутины без финализации",
+          "Мало памяти",
+          "Поток",
+          "Ошибку"
+        ],
+        "language": "cpp"
+      },
+      "outputOptions": 0,
+      "correctIndex": "advanced"
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-17",
       "kind": "select",
-      "title": "Рекурсия",
+      "title": "Coroutines и Async (C++20) — Вопрос 17",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что такое tail recursion и как её оптимизировать?",
-      "optionsLearning": [
-        "Что такое tail recursion и как её оптимизировать?",
-        "Применяется только в теории",
-        "Устаревшая технология",
-        "Не имеет отношения к C++"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "рекурсия"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Что делает destroy() корутины?",
+      "optionsLearning": [
+        "Принудительно уничтожает без возобновления",
+        "Возобновляет",
+        "Пауза",
+        "Копия"
+      ],
+      "correctIndex": 0,
+      "explanation": "Прямое освобождение фрейма."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-18",
       "kind": "select",
-      "title": "Массивы одномерные",
+      "title": "Coroutines и Async (C++20) — Вопрос 18",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается C-style array от std::vector?",
-      "optionsLearning": [
-        "Чем отличается C-style array от std::vector?",
-        "Только для embedded систем",
-        "Не имеет отношения к C++",
-        "Устаревшая технология"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Как README генератор бесконечной последовательности?",
+      "optionsLearning": [
+        "co_yield в цикле + co_await для синхронизации",
+        "Вечный цикл блокирует",
+        "Возврат массива",
+        "Поток"
+      ],
+      "correctIndex": 0,
+      "explanation": "Генераторы ленивы."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-19",
       "kind": "select",
-      "title": "Массивы многомерные",
+      "title": "Coroutines и Async (C++20) — Вопрос 19",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Как работает двумерный массив в C++?",
-      "optionsLearning": [
-        "Как работает двумерный массив в C++?",
-        "Не имеет отношения к C++",
-        "Применяется только в теории",
-        "Только для embedded систем"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
-        "difficulty": "advanced",
+        "difficulty": "intermediate",
         "tags": [
-          "advanced",
-          "массивы"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Чем корутина отличается от обычной функции?",
+      "optionsLearning": [
+        "Может приостанавливаться и сохранять локальные",
+        "Скоростью",
+        "Типом",
+        "Названием"
+      ],
+      "correctIndex": 0,
+      "explanation": "Фрейм живёт между вызовами."
     },
     {
       "id": "cpp.advanced.coroutines.01.scenario.card-20",
       "kind": "select",
-      "title": "Строки и работа с ними",
+      "title": "Coroutines и Async (C++20) — Вопрос 20",
       "appearance": {
         "theme": "azure-blue",
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Чем отличается std::string от char* в C++?",
-      "optionsLearning": [
-        "Чем отличается std::string от char* в C++?",
-        "Не имеет отношения к C++",
-        "Только для embedded систем",
-        "Применяется только в теории"
-      ],
-      "correctIndex": 0,
       "meta": {
         "knownLanguage": "ru",
         "learningLanguage": "cpp",
         "difficulty": "advanced",
         "tags": [
-          "advanced",
-          "строки"
+          "modern-cpp",
+          "c++20"
         ]
       },
       "courseId": "course-cpp-complete",
       "lessonId": "lesson-cpp-advanced",
-      "scenarioId": "cpp.advanced.coroutines.01.scenario"
+      "scenarioId": "cpp.advanced.coroutines.01.scenario",
+      "promptKnown": "Каков статус корутин в STL (2024)?",
+      "optionsLearning": [
+        "Ядро в C++20; библиотеки (generator) — C++23+",
+        "Готово всё",
+        "Удалены",
+        "В C++11"
+      ],
+      "correctIndex": 0,
+      "explanation": "std::generator появился в C++23."
     }
   ],
   "title": "Advanced — Advanced C++"
