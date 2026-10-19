@@ -10,12 +10,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Что такое STL?' в C++?",
+      "promptKnown": "Какие преимущества даёт использование STL в C++?",
       "optionsLearning": [
-        "Основные аспекты: Что такое STL? — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Какие преимущества даёт использование STL в C++?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Не имеет отношения к C++",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -40,12 +40,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Containers overview' в C++?",
+      "promptKnown": "Когда использовать vector, а когда list или deque?",
       "optionsLearning": [
-        "Основные аспекты: Containers overview — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Когда использовать vector, а когда list или deque?",
+        "Только для embedded систем",
         "Устаревшая технология",
-        "Только для embedded"
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -70,12 +70,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::vector basics' в C++?",
+      "promptKnown": "Как работает динамическое выделение памяти в std::vector?",
       "optionsLearning": [
-        "Основные аспекты: std::vector basics — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Как работает динамическое выделение памяти в std::vector?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -100,12 +100,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::list implementation' в C++?",
+      "promptKnown": "Какова сложность вставки/удаления элементов в list?",
       "optionsLearning": [
-        "Основные аспекты: std::list implementation — важный элемент C++",
+        "Какова сложность вставки/удаления элементов в list?",
+        "Применяется только в теории",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -130,12 +130,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::deque characteristics' в C++?",
+      "promptKnown": "Как работает block-based storage в deque?",
       "optionsLearning": [
-        "Основные аспекты: std::deque characteristics — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Как работает block-based storage в deque?",
+        "Только для embedded систем",
+        "Применяется только в теории",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -160,12 +160,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Iterators и их типы' в C++?",
+      "promptKnown": "Как работают random access iterators у vector?",
       "optionsLearning": [
-        "Основные аспекты: Iterators и их типы — важный элемент C++",
+        "Как работают random access iterators у vector?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -190,12 +190,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Algorithms library' в C++?",
+      "promptKnown": "Какие основные алгоритмы предоставляет <algorithm>?",
       "optionsLearning": [
-        "Основные аспекты: Algorithms library — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Какие основные алгоритмы предоставляет <algorithm>?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -220,12 +220,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::sort usage' в C++?",
+      "promptKnown": "Как сортировать объекты по нескольким полям?",
       "optionsLearning": [
-        "Основные аспекты: std::sort usage — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Как сортировать объекты по нескольким полям?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -250,12 +250,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::find variations' в C++?",
+      "promptKnown": "Как найти элемент по ключу в std::map?",
       "optionsLearning": [
-        "Основные аспекты: std::find variations — важный элемент C++",
-        "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Как найти элемент по ключу в std::map?",
+        "Только для embedded систем",
+        "Применяется только в теории",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -280,12 +280,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::for_each examples' в C++?",
+      "promptKnown": "Как применить функцию к каждому элементу контейнера?",
       "optionsLearning": [
-        "Основные аспекты: std::for_each examples — важный элемент C++",
+        "Как применить функцию к каждому элементу контейнера?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Применяется только в теории",
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -310,12 +310,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'std::transform patterns' в C++?",
+      "promptKnown": "Можно ли использовать std::transform для объединения двух контейнеров?",
       "optionsLearning": [
-        "Основные аспекты: std::transform patterns — важный элемент C++",
+        "Можно ли использовать std::transform для объединения двух контейнеров?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Применяется только в теории"
       ],
       "correctIndex": 0,
       "meta": {
@@ -340,12 +340,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Predicate design' в C++?",
+      "promptKnown": "Что такое predicate функция и какие требования к ней?",
       "optionsLearning": [
-        "Основные аспекты: Predicate design — важный элемент C++",
+        "Что такое predicate функция и какие требования к ней?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -370,12 +370,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Custom comparators' в C++?",
+      "promptKnown": "Когда нужно использовать operator< vs custom comparator?",
       "optionsLearning": [
-        "Основные аспекты: Custom comparators — важный элемент C++",
+        "Когда нужно использовать operator< vs custom comparator?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Применяется только в теории",
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -400,12 +400,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Container adaptors (stack, queue)' в C++?",
+      "promptKnown": "Чем отличается priority_queue от queue?",
       "optionsLearning": [
-        "Основные аспекты: Container adaptors (stack, queue) — важный элемент C++",
+        "Чем отличается priority_queue от queue?",
         "Не имеет отношения к C++",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -430,12 +430,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Associative containers (set, map)' в C++?",
+      "promptKnown": "Какова сложность операций поиска в associative containers?",
       "optionsLearning": [
-        "Основные аспекты: Associative containers (set, map) — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Какова сложность операций поиска в associative containers?",
+        "Применяется только в теории",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -460,12 +460,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Unordered containers (unordered_set, unordered_map)' в C++?",
+      "promptKnown": "Как работает hashing в unordered containers?",
       "optionsLearning": [
-        "Основные аспекты: Unordered containers (unordered_set, unordered_map) — важный элемент C++",
+        "Как работает hashing в unordered containers?",
+        "Применяется только в теории",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -490,12 +490,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'String manipulation with STL' в C++?",
+      "promptKnown": "Как эффективно конкатенировать строки в C++?",
       "optionsLearning": [
-        "Основные аспекты: String manipulation with STL — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Как эффективно конкатенировать строки в C++?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -520,12 +520,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Debugging STL issues' в C++?",
+      "promptKnown": "Как диагностировать segmentation fault при работе с контейнерами?",
       "optionsLearning": [
-        "Основные аспекты: Debugging STL issues — важный элемент C++",
+        "Как диагностировать segmentation fault при работе с контейнерами?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Применяется только в теории",
+        "Только для embedded систем"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,12 +550,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Performance optimization' в C++?",
+      "promptKnown": "Как профилировать hot paths в C++ коде?",
       "optionsLearning": [
-        "Основные аспекты: Performance optimization — важный элемент C++",
-        "Не имеет отношения к C++",
+        "Как профилировать hot paths в C++ коде?",
         "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Не имеет отношения к C++"
       ],
       "correctIndex": 0,
       "meta": {
@@ -580,12 +580,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Best practices для STL' в C++?",
+      "promptKnown": "Какие ошибки новичков чаще всего встречаются при работе со STL?",
       "optionsLearning": [
-        "Основные аспекты: Best practices для STL — важный элемент C++",
+        "Какие ошибки новичков чаще всего встречаются при работе со STL?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {

@@ -10,12 +10,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Что такое OOP в C++?' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Что такое OOP в C++?' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Что такое OOP в C++? — важный элемент C++",
+        "Основные аспекты: Что такое OOP в C++?",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -40,12 +40,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Classes и objects' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Classes и objects' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Classes и objects — важный элемент C++",
+        "Основные аспекты: Classes и objects",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -70,12 +70,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Encapsulation principles' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Encapsulation principles' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Encapsulation principles — важный элемент C++",
+        "Основные аспекты: Encapsulation principles",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -100,12 +100,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Inheritance mechanisms' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Inheritance mechanisms' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Inheritance mechanisms — важный элемент C++",
+        "Основные аспекты: Inheritance mechanisms",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -130,12 +130,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Polymorphism types' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Polymorphism types' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Polymorphism types — важный элемент C++",
+        "Основные аспекты: Polymorphism types",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -160,12 +160,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Abstraction techniques' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Abstraction techniques' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Abstraction techniques — важный элемент C++",
+        "Основные аспекты: Abstraction techniques",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -190,12 +190,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Design patterns overview' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Design patterns overview' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Design patterns overview — важный элемент C++",
+        "Основные аспекты: Design patterns overview",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -220,12 +220,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'SOLID principles' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'SOLID principles' в C++?",
       "optionsLearning": [
-        "Основные аспекты: SOLID principles — важный элемент C++",
+        "Основные аспекты: SOLID principles",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -250,12 +250,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Dependency injection' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Dependency injection' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Dependency injection — важный элемент C++",
+        "Основные аспекты: Dependency injection",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -280,12 +280,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Factory patterns' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Factory patterns' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Factory patterns — важный элемент C++",
+        "Основные аспекты: Factory patterns",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -310,12 +310,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Observer pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Observer pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Observer pattern — важный элемент C++",
+        "Основные аспекты: Observer pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -340,12 +340,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Strategy pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Strategy pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Strategy pattern — важный элемент C++",
+        "Основные аспекты: Strategy pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -370,12 +370,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Adapter pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Adapter pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Adapter pattern — важный элемент C++",
+        "Основные аспекты: Adapter pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -400,12 +400,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Decorator pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Decorator pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Decorator pattern — важный элемент C++",
+        "Основные аспекты: Decorator pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -430,12 +430,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Facade pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Facade pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Facade pattern — важный элемент C++",
+        "Основные аспекты: Facade pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -460,12 +460,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Builder pattern' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Builder pattern' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Builder pattern — важный элемент C++",
+        "Основные аспекты: Builder pattern",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -490,12 +490,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Debugging OOP issues' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Debugging OOP issues' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Debugging OOP issues — важный элемент C++",
+        "Основные аспекты: Debugging OOP issues",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -520,12 +520,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Performance implications of OOP' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Performance implications of OOP' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Performance implications of OOP — важный элемент C++",
+        "Основные аспекты: Performance implications of OOP",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -550,12 +550,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Best practices для OOP design' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Best practices для OOP design' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Best practices для OOP design — важный элемент C++",
+        "Основные аспекты: Best practices для OOP design",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
@@ -580,12 +580,12 @@
         "fontSize": "md"
       },
       "direction": "known-to-learning",
-      "promptKnown": "Что известно о 'Composition over inheritance' в C++?",
+      "promptKnown": "Какие ключевые аспекты 'Composition over inheritance' в C++?",
       "optionsLearning": [
-        "Основные аспекты: Composition over inheritance — важный элемент C++",
+        "Основные аспекты: Composition over inheritance",
         "Не имеет отношения к C++",
-        "Устаревшая технология",
-        "Только для embedded"
+        "Только для embedded систем",
+        "Устаревшая технология"
       ],
       "correctIndex": 0,
       "meta": {
