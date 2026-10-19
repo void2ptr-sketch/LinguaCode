@@ -15,15 +15,15 @@ import { getDefaultScenarios } from '../scenario/utils/scenario-catalog.defaults
 import { normalizeScenario } from '../scenario/utils/scenario-card-source.utils';
 import { USER_CONTENT_MIGRATED_KEY } from '../user/overlay/user-content-overlay.types';
 
-import demoCoursesFixture from '../../../../public/data/courses/demo-courses.json';
-import perlInterviewCourseFixture from '../../../../public/data/courses/perl-interview-course.json';
-import radicalsCourseFixture from '../../../../public/data/courses/radicals-214-course.json';
-import demoScenariosFixture from '../../../../public/data/scenarios/demo-scenarios.json';
-import perlInterviewScenariosFixture from '../../../../public/data/scenarios/perl-interview-scenarios.json';
-import radicalsScenariosFixture from '../../../../public/data/scenarios/radicals-scenarios.json';
-import selectCardsFixture from '../../../../public/data/cards/demo-cards.json';
-import perlInterviewCardsFixture from '../../../../public/data/cards/perl-interview-cards.json';
-import radicalsCardsFixture from '../../../../public/data/cards/radicals-course-cards.json';
+import demoCoursesFixture from '../../../../public/data/demo/courses/demo-courses.json';
+import perlInterviewCourseFixture from '../../../../public/data/perl/courses/perl-interview-course.json';
+import radicalsCourseFixture from '../../../../public/data/chinese/courses/radicals-214-course.json';
+import demoScenariosFixture from '../../../../public/data/demo/scenarios/demo-scenarios.json';
+import perlInterviewScenariosFixture from '../../../../public/data/perl/scenarios/perl-interview-scenarios.json';
+import radicalsScenariosFixture from '../../../../public/data/chinese/scenarios/radicals-scenarios.json';
+import selectCardsFixture from '../../../../public/data/demo/cards/demo-cards.json';
+import perlInterviewCardsFixture from '../../../../public/data/perl/cards/perl-interview-cards.json';
+import radicalsCardsFixture from '../../../../public/data/chinese/cards/radicals-course-cards.json';
 
 export function seedTestContentCache(): void {
   const demoScenarios = (demoScenariosFixture as ScenariosSeedFixture).scenarios.map((scenario) =>
