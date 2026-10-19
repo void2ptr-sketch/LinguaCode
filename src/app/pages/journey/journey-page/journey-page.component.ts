@@ -1,5 +1,5 @@
 import { Component, ChangeDetectionStrategy, inject, signal, effect } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { map } from 'rxjs';
 import { toSignal } from '@angular/core/rxjs-interop';
 
@@ -18,6 +18,7 @@ import {
 import type { JourneyLocationNode } from '../../../entities/learning/model';
 import type { CardBase } from '../../../entities/card/model';
 import type { CourseWithLessons } from '../../../entities/course/model';
+import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 
 /**
  * Journey page component. Renders the learning journey map for the current course,
@@ -41,7 +42,7 @@ import type { CourseWithLessons } from '../../../entities/course/model';
       <app-learning-journey-map
         [courseId]="courseId()"
         [nodes]="nodes()"
-        (locationSelect)="onLocationSelect()"
+        (locationSelect)="onLocationSelect($event)"
       />
     } @else {
       <div class="journey-page__empty" role="status">
@@ -60,6 +61,7 @@ export class JourneyPageComponent {
   private readonly userStore = inject(UserStore);
   private readonly logger = inject(AppLoggerService);
   private readonly route = inject(ActivatedRoute);
+  private readonly router = inject(Router);
 
   readonly loading = signal(false);
   readonly error = signal<string | null>(null);
@@ -93,10 +95,16 @@ export class JourneyPageComponent {
         return;
       }
 
-      // Без query-параметра показываем активный курс дашборда.
+      // Без query-параметра показываем активный курс дашборда;
+      // по умолчанию предпочитаем C++ Complete Course.
       if (dashboardCourse) {
-        this.courseId.set(dashboardCourse.id);
-        this.buildNodes(dashboardCourse);
+        if (dashboardCourse.id === CPP_COMPLETE_COURSE_ID) {
+          this.courseId.set(dashboardCourse.id);
+          this.buildNodes(dashboardCourse);
+        } else {
+          this.courseId.set(CPP_COMPLETE_COURSE_ID);
+          void this.loadCourse(CPP_COMPLETE_COURSE_ID);
+        }
       }
     });
   }
@@ -179,7 +187,19 @@ export class JourneyPageComponent {
    * @remarks
    * Currently a placeholder — navigates to the selected scenario or opens detail view.
    */
-  onLocationSelect(): void {
-    // TODO: перейти к сценарию или открыть детальную информацию
+  onLocationSelect(nodeId: string): void {
+    const node = this.nodes().find((item) => item.id === nodeId);
+    if (!node) {
+      return;
+    }
+    // Переход к сценарию на страницу карточек с полным контекстом
+    // (курс, урок, сценарий) — сценарий открывается напрямую.
+    void this.router.navigate(['/cards/select'], {
+      queryParams: {
+        courseId: node.courseId,
+        lessonId: node.lessonId,
+        scenarioId: node.scenarioId,
+      },
+    });
   }
 }

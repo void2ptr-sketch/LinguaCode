@@ -2,7 +2,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient } from '@angular/common/http';
 import { computed, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
 
 import { JourneyPageComponent } from './journey-page.component';
@@ -12,6 +12,7 @@ import { LearningResultsStore } from '../../../entities/learning/model/learning-
 import { ContentSeedRepository } from '../../../entities/content-seed/content-seed.repository';
 import { CourseSearchService } from '../../../entities/course';
 import { AppLoggerService } from '../../../shared/logger/app-logger.service';
+import { CPP_COMPLETE_COURSE_ID } from '../../../entities/course/model';
 import type { CourseWithLessons, Lesson } from '../../../entities/course/model';
 import type { Scenario } from '../../../entities/scenario/model';
 import type { JourneyLocationNode } from '../../../entities/learning/model';
@@ -83,6 +84,7 @@ describe('JourneyPageComponent', () => {
   let mockContentSeedRepo: Partial<ContentSeedRepository>;
   let mockCourseSearchService: { getById: ReturnType<typeof vi.fn> };
   let mockActivatedRoute: Partial<ActivatedRoute>;
+  let mockRouter: { navigate: ReturnType<typeof vi.fn> };
 
   beforeEach(async () => {
     mockDashboardService = {
@@ -153,6 +155,10 @@ describe('JourneyPageComponent', () => {
       queryParams: new BehaviorSubject({ courseId: 'course-1' }),
     };
 
+    mockRouter = {
+      navigate: vi.fn(),
+    };
+
     await TestBed.configureTestingModule({
       imports: [JourneyPageComponent],
       providers: [
@@ -165,6 +171,7 @@ describe('JourneyPageComponent', () => {
         { provide: CourseSearchService, useValue: mockCourseSearchService },
         { provide: AppLoggerService, useValue: mockLogger },
         { provide: ActivatedRoute, useValue: mockActivatedRoute },
+        { provide: Router, useValue: mockRouter },
       ],
     }).compileComponents();
   });
@@ -224,8 +231,23 @@ describe('JourneyPageComponent', () => {
     }
   });
 
-  it('should call onLocationSelect without errors', () => {
-    expect(() => component.onLocationSelect()).not.toThrow();
+  it('should navigate to cards/select on location select', () => {
+    const firstNode = component.nodes()[0];
+    expect(firstNode).toBeDefined();
+
+    component.onLocationSelect(firstNode.id);
+
+    expect(mockRouter.navigate).toHaveBeenCalledWith(['/cards/select'], {
+      queryParams: {
+        courseId: firstNode.courseId,
+        lessonId: firstNode.lessonId,
+        scenarioId: firstNode.scenarioId,
+      },
+    });
+  });
+
+  it('should ignore unknown node id in onLocationSelect', () => {
+    expect(() => component.onLocationSelect('node-unknown')).not.toThrow();
   });
 
   it('should set loading to false after initialization', async () => {
@@ -235,19 +257,16 @@ describe('JourneyPageComponent', () => {
     expect(component.loading()).toBe(false);
   });
 
-  it('should handle empty course lessons', async () => {
-    // Без query-параметра карта следует за активным курсом дашборда.
+  it('should default to the C++ Complete Course without a query param', async () => {
+    // Без query-параметра карта по умолчанию открывает C++ Complete Course.
     (mockActivatedRoute.queryParams as BehaviorSubject<Record<string, string>>).next({});
     fixture.detectChanges();
     await fixture.whenStable();
 
-    const courseSignal = mockDashboardService.course as ReturnType<typeof signal>;
-    const emptyCourse = makeCourse('course-empty', 'Empty Course', []);
-    courseSignal.set(emptyCourse);
-    fixture.detectChanges();
-    await fixture.whenStable();
-
-    expect(component.nodes()).toEqual([]);
+    expect(component.courseId()).toBe(CPP_COMPLETE_COURSE_ID);
+    expect(mockCourseSearchService.getById).toHaveBeenCalledWith(CPP_COMPLETE_COURSE_ID);
+    expect(component.nodes().length).toBeGreaterThan(0);
+    expect(component.nodes()[0]?.courseId).toBe(CPP_COMPLETE_COURSE_ID);
   });
 
   it('should load the course from query params when it differs from the dashboard course', async () => {

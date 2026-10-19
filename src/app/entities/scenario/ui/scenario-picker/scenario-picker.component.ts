@@ -178,7 +178,7 @@ export class ScenarioPickerComponent implements OnInit {
         ...activeLanguagePairCriteria(pair),
         page: {
           page: allowed && allowed.length > 0 ? 0 : this.pageIndex(),
-          pageSize: allowed && allowed.length > 0 ? 100 : this.pageSize(),
+          pageSize: allowed && allowed.length > 0 ? 500 : this.pageSize(),
         },
       });
 

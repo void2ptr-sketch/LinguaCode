@@ -547,7 +547,7 @@ export class CardSelectFlowService {
    * Delegates to `resetCourseState()` — the two methods were merged because
    * they became semantically identical after the refactoring.
    */
-  resetAll(): void {
+   resetAll(): void {
     this.resetCourseState();
   }
 

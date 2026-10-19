@@ -1,3 +1,4 @@
+export * from './course-ids';
 export * from './course.types';
 export * from './course-authoring.types';
 export * from './course-index.types';
