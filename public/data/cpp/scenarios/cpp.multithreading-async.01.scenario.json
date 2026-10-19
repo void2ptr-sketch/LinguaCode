@@ -1,0 +1,49 @@
+{
+  "scenarios": [
+    {
+      "id": "cpp.multithreading-async.01.scenario",
+      "title": "C++ — Что такое C++?",
+      "description": "Сценарий: Что такое C++? — карточки по теме C++",
+      "order": 2,
+      "lessonId": "lesson-cpp-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 20,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.876445.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.876447.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "cpp.multithreading-async.01.scenario.card-01",
+          "cpp.multithreading-async.01.scenario.card-02",
+          "cpp.multithreading-async.01.scenario.card-03",
+          "cpp.multithreading-async.01.scenario.card-04",
+          "cpp.multithreading-async.01.scenario.card-05",
+          "cpp.multithreading-async.01.scenario.card-06",
+          "cpp.multithreading-async.01.scenario.card-07",
+          "cpp.multithreading-async.01.scenario.card-08",
+          "cpp.multithreading-async.01.scenario.card-09",
+          "cpp.multithreading-async.01.scenario.card-10",
+          "cpp.multithreading-async.01.scenario.card-11",
+          "cpp.multithreading-async.01.scenario.card-12",
+          "cpp.multithreading-async.01.scenario.card-13",
+          "cpp.multithreading-async.01.scenario.card-14",
+          "cpp.multithreading-async.01.scenario.card-15",
+          "cpp.multithreading-async.01.scenario.card-16",
+          "cpp.multithreading-async.01.scenario.card-17",
+          "cpp.multithreading-async.01.scenario.card-18",
+          "cpp.multithreading-async.01.scenario.card-19",
+          "cpp.multithreading-async.01.scenario.card-20"
+        ]
+      }
+    }
+  ]
+}

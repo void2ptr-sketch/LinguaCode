@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.constexpr.scenario",
+      "title": "C++ — Constexpr function",
+      "description": "Сценарий: Constexpr function — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-constexpr",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.856058.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.856060.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.constexpr.card-01",
+          "advanced.constexpr.card-02",
+          "advanced.constexpr.card-03",
+          "advanced.constexpr.card-04",
+          "advanced.constexpr.card-05"
+        ]
+      }
+    }
+  ]
+}

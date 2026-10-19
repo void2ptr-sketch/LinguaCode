@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.io.files.scenario",
+  "cards": [
+    {
+      "id": "basics.io.files.card-01",
+      "kind": "select",
+      "title": "File reading",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прочитать файл?",
+      "optionsLearning": [
+        "std::ifstream in(\"file.txt\"); in >> var;",
+        "File.read()",
+        "open file",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io-files",
+      "scenarioId": "basics.io.files.scenario"
+    },
+    {
+      "id": "basics.io.files.card-02",
+      "kind": "select",
+      "title": "File writing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как записать в файл?",
+      "optionsLearning": [
+        "std::ofstream out(\"file.txt\"); out << var;",
+        "File.write()",
+        "open file write",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io-files",
+      "scenarioId": "basics.io.files.scenario"
+    },
+    {
+      "id": "basics.io.files.card-03",
+      "kind": "select",
+      "title": "Check file open",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проверить открытие файла?",
+      "optionsLearning": [
+        "if (!in) { } или if (in.good())",
+        "Нельзя проверить",
+        "try-catch только",
+        "Никогда"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io-files",
+      "scenarioId": "basics.io.files.scenario"
+    },
+    {
+      "id": "basics.io.files.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как правильно работать с файлами?",
+      "optionsLearning": [
+        "using scope_guard или RAII для закрытия",
+        "Никогда не закрывать",
+        "Только вручную",
+        "Игнорировать ошибки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-io-files",
+      "scenarioId": "basics.io.files.scenario"
+    }
+  ]
+}

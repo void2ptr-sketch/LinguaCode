@@ -1,0 +1,150 @@
+{
+  "scenarioId": "oop.smart.pointers.scenario",
+  "cards": [
+    {
+      "id": "oop.smart.pointers.card-01",
+      "kind": "select",
+      "title": "unique_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое unique_ptr?",
+      "optionsLearning": [
+        "Эксклюзивное владение (move-only)",
+        "Общее владение",
+        "Слабое владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-smart-pointers",
+      "scenarioId": "oop.smart.pointers.scenario"
+    },
+    {
+      "id": "oop.smart.pointers.card-02",
+      "kind": "select",
+      "title": "shared_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое shared_ptr?",
+      "optionsLearning": [
+        "Общее владение с reference counting",
+        "Эксклюзивное владение",
+        "Слабое владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-smart-pointers",
+      "scenarioId": "oop.smart.pointers.scenario"
+    },
+    {
+      "id": "oop.smart.pointers.card-03",
+      "kind": "select",
+      "title": "weak_ptr",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем weak_ptr?",
+      "optionsLearning": [
+        "Слабое владение (без увеличения ref count)",
+        "Общее владение",
+        "Эксклюзивное владение",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-smart-pointers",
+      "scenarioId": "oop.smart.pointers.scenario"
+    },
+    {
+      "id": "oop.smart.pointers.card-04",
+      "kind": "select",
+      "title": "Make functions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем make_unique/make_shared?",
+      "optionsLearning": [
+        "Безопасное создание (atomic ref count)",
+        "Нельзя",
+        "Оптимизация",
+        "Константность"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-smart-pointers",
+      "scenarioId": "oop.smart.pointers.scenario"
+    },
+    {
+      "id": "oop.smart.pointers.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как выбирать умный указатель?",
+      "optionsLearning": [
+        "unique_ptr по умолчанию, shared_ptr для общего владения",
+        "Никогда",
+        "Всегда shared_ptr",
+        "Только raw pointers"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "pointers"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-smart-pointers",
+      "scenarioId": "oop.smart.pointers.scenario"
+    }
+  ]
+}

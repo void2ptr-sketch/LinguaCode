@@ -1,0 +1,92 @@
+{
+  "scenarioId": "basics.control.switch.scenario",
+  "cards": [
+    {
+      "id": "basics.control.switch.card-01",
+      "kind": "select",
+      "title": "Switch синтаксис",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой синтаксис switch?",
+      "optionsLearning": [
+        "switch (expr) { case val: ...; break; }",
+        "if (expr == val)",
+        "for (case)",
+        "while (case)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "switch"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-switch",
+      "scenarioId": "basics.control.switch.scenario"
+    },
+    {
+      "id": "basics.control.switch.card-02",
+      "kind": "select",
+      "title": "Fall-through",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fall-through?",
+      "optionsLearning": [
+        "Выполнение следующего case без break",
+        "Ошибка компиляции",
+        "Пропуск case",
+        "Выход из switch"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "switch"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-switch",
+      "scenarioId": "basics.control.switch.scenario"
+    },
+    {
+      "id": "basics.control.switch.card-03",
+      "kind": "select",
+      "title": "Default case",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем default?",
+      "optionsLearning": [
+        "Действие по умолчанию",
+        "Обязательный case",
+        "Первый case",
+        "Последний case"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "switch"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-switch",
+      "scenarioId": "basics.control.switch.scenario"
+    }
+  ]
+}

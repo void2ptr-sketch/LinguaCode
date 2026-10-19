@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.exceptions.oop.scenario",
+      "title": "C++ — Exception in constructor",
+      "description": "Сценарий: Exception in constructor — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-exceptions-oop",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883380.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883382.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.exceptions.oop.card-01",
+          "oop.exceptions.oop.card-02",
+          "oop.exceptions.oop.card-03",
+          "oop.exceptions.oop.card-04"
+        ]
+      }
+    }
+  ]
+}

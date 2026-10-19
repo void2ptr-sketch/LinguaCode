@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.memory.model2.scenario",
+  "cards": [
+    {
+      "id": "advanced.memory.model2.card-01",
+      "kind": "select",
+      "title": "Memory ordering models",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory ordering models?",
+      "optionsLearning": [
+        "Sequential consistency vs relaxed (C++ memory model)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model2",
+      "scenarioId": "advanced.memory.model2.scenario"
+    },
+    {
+      "id": "advanced.memory.model2.card-02",
+      "kind": "select",
+      "title": "Atomic compare-and-swap",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CAS?",
+      "optionsLearning": [
+        "Атомарное сравнение и замена (fundamental primitive)",
+        "Обычная операция",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model2",
+      "scenarioId": "advanced.memory.model2.scenario"
+    },
+    {
+      "id": "advanced.memory.model2.card-03",
+      "kind": "select",
+      "title": "Memory fence",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое memory fence?",
+      "optionsLearning": [
+        "Барьер для порядка операций (compiler + CPU)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model2",
+      "scenarioId": "advanced.memory.model2.scenario"
+    },
+    {
+      "id": "advanced.memory.model2.card-04",
+      "kind": "select",
+      "title": "False sharing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое false sharing?",
+      "optionsLearning": [
+        "Потеря производительности из-за shared cache line",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model2",
+      "scenarioId": "advanced.memory.model2.scenario"
+    },
+    {
+      "id": "advanced.memory.model2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать lock-free code?",
+      "optionsLearning": [
+        "std::atomic + memory orders + avoid false sharing",
+        "Только mutex",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "model2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-memory-model2",
+      "scenarioId": "advanced.memory.model2.scenario"
+    }
+  ]
+}

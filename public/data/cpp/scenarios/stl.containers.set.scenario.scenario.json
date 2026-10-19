@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.containers.set.scenario",
+      "title": "C++ — Set создание",
+      "description": "Сценарий: Set создание — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-containers-set",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884415.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884416.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.containers.set.card-01",
+          "stl.containers.set.card-02",
+          "stl.containers.set.card-03",
+          "stl.containers.set.card-04"
+        ]
+      }
+    }
+  ]
+}

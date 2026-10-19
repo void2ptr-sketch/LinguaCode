@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.game.development.scenario",
+  "cards": [
+    {
+      "id": "advanced.game.development.card-01",
+      "kind": "select",
+      "title": "Game loop",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое game loop?",
+      "optionsLearning": [
+        "Основной цикл игры (update + render)",
+        "Однократное выполнение",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development",
+      "scenarioId": "advanced.game.development.scenario"
+    },
+    {
+      "id": "advanced.game.development.card-02",
+      "kind": "select",
+      "title": "Entity-Component-System",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ECS?",
+      "optionsLearning": [
+        "Архитектура: entities + components + systems",
+        "Один класс",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development",
+      "scenarioId": "advanced.game.development.scenario"
+    },
+    {
+      "id": "advanced.game.development.card-03",
+      "kind": "select",
+      "title": "Memory pool",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем memory pool?",
+      "optionsLearning": [
+        "Быстрое выделение/освобождение (avoid fragmentation)",
+        "Обычная память",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development",
+      "scenarioId": "advanced.game.development.scenario"
+    },
+    {
+      "id": "advanced.game.development.card-04",
+      "kind": "select",
+      "title": "Spatial partitioning",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое spatial partitioning?",
+      "optionsLearning": [
+        "Оптимизация коллизий (quadtree, octree)",
+        "Обычная проверка",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development",
+      "scenarioId": "advanced.game.development.scenario"
+    },
+    {
+      "id": "advanced.game.development.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development",
+      "scenarioId": "advanced.game.development.scenario"
+    }
+  ]
+}

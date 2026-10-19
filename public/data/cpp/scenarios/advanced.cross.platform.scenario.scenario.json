@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.cross.platform.scenario",
+      "title": "C++ — Platform abstraction",
+      "description": "Сценарий: Platform abstraction — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-cross-platform",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.856419.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.856421.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.cross.platform.card-01",
+          "advanced.cross.platform.card-02",
+          "advanced.cross.platform.card-03",
+          "advanced.cross.platform.card-04",
+          "advanced.cross.platform.card-05"
+        ]
+      }
+    }
+  ]
+}

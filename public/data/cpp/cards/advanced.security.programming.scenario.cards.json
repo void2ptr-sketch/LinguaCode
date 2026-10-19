@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.security.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.security.programming.card-01",
+      "kind": "select",
+      "title": "Buffer overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое buffer overflow?",
+      "optionsLearning": [
+        "Запись за пределами буфера (memory corruption)",
+        "Утечка памяти",
+        "Ошибка компиляции",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming",
+      "scenarioId": "advanced.security.programming.scenario"
+    },
+    {
+      "id": "advanced.security.programming.card-02",
+      "kind": "select",
+      "title": "SQL injection",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SQL injection?",
+      "optionsLearning": [
+        "Вставка вредоносного SQL через user input",
+        "Утечка памяти",
+        "Ошибка компиляции",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming",
+      "scenarioId": "advanced.security.programming.scenario"
+    },
+    {
+      "id": "advanced.security.programming.card-03",
+      "kind": "select",
+      "title": "Secure coding",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы secure coding?",
+      "optionsLearning": [
+        "Input validation + sanitization + least privilege",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming",
+      "scenarioId": "advanced.security.programming.scenario"
+    },
+    {
+      "id": "advanced.security.programming.card-04",
+      "kind": "select",
+      "title": "Cryptography basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Основы криптографии?",
+      "optionsLearning": [
+        "Symmetric/asymmetric encryption + hashing",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming",
+      "scenarioId": "advanced.security.programming.scenario"
+    },
+    {
+      "id": "advanced.security.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать secure code?",
+      "optionsLearning": [
+        "Validate input + use libraries + regular audits",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming",
+      "scenarioId": "advanced.security.programming.scenario"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.game.development2.scenario",
+      "title": "C++ — Physics engine",
+      "description": "Сценарий: Physics engine — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-game-development2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.857833.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.857835.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.game.development2.card-01",
+          "advanced.game.development2.card-02",
+          "advanced.game.development2.card-03",
+          "advanced.game.development2.card-04",
+          "advanced.game.development2.card-05"
+        ]
+      }
+    }
+  ]
+}

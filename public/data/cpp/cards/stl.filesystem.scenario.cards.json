@@ -1,0 +1,150 @@
+{
+  "scenarioId": "stl.filesystem.scenario",
+  "cards": [
+    {
+      "id": "stl.filesystem.card-01",
+      "kind": "select",
+      "title": "Filesystem создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::filesystem?",
+      "optionsLearning": [
+        "#include <filesystem> namespace fs = std::filesystem;",
+        "import java.nio.file",
+        "import os",
+        "require('fs')"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-filesystem",
+      "scenarioId": "stl.filesystem.scenario"
+    },
+    {
+      "id": "stl.filesystem.card-02",
+      "kind": "select",
+      "title": "Path creation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать путь?",
+      "optionsLearning": [
+        "fs::path p(\"/home/user/file.txt\");",
+        "new Path(\"file\")",
+        "Path.create()",
+        "fs.path()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-filesystem",
+      "scenarioId": "stl.filesystem.scenario"
+    },
+    {
+      "id": "stl.filesystem.card-03",
+      "kind": "select",
+      "title": "Directory operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать директорию?",
+      "optionsLearning": [
+        "fs::create_directory(p)",
+        "mkdir(p)",
+        "os.mkdir()",
+        "fs.mkdir()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-filesystem",
+      "scenarioId": "stl.filesystem.scenario"
+    },
+    {
+      "id": "stl.filesystem.card-04",
+      "kind": "select",
+      "title": "File operations",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как прочитать файл?",
+      "optionsLearning": [
+        "std::ifstream in(p); std::string content((std::istreambuf_iterator<char>(in)), std::istreambuf_iterator<char>());",
+        "fs.read(p)",
+        "File.read()",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-filesystem",
+      "scenarioId": "stl.filesystem.scenario"
+    },
+    {
+      "id": "stl.filesystem.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать std::filesystem?",
+      "optionsLearning": [
+        "Для cross-platform file operations",
+        "Всегда",
+        "Никогда",
+        "Только для small files"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "filesystem"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-filesystem",
+      "scenarioId": "stl.filesystem.scenario"
+    }
+  ]
+}

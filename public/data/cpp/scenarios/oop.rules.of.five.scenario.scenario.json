@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.rules.of.five.scenario",
+      "title": "C++ — Rule of five",
+      "description": "Сценарий: Rule of five — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-rules-of-five",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883889.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883891.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.rules.of.five.card-01",
+          "oop.rules.of.five.card-02",
+          "oop.rules.of.five.card-03",
+          "oop.rules.of.five.card-04"
+        ]
+      }
+    }
+  ]
+}

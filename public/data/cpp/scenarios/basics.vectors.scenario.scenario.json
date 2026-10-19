@@ -1,0 +1,36 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.vectors.scenario",
+      "title": "C++ — Создание vector",
+      "description": "Сценарий: Создание vector — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-vectors",
+      "courseId": "course-cpp-complete",
+      "cardCount": 7,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.863466.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.863468.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.vectors.card-01",
+          "basics.vectors.card-02",
+          "basics.vectors.card-03",
+          "basics.vectors.card-04",
+          "basics.vectors.card-05",
+          "basics.vectors.card-06",
+          "basics.vectors.card-07"
+        ]
+      }
+    }
+  ]
+}

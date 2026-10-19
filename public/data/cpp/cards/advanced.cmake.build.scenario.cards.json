@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.cmake.build.scenario",
+  "cards": [
+    {
+      "id": "advanced.cmake.build.card-01",
+      "kind": "select",
+      "title": "CMakeLists.txt",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CMakeLists.txt?",
+      "optionsLearning": [
+        "Файл конфигурации сборки (cross-platform)",
+        "Файл исходного кода",
+        "Файл настроек",
+        "Файл документации"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cmake-build",
+      "scenarioId": "advanced.cmake.build.scenario"
+    },
+    {
+      "id": "advanced.cmake.build.card-02",
+      "kind": "select",
+      "title": "Target creation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать target в CMake?",
+      "optionsLearning": [
+        "add_executable(myapp main.cpp)",
+        "create_target(myapp)",
+        "build(myapp)",
+        "compile(myapp)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cmake-build",
+      "scenarioId": "advanced.cmake.build.scenario"
+    },
+    {
+      "id": "advanced.cmake.build.card-03",
+      "kind": "select",
+      "title": "Link libraries",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как линковать библиотеки?",
+      "optionsLearning": [
+        "target_link_libraries(myapp lib1 lib2)",
+        "link(myapp lib1)",
+        "import(lib1)",
+        "include(lib1)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cmake-build",
+      "scenarioId": "advanced.cmake.build.scenario"
+    },
+    {
+      "id": "advanced.cmake.build.card-04",
+      "kind": "select",
+      "title": "Find modules",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти библиотеку?",
+      "optionsLearning": [
+        "find_package(OpenSSL REQUIRED)",
+        "import OpenSSL",
+        "require OpenSSL",
+        "include OpenSSL"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cmake-build",
+      "scenarioId": "advanced.cmake.build.scenario"
+    },
+    {
+      "id": "advanced.cmake.build.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать CMake?",
+      "optionsLearning": [
+        "Modern CMake (target-based, not global)",
+        "Global variables",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "build"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cmake-build",
+      "scenarioId": "advanced.cmake.build.scenario"
+    }
+  ]
+}

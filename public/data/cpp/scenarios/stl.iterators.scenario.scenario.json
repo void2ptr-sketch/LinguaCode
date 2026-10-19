@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "stl.iterators.scenario",
+      "title": "C++ — Iterator basics",
+      "description": "Сценарий: Iterator basics — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-stl-iterators",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.884635.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.884637.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "stl.iterators.card-01",
+          "stl.iterators.card-02",
+          "stl.iterators.card-03",
+          "stl.iterators.card-04"
+        ]
+      }
+    }
+  ]
+}

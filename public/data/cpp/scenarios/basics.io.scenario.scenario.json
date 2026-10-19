@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.io.scenario",
+      "title": "C++ — Cout output",
+      "description": "Сценарий: Cout output — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-io",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862179.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862180.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.io.card-01",
+          "basics.io.card-02",
+          "basics.io.card-03",
+          "basics.io.card-04",
+          "basics.io.card-05"
+        ]
+      }
+    }
+  ]
+}

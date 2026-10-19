@@ -1,0 +1,33 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.network.programming.scenario",
+      "title": "C++ — TCP socket",
+      "description": "Сценарий: TCP socket — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-network-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 4,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862329.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862330.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.network.programming.card-01",
+          "basics.network.programming.card-02",
+          "basics.network.programming.card-03",
+          "basics.network.programming.card-04"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.game.development3.scenario",
+  "cards": [
+    {
+      "id": "advanced.game.development3.card-01",
+      "kind": "select",
+      "title": "Physics engine advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая физика?",
+      "optionsLearning": [
+        "Soft body, fluid simulation, cloth physics",
+        "Только rigid body",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development3",
+      "scenarioId": "advanced.game.development3.scenario"
+    },
+    {
+      "id": "advanced.game.development3.card-02",
+      "kind": "select",
+      "title": "Animation blending",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое animation blending?",
+      "optionsLearning": [
+        "Смешивание анимаций (smooth transitions)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development3",
+      "scenarioId": "advanced.game.development3.scenario"
+    },
+    {
+      "id": "advanced.game.development3.card-03",
+      "kind": "select",
+      "title": "Procedural generation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое procedural generation?",
+      "optionsLearning": [
+        "Автоматическая генерация контента (procedural worlds)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development3",
+      "scenarioId": "advanced.game.development3.scenario"
+    },
+    {
+      "id": "advanced.game.development3.card-04",
+      "kind": "select",
+      "title": "Networking prediction",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое client-side prediction?",
+      "optionsLearning": [
+        "Предсказание на клиенте (reduce lag)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development3",
+      "scenarioId": "advanced.game.development3.scenario"
+    },
+    {
+      "id": "advanced.game.development3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS + profiling",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development3",
+      "scenarioId": "advanced.game.development3.scenario"
+    }
+  ]
+}

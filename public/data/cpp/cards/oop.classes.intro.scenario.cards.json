@@ -1,0 +1,150 @@
+{
+  "scenarioId": "oop.classes.intro.scenario",
+  "cards": [
+    {
+      "id": "oop.classes.intro.card-01",
+      "kind": "select",
+      "title": "Что такое класс?",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Определите класс в C++",
+      "optionsLearning": [
+        "Пользовательский тип с данными и методами",
+        "Функция",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-classes-intro",
+      "scenarioId": "oop.classes.intro.scenario"
+    },
+    {
+      "id": "oop.classes.intro.card-02",
+      "kind": "select",
+      "title": "Class syntax",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Синтаксис класса?",
+      "optionsLearning": [
+        "class MyClass { int x; public: void setX(int v) { x = v; } };",
+        "function MyClass() {}",
+        "def MyClass:",
+        "struct MyClass {}"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-classes-intro",
+      "scenarioId": "oop.classes.intro.scenario"
+    },
+    {
+      "id": "oop.classes.intro.card-03",
+      "kind": "select",
+      "title": "Access modifiers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какие модификаторы доступа?",
+      "optionsLearning": [
+        "private, protected, public",
+        "open, close, hidden",
+        "static, dynamic",
+        "const, volatile"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-classes-intro",
+      "scenarioId": "oop.classes.intro.scenario"
+    },
+    {
+      "id": "oop.classes.intro.card-04",
+      "kind": "select",
+      "title": "Encapsulation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое инкапсуляция?",
+      "optionsLearning": [
+        "Скрытие данных через private + публичные методы",
+        "Наследование",
+        "Полиморфизм",
+        "Шаблоны"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-classes-intro",
+      "scenarioId": "oop.classes.intro.scenario"
+    },
+    {
+      "id": "oop.classes.intro.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать классы?",
+      "optionsLearning": [
+        "SRP: один класс — одна ответственность",
+        "Максимум полей",
+        "Минимум методов",
+        "Публичные поля"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "intro"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-classes-intro",
+      "scenarioId": "oop.classes.intro.scenario"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.security.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.security.programming2.card-01",
+      "kind": "select",
+      "title": "Secure memory handling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать с памятью?",
+      "optionsLearning": [
+        "std::string + std::vector + smart pointers (no raw new/delete)",
+        "Raw pointers",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming2",
+      "scenarioId": "advanced.security.programming2.scenario"
+    },
+    {
+      "id": "advanced.security.programming2.card-02",
+      "kind": "select",
+      "title": "Secure string handling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать со строками?",
+      "optionsLearning": [
+        "std::string + std::string_view (no C-style strings)",
+        "C-style strings",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming2",
+      "scenarioId": "advanced.security.programming2.scenario"
+    },
+    {
+      "id": "advanced.security.programming2.card-03",
+      "kind": "select",
+      "title": "Secure networking",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как безопасно работать с сетью?",
+      "optionsLearning": [
+        "TLS/SSL + certificate validation + input sanitization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming2",
+      "scenarioId": "advanced.security.programming2.scenario"
+    },
+    {
+      "id": "advanced.security.programming2.card-04",
+      "kind": "select",
+      "title": "Secure coding standards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярные secure coding стандарты?",
+      "optionsLearning": [
+        "MISRA C++, CERT C++, OWASP Secure Coding",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming2",
+      "scenarioId": "advanced.security.programming2.scenario"
+    },
+    {
+      "id": "advanced.security.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать secure code?",
+      "optionsLearning": [
+        "Input validation + sanitization + least privilege + regular audits",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-security-programming2",
+      "scenarioId": "advanced.security.programming2.scenario"
+    }
+  ]
+}

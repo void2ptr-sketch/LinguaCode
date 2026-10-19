@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.simd.optimization.scenario",
+  "cards": [
+    {
+      "id": "advanced.simd.optimization.card-01",
+      "kind": "select",
+      "title": "SIMD basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое SIMD?",
+      "optionsLearning": [
+        "Single Instruction Multiple Data (vector operations)",
+        "Scalar operations",
+        "Оптимизация памяти",
+        "Linking"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-simd-optimization",
+      "scenarioId": "advanced.simd.optimization.scenario"
+    },
+    {
+      "id": "advanced.simd.optimization.card-02",
+      "kind": "select",
+      "title": "Intrinsics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое intrinsics?",
+      "optionsLearning": [
+        "Compiler built-in functions для SIMD (_mm_add_ps)",
+        "Обычные функции",
+        "Макросы",
+        "Шаблоны"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-simd-optimization",
+      "scenarioId": "advanced.simd.optimization.scenario"
+    },
+    {
+      "id": "advanced.simd.optimization.card-03",
+      "kind": "select",
+      "title": "Vectorization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое auto-vectorization?",
+      "optionsLearning": [
+        "Compiler автоматическое преобразование в SIMD loops",
+        "Ручное SIMD",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-simd-optimization",
+      "scenarioId": "advanced.simd.optimization.scenario"
+    },
+    {
+      "id": "advanced.simd.optimization.card-04",
+      "kind": "select",
+      "title": "OpenMP",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое OpenMP?",
+      "optionsLearning": [
+        "Pragma-based parallelism (#pragma omp parallel)",
+        "Ручные threads",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-simd-optimization",
+      "scenarioId": "advanced.simd.optimization.scenario"
+    },
+    {
+      "id": "advanced.simd.optimization.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать performance?",
+      "optionsLearning": [
+        "Profile → SIMD/OpenMP → vectorization",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "optimization"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-simd-optimization",
+      "scenarioId": "advanced.simd.optimization.scenario"
+    }
+  ]
+}

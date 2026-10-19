@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.ai.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.ai.programming.card-01",
+      "kind": "select",
+      "title": "ML libraries C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Популярные ML библиотеки?",
+      "optionsLearning": [
+        "TensorFlow C++, PyTorch C++, ONNX Runtime",
+        "NumPy only",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming",
+      "scenarioId": "advanced.ai.programming.scenario"
+    },
+    {
+      "id": "advanced.ai.programming.card-02",
+      "kind": "select",
+      "title": "Model optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать ML модель?",
+      "optionsLearning": [
+        "Quantization + pruning + distillation",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming",
+      "scenarioId": "advanced.ai.programming.scenario"
+    },
+    {
+      "id": "advanced.ai.programming.card-03",
+      "kind": "select",
+      "title": "Inference engine",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое inference engine?",
+      "optionsLearning": [
+        "Runtime для выполнения ML моделей (TensorRT, OpenVINO)",
+        "Тренировка модели",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming",
+      "scenarioId": "advanced.ai.programming.scenario"
+    },
+    {
+      "id": "advanced.ai.programming.card-04",
+      "kind": "select",
+      "title": "Parallel training",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как параллелить обучение?",
+      "optionsLearning": [
+        "Data parallelism + model parallelism (multi-GPU)",
+        "Один GPU",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming",
+      "scenarioId": "advanced.ai.programming.scenario"
+    },
+    {
+      "id": "advanced.ai.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как интегрировать ML в C++?",
+      "optionsLearning": [
+        "ONNX Runtime + quantization + batching",
+        "Только Python",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming",
+      "scenarioId": "advanced.ai.programming.scenario"
+    }
+  ]
+}

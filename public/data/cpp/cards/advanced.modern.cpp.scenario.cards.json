@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.modern.cpp.scenario",
+  "cards": [
+    {
+      "id": "advanced.modern.cpp.card-01",
+      "kind": "select",
+      "title": "C++17 features",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что нового в C++17?",
+      "optionsLearning": [
+        "if constexpr, structured binding, std::optional, filesystem",
+        "Только lambdas",
+        "Только move semantics",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-modern-cpp",
+      "scenarioId": "advanced.modern.cpp.scenario"
+    },
+    {
+      "id": "advanced.modern.cpp.card-02",
+      "kind": "select",
+      "title": "C++20 features",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что нового в C++20?",
+      "optionsLearning": [
+        "Concepts, coroutines, ranges, modules",
+        "Только templates",
+        "Только exceptions",
+        "Ничего"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-modern-cpp",
+      "scenarioId": "advanced.modern.cpp.scenario"
+    },
+    {
+      "id": "advanced.modern.cpp.card-03",
+      "kind": "select",
+      "title": "Ranges (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ranges?",
+      "optionsLearning": [
+        "Lazy evaluation pipelines (| std::views::filter)",
+        "Старые алгоритмы",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-modern-cpp",
+      "scenarioId": "advanced.modern.cpp.scenario"
+    },
+    {
+      "id": "advanced.modern.cpp.card-04",
+      "kind": "select",
+      "title": "Modules (C++20)",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое modules?",
+      "optionsLearning": [
+        "import std; вместо #include (faster compilation)",
+        "#include только",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-modern-cpp",
+      "scenarioId": "advanced.modern.cpp.scenario"
+    },
+    {
+      "id": "advanced.modern.cpp.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как использовать Modern C++?",
+      "optionsLearning": [
+        "C++17/20 features когда доступны",
+        "C++98 всегда",
+        "Никогда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cpp"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-modern-cpp",
+      "scenarioId": "advanced.modern.cpp.scenario"
+    }
+  ]
+}

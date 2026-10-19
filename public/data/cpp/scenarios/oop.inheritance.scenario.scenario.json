@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.inheritance.scenario",
+      "title": "C++ — Inheritance syntax",
+      "description": "Сценарий: Inheritance syntax — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-inheritance",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883460.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883462.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.inheritance.card-01",
+          "oop.inheritance.card-02",
+          "oop.inheritance.card-03",
+          "oop.inheritance.card-04",
+          "oop.inheritance.card-05"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.embedded.systems2.scenario",
+      "title": "C++ — RTOS basics",
+      "description": "Сценарий: RTOS basics — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-embedded-systems2",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.857276.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.857278.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.embedded.systems2.card-01",
+          "advanced.embedded.systems2.card-02",
+          "advanced.embedded.systems2.card-03",
+          "advanced.embedded.systems2.card-04",
+          "advanced.embedded.systems2.card-05"
+        ]
+      }
+    }
+  ]
+}

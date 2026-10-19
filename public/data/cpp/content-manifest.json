@@ -4,10 +4,10 @@
   "language": "cpp",
   "title": "C++ Complete Course",
   "description": "Полный курс C++ от основ до продвинутых тем",
-  "lastUpdated": "2025-07-14T10:30:00Z",
+  "lastUpdated": "2026-10-19T17:06:29.966557Z",
   "stats": {
-    "totalCards": 4680,
-    "totalScenarios": 234,
+    "totalCards": 5299,
+    "totalScenarios": 588,
     "cardsByDifficulty": {
       "beginner": 1700,
       "intermediate": 2060,
@@ -2119,6 +2119,3426 @@
       "difficulty": "intermediate",
       "tags": [
         "unknown"
+      ]
+    },
+    {
+      "id": "advanced.ai.programming.scenario",
+      "title": "C++ — Advanced Ai Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.ai.programming2.scenario",
+      "title": "C++ — Advanced Ai Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.ai.programming3.scenario",
+      "title": "C++ — Advanced Ai Programming3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming3"
+      ]
+    },
+    {
+      "id": "advanced.ai.programming4.scenario",
+      "title": "C++ — Advanced Ai Programming4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming4"
+      ]
+    },
+    {
+      "id": "advanced.ci.cd.scenario",
+      "title": "C++ — Advanced Ci Cd",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "cd"
+      ]
+    },
+    {
+      "id": "advanced.cmake.build.scenario",
+      "title": "C++ — Advanced Cmake Build",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "build"
+      ]
+    },
+    {
+      "id": "advanced.compiler.internals.scenario",
+      "title": "C++ — Advanced Compiler Internals",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "internals"
+      ]
+    },
+    {
+      "id": "advanced.compiler.internals2.scenario",
+      "title": "C++ — Advanced Compiler Internals2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "internals2"
+      ]
+    },
+    {
+      "id": "advanced.compiler.internals3.scenario",
+      "title": "C++ — Advanced Compiler Internals3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "internals3"
+      ]
+    },
+    {
+      "id": "advanced.compiler.internals4.scenario",
+      "title": "C++ — Advanced Compiler Internals4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "internals4"
+      ]
+    },
+    {
+      "id": "advanced.concepts.scenario",
+      "title": "C++ — Advanced Concepts",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "concepts"
+      ]
+    },
+    {
+      "id": "advanced.concurrency.patterns.scenario",
+      "title": "C++ — Advanced Concurrency Patterns",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "patterns"
+      ]
+    },
+    {
+      "id": "advanced.concurrency.patterns2.scenario",
+      "title": "C++ — Advanced Concurrency Patterns2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "patterns2"
+      ]
+    },
+    {
+      "id": "advanced.constexpr.scenario",
+      "title": "C++ — Advanced Constexpr",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "constexpr"
+      ]
+    },
+    {
+      "id": "advanced.coroutines.scenario",
+      "title": "C++ — Advanced Coroutines",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "coroutines"
+      ]
+    },
+    {
+      "id": "advanced.cross.platform.scenario",
+      "title": "C++ — Advanced Cross Platform",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "platform"
+      ]
+    },
+    {
+      "id": "advanced.cross.platform2.scenario",
+      "title": "C++ — Advanced Cross Platform2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "platform2"
+      ]
+    },
+    {
+      "id": "advanced.cross.platform3.scenario",
+      "title": "C++ — Advanced Cross Platform3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "platform3"
+      ]
+    },
+    {
+      "id": "advanced.cross.platform4.scenario",
+      "title": "C++ — Advanced Cross Platform4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "platform4"
+      ]
+    },
+    {
+      "id": "advanced.database.programming.scenario",
+      "title": "C++ — Advanced Database Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.database.programming2.scenario",
+      "title": "C++ — Advanced Database Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.database.programming3.scenario",
+      "title": "C++ — Advanced Database Programming3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming3"
+      ]
+    },
+    {
+      "id": "advanced.debugging.scenario",
+      "title": "C++ — Advanced Debugging",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "debugging"
+      ]
+    },
+    {
+      "id": "advanced.design.patterns.scenario",
+      "title": "C++ — Advanced Design Patterns",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "patterns"
+      ]
+    },
+    {
+      "id": "advanced.embedded.systems.scenario",
+      "title": "C++ — Advanced Embedded Systems",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "systems"
+      ]
+    },
+    {
+      "id": "advanced.embedded.systems2.scenario",
+      "title": "C++ — Advanced Embedded Systems2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "systems2"
+      ]
+    },
+    {
+      "id": "advanced.embedded.systems3.scenario",
+      "title": "C++ — Advanced Embedded Systems3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "systems3"
+      ]
+    },
+    {
+      "id": "advanced.embedded.systems4.scenario",
+      "title": "C++ — Advanced Embedded Systems4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "systems4"
+      ]
+    },
+    {
+      "id": "advanced.error.handling.advanced.scenario",
+      "title": "C++ — Advanced Error Handling Advanced",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.error.handling.advanced2.scenario",
+      "title": "C++ — Advanced Error Handling Advanced2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced2"
+      ]
+    },
+    {
+      "id": "advanced.exception.handling.scenario",
+      "title": "C++ — Advanced Exception Handling",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "handling"
+      ]
+    },
+    {
+      "id": "advanced.game.development.scenario",
+      "title": "C++ — Advanced Game Development",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "development"
+      ]
+    },
+    {
+      "id": "advanced.game.development2.scenario",
+      "title": "C++ — Advanced Game Development2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "development2"
+      ]
+    },
+    {
+      "id": "advanced.game.development3.scenario",
+      "title": "C++ — Advanced Game Development3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "development3"
+      ]
+    },
+    {
+      "id": "advanced.game.development4.scenario",
+      "title": "C++ — Advanced Game Development4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "development4"
+      ]
+    },
+    {
+      "id": "advanced.graphics.programming.scenario",
+      "title": "C++ — Advanced Graphics Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.graphics.programming2.scenario",
+      "title": "C++ — Advanced Graphics Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.graphics.programming3.scenario",
+      "title": "C++ — Advanced Graphics Programming3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming3"
+      ]
+    },
+    {
+      "id": "advanced.graphics.programming4.scenario",
+      "title": "C++ — Advanced Graphics Programming4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming4"
+      ]
+    },
+    {
+      "id": "advanced.macros.preprocessor.scenario",
+      "title": "C++ — Advanced Macros Preprocessor",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "preprocessor"
+      ]
+    },
+    {
+      "id": "advanced.memory.management.scenario",
+      "title": "C++ — Advanced Memory Management",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "management"
+      ]
+    },
+    {
+      "id": "advanced.memory.model.scenario",
+      "title": "C++ — Advanced Memory Model",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "model"
+      ]
+    },
+    {
+      "id": "advanced.memory.model2.scenario",
+      "title": "C++ — Advanced Memory Model2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "model2"
+      ]
+    },
+    {
+      "id": "advanced.meta.programming.scenario",
+      "title": "C++ — Advanced Meta Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.modern.cpp.scenario",
+      "title": "C++ — Advanced Modern Cpp",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "cpp"
+      ]
+    },
+    {
+      "id": "advanced.network.programming.scenario",
+      "title": "C++ — Advanced Network Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.network.programming2.scenario",
+      "title": "C++ — Advanced Network Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.network.programming3.scenario",
+      "title": "C++ — Advanced Network Programming3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming3"
+      ]
+    },
+    {
+      "id": "advanced.parallel.programming.scenario",
+      "title": "C++ — Advanced Parallel Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.parallel.programming2.scenario",
+      "title": "C++ — Advanced Parallel Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.performance.advanced.scenario",
+      "title": "C++ — Advanced Performance Advanced",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.performance.advanced2.scenario",
+      "title": "C++ — Advanced Performance Advanced2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced2"
+      ]
+    },
+    {
+      "id": "advanced.performance.advanced3.scenario",
+      "title": "C++ — Advanced Performance Advanced3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced3"
+      ]
+    },
+    {
+      "id": "advanced.performance.advanced4.scenario",
+      "title": "C++ — Advanced Performance Advanced4",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced4"
+      ]
+    },
+    {
+      "id": "advanced.security.programming.scenario",
+      "title": "C++ — Advanced Security Programming",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "advanced.security.programming2.scenario",
+      "title": "C++ — Advanced Security Programming2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming2"
+      ]
+    },
+    {
+      "id": "advanced.security.programming3.scenario",
+      "title": "C++ — Advanced Security Programming3",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "programming3"
+      ]
+    },
+    {
+      "id": "advanced.simd.optimization.scenario",
+      "title": "C++ — Advanced Simd Optimization",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "advanced.templates.advanced.scenario",
+      "title": "C++ — Advanced Templates Advanced",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.testing.advanced.scenario",
+      "title": "C++ — Advanced Testing Advanced",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced"
+      ]
+    },
+    {
+      "id": "advanced.testing.advanced2.scenario",
+      "title": "C++ — Advanced Testing Advanced2",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced2"
+      ]
+    },
+    {
+      "id": "advanced.testing.scenario",
+      "title": "C++ — Advanced Testing",
+      "cardsCount": 5,
+      "difficulty": "advanced",
+      "tags": [
+        "testing"
+      ]
+    },
+    {
+      "id": "basics.algorithms.scenario",
+      "title": "C++ — Basics Algorithms",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "algorithms"
+      ]
+    },
+    {
+      "id": "basics.arrays.1d.scenario",
+      "title": "C++ — Basics Arrays 1D",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "1d"
+      ]
+    },
+    {
+      "id": "basics.arrays.2d.scenario",
+      "title": "C++ — Basics Arrays 2D",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "2d"
+      ]
+    },
+    {
+      "id": "basics.arrays.vectors.scenario",
+      "title": "C++ — Basics Arrays Vectors",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "vectors"
+      ]
+    },
+    {
+      "id": "basics.control.break.continue.scenario",
+      "title": "C++ — Basics Control Break Continue",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "continue"
+      ]
+    },
+    {
+      "id": "basics.control.for.scenario",
+      "title": "C++ — Basics Control For",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "for"
+      ]
+    },
+    {
+      "id": "basics.control.switch.scenario",
+      "title": "C++ — Basics Control Switch",
+      "cardsCount": 3,
+      "difficulty": "beginner",
+      "tags": [
+        "switch"
+      ]
+    },
+    {
+      "id": "basics.control.while.scenario",
+      "title": "C++ — Basics Control While",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "while"
+      ]
+    },
+    {
+      "id": "basics.exceptions.errors.scenario",
+      "title": "C++ — Basics Exceptions Errors",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "errors"
+      ]
+    },
+    {
+      "id": "basics.exceptions.scenario",
+      "title": "C++ — Basics Exceptions",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "exceptions"
+      ]
+    },
+    {
+      "id": "basics.files.scenario",
+      "title": "C++ — Basics Files",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "files"
+      ]
+    },
+    {
+      "id": "basics.functions.inline.macros.scenario",
+      "title": "C++ — Basics Functions Inline Macros",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "macros"
+      ]
+    },
+    {
+      "id": "basics.functions.overload.scenario",
+      "title": "C++ — Basics Functions Overload",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "overload"
+      ]
+    },
+    {
+      "id": "basics.functions.parameters.scenario",
+      "title": "C++ — Basics Functions Parameters",
+      "cardsCount": 7,
+      "difficulty": "beginner",
+      "tags": [
+        "parameters"
+      ]
+    },
+    {
+      "id": "basics.functions.recursion.scenario",
+      "title": "C++ — Basics Functions Recursion",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "recursion"
+      ]
+    },
+    {
+      "id": "basics.intro.comments.scenario",
+      "title": "C++ — Basics Intro Comments",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "comments"
+      ]
+    },
+    {
+      "id": "basics.intro.compilation.scenario",
+      "title": "C++ — Basics Intro Compilation",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "compilation"
+      ]
+    },
+    {
+      "id": "basics.intro.compiler.setup.scenario",
+      "title": "C++ — Basics Intro Compiler Setup",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "setup"
+      ]
+    },
+    {
+      "id": "basics.intro.history.scenario",
+      "title": "C++ — Basics Intro History",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "history"
+      ]
+    },
+    {
+      "id": "basics.intro.main.structure.scenario",
+      "title": "C++ — Basics Intro Main Structure",
+      "cardsCount": 9,
+      "difficulty": "beginner",
+      "tags": [
+        "structure"
+      ]
+    },
+    {
+      "id": "basics.io.files.scenario",
+      "title": "C++ — Basics Io Files",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "files"
+      ]
+    },
+    {
+      "id": "basics.io.scenario",
+      "title": "C++ — Basics Io",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "io"
+      ]
+    },
+    {
+      "id": "basics.multithreading.async.scenario",
+      "title": "C++ — Basics Multithreading Async",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "async"
+      ]
+    },
+    {
+      "id": "basics.network.programming.scenario",
+      "title": "C++ — Basics Network Programming",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "basics.operators.expressions.scenario",
+      "title": "C++ — Basics Operators Expressions",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "expressions"
+      ]
+    },
+    {
+      "id": "basics.performance.scenario",
+      "title": "C++ — Basics Performance",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "basics.streams.files.scenario",
+      "title": "C++ — Basics Streams Files",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "files"
+      ]
+    },
+    {
+      "id": "basics.strings.c.style.scenario",
+      "title": "C++ — Basics Strings C Style",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "style"
+      ]
+    },
+    {
+      "id": "basics.strings.operations.scenario",
+      "title": "C++ — Basics Strings Operations",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "operations"
+      ]
+    },
+    {
+      "id": "basics.strings.scenario",
+      "title": "C++ — Basics Strings",
+      "cardsCount": 10,
+      "difficulty": "beginner",
+      "tags": [
+        "strings"
+      ]
+    },
+    {
+      "id": "basics.strings.std.string.scenario",
+      "title": "C++ — Basics Strings Std String",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "string"
+      ]
+    },
+    {
+      "id": "basics.strings.streams.scenario",
+      "title": "C++ — Basics Strings Streams",
+      "cardsCount": 3,
+      "difficulty": "beginner",
+      "tags": [
+        "streams"
+      ]
+    },
+    {
+      "id": "basics.system.programming.scenario",
+      "title": "C++ — Basics System Programming",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "programming"
+      ]
+    },
+    {
+      "id": "basics.types.bool.scenario",
+      "title": "C++ — Basics Types Bool",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "bool"
+      ]
+    },
+    {
+      "id": "basics.types.casting.scenario",
+      "title": "C++ — Basics Types Casting",
+      "cardsCount": 7,
+      "difficulty": "beginner",
+      "tags": [
+        "casting"
+      ]
+    },
+    {
+      "id": "basics.types.char.string.scenario",
+      "title": "C++ — Basics Types Char String",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "string"
+      ]
+    },
+    {
+      "id": "basics.types.floating.scenario",
+      "title": "C++ — Basics Types Floating",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "floating"
+      ]
+    },
+    {
+      "id": "basics.vectors.scenario",
+      "title": "C++ — Basics Vectors",
+      "cardsCount": 7,
+      "difficulty": "beginner",
+      "tags": [
+        "vectors"
+      ]
+    },
+    {
+      "id": "cpp.advanced.compiler-construction.01.scenario",
+      "title": "C++ — Cpp Advanced Compiler-Construction 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.compiler.01.scenario",
+      "title": "C++ — Cpp Advanced Compiler 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.concepts.01.scenario",
+      "title": "C++ — Cpp Advanced Concepts 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.concurrency.01.scenario",
+      "title": "C++ — Cpp Advanced Concurrency 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.constexpr.01.scenario",
+      "title": "C++ — Cpp Advanced Constexpr 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.containers.01.scenario",
+      "title": "C++ — Cpp Advanced Containers 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.coroutines.01.scenario",
+      "title": "C++ — Cpp Advanced Coroutines 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.cross-platform.01.scenario",
+      "title": "C++ — Cpp Advanced Cross-Platform 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.database.01.scenario",
+      "title": "C++ — Cpp Advanced Database 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.design-patterns.01.scenario",
+      "title": "C++ — Cpp Advanced Design-Patterns 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.distributed.01.scenario",
+      "title": "C++ — Cpp Advanced Distributed 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.embedded.01.scenario",
+      "title": "C++ — Cpp Advanced Embedded 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.error-handling.01.scenario",
+      "title": "C++ — Cpp Advanced Error-Handling 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.exception-handling.02.scenario",
+      "title": "C++ — Cpp Advanced Exception-Handling 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.exception-safety.01.scenario",
+      "title": "C++ — Cpp Advanced Exception-Safety 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.graphics.01.scenario",
+      "title": "C++ — Cpp Advanced Graphics 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.hpc.01.scenario",
+      "title": "C++ — Cpp Advanced Hpc 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.lambda.01.scenario",
+      "title": "C++ — Cpp Advanced Lambda 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.memory-model.01.scenario",
+      "title": "C++ — Cpp Advanced Memory-Model 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.memory.01.scenario",
+      "title": "C++ — Cpp Advanced Memory 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.metaprogramming.01.scenario",
+      "title": "C++ — Cpp Advanced Metaprogramming 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.modern-features.01.scenario",
+      "title": "C++ — Cpp Advanced Modern-Features 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.modules.01.scenario",
+      "title": "C++ — Cpp Advanced Modules 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.move-semantics.01.scenario",
+      "title": "C++ — Cpp Advanced Move-Semantics 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.networking.01.scenario",
+      "title": "C++ — Cpp Advanced Networking 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.os.01.scenario",
+      "title": "C++ — Cpp Advanced Os 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.performance.01.scenario",
+      "title": "C++ — Cpp Advanced Performance 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.raii.01.scenario",
+      "title": "C++ — Cpp Advanced Raii 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.raii.02.scenario",
+      "title": "C++ — Cpp Advanced Raii 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.ranges.01.scenario",
+      "title": "C++ — Cpp Advanced Ranges 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.realtime.01.scenario",
+      "title": "C++ — Cpp Advanced Realtime 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.security.01.scenario",
+      "title": "C++ — Cpp Advanced Security 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.01.scenario",
+      "title": "C++ — Cpp Advanced Smart-Pointers 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.smart-pointers.02.scenario",
+      "title": "C++ — Cpp Advanced Smart-Pointers 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.stl-algorithms.01.scenario",
+      "title": "C++ — Cpp Advanced Stl-Algorithms 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.templates.01.scenario",
+      "title": "C++ — Cpp Advanced Templates 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.testing.01.scenario",
+      "title": "C++ — Cpp Advanced Testing 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.threading.01.scenario",
+      "title": "C++ — Cpp Advanced Threading 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.type-traits.01.scenario",
+      "title": "C++ — Cpp Advanced Type-Traits 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.ub.01.scenario",
+      "title": "C++ — Cpp Advanced Ub 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.variadic.01.scenario",
+      "title": "C++ — Cpp Advanced Variadic 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.advanced.wasm.01.scenario",
+      "title": "C++ — Cpp Advanced Wasm 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "advanced",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.algorithms.02.scenario",
+      "title": "C++ — Cpp Algorithms 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.algorithms.03.scenario",
+      "title": "C++ — Cpp Algorithms 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.algorithms.04.scenario",
+      "title": "C++ — Cpp Algorithms 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.algorithms.05.scenario",
+      "title": "C++ — Cpp Algorithms 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.advanced-templates-stl.01.scenario",
+      "title": "C++ — Cpp Basics Advanced-Templates-Stl 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "advanced",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.algorithms.01.scenario",
+      "title": "C++ — Cpp Basics Algorithms 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.arrays-1d.01.scenario",
+      "title": "C++ — Cpp Basics Arrays-1D 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.arrays-2d.01.scenario",
+      "title": "C++ — Cpp Basics Arrays-2D 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.arrays-vectors.01.scenario",
+      "title": "C++ — Cpp Basics Arrays-Vectors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.arrays.01.scenario",
+      "title": "C++ — Cpp Basics Arrays 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.arrays.02.scenario",
+      "title": "C++ — Cpp Basics Arrays 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.classes-objects.01.scenario",
+      "title": "C++ — Cpp Basics Classes-Objects 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.classes.01.scenario",
+      "title": "C++ — Cpp Basics Classes 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.control-break-continue.01.scenario",
+      "title": "C++ — Cpp Basics Control-Break-Continue 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.control-for.01.scenario",
+      "title": "C++ — Cpp Basics Control-For 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.control-if-else.01.scenario",
+      "title": "C++ — Cpp Basics Control-If-Else 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "синтаксис"
+      ]
+    },
+    {
+      "id": "cpp.basics.control-switch.01.scenario",
+      "title": "C++ — Cpp Basics Control-Switch 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.control-while.01.scenario",
+      "title": "C++ — Cpp Basics Control-While 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.01.scenario",
+      "title": "C++ — Cpp Basics Exceptions-Errors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.exceptions-errors.02.scenario",
+      "title": "C++ — Cpp Basics Exceptions-Errors 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.exceptions.01.scenario",
+      "title": "C++ — Cpp Basics Exceptions 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.file-io.02.scenario",
+      "title": "C++ — Cpp Basics File-Io 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.files.01.scenario",
+      "title": "C++ — Cpp Basics Files 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-declare.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Declare 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-inline-macros.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Inline-Macros 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-overload.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Overload 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-parameters.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Parameters 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-params.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Params 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.functions-recursion.01.scenario",
+      "title": "C++ — Cpp Basics Functions-Recursion 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.intro-comments.01.scenario",
+      "title": "C++ — Cpp Basics Intro-Comments 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.intro-compilation.01.scenario",
+      "title": "C++ — Cpp Basics Intro-Compilation 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.intro-compiler-setup.01.scenario",
+      "title": "C++ — Cpp Basics Intro-Compiler-Setup 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.intro-history.01.scenario",
+      "title": "C++ — Cpp Basics Intro-History 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.intro-main-structure.01.scenario",
+      "title": "C++ — Cpp Basics Intro-Main-Structure 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.io-files.02.scenario",
+      "title": "C++ — Cpp Basics Io-Files 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.io.01.scenario",
+      "title": "C++ — Cpp Basics Io 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.iterators.01.scenario",
+      "title": "C++ — Cpp Basics Iterators 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.modern-cpp.02.scenario",
+      "title": "C++ — Cpp Basics Modern-Cpp 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.multithreading-async.02.scenario",
+      "title": "C++ — Cpp Basics Multithreading-Async 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.network-programming.02.scenario",
+      "title": "C++ — Cpp Basics Network-Programming 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.operators-expressions.01.scenario",
+      "title": "C++ — Cpp Basics Operators-Expressions 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.operators-expressions.02.scenario",
+      "title": "C++ — Cpp Basics Operators-Expressions 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.01.scenario",
+      "title": "C++ — Cpp Basics Performance 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.02.scenario",
+      "title": "C++ — Cpp Basics Performance 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.03.scenario",
+      "title": "C++ — Cpp Basics Performance 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.04.scenario",
+      "title": "C++ — Cpp Basics Performance 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.05.scenario",
+      "title": "C++ — Cpp Basics Performance 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.06.scenario",
+      "title": "C++ — Cpp Basics Performance 06 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.07.scenario",
+      "title": "C++ — Cpp Basics Performance 07 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.08.scenario",
+      "title": "C++ — Cpp Basics Performance 08 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.09.scenario",
+      "title": "C++ — Cpp Basics Performance 09 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.10.scenario",
+      "title": "C++ — Cpp Basics Performance 10 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.11.scenario",
+      "title": "C++ — Cpp Basics Performance 11 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.12.scenario",
+      "title": "C++ — Cpp Basics Performance 12 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.13.scenario",
+      "title": "C++ — Cpp Basics Performance 13 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.14.scenario",
+      "title": "C++ — Cpp Basics Performance 14 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.15.scenario",
+      "title": "C++ — Cpp Basics Performance 15 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.16.scenario",
+      "title": "C++ — Cpp Basics Performance 16 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.17.scenario",
+      "title": "C++ — Cpp Basics Performance 17 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.18.scenario",
+      "title": "C++ — Cpp Basics Performance 18 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.19.scenario",
+      "title": "C++ — Cpp Basics Performance 19 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.performance.20.scenario",
+      "title": "C++ — Cpp Basics Performance 20 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.pointers-references.01.scenario",
+      "title": "C++ — Cpp Basics Pointers-References 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.pointers-references.02.scenario",
+      "title": "C++ — Cpp Basics Pointers-References 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.pointers.01.scenario",
+      "title": "C++ — Cpp Basics Pointers 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.pointers.02.scenario",
+      "title": "C++ — Cpp Basics Pointers 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.references.01.scenario",
+      "title": "C++ — Cpp Basics References 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.stl-algorithms.01.scenario",
+      "title": "C++ — Cpp Basics Stl-Algorithms 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.stl-containers.01.scenario",
+      "title": "C++ — Cpp Basics Stl-Containers 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.stl.01.scenario",
+      "title": "C++ — Cpp Basics Stl 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.streams-files.01.scenario",
+      "title": "C++ — Cpp Basics Streams-Files 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings-c-style.01.scenario",
+      "title": "C++ — Cpp Basics Strings-C-Style 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings-operations.01.scenario",
+      "title": "C++ — Cpp Basics Strings-Operations 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings-std-string.01.scenario",
+      "title": "C++ — Cpp Basics Strings-Std-String 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings-streams.01.scenario",
+      "title": "C++ — Cpp Basics Strings-Streams 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings.01.scenario",
+      "title": "C++ — Cpp Basics Strings 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.strings.02.scenario",
+      "title": "C++ — Cpp Basics Strings 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.structs.01.scenario",
+      "title": "C++ — Cpp Basics Structs 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.structs.02.scenario",
+      "title": "C++ — Cpp Basics Structs 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.system-programming.02.scenario",
+      "title": "C++ — Cpp Basics System-Programming 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.templates-intro.01.scenario",
+      "title": "C++ — Cpp Basics Templates-Intro 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.templates-stl.01.scenario",
+      "title": "C++ — Cpp Basics Templates-Stl 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.templates-stl.02.scenario",
+      "title": "C++ — Cpp Basics Templates-Stl 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.types-bool.01.scenario",
+      "title": "C++ — Cpp Basics Types-Bool 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.types-casting.01.scenario",
+      "title": "C++ — Cpp Basics Types-Casting 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.types-char-string.01.scenario",
+      "title": "C++ — Cpp Basics Types-Char-String 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.types-floating.01.scenario",
+      "title": "C++ — Cpp Basics Types-Floating 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.basics.types-integer.01.scenario",
+      "title": "C++ — Cpp Basics Types-Integer 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "основные"
+      ]
+    },
+    {
+      "id": "scenario-cpp-basics-vectors-01",
+      "title": "C++ — Cpp Basics Vectors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.classes-objects.01.scenario",
+      "title": "C++ — Cpp Classes-Objects 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.classes-objects.02.scenario",
+      "title": "C++ — Cpp Classes-Objects 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.classes.03.scenario",
+      "title": "C++ — Cpp Classes 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.classes.04.scenario",
+      "title": "C++ — Cpp Classes 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.classes.05.scenario",
+      "title": "C++ — Cpp Classes 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.concurrency.04.scenario",
+      "title": "C++ — Cpp Concurrency 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.concurrency.05.scenario",
+      "title": "C++ — Cpp Concurrency 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.exceptions-errors.01.scenario",
+      "title": "C++ — Cpp Exceptions-Errors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.exceptions-errors.02.scenario",
+      "title": "C++ — Cpp Exceptions-Errors 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.exceptions.04.scenario",
+      "title": "C++ — Cpp Exceptions 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.exceptions.05.scenario",
+      "title": "C++ — Cpp Exceptions 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.file-io.03.scenario",
+      "title": "C++ — Cpp File-Io 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.file-io.04.scenario",
+      "title": "C++ — Cpp File-Io 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.file-io.05.scenario",
+      "title": "C++ — Cpp File-Io 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.io-files.01.scenario",
+      "title": "C++ — Cpp Io-Files 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.io-files.02.scenario",
+      "title": "C++ — Cpp Io-Files 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.io.03.scenario",
+      "title": "C++ — Cpp Io 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.io.04.scenario",
+      "title": "C++ — Cpp Io 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.io.05.scenario",
+      "title": "C++ — Cpp Io 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.modern-cpp.02.scenario",
+      "title": "C++ — Cpp Modern-Cpp 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.modern-cpp.03.scenario",
+      "title": "C++ — Cpp Modern-Cpp 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.modern-cpp.04.scenario",
+      "title": "C++ — Cpp Modern-Cpp 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.modern-cpp.05.scenario",
+      "title": "C++ — Cpp Modern-Cpp 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading-async.01.scenario",
+      "title": "C++ — Cpp Multithreading-Async 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading-async.02.scenario",
+      "title": "C++ — Cpp Multithreading-Async 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading.02.scenario",
+      "title": "C++ — Cpp Multithreading 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading.03.scenario",
+      "title": "C++ — Cpp Multithreading 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading.04.scenario",
+      "title": "C++ — Cpp Multithreading 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.multithreading.05.scenario",
+      "title": "C++ — Cpp Multithreading 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.network-programming.01.scenario",
+      "title": "C++ — Cpp Network-Programming 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.network-programming.02.scenario",
+      "title": "C++ — Cpp Network-Programming 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.networking.02.scenario",
+      "title": "C++ — Cpp Networking 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.networking.03.scenario",
+      "title": "C++ — Cpp Networking 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.networking.04.scenario",
+      "title": "C++ — Cpp Networking 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.networking.05.scenario",
+      "title": "C++ — Cpp Networking 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.fundamentals-classes.01.scenario",
+      "title": "C++ — Cpp Oop Fundamentals-Classes 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.fundamentals-constructors.01.scenario",
+      "title": "C++ — Cpp Oop Fundamentals-Constructors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.fundamentals-destructors.01.scenario",
+      "title": "C++ — Cpp Oop Fundamentals-Destructors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.fundamentals-encapsulation.01.scenario",
+      "title": "C++ — Cpp Oop Fundamentals-Encapsulation 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.fundamentals-this-operators.01.scenario",
+      "title": "C++ — Cpp Oop Fundamentals-This-Operators 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.inheritance-access.01.scenario",
+      "title": "C++ — Cpp Oop Inheritance-Access 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.inheritance-basics.01.scenario",
+      "title": "C++ — Cpp Oop Inheritance-Basics 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.inheritance-constructors.01.scenario",
+      "title": "C++ — Cpp Oop Inheritance-Constructors 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.inheritance-diamond.01.scenario",
+      "title": "C++ — Cpp Oop Inheritance-Diamond 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.inheritance-multiple.01.scenario",
+      "title": "C++ — Cpp Oop Inheritance-Multiple 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.polymorphism-abstract.01.scenario",
+      "title": "C++ — Cpp Oop Polymorphism-Abstract 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic-cast.01.scenario",
+      "title": "C++ — Cpp Oop Polymorphism-Dynamic-Cast 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.polymorphism-dynamic.01.scenario",
+      "title": "C++ — Cpp Oop Polymorphism-Dynamic 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.polymorphism-hierarchies.01.scenario",
+      "title": "C++ — Cpp Oop Polymorphism-Hierarchies 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.oop.polymorphism-virtual.01.scenario",
+      "title": "C++ — Cpp Oop Polymorphism-Virtual 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "oop",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.operators.02.scenario",
+      "title": "C++ — Cpp Operators 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.operators.03.scenario",
+      "title": "C++ — Cpp Operators 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.operators.04.scenario",
+      "title": "C++ — Cpp Operators 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.operators.05.scenario",
+      "title": "C++ — Cpp Operators 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.pointers-references.01.scenario",
+      "title": "C++ — Cpp Pointers-References 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.pointers-references.02.scenario",
+      "title": "C++ — Cpp Pointers-References 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.pointers.03.scenario",
+      "title": "C++ — Cpp Pointers 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.pointers.04.scenario",
+      "title": "C++ — Cpp Pointers 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.pointers.05.scenario",
+      "title": "C++ — Cpp Pointers 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.ptr-ref.04.scenario",
+      "title": "C++ — Cpp Ptr-Ref 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.ptr-ref.05.scenario",
+      "title": "C++ — Cpp Ptr-Ref 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl-advanced.03.scenario",
+      "title": "C++ — Cpp Stl-Advanced 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl-advanced.04.scenario",
+      "title": "C++ — Cpp Stl-Advanced 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl-advanced.05.scenario",
+      "title": "C++ — Cpp Stl-Advanced 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.04.scenario",
+      "title": "C++ — Cpp Stl 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.05.scenario",
+      "title": "C++ — Cpp Stl 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.algorithms-accumulate.01.scenario",
+      "title": "C++ — Cpp Stl Algorithms-Accumulate 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.algorithms-find.01.scenario",
+      "title": "C++ — Cpp Stl Algorithms-Find 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.algorithms-for-each.01.scenario",
+      "title": "C++ — Cpp Stl Algorithms-For-Each 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.algorithms-sort.01.scenario",
+      "title": "C++ — Cpp Stl Algorithms-Sort 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.algorithms-transform.01.scenario",
+      "title": "C++ — Cpp Stl Algorithms-Transform 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.containers-iterators.01.scenario",
+      "title": "C++ — Cpp Stl Containers-Iterators 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.containers-list.01.scenario",
+      "title": "C++ — Cpp Stl Containers-List 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.containers-map.01.scenario",
+      "title": "C++ — Cpp Stl Containers-Map 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.containers-set.01.scenario",
+      "title": "C++ — Cpp Stl Containers-Set 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.stl.containers-vector.01.scenario",
+      "title": "C++ — Cpp Stl Containers-Vector 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "intermediate",
+      "tags": [
+        "stl",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.streams-files.01.scenario",
+      "title": "C++ — Cpp Streams-Files 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.streams-files.02.scenario",
+      "title": "C++ — Cpp Streams-Files 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.streams.03.scenario",
+      "title": "C++ — Cpp Streams 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.streams.04.scenario",
+      "title": "C++ — Cpp Streams 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.streams.05.scenario",
+      "title": "C++ — Cpp Streams 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.strings-streams.01.scenario",
+      "title": "C++ — Cpp Strings-Streams 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.strings-streams.02.scenario",
+      "title": "C++ — Cpp Strings-Streams 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.strings.03.scenario",
+      "title": "C++ — Cpp Strings 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.strings.04.scenario",
+      "title": "C++ — Cpp Strings 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.strings.05.scenario",
+      "title": "C++ — Cpp Strings 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.structs.03.scenario",
+      "title": "C++ — Cpp Structs 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.structs.04.scenario",
+      "title": "C++ — Cpp Structs 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.structs.05.scenario",
+      "title": "C++ — Cpp Structs 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.system-programming.01.scenario",
+      "title": "C++ — Cpp System-Programming 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.system-programming.02.scenario",
+      "title": "C++ — Cpp System-Programming 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.systems.02.scenario",
+      "title": "C++ — Cpp Systems 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.systems.03.scenario",
+      "title": "C++ — Cpp Systems 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.systems.04.scenario",
+      "title": "C++ — Cpp Systems 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.systems.05.scenario",
+      "title": "C++ — Cpp Systems 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates-intro.01.scenario",
+      "title": "C++ — Cpp Templates-Intro 01 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates-intro.02.scenario",
+      "title": "C++ — Cpp Templates-Intro 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates-stl.04.scenario",
+      "title": "C++ — Cpp Templates-Stl 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates-stl.05.scenario",
+      "title": "C++ — Cpp Templates-Stl 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates.02.scenario",
+      "title": "C++ — Cpp Templates 02 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates.03.scenario",
+      "title": "C++ — Cpp Templates 03 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates.04.scenario",
+      "title": "C++ — Cpp Templates 04 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "cpp.templates.05.scenario",
+      "title": "C++ — Cpp Templates 05 Cards Json",
+      "cardsCount": 20,
+      "difficulty": "beginner",
+      "tags": [
+        "intro",
+        "что"
+      ]
+    },
+    {
+      "id": "oop.classes.intro.scenario",
+      "title": "C++ — Oop Classes Intro",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "intro"
+      ]
+    },
+    {
+      "id": "oop.constructors.destructors.scenario",
+      "title": "C++ — Oop Constructors Destructors",
+      "cardsCount": 6,
+      "difficulty": "beginner",
+      "tags": [
+        "destructors"
+      ]
+    },
+    {
+      "id": "oop.exceptions.oop.scenario",
+      "title": "C++ — Oop Exceptions Oop",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "oop"
+      ]
+    },
+    {
+      "id": "oop.inheritance.scenario",
+      "title": "C++ — Oop Inheritance",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "inheritance"
+      ]
+    },
+    {
+      "id": "oop.interfaces.abstract.scenario",
+      "title": "C++ — Oop Interfaces Abstract",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "abstract"
+      ]
+    },
+    {
+      "id": "oop.polymorphism.scenario",
+      "title": "C++ — Oop Polymorphism",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "polymorphism"
+      ]
+    },
+    {
+      "id": "oop.rules.of.five.scenario",
+      "title": "C++ — Oop Rules Of Five",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "five"
+      ]
+    },
+    {
+      "id": "oop.smart.pointers.scenario",
+      "title": "C++ — Oop Smart Pointers",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "pointers"
+      ]
+    },
+    {
+      "id": "oop.templates.intro.scenario",
+      "title": "C++ — Oop Templates Intro",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "intro"
+      ]
+    },
+    {
+      "id": "oop.templates.specialization.scenario",
+      "title": "C++ — Oop Templates Specialization",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "specialization"
+      ]
+    },
+    {
+      "id": "stl.chrono.scenario",
+      "title": "C++ — Stl Chrono",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "chrono"
+      ]
+    },
+    {
+      "id": "stl.containers.algorithms.scenario",
+      "title": "C++ — Stl Containers Algorithms",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "algorithms"
+      ]
+    },
+    {
+      "id": "stl.containers.map.scenario",
+      "title": "C++ — Stl Containers Map",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "map"
+      ]
+    },
+    {
+      "id": "stl.containers.set.scenario",
+      "title": "C++ — Stl Containers Set",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": "stl.containers.unordered.map.scenario",
+      "title": "C++ — Stl Containers Unordered Map",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "map"
+      ]
+    },
+    {
+      "id": "stl.filesystem.scenario",
+      "title": "C++ — Stl Filesystem",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "filesystem"
+      ]
+    },
+    {
+      "id": "stl.iterators.scenario",
+      "title": "C++ — Stl Iterators",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "iterators"
+      ]
+    },
+    {
+      "id": "stl.optional.variant.scenario",
+      "title": "C++ — Stl Optional Variant",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "variant"
+      ]
+    },
+    {
+      "id": "stl.regex.scenario",
+      "title": "C++ — Stl Regex",
+      "cardsCount": 4,
+      "difficulty": "beginner",
+      "tags": [
+        "regex"
+      ]
+    },
+    {
+      "id": "stl.strings.stl.scenario",
+      "title": "C++ — Stl Strings Stl",
+      "cardsCount": 5,
+      "difficulty": "beginner",
+      "tags": [
+        "stl"
       ]
     }
   ]

@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "oop.classes.intro.scenario",
+      "title": "C++ — Что такое класс?",
+      "description": "Сценарий: Что такое класс? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-oop-classes-intro",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.883214.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.883216.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "oop.classes.intro.card-01",
+          "oop.classes.intro.card-02",
+          "oop.classes.intro.card-03",
+          "oop.classes.intro.card-04",
+          "oop.classes.intro.card-05"
+        ]
+      }
+    }
+  ]
+}

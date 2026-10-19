@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.network.programming.scenario",
+  "cards": [
+    {
+      "id": "basics.network.programming.card-01",
+      "kind": "select",
+      "title": "TCP socket",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое TCP socket?",
+      "optionsLearning": [
+        "Надёжный двунаправленный канал связи",
+        "Быстрый односторонний",
+        "Без соединения",
+        "Только для LAN"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-network-programming",
+      "scenarioId": "basics.network.programming.scenario"
+    },
+    {
+      "id": "basics.network.programming.card-02",
+      "kind": "select",
+      "title": "Client-Server model",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Модель клиент-сервер?",
+      "optionsLearning": [
+        "Сервер ждёт запросов, клиент отправляет",
+        "Клиент ждёт",
+        "Одноранговая сеть",
+        "Без сервера"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-network-programming",
+      "scenarioId": "basics.network.programming.scenario"
+    },
+    {
+      "id": "basics.network.programming.card-03",
+      "kind": "select",
+      "title": "HTTP basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое HTTP?",
+      "optionsLearning": [
+        "Протокол для web (GET, POST)",
+        "Файловая система",
+        "База данных",
+        "Операционная система"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-network-programming",
+      "scenarioId": "basics.network.programming.scenario"
+    },
+    {
+      "id": "basics.network.programming.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать сетевые ошибки?",
+      "optionsLearning": [
+        "try-catch для socket operations",
+        "Игнорировать",
+        "Только logging",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-network-programming",
+      "scenarioId": "basics.network.programming.scenario"
+    }
+  ]
+}

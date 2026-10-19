@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.intro.compiler.setup.scenario",
+      "title": "C++ — Установка g++",
+      "description": "Сценарий: Установка g++ — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-intro-compiler-setup",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861842.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861844.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.intro.compiler.setup.card-01",
+          "basics.intro.compiler.setup.card-02",
+          "basics.intro.compiler.setup.card-03",
+          "basics.intro.compiler.setup.card-04",
+          "basics.intro.compiler.setup.card-05",
+          "basics.intro.compiler.setup.card-06",
+          "basics.intro.compiler.setup.card-07",
+          "basics.intro.compiler.setup.card-08",
+          "basics.intro.compiler.setup.card-09",
+          "basics.intro.compiler.setup.card-10"
+        ]
+      }
+    }
+  ]
+}

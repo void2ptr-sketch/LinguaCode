@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.embedded.systems3.scenario",
+  "cards": [
+    {
+      "id": "advanced.embedded.systems3.card-01",
+      "kind": "select",
+      "title": "Bootloader",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое bootloader?",
+      "optionsLearning": [
+        "Первая программа при запуске (initialize hardware + load OS)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems3",
+      "scenarioId": "advanced.embedded.systems3.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems3.card-02",
+      "kind": "select",
+      "title": "Firmware update",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обновлять firmware?",
+      "optionsLearning": [
+        "OTA (Over-The-Air) + A/B partitioning + rollback",
+        "Только manual",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems3",
+      "scenarioId": "advanced.embedded.systems3.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems3.card-03",
+      "kind": "select",
+      "title": "Watchdog timer",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое watchdog timer?",
+      "optionsLearning": [
+        "Автоматический reset при зависании (safety mechanism)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems3",
+      "scenarioId": "advanced.embedded.systems3.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems3.card-04",
+      "kind": "select",
+      "title": "Low power design",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как снизить энергопотребление?",
+      "optionsLearning": [
+        "Sleep modes + clock gating + DMA + interrupt-driven",
+        "Только manual",
+        "Никак",
+        "Только hardware"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems3",
+      "scenarioId": "advanced.embedded.systems3.scenario"
+    },
+    {
+      "id": "advanced.embedded.systems3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать embedded C++?",
+      "optionsLearning": [
+        "RAII + no exceptions + deterministic timing + watchdog",
+        "Full C++ features",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "systems3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-embedded-systems3",
+      "scenarioId": "advanced.embedded.systems3.scenario"
+    }
+  ]
+}

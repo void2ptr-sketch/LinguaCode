@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.network.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.network.programming.card-01",
+      "kind": "select",
+      "title": "Socket basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое socket?",
+      "optionsLearning": [
+        "Точка взаимодействия для сетевого обмена (TCP/UDP)",
+        "Файл",
+        "База данных",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming",
+      "scenarioId": "advanced.network.programming.scenario"
+    },
+    {
+      "id": "advanced.network.programming.card-02",
+      "kind": "select",
+      "title": "TCP vs UDP",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем TCP отличается от UDP?",
+      "optionsLearning": [
+        "TCP — reliable, connection-based; UDP — fast, connectionless",
+        "Одно и то же",
+        "TCP медленнее",
+        "UDP надежнее"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming",
+      "scenarioId": "advanced.network.programming.scenario"
+    },
+    {
+      "id": "advanced.network.programming.card-03",
+      "kind": "select",
+      "title": "Async I/O",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое async I/O?",
+      "optionsLearning": [
+        "Неблокирующий ввод/вывод (epoll, kqueue, IOCP)",
+        "Блокирующий I/O",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming",
+      "scenarioId": "advanced.network.programming.scenario"
+    },
+    {
+      "id": "advanced.network.programming.card-04",
+      "kind": "select",
+      "title": "HTTP server",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать HTTP сервер?",
+      "optionsLearning": [
+        "Socket + parse request + send response",
+        "Только библиотеки",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming",
+      "scenarioId": "advanced.network.programming.scenario"
+    },
+    {
+      "id": "advanced.network.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать network code?",
+      "optionsLearning": [
+        "Async I/O + connection pooling + timeouts",
+        "Только blocking",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-network-programming",
+      "scenarioId": "advanced.network.programming.scenario"
+    }
+  ]
+}

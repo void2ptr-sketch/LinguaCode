@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.security.programming.scenario",
+      "title": "C++ — Buffer overflow",
+      "description": "Сценарий: Buffer overflow — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-security-programming",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.859634.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.859636.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.security.programming.card-01",
+          "advanced.security.programming.card-02",
+          "advanced.security.programming.card-03",
+          "advanced.security.programming.card-04",
+          "advanced.security.programming.card-05"
+        ]
+      }
+    }
+  ]
+}

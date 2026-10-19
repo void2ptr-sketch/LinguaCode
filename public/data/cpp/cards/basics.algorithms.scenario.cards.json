@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.algorithms.scenario",
+  "cards": [
+    {
+      "id": "basics.algorithms.card-01",
+      "kind": "select",
+      "title": "Sort vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как отсортировать vector?",
+      "optionsLearning": [
+        "std::sort(v.begin(), v.end());",
+        "v.sort()",
+        "sort(v)",
+        "v.order()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-algorithms",
+      "scenarioId": "basics.algorithms.scenario"
+    },
+    {
+      "id": "basics.algorithms.card-02",
+      "kind": "select",
+      "title": "Reverse sort",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как сортировать по убыванию?",
+      "optionsLearning": [
+        "std::sort(v.rbegin(), v.rend());",
+        "v.sort(desc)",
+        "sort(v, desc)",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-algorithms",
+      "scenarioId": "basics.algorithms.scenario"
+    },
+    {
+      "id": "basics.algorithms.card-03",
+      "kind": "select",
+      "title": "Find element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "std::find(v.begin(), v.end(), val)",
+        "v.find(val)",
+        "find(v, val)",
+        "v.search(val)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-algorithms",
+      "scenarioId": "basics.algorithms.scenario"
+    },
+    {
+      "id": "basics.algorithms.card-04",
+      "kind": "select",
+      "title": "Binary search",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать binary_search?",
+      "optionsLearning": [
+        "На отсортированном массиве (O(log n))",
+        "На любом массиве",
+        "Никогда",
+        "Только для строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-algorithms",
+      "scenarioId": "basics.algorithms.scenario"
+    },
+    {
+      "id": "basics.algorithms.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какой алгоритм использовать?",
+      "optionsLearning": [
+        "std::sort для сортировки, std::find для поиска",
+        "Ручная реализация",
+        "Никакие",
+        "Только custom"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-algorithms",
+      "scenarioId": "basics.algorithms.scenario"
+    }
+  ]
+}

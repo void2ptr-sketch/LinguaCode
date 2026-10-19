@@ -1,0 +1,121 @@
+{
+  "scenarioId": "stl.containers.algorithms.scenario",
+  "cards": [
+    {
+      "id": "stl.containers.algorithms.card-01",
+      "kind": "select",
+      "title": "std::sort",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как отсортировать контейнер?",
+      "optionsLearning": [
+        "std::sort(c.begin(), c.end());",
+        "c.sort()",
+        "sort(c)",
+        "c.order()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-algorithms",
+      "scenarioId": "stl.containers.algorithms.scenario"
+    },
+    {
+      "id": "stl.containers.algorithms.card-02",
+      "kind": "select",
+      "title": "std::find",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как найти элемент?",
+      "optionsLearning": [
+        "std::find(c.begin(), c.end(), val)",
+        "c.find(val)",
+        "find(c, val)",
+        "c.search(val)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-algorithms",
+      "scenarioId": "stl.containers.algorithms.scenario"
+    },
+    {
+      "id": "stl.containers.algorithms.card-03",
+      "kind": "select",
+      "title": "std::for_each",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как применить функцию ко всем элементам?",
+      "optionsLearning": [
+        "std::for_each(c.begin(), c.end(), func)",
+        "c.forEach(func)",
+        "for (auto x : c) только",
+        "map(func, c)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-algorithms",
+      "scenarioId": "stl.containers.algorithms.scenario"
+    },
+    {
+      "id": "stl.containers.algorithms.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать STL algorithms?",
+      "optionsLearning": [
+        "Для стандартных операций (sort, find, transform)",
+        "Ручная реализация",
+        "Никак",
+        "Только custom"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "algorithms"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-stl-containers-algorithms",
+      "scenarioId": "stl.containers.algorithms.scenario"
+    }
+  ]
+}

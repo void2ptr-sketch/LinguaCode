@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.game.development4.scenario",
+  "cards": [
+    {
+      "id": "advanced.game.development4.card-01",
+      "kind": "select",
+      "title": "Physics engine advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая физика 2?",
+      "optionsLearning": [
+        "GPU physics + cloth simulation + fluid dynamics + rigid body constraints",
+        "Только basic physics",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development4",
+      "scenarioId": "advanced.game.development4.scenario"
+    },
+    {
+      "id": "advanced.game.development4.card-02",
+      "kind": "select",
+      "title": "Animation blending advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое blending?",
+      "optionsLearning": [
+        "Inverse kinematics + motion matching + procedural animation",
+        "Только basic blending",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development4",
+      "scenarioId": "advanced.game.development4.scenario"
+    },
+    {
+      "id": "advanced.game.development4.card-03",
+      "kind": "select",
+      "title": "Procedural generation advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутая procedural generation?",
+      "optionsLearning": [
+        "Noise functions + L-systems + cellular automata + machine learning",
+        "Только basic noise",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development4",
+      "scenarioId": "advanced.game.development4.scenario"
+    },
+    {
+      "id": "advanced.game.development4.card-04",
+      "kind": "select",
+      "title": "Networking prediction advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутое networking?",
+      "optionsLearning": [
+        "Rollback netcode + deterministic lockstep + state interpolation",
+        "Только basic prediction",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development4",
+      "scenarioId": "advanced.game.development4.scenario"
+    },
+    {
+      "id": "advanced.game.development4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать game code?",
+      "optionsLearning": [
+        "Data-oriented + cache-friendly + ECS + profiling + memory pools",
+        "OOP всегда",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "development4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-game-development4",
+      "scenarioId": "advanced.game.development4.scenario"
+    }
+  ]
+}

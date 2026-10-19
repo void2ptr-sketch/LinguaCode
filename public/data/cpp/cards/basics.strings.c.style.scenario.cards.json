@@ -1,0 +1,179 @@
+{
+  "scenarioId": "basics.strings.c.style.scenario",
+  "cards": [
+    {
+      "id": "basics.strings.c.style.card-01",
+      "kind": "select",
+      "title": "C-string создание",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать C-строку?",
+      "optionsLearning": [
+        "char s[] = \"hello\";",
+        "std::string s = \"hello\";",
+        "char* s = new char[6];",
+        "String s = \"hello\";"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    },
+    {
+      "id": "basics.strings.c.style.card-02",
+      "kind": "select",
+      "title": "strlen",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strlen?",
+      "optionsLearning": [
+        "Возвращает длину строки (без \\0)",
+        "Добавляет \\0",
+        "Копирует строку",
+        "Сравнивает строки"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    },
+    {
+      "id": "basics.strings.c.style.card-03",
+      "kind": "select",
+      "title": "strcpy",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strcpy?",
+      "optionsLearning": [
+        "Копирует одну строку в другую",
+        "Сравнивает строки",
+        "Конкатенирует",
+        "Находит подстроку"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    },
+    {
+      "id": "basics.strings.c.style.card-04",
+      "kind": "select",
+      "title": "strcmp",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает strcmp?",
+      "optionsLearning": [
+        "Сравнивает две строки",
+        "Копирует строку",
+        "Конкатенирует",
+        "Находит символ"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    },
+    {
+      "id": "basics.strings.c.style.card-05",
+      "kind": "select",
+      "title": "Buffer overflow",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое buffer overflow?",
+      "optionsLearning": [
+        "Запись за пределами буфера",
+        "Пустой буфер",
+        "Быстрая операция",
+        "Безопасная операция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    },
+    {
+      "id": "basics.strings.c.style.card-06",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать C-строки?",
+      "optionsLearning": [
+        "Только для C-API или производительности",
+        "Всегда",
+        "Никогда",
+        "Только для коротких строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "style"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-c-style",
+      "scenarioId": "basics.strings.c.style.scenario"
+    }
+  ]
+}

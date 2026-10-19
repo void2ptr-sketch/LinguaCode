@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.graphics.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.graphics.programming2.card-01",
+      "kind": "select",
+      "title": "Vulkan basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое Vulkan?",
+      "optionsLearning": [
+        "Low-level graphics API (modern alternative to OpenGL)",
+        "High-level API",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "scenarioId": "advanced.graphics.programming2.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming2.card-02",
+      "kind": "select",
+      "title": "Compute shaders",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое compute shaders?",
+      "optionsLearning": [
+        "GPU вычисления (general purpose)",
+        "Только графика",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "scenarioId": "advanced.graphics.programming2.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming2.card-03",
+      "kind": "select",
+      "title": "Ray tracing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое ray tracing?",
+      "optionsLearning": [
+        "Рендеринг через трассировку лучей (realistic lighting)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "scenarioId": "advanced.graphics.programming2.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming2.card-04",
+      "kind": "select",
+      "title": "GPU profiling",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как профилировать GPU?",
+      "optionsLearning": [
+        "NVIDIA Nsight, AMD Radeon GPU Profiler",
+        "Только CPU profiling",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "scenarioId": "advanced.graphics.programming2.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD + async compute",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming2",
+      "scenarioId": "advanced.graphics.programming2.scenario"
+    }
+  ]
+}

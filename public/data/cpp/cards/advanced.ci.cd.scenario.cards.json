@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.ci.cd.scenario",
+  "cards": [
+    {
+      "id": "advanced.ci.cd.card-01",
+      "kind": "select",
+      "title": "CI pipeline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CI?",
+      "optionsLearning": [
+        "Continuous Integration (автоматическая сборка и тесты)",
+        "Continuous Deployment",
+        "Continuous Delivery",
+        "Manual testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ci-cd",
+      "scenarioId": "advanced.ci.cd.scenario"
+    },
+    {
+      "id": "advanced.ci.cd.card-02",
+      "kind": "select",
+      "title": "CD pipeline",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое CD?",
+      "optionsLearning": [
+        "Continuous Deployment/Delivery (автоматический деплой)",
+        "Manual deployment",
+        "Testing only",
+        "Documentation"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ci-cd",
+      "scenarioId": "advanced.ci.cd.scenario"
+    },
+    {
+      "id": "advanced.ci.cd.card-03",
+      "kind": "select",
+      "title": "GitHub Actions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое GitHub Actions?",
+      "optionsLearning": [
+        "CI/CD platform на GitHub (YAML workflows)",
+        "Тестовый фреймворк",
+        "IDE",
+        "Database"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ci-cd",
+      "scenarioId": "advanced.ci.cd.scenario"
+    },
+    {
+      "id": "advanced.ci.cd.card-04",
+      "kind": "select",
+      "title": "Docker basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем Docker?",
+      "optionsLearning": [
+        "Контейнеризация приложений (reproducible environments)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ci-cd",
+      "scenarioId": "advanced.ci.cd.scenario"
+    },
+    {
+      "id": "advanced.ci.cd.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как настроить CI/CD?",
+      "optionsLearning": [
+        "Automate build, test, deploy on push",
+        "Manual only",
+        "Никак",
+        "Только testing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "cd"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ci-cd",
+      "scenarioId": "advanced.ci.cd.scenario"
+    }
+  ]
+}

@@ -1,0 +1,179 @@
+{
+  "scenarioId": "oop.constructors.destructors.scenario",
+  "cards": [
+    {
+      "id": "oop.constructors.destructors.card-01",
+      "kind": "select",
+      "title": "Constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое конструктор?",
+      "optionsLearning": [
+        "Метод, вызываемый при создании объекта",
+        "Деструктор",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    },
+    {
+      "id": "oop.constructors.destructors.card-02",
+      "kind": "select",
+      "title": "Default constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое default constructor?",
+      "optionsLearning": [
+        "Конструктор без параметров или с default values",
+        "Любой конструктор",
+        "Деструктор",
+        "Копирующий конструктор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    },
+    {
+      "id": "oop.constructors.destructors.card-03",
+      "kind": "select",
+      "title": "Parameterized constructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем параметризованный конструктор?",
+      "optionsLearning": [
+        "Инициализация с данными при создании",
+        "Удаление объекта",
+        "Копирование",
+        "Сравнение"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    },
+    {
+      "id": "oop.constructors.destructors.card-04",
+      "kind": "select",
+      "title": "Destructor",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое деструктор?",
+      "optionsLearning": [
+        "~ClassName() — вызывается при удалении объекта",
+        "Конструктор",
+        "Переменная",
+        "Оператор"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    },
+    {
+      "id": "oop.constructors.destructors.card-05",
+      "kind": "select",
+      "title": "RAII",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RAII?",
+      "optionsLearning": [
+        "Resource Acquisition Is Initialization (управление ресурсами через lifetime)",
+        "Тип данных",
+        "Оператор",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    },
+    {
+      "id": "oop.constructors.destructors.card-06",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как управлять ресурсами?",
+      "optionsLearning": [
+        "RAII через конструктор/деструктор",
+        "Ручное управление",
+        "Никак",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "destructors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-oop-constructors-destructors",
+      "scenarioId": "oop.constructors.destructors.scenario"
+    }
+  ]
+}

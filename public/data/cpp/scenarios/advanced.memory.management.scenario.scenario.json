@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "advanced.memory.management.scenario",
+      "title": "C++ — Stack vs Heap",
+      "description": "Сценарий: Stack vs Heap — карточки по теме C++",
+      "order": 51,
+      "lessonId": "lesson-advanced-memory-management",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.858481.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.858483.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "advanced.memory.management.card-01",
+          "advanced.memory.management.card-02",
+          "advanced.memory.management.card-03",
+          "advanced.memory.management.card-04",
+          "advanced.memory.management.card-05"
+        ]
+      }
+    }
+  ]
+}

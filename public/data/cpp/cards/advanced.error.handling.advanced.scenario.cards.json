@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.error.handling.advanced.scenario",
+  "cards": [
+    {
+      "id": "advanced.error.handling.advanced.card-01",
+      "kind": "select",
+      "title": "Error codes vs exceptions",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать error codes вместо исключений?",
+      "optionsLearning": [
+        "В performance-critical code (no overhead)",
+        "Всегда исключения",
+        "Никогда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced",
+      "scenarioId": "advanced.error.handling.advanced.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced.card-02",
+      "kind": "select",
+      "title": "Result type",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое result type?",
+      "optionsLearning": [
+        "Either<Success, Error> (std::expected в C++23)",
+        "void",
+        "int",
+        "bool"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced",
+      "scenarioId": "advanced.error.handling.advanced.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced.card-03",
+      "kind": "select",
+      "title": "Error propagation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как распространять ошибки?",
+      "optionsLearning": [
+        "Result type + map/and_then (monadic)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced",
+      "scenarioId": "advanced.error.handling.advanced.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced.card-04",
+      "kind": "select",
+      "title": "Fail-fast principle",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fail-fast?",
+      "optionsLearning": [
+        "Раннее обнаружение ошибок (assertions, checks)",
+        "Позднее обнаружение",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced",
+      "scenarioId": "advanced.error.handling.advanced.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки?",
+      "optionsLearning": [
+        "Result type + fail-fast + assertions",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced",
+      "scenarioId": "advanced.error.handling.advanced.scenario"
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.intro.compilation.scenario",
+      "title": "C++ — Что такое компиляция?",
+      "description": "Сценарий: Что такое компиляция? — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-intro-compilation",
+      "courseId": "course-cpp-complete",
+      "cardCount": 10,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.861747.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.861749.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.intro.compilation.card-01",
+          "basics.intro.compilation.card-02",
+          "basics.intro.compilation.card-03",
+          "basics.intro.compilation.card-04",
+          "basics.intro.compilation.card-05",
+          "basics.intro.compilation.card-06",
+          "basics.intro.compilation.card-07",
+          "basics.intro.compilation.card-08",
+          "basics.intro.compilation.card-09",
+          "basics.intro.compilation.card-10"
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.error.handling.advanced2.scenario",
+  "cards": [
+    {
+      "id": "advanced.error.handling.advanced2.card-01",
+      "kind": "select",
+      "title": "Error monad",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое error monad?",
+      "optionsLearning": [
+        "Монета для композиции error handling (Result type)",
+        "Обычная функция",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced2",
+      "scenarioId": "advanced.error.handling.advanced2.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced2.card-02",
+      "kind": "select",
+      "title": "Fail-safe design",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое fail-safe design?",
+      "optionsLearning": [
+        "Дизайн для graceful degradation при ошибках",
+        "Crash at error",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced2",
+      "scenarioId": "advanced.error.handling.advanced2.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced2.card-03",
+      "kind": "select",
+      "title": "Circuit breaker",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое circuit breaker?",
+      "optionsLearning": [
+        "Защита от cascading failures (open/closed/half-open)",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced2",
+      "scenarioId": "advanced.error.handling.advanced2.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced2.card-04",
+      "kind": "select",
+      "title": "Retry with backoff",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое retry with backoff?",
+      "optionsLearning": [
+        "Повтор с увеличением интервала (exponential backoff)",
+        "Только один раз",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced2",
+      "scenarioId": "advanced.error.handling.advanced2.scenario"
+    },
+    {
+      "id": "advanced.error.handling.advanced2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки?",
+      "optionsLearning": [
+        "Result type + circuit breaker + retry with backoff",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "advanced2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-error-handling-advanced2",
+      "scenarioId": "advanced.error.handling.advanced2.scenario"
+    }
+  ]
+}

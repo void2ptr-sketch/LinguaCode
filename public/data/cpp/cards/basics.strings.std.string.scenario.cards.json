@@ -1,0 +1,150 @@
+{
+  "scenarioId": "basics.strings.std.string.scenario",
+  "cards": [
+    {
+      "id": "basics.strings.std.string.card-01",
+      "kind": "select",
+      "title": "String capacity",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое capacity string?",
+      "optionsLearning": [
+        "Выделенная память (может быть > size())",
+        "Длина строки",
+        "Максимальная длина",
+        "Минимальная длина"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-std-string",
+      "scenarioId": "basics.strings.std.string.scenario"
+    },
+    {
+      "id": "basics.strings.std.string.card-02",
+      "kind": "select",
+      "title": "Reserve string",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем reserve()?",
+      "optionsLearning": [
+        "Предварительное выделение памяти",
+        "Уменьшение памяти",
+        "Очистка строки",
+        "Копирование"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-std-string",
+      "scenarioId": "basics.strings.std.string.scenario"
+    },
+    {
+      "id": "basics.strings.std.string.card-03",
+      "kind": "select",
+      "title": "C-string conversion",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить char* из std::string?",
+      "optionsLearning": [
+        "s.c_str() или s.data()",
+        "s.ptr()",
+        "s.char_ptr()",
+        "s.to_c_string()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-std-string",
+      "scenarioId": "basics.strings.std.string.scenario"
+    },
+    {
+      "id": "basics.strings.std.string.card-04",
+      "kind": "select",
+      "title": "String views",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое std::string_view?",
+      "optionsLearning": [
+        "Не-owning view на строку (без копирования)",
+        "Новый тип string",
+        "Указатель на string",
+        "Const string"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-std-string",
+      "scenarioId": "basics.strings.std.string.scenario"
+    },
+    {
+      "id": "basics.strings.std.string.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Когда использовать string_view?",
+      "optionsLearning": [
+        "Для read-only параметров функций",
+        "Всегда вместо string",
+        "Никогда",
+        "Только для больших строк"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "string"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-strings-std-string",
+      "scenarioId": "basics.strings.std.string.scenario"
+    }
+  ]
+}

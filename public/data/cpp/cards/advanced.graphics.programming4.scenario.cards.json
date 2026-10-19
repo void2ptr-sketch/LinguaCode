@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.graphics.programming4.scenario",
+  "cards": [
+    {
+      "id": "advanced.graphics.programming4.card-01",
+      "kind": "select",
+      "title": "Compute shaders advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые compute shaders 2?",
+      "optionsLearning": [
+        "Parallel reduce + scan + sort + matrix operations на GPU",
+        "Только графика",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming4",
+      "scenarioId": "advanced.graphics.programming4.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming4.card-02",
+      "kind": "select",
+      "title": "Ray tracing advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый ray tracing 2?",
+      "optionsLearning": [
+        "Path tracing + global illumination + denoising + DLSS",
+        "Только basic RT",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming4",
+      "scenarioId": "advanced.graphics.programming4.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming4.card-03",
+      "kind": "select",
+      "title": "GPU profiling advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый GPU profiling 2?",
+      "optionsLearning": [
+        "NVIDIA Nsight Compute + AMD RGP + frame capture + memory profiler",
+        "Только CPU profiling",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming4",
+      "scenarioId": "advanced.graphics.programming4.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming4.card-04",
+      "kind": "select",
+      "title": "Vulkan advanced2",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый Vulkan 2?",
+      "optionsLearning": [
+        "Synchronization + memory management + descriptor sets + pipeline caching",
+        "Только basic rendering",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming4",
+      "scenarioId": "advanced.graphics.programming4.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD + async compute + profiling + GPU optimization",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming4",
+      "scenarioId": "advanced.graphics.programming4.scenario"
+    }
+  ]
+}

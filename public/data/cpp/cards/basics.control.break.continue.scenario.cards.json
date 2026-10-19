@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.control.break.continue.scenario",
+  "cards": [
+    {
+      "id": "basics.control.break.continue.card-01",
+      "kind": "select",
+      "title": "Break statement",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает break?",
+      "optionsLearning": [
+        "Выход из ближайшего цикла/switch",
+        "Пропуск итерации",
+        "Завершение программы",
+        "Перезапуск цикла"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "continue"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-break-continue",
+      "scenarioId": "basics.control.break.continue.scenario"
+    },
+    {
+      "id": "basics.control.break.continue.card-02",
+      "kind": "select",
+      "title": "Continue statement",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает continue?",
+      "optionsLearning": [
+        "Пропуск текущей итерации",
+        "Выход из цикла",
+        "Завершение программы",
+        "Перезапуск"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "continue"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-break-continue",
+      "scenarioId": "basics.control.break.continue.scenario"
+    },
+    {
+      "id": "basics.control.break.continue.card-03",
+      "kind": "select",
+      "title": "Nested loops break",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Break вложенного цикла?",
+      "optionsLearning": [
+        "Выходит только из внутреннего цикла",
+        "Выходит из обоих",
+        "Ошибка",
+        "Не работает"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "continue"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-break-continue",
+      "scenarioId": "basics.control.break.continue.scenario"
+    },
+    {
+      "id": "basics.control.break.continue.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как избежать глубокой вложенности break/continue?",
+      "optionsLearning": [
+        "Guard clauses и early returns",
+        "Глубокие циклы",
+        "Goto везде",
+        "Нет лучших практик"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "continue"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-control-break-continue",
+      "scenarioId": "basics.control.break.continue.scenario"
+    }
+  ]
+}

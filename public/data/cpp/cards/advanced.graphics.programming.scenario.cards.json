@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.graphics.programming.scenario",
+  "cards": [
+    {
+      "id": "advanced.graphics.programming.card-01",
+      "kind": "select",
+      "title": "OpenGL basics",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое OpenGL?",
+      "optionsLearning": [
+        "API для 2D/3D графики (shaders, buffers)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming",
+      "scenarioId": "advanced.graphics.programming.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming.card-02",
+      "kind": "select",
+      "title": "Shaders",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое shader?",
+      "optionsLearning": [
+        "Программа для GPU (vertex/fragment)",
+        "CPU программа",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming",
+      "scenarioId": "advanced.graphics.programming.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming.card-03",
+      "kind": "select",
+      "title": "VBO/VAO",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое VBO/VAO?",
+      "optionsLearning": [
+        "Vertex Buffer/Array Object (GPU memory)",
+        "CPU memory",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming",
+      "scenarioId": "advanced.graphics.programming.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming.card-04",
+      "kind": "select",
+      "title": "Texture mapping",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое texture mapping?",
+      "optionsLearning": [
+        "Наложение изображений на 3D модели",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming",
+      "scenarioId": "advanced.graphics.programming.scenario"
+    },
+    {
+      "id": "advanced.graphics.programming.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать graphics code?",
+      "optionsLearning": [
+        "Batch rendering + texture atlases + LOD",
+        "Только manual",
+        "Никак",
+        "Только CPU"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-graphics-programming",
+      "scenarioId": "advanced.graphics.programming.scenario"
+    }
+  ]
+}

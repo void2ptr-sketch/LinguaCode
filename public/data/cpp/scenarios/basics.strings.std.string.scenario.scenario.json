@@ -1,0 +1,34 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.strings.std.string.scenario",
+      "title": "C++ — String capacity",
+      "description": "Сценарий: String capacity — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-strings-std-string",
+      "courseId": "course-cpp-complete",
+      "cardCount": 5,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862904.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862905.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.strings.std.string.card-01",
+          "basics.strings.std.string.card-02",
+          "basics.strings.std.string.card-03",
+          "basics.strings.std.string.card-04",
+          "basics.strings.std.string.card-05"
+        ]
+      }
+    }
+  ]
+}

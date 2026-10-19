@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.cross.platform4.scenario",
+  "cards": [
+    {
+      "id": "advanced.cross.platform4.card-01",
+      "kind": "select",
+      "title": "Cross-platform GUI advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые cross-platform GUI?",
+      "optionsLearning": [
+        "Qt Signals/Slots + ImGui immediate mode + Dear ImGui",
+        "Только WinForms",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform4",
+      "scenarioId": "advanced.cross.platform4.scenario"
+    },
+    {
+      "id": "advanced.cross.platform4.card-02",
+      "kind": "select",
+      "title": "Cross-platform build systems advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутые cross-platform build системы?",
+      "optionsLearning": [
+        "CMake presets + Meson subprojects + Bazel remote cache",
+        "Только Make",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform4",
+      "scenarioId": "advanced.cross.platform4.scenario"
+    },
+    {
+      "id": "advanced.cross.platform4.card-03",
+      "kind": "select",
+      "title": "Cross-platform networking advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый cross-platform network code?",
+      "optionsLearning": [
+        "Boost.Asio + platform abstraction + async I/O",
+        "Только POSIX sockets",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform4",
+      "scenarioId": "advanced.cross.platform4.scenario"
+    },
+    {
+      "id": "advanced.cross.platform4.card-04",
+      "kind": "select",
+      "title": "Cross-platform threading advanced",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Продвинутый cross-platform threading?",
+      "optionsLearning": [
+        "std::thread + std::async + platform abstraction + thread pools",
+        "Только POSIX threads",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform4",
+      "scenarioId": "advanced.cross.platform4.scenario"
+    },
+    {
+      "id": "advanced.cross.platform4.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как поддерживать cross-platform?",
+      "optionsLearning": [
+        "CI on all platforms + abstraction layers + tests + automation",
+        "Только одна платформа",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform4"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform4",
+      "scenarioId": "advanced.cross.platform4.scenario"
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.database.programming2.scenario",
+  "cards": [
+    {
+      "id": "advanced.database.programming2.card-01",
+      "kind": "select",
+      "title": "Database indexing",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем индексы?",
+      "optionsLearning": [
+        "Ускорение поиска (B-tree, hash, bitmap)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming2",
+      "scenarioId": "advanced.database.programming2.scenario"
+    },
+    {
+      "id": "advanced.database.programming2.card-02",
+      "kind": "select",
+      "title": "Query optimization",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать запросы?",
+      "optionsLearning": [
+        "EXPLAIN ANALYZE + indexes + query rewriting",
+        "Никак",
+        "Всегда",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming2",
+      "scenarioId": "advanced.database.programming2.scenario"
+    },
+    {
+      "id": "advanced.database.programming2.card-03",
+      "kind": "select",
+      "title": "Sharding",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое sharding?",
+      "optionsLearning": [
+        "Распределение данных по серверам (horizontal scaling)",
+        "Вертикальное масштабирование",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming2",
+      "scenarioId": "advanced.database.programming2.scenario"
+    },
+    {
+      "id": "advanced.database.programming2.card-04",
+      "kind": "select",
+      "title": "Replication",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое replication?",
+      "optionsLearning": [
+        "Копирование данных между серверами (read replicas)",
+        "Один сервер",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming2",
+      "scenarioId": "advanced.database.programming2.scenario"
+    },
+    {
+      "id": "advanced.database.programming2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с БД?",
+      "optionsLearning": [
+        "Indexes + connection pooling + prepared statements + monitoring",
+        "Только manual",
+        "Никак",
+        "Только raw SQL"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-database-programming2",
+      "scenarioId": "advanced.database.programming2.scenario"
+    }
+  ]
+}

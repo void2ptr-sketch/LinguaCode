@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.concurrency.patterns2.scenario",
+  "cards": [
+    {
+      "id": "advanced.concurrency.patterns2.card-01",
+      "kind": "select",
+      "title": "Actor model",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое actor model?",
+      "optionsLearning": [
+        "Модель через isolated actors + message passing",
+        "Shared state",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "scenarioId": "advanced.concurrency.patterns2.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns2.card-02",
+      "kind": "select",
+      "title": "Futures chain",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое futures chain?",
+      "optionsLearning": [
+        "Цепочка async операций (then/flatMap)",
+        "Односторонняя связь",
+        "Без цепочки",
+        "Статический"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "scenarioId": "advanced.concurrency.patterns2.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns2.card-03",
+      "kind": "select",
+      "title": "Cyclic barrier",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cyclic barrier?",
+      "optionsLearning": [
+        "Точка синхронизации для повторного использования",
+        "Одноразовая барьер",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "scenarioId": "advanced.concurrency.patterns2.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns2.card-04",
+      "kind": "select",
+      "title": "Read-copy-update",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое RCU?",
+      "optionsLearning": [
+        "Модификация без блокировки (copy + update + replace)",
+        "Обычная модификация",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "scenarioId": "advanced.concurrency.patterns2.scenario"
+    },
+    {
+      "id": "advanced.concurrency.patterns2.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как проектировать concurrent code?",
+      "optionsLearning": [
+        "Immutability + message passing + actors",
+        "Shared mutable state",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "patterns2"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-concurrency-patterns2",
+      "scenarioId": "advanced.concurrency.patterns2.scenario"
+    }
+  ]
+}

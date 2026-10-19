@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.macros.preprocessor.scenario",
+  "cards": [
+    {
+      "id": "advanced.macros.preprocessor.card-01",
+      "kind": "select",
+      "title": "Preprocessor directives",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое препроцессор?",
+      "optionsLearning": [
+        "Текстовая обработка перед компиляцией (#include, #define)",
+        "Оптимизация кода",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-macros-preprocessor",
+      "scenarioId": "advanced.macros.preprocessor.scenario"
+    },
+    {
+      "id": "advanced.macros.preprocessor.card-02",
+      "kind": "select",
+      "title": "Include guards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем include guards?",
+      "optionsLearning": [
+        "Предотвращение multiple inclusion header'ов",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-macros-preprocessor",
+      "scenarioId": "advanced.macros.preprocessor.scenario"
+    },
+    {
+      "id": "advanced.macros.preprocessor.card-03",
+      "kind": "select",
+      "title": "Macro dangers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Проблемы макросов?",
+      "optionsLearning": [
+        "Нет проверки типов, side effects, трудно дебажить",
+        "Безопасны всегда",
+        "Быстрее inline",
+        "Не используются"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-macros-preprocessor",
+      "scenarioId": "advanced.macros.preprocessor.scenario"
+    },
+    {
+      "id": "advanced.macros.preprocessor.card-04",
+      "kind": "select",
+      "title": "Conditional compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #ifdef?",
+      "optionsLearning": [
+        "Условная компиляция (debug/release, platform)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-macros-preprocessor",
+      "scenarioId": "advanced.macros.preprocessor.scenario"
+    },
+    {
+      "id": "advanced.macros.preprocessor.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что использовать вместо макросов?",
+      "optionsLearning": [
+        "constexpr, inline functions, templates",
+        "#define всегда",
+        "Ничего",
+        "Global variables"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "preprocessor"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-macros-preprocessor",
+      "scenarioId": "advanced.macros.preprocessor.scenario"
+    }
+  ]
+}

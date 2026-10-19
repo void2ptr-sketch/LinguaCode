@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.ai.programming3.scenario",
+  "cards": [
+    {
+      "id": "advanced.ai.programming3.card-01",
+      "kind": "select",
+      "title": "Reinforcement learning C++",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "RL на C++?",
+      "optionsLearning": [
+        "TensorFlow Agents C++ + custom environments",
+        "Только Python",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming3",
+      "scenarioId": "advanced.ai.programming3.scenario"
+    },
+    {
+      "id": "advanced.ai.programming3.card-02",
+      "kind": "select",
+      "title": "Model compression",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое model compression?",
+      "optionsLearning": [
+        "Quantization + pruning + distillation (reduce size)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming3",
+      "scenarioId": "advanced.ai.programming3.scenario"
+    },
+    {
+      "id": "advanced.ai.programming3.card-03",
+      "kind": "select",
+      "title": "Federated learning",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое federated learning?",
+      "optionsLearning": [
+        "Обучение без централизации данных (privacy-preserving)",
+        "Только centralized",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming3",
+      "scenarioId": "advanced.ai.programming3.scenario"
+    },
+    {
+      "id": "advanced.ai.programming3.card-04",
+      "kind": "select",
+      "title": "Neural architecture search",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое NAS?",
+      "optionsLearning": [
+        "Автоматический поиск архитектуры нейросети (AutoML)",
+        "Оптимизация памяти",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming3",
+      "scenarioId": "advanced.ai.programming3.scenario"
+    },
+    {
+      "id": "advanced.ai.programming3.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как интегрировать ML в C++?",
+      "optionsLearning": [
+        "ONNX Runtime + quantization + batching + edge optimization + profiling",
+        "Только Python",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "programming3"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-ai-programming3",
+      "scenarioId": "advanced.ai.programming3.scenario"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.control.for.scenario",
+      "title": "C++ — Синтаксис for",
+      "description": "Сценарий: Синтаксис for — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-control-for",
+      "courseId": "course-cpp-complete",
+      "cardCount": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.860679.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.860681.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.control.for.card-01",
+          "basics.control.for.card-02",
+          "basics.control.for.card-03",
+          "basics.control.for.card-04",
+          "basics.control.for.card-05",
+          "basics.control.for.card-06"
+        ]
+      }
+    }
+  ]
+}

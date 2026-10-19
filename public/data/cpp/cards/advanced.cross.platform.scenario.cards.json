@@ -1,0 +1,150 @@
+{
+  "scenarioId": "advanced.cross.platform.scenario",
+  "cards": [
+    {
+      "id": "advanced.cross.platform.card-01",
+      "kind": "select",
+      "title": "Platform abstraction",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое platform abstraction?",
+      "optionsLearning": [
+        "Единый интерфейс для разных ОС (cross-platform API)",
+        "Одна ОС",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform",
+      "scenarioId": "advanced.cross.platform.scenario"
+    },
+    {
+      "id": "advanced.cross.platform.card-02",
+      "kind": "select",
+      "title": "Cross-compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое cross-compilation?",
+      "optionsLearning": [
+        "Компиляция на одной платформе для другой",
+        "Только native",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform",
+      "scenarioId": "advanced.cross.platform.scenario"
+    },
+    {
+      "id": "advanced.cross.platform.card-03",
+      "kind": "select",
+      "title": "Conditional compilation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #ifdef PLATFORM?",
+      "optionsLearning": [
+        "Platform-specific code (Windows vs Unix)",
+        "Оптимизация",
+        "Linking",
+        "Runtime"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform",
+      "scenarioId": "advanced.cross.platform.scenario"
+    },
+    {
+      "id": "advanced.cross.platform.card-04",
+      "kind": "select",
+      "title": "Portable code",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как писать portable код?",
+      "optionsLearning": [
+        "Стандартный C++ (без platform-specific features)",
+        "Platform-specific",
+        "Нельзя",
+        "Оптимизация"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform",
+      "scenarioId": "advanced.cross.platform.scenario"
+    },
+    {
+      "id": "advanced.cross.platform.card-05",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как поддерживать cross-platform?",
+      "optionsLearning": [
+        "CI на разных платформах + abstraction layers",
+        "Только одна платформа",
+        "Никак",
+        "Только manual"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "advanced",
+        "tags": [
+          "platform"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-advanced-cross-platform",
+      "scenarioId": "advanced.cross.platform.scenario"
+    }
+  ]
+}

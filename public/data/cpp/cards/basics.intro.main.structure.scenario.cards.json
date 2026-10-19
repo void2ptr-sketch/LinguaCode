@@ -1,0 +1,266 @@
+{
+  "scenarioId": "basics.intro.main.structure.scenario",
+  "cards": [
+    {
+      "id": "basics.intro.main.structure.card-01",
+      "kind": "select",
+      "title": "Минимальная программа",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Какая минимальная программа C++?",
+      "optionsLearning": [
+        "int main() {}",
+        "void main() {}",
+        "class Program {}",
+        "def main():"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-02",
+      "kind": "select",
+      "title": "Main function return",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что возвращает main()?",
+      "optionsLearning": [
+        "int (0 = success)",
+        "void",
+        "string",
+        "nothing"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-03",
+      "kind": "select",
+      "title": "Include headers",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #include <iostream>?",
+      "optionsLearning": [
+        "Для std::cin, std::cout",
+        "Для main()",
+        "Обязательно всегда",
+        "Для компиляции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-04",
+      "kind": "select",
+      "title": "Namespace std",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое namespace std?",
+      "optionsLearning": [
+        "Пространство имён стандартной библиотеки",
+        "Ошибка компиляции",
+        "Тип данных",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-05",
+      "kind": "select",
+      "title": "Using namespace",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что делает using namespace std?",
+      "optionsLearning": [
+        "Позволяет писать cout вместо std::cout",
+        "Ошибка компиляции",
+        "Увеличивает размер",
+        "Отключает std"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-06",
+      "kind": "select",
+      "title": "Program structure",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Порядок элементов в файле?",
+      "optionsLearning": [
+        "Includes → Using → Functions → main()",
+        "main() → Functions → Includes",
+        "Functions → main() → Includes",
+        "Случайный порядок"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-07",
+      "kind": "select",
+      "title": "Multiple files",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как организовать многофайловый проект?",
+      "optionsLearning": [
+        ".h (declarations) + .cpp (implementations)",
+        "Только .cpp файлы",
+        "Только .h файлы",
+        "Один файл"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-08",
+      "kind": "select",
+      "title": "Header guards",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Зачем #ifndef HEADER_H?",
+      "optionsLearning": [
+        "Предотвращение повторного включения",
+        "Увеличение скорости",
+        "Отключение header",
+        "Ошибка"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    },
+    {
+      "id": "basics.intro.main.structure.card-09",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как структурировать большой проект?",
+      "optionsLearning": [
+        "Разделить на модули/файлы по ответственности",
+        "Один огромный файл",
+        "Скрыть все функции",
+        "Использовать только main()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "structure"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-intro-main-structure",
+      "scenarioId": "basics.intro.main.structure.scenario"
+    }
+  ]
+}

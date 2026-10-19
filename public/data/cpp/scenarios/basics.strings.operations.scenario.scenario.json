@@ -1,0 +1,35 @@
+{
+  "scenarios": [
+    {
+      "id": "basics.strings.operations.scenario",
+      "title": "C++ — Append string",
+      "description": "Сценарий: Append string — карточки по теме C++",
+      "order": 1,
+      "lessonId": "lesson-basics-strings-operations",
+      "courseId": "course-cpp-complete",
+      "cardCount": 6,
+      "authoring": {
+        "status": "materialized",
+        "updatedAt": "2026-10-19T17:08:35.862734.000Z"
+      },
+      "languagePair": {
+        "known": "ru",
+        "learning": "cpp"
+      },
+      "published": true,
+      "updatedAt": "2026-10-19T17:08:35.862736.000Z",
+      "authorId": "system",
+      "cardSource": {
+        "mode": "snapshot",
+        "cardIds": [
+          "basics.strings.operations.card-01",
+          "basics.strings.operations.card-02",
+          "basics.strings.operations.card-03",
+          "basics.strings.operations.card-04",
+          "basics.strings.operations.card-05",
+          "basics.strings.operations.card-06"
+        ]
+      }
+    }
+  ]
+}

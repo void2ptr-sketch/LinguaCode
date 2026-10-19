@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.system.programming.scenario",
+  "cards": [
+    {
+      "id": "basics.system.programming.card-01",
+      "kind": "select",
+      "title": "Process creation",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать процесс?",
+      "optionsLearning": [
+        "fork() (Unix) или CreateProcess() (Windows)",
+        "new Process()",
+        "spawn(process)",
+        "thread.create()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-system-programming",
+      "scenarioId": "basics.system.programming.scenario"
+    },
+    {
+      "id": "basics.system.programming.card-02",
+      "kind": "select",
+      "title": "Signals",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое сигналы?",
+      "optionsLearning": [
+        "Уведомления ОС процессу (SIGINT, SIGTERM)",
+        "Ошибки компиляции",
+        "Типы данных",
+        "Функции"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-system-programming",
+      "scenarioId": "basics.system.programming.scenario"
+    },
+    {
+      "id": "basics.system.programming.card-03",
+      "kind": "select",
+      "title": "File descriptors",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Что такое file descriptor?",
+      "optionsLearning": [
+        "Целочисленный идентификатор файла в ОС",
+        "Указатель на файл",
+        "Тип данных",
+        "Функция"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-system-programming",
+      "scenarioId": "basics.system.programming.scenario"
+    },
+    {
+      "id": "basics.system.programming.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с ресурсами ОС?",
+      "optionsLearning": [
+        "RAII для автоматического освобождения",
+        "Никогда не освобождать",
+        "Только вручную",
+        "Игнорировать"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "programming"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-system-programming",
+      "scenarioId": "basics.system.programming.scenario"
+    }
+  ]
+}

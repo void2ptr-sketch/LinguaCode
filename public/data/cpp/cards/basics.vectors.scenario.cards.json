@@ -1,0 +1,208 @@
+{
+  "scenarioId": "basics.vectors.scenario",
+  "cards": [
+    {
+      "id": "basics.vectors.card-01",
+      "kind": "select",
+      "title": "Создание vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как создать std::vector?",
+      "optionsLearning": [
+        "std::vector<int> v;",
+        "int[] v;",
+        "vector<int> v = new vector();",
+        "List<int> v;"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-02",
+      "kind": "select",
+      "title": "Add element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как добавить элемент?",
+      "optionsLearning": [
+        "v.push_back(x)",
+        "v.add(x)",
+        "v.insert(x)",
+        "v.append(x)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-03",
+      "kind": "select",
+      "title": "Access element",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как получить элемент?",
+      "optionsLearning": [
+        "v[i] или v.at(i)",
+        "v.get(i)",
+        "v[i] только",
+        "v.find(i)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-04",
+      "kind": "select",
+      "title": "Size and capacity",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Чем size отличается от capacity?",
+      "optionsLearning": [
+        "size() — элементы, capacity() — выделенная память",
+        "Одно и то же",
+        "capacity < size",
+        "Нет различий"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-05",
+      "kind": "select",
+      "title": "Resize vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как изменить размер?",
+      "optionsLearning": [
+        "v.resize(n)",
+        "v.setSize(n)",
+        "v.changeSize(n)",
+        "v.length(n)"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-06",
+      "kind": "select",
+      "title": "Iterate vector",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как перебрать vector?",
+      "optionsLearning": [
+        "for (const auto& x : v)",
+        "for (int i = 0; i < v.size(); i++) только",
+        "while loop",
+        "foreach только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    },
+    {
+      "id": "basics.vectors.card-07",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как оптимизировать vector?",
+      "optionsLearning": [
+        "reserve(n) перед добавлением",
+        "Использовать array всегда",
+        "Никак",
+        "Удалять элементы часто"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "vectors"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-vectors",
+      "scenarioId": "basics.vectors.scenario"
+    }
+  ]
+}

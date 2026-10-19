@@ -1,0 +1,121 @@
+{
+  "scenarioId": "basics.files.scenario",
+  "cards": [
+    {
+      "id": "basics.files.card-01",
+      "kind": "select",
+      "title": "File modes",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Режимы открытия файлов?",
+      "optionsLearning": [
+        "ios::in, ios::out, ios::app",
+        "read/write только",
+        "Только один режим",
+        "Нельзя"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-files",
+      "scenarioId": "basics.files.scenario"
+    },
+    {
+      "id": "basics.files.card-02",
+      "kind": "select",
+      "title": "Binary files",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как работать с бинарными файлами?",
+      "optionsLearning": [
+        "std::fstream f(\"file.bin\", std::ios::binary)",
+        "Только text файлы",
+        "Нельзя",
+        "ifstream только"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-files",
+      "scenarioId": "basics.files.scenario"
+    },
+    {
+      "id": "basics.files.card-03",
+      "kind": "select",
+      "title": "Read line by line",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как читать построчно?",
+      "optionsLearning": [
+        "std::getline(in, line)",
+        "in >> line только",
+        "Нельзя",
+        "readLine()"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-files",
+      "scenarioId": "basics.files.scenario"
+    },
+    {
+      "id": "basics.files.card-04",
+      "kind": "select",
+      "title": "Best practices",
+      "appearance": {
+        "theme": "azure-blue",
+        "fontSize": "md"
+      },
+      "direction": "known-to-learning",
+      "promptKnown": "Как обрабатывать ошибки файлов?",
+      "optionsLearning": [
+        "Проверять in.good() после операций",
+        "Игнорировать",
+        "Только try-catch",
+        "Никак"
+      ],
+      "correctIndex": 0,
+      "meta": {
+        "knownLanguage": "ru",
+        "learningLanguage": "cpp",
+        "difficulty": "beginner",
+        "tags": [
+          "files"
+        ]
+      },
+      "courseId": "course-cpp-complete",
+      "lessonId": "lesson-basics-files",
+      "scenarioId": "basics.files.scenario"
+    }
+  ]
+}
